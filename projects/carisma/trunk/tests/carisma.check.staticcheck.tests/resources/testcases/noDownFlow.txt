@@ -1,0 +1,12 @@
+This class tests a class diagram with a state machine representing the
+behavior of the class according to <<no down flow>>
+
+It gets a Package as input (and an AnalysisHost, but the Analysis Host could also be null) and
+returns true, if the Package is correct according to <<no down flow>>, otherwise it returns false.
+
+
+1. The given model is "null" --> test fails, info that the resource/model is null | testNull()
+2. UMLsec profile isn't added --> test succeed, info that the UMLsec profile isn't added | testNoProfile()
+3. Stereotype <<no down flow>> isn't added --> test succeed, info that there ist no Stereotype <<no down flow>> | testNoStereotype()
+4. The given model is incorrect according to <<no down flow>> --> test fails, info why it fails | testBookExample
+5.		all fine --> Check successful | testCorrect()

@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Efficiency
+Bundle-SymbolicName: carisma.umlchange.efficiency; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: carisma.umlchange.efficiency.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ carisma.core,
+ carisma.modeltype.uml2,
+ carisma.profile.umlchange,
+ org.eclipse.core.resources,
+ carisma.check.smartcard.evolution;bundle-version="1.1.2",
+ carisma.check.smartcard
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: carisma.check.smartcard.lockedstatus,
+ carisma.evolution,
+ carisma.evolution.uml2,
+ carisma.evolution.uml2.io,
+ carisma.evolution.uml2.umlchange

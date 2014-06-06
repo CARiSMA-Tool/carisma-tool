@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="carisma.carismacheck">
+      <check
+            name="LockedStatus UMLChangeEfficiency"
+            implementingClass="carisma.check.umlchange.efficiency.UMLchangeEfficiencyTestLockedStatus"
+            publisher="Klaus Rudack"
+            description="Checks  the efficiency of the Evolutiona aware Locked-Status Check"
+            targetModelType="UML2"
+            id="carisma.check.UMLchangeEfficiency.LockedStatus">
+         <parameter
+               defaultValue="500"
+               description="Amount of paths in the testmodel"
+               id="carisma.check.umlchange.efficiency.paths"
+               name="paths"
+               optional="false"
+               type="int">
+         </parameter>
+         <parameter
+               defaultValue="10"
+               description="Percentage of UMLChange-paths"
+               id="carisma.check.umlchange.efficiency.changepercent"
+               name="percentage"
+               optional="false"
+               type="float">
+         </parameter>
+         <parameter
+               defaultValue="true"
+               description="Only Max Deltas?"
+               id="carisma.check.umlchange.efficiency.maxdelta"
+               name="Max Delta"
+               optional="false"
+               type="boolean">
+         </parameter>
+      </check>
+      <check
+            description="Checks  the efficiency of the Evolutiona aware Authorized-Status Check"
+            id="carisma.check.UMLchangeEfficiency.AuthorizedStatus"
+            implementingClass="carisma.check.umlchange.efficiency.authorizedstatus.UMLchangeEfficiencyTestAuthorizedStatus"
+            name="AuthorizedStatus UMLChangeEfficiency"
+            publisher="Benjamin Berghoff"
+            targetModelType="UML2">
+         <parameter
+               defaultValue="500"
+               description="Amount of paths in the testmodel"
+               id="carisma.check.umlchange.efficiency.authorizedstatus.paths"
+               name="paths"
+               optional="false"
+               type="int">
+         </parameter>
+         <parameter
+               defaultValue="10"
+               description="Percentage of UMLChange-paths"
+               id="carisma.check.umlchange.efficiency.authorizedstatus.changepercent"
+               name="percentage"
+               optional="false"
+               type="float">
+         </parameter>
+         <parameter
+               defaultValue="true"
+               description="Only Max Deltas?"
+               id="carisma.check.umlchange.efficiency.authorizedstatus.maxdelta"
+               name="Max Delta"
+               optional="false"
+               type="boolean">
+         </parameter>
+      </check>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Locked Status efficiency"
+            category="carisma.core.index"
+            class="carisma.check.samplepackage.preferencepage.MyPrefPage"
+            id="carisma.check.samplepackage.preferencepage.My Preference Page">
+      </page>
+   </extension>
+
+</plugin>

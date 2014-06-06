@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="add">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="targetPkg">
+      <packagedElement xmi:type="uml:Class" xmi:id="_gjIuAD0gEeGMjs5bedxyVw" name="AlreadyHere"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_jSxVUD0mEeGXzOf1QGGxYg" name="addThis">
+        <packagedElement xmi:type="uml:Class" xmi:id="_s0BpID0mEeGXzOf1QGGxYg" name="ComplexClass">
+          <ownedAttribute xmi:id="_3L1KcD0mEeGXzOf1QGGxYg" name="color">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_5Vio8j0mEeGXzOf1QGGxYg" name="height">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_6Ue9cD0mEeGXzOf1QGGxYg" name="weight">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+          </ownedAttribute>
+          <ownedOperation xmi:id="_v43TID0mEeGXzOf1QGGxYg" name="someOp">
+            <ownedParameter xmi:id="_xG824D0mEeGXzOf1QGGxYg" name="return" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:id="_zu2GMD0mEeGXzOf1QGGxYg" name="moreOp"/>
+          <ownedOperation xmi:id="_1r5BsD0mEeGXzOf1QGGxYg" name="anotherOp"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_ERjgAD0mEeGOduxElmTHqA">
+      <eAnnotations xmi:id="_ERrb0D0mEeGOduxElmTHqA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:add xmi:id="_GUluwD0mEeGOduxElmTHqA" base_Element="_w8IxIM37EdqwVrslYOdUDA">
+    <ref>addThis</ref>
+    <new>addThis={@addThis}</new>
+  </UMLchange:add>
+</xmi:XMI>

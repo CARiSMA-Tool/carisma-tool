@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA">
+  <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testProfileApplication"/>
+  <profileApplication xmi:id="_g2mLEI-qEeGpL_25i8ktIA">
+    <eAnnotations xmi:id="_g2oAQI-qEeGpL_25i8ktIA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+    </eAnnotations>
+    <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+  </profileApplication>
+  <profileApplication xmi:id="_g2onUI-qEeGpL_25i8ktIA">
+    <eAnnotations xmi:id="_g2onUY-qEeGpL_25i8ktIA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+    </eAnnotations>
+    <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+  </profileApplication>
+  <profileApplication xmi:id="_mAWTII-qEeGpL_25i8ktIA">
+    <eAnnotations xmi:id="_mAWTIY-qEeGpL_25i8ktIA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+  </profileApplication>
+</uml:Model>

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Evolution Support for Static Check
+Bundle-SymbolicName: carisma.check.staticcheck.evolution;singleton:=true
+Bundle-Version: 1.1.2.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: carisma.modeltype.uml2;bundle-version="1.1.0",
+ carisma.check.staticcheck,
+ carisma.core;bundle-version="1.1.0",
+ carisma.evolution.uml2,
+ carisma.profile.umlsec
+Bundle-Vendor: Software Engineering Institute, TU Dortmund

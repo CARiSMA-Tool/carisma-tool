@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Evolution-aware Secure Links Check</title>
+</head>
+
+<body>
+<h2>UMLsec Evolution-aware Secure Links Check</h2>
+
+<h3>Overview</h3>
+<p>This check analyzes the evolution of UML deployment diagrams in regard to the &laquo;secure links&raquo; property.
+To analyze the evolution of a model, the original model has to be secure in regard to the corresponding non-evolutionary check.
+To make sure that is the case please use the Static Secure Links Check.</p>
+
+<p>The table below explains the <a href="../../../carisma.profile.umlchange/help/html/profile.html">UMLchange syntax</a> for new model elements of deployment diagrams.
+The metaclasses whose key-value pairs are simple are omitted.</p>
+ 
+<table border="1" bordercolor="#000000" width="500" cellpadding="3" cellspacing="3">
+	<tr>
+		<th>Model Element</th>
+		<th>Metaclass</br>(if different)</th>
+		<th>Key</th>
+		<th>Appropriate</br>Values</th>
+	</tr>
+	<tr>
+		<td>Deployment</td>
+		<td></td>
+		<td>name</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>deployedArtifact</td>
+		<td>qualified name of Artifact</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>location</td>
+		<td>qualified name of Node</td>
+	</tr>
+	<tr>
+		<td>CommunicationPath</td>
+		<td></td>
+		<td>name</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>source</td>
+		<td>qualified name of Node</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>target</td>
+		<td>qualified name of Node</td>
+	</tr>
+</table>
+
+<h3>Usage</h3>
+<p>Annotate the secure model with the desired evolutionary changes by using the <a href="../../../carisma.profile.umlchange/help/html/profile.html">UMLchange profile extensions</a>.
+After finishing the model, <a href="../../../carisma.ui.eclipse/help/html/userguide/stepByStep.html">create a new CARiSMA analysis on the model</a>.
+Add the Evolution-aware Secure Links Check to the used checks and click "Run" to start the analysis.</p>
+
+<p>The Analysis Results View displays whether the check was successful. If any evolutionary step results
+in a violation of the &laquo;secure links&raquo; property, the resulting violation is displayed in the Analysis Results View.</p>
+
+<h4>Example1: SecureLinksEvolution is violated</h4>
+<img src="images/secureLinksEvolutionWrong.png" alt="secure links violation via evolution" name="secure links violation via evolution" />
+<p>The example model describes an evolution that adds a requirement to a dependency without substituting the corresponding linktype.</p>
+<img src="images/secureLinksEvolutionAnalysisWrong.png" alt="secure links violation via evolution shown in the result view" name="secure links violation via evolution shown in the result view" />
+
+<h4>Example2: SecureLinksEvolution is fulfilled</h4>
+<img src="images/secureLinksEvolutionRight.png" alt="secure links corrected via evolution" name="secure links corrected via evolution" />
+<p>After adding the necessary evolutionary steps to the model, the analysis reports the success of the check.</p> 
+<img src="images/secureLinksEvolutionAnalysisRight.png" alt="secure links via evolution shown in the result view" name="secure links via evolution shown in the result view" />
+
+
+</body>
+</html>

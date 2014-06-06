@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA">
+  <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="classdiagram">
+    <ownedComment xmi:id="_INPl4PgxEeKLAZ4gPThXMQ" annotatedElement="_KmRvQPgwEeKLAZ4gPThXMQ">
+      <body>Comment1</body>
+    </ownedComment>
+    <ownedRule xmi:id="_I8WuoPgxEeKLAZ4gPThXMQ" name="Constraint1" constrainedElement="_INPl4PgxEeKLAZ4gPThXMQ"/>
+    <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_MEdkgPgwEeKLAZ4gPThXMQ" parameter="_OJL1UPgwEeKLAZ4gPThXMQ">
+      <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_OJL1UPgwEeKLAZ4gPThXMQ" parameteredElement="_OJL1UfgwEeKLAZ4gPThXMQ">
+        <ownedParameteredElement xmi:type="uml:Class" xmi:id="_OJL1UfgwEeKLAZ4gPThXMQ" name="1" templateParameter="_OJL1UPgwEeKLAZ4gPThXMQ"/>
+      </ownedParameter>
+    </ownedTemplateSignature>
+    <packagedElement xmi:type="uml:Package" xmi:id="_EwckUPgwEeKLAZ4gPThXMQ" name="Package1">
+      <packageImport xmi:id="_HURWgPgxEeKLAZ4gPThXMQ" importedPackage="_E94t8PgxEeKLAZ4gPThXMQ"/>
+      <packageMerge xmi:id="_HsfpQPgxEeKLAZ4gPThXMQ" mergedPackage="_E94t8PgxEeKLAZ4gPThXMQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Fl6zwPgwEeKLAZ4gPThXMQ" name="Class1" clientDependency="_reXmo_gwEeKLAZ4gPThXMQ _DK004PgxEeKLAZ4gPThXMQ _DsleJPgxEeKLAZ4gPThXMQ">
+      <ownedAttribute xmi:id="_H0rxYPgwEeKLAZ4gPThXMQ" name="Property1"/>
+      <interfaceRealization xmi:id="_reXmo_gwEeKLAZ4gPThXMQ" name="InterfaceRealization1" supplier="_GkmCgPgwEeKLAZ4gPThXMQ" client="_Fl6zwPgwEeKLAZ4gPThXMQ" contract="_GkmCgPgwEeKLAZ4gPThXMQ"/>
+      <ownedOperation xmi:id="_HSYVkPgwEeKLAZ4gPThXMQ" name="Operation1"/>
+      <ownedReception xmi:id="_QekYUPgwEeKLAZ4gPThXMQ" name="Reception1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_GEwr4PgwEeKLAZ4gPThXMQ" name="DataType1">
+      <generalization xmi:id="_qB1XMPgwEeKLAZ4gPThXMQ" general="_KmRvQPgwEeKLAZ4gPThXMQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_GkmCgPgwEeKLAZ4gPThXMQ" name="Interface1">
+      <ownedAttribute xmi:id="_gl5oQPgwEeKLAZ4gPThXMQ" name="class1" type="_Fl6zwPgwEeKLAZ4gPThXMQ" aggregation="composite" association="_gl8EgPgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gl5oQfgwEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gl5oQvgwEeKLAZ4gPThXMQ" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_IcmtAPgwEeKLAZ4gPThXMQ" name="InstanceSpecification1">
+      <slot xmi:id="_I_1V4PgwEeKLAZ4gPThXMQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_JcGbIPgwEeKLAZ4gPThXMQ" name="Enumeration1">
+      <ownedLiteral xmi:id="_KOT7MPgwEeKLAZ4gPThXMQ" name="EnumerationLiteral1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_KmRvQPgwEeKLAZ4gPThXMQ" name="PrimitiveType1"/>
+    <packagedElement xmi:type="uml:Signal" xmi:id="_Po6isPgwEeKLAZ4gPThXMQ" name="Signal1"/>
+    <packagedElement xmi:type="uml:ExecutionEvent" xmi:id="_R6m4gPgwEeKLAZ4gPThXMQ" name="ExecutionEvent1"/>
+    <packagedElement xmi:type="uml:CreationEvent" xmi:id="_Si19MPgwEeKLAZ4gPThXMQ" name="CreationEvent1"/>
+    <packagedElement xmi:type="uml:DestructionEvent" xmi:id="_TUQzEPgwEeKLAZ4gPThXMQ" name="DestructionEvent1"/>
+    <packagedElement xmi:type="uml:SendOperationEvent" xmi:id="_T-QLQPgwEeKLAZ4gPThXMQ" name="SendOperationEvent1"/>
+    <packagedElement xmi:type="uml:SendSignalEvent" xmi:id="_Ufw84PgwEeKLAZ4gPThXMQ" name="SendSignalEvent1"/>
+    <packagedElement xmi:type="uml:ReceiveSignalEvent" xmi:id="_VxFa0PgwEeKLAZ4gPThXMQ" name="ReceiveSignalEvent1"/>
+    <packagedElement xmi:type="uml:ReceiveOperationEvent" xmi:id="_WwBvUPgwEeKLAZ4gPThXMQ" name="ReceiveOperationEvent1"/>
+    <packagedElement xmi:type="uml:CallEvent" xmi:id="_Xv20oPgwEeKLAZ4gPThXMQ" name="CallEvent1"/>
+    <packagedElement xmi:type="uml:ChangeEvent" xmi:id="_YfvZcPgwEeKLAZ4gPThXMQ" name="ChangeEvent1"/>
+    <packagedElement xmi:type="uml:AnyReceiveEvent" xmi:id="_ZGa-8PgwEeKLAZ4gPThXMQ" name="AnyReceiveEvent1"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_aGetwPgwEeKLAZ4gPThXMQ" name="SignalEvent1"/>
+    <packagedElement xmi:type="uml:TimeEvent" xmi:id="_atpbcPgwEeKLAZ4gPThXMQ" name="TimeEvent1"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_eRzeuvgwEeKLAZ4gPThXMQ" name="A_&lt;class1>_&lt;interface1>" memberEnd="_eRzeu_gwEeKLAZ4gPThXMQ _eRzevvgwEeKLAZ4gPThXMQ">
+      <ownedEnd xmi:id="_eRzeu_gwEeKLAZ4gPThXMQ" name="class1" type="_Fl6zwPgwEeKLAZ4gPThXMQ" association="_eRzeuvgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eRzevPgwEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eRzevfgwEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_eRzevvgwEeKLAZ4gPThXMQ" name="interface1" type="_GkmCgPgwEeKLAZ4gPThXMQ" association="_eRzeuvgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eRzev_gwEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eRzewPgwEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_fLm0ivgwEeKLAZ4gPThXMQ" name="A_&lt;interface1>_&lt;class1>" memberEnd="_fLm0i_gwEeKLAZ4gPThXMQ _fLm0jvgwEeKLAZ4gPThXMQ" navigableOwnedEnd="_fLm0jvgwEeKLAZ4gPThXMQ">
+      <ownedEnd xmi:id="_fLm0i_gwEeKLAZ4gPThXMQ" name="interface1" type="_GkmCgPgwEeKLAZ4gPThXMQ" association="_fLm0ivgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fLm0jPgwEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fLm0jfgwEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_fLm0jvgwEeKLAZ4gPThXMQ" name="class1" type="_Fl6zwPgwEeKLAZ4gPThXMQ" association="_fLm0ivgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fLm0j_gwEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fLm0kPgwEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_f82rSvgwEeKLAZ4gPThXMQ" name="A_&lt;interface1>_&lt;class1>_2" memberEnd="_f82rS_gwEeKLAZ4gPThXMQ _f83SUfgwEeKLAZ4gPThXMQ" navigableOwnedEnd="_f82rS_gwEeKLAZ4gPThXMQ _f83SUfgwEeKLAZ4gPThXMQ">
+      <ownedEnd xmi:id="_f82rS_gwEeKLAZ4gPThXMQ" name="interface1" type="_GkmCgPgwEeKLAZ4gPThXMQ" association="_f82rSvgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_f82rTPgwEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_f83SUPgwEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_f83SUfgwEeKLAZ4gPThXMQ" name="class1" type="_Fl6zwPgwEeKLAZ4gPThXMQ" association="_f82rSvgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_f83SUvgwEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_f83SU_gwEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_gl8EgPgwEeKLAZ4gPThXMQ" name="A_&lt;interface1>_&lt;class1>_3" memberEnd="_gl8EgfgwEeKLAZ4gPThXMQ _gl5oQPgwEeKLAZ4gPThXMQ">
+      <ownedEnd xmi:id="_gl8EgfgwEeKLAZ4gPThXMQ" name="interface1" type="_GkmCgPgwEeKLAZ4gPThXMQ" association="_gl8EgPgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gl8EgvgwEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gl8Eg_gwEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_hhVVwPgwEeKLAZ4gPThXMQ" name="A_&lt;interface1>_&lt;dataType1>" memberEnd="_hhVVwfgwEeKLAZ4gPThXMQ _hhVVxPgwEeKLAZ4gPThXMQ">
+      <ownedEnd xmi:id="_hhVVwfgwEeKLAZ4gPThXMQ" name="interface1" type="_GkmCgPgwEeKLAZ4gPThXMQ" association="_hhVVwPgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hhVVwvgwEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hhVVw_gwEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_hhVVxPgwEeKLAZ4gPThXMQ" name="dataType1" type="_GEwr4PgwEeKLAZ4gPThXMQ" aggregation="shared" association="_hhVVwPgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hhVVxfgwEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hhVVxvgwEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:AssociationClass" xmi:id="_iUcNwPgwEeKLAZ4gPThXMQ" name="A_&lt;class1>_&lt;dataType1>" memberEnd="_iUcNwfgwEeKLAZ4gPThXMQ _iUcNxPgwEeKLAZ4gPThXMQ">
+      <ownedEnd xmi:id="_iUcNwfgwEeKLAZ4gPThXMQ" name="class1" type="_Fl6zwPgwEeKLAZ4gPThXMQ" association="_iUcNwPgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iUcNwvgwEeKLAZ4gPThXMQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iUcNw_gwEeKLAZ4gPThXMQ"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_iUcNxPgwEeKLAZ4gPThXMQ" name="dataType1" type="_GEwr4PgwEeKLAZ4gPThXMQ" association="_iUcNwPgwEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iUcNxfgwEeKLAZ4gPThXMQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iUcNxvgwEeKLAZ4gPThXMQ"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zwXSAPgwEeKLAZ4gPThXMQ" name="Class2"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_3CRHoPgwEeKLAZ4gPThXMQ" name="InstanceSpecification2"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_4guCpPgwEeKLAZ4gPThXMQ" name="InstanceSpecification3">
+      <slot xmi:id="_4gupsPgwEeKLAZ4gPThXMQ">
+        <value xmi:type="uml:InstanceValue" xmi:id="_4gupsfgwEeKLAZ4gPThXMQ" instance="_IcmtAPgwEeKLAZ4gPThXMQ"/>
+      </slot>
+      <slot xmi:id="_4gupsvgwEeKLAZ4gPThXMQ">
+        <value xmi:type="uml:InstanceValue" xmi:id="_4gups_gwEeKLAZ4gPThXMQ" instance="_3CRHoPgwEeKLAZ4gPThXMQ"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_DK004PgxEeKLAZ4gPThXMQ" name="Dependency1" supplier="_iUcNwPgwEeKLAZ4gPThXMQ" client="_Fl6zwPgwEeKLAZ4gPThXMQ"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_DsleJPgxEeKLAZ4gPThXMQ" name="Usage1" supplier="_iUcNwPgwEeKLAZ4gPThXMQ" client="_Fl6zwPgwEeKLAZ4gPThXMQ"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_E94t8PgxEeKLAZ4gPThXMQ" name="Package2"/>
+  </packagedElement>
+</uml:Model>

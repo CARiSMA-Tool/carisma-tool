@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testUMLchangeValidator">
+      <packagedElement xmi:type="uml:Class" xmi:id="_hIS00IlkEeGSAfZ0yipp9g" name="Class1"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_hd54cIlkEeGSAfZ0yipp9g" name="Class2"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_p9GncIlmEeGSAfZ0yipp9g" name="Class3">
+        <ownedAttribute xmi:id="_BlzlwIolEeGN17vtLTQMaw" name="Property1"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_aEOQ8IlrEeGSAfZ0yipp9g" name="Class4"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_aNx1kIlrEeGSAfZ0yipp9g" name="Class5">
+        <ownedAttribute xmi:id="_mF8scIomEeGN17vtLTQMaw" name="Property1"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_aWVUoIlrEeGSAfZ0yipp9g" name="Class6"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ck3owIlrEeGSAfZ0yipp9g" name="Class7"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Nbba0IojEeGN17vtLTQMaw" name="Class8">
+        <ownedAttribute xmi:id="_Od914IojEeGN17vtLTQMaw" name="Property1"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_eGtO4IovEeGJb9BzWRD43Q" name="Class9"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_8jfhcIovEeGJb9BzWRD43Q" name="oldName">
+        <packagedElement xmi:type="uml:Class" xmi:id="_eTo3oIovEeGJb9BzWRD43Q" name="Class9">
+          <ownedAttribute xmi:id="_e2d34IovEeGJb9BzWRD43Q" name="oldProp"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_kJ49kIlkEeGSAfZ0yipp9g">
+      <eAnnotations xmi:id="_kJ8A4IlkEeGSAfZ0yipp9g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:del xmi:id="_laRAUIlkEeGSAfZ0yipp9g" base_Element="_hIS00IlkEeGSAfZ0yipp9g">
+    <ref>delRef</ref>
+    <constraint>delRef=AND(addRef)</constraint>
+  </UMLchange:del>
+  <UMLchange:add xmi:id="_nsRfMIlkEeGSAfZ0yipp9g" base_Element="_hd54cIlkEeGSAfZ0yipp9g">
+    <ref>addRef</ref>
+    <new>addRef={Property(name=amount)}</new>
+  </UMLchange:add>
+  <UMLchange:keep xmi:id="_rEtvwIlmEeGSAfZ0yipp9g" base_Element="_p9GncIlmEeGSAfZ0yipp9g">
+    <adopter>substAllRef={Class(name=keepClass)}</adopter>
+  </UMLchange:keep>
+  <UMLchange:subst xmi:id="_axsa8IlrEeGSAfZ0yipp9g" base_Element="_aEOQ8IlrEeGSAfZ0yipp9g">
+    <ref>substRef</ref>
+    <constraint>substRef=NOT(delRef)</constraint>
+    <new>substRef={Class(name=hehe)},{Class(name=hoho)}</new>
+  </UMLchange:subst>
+  <UMLchange:delall xmi:id="_bV7JYIlrEeGSAfZ0yipp9g" base_Element="_aNx1kIlrEeGSAfZ0yipp9g">
+    <ref>delAllRef</ref>
+    <pattern>delAllRef=Class</pattern>
+  </UMLchange:delall>
+  <UMLchange:substall xmi:id="_cWU2cIlrEeGSAfZ0yipp9g" base_Element="_aWVUoIlrEeGSAfZ0yipp9g">
+    <ref>substAllRef</ref>
+    <pattern>substAllRef=Class(name=hallo)</pattern>
+    <new>substAllRef={Property(name=hallo)}</new>
+  </UMLchange:substall>
+  <UMLchange:addall xmi:id="_cswZcIlrEeGSAfZ0yipp9g" base_Element="_ck3owIlrEeGSAfZ0yipp9g">
+    <ref>addAllRef</ref>
+    <pattern>addAllRef=Property(name=old)</pattern>
+    <new>addAllRef={Class(name=new)}</new>
+  </UMLchange:addall>
+  <UMLchange:move xmi:id="_PFnrwIojEeGN17vtLTQMaw" base_Element="_Od914IojEeGN17vtLTQMaw">
+    <ref>moveRef</ref>
+    <to>moveRef={Class2}</to>
+  </UMLchange:move>
+  <UMLchange:edit xmi:id="_iQTtEIolEeGN17vtLTQMaw" base_Element="_BlzlwIolEeGN17vtLTQMaw">
+    <ref>editRef</ref>
+    <values>editRef={(name=hehe)}</values>
+  </UMLchange:edit>
+  <UMLchange:copy xmi:id="_nPaO4IomEeGN17vtLTQMaw" base_Element="_mF8scIomEeGN17vtLTQMaw">
+    <ref>copyRef</ref>
+    <constraint>copyRef=AND(delRef)</constraint>
+    <to>copyRef={Class7}</to>
+  </UMLchange:copy>
+  <UMLchange:subst xmi:id="_dGCAIJRjEeGZW_81v0amrw" base_Element="_eGtO4IovEeGJb9BzWRD43Q">
+    <ref>oldRef</ref>
+    <new>oldRef={@oldName}</new>
+  </UMLchange:subst>
+  <UMLchange:old xmi:id="_6nwtcJXIEeGI0KeZPjWDFA" base_Element="_eTo3oIovEeGJb9BzWRD43Q"/>
+</xmi:XMI>

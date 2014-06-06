@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <wizard
+            id="bpmn2extension.presentation.Bpmn2extensionModelWizardID"
+            name="%_UI_Bpmn2extensionModelWizard_label"
+            class="carisma.modeltype.bpmn2.extension.presentation.ExtensionModelWizard"
+            category="carisma.ui.eclipse.Wizard"
+            icon="icons/full/obj16/ExtensionModelFile.gif">
+         <description>%_UI_Bpmn2extensionModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="bpmn2extension.presentation.Bpmn2extensionEditorID"
+            name="%_UI_Bpmn2extensionEditor_label"
+            icon="icons/full/obj16/ExtensionModelFile.gif"
+            extensions="bpmn2extension"
+            class="carisma.modeltype.bpmn2.extension.presentation.ExtensionEditor"
+            contributorClass="carisma.modeltype.bpmn2.extension.presentation.ExtensionActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="idModel" name="testEditStereotypeActivityModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testEditStereotypeActivityPackage">
+      <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="testEditStereotypeActivityActivity">
+        <node xmi:type="uml:OpaqueAction" xmi:id="_O32rsHXOEeGLorExNxtpew" name="OpaqueAction1" outgoing="_mtviyHXOEeGLorExNxtpew _9yWt6HXOEeGLorExNxtpew _OvlrGXXPEeGLorExNxtpew" incoming="_k3qK6HXOEeGLorExNxtpew _v3y3iHXOEeGLorExNxtpew"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_V_kVQnXOEeGLorExNxtpew" name="InitialNode1" outgoing="_k3qK6HXOEeGLorExNxtpew _pVbWuHXOEeGLorExNxtpew _tLlv-HXOEeGLorExNxtpew"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_XUkZUHXOEeGLorExNxtpew" name="ActivityFinalNode1" incoming="_mtviyHXOEeGLorExNxtpew _q3e_WHXOEeGLorExNxtpew _KFO0wHXPEeGLorExNxtpew _U3CxiXXPEeGLorExNxtpew"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_Yo2EoHXOEeGLorExNxtpew" name="OpaqueAction2" outgoing="_q3e_WHXOEeGLorExNxtpew" incoming="_pVbWuHXOEeGLorExNxtpew _OWbHuHXQEeGLorExNxtpew"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_ZU22EnXOEeGLorExNxtpew" name="OpaqueAction3" outgoing="_v3y3iHXOEeGLorExNxtpew _AMRyqHXPEeGLorExNxtpew" incoming="_Mbr5WHXQEeGLorExNxtpew"/>
+        <node xmi:type="uml:MergeNode" xmi:id="_al_t0HXOEeGLorExNxtpew" name="MergeNode1" outgoing="_KFO0wHXPEeGLorExNxtpew" incoming="_9yWt6HXOEeGLorExNxtpew _AMRyqHXPEeGLorExNxtpew"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_cPiegHXOEeGLorExNxtpew" name="DecisionNode1" outgoing="_Mbr5WHXQEeGLorExNxtpew _OWbHuHXQEeGLorExNxtpew" incoming="_tLlv-HXOEeGLorExNxtpew"/>
+        <node xmi:type="uml:JoinNode" xmi:id="_fXyB0HXOEeGLorExNxtpew" name="JoinNode1" outgoing="_U3CxiXXPEeGLorExNxtpew" incoming="_roqIKHXPEeGLorExNxtpew _uofWWHXPEeGLorExNxtpew"/>
+        <node xmi:type="uml:ForkNode" xmi:id="_fp_zMHXOEeGLorExNxtpew" name="ForkNode1" outgoing="_dDOv2HXPEeGLorExNxtpew _m3k-yHXPEeGLorExNxtpew" incoming="_OvlrGXXPEeGLorExNxtpew"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_hj8XYHXOEeGLorExNxtpew" name="OpaqueAction4" outgoing="_uofWWHXPEeGLorExNxtpew" incoming="_dDOv2HXPEeGLorExNxtpew"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_hve5AHXOEeGLorExNxtpew" name="OpaqueAction5" outgoing="_roqIKHXPEeGLorExNxtpew" incoming="_m3k-yHXPEeGLorExNxtpew"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_k3qK6HXOEeGLorExNxtpew" name="ControlFlow1" source="_V_kVQnXOEeGLorExNxtpew" target="_O32rsHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_k3qK6XXOEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_k3qK6nXOEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_mtviyHXOEeGLorExNxtpew" name="ControlFlow2" source="_O32rsHXOEeGLorExNxtpew" target="_XUkZUHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_mtviyXXOEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_mtviynXOEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_pVbWuHXOEeGLorExNxtpew" name="ControlFlow3" source="_V_kVQnXOEeGLorExNxtpew" target="_Yo2EoHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_pVbWuXXOEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_pVbWunXOEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_q3e_WHXOEeGLorExNxtpew" name="ControlFlow4" source="_Yo2EoHXOEeGLorExNxtpew" target="_XUkZUHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_q3e_WXXOEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_q3e_WnXOEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_tLlv-HXOEeGLorExNxtpew" name="ControlFlow5" source="_V_kVQnXOEeGLorExNxtpew" target="_cPiegHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_tLlv-XXOEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_tLlv-nXOEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_v3y3iHXOEeGLorExNxtpew" name="ControlFlow6" source="_ZU22EnXOEeGLorExNxtpew" target="_O32rsHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_v3y3iXXOEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_v3y3inXOEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_9yWt6HXOEeGLorExNxtpew" name="ControlFlow9" source="_O32rsHXOEeGLorExNxtpew" target="_al_t0HXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_9yWt6XXOEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_9yWt6nXOEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_AMRyqHXPEeGLorExNxtpew" name="ControlFlow10" source="_ZU22EnXOEeGLorExNxtpew" target="_al_t0HXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_AMRyqXXPEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_AMRyqnXPEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_KFO0wHXPEeGLorExNxtpew" name="ControlFlow11" source="_al_t0HXOEeGLorExNxtpew" target="_XUkZUHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_KFO0wXXPEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KFO0wnXPEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_OvlrGXXPEeGLorExNxtpew" name="ControlFlow12" source="_O32rsHXOEeGLorExNxtpew" target="_fp_zMHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_OvlrGnXPEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_OvlrG3XPEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_U3CxiXXPEeGLorExNxtpew" name="ControlFlow13" source="_fXyB0HXOEeGLorExNxtpew" target="_XUkZUHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_U3CxinXPEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_U3Cxi3XPEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_dDOv2HXPEeGLorExNxtpew" name="ControlFlow14" source="_fp_zMHXOEeGLorExNxtpew" target="_hj8XYHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_dDOv2XXPEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_dDOv2nXPEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_m3k-yHXPEeGLorExNxtpew" name="ControlFlow15" source="_fp_zMHXOEeGLorExNxtpew" target="_hve5AHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_m3k-yXXPEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_m3k-ynXPEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_roqIKHXPEeGLorExNxtpew" name="ControlFlow16" source="_hve5AHXOEeGLorExNxtpew" target="_fXyB0HXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_roqIKXXPEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_roqIKnXPEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_uofWWHXPEeGLorExNxtpew" name="ControlFlow17" source="_hj8XYHXOEeGLorExNxtpew" target="_fXyB0HXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_uofWWXXPEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_uofWWnXPEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_Mbr5WHXQEeGLorExNxtpew" name="ControlFlow7" source="_cPiegHXOEeGLorExNxtpew" target="_ZU22EnXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_Mbr5WXXQEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_Mbr5WnXQEeGLorExNxtpew" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_OWbHuHXQEeGLorExNxtpew" name="ControlFlow8" source="_cPiegHXOEeGLorExNxtpew" target="_Yo2EoHXOEeGLorExNxtpew">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_OWbHuXXQEeGLorExNxtpew" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_OWbHunXQEeGLorExNxtpew" value="1"/>
+        </edge>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_wuT94HXQEeGLorExNxtpew">
+      <eAnnotations xmi:id="_wuT94XXQEeGLorExNxtpew" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:edit xmi:id="_39jLwHXQEeGLorExNxtpew" base_Element="_v3y3iHXOEeGLorExNxtpew">
+    <ref>myID</ref>
+    <ext>Activity0::OpaqueAction1</ext>
+    <values>myID={(name=hallo)}</values>
+    <values>myID={(isLeaf=true)}</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_49H88HXREeGLorExNxtpew" base_Element="_pVbWuHXOEeGLorExNxtpew">
+    <ref>ref1</ref>
+    <values>ref1={(name=newControl)}</values>
+    <values>ref1={(visibility=private)}</values>
+    <values>ref1={(target=Activity0::wrongTarget)}</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_Z8SFoHXSEeGLorExNxtpew" base_Element="_O32rsHXOEeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>someRef={(name=palimpalim)}</values>
+    <values>someRef={(visibility=package)}</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_0ngyIHXSEeGLorExNxtpew" base_Element="_cPiegHXOEeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>someRef({name=newDecisionNode)}</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_CPXu8HXTEeGLorExNxtpew" base_Element="_al_t0HXOEeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>someRef({name=newMergeNode)}</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_MOKTUHXTEeGLorExNxtpew" base_Element="_fp_zMHXOEeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>someRef={(name=forking)}</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_W1e3UHXTEeGLorExNxtpew" base_Element="_fXyB0HXOEeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>someRef={(name=joining)}</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_hE-xMHXTEeGLorExNxtpew" base_Element="_q3e_WHXOEeGLorExNxtpew">
+    <values>someRef={(target=Activity0::OpaqueAction3)}</values>
+  </UMLchange:edit>
+</xmi:XMI>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>neuen Sachverhalt anlegen</title>
+<link rel="stylesheet" href="content.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+<script src="scripting.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body onload="loadExistingConstraints(), document.getElementById('newName').select();">
+	<div id="situationMain">
+		<img src="bilder/Tulogo14.png" alt="logo LS14" id="logo">	
+		<div id="leftDiv">
+			<pre id="specification">neuer Sachverhalt</pre>
+			<input type="text" name="newName" value="Name des Sachverhalts" id="newName"/>
+			<form name="leftForm">
+				<select name="selected" size="4" id="selectedForm">
+				</select>
+				
+			</form>
+			<div id="popUpButtonContainer">
+				<input type="button" name="add" value="Add" id="add" onclick="add();"/>
+				<input type="button" name="remove" value="Remove" id="remove" onclick="remove();"/>
+			</div>				
+				
+		</div>
+		<div id="rightDiv">
+			<pre id="rightHeader">Constraint-Klassen</pre>
+			<form name="rightForm">
+				<select name="selection" id="selectionForm" size="5">
+				</select>
+			</form>
+		<input type="button" name="ok" value="Speichern" id="okConstraint" onclick="selectConstraints();"/>
+		<input type="button" name="cancelButton" value="Cancel" id="cancelButton" onclick="cancel();"/>
+		<input type="button" name="relatedRuleElementsButton" value="verbinde Regelelemente" id="relatedRuleElementsButton" onclick="prepareRuleElementsRelation();"/>
+		</div>
+	</div>
+</body>
+</html>

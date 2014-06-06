@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Unit Testing Model Access Utilities
+Bundle-SymbolicName: carisma.tests.modelutils.uml
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: DP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: carisma.modeltype.uml2;bundle-version="1.1.2",
+ org.junit;bundle-version="4.11.0"
+Export-Package: carisma.tests.modelutils.uml

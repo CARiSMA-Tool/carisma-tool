@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="testSimpleDeletionConnectedElementModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testSimpleDeletionConnectedElementPackage">
+    <packagedElement xmi:type="uml:Node" xmi:id="_zBToAI-qEeGpL_25i8ktIA" name="Node1"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_zIoYAI-qEeGpL_25i8ktIA" name="Node2"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_-EbXMI-qEeGpL_25i8ktIA" name="Artifact1"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_-LuSAI-qEeGpL_25i8ktIA" name="Artifact2"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_-n-wMI-qEeGpL_25i8ktIA" name="abLink" memberEnd="_-n_XQI-qEeGpL_25i8ktIA _-n_XQ4-qEeGpL_25i8ktIA">
+      <ownedEnd xmi:id="_-n_XQI-qEeGpL_25i8ktIA" name="source" type="_zBToAI-qEeGpL_25i8ktIA" association="_-n-wMI-qEeGpL_25i8ktIA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-n_XQY-qEeGpL_25i8ktIA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-n_XQo-qEeGpL_25i8ktIA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_-n_XQ4-qEeGpL_25i8ktIA" name="target" type="_zIoYAI-qEeGpL_25i8ktIA" association="_-n-wMI-qEeGpL_25i8ktIA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-n_XRI-qEeGpL_25i8ktIA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-n_XRY-qEeGpL_25i8ktIA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 ../../../../../../carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="RegularAdd_AllModel">
+      <packagedElement xmi:type="uml:Package" xmi:id="_t8ed4D31EeGTUKjgrT-ofg" name="Package1">
+        <packagedElement xmi:type="uml:Class" xmi:id="_s6v7ID31EeGTUKjgrT-ofg" name="Delete1">
+          <ownedOperation xmi:id="_WtW2cD32EeGTUKjgrT-ofg" name="Delete"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_toz7AD31EeGTUKjgrT-ofg" name="Delete2">
+          <ownedOperation xmi:id="_Y4GPsD32EeGTUKjgrT-ofg" name="Delete"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_dRc1kD32EeGTUKjgrT-ofg" name="Class1">
+          <ownedOperation xmi:id="_eW728D32EeGTUKjgrT-ofg" name="Delete2"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_D5K-sD32EeGTUKjgrT-ofg">
+      <eAnnotations xmi:id="_D5OCAD32EeGTUKjgrT-ofg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:addall xmi:id="_RURR4D32EeGTUKjgrT-ofg" base_Element="_t8ed4D31EeGTUKjgrT-ofg">
+    <ref>addProperty</ref>
+    <pattern>addProperty={Class(contents=&lt;Operation(name=Delete)>)}</pattern>
+    <new>addProperty={Property(name=toDelete)}</new>
+  </UMLchange:addall>
+</xmi:XMI>

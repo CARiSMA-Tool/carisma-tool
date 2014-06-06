@@ -1,0 +1,14 @@
+	<extension
+	      id="carisma.app"
+	      name="CARiSMA"
+	      point="org.eclipse.core.runtime.applications">
+	   <application
+	         cardinality="singleton-global"
+	         icon="icons/sample.gif"
+	         thread="main"
+	         visible="true">
+	      <run
+	            class="carisma.core.Application">
+	      </run>
+	   </application>
+	</extension>

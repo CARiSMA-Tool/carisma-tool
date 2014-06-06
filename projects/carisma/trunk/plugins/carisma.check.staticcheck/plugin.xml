@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Performs a fair exchange check"
+            id="carisma.check.staticcheck.fairexchange"
+            name="UMLsec fairexchange Check"
+            implementingClass="carisma.check.staticcheck.fairexchange.FairExchangeCheck"
+            publisher="Sven Wenzel"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs a secure links check"
+            id="carisma.check.staticcheck.securelinks"
+            name="UMLsec secure links Check"
+            implementingClass="carisma.check.staticcheck.securelinks.Check"
+            publisher="Daniel Warzecha"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs a secure dependency check"
+            id="carisma.check.staticcheck.securedependency"
+            name="UMLsec secure dependency Check"
+            implementingClass="carisma.check.staticcheck.securedependency.Check"
+            publisher="Sven Wenzel"
+            targetModelType="UML2">
+         <parameter
+               defaultValue="true"
+               description="Set false if you want to allow the check to also check for dependencies using UMLsec::call"
+               id="carisma.check.staticcheck.securedependency.onlycheckusages"
+               name="Only Check Usages"
+               optional="false"
+               type="boolean">
+         </parameter>
+      </check>
+      <check
+            description="Performs a nodownflow Check"
+            id="carisma.check.staticcheck.nodownflow"
+            implementingClass="carisma.check.staticcheck.nodownflow.Check"
+            name="UMLsec nodownflow Check"
+            publisher="Sven Wenzel"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs a guarded access Check"
+            id="carisma.check.staticcheck.guardedaccess"
+            implementingClass="carisma.check.staticcheck.guardedaccess.GuardedAccessCheck"
+            name="UMLsec guarded access Check"
+            publisher="Johannes Kowald"
+            targetModelType="UML2">
+      </check>
+       <check
+            description="Performs a provable Check"
+            id="carisma.check.staticcheck.provable"
+            implementingClass="carisma.check.staticcheck.provable.ProvableCheck"
+            name="UMLsec provable Check"
+            publisher="Klaus Rudack"
+            targetModelType="UML2">
+      </check>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="false">
+      </toc>
+   </extension>
+</plugin>

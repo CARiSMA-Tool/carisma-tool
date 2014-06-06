@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: UML2-specific Evolution Support
+Bundle-SymbolicName: carisma.evolution.uml2;singleton:=true
+Bundle-Version: 1.2.0.qualifier
+Require-Bundle: carisma.evolution;visibility:=reexport,
+ carisma.modeltype.uml2,
+ carisma.core;bundle-version="1.1.0",
+ carisma.profile.umlsec,
+ carisma.profile.umlchange
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: carisma.evolution.uml2,
+ carisma.evolution.uml2.io
+Bundle-Vendor: Software Engineering Institute, TU Dortmund

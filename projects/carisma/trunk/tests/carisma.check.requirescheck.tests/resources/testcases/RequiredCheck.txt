@@ -1,0 +1,6 @@
+  the given model is null --> NullPointerException | testNullPointer()
+  there are no paths in the diagram --> success | testNoPaths()
+  no element has the Stereotype <<requires>> applied --> success | testNoStereotype
+  no profile UMLsec is applied --> success | same behavior as if no Stereotype <<requires>> is applied, because there is no Stereotype applied
+  there is a path with a <<requires>> element, but also a path without one of the in <<requires>> defined elements --> fail | testViolated
+  any other case --> success | testSuccess

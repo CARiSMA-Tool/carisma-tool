@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Static Fair Exchange Check</title>
+</head>
+
+<body>
+ <h2>UMLsec Static Fair Exchange Check</h2>
+
+ <h3>Overview</h3>
+  <p>
+  This check analyzes UML activity diagrams which uses the
+  UMLsec stereotype &laquo;fair exchange&raquo; (cf. "Secure Systems Development with UML", p. 53 ff.).
+  For the state marked as &laquo;start&raquo;, the check analyzes if there occurs a state marked as &laquo;stop&raquo; after it in any possible paths.
+  </p>
+  
+  <p>
+  Annotate a package containing a state machine with &laquo;fair exchange&raquo;. Apply the appropriate &laquo;start&raquo; and &laquo;stop&raquo; tags in the corresponding states.
+  </p>
+  
+  <p>
+  Afterwards <a href="../../../carisma.core/help/html/userguide/stepByStep.html">create a new CARiSMA analysis on the model</a>.
+  Add the <i>Static Fair Exchange Check</i> to the used checks and click "Run" to start the analysis. The Analysis Results View displays whether the check was successful. If any possible path didn't fit the test, the path will be displayed in the Analysis Report.
+  </p>
+  
+  <h3>Example</h3>
+  <p>
+  The model in figure 1 is consciously designed to contain a &laquo;fair exchange&raquo; violation. Therefore the activity "get money back" is not included by  the stop tag.
+  </p>
+
+  <img src="images/Fair_Exchange_fail.png" style="margin:20px, 15px; 0px;;" alt="Activity diagram with stereotype fair exchange" name="Activity diagram with stereotype fair exchange" />
+  <h5>Figure 1: Incorrect model</h5>
+  
+  After correcting the model, the analysis reports the success of the check. </p>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Checks the given model with respect to locked status"
+            id="carisma.check.smartcard.lockedstatuscheck"
+            name="UMLsec locked-status Check"
+            implementingClass="carisma.check.smartcard.lockedstatus.Check"
+            publisher="Klaus Rudack"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Checks the given model with respect to authorized status"
+            id="carisma.check.smartcard.authorizedstatuscheck"
+            name="UMLsec authorized-status Check"
+            implementingClass="carisma.check.smartcard.authorizedstatus.Check"
+            publisher="Klaus Rudack"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Exports a triple, from an UML diagram, which can be used to generate a Schema"
+            id="carisma.check.hoartriple.exporter.lockedstatus"
+            implementingClass="carisma.check.exporter_for_schema_generation.LockedStatus"
+            name="UMLsec locked-status Triple Exporter"
+            publisher="Berghoff"
+            targetModelType="UML2">
+         <parameter
+               defaultValue="C:/temp/Triple/locked-status"
+               id="carisma.check.lockedexporter.output"
+               name="Locked-Status Output Folder"
+               optional="false"
+               type="Folder">
+         </parameter>
+         <parameter
+               defaultValue="true"
+               id="carisma.check.lockedexporter.qualified"
+               name="use qualified names"
+               optional="false"
+               type="boolean">
+         </parameter>
+      </check>
+      <check
+            description="Exports a triple, from an UML diagram, which can be used to generate a Schema"
+            id="carisma.check.hoartriple.exporter.authorized-status"
+            implementingClass="carisma.check.exporter_for_schema_generation.AuthorizedStatus"
+            name="UMLsec authorized-status Triple Exporter"
+            publisher="Berghoff"
+            targetModelType="UML2">
+         <parameter
+               defaultValue="C:/temp/Triple/authorized-status"
+               id="carisma.check.authorizedexporter.output"
+               name="Authorized-Status Output Folder"
+               optional="false"
+               type="Folder">
+         </parameter>
+         <parameter
+               defaultValue="true"
+               id="carisma.check.authorizedexporter.qualified"
+               name="use qualified names"
+               optional="false"
+               type="boolean">
+         </parameter>
+      </check>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="false">
+      </toc>
+   </extension>
+   
+</plugin>

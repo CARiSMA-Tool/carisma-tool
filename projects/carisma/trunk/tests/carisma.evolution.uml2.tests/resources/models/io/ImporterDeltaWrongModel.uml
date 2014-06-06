@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="ImporterDeltaWrongModelModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="ImporterDeltaWrongModelPackage">
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="ImporterDeltaWrongModelStateMachine">
+      <region xmi:id="idRegion" name="MainRegion">
+        <subvertex xmi:type="uml:State" xmi:id="_oV3aEI7bEeGPZ_qPBhd3dA" name="State0"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_orQbQI7bEeGPZ_qPBhd3dA" name="Pseudostate0"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_pjpb0I7bEeGPZ_qPBhd3dA" name="FinalState1"/>
+        <transition xmi:id="_q4Wk9I7bEeGPZ_qPBhd3dA" name="Transition1" source="_orQbQI7bEeGPZ_qPBhd3dA" target="_oV3aEI7bEeGPZ_qPBhd3dA"/>
+        <transition xmi:id="_rMfB5I7bEeGPZ_qPBhd3dA" name="Transition2" source="_oV3aEI7bEeGPZ_qPBhd3dA" target="_pjpb0I7bEeGPZ_qPBhd3dA"/>
+      </region>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

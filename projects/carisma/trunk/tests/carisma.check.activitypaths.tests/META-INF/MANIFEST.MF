@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: carisma.check.activitypaths.tests;singleton:=true
+Bundle-Version: 1.0.1.qualifier
+Fragment-Host: carisma.check.activitypaths;bundle-version="1.0.1"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: carisma.tests.modelutils.uml;bundle-version="1.0.0",
+ org.junit;bundle-version="4.11.0"

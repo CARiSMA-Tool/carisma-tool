@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.pde.ui.pluginContent">
+       <wizard
+             class="carisma.template.main.CheckWizard"
+             icon="Logo16x16.png"
+             id="carisma.check.template.wizard"
+             java="true"
+             name="CARiSMA UML2 Check Template"
+             pureOSGi="false"
+             rcp="false"
+             requiresActivator="false"
+             ui-content="true">
+          <description>
+             Creates a small check and optionally adds a sample Preference Page.
+          </description>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.pde.ui.templates">
+      <template
+            class="carisma.preference.template.PrefPageSection"
+            contributingId="org.eclipse.ui.preferencePage"
+            id="carisma.preference.template.template1"
+            name="Preference Page Template">
+      </template>
+      <template
+            class="carisma.template.core.DummyCheckSection"
+            contributingId="carisma.preference.template.template1"
+            id="carisma.preference.template.checktemplate"
+            name="CARiSMA UML2 Check Template">
+      </template>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml">
+      </toc>
+      <toc
+            file="help/primeToc.xml"
+            primary="true">
+      </toc>
+   </extension>
+
+</plugin>

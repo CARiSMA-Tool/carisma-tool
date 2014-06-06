@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CARiSMA OCL Check Plugin
+Bundle-SymbolicName: carisma.check.oclcheck;singleton:=true
+Bundle-Version: 1.0.3.qualifier
+Bundle-Activator: carisma.check.oclcheck.Activator
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ carisma.core;bundle-version="1.0.0",
+ carisma.ocl;bundle-version="1.0.0",
+ carisma.ocl.library;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.eclipse.emf.query.ocl.conditions,
+ org.eclipse.jface.resource,
+ org.eclipse.ui.plugin
+Bundle-Vendor: Software Engineering Institute, TU Dortmund

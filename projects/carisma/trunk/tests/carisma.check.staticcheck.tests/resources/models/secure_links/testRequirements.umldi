@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_i_ElgI4gEeGf6vp0nGamIA" activeDiagram="_i_ElgY4gEeGf6vp0nGamIA">
+  <model href="testRequirements.uml#idPackage"/>
+  <diagrams xmi:id="_i_ElgY4gEeGf6vp0nGamIA" position="0,0" size="100,100" name="pkg" viewport="0,0">
+    <property xmi:id="_i_XgcI4gEeGf6vp0nGamIA" key="pageFormatName" value="A4"/>
+    <property xmi:id="_i_XgcY4gEeGf6vp0nGamIA" key="diagramWidth" value="840"/>
+    <property xmi:id="_i_Xgco4gEeGf6vp0nGamIA" key="diagramHeight" value="1188"/>
+    <property xmi:id="_i_Xgc44gEeGf6vp0nGamIA" key="pageMarginName" value="Small Margin"/>
+    <property xmi:id="_i_XgdI4gEeGf6vp0nGamIA" key="diagramTopMargin" value="20"/>
+    <property xmi:id="_i_XgdY4gEeGf6vp0nGamIA" key="diagramBottomMargin" value="20"/>
+    <property xmi:id="_i_Xgdo4gEeGf6vp0nGamIA" key="diagramLeftMargin" value="20"/>
+    <property xmi:id="_i_Xgd44gEeGf6vp0nGamIA" key="diagramRightMargin" value="20"/>
+    <property xmi:id="_i_XgeI4gEeGf6vp0nGamIA" key="orientation" value="portrait"/>
+    <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_i_Elgo4gEeGf6vp0nGamIA" presentation="org.topcased.modeler.uml.deploymentdiagram">
+      <element href="testRequirements.uml#idPackage"/>
+    </semanticModel>
+    <contained xsi:type="di:GraphNode" xmi:id="_kbwl8I4gEeGf6vp0nGamIA" position="68,57" size="125,60">
+      <anchorage xmi:id="_MPv4cI4hEeGf6vp0nGamIA" graphEdge="_MPv4cY4hEeGf6vp0nGamIA _Mv4xEI4hEeGf6vp0nGamIA"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_kbwl8Y4gEeGf6vp0nGamIA" presentation="default">
+        <element href="testRequirements.uml#_kb5v4I4gEeGf6vp0nGamIA"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_np9AQI4gEeGf6vp0nGamIA" position="354,55" size="125,60">
+      <anchorage xmi:id="_Me684I4hEeGf6vp0nGamIA" graphEdge="_Me684Y4hEeGf6vp0nGamIA _Mv4xEI4hEeGf6vp0nGamIA"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_np9AQY4gEeGf6vp0nGamIA" presentation="default">
+        <element href="testRequirements.uml#_nqGxQI4gEeGf6vp0nGamIA"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_LbrXMI4hEeGf6vp0nGamIA" position="59,203" size="150,60">
+      <anchorage xmi:id="_MCgtsI4hEeGf6vp0nGamIA" graphEdge="_MCgtso4hEeGf6vp0nGamIA _MPv4cY4hEeGf6vp0nGamIA"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_LbrXMY4hEeGf6vp0nGamIA" presentation="default">
+        <element href="testRequirements.uml#_Lb1IMI4hEeGf6vp0nGamIA"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_LkmpsI4hEeGf6vp0nGamIA" position="335,196" size="150,60">
+      <anchorage xmi:id="_MCgtsY4hEeGf6vp0nGamIA" graphEdge="_MCgtso4hEeGf6vp0nGamIA _Me684Y4hEeGf6vp0nGamIA"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_LkmpsY4hEeGf6vp0nGamIA" presentation="default">
+        <element href="testRequirements.uml#_LkwasI4hEeGf6vp0nGamIA"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di:GraphEdge" xmi:id="_MCgtso4hEeGf6vp0nGamIA" anchor="_MCgtsI4hEeGf6vp0nGamIA _MCgtsY4hEeGf6vp0nGamIA">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_MCgts44hEeGf6vp0nGamIA" presentation="default">
+        <element href="testRequirements.uml#_MCp3oI4hEeGf6vp0nGamIA"/>
+      </semanticModel>
+      <contained xsi:type="di:EdgeObjectOffset" xmi:id="_MCgttI4hEeGf6vp0nGamIA" id="stereotypeEdgeObject"/>
+    </contained>
+    <contained xsi:type="di:GraphEdge" xmi:id="_MPv4cY4hEeGf6vp0nGamIA" anchor="_MCgtsI4hEeGf6vp0nGamIA _MPv4cI4hEeGf6vp0nGamIA">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_MPv4co4hEeGf6vp0nGamIA" presentation="default">
+        <element href="testRequirements.uml#_MP5pcI4hEeGf6vp0nGamIA"/>
+      </semanticModel>
+      <contained xsi:type="di:EdgeObjectOffset" xmi:id="_MPv4c44hEeGf6vp0nGamIA" id="deployEdgeObject"/>
+    </contained>
+    <contained xsi:type="di:GraphEdge" xmi:id="_Me684Y4hEeGf6vp0nGamIA" anchor="_MCgtsY4hEeGf6vp0nGamIA _Me684I4hEeGf6vp0nGamIA">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_Me684o4hEeGf6vp0nGamIA" presentation="default">
+        <element href="testRequirements.uml#_MfEt4I4hEeGf6vp0nGamIA"/>
+      </semanticModel>
+      <contained xsi:type="di:EdgeObjectOffset" xmi:id="_Me68444hEeGf6vp0nGamIA" id="deployEdgeObject"/>
+    </contained>
+    <contained xsi:type="di:GraphEdge" xmi:id="_Mv4xEI4hEeGf6vp0nGamIA" anchor="_MPv4cI4hEeGf6vp0nGamIA _Me684I4hEeGf6vp0nGamIA">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_Mv4xEY4hEeGf6vp0nGamIA" presentation="default">
+        <element href="testRequirements.uml#_Mv4xFI4hEeGf6vp0nGamIA"/>
+      </semanticModel>
+      <contained xsi:type="di:EdgeObjectOffset" xmi:id="_Mv4xEo4hEeGf6vp0nGamIA" id="nameEdgeObject"/>
+      <contained xsi:type="di:EdgeObjectOffset" xmi:id="_Mv4xE44hEeGf6vp0nGamIA" id="stereotypeEdgeObject" offset="0,-20"/>
+    </contained>
+  </diagrams>
+</diagrams:Diagrams>

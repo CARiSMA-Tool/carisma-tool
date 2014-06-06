@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="FairExchangeNoStopModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="FairExchangeNoStopPackage">
+      <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="FairExchangeNoStopActivity">
+        <node xmi:type="uml:InitialNode" xmi:id="_bxwyABxaEeOVUY7OvMpA8Q" name="InitialNode1" outgoing="_dZgy8BxaEeOVUY7OvMpA8Q"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_cevMwBxaEeOVUY7OvMpA8Q" name="OpaqueAction1" outgoing="_dne9gBxaEeOVUY7OvMpA8Q" incoming="_dZgy8BxaEeOVUY7OvMpA8Q"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_cnNMQBxaEeOVUY7OvMpA8Q" name="ActivityFinalNode1" incoming="_dne9gBxaEeOVUY7OvMpA8Q"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_dZgy8BxaEeOVUY7OvMpA8Q" name="ControlFlow1" source="_bxwyABxaEeOVUY7OvMpA8Q" target="_cevMwBxaEeOVUY7OvMpA8Q">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_dZgy8RxaEeOVUY7OvMpA8Q" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_dZgy8hxaEeOVUY7OvMpA8Q" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_dne9gBxaEeOVUY7OvMpA8Q" name="ControlFlow2" source="_cevMwBxaEeOVUY7OvMpA8Q" target="_cnNMQBxaEeOVUY7OvMpA8Q">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_dne9gRxaEeOVUY7OvMpA8Q" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_dne9ghxaEeOVUY7OvMpA8Q" value="1"/>
+        </edge>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_ejM-4BxaEeOVUY7OvMpA8Q">
+      <eAnnotations xmi:id="_ejONABxaEeOVUY7OvMpA8Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:fairexchange xmi:id="_h9994B-BEeOMIvl_knophg" start="_cevMwBxaEeOVUY7OvMpA8Q" base_Package="idPackage"/>
+</xmi:XMI>

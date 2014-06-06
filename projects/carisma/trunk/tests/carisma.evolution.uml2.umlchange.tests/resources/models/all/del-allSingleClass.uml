@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="del-allSingleClass">
+      <packagedElement xmi:type="uml:Package" xmi:id="_PMBeIHzPEeG1JfJtIO_r1w" name="Package1">
+        <packagedElement xmi:type="uml:Class" xmi:id="_Pm2Y-HzPEeG1JfJtIO_r1w" name="Class1"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_QACVCHzPEeG1JfJtIO_r1w" name="Class2"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_QPiJmHzPEeG1JfJtIO_r1w" name="Class1"/>
+    </packagedElement>
+    <profileApplication xmi:id="_VR2z8HzPEeG1JfJtIO_r1w">
+      <eAnnotations xmi:id="_VR2z8XzPEeG1JfJtIO_r1w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_VR2z8nzPEeG1JfJtIO_r1w">
+      <eAnnotations xmi:id="_VR2z83zPEeG1JfJtIO_r1w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:delall xmi:id="_ZGimgHzPEeG1JfJtIO_r1w" base_Element="_PMBeIHzPEeG1JfJtIO_r1w">
+    <ref>delAll</ref>
+    <pattern>delAll={Class(name=Class*, contents=&lt;Stereotype(contents=&lt;TaggedValue(name=id)>)>)}</pattern>
+  </UMLchange:delall>
+  <UMLsec:critical xmi:id="_ukfV0HzPEeG1JfJtIO_r1w" base_Class="_QACVCHzPEeG1JfJtIO_r1w" base_Classifier="_QACVCHzPEeG1JfJtIO_r1w"/>
+  <UMLsec:identifiable xmi:id="_vfNRoHzPEeG1JfJtIO_r1w" base_Element="_Pm2Y-HzPEeG1JfJtIO_r1w"/>
+</xmi:XMI>

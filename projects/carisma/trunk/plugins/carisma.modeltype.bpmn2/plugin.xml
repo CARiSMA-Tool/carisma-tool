@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.modeltype">
+      <modeltype
+            fileExtension="bpmn2,bpmn"
+            loader="carisma.modeltype.bpmn2.BPMN2ModelLoader"
+            name="BPMN2"
+            nsURI="http://www.eclipse.org/modeling/mdt/?project=bpmn2">
+      </modeltype>
+   </extension>
+
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="false">
+      </toc>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="carisma.modeltype.bpmn2.objectContribution1"
+            nameFilter="*.bpmn"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="carisma.modeltype.bpmn2.popup.ConvertYaoqiangAction"
+               enablesFor="1"
+               id="carisma.modeltype.bpmn2.convert1"
+               label="Yaoqiang to Eclipse BPMN 2.0"
+               menubarPath="carisma.ui.eclipse.menu1/group1">
+         </action>
+         <action
+               class="carisma.modeltype.bpmn2.popup.ConvertEmfAction"
+               id="carisma.modeltype.bpmn2.convert3"
+               label="Eclipse to Yaoqiang BPMN 2.0"
+               menubarPath="carisma.ui.eclipse.menu1/group1">
+         </action>
+      </objectContribution>
+      <objectContribution
+            id="carisma.modeltype.bpmn2.objectContribution2"
+            nameFilter="*.bpmn2"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="carisma.modeltype.bpmn2.popup.ConvertYaoqiangAction"
+               id="carisma.modeltype.bpmn2.convert2"
+               label="Yaoqiang to Eclipse BPMN 2.0"
+               menubarPath="carisma.ui.eclipse.menu1/group1">
+         </action>
+         <action
+               class="carisma.modeltype.bpmn2.popup.ConvertEmfAction"
+               id="carisma.modeltype.bpmn2.convert3"
+               label="Eclipse to Yaoqiang BPMN 2.0"
+               menubarPath="carisma.ui.eclipse.menu1/group1">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Converts an EMF BPMN 2.0 to a Yaoqiang model"
+            id="carisma.modeltype.bpmn2.emfconverter"
+            implementingClass="carisma.modeltype.bpmn2.converter.ConvertEmfCheck"
+            magicKeys="bpmn2"
+            name="EMF to Yaoqiang Converter"
+            publisher="Marcel Michel"
+            targetModelType="bpmn2">
+         <parameter
+               defaultValue="AnalysisModel"
+               description="If the default model should not be overwritten, the output file can be defined here"
+               id="carisma.modeltype.bpmn2.outputmodel"
+               name="Output"
+               optional="false"
+               type="OutputFile">
+         </parameter>
+      </check>
+   </extension>
+</plugin>

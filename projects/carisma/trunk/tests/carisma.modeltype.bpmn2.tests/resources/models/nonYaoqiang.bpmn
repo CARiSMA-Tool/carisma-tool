@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.jboss.org/drools" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="_lUyxgcAhEeCMnbcC-f43kQ" targetNamespace="http://www.jboss.org/drools">
+  <bpmn2:documentation id="987894645737">&lt;&lt;ext=trade_ok.bpmn2extension>></bpmn2:documentation>
+  <bpmn2:documentation id="624563587365">&lt;&lt;pattern={*}>></bpmn2:documentation>
+  <bpmn2:collaboration id="_lUyxgsAhEeCMnbcC-f43kQ">
+    <bpmn2:participant id="_lUyxg8AhEeCMnbcC-f43kQ" name="Internal" processRef="_lU5fMMAhEeCMnbcC-f43kQ"/>
+    <bpmn2:participant id="_scHZgMAhEeCMnbcC-f43kQ" name="Bank" processRef="_tKuzAcAhEeCMnbcC-f43kQ"/>
+    <bpmn2:conversationLink id="_EqrjIaPbEeGnjMYS2XJjAQ" name="" sourceRef="_pSfOwMAkEeCMnbcC-f43kQ" targetRef="_qbfeMMAkEeCMnbcC-f43kQ"/>
+  </bpmn2:collaboration>
+  <bpmn2:process id="_lU5fMMAhEeCMnbcC-f43kQ" tns:version="1" tns:packageName="defaultPackage" name="Process for Internal">
+    <bpmn2:laneSet id="_tyq8wMAhEeCMnbcC-f43kQ"/>
+  </bpmn2:process>
+  <bpmn2:process id="_tKuzAcAhEeCMnbcC-f43kQ" tns:version="1" tns:packageName="defaultPackage" name="Process for Pool nr 1">
+    <bpmn2:laneSet id="_tKuzAsAhEeCMnbcC-f43kQ">
+      <bpmn2:lane id="_tKuzAMAhEeCMnbcC-f43kQ" name="Trader">
+        <bpmn2:flowNodeRef>_jxiHoMAkEeCMnbcC-f43kQ</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_jBd8oMAkEeCMnbcC-f43kQ</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_kybj8MAkEeCMnbcC-f43kQ</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_qbfeMMAkEeCMnbcC-f43kQ</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="_unHRcMAhEeCMnbcC-f43kQ" name="Supervisor">
+        <bpmn2:flowNodeRef>_pSfOwMAkEeCMnbcC-f43kQ</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:endEvent id="_jxiHoMAkEeCMnbcC-f43kQ" name="End">
+      <bpmn2:incoming>_QQAMQMAlEeCMnbcC-f43kQ</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:startEvent id="_jBd8oMAkEeCMnbcC-f43kQ" name="Start">
+      <bpmn2:outgoing>_PmII0MAlEeCMnbcC-f43kQ</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="_PmII0MAlEeCMnbcC-f43kQ" tns:priority="1" name="Sequence Flow" sourceRef="_jBd8oMAkEeCMnbcC-f43kQ" targetRef="_kybj8MAkEeCMnbcC-f43kQ"/>
+    <bpmn2:task id="_kybj8MAkEeCMnbcC-f43kQ" name="Enter Trade Request">
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_PmII0MAlEeCMnbcC-f43kQ</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="_pSfOwMAkEeCMnbcC-f43kQ" name="Check Trade Request">
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" tns:priority="1" name="" sourceRef="_kybj8MAkEeCMnbcC-f43kQ" targetRef="_pSfOwMAkEeCMnbcC-f43kQ"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" tns:priority="1" name="" sourceRef="_pSfOwMAkEeCMnbcC-f43kQ" targetRef="_qbfeMMAkEeCMnbcC-f43kQ"/>
+    <bpmn2:task id="_qbfeMMAkEeCMnbcC-f43kQ" name="Process Decision">
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onEntry-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:extensionElements>
+        <tns:onExit-script/>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
+      <bpmn2:outgoing>_QQAMQMAlEeCMnbcC-f43kQ</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="_QQAMQMAlEeCMnbcC-f43kQ" tns:priority="1" name="Sequence Flow" sourceRef="_qbfeMMAkEeCMnbcC-f43kQ" targetRef="_jxiHoMAkEeCMnbcC-f43kQ"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="_xbhLYcAkEeCMnbcC-f43kQ">
+    <bpmndi:BPMNPlane id="_xbhLYsAkEeCMnbcC-f43kQ" bpmnElement="_lU5fMMAhEeCMnbcC-f43kQ">
+      <bpmndi:BPMNShape id="_scKc0MAhEeCMnbcC-f43kQ" bpmnElement="_scHZgMAhEeCMnbcC-f43kQ" isHorizontal="true">
+        <dc:Bounds height="199.0" width="630.0" x="140.0" y="50.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_tKvaEMAhEeCMnbcC-f43kQ" bpmnElement="_tKuzAMAhEeCMnbcC-f43kQ" isHorizontal="true">
+        <dc:Bounds height="100.0" width="600.0" x="170.0" y="50.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_unIfkMAhEeCMnbcC-f43kQ" bpmnElement="_unHRcMAhEeCMnbcC-f43kQ" isHorizontal="true">
+        <dc:Bounds height="100.0" width="600.0" x="170.0" y="149.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_jBhnAMAkEeCMnbcC-f43kQ" bpmnElement="_jBd8oMAkEeCMnbcC-f43kQ" isHorizontal="true">
+        <dc:Bounds height="36.0" width="36.0" x="203.0" y="83.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_jxkj4MAkEeCMnbcC-f43kQ" bpmnElement="_jxiHoMAkEeCMnbcC-f43kQ" isHorizontal="true">
+        <dc:Bounds height="36.0" width="36.0" x="715.0" y="86.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_kyfOUMAkEeCMnbcC-f43kQ" bpmnElement="_kybj8MAkEeCMnbcC-f43kQ" isHorizontal="true">
+        <dc:Bounds height="55.0" width="110.0" x="263.0" y="76.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_pSiSEMAkEeCMnbcC-f43kQ" bpmnElement="_pSfOwMAkEeCMnbcC-f43kQ" isHorizontal="true">
+        <dc:Bounds height="61.0" width="110.0" x="416.0" y="181.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_qbihgMAkEeCMnbcC-f43kQ" bpmnElement="_qbfeMMAkEeCMnbcC-f43kQ" isHorizontal="true">
+        <dc:Bounds height="52.0" width="110.0" x="580.0" y="78.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_PmJW8MAlEeCMnbcC-f43kQ" bpmnElement="_PmII0MAlEeCMnbcC-f43kQ" sourceElement="_jBhnAMAkEeCMnbcC-f43kQ" targetElement="_kyfOUMAkEeCMnbcC-f43kQ">
+        <di:waypoint xsi:type="dc:Point" x="239.0" y="101.0"/>
+        <di:waypoint xsi:type="dc:Point" x="263.0" y="103.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_QQAzUMAlEeCMnbcC-f43kQ" bpmnElement="_QQAMQMAlEeCMnbcC-f43kQ" sourceElement="_qbihgMAkEeCMnbcC-f43kQ" targetElement="_jxkj4MAkEeCMnbcC-f43kQ">
+        <di:waypoint xsi:type="dc:Point" x="690.0" y="104.0"/>
+        <di:waypoint xsi:type="dc:Point" x="715.0" y="104.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="_kyfOUMAkEeCMnbcC-f43kQ" targetElement="_pSiSEMAkEeCMnbcC-f43kQ">
+        <di:waypoint xsi:type="dc:Point" x="373.0" y="103.0"/>
+        <di:waypoint xsi:type="dc:Point" x="392.0" y="104.0"/>
+        <di:waypoint xsi:type="dc:Point" x="392.0" y="211.0"/>
+        <di:waypoint xsi:type="dc:Point" x="416.0" y="211.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="_pSiSEMAkEeCMnbcC-f43kQ" targetElement="_qbihgMAkEeCMnbcC-f43kQ">
+        <di:waypoint xsi:type="dc:Point" x="526.0" y="211.0"/>
+        <di:waypoint xsi:type="dc:Point" x="541.0" y="212.0"/>
+        <di:waypoint xsi:type="dc:Point" x="543.0" y="103.0"/>
+        <di:waypoint xsi:type="dc:Point" x="580.0" y="104.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

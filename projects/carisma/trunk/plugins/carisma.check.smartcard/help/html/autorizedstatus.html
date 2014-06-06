@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Authorized Status Smartcard Check</title>
+</head>
+
+<body>
+<h1>UMLsec Authorized Status Smartcard Check</h1>
+<h3>carisma.check.smartcard.authorizedstatus</h3>
+<p>This check analyzes UML state diagrams using the &laquo;authorized-status&raquo; stereotype (cf. Ochoa et al. - Model-based Security Verification and Testing for Smartcards, 2011) by
+checking every state marked by &laquo;authorized-status&raquo;. Incoming transitions to these states must have Constraints (Guards)
+containing the permission string provided by the tag permission of the authorized state.</p>
+
+<p>Annotate a model containing a state diagram with &laquo;authorized-status&raquo; as necessary and set the permission tag value. 
+After finishing the model, <a href="../../../carisma.core/help/html/userguide/stepByStep.html">create a new CARiSMA analysis on the model</a>. Add the Smartcard Authorized Status Check to the used checks
+and click "Run" to start the analysis.</p>
+<p>The Analysis Results View displays whether the check was successful. If any incoming transition of an authorized state
+doesn't contain the appropriate permission string in its guard, the violation is displayed in the Analysis Results View.</p>
+
+<img src="images/authorizedStatusWrong.png" alt="authorized-status violation" name="authorized-status violation" />
+<p>The example model contains an authorized state having an incoming transition with an incorrect guard.</p>
+
+<img src="images/authorizedStatusRight.png" alt="authorized-status correct" name="authorized-status correct" />
+<p>After correcting the model, the analysis reports the success of the check.</p>
+
+</body>
+</html>
+
+
+
+

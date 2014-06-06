@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<title>The UMLchange Grammar</title>
+	<link href="../../../carisma.core/help/css/style.css" media="all" rel="stylesheet" type="text/css" />
+	<meta name="author" content="UMLchange">
+	<meta name="editor" content="html-editor phase 5">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF">
+<h2>The UMLchange Grammar</h2>
+
+
+<h3>Content</h3>
+<ol>
+	<li><a href="#chapter1">Simple Element Descriptions</a></li>
+	<li><a href="#chapter2">Referencing Namespace</a></li>
+	<li><a href="#chapter3">Other Uses of the Grammar</a></li>
+</ol>
+
+<div style="padding-top:40px;">
+The UMLchange grammar can be used to describe changes by adding new model elements
+to existing elements. Each change consists of one or more comma-separated descriptions
+of alternative evolutions. The format for these alternatives is:
+
+<p style="padding-left:100px;"><i>{Description}</i></p>
+
+The description can be either a series of comma-separated simple element descriptions
+depicting new model elements or the single reference of a namespace wherein the additions
+to the model are shown.
+<br /><br />
+An example for the UMLchange grammar is
+
+<p style="padding-left:100px;"><i>{Class(name=NewClass),Class(name=OtherNewClass,visibility=private)},{@addClasses}</i></p>
+
+, which poses two alternative evolutions. The first adds two classes named NewClass
+and OtherNewClass, of which the second receives a private visibility. The second alternative
+references a namespace <i>addClasses</i> in the model. The referenced namespace
+contains new model elements to be added to the original model, by either adding to old
+model elements using <i>&laquo; old &raquo;</i> or substituting model elements while keeping some of their
+contents using <i>&laquo; keep &raquo;</i>.
+</div>
+
+
+
+<div style="padding-top:40px;">
+<h4><a name="chapter1">1 Simple Element Descriptions</a></h4>
+Simple element descriptions (SED) succinctly describe a UML model element. The format
+of an SED is:
+
+<p style="padding-left:100px;"><i>Metaclass(KeyValuePairs)</i></p>
+
+Each SED starts with the metaclass name of the new element. Every UML metaclass
+of an actual non-abstract model element can be used. Apart from that, simple commaseparated
+key-value pairs can be given to set the properties of the new model elements,
+ranging from common properties (e.g. name) to connection-specific ones (e.g. source
+and target for an association). The format of a key-value pair is:
+
+<p style="padding-left:100px;"><i>key=value</i></p>
+
+When setting values for properties which reference other model elements in the original
+model, a sufficiently qualified string representation of the referenced model element has
+to be given. In the example model (see Figure 1), two different classes of the same
+name <i>WantedClass</i> exist in two different packages <i>SuperPackage</i> and <i>SubPackage</i>. To
+reference a class, the containing package namespace has to be incorporated into the attribute
+value. However, it is not necessary to add the model namespace to the reference,
+as the containing package namespace is sufficient to identify the referenced class.
+
+<div style="margin: 20px">
+<img src="../images/exampleQualifiedNS.png" alt="Different Namespaces" name="Different Namespaces" />
+<h5 style="padding-left:100px">Figure 1: Different Namespaces</h5>
+</div>
+
+Table 1 shows some metaclasses, their corresponding keys, their value type and a
+description. The value type of a key may be a String, an element of a given enumeration,
+or the adequately qualified reference to a model element.
+<div style="margin:20px">
+<table border="1" style="border-collapse:collapse">
+	<tr>
+		<th class="tableHeadLeft">Metaclass</th>
+		<th class="tableHead">Key(s)</th>
+		<th class="tableHead">Type</th>
+		<th class="tableHead">Description</th>
+	</tr>
+	<tr>
+		<td class="tableContentLeft">all named elements</td>
+		<td class="tableContent">name</td>
+		<td class="tableContent">String</td>
+		<td class="tableContent">model element name</td>
+	</tr>
+	<tr>
+		<td class="tableContentLeft">Property (Tagged Value)</td>
+		<td class="tableContent">value</td>
+		<td class="tableContent">String, Reference</td>
+		<td class="tableContent">new tagged value</td>
+	</tr>
+	<tr>
+		<td class="tableContentLeft">Class</td>
+		<td class="tableContent">visibility</td>
+		<td class="tableContent">Enumeration</td>
+		<td class="tableContent">public, private, rotected or package</td>
+	</tr>
+	<tr>
+		<td rowspan="2" class="tableContentLeft">Association</td>
+		<td class="tableContent">sourceEndKind, targetEndKind</td>
+		<td class="tableContent">Enumeration</td>
+		<td class="tableContent">composite, shared or none</td>
+	</tr>
+	<tr>
+		<td class="tableContent">source, target</td>
+		<td class="tableContent">Reference</td>
+		<td class="tableContent">qualified classifier</td>
+	</tr>
+	<tr>
+		<td >Dependency</td>
+		<td class="tableBot">supplier, client</td>
+		<td class="tableBot">Reference</td>
+		<td class="tableBot">qualified classifier</td>
+	</tr>
+</table>
+<h5 style="padding-left:100px;">Table 1: Excerpt of Metaclasses, Keys and Values</h5>
+</div>
+
+Apart from describing the new model element itself, an additional optional key named
+contents with the format
+
+<p style="padding-left:100px;"><i>contents=&lt;SimpleElementDescriptions&gt;</i></p>
+
+provides the means to describe further new model elements that are contained in the
+new element, e.g. an operation to be owned by a new class. The usage of the contents
+key is not restricted by a maximum depth.
+</div>
+
+
+<div style="padding-top:40px;">
+<h4><a name="chapter2">2 Referencing Namespaces</a></h4>
+To avoid long descriptions of complex additions, the UMLchange grammar allows to reference
+namespaces containing the new elements. The syntax for namespace referencing
+is
+
+<p style="padding-left:100px;"><i>@NamespaceName</i></p>
+
+The namespaces referenced by the namespace name must be placed in the scope of
+the original model, but it is not necessary to place them in the same scope where the
+changes will take place. Connecting the new elements of the namespace to the original
+model is accomplished by modeling part of the target model element and application of
+the <i>&laquo; old &raquo;</i> stereotype <a href="profile.html#keepOld">(see UMLchange Profile &quot;Describing Complex Changes Using «keep» and «old»&quot;)</a>.
+</div>
+
+<div style="padding-top:40px;">
+<h4><a name="chapter3">3 Other Uses of the Grammar</a></h4>
+Other stereotypes of the UMLchange profile use subsets of the UMLchange grammar to
+provide a consistent syntax (see table 2).
+<div style="margin:20px">
+<table border="1" style="border-collapse:collapse">
+	<tr>
+		<th class="tableHeadLeft">Stereotype</th>
+		<th class="tableHead">Tag</th>
+		<th class="tableHead">Subset</th>
+		<th class="tableHead">Example</th>
+	</tr>
+	<tr>
+		<td class="tableContentLeft"><i>&laquo; edit &raquo;</i></td>
+		<td class="tableContent">values</td>
+		<td rowspan="2" class="tableContent">KeyValuePairs</td>
+		<td rowspan="2" class="tableContent">(name=NewName, visibility=private)</td>
+	</tr>
+	<tr>
+		<td class="tableContentLeft"><i>&laquo; copy &raquo;</i>,<i>&laquo; move &raquo;</i></td>
+		<td class="tableContent">to</td>
+	</tr>
+	<tr>
+		<td class="tableContentLeft"><i>&laquo; copy &raquo;</i>,<i>&laquo; move &raquo;</i></td>
+		<td class="tableContent">to</td>
+		<td class="tableContent">QualifiedNamespace</td>
+		<td class="tableContent">SomePackage::SubPackage::TargetClass</td>
+	</tr>
+	<tr>
+		<td class="tableContentLeft"><i>&laquo; del-all &raquo;</i>,<i>&laquo; add-all &raquo;</i>,<i>&laquo; subst-all &raquo;</i></td>
+		<td class="tableContent">pattern</td>
+		<td rowspan="2" class="tableBot">SimpleElement-Description</td>
+		<td rowspan="2" class="tableBot">Class(name=SomeClass,contents=&lt;Stereotype(name=UMLsec::critical)&gt;)</td>
+	</tr>
+	<tr>
+		<td><i>&laquo; adopter &raquo;</i></td>
+		<td class="tableBot">adopter</td>
+	</tr>
+</table>
+<h5 style="padding-left:100px;">Table 2: Other Uses of the UMLchange Grammar</h5>
+</div>
+{values} of stereotype <i>&laquo; edit &raquo;</i> uses the same key-value pairs to describe changes to
+model element attributes, as does {to} of <i>&laquo; copy &raquo;</i> and <i>&laquo;move &raquo;</i>. The target of the copy
+or move operation is an adequately qualified namespace equivalent to the model element
+references used in simple element descriptions. The descriptions of the targeted
+elements of the &#42;-all stereotypes using {pattern} are the grammar&rsquo;s simple element descriptions,
+as is the target element description of {adopter}.
+</div>
+
+</body>
+
+</html>

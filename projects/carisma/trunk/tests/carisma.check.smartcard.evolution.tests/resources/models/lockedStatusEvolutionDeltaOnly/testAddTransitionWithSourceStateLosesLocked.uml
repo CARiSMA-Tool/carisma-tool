@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testAddTransitionWithSourceStateLosesLockedModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testAddTransitionWithSourceStateLosesLockedPackage">
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="testAddTransitionWithSourceStateLosesLockedStateMachine">
+        <region xmi:id="idRegion" name="MainRegion">
+          <subvertex xmi:type="uml:State" xmi:id="_GpD9gHQzEeKnDZcuL6w50w" name="Composite State">
+            <region xmi:id="_GpD9gXQzEeKnDZcuL6w50w" name="Region1">
+              <subvertex xmi:type="uml:Pseudostate" xmi:id="_H8t9wHQzEeKnDZcuL6w50w" name="Start"/>
+              <subvertex xmi:type="uml:State" xmi:id="_I7y1IHQzEeKnDZcuL6w50w" name="NormalState"/>
+              <subvertex xmi:type="uml:State" xmi:id="_MicywHQzEeKnDZcuL6w50w" name="FutureNoLockedState"/>
+              <transition xmi:id="_S47ztHQzEeKnDZcuL6w50w" name="Transition1" kind="local" source="_H8t9wHQzEeKnDZcuL6w50w" target="_I7y1IHQzEeKnDZcuL6w50w"/>
+              <transition xmi:id="_T_40sHQzEeKnDZcuL6w50w" name="Transition2" kind="local" source="_I7y1IHQzEeKnDZcuL6w50w" target="_MicywHQzEeKnDZcuL6w50w"/>
+            </region>
+          </subvertex>
+        </region>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_F72SMHQzEeKnDZcuL6w50w">
+      <eAnnotations xmi:id="_F75VgHQzEeKnDZcuL6w50w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_F77KsHQzEeKnDZcuL6w50w">
+      <eAnnotations xmi:id="_F77KsXQzEeKnDZcuL6w50w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:add xmi:id="_YZNlYHQzEeKnDZcuL6w50w" base_Element="_GpD9gHQzEeKnDZcuL6w50w">
+    <ref>addTransition</ref>
+    <constraint>addTransition=AND(delStereotype)</constraint>
+    <new>addTransition={Transition(name=newTransition,source=FutureNoLockedState,target=NormalState)}</new>
+  </UMLchange:add>
+  <UMLchange:del xmi:id="_ZxGlYHQzEeKnDZcuL6w50w" base_Element="_MicywHQzEeKnDZcuL6w50w">
+    <ref>delStereotype</ref>
+    <ext>delStereotype=locked-status</ext>
+  </UMLchange:del>
+  <UMLsec:lockedstatus xmi:id="_Vt1HwHQ0EeKnDZcuL6w50w" base_State="_MicywHQzEeKnDZcuL6w50w"/>
+</xmi:XMI>

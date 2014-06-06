@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="idModel" name="testAddLockedStatusDeletingOutgoingTransitionModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testAddLockedStatusDeletingOutgoingTransitionPackage">
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="testAddLockedStatusDeletingOutgoingTransitionStateMachine">
+        <region xmi:id="idRegion" name="MainRegion">
+          <subvertex xmi:type="uml:State" xmi:id="_L20XoHQ6EeK4HL3dBuX-pg" name="CompositeState">
+            <region xmi:id="_L20XoXQ6EeK4HL3dBuX-pg" name="Region1">
+              <subvertex xmi:type="uml:Pseudostate" xmi:id="_M5IJMHQ6EeK4HL3dBuX-pg" name="Start"/>
+              <subvertex xmi:type="uml:State" xmi:id="_Nug5EHQ6EeK4HL3dBuX-pg" name="NormalState"/>
+              <subvertex xmi:type="uml:State" xmi:id="_PP3-IHQ6EeK4HL3dBuX-pg" name="FutureLockedState"/>
+              <transition xmi:id="_RNjy0HQ6EeK4HL3dBuX-pg" name="Transition1" kind="local" source="_M5IJMHQ6EeK4HL3dBuX-pg" target="_Nug5EHQ6EeK4HL3dBuX-pg"/>
+              <transition xmi:id="_RjJoVHQ6EeK4HL3dBuX-pg" name="Transition2" kind="local" source="_Nug5EHQ6EeK4HL3dBuX-pg" target="_PP3-IHQ6EeK4HL3dBuX-pg"/>
+              <transition xmi:id="_R6kp0HQ6EeK4HL3dBuX-pg" name="Transition3" kind="local" source="_PP3-IHQ6EeK4HL3dBuX-pg" target="_Nug5EHQ6EeK4HL3dBuX-pg"/>
+            </region>
+          </subvertex>
+        </region>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_XMeBQHQ6EeK4HL3dBuX-pg">
+      <eAnnotations xmi:id="_XMeoUHQ6EeK4HL3dBuX-pg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_XMeoUXQ6EeK4HL3dBuX-pg">
+      <eAnnotations xmi:id="_XMeoUnQ6EeK4HL3dBuX-pg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:add xmi:id="_YL1zkHQ6EeK4HL3dBuX-pg" base_Element="_PP3-IHQ6EeK4HL3dBuX-pg">
+    <ref>addStereotype</ref>
+    <constraint>addStereotype=AND(delTransition)</constraint>
+    <new>addStereotype={Stereotype(name=locked-status)}</new>
+  </UMLchange:add>
+  <UMLchange:del xmi:id="_0Uq0kHQ8EeK4HL3dBuX-pg" base_Element="_R6kp0HQ6EeK4HL3dBuX-pg">
+    <ref>delTransition</ref>
+  </UMLchange:del>
+</xmi:XMI>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_M5nXQOUcEeCbkcxbQy95UA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_M5nXQOUcEeCbkcxbQy95UA/1 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_M5pMcOUcEeCbkcxbQy95UA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="NoDownFlow">
+      <packagedElement xmi:type="uml:Class" xmi:id="_1C-uAAklEeGzD7TjfzDtzw" name="Account">
+        <ownedAttribute xmi:id="_3VtloAklEeGzD7TjfzDtzw" name="money" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_5aSsgAklEeGzD7TjfzDtzw" name="rm" method="_2je6oAkpEeGzD7TjfzDtzw _Np1LIAkqEeGzD7TjfzDtzw _3usaQAt-EeG24cMsxlfIJg">
+          <ownedParameter xmi:id="_LCG3wAkmEeGzD7TjfzDtzw" type="_8OiVwAklEeGzD7TjfzDtzw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_5-ovsAklEeGzD7TjfzDtzw" name="wm" method="_TAlp4AkpEeGzD7TjfzDtzw _V5n3EAkqEeGzD7TjfzDtzw _x-fQAAkqEeGzD7TjfzDtzw _s3HzwAt-EeG24cMsxlfIJg">
+          <ownedParameter xmi:id="_SQpiEAkmEeGzD7TjfzDtzw" name="x" type="_8OiVwAklEeGzD7TjfzDtzw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_6lOOkgklEeGzD7TjfzDtzw" name="rx" method="_EgqnMAkqEeGzD7TjfzDtzw _ncYYoAkpEeGzD7TjfzDtzw _lJARgAt-EeG24cMsxlfIJg">
+          <ownedParameter xmi:id="_N_cyoAkmEeGzD7TjfzDtzw" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_X3ZuAAt9EeG24cMsxlfIJg" name="ces" method="_hi1xMAuAEeG24cMsxlfIJg _qZOjEAuAEeG24cMsxlfIJg _r3_nIAuAEeG24cMsxlfIJg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_8OiVwAklEeGzD7TjfzDtzw" name="Data"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ZsvgMAkmEeGzD7TjfzDtzw" name="SM" classifierBehavior="_aXyoUAkmEeGzD7TjfzDtzw">
+        <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_aXyoUAkmEeGzD7TjfzDtzw" name="StateMachine">
+          <region xmi:id="_aXyoUQkmEeGzD7TjfzDtzw" name="Region">
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_ba-joAkmEeGzD7TjfzDtzw" name="Pseudostate1"/>
+            <subvertex xmi:type="uml:State" xmi:id="_b-uw8AkmEeGzD7TjfzDtzw" name="NoExtraService"/>
+            <subvertex xmi:type="uml:State" xmi:id="_cmpskAkmEeGzD7TjfzDtzw" name="ExtraService"/>
+            <subvertex xmi:type="uml:State" xmi:id="_9_n3sAt8EeG24cMsxlfIJg" name="ChooseExtraService"/>
+            <transition xmi:id="_d4u_hAkmEeGzD7TjfzDtzw" name="Transition1" kind="local" source="_ba-joAkmEeGzD7TjfzDtzw" target="_b-uw8AkmEeGzD7TjfzDtzw">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="__2iP0AkoEeGzD7TjfzDtzw" name="money:=0"/>
+            </transition>
+            <transition xmi:id="_XhTt9QknEeGzD7TjfzDtzw" name="Transition2" kind="local" source="_b-uw8AkmEeGzD7TjfzDtzw" target="_9_n3sAt8EeG24cMsxlfIJg" guard="_YvOSkAknEeGzD7TjfzDtzw">
+              <ownedRule xmi:id="_YvOSkAknEeGzD7TjfzDtzw" name="money>=1000">
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="_cHq1EAknEeGzD7TjfzDtzw" name="money>=1000">
+                  <language>ocl</language>
+                  <body>money>=1000</body>
+                </specification>
+              </ownedRule>
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_x-fQAAkqEeGzD7TjfzDtzw" name="money:=money+x" specification="_5-ovsAklEeGzD7TjfzDtzw"/>
+              <trigger xmi:id="_lQ3OMAknEeGzD7TjfzDtzw" name="wm(x)" event="_uBRecAkoEeGzD7TjfzDtzw"/>
+            </transition>
+            <transition xmi:id="_Gpl4BQkpEeGzD7TjfzDtzw" name="Transition3" kind="local" source="_b-uw8AkmEeGzD7TjfzDtzw" target="_b-uw8AkmEeGzD7TjfzDtzw" guard="_NM5M8AkpEeGzD7TjfzDtzw">
+              <ownedRule xmi:id="_NM5M8AkpEeGzD7TjfzDtzw" name="money&lt;1000">
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="_QAof4AkpEeGzD7TjfzDtzw" name="money&lt;1000">
+                  <language>ocl</language>
+                  <body>money&lt;1000</body>
+                </specification>
+              </ownedRule>
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_TAlp4AkpEeGzD7TjfzDtzw" name="money:=money+x" specification="_5-ovsAklEeGzD7TjfzDtzw"/>
+              <trigger xmi:id="_KR3mQAkpEeGzD7TjfzDtzw" name="wm(x)" event="_uBRecAkoEeGzD7TjfzDtzw"/>
+            </transition>
+            <transition xmi:id="_cxMoVAkpEeGzD7TjfzDtzw" name="Transition4" kind="local" source="_b-uw8AkmEeGzD7TjfzDtzw" target="_b-uw8AkmEeGzD7TjfzDtzw">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_ncYYoAkpEeGzD7TjfzDtzw" name="return(false)" specification="_6lOOkgklEeGzD7TjfzDtzw"/>
+              <trigger xmi:id="_fpQakAkpEeGzD7TjfzDtzw" name="rx()" event="_kxvXUAkpEeGzD7TjfzDtzw"/>
+            </transition>
+            <transition xmi:id="_vQGzpAkpEeGzD7TjfzDtzw" name="Transition5" kind="local" source="_b-uw8AkmEeGzD7TjfzDtzw" target="_b-uw8AkmEeGzD7TjfzDtzw">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_2je6oAkpEeGzD7TjfzDtzw" name="return(money)" specification="_5aSsgAklEeGzD7TjfzDtzw"/>
+              <trigger xmi:id="_yudw4AkpEeGzD7TjfzDtzw" name="rm()" event="_1MTFQAkpEeGzD7TjfzDtzw"/>
+            </transition>
+            <transition xmi:id="_-cyZNQkpEeGzD7TjfzDtzw" name="Transition6" kind="local" source="_cmpskAkmEeGzD7TjfzDtzw" target="_cmpskAkmEeGzD7TjfzDtzw">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_EgqnMAkqEeGzD7TjfzDtzw" name="return(true)" specification="_6lOOkgklEeGzD7TjfzDtzw"/>
+              <trigger xmi:id="_ByUxoAkqEeGzD7TjfzDtzw" name="rx()" event="_kxvXUAkpEeGzD7TjfzDtzw"/>
+            </transition>
+            <transition xmi:id="_Ikr2RAkqEeGzD7TjfzDtzw" name="Transition7" kind="local" source="_cmpskAkmEeGzD7TjfzDtzw" target="_cmpskAkmEeGzD7TjfzDtzw">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_Np1LIAkqEeGzD7TjfzDtzw" name="return(money)" specification="_5aSsgAklEeGzD7TjfzDtzw"/>
+              <trigger xmi:id="_Lb0bcAkqEeGzD7TjfzDtzw" name="rm()" event="_1MTFQAkpEeGzD7TjfzDtzw"/>
+            </transition>
+            <transition xmi:id="_Pq311AkqEeGzD7TjfzDtzw" name="Transition8" kind="local" source="_cmpskAkmEeGzD7TjfzDtzw" target="_cmpskAkmEeGzD7TjfzDtzw">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_V5n3EAkqEeGzD7TjfzDtzw" name="money:=money+x" specification="_5-ovsAklEeGzD7TjfzDtzw"/>
+              <trigger xmi:id="_TsDzUAkqEeGzD7TjfzDtzw" name="wm(x)" event="_uBRecAkoEeGzD7TjfzDtzw"/>
+            </transition>
+            <transition xmi:id="_E9AglAt9EeG24cMsxlfIJg" name="Transition9" kind="local" source="_9_n3sAt8EeG24cMsxlfIJg" target="_cmpskAkmEeGzD7TjfzDtzw">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_hi1xMAuAEeG24cMsxlfIJg" name="" specification="_X3ZuAAt9EeG24cMsxlfIJg"/>
+              <trigger xmi:id="_p_cRcAt9EeG24cMsxlfIJg" name="ces()" event="_hDPygAt9EeG24cMsxlfIJg"/>
+            </transition>
+            <transition xmi:id="_QmMxRAt9EeG24cMsxlfIJg" name="Transition10" kind="local" source="_b-uw8AkmEeGzD7TjfzDtzw" target="_b-uw8AkmEeGzD7TjfzDtzw">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_qZOjEAuAEeG24cMsxlfIJg" name="" specification="_X3ZuAAt9EeG24cMsxlfIJg"/>
+              <trigger xmi:id="_dLcagAt9EeG24cMsxlfIJg" name="ces()" event="_hDPygAt9EeG24cMsxlfIJg"/>
+            </transition>
+            <transition xmi:id="_1rdztAt9EeG24cMsxlfIJg" name="Transition11" kind="local" source="_cmpskAkmEeGzD7TjfzDtzw" target="_cmpskAkmEeGzD7TjfzDtzw">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_r3_nIAuAEeG24cMsxlfIJg" name="" specification="_X3ZuAAt9EeG24cMsxlfIJg"/>
+              <trigger xmi:id="_3dwQsAt9EeG24cMsxlfIJg" name="ces()" event="_hDPygAt9EeG24cMsxlfIJg"/>
+            </transition>
+            <transition xmi:id="_WJPGlQt-EeG24cMsxlfIJg" name="Transition12" kind="local" source="_9_n3sAt8EeG24cMsxlfIJg" target="_9_n3sAt8EeG24cMsxlfIJg">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_lJARgAt-EeG24cMsxlfIJg" name="return(false)" specification="_6lOOkgklEeGzD7TjfzDtzw"/>
+              <trigger xmi:id="_Y50X0At-EeG24cMsxlfIJg" name="rx()" event="_kxvXUAkpEeGzD7TjfzDtzw"/>
+            </transition>
+            <transition xmi:id="_ouB3dAt-EeG24cMsxlfIJg" name="Transition13" kind="local" source="_9_n3sAt8EeG24cMsxlfIJg" target="_9_n3sAt8EeG24cMsxlfIJg">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_s3HzwAt-EeG24cMsxlfIJg" name="money:=money+x" specification="_5-ovsAklEeGzD7TjfzDtzw"/>
+              <trigger xmi:id="_qG_OcAt-EeG24cMsxlfIJg" name="wm(x)" event="_uBRecAkoEeGzD7TjfzDtzw"/>
+            </transition>
+            <transition xmi:id="_zsAn9At-EeG24cMsxlfIJg" name="Transition14" kind="local" source="_9_n3sAt8EeG24cMsxlfIJg" target="_9_n3sAt8EeG24cMsxlfIJg">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_3usaQAt-EeG24cMsxlfIJg" name="return(money)" specification="_5aSsgAklEeGzD7TjfzDtzw"/>
+              <trigger xmi:id="_1ya60At-EeG24cMsxlfIJg" name="rm()" event="_1MTFQAkpEeGzD7TjfzDtzw"/>
+            </transition>
+          </region>
+        </ownedBehavior>
+      </packagedElement>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_hcYP8AknEeGzD7TjfzDtzw" name="Event"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_uBRecAkoEeGzD7TjfzDtzw" name="wm(x)"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_kxvXUAkpEeGzD7TjfzDtzw" name="rx()"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_1MTFQAkpEeGzD7TjfzDtzw" name="rm()"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_hDPygAt9EeG24cMsxlfIJg" name="ces()"/>
+    </packagedElement>
+    <profileApplication xmi:id="_zsSA0AklEeGzD7TjfzDtzw">
+      <eAnnotations xmi:id="_zsuswAklEeGzD7TjfzDtzw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_M5pMcOUcEeCbkcxbQy95UA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:nodownflow xmi:id="_0OsKUAklEeGzD7TjfzDtzw" base_Package="_qb8akM37EdqwVrslYOdUDA"/>
+  <UMLsec:critical xmi:id="_2EOvoAklEeGzD7TjfzDtzw" base_Class="_1C-uAAklEeGzD7TjfzDtzw" base_Classifier="_1C-uAAklEeGzD7TjfzDtzw">
+    <high>wm</high>
+    <high>rm</high>
+    <high>money</high>
+  </UMLsec:critical>
+</xmi:XMI>

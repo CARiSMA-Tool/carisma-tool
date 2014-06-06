@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>The BPMN2 OCL Plugin</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+<h2>The BPMN2 OCL Plugin</h2>
+<h3>Content:</h3>
+<h4><a href="#FirstSteps">First Steps</a></h4>
+<h4><a href="#SetUpModel">Extend the BPMN2 Model</a></h4>
+<h4><a href="#Analysis">Start an Analysis</a></h4>
+<h4><a href="#Result">Result View</a></h4>
+
+
+<h3><a name="FirstSteps">First Steps</a></h3>
+<div style="padding-left:25px">In this guide you will need the following components:
+<ul>
+  <li>An OCL Library Model</li>
+  <li>An Extension Model</li>
+</ul>
+Therefore follow the the creation guides of those models.
+</div>
+
+<h3><a name="SetUpModel">Extend the BPMN2 Model</a></h3>
+<div style="padding-left:25px"><p>If you want to extend your standard BPMN2 model with additional information, it is necessary to link up the BPMN2 model with the created Extension model. Therefore create a documentation node under the definitions root with the following context:</p> 
+
+<div style="padding-left:25px"><span style="background-color:#d3d3d3">&lt;&lt;ext=yourModelName.bpmn2extension&gt;&gt;</span></div>
+
+<p>The Extension Model must be saved into the same directory as the BPMN2 model. Keep in mind that the extension is optional.<br/>
+To select the desired OCL-Constraints add a documentation node as well and use the following context:</p>
+
+<div style="padding-left:25px"><span style="background-color:#d3d3d3">&lt;&lt;pattern={Var1, Var2}&gt;&gt;</span></div>
+
+<p>It is possible to select the OCL-Constraints by name or index. The wildcardoperator '*' is also supported by <span style="background-color:#d3d3d3">&lt;&lt;pattern={*}&gt;&gt;</span></p>
+<img src="images/setUpModel.png" alt="Set up BPMN2 Model" name="Set up BPMN2 Model" />
+<h5>Figure: Set up BPMN2 Model</h5>
+</div>
+
+<h3><a name="Analysis">Analysis</a></h3>
+<div style="padding-left:25px"><p>To start an analysis select the created OCL-Library File.</p>
+<img src="images/selectLibrary.png" alt="Select Library Model" name="Select Library Model" />
+<h5>Figure: Select Library Model</h5>
+</div>
+
+<h3><a name="Result">Result View</a></h3>
+<div style="padding-left:25px"><p>The Result View shows the results of the executed constraints. Details, like the objects which violates a constraint, can be found in the log.</p>
+<img src="images/resultView.png" alt="Result View" name="Result View" />
+<h5>Figure: Result View</h5>
+</div>
+
+</body>
+</html>

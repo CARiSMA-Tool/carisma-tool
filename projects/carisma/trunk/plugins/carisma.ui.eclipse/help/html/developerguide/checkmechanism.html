@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>The Check Mechanism</title>
+<meta name="author" content="UMLsec">
+<meta name="editor" content="html-editor phase 5">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+<h2>The Check Mechanism</h2>
+
+<ul>
+	<li><a href="#ImplementingCarismaChecks">Implementing CarismaChecks</a></li>
+	<ul>
+		<li><a href="#UsingAnalysisCheckPoint">Using the AnalysisCheck Extension Point</a></li>
+		<li><a href="#CarismaCheckInterface">The CarismaCheck Interface</a></li>
+	</ul>
+	<li><a href="#PrePostConditions">Pre-/Postconditions</a></li>
+	<ul>
+		<li><a href="#DefiningPrePostConditions">Defining pre-/postconditions</a></li>
+		<li><a href="#UsingTheBlackboard">Using the blackboard to store and retrieve data</a></li>
+	</ul>
+	<li><a href="#GeneratingOutput">Generating Check Output</a></li>
+</ul>
+<p>The CARiSMA tool provides a mechanism that allows you to implement multiple checks
+in a single Eclipse Plugin. The CARiSMA tool itself is only a host for the checks and
+coordinates their execution. The mechanism is shown in Figure 1.</p>
+
+<img src="../images/check-mechanism.png" alt="The check mechanism" name="checkmechanism" />
+<br /> <h5>Figure: Overview of the Check Mechanism</h5>
+
+<h3><a name="ImplementingCarismaChecks">Implementing CarismaChecks</a></h3>
+
+<p>Creating a CARiSMA Check can be done
+<a href="createplugins.html">automatically by using an Eclipse Template Project.</a> 
+CARiSMA checks need to extend the AnalysisCheck extension point and implement the CarismaCheck interface.</p>
+
+<h4><a name="UsingAnalysisCheckPoint">Using the AnalysisCheck Extension Point</a></h4>
+
+<p>In the CARiSMA tool, checks are registered by the CheckRegistry.
+To be registered, a plugin containing CARiSMA checks needs to extend the AnalysisCheck extension point.
+This extension point lets the check developer define checks (see Figure 2).</p>
+
+<img src="../images/plugin-definition.png" alt="Check definition" name="Check definition" />
+<h5>Figure 2: Extension Point/Check definition</h5>
+
+<p>Each defined check has to be provided with certain meta information about it, which is displayed in the
+analysis editor. The information that has to be provided is
+<ul>
+<li>The ID, Name, Description and Publisher of the check</li>
+<li>the Model type to which this check can be applied to</li>
+<li>the Java class implementing this check</li>
+</ul>
+</p>
+
+<p>Optionally, some magic keys to identify models can be defined.
+CARiSMA looks for these keys in the model files.
+If any key is found, a set of recommended checks is added to the list of checks in an analysis.</p>
+
+<p>Check parameters are defined using this extension point (see Figure 3).</p>
+
+<img src="../images/plugin-param-definition.png" alt="Check Parameter definition" name="Check Parameter definition">
+<h5>Figure 3: Extension Point/Check Parameter definition</h5>
+
+<p>There are seven parameter types: String, Boolean, Integer, Float, InputFile, OutputFile and Folder,
+which declares a folder to store the check output in. Depending on the type, the analysis editor provides appropriate
+methods for setting parameter values.</p>
+
+<p>After defining a check and its parameters, the CheckRegistry registers the check with CARiSMA on startup.
+The meta information is stored in a CheckDescriptor, while the parameter information is stored in a CheckParameterDescriptor.
+Registered checks are available to use in an analysis using the Analysis Editor.</p>
+
+<p>Once an analysis is started, it receives CheckReferences which contain the set parameter values.</p>
+ 
+<h4><a name="CarismaCheckInterface">The CarismaCheck Interface</a></h4>
+
+<p>A class implementing the CarismaCheck interface has to implement a single method.
+<p><code>boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host)</code></p>
+<p>This method is called by CARiSMA when a check is executed. The check's parameters are given in a mapping from the
+parameter id to the corresponding parameter.
+The given host can be used to access the analysed model, log check results to the AnalysisResultsView or a report
+produced by the analysis, and to access the blackboard provided by CARiSMA, which is used for exchanging data between
+checks.</p>
+<h3><a name="PrePostConditions">Pre-/Postconditions</a></h3>
+
+<div> 
+<p>CARiSMA Checks can be further described with pre- and postconditions.
+While preconditions define which data is necessary for the check to be executed,
+postconditions tell CARiSMA of the data the check provides after successful execution.
+This mechanism works in tandem with a blackboard which enables inter-check data exchange.</p>
+<p>Before the execution of each check in an analysis, CARiSMA verifies that the preconditions imposed
+by the check are present in the blackboard. If any precondition is missing,
+the analysis stops with an appropriate error.</p>
+<p>With postconditions, CARiSMA ensures that the data the check says it provides is present in the blackboard.
+If any postcondition is missing, CARiSMA again stops the analysis while producing an error.</p>
+</div>
+
+<br />
+
+<div>
+<h4><a name="DefiningPrePostConditions">Defining pre-/postconditions</a></h4>
+<p>Pre- and postconditions can be defined like adding parameters to a check (see Figure 4).
+Right-click on a defined CARiSMA check and select <i>New&rarr;precondition/postcondition</i> from the menu.
+The only thing left to do is setting a value for the required or provided key of the condition.
+This value is used by CARiSMA to search in the blackboard.</p> 
+
+<img src="../images/prepostmani.png" alt="Defining pre/postconditions" name="Defining pre/postconditions"/> <br />
+<h5>Figure 4: Defining pre-/postconditions</h5>
+
+<p>Defined pre- and postconditions are shown in the Analysis Editor along check parameters (see Figure 5).</p>
+
+<img src="../images/prepostADF.png" alt="pre/postconditions" name="pre/postconditions"/> <br />
+<h5>Figure 5: Pre-/postconditions</h5>
+</div>
+
+<div>
+<h4><a name="UsingTheBlackboard">Using the blackboard to store and retrieve data</a></h4>
+The blackboard can be accessed via the AnalysisHost interface.
+<p><code>putToRegister(String registerName, Object data) throws RegisterInUseException</code></p>
+Stores data in the blackboard if the key isn't already in use. 
+<p><code>Object getFromRegister(String registerName) throws RegisterNotInUseException</code></p>
+Retrieves data from the blackboard if the key is in use. 
+<p><code>boolean isRegisterInUse(String registerName)</code></p>
+Checks if the register is already in use. 
+<p><code>Object removeFromRegister(String registerName) throws RegisterNotInUseException</code></p>
+Removes data from a register with the given key if it is in use.
+</div>
+
+<h3><a name="GeneratingOutput">Generating Check Output</a></h3>
+<p>Checks are provided with various output channels. The Analyzer, the CARiSMA implementation of the AnalysisHost 
+interface, allows checks to output messages to the AnalysisResultsView.</p>
+<p>An AnalysisResultMessage given to the AnalysisHost consists of a StatusType (<code>INFO, WARNING, ERROR</code>) to prefix
+messages in the view with an appropriate icon, and the message to print.</p>
+<p>Apart from the view, messages can also be sent to be printed with a report. This report can be specifically
+generated by using the context menu in the AnalysisResultsView. We recommend using the report for more detailed
+messages regarding the check.</p>
+
+</body>
+</html>

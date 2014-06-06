@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Load process entities from csv files"
+            id="carisma.processanalysis.loader.csv"
+            implementingClass="carisma.processanalysis.loader.misc.CSVImporterCheck"
+            name="CSV Process loader"
+            publisher="TH"
+            targetModelType="CSV, UML2,BPMN2">
+         <parameter
+               description="Input file containing the process in CSV format"
+               id="carisma.processanalysis.loader.misc.csvfile"
+               name="CSV-File"
+               optional="false"
+               type="InputFile">
+         </parameter>
+      </check>
+   </extension>
+
+</plugin>

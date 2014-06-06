@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: carisma.modeltype.bpmn2.extension;singleton:=true
+Bundle-Version: 1.0.1.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: Software Engineering Institute, TU Dortmund
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: carisma.modeltype.bpmn2.extension,
+ carisma.modeltype.bpmn2.extension.impl,
+ carisma.modeltype.bpmn2.extension.util
+Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport
+Bundle-ActivationPolicy: lazy

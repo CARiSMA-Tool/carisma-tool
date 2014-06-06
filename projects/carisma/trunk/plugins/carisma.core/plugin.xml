@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="carisma.carismacheck" name="CARiSMA Analysis Check" schema="schema/carisma.carismacheck.exsd"/>
+   <extension-point id="carisma.modeltype" name="UMLsec Model Type Support" schema="schema/carisma.modeltype.exsd"/>
+</plugin>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>UMLsec - Step by step</title>
+<meta name="author" content="Carisma">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+<h2><a name="steps">Model Analysis - step by step</a></h2>
+<h3>Content:</h3>
+<h4><a href="#CreateAnalysis">Creating a new Analysis</a></h4>
+<h4><a href="#GUI">GUI Overview</a></h4>
+<h4><a href="#performAnalysis">Performing an Analysis</a></h4>
+<h4><a href="#The Analysis Results View">The Analysis Results View</a></h4>
+
+
+
+<h3><a name="CreateAnalysis">Creating a new Analysis</a></h3>
+<ul>
+<li><a name="newwizard">First</a>, create a new analysis file with the CARiSMA wizard (<i>File</i> &rarr; <i>New</i> &rarr; <i>Other</i> and den choose <i>CARiSMA</i> &rarr; 
+<i>Analysis</i>, or <i>File</i> &rarr; <i>New</i> &rarr; <i>Analysis</i> if you are in the CARiSMA Perspective).
+Enter the filename (file extension must be <i>.adf</i>) and a folder to create the new file and click <i>Next</i>.</li>
+<br /><br />
+<li>Choose the model type. Then select the model file which should be analyzed and click <i>Next</i>.</li><br /><br />
+<img src="../images/steps_01.png" alt="Analysis Wizard - Page 1" name="Analysis Wizard - Page 1" /> <br />
+<h5>Figure: Analysis Wizard - Page 1</h5> <br />
+
+
+<li><a name="openfile">The analysis-file-name is predefined and will be &quot;modelname&quot;_analysis, but you can change this name if you want to.<br>
+By default, the analysis file will be stored in the folder where the model lies that will be analyzed.<br>
+Now click </a><i>Finish</i> to create the analysis file.<br>
+The new analysis is automatically opened and shown in the editor view.</li>
+<br /><br />
+<img src="../images/steps_02.png" alt="Analysis Wizard - Page 2" name="Analysis Wizard - Page 2" /> <br />
+<h5>Figure: Analysis Wizard - Page 2</h5> <br />
+<!--More technical information about the editor is described in the
+<a href="../developerguide/toolarchitecture.html#parametertypes">Developer guide</a>. -->
+</ul>
+
+<br><br>
+<h3><a name="GUI">GUI</a></h3>
+<div style="padding-left:25px"><p>The GUI elements provided by CARiSMA are the Analysis Editor and the Analysis Results view.</p>
+<img src="../images/gui_editor_1.png" alt="GUI overview" name="GUI overview" />
+<h5>Figure: The elements of the CARiSMA GUI</h5></div>
+<h3><a name="The Analysis Editor">The Analysis Editor</a></h3>
+The Analysis Editor helps you to edit the settings of an analysis for your model.
+<h4><a name="performAnalysis">Performing an Analysis</a></h4>
+
+<ul>
+<li>Add one or more checks to the analysis by clicking on the <i>Add</i> button and selecting one or more from the listed checks.
+<li>Configure the parameters of a check by highlighting it in the <i>Selected checks</i> list. The parameters for the check are shown on the right side of the editor window.
+<li>Required parameters can be identified by an asterisk.</li>
+<li>After entering appropriate values for all parameters, click <i>Run...</i> to start the analysis.</li>
+<li>The results will be shown in the <i>Analysis Results view</i>.</li>
+</ul>
+As shown, the upper left part of the Analysis Editor consists of information about the analysis: its name, the used model file, the associated editor and its model type. 
+The name and the model file are editable. The <i>Browse</i> button allows you to change the used model file. The <i>Open Model</i> button opens the model file in an editor. 
+
+To edit the settings of the <i>Open Model</i> button, go to the <a href="preferences.html">preferences</a> of CARiSMA.
+
+<h3><a name="The Analysis Results View">The Analysis Results View</a></h3>
+After executing an analysis, its results or rather the results of the checks used in the analysis is shown in the <i>Analysis Results</i> view.</p>
+<ul>
+<img src="../images/result-view.png" alt="Analysis Results view" name="Analysis Results view" />
+<h5>Figure: The Analysis Results view</h5>
+<li>The view is organized as a treeview.</li>
+<li>Each root element represents the run of one analysis.</li>
+<li>Second level entries correspond to the checks performed during the analysis.</li>
+<li>The last level shows the result messages of a check. The icon in the beginning can be one of these types: <i>Error</i>, <i>Warning</i> or <i>Information</i>.</li>
+</ul>
+<h4><a name="creatingAReport">Creating a report</a></h4>
+
+<p>Each check can create an extensive text report. Right-click on any analysis entry in the <i>Analysis Results view</i> and
+select <i>Create report for selected analysis</i> from the context menu to generate the report for the analysis.
+The report will be automatically saved inside the folder containing the .adf file.</p> 
+<img src="../images/gui_editor_2.png" alt="Demo report analysis" name="Demo report analysis" />
+<h5>Figure: Demo report analysis</h5>
+</ul>
+
+</body>
+</html>

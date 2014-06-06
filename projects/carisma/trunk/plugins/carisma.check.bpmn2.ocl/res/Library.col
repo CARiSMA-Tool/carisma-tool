@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library:OclLibrary xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:library="http:///carisma/ocl.ecore">
+  <oclExpressions name="WorkItem Allocation" description="Each Task must have a workItem instance." query="self.workItem->size() > 0" context="Task"/>
+  <oclExpressions name="SoD" description="he Separation of Duty pattern describes the concept of having at least two people involved to complete a process." query="self.name = 'SoD' implies self.selectedTasks->forAll(x,y | x &lt;> y implies x.workItem.performer->forAll(z | y.workItem.performer->excludes(z)))" context="TaskSet"/>
+  <oclExpressions name="BoD1" description="All definded Tasks must be executed by the same user." query="self. name = 'BoD' implies self.selectedTasks->forAll(x,y| x&lt;>y implies x.workItem.performer->forAll(z|y.workItem.performer->includes(z)))" context="TaskSet"/>
+  <oclExpressions name="BoD2" description="The performers of the task 'Enter Trade Request' must be involved in the Task 'Process Decision'." query="self.name='Enter Trade Request' implies self.workItem.performer->forAll(x|ExtendedTask.allInstances()->select(y|y.name='Process Decision') ->  forAll(z| z.workItem.performer -> includes(x)))" context="Task"/>
+  <oclExpressions name="RLA1" description="To execute the task 'Check Trade Request' it is necessary that at least one performer is a supervisor." query="self.name = 'Check Trade Request' implies self.workItem.performer->exists(x|x.role->exists(name='Supervisor'))" context="Task"/>
+  <oclExpressions name="RLA2" description="To execute the task 'Check Trade Request' it is necessary that at all performer are supervisors." query="self.name = 'Check Trade Request' implies self.workItem.performer->forAll(x | x.role->exists(name ='Supervisor'))" context="Task"/>
+</library:OclLibrary>

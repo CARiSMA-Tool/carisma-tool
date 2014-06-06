@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="testActivitySuccessModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testActivitySuccessPackage">
+    <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="testActivitySuccessActivity">
+      <node xmi:type="uml:InitialNode" xmi:id="_fUZ3MIrWEeGYoZBh_kgJ_Q" name="InitialNode1" outgoing="_kPqQQIrWEeGYoZBh_kgJ_Q"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_ffMx8IrWEeGYoZBh_kgJ_Q" name="ActivityFinalNode1" incoming="_oF_BkIrWEeGYoZBh_kgJ_Q"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_g_lmoIrWEeGYoZBh_kgJ_Q" name="OpaqueAction1" outgoing="_lVoZ0IrWEeGYoZBh_kgJ_Q" incoming="_kPqQQIrWEeGYoZBh_kgJ_Q"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_hkqCkIrWEeGYoZBh_kgJ_Q" name="OpaqueAction2" outgoing="_nmozIIrWEeGYoZBh_kgJ_Q" incoming="_mjYmYIrWEeGYoZBh_kgJ_Q"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_hulaoIrWEeGYoZBh_kgJ_Q" name="OpaqueAction3" outgoing="_n19okIrWEeGYoZBh_kgJ_Q" incoming="_mybH8IrWEeGYoZBh_kgJ_Q"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_iOEzAIrWEeGYoZBh_kgJ_Q" name="DecisionNode1" outgoing="_mjYmYIrWEeGYoZBh_kgJ_Q _mybH8IrWEeGYoZBh_kgJ_Q" incoming="_lVoZ0IrWEeGYoZBh_kgJ_Q"/>
+      <node xmi:type="uml:MergeNode" xmi:id="_idnq4IrWEeGYoZBh_kgJ_Q" name="MergeNode1" outgoing="_oF_BkIrWEeGYoZBh_kgJ_Q" incoming="_nmozIIrWEeGYoZBh_kgJ_Q _n19okIrWEeGYoZBh_kgJ_Q"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_kPqQQIrWEeGYoZBh_kgJ_Q" name="ControlFlow1" source="_fUZ3MIrWEeGYoZBh_kgJ_Q" target="_g_lmoIrWEeGYoZBh_kgJ_Q">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_kPqQQYrWEeGYoZBh_kgJ_Q" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_kPqQQorWEeGYoZBh_kgJ_Q" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_lVoZ0IrWEeGYoZBh_kgJ_Q" name="ControlFlow2" source="_g_lmoIrWEeGYoZBh_kgJ_Q" target="_iOEzAIrWEeGYoZBh_kgJ_Q">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_lVoZ0YrWEeGYoZBh_kgJ_Q" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_lVoZ0orWEeGYoZBh_kgJ_Q" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_mjYmYIrWEeGYoZBh_kgJ_Q" name="ControlFlow3" source="_iOEzAIrWEeGYoZBh_kgJ_Q" target="_hkqCkIrWEeGYoZBh_kgJ_Q">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_mjYmYYrWEeGYoZBh_kgJ_Q" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_mjYmYorWEeGYoZBh_kgJ_Q" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_mybH8IrWEeGYoZBh_kgJ_Q" name="ControlFlow4" source="_iOEzAIrWEeGYoZBh_kgJ_Q" target="_hulaoIrWEeGYoZBh_kgJ_Q">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_mybH8YrWEeGYoZBh_kgJ_Q" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_mybH8orWEeGYoZBh_kgJ_Q" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_nmozIIrWEeGYoZBh_kgJ_Q" name="ControlFlow5" source="_hkqCkIrWEeGYoZBh_kgJ_Q" target="_idnq4IrWEeGYoZBh_kgJ_Q">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_nmozIYrWEeGYoZBh_kgJ_Q" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_nmozIorWEeGYoZBh_kgJ_Q" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_n19okIrWEeGYoZBh_kgJ_Q" name="ControlFlow6" source="_hulaoIrWEeGYoZBh_kgJ_Q" target="_idnq4IrWEeGYoZBh_kgJ_Q">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_n19okYrWEeGYoZBh_kgJ_Q" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_n19okorWEeGYoZBh_kgJ_Q" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_oF_BkIrWEeGYoZBh_kgJ_Q" name="ControlFlow7" source="_idnq4IrWEeGYoZBh_kgJ_Q" target="_ffMx8IrWEeGYoZBh_kgJ_Q">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_oF_BkYrWEeGYoZBh_kgJ_Q" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_oF_BkorWEeGYoZBh_kgJ_Q" value="1"/>
+      </edge>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

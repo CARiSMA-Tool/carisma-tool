@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="RBACnoRoleModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="RBACnoRolePackage">
+      <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="RBACnoRoleActivity">
+        <node xmi:type="uml:InitialNode" xmi:id="_E8kCIExNEeOE5an0IOHHgg" name="InitialNode1" outgoing="_G4pUUExNEeOE5an0IOHHgg"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_FGL4MExNEeOE5an0IOHHgg" name="ActivityFinalNode1" incoming="_HJTmgExNEeOE5an0IOHHgg"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_FttyQExNEeOE5an0IOHHgg" name="OpaqueAction1" outgoing="_HJTmgExNEeOE5an0IOHHgg" incoming="_G4pUUExNEeOE5an0IOHHgg"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_G4pUUExNEeOE5an0IOHHgg" name="ControlFlow1" source="_E8kCIExNEeOE5an0IOHHgg" target="_FttyQExNEeOE5an0IOHHgg">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_G4pUUUxNEeOE5an0IOHHgg" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_G4pUUkxNEeOE5an0IOHHgg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_HJTmgExNEeOE5an0IOHHgg" name="ControlFlow2" source="_FttyQExNEeOE5an0IOHHgg" target="_FGL4MExNEeOE5an0IOHHgg">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_HJTmgUxNEeOE5an0IOHHgg" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_HJTmgkxNEeOE5an0IOHHgg" value="1"/>
+        </edge>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_EeEvUExNEeOE5an0IOHHgg">
+      <eAnnotations xmi:id="_EeEvUUxNEeOE5an0IOHHgg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:rbac xmi:id="_KFfq0ExNEeOE5an0IOHHgg" protected="_FttyQExNEeOE5an0IOHHgg" base_Package="idPackage">
+    <right>(actor, right)</right>
+  </UMLsec:rbac>
+</xmi:XMI>

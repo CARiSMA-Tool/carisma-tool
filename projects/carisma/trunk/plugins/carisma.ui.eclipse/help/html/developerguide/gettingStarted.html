@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<title>Getting started developing with CARiSMA</title>
+<meta name="author" content="CARiSMA">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF">
+<h2>Getting started developing with CARiSMA</h2>
+
+<h3><a name="introduction">Introduction</a></h3>
+While developing CARiSMA, we built some useful classes to ease development. In this section, we will 
+present these classes.
+
+<div style="padding-top:40px;">
+<h3><a name="overview">Overview</a></h3>
+<ul>
+<li><a href="#CARiSMA"><font size="5">CARiSMA</font></a></li>
+	<ul>
+		<li><a href="#analysishost">AnalysisHost</a></li>
+		<li><a href="#modeltyperegistry">ModelTypeRegistry</a></li>
+		<li><a href="#modelmanager">ModelManager</a></li>	
+	</ul>
+<li><a href="#UML"><font size="5">UML</font></a></li>
+	<ul>
+		<li><a href="#state">StateMachinePaths</a></li>
+		<li><a href="#state">StateMachinePaths</a></li>
+		<li><a href="#statehelp">UMLStateMachineHelper</a></li>
+		<li><a href="#activity">ActivityDiagramManager</a></li>
+		<li><a href="#helper">UMLHelper</a></li>
+		<li><a href="#deployhelp">UMLDeploymentHelper</a></li>
+		<li><a href="#stereoapp">StereotypeApplication</a></li>
+		<li><a href="#tagval">TaggedValue</a></li>
+	</ul>
+	
+<li><a href="#UMLsec"><font size="5">UMLsec</font></a></li>
+	<ul>
+		<li><a href="#secutil">UMLsecUtil</a></li>
+	</ul>
+<li><a href="#UMLchange"><font size="5">UMLchange</font></a></li>
+	<ul>
+		<li><a href="#changeutil">UMLchangeUtil</a></li>
+	</ul>
+<li><a href="#BPMN"><font size="5">BPMN</font></a></li>
+	<ul>
+		<li><a href="#bpmn2helper">BPMN2Helper</a></li>
+	</ul>
+</ul>
+</div>
+
+<div style="padding-top:40px;">
+<h3><a name="CARiSMA">CARiSMA</a></h3>
+<h4><a name="analysishost">AnalysisHost</a></h4>
+The interface <code>AnalysisHost</code> offers method stubs for the creation of structured reports for your analysis and 
+for the exchange of data between different checks.
+</div>
+
+<h4><a name="modeltyperegistry">The ModelTypeRegistry</a></h4>
+The model type registry manages the different types of models that are supported by
+CARiSMA. In order to have a more precise definition of which model types UMLsec2 supports, each model type is represented by a seperate plugin <i>carisma.modeltype.XXX</i>
+where <i>XXX</i> defines the model type, e.g. <i>uml2</i> or <i>bpmn2</i>. These plugins refer to the EMF-related
+plugins that implement the <i>model type</i> (they can also define the model type directly)
+and they provide routines for loading models of that type.
+
+
+<h4><a name="modelmanager">The ModelManager</a></h4>
+The model manager is used to load models.
+
+<div style="padding-top:40px;">
+<h3><a name="UML">UML</a></h3>
+
+<h4><a name="state">StateMachinePahts</a></h4>
+This class gets all the possible paths through a state machine. It is also able to get all state 
+machines out of a model. The most important method is <code>ArrayList&lt;ArrayList&lt;Element&gt;&gt; 
+getPaths(final StateMachine stateMachine, final AnalysisHost analysisHost, final boolean transitions)</code>. 
+This method needs a state machine where it should get the paths out of, an AnalysisHost (null if you 
+have none), and a boolean whether you also want the transitions occur in the result.
+
+<h4><a name="statehelp">UMLStateMachineHelper</a></h4>
+This class contains methods to easily manage a state machine. Methods to get transitions to a 
+given constraint or a target state.
+
+<h4><a name="activity">ActivityDiagramManager</a></h4>
+This class gets all possible paths out of an activity diagram.
+The constructor <code>public ActivityDiagramManager(final Package model, final AnalysisHost host)</code> 
+needs the model and an AnalysisHost for report (null if you have none). Afterwards you can get all 
+paths with <code>List&lt;List&lt;Element&gt;&gt; getAllPaths()</code>.
+
+<h4><a name="helper">UMLHelper</a></h4>
+This class contains convenience methods to easily access UML2 models.<br />
+For example, <code>getAllElementsOfType(Element inThisElement, Class&lt;T&gt; type)</code> returns all 
+elements of a given type, <code>getElementByName(final Model model, final String adequatelyQualifiedName)</code>
+returns the element in the model specified by the name.
+
+<h4><a name="deployhelp">UMLDeploymentHelper</a></h4>
+This class contains methods to easily manage a deployment diagram. Methods to get specific elements or just a subset of them are provided here.
+
+<h4><a name="stereoapp">StereotypeApplication</a></h4>
+A StereotypeApplication manages a Stereotype. This class provides easy access to a Stereotype's attributes as its name or owner.
+
+<h4><a name="tagval">TaggedValue</a></h4>
+A TaggedValue provides easy access to a Stereotypes's tags. You can get the value (or values if the tag is multi-valued) of its corresponding Stereotype etc.
+</div>
+
+
+<div style="padding-top:40px;">
+<h3><a name="UMLsec">UMLsec</a></h3>
+
+<h4><a name="secutil">UMLsecUtil</a></h4>
+This class provides easy access to the profile's stereotypes and to applications of those.<br />
+For example, with <code>getStereotypedElements(final Package pkg)</code> you get all elements in the package 
+to which a UMLsec Stereotype is applied, or with <code>getStereotypeApplication(final Element element, 
+final UMLsec stereo)</code> you get the StereotypeApplication of the given Stereotype whenever the Stereotype 
+is applied to the Element.
+</div>
+
+<div style="padding-top:40px;">
+<h3><a name="UMLchange">UMLchange</a></h3>
+
+<h4><a name="changeutil">UMLchangeUtil</a></h4>
+This class provides easy access to the profile's stereotypes and to applications of those.<br />
+For example, <code>isProfileApplied(Package pkg)</code> returns true if the UMLchange Profile is applied to the given Package otherwise false. Like <code>UMLsecUtil</code>, methods to get Stereotyped Elements, 
+StereotypeApplication of Stereotypes etc. are provided here.
+</div>
+
+<div style="padding-top:40px;">
+<h3><a name="BPMN">BPMN</a></h3>
+<h4><a name="bpmn2helper">BPMN2Helper</a></h4>
+This class contains convenience methods to easily access BPMN 2 models.<br />
+For example, <code>getAllElementsOfType(DocumentRoot  rootElement, Class&lt;T&gt; type)</code> returns all 
+elements of a given type, <code>getElementById(EObject rootElement, String id)</code>
+returns the element in the model specified by the Id.
+
+<br>Furthermore this class offers the ability to check if a defined model was created by the Yaoqiang Editor <code>isYaoqiangModel(String inFilePath)</code>. If a Yaoqiang model is used during an Analysis the conversation is done automatically. For a better integration and  illustration the CARiSMA group modified the standard Yaoqiang Editor to easily mark security relevant elements. If a critical element is identified the method <code>setWarningFlagToBpmn2Element(Bpmn2Element element, String description, Color color)</code> adds  a flag with a defined color to the model element. To remove all warning flags in the model the method <code>clearAllWarningAndInfoFlags()</code>can be used. </div>
+
+</body>
+
+</html>

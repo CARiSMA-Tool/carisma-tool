@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Provides a structure for lazy application of Deltas to UML models"
+            id="carisma.evolution.uml2.UMLModifierCheck"
+            implementingClass="carisma.evolution.uml2.UMLModifierCheck"
+            name="UML2 Model Modifier"
+            publisher="TU Dortmund"
+            targetModelType="UML2">
+         <postcondition
+               providedKey="carisma.data.evolution.modifiers">
+         </postcondition>
+      </check>
+      <check
+            description="Automatically checks the register for remaining deltas (i.e. successful evolutions) and exports the deltas and modified models to a folder."
+            id="carisma.evolution.io.ModelExporterCheck"
+            implementingClass="carisma.evolution.uml2.io.ModelExporterCheck"
+            name="Export of Modified Models and Deltas"
+            publisher="TU Dortmund"
+            targetModelType="UML2">
+         <parameter
+               description="Folder for exported successful Deltas and modified Models"
+               id="carisma.check.modelexporter.outputfolder"
+               name="Delta/Model Export Output Folder"
+               optional="false"
+               type="Folder">
+         </parameter>
+         <precondition
+               requiredKey="carisma.data.evolution.deltas">
+         </precondition>
+         <precondition
+               requiredKey="carisma.data.evolution.modifiers">
+         </precondition>
+         <parameter
+               defaultValue="true"
+               description="If true, exporter only exports maximum successful deltas left in modifier map. If false, it exports all successful deltas."
+               id="carisma.check.modelexporter.onlyMaxSuccessfulDeltas"
+               name="Only Export Maximum Successful Deltas"
+               optional="true"
+               type="boolean">
+         </parameter>
+      </check>
+      <check
+            description="Imports Delta"
+            id="carisma.evolution.io.modelImporter"
+            implementingClass="carisma.evolution.uml2.io.ModelImporter"
+            name="Model Importer"
+            publisher="B. Berghoff"
+            targetModelType="UML2">
+         <parameter
+               description="XStream File"
+               id="carisma.check.modelExporter.parameter1"
+               name="InputFile"
+               optional="false"
+               type="InputFile">
+         </parameter>
+         <parameter
+               description="Alternative storing path"
+               id="carisma.check.modelExporter.parameter1"
+               name="OutputFile"
+               optional="true"
+               type="OutputFile">
+         </parameter>
+      </check>
+   </extension>
+
+</plugin>

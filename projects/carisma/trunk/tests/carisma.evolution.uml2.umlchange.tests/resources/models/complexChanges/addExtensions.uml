@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="add">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="targetPkg">
+      <packagedElement xmi:type="uml:Class" xmi:id="_cO4oUD3VEeGYiO_fQBEMJQ" name="OldClass"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_lMs36D3VEeGYiO_fQBEMJQ" name="OldExtendedClass"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qtXrID3VEeGYiO_fQBEMJQ" name="addThis"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_t5nkuD3VEeGYiO_fQBEMJQ" name="addThat"/>
+    </packagedElement>
+    <profileApplication xmi:id="_nvdvkD3VEeGYiO_fQBEMJQ">
+      <eAnnotations xmi:id="_nvdvkT3VEeGYiO_fQBEMJQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_nyvGAD3VEeGYiO_fQBEMJQ">
+      <eAnnotations xmi:id="_nyvGAT3VEeGYiO_fQBEMJQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:add xmi:id="_vpMr8D3VEeGYiO_fQBEMJQ" base_Element="_cO4oUD3VEeGYiO_fQBEMJQ">
+    <ref>addThis</ref>
+    <new>addThis={@addThis}</new>
+  </UMLchange:add>
+  <UMLchange:add xmi:id="_v9SFkD3VEeGYiO_fQBEMJQ" base_Element="_lMs36D3VEeGYiO_fQBEMJQ">
+    <ref>addThat</ref>
+    <new>addThat={@addThat}</new>
+  </UMLchange:add>
+  <UMLsec:critical xmi:id="_xmKu8D3VEeGYiO_fQBEMJQ" base_Class="_qtXrID3VEeGYiO_fQBEMJQ" base_Classifier="_qtXrID3VEeGYiO_fQBEMJQ">
+    <secrecy>ladeldideldu</secrecy>
+    <high>schnubidu</high>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_z2xfoD3VEeGYiO_fQBEMJQ" base_Class="_lMs36D3VEeGYiO_fQBEMJQ" base_Classifier="_lMs36D3VEeGYiO_fQBEMJQ">
+    <secrecy>blubb</secrecy>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_M7COUD3WEeGYiO_fQBEMJQ" base_Class="_t5nkuD3VEeGYiO_fQBEMJQ" base_Classifier="_t5nkuD3VEeGYiO_fQBEMJQ">
+    <secrecy>bla</secrecy>
+    <high>blaju</high>
+  </UMLsec:critical>
+</xmi:XMI>

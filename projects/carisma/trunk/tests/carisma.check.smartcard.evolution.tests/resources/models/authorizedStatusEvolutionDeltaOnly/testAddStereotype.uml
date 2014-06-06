@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="idModel" name="testAddStereotypeModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testAddStereotypePackage">
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="testAddStereotypeStateMachine">
+        <region xmi:id="idRegion" name="MainRegion">
+          <subvertex xmi:type="uml:State" xmi:id="_TpD20HapEeK3Zo0h7pvspA" name="CompositeState">
+            <region xmi:id="_TpD20XapEeK3Zo0h7pvspA" name="Region1">
+              <subvertex xmi:type="uml:Pseudostate" xmi:id="_WGlCIHapEeK3Zo0h7pvspA" name="Start"/>
+              <subvertex xmi:type="uml:State" xmi:id="_XAxZgHapEeK3Zo0h7pvspA" name="AuthState"/>
+              <transition xmi:id="_gTxO4HapEeK3Zo0h7pvspA" name="Transition1" kind="local" source="_WGlCIHapEeK3Zo0h7pvspA" target="_XAxZgHapEeK3Zo0h7pvspA" guard="_jbP9MHapEeK3Zo0h7pvspA">
+                <ownedRule xmi:id="_jbP9MHapEeK3Zo0h7pvspA">
+                  <specification xmi:type="uml:OpaqueExpression" xmi:id="_kW5GEHapEeK3Zo0h7pvspA" name="redkey">
+                    <language>ocl</language>
+                    <body>redkey</body>
+                  </specification>
+                </ownedRule>
+              </transition>
+            </region>
+          </subvertex>
+        </region>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_e70kgHapEeK3Zo0h7pvspA">
+      <eAnnotations xmi:id="_e73AwHapEeK3Zo0h7pvspA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_e7418HapEeK3Zo0h7pvspA">
+      <eAnnotations xmi:id="_e7418XapEeK3Zo0h7pvspA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:add xmi:id="_lNTJoHapEeK3Zo0h7pvspA" base_Element="_XAxZgHapEeK3Zo0h7pvspA">
+    <ref>addAuth</ref>
+    <new>addAuth={Stereotype(name=authorized-status,contents=&lt;Property(name=permission,value=redkey)>)}</new>
+  </UMLchange:add>
+</xmi:XMI>

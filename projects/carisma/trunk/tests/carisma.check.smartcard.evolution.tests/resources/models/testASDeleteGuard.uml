@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testASDeleteGuard">
+      <packagedElement xmi:type="uml:Class" xmi:id="_CBZgEHTxEeGIWMYEHnXg0A" name="Class1" classifierBehavior="_CTUWgHTxEeGIWMYEHnXg0A">
+        <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_CTUWgHTxEeGIWMYEHnXg0A" name="StateMachine">
+          <region xmi:id="_CTUWgXTxEeGIWMYEHnXg0A" name="Region">
+            <subvertex xmi:type="uml:State" xmi:id="_G7O80HTxEeGIWMYEHnXg0A" name="State1"/>
+            <subvertex xmi:type="uml:FinalState" xmi:id="_HFGDcnTxEeGIWMYEHnXg0A" name="FinalState1"/>
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_HXlhoHTxEeGIWMYEHnXg0A" name="Pseudostate1"/>
+            <transition xmi:id="_HxqOhHTxEeGIWMYEHnXg0A" name="Uebergang" kind="local" source="_HXlhoHTxEeGIWMYEHnXg0A" target="_G7O80HTxEeGIWMYEHnXg0A" guard="_Ui33MHTxEeGIWMYEHnXg0A">
+              <ownedRule xmi:id="_Ui33MHTxEeGIWMYEHnXg0A" name="Rums Rummel Dudel">
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="_Whdq0HTxEeGIWMYEHnXg0A" name="Rums Rummel Dudel">
+                  <language>ocl</language>
+                  <body>Rums Rummel Dudel</body>
+                </specification>
+              </ownedRule>
+            </transition>
+            <transition xmi:id="_IKYQhHTxEeGIWMYEHnXg0A" name="Transition2" kind="local" source="_G7O80HTxEeGIWMYEHnXg0A" target="_HFGDcnTxEeGIWMYEHnXg0A"/>
+          </region>
+        </ownedBehavior>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_Fv8OYHTxEeGIWMYEHnXg0A">
+      <eAnnotations xmi:id="_Fv8OYXTxEeGIWMYEHnXg0A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_Fv81cHTxEeGIWMYEHnXg0A">
+      <eAnnotations xmi:id="_Fv81cXTxEeGIWMYEHnXg0A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:authorizedstatus xmi:id="_KvFo8HTxEeGIWMYEHnXg0A" permission="Dudel" base_State="_G7O80HTxEeGIWMYEHnXg0A"/>
+  <UMLchange:del xmi:id="_gkyw8HTxEeGIWMYEHnXg0A" base_Element="_Ui33MHTxEeGIWMYEHnXg0A"/>
+</xmi:XMI>

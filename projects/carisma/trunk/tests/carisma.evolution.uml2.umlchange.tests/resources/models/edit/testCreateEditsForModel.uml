@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="testCreateEditsForModelModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testCreateEditsForModelPackage">
+    <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="testCreateEditsForModelActivity">
+      <node xmi:type="uml:InitialNode" xmi:id="_55sHQHafEeGRGLSgOVCdzw" name="InitialNode1" outgoing="_E-U5aHagEeGRGLSgOVCdzw _UtKJyHagEeGRGLSgOVCdzw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_6deJwHafEeGRGLSgOVCdzw" name="Start" outgoing="_OHtfyXagEeGRGLSgOVCdzw" incoming="_E-U5aHagEeGRGLSgOVCdzw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_6zyYAnafEeGRGLSgOVCdzw" name="Target1" outgoing="_UTlMKHagEeGRGLSgOVCdzw" incoming="_OHtfyXagEeGRGLSgOVCdzw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_7IAUgHafEeGRGLSgOVCdzw" name="Target2" outgoing="_VIPjSHagEeGRGLSgOVCdzw" incoming="_UtKJyHagEeGRGLSgOVCdzw"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_BB3q4HagEeGRGLSgOVCdzw" name="ActivityFinalNode1" incoming="_UTlMKHagEeGRGLSgOVCdzw _VIPjSHagEeGRGLSgOVCdzw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_E-U5aHagEeGRGLSgOVCdzw" name="ControlFlow1" source="_55sHQHafEeGRGLSgOVCdzw" target="_6deJwHafEeGRGLSgOVCdzw">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_E-U5aXagEeGRGLSgOVCdzw" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_E-U5anagEeGRGLSgOVCdzw" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_OHtfyXagEeGRGLSgOVCdzw" name="ControlFlow2" source="_6deJwHafEeGRGLSgOVCdzw" target="_6zyYAnafEeGRGLSgOVCdzw">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_OHtfynagEeGRGLSgOVCdzw" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_OHtfy3agEeGRGLSgOVCdzw" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_UTlMKHagEeGRGLSgOVCdzw" name="ControlFlow3" source="_6zyYAnafEeGRGLSgOVCdzw" target="_BB3q4HagEeGRGLSgOVCdzw">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_UTlMKXagEeGRGLSgOVCdzw" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_UTlMKnagEeGRGLSgOVCdzw" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_UtKJyHagEeGRGLSgOVCdzw" name="ControlFlow4" source="_55sHQHafEeGRGLSgOVCdzw" target="_7IAUgHafEeGRGLSgOVCdzw">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_UtKJyXagEeGRGLSgOVCdzw" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_UtKJynagEeGRGLSgOVCdzw" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_VIPjSHagEeGRGLSgOVCdzw" name="ControlFlow5" source="_7IAUgHafEeGRGLSgOVCdzw" target="_BB3q4HagEeGRGLSgOVCdzw">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_VIPjSXagEeGRGLSgOVCdzw" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_VIPjSnagEeGRGLSgOVCdzw" value="1"/>
+      </edge>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="carisma.ui.eclipse" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="carisma.ui.eclipse" id="carisma.ui.eclipse.editor.description" name="EditorDescription"/>
+      </appinfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="Editor"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="Editor">
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="EditorType"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The ID of the editor loaded in eclipse.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The which will be schown in within the carsisma plug-in.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="implementingClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  This class has to 
+at least implement &quot;carisma.ui.elcipse.editors.descriptions.EditorDescriptor&quot;.
+For the sake of simplicity one can better extend &quot;carisma.ui.elcipse.editors.descriptions.AbstractEditorDescriptor&quot;.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":carisma.ui.eclipse.editors.descriptions.EditorDescriptor"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="file_extension" type="string">
+            <annotation>
+               <documentation>
+                  Specifies a file extension which is used by editor.
+For example : di    for the Papyrus Editor.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="EditorType">
+      <annotation>
+         <documentation>
+            for now &quot;UML&quot; and &quot;BPMN2&quot; are allowed values
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="Name" type="string">
+            <annotation>
+               <documentation>
+                  This attribute is not case Sensitive and uses REGEX
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

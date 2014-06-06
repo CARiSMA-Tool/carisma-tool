@@ -1,0 +1,13 @@
+This Class checks a given Activity-Diagram with respect to <<fair exchange>>
+
+It gets a Package as input (and an AnalysisHost, but the Analysis Host could also be null) and
+returns true, if the Package is correct according to <<fair exchange>>, otherwise it returns false.
+
+1. The given model is "null" --> test fails, info that the resource/model is null | testNull()
+2. UMLsec profile isn't added --> no difference to "Stereotype fair-exchange isn't added" | testNoProfileStereotype()
+3. Stereotype fair-exchange isn't added --> Check successful, info that there is no stereotype fair-exchange | testNoProfileStereotype()
+4. Tag "start" is empty --> Check fails and info that the start-tag has no content| testStartTag()
+5. Tag "stop" is empty --> Check fails and info that the stop-tag has no content | testStopTag()
+6. All fine but ActivityDiagramManager gets no paths --> Check successful, info that there are no paths | testNoWays()
+7. Otherwise: 	if there is any way with an start- element but no stop-element --> Check fails, way(s) will be shown in the report | testViolated()
+8.		all fine --> Check successful | testSuccess()

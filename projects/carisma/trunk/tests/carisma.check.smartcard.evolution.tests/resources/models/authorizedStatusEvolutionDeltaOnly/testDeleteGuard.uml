@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testDeleteGuardModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testDeleteGuardPackage">
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="testDeleteGuardStateMachine">
+        <region xmi:id="idRegion" name="MainRegion">
+          <subvertex xmi:type="uml:State" xmi:id="_coSvkHaREeK3n92x2oV_hQ" name="CompositeState">
+            <region xmi:id="_coSvkXaREeK3n92x2oV_hQ" name="Region1">
+              <subvertex xmi:type="uml:Pseudostate" xmi:id="_dqkr8HaREeK3n92x2oV_hQ" name="Start"/>
+              <subvertex xmi:type="uml:State" xmi:id="_eZFXwHaREeK3n92x2oV_hQ" name="AuthState"/>
+              <transition xmi:id="_g5qeIHaREeK3n92x2oV_hQ" name="Transition1" kind="local" source="_dqkr8HaREeK3n92x2oV_hQ" target="_eZFXwHaREeK3n92x2oV_hQ" guard="_jCZFMHaREeK3n92x2oV_hQ">
+                <ownedRule xmi:id="_jCZFMHaREeK3n92x2oV_hQ" name="const">
+                  <specification xmi:type="uml:OpaqueExpression" xmi:id="_oT40AHaREeK3n92x2oV_hQ" name="redkey">
+                    <language>ocl</language>
+                    <body>redkey</body>
+                  </specification>
+                </ownedRule>
+              </transition>
+            </region>
+          </subvertex>
+        </region>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_q4nakHaREeK3n92x2oV_hQ">
+      <eAnnotations xmi:id="_q4oosHaREeK3n92x2oV_hQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_q4qd4HaREeK3n92x2oV_hQ">
+      <eAnnotations xmi:id="_q4qd4XaREeK3n92x2oV_hQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:authorizedstatus xmi:id="_suWNIHaREeK3n92x2oV_hQ" permission="redkey" base_State="_eZFXwHaREeK3n92x2oV_hQ"/>
+  <UMLchange:del xmi:id="_ieB-cHaSEeK3n92x2oV_hQ" base_Element="_jCZFMHaREeK3n92x2oV_hQ">
+    <ref>delGuard</ref>
+  </UMLchange:del>
+</xmi:XMI>

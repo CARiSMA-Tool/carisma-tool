@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Evolution-aware Secure Dependency Check</title>
+</head>
+
+<body>
+<h2>UMLsec Evolution-aware Secure Dependency Check</h2>
+
+<h3>Overview</h3>
+<p>This check analyzes the evolution of UML static structure diagrams in regard to the &laquo;secure dependency&raquo; property.
+To analyze the evolution of a model, the original model has to be secure in regard to the corresponding non-evolutionary check.
+To make sure that is the case please use the Static Secure Dependency Check.</p>
+
+<p>The table below explains the <a href="../../../carisma.profile.umlchange/help/html/profile.html">UMLchange syntax</a> for new model elements of class diagrams.
+The metaclasses whose key-value pairs are simple are omitted.</p>
+ 
+<table border="1" bordercolor="#000000" width="600" cellpadding="3" cellspacing="3">
+	<tr>
+		<th>Model Element</th>
+		<th>Metaclass<br>(if different)</th>
+		<th>Key</th>
+		<th>Appropriate<br>Values</th>
+	</tr>
+	<tr>
+		<td>Attribute</td>
+		<td></td>
+		<td>name</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>type</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td>Operation</td>
+		<td></td>
+		<td>name</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>type</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td>Parameter</td>
+		<td></td>
+		<td>name</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>type</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td>Association</td>
+		<td></td>
+		<td>name</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>source</td>
+		<td>qualified name of model element</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>sourceEndName</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>sourceEndKind</td>
+		<td>String (Aggregation Kind)</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>sourceLowerBound</td>
+		<td>Multiplicity value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>sourceUpperBound</td>
+		<td>Multiplicity value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>sourceNavigable</td>
+		<td>true or false</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>target</td>
+		<td>qualified name of model element</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>targetEndName</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>targetEndKind</td>
+		<td>String (Aggregation Kind)</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>targetLowerBound</td>
+		<td>Multiplicity value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>targetUpperBound</td>
+		<td>Multiplicity value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>targetNavigable</td>
+		<td>true or false</td>
+	</tr>
+</table>
+
+<h3>Usage</h3>
+<p>Annotate the secure model with the desired evolutionary changes by using the <a href="../../../carisma.profile.umlchange/help/html/profile.html">UMLchange profile extensions</a>.
+After finishing the model, <a href="../../../carisma.ui.eclipse/help/html/userguide/stepByStep.html">create a new CARiSMA analysis on the model</a>.
+Add the Evolution-aware Secure Dependency Check to the used checks and click "Run" to start the analysis.</p>
+
+<p>The Analysis Results View displays whether the check was successful. If any evolutionary step results
+in a violation of the &laquo;secure dependency&raquo; property, the resulting violation is displayed in the Analysis Results View.</p>
+
+<h4>Example1: SecureDependency is violated</h4>
+<img src="images/secureDependencyEvolutionWrong.png" alt="secure dependency violation via evolution" name="secure dependency violation via evolution" />
+<p>The example model describes an evolution that adds a critical method without updating the dependent classes and interfaces.</p> 
+<img src="images/secureDependencyEvolutionAnalysisWrong.png" alt="secure dependency violation via evolution shown in the result view" name="secure dependency violation via evolution shown in the result view" />
+
+<h4>Example2: SecureDependency is fulfilled</h4>
+<img src="images/secureDependencyEvolutionRight.png" alt="secure dependency corrected via evolution" name="secure dependency corrected via evolution" />
+<p>After adding the necessary evolutionary steps to the model, the analysis reports the success of the check.</p>
+<img src="images/secureDependencyEvolutionAnalysisRight.png" alt="secure dependency corrected via evolution shown in the result view" name="secure dependency corrected via evolution shown in the result view" />
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="test">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testMoveProperty">
+      <packagedElement xmi:type="uml:Class" xmi:id="_CKrG0HZwEeGdHPeilRQ6Cw" name="Class1">
+        <ownedAttribute xmi:id="_DGBUwHZwEeGdHPeilRQ6Cw" name="propertyToMove"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Cg2LIHZwEeGdHPeilRQ6Cw" name="Class2"/>
+    </packagedElement>
+    <profileApplication xmi:id="_HUNMcHZwEeGdHPeilRQ6Cw">
+      <eAnnotations xmi:id="_HUQPwHZwEeGdHPeilRQ6Cw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_HUQ20HZwEeGdHPeilRQ6Cw">
+      <eAnnotations xmi:id="_HUQ20XZwEeGdHPeilRQ6Cw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:move xmi:id="_JgSpgHZwEeGdHPeilRQ6Cw" base_Element="_DGBUwHZwEeGdHPeilRQ6Cw">
+    <ref>toClass2</ref>
+    <to>toClass2={testMoveProperty::Class2(name=moved)}</to>
+  </UMLchange:move>
+</xmi:XMI>

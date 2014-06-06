@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>The Tool Architecture</title>
+<meta name="author" content="UMLsec">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+<h2><a name="toolarch">The Tool Architecture</a></h2>
+<p>CARiSMA is implemented as an Eclipse-based plugin while itself has a plugin architecture to be easily extensible.</br>
+An excerpt of the contents of the main plugin <i>carisma.core</i> can be seen in Figure 1.</p>  
+<img src="../images/toolArchitecture.png" name="The tool architecture" alt="The tool architecture"/>
+
+<p>The main class <i>Carisma</i> is registered as an Eclipse plugin and provides access to the various structures,
+serving as the controller for the different components of the tool.</p>
+<p>An Analysis is executed on a Model of a certain ModelType registered within the ModelTypeRegistry.
+The models themselves are provided by the ModelManager and the ModelLoader for the corresponding ModelType.</br>
+<a href="../userguide/stepbystep.html#CreateAnalysis">User Guide: Creating an Analysis</a></br>
+<!--<a href="../addingModelTypes.html">Providing additional model types to CARiSMA</a></p>
+  -->
+<p>CARiSMA executes analyses consisting of various CheckReferences to CheckDescriptors.
+These descriptors define the CarismaChecks that have been registered with the CheckRegistry.
+Each CarismaCheck may have any number of CheckParameters defined, which has a certain ParameterType.
+Checks may define pre- and post-conditions to use in combination with a blackboard (not pictured)
+to exchange information between them.</br>
+<a href="checkmechanism.html">The Check Mechanism: Implementing CarismaChecks</a></br>
+<a href="createplugins.html">Creating an Eclipse Plugin containing a CarismaCheck using a Template</a></br>
+<a href="checkmechanism.html#PrePostConditions">The Check Mechanism: Pre-/Post-Conditions and the Blackboard</a></p>
+
+<p>The AnalysisHost interface provides access to this blackboard, as well as methods for displaying the results
+of an Analysis in the AnalysisResultsView. The Analyzer is the main CARiSMA implementation of the AnalysisHost interface.</br>
+<a href="checkmechanism.html#GeneratingOutput">The Check Mechanism: Generating Check Output</a></p>
+
+</body>
+</html>

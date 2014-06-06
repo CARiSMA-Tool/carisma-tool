@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>neue Constraint hinzufügen</title>
+<link rel="stylesheet" href="content.css" type="text/css" media="screen" charset="utf-8"/>
+<script src="scripting.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body onload="document.getElementById('newName').select();">
+	<div id="newConstraintMain">
+		<img src="bilder/Tulogo14.png" alt="logo LS14" id="logo">	
+		<div id="leftDiv">
+			<pre id="specification">neue Spezifikation</pre>
+			<input type="text" name="newName" value="Name der Spezifikation" id="newName"/>
+			<form name="leftForm">
+				<select name="selected" size="4" id="selectedForm">
+				</select>
+				
+			</form>
+			<div id="popUpButtonContainerConstrainClass">
+				<input type="button" name="add" value="Add" id="add" onclick="add();"/>
+				<input type="button" name="upButton" value="UP" id="upButton" onclick="moveUp();"/>
+				<input type="button" name="downButton" value="DOWN" id="downButton" onclick="moveDown();"/>
+				<input type="button" name="remove" value="Remove" id="remove" onclick="remove();"/>
+				
+			</div>				
+				
+		</div>
+		<div id="rightDiv">
+			<pre id="reClasses">Regelelement-Klassen</pre>
+			<form name="rightForm">
+				<select name="selection" id="selectionForm" size="5">
+					<option>Activity</option>
+					<option>Artifact</option>
+					<option>Process</option>
+					<option>Property</option>
+					<option>Role</option>
+				</select>
+			</form>
+		<input type="button" name="ok" value="Speichern" id="okConstraint" onclick="createNewConstraintClass();"/>
+		<input type="button" name="cancelButton" value="Cancel" id="cancelButton" onclick="cancel();"/>
+		</div>
+	</div>
+	
+
+</body>
+</html>

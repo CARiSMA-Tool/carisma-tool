@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<title>The UMLchange Profile</title>
+	<meta name="author" content="UMLchange">
+	<meta name="editor" content="html-editor phase 5">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF">
+<h2>The UMLchange Profile</h2>
+
+<h3>Content</h3>
+<ol>
+	<li><a href="#commomPropertiesAndTags">Common Properties and Tags</a></li>
+	<li><a href="#delAddSubst"><i>&laquo;del&raquo;</i> , <i>&laquo;add&raquo;</i> and <i>&laquo;subst&raquo;</i></a></li>
+	<li><a href="#editMoveCopy"><i>&laquo;edit&raquo;</i>, <i>&laquo;move&raquo;</i> and <i>&laquo;copy&raquo;</i></a></li>
+	<li><a href="#allStereos"><i>&laquo;del-all&raquo;</i>, <i>&laquo;add-all&raquo;</i> and <i>&laquo;subst-all&raquo;</i></a></li>
+	<li><a href="#keepOld">Describing Complex Changes Using <i>&laquo;keep&raquo;</i> and <i>&laquo;old&raquo;</i></a></li>
+	<li><a href="#limitations">Limitations of the Profile</a></li>
+</ol>
+	
+
+<div style="padding-top:40px;">
+<p>Figure 1 shows the core elements of the UMLchange profile, i.e. the UMLchange
+stereotypes and their properties (also known as tags). The majority of the stereotypes
+(excluding <i>&laquo; old &raquo;</i> and <i>&laquo; keep &raquo;</i>) describe changes (i.e. the <i>change stereotypes</i>). The
+change stereotypes can be applied to any UML model element, as indicated by the extension
+relationships targeting meta class Element, the super class of all UML elements.
+Change stereotypes extend the abstract stereotype <i>Change</i>, which provides the basic
+tags {ref}, {ext} and {constraint}.</p>
+
+<div style="margin:20px;">
+	<img src="../images/UMLchangeProfile.png" alt="The UMLchange profile (core elements)" name="The UMLchange profile (core elements)" />
+	<h5 style="padding-left:100px;">Figure 1: The UMLchange profile (core elements)</h5>
+</div>
+
+<p>Figure 2 provides some examples for the usage of UMLchange. Class <i>Redundant</i> will be
+deleted. Class <i>TooConcrete</i> is replaced with the Interface <i>IGeneral</i>. A new element
+<i>NewClass</i> is inserted into the main package. Furthermore, class <i>OuterClass</i> will be
+moved to package <i>Outside</i> and the class <i>FalseName</i> will be renamed to CorrectName.
+The components of the profile are described in more detail below.</p>
+
+<div style="margin:20px;">
+	<img src="../images/exampleMisc.png" alt="Examples of Change Stereotypes" name="Examples of Change Stereotypes" />
+	<h5 style="padding-left:100px;">Figure 2: Examples of Change Stereotypes</h5>
+</div>
+</div>
+
+
+<div style="padding-top:40px;">
+<h4><a name="commomPropertiesAndTags">1 Common Properties and Tags</a></h4>
+<p>Each UMLchange description has the following tags: {ref},{ext} and {constraint}.
+To enable the description of multiple independent changes at a model element (e.g. two
+independent additions, each adding one operation to a class), each of these tags is multivalued.</p>
+
+<p>Every change has an ID so that it can be referenced by other changes. The tag {ref}
+contains the change IDs for each change at the stereotype application. Each application
+of a change stereotype must at least have one ID. These IDs should be unique in the
+model scope. The change IDs are used in constraints and in change stereotype tags to
+relate their entries to the corresponding change. Examples for IDs are <i>deleteTransition</i>, <i>some_Change</i> and <i>add2Operations</i>.</p>
+
+<p>Stereotypes cannot be applied to UML extension elements themselves. {ext} helps to
+describe changes of stereotype applications and their tagged values. Its format is</p>
+
+<p style="padding-left:100px;"><i>ChangeID = StereotypeName[.TagName]</i></p>
+
+<p>If a change is directed at a model element, no {ext} entry is necessary. If the change
+target is the extension of an element, {ext} follows a convention of most UMLchange
+stereotype tag values. Each entry has to be prefixed with the id of the corresponding
+change so that entries in the value lists do not need to adhere to a certain order. If the
+target is a stereotype application, the name of the applied stereotype must be given. If a
+tagged value of a stereotype application is the target of the change, the tag name must
+the given in addition to that.</p>
+
+<p>Every change may have constraints attached to it, describing when the change may or
+may not take place. The corresponding tag {constraint} has the following format:</p>
+
+<p style="padding-left:100px;"><i>ChangeID =AND(OtherChangeID)|NOT(OtherChangeID)|
+REQ(OtherChangeID)[, :::]</i></p>
+
+<p>The obligatory change ID is followed by a constraint that either forces another change
+to be simultaneously applied (AND(OtherChangeID)) or excludes a change from being
+applied simultaneously (NOT(OtherChangeID)). A change may have more than one
+constraint. Each constraint can either be a separate {constraint} entry or in a comma separated
+list of constraints as one entry. Contradicting constraints lead to not including
+any of the conflicting changes.</p>
+</div>
+
+
+<div style="padding-top:40px;">
+<h4><a name="delAddSubst">2 <i>&laquo;del&raquo;</i> , <i>&laquo;add&raquo;</i> and <i>&laquo;subst&raquo;</i></a></h4>
+<p>The stereotype <i>&laquo; del &raquo;</i> is used to delete the targeted model element. It recursively deletes
+all model elements owned by the targeted element. Any connecting model elements (e.g.
+associations) are also deleted to preserve the validity of the model. If the target of <i>&laquo; del &raquo;</i>
+is the multi-valued tagged value of a stereotype application, this stereotype deletes all
+values of the tag.</p>
+
+<p>The stereotype <i>&laquo; add &raquo;</i> serves the purpose of describing additions to model elements.
+<i>&laquo; add &raquo;</i> has to be applied to the elements which will own the new elements. If the target of
+<i>&laquo; add &raquo;</i> is a stereotype application, multi-valued tags receive additional values. Additions
+to single-valued tags are treated as substituting the old tagged value with the new value.</p>
+
+<p>Applying <i>&laquo; subst &raquo;</i> allows to describe the substitution of the targeted model element by
+one or more new model elements. The owner of the substitute element or elements is the
+parent of the substituted element. By substituting old elements, all of their contained elements
+are removed from the model, as well as all connection model elements. To prevent
+this from happening, the stereotype <i>&laquo; keep &raquo;</i> must be applied accordingly <a href="#keepOld">(see &quot;Describing Complex Changes Using «keep» and «old»&quot;)</a>. If
+tagged values are to be substituted, both single and multi-valued tags are completely
+substituted by the new values.</p>
+
+<p>To describe the addition of new model elements or the substitution of old elements, the
+stereotypes <i>&laquo; add &raquo;</i> and <i>&laquo; subst &raquo;</i> use expressions 
+built with the UMLchange grammar. New elements are described by their metaclass names and pairs of keys and values.
+The new elements can be further defined by recursively describing contained elements.
+Changes on the grammar level are dependent on each other. Alternatives provide the
+ability to describe change variations. The elements described inside these alternatives
+are meant to be processed together.</p>
+
+<p>The UMLchange grammar expressions are used in the {new} tag. Its format is</p>
+
+<p style="padding-left:100px;"><i>ChangeID = UMLchangeGrammarExpression</i></p>
+
+<p>For example, to describe the addition of a new class named someClass to
+a package, <i>&laquo; add &raquo;</i> has to be applied to the package. The appropriate {new} entry is</p>
+
+<p style="padding-left:100px;"><i>someID = {Class(name = someClass)}</i></p>
+
+<p><i>someID</i> is the ID of the corresponding change. The UMLchange grammar is described
+in detail in <a href="grammar.html">here</a>.</p>
+
+
+<p>In the example model in Figure 3, a new class named <i>ClassX</i> will be added to the main
+package. The class will have a String property named someProperty. The stereotype
+<i>&laquo; critical &raquo;</i> will be removed from <i>ClassA</i>. Finally, the class Real implementing the modelled
+interface will be substituted by a class named <i>Independent</i> containing some new void
+operation. As old connections are not kept, the new class will not need to implement the
+modelled interface.</p>
+
+<div style="margin:20px;">
+	<img src="../images/exampleAddDelSubst.png" alt="Adding, Deleting and Substituting Elements" name="Adding, Deleting and Substituting Elements" />
+	<h5 style="padding-left:100px;">Figure 3: Adding, Deleting and Substituting Elements</h5>
+</div>
+
+</div>
+
+<div style="padding-top:40px;">
+<h4><a name="editMoveCopy">3 <i>&laquo;edit&raquo;</i>, <i>&laquo;move&raquo;</i> and <i>&laquo;copy&raquo;</i></a></h4>
+<p>Minor changes can be expressed by applying <i>&laquo; edit &raquo;</i> to a model element. Its tag {values}
+has the format</p>
+
+<p style="padding-left:100px;"><i>ChangeID = {(KeyV aluePairs)}[, :::]</i></p>
+
+<p><i>KeyValuePairs</i> represents the corresponding subset of the UMLchange grammar. The
+keys have to be valid attribute names of the targeted element. An example entry to
+change the name of a class to <i>NewName</i> and its visibility to <i>private</i> would be</p>
+
+<p style="padding-left:100px;"><i>someID = {(name = NewName, visibility = private)}</i></p>
+
+<p>As with the description of new model elements, {values} entries can describe alternative
+evolutions using the correct syntax. Editing stereotype applications is not possible, as changes would amount to redefining the stereotype instead of its application. Editing
+tagged values is analogous to substituting old with new tag values.</p>
+
+<p>For structural changes, <i>&laquo; copy &raquo;</i> is used to indicate that the targeted model element is
+to be duplicated in one or more comma-separated namespaces given in the tag {to}.
+<i>&laquo;move &raquo;</i> works in the same way, but removes the targeted model element from its original
+owner and only allows one target namespace. The format of {to} is</p>
+
+<p style="padding-left:100px;"><i>ChangeID = QualifiedNamespace[(KeyV aluePairs)][; :::]</i></p>
+
+<p>The QualifiedNamespace needs to be qualified in so far that the uniqueness of the
+namespace in the model is guaranteed. The copied or moved model element in the
+target namespace can then be modified with KeyValuePairs using the same format as in
+the {values} tag of <i>&laquo; edit &raquo;</i>. Multiple destination namespaces must be comma-separated.
+An example for an entry in {to} is</p>
+
+<p style="padding-left:100px;"><i>copySomething = {mainPackage :: SubPackage(name = NewName),</i></p>
+<p style="padding-left:125px;"><i>mainPackage :: SubP ackage(name = OtherNewName)}</i></p>
+
+<p>This describes two copies of the targeted model element to the same <i>SubPackage</i>, renaming
+each one in the process. For obvious reasons it is not allowed to copy a model
+element to the same namespace as the source element without changing the name of
+the copied element.</p>
+
+<p>If a stereotype application is the target, all of its tagged values are also copied to the
+targeted element. If the targeted element already has the stereotype applied to it, all
+tagged values are replaced in the process. It is not allowed to change the name of the
+stereotype, as this would change the applied stereotype itself.</p>
+
+<p>In the example model (see Figure 4), class ClassE has <i>&laquo; critical &raquo;</i> applied to it. &laquo; edit &raquo;
+is applied to change the value of {high} to only contain <i>operationA</i>. <i>ClassM</i> is moved
+alternatively to either package <i>TargetP</i> or <i>TargetP2</i>. Finally, <i>ClassC</i> is copied to both
+<i>TargetP</i> and <i>TargetP2</i>.</p>
+
+<div style="margin:20px;">
+	<img src="../images/exampleEditMoveCopy.png" alt="Editing, Moving and Copying Elements" name="Editing, Moving and Copying Elements" />
+	<h5 style="padding-left:100px;">Figure 4: Editing, Moving and Copying Elements</h5>
+</div>
+</div>
+
+<div style="padding-top:40px;">
+<h4><a name="allStereos">4 <i>&laquo;del-all&raquo;</i>, <i>&laquo;add-all&raquo;</i> and <i>&laquo;subst-all&raquo;</i></a></h4>
+<p>These three stereotypes allow to describe changes to multiple model elements. They are
+applied to the namespace in which the changes are to take place. Apart from the {new}
+tag, which works the same way as with the namesakes of the stereotypes, the {pattern} 
+tag allows to identify the model elements in the namespace affected by the described
+change. The format of {pattern} is</p>
+
+<p style="padding-left:100px;"><i>ChangeID = TargetedElementsPattern</i></p>
+
+<p>After the change ID, the TargetedElementsPattern uses the same syntax as the Simple
+Element Descriptions. First the metaclass of the targeted elements must be given. For
+example, if the given metaclass is Class, then the changes would affect all classes in the
+namespace marked with the *all-Stereotype. Following the metaclass, the affected elements
+can be further filtered by giving key value pairs defining certain attributes that the
+affected elements must possess. For example, to affect all dependencies having a certain
+supplier, the entry would be <i>Dependency(supplier=somePackage::certainSupplier)</i>.
+Some further examples for entries in {pattern} are</p>
+
+<ul>
+	<li>Dependency(supplier=somePackage::certainSupplier, contents=&lt;Stereotype(name=secrecy)&gt;)<br />
+&ndash; all dependencies that have the supplier somePackage::certainSupplier and the
+stereotype application of <i>&laquo; secrecy &raquo;</i></li>
+	<li> Class(visibility=private,contents=&lt;Operation(name=getInformation)&gt;)<br />
+&ndash; all private Classes having an operation named getInformation</li>
+	<li>Action(contents=&lt;Stereotype&gt;)<br />
+&ndash; all stereotyped actions</li>
+</ul>
+
+<p>In the example model (see Figure 5), all classes in package <i>PackageA</i> with the property
+<i>bitrate</i> will receive a new property named <i>length</i>. Furthermore, all operations named
+<i>setInput2</i> in <i>PackageB</i> will be removed from their respective classes.</p>
+
+<div style="margin:20px;">
+	<img src="../images/exampleAll.png" alt="Changing Element Sets with Patterns" name="Changing Element Sets with Patterns" />
+	<h5 style="padding-left:100px;">Figure 5: Changing Element Sets with Patterns</h5>
+</div>
+
+</div>
+
+
+<div style="padding-top:40px;">
+<h4><a name="keepOld">5 Describing Complex Changes Using <i>&laquo;keep&raquo; </i> and <i>&laquo;old&raquo;</i></a></h4>
+<p>The UMLchange profile provides additional stereotypes used for specific marking of
+model elements <i>(marking stereotypes)</i>. <i>&laquo; keep &raquo;</i> is used to mark model elements that
+would otherwise be removed in the process of substituting a model element. Its tag
+{adopter} has the format</p>
+
+<p style="padding-left:100px;"><i>ChangeID = {AdoptingElementDescription}[, :::]</i></p>
+
+<p>As different alternatives in changes may describe different new elements, it is necessary
+to give the number of the alternative in question. Then, the AdoptingElementDescription
+uses the same syntax as the simple element descriptions (see Section 2.2). For example,
+let <i>&laquo; subst &raquo;</i> be applied to a class. Its {new} entry is</p>
+
+<p style="padding-left:100px;"><i>substClass = {@newElements}, {@otherVersion)}</i></p>
+
+<p>This means that the old class is either substituted by two new classes or alternatively by
+another class. To keep some old contained element of the old class, it has to be marked
+with <i>&laquo; keep &raquo;</i>. If an old element should be adopted by the class NewClass when using
+the first alternative, the appropriate entry for {adopter} is</p>
+
+<p style="padding-left:100px;"><i>substClass = {}, {Class(name = NewClass)}</i></p>
+
+<p>Describing complex changes with the UMLchange grammar can lead to long-winded
+grammar expressions. To provide a simpler method for modelling complex changes,
+UMLchange provides the ability to reference changes modelled in a namespace in the
+original model. The namespace containing the new model elements can be placed anywhere
+in the model.</p>
+
+<p>To connect the new model elements to the correct owner in the original model, the owner
+relation has to be modelled in the namespace by modelling the owners of the new elements.
+However, it is not necessary to completely re-model the owning elements. For
+example, one would not need to re-model a class with all of its operations and attributes
+to model two new operations for it. Instead it is sufficient to just model the owning class
+and its name, as long as the class can be uniquely identified within the original model. To
+support this method, <i>&laquo; old &raquo;</i> is used to mark those incompletely modelled references to
+the original model.</p>
+
+<p>In the example model (see Figure 6), <i>ClassA</i> will be substituted by two new classes,
+<i>NewClassA</i> and <i>OtherNewClass</i>. The old operation <i>keptOperation</i> will be adopted by
+<i>NewClassA</i>. In addition to that, several new attributes and operations will be added to
+<i>ClassB</i>, as modelled in the namespace <i>NewContents</i>.</p>
+
+<div style="margin:20px;">
+	<img src="../images/exampleComplex.png" alt="Describing Complex Changes with Namespaces" name="Describing Complex Changes with Namespaces" />
+	<h5 style="padding-left:100px;">Figure 6: Describing Complex Changes with Namespaces</h5>
+</div>
+</div>
+
+<div style="padding-top:40px;">
+<h4><a name="limitations">6 Limitations of the Profile</a></h4>
+<p>There are some limitations to UMLchange.
+For example, association ends cannot be changed because there is no simple method for identifying
+the source or target of an association.</p>
+
+<p>The behavior of nested UMLchange applications has not been defined. As long as changes are constrained by
+using REQ constraints, behavior can be determined. Without these constraints, it cannot be ensured whether both
+changes can be applied.</p>
+</div>
+</body>
+
+</html>

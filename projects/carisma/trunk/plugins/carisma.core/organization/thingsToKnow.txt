@@ -1,0 +1,12 @@
+Using the UML2 profile/plugin
+-------------------------------
+to create instances of UML elements:
+XXX elementToCreate = UMLFactory.eINSTANCE.createXXX()
+
+to create instances of UML elements without knowing the exact class:
+simpleName = "Stereotype";
+String fullyQualifiedName = "org.eclipse.uml2.uml." + simpleName;
+EClassifier metaclass = UMLPackage.eINSTANCE.getEClassifier(fullyQualifiedName);
+if (metaclass instanceof EClass) {
+   EObject elementToCreate = UMLFactory.eINSTANCE.create((EClass) metaclass);
+}

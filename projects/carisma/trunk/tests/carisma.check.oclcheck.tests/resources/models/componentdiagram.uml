@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="componentModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="componentPackage">
+    <packagedElement xmi:type="uml:Component" xmi:id="idComponent" name="componentComponent">
+      <ownedComment xmi:id="_eH9GgPgtEeKLAZ4gPThXMQ" annotatedElement="_UGXFwPgtEeKLAZ4gPThXMQ">
+        <body>Comment1</body>
+      </ownedComment>
+      <ownedRule xmi:id="_ereDQPgtEeKLAZ4gPThXMQ" name="Constraint1" constrainedElement="_eH9GgPgtEeKLAZ4gPThXMQ"/>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_VQNpwPgtEeKLAZ4gPThXMQ" name="Port1" aggregation="composite"/>
+      <nestedClassifier xmi:type="uml:Component" xmi:id="_UGXFwPgtEeKLAZ4gPThXMQ" name="Component1" clientDependency="_W7KIo_gtEeKLAZ4gPThXMQ _actj0vgtEeKLAZ4gPThXMQ _bOj3gvgtEeKLAZ4gPThXMQ">
+        <interfaceRealization xmi:id="_actj0vgtEeKLAZ4gPThXMQ" name="InterfaceRealization1" supplier="_UxK9UPgtEeKLAZ4gPThXMQ" client="_UGXFwPgtEeKLAZ4gPThXMQ" contract="_UxK9UPgtEeKLAZ4gPThXMQ"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_bOj3gvgtEeKLAZ4gPThXMQ" name="Usage1" supplier="_UxK9UPgtEeKLAZ4gPThXMQ" client="_UGXFwPgtEeKLAZ4gPThXMQ"/>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:Interface" xmi:id="_UxK9UPgtEeKLAZ4gPThXMQ" name="Interface1"/>
+      <nestedClassifier xmi:type="uml:Component" xmi:id="_Y6imcPgtEeKLAZ4gPThXMQ" name="Component2" clientDependency="_ZiG8w_gtEeKLAZ4gPThXMQ">
+        <realization xmi:id="_ZiG8w_gtEeKLAZ4gPThXMQ" name="ComponentRealization1" supplier="_UGXFwPgtEeKLAZ4gPThXMQ" client="_Y6imcPgtEeKLAZ4gPThXMQ" realizingClassifier="_UGXFwPgtEeKLAZ4gPThXMQ"/>
+      </nestedClassifier>
+      <packagedElement xmi:type="uml:Package" xmi:id="_SidDAPgtEeKLAZ4gPThXMQ" name="Package1">
+        <packageImport xmi:id="_dFjOU_gtEeKLAZ4gPThXMQ" importedPackage="_ccPyoPgtEeKLAZ4gPThXMQ"/>
+        <packageMerge xmi:id="_dogxc_gtEeKLAZ4gPThXMQ" mergedPackage="_ccPyoPgtEeKLAZ4gPThXMQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_W7KIo_gtEeKLAZ4gPThXMQ" name="Dependency1" supplier="_SidDAPgtEeKLAZ4gPThXMQ" client="_UGXFwPgtEeKLAZ4gPThXMQ"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_ccPyoPgtEeKLAZ4gPThXMQ" name="Package2"/>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

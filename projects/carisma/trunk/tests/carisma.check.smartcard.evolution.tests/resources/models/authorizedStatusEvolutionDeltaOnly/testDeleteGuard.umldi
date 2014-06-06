@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_b4GBsHaREeK3n92x2oV_hQ" activeDiagram="_b4GowHaREeK3n92x2oV_hQ">
+  <model href="testDeleteGuard.uml#idStateMachine"/>
+  <diagrams xmi:id="_b4GowHaREeK3n92x2oV_hQ" position="0,0" size="100,100" name="testDeleteGuard" viewport="0,0">
+    <property xmi:id="_b4ZjsHaREeK3n92x2oV_hQ" key="pageFormatName" value="A4"/>
+    <property xmi:id="_b4aKwHaREeK3n92x2oV_hQ" key="diagramWidth" value="840"/>
+    <property xmi:id="_b4aKwXaREeK3n92x2oV_hQ" key="diagramHeight" value="1188"/>
+    <property xmi:id="_b4aKwnaREeK3n92x2oV_hQ" key="pageMarginName" value="Small Margin"/>
+    <property xmi:id="_b4aKw3aREeK3n92x2oV_hQ" key="diagramTopMargin" value="20"/>
+    <property xmi:id="_b4aKxHaREeK3n92x2oV_hQ" key="diagramBottomMargin" value="20"/>
+    <property xmi:id="_b4aKxXaREeK3n92x2oV_hQ" key="diagramLeftMargin" value="20"/>
+    <property xmi:id="_b4aKxnaREeK3n92x2oV_hQ" key="diagramRightMargin" value="20"/>
+    <property xmi:id="_b4aKx3aREeK3n92x2oV_hQ" key="orientation" value="portrait"/>
+    <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_b4GowXaREeK3n92x2oV_hQ" presentation="org.topcased.modeler.uml.statemachinediagram">
+      <element href="testDeleteGuard.uml#idStateMachine"/>
+    </semanticModel>
+    <contained xsi:type="di:GraphNode" xmi:id="_b4HP0HaREeK3n92x2oV_hQ" position="0,0" size="0,0">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_b4HP0XaREeK3n92x2oV_hQ" presentation="default">
+        <element href="testDeleteGuard.uml#idRegion"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_coKzwHaREeK3n92x2oV_hQ" position="12,12" size="375,170">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_coKzwXaREeK3n92x2oV_hQ" presentation="default">
+          <element href="testDeleteGuard.uml#_coSvkHaREeK3n92x2oV_hQ"/>
+        </semanticModel>
+        <contained xsi:type="di:GraphNode" xmi:id="_coKzwnaREeK3n92x2oV_hQ">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_coLa0HaREeK3n92x2oV_hQ" presentation="default">
+            <element href="testDeleteGuard.uml#_coSvkXaREeK3n92x2oV_hQ"/>
+          </semanticModel>
+          <contained xsi:type="di:GraphNode" xmi:id="_dqhBkHaREeK3n92x2oV_hQ" position="11,4" size="-1,-1">
+            <property xmi:id="_dqiPsHaREeK3n92x2oV_hQ" key="name" value="visible"/>
+            <anchorage xmi:id="_g5na0HaREeK3n92x2oV_hQ" graphEdge="_g5p3EHaREeK3n92x2oV_hQ"/>
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_dqhBkXaREeK3n92x2oV_hQ" presentation="default">
+              <element href="testDeleteGuard.uml#_dqkr8HaREeK3n92x2oV_hQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" xmi:id="_eZAfQHaREeK3n92x2oV_hQ" position="189,6" size="170,50">
+            <anchorage xmi:id="_g5na0XaREeK3n92x2oV_hQ" graphEdge="_g5p3EHaREeK3n92x2oV_hQ"/>
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_eZAfQXaREeK3n92x2oV_hQ" presentation="default">
+              <element href="testDeleteGuard.uml#_eZFXwHaREeK3n92x2oV_hQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphEdge" xmi:id="_g5p3EHaREeK3n92x2oV_hQ" anchor="_g5na0HaREeK3n92x2oV_hQ _g5na0XaREeK3n92x2oV_hQ">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_g5p3EXaREeK3n92x2oV_hQ" presentation="default">
+              <element href="testDeleteGuard.uml#_g5qeIHaREeK3n92x2oV_hQ"/>
+            </semanticModel>
+            <contained xsi:type="di:EdgeObjectOffset" xmi:id="_g5p3EnaREeK3n92x2oV_hQ" id="nameEdgeObject" offset="0,17"/>
+            <contained xsi:type="di:EdgeObjectOffset" xmi:id="_g5p3E3aREeK3n92x2oV_hQ" visible="false" id="TransitionStereotypeEdgeObject"/>
+          </contained>
+          <contained xsi:type="di:GraphNode" xmi:id="_suXbQHaREeK3n92x2oV_hQ" position="219,66" size="142,59">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_suYCUHaREeK3n92x2oV_hQ" presentation="default">
+              <element href="testDeleteGuard.uml#_suWNIHaREeK3n92x2oV_hQ"/>
+            </semanticModel>
+          </contained>
+        </contained>
+      </contained>
+    </contained>
+  </diagrams>
+</diagrams:Diagrams>

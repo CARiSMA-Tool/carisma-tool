@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="testSimpleDeletionDeploymentsModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testSimpleDeletionDeploymentsPackage">
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_xVaRcI-rEeGpL_25i8ktIA" name="Artifact1" clientDependency="_zwNf84-rEeGpL_25i8ktIA"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_xfA5YI-rEeGpL_25i8ktIA" name="Artifact2"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_yANh8I-rEeGpL_25i8ktIA" name="Node1" clientDependency="_ykTGc4-rEeGpL_25i8ktIA">
+      <deployment xmi:id="_ykTGc4-rEeGpL_25i8ktIA" name="arti1Deploy" supplier="_xVaRcI-rEeGpL_25i8ktIA" client="_yANh8I-rEeGpL_25i8ktIA" deployedArtifact="_xVaRcI-rEeGpL_25i8ktIA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_yJgn4I-rEeGpL_25i8ktIA" name="Node2" clientDependency="_ywz4c4-rEeGpL_25i8ktIA">
+      <deployment xmi:id="_ywz4c4-rEeGpL_25i8ktIA" name="Deployment1" supplier="_xfA5YI-rEeGpL_25i8ktIA" client="_yJgn4I-rEeGpL_25i8ktIA" deployedArtifact="_xfA5YI-rEeGpL_25i8ktIA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_y-xb9I-rEeGpL_25i8ktIA" name="abLink" memberEnd="_y-xb9Y-rEeGpL_25i8ktIA _y-yDAI-rEeGpL_25i8ktIA">
+      <ownedEnd xmi:id="_y-xb9Y-rEeGpL_25i8ktIA" name="source" type="_yANh8I-rEeGpL_25i8ktIA" association="_y-xb9I-rEeGpL_25i8ktIA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y-xb9o-rEeGpL_25i8ktIA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y-xb94-rEeGpL_25i8ktIA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_y-yDAI-rEeGpL_25i8ktIA" name="target" type="_yJgn4I-rEeGpL_25i8ktIA" association="_y-xb9I-rEeGpL_25i8ktIA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y-yDAY-rEeGpL_25i8ktIA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y-yDAo-rEeGpL_25i8ktIA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_zwNf84-rEeGpL_25i8ktIA" name="dep" supplier="_xfA5YI-rEeGpL_25i8ktIA" client="_xVaRcI-rEeGpL_25i8ktIA"/>
+  </packagedElement>
+</uml:Model>

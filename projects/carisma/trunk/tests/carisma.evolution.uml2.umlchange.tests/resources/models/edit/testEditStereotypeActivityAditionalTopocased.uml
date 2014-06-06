@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="idModel" name="testEditStereotypeActivityAditionalTopocasedModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testEditStereotypeActivityAditionalTopocasedPackage">
+      <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="testEditStereotypeActivityAditionalTopocasedActivity">
+        <node xmi:type="uml:InitialNode" xmi:id="_9rK_YnagEeGRGLSgOVCdzw" name="InitialNode1" outgoing="_GyZpqHahEeGRGLSgOVCdzw"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_-8caAnagEeGRGLSgOVCdzw" name="Start" outgoing="_HkqNCXahEeGRGLSgOVCdzw _H4nDyXahEeGRGLSgOVCdzw" incoming="_GyZpqHahEeGRGLSgOVCdzw"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="__NnCgnagEeGRGLSgOVCdzw" name="State1" outgoing="_MaPb6XahEeGRGLSgOVCdzw" incoming="_HkqNCXahEeGRGLSgOVCdzw"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="__cGxgHagEeGRGLSgOVCdzw" name="State2" outgoing="_MzOjqHahEeGRGLSgOVCdzw" incoming="_H4nDyXahEeGRGLSgOVCdzw"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_L-3ugnahEeGRGLSgOVCdzw" name="ActivityFinalNode1" incoming="_MaPb6XahEeGRGLSgOVCdzw _MzOjqHahEeGRGLSgOVCdzw"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_GyZpqHahEeGRGLSgOVCdzw" name="ControlFlow1" source="_9rK_YnagEeGRGLSgOVCdzw" target="_-8caAnagEeGRGLSgOVCdzw">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_GyZpqXahEeGRGLSgOVCdzw" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_GyZpqnahEeGRGLSgOVCdzw" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_HkqNCXahEeGRGLSgOVCdzw" name="ControlFlow2" source="_-8caAnagEeGRGLSgOVCdzw" target="__NnCgnagEeGRGLSgOVCdzw">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_HkqNCnahEeGRGLSgOVCdzw" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_HkqNC3ahEeGRGLSgOVCdzw" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_H4nDyXahEeGRGLSgOVCdzw" name="ControlFlow3" source="_-8caAnagEeGRGLSgOVCdzw" target="__cGxgHagEeGRGLSgOVCdzw">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_H4nDynahEeGRGLSgOVCdzw" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_H4nDy3ahEeGRGLSgOVCdzw" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MaPb6XahEeGRGLSgOVCdzw" name="ControlFlow4" source="__NnCgnagEeGRGLSgOVCdzw" target="_L-3ugnahEeGRGLSgOVCdzw">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_MaPb6nahEeGRGLSgOVCdzw" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MaPb63ahEeGRGLSgOVCdzw" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MzOjqHahEeGRGLSgOVCdzw" name="ControlFlow5" source="__cGxgHagEeGRGLSgOVCdzw" target="_L-3ugnahEeGRGLSgOVCdzw">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_MzOjqXahEeGRGLSgOVCdzw" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MzOjqnahEeGRGLSgOVCdzw" value="1"/>
+        </edge>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_X1BdIHahEeGRGLSgOVCdzw">
+      <eAnnotations xmi:id="_X1HjwHahEeGRGLSgOVCdzw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:edit xmi:id="_m1BfUHamEeGRGLSgOVCdzw" base_Element="_-8caAnagEeGRGLSgOVCdzw">
+    <ref>someRef</ref>
+    <values>someRef={(language=german;;;russian)}</values>
+  </UMLchange:edit>
+</xmi:XMI>

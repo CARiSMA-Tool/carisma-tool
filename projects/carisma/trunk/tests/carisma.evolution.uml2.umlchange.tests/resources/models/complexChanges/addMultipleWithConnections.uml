@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="add">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="targetPkg">
+      <packagedElement xmi:type="uml:Package" xmi:id="_cDpVkD29EeGgtqeRt9f87Q" name="addThis">
+        <packagedElement xmi:type="uml:Class" xmi:id="_fvTvAD29EeGgtqeRt9f87Q" name="NewClass" clientDependency="_ucE-FD3AEeGzCPWEZfYBfQ"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_gbffkD29EeGgtqeRt9f87Q" name="OtherClass"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_jMr02j29EeGgtqeRt9f87Q" name="A_&lt;newClass>_&lt;otherClass>" memberEnd="_jMr02z29EeGgtqeRt9f87Q _jMr03j29EeGgtqeRt9f87Q">
+        <ownedEnd xmi:id="_jMr02z29EeGgtqeRt9f87Q" name="newClass" type="_fvTvAD29EeGgtqeRt9f87Q" association="_jMr02j29EeGgtqeRt9f87Q">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jMr03D29EeGgtqeRt9f87Q" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jMr03T29EeGgtqeRt9f87Q" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_jMr03j29EeGgtqeRt9f87Q" name="otherClass" type="_gbffkD29EeGgtqeRt9f87Q" association="_jMr02j29EeGgtqeRt9f87Q">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jMr03z29EeGgtqeRt9f87Q" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jMr04D29EeGgtqeRt9f87Q" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_ucE-FD3AEeGzCPWEZfYBfQ" name="Dependency1" supplier="_gbffkD29EeGgtqeRt9f87Q" client="_fvTvAD29EeGgtqeRt9f87Q"/>
+    </packagedElement>
+    <profileApplication xmi:id="_uiblED29EeGfK6pTPQckmw">
+      <eAnnotations xmi:id="_uikvAD29EeGfK6pTPQckmw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:add xmi:id="_fcC_UD2-EeGzCPWEZfYBfQ" base_Element="_w8IxIM37EdqwVrslYOdUDA">
+    <ref>addThis</ref>
+    <new>addThis={@addThis}</new>
+  </UMLchange:add>
+</xmi:XMI>

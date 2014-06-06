@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA">
+  <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="nary">
+    <packagedElement xmi:type="uml:Class" xmi:id="__DdhcI7dEeGPZ_qPBhd3dA" name="Class1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="__NausI7dEeGPZ_qPBhd3dA" name="Class2"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="__Zfb0I7dEeGPZ_qPBhd3dA" name="Class3" clientDependency="_u6m9kI-YEeGpoNBQkVPPkQ"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="__koU0I7dEeGPZ_qPBhd3dA" name="Class4"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_AR1ZEI7eEeGPZ_qPBhd3dA" name="Class0">
+      <ownedAttribute xmi:id="_zxLfcI7eEeGPZ_qPBhd3dA" name="class2"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_u6m9kI-YEeGpoNBQkVPPkQ" name="Dependency0" supplier="__koU0I7dEeGPZ_qPBhd3dA __NausI7dEeGPZ_qPBhd3dA" client="__Zfb0I7dEeGPZ_qPBhd3dA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_MyTmGo-ZEeGpoNBQkVPPkQ" name="class0_class1_0" memberEnd="_MyTmG4-ZEeGpoNBQkVPPkQ _MyTmHo-ZEeGpoNBQkVPPkQ _svRR8I-ZEeGpoNBQkVPPkQ">
+      <ownedEnd xmi:id="_MyTmG4-ZEeGpoNBQkVPPkQ" name="class0" type="_AR1ZEI7eEeGPZ_qPBhd3dA" association="_MyTmGo-ZEeGpoNBQkVPPkQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MyTmHI-ZEeGpoNBQkVPPkQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MyTmHY-ZEeGpoNBQkVPPkQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_MyTmHo-ZEeGpoNBQkVPPkQ" name="class2" type="__NausI7dEeGPZ_qPBhd3dA" association="_MyTmGo-ZEeGpoNBQkVPPkQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MyTmH4-ZEeGpoNBQkVPPkQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MyTmII-ZEeGpoNBQkVPPkQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_svRR8I-ZEeGpoNBQkVPPkQ" name="class1" type="__DdhcI7dEeGPZ_qPBhd3dA" association="_MyTmGo-ZEeGpoNBQkVPPkQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:AssociationClass" xmi:id="_aIBDAI-ZEeGpoNBQkVPPkQ" name="AssociationClass0" memberEnd="_aIBDAY-ZEeGpoNBQkVPPkQ">
+      <ownedEnd xmi:id="_aIBDAY-ZEeGpoNBQkVPPkQ" name="class0" type="_AR1ZEI7eEeGPZ_qPBhd3dA" association="_aIBDAI-ZEeGpoNBQkVPPkQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aIBDAo-ZEeGpoNBQkVPPkQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aIBDA4-ZEeGpoNBQkVPPkQ"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

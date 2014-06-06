@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2011 Software Engineering Institute, TU Dortmund.&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;   {SecSE group} - initial API and implementation and/or initial documentation"
+    modelDirectory="/carisma.modeltype.bpmn2.extended/gensrc" editDirectory="/carisma.modeltype.bpmn2.extended.edit/src"
+    editorDirectory="/carisma.modeltype.bpmn2.extended.editor/src" modelPluginID="carisma.modeltype.bpmn2.extended"
+    modelName="Extended" editPluginClass="carisma.modeltype.bpmn2.extended.provider.ExtendedEditPlugin"
+    editorPluginClass="carisma.modeltype.bpmn2.extended.presentation.ExtendedEditorPlugin"
+    testSuiteClass="carisma.modeltype.bpmn2.extended.tests.ExtendedAllTests" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="carisma.modeltype.bpmn2.extended.edit"
+    editorPluginID="carisma.modeltype.bpmn2.extended.editor" usedGenPackages="platform:/plugin/org.eclipse.bpmn2/model/BPMN20.genmodel#//bpmn2 platform:/plugin/org.eclipse.bpmn2/model/BPMN20.genmodel#//di platform:/plugin/org.eclipse.bpmn2/model/BPMN20.genmodel#//di.1 platform:/plugin/org.eclipse.bpmn2/model/BPMN20.genmodel#//dc ../../carisma.modeltype.bpmn2.extension/model/Extension.genmodel#//extension"
+    classNamePattern="">
+  <foreignModel>Extended.ecore</foreignModel>
+  <genPackages prefix="Extended" basePackage="carisma.modeltype.bpmn2" resource="XML"
+      disposableProviderFactory="true" contentTypeIdentifier="" fileExtensions="bpmn2extended"
+      ecorePackage="Extended.ecore#/">
+    <genClasses ecoreClass="Extended.ecore#//ExtendedDocumentRoot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Extended.ecore#//ExtendedDocumentRoot/extendedDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Extended.ecore#//ExtendedDocumentRoot/extensionRoot"/>
+    </genClasses>
+    <genClasses ecoreClass="Extended.ecore#//ExtendedProcess"/>
+    <genClasses ecoreClass="Extended.ecore#//ExtendedTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Extended.ecore#//ExtendedTask/workItem"/>
+    </genClasses>
+    <genClasses ecoreClass="Extended.ecore#//ExtendedLane">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Extended.ecore#//ExtendedLane/role"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

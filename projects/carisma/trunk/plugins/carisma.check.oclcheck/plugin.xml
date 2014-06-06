@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Querying Models with OCL"
+            id="carisma.check.singleoclcheck"
+            implementingClass="carisma.check.oclcheck.SingleOclChecker"
+            magicKeys="bpmn,uml"
+            name="SingleOclChecker"
+            publisher="Sebastian Haronski"
+            targetModelType="uml2,bpmn2">
+         <parameter
+               defaultValue="context-free"
+               id="carisma.check.oclchecker.context"
+               name="OCL-Context"
+               optional="false"
+               type="String">
+         </parameter>
+         <parameter
+               defaultValue="true"
+               id="carisma.check.oclchecker.statement"
+               name="OCL-Statement"
+               optional="false"
+               type="String">
+		 </parameter>
+      </check>
+      <check
+            description="Querying BPMN/UML models with groups of OCL queries"
+            id="carisma.check.multioclcheck"
+            implementingClass="carisma.check.oclcheck.MultiOclChecker"
+            magicKeys="bpmn,uml"
+            name="MultiOclChecker"
+            publisher="Sebastian Haronski"
+            targetModelType="uml2,bpmn2">
+         <parameter
+               id="carisma.check.oclcheck.oclfile"
+               name="OCL-Query file"
+               optional="false"
+               type="InputFile">
+         </parameter>
+      </check>
+   </extension>
+   
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="false">
+      </toc>
+   </extension>
+</plugin>

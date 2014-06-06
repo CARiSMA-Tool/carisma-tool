@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CARiSMA Activity Paths Check
+Bundle-SymbolicName: carisma.check.activitypaths;singleton:=true
+Bundle-Version: 1.0.2.qualifier
+Bundle-Activator: carisma.check.activitypaths.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ carisma.modeltype.uml2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Software Engineering Institute, TU Dortmund

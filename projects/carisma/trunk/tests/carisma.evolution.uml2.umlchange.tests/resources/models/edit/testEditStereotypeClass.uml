@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="model">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testEditStereotypeClass">
+      <packagedElement xmi:type="uml:Class" xmi:id="_tdKqKHW4EeGLorExNxtpew" name="Class0">
+        <ownedAttribute xmi:id="_29X1EHW4EeGLorExNxtpew" name="class1" type="_tdKqKHW4EeGLorExNxtpew">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Tzx7gHXAEeGLorExNxtpew" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZYL_QHXAEeGLorExNxtpew" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_AEXOwHW5EeGLorExNxtpew" name="giro"/>
+        <ownedAttribute xmi:id="_WNTzIHXKEeGLorExNxtpew" name="money" type="_hAlYMXW5EeGLorExNxtpew"/>
+        <ownedOperation xmi:id="_jao7oHXAEeGLorExNxtpew" name="changeMoney">
+          <ownedParameter xmi:id="_pKbwAHXAEeGLorExNxtpew" name="m" type="_hAlYMXW5EeGLorExNxtpew"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_sRfhOHW4EeGLorExNxtpew" name="Class1">
+        <ownedAttribute xmi:id="_zm-nYHXAEeGLorExNxtpew" name="Property0"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_sid8cHW4EeGLorExNxtpew" name="Class2" clientDependency="_7jccxXXCEeGLorExNxtpew"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_sviIEHW4EeGLorExNxtpew" name="Class3"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_s-gYMHW4EeGLorExNxtpew" name="Class4"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_tN--qHW4EeGLorExNxtpew" name="Class5"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_XCkWSnXBEeGLorExNxtpew" name="A_&lt;class0>_&lt;class1>" memberEnd="_XCkWS3XBEeGLorExNxtpew _XCkWTnXBEeGLorExNxtpew">
+        <ownedEnd xmi:id="_XCkWS3XBEeGLorExNxtpew" name="class0" type="_tdKqKHW4EeGLorExNxtpew" association="_XCkWSnXBEeGLorExNxtpew">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XCkWTHXBEeGLorExNxtpew" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XCkWTXXBEeGLorExNxtpew" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_XCkWTnXBEeGLorExNxtpew" name="class1" type="_sRfhOHW4EeGLorExNxtpew" association="_XCkWSnXBEeGLorExNxtpew">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XCkWT3XBEeGLorExNxtpew" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XCkWUHXBEeGLorExNxtpew" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_7jccxXXCEeGLorExNxtpew" name="Dependency1" supplier="_tdKqKHW4EeGLorExNxtpew" client="_sid8cHW4EeGLorExNxtpew"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_LQYPsHXDEeGLorExNxtpew" name="Package0"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_hAlYMHW5EeGLorExNxtpew" name="Boolean"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_hAlYMXW5EeGLorExNxtpew" name="Integer"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_hAlYMnW5EeGLorExNxtpew" name="String"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_hAlYM3W5EeGLorExNxtpew" name="UnlimitedNatural"/>
+    <profileApplication xmi:id="_gXUXwHXEEeGLorExNxtpew">
+      <eAnnotations xmi:id="_gXUXwXXEEeGLorExNxtpew" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:edit xmi:id="_AfZugHXFEeGLorExNxtpew" base_Element="_XCkWSnXBEeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>target=Class2</values>
+    <values>someRef={(name=theOnlyOne)}</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_uF-1QHXGEeGLorExNxtpew" base_Element="_pKbwAHXAEeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>someRef={(type=String)}</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_fA6eIHXHEeGLorExNxtpew" base_Element="_sviIEHW4EeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>someRef=(name=newClassName)</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_yatH4HXIEeGLorExNxtpew" base_Element="_7jccxXXCEeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>someRef={(client=Class0,supplier=Class1)}</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_bYQ1EHXKEeGLorExNxtpew" base_Element="_WNTzIHXKEeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>someRef={(type=boolean)}</values>
+  </UMLchange:edit>
+</xmi:XMI>

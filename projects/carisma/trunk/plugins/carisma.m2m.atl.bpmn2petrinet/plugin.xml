@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+ <extension point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.bpmn2"
+            id="carisma.m2m.atl.bpmn2petrinet.oc1">
+            <action
+                  class="carisma.m2m.atl.bpmn2petrinet.Action"
+                  enablesFor="*"
+                  icon="icons/atl_logo.gif"
+                  id="carisma.m2m.atl.bpmn2petrinet.action1"
+                  label="Transform to Petrinet">
+         </action>
+      </objectContribution>
+  </extension>
+
+</plugin>

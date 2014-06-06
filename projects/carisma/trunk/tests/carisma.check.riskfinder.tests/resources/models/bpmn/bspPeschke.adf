@@ -1,0 +1,100 @@
+<Analysis>
+  <name>bspPeschkeAnalyse</name>
+  <modelFile>\carisma.check.riskfinder.tests\resources\models\bpmn\bspPeschke.bpmn2</modelFile>
+  <modelType>BPMN2</modelType>
+  <checks>
+    <Check>
+      <checkID>carisma.check.processanalysis.importer.bpmn</checkID>
+      <enabled>true</enabled>
+      <parameters/>
+    </Check>
+    <Check>
+      <checkID>carisma.check.riskfinder</checkID>
+      <enabled>true</enabled>
+      <parameters>
+        <InputFileParameter>
+          <descriptor>
+            <id>carisma.check.riskfinder.ontologyFile</id>
+            <name>Ontology</name>
+            <description>File which contains the Ontology to use</description>
+            <type>INPUTFILE</type>
+            <optional>false</optional>
+          </descriptor>
+          <queryOnDemand>false</queryOnDemand>
+          <value>C:\eclipse\runtime-EclipseApplication\carisma.check.riskfinder.tests\resources\Entire_Law_Ontology.owl</value>
+        </InputFileParameter>
+        <BooleanParameter>
+          <descriptor>
+            <id>carisma.check.riskfinder.synonymsOnly</id>
+            <name>Synonyms</name>
+            <description>Expand list of activites with synonyms</description>
+            <type>BOOLEAN</type>
+            <optional>false</optional>
+            <defaultValue>true</defaultValue>
+          </descriptor>
+          <queryOnDemand>false</queryOnDemand>
+          <value>false</value>
+        </BooleanParameter>
+        <InputFileParameter>
+          <descriptor>
+            <id>carisma.check.riskfinder.stopwordFile</id>
+            <name>Stopwords</name>
+            <description>File which contains stopwords</description>
+            <type>INPUTFILE</type>
+            <optional>false</optional>
+          </descriptor>
+          <queryOnDemand>false</queryOnDemand>
+          <value>C:\eclipse\runtime-EclipseApplication\carisma.check.riskfinder.tests\resources\stopwords.ger</value>
+        </InputFileParameter>
+        <BooleanParameter>
+          <descriptor>
+            <id>carisma.check.riskfinder.append</id>
+            <name>Append</name>
+            <description>If true, all previously contained extensions are preserved, otherwise they will be replaced</description>
+            <type>BOOLEAN</type>
+            <optional>false</optional>
+            <defaultValue>false</defaultValue>
+          </descriptor>
+          <queryOnDemand>false</queryOnDemand>
+          <value>false</value>
+        </BooleanParameter>
+        <IntegerParameter>
+          <descriptor>
+            <id>carisma.check.riskfinder.minscore</id>
+            <name>minScore</name>
+            <description>Minimal Score for Patterns to be listed</description>
+            <type>INTEGER</type>
+            <optional>false</optional>
+            <defaultValue>0</defaultValue>
+          </descriptor>
+          <queryOnDemand>false</queryOnDemand>
+          <value>0</value>
+        </IntegerParameter>
+        <BooleanParameter>
+          <descriptor>
+            <id>carisma.check.riskfinder.writeback</id>
+            <name>writeback</name>
+            <description>Add colours to examined model?</description>
+            <type>BOOLEAN</type>
+            <optional>false</optional>
+            <defaultValue>false</defaultValue>
+          </descriptor>
+          <queryOnDemand>false</queryOnDemand>
+          <value>false</value>
+        </BooleanParameter>
+        <OutputFileParameter>
+          <descriptor>
+            <id>carisma.check.riskfinder.xmlresultfile</id>
+            <name>xmlresultfile</name>
+            <description>XML Output file for riskfinder result</description>
+            <type>OUTPUTFILE</type>
+            <optional>true</optional>
+          </descriptor>
+          <queryOnDemand>false</queryOnDemand>
+          <value>C:\eclipse\runtime-EclipseApplication\carisma.check.riskfinder.tests\resources\result.xml</value>
+        </OutputFileParameter>
+      </parameters>
+    </Check>
+  </checks>
+  <selectedEditor></selectedEditor>
+</Analysis>

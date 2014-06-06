@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2extension:ExtensionRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:bpmn2extension="http://carisma/modeltype/bpmn2/extension">
+  <task name="Enter Trade Request" workItem="//@workItem.0" id="96yc6z9g44vm4kt"/>
+  <task name="Check Trade Request" workItem="//@workItem.1" id="3q2svd53zb9p4lp"/>
+  <task name="Process Decision" workItem="//@workItem.2" id="mvx7mnt0xhs5jws"/>
+  <workItem name="EnterTradeRequest" duration="1" performer="//@performer.0" id="l7ddcg505qzzadf"/>
+  <workItem name="CheckTradeRequest" duration="2" performer="//@performer.1" id="9q1vk8ao8bkr6f6"/>
+  <workItem name="ProcessDecision" duration="3" performer="//@performer.0" id="xgvue1d36o6eanl"/>
+  <performer name="Alice" workItem="//@workItem.0 //@workItem.2" role="//@role.0" id="0fwrow8ixpvc8su"/>
+  <performer name="Bob" workItem="//@workItem.1" role="//@role.1" id="guy4wiopor7ch2b"/>
+  <role name="Trader" member="//@performer.0" super="//@role.1" id="aloqk1c7wjlzjmw"/>
+  <role name="Supervisor" member="//@performer.1" sub="//@role.0" id="thr88rx6p3p5i0i"/>
+  <selection id="qlym2ry208kuz07">
+    <taskSet name="SoD" selectedTasks="//@task.0 //@task.1" id="nj45sw9f8uqrptj"/>
+    <taskSet name="BoD" selectedTasks="//@task.2 //@task.0" id="ns4mmxqsm3n97vn"/>
+  </selection>
+</bpmn2extension:ExtensionRoot>

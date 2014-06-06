@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testSecureDependency1">
+      <ownedComment xmi:id="_m-On0I7SEeGPZ_qPBhd3dA" annotatedElement="_mcD2QI7PEeG2N76zYdDyeg">
+        <body>{secrecy=Operation1()}</body>
+      </ownedComment>
+      <ownedComment xmi:id="_z8uekI7SEeGPZ_qPBhd3dA">
+        <body>Fehler:&#xD;
+Kein /secrecy/ an Dep1.&#xD;
+Kein /critical/{secrecy=Operation1()} an Class1</body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Class" xmi:id="_mQFPwI7PEeG2N76zYdDyeg" name="Class1" clientDependency="_8szCgI7REeGPZ_qPBhd3dA"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_mcD2QI7PEeG2N76zYdDyeg" name="Class2" clientDependency="_grtdg6dsEeK8o6uySEo6EQ">
+        <interfaceRealization xmi:id="_grtdg6dsEeK8o6uySEo6EQ" name="InterfaceRealization1" supplier="_mt9ekI7PEeG2N76zYdDyeg" client="_mcD2QI7PEeG2N76zYdDyeg" contract="_mt9ekI7PEeG2N76zYdDyeg"/>
+        <ownedOperation xmi:id="_qirGUI7PEeG2N76zYdDyeg" name="Operation1"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_mt9ekI7PEeG2N76zYdDyeg" name="Interface1">
+        <ownedOperation xmi:id="_r65dgI7PEeG2N76zYdDyeg" name="Operation1"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_8szCgI7REeGPZ_qPBhd3dA" name="Dep1" supplier="_mt9ekI7PEeG2N76zYdDyeg" client="_mQFPwI7PEeG2N76zYdDyeg"/>
+    </packagedElement>
+    <profileApplication xmi:id="_sjWIII7QEeG2N76zYdDyeg">
+      <eAnnotations xmi:id="_sjYkYI7QEeG2N76zYdDyeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_UrhsgI7SEeGPZ_qPBhd3dA">
+      <eAnnotations xmi:id="_UrjhsI7SEeGPZ_qPBhd3dA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_75ytsI7QEeGPZ_qPBhd3dA" base_Package="_qb8akM37EdqwVrslYOdUDA"/>
+  <Standard:Call xmi:id="_WfHxEI7SEeGPZ_qPBhd3dA" base_Usage="_8szCgI7REeGPZ_qPBhd3dA"/>
+  <UMLsec:critical xmi:id="_a01NEI7SEeGPZ_qPBhd3dA" base_Class="_mcD2QI7PEeG2N76zYdDyeg" base_Classifier="_mcD2QI7PEeG2N76zYdDyeg">
+    <secrecy>Operation1()</secrecy>
+  </UMLsec:critical>
+</xmi:XMI>

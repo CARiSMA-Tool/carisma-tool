@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testFairExchangeNoStartModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testFairExchangeNoStartPackage">
+      <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="testFairExchangeNoStartActivity">
+        <node xmi:type="uml:OpaqueAction" xmi:id="_wP4N4I4YEeGEl_fBj84nug" name="OpaqueAction1" outgoing="_yMLigI4YEeGEl_fBj84nug" incoming="_x1TTkI4YEeGEl_fBj84nug"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_wfVmMI4YEeGEl_fBj84nug" name="OpaqueAction2" outgoing="_ynkeAI4YEeGEl_fBj84nug" incoming="_yMLigI4YEeGEl_fBj84nug"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_w3EJsI4YEeGEl_fBj84nug" name="ActivityFinalNode1" incoming="_ynkeAI4YEeGEl_fBj84nug"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_xOekII4YEeGEl_fBj84nug" name="InitialNode1" outgoing="_x1TTkI4YEeGEl_fBj84nug"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_x1TTkI4YEeGEl_fBj84nug" name="ControlFlow1" source="_xOekII4YEeGEl_fBj84nug" target="_wP4N4I4YEeGEl_fBj84nug">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_x1TTkY4YEeGEl_fBj84nug" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_x1TTko4YEeGEl_fBj84nug" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_yMLigI4YEeGEl_fBj84nug" name="ControlFlow2" source="_wP4N4I4YEeGEl_fBj84nug" target="_wfVmMI4YEeGEl_fBj84nug">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_yMLigY4YEeGEl_fBj84nug" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_yMLigo4YEeGEl_fBj84nug" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_ynkeAI4YEeGEl_fBj84nug" name="ControlFlow3" source="_wfVmMI4YEeGEl_fBj84nug" target="_w3EJsI4YEeGEl_fBj84nug">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_ynkeAY4YEeGEl_fBj84nug" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_ynkeAo4YEeGEl_fBj84nug" value="1"/>
+        </edge>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_o4P5AI4YEeGEl_fBj84nug">
+      <eAnnotations xmi:id="_o4P5AY4YEeGEl_fBj84nug" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:fairexchange xmi:id="_3HAdwI4YEeGEl_fBj84nug" base_Package="idModel"/>
+</xmi:XMI>

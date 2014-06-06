@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: carisma.xutils.regulatory.importer.juris.tests;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: carisma.xutils.regulatory.importer.juris;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit;bundle-version="4.11.0"

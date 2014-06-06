@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="compositediagramModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="compositediagramPackage">
+    <packagedElement xmi:type="uml:Class" xmi:id="idClass" name="compositediagramClass" clientDependency="_y33EEvgtEeKLAZ4gPThXMQ">
+      <ownedComment xmi:id="_64U6kPgtEeKLAZ4gPThXMQ" annotatedElement="_vw6hQPgtEeKLAZ4gPThXMQ">
+        <body>Comment1</body>
+      </ownedComment>
+      <ownedRule xmi:id="_7ldtYPgtEeKLAZ4gPThXMQ" name="Constraint1" constrainedElement="_64U6kPgtEeKLAZ4gPThXMQ"/>
+      <collaborationUse xmi:id="_vw6hQPgtEeKLAZ4gPThXMQ" name="CollaborationUse1" type="_vw56MPgtEeKLAZ4gPThXMQ">
+        <roleBinding xmi:id="_5uyfoPgtEeKLAZ4gPThXMQ" name="Dependency1" supplier="_5u6bcPgtEeKLAZ4gPThXMQ" client="_oZ5QYPgtEeKLAZ4gPThXMQ"/>
+      </collaborationUse>
+      <ownedAttribute xmi:id="_oZ5QYPgtEeKLAZ4gPThXMQ" name="Property1" clientDependency="_5uyfoPgtEeKLAZ4gPThXMQ" type="_oZ4pUPgtEeKLAZ4gPThXMQ" aggregation="composite"/>
+      <ownedAttribute xmi:id="_pagY0fgtEeKLAZ4gPThXMQ" name="Property2" type="_pagY0PgtEeKLAZ4gPThXMQ"/>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_vLfgAPgtEeKLAZ4gPThXMQ" name="Port1" type="_vLe48PgtEeKLAZ4gPThXMQ" aggregation="composite"/>
+      <ownedConnector xmi:id="_xj4TtvgtEeKLAZ4gPThXMQ" name="Connector1" kind="delegation">
+        <end xmi:id="_xj4Tt_gtEeKLAZ4gPThXMQ" role="_oZ5QYPgtEeKLAZ4gPThXMQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xj4TuPgtEeKLAZ4gPThXMQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xj4TufgtEeKLAZ4gPThXMQ" value="1"/>
+        </end>
+        <end xmi:id="_xj4TuvgtEeKLAZ4gPThXMQ" role="_pagY0fgtEeKLAZ4gPThXMQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xj4Tu_gtEeKLAZ4gPThXMQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xj4TvPgtEeKLAZ4gPThXMQ" value="1"/>
+        </end>
+      </ownedConnector>
+      <interfaceRealization xmi:id="_y33EEvgtEeKLAZ4gPThXMQ" name="InterfaceRealization1" supplier="_uYf80PgtEeKLAZ4gPThXMQ" client="idClass" contract="_uYf80PgtEeKLAZ4gPThXMQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_oZ4pUPgtEeKLAZ4gPThXMQ" name="1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_pagY0PgtEeKLAZ4gPThXMQ" name="1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qkanMPgtEeKLAZ4gPThXMQ" name="1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rZNhMPgtEeKLAZ4gPThXMQ" name="1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_sJ1s4PgtEeKLAZ4gPThXMQ" name="1"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_uYf80PgtEeKLAZ4gPThXMQ" name="Interface1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_vLe48PgtEeKLAZ4gPThXMQ" name="1"/>
+    <packagedElement xmi:type="uml:Collaboration" xmi:id="_vw56MPgtEeKLAZ4gPThXMQ" name="1">
+      <ownedAttribute xmi:id="_5u6bcPgtEeKLAZ4gPThXMQ" name="role" visibility="private"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_08TBAPgtEeKLAZ4gPThXMQ" name="1"/>
+  </packagedElement>
+</uml:Model>

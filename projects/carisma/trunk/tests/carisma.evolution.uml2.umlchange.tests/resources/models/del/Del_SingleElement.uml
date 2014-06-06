@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="Del_SingleElement">
+      <packagedElement xmi:type="uml:Class" xmi:id="_uoreUHalEeGmS45Vi9NPLQ" name="Class1" clientDependency="_2jpJxHalEeGmS45Vi9NPLQ">
+        <ownedOperation xmi:id="_wOF88HalEeGmS45Vi9NPLQ" name="Operation1"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_yh06IHalEeGmS45Vi9NPLQ" name="Class2"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_zQOROnalEeGmS45Vi9NPLQ" name="Ass_C1C2" memberEnd="_zQORO3alEeGmS45Vi9NPLQ _zQORPnalEeGmS45Vi9NPLQ">
+        <ownedEnd xmi:id="_zQORO3alEeGmS45Vi9NPLQ" name="class1" type="_uoreUHalEeGmS45Vi9NPLQ" association="_zQOROnalEeGmS45Vi9NPLQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zQORPHalEeGmS45Vi9NPLQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zQORPXalEeGmS45Vi9NPLQ" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_zQORPnalEeGmS45Vi9NPLQ" name="class2" type="_yh06IHalEeGmS45Vi9NPLQ" association="_zQOROnalEeGmS45Vi9NPLQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zQORP3alEeGmS45Vi9NPLQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zQORQHalEeGmS45Vi9NPLQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_15Fw4HalEeGmS45Vi9NPLQ" name="Class3"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_2jpJxHalEeGmS45Vi9NPLQ" name="Dep_C1C3" supplier="_15Fw4HalEeGmS45Vi9NPLQ" client="_uoreUHalEeGmS45Vi9NPLQ"/>
+    </packagedElement>
+    <profileApplication xmi:id="_AGnU0HamEeGmS45Vi9NPLQ">
+      <eAnnotations xmi:id="_AGnU0XamEeGmS45Vi9NPLQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:del xmi:id="_EIEYEHamEeGmS45Vi9NPLQ" base_Element="_uoreUHalEeGmS45Vi9NPLQ">
+    <ref>delClass</ref>
+  </UMLchange:del>
+</xmi:XMI>

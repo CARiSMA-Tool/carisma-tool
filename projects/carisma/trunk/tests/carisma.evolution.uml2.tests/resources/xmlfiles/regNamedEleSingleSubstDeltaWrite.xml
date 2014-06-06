@@ -1,0 +1,30 @@
+<Delta>
+  <deltaElements>
+    <SubstElement>
+      <target class="NamedElement">
+        <type>PseudostateImpl</type>
+        <name>Pseudostate1</name>
+        <xmiID>_oSsTsGIMEeGeQ6PWdg4u1A</xmiID>
+      </target>
+      <components>
+        <AddElement>
+          <typename>Property</typename>
+          <values>
+            <entry>
+              <key>name</key>
+              <value>id</value>
+            </entry>
+            <entry>
+              <key>value</key>
+              <value>xyz</value>
+            </entry>
+          </values>
+          <content/>
+        </AddElement>
+      </components>
+    </SubstElement>
+  </deltaElements>
+  <usedChanges>
+    <string>someChange(1)</string>
+  </usedChanges>
+</Delta>

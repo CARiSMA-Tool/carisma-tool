@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="ImporterTestModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="ImporterTestPackage">
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="ImporterTestStateMachine">
+        <region xmi:id="idRegion" name="MainRegion">
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_oSsTsGIMEeGeQ6PWdg4u1A" name="Pseudostate1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_pQ62gGIMEeGeQ6PWdg4u1A" name="OPREADY"/>
+          <subvertex xmi:type="uml:State" xmi:id="_wYfWIGIMEeGeQ6PWdg4u1A" name="OPREADY_WITH_CUSTOM_KEYS"/>
+          <subvertex xmi:type="uml:State" xmi:id="_tD15EGINEeGeQ6PWdg4u1A" name="INITIALIZED"/>
+          <subvertex xmi:type="uml:State" xmi:id="_5VssQGINEeGeQ6PWdg4u1A" name="SECURED"/>
+          <subvertex xmi:type="uml:State" xmi:id="_7DbZYGINEeGeQ6PWdg4u1A" name="CARD_LOCKED"/>
+          <subvertex xmi:type="uml:State" xmi:id="__wzHcGINEeGeQ6PWdg4u1A" name="TERMINATED"/>
+          <transition xmi:id="_EqHm1GIOEeGeQ6PWdg4u1A" name="Transition1" kind="local" source="_oSsTsGIMEeGeQ6PWdg4u1A" target="_pQ62gGIMEeGeQ6PWdg4u1A"/>
+          <transition xmi:id="_FypVJGIOEeGeQ6PWdg4u1A" name="Transition2" kind="local" source="_pQ62gGIMEeGeQ6PWdg4u1A" target="_wYfWIGIMEeGeQ6PWdg4u1A"/>
+          <transition xmi:id="_Gsa1xGIOEeGeQ6PWdg4u1A" name="Transition3" kind="local" source="_wYfWIGIMEeGeQ6PWdg4u1A" target="__wzHcGINEeGeQ6PWdg4u1A"/>
+          <transition xmi:id="_NSGwVGIOEeGeQ6PWdg4u1A" name="Transition4" kind="local" source="_wYfWIGIMEeGeQ6PWdg4u1A" target="_tD15EGINEeGeQ6PWdg4u1A"/>
+          <transition xmi:id="_OL7URGIOEeGeQ6PWdg4u1A" name="Transition5" kind="local" source="_tD15EGINEeGeQ6PWdg4u1A" target="__wzHcGINEeGeQ6PWdg4u1A"/>
+          <transition xmi:id="_RTwA1GIOEeGeQ6PWdg4u1A" name="Transition6" kind="local" source="_7DbZYGINEeGeQ6PWdg4u1A" target="__wzHcGINEeGeQ6PWdg4u1A"/>
+          <transition xmi:id="_TlO7RGIOEeGeQ6PWdg4u1A" name="Transition7" kind="local" source="_5VssQGINEeGeQ6PWdg4u1A" target="__wzHcGINEeGeQ6PWdg4u1A"/>
+          <transition xmi:id="_aBE9VGIOEeGeQ6PWdg4u1A" name="Transition8" kind="local" source="_5VssQGINEeGeQ6PWdg4u1A" target="_7DbZYGINEeGeQ6PWdg4u1A"/>
+          <transition xmi:id="_bDT2ZGIOEeGeQ6PWdg4u1A" name="Transition9" kind="local" source="_7DbZYGINEeGeQ6PWdg4u1A" target="_5VssQGINEeGeQ6PWdg4u1A"/>
+        </region>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_x37oQGIPEeGeQ6PWdg4u1A">
+      <eAnnotations xmi:id="_x4DkEGIPEeGeQ6PWdg4u1A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:authorizedstatus xmi:id="_VKsLQGIQEeGeQ6PWdg4u1A" permission="" base_State="__wzHcGINEeGeQ6PWdg4u1A"/>
+  <UMLsec:lockedstatus xmi:id="_VKyR4GIQEeGeQ6PWdg4u1A" base_State="__wzHcGINEeGeQ6PWdg4u1A"/>
+  <UMLsec:identifiable xmi:id="_YSnlgGIQEeGeQ6PWdg4u1A" base_Element="_5VssQGINEeGeQ6PWdg4u1A"/>
+</xmi:XMI>

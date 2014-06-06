@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="singleAddStereotype">
+      <packagedElement xmi:type="uml:Class" xmi:id="_LnTOUIMeEeGLgof4e8z7wg" name="Class1"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_MEbiEIPVEeGitLO-K7Fzrw" name="Class2"/>
+    </packagedElement>
+    <profileApplication xmi:id="_SAchsIMeEeGLgof4e8z7wg">
+      <eAnnotations xmi:id="_SAflAIMeEeGLgof4e8z7wg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_SAhaMIMeEeGLgof4e8z7wg">
+      <eAnnotations xmi:id="_SAhaMYMeEeGLgof4e8z7wg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:add xmi:id="_UhgwQIMeEeGLgof4e8z7wg" base_Element="_LnTOUIMeEeGLgof4e8z7wg"/>
+  <UMLchange:edit xmi:id="_NAStYIPVEeGitLO-K7Fzrw" base_Element="_MEbiEIPVEeGitLO-K7Fzrw"/>
+</xmi:XMI>

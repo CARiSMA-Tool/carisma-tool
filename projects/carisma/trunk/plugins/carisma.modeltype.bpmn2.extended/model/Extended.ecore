@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="extended"
+    nsURI="carisma/modeltype/bpmn2/extended" nsPrefix="extended">
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendedDocumentRoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendedDefinitions" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.bpmn2/model/BPMN20.ecore#//Definitions"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extensionRoot" eType="ecore:EClass ../../carisma.modeltype.bpmn2.extension/model/Extension.ecore#//ExtensionRoot"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendedProcess" eSuperTypes="platform:/plugin/org.eclipse.bpmn2/model/BPMN20.ecore#//Process"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendedTask" eSuperTypes="platform:/plugin/org.eclipse.bpmn2/model/BPMN20.ecore#//Task">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workItem" upperBound="-1"
+        eType="ecore:EClass ../../carisma.modeltype.bpmn2.extension/model/Extension.ecore#//WorkItem"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendedLane" eSuperTypes="platform:/plugin/org.eclipse.bpmn2/model/BPMN20.ecore#//Lane">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" upperBound="-1" eType="ecore:EClass ../../carisma.modeltype.bpmn2.extension/model/Extension.ecore#//Role"/>
+  </eClassifiers>
+</ecore:EPackage>

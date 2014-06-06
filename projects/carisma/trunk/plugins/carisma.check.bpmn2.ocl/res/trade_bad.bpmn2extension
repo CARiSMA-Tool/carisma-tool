@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2extension:ExtensionRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:bpmn2extension="http://carisma/modeltype/bpmn2/extension">
+  <task name="Enter Trade Request" workItem="//@workItem.0"/>
+  <task name="Check Trade Request" workItem="//@workItem.1"/>
+  <task name="Process Decision" workItem="//@workItem.2"/>
+  <workItem name="EnterTradeRequest" duration="1" performer="//@performer.0"/>
+  <workItem name="CheckTradeRequest" duration="2" performer="//@performer.0"/>
+  <workItem name="ProcessDecision" duration="3" performer="//@performer.1"/>
+  <performer name="Alice" workItem="//@workItem.0 //@workItem.1" role="//@role.0"/>
+  <performer name="Bob" workItem="//@workItem.2" role="//@role.0"/>
+  <role name="Trader" member="//@performer.0 //@performer.1" super="//@role.1"/>
+  <role name="Supervisor" sub="//@role.0"/>
+  <selection>
+    <taskSet name="SoD" selectedTasks="//@task.1 //@task.0"/>
+    <taskSet name="BoD" selectedTasks="//@task.2 //@task.0"/>
+  </selection>
+</bpmn2extension:ExtensionRoot>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Prints the content of a UML2 model to the console"
+            id="carisma.check.dummy"
+            name="CARiSMA Dummy Check"
+            implementingClass="carisma.check.dummy.Check"
+            publisher="Sven Wenzel"
+            targetModelType="UML2">
+         <parameter
+               description="e.g. your name"
+               id="carisma.check.dummy.testString"
+               name="a test string"
+               optional="false"
+               type="String">
+         </parameter>
+         <parameter
+               defaultValue="17"
+               description="possible values: 0, 1, or 2"
+               id="carisma.check.dummy.number"
+               name="a number"
+               optional="true"
+               type="int">
+         </parameter>
+      </check>
+   </extension>
+   <extension
+         id="carisma.check.dummy.help"
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="true">
+      </toc>
+   </extension>
+</plugin>

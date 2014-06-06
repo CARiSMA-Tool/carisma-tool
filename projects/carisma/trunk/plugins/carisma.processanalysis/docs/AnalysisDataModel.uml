@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA">
+  <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="carisma.processanalysis.textmodel">
+    <ownedComment xmi:id="_lfq2MIStEeG5rKf2DFftog">
+      <body>Text = Hallo Welt&#xD;
+Word1 = Hallo&#xD;
+Word2 = Welt&#xD;
+WordExtension1 an Word1 = Guten Tag!</body>
+    </ownedComment>
+    <ownedComment xmi:id="_p4tTAIStEeG5rKf2DFftog" annotatedElement="_5vJBAIR9EeG5rKf2DFftog">
+      <body>Proxy f. Element aus Prozessmodell</body>
+    </ownedComment>
+    <ownedComment xmi:id="_wq8b0IStEeG5rKf2DFftog" annotatedElement="_791tMIR9EeG5rKf2DFftog">
+      <body>alle Texte die an einer Entität hängen können</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Class" xmi:id="_2h1-kIR9EeG5rKf2DFftog" name="ProcessDescription">
+      <ownedAttribute xmi:id="_94SnsIR9EeG5rKf2DFftog" name="entities" type="_5vJBAIR9EeG5rKf2DFftog" isUnique="false" aggregation="composite" association="_94hRMIR9EeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_94SnsYR9EeG5rKf2DFftog" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_94SnsoR9EeG5rKf2DFftog"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Bjd0wISFEeG5rKf2DFftog" name="origin">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5vJBAIR9EeG5rKf2DFftog" name="ProcessEntity">
+      <ownedAttribute xmi:id="_-Q7xMIR9EeG5rKf2DFftog" name="texts" type="_791tMIR9EeG5rKf2DFftog" isUnique="false" aggregation="composite" association="_-RDtAIR9EeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-Q7xMYR9EeG5rKf2DFftog" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-Q7xMoR9EeG5rKf2DFftog"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_SxWdEISFEeG5rKf2DFftog" name="id">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_d8sN8ISiEeG5rKf2DFftog" name="type">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_sp7ecISiEeG5rKf2DFftog" name="object">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EObject"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_zDE3AISQEeG5rKf2DFftog" name="getName"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_791tMIR9EeG5rKf2DFftog" name="Text">
+      <ownedAttribute xmi:id="_egtukISCEeG5rKf2DFftog" name="kind" type="_RgqYoISCEeG5rKf2DFftog"/>
+      <ownedAttribute xmi:id="_kCFFYISCEeG5rKf2DFftog" name="value">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_H_STkISDEeG5rKf2DFftog" name="words" type="_58598ISCEeG5rKf2DFftog" isUnique="false" aggregation="composite" association="_H_ZBQISDEeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H_STkYSDEeG5rKf2DFftog" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H_STkoSDEeG5rKf2DFftog"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_IqzgUISEEeG5rKf2DFftog" name="phrases" type="_GLFVkISEEeG5rKf2DFftog" isUnique="false" aggregation="composite" association="_Iq4Y0ISEEeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IqzgUYSEEeG5rKf2DFftog" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IqzgUoSEEeG5rKf2DFftog"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_94hRMIR9EeG5rKf2DFftog" name="A_&lt;dataModel>_&lt;modelEntity>" memberEnd="_94hRMYR9EeG5rKf2DFftog _94SnsIR9EeG5rKf2DFftog">
+      <ownedEnd xmi:id="_94hRMYR9EeG5rKf2DFftog" name="dataModel" type="_2h1-kIR9EeG5rKf2DFftog" isUnique="false" association="_94hRMIR9EeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_94hRMoR9EeG5rKf2DFftog" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_94hRM4R9EeG5rKf2DFftog" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_-RDtAIR9EeG5rKf2DFftog" name="A_&lt;modelEntity>_&lt;text>" memberEnd="_-RDtAYR9EeG5rKf2DFftog _-Q7xMIR9EeG5rKf2DFftog">
+      <ownedEnd xmi:id="_-RDtAYR9EeG5rKf2DFftog" name="modelEntity" type="_5vJBAIR9EeG5rKf2DFftog" isUnique="false" association="_-RDtAIR9EeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-RDtAoR9EeG5rKf2DFftog" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-RDtA4R9EeG5rKf2DFftog" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_RgqYoISCEeG5rKf2DFftog" name="TextKind">
+      <ownedLiteral xmi:id="_SzDNkISCEeG5rKf2DFftog" name="Name"/>
+      <ownedLiteral xmi:id="_UyG7QISCEeG5rKf2DFftog" name="Description"/>
+      <ownedLiteral xmi:id="_cWB_sISCEeG5rKf2DFftog" name="Comment"/>
+      <ownedLiteral xmi:id="_xOkMcISQEeG5rKf2DFftog" name="Other"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_58598ISCEeG5rKf2DFftog" name="Word">
+      <ownedAttribute xmi:id="_8p5vsISCEeG5rKf2DFftog" name="value">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_3r5vMISDEeG5rKf2DFftog" name="wordExtensions" type="_nLi7QISDEeG5rKf2DFftog" isUnique="false" aggregation="composite" association="_3r-AqoSDEeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3r5vMYSDEeG5rKf2DFftog" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3r5vMoSDEeG5rKf2DFftog"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_H_ZBQISDEeG5rKf2DFftog" name="A_&lt;text>_&lt;word>" memberEnd="_H_ZBQYSDEeG5rKf2DFftog _H_STkISDEeG5rKf2DFftog">
+      <ownedEnd xmi:id="_H_ZBQYSDEeG5rKf2DFftog" name="text" type="_791tMIR9EeG5rKf2DFftog" isUnique="false" association="_H_ZBQISDEeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H_ZBQoSDEeG5rKf2DFftog" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H_ZBQ4SDEeG5rKf2DFftog" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_nLi7QISDEeG5rKf2DFftog" name="WordExtension">
+      <generalization xmi:id="_2s5JQ4SDEeG5rKf2DFftog" general="_58598ISCEeG5rKf2DFftog"/>
+      <ownedAttribute xmi:id="_z1kW0ISDEeG5rKf2DFftog" name="kind" type="_rDrqcISDEeG5rKf2DFftog"/>
+      <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_qhgxgISDEeG5rKf2DFftog" name="WordExtensionKind">
+        <ownedLiteral xmi:id="_qhgxgYSDEeG5rKf2DFftog" name="Synonym"/>
+        <ownedLiteral xmi:id="_qhgxgoSDEeG5rKf2DFftog" name="CoOccurence"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_rDrqcISDEeG5rKf2DFftog" name="WordExtensionKind">
+      <ownedLiteral xmi:id="_rDrqcYSDEeG5rKf2DFftog" name="Synonym"/>
+      <ownedLiteral xmi:id="_rDrqcoSDEeG5rKf2DFftog" name="CoOccurence"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_3r-AqoSDEeG5rKf2DFftog" name="A_&lt;word>_&lt;wordExtension>" memberEnd="_3r-Aq4SDEeG5rKf2DFftog _3r5vMISDEeG5rKf2DFftog">
+      <ownedEnd xmi:id="_3r-Aq4SDEeG5rKf2DFftog" name="word" type="_58598ISCEeG5rKf2DFftog" association="_3r-AqoSDEeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3r-ArISDEeG5rKf2DFftog" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3r-ArYSDEeG5rKf2DFftog" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_GLFVkISEEeG5rKf2DFftog" name="Phrase">
+      <ownedAttribute xmi:id="_MCWD4ISEEeG5rKf2DFftog" name="words" type="_58598ISCEeG5rKf2DFftog" isUnique="false" aggregation="shared" association="_MCZHOoSEEeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MCWD4YSEEeG5rKf2DFftog" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MCWD4oSEEeG5rKf2DFftog" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Iq4Y0ISEEeG5rKf2DFftog" name="A_&lt;text>_&lt;phrase>" memberEnd="_Iq4Y0YSEEeG5rKf2DFftog _IqzgUISEEeG5rKf2DFftog">
+      <ownedEnd xmi:id="_Iq4Y0YSEEeG5rKf2DFftog" name="text" type="_791tMIR9EeG5rKf2DFftog" association="_Iq4Y0ISEEeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Iq4Y0oSEEeG5rKf2DFftog" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Iq4Y04SEEeG5rKf2DFftog" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_MCZHOoSEEeG5rKf2DFftog" name="A_&lt;phrase>_&lt;word>" memberEnd="_MCZHO4SEEeG5rKf2DFftog _MCWD4ISEEeG5rKf2DFftog">
+      <ownedEnd xmi:id="_MCZHO4SEEeG5rKf2DFftog" name="phrase" visibility="public" type="_GLFVkISEEeG5rKf2DFftog" association="_MCZHOoSEEeG5rKf2DFftog">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MCZHPISEEeG5rKf2DFftog" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MCZHPYSEEeG5rKf2DFftog"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

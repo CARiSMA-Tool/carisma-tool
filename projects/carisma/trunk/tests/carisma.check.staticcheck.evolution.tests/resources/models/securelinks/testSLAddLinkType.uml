@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testSLAddLinkTypeModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testSLAddLinkTypePackage">
+      <packagedElement xmi:type="uml:Node" xmi:id="_tL9VgIrZEeGYoZBh_kgJ_Q" name="Node1" clientDependency="_0hsM8IrZEeGYoZBh_kgJ_Q">
+        <deployment xmi:id="_0hsM8IrZEeGYoZBh_kgJ_Q" name="Deployment1" supplier="_uhoH8IrZEeGYoZBh_kgJ_Q" client="_tL9VgIrZEeGYoZBh_kgJ_Q" deployedArtifact="_uhoH8IrZEeGYoZBh_kgJ_Q"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Node" xmi:id="_tVWiEIrZEeGYoZBh_kgJ_Q" name="Node2" clientDependency="_0uMX4IrZEeGYoZBh_kgJ_Q">
+        <deployment xmi:id="_0uMX4IrZEeGYoZBh_kgJ_Q" name="Deployment1" supplier="_upqpoIrZEeGYoZBh_kgJ_Q" client="_tVWiEIrZEeGYoZBh_kgJ_Q" deployedArtifact="_upqpoIrZEeGYoZBh_kgJ_Q"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_uhoH8IrZEeGYoZBh_kgJ_Q" name="Artifact1" clientDependency="_zo6x4IrZEeGYoZBh_kgJ_Q"/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_upqpoIrZEeGYoZBh_kgJ_Q" name="Artifact2"/>
+      <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_vu_S8IrZEeGYoZBh_kgJ_Q" name="abLink" memberEnd="_vu_6AIrZEeGYoZBh_kgJ_Q _vu_6A4rZEeGYoZBh_kgJ_Q">
+        <ownedEnd xmi:id="_vu_6AIrZEeGYoZBh_kgJ_Q" name="source" type="_tL9VgIrZEeGYoZBh_kgJ_Q" association="_vu_S8IrZEeGYoZBh_kgJ_Q">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vu_6AYrZEeGYoZBh_kgJ_Q" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vu_6AorZEeGYoZBh_kgJ_Q" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_vu_6A4rZEeGYoZBh_kgJ_Q" name="target" type="_tVWiEIrZEeGYoZBh_kgJ_Q" association="_vu_S8IrZEeGYoZBh_kgJ_Q">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vu_6BIrZEeGYoZBh_kgJ_Q" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vu_6BYrZEeGYoZBh_kgJ_Q" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_zo6x4IrZEeGYoZBh_kgJ_Q" name="dep" supplier="_upqpoIrZEeGYoZBh_kgJ_Q" client="_uhoH8IrZEeGYoZBh_kgJ_Q"/>
+    </packagedElement>
+    <profileApplication xmi:id="_34dUcIrZEeGYoZBh_kgJ_Q">
+      <eAnnotations xmi:id="_34dUcYrZEeGYoZBh_kgJ_Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_34dUcorZEeGYoZBh_kgJ_Q">
+      <eAnnotations xmi:id="_34dUc4rZEeGYoZBh_kgJ_Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securelinks xmi:id="_-aqdMIrZEeGYoZBh_kgJ_Q" adversary="custom" base_Package="idModel"/>
+  <UMLchange:add xmi:id="_H3mRsIraEeGYoZBh_kgJ_Q" base_Element="_vu_S8IrZEeGYoZBh_kgJ_Q">
+    <ref>addLinktype</ref>
+    <new>addLinktype={Stereotype(name=LAN)}</new>
+  </UMLchange:add>
+</xmi:XMI>

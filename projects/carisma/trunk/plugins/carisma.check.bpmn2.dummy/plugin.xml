@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Prints the content of a BPMN 2 model to the console"
+            id="carisma.check.bpmn2dummy"
+            implementingClass="carisma.check.bpmn2.dummy.Check"
+            magicKeys="bpmn2"
+            name="BPMN2 Dummy Check"
+            publisher="Marcel Michel"
+            targetModelType="BPMN2">
+      </check>
+   </extension>
+   <extension
+         id="carisma.check.bpmn2.dummy.help"
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="true">
+      </toc>
+   </extension>
+
+</plugin>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="test">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testMoveNameNotQualifiedEnough">
+      <packagedElement xmi:type="uml:Class" xmi:id="_OpCD8HZ7EeGdHPeilRQ6Cw" name="Class1"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_O48IMHZ7EeGdHPeilRQ6Cw" name="Class1"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_P0i00HZ7EeGdHPeilRQ6Cw" name="Class2">
+        <ownedAttribute xmi:id="_xR4HQHZ7EeGdHPeilRQ6Cw" name="propertyToMove"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_LF8XsHZ7EeGdHPeilRQ6Cw">
+      <eAnnotations xmi:id="_LF8XsXZ7EeGdHPeilRQ6Cw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_LF8XsnZ7EeGdHPeilRQ6Cw">
+      <eAnnotations xmi:id="_LF8Xs3Z7EeGdHPeilRQ6Cw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:move xmi:id="_zIMvsHZ7EeGdHPeilRQ6Cw" base_Element="_xR4HQHZ7EeGdHPeilRQ6Cw">
+    <ref>toNotQualified</ref>
+    <to>toNotQualified={Class1(name=moved)}</to>
+  </UMLchange:move>
+</xmi:XMI>

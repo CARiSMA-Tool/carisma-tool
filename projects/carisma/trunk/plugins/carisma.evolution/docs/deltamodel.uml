@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_freUkXcPEeCRK5DvaO6hmQ" name="Model">
+  <ownedComment xmi:id="_qGiv0HcQEeCRK5DvaO6hmQ" annotatedElement="_gqY-cHcQEeCRK5DvaO6hmQ">
+    <body>an element from the original model to which the change is applied (for ADD it is the container of the new element, for SUBST it is the replaced element, for DEL it is the element to be deleted)</body>
+  </ownedComment>
+  <ownedComment xmi:id="_DzSI4HcTEeCRK5DvaO6hmQ" annotatedElement="_g30y8HcPEeCRK5DvaO6hmQ">
+    <body>- metaClass defines the type of the element to be created (can be set to null in case of deletion)&#xD;
+- values is a map that contains key value pair to set the attributes of the new element&#xD;
+- content can define further elements that are contained in the new element</body>
+  </ownedComment>
+  <ownedComment xmi:id="_YYuGYHcUEeCRK5DvaO6hmQ" annotatedElement="_n0d08HcPEeCRK5DvaO6hmQ">
+    <body>groups a set of changes that belong together</body>
+  </ownedComment>
+  <ownedComment xmi:id="_ec52YHcUEeCRK5DvaO6hmQ" annotatedElement="_o-YqYHcPEeCRK5DvaO6hmQ">
+    <body>represents one change which can consist of different alternatives</body>
+  </ownedComment>
+  <ownedComment xmi:id="_eBBHcHcbEeCRK5DvaO6hmQ">
+    <body>white: data model to describe changes (in carisma.evolution)&#xD;
+dark blue: components in carisma.evolution&#xD;
+light blue: different source for delta generation (seperate plugins)&#xD;
+orange: modeltype-specific component to change models (eg. carisma.evolution.uml2)&#xD;
+green: exemplary analysis plugin (seperate plugins)</body>
+  </ownedComment>
+  <ownedComment xmi:id="_GtFRcHccEeCRK5DvaO6hmQ" annotatedElement="_dQTD4HcVEeCRK5DvaO6hmQ">
+    <body>represents one possible evolution that can be applied to a model</body>
+  </ownedComment>
+  <ownedComment xmi:id="_Ht0s0L3VEeCj8YC26Q_Zrg" annotatedElement="_0CJMYL3UEeCj8YC26Q_Zrg">
+    <body> modifies the element denoted as &quot;target&quot; by replacing the attributes given in the &quot;values&quot; hashmap with the respective values</body>
+  </ownedComment>
+  <packageImport xmi:id="_freUkncPEeCRK5DvaO6hmQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_g30y8HcPEeCRK5DvaO6hmQ" name="AddElement">
+    <generalization xmi:id="_-yATEJG7EeCee7z9HY53Zg" general="_Zz2lQJG7EeCee7z9HY53Zg"/>
+    <ownedAttribute xmi:id="_Fnp7cHcREeCRK5DvaO6hmQ" name="metaClass" visibility="public" type="_--nKsHvNEeCQmfeJx7LsAQ" isUnique="false">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HaBQ8HcREeCRK5DvaO6hmQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HZ9mkHcREeCRK5DvaO6hmQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_HaEUQHcREeCRK5DvaO6hmQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_yS6pcHcSEeCRK5DvaO6hmQ" name="values" type="_z1uVcHcREeCRK5DvaO6hmQ"/>
+    <ownedOperation xmi:id="_CjxCkJG-EeCee7z9HY53Zg" name="getAllAddedElements">
+      <ownedParameter xmi:id="_HMdE8JG-EeCee7z9HY53Zg" name="allAddedElements" type="_g30y8HcPEeCRK5DvaO6hmQ" direction="out" effect="create">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_S4o_QJG-EeCee7z9HY53Zg" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_S4MTUJG-EeCee7z9HY53Zg" value="1"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_n0d08HcPEeCRK5DvaO6hmQ" name="Alternative"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_o-YqYHcPEeCRK5DvaO6hmQ" name="Change">
+    <ownedAttribute xmi:id="_S9AocHcQEeCRK5DvaO6hmQ" name="ref" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UA4gQHcQEeCRK5DvaO6hmQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UA014HcQEeCRK5DvaO6hmQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_UA68gHcQEeCRK5DvaO6hmQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_YgKvAHcQEeCRK5DvaO6hmQ" name="constraint" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlYqoHcQEeCRK5DvaO6hmQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlVnUHcQEeCRK5DvaO6hmQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zlbt8HcQEeCRK5DvaO6hmQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_E2hO4HcQEeCRK5DvaO6hmQ" name="change_alternative_0" memberEnd="_E2hO4XcQEeCRK5DvaO6hmQ _E2eyoHcQEeCRK5DvaO6hmQ" navigableOwnedEnd="_E2eyoHcQEeCRK5DvaO6hmQ">
+    <ownedEnd xmi:id="_E2hO4XcQEeCRK5DvaO6hmQ" name="change" type="_o-YqYHcPEeCRK5DvaO6hmQ" association="_E2hO4HcQEeCRK5DvaO6hmQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_E2hO4ncQEeCRK5DvaO6hmQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_E2hO43cQEeCRK5DvaO6hmQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_E2eyoHcQEeCRK5DvaO6hmQ" name="alternatives" type="_n0d08HcPEeCRK5DvaO6hmQ" aggregation="composite" association="_E2hO4HcQEeCRK5DvaO6hmQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_E2fZsHcQEeCRK5DvaO6hmQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_E2fZsXcQEeCRK5DvaO6hmQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_K-gg0HcQEeCRK5DvaO6hmQ" name="alternative_deltaElement_0" memberEnd="_K-gg0XcQEeCRK5DvaO6hmQ _K-eroHcQEeCRK5DvaO6hmQ" navigableOwnedEnd="_K-eroHcQEeCRK5DvaO6hmQ">
+    <ownedEnd xmi:id="_K-gg0XcQEeCRK5DvaO6hmQ" name="alternative" type="_n0d08HcPEeCRK5DvaO6hmQ" association="_K-gg0HcQEeCRK5DvaO6hmQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K-gg0ncQEeCRK5DvaO6hmQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_K-gg03cQEeCRK5DvaO6hmQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_K-eroHcQEeCRK5DvaO6hmQ" name="deltaElements" type="_6lwKgJG6EeCee7z9HY53Zg" aggregation="composite" association="_K-gg0HcQEeCRK5DvaO6hmQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K-eroXcQEeCRK5DvaO6hmQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_K-eroncQEeCRK5DvaO6hmQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_gqY-cHcQEeCRK5DvaO6hmQ" name="EObject" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_hx8cYHcQEeCRK5DvaO6hmQ" name="deltaElement_eObject_0" memberEnd="_hx8cYXcQEeCRK5DvaO6hmQ _hx6nMHcQEeCRK5DvaO6hmQ" navigableOwnedEnd="_hx6nMHcQEeCRK5DvaO6hmQ">
+    <ownedEnd xmi:id="_hx8cYXcQEeCRK5DvaO6hmQ" name="deltaElement" type="_6lwKgJG6EeCee7z9HY53Zg" association="_hx8cYHcQEeCRK5DvaO6hmQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hx8cYncQEeCRK5DvaO6hmQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hx8cY3cQEeCRK5DvaO6hmQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_hx6nMHcQEeCRK5DvaO6hmQ" name="target" type="_gqY-cHcQEeCRK5DvaO6hmQ" association="_hx8cYHcQEeCRK5DvaO6hmQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hx6nMXcQEeCRK5DvaO6hmQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hx6nMncQEeCRK5DvaO6hmQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_z1uVcHcREeCRK5DvaO6hmQ" name="HashMap&lt;String,Object>"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_GvIrcHcSEeCRK5DvaO6hmQ" name="deltaElement_content_0" memberEnd="_GvIrcXcSEeCRK5DvaO6hmQ _GvGPMHcSEeCRK5DvaO6hmQ" navigableOwnedEnd="_GvGPMHcSEeCRK5DvaO6hmQ">
+    <ownedEnd xmi:id="_GvIrcXcSEeCRK5DvaO6hmQ" name="addElement" type="_g30y8HcPEeCRK5DvaO6hmQ" association="_GvIrcHcSEeCRK5DvaO6hmQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GvIrcncSEeCRK5DvaO6hmQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GvIrc3cSEeCRK5DvaO6hmQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_GvGPMHcSEeCRK5DvaO6hmQ" name="content" type="_g30y8HcPEeCRK5DvaO6hmQ" aggregation="composite" association="_GvIrcHcSEeCRK5DvaO6hmQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GvGPMXcSEeCRK5DvaO6hmQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GvGPMncSEeCRK5DvaO6hmQ"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_mo6OgHcUEeCRK5DvaO6hmQ" name="DeltaDescriptionGenerator" clientDependency="_DrzggHcWEeCRK5DvaO6hmQ">
+    <ownedOperation xmi:id="_rDVLYHcUEeCRK5DvaO6hmQ" name="generateDeltaDescriptions">
+      <ownedParameter xmi:id="_1l_44HcUEeCRK5DvaO6hmQ" name="Parameter0" type="_o-YqYHcPEeCRK5DvaO6hmQ" direction="return">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CJGNEHcVEeCRK5DvaO6hmQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CI71AHcVEeCRK5DvaO6hmQ"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_RZGMYHcVEeCRK5DvaO6hmQ" name="EMFDelta" clientDependency="_Wj7SgHcVEeCRK5DvaO6hmQ">
+    <interfaceRealization xmi:id="_Wj7SgHcVEeCRK5DvaO6hmQ" name="InterfaceRealization0" supplier="_mo6OgHcUEeCRK5DvaO6hmQ" client="_RZGMYHcVEeCRK5DvaO6hmQ" contract="_mo6OgHcUEeCRK5DvaO6hmQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TmjicHcVEeCRK5DvaO6hmQ" name="UMLchangeParser" clientDependency="_WEasAHcVEeCRK5DvaO6hmQ">
+    <interfaceRealization xmi:id="_WEasAHcVEeCRK5DvaO6hmQ" name="InterfaceRealization0" supplier="_mo6OgHcUEeCRK5DvaO6hmQ" client="_TmjicHcVEeCRK5DvaO6hmQ" contract="_mo6OgHcUEeCRK5DvaO6hmQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_dQTD4HcVEeCRK5DvaO6hmQ" name="Delta">
+    <ownedOperation xmi:id="_19WMcHcVEeCRK5DvaO6hmQ" name="getAllAdditions"/>
+    <ownedOperation xmi:id="_3NEu8HcVEeCRK5DvaO6hmQ" name="getAllDeletions"/>
+    <ownedOperation xmi:id="_4qOpcHcVEeCRK5DvaO6hmQ" name="getAllSubstitutions"/>
+    <ownedOperation xmi:id="_H9eEcJG5EeCee7z9HY53Zg" name="getAllOfType">
+      <ownedParameter xmi:id="_P84LAJG5EeCee7z9HY53Zg" name="type" visibility="public" effect="create"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ehj3cHcVEeCRK5DvaO6hmQ" name="delta_deltaElement_0" memberEnd="_ehj3cXcVEeCRK5DvaO6hmQ _ehhbMHcVEeCRK5DvaO6hmQ" navigableOwnedEnd="_ehhbMHcVEeCRK5DvaO6hmQ">
+    <ownedEnd xmi:id="_ehj3cXcVEeCRK5DvaO6hmQ" name="delta" type="_dQTD4HcVEeCRK5DvaO6hmQ" association="_ehj3cHcVEeCRK5DvaO6hmQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ehj3cncVEeCRK5DvaO6hmQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ehj3c3cVEeCRK5DvaO6hmQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_ehhbMHcVEeCRK5DvaO6hmQ" name="deltaElements" type="_6lwKgJG6EeCee7z9HY53Zg" aggregation="composite" association="_ehj3cHcVEeCRK5DvaO6hmQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ehhbMXcVEeCRK5DvaO6hmQ" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ehhbMncVEeCRK5DvaO6hmQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9JBI8HcVEeCRK5DvaO6hmQ" name="DeltaFactory" clientDependency="_FluPgHcWEeCRK5DvaO6hmQ _INuMgHcWEeCRK5DvaO6hmQ _MxUTgHcWEeCRK5DvaO6hmQ"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_DrzggHcWEeCRK5DvaO6hmQ" name="1.1. creates" supplier="_o-YqYHcPEeCRK5DvaO6hmQ" client="_mo6OgHcUEeCRK5DvaO6hmQ"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_FluPgHcWEeCRK5DvaO6hmQ" name="1. calls" supplier="_mo6OgHcUEeCRK5DvaO6hmQ" client="_9JBI8HcVEeCRK5DvaO6hmQ"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_INuMgHcWEeCRK5DvaO6hmQ" name="2.1. analyses" supplier="_o-YqYHcPEeCRK5DvaO6hmQ" client="_9JBI8HcVEeCRK5DvaO6hmQ"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_MxUTgHcWEeCRK5DvaO6hmQ" name="2. creates" supplier="_dQTD4HcVEeCRK5DvaO6hmQ" client="_9JBI8HcVEeCRK5DvaO6hmQ"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_we7mgHcWEeCRK5DvaO6hmQ" name="Modifier" clientDependency="_vXDjAHcXEeCRK5DvaO6hmQ">
+    <ownedOperation xmi:id="_x-D28HcWEeCRK5DvaO6hmQ" name="edit">
+      <ownedParameter xmi:id="_2b7wcHcWEeCRK5DvaO6hmQ" name="originalModel">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EResource"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_2CXZ4HcWEeCRK5DvaO6hmQ" name="delta" type="_dQTD4HcVEeCRK5DvaO6hmQ"/>
+      <ownedParameter xmi:id="_21pQ8HcWEeCRK5DvaO6hmQ" name="Parameter2" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EResource"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_fthpYHcXEeCRK5DvaO6hmQ" name="UMLseChAnalysisPlugin" clientDependency="_igcc8HcXEeCRK5DvaO6hmQ _3fEzAHcXEeCRK5DvaO6hmQ"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_igcc8HcXEeCRK5DvaO6hmQ" name="calls (optional)" supplier="_we7mgHcWEeCRK5DvaO6hmQ" client="_fthpYHcXEeCRK5DvaO6hmQ"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_vXDjAHcXEeCRK5DvaO6hmQ" name="applies" supplier="_dQTD4HcVEeCRK5DvaO6hmQ" client="_we7mgHcWEeCRK5DvaO6hmQ"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_3fEzAHcXEeCRK5DvaO6hmQ" name="analyses" supplier="_dQTD4HcVEeCRK5DvaO6hmQ" client="_fthpYHcXEeCRK5DvaO6hmQ"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_aT2S8HvNEeCQmfeJx7LsAQ" name="deltaElement_deltaElement_0" memberEnd="_aT2S8XvNEeCQmfeJx7LsAQ _aTnpcHvNEeCQmfeJx7LsAQ" navigableOwnedEnd="_aTnpcHvNEeCQmfeJx7LsAQ">
+    <ownedEnd xmi:id="_aT2S8XvNEeCQmfeJx7LsAQ" name="deltaElement" type="_g30y8HcPEeCRK5DvaO6hmQ" association="_aT2S8HvNEeCQmfeJx7LsAQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aT2S8nvNEeCQmfeJx7LsAQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aT2S83vNEeCQmfeJx7LsAQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_aTnpcHvNEeCQmfeJx7LsAQ" name="parent" type="_Zz2lQJG7EeCee7z9HY53Zg" association="_aT2S8HvNEeCQmfeJx7LsAQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aTnpcXvNEeCQmfeJx7LsAQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aTnpcnvNEeCQmfeJx7LsAQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_--nKsHvNEeCQmfeJx7LsAQ" name="EClass"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_6lwKgJG6EeCee7z9HY53Zg" name="DeltaElement" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Zz2lQJG7EeCee7z9HY53Zg" name="AdditiveElement" isAbstract="true">
+    <generalization xmi:id="_jPgAUJG7EeCee7z9HY53Zg" general="_6lwKgJG6EeCee7z9HY53Zg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_cgQhIJG7EeCee7z9HY53Zg" name="DelElement">
+    <generalization xmi:id="_g3zwMJG7EeCee7z9HY53Zg" general="_6lwKgJG6EeCee7z9HY53Zg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TO7DMJG8EeCee7z9HY53Zg" name="SubstElement">
+    <generalization xmi:id="_bBhc0JG8EeCee7z9HY53Zg" general="_Zz2lQJG7EeCee7z9HY53Zg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_l1FGA5G8EeCee7z9HY53Zg" name="components" memberEnd="_l1FGBJG8EeCee7z9HY53Zg _l1FGAJG8EeCee7z9HY53Zg" navigableOwnedEnd="_l1FGAJG8EeCee7z9HY53Zg">
+    <ownedEnd xmi:id="_l1FGBJG8EeCee7z9HY53Zg" name="substitution" type="_TO7DMJG8EeCee7z9HY53Zg" association="_l1FGA5G8EeCee7z9HY53Zg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_l1FGBZG8EeCee7z9HY53Zg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_l1FGBpG8EeCee7z9HY53Zg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_l1FGAJG8EeCee7z9HY53Zg" name="components" type="_g30y8HcPEeCRK5DvaO6hmQ" aggregation="composite" association="_l1FGA5G8EeCee7z9HY53Zg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_l1FGAZG8EeCee7z9HY53Zg" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_l1FGApG8EeCee7z9HY53Zg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_0CJMYL3UEeCj8YC26Q_Zrg" name="EditElement">
+    <generalization xmi:id="_2G-K4L3UEeCj8YC26Q_Zrg" general="_6lwKgJG6EeCee7z9HY53Zg"/>
+    <ownedAttribute xmi:id="_5ucn4L3UEeCj8YC26Q_Zrg" name="values" type="_z1uVcHcREeCRK5DvaO6hmQ"/>
+  </packagedElement>
+</uml:Model>

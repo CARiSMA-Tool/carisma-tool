@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testEditStereotypeClassTopcased">
+      <packagedElement xmi:type="uml:Class" xmi:id="_wUSZoHanEeGRGLSgOVCdzw" name="Class1">
+        <ownedAttribute xmi:id="_ycZ8sHanEeGRGLSgOVCdzw" name="testProp"/>
+        <ownedOperation xmi:id="_3KVrcHanEeGRGLSgOVCdzw" name="Operation1"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_JwPPkHaoEeGRGLSgOVCdzw">
+      <eAnnotations xmi:id="_JwPPkXaoEeGRGLSgOVCdzw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:edit xmi:id="_LWteIHaoEeGRGLSgOVCdzw" base_Element="_3KVrcHanEeGRGLSgOVCdzw">
+    <ref>someRef</ref>
+    <values>someRef={(type=String)}</values>
+  </UMLchange:edit>
+</xmi:XMI>

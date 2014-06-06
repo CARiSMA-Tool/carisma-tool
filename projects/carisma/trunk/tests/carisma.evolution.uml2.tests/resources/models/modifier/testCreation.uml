@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="testCreationModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testCreationPackage">
+    <packagedElement xmi:type="uml:Node" xmi:id="_LJ1dUI-iEeGTLvq2iWmV2g" name="Node1" clientDependency="_UwJQQ4-iEeGTLvq2iWmV2g">
+      <deployment xmi:id="_UwJQQ4-iEeGTLvq2iWmV2g" name="Deployment1" supplier="_Mg3hsI-iEeGTLvq2iWmV2g" client="_LJ1dUI-iEeGTLvq2iWmV2g" deployedArtifact="_Mg3hsI-iEeGTLvq2iWmV2g"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_LRiAwI-iEeGTLvq2iWmV2g" name="Node2"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_LthZMI-iEeGTLvq2iWmV2g" name="Node3"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_Mg3hsI-iEeGTLvq2iWmV2g" name="Artifact1" clientDependency="_YfAus4-iEeGTLvq2iWmV2g"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_MnqGMI-iEeGTLvq2iWmV2g" name="Artifact2"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_MyuGsI-iEeGTLvq2iWmV2g" name="Artifact3"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_SwSRVI-iEeGTLvq2iWmV2g" name="abLink" memberEnd="_SwS4YI-iEeGTLvq2iWmV2g _SwS4Y4-iEeGTLvq2iWmV2g">
+      <ownedEnd xmi:id="_SwS4YI-iEeGTLvq2iWmV2g" name="source" type="_LJ1dUI-iEeGTLvq2iWmV2g" association="_SwSRVI-iEeGTLvq2iWmV2g">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SwS4YY-iEeGTLvq2iWmV2g" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SwS4Yo-iEeGTLvq2iWmV2g" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_SwS4Y4-iEeGTLvq2iWmV2g" name="target" type="_LRiAwI-iEeGTLvq2iWmV2g" association="_SwSRVI-iEeGTLvq2iWmV2g">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SwS4ZI-iEeGTLvq2iWmV2g" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SwS4ZY-iEeGTLvq2iWmV2g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_YfAus4-iEeGTLvq2iWmV2g" name="dep" supplier="_MnqGMI-iEeGTLvq2iWmV2g" client="_Mg3hsI-iEeGTLvq2iWmV2g"/>
+  </packagedElement>
+  <profileApplication xmi:id="_7pWqoI-kEeGTLvq2iWmV2g">
+    <eAnnotations xmi:id="_7pYf0I-kEeGTLvq2iWmV2g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+    </eAnnotations>
+    <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+  </profileApplication>
+</uml:Model>

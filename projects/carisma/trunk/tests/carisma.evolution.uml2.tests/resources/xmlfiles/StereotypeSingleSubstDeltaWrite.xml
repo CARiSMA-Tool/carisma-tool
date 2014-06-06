@@ -1,0 +1,32 @@
+<Delta>
+  <deltaElements>
+    <SubstElement>
+      <target class="StereotypeApplication">
+        <type>StereotypeApplication</type>
+        <name>authorized-status</name>
+        <xmiID>__wzHcGINEeGeQ6PWdg4u1A</xmiID>
+        <ExtendedElement>ImporterTestModel::ImporterTestPackage::ImporterTestStateMachine::MainRegion::TERMINATED</ExtendedElement>
+        <profile>UMLsec</profile>
+      </target>
+      <components>
+        <AddElement>
+          <typename>Property</typename>
+          <values>
+            <entry>
+              <key>name</key>
+              <value>id</value>
+            </entry>
+            <entry>
+              <key>value</key>
+              <value>xyz</value>
+            </entry>
+          </values>
+          <content/>
+        </AddElement>
+      </components>
+    </SubstElement>
+  </deltaElements>
+  <usedChanges>
+    <string>someChange(1)</string>
+  </usedChanges>
+</Delta>

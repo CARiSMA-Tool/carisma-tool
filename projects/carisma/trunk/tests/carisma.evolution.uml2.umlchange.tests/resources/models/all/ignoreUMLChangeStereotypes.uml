@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="ignoreUMLChangeStereotypes">
+      <packagedElement xmi:type="uml:Package" xmi:id="_acNuEHzREeG1JfJtIO_r1w" name="Package1">
+        <packagedElement xmi:type="uml:Class" xmi:id="_a_YFiHzREeG1JfJtIO_r1w" name="Class1"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_guQ68HzREeG1JfJtIO_r1w">
+      <eAnnotations xmi:id="_guQ68XzREeG1JfJtIO_r1w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:delall xmi:id="_lG3S4HzREeG1JfJtIO_r1w" base_Element="_acNuEHzREeG1JfJtIO_r1w">
+    <ref>delAll1</ref>
+    <ref>delAll2</ref>
+    <ref>delAll3</ref>
+    <ext>delAll2=add</ext>
+    <ext>delAll3=add.new</ext>
+    <pattern>delAll1={Class(contents=&lt;Stereotype(contents=&lt;Property()>)>)}</pattern>
+    <pattern>delAll2={Stereotype()}</pattern>
+    <pattern>delAll3={TaggedValue()}</pattern>
+  </UMLchange:delall>
+  <UMLchange:add xmi:id="_mWvmYHzREeG1JfJtIO_r1w" base_Element="_a_YFiHzREeG1JfJtIO_r1w">
+    <ref>something</ref>
+  </UMLchange:add>
+</xmi:XMI>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="idModel" name="testEditStereotypeStateMachineTopcasedModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testEditStereotypeStateMachineTopcasedPackage">
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="testEditStereotypeStateMachineTopcasedStateMachine">
+        <region xmi:id="idRegion" name="MainRegion">
+          <subvertex xmi:type="uml:State" xmi:id="_01_-QHXLEeGLorExNxtpew" name="State1"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_9EQZIHXLEeGLorExNxtpew" name="Pseudostate1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_98JDYHXLEeGLorExNxtpew" name="State2"/>
+          <subvertex xmi:type="uml:State" xmi:id="__11I4HXLEeGLorExNxtpew" name="State3"/>
+          <subvertex xmi:type="uml:FinalState" xmi:id="_BQ4KkHXMEeGLorExNxtpew" name="FinalState1"/>
+          <transition xmi:id="_I-KJ5HXNEeGLorExNxtpew" name="Transition1" kind="local" source="_9EQZIHXLEeGLorExNxtpew" target="_01_-QHXLEeGLorExNxtpew"/>
+          <transition xmi:id="_KTOfZHXNEeGLorExNxtpew" name="Transition2" kind="local" source="_01_-QHXLEeGLorExNxtpew" target="_BQ4KkHXMEeGLorExNxtpew"/>
+          <transition xmi:id="_Mp74FHXNEeGLorExNxtpew" name="Transition3" kind="local" source="_98JDYHXLEeGLorExNxtpew" target="__11I4HXLEeGLorExNxtpew"/>
+          <transition xmi:id="_OkJiBHXNEeGLorExNxtpew" name="Transition4" kind="local" source="__11I4HXLEeGLorExNxtpew" target="_BQ4KkHXMEeGLorExNxtpew"/>
+          <transition xmi:id="_QWaw5HXNEeGLorExNxtpew" name="Transition5" kind="local" source="_01_-QHXLEeGLorExNxtpew" target="_98JDYHXLEeGLorExNxtpew"/>
+          <transition xmi:id="_RzsAJHXNEeGLorExNxtpew" name="Transition6" kind="local" source="_01_-QHXLEeGLorExNxtpew" target="__11I4HXLEeGLorExNxtpew"/>
+        </region>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_eNIpEHXNEeGLorExNxtpew">
+      <eAnnotations xmi:id="_eNIpEXXNEeGLorExNxtpew" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:edit xmi:id="_f_JZQHXNEeGLorExNxtpew" base_Element="_01_-QHXLEeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>someRef={(name=newName)}</values>
+  </UMLchange:edit>
+  <UMLchange:edit xmi:id="_qO4jsHXNEeGLorExNxtpew" base_Element="_Mp74FHXNEeGLorExNxtpew">
+    <ref>someRef</ref>
+    <values>someRef={(target=testEditStereotypeStateMachineTopcasedPackage::testEditStereotypeStateMachineTopcasedStateMachine::MainRegion::FinalState1)}</values>
+  </UMLchange:edit>
+</xmi:XMI>

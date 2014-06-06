@@ -1,0 +1,72 @@
+<Delta>
+  <deltaElements>
+    <AddElement>
+      <target class="NamedElement">
+        <type>PseudostateImpl</type>
+        <name>Pseudostate1</name>
+        <xmiID>_oSsTsGIMEeGeQ6PWdg4u1A</xmiID>
+      </target>
+      <typename>State</typename>
+      <values>
+        <entry>
+          <key>name</key>
+          <value>someThing</value>
+        </entry>
+      </values>
+      <content/>
+    </AddElement>
+    <SubstElement>
+      <target class="TaggedValue">
+        <type>Tagged Value</type>
+        <name>id</name>
+        <xmiID>_5VssQGINEeGeQ6PWdg4u1A</xmiID>
+        <ExtendedElement>ImporterTestModel::ImporterTestPackage::ImporterTestStateMachine::MainRegion::SECURED</ExtendedElement>
+        <profile>UMLsec</profile>
+        <stereotype>identifiable</stereotype>
+      </target>
+      <components>
+        <AddElement>
+          <typename>Property</typename>
+          <values>
+            <entry>
+              <key>name</key>
+              <value>id</value>
+            </entry>
+            <entry>
+              <key>value</key>
+              <value>xyz</value>
+            </entry>
+          </values>
+          <content/>
+        </AddElement>
+      </components>
+    </SubstElement>
+    <EditElement>
+      <target class="NamedElement">
+        <type>StateImpl</type>
+        <name>CARD_LOCKED</name>
+        <xmiID>_7DbZYGINEeGeQ6PWdg4u1A</xmiID>
+      </target>
+      <values>
+        <entry>
+          <key>name</key>
+          <value>newName</value>
+        </entry>
+      </values>
+    </EditElement>
+    <DelElement>
+      <target class="StereotypeApplication">
+        <type>StereotypeApplication</type>
+        <name>authorized-status</name>
+        <xmiID>__wzHcGINEeGeQ6PWdg4u1A</xmiID>
+        <ExtendedElement>ImporterTestModel::ImporterTestPackage::ImporterTestStateMachine::MainRegion::TERMINATED</ExtendedElement>
+        <profile>UMLsec</profile>
+      </target>
+    </DelElement>
+  </deltaElements>
+  <usedChanges>
+    <string>someChange(1)</string>
+    <string>anotherChange(1)</string>
+    <string>oneMoreChange</string>
+  </usedChanges>
+</Delta>

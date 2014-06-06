@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="WrongExt">
+      <packagedElement xmi:type="uml:Class" xmi:id="_SDf3WHaJEeGmS45Vi9NPLQ" name="Class1"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_VvscSHaJEeGmS45Vi9NPLQ" name="Class2"/>
+    </packagedElement>
+    <profileApplication xmi:id="_TfFEgHaJEeGmS45Vi9NPLQ">
+      <eAnnotations xmi:id="_TfFEgXaJEeGmS45Vi9NPLQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_YeNQ8HaJEeGmS45Vi9NPLQ">
+      <eAnnotations xmi:id="_YeNQ8XaJEeGmS45Vi9NPLQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:del xmi:id="_UbtE0HaJEeGmS45Vi9NPLQ" base_Element="_SDf3WHaJEeGmS45Vi9NPLQ">
+    <ref>delWrong</ref>
+    <ext>delWrong=critical</ext>
+  </UMLchange:del>
+  <UMLchange:del xmi:id="_XAeusHaJEeGmS45Vi9NPLQ" base_Element="_VvscSHaJEeGmS45Vi9NPLQ">
+    <ref>delWrongTag</ref>
+    <ext>delWrongTag=critical.bla</ext>
+  </UMLchange:del>
+  <UMLsec:critical xmi:id="_aXdRkHaJEeGmS45Vi9NPLQ" base_Class="_VvscSHaJEeGmS45Vi9NPLQ" base_Classifier="_VvscSHaJEeGmS45Vi9NPLQ">
+    <high>someValue</high>
+  </UMLsec:critical>
+</xmi:XMI>

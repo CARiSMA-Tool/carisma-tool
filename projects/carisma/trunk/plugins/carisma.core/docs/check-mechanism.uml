@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA">
+  <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="Analysis">
+    <packagedElement xmi:type="uml:Class" xmi:id="_Hh--YHG9EeGaBL1lrTuAgw" name="Analysis">
+      <ownedAttribute xmi:id="_KA_XcHG9EeGaBL1lrTuAgw" name="name" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_Xls5oHG9EeGaBL1lrTuAgw" name="modelFile" visibility="private" type="_PKGJ0HG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_Z5F4kHG9EeGaBL1lrTuAgw" name="modelType" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qXioAHG9EeGaBL1lrTuAgw" name="CheckReference" clientDependency="_lpofsHHDEeGaBL1lrTuAgw">
+      <ownedAttribute xmi:id="_WdxLwHG-EeGaBL1lrTuAgw" name="checkID" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_YtbhQHG-EeGaBL1lrTuAgw" name="enabled" visibility="private" type="_aCYiAHG-EeGaBL1lrTuAgw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_yzp4sHG9EeGaBL1lrTuAgw" name="A_&lt;analysis>_&lt;checkReference>" memberEnd="_yzp4sXG9EeGaBL1lrTuAgw _yzp4tHG9EeGaBL1lrTuAgw" navigableOwnedEnd="_yzp4tHG9EeGaBL1lrTuAgw">
+      <ownedEnd xmi:id="_yzp4sXG9EeGaBL1lrTuAgw" name="analysis" type="_Hh--YHG9EeGaBL1lrTuAgw" isUnique="false" association="_yzp4sHG9EeGaBL1lrTuAgw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yzp4snG9EeGaBL1lrTuAgw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yzp4s3G9EeGaBL1lrTuAgw"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_yzp4tHG9EeGaBL1lrTuAgw" name="checkReference" type="_qXioAHG9EeGaBL1lrTuAgw" isUnique="false" association="_yzp4sHG9EeGaBL1lrTuAgw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yzp4tXG9EeGaBL1lrTuAgw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yzp4tnG9EeGaBL1lrTuAgw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_OHXhgHG-EeGaBL1lrTuAgw" name="String"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_PKGJ0HG-EeGaBL1lrTuAgw" name="File"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_aCYiAHG-EeGaBL1lrTuAgw" name="boolean"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_k_ODAHG-EeGaBL1lrTuAgw" name="CheckParameter">
+      <ownedAttribute xmi:id="_peH3QHG-EeGaBL1lrTuAgw" name="descriptor" visibility="private" type="_ThekUHG_EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_N8xloHG_EeGaBL1lrTuAgw" name="queryOnDemand" visibility="private" type="_aCYiAHG-EeGaBL1lrTuAgw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_ThekUHG_EeGaBL1lrTuAgw" name="CheckParameterDescriptor"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_aungcHG_EeGaBL1lrTuAgw" name="A_&lt;checkReference>_&lt;checkParameter>" memberEnd="_aungcXG_EeGaBL1lrTuAgw _aungdHG_EeGaBL1lrTuAgw" navigableOwnedEnd="_aungdHG_EeGaBL1lrTuAgw">
+      <ownedEnd xmi:id="_aungcXG_EeGaBL1lrTuAgw" name="checkReference" type="_qXioAHG9EeGaBL1lrTuAgw" association="_aungcHG_EeGaBL1lrTuAgw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aungcnG_EeGaBL1lrTuAgw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aungc3G_EeGaBL1lrTuAgw"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_aungdHG_EeGaBL1lrTuAgw" name="checkParameter" type="_k_ODAHG-EeGaBL1lrTuAgw" association="_aungcHG_EeGaBL1lrTuAgw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aungdXG_EeGaBL1lrTuAgw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aungdnG_EeGaBL1lrTuAgw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3-0EEHG_EeGaBL1lrTuAgw" name="CheckRegistry" clientDependency="_Tsw1AHHEEeGaBL1lrTuAgw"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_NgakUHHAEeGaBL1lrTuAgw" name="CheckDescriptor">
+      <ownedAttribute xmi:id="_UerW8HHAEeGaBL1lrTuAgw" name="id" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_VFb08HHAEeGaBL1lrTuAgw" name="name" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_Vp_TgHHAEeGaBL1lrTuAgw" name="publisher" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_YCol4HHAEeGaBL1lrTuAgw" name="targetModelType" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_aIs6gHHAEeGaBL1lrTuAgw" name="implementingClass" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_bc6UYHHAEeGaBL1lrTuAgw" name="description" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_dv31gHHAEeGaBL1lrTuAgw" name="magicKeys" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_vasRcHHAEeGaBL1lrTuAgw" name="A_&lt;checkRegistry>_&lt;checkDescriptor>" memberEnd="_vasRcXHAEeGaBL1lrTuAgw _vasRdHHAEeGaBL1lrTuAgw" navigableOwnedEnd="_vasRdHHAEeGaBL1lrTuAgw">
+      <ownedEnd xmi:id="_vasRcXHAEeGaBL1lrTuAgw" name="checkRegistry" type="_3-0EEHG_EeGaBL1lrTuAgw" isUnique="false" association="_vasRcHHAEeGaBL1lrTuAgw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vasRcnHAEeGaBL1lrTuAgw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vasRc3HAEeGaBL1lrTuAgw"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_vasRdHHAEeGaBL1lrTuAgw" name="checkDescriptor" type="_NgakUHHAEeGaBL1lrTuAgw" isUnique="false" association="_vasRcHHAEeGaBL1lrTuAgw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vasRdXHAEeGaBL1lrTuAgw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vasRdnHAEeGaBL1lrTuAgw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_9x-gEHHAEeGaBL1lrTuAgw" name="CheckParameterDescriptor">
+      <ownedAttribute xmi:id="_YaZwMHHBEeGaBL1lrTuAgw" name="id" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_ZPb6wHHBEeGaBL1lrTuAgw" name="name" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_a3qc0HHBEeGaBL1lrTuAgw" name="description" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_bk4vMHHBEeGaBL1lrTuAgw" name="type" visibility="private" type="_NcPHkHHDEeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_d3sfUHHBEeGaBL1lrTuAgw" name="optional" visibility="private" type="_aCYiAHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_epH8QHHBEeGaBL1lrTuAgw" name="defaultValue" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_FD8R0HHBEeGaBL1lrTuAgw" name="A_&lt;checkParameter>_&lt;checkParameterDescriptor>" memberEnd="_FD8R0XHBEeGaBL1lrTuAgw _FD8R1HHBEeGaBL1lrTuAgw" navigableOwnedEnd="_FD8R1HHBEeGaBL1lrTuAgw">
+      <ownedEnd xmi:id="_FD8R0XHBEeGaBL1lrTuAgw" name="checkParameter" type="_k_ODAHG-EeGaBL1lrTuAgw" association="_FD8R0HHBEeGaBL1lrTuAgw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FD8R0nHBEeGaBL1lrTuAgw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FD8R03HBEeGaBL1lrTuAgw"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_FD8R1HHBEeGaBL1lrTuAgw" name="checkParameterDescriptor" type="_9x-gEHHAEeGaBL1lrTuAgw" association="_FD8R0HHBEeGaBL1lrTuAgw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FD8R1XHBEeGaBL1lrTuAgw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FD8R1nHBEeGaBL1lrTuAgw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_O5VCkHHBEeGaBL1lrTuAgw" name="A_&lt;checkDescriptor>_&lt;checkParameterDescriptor>" memberEnd="_O5VCkXHBEeGaBL1lrTuAgw _O5VClHHBEeGaBL1lrTuAgw" navigableOwnedEnd="_O5VClHHBEeGaBL1lrTuAgw">
+      <ownedEnd xmi:id="_O5VCkXHBEeGaBL1lrTuAgw" name="checkDescriptor" type="_NgakUHHAEeGaBL1lrTuAgw" isUnique="false" association="_O5VCkHHBEeGaBL1lrTuAgw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_O5VCknHBEeGaBL1lrTuAgw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_O5VCk3HBEeGaBL1lrTuAgw"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_O5VClHHBEeGaBL1lrTuAgw" name="checkParameterDescriptor" type="_9x-gEHHAEeGaBL1lrTuAgw" isUnique="false" association="_O5VCkHHBEeGaBL1lrTuAgw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_O5VClXHBEeGaBL1lrTuAgw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_O5VClnHBEeGaBL1lrTuAgw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_fuELEHHBEeGaBL1lrTuAgw" name="ParameterType"/>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_NcPHkHHDEeGaBL1lrTuAgw" name="ParamterType">
+      <ownedLiteral xmi:id="_cdZZoHHDEeGaBL1lrTuAgw" name="STRING"/>
+      <ownedLiteral xmi:id="_dPZeUHHDEeGaBL1lrTuAgw" name="BOOLEAN"/>
+      <ownedLiteral xmi:id="_d4TRYHHDEeGaBL1lrTuAgw" name="INTEGER"/>
+      <ownedLiteral xmi:id="_f1G8UHHDEeGaBL1lrTuAgw" name="FILE"/>
+      <ownedLiteral xmi:id="_gpSyUHHDEeGaBL1lrTuAgw" name="FOLDER"/>
+      <ownedLiteral xmi:id="_hP44QHHDEeGaBL1lrTuAgw" name="NEWFILE"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UqrEMHHDEeGaBL1lrTuAgw" name="CarismaCheck"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_lpofsHHDEeGaBL1lrTuAgw" name="refers to" supplier="_UqrEMHHDEeGaBL1lrTuAgw" client="_qXioAHG9EeGaBL1lrTuAgw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_Tsw1AHHEEeGaBL1lrTuAgw" name="instantiates" supplier="_UqrEMHHDEeGaBL1lrTuAgw" client="_3-0EEHG_EeGaBL1lrTuAgw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_buEji3KJEeGkI7rWjLeTsA" name="A_&lt;carismaCheck>_&lt;checkDescriptor>" memberEnd="_buEjjHKJEeGkI7rWjLeTsA _buEjj3KJEeGkI7rWjLeTsA">
+      <ownedEnd xmi:id="_buEjjHKJEeGkI7rWjLeTsA" name="carismaCheck" type="_UqrEMHHDEeGaBL1lrTuAgw" association="_buEji3KJEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_buEjjXKJEeGkI7rWjLeTsA"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_buEjjnKJEeGkI7rWjLeTsA"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_buEjj3KJEeGkI7rWjLeTsA" name="checkDescriptor" type="_NgakUHHAEeGaBL1lrTuAgw" association="_buEji3KJEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_buEjkHKJEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_buEjkXKJEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qx-nkHKJEeGkI7rWjLeTsA" name="StringParameter">
+      <generalization xmi:id="_VF4nMHKMEeGkI7rWjLeTsA" general="_k_ODAHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_Q0WygnKKEeGkI7rWjLeTsA" name="value" visibility="private" type="_OHXhgHG-EeGaBL1lrTuAgw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tbb9IHKJEeGkI7rWjLeTsA" name="BooleanParameter">
+      <generalization xmi:id="_eNvZAHKLEeGkI7rWjLeTsA" general="_k_ODAHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_HlufwnKKEeGkI7rWjLeTsA" name="value" visibility="private" type="_aCYiAHG-EeGaBL1lrTuAgw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wG9vQHKJEeGkI7rWjLeTsA" name="FloatParameter">
+      <generalization xmi:id="_dnbm8HKLEeGkI7rWjLeTsA" general="_k_ODAHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_tchs0HKKEeGkI7rWjLeTsA" name="value" visibility="private" type="_llSq0HKKEeGkI7rWjLeTsA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_w5_usHKJEeGkI7rWjLeTsA" name="FolderParameter">
+      <generalization xmi:id="_ejUAYHKLEeGkI7rWjLeTsA" general="_k_ODAHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_-Pz5QnKJEeGkI7rWjLeTsA" name="value" visibility="private" type="_PKGJ0HG-EeGaBL1lrTuAgw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zdpXMHKJEeGkI7rWjLeTsA" name="InputFileParameter">
+      <generalization xmi:id="_e3PB8HKLEeGkI7rWjLeTsA" general="_k_ODAHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_8yYR8HKJEeGkI7rWjLeTsA" name="value" visibility="private" type="_PKGJ0HG-EeGaBL1lrTuAgw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_0-DaAHKJEeGkI7rWjLeTsA" name="IntegerParameter">
+      <generalization xmi:id="_d9LNcHKLEeGkI7rWjLeTsA" general="_k_ODAHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="_vf1BUHKKEeGkI7rWjLeTsA" name="value" visibility="private" type="_yD0BAHKKEeGkI7rWjLeTsA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_45etwHKJEeGkI7rWjLeTsA" name="OutputFileParameter">
+      <generalization xmi:id="_fJ2b8HKLEeGkI7rWjLeTsA" general="_k_ODAHG-EeGaBL1lrTuAgw"/>
+      <ownedAttribute xmi:id="__nuucHKJEeGkI7rWjLeTsA" name="value" visibility="private" type="_PKGJ0HG-EeGaBL1lrTuAgw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_llSq0HKKEeGkI7rWjLeTsA" name="float"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_yD0BAHKKEeGkI7rWjLeTsA" name="int"/>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1"  xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/__wcg0LFCEeCXHfYhNhPYCw/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w http:///schemas/UMLsec/__wcg0LFCEeCXHfYhNhPYCw/0 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#__wdu8LFCEeCXHfYhNhPYCw">
+  <uml:Model xmi:id="_RqDFgLdrEeCXqbXxU9wOdg" name="SDE-basis">
+    <ownedComment xmi:id="_ntnqYLdrEeCXqbXxU9wOdg" annotatedElement="_UZu-4LdrEeCXqbXxU9wOdg">
+      <body>&lt;p>secrecy=op1()&lt;/p></body>
+    </ownedComment>
+    <ownedComment xmi:id="_tbPUgLdrEeCXqbXxU9wOdg" annotatedElement="_TjJVILdrEeCXqbXxU9wOdg">
+      <body>&lt;p>secrecy=op1()&lt;/p></body>
+    </ownedComment>
+    <ownedComment xmi:id="_BTvI8LdsEeCXqbXxU9wOdg" annotatedElement="_yXDuQLdrEeCXqbXxU9wOdg">
+      <body>&lt;p>high=op2()&lt;/p></body>
+    </ownedComment>
+    <ownedComment xmi:id="_Ct6A4LdsEeCXqbXxU9wOdg" annotatedElement="_w9prULdrEeCXqbXxU9wOdg">
+      <body>&lt;p>high=op2()&lt;/p></body>
+    </ownedComment>
+    <ownedComment xmi:id="_bHLR0LdsEeCXqbXxU9wOdg" annotatedElement="_UbigQLdsEeCXqbXxU9wOdg">
+      <body>&lt;p>integrity=op4()&lt;/p></body>
+    </ownedComment>
+    <ownedComment xmi:id="_s0F_gLdsEeCXqbXxU9wOdg" annotatedElement="_ecLewLdsEeCXqbXxU9wOdg">
+      <body>&lt;p>integrity=op4()&lt;/p></body>
+    </ownedComment>
+    <packageImport xmi:id="_RqDFg7drEeCXqbXxU9wOdg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_TjJVILdrEeCXqbXxU9wOdg" name="Client1" clientDependency="_XRFmgLdrEeCXqbXxU9wOdg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UZu-4LdrEeCXqbXxU9wOdg" name="Supplier1">
+      <ownedOperation xmi:id="_jHksULdrEeCXqbXxU9wOdg" name="op1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_XRFmgLdrEeCXqbXxU9wOdg" name="Dep1" supplier="_UZu-4LdrEeCXqbXxU9wOdg" client="_TjJVILdrEeCXqbXxU9wOdg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_w9prULdrEeCXqbXxU9wOdg" name="Client2" clientDependency="_3go3MLdrEeCXqbXxU9wOdg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_yXDuQLdrEeCXqbXxU9wOdg" name="Supplier2" clientDependency="_3CXm0LdrEeCXqbXxU9wOdg">
+      <ownedOperation xmi:id="_2C5G0LdrEeCXqbXxU9wOdg" name="op2"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_0XTuwLdrEeCXqbXxU9wOdg" name="ISupplier">
+      <ownedOperation xmi:id="_1QqYoLdrEeCXqbXxU9wOdg" name="op2"/>
+      <ownedOperation xmi:id="_xEyO4LwdEeCXqbXxU9wOdg" name="op2b"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Realization" xmi:id="_3CXm0LdrEeCXqbXxU9wOdg" supplier="_0XTuwLdrEeCXqbXxU9wOdg" client="_yXDuQLdrEeCXqbXxU9wOdg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_3go3MLdrEeCXqbXxU9wOdg" name="Dep2" supplier="_0XTuwLdrEeCXqbXxU9wOdg" client="_w9prULdrEeCXqbXxU9wOdg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_PaMGQLdsEeCXqbXxU9wOdg" name="Client3"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Q6jFwLdsEeCXqbXxU9wOdg" name="Supplier3"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UbigQLdsEeCXqbXxU9wOdg" name="Supplier4">
+      <ownedOperation xmi:id="_XZrFULdsEeCXqbXxU9wOdg" name="op4"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ecLewLdsEeCXqbXxU9wOdg" name="Client4"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_jKdLwLdsEeCXqbXxU9wOdg" name="Client5" clientDependency="_ncDj0LdsEeCXqbXxU9wOdg _oevI0LdsEeCXqbXxU9wOdg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kMwWQLdsEeCXqbXxU9wOdg" name="Supplier5">
+      <ownedOperation xmi:id="_nEheYLj9EeCXqbXxU9wOdg" name="op5"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_ncDj0LdsEeCXqbXxU9wOdg" name="Dep5" supplier="_kMwWQLdsEeCXqbXxU9wOdg" client="_jKdLwLdsEeCXqbXxU9wOdg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_oevI0LdsEeCXqbXxU9wOdg" name="Dep54" supplier="_UbigQLdsEeCXqbXxU9wOdg" client="_jKdLwLdsEeCXqbXxU9wOdg"/>
+    <profileApplication xmi:id="_RqDskLdrEeCXqbXxU9wOdg">
+      <eAnnotations xmi:id="_RqDskbdrEeCXqbXxU9wOdg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_bk3v4LdrEeCXqbXxU9wOdg">
+      <eAnnotations xmi:id="_blLR4LdrEeCXqbXxU9wOdg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#__wdu8LFCEeCXHfYhNhPYCw"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+        <profileApplication xmi:id="_LSGU8m3WEeGJatZmVXgFsQ">
+      <eAnnotations xmi:id="_LSGU823WEeGJatZmVXgFsQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_cwt38LdrEeCXqbXxU9wOdg" base_Package="_RqDFgLdrEeCXqbXxU9wOdg"/>
+  <Standard:Call xmi:id="_eRrUYLdrEeCXqbXxU9wOdg" base_Usage="_XRFmgLdrEeCXqbXxU9wOdg"/>
+  <UMLsec:critical xmi:id="_gw03YLdrEeCXqbXxU9wOdg" base_Class="_TjJVILdrEeCXqbXxU9wOdg" base_Classifier="_TjJVILdrEeCXqbXxU9wOdg">
+    <secrecy>op1()</secrecy>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_hilrgLdrEeCXqbXxU9wOdg" base_Class="_UZu-4LdrEeCXqbXxU9wOdg" base_Classifier="_UZu-4LdrEeCXqbXxU9wOdg">
+    <secrecy>op1()</secrecy>
+  </UMLsec:critical>
+  <Standard:Send xmi:id="_4QiqILdrEeCXqbXxU9wOdg" base_Usage="_3go3MLdrEeCXqbXxU9wOdg"/>
+  <UMLsec:critical xmi:id="_5E9wsLdrEeCXqbXxU9wOdg" base_Class="_w9prULdrEeCXqbXxU9wOdg" base_Classifier="_w9prULdrEeCXqbXxU9wOdg">
+    <high>op2()</high>
+  </UMLsec:critical>
+  <UMLsec:high xmi:id="_8m_F8LdrEeCXqbXxU9wOdg" base_Dependency="_3go3MLdrEeCXqbXxU9wOdg"/>
+  <UMLsec:secrecy xmi:id="_9jjb4LdrEeCXqbXxU9wOdg" base_Dependency="_XRFmgLdrEeCXqbXxU9wOdg"/>
+  <UMLsec:critical xmi:id="_-V5e0LdrEeCXqbXxU9wOdg" base_Class="_yXDuQLdrEeCXqbXxU9wOdg" base_Classifier="_yXDuQLdrEeCXqbXxU9wOdg">
+    <high>op2()</high>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_WBWAcLdsEeCXqbXxU9wOdg" base_Class="_UbigQLdsEeCXqbXxU9wOdg" base_Classifier="_UbigQLdsEeCXqbXxU9wOdg">
+    <integrity>op4()</integrity>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_goaFwLdsEeCXqbXxU9wOdg" base_Class="_ecLewLdsEeCXqbXxU9wOdg" base_Classifier="_ecLewLdsEeCXqbXxU9wOdg">
+    <integrity>op4()</integrity>
+  </UMLsec:critical>
+  <Standard:Call xmi:id="_qRs7QLdsEeCXqbXxU9wOdg" base_Usage="_ncDj0LdsEeCXqbXxU9wOdg"/>
+</xmi:XMI>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="__E8SsHHrEeKDjqzobJ067w" activeDiagram="__E8SsXHrEeKDjqzobJ067w">
+  <model href="testAddTransitionWithSourceStateIsLocked.uml#idStateMachine"/>
+  <diagrams xmi:id="__E8SsXHrEeKDjqzobJ067w" position="0,0" size="100,100" name="testAddTransitionWithSourceStateIsLocked" viewport="0,0">
+    <property xmi:id="__FJuEHHrEeKDjqzobJ067w" key="pageFormatName" value="A4"/>
+    <property xmi:id="__FJuEXHrEeKDjqzobJ067w" key="diagramWidth" value="840"/>
+    <property xmi:id="__FJuEnHrEeKDjqzobJ067w" key="diagramHeight" value="1188"/>
+    <property xmi:id="__FJuE3HrEeKDjqzobJ067w" key="pageMarginName" value="Small Margin"/>
+    <property xmi:id="__FJuFHHrEeKDjqzobJ067w" key="diagramTopMargin" value="20"/>
+    <property xmi:id="__FJuFXHrEeKDjqzobJ067w" key="diagramBottomMargin" value="20"/>
+    <property xmi:id="__FJuFnHrEeKDjqzobJ067w" key="diagramLeftMargin" value="20"/>
+    <property xmi:id="__FJuF3HrEeKDjqzobJ067w" key="diagramRightMargin" value="20"/>
+    <property xmi:id="__FJuGHHrEeKDjqzobJ067w" key="orientation" value="portrait"/>
+    <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="__E8SsnHrEeKDjqzobJ067w" presentation="org.topcased.modeler.uml.statemachinediagram">
+      <element href="testAddTransitionWithSourceStateIsLocked.uml#idStateMachine"/>
+    </semanticModel>
+    <contained xsi:type="di:GraphNode" xmi:id="__E85wHHrEeKDjqzobJ067w" position="0,0" size="0,0">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="__E85wXHrEeKDjqzobJ067w" presentation="default">
+        <element href="testAddTransitionWithSourceStateIsLocked.uml#idRegion"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_NYhtEHHsEeKDjqzobJ067w" position="5,4" size="424,117">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_NYhtEXHsEeKDjqzobJ067w" presentation="default">
+          <element href="testAddTransitionWithSourceStateIsLocked.uml#_NYoawHHsEeKDjqzobJ067w"/>
+        </semanticModel>
+        <contained xsi:type="di:GraphNode" xmi:id="_NYhtEnHsEeKDjqzobJ067w">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_NYhtE3HsEeKDjqzobJ067w" presentation="default">
+            <element href="testAddTransitionWithSourceStateIsLocked.uml#_NYoawXHsEeKDjqzobJ067w"/>
+          </semanticModel>
+          <contained xsi:type="di:GraphNode" xmi:id="_T8KZMHHsEeKDjqzobJ067w" position="5,1" size="-1,-1">
+            <property xmi:id="_T8KZMXHsEeKDjqzobJ067w" key="portPosition" value="8"/>
+            <property xmi:id="_T8Rt8HHsEeKDjqzobJ067w" key="name" value="visible"/>
+            <anchorage xmi:id="_g6sFIHHsEeKDjqzobJ067w" graphEdge="_g67VsHHsEeKDjqzobJ067w"/>
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_T8KZMnHsEeKDjqzobJ067w" presentation="default">
+              <element href="testAddTransitionWithSourceStateIsLocked.uml#_T8YboHHsEeKDjqzobJ067w"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" xmi:id="_WRU5wHHsEeKDjqzobJ067w" position="109,3" size="93,50">
+            <anchorage xmi:id="_g6ssMHHsEeKDjqzobJ067w" graphEdge="_g67VsHHsEeKDjqzobJ067w _ibJyUHHsEeKDjqzobJ067w"/>
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_WRU5wXHsEeKDjqzobJ067w" presentation="default">
+              <element href="testAddTransitionWithSourceStateIsLocked.uml#_WRZyQHHsEeKDjqzobJ067w"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" xmi:id="_d-n8oHHsEeKDjqzobJ067w" position="270,2" size="138,50">
+            <anchorage xmi:id="_ibHWEHHsEeKDjqzobJ067w" graphEdge="_ibJyUHHsEeKDjqzobJ067w"/>
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_d-n8oXHsEeKDjqzobJ067w" presentation="default">
+              <element href="testAddTransitionWithSourceStateIsLocked.uml#_d-s1IHHsEeKDjqzobJ067w"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphEdge" xmi:id="_g67VsHHsEeKDjqzobJ067w" anchor="_g6sFIHHsEeKDjqzobJ067w _g6ssMHHsEeKDjqzobJ067w">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_g67VsXHsEeKDjqzobJ067w" presentation="default">
+              <element href="testAddTransitionWithSourceStateIsLocked.uml#_g678wHHsEeKDjqzobJ067w"/>
+            </semanticModel>
+            <contained xsi:type="di:EdgeObjectOffset" xmi:id="_g67VsnHsEeKDjqzobJ067w" visible="false" id="nameEdgeObject"/>
+            <contained xsi:type="di:EdgeObjectOffset" xmi:id="_g67Vs3HsEeKDjqzobJ067w" visible="false" id="TransitionStereotypeEdgeObject"/>
+          </contained>
+          <contained xsi:type="di:GraphEdge" xmi:id="_ibJyUHHsEeKDjqzobJ067w" anchor="_g6ssMHHsEeKDjqzobJ067w _ibHWEHHsEeKDjqzobJ067w">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ibJyUXHsEeKDjqzobJ067w" presentation="default">
+              <element href="testAddTransitionWithSourceStateIsLocked.uml#_ibJyVHHsEeKDjqzobJ067w"/>
+            </semanticModel>
+            <contained xsi:type="di:EdgeObjectOffset" xmi:id="_ibJyUnHsEeKDjqzobJ067w" visible="false" id="nameEdgeObject"/>
+            <contained xsi:type="di:EdgeObjectOffset" xmi:id="_ibJyU3HsEeKDjqzobJ067w" visible="false" id="TransitionStereotypeEdgeObject"/>
+          </contained>
+        </contained>
+      </contained>
+      <contained xsi:type="di:GraphNode" xmi:id="_QWLJ8HHsEeKDjqzobJ067w" position="7,138" size="554,112">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_QWLJ8XHsEeKDjqzobJ067w" presentation="default">
+          <element href="testAddTransitionWithSourceStateIsLocked.uml#_QWKi4HHsEeKDjqzobJ067w"/>
+        </semanticModel>
+      </contained>
+    </contained>
+  </diagrams>
+</diagrams:Diagrams>

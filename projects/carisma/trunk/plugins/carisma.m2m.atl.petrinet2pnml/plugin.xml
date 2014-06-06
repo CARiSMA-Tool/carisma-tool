@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+ <extension point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="carisma.m2m.atl.petrinet2pnml.oc1"
+            nameFilter="*.petrinet"
+            objectClass="org.eclipse.core.resources.IFile">
+            <action
+                  class="carisma.m2m.atl.petrinet2pnml.Action"
+                  enablesFor="*"
+                  icon="icons/atl_logo.gif"
+                  id="carisma.m2m.atl.petrinet2pnml.action1"
+                  label="Transform to PNML">
+         </action>
+      </objectContribution>
+  </extension>
+
+</plugin>

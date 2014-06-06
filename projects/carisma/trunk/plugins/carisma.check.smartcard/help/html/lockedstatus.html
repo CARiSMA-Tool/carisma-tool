@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Locked-Status Smartcard Check</title>
+</head>
+
+<body>
+<h1>UMLsec Locked Status Smartcard Check</h1>
+<h3>carisma.check.smartcard.lockedstatus</h3>
+
+<p>This check analyzes UML state diagrams using the &laquo;locked-status&raquo; stereotype
+(cf. Ochoa et al. - Model-based Security Verification and Testing for Smartcards, 2011) by
+checking every state marked by
+&laquo;locked-status&raquo;. These states may not have any outgoing transitions.</p>
+
+<p>Annotate a model containing a state diagram with &laquo;locked-status&raquo; as necessary.
+After finishing the model, <a href="../../../carisma.core/help/html/userguide/stepByStep.html">create a new CARiSMA analysis on the model</a>.
+Add the Smartcard Locked Status Check to the used checks and click "Run" to start the analysis.</p>
+
+<p>The Analysis Results View displays whether the check was successful. If any locked state has outgoing transitions, 
+appropriate informations are displayed in the Analysis Results View.</p>
+
+<img src="images/lockedStatusWrong.png" alt="locked-status violation" name="locked-status violation" />
+<p>The example model contains a locked state with outgoing transitions.</p>
+
+<img src="images/lockedStatusRight.png" alt="locked-status correct" name="locked-status correct" />
+<p>After correcting the model, the analysis reports the success of the check.</p> 
+
+</body>
+</html>

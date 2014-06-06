@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="testFairExchangeNoStereotypeModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testFairExchangeNoStereotypePackage">
+    <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="testFairExchangeNoStereotypeActivity">
+      <node xmi:type="uml:OpaqueAction" xmi:id="_Rtmh4I4ZEeGEl_fBj84nug" name="OpaqueAction1" outgoing="_TLcY4I4ZEeGEl_fBj84nug" incoming="_S5yBII4ZEeGEl_fBj84nug"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_SD6JEI4ZEeGEl_fBj84nug" name="InitialNode1" outgoing="_S5yBII4ZEeGEl_fBj84nug"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_SZ4ZEI4ZEeGEl_fBj84nug" name="ActivityFinalNode1" incoming="_TLcY4I4ZEeGEl_fBj84nug"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_S5yBII4ZEeGEl_fBj84nug" name="ControlFlow1" source="_SD6JEI4ZEeGEl_fBj84nug" target="_Rtmh4I4ZEeGEl_fBj84nug">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_S5yBIY4ZEeGEl_fBj84nug" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_S5yBIo4ZEeGEl_fBj84nug" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_TLcY4I4ZEeGEl_fBj84nug" name="ControlFlow2" source="_Rtmh4I4ZEeGEl_fBj84nug" target="_SZ4ZEI4ZEeGEl_fBj84nug">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_TLcY4Y4ZEeGEl_fBj84nug" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_TLcY4o4ZEeGEl_fBj84nug" value="1"/>
+      </edge>
+    </packagedElement>
+  </packagedElement>
+  <profileApplication xmi:id="_PIHGUI4ZEeGEl_fBj84nug">
+    <eAnnotations xmi:id="_PIHGUY4ZEeGEl_fBj84nug" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+    </eAnnotations>
+    <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+  </profileApplication>
+</uml:Model>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="carisma.check.activity2petrinet"
+         name="activity2petrinetExtension"
+         point="carisma.carismacheck">
+      <check
+            description="Converts an activity diagram to a petri net"
+            id="carisma.check.activity2petrinet"
+            name="CARiSMA Activity to Petri Net Converter"
+            implementingClass="carisma.check.activity2petrinet.Check"
+            publisher="Kubi Mensah"
+            targetModelType="UML2">
+         <parameter
+            description="With page-Tag?"
+            	id="carisma.check.acivity2petrinet.page"
+            	name="Page Boolean"
+            	optional="true"
+            	type="boolean">
+            </parameter>
+         <parameter
+               description="Destination file to be written to"
+               id="carisma.check.activity2petrinet.destFile"
+               name="Destination file"
+               optional="false"
+               type="OutputFile">
+         </parameter>
+      </check>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="false">
+      </toc>
+   </extension>
+
+</plugin>

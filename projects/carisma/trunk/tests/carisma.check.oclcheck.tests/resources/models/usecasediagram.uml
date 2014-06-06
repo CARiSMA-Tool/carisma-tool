@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA">
+  <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="usecasediagram">
+    <ownedComment xmi:id="_arBIwPgxEeKLAZ4gPThXMQ" annotatedElement="_VxrbQPgxEeKLAZ4gPThXMQ">
+      <body>Comment1</body>
+    </ownedComment>
+    <ownedRule xmi:id="_bW5-YPgxEeKLAZ4gPThXMQ" name="Constraint1" constrainedElement="_arBIwPgxEeKLAZ4gPThXMQ"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_QF8AcPgxEeKLAZ4gPThXMQ" name="Package1" clientDependency="_aMI0YPgxEeKLAZ4gPThXMQ">
+      <packageImport xmi:id="_ZaAM0_gxEeKLAZ4gPThXMQ" importedPackage="_YIe6kPgxEeKLAZ4gPThXMQ"/>
+      <packageMerge xmi:id="_ZwQws_gxEeKLAZ4gPThXMQ" mergedPackage="_YIe6kPgxEeKLAZ4gPThXMQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_QzXHIPgxEeKLAZ4gPThXMQ" name="Actor1">
+      <generalization xmi:id="_VJXeEPgxEeKLAZ4gPThXMQ" general="_Ukuf8PgxEeKLAZ4gPThXMQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_RmU1IPgxEeKLAZ4gPThXMQ" name="UseCase1">
+      <include xmi:id="_WzDYsPgxEeKLAZ4gPThXMQ" name="Include1" addition="_VxrbQPgxEeKLAZ4gPThXMQ"/>
+      <extend xmi:id="_XWCJ9PgxEeKLAZ4gPThXMQ" name="Extend1" extendedCase="_VxrbQPgxEeKLAZ4gPThXMQ" extensionLocation="_XVjBwPgxEeKLAZ4gPThXMQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_TeVfpvgxEeKLAZ4gPThXMQ" name="A_&lt;actor1>_&lt;useCase1>" memberEnd="_TeVfp_gxEeKLAZ4gPThXMQ _TeVfqvgxEeKLAZ4gPThXMQ">
+      <ownedEnd xmi:id="_TeVfp_gxEeKLAZ4gPThXMQ" name="actor1" type="_QzXHIPgxEeKLAZ4gPThXMQ" association="_TeVfpvgxEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TeVfqPgxEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TeVfqfgxEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_TeVfqvgxEeKLAZ4gPThXMQ" name="useCase1" type="_RmU1IPgxEeKLAZ4gPThXMQ" association="_TeVfpvgxEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TeVfq_gxEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TeVfrPgxEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_Ukuf8PgxEeKLAZ4gPThXMQ" name="Actor2"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_VxrbQPgxEeKLAZ4gPThXMQ" name="UseCase2">
+      <extensionPoint xmi:id="_XVjBwPgxEeKLAZ4gPThXMQ" name="1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_YIe6kPgxEeKLAZ4gPThXMQ" name="Package2"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_aMI0YPgxEeKLAZ4gPThXMQ" name="Dependency1" supplier="_YIe6kPgxEeKLAZ4gPThXMQ" client="_QF8AcPgxEeKLAZ4gPThXMQ"/>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,72 @@
+<Delta>
+  <deltaElements>
+    <DelElement>
+      <target class="StereotypeApplication">
+        <type>StereotydfasdeApplication</type>
+        <name>authorized-status</name>
+        <xmiID>_K6mbIGsxEeCtltRm1_xIPQ</xmiID>
+        <ExtendedElement>model::collaboration0::stateMachine0::region0::INITIALIZED</ExtendedElement>
+        <profile>UMLsec</profile>
+      </target>
+    </DelElement>
+    <AddElement>
+      <target class="NamedElement">
+        <type>StateImpl</type>
+        <name>SECURED</name>
+        <xmiID>_MdHWwGsxEeCtltRm1_xIPQ</xmiID>
+      </target>
+      <typename>State</typename>
+      <values>
+        <entry>
+          <key>name</key>
+          <value>someThing</value>
+        </entry>
+      </values>
+      <content/>
+    </AddElement>
+    <EditElement>
+      <target class="NamedElement">
+        <type>StateImpl</type>
+        <name>CARD_LOCKED</name>
+        <xmiID>_P1NT8GsxEeCtltRm1_xIPQ</xmiID>
+      </target>
+      <values>
+        <entry>
+          <key>name</key>
+          <value>newName</value>
+        </entry>
+      </values>
+    </EditElement>
+    <SubstElement>
+      <target class="TaggedValue">
+        <type>Tagged Value</type>
+        <name>id</name>
+        <xmiID>_YSnlgGIQEeGeQ6PWdg4u1A</xmiID>
+        <ExtendedElement>ImporterTestModel::ImporterTestPackage::ImporterTestStateMachine::MainRegion::SECURED</ExtendedElement>
+        <profile>UMLsec</profile>
+        <stereotype>identifiable</stereotype>
+      </target>
+      <components>
+        <AddElement>
+          <typename>Property</typename>
+          <values>
+            <entry>
+              <key>name</key>
+              <value>id</value>
+            </entry>
+            <entry>
+              <key>value</key>
+              <value>xyz</value>
+            </entry>
+          </values>
+          <content/>
+        </AddElement>
+      </components>
+    </SubstElement>
+  </deltaElements>
+  <usedChanges>
+    <string>someChange(1)</string>
+    <string>anotherChange(1)</string>
+    <string>oneMoreChange</string>
+  </usedChanges>
+</Delta>

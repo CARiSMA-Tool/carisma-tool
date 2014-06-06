@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Queries a BPMN2 model with an OCL Constraint"
+            id="carisma.check.bpmn2.ocl"
+            implementingClass="carisma.check.bpmn2.ocl.Check"
+            magicKeys="bpmn"
+            name="BPMN2 OCL Check"
+            publisher="Marcel Michel"
+            targetModelType="BPMN2">
+         <parameter
+               description="The OCL-Library which contains the necessary Constraints."
+               id="carisma.check.bpmn2.ocl.library"
+               name="OCL-Library"
+               optional="false"
+               type="InputFile">
+         </parameter>
+         <parameter
+               defaultValue="all"
+               description="Selects the used OCL-Constraints."
+               id="carisma.check.bpmn2.ocl.pattern"
+               name="OCL-Selection"
+               optional="false"
+               type="String">
+         </parameter>
+         <parameter
+               description="The name of the extension file"
+               id="carisma.check.bpmn2.ocl.extensionfile"
+               name="Extension File"
+               optional="true"
+               type="String">
+         </parameter>
+         <parameter
+               defaultValue="false"
+               description="Mark the violating elements in the Bpmn2 model with a documentaion flag."
+               id="carisma.check.bpmn2.ocl.markElements"
+               name="Mark Violating Elements"
+               optional="false"
+               type="boolean">
+         </parameter>
+      </check>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="false">
+      </toc>
+   </extension>
+</plugin>

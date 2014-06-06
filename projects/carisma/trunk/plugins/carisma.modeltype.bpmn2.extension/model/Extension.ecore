@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="extension"
+    nsURI="carisma/modeltype/bpmn2/extension" nsPrefix="extension">
+  <eClassifiers xsi:type="ecore:EClass" name="ExtensionRoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="task" upperBound="-1" eType="#//Task"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workItem" upperBound="-1"
+        eType="#//WorkItem" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="performer" upperBound="-1"
+        eType="#//Performer" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" upperBound="-1" eType="#//Role"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lane" upperBound="-1" eType="#//Lane"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selection" eType="#//Selection"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkItem" eSuperTypes="#//BaseElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="performer" lowerBound="1"
+        eType="#//Performer" eOpposite="#//Performer/workItem"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Performer" eSuperTypes="#//BaseElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workItem" upperBound="-1"
+        eType="#//WorkItem" eOpposite="#//WorkItem/performer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" lowerBound="1" upperBound="-1"
+        eType="#//Role" eOpposite="#//Role/member"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//BaseElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member" upperBound="-1"
+        eType="#//Performer" eOpposite="#//Performer/role"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="super" eType="#//Role"
+        eOpposite="#//Role/sub"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sub" upperBound="-1" eType="#//Role"
+        eOpposite="#//Role/super"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conflict" upperBound="-1"
+        eType="#//Role"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Lane" eSuperTypes="#//BaseElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" upperBound="-1" eType="#//Role"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//BaseElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workItem" upperBound="-1"
+        eType="#//WorkItem"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TaskSet" eSuperTypes="#//BaseElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selectedTasks" lowerBound="2"
+        upperBound="-1" eType="#//Task"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Selection" eSuperTypes="#//BaseElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskSet" upperBound="-1"
+        eType="#//TaskSet" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BaseElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

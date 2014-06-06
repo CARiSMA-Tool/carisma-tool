@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="DefaultName">
+      <packagedElement xmi:type="uml:Class" xmi:id="_D5HPsG9LEeGE4M9mN5H7bA" name="Class1" clientDependency="_ElLEdG9LEeGE4M9mN5H7bA _ORQvQG9LEeGyyeECrCvWJQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_EFUfuG9LEeGE4M9mN5H7bA" name="Class2"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_ElLEdG9LEeGE4M9mN5H7bA" name="Dependency1" supplier="_EFUfuG9LEeGE4M9mN5H7bA" client="_D5HPsG9LEeGE4M9mN5H7bA"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_ORQvQG9LEeGyyeECrCvWJQ" name="Usage1" supplier="_EFUfuG9LEeGE4M9mN5H7bA" client="_D5HPsG9LEeGE4M9mN5H7bA"/>
+    </packagedElement>
+    <profileApplication xmi:id="_LPF-wG9LEeGyyeECrCvWJQ">
+      <eAnnotations xmi:id="_LPMFYG9LEeGyyeECrCvWJQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Standard:Call xmi:id="_Oq9osG9LEeGyyeECrCvWJQ" base_Usage="_ORQvQG9LEeGyyeECrCvWJQ"/>
+</xmi:XMI>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="StereotypesNotToCheckModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="StereotypesNotToCheckPackage">
+      <packagedElement xmi:type="uml:Node" xmi:id="_NkRFcE0WEeOQcs3dWuPosA" name="Node1" clientDependency="_O0c68E0WEeOQcs3dWuPosA">
+        <deployment xmi:id="_O0c68E0WEeOQcs3dWuPosA" name="Deployment1" supplier="_OLVFcE0WEeOQcs3dWuPosA" client="_NkRFcE0WEeOQcs3dWuPosA" deployedArtifact="_OLVFcE0WEeOQcs3dWuPosA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Node" xmi:id="_Nq-xcE0WEeOQcs3dWuPosA" name="Node2" clientDependency="_PBvJAE0WEeOQcs3dWuPosA">
+        <deployment xmi:id="_PBvJAE0WEeOQcs3dWuPosA" name="Deployment1" supplier="_OSs4wE0WEeOQcs3dWuPosA" client="_Nq-xcE0WEeOQcs3dWuPosA" deployedArtifact="_OSs4wE0WEeOQcs3dWuPosA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_OLVFcE0WEeOQcs3dWuPosA" name="Artifact1" clientDependency="_PqX2UE0WEeOQcs3dWuPosA"/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_OSs4wE0WEeOQcs3dWuPosA" name="Artifact2"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_PqX2UE0WEeOQcs3dWuPosA" name="Dependency1" supplier="_OSs4wE0WEeOQcs3dWuPosA" client="_OLVFcE0WEeOQcs3dWuPosA"/>
+      <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_QBKlsE0WEeOQcs3dWuPosA" name="CommunicationPath1" memberEnd="_QBjAME0WEeOQcs3dWuPosA _QBjAM00WEeOQcs3dWuPosA">
+        <ownedEnd xmi:id="_QBjAME0WEeOQcs3dWuPosA" name="source" type="_NkRFcE0WEeOQcs3dWuPosA" association="_QBKlsE0WEeOQcs3dWuPosA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QBjAMU0WEeOQcs3dWuPosA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QBjAMk0WEeOQcs3dWuPosA" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_QBjAM00WEeOQcs3dWuPosA" name="target" type="_Nq-xcE0WEeOQcs3dWuPosA" association="_QBKlsE0WEeOQcs3dWuPosA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QBjANE0WEeOQcs3dWuPosA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QBjANU0WEeOQcs3dWuPosA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_RDN4kE0WEeOQcs3dWuPosA">
+      <eAnnotations xmi:id="_RDQU0E0WEeOQcs3dWuPosA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:encrypted xmi:id="_ShBTUE0WEeOQcs3dWuPosA" base_CommunicationPath="_QBKlsE0WEeOQcs3dWuPosA"/>
+  <UMLsec:wire xmi:id="_SnLlsE0WEeOQcs3dWuPosA" base_CommunicationPath="_QBKlsE0WEeOQcs3dWuPosA"/>
+  <UMLsec:Internet xmi:id="_Sr1cME0WEeOQcs3dWuPosA" base_CommunicationPath="_QBKlsE0WEeOQcs3dWuPosA"/>
+  <UMLsec:LAN xmi:id="_SwQpME0WEeOQcs3dWuPosA" base_CommunicationPath="_QBKlsE0WEeOQcs3dWuPosA"/>
+  <UMLsec:identifiable xmi:id="_TANJsE0WEeOQcs3dWuPosA" base_Element="_QBKlsE0WEeOQcs3dWuPosA"/>
+  <UMLsec:call xmi:id="_VXfxME0WEeOQcs3dWuPosA" base_Dependency="_PqX2UE0WEeOQcs3dWuPosA"/>
+  <UMLsec:send xmi:id="_VgRSsE0WEeOQcs3dWuPosA" base_Dependency="_PqX2UE0WEeOQcs3dWuPosA"/>
+  <UMLsec:secrecy xmi:id="_V7RzsE0WEeOQcs3dWuPosA" base_Dependency="_PqX2UE0WEeOQcs3dWuPosA"/>
+  <UMLsec:integrity xmi:id="_WB1usE0WEeOQcs3dWuPosA" base_Dependency="_PqX2UE0WEeOQcs3dWuPosA"/>
+  <UMLsec:high xmi:id="_WGMqQE0WEeOQcs3dWuPosA" base_Dependency="_PqX2UE0WEeOQcs3dWuPosA"/>
+  <UMLsec:identifiable xmi:id="_WNSwwE0WEeOQcs3dWuPosA" base_Element="_PqX2UE0WEeOQcs3dWuPosA"/>
+  <UMLsec:POSdevice xmi:id="_CrCxwE0ZEeOQcs3dWuPosA" base_Node="_NkRFcE0WEeOQcs3dWuPosA"/>
+  <UMLsec:issuernode xmi:id="_C3eEME0ZEeOQcs3dWuPosA" base_Node="_NkRFcE0WEeOQcs3dWuPosA"/>
+  <UMLsec:smartcard xmi:id="_C9HZME0ZEeOQcs3dWuPosA" base_Node="_NkRFcE0WEeOQcs3dWuPosA"/>
+  <UMLsec:LAN xmi:id="_F2vRsE0ZEeOQcs3dWuPosA" base_Node="_NkRFcE0WEeOQcs3dWuPosA"/>
+</xmi:XMI>

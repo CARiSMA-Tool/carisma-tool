@@ -1,0 +1,18 @@
+1. performEmptyInputFileTest(List<CheckParameter>, AnalysisHost); 
+1. Input empty file, AnalysisHost
+1. Output true
+
+
+2. performNullTest(List<CheckParameter>, AnalysisHost); 
+2. Input null, AnalysisHost
+2. Throws NullPointerException
+
+3. performAllNullTest(List<CheckParameter>, AnalysisHost); 
+3. Input null, null
+3. Throws NullPointerException
+
+
+
+4. performRegularTest(List<CheckParameter>, AnalysisHost); 
+4. Input correct Input File with the right model for the import
+4. Output a new model with the imported Stereotypes.

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Performs a requires-check."
+            id="carisma.check.requiresCheck.check"
+            implementingClass="carisma.check.requirescheck.RequiresCheck"
+            name="UMLsec requires Check"
+            publisher="Klaus Rudack"
+            targetModelType="UML2">
+      </check>
+   </extension>
+
+</plugin>

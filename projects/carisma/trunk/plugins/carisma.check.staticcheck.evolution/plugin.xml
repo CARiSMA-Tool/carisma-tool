@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Checks the secure dependency property w.r.t. evolution"
+            id="carisma.check.staticcheck.evolution.securedependency"
+            name="Evolution-aware Secure Dependency Check"
+            implementingClass="carisma.check.staticcheck.evolution.securedependency.SecureDependencyEvolutionCheck"
+            publisher="Sven Wenzel"
+            targetModelType="UML2">
+         <precondition
+               requiredKey="carisma.data.evolution.deltas">
+         </precondition>
+         <precondition
+               requiredKey="carisma.data.evolution.modifiers">
+         </precondition>
+      </check>
+      <check
+            description="Checks the secure links property w.r.t. evolution"
+            id="carisma.check.staticcheck.evolution.securelinks"
+            name="Evolution-aware Secure Links Check"
+            implementingClass="carisma.check.staticcheck.evolution.securelinks.SecureLinksEvolutionCheck"
+            publisher="Daniel Warzecha"
+            targetModelType="UML2">
+         <precondition
+               requiredKey="carisma.data.evolution.deltas">
+         </precondition>
+         <precondition
+               requiredKey="carisma.data.evolution.modifiers">
+         </precondition>
+      </check>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="false">
+      </toc>
+   </extension>
+   <extension
+         point="carisma.evolution.EvolutionCheckMapping">
+      <check
+            EvolutionCheckID="carisma.check.staticcheck.evolution.securedependency"
+            NonEvolutionCheckID="carisma.check.staticcheck.securedependency">
+      </check>
+      <check
+            EvolutionCheckID="carisma.check.staticcheck.evolution.securelinks"
+            NonEvolutionCheckID="carisma.check.staticcheck.securelinks">
+      </check>
+   </extension>
+
+</plugin>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="AuthorizedStatusCorrectModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="AuthorizedStatusCorrectPackage">
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="AuthorizedStatusCorrectStateMachine">
+        <region xmi:id="idRegion" name="MainRegion">
+          <subvertex xmi:type="uml:FinalState" xmi:id="_ZvJnwBxfEeOVUY7OvMpA8Q" name="FinalState1"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_Z2lFcBxfEeOVUY7OvMpA8Q" name="Pseudostate1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_Z_-5EBxfEeOVUY7OvMpA8Q" name="State1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_aITHkBxfEeOVUY7OvMpA8Q" name="State2"/>
+          <transition xmi:id="_cBZ-RBxfEeOVUY7OvMpA8Q" name="Transition2" kind="local" source="_Z_-5EBxfEeOVUY7OvMpA8Q" target="_aITHkBxfEeOVUY7OvMpA8Q"/>
+          <transition xmi:id="_h3yi0BxfEeOVUY7OvMpA8Q" name="Transition1" kind="local" source="_Z2lFcBxfEeOVUY7OvMpA8Q" target="_Z_-5EBxfEeOVUY7OvMpA8Q"/>
+          <transition xmi:id="_iSF5NBxfEeOVUY7OvMpA8Q" name="Transition3" kind="local" source="_aITHkBxfEeOVUY7OvMpA8Q" target="_ZvJnwBxfEeOVUY7OvMpA8Q"/>
+        </region>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_jRHtQBxfEeOVUY7OvMpA8Q">
+      <eAnnotations xmi:id="_jRIUUBxfEeOVUY7OvMpA8Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:authorizedstatus xmi:id="_jxjg0BxfEeOVUY7OvMpA8Q" permission="blub" base_State="_aITHkBxfEeOVUY7OvMpA8Q"/>
+</xmi:XMI>

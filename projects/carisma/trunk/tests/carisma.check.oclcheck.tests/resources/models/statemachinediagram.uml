@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="DefaultNameModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="DefaultNamePackage">
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="DefaultNameStateMachine">
+      <region xmi:id="idRegion" name="MainRegion">
+        <ownedComment xmi:id="_psOwEPgvEeKLAZ4gPThXMQ" annotatedElement="_j78McPgvEeKLAZ4gPThXMQ">
+          <body>Comment1</body>
+        </ownedComment>
+        <ownedRule xmi:id="_qXeFcPgvEeKLAZ4gPThXMQ" name="Constraint1" constrainedElement="_psOwEPgvEeKLAZ4gPThXMQ"/>
+        <subvertex xmi:type="uml:State" xmi:id="_fvTz8PgvEeKLAZ4gPThXMQ" name="State1"/>
+        <subvertex xmi:type="uml:State" xmi:id="_ghDZ8PgvEeKLAZ4gPThXMQ" name="State2">
+          <region xmi:id="_ghDZ8fgvEeKLAZ4gPThXMQ" name="Region1"/>
+        </subvertex>
+        <subvertex xmi:type="uml:State" xmi:id="_hfbtwfgvEeKLAZ4gPThXMQ" name="State3" submachine="_hfbtwPgvEeKLAZ4gPThXMQ"/>
+        <subvertex xmi:type="uml:ConnectionPointReference" xmi:id="_jcCkYPgvEeKLAZ4gPThXMQ" name="ConnectionPointReference1"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_j78McPgvEeKLAZ4gPThXMQ" name="FinalState1"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_kia9oPgvEeKLAZ4gPThXMQ" name="Pseudostate1"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_ku-y8PgvEeKLAZ4gPThXMQ" name="Pseudostate2" kind="deepHistory"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_k_G5oPgvEeKLAZ4gPThXMQ" name="Pseudostate3" kind="shallowHistory"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_lSAngPgvEeKLAZ4gPThXMQ" name="Pseudostate4" kind="join"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_llJl8PgvEeKLAZ4gPThXMQ" name="Pseudostate5" kind="fork"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_l2ZuAPgvEeKLAZ4gPThXMQ" name="Pseudostate6" kind="junction"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_mM3GMPgvEeKLAZ4gPThXMQ" name="Pseudostate7" kind="choice"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_mezKwPgvEeKLAZ4gPThXMQ" name="Pseudostate8" kind="entryPoint"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_mv_ocPgvEeKLAZ4gPThXMQ" name="Pseudostate9" kind="exitPoint"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_nAjM8PgvEeKLAZ4gPThXMQ" name="Pseudostate10" kind="terminate"/>
+        <transition xmi:id="_oUorAPgvEeKLAZ4gPThXMQ" name="Transition1" source="_hfbtwfgvEeKLAZ4gPThXMQ" target="_ghDZ8PgvEeKLAZ4gPThXMQ"/>
+        <transition xmi:id="_ou0spPgvEeKLAZ4gPThXMQ" name="Transition2" kind="local" source="_fvTz8PgvEeKLAZ4gPThXMQ" target="_hfbtwfgvEeKLAZ4gPThXMQ"/>
+      </region>
+      <region xmi:id="_fQslUPgvEeKLAZ4gPThXMQ" name="Region1"/>
+      <region xmi:id="_fjPt4PgvEeKLAZ4gPThXMQ" name="Region2"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="_hfbtwPgvEeKLAZ4gPThXMQ" name="1" submachineState="_hfbtwfgvEeKLAZ4gPThXMQ"/>
+  </packagedElement>
+</uml:Model>

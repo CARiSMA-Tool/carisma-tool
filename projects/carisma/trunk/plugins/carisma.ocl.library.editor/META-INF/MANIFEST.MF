@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OCL Library Model Editor Plugin
+Bundle-SymbolicName: carisma.ocl.library.editor;singleton:=true
+Bundle-Version: 1.0.3.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: carisma.ocl.library.presentation.OclEditorPlugin$Implementation
+Bundle-Vendor: Software Engineering Institute, TU Dortmund
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: carisma.ocl.library.presentation
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources;visibility:=reexport,
+ carisma.ocl.library.edit;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.emf.edit.ui;visibility:=reexport,
+ org.eclipse.ui.ide;visibility:=reexport
+Bundle-ActivationPolicy: lazy

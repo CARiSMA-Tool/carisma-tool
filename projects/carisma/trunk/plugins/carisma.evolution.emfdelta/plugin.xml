@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Parses model differences with EMF Diff and produces Change Descriptions."
+            id="carisma.check.emfdeltaparser"
+            name="EMF Delta Parser"
+            implementingClass="carisma.evolution.emfdelta.EMFDeltaParser"
+            publisher="Johannes Kowald"
+            targetModelType="UML2,BPMN2">
+         <parameter
+               id="carisma.evolution.emfdelta.referenceModel"
+               name="Reference Model"
+               optional="false"
+               type="InputFile">
+         </parameter>
+         <postcondition
+               providedKey="carisma.data.evolution.changes">
+         </postcondition>
+      </check>
+   </extension>
+</plugin>

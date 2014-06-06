@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="CorrectChangeConstraints">
+      <packagedElement xmi:type="uml:Class" xmi:id="_ZX7OaHZhEeGmS45Vi9NPLQ" name="Class1"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ZoI0qHZhEeGmS45Vi9NPLQ" name="Class2"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Z8t9iHZhEeGmS45Vi9NPLQ" name="Class3"/>
+    </packagedElement>
+    <profileApplication xmi:id="_a0hvQHZhEeGmS45Vi9NPLQ">
+      <eAnnotations xmi:id="_a0hvQXZhEeGmS45Vi9NPLQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:add xmi:id="_b5YegHZhEeGmS45Vi9NPLQ" base_Element="_ZX7OaHZhEeGmS45Vi9NPLQ">
+    <ref>addOp</ref>
+    <constraint>addOp=AND(substClass),NOT(delClass)</constraint>
+    <new>addOp={Operation(name=newOp)}</new>
+  </UMLchange:add>
+  <UMLchange:subst xmi:id="_cbr6UHZhEeGmS45Vi9NPLQ" base_Element="_ZoI0qHZhEeGmS45Vi9NPLQ">
+    <ref>substClass</ref>
+    <constraint>substClass=REQ(delClass)</constraint>
+    <new>substClass={Class(name=Substitute)}</new>
+  </UMLchange:subst>
+  <UMLchange:del xmi:id="_c05rkHZhEeGmS45Vi9NPLQ" base_Element="_Z8t9iHZhEeGmS45Vi9NPLQ">
+    <ref>delClass</ref>
+    <constraint>delClass=AND(substClass)</constraint>
+  </UMLchange:del>
+</xmi:XMI>

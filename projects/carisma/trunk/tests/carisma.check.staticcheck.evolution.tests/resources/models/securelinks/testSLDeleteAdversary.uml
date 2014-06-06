@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testSLDeleteAdversaryModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testSLDeleteAdversaryPackage">
+      <packagedElement xmi:type="uml:Node" xmi:id="_L62P4H5REeG4b422IwNPOw" name="Node1" clientDependency="_Nl9G035REeG4b422IwNPOw">
+        <deployment xmi:id="_Nl9G035REeG4b422IwNPOw" name="Deployment1" supplier="_MuCAUH5REeG4b422IwNPOw" client="_L62P4H5REeG4b422IwNPOw" deployedArtifact="_MuCAUH5REeG4b422IwNPOw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Node" xmi:id="_MCZpYH5REeG4b422IwNPOw" name="Node2" clientDependency="_N0nN435REeG4b422IwNPOw">
+        <deployment xmi:id="_N0nN435REeG4b422IwNPOw" name="Deployment1" supplier="_M3pPUH5REeG4b422IwNPOw" client="_MCZpYH5REeG4b422IwNPOw" deployedArtifact="_M3pPUH5REeG4b422IwNPOw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_MuCAUH5REeG4b422IwNPOw" name="Artifact1" clientDependency="_OMHu835REeG4b422IwNPOw"/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_M3pPUH5REeG4b422IwNPOw" name="Artifact2"/>
+      <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_NDprBH5REeG4b422IwNPOw" name="abLink" memberEnd="_NDqSEH5REeG4b422IwNPOw _NDrgMH5REeG4b422IwNPOw">
+        <ownedEnd xmi:id="_NDqSEH5REeG4b422IwNPOw" name="source" type="_L62P4H5REeG4b422IwNPOw" association="_NDprBH5REeG4b422IwNPOw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NDq5IH5REeG4b422IwNPOw" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NDq5IX5REeG4b422IwNPOw" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_NDrgMH5REeG4b422IwNPOw" name="target" type="_MCZpYH5REeG4b422IwNPOw" association="_NDprBH5REeG4b422IwNPOw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NDrgMX5REeG4b422IwNPOw" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NDrgMn5REeG4b422IwNPOw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_OMHu835REeG4b422IwNPOw" name="dep" supplier="_M3pPUH5REeG4b422IwNPOw" client="_MuCAUH5REeG4b422IwNPOw"/>
+    </packagedElement>
+    <profileApplication xmi:id="_RZ22QH5REeG4b422IwNPOw">
+      <eAnnotations xmi:id="_RZ55kH5REeG4b422IwNPOw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_RZ6goH5REeG4b422IwNPOw">
+      <eAnnotations xmi:id="_RZ6goX5REeG4b422IwNPOw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:high xmi:id="_gQG40H5REeG4b422IwNPOw" base_Dependency="_OMHu835REeG4b422IwNPOw"/>
+  <UMLsec:LAN xmi:id="_iQ8vMH5REeG4b422IwNPOw" base_CommunicationPath="_NDprBH5REeG4b422IwNPOw"/>
+  <UMLsec:securelinks xmi:id="_m7B4sH5REeG4b422IwNPOw" adversary="custom" base_Package="idModel"/>
+  <UMLchange:del xmi:id="_r7dssH5REeG4b422IwNPOw" base_Element="idModel">
+    <ref>deleteSecureLinks</ref>
+    <ext>deleteSecureLinks=secure links.adversary</ext>
+  </UMLchange:del>
+</xmi:XMI>

@@ -1,0 +1,187 @@
+hasCycleEmptyInputTest()
+	Tests if the Method hasCycles returns "false" when the the input map,containing the REQ constraints,
+	is an empty list.
+	
+	
+hasCycleChainTest()
+	Tests if the Method hasCycles returns "false" when the the input map,containing the REQ constraints,
+	describes a Chain of requirements.
+	 * FristChange  requires SecondChange.
+	 * SecondChange requires ThirdChange.
+	 * ThirdChange  requires FourthChange.
+
+
+hasCycleSimpleCycleTest()
+	Tests if the Method hasCycles returns "true" when the the input map,containing the REQ constraints,
+	describes a Cycle of requirements.
+	 * FristChange requires First
+	 
+
+hasCycleTest()
+	Tests if the Method hasCycles returns "true" when the the input map,containing the REQ constraints,
+	describes a Cycle of requirements.
+	 * FristChange  requires SecondChange.
+	 * SecondChange requires ThirdChange.
+	 * ThirdChange  requires FourthChange.
+	 * FourthChange requires FirstChange.
+	 
+	 
+computeMaxNumberOfDeltasEmptyList()
+	Tests if the computeMaxNumberOfDeltas returns "0" when the input map, containing the used Changes,
+	is empty.
+	
+	
+computeMaxNumberOfDeltasInputList()
+	Tests if the computeMaxNumberOfDeltas returns "50" when the input map, containing the used Changes,
+	has 3 Changes.
+	1. 4 Alternatives
+	2. 4 Alternatives
+	3. 1 Alternative
+	(4 + 1) + (4 + 1) + (1 + 1) = 50
+	the plus 1 contributes the possibility to take none of the Alternatives
+	
+	
+processConstraintsAndList()
+	Tests if the constraints are used correct. 3 Changes 
+	1. 2 Alternatives
+	2. 1 Alternative
+	3. 1 Alternative
+	(2 + 1) + (1 + 1) + (1 + 1) = 12
+	FirstChange=AND(SecondChange, ThirdChange)
+	
+
+parseConstraintsEmptyInputTest()
+	Tests if the fields where the constraints are stored at are empty when 
+	the given Changes don't have any constraints applied to.
+	
+	
+parseConstraintsAndInputTest()
+	Tests if the andDependencies Field has size() = 4 and if the single entries are correct.
+	Given constraints.
+	 * First=AND(Second,Third)
+	 * Third=AND(First,Second,Fourth)
+	
+	
+parseConstraintsNotInputTest()
+	Tests if the notDependencies Field has size() = 1. 
+	This one key is the Change first and has two values, the Changes second and Third  
+	 * First=NOT(Second,Third)
+
+	 
+parseConstraintsReqInputTest()
+	Tests if the reqDependencies Field has size() = 2.
+	Key Second has one Value, First.
+	Key Third has one Value, Second.
+	 * Second=REQ(First)
+	 * Third=REQ(Second)
+	 */
+
+
+sortListTest() 
+	Tests if the sortList() Method sorts a list of Changes correctly given the following implicit order.
+	 * FirstChange REQ ThirdChange
+	 * FourthChange REQ SecondChange
+	Explicit this means that:  
+		ThirdChange has a lower Position than FirstChange
+		SecondChange has a lower Position than FourtChange in the list.
+		i.e. [ThirdChange, SecondChange, FirstChange, FourthChange] would be a correct order.
+		
+
+sortListChainTest()
+	Tests if the sortList() Method sorts a list of Changes correctly given the following implicit order.
+	 * FirstChange REQ ThirdChange
+	 * ThirdChange REQ SecondChange
+	 * SecondChange REQ FourthChange
+	 Explicit this means :
+	 	ThirdChange < FirstChange
+	 	SecondChange < ThirdChange
+	 	FourthChange < SecondChange
+	 	i.e. [FourthChange, SeconChange, ThirdChange, FirstChange] would be a correct order.
+
+
+
+	 
+	
+getPermutationTest()
+	 Test if the Cartesian product has been created correct.
+	 3 Changes, two with 3 Alternatives and one with 2 Alternatives makes 18 variations.
+	 
+
+getPermutationTestANDConstraints()
+	 Test if the Cartesian product has been created correct.
+	 The AND Constraints have no effect since exactly one Alternative from each Change is chosen.
+	 3 Changes, two with 3 Alternatives and one with 2 Alternatives makes 18 variations.
+
+	
+getPermutationTestNOTConstraints() 
+	 Test if the Cartesian product has been created correct.
+	 The Constraints exclude all variations since exactly one Alternative from each Change is chosen.
+	 So even a Single NOT Constraint will have this effect.
+
+
+getPermutationTrueTest()
+	 Test if the permutations have been created correct.
+	 48 combinations are expected.
+	 
+
+getPermutationTrueAndConstraintsTest()
+	 Test if the permutations have been created correct.
+	 The First Change has two AND Constraints.
+	 19 permutations are expected.
+
+
+getPermutationTrueNotConstraintsTest()
+	Test if the permutations have been created correct.
+	The First Change must not be in the same Delta as the Second and the Third Change. 
+	15 permutations are expected.
+
+	
+getPermutationTrueAndNotConstraintsTest()	
+	Test if the permutations have been created correct.
+	The occurrence of the First and the Second Change are equivalent.
+	The First Change must not be in the Same Delta as the Third one.
+	12 permutations are expected.
+	
+	
+getPermutationTrueAndNotConstraintsDifferentChangesTest()
+	Test if the permutations have been created correct.
+	The occurrence of the First and the Second Change are equivalent.
+	The Second Change must not be in the Same Delta as the Third one.
+	12 permutations are expected.
+
+	
+getPermutationTrueReqConstraintsTest()
+	Test if the permutations have been created correct.
+	The Second Change requires the First Change.
+	The First Change requires the Third Change
+	
+	
+getPermutationTrueReqNoCyleTest()
+	Test if a Required Chain (i.e. A needs B, B needs C, C needs D) isn't falsely detected as a Cycle.
+	First Change  requires SecondChange
+	Second Change requires ThirdChange
+	Third Change  requires FouthChange
+	
+
+getPermutationTrueReqConstraintsSimpleCycleTest()
+	A Cycle in the constraints leads to null as return value.
+	 * FirstChange  requires SecondChange
+	 * SecondChange requires FirstChange
+	 
+	
+getPermutationTrueReqConstraintsSimpleCycleIITest() 
+	A Cycle in the constraints leads to null as return value.
+	 * FirstChange  requires SecondChange
+	 * SecondChange requires ThirdChange
+	 * ThirdChange 	requires FirstChange
+
+	
+getPermutationTrueReqConstraintsCycleTest()
+	A Cycle in the constraints leads to null as return value.
+	 * FirstChange  requires SecondChange
+	 * SecondChange requires ThirdChange
+	 * ThirdChange  requires FouthChange
+	 * FourthChange requires FirstChange
+
+
+

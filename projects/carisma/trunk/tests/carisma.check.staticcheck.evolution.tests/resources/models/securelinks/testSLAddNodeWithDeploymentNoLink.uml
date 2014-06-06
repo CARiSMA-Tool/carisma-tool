@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testSLAddNodeWithDeploymentNoLinkModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testSLAddNodeWithDeploymentNoLinkPackage">
+      <packagedElement xmi:type="uml:Node" xmi:id="_LgeMYm0LEeGIn77TXzjdYw" name="Node1" clientDependency="_iQgZNG0MEeGMbMmqYWrzOQ">
+        <deployment xmi:id="_iQgZNG0MEeGMbMmqYWrzOQ" name="Deployment1" supplier="_Q315sG0LEeGIn77TXzjdYw" client="_LgeMYm0LEeGIn77TXzjdYw" deployedArtifact="_Q315sG0LEeGIn77TXzjdYw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_Q315sG0LEeGIn77TXzjdYw" name="Artifact1" clientDependency="_b5EWA20MEeGMbMmqYWrzOQ"/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_WhGLw20MEeGMbMmqYWrzOQ" name="Artifact2"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_b5EWA20MEeGMbMmqYWrzOQ" name="dep" supplier="_WhGLw20MEeGMbMmqYWrzOQ" client="_Q315sG0LEeGIn77TXzjdYw"/>
+    </packagedElement>
+    <profileApplication xmi:id="_OUBnMG0NEeGyfZMpdCMp9Q">
+      <eAnnotations xmi:id="_OUBnMW0NEeGyfZMpdCMp9Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_OUKxIG0NEeGyfZMpdCMp9Q">
+      <eAnnotations xmi:id="_OUKxIW0NEeGyfZMpdCMp9Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securelinks xmi:id="_2iWsUG0NEeGoAKWYaYqBfQ" adversary="default" base_Package="idModel"/>
+  <UMLsec:secrecy xmi:id="_EX8jIG0OEeGoAKWYaYqBfQ" base_Dependency="_b5EWA20MEeGMbMmqYWrzOQ"/>
+  <UMLchange:add xmi:id="_jhQ4cG9nEeGrNaDThA06bw" base_Element="idModel">
+    <ref xmi:id="_ncbusHHyEeGr8uZFnTL0yw">addNodeWithDeployment</ref>
+    <new xmi:id="_ncbusXHyEeGr8uZFnTL0yw">addNodeWithDeployment={Node(name=newNode,contents=&amp;lt;Deployment(name=newDeployment,location=newNode,deployedArtifact=Artifact2)>)}</new>
+  </UMLchange:add>
+</xmi:XMI>

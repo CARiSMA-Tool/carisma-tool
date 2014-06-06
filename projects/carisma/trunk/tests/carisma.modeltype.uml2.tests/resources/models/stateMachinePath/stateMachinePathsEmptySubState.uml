@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="stateMachinePathsEmptySubStateModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="stateMachinePathsEmptySubStatePackage">
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="stateMachinePathsEmptySubStateStateMachine">
+      <region xmi:id="idRegion" name="MainRegion">
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_ycND09C5EeG4mJKp2sKiUA" name="Pseudostate1"/>
+        <subvertex xmi:type="uml:State" xmi:id="_ykmK0tC5EeG4mJKp2sKiUA" name="State1"/>
+        <subvertex xmi:type="uml:State" xmi:id="_y1TgUNC5EeG4mJKp2sKiUA" name="State2">
+          <region xmi:id="_y1TgUdC5EeG4mJKp2sKiUA" name="Region1"/>
+        </subvertex>
+        <subvertex xmi:type="uml:State" xmi:id="_zD9nYNC5EeG4mJKp2sKiUA" name="State3"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_zSYd4NC5EeG4mJKp2sKiUA" name="FinalState1"/>
+        <subvertex xmi:type="uml:State" xmi:id="_0Lmk4NC5EeG4mJKp2sKiUA" name="State4"/>
+        <transition xmi:id="_0yXC5NC5EeG4mJKp2sKiUA" name="Transition1" kind="local" source="_ycND09C5EeG4mJKp2sKiUA" target="_ykmK0tC5EeG4mJKp2sKiUA"/>
+        <transition xmi:id="_1AjP5NC5EeG4mJKp2sKiUA" name="Transition2" kind="local" source="_ykmK0tC5EeG4mJKp2sKiUA" target="_y1TgUNC5EeG4mJKp2sKiUA"/>
+        <transition xmi:id="_1U_15NC5EeG4mJKp2sKiUA" name="Transition3" kind="local" source="_y1TgUNC5EeG4mJKp2sKiUA" target="_zD9nYNC5EeG4mJKp2sKiUA"/>
+        <transition xmi:id="_1ltLZNC5EeG4mJKp2sKiUA" name="Transition4" kind="local" source="_ykmK0tC5EeG4mJKp2sKiUA" target="_0Lmk4NC5EeG4mJKp2sKiUA"/>
+        <transition xmi:id="_11Cn4NC5EeG4mJKp2sKiUA" name="Transition5" kind="local" source="_0Lmk4NC5EeG4mJKp2sKiUA" target="_zD9nYNC5EeG4mJKp2sKiUA"/>
+        <transition xmi:id="_2IRF5NC5EeG4mJKp2sKiUA" name="Transition6" kind="local" source="_zD9nYNC5EeG4mJKp2sKiUA" target="_zSYd4NC5EeG4mJKp2sKiUA"/>
+      </region>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

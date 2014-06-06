@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testRequiresCorrectModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testRequiresCorrectPackage">
+      <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="testRequiresCorrectActivity">
+        <node xmi:type="uml:OpaqueAction" xmi:id="_sJTcIIrNEeGJsOkeYLBgGA" name="OpaqueAction1" outgoing="_y0WX0IrNEeGJsOkeYLBgGA" incoming="_x2r1sIrNEeGJsOkeYLBgGA _zESRQIrNEeGJsOkeYLBgGA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_sVKt4IrNEeGJsOkeYLBgGA" name="OpaqueAction2" outgoing="_zUP_4IrNEeGJsOkeYLBgGA" incoming="_y0WX0IrNEeGJsOkeYLBgGA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_seLf8IrNEeGJsOkeYLBgGA" name="OpaqueAction3" outgoing="_zESRQIrNEeGJsOkeYLBgGA" incoming="_yLSzwIrNEeGJsOkeYLBgGA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_w-zygIrNEeGJsOkeYLBgGA" name="InitialNode1" outgoing="_x2r1sIrNEeGJsOkeYLBgGA _yLSzwIrNEeGJsOkeYLBgGA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_xSuNAIrNEeGJsOkeYLBgGA" name="ActivityFinalNode1" incoming="_zUP_4IrNEeGJsOkeYLBgGA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_x2r1sIrNEeGJsOkeYLBgGA" name="ControlFlow1" source="_w-zygIrNEeGJsOkeYLBgGA" target="_sJTcIIrNEeGJsOkeYLBgGA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_x2r1sYrNEeGJsOkeYLBgGA" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_x2r1sorNEeGJsOkeYLBgGA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_yLSzwIrNEeGJsOkeYLBgGA" name="ControlFlow2" source="_w-zygIrNEeGJsOkeYLBgGA" target="_seLf8IrNEeGJsOkeYLBgGA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_yLSzwYrNEeGJsOkeYLBgGA" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_yLSzworNEeGJsOkeYLBgGA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_y0WX0IrNEeGJsOkeYLBgGA" name="ControlFlow3" source="_sJTcIIrNEeGJsOkeYLBgGA" target="_sVKt4IrNEeGJsOkeYLBgGA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_y0WX0YrNEeGJsOkeYLBgGA" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_y0WX0orNEeGJsOkeYLBgGA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_zESRQIrNEeGJsOkeYLBgGA" name="ControlFlow4" source="_seLf8IrNEeGJsOkeYLBgGA" target="_sJTcIIrNEeGJsOkeYLBgGA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_zESRQYrNEeGJsOkeYLBgGA" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_zESRQorNEeGJsOkeYLBgGA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_zUP_4IrNEeGJsOkeYLBgGA" name="ControlFlow5" source="_sVKt4IrNEeGJsOkeYLBgGA" target="_xSuNAIrNEeGJsOkeYLBgGA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_zUP_4YrNEeGJsOkeYLBgGA" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_zUP_4orNEeGJsOkeYLBgGA" value="1"/>
+        </edge>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_uhOVwIrNEeGJsOkeYLBgGA">
+      <eAnnotations xmi:id="_uhOVwYrNEeGJsOkeYLBgGA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:requires xmi:id="_0DHRAIrNEeGJsOkeYLBgGA" base_Action="_sVKt4IrNEeGJsOkeYLBgGA" actions="_sJTcIIrNEeGJsOkeYLBgGA"/>
+</xmi:XMI>

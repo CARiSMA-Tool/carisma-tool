@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="RBACCorrectModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="RBACCorrectPackage">
+      <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="RBACCorrectActivity">
+        <node xmi:type="uml:InitialNode" xmi:id="_YgKRoCEsEeOHcOQSSIqRpg" name="InitialNode1" outgoing="_nF2vsCEsEeOHcOQSSIqRpg"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_YpVbwCEsEeOHcOQSSIqRpg" name="ActivityFinalNode1" incoming="_ni6fICEsEeOHcOQSSIqRpg"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_ZK0_QCEsEeOHcOQSSIqRpg" name="OpaqueAction1" outgoing="_nSVsgCEsEeOHcOQSSIqRpg" incoming="_nF2vsCEsEeOHcOQSSIqRpg"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_Z6SGQCEsEeOHcOQSSIqRpg" name="OpaqueAction2" outgoing="_ni6fICEsEeOHcOQSSIqRpg" incoming="_nSVsgCEsEeOHcOQSSIqRpg"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_nF2vsCEsEeOHcOQSSIqRpg" name="ControlFlow1" source="_YgKRoCEsEeOHcOQSSIqRpg" target="_ZK0_QCEsEeOHcOQSSIqRpg">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_nF2vsSEsEeOHcOQSSIqRpg" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_nF2vsiEsEeOHcOQSSIqRpg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_nSVsgCEsEeOHcOQSSIqRpg" name="ControlFlow2" source="_ZK0_QCEsEeOHcOQSSIqRpg" target="_Z6SGQCEsEeOHcOQSSIqRpg">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_nSVsgSEsEeOHcOQSSIqRpg" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_nSVsgiEsEeOHcOQSSIqRpg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_ni6fICEsEeOHcOQSSIqRpg" name="ControlFlow3" source="_Z6SGQCEsEeOHcOQSSIqRpg" target="_YpVbwCEsEeOHcOQSSIqRpg">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_ni6fISEsEeOHcOQSSIqRpg" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_ni6fIiEsEeOHcOQSSIqRpg" value="1"/>
+        </edge>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_bJsfsCEsEeOHcOQSSIqRpg">
+      <eAnnotations xmi:id="_bJu78CEsEeOHcOQSSIqRpg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:rbac xmi:id="_cOrx0CEsEeOHcOQSSIqRpg" protected="_ZK0_QCEsEeOHcOQSSIqRpg" base_Package="idPackage">
+    <role>(chief, OpaqueAction1)</role>
+    <right>(Abraham, chief)</right>
+  </UMLsec:rbac>
+</xmi:XMI>

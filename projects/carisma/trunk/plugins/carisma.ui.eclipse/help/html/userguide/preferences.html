@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>CARiSMA's Preference Settings</title>
+<meta name="author" content="Carisma">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+<h2><a name="preferences">CARiSMA Preference Settings</a></h2>
+<h3>Content:</h3>
+<h4><a href="#overview">Overview</a></h4>
+<h4><a href="#openmodel">Open model settings</a></h4>
+
+<h3><a name="overview">Overview</a></h3>
+The CARiSMA settings can be customized by the user. Open <i>Window</i> &rarr; <i>Preferences</i> and choose <i>CARiSMA</i> on the left side. 
+The CARiSMA preference page is shown:
+<br /><br />
+<img src="../images/preferences_00.png" alt="CARiSMA's main preference page" name="CARiSMA's main preference page" /> <br />
+<h5>Figure: CARiSMA's main preference page</h5>
+<!--Check &quot;Do you wish to analyze everything at start&quot; if you wish to autostart the currently opened analysis when CARiSMA is initialized. (not implemented yet). --> 
+
+<h3><a name="openmodel">Open model settings</a></h3>
+Depending on the analysis settings, the defined model may change during the execution. So the user may like to edit or review the used model. 
+The <i>Open a Model with</i> settings in CARiSMA's main preference page specify the editors to be used when opening a model using the <i>Open Model</i> button. 
+<br /><br />
+<img src="../images/preferences_03.png" alt="Analysis Editor Open Model Button" name="Analysis Editor Open Model Button"/> <br />
+<h5>Figure: Analysis Editor Open Model Button</h5>
+    
+    
+<h4><a name="manually">Editor selection combo box</a></h4>
+If you want to select a different editor for each analysis file, select the <i>Editor selection combo box</i> option. By clicking on the <i>Open Model</i> button in Analysis Editor, 
+the editor chosen in <i>Associated Editor</i> combo box (e.g. Eclipse's TextEditor, TOPCASED, Papyrus, etc.) will appear. The selected editor will be applied just for the current opening.  
+If the analysis is saved, the <i>Associated Editor</i> selection will be saved too. 
+<br /><br /><img src="../images/preferences_04.png" alt="Select an editor combo box" name="Select an editor combo box" />
+
+<h4><a name="graphical">Priority List</a></h4>
+To define an ordered list of editors for automatically opening of a model, select this option.
+Use the <i>Select ModelType</i> combo box to define editor priority lists for the different model types (e.g. UML2, BPMN2).
+Use <i>Add</i> or <i>Remove</i> buttons to add currently available editors into the ordered list or remove an editor from it.
+There must be at least one entry. 
+<br /><br />
+<img src="../images/preferences_02.png" alt="" name="" /> 
+<br /><br />
+The first entry in the list has the highest priority. If opening the model with this entry fails, the next entry will be taken automatically.
+There are currently following editors supported:
+<ul>
+<li><b><i>Default Eclipse Editor</i></b> is not a specific editor. With this option, the editor which is selected by eclipse by default is chosen.</li>
+<li><b><i>Text Editor</i></b> opens the model file as text.</li>
+<li><b><i>UML Model Editor</i></b> opens an <i>uml</i> model with its default editor. </li> 
+<li><b><i>TOPCASED</i></b> search for the graphical file of the model (<i>umldi</i> file extension) in the same folder as the model itself,
+ and if it exists it will be opened with the TOPCASED editor. </li>
+<li><b><i>Papyrus</i></b> search for the graphical file of the model (<i>di</i> file extension) in the same folder as the model itself,
+and if it exists it will be opened with the Papyrus editor.</li>
+<li><b><i>ECORE Editor</i></b> opens the model file in a basic EMF ecore editor.</li>
+</ul>
+
+</body>
+</html>

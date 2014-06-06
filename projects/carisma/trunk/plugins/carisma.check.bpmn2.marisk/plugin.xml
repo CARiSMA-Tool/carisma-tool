@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Checks different MaRisk(VA) compliance of the process."
+            id="carisma.check.bpmn2.marisk.check.sod"
+            implementingClass="carisma.bpmn2.marisk.MariskSoD"
+            magicKeys="bpmn"
+            name="MaRisk(VA) SoD Check"
+            publisher="Marcel Michel"
+            targetModelType="BPMN2">
+         <parameter
+               defaultValue="Activity1 | Activity2, Activity3; Activity5 | Activity6;"
+               description="Activities which are not allowed to lay in the same lane."
+               id="carisma.check.bpmn2.marisk.sod"
+               name="Separation of Duty"
+               optional="true"
+               type="String">
+         </parameter>
+      </check>
+      <check
+            description="Checks different MaRisk(VA) compliance of the process."
+            id="carisma.check.bpmn2.marisk.actvitysequence"
+            implementingClass="carisma.bpmn2.marisk.MariskActivitySequence"
+            magicKeys="bpmn"
+            name="MaRisk(VA) Activity Sequence Check"
+            publisher="Marcel Michel"
+            targetModelType="BPMN2">
+         <parameter
+               defaultValue="ProcessName"
+               description="The name of the process which contains the activities."
+               id="carisma.check.bpmn2.marisk.process"
+               name="Process"
+               optional="true"
+               type="String">
+         </parameter>
+         <parameter
+               defaultValue="Activity1, Activity2"
+               description="The name of the activities within the process, which should performed in the defined order."
+               id="carisma.check.bpmn2.marisk.activities"
+               name="Activities"
+               optional="true"
+               type="String">
+         </parameter>
+         <parameter
+               defaultValue="null"
+               description="The event that is referenced by StartActivity."
+               id="carisma.check.bpmn2.marisk.startevent"
+               name="StartEvent"
+               optional="true"
+               type="String">
+         </parameter>
+      </check>
+      <check
+            description="Checks different MaRisk(VA) compliance of the process."
+            id="carisma.check.bpmn2.marisk.boundaryevent"
+            implementingClass="carisma.bpmn2.marisk.MariskBoundaryEvent"
+            magicKeys="bpmn"
+            name="MaRisk(VA) Boundary Event Check"
+            publisher="Marcel Michel"
+            targetModelType="BPMN2">
+         <parameter
+               defaultValue="ProcessName"
+               description="The name of the process which contains the activities."
+               id="carisma.check.bpmn2.marisk.process"
+               name="Process"
+               optional="true"
+               type="String">
+         </parameter>
+         <parameter
+               defaultValue="Activity1, Activity2"
+               description="The name of the activities within the process."
+               id="carisma.check.bpmn2.marisk.activities"
+               name="Activities"
+               optional="true"
+               type="String">
+         </parameter>
+         <parameter
+               defaultValue="null"
+               description="The BoundaryEvent which should be referenced by the defined activity."
+               id="carisma.check.bpmn2.marisk.boundaryevent"
+               name="BoundaryEvent"
+               optional="true"
+               type="String">
+         </parameter>
+         <parameter
+               defaultValue="false"
+               description="Checks if the defined BoundaryEvent is a cancel activity."
+               id="carisma.check.bpmn2.marisk.cancelactivity"
+               name="Cancel Activity"
+               optional="true"
+               type="boolean">
+         </parameter>
+      </check>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="false">
+      </toc>
+   </extension>
+
+</plugin>

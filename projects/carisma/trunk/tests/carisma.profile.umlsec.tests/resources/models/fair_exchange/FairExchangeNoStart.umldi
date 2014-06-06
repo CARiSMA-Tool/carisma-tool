@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_YicTIBxWEeOKUObqx5OB-A" activeDiagram="_YicTIRxWEeOKUObqx5OB-A">
+  <model href="FairExchangeNoStart.uml#idActivity"/>
+  <diagrams xmi:id="_YicTIRxWEeOKUObqx5OB-A" position="0,0" size="100,100" name="FairExchangeNoStart" viewport="0,0">
+    <property xmi:id="_YkI8QBxWEeOKUObqx5OB-A" key="pageFormatName" value="A4"/>
+    <property xmi:id="_YkI8QRxWEeOKUObqx5OB-A" key="diagramWidth" value="840"/>
+    <property xmi:id="_YkI8QhxWEeOKUObqx5OB-A" key="diagramHeight" value="1188"/>
+    <property xmi:id="_YkI8QxxWEeOKUObqx5OB-A" key="pageMarginName" value="Small Margin"/>
+    <property xmi:id="_YkI8RBxWEeOKUObqx5OB-A" key="diagramTopMargin" value="20"/>
+    <property xmi:id="_YkI8RRxWEeOKUObqx5OB-A" key="diagramBottomMargin" value="20"/>
+    <property xmi:id="_YkI8RhxWEeOKUObqx5OB-A" key="diagramLeftMargin" value="20"/>
+    <property xmi:id="_YkI8RxxWEeOKUObqx5OB-A" key="diagramRightMargin" value="20"/>
+    <property xmi:id="_YkI8SBxWEeOKUObqx5OB-A" key="orientation" value="portrait"/>
+    <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_YicTIhxWEeOKUObqx5OB-A" presentation="org.topcased.modeler.uml.activitydiagram">
+      <element href="FairExchangeNoStart.uml#idActivity"/>
+    </semanticModel>
+    <contained xsi:type="di:GraphNode" xmi:id="_ZbtdcBxWEeOKUObqx5OB-A" position="59,85" size="30,30">
+      <anchorage xmi:id="_cBHZcBxWEeOKUObqx5OB-A" graphEdge="_cBX4IBxWEeOKUObqx5OB-A"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ZbuEgBxWEeOKUObqx5OB-A" presentation="default">
+        <element href="FairExchangeNoStart.uml#_ZcNMsBxWEeOKUObqx5OB-A"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_ZnJRYBxWEeOKUObqx5OB-A" position="547,90" size="40,40">
+      <anchorage xmi:id="_cSHp4BxWEeOKUObqx5OB-A" graphEdge="_cSI4ABxWEeOKUObqx5OB-A"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ZnJRYRxWEeOKUObqx5OB-A" presentation="default">
+        <element href="FairExchangeNoStart.uml#_ZnOw8BxWEeOKUObqx5OB-A"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_a5Uq8BxWEeOKUObqx5OB-A" position="232,72" size="150,60">
+      <anchorage xmi:id="_cBHZcRxWEeOKUObqx5OB-A" graphEdge="_cBX4IBxWEeOKUObqx5OB-A _cSI4ABxWEeOKUObqx5OB-A"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_a5Uq8RxWEeOKUObqx5OB-A" presentation="default">
+        <element href="FairExchangeNoStart.uml#_a5uTkBxWEeOKUObqx5OB-A"/>
+      </semanticModel>
+    </contained>
+    <contained xsi:type="di:GraphEdge" xmi:id="_cBX4IBxWEeOKUObqx5OB-A" anchor="_cBHZcBxWEeOKUObqx5OB-A _cBHZcRxWEeOKUObqx5OB-A">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_cBX4IRxWEeOKUObqx5OB-A" presentation="default">
+        <element href="FairExchangeNoStart.uml#_cBdXsBxWEeOKUObqx5OB-A"/>
+      </semanticModel>
+      <contained xsi:type="di:EdgeObjectOffset" xmi:id="_cBX4IhxWEeOKUObqx5OB-A" visible="false" id="stereotypeEdgeObject"/>
+      <contained xsi:type="di:EdgeObjectUV" xmi:id="_cBX4IxxWEeOKUObqx5OB-A" visible="false" id="guardEdgeObject" uDistance="6" vDistance="6"/>
+      <contained xsi:type="di:EdgeObjectUV" xmi:id="_cBX4JBxWEeOKUObqx5OB-A" visible="false" id="weightEdgeObject" uDistance="6" vDistance="-6"/>
+      <contained xsi:type="di:EdgeObjectUV" xmi:id="_cBX4JRxWEeOKUObqx5OB-A" visible="false" id="nameEdgeObject" uDistance="6" vDistance="6"/>
+      <contained xsi:type="di:EdgeObjectOffset" xmi:id="_cBX4JhxWEeOKUObqx5OB-A" visible="false" id="interruptibleEdgeObject"/>
+      <contained xsi:type="di:EdgeObjectOffset" xmi:id="_cBX4JxxWEeOKUObqx5OB-A" visible="false" id="interruptibleIconEdgeObject"/>
+    </contained>
+    <contained xsi:type="di:GraphEdge" xmi:id="_cSI4ABxWEeOKUObqx5OB-A" anchor="_cBHZcRxWEeOKUObqx5OB-A _cSHp4BxWEeOKUObqx5OB-A">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_cSI4ARxWEeOKUObqx5OB-A" presentation="default">
+        <element href="FairExchangeNoStart.uml#_cSO-oBxWEeOKUObqx5OB-A"/>
+      </semanticModel>
+      <contained xsi:type="di:EdgeObjectOffset" xmi:id="_cSI4AhxWEeOKUObqx5OB-A" visible="false" id="stereotypeEdgeObject"/>
+      <contained xsi:type="di:EdgeObjectUV" xmi:id="_cSI4AxxWEeOKUObqx5OB-A" visible="false" id="guardEdgeObject" uDistance="6" vDistance="6"/>
+      <contained xsi:type="di:EdgeObjectUV" xmi:id="_cSI4BBxWEeOKUObqx5OB-A" visible="false" id="weightEdgeObject" uDistance="6" vDistance="-6"/>
+      <contained xsi:type="di:EdgeObjectUV" xmi:id="_cSI4BRxWEeOKUObqx5OB-A" visible="false" id="nameEdgeObject" uDistance="6" vDistance="6"/>
+      <contained xsi:type="di:EdgeObjectOffset" xmi:id="_cSI4BhxWEeOKUObqx5OB-A" visible="false" id="interruptibleEdgeObject"/>
+      <contained xsi:type="di:EdgeObjectOffset" xmi:id="_cSI4BxxWEeOKUObqx5OB-A" visible="false" id="interruptibleIconEdgeObject"/>
+    </contained>
+  </diagrams>
+</diagrams:Diagrams>

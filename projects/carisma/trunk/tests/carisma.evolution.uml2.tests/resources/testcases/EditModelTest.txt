@@ -1,0 +1,3 @@
+EditElement has no target --> not possible in the modifier		|testIncorrectEdits()
+EditElement has no changes --> nothing happens					|testIncorrectEdits()
+EditElememt has target and changes --> the getModifiedModel function returns the modified model		|testEditsForModel()

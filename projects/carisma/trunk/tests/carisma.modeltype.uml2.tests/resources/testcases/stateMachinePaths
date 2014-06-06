@@ -1,0 +1,15 @@
+This plugin determines all possible paths through a state machine.
+Beginning from the InitialNodes, it determines all possible Paths from the 
+InitialNode to the end, what could be a FinalNode, a Node with no Outgoing Transition 
+or a kind of Loop.
+
+As input it needs a StateMachine, an AnalysisHost (can be null) and a boolean if 
+Transitions should also occur in the result or not.
+As output, you get all the possible paths through the given StateMachine.
+
+This plugin is also able to get all StateMachines out of a Model.
+
+1. The given Model is null --> NullpointerException | testNull()
+2. There are no paths in the StateMachine --> result is an empty List | testNoPath()
+3. Otherwise you get all the as List<List<Element>> as result. where every inner List 
+represents one path.

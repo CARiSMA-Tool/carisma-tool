@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testBookExample">
+      <ownedComment xmi:id="_dFXzsKTIEeGxQLWkpzYzKQ" annotatedElement="_vJ3JUKTHEeGxQLWkpzYzKQ">
+        <body>high={rm,wm,money}</body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Class" xmi:id="_vJ3JUKTHEeGxQLWkpzYzKQ" name="Account" classifierBehavior="_pUsQQKTIEeGxQLWkpzYzKQ">
+        <ownedAttribute xmi:id="_3GRmQKTHEeGxQLWkpzYzKQ" name="money">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Integer"/>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_pUsQQKTIEeGxQLWkpzYzKQ" name="StateMachine">
+          <region xmi:id="_pUsQQaTIEeGxQLWkpzYzKQ" name="Region">
+            <subvertex xmi:type="uml:State" xmi:id="_ptyswKTIEeGxQLWkpzYzKQ" name="ExtraService"/>
+            <subvertex xmi:type="uml:State" xmi:id="_qdLiUKTIEeGxQLWkpzYzKQ" name="NoExtraService"/>
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_snihEKTIEeGxQLWkpzYzKQ" name="Pseudostate1"/>
+            <transition xmi:id="_t6hy9KTIEeGxQLWkpzYzKQ" name="Transition1" kind="local" source="_snihEKTIEeGxQLWkpzYzKQ" target="_qdLiUKTIEeGxQLWkpzYzKQ">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_BANiAKTXEeGxQLWkpzYzKQ" name="money:=0"/>
+            </transition>
+            <transition xmi:id="_uKs89KTIEeGxQLWkpzYzKQ" name="Transition2" kind="local" source="_qdLiUKTIEeGxQLWkpzYzKQ" target="_ptyswKTIEeGxQLWkpzYzKQ" guard="_OKm9MKTLEeGxQLWkpzYzKQ">
+              <ownedRule xmi:id="_OKm9MKTLEeGxQLWkpzYzKQ" name="money>=1000">
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="_Pzb8MKTLEeGxQLWkpzYzKQ" name="Constraint money>=1000">
+                  <language>ocl</language>
+                  <body>Constraint money>=1000</body>
+                </specification>
+              </ownedRule>
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_T5lSMKTLEeGxQLWkpzYzKQ" name="money:=money+x" specification="_9REUkKTHEeGxQLWkpzYzKQ"/>
+              <trigger xmi:id="__upC4KTKEeGxQLWkpzYzKQ" name="wm(x)" event="_DsZR4KTLEeGxQLWkpzYzKQ"/>
+            </transition>
+            <transition xmi:id="_wczidKTIEeGxQLWkpzYzKQ" name="Transition3" kind="local" source="_qdLiUKTIEeGxQLWkpzYzKQ" target="_qdLiUKTIEeGxQLWkpzYzKQ">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_pZKZMKTLEeGxQLWkpzYzKQ" name="return(false)" specification="_-i7lEKTHEeGxQLWkpzYzKQ"/>
+              <trigger xmi:id="_jCX2QKTLEeGxQLWkpzYzKQ" name="rx()" event="_mdt7wKTLEeGxQLWkpzYzKQ"/>
+            </transition>
+            <transition xmi:id="_yBu45KTIEeGxQLWkpzYzKQ" name="Transition4" kind="local" source="_qdLiUKTIEeGxQLWkpzYzKQ" target="_qdLiUKTIEeGxQLWkpzYzKQ">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_o-qNgKTWEeGxQLWkpzYzKQ" name="return(money)" specification="_8avwkKTHEeGxQLWkpzYzKQ"/>
+              <trigger xmi:id="_j7M6sKTWEeGxQLWkpzYzKQ" name="rm()" event="_m0SnsKTWEeGxQLWkpzYzKQ"/>
+            </transition>
+            <transition xmi:id="_zXMP9KTIEeGxQLWkpzYzKQ" name="Transition5" kind="local" source="_qdLiUKTIEeGxQLWkpzYzKQ" target="_qdLiUKTIEeGxQLWkpzYzKQ" guard="_v8b38KTWEeGxQLWkpzYzKQ">
+              <ownedRule xmi:id="_v8b38KTWEeGxQLWkpzYzKQ" name="money &lt; 1000">
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="_xaXOgKTWEeGxQLWkpzYzKQ" name="money &lt; 1000">
+                  <language>ocl</language>
+                  <body>money &lt; 1000</body>
+                </specification>
+              </ownedRule>
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_4g6acKTWEeGxQLWkpzYzKQ" name="money:=money+x" specification="_9REUkKTHEeGxQLWkpzYzKQ"/>
+              <trigger xmi:id="_8BK1IKTWEeGxQLWkpzYzKQ" name="wm(x)" event="_DsZR4KTLEeGxQLWkpzYzKQ"/>
+            </transition>
+            <transition xmi:id="_FvGbYKTJEeGxQLWkpzYzKQ" name="Transition6" kind="local" source="_ptyswKTIEeGxQLWkpzYzKQ" target="_ptyswKTIEeGxQLWkpzYzKQ">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_d7_U0KTXEeGxQLWkpzYzKQ" name="money:=money+x" specification="_9REUkKTHEeGxQLWkpzYzKQ"/>
+              <trigger xmi:id="_gFuogKTXEeGxQLWkpzYzKQ" name="wm(x)" event="_DsZR4KTLEeGxQLWkpzYzKQ"/>
+            </transition>
+            <transition xmi:id="_JQsS1KTJEeGxQLWkpzYzKQ" name="Transition7" kind="local" source="_ptyswKTIEeGxQLWkpzYzKQ" target="_ptyswKTIEeGxQLWkpzYzKQ">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_SBR2UKTXEeGxQLWkpzYzKQ" name="return(true)" specification="_-i7lEKTHEeGxQLWkpzYzKQ"/>
+              <trigger xmi:id="_N4gDEKTXEeGxQLWkpzYzKQ" name="rxm()" event="_1QedEKTZEeGxQLWkpzYzKQ"/>
+            </transition>
+            <transition xmi:id="_Mf1vZKTJEeGxQLWkpzYzKQ" name="Transition8" kind="local" source="_ptyswKTIEeGxQLWkpzYzKQ" target="_ptyswKTIEeGxQLWkpzYzKQ">
+              <effect xmi:type="uml:FunctionBehavior" xmi:id="_XUs3wKTXEeGxQLWkpzYzKQ" name="return(money)" specification="_8avwkKTHEeGxQLWkpzYzKQ"/>
+              <trigger xmi:id="_VII5kKTXEeGxQLWkpzYzKQ" name="rm()" event="_m0SnsKTWEeGxQLWkpzYzKQ"/>
+            </transition>
+          </region>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_8avwkKTHEeGxQLWkpzYzKQ" name="rm" method="_o-qNgKTWEeGxQLWkpzYzKQ _XUs3wKTXEeGxQLWkpzYzKQ">
+          <ownedParameter xmi:id="_EJCR8KTIEeGxQLWkpzYzKQ" name="return" type="_CcIrQKTIEeGxQLWkpzYzKQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_9REUkKTHEeGxQLWkpzYzKQ" name="wm" method="_T5lSMKTLEeGxQLWkpzYzKQ _4g6acKTWEeGxQLWkpzYzKQ _d7_U0KTXEeGxQLWkpzYzKQ">
+          <ownedParameter xmi:id="_GMDSkKTIEeGxQLWkpzYzKQ" name="x" type="_CcIrQKTIEeGxQLWkpzYzKQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_-i7lEKTHEeGxQLWkpzYzKQ" name="rx" method="_pZKZMKTLEeGxQLWkpzYzKQ _SBR2UKTXEeGxQLWkpzYzKQ">
+          <ownedParameter xmi:id="_ATmRcKTIEeGxQLWkpzYzKQ" name="return" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_vJkwQKTZEeGxQLWkpzYzKQ" name="rxm">
+          <ownedParameter xmi:id="_xHl8IKTZEeGxQLWkpzYzKQ" name="return" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_CcIrQKTIEeGxQLWkpzYzKQ" name="Data"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_DsZR4KTLEeGxQLWkpzYzKQ" name="wm(x)"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_kUoIUKTLEeGxQLWkpzYzKQ" name="rx"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_mdt7wKTLEeGxQLWkpzYzKQ" name="rx()"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_k18rsKTWEeGxQLWkpzYzKQ" name="rm"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_m0SnsKTWEeGxQLWkpzYzKQ" name="rm()"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_1QedEKTZEeGxQLWkpzYzKQ" name="rxm()"/>
+    </packagedElement>
+    <profileApplication xmi:id="_zF3E0KTHEeGxQLWkpzYzKQ">
+      <eAnnotations xmi:id="_zF46AKTHEeGxQLWkpzYzKQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:critical xmi:id="_z-_FMKTHEeGxQLWkpzYzKQ" base_Class="_vJ3JUKTHEeGxQLWkpzYzKQ" base_Classifier="_vJ3JUKTHEeGxQLWkpzYzKQ">
+    <high>wm</high>
+    <high>rm</high>
+    <high>money</high>
+  </UMLsec:critical>
+  <UMLsec:nodownflow xmi:id="_XIvC4KTYEeGxQLWkpzYzKQ" base_Package="_qb8akM37EdqwVrslYOdUDA"/>
+</xmi:XMI>

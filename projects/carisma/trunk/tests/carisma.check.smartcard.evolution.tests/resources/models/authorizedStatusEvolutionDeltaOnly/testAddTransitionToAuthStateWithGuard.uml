@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testAddTransitionToAuthStateWithGuardModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testAddTransitionToAuthStateWithGuardPackage">
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="testAddTransitionToAuthStateWithGuardStateMachine">
+        <region xmi:id="idRegion" name="MainRegion">
+          <subvertex xmi:type="uml:State" xmi:id="_ZvDigHaaEeKo3oFgH9A0gQ" name="CompositeState">
+            <region xmi:id="_ZvDigXaaEeKo3oFgH9A0gQ" name="Region1">
+              <subvertex xmi:type="uml:Pseudostate" xmi:id="_bBYtEHaaEeKo3oFgH9A0gQ" name="Start"/>
+              <subvertex xmi:type="uml:State" xmi:id="_brLQ8HaaEeKo3oFgH9A0gQ" name="AuthState"/>
+            </region>
+          </subvertex>
+        </region>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_daLwcHaaEeKo3oFgH9A0gQ">
+      <eAnnotations xmi:id="_daLwcXaaEeKo3oFgH9A0gQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_daLwcnaaEeKo3oFgH9A0gQ">
+      <eAnnotations xmi:id="_daMXgHaaEeKo3oFgH9A0gQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:authorizedstatus xmi:id="_fRpoYHaaEeKo3oFgH9A0gQ" permission="redkey" base_State="_brLQ8HaaEeKo3oFgH9A0gQ"/>
+  <UMLchange:add xmi:id="_iO7R0HaaEeKo3oFgH9A0gQ" base_Element="_ZvDigHaaEeKo3oFgH9A0gQ">
+    <ref>addTransition</ref>
+    <new>addTransition={Transition(name=newTransition,source=Start,target=AuthState,contents=&lt;Constraint(name=newConst,language=ocl,specification=redkey)>)}</new>
+  </UMLchange:add>
+</xmi:XMI>

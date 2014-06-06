@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA">
+  <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="toolArchitecture">
+    <packagedElement xmi:type="uml:Class" xmi:id="_O4QGoHKUEeGkI7rWjLeTsA" name="Carisma"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_h-afMHKUEeGkI7rWjLeTsA" name="CheckRegistry">
+      <ownedOperation xmi:id="_zvnP8HKUEeGkI7rWjLeTsA" name="getChecks"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3_yrsHKUEeGkI7rWjLeTsA" name="CheckDescriptor" clientDependency="__oJSQHKWEeGkI7rWjLeTsA _oPYfQHKaEeGkI7rWjLeTsA _RweMwHKbEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_-odBwHKUEeGkI7rWjLeTsA" name="A_&lt;carisma>_&lt;checkRegistry>" memberEnd="_-odBwXKUEeGkI7rWjLeTsA _-odBxHKUEeGkI7rWjLeTsA" navigableOwnedEnd="_-odBxHKUEeGkI7rWjLeTsA">
+      <ownedEnd xmi:id="_-odBwXKUEeGkI7rWjLeTsA" name="carisma" type="_O4QGoHKUEeGkI7rWjLeTsA" association="_-odBwHKUEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-odBwnKUEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-odBw3KUEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_-odBxHKUEeGkI7rWjLeTsA" name="checkRegistry" type="_h-afMHKUEeGkI7rWjLeTsA" aggregation="composite" association="_-odBwHKUEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-odBxXKUEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-odBxnKUEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_JNefsHKVEeGkI7rWjLeTsA" name="A_&lt;checkRegistry>_&lt;checkDescriptor>" memberEnd="_JNefsXKVEeGkI7rWjLeTsA _JNeftHKVEeGkI7rWjLeTsA" navigableOwnedEnd="_JNeftHKVEeGkI7rWjLeTsA">
+      <ownedEnd xmi:id="_JNefsXKVEeGkI7rWjLeTsA" name="checkRegistry" type="_h-afMHKUEeGkI7rWjLeTsA" association="_JNefsHKVEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JNefsnKVEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JNefs3KVEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_JNeftHKVEeGkI7rWjLeTsA" name="checkDescriptor" type="_3_yrsHKUEeGkI7rWjLeTsA" aggregation="shared" association="_JNefsHKVEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JNeftXKVEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JNeftnKVEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_iskJMHKVEeGkI7rWjLeTsA" name="ModelTypeRegistry"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_ru8vsHKVEeGkI7rWjLeTsA" name="A_&lt;carisma>_&lt;modelTypeRegistry>" memberEnd="_ru8vsXKVEeGkI7rWjLeTsA _ru8vtHKVEeGkI7rWjLeTsA" navigableOwnedEnd="_ru8vtHKVEeGkI7rWjLeTsA">
+      <ownedEnd xmi:id="_ru8vsXKVEeGkI7rWjLeTsA" name="carisma" type="_O4QGoHKUEeGkI7rWjLeTsA" association="_ru8vsHKVEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ru8vsnKVEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ru8vs3KVEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_ru8vtHKVEeGkI7rWjLeTsA" name="modelTypeRegistry" type="_iskJMHKVEeGkI7rWjLeTsA" aggregation="composite" association="_ru8vsHKVEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ru8vtXKVEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ru8vtnKVEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_yhh2wHKVEeGkI7rWjLeTsA" name="ModelManager" clientDependency="_jQzCMHKWEeGkI7rWjLeTsA _mf8ewHKWEeGkI7rWjLeTsA">
+      <ownedOperation xmi:id="_JejzMHKWEeGkI7rWjLeTsA" name="loadModel"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_3hH9QHKVEeGkI7rWjLeTsA" name="A_&lt;carisma>_&lt;modelManager>" memberEnd="_3hH9QXKVEeGkI7rWjLeTsA _3hH9RHKVEeGkI7rWjLeTsA" navigableOwnedEnd="_3hH9RHKVEeGkI7rWjLeTsA">
+      <ownedEnd xmi:id="_3hH9QXKVEeGkI7rWjLeTsA" name="carisma" type="_O4QGoHKUEeGkI7rWjLeTsA" association="_3hH9QHKVEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3hH9QnKVEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3hH9Q3KVEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_3hH9RHKVEeGkI7rWjLeTsA" name="modelManager" type="_yhh2wHKVEeGkI7rWjLeTsA" aggregation="composite" association="_3hH9QHKVEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3hH9RXKVEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3hH9RnKVEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_WljeoHKWEeGkI7rWjLeTsA" name="Model"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZlASUHKWEeGkI7rWjLeTsA" name="ModelType"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_brHDMHKWEeGkI7rWjLeTsA" name="ModelLoader" clientDependency="_nV5PUHKWEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_jQzCMHKWEeGkI7rWjLeTsA" name="uses" supplier="_brHDMHKWEeGkI7rWjLeTsA" client="_yhh2wHKVEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_mf8ewHKWEeGkI7rWjLeTsA" name="manages" supplier="_WljeoHKWEeGkI7rWjLeTsA" client="_yhh2wHKVEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_nV5PUHKWEeGkI7rWjLeTsA" name="loads" supplier="_WljeoHKWEeGkI7rWjLeTsA" client="_brHDMHKWEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_ubQIcHKWEeGkI7rWjLeTsA" name="type" memberEnd="_ubQIcXKWEeGkI7rWjLeTsA _ubQIdHKWEeGkI7rWjLeTsA" navigableOwnedEnd="_ubQIdHKWEeGkI7rWjLeTsA">
+      <ownedEnd xmi:id="_ubQIcXKWEeGkI7rWjLeTsA" name="model" type="_WljeoHKWEeGkI7rWjLeTsA" association="_ubQIcHKWEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ubQIcnKWEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ubQIc3KWEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_ubQIdHKWEeGkI7rWjLeTsA" name="type" type="_ZlASUHKWEeGkI7rWjLeTsA" association="_ubQIcHKWEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ubQIdXKWEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ubQIdnKWEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="__oJSQHKWEeGkI7rWjLeTsA" name="refers to" supplier="_ZlASUHKWEeGkI7rWjLeTsA" client="_3_yrsHKUEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_FaRB4HKXEeGkI7rWjLeTsA" name="A_&lt;modelTypeRegistry>_&lt;modelType>" memberEnd="_FaRB4XKXEeGkI7rWjLeTsA _FaRB5HKXEeGkI7rWjLeTsA" navigableOwnedEnd="_FaRB5HKXEeGkI7rWjLeTsA">
+      <ownedEnd xmi:id="_FaRB4XKXEeGkI7rWjLeTsA" name="modelTypeRegistry" type="_iskJMHKVEeGkI7rWjLeTsA" association="_FaRB4HKXEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FaRB4nKXEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FaRB43KXEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_FaRB5HKXEeGkI7rWjLeTsA" name="modelType" type="_ZlASUHKWEeGkI7rWjLeTsA" association="_FaRB4HKXEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FaRB5XKXEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FaRB5nKXEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_R5vaUHKXEeGkI7rWjLeTsA" name="AnalysisResultView" clientDependency="_oCOUYHKXEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_WlND4HKXEeGkI7rWjLeTsA" name="A_&lt;carisma>_&lt;analysisResultView>" memberEnd="_WlND4XKXEeGkI7rWjLeTsA _WlND5HKXEeGkI7rWjLeTsA" navigableOwnedEnd="_WlND5HKXEeGkI7rWjLeTsA">
+      <ownedEnd xmi:id="_WlND4XKXEeGkI7rWjLeTsA" name="carisma" type="_O4QGoHKUEeGkI7rWjLeTsA" association="_WlND4HKXEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WlND4nKXEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WlND43KXEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_WlND5HKXEeGkI7rWjLeTsA" name="analysisResultView" type="_R5vaUHKXEeGkI7rWjLeTsA" aggregation="composite" association="_WlND4HKXEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WlND5XKXEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WlND5nKXEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_gXVsUHKXEeGkI7rWjLeTsA" name="AnalysisResult" clientDependency="_F9qNYHKYEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_oCOUYHKXEeGkI7rWjLeTsA" name="displays" supplier="_gXVsUHKXEeGkI7rWjLeTsA" client="_R5vaUHKXEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_C694cHKYEeGkI7rWjLeTsA" name="Analysis"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_F9qNYHKYEeGkI7rWjLeTsA" name="describes" supplier="_C694cHKYEeGkI7rWjLeTsA" client="_gXVsUHKXEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_LoMuUHKYEeGkI7rWjLeTsA" name="Analyzer" clientDependency="_yHk-UHKYEeGkI7rWjLeTsA _07yyYHKYEeGkI7rWjLeTsA _UjY1wHKaEeGkI7rWjLeTsA">
+      <ownedOperation xmi:id="_kDnUUHKYEeGkI7rWjLeTsA" name="addResultMessage"/>
+      <ownedOperation xmi:id="_nMoTsHKYEeGkI7rWjLeTsA" name="appendToReport"/>
+      <ownedOperation xmi:id="_pHF1QHKYEeGkI7rWjLeTsA" name="appendLineToReport"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_NjqVcHKYEeGkI7rWjLeTsA" name="A_&lt;carisma>_&lt;analyzer>" memberEnd="_NjqVcXKYEeGkI7rWjLeTsA _NjqVdHKYEeGkI7rWjLeTsA" navigableOwnedEnd="_NjqVdHKYEeGkI7rWjLeTsA">
+      <ownedEnd xmi:id="_NjqVcXKYEeGkI7rWjLeTsA" name="carisma" type="_O4QGoHKUEeGkI7rWjLeTsA" association="_NjqVcHKYEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NjqVcnKYEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NjqVc3KYEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_NjqVdHKYEeGkI7rWjLeTsA" name="analyzer" type="_LoMuUHKYEeGkI7rWjLeTsA" aggregation="composite" association="_NjqVcHKYEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NjqVdXKYEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NjqVdnKYEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_yHk-UHKYEeGkI7rWjLeTsA" name="performs" supplier="_C694cHKYEeGkI7rWjLeTsA" client="_LoMuUHKYEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_07yyYHKYEeGkI7rWjLeTsA" name="creates" supplier="_gXVsUHKXEeGkI7rWjLeTsA" client="_LoMuUHKYEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_4FJI8HKYEeGkI7rWjLeTsA" name="AdfEditor" clientDependency="_7JrQ8HKYEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_7JrQ8HKYEeGkI7rWjLeTsA" name="defines" supplier="_C694cHKYEeGkI7rWjLeTsA" client="_4FJI8HKYEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="__u9aAHKYEeGkI7rWjLeTsA" name="A_&lt;carisma>_&lt;adfEditor>" memberEnd="__u9aAXKYEeGkI7rWjLeTsA __u9aBHKYEeGkI7rWjLeTsA" navigableOwnedEnd="__u9aBHKYEeGkI7rWjLeTsA">
+      <ownedEnd xmi:id="__u9aAXKYEeGkI7rWjLeTsA" name="carisma" type="_O4QGoHKUEeGkI7rWjLeTsA" association="__u9aAHKYEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__u9aAnKYEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__u9aA3KYEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="__u9aBHKYEeGkI7rWjLeTsA" name="adfEditor" type="_4FJI8HKYEeGkI7rWjLeTsA" aggregation="composite" association="__u9aAHKYEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__u9aBXKYEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__u9aBnKYEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_GHS1EHKZEeGkI7rWjLeTsA" name="CarismaCheck" clientDependency="_YgAcUHKaEeGkI7rWjLeTsA">
+      <ownedOperation xmi:id="_Q5pu8HKaEeGkI7rWjLeTsA" name="perform"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_UjY1wHKaEeGkI7rWjLeTsA" name="executes" supplier="_GHS1EHKZEeGkI7rWjLeTsA" client="_LoMuUHKYEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_YgAcUHKaEeGkI7rWjLeTsA" name="reports" supplier="_LoMuUHKYEeGkI7rWjLeTsA" client="_GHS1EHKZEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_oPYfQHKaEeGkI7rWjLeTsA" name="describes" supplier="_GHS1EHKZEeGkI7rWjLeTsA" client="_3_yrsHKUEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1Dec0HKaEeGkI7rWjLeTsA" name="CheckReference" clientDependency="_9rFL0HKaEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_5FvYYHKaEeGkI7rWjLeTsA" name="A_&lt;analysis>_&lt;checkReference>" memberEnd="_5FvYYXKaEeGkI7rWjLeTsA _5FvYZHKaEeGkI7rWjLeTsA" navigableOwnedEnd="_5FvYZHKaEeGkI7rWjLeTsA">
+      <ownedEnd xmi:id="_5FvYYXKaEeGkI7rWjLeTsA" name="analysis" type="_C694cHKYEeGkI7rWjLeTsA" association="_5FvYYHKaEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5FvYYnKaEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5FvYY3KaEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_5FvYZHKaEeGkI7rWjLeTsA" name="checkReference" type="_1Dec0HKaEeGkI7rWjLeTsA" aggregation="composite" association="_5FvYYHKaEeGkI7rWjLeTsA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5FvYZXKaEeGkI7rWjLeTsA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5FvYZnKaEeGkI7rWjLeTsA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_9rFL0HKaEeGkI7rWjLeTsA" name="refers to" supplier="_3_yrsHKUEeGkI7rWjLeTsA" client="_1Dec0HKaEeGkI7rWjLeTsA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_RweMwHKbEeGkI7rWjLeTsA" name="analyses" supplier="_WljeoHKWEeGkI7rWjLeTsA" client="_3_yrsHKUEeGkI7rWjLeTsA"/>
+  </packagedElement>
+</uml:Model>

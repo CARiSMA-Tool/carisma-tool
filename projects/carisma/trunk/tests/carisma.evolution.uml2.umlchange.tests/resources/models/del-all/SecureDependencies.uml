@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="someName">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="SecureDependencies">
+      <packagedElement xmi:type="uml:Class" xmi:id="_mSq7gJBVEeG7TKEz82UBdA" name="KeyGenerator" clientDependency="_y4U0cJBVEeG7TKEz82UBdA">
+        <ownedOperation xmi:id="_sldIMJBVEeG7TKEz82UBdA" name="newKey"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_njqCQJBVEeG7TKEz82UBdA" name="RandomGenerator" clientDependency="_1zN4QJBVEeG7TKEz82UBdA">
+        <ownedOperation xmi:id="_t7KW4JBVEeG7TKEz82UBdA" name="random"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_p-nBwJBVEeG7TKEz82UBdA" name="RandomNumber">
+        <ownedOperation xmi:id="_vASy8JBVEeG7TKEz82UBdA" name="random"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_y4U0cJBVEeG7TKEz82UBdA" name="Usage1" supplier="_p-nBwJBVEeG7TKEz82UBdA" client="_mSq7gJBVEeG7TKEz82UBdA"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_1zN4QJBVEeG7TKEz82UBdA" name="Usage2" supplier="_p-nBwJBVEeG7TKEz82UBdA" client="_njqCQJBVEeG7TKEz82UBdA"/>
+    </packagedElement>
+    <profileApplication xmi:id="_6CbDoJBVEeG7TKEz82UBdA">
+      <eAnnotations xmi:id="_6CbDoZBVEeG7TKEz82UBdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_6CbqsJBVEeG7TKEz82UBdA">
+      <eAnnotations xmi:id="_6CbqsZBVEeG7TKEz82UBdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:delall xmi:id="_AxlqUJBWEeG7TKEz82UBdA" base_Element="_w8IxIM37EdqwVrslYOdUDA">
+    <ref>someRef</ref>
+    <ext>someRef=critical</ext>
+    <pattern>someRef={Interface()}</pattern>
+  </UMLchange:delall>
+  <UMLsec:critical xmi:id="_MAWo0JBWEeG7TKEz82UBdA" base_Classifier="_p-nBwJBVEeG7TKEz82UBdA">
+    <high>random()</high>
+    <fresh>someVal</fresh>
+  </UMLsec:critical>
+  <UMLsec:high xmi:id="_UuDYwJBWEeG7TKEz82UBdA" base_Dependency="_1zN4QJBVEeG7TKEz82UBdA"/>
+  <UMLsec:call xmi:id="_Vd46QJBWEeG7TKEz82UBdA" base_Dependency="_1zN4QJBVEeG7TKEz82UBdA"/>
+  <UMLsec:critical xmi:id="_boyWQJBWEeG7TKEz82UBdA" base_Class="_njqCQJBVEeG7TKEz82UBdA" base_Classifier="_njqCQJBVEeG7TKEz82UBdA">
+    <high>random()</high>
+  </UMLsec:critical>
+  <UMLsec:high xmi:id="_jgocQJBWEeG7TKEz82UBdA" base_Dependency="_y4U0cJBVEeG7TKEz82UBdA"/>
+  <UMLsec:call xmi:id="_jmRKMJBWEeG7TKEz82UBdA" base_Dependency="_y4U0cJBVEeG7TKEz82UBdA"/>
+  <UMLsec:securedependency xmi:id="_nQbHwJBWEeG7TKEz82UBdA" base_Package="_w8IxIM37EdqwVrslYOdUDA"/>
+</xmi:XMI>

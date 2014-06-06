@@ -1,0 +1,77 @@
+List of Testcases
+
+Class: AbstractMariskChecker
+
+Method: checkDutySeperation
+	1. activity1 and activity2 are performed by the same actor (or rather in the same lane atm)
+		Result: returns false
+	2. activity1 and activity2 are not performed by the same actor (or rather in the same lane atm)
+		Result: returns true
+	3. activity1 and/or activity2 have no actor
+		Result: returns true
+
+Method: hasTrace
+	1. allTraces contains activities in order with specified startevent
+		Result: returns true
+	2. allTraces contains activities in order but not the specified startevent
+		Result: returns false
+	3. allTraces contains activities in order, startevent = null
+		Result: returns true
+	4. allTraces contains activities in wrong order, startevent = null
+		Result: returns false
+
+Method: hasBoundaryEventOfType
+	1. activity has no boundaryevent of the specified type
+		Result: returns false
+	2. activity has boundaryEvent of the specified type but cancelActivity does not align
+		Result: returns false 
+	3. activity has boundaryEvent of the specified type and cancelActivity does align
+		Result: returns true
+	4. activity has boundaryEvent of the specified type and cancelActivity equals null
+		Result: returns true
+
+Method: setAllTraces
+	1. Model has only one path
+		Result: one path in allTraces
+	2. Model has Gateways with multiple outgoing sequence flows
+		Result: one path in allTraces for each reachable leaf 
+	3. Model has three-link loop
+		Result: one additional path in allTraces where the loop is traversed once
+	4. Model has two loops with the same starting and ending activities with no other parameter-activites on the loop 
+		Result: one path for both loops in allTraces
+	5. Model contains these Links A->B->C->D, C->A, D->B
+		Result: A->B->C->D, 
+			A->B->C->A->B->C->D,
+			A->B->C->D->B->C->D,
+			A->B->C->A->B->C->D->B->C->D,
+			A->B->C->D->B->C->A->B->C->D	
+
+Method: allTracesInclude
+	1. all Traces in allTraces contain specified activity
+		Result: returns true
+	2. one Trace in allTraces does not contain specified activity
+		Result: returns false
+
+Method: allTracesBefore
+	1. activity1 is always performed before activity 2 
+		Result: returns true
+	2. in one trace activity2 is performed before activity1
+		Result: returns false
+	3. activity1 equals activity2
+		Result: returns true
+	
+Method: allTracesAfter
+	1. activity1 is always performed after activity 2 
+		Result: returns true
+	2. in one trace activity1 is performed before activity2
+		Result: returns false
+	3. activity1 equals activity2
+		Result: returns true
+
+Method: mapParameters
+	1. model does not contain container which name is equal to carisma.check.bpmn2.marisk.parameter1.getValue
+		Result: returns false
+	2. model contains container but container does not contain Activity with name = carisma.check.bpmn2.marisk.parameter2.getValue
+		Result: returns false
+	3. model contains container and container has the activities
+		Result: returns true

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="deploymentdiagramModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="deploymentdiagramPackage">
+    <ownedComment xmi:id="_ARUjEPgvEeKLAZ4gPThXMQ" annotatedElement="_zi8L8PguEeKLAZ4gPThXMQ">
+      <body>Comment1</body>
+    </ownedComment>
+    <ownedRule xmi:id="_Ax4ScPgvEeKLAZ4gPThXMQ" name="Constraint1" constrainedElement="_ARUjEPgvEeKLAZ4gPThXMQ"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_xz7FYPguEeKLAZ4gPThXMQ" name="Node1"/>
+    <packagedElement xmi:type="uml:Device" xmi:id="_yMLNUPguEeKLAZ4gPThXMQ" name="Device1" clientDependency="_0fhI8_guEeKLAZ4gPThXMQ">
+      <deployment xmi:id="_0fhI8_guEeKLAZ4gPThXMQ" name="Deployment1" supplier="_zGReEPguEeKLAZ4gPThXMQ" client="_yMLNUPguEeKLAZ4gPThXMQ" deployedArtifact="_zGReEPguEeKLAZ4gPThXMQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:ExecutionEnvironment" xmi:id="_yifbkPguEeKLAZ4gPThXMQ" name="ExecutionEnvironment1"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_zGReEPguEeKLAZ4gPThXMQ" name="Artifact1"/>
+    <packagedElement xmi:type="uml:DeploymentSpecification" xmi:id="_zi8L8PguEeKLAZ4gPThXMQ" name="DeploymentSpecification1" clientDependency="_1g7ioPguEeKLAZ4gPThXMQ _3BD4o_guEeKLAZ4gPThXMQ">
+      <manifestation xmi:id="_1g7ioPguEeKLAZ4gPThXMQ" name="Manifestation1" supplier="_zGReEPguEeKLAZ4gPThXMQ" client="_zi8L8PguEeKLAZ4gPThXMQ" utilizedElement="_zGReEPguEeKLAZ4gPThXMQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_2U9noPguEeKLAZ4gPThXMQ" name="CommunicationPath1" memberEnd="_2U-1wPguEeKLAZ4gPThXMQ _2U-1w_guEeKLAZ4gPThXMQ">
+      <ownedEnd xmi:id="_2U-1wPguEeKLAZ4gPThXMQ" name="source" type="_yMLNUPguEeKLAZ4gPThXMQ" association="_2U9noPguEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2U-1wfguEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2U-1wvguEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_2U-1w_guEeKLAZ4gPThXMQ" name="target" type="_yifbkPguEeKLAZ4gPThXMQ" association="_2U9noPguEeKLAZ4gPThXMQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2U-1xPguEeKLAZ4gPThXMQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2U-1xfguEeKLAZ4gPThXMQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_3BD4o_guEeKLAZ4gPThXMQ" name="Dependency1" supplier="_zGReEPguEeKLAZ4gPThXMQ" client="_zi8L8PguEeKLAZ4gPThXMQ"/>
+  </packagedElement>
+</uml:Model>

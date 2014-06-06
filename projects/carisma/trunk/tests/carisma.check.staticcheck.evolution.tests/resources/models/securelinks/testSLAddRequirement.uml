@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testSLAddRequirementModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testSLAddRequirementPackage">
+      <packagedElement xmi:type="uml:Node" xmi:id="_CB0lcHjkEeGktuzVIXop1A" name="Node1" clientDependency="_Hhn2AHjkEeGktuzVIXop1A">
+        <deployment xmi:id="_Hhn2AHjkEeGktuzVIXop1A" name="Deployment1" supplier="_DZlCkHjkEeGktuzVIXop1A" client="_CB0lcHjkEeGktuzVIXop1A" deployedArtifact="_DZlCkHjkEeGktuzVIXop1A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Node" xmi:id="_CLEBAHjkEeGktuzVIXop1A" name="Node2" clientDependency="_H0JwcHjkEeGktuzVIXop1A">
+        <deployment xmi:id="_H0JwcHjkEeGktuzVIXop1A" name="Deployment1" supplier="_Dia1gHjkEeGktuzVIXop1A" client="_CLEBAHjkEeGktuzVIXop1A" deployedArtifact="_Dia1gHjkEeGktuzVIXop1A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_DZlCkHjkEeGktuzVIXop1A" name="Artifact1" clientDependency="_HUpxAHjkEeGktuzVIXop1A"/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_Dia1gHjkEeGktuzVIXop1A" name="Artifact2"/>
+      <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_DwZnIHjkEeGktuzVIXop1A" name="abLink" memberEnd="_DwaOMHjkEeGktuzVIXop1A _Dwa1QHjkEeGktuzVIXop1A">
+        <ownedEnd xmi:id="_DwaOMHjkEeGktuzVIXop1A" name="source" type="_CB0lcHjkEeGktuzVIXop1A" association="_DwZnIHjkEeGktuzVIXop1A">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DwaOMXjkEeGktuzVIXop1A" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DwaOMnjkEeGktuzVIXop1A" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_Dwa1QHjkEeGktuzVIXop1A" name="target" type="_CLEBAHjkEeGktuzVIXop1A" association="_DwZnIHjkEeGktuzVIXop1A">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Dwa1QXjkEeGktuzVIXop1A" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Dwa1QnjkEeGktuzVIXop1A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_HUpxAHjkEeGktuzVIXop1A" name="dep" supplier="_Dia1gHjkEeGktuzVIXop1A" client="_DZlCkHjkEeGktuzVIXop1A"/>
+    </packagedElement>
+    <profileApplication xmi:id="_MZNQAHjkEeGktuzVIXop1A">
+      <eAnnotations xmi:id="_MZQTUHjkEeGktuzVIXop1A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_MZQ6YHjkEeGktuzVIXop1A">
+      <eAnnotations xmi:id="_MZQ6YXjkEeGktuzVIXop1A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securelinks xmi:id="_OeBAYHjkEeGktuzVIXop1A" adversary="default" base_Package="idModel"/>
+  <UMLsec:Internet xmi:id="_WbkFwHjkEeGktuzVIXop1A" base_CommunicationPath="_DwZnIHjkEeGktuzVIXop1A"/>
+  <UMLsec:secrecy xmi:id="_jY4QwHjkEeGktuzVIXop1A" base_Dependency="_HUpxAHjkEeGktuzVIXop1A"/>
+  <UMLchange:add xmi:id="_mdpCQHjkEeGktuzVIXop1A" base_Element="_HUpxAHjkEeGktuzVIXop1A">
+    <ref>addRequirement</ref>
+    <new>addRequirement={Stereotype(name=UMLsec::high)}</new>
+  </UMLchange:add>
+</xmi:XMI>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="delModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="delPackage">
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="delStateMachine">
+        <region xmi:id="idRegion" name="MainRegion">
+          <subvertex xmi:type="uml:State" xmi:id="_dEtJQGY_EeKSNoKZqTr3rw" name="State1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_dLMLwGY_EeKSNoKZqTr3rw" name="State2"/>
+          <subvertex xmi:type="uml:FinalState" xmi:id="_dUClwGY_EeKSNoKZqTr3rw" name="FinalState1"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_dnlM0GY_EeKSNoKZqTr3rw" name="Pseudostate1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_d2ImMGY_EeKSNoKZqTr3rw" name="State3"/>
+          <subvertex xmi:type="uml:State" xmi:id="_d-_AMGY_EeKSNoKZqTr3rw" name="State4"/>
+          <subvertex xmi:type="uml:State" xmi:id="_eHwhsGY_EeKSNoKZqTr3rw" name="State5"/>
+          <subvertex xmi:type="uml:State" xmi:id="_eP_3sGY_EeKSNoKZqTr3rw" name="State6"/>
+          <subvertex xmi:type="uml:State" xmi:id="_eYivsGY_EeKSNoKZqTr3rw" name="State7"/>
+          <subvertex xmi:type="uml:State" xmi:id="_eg72sGY_EeKSNoKZqTr3rw" name="State8"/>
+          <subvertex xmi:type="uml:State" xmi:id="_erYzMGY_EeKSNoKZqTr3rw" name="State9"/>
+          <transition xmi:id="_f5b6tGY_EeKSNoKZqTr3rw" name="Transition1" kind="local" source="_dnlM0GY_EeKSNoKZqTr3rw" target="_d2ImMGY_EeKSNoKZqTr3rw"/>
+          <transition xmi:id="_gHHxZGY_EeKSNoKZqTr3rw" name="Transition2" kind="local" source="_d2ImMGY_EeKSNoKZqTr3rw" target="_eg72sGY_EeKSNoKZqTr3rw"/>
+          <transition xmi:id="_gpEn5GY_EeKSNoKZqTr3rw" name="Transition4" kind="local" source="_d-_AMGY_EeKSNoKZqTr3rw" target="_dUClwGY_EeKSNoKZqTr3rw"/>
+          <transition xmi:id="_g_CQ1GY_EeKSNoKZqTr3rw" name="Transition5" kind="local" source="_d2ImMGY_EeKSNoKZqTr3rw" target="_dEtJQGY_EeKSNoKZqTr3rw"/>
+          <transition xmi:id="_hNTWVGY_EeKSNoKZqTr3rw" name="Transition6" kind="local" source="_dEtJQGY_EeKSNoKZqTr3rw" target="_erYzMGY_EeKSNoKZqTr3rw"/>
+          <transition xmi:id="_hfFC1GY_EeKSNoKZqTr3rw" name="Transition7" kind="local" source="_erYzMGY_EeKSNoKZqTr3rw" target="_eYivsGY_EeKSNoKZqTr3rw"/>
+          <transition xmi:id="_hznIYGY_EeKSNoKZqTr3rw" name="Transition8" kind="local" source="_eYivsGY_EeKSNoKZqTr3rw" target="_d-_AMGY_EeKSNoKZqTr3rw"/>
+          <transition xmi:id="_iD61RGY_EeKSNoKZqTr3rw" name="Transition9" kind="local" source="_erYzMGY_EeKSNoKZqTr3rw" target="_dLMLwGY_EeKSNoKZqTr3rw"/>
+          <transition xmi:id="_ioBn4GY_EeKSNoKZqTr3rw" name="Transition10" kind="local" source="_erYzMGY_EeKSNoKZqTr3rw" target="_eP_3sGY_EeKSNoKZqTr3rw"/>
+          <transition xmi:id="_izFBVGY_EeKSNoKZqTr3rw" name="Transition11" kind="local" source="_eP_3sGY_EeKSNoKZqTr3rw" target="_eHwhsGY_EeKSNoKZqTr3rw"/>
+        </region>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_lJjJcGY_EeKSNoKZqTr3rw">
+      <eAnnotations xmi:id="_lJmMwGY_EeKSNoKZqTr3rw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_lQF2UGY_EeKSNoKZqTr3rw">
+      <eAnnotations xmi:id="_lQF2UWY_EeKSNoKZqTr3rw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:lockedstatus xmi:id="_mWhS4GY_EeKSNoKZqTr3rw" base_State="_eHwhsGY_EeKSNoKZqTr3rw"/>
+  <UMLchange:edit xmi:id="_mks40GY_EeKSNoKZqTr3rw" base_Element="_eHwhsGY_EeKSNoKZqTr3rw">
+    <ref>iiref</ref>
+    <values>iiref={(name=huhu)}</values>
+  </UMLchange:edit>
+  <UMLsec:lockedstatus xmi:id="_nUwcwGY_EeKSNoKZqTr3rw" base_State="_dLMLwGY_EeKSNoKZqTr3rw"/>
+  <UMLchange:edit xmi:id="_npIxUGY_EeKSNoKZqTr3rw" base_Element="_dLMLwGY_EeKSNoKZqTr3rw">
+    <ref>iref</ref>
+    <values>iref={(name=hallo)}</values>
+  </UMLchange:edit>
+  <UMLsec:lockedstatus xmi:id="_pVeXUGY_EeKSNoKZqTr3rw" base_State="_eg72sGY_EeKSNoKZqTr3rw"/>
+  <UMLchange:edit xmi:id="_pkC-0GY_EeKSNoKZqTr3rw" base_Element="_eg72sGY_EeKSNoKZqTr3rw">
+    <ref>iiiref</ref>
+    <values>iiiref={(name=tztz)}</values>
+  </UMLchange:edit>
+</xmi:XMI>

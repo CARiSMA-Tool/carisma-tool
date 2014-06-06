@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CSV
+Bundle-SymbolicName: carisma.xutils.regulatory.importer.csv
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ carisma.processanalysis.loader.misc,
+ carisma.processanalysis,
+ carisma.regulatory,
+ carisma.xutils.regulatory.importer.superior.ui.log
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: carisma.xutils.regulatory.importer.csv

@@ -1,0 +1,9 @@
+This plugin converts an activityDiagram into a PetriNet. It gets an ActivityDiagram 
+as input an creates a PetriNet. The Exporter needs a path to you fileSystem and 
+stores the PetriNet as pnml (PetriNetModelingLanguage) file.
+
+
+
+model is no activityDiagram --> an empty PetriNet will be created	| testNoActivityDiagram
+model is empty --> an empty PetriNet will be created				| testEmptyModel
+all fine --> a PetriNet will be created								| testCorrect

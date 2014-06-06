@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testStarStringPkg">
+      <packagedElement xmi:type="uml:Class" xmi:id="_CgXD0JBXEeG7TKEz82UBdA" name="Class1">
+        <ownedAttribute xmi:id="_FCKSMJBXEeG7TKEz82UBdA" name="test"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_C2XJAJBXEeG7TKEz82UBdA" name="Class2">
+        <ownedAttribute xmi:id="_F38DoJBXEeG7TKEz82UBdA" name="newtest"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_C9aMMJBXEeG7TKEz82UBdA" name="Class3">
+        <ownedAttribute xmi:id="_G2ikcJBYEeG7TKEz82UBdA" name="test1"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_DG9w0JBXEeG7TKEz82UBdA" name="Class4">
+        <ownedAttribute xmi:id="_I4lKIJBXEeG7TKEz82UBdA" name="oldtest1"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_PrUpQJBXEeG7TKEz82UBdA">
+      <eAnnotations xmi:id="_PrUpQZBXEeG7TKEz82UBdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:delall xmi:id="_S2PGEJBXEeG7TKEz82UBdA" base_Element="_w8IxIM37EdqwVrslYOdUDA">
+    <ref>someRef</ref>
+    <pattern>someRef={Property(name=test*)}</pattern>
+  </UMLchange:delall>
+</xmi:XMI>

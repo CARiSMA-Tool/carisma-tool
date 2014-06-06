@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="ModelWithGuardedAccess">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testGuardedAccess1">
+      <packagedElement xmi:type="uml:Class" xmi:id="_y-JJsNCtEeGYtuWekLZV2A" name="StoFi">
+        <ownedAttribute xmi:id="_FVCBcNCuEeGYtuWekLZV2A" name="FinData" type="_My654NCvEeGYtuWekLZV2A"/>
+        <ownedOperation xmi:id="_GPamENCuEeGYtuWekLZV2A" name="Read">
+          <ownedParameter xmi:id="_TagR4NCvEeGYtuWekLZV2A" name="return" type="_My654NCvEeGYtuWekLZV2A" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_G41WgNCuEeGYtuWekLZV2A" name="Write">
+          <ownedParameter xmi:id="_YS3vANCvEeGYtuWekLZV2A" name="arg" type="_My654NCvEeGYtuWekLZV2A"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IoiZkNCuEeGYtuWekLZV2A" name="FinEx" clientDependency="_TcWhcNCuEeGYtuWekLZV2A">
+        <ownedAttribute xmi:id="_POSlkNCuEeGYtuWekLZV2A" name="ExcData" type="_My654NCvEeGYtuWekLZV2A"/>
+        <ownedOperation xmi:id="_QgPVoNCuEeGYtuWekLZV2A" name="Read">
+          <ownedParameter xmi:id="_f2WHgNCvEeGYtuWekLZV2A" name="return" type="_My654NCvEeGYtuWekLZV2A" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_TcWhcNCuEeGYtuWekLZV2A" name="Dependency1" supplier="_y-JJsNCtEeGYtuWekLZV2A" client="_IoiZkNCuEeGYtuWekLZV2A"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WCW6YNCuEeGYtuWekLZV2A" name="MicSi">
+        <ownedAttribute xmi:id="_bWwMMNCuEeGYtuWekLZV2A" name="MicroKey" type="_J4uZoNCvEeGYtuWekLZV2A"/>
+        <ownedOperation xmi:id="_cwowQNCuEeGYtuWekLZV2A" name="Sign">
+          <ownedParameter xmi:id="_lXrpINCvEeGYtuWekLZV2A" name="return" type="_My654NCvEeGYtuWekLZV2A" direction="return"/>
+          <ownedParameter xmi:id="_nK4sINCvEeGYtuWekLZV2A" name="req" type="_My654NCvEeGYtuWekLZV2A"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_gNqQwNCuEeGYtuWekLZV2A" name="JavaSecArch" clientDependency="_23mSENCuEeGYtuWekLZV2A _7pbpYNCuEeGYtuWekLZV2A _Cgfn0NCvEeGYtuWekLZV2A">
+        <ownedOperation xmi:id="_h6KO0NCuEeGYtuWekLZV2A" name="chkGd" method="_iSJJoNCxEeGYtuWekLZV2A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_jY1zUNCuEeGYtuWekLZV2A" name="MicGd" clientDependency="_3ZjIkNCuEeGYtuWekLZV2A">
+        <ownedAttribute xmi:id="_l3ws0NCuEeGYtuWekLZV2A" name="limit">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_k5lNUNCuEeGYtuWekLZV2A" name="chkGd" method="_I4kc0NCyEeGYtuWekLZV2A _MgE1YNC6EeGYtuWekLZV2A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_rBm7gNCuEeGYtuWekLZV2A" name="ExcGd" clientDependency="_-JfyYNCuEeGYtuWekLZV2A">
+        <ownedOperation xmi:id="_s08hYNCuEeGYtuWekLZV2A" name="chkGd" method="_zHr4gNCzEeGYtuWekLZV2A _kg80cNC6EeGYtuWekLZV2A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_vXf9sNCuEeGYtuWekLZV2A" name="FinGd" clientDependency="_D55DsNCvEeGYtuWekLZV2A">
+        <ownedAttribute xmi:id="_wxCjgNCuEeGYtuWekLZV2A" name="slot">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_0jbQAtCuEeGYtuWekLZV2A" name="chkGd" method="_iyeV4NC5EeGYtuWekLZV2A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_23mSENCuEeGYtuWekLZV2A" name="Dependency2" supplier="_jY1zUNCuEeGYtuWekLZV2A" client="_gNqQwNCuEeGYtuWekLZV2A"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_3ZjIkNCuEeGYtuWekLZV2A" name="Dependency3" supplier="_gNqQwNCuEeGYtuWekLZV2A" client="_jY1zUNCuEeGYtuWekLZV2A"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_7pbpYNCuEeGYtuWekLZV2A" name="Dependency4" supplier="_rBm7gNCuEeGYtuWekLZV2A" client="_gNqQwNCuEeGYtuWekLZV2A"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_-JfyYNCuEeGYtuWekLZV2A" name="Dependency5" supplier="_gNqQwNCuEeGYtuWekLZV2A" client="_rBm7gNCuEeGYtuWekLZV2A"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_Cgfn0NCvEeGYtuWekLZV2A" name="Dependency6" supplier="_vXf9sNCuEeGYtuWekLZV2A" client="_gNqQwNCuEeGYtuWekLZV2A"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_D55DsNCvEeGYtuWekLZV2A" name="Dependency7" supplier="_gNqQwNCuEeGYtuWekLZV2A" client="_vXf9sNCuEeGYtuWekLZV2A"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_J4uZoNCvEeGYtuWekLZV2A" name="Keys"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_My654NCvEeGYtuWekLZV2A" name="Exp"/>
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="_LBEsUNCwEeGYtuWekLZV2A" name="ExcGd">
+        <region xmi:id="_LBEsUdCwEeGYtuWekLZV2A" name="Region">
+          <ownedComment xmi:id="_LGWYcNCxEeGYtuWekLZV2A" annotatedElement="_ih_Y9NCwEeGYtuWekLZV2A">
+            <body>[sig=cert]/return</body>
+          </ownedComment>
+          <ownedComment xmi:id="_oyl-4tCxEeGYtuWekLZV2A" annotatedElement="_ho84JdCwEeGYtuWekLZV2A">
+            <body>chkGd(sig)</body>
+          </ownedComment>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_ThOIc9CwEeGYtuWekLZV2A" name="InitialState"/>
+          <subvertex xmi:type="uml:State" xmi:id="_WqAeUNCwEeGYtuWekLZV2A" name="WaitReq"/>
+          <subvertex xmi:type="uml:State" xmi:id="_dX7u4NCwEeGYtuWekLZV2A" name="CheckReq"/>
+          <transition xmi:id="_aVpCkNCwEeGYtuWekLZV2A" name="Transition1" kind="local" source="_ThOIc9CwEeGYtuWekLZV2A" target="_WqAeUNCwEeGYtuWekLZV2A"/>
+          <transition xmi:id="_ho84JdCwEeGYtuWekLZV2A" name="Transition2" kind="local" source="_WqAeUNCwEeGYtuWekLZV2A" target="_dX7u4NCwEeGYtuWekLZV2A">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_iSJJoNCxEeGYtuWekLZV2A" name="chkGd(sig)" specification="_h6KO0NCuEeGYtuWekLZV2A"/>
+          </transition>
+          <transition xmi:id="_ih_Y9NCwEeGYtuWekLZV2A" name="Transition3" kind="local" source="_dX7u4NCwEeGYtuWekLZV2A" target="_WqAeUNCwEeGYtuWekLZV2A" guard="_0-KZUNCwEeGYtuWekLZV2A">
+            <ownedRule xmi:id="_0-KZUNCwEeGYtuWekLZV2A" name="Guard">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_5QCeMNCwEeGYtuWekLZV2A" name="sig=cert">
+                <language>ocl</language>
+                <body>sig=cert</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_SDMOwNCxEeGYtuWekLZV2A" name="Effect"/>
+          </transition>
+        </region>
+      </packagedElement>
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="_wrktUNCxEeGYtuWekLZV2A" name="FinGd">
+        <region xmi:id="_wrktUdCxEeGYtuWekLZV2A" name="Region">
+          <ownedComment xmi:id="_NLUrcNCyEeGYtuWekLZV2A" annotatedElement="_CTtotNCyEeGYtuWekLZV2A">
+            <body>chkGd(sig)</body>
+          </ownedComment>
+          <ownedComment xmi:id="_D9Fk0NCzEeGYtuWekLZV2A" annotatedElement="_Cu36tNCyEeGYtuWekLZV2A">
+            <body>[sig=bank and slot=true]/return&#xD;
+</body>
+          </ownedComment>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_2qmQg9CxEeGYtuWekLZV2A" name="InitialState"/>
+          <subvertex xmi:type="uml:State" xmi:id="_4ChFstCxEeGYtuWekLZV2A" name="WaitReq"/>
+          <subvertex xmi:type="uml:State" xmi:id="_8buhotCxEeGYtuWekLZV2A" name="CheckReq"/>
+          <transition xmi:id="_B0-eQNCyEeGYtuWekLZV2A" name="Transition1" kind="local" source="_2qmQg9CxEeGYtuWekLZV2A" target="_4ChFstCxEeGYtuWekLZV2A"/>
+          <transition xmi:id="_CTtotNCyEeGYtuWekLZV2A" name="Transition2" kind="local" source="_4ChFstCxEeGYtuWekLZV2A" target="_8buhotCxEeGYtuWekLZV2A">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_I4kc0NCyEeGYtuWekLZV2A" name="chkGd(sig)" specification="_k5lNUNCuEeGYtuWekLZV2A"/>
+          </transition>
+          <transition xmi:id="_Cu36tNCyEeGYtuWekLZV2A" name="Transition3" kind="local" source="_8buhotCxEeGYtuWekLZV2A" target="_4ChFstCxEeGYtuWekLZV2A" guard="_UiJvENCyEeGYtuWekLZV2A">
+            <ownedRule xmi:id="_UiJvENCyEeGYtuWekLZV2A" name="sig=bank and slot=true">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_CYJAQNCzEeGYtuWekLZV2A" name="sig=bank and slot=true">
+                <language>ocl</language>
+                <body>sig=bank and slot=true</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_P7LugNCzEeGYtuWekLZV2A" name="return"/>
+          </transition>
+        </region>
+      </packagedElement>
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="_afPjINCzEeGYtuWekLZV2A" name="MicGd">
+        <region xmi:id="_afPjIdCzEeGYtuWekLZV2A" name="Region">
+          <ownedComment xmi:id="_1jhBwNCzEeGYtuWekLZV2A" annotatedElement="_p0rcFNCzEeGYtuWekLZV2A">
+            <body>chkGd(sig)</body>
+          </ownedComment>
+          <ownedComment xmi:id="_4AxHUtCzEeGYtuWekLZV2A" annotatedElement="_uN9wgNCzEeGYtuWekLZV2A">
+            <body>[sig=finan and limit=true]/return</body>
+          </ownedComment>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_fzFbU9CzEeGYtuWekLZV2A" name="InitialState"/>
+          <subvertex xmi:type="uml:State" xmi:id="_hDmA8NCzEeGYtuWekLZV2A" name="WaitReq"/>
+          <subvertex xmi:type="uml:State" xmi:id="_lB_wMNCzEeGYtuWekLZV2A" name="CheckReq"/>
+          <transition xmi:id="_o-h3MNCzEeGYtuWekLZV2A" name="Transition1" kind="local" source="_fzFbU9CzEeGYtuWekLZV2A" target="_hDmA8NCzEeGYtuWekLZV2A"/>
+          <transition xmi:id="_p0rcFNCzEeGYtuWekLZV2A" name="Transition3" kind="local" source="_hDmA8NCzEeGYtuWekLZV2A" target="_lB_wMNCzEeGYtuWekLZV2A">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_zHr4gNCzEeGYtuWekLZV2A" name="chkGd(sig)" specification="_s08hYNCuEeGYtuWekLZV2A"/>
+          </transition>
+          <transition xmi:id="_uN9wgNCzEeGYtuWekLZV2A" name="Transition2" kind="local" source="_lB_wMNCzEeGYtuWekLZV2A" target="_hDmA8NCzEeGYtuWekLZV2A" guard="__bE8wNCzEeGYtuWekLZV2A">
+            <ownedRule xmi:id="__bE8wNCzEeGYtuWekLZV2A" name="sig=finan and limit=true">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_CJo0wNC0EeGYtuWekLZV2A" name="sig=finan and limit=true">
+                <language>ocl</language>
+                <body>sig=finan and limit=true</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_C_35MNC0EeGYtuWekLZV2A" name="return"/>
+          </transition>
+        </region>
+      </packagedElement>
+      <packagedElement xmi:type="uml:StateMachine" xmi:id="_VHtoUNC0EeGYtuWekLZV2A" name="JavaSecArch">
+        <region xmi:id="_VHtoUdC0EeGYtuWekLZV2A" name="Region">
+          <ownedComment xmi:id="_SB4qYNC1EeGYtuWekLZV2A" annotatedElement="_0W0vtNC0EeGYtuWekLZV2A">
+            <body>[obj=StoFi]/FinGd.chkGd(sig)&#xD;
+</body>
+          </ownedComment>
+          <ownedComment xmi:id="_ydI38NC5EeGYtuWekLZV2A" annotatedElement="_x4DnMNC0EeGYtuWekLZV2A">
+            <body>/return(MicSi)</body>
+          </ownedComment>
+          <ownedComment xmi:id="_-W4GENC5EeGYtuWekLZV2A" annotatedElement="_xC4StNC0EeGYtuWekLZV2A">
+            <body>[obj=MicSi]&#xD;
+/MicGd.chkGd(sig)</body>
+          </ownedComment>
+          <ownedComment xmi:id="_RgyWMNC6EeGYtuWekLZV2A" annotatedElement="_yOfKMNC0EeGYtuWekLZV2A">
+            <body>return(FinEx)&#xD;
+</body>
+          </ownedComment>
+          <ownedComment xmi:id="_Y2RWANC6EeGYtuWekLZV2A" annotatedElement="_wm0BwNC0EeGYtuWekLZV2A">
+            <body>[obj=FinEx]&#xD;
+/ExcGd.chkGd(sig)</body>
+          </ownedComment>
+          <ownedComment xmi:id="_o0P1oNC6EeGYtuWekLZV2A" annotatedElement="_vcC3wNC0EeGYtuWekLZV2A">
+            <body>getObj(obj,sig)&#xD;
+</body>
+          </ownedComment>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_Z6XfANC0EeGYtuWekLZV2A" name="InitialState"/>
+          <subvertex xmi:type="uml:State" xmi:id="_bLr88NC0EeGYtuWekLZV2A" name="WaitReq"/>
+          <subvertex xmi:type="uml:State" xmi:id="_kxD7wNC0EeGYtuWekLZV2A" name="CheckReq"/>
+          <subvertex xmi:type="uml:State" xmi:id="_oJl90tC0EeGYtuWekLZV2A" name="FGdReturn?"/>
+          <subvertex xmi:type="uml:State" xmi:id="_qzmtANC0EeGYtuWekLZV2A" name="MGdReturn?"/>
+          <transition xmi:id="_vBbYVNC0EeGYtuWekLZV2A" name="Transition1" kind="local" source="_Z6XfANC0EeGYtuWekLZV2A" target="_bLr88NC0EeGYtuWekLZV2A"/>
+          <transition xmi:id="_vcC3wNC0EeGYtuWekLZV2A" name="Transition2" kind="local" source="_bLr88NC0EeGYtuWekLZV2A" target="_kxD7wNC0EeGYtuWekLZV2A">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_vZLiQNC6EeGYtuWekLZV2A" name="getObj(obj,sig)"/>
+          </transition>
+          <transition xmi:id="_wm0BwNC0EeGYtuWekLZV2A" name="Transition3" kind="local" source="_kxD7wNC0EeGYtuWekLZV2A" target="_oJl90tC0EeGYtuWekLZV2A" guard="_gwh20NC6EeGYtuWekLZV2A">
+            <ownedRule xmi:id="_gwh20NC6EeGYtuWekLZV2A" name="obj=FinEx">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_i97igNC6EeGYtuWekLZV2A" name="obj=FinEx">
+                <language>ocl</language>
+                <body>obj=FinEx</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_kg80cNC6EeGYtuWekLZV2A" name="ExcGd.chkGd(sig)" specification="_s08hYNCuEeGYtuWekLZV2A"/>
+          </transition>
+          <transition xmi:id="_xC4StNC0EeGYtuWekLZV2A" name="Transition4" kind="local" source="_kxD7wNC0EeGYtuWekLZV2A" target="_qzmtANC0EeGYtuWekLZV2A" guard="_IGj3cNC6EeGYtuWekLZV2A">
+            <ownedRule xmi:id="_IGj3cNC6EeGYtuWekLZV2A" name="obj=MicSi">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_KeQHkNC6EeGYtuWekLZV2A" name="obj=MicSi">
+                <language>ocl</language>
+                <body>obj=MicSi</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_MgE1YNC6EeGYtuWekLZV2A" name="MicGd.chkGd(sig)" specification="_k5lNUNCuEeGYtuWekLZV2A"/>
+          </transition>
+          <transition xmi:id="_x4DnMNC0EeGYtuWekLZV2A" name="Transition5" kind="local" source="_qzmtANC0EeGYtuWekLZV2A" target="_bLr88NC0EeGYtuWekLZV2A">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_4nux8NC5EeGYtuWekLZV2A" name="return(MicSi)"/>
+          </transition>
+          <transition xmi:id="_yOfKMNC0EeGYtuWekLZV2A" name="Transition6" kind="local" source="_oJl90tC0EeGYtuWekLZV2A" target="_bLr88NC0EeGYtuWekLZV2A">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_WGJXwNC6EeGYtuWekLZV2A" name="return(FinEx)"/>
+          </transition>
+          <transition xmi:id="_0W0vtNC0EeGYtuWekLZV2A" name="Transition7" kind="local" source="_kxD7wNC0EeGYtuWekLZV2A" target="_bLr88NC0EeGYtuWekLZV2A" guard="_M6VhwNC1EeGYtuWekLZV2A">
+            <ownedRule xmi:id="_M6VhwNC1EeGYtuWekLZV2A" name="obj=StoFi">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_PvrXMNC1EeGYtuWekLZV2A" name="obj=StoFi">
+                <language>ocl</language>
+                <body>obj=StoFi</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_iyeV4NC5EeGYtuWekLZV2A" name="FinGd.chkGd(sig)" specification="_0jbQAtCuEeGYtuWekLZV2A"/>
+          </transition>
+        </region>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_3KWEYNCtEeGYtuWekLZV2A">
+      <eAnnotations xmi:id="_3KZHsNCtEeGYtuWekLZV2A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:guarded xmi:id="_4B5XcNCtEeGYtuWekLZV2A" base_Classifier="_y-JJsNCtEeGYtuWekLZV2A"/>
+  <UMLsec:guarded xmi:id="_KyfvsNCuEeGYtuWekLZV2A" base_Classifier="_IoiZkNCuEeGYtuWekLZV2A">
+    <guard>ExcGd</guard>
+  </UMLsec:guarded>
+  <UMLsec:call xmi:id="_T_GCINCuEeGYtuWekLZV2A" base_Dependency="_TcWhcNCuEeGYtuWekLZV2A"/>
+  <UMLsec:guarded xmi:id="_XlBnANCuEeGYtuWekLZV2A" base_Classifier="_WCW6YNCuEeGYtuWekLZV2A">
+    <guard>MicGd</guard>
+  </UMLsec:guarded>
+  <UMLsec:call xmi:id="_5jyykNCuEeGYtuWekLZV2A" base_Dependency="_3ZjIkNCuEeGYtuWekLZV2A"/>
+  <UMLsec:call xmi:id="_6OhKkNCuEeGYtuWekLZV2A" base_Dependency="_23mSENCuEeGYtuWekLZV2A"/>
+  <UMLsec:call xmi:id="__ZL4oNCuEeGYtuWekLZV2A" base_Dependency="_7pbpYNCuEeGYtuWekLZV2A"/>
+  <UMLsec:call xmi:id="_AIcyYNCvEeGYtuWekLZV2A" base_Dependency="_-JfyYNCuEeGYtuWekLZV2A"/>
+  <UMLsec:call xmi:id="_ErCMwNCvEeGYtuWekLZV2A" base_Dependency="_D55DsNCvEeGYtuWekLZV2A"/>
+  <UMLsec:call xmi:id="_FhRRMNCvEeGYtuWekLZV2A" base_Dependency="_Cgfn0NCvEeGYtuWekLZV2A"/>
+  <UMLsec:guardedaccess xmi:id="_2cAs0NCvEeGYtuWekLZV2A" base_Package="_qb8akM37EdqwVrslYOdUDA"/>
+</xmi:XMI>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="testDeploymentHelperModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testDeploymentHelperPackage">
+    <packagedElement xmi:type="uml:Node" xmi:id="__v77wJRVEeGGGdJn5WtnrQ" name="Node1" clientDependency="_G8qoMJRWEeGGGdJn5WtnrQ _K0q0gJRWEeGGGdJn5WtnrQ">
+      <deployment xmi:id="_G8qoMJRWEeGGGdJn5WtnrQ" name="a1Deploy" supplier="_BughQJRWEeGGGdJn5WtnrQ" client="__v77wJRVEeGGGdJn5WtnrQ" deployedArtifact="_BughQJRWEeGGGdJn5WtnrQ"/>
+      <deployment xmi:id="_K0q0gJRWEeGGGdJn5WtnrQ" name="a2Deploy1" supplier="_B3sScJRWEeGGGdJn5WtnrQ" client="__v77wJRVEeGGGdJn5WtnrQ" deployedArtifact="_B3sScJRWEeGGGdJn5WtnrQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="__4wgkJRVEeGGGdJn5WtnrQ" name="Node2" clientDependency="_OUYcoJRWEeGGGdJn5WtnrQ _PcoeIJRWEeGGGdJn5WtnrQ">
+      <deployment xmi:id="_OUYcoJRWEeGGGdJn5WtnrQ" name="a2Deploy2" supplier="_B3sScJRWEeGGGdJn5WtnrQ" client="__4wgkJRVEeGGGdJn5WtnrQ" deployedArtifact="_B3sScJRWEeGGGdJn5WtnrQ"/>
+      <deployment xmi:id="_PcoeIJRWEeGGGdJn5WtnrQ" name="a3Deploy" supplier="_CCWqUJRWEeGGGdJn5WtnrQ" client="__4wgkJRVEeGGGdJn5WtnrQ" deployedArtifact="_CCWqUJRWEeGGGdJn5WtnrQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_BughQJRWEeGGGdJn5WtnrQ" name="Artifact1" clientDependency="_TgD3UJRWEeGGGdJn5WtnrQ"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_B3sScJRWEeGGGdJn5WtnrQ" name="Artifact2"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_CCWqUJRWEeGGGdJn5WtnrQ" name="Artifact3"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_DS-ksJRWEeGGGdJn5WtnrQ" name="abLink" memberEnd="_DS_y0JRWEeGGGdJn5WtnrQ _DS_y05RWEeGGGdJn5WtnrQ">
+      <ownedEnd xmi:id="_DS_y0JRWEeGGGdJn5WtnrQ" name="source" type="__v77wJRVEeGGGdJn5WtnrQ" association="_DS-ksJRWEeGGGdJn5WtnrQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DS_y0ZRWEeGGGdJn5WtnrQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DS_y0pRWEeGGGdJn5WtnrQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_DS_y05RWEeGGGdJn5WtnrQ" name="target" type="__4wgkJRVEeGGGdJn5WtnrQ" association="_DS-ksJRWEeGGGdJn5WtnrQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DS_y1JRWEeGGGdJn5WtnrQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DS_y1ZRWEeGGGdJn5WtnrQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_TgD3UJRWEeGGGdJn5WtnrQ" name="Dependency1" supplier="_CCWqUJRWEeGGGdJn5WtnrQ" client="_BughQJRWEeGGGdJn5WtnrQ"/>
+  </packagedElement>
+</uml:Model>

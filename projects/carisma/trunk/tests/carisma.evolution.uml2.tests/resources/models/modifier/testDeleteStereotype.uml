@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testDeleteStereotypeModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testDeleteStereotypePackage">
+      <packagedElement xmi:type="uml:Node" xmi:id="_Qw6BQI-nEeGTLvq2iWmV2g" name="Node1" clientDependency="_R0bTw4-nEeGTLvq2iWmV2g">
+        <deployment xmi:id="_R0bTw4-nEeGTLvq2iWmV2g" name="Deployment1" supplier="_RFH9wI-nEeGTLvq2iWmV2g" client="_Qw6BQI-nEeGTLvq2iWmV2g" deployedArtifact="_RFH9wI-nEeGTLvq2iWmV2g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Node" xmi:id="_Q6cXwI-nEeGTLvq2iWmV2g" name="Node2" clientDependency="_R_3Hs4-nEeGTLvq2iWmV2g">
+        <deployment xmi:id="_R_3Hs4-nEeGTLvq2iWmV2g" name="Deployment1" supplier="_RNSbQI-nEeGTLvq2iWmV2g" client="_Q6cXwI-nEeGTLvq2iWmV2g" deployedArtifact="_RNSbQI-nEeGTLvq2iWmV2g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_RFH9wI-nEeGTLvq2iWmV2g" name="Artifact1" clientDependency="_RkBgQ4-nEeGTLvq2iWmV2g"/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_RNSbQI-nEeGTLvq2iWmV2g" name="Artifact2"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_RkBgQ4-nEeGTLvq2iWmV2g" name="dep" supplier="_RNSbQI-nEeGTLvq2iWmV2g" client="_RFH9wI-nEeGTLvq2iWmV2g"/>
+      <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_SNiXUI-nEeGTLvq2iWmV2g" name="abLink" memberEnd="_SNiXUY-nEeGTLvq2iWmV2g _SNiXVI-nEeGTLvq2iWmV2g">
+        <ownedEnd xmi:id="_SNiXUY-nEeGTLvq2iWmV2g" name="source" type="_Qw6BQI-nEeGTLvq2iWmV2g" association="_SNiXUI-nEeGTLvq2iWmV2g">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SNiXUo-nEeGTLvq2iWmV2g" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SNiXU4-nEeGTLvq2iWmV2g" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_SNiXVI-nEeGTLvq2iWmV2g" name="target" type="_Q6cXwI-nEeGTLvq2iWmV2g" association="_SNiXUI-nEeGTLvq2iWmV2g">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SNiXVY-nEeGTLvq2iWmV2g" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SNiXVo-nEeGTLvq2iWmV2g" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_aoYAMI-oEeGTLvq2iWmV2g">
+      <eAnnotations xmi:id="_aoYAMY-oEeGTLvq2iWmV2g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securelinks xmi:id="_BvxScI-pEeGpL_25i8ktIA" adversary="insider" base_Package="idModel"/>
+  <UMLsec:encrypted xmi:id="_DzNw4I-pEeGpL_25i8ktIA" base_CommunicationPath="_SNiXUI-nEeGTLvq2iWmV2g"/>
+  <UMLsec:secrecy xmi:id="_E_qV4I-pEeGpL_25i8ktIA" base_Dependency="_RkBgQ4-nEeGTLvq2iWmV2g"/>
+  <UMLsec:integrity xmi:id="_Fs52YI-pEeGpL_25i8ktIA" base_Dependency="_RkBgQ4-nEeGTLvq2iWmV2g"/>
+  <UMLsec:high xmi:id="_G_6WYI-pEeGpL_25i8ktIA" base_Dependency="_RkBgQ4-nEeGTLvq2iWmV2g"/>
+  <UMLsec:identifiable xmi:id="_J0pu4I-pEeGpL_25i8ktIA" base_Element="_RkBgQ4-nEeGTLvq2iWmV2g"/>
+</xmi:XMI>

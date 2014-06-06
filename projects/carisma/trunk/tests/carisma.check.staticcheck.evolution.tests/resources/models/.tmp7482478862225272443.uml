@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_4WNWILE9EeCXHfYhNhPYCw/0" xmlns:UMLsec="http:///schemas/UMLsec/__wcg0LFCEeCXHfYhNhPYCw/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_4WNWILE9EeCXHfYhNhPYCw/0 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_4WOkQLE9EeCXHfYhNhPYCw http:///schemas/UMLsec/__wcg0LFCEeCXHfYhNhPYCw/0 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#__wdu8LFCEeCXHfYhNhPYCw">
+  <uml:Model xmi:id="_GZOMerkqEeCUKrLnOcA-rg" name="testSLAddRequirement">
+    <packageImport xmi:id="_GZOMe7kqEeCUKrLnOcA-rg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Node" xmi:id="_GZOMfLkqEeCUKrLnOcA-rg" name="Node1" clientDependency="_GZOMgLkqEeCUKrLnOcA-rg">
+      <ownedAttribute xmi:id="_GZOMfbkqEeCUKrLnOcA-rg" name="node2" visibility="private" type="_GZOMgbkqEeCUKrLnOcA-rg" association="_GZOMiLkqEeCUKrLnOcA-rg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GZOMfrkqEeCUKrLnOcA-rg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GZOMf7kqEeCUKrLnOcA-rg" value="1"/>
+      </ownedAttribute>
+      <deployment xmi:id="_GZOMgLkqEeCUKrLnOcA-rg" name="a1Deploy" supplier="_GZOMhrkqEeCUKrLnOcA-rg" client="_GZOMfLkqEeCUKrLnOcA-rg" deployedArtifact="_GZOMhrkqEeCUKrLnOcA-rg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_GZOMgbkqEeCUKrLnOcA-rg" name="Node2" clientDependency="_GZOMhbkqEeCUKrLnOcA-rg">
+      <ownedAttribute xmi:id="_GZOMgrkqEeCUKrLnOcA-rg" name="node1" visibility="private" type="_GZOMfLkqEeCUKrLnOcA-rg" association="_GZOMiLkqEeCUKrLnOcA-rg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GZOMg7kqEeCUKrLnOcA-rg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GZOMhLkqEeCUKrLnOcA-rg" value="1"/>
+      </ownedAttribute>
+      <deployment xmi:id="_GZOMhbkqEeCUKrLnOcA-rg" name="a2Deploy" supplier="_GZOMh7kqEeCUKrLnOcA-rg" client="_GZOMgbkqEeCUKrLnOcA-rg" deployedArtifact="_GZOMh7kqEeCUKrLnOcA-rg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_GZOMhrkqEeCUKrLnOcA-rg" name="Artifact1" clientDependency="_GZOMibkqEeCUKrLnOcA-rg"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_GZOMh7kqEeCUKrLnOcA-rg" name="Artifact2"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_GZOMiLkqEeCUKrLnOcA-rg" name="abLink" memberEnd="_GZOMfbkqEeCUKrLnOcA-rg _GZOMgrkqEeCUKrLnOcA-rg"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_GZOMibkqEeCUKrLnOcA-rg" name="dep" supplier="_GZOMh7kqEeCUKrLnOcA-rg" client="_GZOMhrkqEeCUKrLnOcA-rg"/>
+    <profileApplication xmi:id="_GZOMirkqEeCUKrLnOcA-rg">
+      <eAnnotations xmi:id="_GZOMi7kqEeCUKrLnOcA-rg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_GZOMjLkqEeCUKrLnOcA-rg">
+      <eAnnotations xmi:id="_GZOMjbkqEeCUKrLnOcA-rg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#__wdu8LFCEeCXHfYhNhPYCw"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_GZOMjrkqEeCUKrLnOcA-rg">
+      <eAnnotations xmi:id="_GZOMj7kqEeCUKrLnOcA-rg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_4WOkQLE9EeCXHfYhNhPYCw"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securelinks xmi:id="_GZOMkLkqEeCUKrLnOcA-rg" adversary="default" base_Package="_GZOMerkqEeCUKrLnOcA-rg"/>
+  <UMLchange:add xmi:id="_GZOMkbkqEeCUKrLnOcA-rg" base_Element="_GZOMibkqEeCUKrLnOcA-rg">
+    <ref>addRequirement</ref>
+    <add>Stereotype(name=UMLsec::high)</addw>
+  </UMLchange:add>
+  <UMLsec:secrecy xmi:id="_GZOMkrkqEeCUKrLnOcA-rg" base_Dependency="_GZOMibkqEeCUKrLnOcA-rg"/>
+  <UMLsec:Internet xmi:id="_GZOMk7kqEeCUKrLnOcA-rg" base_CommunicationPath="_GZOMiLkqEeCUKrLnOcA-rg"/>
+</xmi:XMI>

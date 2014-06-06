@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>The MaRisk(VA) Check Plugin</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+<h2>The MaRisk(VA) Check Plugin</h2>
+<h3>Content:</h3>
+<h4><a href="#overview">Overview</a></h4>
+<h4><a href="#parameters">Entering the Parameters</a></h4>
+<h4><a href="#checkresult">Checkresult</a></h4>
+
+
+<h3><a name="overview">Overview</a></h3>
+<div style="padding-left:25px"> The MaRisk(VA) Check Plugin consists of different checks, which are designed to check 
+if your BPMN processes are compliant with the regulations specified in the MaRisk(VA).
+</div>
+
+<h3><a name="parameters">Entering the Parameters</a></h3>
+<div style="padding-left:25px">The following parameters can be applied:
+<ul>
+	<li> Process: The name of the process which owns the defined Activities
+	<li> Activities: The name of the activities. Check will test the existence and the correct order.
+	<li> StartEvent: The name of a Bpmn2 EventDefinition which should be referenced by the StartEvent. The StartEvent is determined by the defined activities. Possible EventDefinitions:
+	<ul>
+		<li> null, if no StartEvent is required
+		<li> CancelEventDefinition
+		<li> CompensateEventDefinition
+		<li> ConditionalEventDefinition
+		<li> ErrorEventDefinition
+		<li> EscalationEventDefinition
+		<li> LinkEventDefinition
+		<li> MessageEventDefinition
+		<li> SignalEventDefinition
+		<li> TerminateEventDefinition
+		<li> TimerEventDefinition
+	</ul>
+	<li> Separation of Duty: The name of the activities which should be separated. <br> "Activity1 | Activity2, Activity3;" expresses that Activity1 is not in the same lane as Activity2 AND Activity3.
+</ul>
+
+<img src="images/parameters.png" alt="Parameter with tooltip." name="Parameter with tooltip."/>
+
+</div>
+
+<h3><a name="checkresult">Checkresult</a></h3>
+<div style="padding-left:25px"> The results of the checks are shown in the Result View. Additional information regarding
+the course of the check can be found in the analysis report.
+</div>
+
+</body>
+</html>

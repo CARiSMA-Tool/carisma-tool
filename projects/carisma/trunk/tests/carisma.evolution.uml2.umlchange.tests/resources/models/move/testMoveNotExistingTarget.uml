@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="test">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testMoveNotExistingTarget">
+      <packagedElement xmi:type="uml:Class" xmi:id="_9j0hYHZ4EeGdHPeilRQ6Cw" name="Class1">
+        <ownedAttribute xmi:id="_-CZTwHZ4EeGdHPeilRQ6Cw" name="propertyToMove"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_8a5KcHZ4EeGdHPeilRQ6Cw">
+      <eAnnotations xmi:id="_8a5KcXZ4EeGdHPeilRQ6Cw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+    <profileApplication xmi:id="_8a5KcnZ4EeGdHPeilRQ6Cw">
+      <eAnnotations xmi:id="_8a5Kc3Z4EeGdHPeilRQ6Cw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:move xmi:id="_BNogsHZ5EeGdHPeilRQ6Cw" base_Element="_-CZTwHZ4EeGdHPeilRQ6Cw">
+    <ref>toNotExistingTarget</ref>
+    <to>toNotExistingTarget={NotExistingClass(name=moved)}</to>
+  </UMLchange:move>
+</xmi:XMI>

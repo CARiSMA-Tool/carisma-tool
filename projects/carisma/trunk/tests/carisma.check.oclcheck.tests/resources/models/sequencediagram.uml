@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="sequencediagramModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="sequencediagramPackage">
+    <packagedElement xmi:type="uml:Collaboration" xmi:id="idCollaboration" name="sequencediagramCollaboration">
+      <ownedBehavior xmi:type="uml:Interaction" xmi:id="idInteraction" name="sequencediagramInteraction">
+        <ownedComment xmi:id="_RRdqUPgvEeKLAZ4gPThXMQ" annotatedElement="_K-9KcPgvEeKLAZ4gPThXMQ">
+          <body>Comment1</body>
+        </ownedComment>
+        <ownedRule xmi:id="_SFUwMPgvEeKLAZ4gPThXMQ" name="Constraint1" constrainedElement="_RRdqUPgvEeKLAZ4gPThXMQ"/>
+        <ownedRule xmi:type="uml:TimeConstraint" xmi:id="_X-aDcPgvEeKLAZ4gPThXMQ" name="TimeConstraint2">
+          <specification xmi:type="uml:TimeInterval" xmi:id="_X-b4oPgvEeKLAZ4gPThXMQ" name="TimeInterval1" min="_X-06MPgvEeKLAZ4gPThXMQ" max="_X-3WcPgvEeKLAZ4gPThXMQ"/>
+        </ownedRule>
+        <lifeline xmi:id="_IotEwPgvEeKLAZ4gPThXMQ" name="Lifeline1" coveredBy="_M31-sPgvEeKLAZ4gPThXMQ _QGym8PgvEeKLAZ4gPThXMQ _Ps5gQPgvEeKLAZ4gPThXMQ _Or0dwPgvEeKLAZ4gPThXMQ _N5GAUPgvEeKLAZ4gPThXMQ _Nc0UAPgvEeKLAZ4gPThXMQ _JPf_APgvEeKLAZ4gPThXMQ _JjLwAPgvEeKLAZ4gPThXMQ _WWQZ4PgvEeKLAZ4gPThXMQ"/>
+        <lifeline xmi:id="_K-9KcPgvEeKLAZ4gPThXMQ" name="Lifeline2" coveredBy="_M32lwPgvEeKLAZ4gPThXMQ _QG1qQPgvEeKLAZ4gPThXMQ _Ps78gPgvEeKLAZ4gPThXMQ _Or2S8PgvEeKLAZ4gPThXMQ _N5HOcPgvEeKLAZ4gPThXMQ _Nc1iIPgvEeKLAZ4gPThXMQ _LmnAUPgvEeKLAZ4gPThXMQ _L69fsPgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_QGym8PgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification11" covered="_IotEwPgvEeKLAZ4gPThXMQ" message="_QG4GgPgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_QG1qQPgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification12" covered="_K-9KcPgvEeKLAZ4gPThXMQ" event="_QG3fcPgvEeKLAZ4gPThXMQ" message="_QG4GgPgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ps5gQPgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification9" covered="_IotEwPgvEeKLAZ4gPThXMQ" event="_Ps9KoPgvEeKLAZ4gPThXMQ" message="_Ps9KofgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ps78gPgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification10" covered="_K-9KcPgvEeKLAZ4gPThXMQ" event="_Ps9KoPgvEeKLAZ4gPThXMQ" message="_Ps9KofgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Or0dwPgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification7" covered="_IotEwPgvEeKLAZ4gPThXMQ" event="_Or3hEPgvEeKLAZ4gPThXMQ" message="_Or3hEfgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Or2S8PgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification8" covered="_K-9KcPgvEeKLAZ4gPThXMQ" event="_Or3hEPgvEeKLAZ4gPThXMQ" message="_Or3hEfgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_N5GAUPgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification5" covered="_IotEwPgvEeKLAZ4gPThXMQ" event="_N5H1gPgvEeKLAZ4gPThXMQ" message="_N5H1gfgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_N5HOcPgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification6" covered="_K-9KcPgvEeKLAZ4gPThXMQ" event="_N5H1gPgvEeKLAZ4gPThXMQ" message="_N5H1gfgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Nc0UAPgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification3" covered="_IotEwPgvEeKLAZ4gPThXMQ" event="_Nc2JMPgvEeKLAZ4gPThXMQ" message="_Nc2wQPgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Nc1iIPgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification4" covered="_K-9KcPgvEeKLAZ4gPThXMQ" event="_Nc2JMPgvEeKLAZ4gPThXMQ" message="_Nc2wQPgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_M31-sPgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification1" covered="_IotEwPgvEeKLAZ4gPThXMQ" event="_M33M0PgvEeKLAZ4gPThXMQ" message="_M33M0fgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_M32lwPgvEeKLAZ4gPThXMQ" name="MessageOccurrenceSpecification2" covered="_K-9KcPgvEeKLAZ4gPThXMQ" event="_M33M0PgvEeKLAZ4gPThXMQ" message="_M33M0fgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_LmnAUPgvEeKLAZ4gPThXMQ" name="BehaviorExecutionSpecification2" covered="_K-9KcPgvEeKLAZ4gPThXMQ" start="_M32lwPgvEeKLAZ4gPThXMQ" finish="_N5HOcPgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_JPf_APgvEeKLAZ4gPThXMQ" name="BehaviorExecutionSpecification1" covered="_IotEwPgvEeKLAZ4gPThXMQ" start="_M31-sPgvEeKLAZ4gPThXMQ" finish="_N5GAUPgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:StateInvariant" xmi:id="_JjLwAPgvEeKLAZ4gPThXMQ" name="StateInvariant1" covered="_IotEwPgvEeKLAZ4gPThXMQ">
+          <invariant xmi:id="_JjM-IPgvEeKLAZ4gPThXMQ" name="Constraint1">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_JjM-IfgvEeKLAZ4gPThXMQ" name="OpaqueExpression1">
+              <body>????</body>
+            </specification>
+          </invariant>
+        </fragment>
+        <fragment xmi:type="uml:StateInvariant" xmi:id="_L69fsPgvEeKLAZ4gPThXMQ" name="StateInvariant2" covered="_K-9KcPgvEeKLAZ4gPThXMQ">
+          <invariant xmi:id="_L6_U4PgvEeKLAZ4gPThXMQ" name="Constraint1">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_L6_U4fgvEeKLAZ4gPThXMQ" name="OpaqueExpression1">
+              <body>????</body>
+            </specification>
+          </invariant>
+        </fragment>
+        <fragment xmi:type="uml:CombinedFragment" xmi:id="_TOTKcPgvEeKLAZ4gPThXMQ" name="CombinedFragment2">
+          <operand xmi:id="_TOTxgPgvEeKLAZ4gPThXMQ"/>
+          <operand xmi:id="_VHaBIPgvEeKLAZ4gPThXMQ" name="InteractionOperand1"/>
+        </fragment>
+        <fragment xmi:type="uml:ConsiderIgnoreFragment" xmi:id="_TgS5YPgvEeKLAZ4gPThXMQ" name="ConsiderIgnoreFragment2" interactionOperator="ignore"/>
+        <fragment xmi:type="uml:InteractionOperand" xmi:id="_TgS5YfgvEeKLAZ4gPThXMQ"/>
+        <fragment xmi:type="uml:CombinedFragment" xmi:id="_WWQZ4PgvEeKLAZ4gPThXMQ" name="CombinedFragment3" covered="_IotEwPgvEeKLAZ4gPThXMQ" interactionOperator="par">
+          <operand xmi:id="_WWQZ4fgvEeKLAZ4gPThXMQ"/>
+        </fragment>
+        <message xmi:id="_M33M0fgvEeKLAZ4gPThXMQ" name="Message1" receiveEvent="_M32lwPgvEeKLAZ4gPThXMQ" sendEvent="_M31-sPgvEeKLAZ4gPThXMQ"/>
+        <message xmi:id="_Nc2wQPgvEeKLAZ4gPThXMQ" name="Message2" messageSort="reply" receiveEvent="_Nc1iIPgvEeKLAZ4gPThXMQ" sendEvent="_Nc0UAPgvEeKLAZ4gPThXMQ"/>
+        <message xmi:id="_N5H1gfgvEeKLAZ4gPThXMQ" name="Message3" messageSort="asynchCall" receiveEvent="_N5HOcPgvEeKLAZ4gPThXMQ" sendEvent="_N5GAUPgvEeKLAZ4gPThXMQ"/>
+        <message xmi:id="_Or3hEfgvEeKLAZ4gPThXMQ" name="Message4" messageSort="asynchSignal" receiveEvent="_Or2S8PgvEeKLAZ4gPThXMQ" sendEvent="_Or0dwPgvEeKLAZ4gPThXMQ"/>
+        <message xmi:id="_Ps9KofgvEeKLAZ4gPThXMQ" name="Message5" messageSort="createMessage" receiveEvent="_Ps78gPgvEeKLAZ4gPThXMQ" sendEvent="_Ps5gQPgvEeKLAZ4gPThXMQ"/>
+        <message xmi:id="_QG4GgPgvEeKLAZ4gPThXMQ" name="Message6" messageSort="deleteMessage" receiveEvent="_QG1qQPgvEeKLAZ4gPThXMQ" sendEvent="_QGym8PgvEeKLAZ4gPThXMQ"/>
+      </ownedBehavior>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CallEvent" xmi:id="_M33M0PgvEeKLAZ4gPThXMQ" name="CallEvent1"/>
+    <packagedElement xmi:type="uml:CallEvent" xmi:id="_Nc2JMPgvEeKLAZ4gPThXMQ" name="CallEvent2"/>
+    <packagedElement xmi:type="uml:CallEvent" xmi:id="_N5H1gPgvEeKLAZ4gPThXMQ" name="CallEvent3"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_Or3hEPgvEeKLAZ4gPThXMQ" name="SignalEvent1"/>
+    <packagedElement xmi:type="uml:CreationEvent" xmi:id="_Ps9KoPgvEeKLAZ4gPThXMQ" name="CreationEvent1"/>
+    <packagedElement xmi:type="uml:DestructionEvent" xmi:id="_QG3fcPgvEeKLAZ4gPThXMQ" name="DestructionEvent1"/>
+    <packagedElement xmi:type="uml:TimeObservation" xmi:id="_XbC3sPgvEeKLAZ4gPThXMQ" name="TimeObservation1" event="_Ps9KofgvEeKLAZ4gPThXMQ" firstEvent="false"/>
+    <packagedElement xmi:type="uml:TimeExpression" xmi:id="_X-06MPgvEeKLAZ4gPThXMQ" name="minTimeConstraint2"/>
+    <packagedElement xmi:type="uml:LiteralString" xmi:id="_X-1hQPgvEeKLAZ4gPThXMQ" name="minTimeConstraint2"/>
+    <packagedElement xmi:type="uml:TimeExpression" xmi:id="_X-3WcPgvEeKLAZ4gPThXMQ" name="maxTimeConstraint2"/>
+    <packagedElement xmi:type="uml:LiteralString" xmi:id="_X-3WcfgvEeKLAZ4gPThXMQ" name="maxTimeConstraint2"/>
+  </packagedElement>
+</uml:Model>

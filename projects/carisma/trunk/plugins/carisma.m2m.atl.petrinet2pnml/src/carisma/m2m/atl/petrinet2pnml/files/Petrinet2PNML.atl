@@ -1,0 +1,97 @@
+-- @path Petrinet=/carisma.m2m.atl.petrinet2pnml/res/placeTransition.ecore
+-- @path PNML=/carisma.m2m.atl.petrinet2pnml/res/pnml.ecore
+
+module petrinet2pnml;
+create OUT : PNML from IN : Petrinet;
+
+rule PNMLDocument {
+	from
+		s : Petrinet!PetriNet
+	to	
+		pdoc : PNML!PNMLDocument
+		(
+--			xmlns <- uri,
+			nets <- net
+		),
+--		uri : PNML!URI
+--		(
+--			value <- 'http://www.pnml.org'
+--		),
+		net : PNML!NetElement
+		(
+			name <- name,
+--			type <- type_uri,
+			contents <- s.nodes.union(s.arcs)
+		),
+		name : PNML!Name
+		(
+			labels <- label
+		),
+		label : PNML!Label
+		(
+			text <- s.name
+		)
+--		type_uri : PNML!URI
+--		(
+--			value <- 'http://www.pnml.org'
+--		)
+}
+
+rule Place {
+	from
+		s : Petrinet!Place
+	to
+		p : PNML!Place
+		(
+			name <- name,
+			id <- s.name
+		),
+		name : PNML!Name
+		(
+			labels <- label
+		),
+		label : PNML!Label
+		(
+			text <- s.name
+		)
+}
+
+rule Transition {
+	from
+		s : Petrinet!Transition
+	to
+		t : PNML!Transition
+		(
+			name <- name,
+			id <- s.name
+		),
+		name : PNML!Name
+		(
+			labels <- label
+		),
+		label : PNML!Label
+		(
+			text <- s.name
+		)
+}
+
+rule Arc {
+	from
+		s : Petrinet!Arc
+	to
+		a : PNML!Arc
+		(
+			name <- name,
+			id <- s.name,
+			source <- s.source,
+			target <- s.target
+		),
+		name : PNML!Name
+		(
+			labels <- label
+		),
+		label : PNML!Label
+		(
+			text <- s.name
+		)
+}

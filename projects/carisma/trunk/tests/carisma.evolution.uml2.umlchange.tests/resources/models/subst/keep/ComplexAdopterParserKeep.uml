@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="model">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="ComplexAdopterParserKeep">
+      <packagedElement xmi:type="uml:Package" xmi:id="_bHS48D-oEeGBltJte9ckPg" name="Package1">
+        <packagedElement xmi:type="uml:Class" xmi:id="_j9gEoD-oEeGBltJte9ckPg" name="OldClass">
+          <ownedOperation xmi:id="_mopcQD-oEeGBltJte9ckPg" name="toBeKept"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_8yBAgEA_EeGHg4nrEQgWFQ" name="MyNamespace">
+        <packagedElement xmi:type="uml:Class" xmi:id="__Z624EA_EeGHg4nrEQgWFQ" name="OldClass"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_BEfiUEBAEeGHg4nrEQgWFQ" name="NewClass">
+          <ownedOperation xmi:id="_C_DKgEBAEeGHg4nrEQgWFQ" name="newOp"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_wkIoMEBcEeGHg4nrEQgWFQ">
+      <eAnnotations xmi:id="_wkLrgEBcEeGHg4nrEQgWFQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:subst xmi:id="_fgg78D-oEeGBltJte9ckPg" base_Element="_bHS48D-oEeGBltJte9ckPg">
+    <ref>subst</ref>
+    <new>subst={@MyNamespace}</new>
+  </UMLchange:subst>
+  <UMLchange:keep xmi:id="_p7d34D-oEeGBltJte9ckPg" base_Element="_mopcQD-oEeGBltJte9ckPg">
+    <adopter>subst={Class(name=OldClass)}</adopter>
+  </UMLchange:keep>
+</xmi:XMI>

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CARiSMA UML Dummy Check
+Bundle-SymbolicName: carisma.check.processanalysis.loader.uml2activity;singleton:=true
+Bundle-Version: 1.1.1.qualifier
+Require-Bundle: carisma.modeltype.uml2;bundle-version="1.1.2"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Software Engineering Institute, TU Dortmund
+Import-Package: carisma.processanalysis.textmodel
+Export-Package: carisma.check.processanalysis.loader.uml2activity

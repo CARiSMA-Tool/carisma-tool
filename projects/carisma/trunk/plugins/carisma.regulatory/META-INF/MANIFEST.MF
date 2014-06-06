@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CARiSMA Regulatory Extension
+Bundle-SymbolicName: carisma.regulatory
+Bundle-Version: 1.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: carisma.regulatory.ontology,
+ carisma.regulatory.ontology.model,
+ carisma.regulatory.ontology.owl,
+ carisma.regulatory.ontology.utils,
+ org.semanticweb.owlapi.model,
+ org.semanticweb.owlapi.reasoner
+Bundle-ClassPath: .,
+ lib/owlapi-bin.jar,
+ lib/HermiT.jar
+Import-Package: com.csvreader
+Require-Bundle: carisma.processanalysis;bundle-version="1.0.0"

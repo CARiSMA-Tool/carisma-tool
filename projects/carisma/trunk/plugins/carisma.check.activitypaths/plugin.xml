@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="carisma.carismacheck">
+      <check
+            implementingClass="carisma.check.activitypaths.Check"
+            name="activitypaths"
+            publisher="Moussa Oumarou"
+            description="Check for the calculation of different Paths in an acitivity diagramm"
+            targetModelType="UML2"
+            id="carisma.check.activitypaths">
+      </check>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml">
+      </toc>
+   </extension>
+
+</plugin>

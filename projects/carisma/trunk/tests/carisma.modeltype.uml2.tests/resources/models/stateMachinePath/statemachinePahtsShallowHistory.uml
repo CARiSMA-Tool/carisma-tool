@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="statemachinePahtsShallowHistoryModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="statemachinePahtsShallowHistoryPackage">
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="statemachinePahtsShallowHistoryStateMachine">
+      <region xmi:id="idRegion" name="MainRegion">
+        <subvertex xmi:type="uml:State" xmi:id="_cFYXgNDUEeGA15Qmvcskpw" name="State1">
+          <region xmi:id="_cFYXgdDUEeGA15Qmvcskpw" name="Region1">
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_mv-R8NDUEeGA15Qmvcskpw" name="Pseudostate1" kind="shallowHistory"/>
+            <subvertex xmi:type="uml:State" xmi:id="_p2bFgtDUEeGA15Qmvcskpw" name="State1"/>
+            <subvertex xmi:type="uml:State" xmi:id="_qKpCAtDUEeGA15Qmvcskpw" name="State2"/>
+            <subvertex xmi:type="uml:FinalState" xmi:id="_qgmD4NDUEeGA15Qmvcskpw" name="FinalState1"/>
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_qwkZkNDUEeGA15Qmvcskpw" name="Pseudostate2"/>
+            <transition xmi:id="_rhmN5NDUEeGA15Qmvcskpw" name="Transition1" kind="local" source="_qwkZkNDUEeGA15Qmvcskpw" target="_p2bFgtDUEeGA15Qmvcskpw"/>
+            <transition xmi:id="_rzTB5NDUEeGA15Qmvcskpw" name="Transition2" kind="local" source="_p2bFgtDUEeGA15Qmvcskpw" target="_qKpCAtDUEeGA15Qmvcskpw"/>
+            <transition xmi:id="_sGrQ5NDUEeGA15Qmvcskpw" name="Transition3" kind="local" source="_qKpCAtDUEeGA15Qmvcskpw" target="_qgmD4NDUEeGA15Qmvcskpw"/>
+            <transition xmi:id="_sYnVcNDUEeGA15Qmvcskpw" name="Transition4" kind="local" source="_p2bFgtDUEeGA15Qmvcskpw" target="_oGYrQNDUEeGA15Qmvcskpw"/>
+          </region>
+        </subvertex>
+        <subvertex xmi:type="uml:State" xmi:id="_cOkvwNDUEeGA15Qmvcskpw" name="State2"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_cYgu4NDUEeGA15Qmvcskpw" name="FinalState1"/>
+        <subvertex xmi:type="uml:State" xmi:id="_ll3PQNDUEeGA15Qmvcskpw" name="State3"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_mIKrENDUEeGA15Qmvcskpw" name="Pseudostate1"/>
+        <subvertex xmi:type="uml:State" xmi:id="_oGYrQNDUEeGA15Qmvcskpw" name="State4"/>
+        <transition xmi:id="_ojVF9NDUEeGA15Qmvcskpw" name="Transition1" kind="local" source="_mIKrENDUEeGA15Qmvcskpw" target="_cOkvwNDUEeGA15Qmvcskpw"/>
+        <transition xmi:id="_owc79dDUEeGA15Qmvcskpw" name="Transition2" kind="local" source="_cOkvwNDUEeGA15Qmvcskpw" target="_cFYXgNDUEeGA15Qmvcskpw"/>
+        <transition xmi:id="_o74v5NDUEeGA15Qmvcskpw" name="Transition3" kind="local" source="_cFYXgNDUEeGA15Qmvcskpw" target="_ll3PQNDUEeGA15Qmvcskpw"/>
+        <transition xmi:id="_pMq95NDUEeGA15Qmvcskpw" name="Transition4" kind="local" source="_ll3PQNDUEeGA15Qmvcskpw" target="_cYgu4NDUEeGA15Qmvcskpw"/>
+        <transition xmi:id="_syd_5NDUEeGA15Qmvcskpw" name="Transition5" kind="local" source="_oGYrQNDUEeGA15Qmvcskpw" target="_mv-R8NDUEeGA15Qmvcskpw"/>
+      </region>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

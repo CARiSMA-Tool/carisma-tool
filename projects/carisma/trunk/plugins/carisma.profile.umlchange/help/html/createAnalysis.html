@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<title>HowTo create a UMLchange Analysis</title>
+	<meta name="author" content="UMLchange">
+	<meta name="editor" content="html-editor phase 5">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF">
+<h2>How to Create an UMLchange Analysis</h2>
+
+<h3>What is an UMLchange Analysis?</h3>
+<p>An UMLchange analysis is a <a href="../../../carisma.ui.eclipse/help/html/userguide/stepByStep.html#CreateAnalysis">CARiSMA analysis</a> running evolution-aware checks on a model marked with UMLchange stereotypes.
+The necessary components for an UMLchange analysis (apart from the evolution-aware checks) are:
+</p>
+<ul>
+	<li>&quot;<i>UMLchange Parser</i>&quot; - Parses the model for UMLchange applications, extracts their information regarding the changes and stores them in change descriptions.</li>
+	<li>&quot;<i>Delta Calculator</i>&quot; - Analyzes the possibly constrained changes and their given alternatives. Computes a list of allowed deltas by solving the constraints and processing each given alternative.</li>
+	<li>&quot;<i>UML2 Model Modifier</i>&quot; - Provides the ability to apply the deltas to the analyzed model, producing modified models on-demand.</li>
+	<li>&quot;<i>Export of Modified Models and Deltas</i>&quot; - After checking the model, this check automatically saves the remaining successful modified models and their respective deltas.</li>
+</ul>
+
+<img src="../images/umlchangeanalysis1.png" alt="Convert an analysis to a UMLchange analysis." name="Convert an analysis to a UMLchange analysis." />
+<h5>Figure 1: An UMLchange Analysis.</h5>
+ 
+<h3>Converting to an UMLchange Analysis</h3>
+<p>The easy way to convert a CARiSMA analysis to an UMLchange analysis is to add only the evolution-aware checks to the analysis,
+open the context menu by right-clicking on the analysis file and choose 
+&quot;<i>Convert to UMLchange analysis</i>&quot; in the CARiSMA tab. 
+This will automatically add all necessary components for running the UMLchange analysis in the correct order.
+If any of the components are already present in the analysis, they will be rearranged accordingly.</p>
+<img src="../images/umlchangeanalysis2.png" alt="Convert an analysis to an UMLchange analysis." name="Convert an analysis to an UMLchange analysis." />
+<h5>Figure 2: Converting an analysis to an UMLchange analysis.</h5>
+</body>
+
+</html>

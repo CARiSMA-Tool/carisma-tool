@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Checks the authorized status property w.r.t. evolution using modified models"
+            id="carisma.check.smartcard.evolution.authorizedstatusmodifiercheck"
+            name="Evolution-aware Authorized Status Check (Modifier version)"
+            implementingClass="carisma.check.smartcard.evolution.authorizedstatuscheck.AuthorizedStatusEvolutionModifierCheck"
+            publisher="Daniel Warzecha"
+            targetModelType="UML2">
+         <precondition
+               requiredKey="carisma.data.evolution.deltas">
+         </precondition>
+         <precondition
+               requiredKey="carisma.data.evolution.modifiers">
+         </precondition>
+      </check>
+      <check
+            description="Checks the authorized status property w.r.t. evolution using only the given delta"
+            id="carisma.check.smartcard.evolution.authorizedstatusdeltaonlycheck"
+            implementingClass="carisma.check.smartcard.evolution.authorizedstatuscheck.AuthorizedStatusEvolutionDeltaOnlyCheck"
+            name="Evolution-aware Authorized Status Check (Delta only version)"
+            publisher="Daniel Warzecha"
+            targetModelType="UML2">
+         <precondition
+               requiredKey="carisma.data.evolution.deltas">
+         </precondition>
+      </check>
+      <check
+            description="Checks the locked status property w.r.t. evolution using modified models"
+            id="carisma.check.smartcard.evolution.lockedstatusmodifiercheck"
+            name="Evolution-aware Locked Status Check (Modifier version)"
+            implementingClass="carisma.check.smartcard.evolution.lockedstatuscheck.LockedStatusEvolutionModifierCheck"
+            publisher="Daniel Warzecha"
+            targetModelType="UML2">
+         <precondition
+               requiredKey="carisma.data.evolution.deltas">
+         </precondition>
+         <precondition
+               requiredKey="carisma.data.evolution.modifiers">
+         </precondition>
+      </check>
+      <check
+            description="Checks the locked status property w.r.t. evolution using only the given delta"
+            id="carisma.check.smartcard.evolution.lockedstatusdeltaonlycheck"
+            implementingClass="carisma.check.smartcard.evolution.lockedstatuscheck.LockedStatusEvolutionDeltaOnlyCheck"
+            name="Evolution-aware Locked Status Check (Delta Only version)"
+            publisher="Daniel Warzecha"
+            targetModelType="UML2">
+         <precondition
+               requiredKey="carisma.data.evolution.deltas">
+         </precondition>
+      </check>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="false">
+      </toc>
+   </extension>
+      <extension
+         point="carisma.evolution.EvolutionCheckMapping">
+      <check
+            EvolutionCheckID="carisma.check.smartcard.evolution.authorizedstatusmodifiercheck"
+            NonEvolutionCheckID="carisma.check.smartcard.authorizedstatuscheck">
+      </check>
+      <check
+            EvolutionCheckID="carisma.check.smartcard.evolution.authorizedstatusdeltaonlycheck"
+            NonEvolutionCheckID="carisma.check.smartcard.authorizedstatuscheck">
+      </check>
+      <check
+            EvolutionCheckID="carisma.check.smartcard.evolution.lockedstatusmodifiercheck"
+            NonEvolutionCheckID="carisma.check.smartcard.lockedstatuscheck">
+      </check>
+      <check
+            EvolutionCheckID="carisma.check.smartcard.evolution.lockedstatusdeltaonlycheck"
+            NonEvolutionCheckID="carisma.check.smartcard.lockedstatuscheck">
+      </check>
+   </extension>
+
+</plugin>

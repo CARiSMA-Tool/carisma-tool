@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="testGuardedAccessNoProfileModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testGuardedAccessNoProfilePackage">
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="testGuardedAccessNoProfileStateMachine">
+      <region xmi:id="idRegion" name="MainRegion">
+        <subvertex xmi:type="uml:State" xmi:id="_k4miYOogEeKfpoe5Z5KAeQ" name="State1"/>
+        <subvertex xmi:type="uml:State" xmi:id="_lLr2cOogEeKfpoe5Z5KAeQ" name="State2"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_lWAQEOogEeKfpoe5Z5KAeQ" name="Pseudostate1"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_mK0_QOogEeKfpoe5Z5KAeQ" name="FinalState1"/>
+        <transition xmi:id="_mtwtNOogEeKfpoe5Z5KAeQ" name="Transition1" source="_lWAQEOogEeKfpoe5Z5KAeQ" target="_k4miYOogEeKfpoe5Z5KAeQ"/>
+        <transition xmi:id="_m_OQoOogEeKfpoe5Z5KAeQ" name="Transition2" source="_k4miYOogEeKfpoe5Z5KAeQ" target="_lLr2cOogEeKfpoe5Z5KAeQ"/>
+        <transition xmi:id="_nQPIJOogEeKfpoe5Z5KAeQ" name="Transition3" source="_lLr2cOogEeKfpoe5Z5KAeQ" target="_mK0_QOogEeKfpoe5Z5KAeQ"/>
+      </region>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

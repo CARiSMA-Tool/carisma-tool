@@ -1,0 +1,48 @@
+4.1 writeToFile(File, List<ExportChange>, boolean): boolean
+4.1.1 writerNulltest
+4.1.1.1 Input  (null, null, null)
+4.1.1.2 Output No XML file and false
+
+4.1.2 writerEmptyListTest List<ExportChange>
+4.1.2.1 Input  an empty List, correct OutputFile
+4.1.2.2 Output XML file with one entry <Changes/> and true
+
+4.1.3 writerRegularTest
+4.1.3.1 Input  (correct File, example List, true)
+4.1.3.2 Output equivalent XML File and true
+
+-------------------------------------------------------------------------
+
+4.2 perform(List<CheckParameter>, AnalysisHost): boolean 
+
+4.2.1 performNullTest
+4.2.1.1 Input  null, null
+4.2.1.2 Output No XML file and false
+
+4.2.2 Analyzed Model doesn't contain any Deltas to export    	performNoDeltasTest
+4.2.2.1 Input  AnalysisHost.getAnalyzedModel() has no stereotype from the UMLChange profile
+4.2.2.2 Output XML file with one entry <Changes/> and true
+
+4.2.3 The UMLChange Profile is not applied to the model  		performNoProfileTest
+4.2.3.1 Input A valid UML2 Model which doesn't have the UMLChange Profile applied to.
+4.2.3.2 Output No XML file and true
+
+4.2.4 Analyzed Model contains changes							performRegularTest
+4.2.4.1 Input  A Model that contains 3 Changes, 4 Alternatives, 3 AddElements, 1 SubstElement, 1 DelElement 
+4.2.4.2 Output XML file with 3 Changes, 4 alternatives, 3 AddElements, 1 SubstElement, 1 DelElement and true
+
+-------------------------------------------------------------------------
+
+5. generateXMLOutput(List<Change>)
+
+5.1. genNullTest
+5.1.1 Input  null
+5.1.2 Output empty List<ExportChange>
+
+5.2  genEmptyListTest
+5.2.1 Input  empty List<Change>
+5.2.2 Output empty List<ExportChange>
+
+5.3 genRegularTest
+5.3.1 Input  example List<Change>
+5.3.2 Output equivalent List<ExportChange>

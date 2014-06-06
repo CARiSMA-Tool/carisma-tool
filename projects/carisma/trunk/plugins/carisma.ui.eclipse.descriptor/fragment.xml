@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+   <extension
+         id="superThing"
+         name="YEAH"
+         point="carisma.ui.eclipse.editor.description">
+      <Editor
+            id="org.eclipse.bpmn2.modeler.ui.bpmn2editor"
+            implementingClass="carisma.ui.eclipse.fragment.descriptions.EditorDescription"
+            name="BPMN Modeler">
+         <EditorType
+               Name="bpmn2">
+         </EditorType>
+      </Editor>
+      <Editor
+            description="UML Model Editor"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            implementingClass="carisma.ui.eclipse.fragment.descriptions.EditorDescription"
+            name="UML Model Editor">
+         <EditorType
+               Name="uml">
+         </EditorType>
+      </Editor>
+      <Editor
+            description="Ecore editor"
+            id="org.eclipse.emf.ecore.presentation.EcoreEditorID"
+            implementingClass="carisma.ui.eclipse.fragment.descriptions.EditorDescription"
+            name="ECORE_EDITOR">
+         <EditorType
+               Name="uml">
+         </EditorType>
+         <EditorType
+               Name="bpmn">
+         </EditorType>
+         <EditorType
+               Name="bpmn2">
+         </EditorType>
+      </Editor>
+      <Editor
+            id="org.eclipse.ui.DefaultTextEditor"
+            implementingClass="carisma.ui.eclipse.fragment.descriptions.EditorDescription"
+            name="Text Editor">
+         <EditorType
+               Name=".*">
+         </EditorType>
+      </Editor>
+      <Editor
+            id="fr.obeo.acceleo.gen.ui.editors.reflective.AcceleoReflectiveEditor"
+            implementingClass="carisma.ui.eclipse.fragment.descriptions.EditorDescription"
+            name="Acceleo Editor">
+         <EditorType
+               Name=".*">
+         </EditorType>
+      </Editor>
+      <Editor
+            file_extension="di"
+            id="org.eclipse.papyrus.core.papyrusEditor"
+            implementingClass="carisma.ui.eclipse.fragment.descriptions.EditorDescription"
+            name="Papyrus">
+         <EditorType
+               Name="uml">
+         </EditorType>
+      </Editor>
+      <Editor
+            file_extension="umldi"
+            id="org.topcased.modeler.uml.editor.UMLEditor"
+            implementingClass="carisma.ui.eclipse.fragment.descriptions.EditorDescription"
+            name="TOPCASED">
+         <EditorType
+               Name="uml"></EditorType>
+      </Editor>
+   </extension>
+
+</fragment>

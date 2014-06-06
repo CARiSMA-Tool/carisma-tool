@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Locked Status Evolution Check</title>
+</head>
+
+<body>
+<h1>UMLsec Locked Status Evolution Check</h1>
+<h3>carisma.check.smartcard.evolution.lockedstatuscheck</h3>
+Overview
+
+<p>This check analyzes the evolution of UML state diagrams using the &laquo;locked-status&raquo; stereotype (cf. Ochoa et al. - Model-based Security Verification and Testing for Smartcards, 2011).
+States marked by this stereotype may not have any outgoing transitions.</p>
+
+<p>To analyze the evolution of a model, the original model has to be secure in regards to the corresponding non-evolutionary check.
+To make sure that is the case please use the appropriate UMLsec smartcard checks.</p>
+
+<p>Annotate the secure model with the desired evolutionary changes by using the <a href="../../../carisma.evolution.uml2/help/html/UMLchangeSyntax.html">UMLchange profile extensions</a>.
+After finishing the model, <a href="../../../carisma.core/help/html/userguide/stepByStep.html">create a new CARiSMA analysis on the model</a>.
+Add the Smartcard Locked Status Evolution Check to the used checks and click "Run" to start the analysis.</p>
+
+<p>The Analysis Results View displays whether the check was successful. If any evolutionary step results
+in a violation of the &laquo;locked-status&raquo; property, the resulting violation is displayed in the Analysis Results View.</p>
+
+<img src="images/lockedStatusEvolutionWrong.png" alt="locked-status violation via evolution" name="locked-status violation via evolution" /></br></br>
+<p>The example model describes an evolution that adds &laquo;locked-status&raquo; to a state without removing its outgoing
+transitions.</p> 
+
+<img src="images/lockedStatusEvolutionRight.png" alt="locked-status corrected via evolution" name="locked-status corrected via evolution" /></br></br>
+<p>After adding the necessary evolutionary steps to the model, the analysis reports the success of the check.</p> 
+
+<p>The table below explains the <a href="../../../carisma.evolution.uml2/help/html/UMLchangeSyntax.html">UMLchange syntax</a> for new model elements of state machine diagrams.
+The metaclasses whose key-value pairs are simple are omitted.</p>
+ 
+<table border="1" bordercolor="#000000" width="500" cellpadding="3" cellspacing="3">
+	<tr>
+		<th>Model Element</th>
+		<th>Metaclass</br>(if different)</th>
+		<th>Key</th>
+		<th>Appropriate</br>Values</th>
+	</tr>
+	<tr>
+		<td>Transition</td>
+		<td></td>
+		<td>name</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>source</td>
+		<td>qualified name of model element</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>target</td>
+		<td>qualified name of model element</td>
+	</tr>
+	<tr>
+		<td>Transition Guard</td>
+		<td>Constraint</td>
+		<td>name</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>language</td>
+		<td>String value</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>specification</td>
+		<td>String value</td>
+	</tr>
+</table>
+
+</body>
+</html>

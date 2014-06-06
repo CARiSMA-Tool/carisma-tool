@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://sample.bpmn2.org/bpmn2/sample/collaboration">
+  <bpmn2:collaboration id="Collaboration_1" name="Default Collaboration">
+    <bpmn2:participant id="Participant_1" name="Initiating Pool" processRef="Process_1"/>
+    <bpmn2:participant id="Participant_2" name="Non-initiating Pool" processRef="Process_2"/>
+    <bpmn2:messageFlow id="MessageFlow_1" name="" sourceRef="ManualTask_1" targetRef="Participant_2"/>
+    <bpmn2:conversation id="Conversation_1" name="Conversation"/>
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1">
+    <bpmn2:ioSpecification id="InputOutputSpecification_1">
+      <bpmn2:dataInput id="DataInput_1" name="Data Input 1"/>
+      <bpmn2:dataOutput id="DataOutput_1" name="Data Output 1"/>
+    </bpmn2:ioSpecification>
+    <bpmn2:task id="Task_1" name="Task 1">
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:manualTask id="ManualTask_1" name="Manual Task 1">
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="UserTask_1" name="User Task 1"/>
+    <bpmn2:scriptTask id="ScriptTask_1" name="Script Task 1"/>
+    <bpmn2:businessRuleTask id="BusinessRuleTask_1" name="Business Rule Task 1"/>
+    <bpmn2:serviceTask id="ServiceTask_1" name="Service Task 1"/>
+    <bpmn2:sendTask id="SendTask_1" name="Send Task 1"/>
+    <bpmn2:receiveTask id="ReceiveTask_1" name="Receive Task 1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" name="" sourceRef="Task_1" targetRef="ManualTask_1"/>
+    <bpmn2:boundaryEvent id="BoundaryEvent_1" name="" attachedToRef="SendTask_1"/>
+    <bpmn2:dataStoreReference id="DataStoreReference_1" name="Data Store 1" dataStoreRef="DataStore_1"/>
+    <bpmn2:subProcess id="SubProcess_1" name="Sub Process 1"/>
+    <bpmn2:transaction id="Transaction_1" name="Transaction 1"/>
+    <bpmn2:adHocSubProcess id="AdHocSubProcess_1" name="Ad Hoc Sub Process 1"/>
+    <bpmn2:callActivity id="CallActivity_1" name="Call Activity 1"/>
+    <bpmn2:association id="Association_1" sourceRef="ManualTask_1" targetRef="UserTask_1"/>
+    <bpmn2:textAnnotation id="TextAnnotation_1"/>
+  </bpmn2:process>
+  <bpmn2:process id="Process_2">
+    <bpmn2:inclusiveGateway id="InclusiveGateway_1" name="Inclusive Gateway 1"/>
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_1" name="Exclusive Gateway 1"/>
+    <bpmn2:parallelGateway id="ParallelGateway_1" name="Parallel Gateway 1"/>
+    <bpmn2:eventBasedGateway id="EventBasedGateway_1" name="Event Based Gateway 1"/>
+    <bpmn2:complexGateway id="ComplexGateway_1" name="Complex Gateway 1"/>
+    <bpmn2:startEvent id="StartEvent_1" name="Start Event 1">
+      <bpmn2:conditionalEventDefinition id="ConditionalEventDefinition_1"/>
+    </bpmn2:startEvent>
+    <bpmn2:startEvent id="StartEvent_4" name="Start Event 4">
+      <bpmn2:messageEventDefinition id="MessageEventDefinition_1"/>
+    </bpmn2:startEvent>
+    <bpmn2:startEvent id="StartEvent_3" name="Start Event 3">
+      <bpmn2:signalEventDefinition id="SignalEventDefinition_1"/>
+    </bpmn2:startEvent>
+    <bpmn2:startEvent id="StartEvent_2" name="Start Event 2">
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_1"/>
+    </bpmn2:startEvent>
+    <bpmn2:startEvent id="StartEvent_5" name="Start Event 5"/>
+    <bpmn2:endEvent id="EndEvent_1" name="End Event 1">
+      <bpmn2:escalationEventDefinition id="EscalationEventDefinition_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="EndEvent_2" name="End Event 2">
+      <bpmn2:compensateEventDefinition id="CompensateEventDefinition_2"/>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="EndEvent_4" name="End Event 4">
+      <bpmn2:errorEventDefinition id="ErrorEventDefinition_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="EndEvent_3" name="End Event 3">
+      <bpmn2:cancelEventDefinition id="CancelEventDefinition_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="EndEvent_6" name="End Event 6"/>
+    <bpmn2:endEvent id="EndEvent_5" name="End Event 5">
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:intermediateThrowEvent id="IntermediateThrowEvent_1" name="Intermediate Throw Event 1">
+      <bpmn2:linkEventDefinition id="LinkEventDefinition_1" name="Link Event Definition 1"/>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateThrowEvent id="IntermediateThrowEvent_2" name="Intermediate Throw Event 2"/>
+    <bpmn2:intermediateCatchEvent id="IntermediateCatchEvent_1" name="Intermediate Catch Event 1"/>
+  </bpmn2:process>
+  <bpmn2:dataStore id="DataStore_1" name="Data Store 1"/>
+  <bpmn2:message id="Message_1" name="Message 1"/>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Collaboration Diagram">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="BPMNShape_1" bpmnElement="Participant_1" isHorizontal="false">
+        <dc:Bounds height="1000.0" width="200.0" x="100.0" y="100.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_2" bpmnElement="Participant_2" isHorizontal="false">
+        <dc:Bounds height="1000.0" width="200.0" x="390.0" y="110.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Task_1" bpmnElement="Task_1">
+        <dc:Bounds height="50.0" width="110.0" x="120.0" y="150.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ManualTask_1" bpmnElement="ManualTask_1">
+        <dc:Bounds height="50.0" width="110.0" x="120.0" y="210.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_UserTask_1" bpmnElement="UserTask_1">
+        <dc:Bounds height="50.0" width="110.0" x="120.0" y="270.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_1" bpmnElement="ScriptTask_1">
+        <dc:Bounds height="50.0" width="110.0" x="120.0" y="330.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_BusinessRuleTask_1" bpmnElement="BusinessRuleTask_1">
+        <dc:Bounds height="50.0" width="110.0" x="120.0" y="390.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ServiceTask_1" bpmnElement="ServiceTask_1">
+        <dc:Bounds height="50.0" width="110.0" x="120.0" y="460.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_SendTask_1" bpmnElement="SendTask_1">
+        <dc:Bounds height="50.0" width="110.0" x="120.0" y="530.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ReceiveTask_1" bpmnElement="ReceiveTask_1">
+        <dc:Bounds height="50.0" width="110.0" x="130.0" y="599.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="BPMNShape_Task_1" targetElement="BPMNShape_ManualTask_1">
+        <di:waypoint xsi:type="dc:Point" x="175.0" y="200.0"/>
+        <di:waypoint xsi:type="dc:Point" x="175.0" y="210.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_MessageFlow_1" bpmnElement="MessageFlow_1" sourceElement="BPMNShape_ManualTask_1" targetElement="BPMNShape_2">
+        <di:waypoint xsi:type="dc:Point" x="230.0" y="235.0"/>
+        <di:waypoint xsi:type="dc:Point" x="390.0" y="221.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_Association_1" bpmnElement="Association_1" sourceElement="BPMNShape_ManualTask_1" targetElement="BPMNShape_UserTask_1">
+        <di:waypoint xsi:type="dc:Point" x="175.0" y="260.0"/>
+        <di:waypoint xsi:type="dc:Point" x="175.0" y="270.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_InclusiveGateway_1" bpmnElement="InclusiveGateway_1">
+        <dc:Bounds height="50.0" width="50.0" x="445.0" y="145.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_1" bpmnElement="ExclusiveGateway_1">
+        <dc:Bounds height="50.0" width="50.0" x="445.0" y="225.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ParallelGateway_1" bpmnElement="ParallelGateway_1">
+        <dc:Bounds height="50.0" width="50.0" x="450.0" y="306.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EventBasedGateway_1" bpmnElement="EventBasedGateway_1">
+        <dc:Bounds height="50.0" width="50.0" x="450.0" y="376.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ComplexGateway_1" bpmnElement="ComplexGateway_1">
+        <dc:Bounds height="50.0" width="50.0" x="450.0" y="446.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="StartEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="445.0" y="531.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="EndEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="407.0" y="720.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_IntermediateThrowEvent_1" bpmnElement="IntermediateThrowEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="402.0" y="933.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_IntermediateCatchEvent_1" bpmnElement="IntermediateCatchEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="407.0" y="989.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_BoundaryEvent_1" bpmnElement="BoundaryEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="220.0" y="509.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_2" bpmnElement="StartEvent_2">
+        <dc:Bounds height="36.0" width="36.0" x="407.0" y="587.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_3" bpmnElement="StartEvent_3">
+        <dc:Bounds height="36.0" width="36.0" x="490.0" y="593.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_4" bpmnElement="StartEvent_4">
+        <dc:Bounds height="36.0" width="36.0" x="402.0" y="642.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_5" bpmnElement="StartEvent_5">
+        <dc:Bounds height="36.0" width="36.0" x="490.0" y="642.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_2" bpmnElement="EndEvent_2">
+        <dc:Bounds height="36.0" width="36.0" x="482.0" y="720.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_3" bpmnElement="EndEvent_3">
+        <dc:Bounds height="36.0" width="36.0" x="482.0" y="800.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_4" bpmnElement="EndEvent_4">
+        <dc:Bounds height="36.0" width="36.0" x="407.0" y="800.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_5" bpmnElement="EndEvent_5">
+        <dc:Bounds height="36.0" width="36.0" x="482.0" y="877.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_6" bpmnElement="EndEvent_6">
+        <dc:Bounds height="36.0" width="36.0" x="407.0" y="877.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_IntermediateThrowEvent_2" bpmnElement="IntermediateThrowEvent_2">
+        <dc:Bounds height="36.0" width="36.0" x="502.0" y="933.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataStoreReference_1" bpmnElement="DataStoreReference_1">
+        <dc:Bounds height="50.0" width="50.0" x="140.0" y="690.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataInput_1" bpmnElement="DataInput_1">
+        <dc:Bounds height="65.0" width="36.0" x="230.0" y="682.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataOutput_1" bpmnElement="DataOutput_1">
+        <dc:Bounds height="65.0" width="36.0" x="147.0" y="760.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_TextAnnotation_1" bpmnElement="TextAnnotation_1">
+        <dc:Bounds height="50.0" width="100.0" x="250.0" y="790.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_SubProcess_1" bpmnElement="SubProcess_1">
+        <dc:Bounds height="50.0" width="110.0" x="105.0" y="855.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Transaction_1" bpmnElement="Transaction_1">
+        <dc:Bounds height="50.0" width="110.0" x="105.0" y="895.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_AdHocSubProcess_1" bpmnElement="AdHocSubProcess_1">
+        <dc:Bounds height="50.0" width="110.0" x="120.0" y="944.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_CallActivity_1" bpmnElement="CallActivity_1">
+        <dc:Bounds height="50.0" width="110.0" x="130.0" y="990.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Message_1" bpmnElement="Message_1">
+        <dc:Bounds height="20.0" width="30.0" x="150.0" y="1053.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Conversation_1" bpmnElement="Conversation_1">
+        <dc:Bounds height="30.0" width="30.0" x="340.0" y="870.0"/>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

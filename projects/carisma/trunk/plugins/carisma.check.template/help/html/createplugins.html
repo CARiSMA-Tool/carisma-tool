@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Creating a Plugin Project containing CARiSMA Checks</title>
+<meta name="author" content="UMLsec">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+<h2>Creating a Plugin Project containing CARiSMA Checks</h2>
+
+<ul>
+	<li>Create a new Plug-in Project</li>
+	<ul>
+		<li><i>New</i> 	&rarr; <i>Other</i> 	&rarr; <i>Plug-in Development</i> 	&rarr; <i>Plug-in Project</i></li>
+	</ul>
+	<br />
+	<img src="images/create_umsecplugin_1.jpg" alt="New Plug-in" name="New Plug-in project wizard"/> <br />
+	<h5>Figure: New plug-in project wizard</h5>
+</ul>
+
+<br />
+
+<ul>
+	<li>Enter your plugin name. The convention is "<b>carisma.check.[pluginName]</b>".</li>
+	<br /><br />
+	<img src="images/create_umsecplugin_2.jpg" alt="New plug-in" name="New plugin project wizard (cont)" /> <br />
+	<h5>Figure: New Plug-in project wizard (cont.)</h5>
+	<li>Click <i>Next</i>.</li>
+</ul>
+
+<ul>
+	<li>Enter the metadata for your plugin. Activator code is executed when the plugin is started.</li>
+	<br /><br />
+	<img src="images/create_umsecplugin_3.jpg" alt="Content" name="New plugin project wizard content" /> <br />
+	<h5>Figure: New Plug-in project wizard content</h5>
+	<li>Click <i>Next</i>.</li>
+</ul>
+
+<ul>
+	<li>Select the <i>CARiSMA UML2 Check Template</i>.</li>
+	<br /><br />
+	<img src="images/create_umsecplugin_4.jpg" alt="Templates" name="New plugin project wizard templates" /> <br />
+	<h5>Figure: New Plug-in project wizard templates </h5>
+	<li>Click <i>Next</i>.</li>
+	<br /><br />
+	<b>Note:</b> If you choose to use an Activator at a later time, you have to fix the imports of the Activator class manually.
+	The default values in the following steps may mostly be altered at will, as they don't affect the look or
+	behavior of the plugin. The exception of the rule are the <i>Target Model Type</i> and <i>Page Name</i> values.
+	<br />
+	<li>Fill out the missing fields.
+    <ul>
+    	<li><i>Check ID</i> is a unique ID for your Check. You may choose the package name as the Check ID.</li>
+    	<li><i>Package Name</i> is the name of your Package.</li>
+        <li><i>Class Name</i> is the name of your Java class implementing the check.</li>
+        <li><i>Plugin Name</i> is the name of the plugin as part of the CARiSMA project.</li>
+        <li><i>Publisher</i> should be your name or the name of your company.</li>
+		<li><i>Target Model Type</i> is the Model-Type your check will work with.</li>
+	</ul>
+</ul>
+
+
+<br />
+
+<ul>
+	<img src="images/create_umsecplugin_5.jpg" alt="New UMLsec sample wizard" name="New UMLsec sample wizard" /> <br />
+	<h5>Figure: New CARiSMA wizard</h5>
+	<li>Click <i>Next</i>.</li>
+</ul>
+
+<ul>
+	<li>If you want to create a preference page containing check-wide settings, check the corresponding option.</li>
+	<li>Select a page name. <i>Class Name</i> and <i>Package Name</i> are the java Class Name/Package Name.</li>
+	<br /><br />
+	<img src="images/create_umsecplugin_6.jpg" alt="New UMLsec sample wizard (cont.)" name="New UMLsec sample wizard (cont.)" /> <br />
+	<h5>Figure: New CARiSMA wizard (cont.)</h5>
+	<br />
+</ul>
+
+<ul>
+	<li>Click <i>Finish</i> to create your first CARiSMA check!</li>
+</ul>
+
+</ul>
+
+</body>
+
+</html>

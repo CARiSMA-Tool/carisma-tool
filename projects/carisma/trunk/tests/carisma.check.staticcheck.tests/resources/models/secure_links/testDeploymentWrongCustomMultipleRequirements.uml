@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testDeploymentWrongCustomMultipleRequirementsModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testDeploymentWrongCustomMultipleRequirementsPackage">
+      <packagedElement xmi:type="uml:Node" xmi:id="_XolZ8I4WEeGg2Ne0q0vyww" name="Node1" clientDependency="_bxo6AI4WEeGg2Ne0q0vyww">
+        <deployment xmi:id="_bxo6AI4WEeGg2Ne0q0vyww" name="Deployment1" supplier="_bHETAI4WEeGg2Ne0q0vyww" client="_XolZ8I4WEeGg2Ne0q0vyww" deployedArtifact="_bHETAI4WEeGg2Ne0q0vyww"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Node" xmi:id="_XwIzcI4WEeGg2Ne0q0vyww" name="Node2" clientDependency="_cOGMgI4WEeGg2Ne0q0vyww _kfsPQI4WEeGg2Ne0q0vyww">
+        <deployment xmi:id="_cOGMgI4WEeGg2Ne0q0vyww" name="Deployment1" supplier="_bPcy8I4WEeGg2Ne0q0vyww" client="_XwIzcI4WEeGg2Ne0q0vyww" deployedArtifact="_bPcy8I4WEeGg2Ne0q0vyww"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Node" xmi:id="_X57BkI4WEeGg2Ne0q0vyww" name="Node3"/>
+      <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_ZoeOEI4WEeGg2Ne0q0vyww" name="abLink" memberEnd="_ZoeOEY4WEeGg2Ne0q0vyww _ZoeOFI4WEeGg2Ne0q0vyww">
+        <ownedEnd xmi:id="_ZoeOEY4WEeGg2Ne0q0vyww" name="source" type="_XolZ8I4WEeGg2Ne0q0vyww" association="_ZoeOEI4WEeGg2Ne0q0vyww">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZoeOEo4WEeGg2Ne0q0vyww" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZoeOE44WEeGg2Ne0q0vyww" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_ZoeOFI4WEeGg2Ne0q0vyww" name="target" type="_XwIzcI4WEeGg2Ne0q0vyww" association="_ZoeOEI4WEeGg2Ne0q0vyww">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZoeOFY4WEeGg2Ne0q0vyww" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZoeOFo4WEeGg2Ne0q0vyww" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_bHETAI4WEeGg2Ne0q0vyww" name="Artifact1" clientDependency="_cbJKAI4WEeGg2Ne0q0vyww _rkGtMI4WEeGg2Ne0q0vyww">
+        <manifestation xmi:id="_rkGtMI4WEeGg2Ne0q0vyww" supplier="_XolZ8I4WEeGg2Ne0q0vyww" client="_bHETAI4WEeGg2Ne0q0vyww"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_bPcy8I4WEeGg2Ne0q0vyww" name="Artifact2"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_cbJKAI4WEeGg2Ne0q0vyww" name="dep" supplier="_bPcy8I4WEeGg2Ne0q0vyww" client="_bHETAI4WEeGg2Ne0q0vyww"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_kfsPQI4WEeGg2Ne0q0vyww" supplier="_X57BkI4WEeGg2Ne0q0vyww" client="_XwIzcI4WEeGg2Ne0q0vyww"/>
+    </packagedElement>
+    <profileApplication xmi:id="_hakRYI4WEeGg2Ne0q0vyww">
+      <eAnnotations xmi:id="_hakRYY4WEeGg2Ne0q0vyww" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securelinks xmi:id="_wwWIkI4WEeGg2Ne0q0vyww" adversary="custom" base_Package="idModel"/>
+  <UMLsec:LAN xmi:id="_zr4soI4WEeGg2Ne0q0vyww" base_CommunicationPath="_ZoeOEI4WEeGg2Ne0q0vyww"/>
+  <UMLsec:secrecy xmi:id="_0ALhoI4WEeGg2Ne0q0vyww" base_Dependency="_cbJKAI4WEeGg2Ne0q0vyww"/>
+  <UMLsec:high xmi:id="_0HHQEI4WEeGg2Ne0q0vyww" base_Dependency="_cbJKAI4WEeGg2Ne0q0vyww"/>
+</xmi:XMI>

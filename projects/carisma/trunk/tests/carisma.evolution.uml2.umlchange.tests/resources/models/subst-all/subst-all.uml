@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLchange="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLchange/_3_WMsCSpEeGzfMdaDHGOzA/1 platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="subst-all">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="subst-all">
+      <packagedElement xmi:type="uml:Class" xmi:id="_Df0q0JBZEeG7TKEz82UBdA" name="Class1">
+        <ownedAttribute xmi:id="_E1zmUJBZEeG7TKEz82UBdA" name="oldProp"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_DoSDQJBZEeG7TKEz82UBdA" name="Class2">
+        <ownedAttribute xmi:id="_F71aQJBZEeG7TKEz82UBdA" name="oldProp"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_DxXGwJBZEeG7TKEz82UBdA" name="Class3">
+        <ownedAttribute xmi:id="_GzYGQJBZEeG7TKEz82UBdA" name="actuallProp"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_C4qkMJBZEeG7TKEz82UBdA">
+      <eAnnotations xmi:id="_C4qkMZBZEeG7TKEz82UBdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_3_fWoCSpEeGzfMdaDHGOzA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml#_CrerYD6AEeCVwfLnZes45A"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLchange:substall xmi:id="_kljK4JRREeGGGdJn5WtnrQ" base_Element="_w8IxIM37EdqwVrslYOdUDA">
+    <ref>someRef</ref>
+    <pattern>someRef={Property(name=oldProp)}</pattern>
+    <new>someRef={Property(name=newProp)},{Property(name=veryActuallyNewProp)}</new>
+  </UMLchange:substall>
+</xmi:XMI>

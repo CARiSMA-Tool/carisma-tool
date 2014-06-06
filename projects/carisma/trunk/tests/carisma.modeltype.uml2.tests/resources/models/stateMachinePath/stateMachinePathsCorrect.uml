@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="stateMachinePathsCorrectModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="stateMachinePathsCorrectPackage">
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="idStateMachine" name="stateMachinePathsCorrectStateMachine">
+      <region xmi:id="idRegion" name="MainRegion">
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_Ilb4IMtREeG0SJl-4AXHsA" name="Pseudostate1"/>
+        <subvertex xmi:type="uml:State" xmi:id="_JaaYUMtREeG0SJl-4AXHsA" name="State1"/>
+        <subvertex xmi:type="uml:State" xmi:id="_J4eNUMtREeG0SJl-4AXHsA" name="State2"/>
+        <subvertex xmi:type="uml:State" xmi:id="_KiW30MtREeG0SJl-4AXHsA" name="State3"/>
+        <subvertex xmi:type="uml:State" xmi:id="_KtRuYMtREeG0SJl-4AXHsA" name="State4"/>
+        <subvertex xmi:type="uml:State" xmi:id="_K3gBYMtREeG0SJl-4AXHsA" name="State5"/>
+        <subvertex xmi:type="uml:State" xmi:id="_LFs1cMtREeG0SJl-4AXHsA" name="State6"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_LR43UMtREeG0SJl-4AXHsA" name="FinalState1"/>
+        <transition xmi:id="_MQw6ZMtREeG0SJl-4AXHsA" name="Transition1" kind="local" source="_Ilb4IMtREeG0SJl-4AXHsA" target="_JaaYUMtREeG0SJl-4AXHsA"/>
+        <transition xmi:id="_MfVh5MtREeG0SJl-4AXHsA" name="Transition2" kind="local" source="_JaaYUMtREeG0SJl-4AXHsA" target="_J4eNUMtREeG0SJl-4AXHsA"/>
+        <transition xmi:id="_MwRg5MtREeG0SJl-4AXHsA" name="Transition3" kind="local" source="_J4eNUMtREeG0SJl-4AXHsA" target="_KiW30MtREeG0SJl-4AXHsA"/>
+        <transition xmi:id="_NA-2ZMtREeG0SJl-4AXHsA" name="Transition4" kind="local" source="_KiW30MtREeG0SJl-4AXHsA" target="_LFs1cMtREeG0SJl-4AXHsA"/>
+        <transition xmi:id="_NPjd5MtREeG0SJl-4AXHsA" name="Transition5" kind="local" source="_JaaYUMtREeG0SJl-4AXHsA" target="_KtRuYMtREeG0SJl-4AXHsA"/>
+        <transition xmi:id="_Nc-14MtREeG0SJl-4AXHsA" name="Transition6" kind="local" source="_KtRuYMtREeG0SJl-4AXHsA" target="_K3gBYMtREeG0SJl-4AXHsA"/>
+        <transition xmi:id="_NseDYMtREeG0SJl-4AXHsA" name="Transition7" kind="local" source="_K3gBYMtREeG0SJl-4AXHsA" target="_LFs1cMtREeG0SJl-4AXHsA"/>
+        <transition xmi:id="_OENN9MtREeG0SJl-4AXHsA" name="Transition8" kind="local" source="_LFs1cMtREeG0SJl-4AXHsA" target="_LR43UMtREeG0SJl-4AXHsA"/>
+      </region>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

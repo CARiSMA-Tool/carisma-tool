@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/__wcg0LFCEeCXHfYhNhPYCw/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/__wcg0LFCEeCXHfYhNhPYCw/0 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#__wdu8LFCEeCXHfYhNhPYCw">
+  <uml:Model xmi:id="_VnX3QbHqEeCahr3bcZCiMw" name="testDeploymentNonUMLsecStereotype">
+    <packageImport xmi:id="_VnX3QrHqEeCahr3bcZCiMw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Node" xmi:id="_VnX3Q7HqEeCahr3bcZCiMw" name="Node1" clientDependency="_VnX3R7HqEeCahr3bcZCiMw">
+      <ownedAttribute xmi:id="_VnX3RLHqEeCahr3bcZCiMw" name="node2" visibility="private" type="_VnX3SLHqEeCahr3bcZCiMw" association="_VnX3ULHqEeCahr3bcZCiMw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VnX3RbHqEeCahr3bcZCiMw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VnX3RrHqEeCahr3bcZCiMw" value="1"/>
+      </ownedAttribute>
+      <deployment xmi:id="_VnX3R7HqEeCahr3bcZCiMw" supplier="_VnX3TbHqEeCahr3bcZCiMw" client="_VnX3Q7HqEeCahr3bcZCiMw" deployedArtifact="_VnX3TbHqEeCahr3bcZCiMw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_VnX3SLHqEeCahr3bcZCiMw" name="Node2" clientDependency="_VnX3TLHqEeCahr3bcZCiMw _VnX3U7HqEeCahr3bcZCiMw">
+      <ownedAttribute xmi:id="_VnX3SbHqEeCahr3bcZCiMw" name="node1" visibility="private" type="_VnX3Q7HqEeCahr3bcZCiMw" association="_VnX3ULHqEeCahr3bcZCiMw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VnX3SrHqEeCahr3bcZCiMw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VnX3S7HqEeCahr3bcZCiMw" value="1"/>
+      </ownedAttribute>
+      <deployment xmi:id="_VnX3TLHqEeCahr3bcZCiMw" supplier="_VnX3T7HqEeCahr3bcZCiMw" client="_VnX3SLHqEeCahr3bcZCiMw" deployedArtifact="_VnX3T7HqEeCahr3bcZCiMw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_VnX3TbHqEeCahr3bcZCiMw" name="Artifact1" clientDependency="_VnX3UbHqEeCahr3bcZCiMw _VnX3TrHqEeCahr3bcZCiMw">
+      <manifestation xmi:id="_VnX3TrHqEeCahr3bcZCiMw" supplier="_VnX3Q7HqEeCahr3bcZCiMw" client="_VnX3TbHqEeCahr3bcZCiMw" utilizedElement="_VnX3Q7HqEeCahr3bcZCiMw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_VnX3T7HqEeCahr3bcZCiMw" name="Artifact2"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_VnX3ULHqEeCahr3bcZCiMw" name="abLink" memberEnd="_VnX3RLHqEeCahr3bcZCiMw _VnX3SbHqEeCahr3bcZCiMw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_VnX3UbHqEeCahr3bcZCiMw" name="dep" supplier="_VnX3T7HqEeCahr3bcZCiMw" client="_VnX3TbHqEeCahr3bcZCiMw"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_VnX3UrHqEeCahr3bcZCiMw" name="Node3"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_VnX3U7HqEeCahr3bcZCiMw" supplier="_VnX3UrHqEeCahr3bcZCiMw" client="_VnX3SLHqEeCahr3bcZCiMw"/>
+    <profileApplication xmi:id="_VnX3VLHqEeCahr3bcZCiMw">
+      <eAnnotations xmi:id="_VnX3VbHqEeCahr3bcZCiMw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_VnX3VrHqEeCahr3bcZCiMw">
+      <eAnnotations xmi:id="_VnX3V7HqEeCahr3bcZCiMw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#__wdu8LFCEeCXHfYhNhPYCw"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securelinks xmi:id="_VnX3WLHqEeCahr3bcZCiMw" adversary="custom" base_Package="_VnX3QbHqEeCahr3bcZCiMw"/>
+  <UMLsec:secrecy xmi:id="_VnX3WbHqEeCahr3bcZCiMw" base_Dependency="_VnX3UbHqEeCahr3bcZCiMw"/>
+  <UMLsec:LAN xmi:id="_VnX3WrHqEeCahr3bcZCiMw" base_CommunicationPath="_VnX3ULHqEeCahr3bcZCiMw"/>
+  <UMLsec:call xmi:id="_VnX3W7HqEeCahr3bcZCiMw" base_Dependency="_VnX3UbHqEeCahr3bcZCiMw"/>
+</xmi:XMI>

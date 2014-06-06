@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="testFairExchangeNoProfileModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testFairExchangeNoProfilePackage">
+    <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="testFairExchangeNoProfileActivity">
+      <node xmi:type="uml:OpaqueAction" xmi:id="_TfDt4I4YEeGEl_fBj84nug" name="OpaqueAction1" outgoing="_VD6L0I4YEeGEl_fBj84nug" incoming="_UgXZ4I4YEeGEl_fBj84nug"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_TsklcI4YEeGEl_fBj84nug" name="InitialNode1" outgoing="_UgXZ4I4YEeGEl_fBj84nug"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_UIVUYI4YEeGEl_fBj84nug" name="ActivityFinalNode1" incoming="_VD6L0I4YEeGEl_fBj84nug"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_UgXZ4I4YEeGEl_fBj84nug" name="ControlFlow1" source="_TsklcI4YEeGEl_fBj84nug" target="_TfDt4I4YEeGEl_fBj84nug">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_UgXZ4Y4YEeGEl_fBj84nug" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_UgXZ4o4YEeGEl_fBj84nug" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_VD6L0I4YEeGEl_fBj84nug" name="ControlFlow2" source="_TfDt4I4YEeGEl_fBj84nug" target="_UIVUYI4YEeGEl_fBj84nug">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_VD6L0Y4YEeGEl_fBj84nug" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_VD6L0o4YEeGEl_fBj84nug" value="1"/>
+      </edge>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

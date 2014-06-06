@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.modeltype">
+      <modeltype
+            name="UML2"
+            nsURI="http://www.eclipse.org/uml2/3.0.0/UML"
+            loader="carisma.modeltype.uml2.UML2ModelLoader"
+            fileExtension="uml">>
+      </modeltype>
+   </extension>
+
+</plugin>

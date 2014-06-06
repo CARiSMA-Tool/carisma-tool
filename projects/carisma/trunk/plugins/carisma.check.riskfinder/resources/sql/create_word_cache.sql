@@ -1,0 +1,1 @@
+CREATE TABLE words(id integer, text varchar(255));

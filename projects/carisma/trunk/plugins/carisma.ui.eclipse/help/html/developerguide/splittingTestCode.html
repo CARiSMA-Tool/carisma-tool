@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Splitting test-code and normal-code.</title>
+<meta name="author" content="UMLsec">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+<h2>Splitting test-code and normal-code.</h2>
+<p>Legend: TPP = TestedPluginProjekt</p>
+
+<ul>
+	<li>Create a <i>Fragment Project</i></li>
+    <ul>
+    	<li>New &rarr; Project... &rarr; Plug-In Development &rarr; Fragment Project</li>
+        <ul>
+        	<li>Name: TPP.tests</li>
+         	<li>Output Folder: target/classes</li>
+         	</ul>
+         <li>Click <i>Next</i></li>
+         	<ul>
+         	<li>Version: TPP-Version.qualifier</li>
+			<li>Execution Environment: JavaSE 1.6</li>
+			<li>Host-Plugin: Choose the TPP</li>
+         	</ul>
+         <li>Click <i>Finish</i></li>
+	</ul>
+</ul>
+
+<ul>
+	<li>Eclipse project properties (right-click onto the new project &rarr; <i>Properties</i>)</li>
+	<ul>
+		<li><i>Java Build Path</i> &rarr; <i>Projects</i></li>
+		<ul>
+			<li>Add the TPP</li>
+		</ul> 
+	</ul>
+</ul>
+
+<ul>
+	<li>Plugin settings (Right-click onto your project &rarr; <i>PDE Tools</i> &rarr; <i>Open Manifest</i>)</li>
+		<ul>
+			<li>Overview-Tab</li>
+			<ul>
+				<li>check <i>This fragment is a singleton</i></li>
+			</ul>
+			<li>Dependencies-Tab</li>
+			<ul>
+				<li>add JUnit4-Dependency (either 4.8.2 or no version)</li>
+			</ul>
+		</ul>
+</ul>
+
+<ul>
+	<li>Maven settings</li>
+	<ul>
+		<li>Copy the <i>pom.xml</i> from the TPP into the fragment project and apply the following settings:</li>
+		<ul>
+			<li>artifactID: TPP.tests</li>
+			<li>packaging should be changed from <i>eclipse-plugin</i> into <i>eclipse-test-plugin</i></li>
+			<li>add JUnit dependency</li>
+		</ul>
+	</ul>
+	</br>
+	<img src="../images/splitting_code_1.png" alt="Example pom.xml" name="Example pom.xml" /> <br />
+	<h5>Figure: Example pom.xml</h5>
+</ul>
+
+<ul>
+	<li>Structure of the Test Plugin Project</li>
+	<ul>
+		<li>Copy the Test packages from the TPP into the src-folder of the fragment project</li>
+		<ul>
+			<li>Add a folder named <i>resources</i></li>
+			<ul>
+				<li>Add a folder named <i>testcases</i> in the resources folder</li>
+				<ul>
+					<li>Add testcases as *.txt files here</li>
+				</ul>
+				<li>Add a folder named <i>models</i> in the resources folder</li>
+				<ul>
+					<li>Copy the testmodels into this folder</li>
+				</ul>
+			</ul>
+		</ul>
+	</ul>
+</ul>
+
+
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.modeltype">
+      <modeltype
+            fileExtension="owl"
+            loader="carisma.modeltype.owl2.OWL2ModelLoader"
+            name="OWL2"
+            nsURI="http://www.w3.org/2002/07/owl">
+      </modeltype>
+   </extension>
+
+</plugin>

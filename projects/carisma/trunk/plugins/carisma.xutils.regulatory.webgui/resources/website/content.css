@@ -1,0 +1,772 @@
+@CHARSET "UTF-8";
+#main_div {
+	min-width:1000px;
+	min-height:1000px;
+	width:100%;
+	height:200%;	
+	margin-right:2%;
+}
+html, body {
+  height:100%;
+}
+
+#choiceContainer {
+	margin: auto;
+	font-size: 1em;
+	width:67%;
+	height: 60%;
+}
+
+#constraintName {
+	width:88%;
+	height:10%;
+	position: relative;
+	float: left;
+	margin-left: 2%;
+	margin-top: 2%;
+	box-shadow:2px 2px 2px 2px #eee;
+}
+
+#ruleElementList {
+	width:90%;
+	height:80%;
+	position: relative;
+	float:right;  
+	overflow: auto;
+	font-size: 0.8em;
+	border:2px solid black; 
+	border-style:inset;
+	margin-bottom:2%;
+	margin-left: 1%;
+	box-shadow:2px 2px 2px 2px #eee;
+}
+
+#selectedRuleElements {
+	width:90%;
+	height:60%;
+	position: relative;
+	float:left;  
+	overflow: auto;
+	font-size: 0.8em;
+	border:2px solid black; 
+	border-style:inset;
+	margin-bottom:2%;
+	margin-left: 2%;
+	margin-top: 2%;
+	background:#ffffff;
+	box-shadow:2px 2px 2px 2px #eee;
+}
+
+#constraintText {
+	width: 90%;
+	height: 10%;
+	position: relative;
+	float: left;
+	margin-left: 2%;
+	margin-top: 2%;
+}
+
+#newName {
+	width:65%;
+	height:8%;
+	margin-left: 1%;
+	margin-bottom: 1%;
+	border:2px solid black; 
+	border-style:inset;
+	box-shadow:2px 2px 2px 2px #eee;
+}
+#specification {
+	margin-left: 5%;
+}
+#rightHeader {
+	position: relative;
+	float: right;
+	margin-right: 33%;
+}
+
+#reClasses {
+	position: relative;
+	float: right;
+	margin-right: 15%;
+}
+#selectionForm {
+	width:80%;
+	height:55%;
+	float:right;  
+	font-size: 0.7em;
+	font-family: Times;
+	font-style: italic;
+	border:2px solid black; 
+	border-style:inset;
+	margin-bottom:2%;
+	margin-left: 1%;
+	margin-right: 10%;
+	background:#ffffff;
+	box-shadow:2px 2px 2px 2px #eee;
+}
+
+#selectedForm {
+	width:98%;
+	height:50%;
+	float:left;
+	overflow: auto;  
+	font-size: 0.9em;
+	font-family: Times;
+	font-style: italic;
+	border:2px solid black; 
+	border-style:inset;
+	margin-bottom:2%;
+	margin-left: 2%;
+	background:#ffffff;
+	box-shadow:2px 2px 2px 2px #eee;
+}
+#situationMain {
+	width:100%;
+	height:100%;
+	background:#ffffff;
+	font:1.5em Times;
+}
+#newSituationName {
+	margin-left: 4%;
+}
+
+#okButton {
+	width:20%;
+	position: relative;
+	float: right; 
+	margin-right: 2%;
+	margin-top: 5%;
+	margin-left: 5%;
+}
+
+#cancelButton {
+	width:20%;
+	position: relative;
+	float: right; 
+	margin-right: 2%;
+	margin-top: 5%;
+	margin-left: 5%;
+}
+#situationName {
+	width:90%;
+	position: relative;
+	float: left;
+	margin-left:2%;
+	margin-top:2%;
+	margin-right:2%;
+	box-shadow:2px 2px 2px 2px #eee;
+}
+#constraintList {
+	width:90%;
+	height:60%;
+	position: relative;
+	float:left;  
+	margin-left: 2%;
+	overflow: auto;
+	border:2px solid black; 
+	border-style:inset;
+	box-shadow:2px 2px 2px 2px #eee;
+	background:#ffffff;
+}
+#localConstraints {
+	width:90%;
+	height:67%;
+	position: relative;
+	float:right;  
+	overflow: auto;
+	border:2px solid black; 
+	border-style:inset;
+	margin-top:2%;
+	margin-right: 2%;
+	background:#ffffff;
+}
+#okConstraint {
+	float: right;
+	width: 20%;
+	margin-right: 20%;
+	margin-top: 5%;
+}
+#relatedRuleElementsButton {
+	float: right;
+	width: 42%;
+	margin-right: 20%;
+	margin-top: 5%;
+}
+#upButton {
+	float: right;
+	width: 80%;
+	margin-top: 2%;
+	margin-left: 20%;
+}
+#downButton {
+	float: right;
+	width: 80%;
+	margin-top: 2%;
+}
+#add {
+	float: right;
+	width: 80%;
+	margin-top: 2%;
+}
+#addRelation {
+	float: right;
+	width: 80%;
+	margin-top: 2%;
+}
+#remove {
+	float: right;
+	width: 80%;
+	margin-top: 2%;
+}
+#removeRelation {
+	float: right;
+	width: 80%;
+	margin-top: 2%;
+}
+#upperContent{
+	width:100%;
+	height:50%;
+	background:#ffffff;
+	font: 1.5em Times;
+}
+#createNewRuleElementDiv {
+	width:550px;
+	height:350px;
+}
+
+#newConstraintMain {
+	width:100%;
+	height:100%;
+	background:#ffffff;
+	font:1.5em Times;
+}
+
+#leftDiv {
+	width:47%;
+	height:70%;
+	float:left;
+	margin-left:1%;
+	margin-top:3%;
+	margin-right:1%;
+}
+#rightDiv {
+	width:47%;
+	height:70%;
+	float:right;
+	margin-left:1%;
+	margin-top:3%;
+	margin-right:1%;
+}
+#logo {
+	float:right;
+	margin-top:1%;
+	margin-right:1%;
+}
+#createNewRuleElementChoice {
+	position:relative; 
+	float:left; 
+	width:90%; 
+	height:60%; 
+	border:2px solid black; 
+	border-style:inset;
+	margin-bottom:2%;
+	overflow:scroll;
+	overflow-x:hidden;
+	background:#ffffff;
+}
+#createNewRuleElementType {
+	position:relative; 
+	float:left; 
+	width:60%; 
+	height:10%; 
+	border:2px solid black; 
+	border-style:inset;
+	margin-top:2%;
+	background:#ffffff;
+}
+#createNewRuleElementOK {
+	position:relative; 
+	float:left;
+	margin-left:3%;
+	margin-top:5%;
+}
+#createNewRuleElementCancel {
+	position:relative; 
+	float:left;
+	margin-left:3%;
+	margin-top:5%;
+}
+#navigationList {
+	position:relative;
+	visibility:visible;
+	float:left;
+	width:30%;
+	height:98%;
+	border:2px solid black;
+	border-style:inset;
+	overflow:scroll;
+	overflow-x:hidden;	
+	margin-top:1%;
+	margin-right:1%;
+	margin-left:1%;
+	box-shadow:2px 2px 2px 2px #eee;
+	background:#ffffff;
+}
+
+#textOfTheRule {
+	font-size:0.7em;
+	position:relative;
+	visibility:visible;
+	overflow:scroll;
+	overflow-x:hidden; 
+	float:right;
+	width:65%;
+	height:36%;
+	border:2px solid black;
+	border-style:inset;
+	margin-bottom:1%;
+	margin-right:1%;
+	margin-left:1%;
+	box-shadow:2px 2px 2px 2px #eee;
+	background:#ffffff;
+}
+#ruleName {
+	font-size:1em;
+	font-style:italic;
+	position:relative;
+	visibility:visible;
+	float:left;
+	width:15%;
+	height:3%;
+	margin-top:2%;
+	margin-right:1%;
+	margin-left:3%;
+}
+
+#buttonContainer{
+	width:65%;
+	height:6%;
+	float:right;
+	margin-right:1%;
+}
+
+#submitButton{
+	position:relative;
+	visibility:visible;
+	border-radius:3px;
+	float:right;
+	width:20%;
+	height:90%;
+	margin-right:2%;
+	margin-left:2%;
+	box-shadow:2px 2px 2px 2px #eee;
+}
+
+#declineButton{
+	position:relative;
+	visibility:visible;
+	border-radius:3px;
+	float:right;
+	width:20%;
+	height:90%;
+	margin-right:2%;
+	margin-left:2%;
+	box-shadow:2px 2px 2px 2px #eee;
+}
+#reference {
+	position:relative;
+	float:left;
+	margin-left:10%;
+	margin-right:10%;
+	margin-top:3%;
+}
+
+#references {
+	position:relative;
+	visibility:visible;
+	overflow:auto;
+	float:right;
+	width:31%;
+	height:100%;
+	border:2px solid black;
+	border-style:inset;
+	margin-left:1%;
+	margin-right: 1%;
+	box-shadow:2px 2px 2px 2px #eee;
+	background:#ffffff;
+}
+
+#titles {
+	position:relative;
+	visibility:visible;
+	float:right;
+	width:65%;
+	height:5%;
+	margin-right:1%;
+	margin-left:1%;
+}
+
+#titleRefereceserences {
+	position:relative;
+	float:right;
+	font-style:italic;
+	width:40%;
+	height:80%;
+	margin-left:10%;
+}
+
+#selectField {
+	position:relative;
+	visibility:visible;
+	float:right;
+	width:31%;
+	height:35%;
+	margin-top:1%;
+	margin-right:2%;
+	margin-left:1%;
+	font-size:0.7em;
+	border:2px solid black;
+	border-style:inset;
+	box-shadow:2px 2px 2px 2px #eee;
+	background:#ffffff;
+}
+
+#titleConstraintstainer {
+	width:100%;
+	height:6%;
+	margin-top: 1%;
+}
+
+#fieldContainer {
+	width:100%;
+	height:50%;
+	margin-top: 1%;
+}
+#buttonContainer2 {
+	width:100%;
+	height:10%;
+	margin-top: 1%;
+}
+#refTitle {
+	position:relative;
+	visibility:visible;
+	float:right;
+	width:30%;
+	height:5%;
+	margin-right:1%;
+	margin-left:1%;
+}
+
+#titleConstraints {
+	position:relative;
+	visibility:visible;
+	float:right;
+	font-style:italic;
+	width:20%;
+	height:80%;
+	margin-right:5%;
+	margin-left:5%;
+}
+#refTitle {
+	position:relative;
+	visibility:visible;
+	float:right;
+	width:30%;
+	height:5%;
+	margin-right:1%;
+	margin-left:1%;
+}
+#titleRefereces {
+	position:relative;
+	float:right;
+	font-style:italic;
+	width:20%;
+	height:80%;
+	margin-left:5%;
+	margin-right:5%;
+}
+
+#titleSituations {
+	position:relative;
+	visibility:visible;
+	float:left;
+	font-style: italic;
+	width:20%;
+	height:80%;
+	margin-right:1%;
+	margin-left:10%;
+}
+
+#image {
+	position:relative;
+	float:left;
+	overflow:auto;
+	width:45%;
+	height:90%;
+	border:2px solid black;
+	border-style:inset;
+	margin-left:2%;
+	margin-right:1%;
+}
+
+#constraint {
+	position:relative;
+	visibility:visible;
+	float:right;	
+	overflow: auto;
+	width:30%;
+	height:100%;
+	border:2px solid black;
+	border-style:inset;
+	margin-left:1%;
+	box-shadow:2px 2px 2px 2px #eee;
+	background:#ffffff;
+}
+
+[name=constraintCheckbox] {
+	position: relative;
+	float: left;
+}
+[name=constraintTree] {
+	list-style-type: none;
+}
+#menu4 {
+	list-style-type: none;
+}
+#menu3 {
+	list-style-type: none;
+}
+#constraints {
+	width: 31%;
+	height: 100%;
+	font-size:1em;
+	overflow: auto;
+	position: relative;
+	float: right;
+	margin-right: 1%;
+	margin-left: 1%;
+	box-shadow:2px 2px 2px 2px #eee;
+	background:#ffffff;
+	border:2px solid black;
+	border-style: inset;
+}
+#popUpButtonContainer {
+	width: 20%;
+	height:30%;
+	float: right;
+	margin-top: 5%;
+}
+
+#popUpButtonContainerConstrainClass {
+	width: 20%;
+	height:30%;
+	float: right;
+	margin-top: -7%;
+}
+#img {
+	margin-top:1%;
+	position:relative;
+	float:left;
+	width:10%;
+	height:90%;
+	margin-left:2%;
+	margin-right:2%;
+}
+
+#relation {
+	float: left;
+	margin-left: 5%;
+	margin-bottom: 2%;
+	margin-top: 2%;
+}
+
+#relatedRuleElementsDescription {
+	margin-top: 5%;
+	float:left;
+	position: relative;
+	width: 80%;
+}
+
+#ruleelementTypes {
+	position:relative;
+	visibility:visible;
+	float:right;	
+	width:31%;
+	height:35%;
+	border:2px solid black;
+	border-style:inset;
+	margin-top:1%;
+	margin-right:1%;
+	margin-left:1%;
+	box-shadow:2px 2px 2px 2px #eee;
+	background:#ffffff;
+}
+
+#titleRuleElementTypes {
+	position:relative;
+	float:right;
+	font-style:italic;
+	width:40%;
+	height:80%;
+	margin-left:10%;
+}
+
+#titleRuleElements {
+	position:relative;
+	float:right;
+	font-style:italic;
+	width:40%;
+	height:80%;
+	margin-left:10%;
+}
+
+#relInline {
+	position:relative;
+	margin-left:20%;
+	margin-right:20%;
+	margin-top:5%;
+}
+
+#successElement {
+	margin-top:1%;
+	font-size:0.7em;
+	width:70%;
+	position:relative;
+	float:right;
+	
+}
+#errorElement {
+	margin-top:1%;
+	font-size:0.7em;
+	width:70%;
+	position:relative;
+	float:right;
+}
+
+#lowerContent {
+	width:100%;
+	height:50%;
+	background:#ffffff;
+	font: 1.5em Times;
+	margin-top:2%;
+}
+
+#content select {
+	width:100%;
+	height:100%;
+}
+
+.lowerButtons {
+	display:block;
+	visibility:visible;
+	border-radius:3px;
+	width:50%;
+	height:50%;
+	margin:auto;
+	margin-top:2%;
+	box-shadow:2px 2px 2px 2px #eee;
+}
+#situationButtonDiv {
+	position:relative;
+	visibility:hidden;
+	float:left;
+	width:31%;
+	height:100%;
+	margin-right:1%;
+	margin-left:1%;
+}
+
+#constraintButtonDiv {
+	position:relative;
+	visibility:hidden;
+	float:right;
+	width:31%;
+	height:100%;
+	margin-right:1%;
+	margin-left:1%;
+}
+
+#relatedRuleElementButtonDiv {
+	position:relative;
+	visibility:hidden;
+	float:right;
+	width:31%;
+	height:100%;
+	margin-right:1.5%;
+	margin-left:1%;
+}
+
+#situations {
+	position:relative;
+	visibility:visible;
+	overflow:auto;
+	float:left;
+	width:31%;
+	height:100%;
+	border:2px solid black;
+	border-style:inset;
+	margin-right:1%;
+	margin-left:1%;
+	box-shadow:2px 2px 2px 2px #eee;
+	background:#ffffff;
+}
+
+[name="selectionForm"] {
+	width:100%;
+	height:80%;
+}
+[name="art"] {
+	background-color:#00CC33;
+	border-radius:5px;
+	white-space:nowrap;
+}
+
+
+[name="pro"] {
+	background-color:#F7F79A;
+	border-radius:5px;
+	white-space:nowrap;
+}
+
+[name=leftForm] {
+	width: 67%;
+}
+[name=constraintForm] {
+	width: 67%;
+}
+[name="ppy"] {
+	background-color:#3399FF;
+	border-radius:5px;
+	white-space:nowrap;
+}
+ 
+[name="rol"]{
+	background-color:#CC0033;
+	border-radius:5px;
+	white-space:nowrap;
+}
+
+[name="firstRuleElement"] {
+	width: 70%;
+}
+
+[name="secondRuleElement"] {
+	width: 70%;
+}
+
+[name="act"] {
+	background-color:#FFCC33;
+	border-radius:5px;
+	white-space:pre-wrap;
+}
+input span.childs {
+ 	cursor:pointer;
+ }
+
+ li.treeMenu_opened ul {
+    display: block;
+  }
+  li.treeMenu_closed ul {
+    display: none;
+  }
+

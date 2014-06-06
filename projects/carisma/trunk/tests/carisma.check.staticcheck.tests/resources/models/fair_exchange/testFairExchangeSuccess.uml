@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="idModel" name="testFairExchangeSuccessModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="testFairExchangeSuccessPackage">
+      <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="testFairExchangeSuccessActivity">
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_VhUjwI4cEeGEl_fBj84nug" name="ActivityFinalNode1" incoming="_cDkv0I4cEeGEl_fBj84nug _cU6-gI4cEeGEl_fBj84nug"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_VxtJII4cEeGEl_fBj84nug" name="InitialNode1" outgoing="_auKcEI4cEeGEl_fBj84nug"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_WQTwsI4cEeGEl_fBj84nug" name="OpaqueAction1" outgoing="_bNxwQI4cEeGEl_fBj84nug" incoming="_auKcEI4cEeGEl_fBj84nug"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_XBNpMI4cEeGEl_fBj84nug" name="OpaqueAction2" outgoing="_bbqbQI4cEeGEl_fBj84nug _boogQI4cEeGEl_fBj84nug" incoming="_bNxwQI4cEeGEl_fBj84nug"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_Yzwk4I4cEeGEl_fBj84nug" name="OpaqueAction3" outgoing="_cDkv0I4cEeGEl_fBj84nug" incoming="_bbqbQI4cEeGEl_fBj84nug"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_ZBp28I4cEeGEl_fBj84nug" name="OpaqueAction4" outgoing="_cU6-gI4cEeGEl_fBj84nug" incoming="_boogQI4cEeGEl_fBj84nug"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_auKcEI4cEeGEl_fBj84nug" name="ControlFlow1" source="_VxtJII4cEeGEl_fBj84nug" target="_WQTwsI4cEeGEl_fBj84nug">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_auKcEY4cEeGEl_fBj84nug" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_auKcEo4cEeGEl_fBj84nug" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_bNxwQI4cEeGEl_fBj84nug" name="ControlFlow2" source="_WQTwsI4cEeGEl_fBj84nug" target="_XBNpMI4cEeGEl_fBj84nug">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_bNxwQY4cEeGEl_fBj84nug" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_bNxwQo4cEeGEl_fBj84nug" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_bbqbQI4cEeGEl_fBj84nug" name="ControlFlow3" source="_XBNpMI4cEeGEl_fBj84nug" target="_Yzwk4I4cEeGEl_fBj84nug">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_bbqbQY4cEeGEl_fBj84nug" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_bbqbQo4cEeGEl_fBj84nug" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_boogQI4cEeGEl_fBj84nug" name="ControlFlow4" source="_XBNpMI4cEeGEl_fBj84nug" target="_ZBp28I4cEeGEl_fBj84nug">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_boogQY4cEeGEl_fBj84nug" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_boogQo4cEeGEl_fBj84nug" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cDkv0I4cEeGEl_fBj84nug" name="ControlFlow5" source="_Yzwk4I4cEeGEl_fBj84nug" target="_VhUjwI4cEeGEl_fBj84nug">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_cDkv0Y4cEeGEl_fBj84nug" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cDkv0o4cEeGEl_fBj84nug" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cU6-gI4cEeGEl_fBj84nug" name="ControlFlow6" source="_ZBp28I4cEeGEl_fBj84nug" target="_VhUjwI4cEeGEl_fBj84nug">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_cU6-gY4cEeGEl_fBj84nug" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cU6-go4cEeGEl_fBj84nug" value="1"/>
+        </edge>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_PopgMI4cEeGEl_fBj84nug">
+      <eAnnotations xmi:id="_PopgMY4cEeGEl_fBj84nug" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:fairexchange xmi:id="_gw4zgI4cEeGEl_fBj84nug" start="_WQTwsI4cEeGEl_fBj84nug" stop="_Yzwk4I4cEeGEl_fBj84nug _ZBp28I4cEeGEl_fBj84nug" base_Package="idModel"/>
+</xmi:XMI>

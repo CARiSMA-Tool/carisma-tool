@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Test some parameter types. To test the description of a check, lets asume this is a long text with a lot of informations. Lets see how good the wordwrap is doing his job."
+            id="carisma.check.parametertest"
+            name="CARiSMA Parametertest"
+            implementingClass="carisma.check.parametertest.Check"
+            publisher="Johannes Kowald"
+            targetModelType="UML2">
+         <parameter
+               defaultValue="default String"
+               description="A test string"
+               id="carisma.check.parametertest.string"
+               name="teststring"
+               optional="false"
+               type="String">
+         </parameter>
+         <parameter
+               defaultValue="4"
+               description="A test integer"
+               id="carisma.check.parametertest.integer"
+               name="testint"
+               optional="false"
+               type="int">
+         </parameter>
+         <parameter
+               defaultValue="10.1184"
+               description="A test float"
+               id="carisma.check.parametertest.float"
+               name="testfloat"
+               optional="false"
+               type="float">
+         </parameter>
+         <parameter
+         	   description="A test boolean"
+               id="carisma.check.parametertest.boolean"
+               name="testboolean"
+               optional="false"
+               type="boolean">
+         </parameter>
+         <parameter
+         	   description="A test input file"
+               id="carisma.check.parametertest.inputfile"
+               name="testinputfile"
+               optional="false"
+               type="InputFile">
+         </parameter>
+         <parameter
+         	   description="A test folder"
+               id="carisma.check.parametertest.folder"
+               name="testfolder"
+               optional="false"
+               type="Folder">
+         </parameter>
+         <parameter
+         	   description="A test output file"
+               id="carisma.check.parametertest.outputfile"
+               name="testoutputfile"
+               optional="false"
+               type="OutputFile">
+         </parameter>
+         <parameter
+               defaultValue="default optional String"
+               description="An optional string"
+               id="carisma.check.parametertest.stringopt"
+               name="optstring"
+               optional="true"
+               type="String">
+         </parameter>
+         <parameter
+               defaultValue="4"
+               description="An optional integer"
+               id="carisma.check.parametertest.integeropt"
+               name="optint"
+               optional="true"
+               type="int">
+         </parameter>
+         <parameter
+               defaultValue="10.1184"
+               description="An optional float"
+               id="carisma.check.parametertest.floatopt"
+               name="optfloat"
+               optional="true"
+               type="float">
+         </parameter>
+         <parameter
+         	   description="An optional boolean"
+               id="carisma.check.parametertest.booleanopt"
+               name="optboolean"
+               optional="true"
+               type="boolean">
+         </parameter>
+         <parameter
+         	   description="An optional input file"
+               id="carisma.check.parametertest.inputfileopt"
+               name="optinputfile"
+               optional="true"
+               type="InputFile">
+         </parameter>
+         <parameter
+         	   description="An optional folder"
+               id="carisma.check.parametertest.folderopt"
+               name="optfolder"
+               optional="true"
+               type="Folder">
+         </parameter>
+         <parameter
+         	   description="An optional output file"
+               id="carisma.check.parametertest.outputfileopt"
+               name="optoutputfile"
+               optional="true"
+               type="OutputFile">
+         </parameter>
+         <postcondition
+               providedKey="carisma.check.parametertest.post">
+         </postcondition>
+      </check>
+   </extension>
+</plugin>

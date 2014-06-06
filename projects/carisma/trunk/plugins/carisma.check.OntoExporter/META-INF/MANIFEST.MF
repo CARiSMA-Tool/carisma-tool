@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OntoExporter
+Bundle-SymbolicName: carisma.check.OntoExporter; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: carisma.check.ontoexporter.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ carisma.core,
+ carisma.modeltype.uml2,
+ carisma.profile.umlchange,
+ org.eclipse.core.resources,
+ carisma.regulatory
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/owlapi-bin.jar,
+ .,
+ lib/HermiT.jar
