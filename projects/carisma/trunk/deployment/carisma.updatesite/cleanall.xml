@@ -1,0 +1,32 @@
+<project name="Remove all generated versions" default="main">
+
+	<property name="project" value="carisma.updatesite" />
+	
+	<target name="remove">
+
+		<eclipse.refreshLocal resource="${project}" depth="infinite" />
+
+		<delete dir="features"/>
+		<delete dir="plugins"/>
+		<delete file="artifacts.jar"/>
+		<delete file="content.jar"/>
+		
+		<eclipse.refreshLocal resource="${project}" depth="infinite" />
+
+	</target>
+
+	<target name="main">
+		<echo> ATTENTION !!!</echo>
+		<echo> Run this ant-script ONLY IF you want to delete all old versions! </echo>
+		<echo> </echo>
+		<echo> To do so proceed as follows:</echo>
+		<echo>  1. go to the update site folder on the server </echo>
+		<echo>  2. delete everything </echo>
+		<echo>  3. run this ant-script with target "remove"</echo>
+		<echo>  4. build the new features</echo>
+		<echo>  5. upload the features to the update site by using upload.launch</echo>
+	</target>
+
+
+	
+</project>

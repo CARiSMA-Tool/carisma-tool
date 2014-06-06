@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="feature.carisma.ocl"
+      label="OCL CARiSMA Feature"
+      version="1.0.0.qualifier">
+
+   <description url="http://carisma.umlsec.de">
+      Visit the CARiSMA homepage for more information!
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      /*******************************************************************************
+* Copyright (c) 2011 Software Engineering Institute, TU Dortmund.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License
+v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+*
+* Contributors:
+*    Software Engineering Institute, TU Dortmund - initial API
+and implementation and/or initial documentation
+*******************************************************************************/
+   </copyright>
+
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      [Enter License Description here.]
+   </license>
+
+   <url>
+      <update label="CARiSMA Update Site" url="http://vm4a003.itmc.tu-dortmund.de/carisma/updatesite/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.query.ocl" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ocl" version="3.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ocl.ecore" version="3.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+   </requires>
+
+   <plugin
+         id="carisma.ocl"
+         download-size="0"
+         install-size="0"
+         version="1.0.2.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="carisma.ocl.library"
+         download-size="0"
+         install-size="0"
+         version="1.0.3.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="carisma.ocl.library.edit"
+         download-size="0"
+         install-size="0"
+         version="1.0.3.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="carisma.ocl.library.editor"
+         download-size="0"
+         install-size="0"
+         version="1.0.3.qualifier"
+         unpack="false"/>
+
+</feature>

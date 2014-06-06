@@ -1,0 +1,53 @@
+<project name="Upload the internal update site" default="main">
+
+	<property name="project" value="carisma.updatesite" />
+	
+	<property name="updateserver" value="vm4a003.itmc.tu-dortmund.de" />
+	<property name="updatelogin" value="uploadmaster" />
+	<property name="updatepass" value="01238gqwlkf" />
+
+	<target name="main">
+		<echo> ***********************************************************</echo>
+		<echo>  Uploading update site to server!</echo>
+		<echo> ***********************************************************</echo>
+
+		<input
+		    message="Should I upload all plugins (old data on the server may be deleted)?"
+		    validargs="y,n"
+		    addproperty="do.upload"
+		  />
+		  <condition property="do.continue">
+		    <equals arg1="n" arg2="${do.upload}"/>
+		  </condition>
+		  <fail if="do.continue">Upload aborted by user.</fail>
+		
+		<eclipse.refreshLocal resource="${project}" depth="infinite" />
+
+		<echo>  Starting Upload! This may take a long time...</echo>
+		<ftp server = "${updateserver}"
+						 userid               = "${updatelogin}"
+						 password             = "${updatepass}"
+						 remotedir            = "updatesite/"
+						 passive              = "yes"
+						 binary               = "yes"
+						 depends              = "yes"
+						 verbose              = "yes"
+						 timestampGranularity = "NONE" >
+			<fileset dir="." includes="features/" />
+			<fileset dir="." includes="plugins/" />
+			<fileset dir="." includes="web/" />
+
+		    <fileset dir=".">
+		        <include name="*.jar"/>
+		        <include name="index.html"/>
+		        <include name="site.xml"/>
+		    </fileset>
+		</ftp>
+		<!-- alternativ per scp: <scp trust="true" todir="${username}:${password}@${updatesite}"></scp> -->
+		<echo>  Done!</echo>
+		<echo>  The new features can be downloaded from update site: </echo>
+		<echo>  http://vm4a003.itmc.tu-dortmund.de/carisma/updatesite </echo>
+		<echo> ***********************************************************</echo>
+	</target>
+
+</project>
