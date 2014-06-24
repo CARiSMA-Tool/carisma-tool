@@ -69,7 +69,13 @@ public final class SecureDependencyChecks {
 	 * @return
 	 */
 	public int checkSecureDependency(final Package model, final boolean onlyCheckUsages) {
-		for (Usage dep : UMLHelper.getAllElementsOfType(model, Usage.class)) {
+		List<Dependency> dependenciesToCheck = new ArrayList<Dependency>();
+		if (onlyCheckUsages) {
+			dependenciesToCheck.addAll(UMLHelper.getAllElementsOfType(model, Usage.class));
+		} else {
+			dependenciesToCheck.addAll(UMLHelper.getAllElementsOfType(model, Dependency.class));
+		}
+		for (Dependency dep : dependenciesToCheck) {
 			analyzeDependency(dep);
 		}
 		return secureDependencyViolations.size();
@@ -79,7 +85,7 @@ public final class SecureDependencyChecks {
 	 * Checks the dependency.
 	 * @param dep
 	 */
-	public void analyzeDependency(Usage dep) {
+	public void analyzeDependency(Dependency dep) {
 		List<NamedElement> clients = dep.getClients();
 		List<NamedElement> suppliers = dep.getSuppliers();
 		for (NamedElement c : clients) {
@@ -91,7 +97,7 @@ public final class SecureDependencyChecks {
 		}
 	}
 	
-	public List<SecureDependencyViolation> checkDependency(Usage dependency, Classifier client, Classifier supplier) {
+	public List<SecureDependencyViolation> checkDependency(Dependency dependency, Classifier client, Classifier supplier) {
 		host.appendLineToReport("Processing dependency '" + dependency.getQualifiedName()
 		        + "' between '" + client.getQualifiedName() + "' and '" + supplier.getQualifiedName() + "'");
 		if (!isRelevantDependency(dependency)) {
