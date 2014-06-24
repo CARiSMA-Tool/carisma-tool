@@ -4,11 +4,11 @@ Bundle-Name: CARiSMA Eclipse GUI
 Bundle-SymbolicName: carisma.ui.eclipse;singleton:=true
 Bundle-Version: 1.4.0.qualifier
 Bundle-Activator: carisma.ui.eclipse.CarismaGUI
-Require-Bundle: org.eclipse.ui;bundle-version="3.105.0";visibility:=reexport,
+Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.ui.forms;bundle-version="3.6.1",
- org.eclipse.ui.ide;bundle-version="3.9.1";visibility:=reexport,
+ org.eclipse.ui.forms,
+ org.eclipse.ui.ide;visibility:=reexport,
  carisma.core;bundle-version="1.4.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
