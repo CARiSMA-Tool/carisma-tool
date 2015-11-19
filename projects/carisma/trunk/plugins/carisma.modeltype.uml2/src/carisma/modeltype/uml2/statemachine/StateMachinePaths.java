@@ -8,10 +8,19 @@
  * Contributors:
  *    {SecSE group} - initial API and implementation and/or initial documentation
  *******************************************************************************/
+
+/**
+ * 
+ */
+/**
+ * 
+ */
 package carisma.modeltype.uml2.statemachine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +37,10 @@ import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.modeltype.uml2.UMLHelper;
 
-
+//FIXME Does not handle nested states!
+//FIXME May run into endless loop in nested state machines
+//FIXME search for initial state originally provided performed a DFS, which tends to find the innermost initial state when there is more than one initial state
+//FIXME Moreover, the algorithm here doesn't seem to implement a simple graph algorithm, which would be more appropriate.
 /**
  * class to get all possible paths out of a state machine.
  * @author Klaus Rudack
@@ -172,7 +184,7 @@ public class StateMachinePaths {
 								historizedState = newHash.get(historyParent);
 							}
 							if (!hasLoopAtEnd(deepHistoryPath, historizedState)) {
-//								FIXME KR:  hoert einfach auf, warum? evtl weill wenn loop am ende und anderer weg möglich dieser schon gegangen wird
+//								FIXME KR:  hoert einfach auf, warum? evtl weill wenn loop am ende und anderer weg mï¿½glich dieser schon gegangen wird
 								deepHistoryPath.add(historizedState);
 								findPaths(deepHistoryPath, newHash);
 							} else {
@@ -256,28 +268,51 @@ public class StateMachinePaths {
 		}
 	}
 
+
+	/* public final Pseudostate getInitialState(final Element element) {
+	 * Old Version of this method performing a DFS
+	 * 
+	 * 
+	 * Element returnValue = element;
+	 * 
+	 * if (returnValue instanceof Pseudostate && ((Pseudostate)
+	 * returnValue).getKind().equals(PseudostateKind.INITIAL_LITERAL)) { return
+	 * (Pseudostate) returnValue; } else { for (Element child :
+	 * element.getOwnedElements()) { Pseudostate ret = getInitialState(child);
+	 * if (ret != null) { return ret; } } } return null; }
+	 */
+	
+
+
+
 	/**
-	 * gets the InitialState in the given region.
+	 * Gets the InitialState in the given region. Implements a BFS.
 	 * @param element region to get the starting element within
 	 * @return the InitialState
 	 */
 	public final Pseudostate getInitialState(final Element element) {
-		Element returnValue = element;
-
-		if (returnValue instanceof Pseudostate && ((Pseudostate) returnValue).getKind().equals(PseudostateKind.INITIAL_LITERAL)) {
-			return (Pseudostate) returnValue;
-		} else {
-			for (Element child : element.getOwnedElements()) {
-				Pseudostate ret = getInitialState(child);
-				if (ret != null) {
-					return ret;
+		LinkedList<Pair<Element,Boolean>> q=new LinkedList<Pair<Element,Boolean>>();//boolean visited 
+		q.add(new Pair(element,new Boolean(true)));
+		Element e=null;
+		while (!q.isEmpty()){
+			q.peek().setSecond(Boolean.TRUE);
+			e=q.pop().getFirst();
+			if (e instanceof Pseudostate && ((Pseudostate) e).getKind().equals(PseudostateKind.INITIAL_LITERAL)) {
+				return (Pseudostate) e;
+				}
+			LinkedList<Pair<Element,Boolean>> list=new LinkedList<Pair<Element,Boolean>>();//boolean visited 
+			for (Element e2 : e.getOwnedElements()){
+				list.add(new Pair(e2,Boolean.FALSE));
+			}
+				for (Pair<Element,Boolean> le : list){
+					if (!le.getSecond()) {
+						q.push(le);
+					}
 				}
 			}
-		}
+
 		return null;
 	}
-	
-	
 	
 	/**
 	 * gets all the EntryPoints in a StateMachines.
