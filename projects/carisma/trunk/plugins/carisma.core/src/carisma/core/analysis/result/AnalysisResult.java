@@ -16,11 +16,22 @@ import java.util.List;
 
 import carisma.core.analysis.Analysis;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
 
 /**
  * @author buerger
  * This class represents the results of an analysis. It consists of a number of CheckResult-objects.
  */
+
+@XmlRootElement(name = "AnalysisResult")
+@XmlType(propOrder={"status", "timestamp", "CheckResult",  "ReportDump" })
+
 public class AnalysisResult {
 	/**
 	 * 
@@ -48,6 +59,13 @@ public class AnalysisResult {
 	 */
 	private StringBuffer report;
 
+	/*
+	 * No-arg constructor is just to keep JAXB from complaining
+	 */
+	private AnalysisResult() {
+	    throw new UnsupportedOperationException("No-arg constructor is just to keep JAXB from complaining");
+	}
+	
 	/**
 	 * @param analysis Analysis
 	 */
@@ -97,6 +115,7 @@ public class AnalysisResult {
 	/**
 	 * @return status
 	 */
+	@XmlElement
 	public final AnalysisResultStatus getStatus(){
 		return status;
 	}
@@ -104,6 +123,7 @@ public class AnalysisResult {
 	/**
 	 * @return a list ot CheckResults
 	 */
+	@XmlElement(name = "CheckResult")
 	public final List<CheckResult> getCheckResults() {
 		return Collections.unmodifiableList(checkResults);
 	}
@@ -118,6 +138,7 @@ public class AnalysisResult {
 	/**
 	 * @return String report
 	 */
+	@XmlElement(name = "ReportDump")
 	public final String getReport() {
 		return report.toString();
 	}
