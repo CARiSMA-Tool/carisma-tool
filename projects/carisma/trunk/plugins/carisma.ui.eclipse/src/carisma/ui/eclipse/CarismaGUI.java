@@ -10,8 +10,13 @@
  *******************************************************************************/
 package carisma.ui.eclipse;
 
+import java.io.ByteArrayOutputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -37,6 +42,7 @@ import org.osgi.framework.BundleContext;
 
 import carisma.core.Carisma;
 import carisma.core.analysis.Analysis;
+import carisma.core.analysis.OutputFileParameter;
 import carisma.core.analysis.result.AnalysisResult;
 import carisma.core.checks.CheckRegistry;
 import carisma.core.logging.LogLevel;
@@ -49,14 +55,13 @@ import carisma.ui.eclipse.logging.EclipseLogPrinter;
 import carisma.ui.eclipse.preferences.Constants;
 import carisma.ui.eclipse.views.AnalysisResultsView;
 
-
 /**
  * The activator class controls the plug-in life cycle.
  */
 public class CarismaGUI extends AbstractUIPlugin {
 
 	/**
-	 *  The plug-in ID.
+	 * The plug-in ID.
 	 */
 	public static final String PLUGIN_ID = "carisma.ui.eclipse"; //$NON-NLS-1$
 	/**
@@ -105,6 +110,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 	 * 
 	 */
 	private EditorRegistry editorRegistry;
+
 	/**
 	 * 
 	 */
@@ -118,18 +124,17 @@ public class CarismaGUI extends AbstractUIPlugin {
 		Logger.setExternalLogPrinter(new EclipseLogPrinter());
 		TrayDialog.setDialogHelpAvailable(true);
 	}
-	
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-	 * )
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.
+	 * BundleContext )
 	 */
 	/**
-	 * @param context 
-	 * @throws Exception an Exception
+	 * @param context
+	 * @throws Exception
+	 *             an Exception
 	 */
 	public final void start(final BundleContext context) throws Exception {
 		super.start(context);
@@ -140,7 +145,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 		}
 		this.editorRegistry.initialize();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -157,8 +162,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 			@Override
 			public void run() {
 				try {
-					IWorkbenchPage page = INSTANCE.getWorkbench()
-							.getActiveWorkbenchWindow().getActivePage();
+					IWorkbenchPage page = INSTANCE.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 					AnalysisResultsView analysisResultsView = (AnalysisResultsView) page
 							.showView(AnalysisResultsView.ID);
 					analysisResultsView.update();
@@ -172,19 +176,19 @@ public class CarismaGUI extends AbstractUIPlugin {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-	 * )
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.
+	 * BundleContext )
 	 */
 	/**
-	 * @param context BundleContext
-	 * @throws Exception  
+	 * @param context
+	 *            BundleContext
+	 * @throws Exception
 	 */
 	public final void stop(final BundleContext context) throws Exception {
 		INSTANCE = null;
 		super.stop(context);
 	}
-	
+
 	@Override
 	protected final void initializeImageRegistry(final ImageRegistry registry) {
 		Bundle bundle = Platform.getBundle(PLUGIN_ID);
@@ -217,23 +221,23 @@ public class CarismaGUI extends AbstractUIPlugin {
 		url = FileLocator.find(bundle, path, null);
 		desc = ImageDescriptor.createFromURL(url);
 		registry.put(IMG_SUCCESSERROR_ID, desc);
-		
+
 		path = new Path("icons/running.png");
 		url = FileLocator.find(bundle, path, null);
 		desc = ImageDescriptor.createFromURL(url);
 		registry.put(IMG_RUNNING_ID, desc);
-		
+
 		path = new Path("icons/up.png");
 		url = FileLocator.find(bundle, path, null);
 		desc = ImageDescriptor.createFromURL(url);
 		registry.put(IMG_UP, desc);
-		
+
 		path = new Path("icons/down.png");
 		url = FileLocator.find(bundle, path, null);
 		desc = ImageDescriptor.createFromURL(url);
 		registry.put(IMG_DOWN, desc);
 	}
-	
+
 	/**
 	 * Returns an image descriptor for the image file at the given plug-in
 	 * relative path.
@@ -253,7 +257,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 	public final List<AnalysisResult> getAnalysisResults() {
 		return Carisma.getInstance().getAnalysisResults();
 	}
-	
+
 	/**
 	 * 
 	 * @return this CheckRegistry
@@ -277,7 +281,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 	public final EditorRegistry getEditorRegistry() {
 		return this.editorRegistry;
 	}
-	
+
 	/**
 	 * 
 	 * @return modelManager
@@ -288,7 +292,8 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 	/**
 	 * 
-	 * @param analysis the analysis to be run
+	 * @param analysis
+	 *            the analysis to be run
 	 */
 	public final void runAnalysis(final Analysis analysis) {
 		Carisma.getInstance().runAnalysis(analysis, new EclipseUIConnector());
@@ -304,22 +309,24 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 	/**
 	 * 
-	 * @param analysisResult the analysis result
+	 * @param analysisResult
+	 *            the analysis result
+	 * 
 	 */
 	public final void openReport(final AnalysisResult analysisResult) {
-		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IContainer container = (IContainer) analysisResult.getAnalysis().getIFile().getParent();
 		IFile file = null;
 		if (container instanceof IFolder) {
 			IFolder folder = (IFolder) container;
-			file = folder.getFile("report-" + analysisResult.getName() + "-"
-					+ analysisResult.getTimestamp() + ".txt");
+			file = folder.getFile("report-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".txt");
+
 		} else if (container instanceof IProject) {
 			IProject project = (IProject) container;
-			file = project.getFile("report-" + analysisResult.getName() + "-"
-					+ analysisResult.getTimestamp() + ".txt");
-		} else {
+			file = project.getFile("report-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".txt");
+		}
+
+		else {
 			Logger.log(LogLevel.ERROR, "Analyzed file is not part of a project.");
 			return;
 		}
@@ -327,31 +334,82 @@ public class CarismaGUI extends AbstractUIPlugin {
 			if (!(file.exists())) {
 				file.create(Utils.createInputStreamFromString(analysisResult.getReport()), true, null);
 			}
-			IEditorDescriptor desc = PlatformUI.getWorkbench()
-					.getEditorRegistry().getDefaultEditor(file.getName());
+
+			IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
 			try {
 				page.openEditor(new FileEditorInput(file), desc.getId());
 			} catch (PartInitException e) {
-				Logger.log(LogLevel.ERROR, "Could not start editor, \"" + desc.getId() + "\"." , e);
+				Logger.log(LogLevel.ERROR, "Could not start editor, \"" + desc.getId() + "\".", e);
 			}
 		} catch (CoreException e) {
 			Logger.log(LogLevel.ERROR, "", e);
 		}
 	}
 
+	
+	/*
+	 * This class handles the xml output. The Marshaller gets the class "AnalysisResult" as context.
+	 * 
+	 * @param analysisResult
+	 * 		the analysis result
+	 * 
+	 * 
+	 */
+	
+	public final void saveXml(final AnalysisResult analysisResult) {
+		IContainer container = (IContainer) analysisResult.getAnalysis().getIFile().getParent();
+		IFile file = null;
+		if (container instanceof IFolder) {
+			IFolder folder = (IFolder) container;
+			file = folder
+					.getFile("xml-output-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".xml");
+
+		} else if (container instanceof IProject) {
+			IProject project = (IProject) container;
+			file = project
+					.getFile("xml-output-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".xml");
+		}
+
+		else {
+			Logger.log(LogLevel.ERROR, "Analyzed file is not part of a project.");
+			return;
+		}
+		if (!(file.exists())) {
+
+			try {
+
+				ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+				JAXBContext context = JAXBContext.newInstance(carisma.core.analysis.result.AnalysisResult.class);
+				Marshaller m = context.createMarshaller();
+				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+				m.marshal(analysisResult, out);
+
+				String store = new String(out.toByteArray(), StandardCharsets.UTF_8);
+
+				file.create(Utils.createInputStreamFromString(store), true, null);
+
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+
+		}
+	}
+
 	@Override
 	protected final void initializeDefaultPreferences(final IPreferenceStore store) {
 		store.setDefault(Constants.EDITOR_ID, Constants.TEXT_EDITOR_ID);
- 		store.setDefault(Constants.PERSPECTIVE_ID, Perspective.ID);
+		store.setDefault(Constants.PERSPECTIVE_ID, Perspective.ID);
 		store.setDefault(Constants.PREF_ANALYSE, false);
 		store.setDefault(Constants.EDITOR_SELECTION_ART, Constants.MANUALLY);
 	}
-	
+
 	@Override
 	protected final void initializeDefaultPluginPreferences() {
 		IPreferenceStore store = this.getPreferenceStore();
 		store.setDefault(Constants.EDITOR_ID, Constants.TEXT_EDITOR_ID);
- 		store.setDefault(Constants.PERSPECTIVE_ID, Perspective.ID);
+		store.setDefault(Constants.PERSPECTIVE_ID, Perspective.ID);
 		store.setDefault(Constants.PREF_ANALYSE, false);
 		store.setDefault(Constants.EDITOR_SELECTION_ART, Constants.MANUALLY);
 	}
