@@ -30,8 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 
 @XmlRootElement(name = "AnalysisResult")
-@XmlType(propOrder={"status", "timestamp", "CheckResult",  "ReportDump" })
-
+@XmlType(propOrder = { "name", "status", "timestamp", "checkResults", "report"})
 public class AnalysisResult {
 	/**
 	 * 
@@ -80,6 +79,7 @@ public class AnalysisResult {
 	/**
 	 * @return String name
 	 */
+	@XmlElement(name = "analyzedModel")
 	public final String getName() {
 		return name;
 	}
@@ -94,6 +94,7 @@ public class AnalysisResult {
 	/**
 	 * @return String timestamp
 	 */
+	@XmlElement
 	public final String getTimestamp() {
 		return timestamp;
 	}
@@ -123,7 +124,7 @@ public class AnalysisResult {
 	/**
 	 * @return a list ot CheckResults
 	 */
-	@XmlElement(name = "CheckResult")
+	@XmlElement(name = "checkResult")
 	public final List<CheckResult> getCheckResults() {
 		return Collections.unmodifiableList(checkResults);
 	}
@@ -138,7 +139,7 @@ public class AnalysisResult {
 	/**
 	 * @return String report
 	 */
-	@XmlElement(name = "ReportDump")
+	@XmlElement(name = "reportDump")
 	public final String getReport() {
 		return report.toString();
 	}
