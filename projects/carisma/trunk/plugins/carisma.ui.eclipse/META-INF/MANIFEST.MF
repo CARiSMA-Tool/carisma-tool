@@ -15,6 +15,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: carisma.ui.eclipse,
  carisma.ui.eclipse.dialogs.parameters,
  carisma.ui.eclipse.popup.actions,
- carisma.ui.eclipse.views
+ carisma.ui.eclipse.views,
+ org.json
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Import-Package: org.eclipse.emf.edit.ui.dnd
+Bundle-ClassPath: lib/java-json.jar,
+ .
