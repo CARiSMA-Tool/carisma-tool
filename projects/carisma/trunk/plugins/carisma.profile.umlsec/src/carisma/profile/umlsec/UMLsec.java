@@ -27,6 +27,7 @@ public enum UMLsec {
 	CRITICAL ("critical"),
 	SEND ("send"),
 	SECRECY ("secrecy"),
+	PRIVACY ("privacy"),
 	INTEGRITY ("integrity"),
 	HIGH ("high"),
 	ENCRYPTED ("encrypted"),
@@ -51,6 +52,7 @@ public enum UMLsec {
 	REQUIRES ("requires");
 	
 	public static final String TAG_CRITICAL_HIGH = "high";
+	public static final String TAG_CRITICAL_PRIVACY = "privacy";
 	public static final String TAG_CRITICAL_SECRECY = "secrecy";
 	public static final String TAG_CRITICAL_INTEGRITY = "integrity";
 	

@@ -19,6 +19,7 @@ package carisma.profile.umlsec;
 //	call				UMLsec::call
 //	send				UMLsec::send
 //	secrecy				UMLsec::secrecy
+//  privacy				UMLsec::privacy
 //	high				UMLsec::high
 //	identifiable		UMLsec::identifiable
 //	integrity			UMLsec::integrity
@@ -197,6 +198,10 @@ public final class UMLsecValidation {
 		}
 		if (stereoName.equals("UMLsec::secrecy")) {
 			//secrecy muss nicht validiert werden
+			return new ArrayList<String>();
+		}
+		if (stereoName.equals("UMLsec::privacy")) {
+			//privacy muss nicht validiert werden
 			return new ArrayList<String>();
 		}
 		if (stereoName.equals("UMLsec::LAN")) {
@@ -404,12 +409,15 @@ public final class UMLsecValidation {
 			return validations;
 		}
 		TaggedValue secrecyTag = stereoApp.getTaggedValue("secrecy");
+		TaggedValue privacyTag = stereoApp.getTaggedValue("privacy");
 		TaggedValue integrityTag = stereoApp.getTaggedValue("integrity");
 		TaggedValue highTag = stereoApp.getTaggedValue("high");
 		TaggedValue freshTag = stereoApp.getTaggedValue("fresh");
 		TaggedValue authenticityTag = stereoApp.getTaggedValue("authenticity");
 		boolean returnvalue = false;
 		Model model = stereoApp.getModel();
+		
+		
 		if (!(secrecyTag.getValue() == null)) {
 			List<String> secrecyValues = (List<String>) secrecyTag.getValue();
 			if (!(secrecyValues.size() < 1)) {
@@ -418,6 +426,19 @@ public final class UMLsecValidation {
 				for (String element : secrecyValues) {
 					if (!findModelElement(model, element)) {
 						validations.add("Element " + element + " in Tag secrecy of Stereotype <<critical>> at Element "
+								+ stereoApp.getExtendedElementName() + " not found!");
+					}
+				}
+			}
+		}
+		if (!(privacyTag.getValue() == null)) {
+			List<String> privacyValues = (List<String>) privacyTag.getValue();
+			if (!(privacyValues.size() < 1)) {
+				System.out.println(privacyTag.getValue());
+				returnvalue = true;
+				for (String element : privacyValues) {
+					if (!findModelElement(model, element)) {
+						validations.add("Element " + element + " in Tag privacy of Stereotype <<critical>> at Element "
 								+ stereoApp.getExtendedElementName() + " not found!");
 					}
 				}
@@ -474,7 +495,7 @@ public final class UMLsecValidation {
 //			TODO KR: Fehlermeldung, kann eigentlich nicht passieren.
 		}
 		if (!returnvalue) {
-			validations.add("One of the tags 'secrecy, integrity, high, fresh, authenticity' of Sterotype <<critical>> has to hold content!");
+			validations.add("One of the tags 'secrecy, integrity, high, fresh, privacy, authenticity' of Sterotype <<critical>> has to hold content!");
 		}
 		return validations;
 	}
