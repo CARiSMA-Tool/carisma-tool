@@ -79,7 +79,7 @@ public class AnalysisResult {
 	/**
 	 * @return String name
 	 */
-	@XmlElement(name = "analyzedModel")
+	@XmlElement(name = "AnalyzedModel")
 	public final String getName() {
 		return name;
 	}
@@ -94,7 +94,7 @@ public class AnalysisResult {
 	/**
 	 * @return String timestamp
 	 */
-	@XmlElement
+	@XmlElement(name = "Timestamp")
 	public final String getTimestamp() {
 		return timestamp;
 	}
@@ -116,7 +116,7 @@ public class AnalysisResult {
 	/**
 	 * @return status
 	 */
-	@XmlElement
+	@XmlElement(name = "Status")
 	public final AnalysisResultStatus getStatus(){
 		return status;
 	}
@@ -124,7 +124,7 @@ public class AnalysisResult {
 	/**
 	 * @return a list ot CheckResults
 	 */
-	@XmlElement(name = "checkResult")
+	@XmlElement(name = "CheckResult")
 	public final List<CheckResult> getCheckResults() {
 		return Collections.unmodifiableList(checkResults);
 	}
@@ -139,7 +139,7 @@ public class AnalysisResult {
 	/**
 	 * @return String report
 	 */
-	@XmlElement(name = "reportDump")
+	@XmlElement(name = "ReportDump")
 	public final String getReport() {
 		return report.toString();
 	}
