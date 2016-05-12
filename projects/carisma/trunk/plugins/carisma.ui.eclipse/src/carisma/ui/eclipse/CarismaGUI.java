@@ -393,9 +393,9 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 				file.create(Utils.createInputStreamFromString(store), true, null);
 
-				JSONObject fromXml = XML.toJSONObject(store);
-				String jsonPrint = fromXml.toString(1);
-				System.out.println(jsonPrint);
+				//JSONObject fromXml = XML.toJSONObject(store);
+				//String jsonPrint = fromXml.toString(1);
+				//System.out.println(jsonPrint);
 				
 				//carisma.core.analysis.result.exp.dbexport.exportXml(jsonPrint);
 				
