@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Used to annotate CARiSMA models according to STS models"
+            id="carisma.check.createHelpDocument"
+            implementingClass="carisma.check.createhelpdocument.CreateHelpDocument"
+            name="create Help Document for STS mapping"
+            publisher="Karsten Krämer"
+            targetModelType="UML2">
+         <parameter
+               defaultValue="sts.xml"
+               description="XML File that contains STS properties"
+               id="carisma.check.createHelpDocument.STSinput"
+               name="STS Input"
+               optional="true"
+               type="InputFile">
+         </parameter>
+      </check>
+   </extension>
+
+</plugin>
