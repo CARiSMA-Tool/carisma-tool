@@ -37,6 +37,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.json.*;
+
+
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
@@ -390,6 +393,12 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 				file.create(Utils.createInputStreamFromString(store), true, null);
 
+				JSONObject fromXml = XML.toJSONObject(store);
+				String jsonPrint = fromXml.toString(1);
+				System.out.println(jsonPrint);
+				
+				//carisma.core.analysis.result.exp.dbexport.exportXml(jsonPrint);
+				
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
