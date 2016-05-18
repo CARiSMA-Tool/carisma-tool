@@ -19,6 +19,7 @@ import org.eclipse.uml2.uml.Deployment;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.StateMachine;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -35,9 +36,9 @@ import carisma.modeltype.uml2.UMLHelper;
 
 public class CreateHelpDocument implements CarismaCheck {
 	AnalysisHost host;
-	
+
 	String linkToRabacHelp = "<a href='RABAC Helpfile' target='_blank'>/carisma.check.rabac/help/html/maintopic.html</a";
-	String linkToSecureLinksHelp = "<a href='SecureLinks Helpfile' target='_blank'>/carisma.check.staticcheck/help/html/securelinks.html</a";	
+	String linkToSecureLinksHelp = "<a href='SecureLinks Helpfile' target='_blank'>/carisma.check.staticcheck/help/html/securelinks.html</a";
 
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
@@ -63,7 +64,8 @@ public class CreateHelpDocument implements CarismaCheck {
 				Document doc = dBuilder.parse(file);
 				doc.getDocumentElement().normalize();
 
-				//host.appendToReport("Root element :" + doc.getDocumentElement().getNodeName());
+				// host.appendToReport("Root element :" +
+				// doc.getDocumentElement().getNodeName());
 
 				NodeList elements = doc.getElementsByTagName("commitment"); // return
 																			// all
@@ -73,6 +75,9 @@ public class CreateHelpDocument implements CarismaCheck {
 																			// them
 																			// in
 																			// nList
+				
+		
+				
 				host.appendToReport("----------------------------");
 
 				HashSet<String> roles = new HashSet<String>();
@@ -177,13 +182,26 @@ public class CreateHelpDocument implements CarismaCheck {
 							Node nodePost = ePost.item(i);
 
 							String securityRequirement = nodePost.getNodeName();
+
+							String attribute = null;
+
+							try {
+								Attr attr = (Attr) nodePost.getAttributes().item(0);
+								attribute = attr.getNodeValue();
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+							}
+
 							if (nodePost.getNodeType() == Node.ELEMENT_NODE) {
 								host.appendToReport("\n| security requirement: " + nodePost.getNodeName() + " | ");
+								host.appendToReport("\n| security requirement type: " + attribute + " | ");
 
-								// Example
-								if (securityRequirement == "integrity") {
-									host.appendToReport("\n| CARiSMA check = Securelinks "  + " |"
+								if (securityRequirement.contentEquals("integrity")
+										&& attribute.contentEquals("system")) {
+									host.appendToReport("\n| CARiSMA check = Securelinks " + " |"
 											+ "\n| UML Diagram = Deployment Diagram | \n");
+									host.appendToReport("| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> expand 'Static Checks' -> click on 'Secure Links'" + " |");
+
 
 									Set<Dependency> dependencies = UMLDeploymentHelper.getAllDependencies(content);
 
@@ -207,13 +225,15 @@ public class CreateHelpDocument implements CarismaCheck {
 									}
 
 									// map
-									host.appendLineToReport("| nodes in deployment diagram: " + nodeNames.toString() + "|");
+									host.appendLineToReport(
+											"| nodes in deployment diagram: " + nodeNames.toString() + "|");
 									host.appendLineToReport("| roles in STS model: " + roles.toString() + "|");
 
 									for (String r : roles) {
 										for (String n : nodeNames) {
 											if (r.equals(n)) {
-												host.appendToReport("| Role: " + r + " is mapped to Node: " + n + ". |\n");
+												host.appendToReport(
+														"| Role: " + r + " is mapped to Node: " + n + ". |\n");
 											}
 										}
 									}
@@ -221,19 +241,95 @@ public class CreateHelpDocument implements CarismaCheck {
 								}
 							}
 
-							if (securityRequirement == "needToKnow") {
+							if (securityRequirement.contentEquals("integrity")
+									&& (attribute.contentEquals("sender") || attribute.contentEquals("receiver"))) {
+								host.appendToReport("\n| CARiSMA check = Secure Dependency " + " |"
+										+ "\n| UML Diagram = Class Diagram | \n");
+								host.appendToReport("| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> expand 'Static Checks' -> click on 'Secure Dependency'" + " |");
 
-								host.appendToReport("\n| CARiSMA check = RABAC "  + " |");// and
-																				// Authorized-Status
+								
+
+								
 
 							}
 
-							if (securityRequirement == "non-disclosure") {
-								host.appendToReport("\n| CARiSMA check = RABAC "  + " |");
+							if (securityRequirement.contentEquals("needToKnow")) {
+
+								host.appendToReport("\n| CARiSMA check = RABAC " + " |"+ "\n| UML Diagram = Class Diagram & State Machine| \n");
+								host.appendToReport("| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> click on 'RABAC'" + " |");
+
+								
 							}
 
-							if (securityRequirement == "non-productione") {
-								host.appendToReport("\n| CARiSMA check = RABAC "  + " |");
+							if (securityRequirement.contentEquals("authenticationDelegation")
+									&& (attribute.contentEquals("delegatee") || attribute.contentEquals("delegator"))) {
+								host.appendToReport("\n| CARiSMA check = RABAC " + " |"
+										+ "\n| UML Diagram = Class Diagram & State Machine | \n");
+								host.appendToReport("| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> click on 'RABAC'" + " |");
+
+							}
+
+							if (securityRequirement.contentEquals("confidentiality") && attribute.contentEquals("system")) {
+								host.appendToReport("\n| CARiSMA check = Securelinks " + " |"
+										+ "\n| UML Diagram = Deployment Diagram | \n");
+								host.appendToReport("| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> expand 'Static Checks' -> click on 'Secure Links'" + " |");
+
+								
+								Set<Dependency> dependencies = UMLDeploymentHelper.getAllDependencies(content);
+
+								Set<Artifact> artifacts = UMLDeploymentHelper
+										.getAllArtifacts(helper.makeCollection(dependencies));
+								for (Dependency d : dependencies) {
+
+									Set<CommunicationPath> comPath = UMLDeploymentHelper.getCommunicationPaths(d);
+
+									for (CommunicationPath p : comPath) {
+										List<org.eclipse.uml2.uml.Node> nodes = UMLDeploymentHelper.getNodes(p);
+										// host.appendLineToReport(nodes.toString());
+
+										for (int g = 0; g < nodes.size(); g++) {
+											nodeNames.add(nodes.get(g).getLabel());
+											// host.appendLineToReport("\n
+											// node: " +
+											// nodes.get(g).getLabel());
+										}
+									}
+								}
+
+								// map
+								host.appendLineToReport(
+										"| nodes in deployment diagram: " + nodeNames.toString() + "|");
+								host.appendLineToReport("| roles in STS model: " + roles.toString() + "|");
+
+								for (String r : roles) {
+									for (String n : nodeNames) {
+										if (r.equals(n)) {
+											host.appendToReport(
+													"| Role: " + r + " is mapped to Node: " + n + ". |\n");
+										}
+									}
+								}
+								
+							}
+
+							if (securityRequirement.contentEquals("confidentiality")
+									&& (attribute.contentEquals("sender") || attribute.contentEquals("receiver"))) {
+								host.appendToReport("\n| CARiSMA check = Secure Dependency " + " |"
+										+ "\n| UML Diagram = Class Diagram | \n");
+								host.appendToReport("| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> expand 'Static Checks' -> click on 'Secure Dependency'" + " |");
+
+							}
+
+							if (securityRequirement.contentEquals("non-disclosure")) {
+								host.appendToReport("\n| CARiSMA check = RABAC " + " |");
+								host.appendToReport("| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> click on 'RABAC'" + " |");
+
+							}
+
+							if (securityRequirement.contentEquals( "non-productione")) {
+								host.appendToReport("\n| CARiSMA check = RABAC " + " |");
+								host.appendToReport("| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> click on 'RABAC'" + " |");
+
 							}
 
 						}
