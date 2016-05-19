@@ -228,11 +228,42 @@ public class AnalysisResultsView extends ViewPart {
 						CarismaGUI.INSTANCE.saveXml(tmpA);
 					}
 				};
+				
+				Action action3 = new Action() {
+					public void run() {
+						super.run();
+						// System.out.println(viewer.getSelection().toString());
+						// System.out.println(((IStructuredSelection)viewer.getSelection()).getFirstElement().toString());
+						AnalysisResult tmpA = null;
+						CheckResult tmpP;
+						AnalysisResultMessage tmpD;
+						if (((IStructuredSelection) viewer.getSelection())
+								.getFirstElement() instanceof carisma.core.analysis.result.AnalysisResult) {
+							tmpA = (AnalysisResult) ((IStructuredSelection) viewer.getSelection()).getFirstElement();
+						}
+						if (((IStructuredSelection) viewer.getSelection())
+								.getFirstElement() instanceof carisma.core.analysis.result.CheckResult) {
+							tmpP = (CheckResult) (((IStructuredSelection) viewer.getSelection()).getFirstElement());
+							tmpA = tmpP.getParent();
+						}
+						if (((IStructuredSelection) viewer.getSelection())
+								.getFirstElement() instanceof carisma.core.analysis.result.AnalysisResultMessage) {
+							tmpD = (AnalysisResultMessage) ((IStructuredSelection) viewer.getSelection())
+									.getFirstElement();
+							tmpP = tmpD.getParent();
+							tmpA = tmpP.getParent();
+						}
+
+						CarismaGUI.INSTANCE.exportToDb(tmpA);
+					}
+				};
 
 				action.setText("Create report for selected analysis");
 				action2.setText("Create XML-Output for selected analysis");
+				action3.setText("Export report to VisiOn Database");
 				manager.add(action);
 				manager.add(action2);
+				manager.add(action3);
 			}
 		});
 		Menu menu = menuMgr.createContextMenu(viewer.getTree());

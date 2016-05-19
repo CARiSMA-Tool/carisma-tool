@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -38,7 +39,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.json.*;
-
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -349,16 +349,15 @@ public class CarismaGUI extends AbstractUIPlugin {
 		}
 	}
 
-	
 	/*
-	 * This class handles the xml output. The Marshaller gets the class "AnalysisResult" as context.
+	 * This class handles the xml output. The Marshaller gets the class
+	 * "AnalysisResult" as context.
 	 * 
-	 * @param analysisResult
-	 * 		the analysis result
+	 * @param analysisResult the analysis result
 	 * 
 	 * 
 	 */
-	
+
 	public final void saveXml(final AnalysisResult analysisResult) {
 		IContainer container = (IContainer) analysisResult.getAnalysis().getIFile().getParent();
 		IFile file = null;
@@ -393,12 +392,71 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 				file.create(Utils.createInputStreamFromString(store), true, null);
 
-				//JSONObject fromXml = XML.toJSONObject(store);
-				//String jsonPrint = fromXml.toString(1);
-				//System.out.println(jsonPrint);
-				
-				//carisma.core.analysis.result.exp.dbexport.exportXml(jsonPrint);
-				
+				// JSONObject fromXml = XML.toJSONObject(store);
+				// String jsonPrint = fromXml.toString(1);
+				// System.out.println(jsonPrint);
+
+				// carisma.core.analysis.result.exp.dbexport.exportXml(jsonPrint);
+
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+
+		}
+	}
+
+	public final void exportToDb(final AnalysisResult analysisResult) {
+		
+		InputDialog documentId = new InputDialog(null, "Please enter a id for this document.", null, null, null);
+		documentId.open();
+		String id = documentId.getValue().toString();
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IContainer container = (IContainer) analysisResult.getAnalysis().getIFile().getParent();
+		IFile file = null;
+		if (container instanceof IFolder) {
+			IFolder folder = (IFolder) container;
+			file = folder.getFile(
+					"DB-output-status-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".text");
+
+		} else if (container instanceof IProject) {
+			IProject project = (IProject) container;
+			file = project.getFile(
+					"DB-output-status-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".text");
+		}
+
+		else {
+			Logger.log(LogLevel.ERROR, "Analyzed file is not part of a project.");
+			return;
+		}
+		if (!(file.exists())) {
+
+			try {
+
+				ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+				JAXBContext context = JAXBContext.newInstance(carisma.core.analysis.result.AnalysisResult.class);
+				Marshaller m = context.createMarshaller();
+				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+				m.marshal(analysisResult, out);
+
+				String store = new String(out.toByteArray(), StandardCharsets.UTF_8);
+
+				JSONObject fromXml = XML.toJSONObject(store);
+				String jsonPrint = fromXml.toString(1);
+				System.out.println(jsonPrint);
+
+				carisma.core.analysis.result.exp.dbexport.exportXml(jsonPrint, id);
+				file.create(Utils.createInputStreamFromString(analysisResult.getReport()), true, null);
+
+				IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
+
+				try {
+					page.openEditor(new FileEditorInput(file), desc.getId());
+				} catch (PartInitException e) {
+					Logger.log(LogLevel.ERROR, "Could not start editor, \"" + desc.getId() + "\".", e);
+				}
+
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
