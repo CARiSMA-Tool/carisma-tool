@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="carisma.carismacheck">
+      <check
+            name="RABACsec: Create transformation input"
+            implementingClass="carisma.check.rabac.RABACConfigCheck"
+            publisher="Patrick Hoffmann"
+            description="Required step before analysing a RABAC model"
+            targetModelType="UML2"
+            id="carisma.check.rabac.configuration">
+         <parameter
+               defaultValue="rabac_configuration.xml"
+               description="Location to save input"
+               id="carisma.check.rabac.configuration"
+               name="Configuration"
+               optional="false"
+               type="OutputFile">
+         </parameter>
+      </check>
+      <check
+            description="Analyse RABAC traits"
+            id="carisma.check.rabac"
+            implementingClass="carisma.check.rabac.RABACCheck"
+            name="RABACsec: Use transformation input"
+            publisher="Patrick Hoffmann"
+            targetModelType="UML2">
+         <parameter
+               defaultValue="rabac_configuration.xml"
+               description="Saved input location"
+               id="carisma.check.rabac.configuration"
+               name="Configuration"
+               optional="false"
+               type="InputFile">
+         </parameter>
+      </check>
+   </extension>
+   <extension
+         id="carisma.check.rabac.help"
+         point="org.eclipse.help.toc">
+         <toc
+         file="help/toc.xml"
+         primary="true">
+      </toc>
+   </extension>
+
+</plugin>

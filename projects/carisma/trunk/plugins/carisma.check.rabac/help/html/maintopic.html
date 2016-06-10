@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>RABAC</title>
+</head>
+
+<body>
+	<h1>Role-Centric Attribute-Based Access Control (RABAC)</h1>
+	This plugin performs the analysis of models annotated with stereotypes from the RABAC profile, which is is provided by the plugin
+	<i>carisma.profile.umlsec.rabac</i>. It consists of two checks, which rely on each other:
+	<h3>Create transformation input</h3>
+	<img src=rabacconfig.png>
+	<br> The output of this check is required for the analysis of a RABAC model. It displays a GUI with which the user can define the sessions for
+	each user and the values of all attributes that are contained in the given model.
+	<br> Depending on which OCL syntax is used in the filters, three basic attribute types are supported:
+	<ul>
+		<li>Strings</li>
+		<li>Numbers</li>
+		<li>Sets (must be notated as <tt>{A,...})</tt></li>
+	</ul>
+	<b>Note:</b> Press Enter to change a value while the text field is selected.
+	<br>Multiple configurations can be generated and then be applied in the next step. If the syntax in the stereotype tags is invalid, the check
+	will fail with an according error message added to the "Analysis Results" view.
+	<h3>Use transformation input</h3>
+	This check analyses the RABAC constraints from stereotypes
+	<i>abacRequire</i> in the given model based on a provided configuration file. The sessions must match with the available users and the dynamic
+	separation of duty needs to be satisfied as well. The details are printed into the report file and include the allowed operations for each user. If
+	state diagrams use constrained transitions, their contained paths are computed and displayed by using the target state names.
+</body>
+</html>
