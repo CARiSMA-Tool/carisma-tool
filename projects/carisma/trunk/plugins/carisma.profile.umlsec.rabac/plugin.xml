@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.uml2.uml.dynamic_package">
+      <profile
+            location="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml"
+            uri="http://www.umlsec.de/profiles/UMLsec/RABAC">
+      </profile>
+   </extension>
+
+</plugin>
