@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RABAC="http:///schemas/RABAC/_7YYbEAa-EeWwtKn7NAM2pQ/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/RABAC/_7YYbEAa-EeWwtKn7NAM2pQ/0 ../../../carisma.profile.umlsec.rabac/profile/RABAC.profile.uml#_7YaQQAa-EeWwtKn7NAM2pQ">
+  <uml:Model xmi:id="_0PlA0Ak5EeWHxbCPFa3X7w" name="model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_07xYcAk5EeWHxbCPFa3X7w" name="Class1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1bPisAk5EeWHxbCPFa3X7w" name="Class2"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="__iOZwAk5EeWHxbCPFa3X7w">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__jdI0Ak5EeWHxbCPFa3X7w" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__jdI0Qk5EeWHxbCPFa3X7w" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__jdI0gk5EeWHxbCPFa3X7w" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__jdI0wk5EeWHxbCPFa3X7w" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__jdI1Ak5EeWHxbCPFa3X7w" key="Date" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__jdI1Qk5EeWHxbCPFa3X7w" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__jYQUAk5EeWHxbCPFa3X7w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../../../carisma.profile.umlsec.rabac/profile/RABAC.profile.uml#_7YaQQAa-EeWwtKn7NAM2pQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../../../carisma.profile.umlsec.rabac/profile/RABAC.profile.uml#_DhVN4LhMEeSB1MgAxQm9IQ"/>
+    </profileApplication>
+  </uml:Model>
+  <RABAC:abac xmi:id="_A4Y7cAk6EeWHxbCPFa3X7w" base_Class="_07xYcAk5EeWHxbCPFa3X7w"/>
+  <RABAC:abac xmi:id="_BnI30Ak6EeWHxbCPFa3X7w" base_Class="_1bPisAk5EeWHxbCPFa3X7w"/>
+</xmi:XMI>

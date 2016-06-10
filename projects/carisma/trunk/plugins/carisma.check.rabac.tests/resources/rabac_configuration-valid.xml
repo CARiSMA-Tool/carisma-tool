@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rabac>
+    <attributes>
+        <name>a1</name>
+        <type>User</type>
+        <values>
+            <entry>
+                <key>B</key>
+                <value>a</value>
+            </entry>
+        </values>
+    </attributes>
+    <attributes>
+        <name>a2</name>
+        <type>Object</type>
+        <values>
+            <entry>
+                <key>Class1</key>
+                <value>{1,2}</value>
+            </entry>
+        </values>
+    </attributes>
+    <sessions>
+        <entry>
+            <key>A</key>
+            <value>
+                <set>r2</set>
+                <set>r1</set>
+            </value>
+        </entry>
+        <entry>
+            <key>B</key>
+            <value>
+                <set>r2</set>
+            </value>
+        </entry>
+    </sessions>
+</rabac>
