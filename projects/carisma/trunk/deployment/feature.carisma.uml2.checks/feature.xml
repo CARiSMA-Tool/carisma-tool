@@ -2,7 +2,7 @@
 <feature
       id="feature.carisma.uml2.checks"
       label="CARiSMA Checks for UML2"
-      version="1.0.4.qualifier"
+      version="1.0.6.qualifier"
       provider-name="Software Engineering Institute, TU Dortmund">
 
    <description url="http://carisma.umlsec.de">
@@ -249,18 +249,32 @@ litigation.
          id="carisma.check.staticcheck"
          download-size="0"
          install-size="0"
-         version="1.0.4.qualifier"
+         version="1.0.5.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.check.smartcard"
          download-size="0"
          install-size="0"
-         version="1.0.2.qualifier"
+         version="1.0.3.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.check.activity2petrinet"
+         download-size="0"
+         install-size="0"
+         version="1.0.1.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="carisma.check.rabac"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="carisma.check.createHelpDocument"
          download-size="0"
          install-size="0"
          version="1.0.1.qualifier"
