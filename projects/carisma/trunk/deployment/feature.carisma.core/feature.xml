@@ -2,7 +2,7 @@
 <feature
       id="feature.carisma.core"
       label="CARiSMA Core"
-      version="1.4.0.qualifier"
+      version="1.4.2.qualifier"
       provider-name="Software Engineering Institute, TU Dortmund">
 
    <description url="http://carisma.umlsec.de">
@@ -243,24 +243,10 @@ litigation.
    </requires>
 
    <plugin
-         id="carisma.core"
-         download-size="0"
-         install-size="0"
-         version="1.4.0.qualifier"
-         unpack="false"/>
-
-   <plugin
          id="carisma.check.oclcheck"
          download-size="0"
          install-size="0"
          version="1.0.3.qualifier"
-         unpack="false"/>
-
-   <plugin
-         id="carisma.ui.eclipse"
-         download-size="0"
-         install-size="0"
-         version="1.4.0.qualifier"
          unpack="false"/>
 
    <plugin
@@ -276,6 +262,20 @@ litigation.
          download-size="0"
          install-size="0"
          version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="carisma.core"
+         download-size="0"
+         install-size="0"
+         version="1.4.2.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="carisma.ui.eclipse"
+         download-size="0"
+         install-size="0"
+         version="1.4.2.qualifier"
          unpack="false"/>
 
 </feature>
