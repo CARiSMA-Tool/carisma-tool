@@ -544,8 +544,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 	public final void startAutomatedAnalysis(final AnalysisResult analysisResult) {
 
 		IContainer container = (IContainer) analysisResult.getAnalysis().getIFile().getParent();
-		String store = "";
-		System.out.println(container.toString());
+		String report = "";
 
 		try {
 
@@ -557,13 +556,16 @@ public class CarismaGUI extends AbstractUIPlugin {
 			m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 			m.marshal(analysisResult, out);
 
-			store = new String(out.toByteArray(), StandardCharsets.UTF_8);
+			report = new String(out.toByteArray(), StandardCharsets.UTF_8);
 
+			System.out.println("STRING Report:");
+			System.out.println(report);
+			
 			out.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		AutomatedAnalysis ana = new AutomatedAnalysis(store, container);
+		AutomatedAnalysis ana = new AutomatedAnalysis(report, container);
 		Analyzer a = new Analyzer();
 
 		a.runAnalysis(ana.getAnalysis(), new EclipseUIConnector());
@@ -592,27 +594,25 @@ public class CarismaGUI extends AbstractUIPlugin {
 		 * Version with the Resource plugins, doesnt works
 		 * 
 		 */
-		// System.out.println(ana.getAnalysis().getIFile().getContents().toString());
-
-		IFile iFile = ana.getAnalysis().getIFile();
-		try {
-			System.out.println(getString(iFile.getContents()));
-		} catch (CoreException e1) {
+		 try {
+			System.out.println(ana.getAnalysis().getIFile().getContents());
+		} catch (CoreException e2) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e2.printStackTrace();
 		}
 
-		byte[] bytes;
-		try {
-			bytes = getString(iFile.getContents()).getBytes();
+		
+		 InputStream stream = new ByteArrayInputStream(analysisPath.getBytes(StandardCharsets.UTF_8));
 
+	
+		try {
 			IFile file = null;
 			if (container instanceof IFolder) {
 				IFolder folder = (IFolder) container;
 				file = folder.getFile(analysisPath + ".adf");
 				if (!file.exists()) {
 					try {
-						file.create(iFile.getContents(), IResource.NONE, null);
+						file.create(stream, IResource.NONE, null);
 					} catch (CoreException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -624,9 +624,8 @@ public class CarismaGUI extends AbstractUIPlugin {
 				file = project.getFile(analysisPath + ".adf");
 
 				if (!file.exists()) {
-					InputStream source = new ByteArrayInputStream(bytes);
 					try {
-						file.create(iFile.getContents(), IResource.NONE, null);
+						file.create(stream, IResource.NONE, null);
 					} catch (CoreException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -639,7 +638,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 				file.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor() );
 			}
 		} catch (CoreException e1) {
-			// TODO Auto-generated catch blockana
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
