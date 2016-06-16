@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CARiSAMA Input and Output Operations
+Bundle-SymbolicName: carisma.core.io
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.11.1",
+ org.apache.commons.logging;bundle-version="1.1.1"
+Export-Package: carisma.core.io.configuration,
+ carisma.core.io.content;uses:="org.w3c.dom,org.json",
+ carisma.core.io.implementations;uses:="org.w3c.dom",
+ carisma.core.io.implementations.db.mongodb.restapi;
+  uses:="carisma.core.io.configuration,
+   carisma.core.io.content,
+   org.w3c.dom,
+   org.apache.http,
+   carisma.core.io.implementations.db",
+ org.json
+Bundle-ClassPath: lib/httpclient-4.5.2.jar,
+ lib/httpclient-cache-4.5.2.jar,
+ lib/httpclient-win-4.5.2.jar,
+ lib/httpcore-4.4.4.jar,
+ lib/java-json.jar,
+ .,
+ lib/commons-lang3-3.4.jar
