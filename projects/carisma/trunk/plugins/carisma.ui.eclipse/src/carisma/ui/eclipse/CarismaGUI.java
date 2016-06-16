@@ -10,8 +10,15 @@
  *******************************************************************************/
 package carisma.ui.eclipse;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringBufferInputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -20,6 +27,10 @@ import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -30,9 +41,12 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -44,8 +58,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.json.*;
-
+import org.json.JSONObject;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
@@ -55,6 +68,11 @@ import carisma.core.analysis.Analyzer;
 import carisma.core.analysis.AutomatedAnalysis;
 import carisma.core.analysis.result.AnalysisResult;
 import carisma.core.checks.CheckRegistry;
+import carisma.core.io.content.JSON;
+import carisma.core.io.content.PLAIN;
+import carisma.core.io.content.XML_DOM;
+import carisma.core.io.implementations.db.mongodb.restapi.MongoDBDynamicConfiguration;
+import carisma.core.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 import carisma.core.models.ModelManager;
@@ -65,6 +83,8 @@ import carisma.ui.eclipse.logging.EclipseLogPrinter;
 import carisma.ui.eclipse.preferences.Constants;
 import carisma.ui.eclipse.views.AnalysisResultsView;
 import carisma.core.analysis.AnalysisUtil;
+
+import static carisma.ui.eclipse.preferences.pages.VisiOn.*;
 
 /**
  * The activator class controls the plug-in life cycle.
@@ -403,9 +423,9 @@ public class CarismaGUI extends AbstractUIPlugin {
 				// null);
 				file.create(is, true, null);
 
-				JSONObject fromXml = XML.toJSONObject(store);
-				String jsonPrint = fromXml.toString(1);
-				System.out.println(jsonPrint);
+//				JSONObject fromXml = XML.toJSONObject(store);
+//				String jsonPrint = fromXml.toString(1);
+//				System.out.println(jsonPrint);
 
 				// carisma.core.analysis.result.exp.dbexport.exportXml(jsonPrint);
 
@@ -419,9 +439,6 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 	public final void exportToDb(final AnalysisResult analysisResult) {
 
-		InputDialog documentId = new InputDialog(null, "Please enter a id for this document.", null, null, null);
-		documentId.open();
-		String id = documentId.getValue().toString();
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IContainer container = (IContainer) analysisResult.getAnalysis().getIFile().getParent();
 		IFile file = null;
@@ -440,7 +457,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 			Logger.log(LogLevel.ERROR, "Analyzed file is not part of a project.");
 			return;
 		}
-		if (!(file.exists())) {
+		if (!(file.exists())) { //TODO: is this necessary? What is if the file has been deleted in the DB but not local?
 
 			try {
 
@@ -452,13 +469,59 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 				m.marshal(analysisResult, out);
 
-				String store = new String(out.toByteArray(), StandardCharsets.UTF_8);
-
-				JSONObject fromXml = XML.toJSONObject(store);
-				String jsonPrint = fromXml.toString(1);
-				System.out.println(jsonPrint);
-
-				carisma.core.analysis.result.exp.dbexport.exportXml(jsonPrint, id);
+				URL urlXmlToXml = new URL("platform:/plugin/"+PLUGIN_ID+"/xslt/carisma_results_to_xml.xsl");
+				URL urlXmlToHtml = new URL("platform:/plugin/"+PLUGIN_ID+"/xslt/carisma_results_to_html.xsl");
+				
+				BufferedReader reader = new BufferedReader(new InputStreamReader(urlXmlToXml.openStream()));
+				StringBuilder contentCmltoXml = new StringBuilder();
+				String line;
+				while((line = reader.readLine())!= null){
+					contentCmltoXml.append(line.replaceAll("carisma_results_to_html.xsl", FileLocator.toFileURL(urlXmlToHtml).getPath()));
+				}
+				
+				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				Transformer xmlTransformer = transformerFactory.newTransformer(new StreamSource(new StringReader(contentCmltoXml.toString())));
+				Transformer htmlTransformer = transformerFactory.newTransformer(new StreamSource(urlXmlToHtml.openStream()));
+				
+				StringWriter writerXml = new StringWriter();
+				StringWriter writerHtml = new StringWriter();
+			    StreamResult streamResultXml = new StreamResult(writerXml);
+			    StreamResult streamResultHtml = new StreamResult(writerHtml);
+				StreamSource streamSourceXml = new StreamSource(new ByteArrayInputStream(out.toByteArray()));
+				StreamSource streamSourceHtml = new StreamSource(new ByteArrayInputStream(out.toByteArray()));
+				xmlTransformer.transform(streamSourceXml, streamResultXml);
+				htmlTransformer.transform(streamSourceHtml, streamResultHtml);
+				
+				IPreferenceStore preferencesStore = CarismaGUI.INSTANCE.getPreferenceStore();
+				
+				String user = preferencesStore.getString(KEY_USER);
+				String secret = preferencesStore.getString(KEY_SECRET);
+				String url = preferencesStore.getString(KEY_URL);
+				
+				MongoDBRestAPI db = new MongoDBRestAPI(user,secret,url);
+				
+				XML_DOM contentXml = new XML_DOM(writerXml.toString());
+				PLAIN contentHtml = new PLAIN(writerHtml.toString());
+				
+				
+				String carisma_collection = preferencesStore.getString(KEY_CARISMA_COLLECTION);
+				String carisma_document = preferencesStore.getString(KEY_CARISMA_DOCUMENT);
+				String carisma_field = preferencesStore.getString(KEY_CARISMA_FIELD);
+				MongoDBDynamicConfiguration carisma_configuration = new MongoDBDynamicConfiguration(url, carisma_collection, carisma_document, carisma_field);
+				boolean success = db.write(carisma_configuration, contentXml);
+				
+				db = new MongoDBRestAPI(user,secret,url);
+				
+				String pla_collection = preferencesStore.getString(KEY_PLA_COLLECTION);
+				String pla_document = preferencesStore.getString(KEY_PLA_DOCUMENT);
+				String pla_field = preferencesStore.getString(KEY_PLA_FIELD);
+				MongoDBDynamicConfiguration pla_configuration = new MongoDBDynamicConfiguration(url, pla_collection, pla_document, pla_field);
+				success &= db.write(pla_configuration, contentHtml);
+				
+				if(!success){
+					//TODO: ERROR MESSAGE
+				}
+				
 				file.create(Utils.createInputStreamFromString(analysisResult.getReport()), true, null);
 
 				IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());

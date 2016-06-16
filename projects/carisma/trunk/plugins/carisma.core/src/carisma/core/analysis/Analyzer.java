@@ -366,20 +366,22 @@ public class Analyzer implements AnalysisHost {
 		this.checkDescriptorMapping = new HashMap<CheckReference, CheckDescriptor>();
 		List<String> simulatedRegistry = new ArrayList<String>();
 		for (CheckReference check : analysis.getChecks()) {
-			List<String> missingConditions = new ArrayList<String>();
-			CheckDescriptor checkDescriptor = Carisma.getInstance().getCheckRegistry().getCheckDescriptor(check.getCheckID());
-			this.checkDescriptorMapping.put(check, checkDescriptor);
-			for (String precondition : checkDescriptor.getRequiredKeys()) {
-				if (!simulatedRegistry.contains(precondition) && !missingConditions.contains(precondition)) {
-					missingConditions.add(precondition);
+			if(check.isEnabled()){
+				List<String> missingConditions = new ArrayList<String>();
+				CheckDescriptor checkDescriptor = Carisma.getInstance().getCheckRegistry().getCheckDescriptor(check.getCheckID());
+				this.checkDescriptorMapping.put(check, checkDescriptor);
+				for (String precondition : checkDescriptor.getRequiredKeys()) {
+					if (!simulatedRegistry.contains(precondition) && !missingConditions.contains(precondition)) {
+						missingConditions.add(precondition);
+					}
 				}
-			}
-			if (!missingConditions.isEmpty()) {
-				failedChecks.put(checkDescriptor, missingConditions);
-			}
-			for (String providedKey : checkDescriptor.getProvidedKeys()) {
-				if (!simulatedRegistry.contains(providedKey)) {
-					simulatedRegistry.add(providedKey);
+				if (!missingConditions.isEmpty()) {
+					failedChecks.put(checkDescriptor, missingConditions);
+				}
+				for (String providedKey : checkDescriptor.getProvidedKeys()) {
+					if (!simulatedRegistry.contains(providedKey)) {
+						simulatedRegistry.add(providedKey);
+					}
 				}
 			}
 		}

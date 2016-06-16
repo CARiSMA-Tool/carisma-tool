@@ -11,12 +11,25 @@
             publisher="Karsten Krämer"
             targetModelType="UML2">
          <parameter
-               defaultValue="sts.xml"
+               defaultValue="true"
+               id="carisma.check.createHelpDocument.STSFileOrDB"
+               name="Load STS Input from file (true) or DB (false)"
+               optional="false"
+               type="boolean">
+         </parameter>
+         <parameter
                description="XML File that contains STS properties"
                id="carisma.check.createHelpDocument.STSinput"
-               name="STS Input"
+               name="STS Input from file"
                optional="true"
                type="InputFile">
+         </parameter>
+         <parameter
+               description="Loads STS input for given PA from DB"
+               id="carisma.check.createHelpDocument.STSinputDB"
+               name="STS input from DB"
+               optional="true"
+               type="String">
          </parameter>
       </check>
    </extension>

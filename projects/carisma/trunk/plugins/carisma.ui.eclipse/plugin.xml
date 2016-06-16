@@ -100,6 +100,12 @@
              id="carisma.ui.eclipse.index"
              name="CARiSMA">
        </page>
+       <page
+             category="carisma.ui.eclipse.index"
+             class="carisma.ui.eclipse.preferences.pages.VisiOn"
+             id="carisma.ui.eclipse.vision"
+             name="VisiOn">
+       </page>
     </extension>
     <extension
           point="org.eclipse.ui.perspectives">
@@ -781,6 +787,12 @@
                schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
                sequence="CTRL+R">
          </key>
+      </extension>
+      <extension
+            point="org.eclipse.core.runtime.preferences">
+         <initializer
+               class="carisma.ui.eclipse.preferences.initializer.VisiOnInitializer">
+         </initializer>
       </extension>
 
 </plugin>

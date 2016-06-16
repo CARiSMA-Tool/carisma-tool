@@ -10,15 +10,16 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.ui.forms,
  org.eclipse.ui.ide;visibility:=reexport,
  carisma.core;bundle-version="1.4.0";visibility:=reexport,
- org.eclipse.jface
+ org.eclipse.jface,
+ carisma.core.io
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: carisma.ui.eclipse,
  carisma.ui.eclipse.dialogs.parameters,
  carisma.ui.eclipse.editors,
  carisma.ui.eclipse.popup.actions,
- carisma.ui.eclipse.views,
- org.json
+ carisma.ui.eclipse.preferences.pages,
+ carisma.ui.eclipse.views
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Import-Package: org.eclipse.emf.edit.ui.dnd
 Bundle-ClassPath: lib/java-json.jar,

@@ -5,12 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static carisma.ui.eclipse.preferences.pages.VisiOn.*;
+
 import java.io.File;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Package;
@@ -21,15 +21,26 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 import carisma.core.analysis.AnalysisHost;
+import carisma.core.analysis.BooleanParameter;
 import carisma.core.analysis.InputFileParameter;
+import carisma.core.analysis.StringParameter;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheck;
 import carisma.core.checks.CheckParameter;
+import carisma.core.io.content.Content;
+import carisma.core.io.content.Content.ContentException;
+import carisma.core.io.content.JSON;
+import carisma.core.io.content.XML_DOM;
+import carisma.core.io.implementations.FileIO;
+import carisma.core.io.implementations.db.mongodb.restapi.MongoDBDynamicConfiguration;
+import carisma.core.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
 import carisma.modeltype.uml2.UMLDeploymentHelper;
 import carisma.modeltype.uml2.UMLHelper;
+import carisma.ui.eclipse.CarismaGUI;
 
 public class CreateHelpDocument implements CarismaCheck {
+
 	AnalysisHost host;
 
 	@Override
@@ -47,14 +58,15 @@ public class CreateHelpDocument implements CarismaCheck {
 			Package content = (Package) model.getContents().get(0);
 
 			try {
-				InputFileParameter inputFile = (InputFileParameter) (parameters
-						.get("carisma.check.createHelpDocument.STSinput"));
-				File file = inputFile.getValue();
-
-				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-				Document doc = dBuilder.parse(file);
-				doc.getDocumentElement().normalize();
+				BooleanParameter fileOrDB = (BooleanParameter) (parameters.get("carisma.check.createHelpDocument.STSFileOrDB"));
+				
+				Document doc;
+				if(fileOrDB.getValue()){
+					doc = loadSTSInputFromFile(parameters);
+				}
+				else{
+					doc = loadSTSInputFromDB(parameters);
+				}
 
 				/*
 				 * Dirty Hack to get the Names of the UML Classes List classes:
@@ -194,8 +206,8 @@ public class CreateHelpDocument implements CarismaCheck {
 										host.appendToReport("\n| document = " + sourcedocument + " | ");
 										documents.add(sourcedocument.replace(" ", ""));
 
-									}
 								}
+
 							}
 						}
 
@@ -356,153 +368,151 @@ public class CreateHelpDocument implements CarismaCheck {
 
 									}
 
-									if (securityRequirement.contentEquals("confidentiality")
-											&& attribute.contentEquals("system")) {
-										host.appendToReport("\n| CARiSMA check = SecureLinks " + " |"
-												+ "\n| UML Diagram = Deployment Diagram | \n");
-										host.appendToReport(
-												"| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> expand 'Static Checks' -> click on 'Secure Links'"
-														+ " |");
-
-										Set<Dependency> dependencies = UMLDeploymentHelper.getAllDependencies(content);
-
-										for (Dependency d : dependencies) {
-
-											Set<CommunicationPath> comPath = UMLDeploymentHelper
-													.getCommunicationPaths(d);
-
-											for (CommunicationPath p : comPath) {
-												List<org.eclipse.uml2.uml.Node> nodes = UMLDeploymentHelper.getNodes(p);
-
-												for (int g = 0; g < nodes.size(); g++) {
-													nodeNames.add(nodes.get(g).getLabel());
-
+										if (securityRequirement.contentEquals("confidentiality")
+												&& attribute.contentEquals("system")) {
+											
+											host.appendToReport("\n| CARiSMA check = SecureLinks " + " |"
+													+ "\n| UML Diagram = Deployment Diagram | \n");
+											host.appendToReport(
+													"| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> expand 'Static Checks' -> click on 'Secure Links'"
+															+ " |");
+	
+											Set<Dependency> dependencies = UMLDeploymentHelper.getAllDependencies(content);
+	
+											for (Dependency d : dependencies) {
+	
+												Set<CommunicationPath> comPath = UMLDeploymentHelper
+														.getCommunicationPaths(d);
+	
+												for (CommunicationPath p : comPath) {
+													List<org.eclipse.uml2.uml.Node> nodes = UMLDeploymentHelper.getNodes(p);
+	
+													for (int g = 0; g < nodes.size(); g++) {
+														nodeNames.add(nodes.get(g).getLabel());
+	
+													}
+												}
+											}
+	
+											host.appendLineToReport(
+													"| nodes in deployment diagram: " + nodeNames.toString() + "|");
+											host.appendLineToReport("| roles in STS model: " + roles.toString() + "|");
+	
+											// mapping of documents and classes
+											for (String d : documents) {
+												for (String c : classes) {
+													if (d.equalsIgnoreCase(c)) {
+														host.appendToReport(
+																"| Document: " + d + " is mapped to Class: " + c + ". |\n");
+													}
+												}
+											}
+	
+											// mapping of roles and classes
+											for (String r : roles) {
+												for (String c : classes) {
+													if (r.equalsIgnoreCase(c)) {
+														host.appendToReport(
+																"| Role: " + r + " is mapped to Class: " + c + ". |\n");
+													}
 												}
 											}
 										}
 
-										host.appendLineToReport(
-												"| nodes in deployment diagram: " + nodeNames.toString() + "|");
-										host.appendLineToReport("| roles in STS model: " + roles.toString() + "|");
-
-										// mapping of documents and classes
-										for (String d : documents) {
-											for (String c : classes) {
-												if (d.equalsIgnoreCase(c)) {
-													host.appendToReport(
-															"| Document: " + d + " is mapped to Class: " + c + ". |\n");
+										if (securityRequirement.contentEquals("confidentiality")
+												&& (attribute.contentEquals("sender")
+														|| attribute.contentEquals("receiver"))) {
+											
+											host.appendToReport("\n| CARiSMA check = SecureDependency " + " |"
+													+ "\n| UML Diagram = Class Diagram | \n");
+											host.appendToReport(
+													"| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> expand 'Static Checks' -> click on 'Secure Dependency'"
+															+ " |");
+	
+											// mapping of documents and classes
+											for (String d : documents) {
+												for (String c : classes) {
+													if (d.equalsIgnoreCase(c)) {
+														host.appendToReport(
+																"| Document: " + d + " is mapped to Class: " + c + ". |\n");
+													}
+												}
+											}
+	
+											// mapping of roles and classes
+											for (String r : roles) {
+												for (String c : classes) {
+													if (r.equalsIgnoreCase(c)) {
+														host.appendToReport(
+																"| Role: " + r + " is mapped to Class: " + c + ". |\n");
+													}
 												}
 											}
 										}
 
-										// mapping of roles and classes
-										for (String r : roles) {
-											for (String c : classes) {
-												if (r.equalsIgnoreCase(c)) {
-													host.appendToReport(
+										if (securityRequirement.contentEquals("non-disclosure")) {
+											host.appendToReport("\n| CARiSMA check = RABAC " + " |");
+											host.appendToReport(
+													"| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> click on 'RABAC'"
+															+ " |");
+	
+											// mapping of documents and classes
+											for (String d : documents) {
+												for (String c : classes) {
+													if (d.equalsIgnoreCase(c)) {
+														host.appendToReport(
+																"| Document: " + d + " is mapped to Class: " + c + ". |\n");
+													}
+												}
+											}
+	
+											// mapping of roles and classes
+											for (String r : roles) {
+												for (String c : classes) {
+													if (r.equalsIgnoreCase(c)) {
+														host.appendToReport(
+																"| Role: " + r + " is mapped to Class: " + c + ". |\n");
+													}
+												}
+											}
+										}
+
+										if (securityRequirement.contentEquals("non-productione")) {
+											
+											host.appendToReport("\n| CARiSMA check = RABAC " + " |");
+											host.appendToReport(
+													"| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> click on 'RABAC'"
+															+ " |");
+
+											// mapping of documents and classes
+											for (String d : documents) {
+												for (String c : classes) {
+													if (d.equalsIgnoreCase(c)) {
+														host.appendToReport(
+																"| Document: " + d + " is mapped to Class: " + c + ". |\n");
+													}
+												}
+											}
+
+											// mapping of roles and classes
+											for (String r : roles) {
+												for (String c : classes) {
+													if (r.equals(c)) {
+														host.appendToReport(
 															"| Role: " + r + " is mapped to Class: " + c + ". |\n");
-												}
-											}
-										}
-
-									}
-
-									if (securityRequirement.contentEquals("confidentiality")
-											&& (attribute.contentEquals("sender")
-													|| attribute.contentEquals("receiver"))) {
-										host.appendToReport("\n| CARiSMA check = SecureDependency " + " |"
-												+ "\n| UML Diagram = Class Diagram | \n");
-										host.appendToReport(
-												"| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> expand 'Static Checks' -> click on 'Secure Dependency'"
-														+ " |");
-
-										// mapping of documents and classes
-										for (String d : documents) {
-											for (String c : classes) {
-												if (d.equalsIgnoreCase(c)) {
-													host.appendToReport(
-															"| Document: " + d + " is mapped to Class: " + c + ". |\n");
-												}
-											}
-										}
-
-										// mapping of roles and classes
-										for (String r : roles) {
-											for (String c : classes) {
-												if (r.equalsIgnoreCase(c)) {
-													host.appendToReport(
-															"| Role: " + r + " is mapped to Class: " + c + ". |\n");
+													}
 												}
 											}
 										}
 									}
+								} catch (Exception e) {
 
-									if (securityRequirement.contentEquals("non-disclosure")) {
-										host.appendToReport("\n| CARiSMA check = RABAC " + " |");
-										host.appendToReport(
-												"| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> click on 'RABAC'"
-														+ " |");
-
-										// mapping of documents and classes
-										for (String d : documents) {
-											for (String c : classes) {
-												if (d.equalsIgnoreCase(c)) {
-													host.appendToReport(
-															"| Document: " + d + " is mapped to Class: " + c + ". |\n");
-												}
-											}
-										}
-
-										// mapping of roles and classes
-										for (String r : roles) {
-											for (String c : classes) {
-												if (r.equalsIgnoreCase(c)) {
-													host.appendToReport(
-															"| Role: " + r + " is mapped to Class: " + c + ". |\n");
-												}
-											}
-										}
-
-									}
-
-									if (securityRequirement.contentEquals("non-productione")) {
-										host.appendToReport("\n| CARiSMA check = RABAC " + " |");
-										host.appendToReport(
-												"| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> click on 'RABAC'"
-														+ " |");
-
-										// mapping of documents and classes
-										for (String d : documents) {
-											for (String c : classes) {
-												if (d.equalsIgnoreCase(c)) {
-													host.appendToReport(
-															"| Document: " + d + " is mapped to Class: " + c + ". |\n");
-												}
-											}
-										}
-
-										// mapping of roles and classes
-										for (String r : roles) {
-											for (String c : classes) {
-												if (r.equals(c)) {
-													host.appendToReport(
-															"| Role: " + r + " is mapped to Class: " + c + ". |\n");
-												}
-											}
-										}
-									}
 								}
-							} catch (Exception e) {
-
 							}
-
 						}
 					}
-
 				}
-
 			}
-
 			catch (Exception e) {
 				e.printStackTrace();
 
@@ -514,5 +524,43 @@ public class CreateHelpDocument implements CarismaCheck {
 		}
 		return false;
 
+	}
+
+	private Document loadSTSInputFromDB(Map<String, CheckParameter> parameters) {
+		StringParameter inputPA = (StringParameter) (parameters.get("carisma.check.createHelpDocument.STSinputDB"));
+
+		IPreferenceStore preferencesStore = CarismaGUI.INSTANCE.getPreferenceStore();
+
+		String user = preferencesStore.getString(KEY_USER);
+		String secret = preferencesStore.getString(KEY_SECRET);
+		String url = preferencesStore.getString(KEY_URL);
+
+		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
+
+		String sts_collection = preferencesStore.getString(KEY_STS_COLLECTION);
+		String sts_document = preferencesStore.getString(KEY_STS_DOCUMENT);
+		String sts_field = preferencesStore.getString(KEY_STS_FIELD);
+
+		Content content = db.read(new MongoDBDynamicConfiguration(url, sts_collection, sts_document, sts_field));
+		if (content.getFormat().compareTo(XML_DOM.ID) == 0) {
+			return ((XML_DOM) content).getDocument();
+		} else if (content.getFormat().compareTo(JSON.ID) == 0) {
+			try {
+				return new XML_DOM((JSON) content).getDocument();
+			} catch (ContentException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+
+		return null;
+	}
+
+	private Document loadSTSInputFromFile(Map<String, CheckParameter> parameters) {
+		InputFileParameter inputFile = (InputFileParameter) (parameters
+				.get("carisma.check.createHelpDocument.STSinput"));
+		File file = inputFile.getValue();
+
+		return FileIO.read(file);
 	}
 }

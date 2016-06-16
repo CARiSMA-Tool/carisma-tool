@@ -161,39 +161,37 @@ public class AnalysisResultsView extends ViewPart {
 	 * Initializes the ContextMenu.
 	 */
 	private void initContextMenu() {
-		MenuManager menuMgr = new MenuManager("#PopupMenu"); //$NON-NLS-1$
+		final MenuManager menuMgr = new MenuManager("#PopupMenu"); //$NON-NLS-1$
 		menuMgr.setRemoveAllWhenShown(true);
 		menuMgr.addMenuListener(new IMenuListener() {
 			@Override
 			public void menuAboutToShow(final IMenuManager manager) {
+				Object firstElement = ((IStructuredSelection) viewer.getSelection()).getFirstElement();
+				
+				AnalysisResult tmpAnalysisResult;
+				if (firstElement instanceof carisma.core.analysis.result.AnalysisResult) {
+					tmpAnalysisResult = (AnalysisResult) firstElement;
+				}
+				else if (firstElement instanceof carisma.core.analysis.result.CheckResult) {
+					tmpAnalysisResult = ((CheckResult) firstElement).getParent();
+				}
+				else if (firstElement instanceof carisma.core.analysis.result.AnalysisResultMessage) {
+					tmpAnalysisResult = ((AnalysisResultMessage) firstElement).getParent().getParent();
+				}
+				else{
+					throw new RuntimeException("Unknown Selection: "+firstElement);
+				}
+				final AnalysisResult analysisResult = tmpAnalysisResult;				
+				
 				Action action = new Action() {
 					public void run() {
 						super.run();
-						// System.out.println(viewer.getSelection().toString());
-						// System.out.println(((IStructuredSelection)viewer.getSelection()).getFirstElement().toString());
-						AnalysisResult tmpA = null;
-						CheckResult tmpP;
-						AnalysisResultMessage tmpD;
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.AnalysisResult) {
-							tmpA = (AnalysisResult) ((IStructuredSelection) viewer.getSelection()).getFirstElement();
-						}
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.CheckResult) {
-							tmpP = (CheckResult) (((IStructuredSelection) viewer.getSelection()).getFirstElement());
-							tmpA = tmpP.getParent();
-						}
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.AnalysisResultMessage) {
-							tmpD = (AnalysisResultMessage) ((IStructuredSelection) viewer.getSelection())
-									.getFirstElement();
-							tmpP = tmpD.getParent();
-							tmpA = tmpP.getParent();
-						}
-						CarismaGUI.INSTANCE.openReport(tmpA);
+						CarismaGUI.INSTANCE.openReport(analysisResult);
 
 					}
 				};
+				action.setText("Create report for selected analysis");
+				manager.add(action);
 
 				/*
 				 * initializing xml output menu. 
@@ -203,97 +201,53 @@ public class AnalysisResultsView extends ViewPart {
 				Action action2 = new Action() {
 					public void run() {
 						super.run();
-						// System.out.println(viewer.getSelection().toString());
-						// System.out.println(((IStructuredSelection)viewer.getSelection()).getFirstElement().toString());
-						AnalysisResult tmpA = null;
-						CheckResult tmpP;
-						AnalysisResultMessage tmpD;
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.AnalysisResult) {
-							tmpA = (AnalysisResult) ((IStructuredSelection) viewer.getSelection()).getFirstElement();
-						}
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.CheckResult) {
-							tmpP = (CheckResult) (((IStructuredSelection) viewer.getSelection()).getFirstElement());
-							tmpA = tmpP.getParent();
-						}
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.AnalysisResultMessage) {
-							tmpD = (AnalysisResultMessage) ((IStructuredSelection) viewer.getSelection())
-									.getFirstElement();
-							tmpP = tmpD.getParent();
-							tmpA = tmpP.getParent();
-						}
-
-						CarismaGUI.INSTANCE.saveXml(tmpA);
+						CarismaGUI.INSTANCE.saveXml(analysisResult);
 					}
 				};
+				action2.setText("Create XML-Output for selected analysis");
+				manager.add(action2);
 				
+				/*
+				 * initializing output to VisiOn DB.
+				 * 
+				 */
 				Action action3 = new Action() {
 					public void run() {
 						super.run();
-						// System.out.println(viewer.getSelection().toString());
-						// System.out.println(((IStructuredSelection)viewer.getSelection()).getFirstElement().toString());
-						AnalysisResult tmpA = null;
-						CheckResult tmpP;
-						AnalysisResultMessage tmpD;
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.AnalysisResult) {
-							tmpA = (AnalysisResult) ((IStructuredSelection) viewer.getSelection()).getFirstElement();
-						}
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.CheckResult) {
-							tmpP = (CheckResult) (((IStructuredSelection) viewer.getSelection()).getFirstElement());
-							tmpA = tmpP.getParent();
-						}
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.AnalysisResultMessage) {
-							tmpD = (AnalysisResultMessage) ((IStructuredSelection) viewer.getSelection())
-									.getFirstElement();
-							tmpP = tmpD.getParent();
-							tmpA = tmpP.getParent();
-						}
-
-						CarismaGUI.INSTANCE.exportToDb(tmpA);
+						CarismaGUI.INSTANCE.exportToDb(analysisResult);
 					}
 				};
+				
+				action3.setText("Export report to VisiOn Database");
+				manager.add(action3);
+				
+				// Don't enable action for RABAC transformation input creation
+				int forbidden = 0;
+				for(CheckResult chkR : analysisResult.getCheckResults()){
+					if(chkR.getName().compareTo("RABACsec: Create transformation input")==0){ // TODO: Call Name Method for compare
+						forbidden++;
+					}
+					else if(chkR.getName().compareTo("Create Help Document for STS mapping")==0){ // TODO: Call Name Method for compare
+						forbidden++;
+					}
+				}
+				if(forbidden==analysisResult.getCheckResults().size()){
+					action3.setEnabled(false);
+				}
 				
 				Action action4 = new Action() {
 					public void run() {
 						super.run();
-						// System.out.println(viewer.getSelection().toString());
-						// System.out.println(((IStructuredSelection)viewer.getSelection()).getFirstElement().toString());
-						AnalysisResult tmpA = null;
-						CheckResult tmpP;
-						AnalysisResultMessage tmpD;
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.AnalysisResult) {
-							tmpA = (AnalysisResult) ((IStructuredSelection) viewer.getSelection()).getFirstElement();
-						}
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.CheckResult) {
-							tmpP = (CheckResult) (((IStructuredSelection) viewer.getSelection()).getFirstElement());
-							tmpA = tmpP.getParent();
-						}
-						if (((IStructuredSelection) viewer.getSelection())
-								.getFirstElement() instanceof carisma.core.analysis.result.AnalysisResultMessage) {
-							tmpD = (AnalysisResultMessage) ((IStructuredSelection) viewer.getSelection())
-									.getFirstElement();
-							tmpP = tmpD.getParent();
-							tmpA = tmpP.getParent();
-						}
-
-						CarismaGUI.INSTANCE.startAutomatedAnalysis(tmpA);
+						CarismaGUI.INSTANCE.startAutomatedAnalysis(analysisResult);
 					}
 				};
-
-				action.setText("Create report for selected analysis");
-				action2.setText("Create XML-Output for selected analysis");
-				action3.setText("Export report to VisiOn Database");
+				action4.setEnabled(false);
+				for(CheckResult chkR : analysisResult.getCheckResults()){
+					if(chkR.getName().compareTo("Create Help Document for STS mapping")==0){ // TODO: Call Name Method for compare
+						action4.setEnabled(true);
+					}
+				}
 				action4.setText("Create automated analysis from help document");
-				manager.add(action);
-				manager.add(action2);
-				manager.add(action3);
 				manager.add(action4);
 			}
 		});
@@ -378,7 +332,7 @@ public class AnalysisResultsView extends ViewPart {
 
 		@Override
 		public Object[] getElements(final Object inputElement) {
-			return ((List) inputElement).toArray();
+			return ((List<?>) inputElement).toArray();
 		}
 
 		@Override
