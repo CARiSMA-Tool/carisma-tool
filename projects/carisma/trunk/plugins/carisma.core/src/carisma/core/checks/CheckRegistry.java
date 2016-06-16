@@ -181,7 +181,7 @@ public class CheckRegistry {
 	 * @param descriptor
 	 * @return
 	 */
-	public CheckReference createReference(CheckDescriptor descriptor) {
+	public  CheckReference createReference(CheckDescriptor descriptor) {
 		CheckReference reference = new CheckReference(descriptor.getCheckDescriptorId(), true);
 		for (CheckParameterDescriptor cpd : descriptor.getParameters()) {
 			if (cpd.getType() == ParameterType.STRING) {

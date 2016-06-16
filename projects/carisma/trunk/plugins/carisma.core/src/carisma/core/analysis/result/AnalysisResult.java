@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 
 @XmlRootElement(name = "AnalysisResult")
-@XmlType(propOrder = { "name", "status", "timestamp", "checkResults", "report"})
+@XmlType(propOrder = { "name","modelPath", "status", "timestamp", "checkResults", "report"})
 public class AnalysisResult {
 	/**
 	 * 
@@ -57,6 +57,8 @@ public class AnalysisResult {
 	 * 
 	 */
 	private StringBuffer report;
+	
+	private String modelPath;
 
 	/*
 	 * No-arg constructor is just to keep JAXB from complaining
@@ -74,6 +76,7 @@ public class AnalysisResult {
 		status = AnalysisResultStatus.FAIL;
 		checkResults = new ArrayList<CheckResult>();
 		report = new StringBuffer();
+		modelPath = analysis.getModelFile().toString();//das
 	}
 
 	/**
@@ -84,6 +87,11 @@ public class AnalysisResult {
 		return name;
 	}
 
+	
+	@XmlElement(name = "Filepath")
+	public final String getModelPath(){
+		return modelPath;
+	}
 	/**
 	 * @param name the name
 	 */

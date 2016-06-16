@@ -70,6 +70,8 @@ public class Analysis {
 		this.modelFile = modelFile.getFullPath().toFile();
 		this.checks = new ArrayList<CheckReference>();
 		this.selectedEditor = "";
+		
+
 	}
 	
 	/**

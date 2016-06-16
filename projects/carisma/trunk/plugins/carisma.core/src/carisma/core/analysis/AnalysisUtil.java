@@ -62,6 +62,7 @@ public final class AnalysisUtil {
 		try {
 			fos = new FileOutputStream(filename);
 			xStream.toXML(analysis, fos);
+			System.out.println(filename);
 		} catch (FileNotFoundException e) {
 			AnalysisUtil.logFileNotFoundException(filename, e);
 		} finally {
