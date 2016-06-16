@@ -35,8 +35,6 @@ public class AutomatedAnalysis {
 
 	public AutomatedAnalysis(String helpDocument, IContainer container) {
 
-		
-
 		Set<String> keywords = new HashSet<String>();
 		String reportDump = "";
 
@@ -125,10 +123,6 @@ public class AutomatedAnalysis {
 				}
 			}
 
-
-			
-			
-			
 			/*
 			 * new Analysis
 			 * 
