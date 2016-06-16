@@ -202,6 +202,16 @@ public final class UMLHelper {
 		return sameNameElements;
 	}
 	
+	
+	public static List<Element> getAllElements(final Package pkg){
+		List<Element> allElements = new ArrayList<Element>();
+		for(Element elem: pkg.allOwnedElements()){
+			allElements.add(elem);
+		}
+		
+		return allElements;
+	}
+	
 	/**
 	 * Among all elements of the given type, finds model elements that match the given hopefully adequately qualified name.
 	 * Adequately means that in a model where two elements have the same name, but are in different namespaces, the wanted element
