@@ -25,7 +25,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 
 import carisma.core.analysis.Analysis;
-import carisma.core.analysis.AnalysisUtil;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 
@@ -93,7 +92,7 @@ public class AdfModelWizard extends Wizard implements INewWizard {
 			}  
 			
 			Analysis analysis = new Analysis(filenameWithoutExt, detailsPage.getModelType(), detailsPage.getSourceFile());
-			AnalysisUtil.storeAnalysis(analysis, createnewfilePage.getTargetFile().getLocation().toString());
+
 
 			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 			IProject[] projects = workspaceRoot.getProjects();
@@ -117,4 +116,6 @@ public class AdfModelWizard extends Wizard implements INewWizard {
 		}
 		return true;
 	}
+	
+	
 }

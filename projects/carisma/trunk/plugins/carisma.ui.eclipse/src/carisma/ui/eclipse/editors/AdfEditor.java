@@ -162,6 +162,19 @@ public class AdfEditor extends FormEditor {
 		}
 	}
 	
+	protected final void saveAutomaticAnalysis(Analysis ana){
+	
+		IFile file = ana.getIFile();
+		AnalysisUtil.storeAnalysis(analysis, file.getLocation().toOSString());
+		// refresh resources
+		try {
+			file.refreshLocal(IResource.DEPTH_ZERO, null);
+			setDirty(false);
+		} catch (CoreException e) {
+			Logger.log(LogLevel.ERROR, "could not refresh resource", e);
+		}
+	}
+	
 	/** 
 	 * Sets editor's dirty-state.
 	 * 
