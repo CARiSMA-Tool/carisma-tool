@@ -8,7 +8,13 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
    <xsl:variable name="failedtests" select="count(AnalysisResult/CheckResult[successful!='true'])" />
               
   <p>
-    The PA-system has been analyzed with CARiSMA and <xsl:value-of select="$alltests"/> privacy checks have been executed.
+    The PA-system has been analyzed with CARiSMA and <xsl:value-of select="$alltests"/> 
+    <xsl:if test="$alltests=1">
+    	privacy check has been executed.
+    </xsl:if>
+    <xsl:if test="$alltests>1">
+    	privacy checks have been executed.
+    </xsl:if>
   </p>
   <p>
     <xsl:variable name="result" select="AnalysisResult/Status" />
