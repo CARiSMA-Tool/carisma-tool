@@ -52,6 +52,7 @@ import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -519,7 +520,8 @@ public class CarismaGUI extends AbstractUIPlugin {
 				success &= db.write(pla_configuration, contentHtml);
 				
 				if(!success){
-					//TODO: ERROR MESSAGE
+					Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+					ErrorDialog.openError(activeShell, "Vision Database Export", "Export to VisiOn Database failed", new Status(IStatus.ERROR, "carisma.core.io",db.getResponseMessage().toString())); 
 				}
 				
 				file.create(Utils.createInputStreamFromString(analysisResult.getReport()), true, null);
