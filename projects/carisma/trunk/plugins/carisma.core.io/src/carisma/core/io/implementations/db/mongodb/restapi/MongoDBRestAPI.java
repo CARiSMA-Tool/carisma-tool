@@ -2,9 +2,12 @@ package carisma.core.io.implementations.db.mongodb.restapi;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.http.HttpEntity;
@@ -19,7 +22,9 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import carisma.core.io.configuration.Configuration;
+import carisma.core.io.content.BASE64;
 import carisma.core.io.content.Content;
+import carisma.core.io.content.Content.ContentException;
 import carisma.core.io.content.JSON;
 import carisma.core.io.content.PLAIN;
 import carisma.core.io.content.XML_DOM;
@@ -217,7 +222,8 @@ public class MongoDBRestAPI implements DataBaseIO {
 		try{
 			HttpEntity entity = response.getEntity();
 			InputStream content = entity.getContent();
-			scanner = new Scanner(content,"UTF-8");
+			InputStreamReader reader = new InputStreamReader(content);
+			scanner = new Scanner(reader);
 			String inputStreamString = scanner.useDelimiter("\\A").next();
 			return new JSON(inputStreamString);
 		} catch (IllegalStateException e) {
@@ -351,8 +357,33 @@ public class MongoDBRestAPI implements DataBaseIO {
 			HttpResponse response = httpExecute(request);
 			
 			if(response != null){
-			content = (createcontentFromHttpResponse(response));
-				
+				if(response.getStatusLine().getStatusCode() == 200){
+					Object field = ((JSON)createcontentFromHttpResponse(response)).get(fieldID);
+					if(field instanceof String){
+						String string = (String) field;
+						
+						//is base64 encoded?
+						Pattern pattern = Pattern.compile("^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$");
+						Matcher matcher = pattern.matcher(string);
+						if(matcher.find()){
+							content = new BASE64(string.getBytes());
+						}
+						else if(string.startsWith("{")){
+							content = new JSON(string);
+						}
+						else if(string.startsWith("<?xml")){
+							try {
+								content = new XML_DOM(string);
+							} catch (ContentException e) {
+								e.printStackTrace();
+								content = new PLAIN(string);
+							}
+						}
+						else{
+							content = new PLAIN(string);
+						}
+					}
+				}
 				return MongoDBResponseMessage.createFromHttpStatus(response.getStatusLine().getStatusCode(), get);
 			}
 			throw new RuntimeException("HttpRespone is null");

@@ -9,6 +9,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.11.1",
 Export-Package: carisma.core.io.configuration,
  carisma.core.io.content;uses:="org.w3c.dom,org.json",
  carisma.core.io.implementations;uses:="org.w3c.dom",
+ carisma.core.io.implementations.db,
  carisma.core.io.implementations.db.mongodb.restapi;
   uses:="carisma.core.io.configuration,
    carisma.core.io.content,

@@ -145,6 +145,11 @@ public class MongoDBResponseMessage implements ResponseMessage {
 		return httpStatus;
 	}
 
+	@Override
+	public String toString() {
+		return reason.toString();
+	}
+	
 	public Reason getReason() {
 		return reason;
 	}

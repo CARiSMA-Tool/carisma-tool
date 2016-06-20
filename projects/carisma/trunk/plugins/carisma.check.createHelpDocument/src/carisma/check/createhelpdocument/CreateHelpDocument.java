@@ -23,11 +23,11 @@ import org.w3c.dom.Element;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.BooleanParameter;
 import carisma.core.analysis.InputFileParameter;
-import carisma.core.analysis.StringParameter;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheck;
 import carisma.core.checks.CheckParameter;
+import carisma.core.io.content.BASE64;
 import carisma.core.io.content.Content;
 import carisma.core.io.content.Content.ContentException;
 import carisma.core.io.content.JSON;
@@ -527,8 +527,6 @@ public class CreateHelpDocument implements CarismaCheck {
 	}
 
 	private Document loadSTSInputFromDB(Map<String, CheckParameter> parameters) {
-		StringParameter inputPA = (StringParameter) (parameters.get("carisma.check.createHelpDocument.STSinputDB"));
-
 		IPreferenceStore preferencesStore = CarismaGUI.INSTANCE.getPreferenceStore();
 
 		String user = preferencesStore.getString(KEY_USER);
@@ -547,6 +545,13 @@ public class CreateHelpDocument implements CarismaCheck {
 		} else if (content.getFormat().compareTo(JSON.ID) == 0) {
 			try {
 				return new XML_DOM((JSON) content).getDocument();
+			} catch (ContentException e) {
+				e.printStackTrace();
+				return null;
+			}
+		} else if(content.getFormat().compareTo(BASE64.ID)==0){
+			try {
+				return new XML_DOM((BASE64) content).getDocument();
 			} catch (ContentException e) {
 				e.printStackTrace();
 				return null;

@@ -1,5 +1,6 @@
 package carisma.core.io.content;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +26,25 @@ public class XML_DOM implements Content {
 
 	public static final String ID = "XML_DOM";
 	private Document document;
+	
+	public XML_DOM(BASE64 base64) throws ContentException{
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder;
+		try {
+			dBuilder = dbFactory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			throw new ContentException(e);
+		}
+		try {
+			
+			document = dBuilder.parse(new ByteArrayInputStream(base64.getBytesDecoded()));
+		} catch (SAXException e) {
+			throw new ContentException(e);
+		} catch (IOException e) {
+			throw new ContentException(e);
+		}
+		document.getDocumentElement().normalize();
+	}
 	
 	public XML_DOM(Document document){
 		this.document = document;
