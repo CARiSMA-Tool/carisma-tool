@@ -3,38 +3,25 @@
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:template match="/"
               name="carisma_html">
-  <html>
-  <body>
-  
-   <xsl:variable name="alltests" select="count(AnalysisResult/CheckResult)" />
+ <xsl:variable name="alltests" select="count(AnalysisResult/CheckResult)" />
    <xsl:variable name="failedtests" select="count(AnalysisResult/CheckResult[successful!='true'])" />
               
-   <h2>
-     <center>
-       CARiSMA Privacy Analysis Results
-     </center>
-   </h2>
-   <p>
-     <center>
-       The PA-system has been analyzed with CARiSMA and <xsl:value-of select="$alltests"/> privacy checks have been executed.
-     </center>
-   </p>
-   <p>
-     <center>
-        <xsl:variable name="result" select="AnalysisResult/Status" />
-        <xsl:if test="$result='SUCCESS'">
-          No privacy violations have been detected.
-        </xsl:if>
-        <xsl:if test="$result!='SUCCESS'">
-          Of the executed privacy checks <xsl:value-of select="$failedtests"/> failed.        
-        </xsl:if>
-      </center>
+  <p>
+    The PA-system has been analyzed with CARiSMA and <xsl:value-of select="$alltests"/> privacy checks have been executed.
+  </p>
+  <p>
+    <xsl:variable name="result" select="AnalysisResult/Status" />
+      <xsl:if test="$result='SUCCESS'">
+        No privacy violations have been detected.
+      </xsl:if>
+      <xsl:if test="$result!='SUCCESS'">
+        Of the executed privacy checks <xsl:value-of select="$failedtests"/> failed.        
+      </xsl:if>
     </p>
     <p>
-      <center>The PA-system has the following privacy rating:</center>
+      The PA-system achieved the following privacy rating:
     </p>
     <p>
-      <center>
       <table border="0">
         <tr>
           <td border="0px" padding="0px" width="70px" align="right">
@@ -58,10 +45,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           </td>
         </tr>
       </table>
-      </center>
     </p>
-  </body>
-  </html>
 </xsl:template>
 
 </xsl:stylesheet>
