@@ -66,6 +66,10 @@ public class CreateHelpDocument implements CarismaCheck {
 				}
 				else{
 					doc = loadSTSInputFromDB(parameters);
+					if(doc == null){
+						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Unable to load STS input from DB"));
+						return false;
+					}
 				}
 
 				/*
@@ -540,24 +544,26 @@ public class CreateHelpDocument implements CarismaCheck {
 		String sts_field = preferencesStore.getString(KEY_STS_FIELD);
 
 		Content content = db.read(new MongoDBDynamicConfiguration(url, sts_collection, sts_document, sts_field));
-		if (content.getFormat().compareTo(XML_DOM.ID) == 0) {
-			return ((XML_DOM) content).getDocument();
-		} else if (content.getFormat().compareTo(JSON.ID) == 0) {
-			try {
-				return new XML_DOM((JSON) content).getDocument();
-			} catch (ContentException e) {
-				e.printStackTrace();
-				return null;
-			}
-		} else if(content.getFormat().compareTo(BASE64.ID)==0){
-			try {
-				return new XML_DOM((BASE64) content).getDocument();
-			} catch (ContentException e) {
-				e.printStackTrace();
-				return null;
+		if(content!=null){
+			
+			if (content.getFormat().compareTo(XML_DOM.ID) == 0) {
+				return ((XML_DOM) content).getDocument();
+			} else if (content.getFormat().compareTo(JSON.ID) == 0) {
+				try {
+					return new XML_DOM((JSON) content).getDocument();
+				} catch (ContentException e) {
+					e.printStackTrace();
+					return null;
+				}
+			} else if(content.getFormat().compareTo(BASE64.ID)==0){
+				try {
+					return new XML_DOM((BASE64) content).getDocument();
+				} catch (ContentException e) {
+					e.printStackTrace();
+					return null;
+				}
 			}
 		}
-
 		return null;
 	}
 

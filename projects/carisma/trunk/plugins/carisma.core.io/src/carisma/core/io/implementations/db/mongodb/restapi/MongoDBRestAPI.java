@@ -129,7 +129,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 					if(hasFieldID){
 						response = api.getDocument(collectionID, documentID);
 						if(response.getStatus() == 404){
-							response = api.postDocument(collectionID, documentID, "");
+							return false;
 						}
 						response = api.postField(collectionID, documentID, fieldID, "{\""+fieldID+"\":'"+contentAsString+"'}");
 					}
