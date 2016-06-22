@@ -51,7 +51,7 @@ public class MongoDBResponseMessage implements ResponseMessage {
 			reason = NotFound;
 		}
 		else if(status == 500){
-			reason = InternalIssue;
+			reason = InternalServerIssue;
 		}
 		else{
 			throw new RuntimeException("Unknown status code for http delete response.");
@@ -77,7 +77,7 @@ public class MongoDBResponseMessage implements ResponseMessage {
 			reason = NotFound;
 		}
 		else if(status == 500){
-			reason = InternalIssue;
+			reason = InternalServerIssue;
 		}
 		else{
 			throw new RuntimeException("Unknown status code for http delete response.");
@@ -101,6 +101,9 @@ public class MongoDBResponseMessage implements ResponseMessage {
 		}
 		else if(status == 404){
 			reason = NotFound;
+		}
+		else if(status == 500){
+			reason = InternalServerIssue;
 		}
 		else{
 			throw new RuntimeException("Unknown status code for http get response: "+status);
@@ -129,7 +132,7 @@ public class MongoDBResponseMessage implements ResponseMessage {
 			reason = NotFound;
 		}
 		else if(status == 500){
-			reason = InternalIssue;
+			reason = InternalServerIssue;
 		}
 		else{
 			throw new RuntimeException("Unknown status code for http delete response.");
@@ -167,7 +170,7 @@ public class MongoDBResponseMessage implements ResponseMessage {
 		CreatedDocument,
 		DocumentAlreadyExists,
 		Forbidden,
-		InternalIssue,
+		InternalServerIssue,
 		NoContent,
 		NotFound,
 		OK,
