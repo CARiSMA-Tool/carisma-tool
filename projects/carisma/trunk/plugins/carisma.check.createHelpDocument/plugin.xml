@@ -17,13 +17,6 @@
                optional="false"
                type="boolean">
          </parameter>
-         <parameter
-               description="XML File that contains STS properties"
-               id="carisma.check.createHelpDocument.STSinput"
-               name="STS Input from file"
-               optional="true"
-               type="InputFile">
-         </parameter>
       </check>
    </extension>
 

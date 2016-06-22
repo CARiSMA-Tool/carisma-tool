@@ -11,6 +11,10 @@ import static carisma.ui.eclipse.preferences.pages.VisiOn.*;
 import java.io.File;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.FileSelectionDialog;
 import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Package;
@@ -62,10 +66,10 @@ public class CreateHelpDocument implements CarismaCheck {
 				
 				Document doc;
 				if(fileOrDB.getValue()){
-					doc = loadSTSInputFromFile(parameters);
+					doc = loadSTSInputFromFile();
 				}
 				else{
-					doc = loadSTSInputFromDB(parameters);
+					doc = loadSTSInputFromDB();
 					if(doc == null){
 						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Unable to load STS input from DB"));
 						return false;
@@ -530,7 +534,7 @@ public class CreateHelpDocument implements CarismaCheck {
 
 	}
 
-	private Document loadSTSInputFromDB(Map<String, CheckParameter> parameters) {
+	private Document loadSTSInputFromDB() {
 		IPreferenceStore preferencesStore = CarismaGUI.INSTANCE.getPreferenceStore();
 
 		String user = preferencesStore.getString(KEY_USER);
@@ -567,11 +571,10 @@ public class CreateHelpDocument implements CarismaCheck {
 		return null;
 	}
 
-	private Document loadSTSInputFromFile(Map<String, CheckParameter> parameters) {
-		InputFileParameter inputFile = (InputFileParameter) (parameters
-				.get("carisma.check.createHelpDocument.STSinput"));
-		File file = inputFile.getValue();
-
-		return FileIO.read(file);
+	private Document loadSTSInputFromFile() {
+		Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		FileDialog dialog = new FileDialog(activeShell);
+		dialog.open();
+		return FileIO.read(new File(new File(dialog.getFilterPath()),dialog.getFileName()));
 	}
 }
