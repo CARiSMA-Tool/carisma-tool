@@ -6,37 +6,33 @@ public class BASE64 implements Content {
 
 	public static String ID = "BASE64";
 	
-	private byte[] content;
+	private byte[] bytes;
 	
-	public BASE64(byte[] base64) {
-		this.content = base64;
+	protected BASE64(final byte[] base64) {
+		this.bytes = base64;
 	}
 	
-	public BASE64(String content) {
-		byte[] bytes = content.getBytes();
-		this.content = Base64.getEncoder().encode(bytes);
-	}
-	
-	public BASE64(XML_DOM xml){
-		content = Base64.getEncoder().encode(xml.asString().getBytes());
+	protected BASE64(final String content) {
+		byte[] nonBase64 = content.getBytes();
+		this.bytes = Base64.getEncoder().encode(nonBase64);
 	}
 	
 	@Override
-	public String asString() {
+	public final String asString() {
 		return new String(getBytesDecoded());
 	}
 
 	@Override
-	public String getFormat() {
+	public final String getFormat() {
 		return ID;
 	}
 
-	public byte[] getBytes(){
-		return content;
+	public final byte[] getBytes(){
+		return bytes;
 	}
 	
-	public byte[] getBytesDecoded() {
-		return Base64.getDecoder().decode(content);
+	public final byte[] getBytesDecoded() {
+		return Base64.getDecoder().decode(bytes);
 	}
 
 }

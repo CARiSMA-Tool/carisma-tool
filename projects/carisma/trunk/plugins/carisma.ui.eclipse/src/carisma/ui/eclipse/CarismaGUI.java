@@ -44,6 +44,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -64,6 +65,8 @@ import carisma.core.analysis.Analyzer;
 import carisma.core.analysis.AutomatedAnalysis;
 import carisma.core.analysis.result.AnalysisResult;
 import carisma.core.checks.CheckRegistry;
+import carisma.core.io.content.ContentFactory;
+import carisma.core.io.content.ContentFactory.ContentFormats;
 import carisma.core.io.content.PLAIN;
 import carisma.core.io.content.XML_DOM;
 import carisma.core.io.implementations.db.mongodb.restapi.MongoDBDynamicConfiguration;
@@ -350,9 +353,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 		} else if (container instanceof IProject) {
 			IProject project = (IProject) container;
 			file = project.getFile("report-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".txt");
-		}
-
-		else {
+		} else {
 			Logger.log(LogLevel.ERROR, "Analyzed file is not part of a project.");
 			return;
 		}
@@ -393,9 +394,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 			IProject project = (IProject) container;
 			file = project
 					.getFile("xml-output-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".xml");
-		}
-
-		else {
+		} else {
 			Logger.log(LogLevel.ERROR, "Analyzed file is not part of a project.");
 			return;
 		}
@@ -446,13 +445,16 @@ public class CarismaGUI extends AbstractUIPlugin {
 			IProject project = (IProject) container;
 			file = project.getFile(
 					"DB-output-status-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".text");
-		}
-
-		else {
+		} else {
 			Logger.log(LogLevel.ERROR, "Analyzed file is not part of a project.");
 			return;
 		}
-		if (!(file.exists())) { //TODO: is this necessary? What is if the file has been deleted in the DB but not local?
+		if (!(file.exists())) { 
+			/*
+			 * TODO: is this if clause necessary? 
+			 * 
+			 * What is if the file has been deleted in the DB but not local?
+			 */
 
 			try {
 
@@ -464,19 +466,31 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 				m.marshal(analysisResult, out);
 
-				URL urlXmlToXml = new URL("platform:/plugin/"+PLUGIN_ID+"/xslt/carisma_results_to_xml.xsl");
-				URL urlXmlToHtml = new URL("platform:/plugin/"+PLUGIN_ID+"/xslt/carisma_results_to_html.xsl");
+				String platform = "platform:/plugin/";
+				String xmlXsl = "/xslt/carisma_results_to_xml.xsl";
+				URL urlXmlToXml = new URL(platform + PLUGIN_ID + xmlXsl);
+				String htmlXsl = "/xslt/carisma_results_to_html.xsl";
+				URL urlXmlToHtml = new URL(platform + PLUGIN_ID + htmlXsl);
 				
-				BufferedReader reader = new BufferedReader(new InputStreamReader(urlXmlToXml.openStream()));
-				StringBuilder contentCmltoXml = new StringBuilder();
+				InputStream inputStream = urlXmlToXml.openStream();
+				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+				BufferedReader reader = new BufferedReader(inputStreamReader);
+				StringBuilder contentXmltoXml = new StringBuilder();
 				String line;
-				while((line = reader.readLine())!= null){
-					contentCmltoXml.append(line.replaceAll("carisma_results_to_html.xsl", FileLocator.toFileURL(urlXmlToHtml).getPath()));
+				while ((line = reader.readLine()) != null) {
+					String path = FileLocator.toFileURL(urlXmlToHtml).getPath();
+					String key = "carisma_results_to_html.xsl";
+					String replaced = line.replaceAll(key, path);
+					contentXmltoXml.append(replaced);
 				}
 				
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();
-				Transformer xmlTransformer = transformerFactory.newTransformer(new StreamSource(new StringReader(contentCmltoXml.toString())));
-				Transformer htmlTransformer = transformerFactory.newTransformer(new StreamSource(urlXmlToHtml.openStream()));
+				
+				StringReader xmlStringReader = new StringReader(contentXmltoXml.toString());
+				StreamSource xmlStreamSource = new StreamSource(xmlStringReader);
+				Transformer xmlTransformer = transformerFactory.newTransformer(xmlStreamSource);
+				StreamSource htmlStreamSource = new StreamSource(urlXmlToHtml.openStream());
+				Transformer htmlTransformer = transformerFactory.newTransformer(htmlStreamSource);
 				
 				StringWriter writerXml = new StringWriter();
 				StringWriter writerHtml = new StringWriter();
@@ -493,29 +507,34 @@ public class CarismaGUI extends AbstractUIPlugin {
 				String secret = preferencesStore.getString(KEY_SECRET);
 				String url = preferencesStore.getString(KEY_URL);
 				
-				MongoDBRestAPI db = new MongoDBRestAPI(user,secret,url);
+				MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
 				
-				XML_DOM contentXml = new XML_DOM(writerXml.toString());
-				PLAIN contentHtml = new PLAIN(writerHtml.toString());
+				XML_DOM contentXml = (XML_DOM) ContentFactory.createContent(writerXml.toString(), ContentFormats.F_XML_DOM);
+				PLAIN contentHtml = (PLAIN) ContentFactory.createContent(writerHtml.toString(), ContentFormats.F_PLAIN);
 				
 				
-				String carisma_collection = preferencesStore.getString(KEY_CARISMA_COLLECTION);
-				String carisma_document = preferencesStore.getString(KEY_CARISMA_DOCUMENT);
-				String carisma_field = preferencesStore.getString(KEY_CARISMA_FIELD);
-				MongoDBDynamicConfiguration carisma_configuration = new MongoDBDynamicConfiguration(url, carisma_collection, carisma_document, carisma_field);
-				boolean success = db.write(carisma_configuration, contentXml);
+				String carismaCollection = preferencesStore.getString(KEY_CARISMA_COLLECTION);
+				String carismaDocument = preferencesStore.getString(KEY_CARISMA_DOCUMENT);
+				String carismaField = preferencesStore.getString(KEY_CARISMA_FIELD);
+				MongoDBDynamicConfiguration carismaConfiguration = new MongoDBDynamicConfiguration(url, carismaCollection, carismaDocument, carismaField);
+				boolean success = db.write(carismaConfiguration, contentXml);
 				
-				db = new MongoDBRestAPI(user,secret,url);
+				db = new MongoDBRestAPI(user, secret, url);
 				
-				String pla_collection = preferencesStore.getString(KEY_PLA_COLLECTION);
-				String pla_document = preferencesStore.getString(KEY_PLA_DOCUMENT);
-				String pla_field = preferencesStore.getString(KEY_PLA_FIELD);
-				MongoDBDynamicConfiguration pla_configuration = new MongoDBDynamicConfiguration(url, pla_collection, pla_document, pla_field);
-				success &= db.write(pla_configuration, contentHtml);
+				String plaCollection = preferencesStore.getString(KEY_PLA_COLLECTION);
+				String plaDocument = preferencesStore.getString(KEY_PLA_DOCUMENT);
+				String plaField = preferencesStore.getString(KEY_PLA_FIELD);
+				MongoDBDynamicConfiguration plaConfiguration = new MongoDBDynamicConfiguration(url, plaCollection, plaDocument, plaField);
+				success &= db.write(plaConfiguration, contentHtml);
 				
-				if(!success){
-					Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-					ErrorDialog.openError(activeShell, "Vision Database Export", "Export to VisiOn Database failed", new Status(IStatus.ERROR, "carisma.core.io",db.getResponseMessage().toString())); 
+				Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+				String dialogTitle = "Vision Database Export";
+				if (!success) {
+					String responseMessage = db.getResponseMessage().toString();
+					Status status = new Status(IStatus.ERROR, "carisma.core.io", responseMessage);
+					ErrorDialog.openError(activeShell, dialogTitle, "Export to VisiOn Database failed", status); 
+				} else {
+					MessageDialog.openConfirm(activeShell, dialogTitle, "Success");
 				}
 				
 				file.create(Utils.createInputStreamFromString(analysisResult.getReport()), true, null);

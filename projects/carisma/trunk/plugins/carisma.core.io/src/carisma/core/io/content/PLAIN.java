@@ -4,19 +4,19 @@ public class PLAIN implements Content {
 
 	public static String ID = "PLAIN";
 	
-	private String content;
+	private String text;
 	
-	public PLAIN(String content) {
-		this.content = content;
+	protected PLAIN(final String content) {
+		this.text = content;
 	}
 	
 	@Override
-	public String asString() {
-		return content;
+	public final String asString() {
+		return text;
 	}
 
 	@Override
-	public String getFormat() {
+	public final String getFormat() {
 		return ID;
 	}
 

@@ -4,12 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.util.Base64;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -22,12 +19,10 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import carisma.core.io.configuration.Configuration;
-import carisma.core.io.content.BASE64;
 import carisma.core.io.content.Content;
-import carisma.core.io.content.Content.ContentException;
+import carisma.core.io.content.ContentFactory;
+import carisma.core.io.content.ContentFactory.ContentFormats;
 import carisma.core.io.content.JSON;
-import carisma.core.io.content.PLAIN;
-import carisma.core.io.content.XML_DOM;
 import carisma.core.io.implementations.db.DataBaseIO;
 import carisma.core.io.implementations.db.ResponseMessage;
 
@@ -38,25 +33,23 @@ public class MongoDBRestAPI implements DataBaseIO {
 	
 	private final String SECRET;
 	private final String USER;
-	private final String URL;
 	
 	private HttpClient httpClient = HttpClientBuilder.create().build();
-	private Content content;
+	private Content contentObject;
 	private ResponseMessage response;
 	
-	public MongoDBRestAPI(String user, String secret, String url) {
-		if(user==null || user.trim()==""){
+	public MongoDBRestAPI(final String user, final String secret, final String url) {
+		if (user == null || user.trim() == "") {
 			throw new RuntimeException("The value of the parameter \"user\" is null or empty.");
 		}
-		if(secret==null || secret.trim()==""){
+		if (secret == null || secret.trim() == "") {
 			throw new RuntimeException("The value of the parameter \"secret\" is null or empty.");
 		}
-		if(url==null || url.trim()==""){
+		if (url == null || url.trim() == "") {
 			throw new RuntimeException("The value of the parameter \"url\" is null or empty.");
 		}
 		USER = user;
 		SECRET = secret;
-		URL = url;
 	}
 	
 	/*
@@ -67,73 +60,59 @@ public class MongoDBRestAPI implements DataBaseIO {
 	 */
 	
 	@Override
-	public boolean write(Configuration config, Content content) {
-		if(config instanceof MongoDBDynamicConfiguration){
+	public final boolean write(final Configuration config, final Content content) {
+		if (config instanceof MongoDBDynamicConfiguration) {
 			MongoDBDynamicConfiguration mongoConf = (MongoDBDynamicConfiguration) config;
 			RestAPI api = new RestAPI(mongoConf);
 			
-			String contentFormat = content.getFormat();
-			String contentAsString;
-			if(contentFormat.compareTo(JSON.ID)==0){
-				contentAsString = content.asString();
-			}
-			else if(contentFormat.compareTo(XML_DOM.ID)==0){
-				contentAsString = new JSON((XML_DOM) content).asString();
-			}
-			else if (contentFormat.compareTo(PLAIN.ID)==0){
-				contentAsString = StringEscapeUtils.escapeJson(content.asString());
-			}
-			else{
-				throw new RuntimeException("Unknown content format: "+contentFormat);
-			}
+			JSON json = ContentFactory.convertToJson(content);
+			String contentAsString = json.asString();
 			
 			String collectionID = mongoConf.getCollectionID();
 			String documentID = mongoConf.getDocumentID();
 			String fieldID = mongoConf.getFieldID();
 			
-			boolean hasCollectionID = collectionID!=null && collectionID.trim().length()!=0;
-			if(!hasCollectionID){
+			boolean hasCollectionID = collectionID != null && collectionID.trim().length() != 0;
+			if (!hasCollectionID) {
 				throw new RuntimeException("No CollectionID is given");
 			}
-			boolean hasDocumentID = documentID!=null && documentID.trim().length()!=0;
-			boolean hasFieldID = fieldID!=null && fieldID.trim().length()!=0;
-			if(!hasDocumentID && !hasFieldID){
+			boolean hasDocumentID = documentID != null && documentID.trim().length() != 0;
+			boolean hasFieldID = fieldID != null && fieldID.trim().length() != 0;
+			if (!hasDocumentID && !hasFieldID) {
 				throw new RuntimeException("No DocumentID and no FieldID is given");
 			}
 			
 			response = null;
-			if(hasCollectionID){
-				if(hasDocumentID){
-					if(hasFieldID){
+			if (hasCollectionID) {
+				if (hasDocumentID) {
+					if (hasFieldID) {
 						response = api.getField(collectionID, documentID, fieldID);
-					}
-					else{
+					} else {
 						response = api.getDocument(collectionID, documentID);
 					}
 				}
 			}
 			
-			if(response!=null && response.getStatus() == 200){
-				if(hasDocumentID){
-					if(hasFieldID){
-						response = api.putField(collectionID, documentID, fieldID, "{\""+fieldID+"\":'"+contentAsString+"'}");
-					}
-					else{
+			if (response != null && response.getStatus() == 200) {
+				if (hasDocumentID) {
+					if (hasFieldID) {
+						String documentBody = "{\"" + fieldID + "\":'" + contentAsString + "'}";
+						response = api.putField(collectionID, documentID, fieldID, documentBody);
+					} else {
 						api.deleteDocument(collectionID, documentID);
 						response = api.postDocument(collectionID, documentID, contentAsString);
 					}
 				}
-			}
-			else {
-				if(hasDocumentID){
-					if(hasFieldID){
+			} else {
+				if (hasDocumentID) {
+					if (hasFieldID) {
 						response = api.getDocument(collectionID, documentID);
-						if(response.getStatus() == 404){
+						if (response.getStatus() == 404) {
 							return false;
 						}
-						response = api.postField(collectionID, documentID, fieldID, "{\""+fieldID+"\":'"+contentAsString+"'}");
-					}
-					else{
+						String documentBody = "{\"" + fieldID + "\":'" + contentAsString + "'}";
+						response = api.postField(collectionID, documentID, fieldID, documentBody);
+					} else {
 						response = api.postDocument(collectionID, documentID, contentAsString);
 					}
 				}
@@ -146,8 +125,8 @@ public class MongoDBRestAPI implements DataBaseIO {
 	}
 
 	@Override
-	public Content read(Configuration config) {
-		if(config instanceof MongoDBDynamicConfiguration){
+	public final Content read(final Configuration config) {
+		if (config instanceof MongoDBDynamicConfiguration) {
 			MongoDBDynamicConfiguration mongoConf = (MongoDBDynamicConfiguration) config;
 			RestAPI api = new RestAPI(mongoConf);
 			
@@ -155,29 +134,28 @@ public class MongoDBRestAPI implements DataBaseIO {
 			String documentID = mongoConf.getDocumentID();
 			String fieldID = mongoConf.getFieldID();
 			
-			boolean hasCollectionID = collectionID!=null && collectionID.trim().length()!=0;
-			if(!hasCollectionID){
+			boolean hasCollectionID = collectionID != null && collectionID.trim().length() != 0;
+			if (!hasCollectionID) {
 				throw new RuntimeException("No CollectionID is given");
 			}
-			boolean hasDocumentID = documentID!=null && documentID.trim().length()!=0;
-			boolean hasFieldID = fieldID!=null && fieldID.trim().length()!=0;
-			if(!hasDocumentID && !hasFieldID){
+			boolean hasDocumentID = documentID != null && documentID.trim().length() != 0;
+			boolean hasFieldID = fieldID != null && fieldID.trim().length() != 0;
+			if (!hasDocumentID && !hasFieldID) {
 				throw new RuntimeException("No DocumentID and no FieldID is given");
 			}
 			
 			response = null;
-			if(hasCollectionID){
-				if(hasDocumentID){
-					if(hasFieldID){
+			if (hasCollectionID) {
+				if (hasDocumentID) {
+					if (hasFieldID) {
 						response = api.getField(mongoConf.getCollectionID(), mongoConf.getDocumentID(), mongoConf.getFieldID());
-					}
-					else{
+					} else {
 						response = api.getDocument(mongoConf.getCollectionID(), mongoConf.getDocumentID());
 					}
 				}
 			}
-			if(response.getStatus() == 200){
-				return content;
+			if (response.getStatus() == 200) {
+				return contentObject;
 			}
 			
 		}
@@ -185,7 +163,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 	}
 	
 	@Override
-	public ResponseMessage getResponseMessage() {
+	public final ResponseMessage getResponseMessage() {
 		return response;
 	}
 
@@ -202,11 +180,11 @@ public class MongoDBRestAPI implements DataBaseIO {
 		return basicAuth;
 	}	
 
-	private HttpResponse httpExecute(HttpRequestBase request) {
-		HttpResponse response = null;
+	private HttpResponse httpExecute(final HttpRequestBase httpRequest) {
+		HttpResponse httpResponse = null;
 		
 		try {
-			response = httpClient.execute(request);
+			httpResponse = httpClient.execute(httpRequest);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -214,25 +192,24 @@ public class MongoDBRestAPI implements DataBaseIO {
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		}
-		return response;
+		return httpResponse;
 	}
 	
-	private Content createcontentFromHttpResponse(HttpResponse response){
+	private Content createcontentFromHttpResponse(final HttpResponse httpResponse){
 		Scanner scanner = null;
-		try{
-			HttpEntity entity = response.getEntity();
-			InputStream content = entity.getContent();
-			InputStreamReader reader = new InputStreamReader(content);
+		try {
+			HttpEntity entity = httpResponse.getEntity();
+			InputStream inputStream = entity.getContent();
+			InputStreamReader reader = new InputStreamReader(inputStream);
 			scanner = new Scanner(reader);
 			String inputStreamString = scanner.useDelimiter("\\A").next();
-			return new JSON(inputStreamString);
+			return ContentFactory.createContent(inputStreamString, ContentFormats.F_JSON);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		finally {
-			if(scanner!=null){
+		} finally {
+			if (scanner != null) {
 				scanner.close();
 			}
 		}
@@ -241,50 +218,55 @@ public class MongoDBRestAPI implements DataBaseIO {
 	
 	private class RestAPI {
 		
-		private MongoDBStaticConfiguration configuration;
+		private MongoDBStaticConfiguration config;
 
 		/*
 		 * Private implementation of RestAPI
 		 */
 
-		public RestAPI(MongoDBStaticConfiguration configuration) {
-			this.configuration = configuration;
+		public RestAPI(final MongoDBStaticConfiguration configuration) {
+			this.config = configuration;
 		}
 		
-		private ResponseMessage deleteDocument(String collectionID, String documentID){
-			HttpDelete	request = new HttpDelete(configuration.buildUrl(collectionID, documentID, null));
+		private ResponseMessage deleteDocument(final String collectionID, final String documentID){
+			URI url = config.buildUrl(collectionID, documentID, null);
+			HttpDelete	request = new HttpDelete(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
 						request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
 						request.addHeader(KEYWORD_CONTENT_TYPE, APPLICATION_JSON);
 				
-			HttpResponse response = httpExecute(request);
+			HttpResponse httpResponse = httpExecute(request);
 			
-			if(response != null){
-				return MongoDBResponseMessage.createFromHttpStatus(response.getStatusLine().getStatusCode(), delete);
+			if (httpResponse != null) {
+				int statusCode = httpResponse.getStatusLine().getStatusCode();
+				return MongoDBResponseMessage.createFromHttpStatus(statusCode, delete);
 			}
 			throw new RuntimeException("HttpRespone is null");
 		}
 		
-		private ResponseMessage getDocument(String collectionID, String documentID){
-			HttpGet 	request = new HttpGet(configuration.buildUrl(collectionID, documentID, null));
+		private ResponseMessage getDocument(final String collectionID, final String documentID){
+			URI url = config.buildUrl(collectionID, documentID, null);
+			HttpGet 	request = new HttpGet(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
 						request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
 						request.addHeader(KEYWORD_CONTENT_TYPE, APPLICATION_JSON);
 			
-			HttpResponse response = httpExecute(request);
+			HttpResponse httpResponse = httpExecute(request);
 			
-			if(response != null){
-				if(response.getStatusLine().getStatusCode()==200){
-					content = createcontentFromHttpResponse(response);
+			if (httpResponse != null) {
+				int statusCode = httpResponse.getStatusLine().getStatusCode();
+				if (statusCode == 200) {
+					contentObject = createcontentFromHttpResponse(httpResponse);
 				}
 				
-				return MongoDBResponseMessage.createFromHttpStatus(response.getStatusLine().getStatusCode(), get);
+				return MongoDBResponseMessage.createFromHttpStatus(statusCode, get);
 			}
 			throw new RuntimeException("HttpRespone is null");
 		}
 		
-		private ResponseMessage postDocument(String collectionID, String documentID, String documentBody){
-			HttpPost	request = new HttpPost(configuration.buildUrl(collectionID, documentID, null));
+		private ResponseMessage postDocument(final String collectionID, final String documentID, final String documentBody){
+			URI url = config.buildUrl(collectionID, documentID, null);
+			HttpPost	request = new HttpPost(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
 						request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
 						request.addHeader(KEYWORD_CONTENT_TYPE, APPLICATION_JSON);
@@ -300,17 +282,19 @@ public class MongoDBRestAPI implements DataBaseIO {
 					
 			request.setEntity(params);
 			
-			HttpResponse response = httpExecute(request);
+			HttpResponse httpResponse = httpExecute(request);
 			
-			if(response != null){
-				return MongoDBResponseMessage.createFromHttpStatus(response.getStatusLine().getStatusCode(), post);
+			if (httpResponse != null) {
+				int statusCode = httpResponse.getStatusLine().getStatusCode();
+				return MongoDBResponseMessage.createFromHttpStatus(statusCode, post);
 			}
 			throw new RuntimeException("HttpRespone is null");	
 		}
 		
 		@SuppressWarnings("unused")
-		private ResponseMessage putDocument(String collectionID, String documentID, String documentBody){
-			HttpPut	request = new HttpPut(configuration.buildUrl(collectionID, documentID, null));
+		private ResponseMessage putDocument(final String collectionID, final String documentID, final String documentBody){
+			URI url = config.buildUrl(collectionID, documentID, null);
+			HttpPut	request = new HttpPut(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
 						request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
 						request.addHeader(KEYWORD_CONTENT_TYPE, APPLICATION_JSON);
@@ -326,71 +310,60 @@ public class MongoDBRestAPI implements DataBaseIO {
 								
 			request.setEntity(params);
 						
-			HttpResponse response = httpExecute(request);
+			HttpResponse httpResponse = httpExecute(request);
 			
-			if(response != null){
-				return MongoDBResponseMessage.createFromHttpStatus(response.getStatusLine().getStatusCode(), put);
+			if (httpResponse != null) {
+				int statusCode = httpResponse.getStatusLine().getStatusCode();
+				return MongoDBResponseMessage.createFromHttpStatus(statusCode, put);
 			}
 			throw new RuntimeException("HttpRespone is null");
 		}
 		
-		private ResponseMessage deleteField(String collectionID, String documentID, String fieldID){
-			HttpDelete	request = new HttpDelete(configuration.buildUrl(collectionID, documentID, fieldID));
+		@SuppressWarnings("unused")
+		private ResponseMessage deleteField(final String collectionID, final String documentID, final String fieldID){
+			URI url = config.buildUrl(collectionID, documentID, fieldID);
+			HttpDelete	request = new HttpDelete(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
 						request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
 						request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
 
-			HttpResponse response = httpExecute(request);
+			HttpResponse httpResponse = httpExecute(request);
 			
-			if(response != null){
-				return MongoDBResponseMessage.createFromHttpStatus(response.getStatusLine().getStatusCode(), delete);
+			if (httpResponse != null) {
+				int statusCode = httpResponse.getStatusLine().getStatusCode();
+				return MongoDBResponseMessage.createFromHttpStatus(statusCode, delete);
 			}
 			throw new RuntimeException("HttpRespone is null");
 		}
 		
-		private ResponseMessage getField(String collectionID, String documentID, String fieldID){
-			HttpGet 	request = new HttpGet(configuration.buildUrl(collectionID, documentID, fieldID));
+		private ResponseMessage getField(final String collectionID, final String documentID, final String fieldID){
+			URI url = config.buildUrl(collectionID, documentID, fieldID);
+			HttpGet 	request = new HttpGet(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
 						request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
 						request.addHeader(KEYWORD_CONTENT_TYPE, APPLICATION_JSON);
 
-			HttpResponse response = httpExecute(request);
+			HttpResponse httpResponse = httpExecute(request);
 			
-			if(response != null){
-				if(response.getStatusLine().getStatusCode() == 200){
-					Object field = ((JSON)createcontentFromHttpResponse(response)).get(fieldID);
-					if(field instanceof String){
+			if (httpResponse != null) {
+				int statusCode = httpResponse.getStatusLine().getStatusCode();
+				if (statusCode == 200) {
+					Content responseContent = createcontentFromHttpResponse(httpResponse);
+					JSON json = ContentFactory.convertToJson(responseContent);
+					Object field = json.get(fieldID);
+					if (field instanceof String) {
 						String string = (String) field;
 						
-						//is base64 encoded?
-						Pattern pattern = Pattern.compile("^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$");
-						Matcher matcher = pattern.matcher(string);
-						if(matcher.find()){
-							content = new BASE64(string.getBytes());
-						}
-						else if(string.startsWith("{")){
-							content = new JSON(string);
-						}
-						else if(string.startsWith("<?xml")){
-							try {
-								content = new XML_DOM(string);
-							} catch (ContentException e) {
-								e.printStackTrace();
-								content = new PLAIN(string);
-							}
-						}
-						else{
-							content = new PLAIN(string);
-						}
+						contentObject = ContentFactory.createContent(string);
 					}
 				}
-				return MongoDBResponseMessage.createFromHttpStatus(response.getStatusLine().getStatusCode(), get);
+				return MongoDBResponseMessage.createFromHttpStatus(statusCode, get);
 			}
 			throw new RuntimeException("HttpRespone is null");
 		}
 
-		private ResponseMessage postField(String collectionID, String documentID, String fieldID, String documentBody){
-			HttpPost	request = new HttpPost(configuration.buildUrl(collectionID, documentID, fieldID));
+		private ResponseMessage postField(final String collectionID, final String documentID, final String fieldID, final String documentBody){
+			HttpPost	request = new HttpPost(config.buildUrl(collectionID, documentID, fieldID));
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
 						request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
 						request.addHeader(KEYWORD_CONTENT_TYPE, APPLICATION_JSON);
@@ -405,17 +378,18 @@ public class MongoDBRestAPI implements DataBaseIO {
 						
 			request.setEntity(params);
 			
-			HttpResponse response = httpExecute(request);
+			HttpResponse httpResponse = httpExecute(request);
 			
-			if(response != null){
-				return MongoDBResponseMessage.createFromHttpStatus(response.getStatusLine().getStatusCode(), post);
+			if (httpResponse != null) {
+				int statusCode = httpResponse.getStatusLine().getStatusCode();
+				return MongoDBResponseMessage.createFromHttpStatus(statusCode, post);
 			}
 			throw new RuntimeException("HttpRespone is null");
 		}
 		
-		@SuppressWarnings("unused")
-		private ResponseMessage putField(String collectionID, String documentID, String fieldID, String documentBody){
-			HttpPut	request = new HttpPut(configuration.buildUrl(collectionID, documentID, fieldID));
+		private ResponseMessage putField(final String collectionID, final String documentID, final String fieldID, final String documentBody){
+			URI url = config.buildUrl(collectionID, documentID, fieldID);
+			HttpPut	request = new HttpPut(url);
 					request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
 					request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
 					request.addHeader(KEYWORD_CONTENT_TYPE, APPLICATION_JSON);
@@ -430,42 +404,47 @@ public class MongoDBRestAPI implements DataBaseIO {
 					
 			request.setEntity(params);
 			
-			HttpResponse response = httpExecute(request);
+			HttpResponse httpResponse = httpExecute(request);
 			
-			if(response != null){
-				return MongoDBResponseMessage.createFromHttpStatus(response.getStatusLine().getStatusCode(), put);
+			if (httpResponse != null) {
+				int statusCode = httpResponse.getStatusLine().getStatusCode();
+				return MongoDBResponseMessage.createFromHttpStatus(statusCode, put);
 			}
 			throw new RuntimeException("HttpRespone is null");
 		}
 		
 		@SuppressWarnings("unused")
-		private ResponseMessage getDocuments(String collectionID){
-			HttpGet 	request = new HttpGet(configuration.buildUrl(collectionID, null, null));
+		private ResponseMessage getDocuments(final String collectionID){
+			URI url = config.buildUrl(collectionID, null, null);
+			HttpGet 	request = new HttpGet(url);
 			request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
 			request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
 
-			HttpResponse response = httpExecute(request);
+			HttpResponse httpResponse = httpExecute(request);
 			
-			if(response != null){
-			content = createcontentFromHttpResponse(response);
+			if (httpResponse != null) {
+			contentObject = createcontentFromHttpResponse(httpResponse);
 				
-				return MongoDBResponseMessage.createFromHttpStatus(response.getStatusLine().getStatusCode(), get);
+				int statusCode = httpResponse.getStatusLine().getStatusCode();
+				return MongoDBResponseMessage.createFromHttpStatus(statusCode, get);
 			}
 			throw new RuntimeException("HttpRespone is null");
 		}
 		
 		@SuppressWarnings("unused")
-		private ResponseMessage getForAllDocuments(String collectionID, String fieldID){		
-			HttpGet 	request = new HttpGet(configuration.buildUrl(collectionID, null, fieldID));
+		private ResponseMessage getForAllDocuments(final String collectionID, final String fieldID){		
+			URI url = config.buildUrl(collectionID, null, fieldID);
+			HttpGet 	request = new HttpGet(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
 						request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
 						
-			HttpResponse response = httpExecute(request);
+			HttpResponse httpResponse = httpExecute(request);
 			
-			if(response != null){
-				content = createcontentFromHttpResponse(response);;
+			if (httpResponse != null) {
+				contentObject = createcontentFromHttpResponse(httpResponse);
 				
-				return MongoDBResponseMessage.createFromHttpStatus(response.getStatusLine().getStatusCode(), get);
+				int statusCode = httpResponse.getStatusLine().getStatusCode();
+				return MongoDBResponseMessage.createFromHttpStatus(statusCode, get);
 			}
 			throw new RuntimeException("HttpRespone is null");
 		}

@@ -1,9 +1,6 @@
 package carisma.core.io.content;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -16,8 +13,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.json.JSONException;
-import org.json.XML;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -25,68 +20,14 @@ import org.xml.sax.SAXException;
 public class XML_DOM implements Content {
 
 	public static final String ID = "XML_DOM";
-	private Document document;
+	private Document xmlDocument;
 	
-	public XML_DOM(BASE64 base64) throws ContentException{
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder;
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			throw new ContentException(e);
-		}
-		try {
-			
-			document = dBuilder.parse(new ByteArrayInputStream(base64.getBytesDecoded()));
-		} catch (SAXException e) {
-			throw new ContentException(e);
-		} catch (IOException e) {
-			throw new ContentException(e);
-		}
-		document.getDocumentElement().normalize();
+	
+	protected XML_DOM(final Document document){
+		this.xmlDocument = document;
 	}
 	
-	public XML_DOM(Document document){
-		this.document = document;
-	}
-	
-	public XML_DOM(InputStream stream) throws ContentException{
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder;
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			throw new ContentException(e);
-		}
-		try {
-			document = dBuilder.parse(stream);
-		} catch (SAXException e) {
-			throw new ContentException(e);
-		} catch (IOException e) {
-			throw new ContentException(e);
-		}
-		document.getDocumentElement().normalize();
-	}
-	
-	public XML_DOM(File file) throws ContentException {
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder;
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			throw new ContentException(e);
-		}
-		try {
-			document = dBuilder.parse(file);
-		} catch (SAXException e) {
-			throw new ContentException(e);
-		} catch (IOException e) {
-			throw new ContentException(e);
-		}
-		document.getDocumentElement().normalize();
-	}
-	
-	public XML_DOM(String xml) throws ContentException {
+	protected XML_DOM(final String xml) throws ContentException {
 		InputSource in = new InputSource();
 		in.setCharacterStream(new StringReader(xml));
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -97,39 +38,24 @@ public class XML_DOM implements Content {
 			throw new ContentException(e);
 		}
 		try {
-			document = dBuilder.parse(in);
+			xmlDocument = dBuilder.parse(in);
 		} catch (SAXException e) {
 			throw new ContentException(e);
 		} catch (IOException e) {
 			throw new ContentException(e);
 		}
-		document.getDocumentElement().normalize();
-	}
-
-	public XML_DOM(JSON content) throws ContentException {
-		try {
-			String string = XML.toString(content);
-			document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(string);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
+		xmlDocument.getDocumentElement().normalize();
 	}
 
 	@Override
-	public String getFormat() {
+	public final String getFormat() {
 		return ID;
 	}
 
 	@Override
-	public String asString() {
+	public final String asString() {
 		try {
-			DOMSource domSource = new DOMSource(document);
+			DOMSource domSource = new DOMSource(xmlDocument);
 			StringWriter writer = new StringWriter();
 		    StreamResult result = new StreamResult(writer);
 		    TransformerFactory tf = TransformerFactory.newInstance();
@@ -142,7 +68,7 @@ public class XML_DOM implements Content {
 	    return "";
 	}
 
-	public Document getDocument() {
-		return document;
+	public final Document getDocument() {
+		return xmlDocument;
 	}
 }

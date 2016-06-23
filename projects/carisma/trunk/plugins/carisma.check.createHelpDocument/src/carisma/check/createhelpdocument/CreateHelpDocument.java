@@ -29,11 +29,8 @@ import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheck;
 import carisma.core.checks.CheckParameter;
-import carisma.core.io.content.BASE64;
 import carisma.core.io.content.Content;
-import carisma.core.io.content.Content.ContentException;
-import carisma.core.io.content.JSON;
-import carisma.core.io.content.XML_DOM;
+import carisma.core.io.content.ContentFactory;
 import carisma.core.io.implementations.FileIO;
 import carisma.core.io.implementations.db.mongodb.restapi.MongoDBDynamicConfiguration;
 import carisma.core.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
@@ -63,12 +60,11 @@ public class CreateHelpDocument implements CarismaCheck {
 				BooleanParameter fileOrDB = (BooleanParameter) (parameters.get("carisma.check.createHelpDocument.STSFileOrDB"));
 				
 				Document doc;
-				if(fileOrDB.getValue()){
+				if (fileOrDB.getValue()) {
 					doc = loadSTSInputFromFile();
-				}
-				else{
+				} else {
 					doc = loadSTSInputFromDB();
-					if(doc == null){
+					if (doc == null) {
 						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Unable to load STS input from DB"));
 						return false;
 					}
@@ -518,8 +514,7 @@ public class CreateHelpDocument implements CarismaCheck {
 						}
 					}
 				}
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 
 				return false;
@@ -541,38 +536,21 @@ public class CreateHelpDocument implements CarismaCheck {
 
 		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
 
-		String sts_collection = preferencesStore.getString(KEY_STS_COLLECTION);
-		String sts_document = preferencesStore.getString(KEY_STS_DOCUMENT);
-		String sts_field = preferencesStore.getString(KEY_STS_FIELD);
+		String stsCollection = preferencesStore.getString(KEY_STS_COLLECTION);
+		String stsDocument = preferencesStore.getString(KEY_STS_DOCUMENT);
+		String stsField = preferencesStore.getString(KEY_STS_FIELD);
 
-		Content content = db.read(new MongoDBDynamicConfiguration(url, sts_collection, sts_document, sts_field));
-		if(content!=null){
-			
-			if (content.getFormat().compareTo(XML_DOM.ID) == 0) {
-				return ((XML_DOM) content).getDocument();
-			} else if (content.getFormat().compareTo(JSON.ID) == 0) {
-				try {
-					return new XML_DOM((JSON) content).getDocument();
-				} catch (ContentException e) {
-					e.printStackTrace();
-					return null;
-				}
-			} else if(content.getFormat().compareTo(BASE64.ID)==0){
-				try {
-					return new XML_DOM((BASE64) content).getDocument();
-				} catch (ContentException e) {
-					e.printStackTrace();
-					return null;
-				}
-			}
-		}
-		return null;
+		MongoDBDynamicConfiguration config = new MongoDBDynamicConfiguration(url, stsCollection, stsDocument, stsField);
+		Content content = db.read(config);
+		return ContentFactory.convertToXmlDom(content).getDocument();
 	}
 
 	private Document loadSTSInputFromFile() {
 		Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		FileDialog dialog = new FileDialog(activeShell);
 		dialog.open();
-		return FileIO.read(new File(new File(dialog.getFilterPath()),dialog.getFileName()));
+		String filterPath = dialog.getFilterPath();
+		String fileName = dialog.getFileName();
+		return FileIO.read(new File(new File(filterPath), fileName));
 	}
 }
