@@ -99,8 +99,9 @@ public final class YaoqiangHelper {
 	 */
 	public static String emf2yaoqiangModel(final String inFilePath) {
 		String output = "";
+		BufferedReader in = null;
 		try {
-			BufferedReader in = new BufferedReader(new InputStreamReader(
+			in = new BufferedReader(new InputStreamReader(
 					new FileInputStream(inFilePath)));
 	
 			String line;
@@ -193,6 +194,15 @@ public final class YaoqiangHelper {
 		} catch (IOException e) {
 			output = "";
 		}
+		finally{
+			if(in!=null){
+				try {
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	
 		return output;
 		
@@ -211,18 +221,23 @@ public final class YaoqiangHelper {
 	 * @return if successful true otherwise false
 	 */
 	public static boolean emf2yaoqiangModel(final String inFilePath, final String outFilePath) {
+		PrintWriter out = null;
 		try {
 			String output = emf2yaoqiangModel(inFilePath);
-			PrintWriter out = new PrintWriter(new FileWriter(outFilePath));
+			out = new PrintWriter(new FileWriter(outFilePath));
 			
 			if (!output.equals("")) {
 				out.print(output);
-				out.close();
 			} else {
 				return false;
 			}	
 		} catch (IOException e) {
 			return false;
+		}
+		finally{
+			if(out!=null){
+				out.close();
+			}
 		}
 		return true;
 		
