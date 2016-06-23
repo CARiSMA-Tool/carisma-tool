@@ -43,7 +43,6 @@ import carisma.evolution.SubstElement;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.InvalidMetaclassException;
-import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 

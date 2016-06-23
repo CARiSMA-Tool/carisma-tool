@@ -13,11 +13,6 @@ package carisma.ui.eclipse.rcp;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.part.FileEditorInput;
-
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
 
 
 /**

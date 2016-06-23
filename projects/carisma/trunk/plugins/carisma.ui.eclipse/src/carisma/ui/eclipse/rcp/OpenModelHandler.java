@@ -14,16 +14,8 @@ package carisma.ui.eclipse.rcp;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-
 import carisma.core.analysis.Analysis;
 import carisma.core.analysis.AnalysisUtil;
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
 import carisma.ui.eclipse.editors.EditorTranslator;
 
 

@@ -1,7 +1,6 @@
 package carisma.evolution.uml2.io.datatype;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

@@ -13,12 +13,6 @@ package carisma.ui.eclipse.rcp;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IWorkbenchWindow;
-
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
 
 
 /**

@@ -14,7 +14,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.FileSelectionDialog;
 import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Package;
@@ -26,7 +25,6 @@ import org.w3c.dom.Element;
 
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.BooleanParameter;
-import carisma.core.analysis.InputFileParameter;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheck;

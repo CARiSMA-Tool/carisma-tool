@@ -20,16 +20,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.EditorReference;
-
 import carisma.ui.eclipse.CarismaGUI;
-import carisma.ui.eclipse.editors.AdfEditor;
-import carisma.ui.eclipse.editors.AdfEditorPage;
 import carisma.ui.eclipse.preferences.Constants;
 
 

@@ -8,8 +8,6 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.dialogs.MessageDialog;
-
 import carisma.core.analysis.Analysis;
 import carisma.core.analysis.AnalysisUtil;
 import carisma.core.models.ModelType;

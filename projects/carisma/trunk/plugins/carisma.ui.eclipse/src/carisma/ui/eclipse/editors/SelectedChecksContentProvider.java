@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.eclipse.jface.viewers.ArrayContentProvider;
 
-import carisma.core.analysis.Analysis;
 import carisma.core.analysis.CheckReference;
 
 /**
