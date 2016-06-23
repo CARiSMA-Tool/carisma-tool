@@ -60,6 +60,7 @@ public class AnalysisResult {
 	/*
 	 * No-arg constructor is just to keep JAXB from complaining
 	 */
+	@SuppressWarnings("unused")
 	private AnalysisResult() {
 	    throw new UnsupportedOperationException("No-arg constructor is just to keep JAXB from complaining");
 	}
