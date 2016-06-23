@@ -14,6 +14,10 @@ package carisma.core.analysis;
  */
 public class RegisterInUseException extends Exception {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2865783878801116184L;
+	/**
 	 * name of this exception.
 	 */
 	private String name;
