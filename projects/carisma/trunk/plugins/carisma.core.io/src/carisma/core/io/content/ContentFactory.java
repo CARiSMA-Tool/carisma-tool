@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.XML;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -48,7 +49,6 @@ public final class ContentFactory {
 			try {
 				content = new XML_DOM(serialized);
 			} catch (ContentException e) {
-				e.printStackTrace();
 				content = new PLAIN(serialized);
 			}
 		} else if (isJsonEncoded(serialized)) {
@@ -85,6 +85,17 @@ public final class ContentFactory {
 		}
 	}
 
+	public static JSON storeInJSONField(Content content, String field){
+		String asText = content.asString();
+		String escaped = StringEscapeUtils.escapeJson(asText);
+		StringBuilder builder = new StringBuilder("{\"");
+		builder.append(field);
+		builder.append("\":\"");
+		builder.append(escaped);
+		builder.append("\"}");
+		return new JSON(builder.toString());
+	}
+	
 	/**
 	 * Converts the given Content object into a BASE64 content object.
 	 * @param content an object of any implementation of the Content interface
@@ -173,7 +184,7 @@ public final class ContentFactory {
 			if (format != ContentFormats.F_PLAIN) {
 				return convertToJson(realContent);
 			}
-			break;
+			return convertToJson(createContent("{" + realContent.toString() +"}"));
 		case F_XML_DOM:
 			return new JSON(XML.toJSONObject(contentString).toString());
 		default:
@@ -181,7 +192,6 @@ public final class ContentFactory {
 			String message = "Unsupported input format: " + contentFormat;
 			throw new RuntimeException(message);
 		}
-		throw new RuntimeException("Content cannot be converted to json");
 	}
 
 	/**

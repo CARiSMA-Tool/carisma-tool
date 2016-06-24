@@ -7,6 +7,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.util.Base64;
 import java.util.Scanner;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -23,6 +25,7 @@ import carisma.core.io.content.Content;
 import carisma.core.io.content.ContentFactory;
 import carisma.core.io.content.ContentFactory.ContentFormats;
 import carisma.core.io.content.JSON;
+import carisma.core.io.content.PLAIN;
 import carisma.core.io.implementations.db.DataBaseIO;
 import carisma.core.io.implementations.db.ResponseMessage;
 
@@ -31,6 +34,7 @@ import static carisma.core.io.implementations.db.mongodb.restapi.MongoDBConstant
 
 public class MongoDBRestAPI implements DataBaseIO {
 	
+	private static final ContentFormats F_JSON = ContentFormats.F_JSON;
 	private final String SECRET;
 	private final String USER;
 	
@@ -65,8 +69,17 @@ public class MongoDBRestAPI implements DataBaseIO {
 			MongoDBDynamicConfiguration mongoConf = (MongoDBDynamicConfiguration) config;
 			RestAPI api = new RestAPI(mongoConf);
 			
-			JSON json = ContentFactory.convertToJson(content);
-			String contentAsString = json.asString();
+			String body;
+			String contentAsString = content.asString();
+			if (content.getFormat().compareTo(JSON.ID) == 0) {
+				body = contentAsString;
+			} else if (content.getFormat().compareTo(PLAIN.ID) == 0) {
+				body = StringEscapeUtils.escapeJson(contentAsString);
+			} else {
+				JSON json = ContentFactory.convertToJson(content);
+				body = json.asString();
+			}
+			
 			
 			String collectionID = mongoConf.getCollectionID();
 			String documentID = mongoConf.getDocumentID();
@@ -96,11 +109,11 @@ public class MongoDBRestAPI implements DataBaseIO {
 			if (response != null && response.getStatus() == 200) {
 				if (hasDocumentID) {
 					if (hasFieldID) {
-						String documentBody = "{\"" + fieldID + "\":'" + contentAsString + "'}";
+						String documentBody = "{\"" + fieldID + "\":'" + body + "'}";
 						response = api.putField(collectionID, documentID, fieldID, documentBody);
 					} else {
 						api.deleteDocument(collectionID, documentID);
-						response = api.postDocument(collectionID, documentID, contentAsString);
+						response = api.postDocument(collectionID, documentID, body);
 					}
 				}
 			} else {
@@ -110,10 +123,10 @@ public class MongoDBRestAPI implements DataBaseIO {
 						if (response.getStatus() == 404) {
 							return false;
 						}
-						String documentBody = "{\"" + fieldID + "\":'" + contentAsString + "'}";
+						String documentBody = "{\"" + fieldID + "\":'" + body + "'}";
 						response = api.postField(collectionID, documentID, fieldID, documentBody);
 					} else {
-						response = api.postDocument(collectionID, documentID, contentAsString);
+						response = api.postDocument(collectionID, documentID, body);
 					}
 				}
 			}
@@ -195,15 +208,21 @@ public class MongoDBRestAPI implements DataBaseIO {
 		return httpResponse;
 	}
 	
-	private Content createcontentFromHttpResponse(final HttpResponse httpResponse){
+	/**
+	 * Creates a Content object from the given HttpResponse.
+	 * 
+	 * @param httpResponse The Httpresponse
+	 * @return a Content object
+	 */
+	private Content createcontentFromHttpResponse(final HttpResponse httpResponse) {
 		Scanner scanner = null;
 		try {
 			HttpEntity entity = httpResponse.getEntity();
 			InputStream inputStream = entity.getContent();
 			InputStreamReader reader = new InputStreamReader(inputStream);
 			scanner = new Scanner(reader);
-			String inputStreamString = scanner.useDelimiter("\\A").next();
-			return ContentFactory.createContent(inputStreamString, ContentFormats.F_JSON);
+			String string = scanner.useDelimiter("\\A").next();
+			return ContentFactory.createContent(string, F_JSON);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -216,19 +235,32 @@ public class MongoDBRestAPI implements DataBaseIO {
 		return null;
 	}
 	
+	/**
+	 * A wrapper for the swagger RestAPI of the VisiOn DB.
+	 * @author speldszus
+	 *
+	 */
 	private class RestAPI {
-		
-		private MongoDBStaticConfiguration config;
-
 		/*
 		 * Private implementation of RestAPI
 		 */
 
-		public RestAPI(final MongoDBStaticConfiguration configuration) {
+		/**
+		 * A configuration with the basic server data.
+		 */
+		private MongoDBStaticConfiguration config;
+
+		/**
+		 * Creates a RestAPI instance for accessing a MongoDB
+		 * at the server given in the configuration.
+		 * 
+		 * @param configuration The server configuration
+		 */
+		RestAPI(final MongoDBStaticConfiguration configuration) {
 			this.config = configuration;
 		}
 		
-		private ResponseMessage deleteDocument(final String collectionID, final String documentID){
+		private ResponseMessage deleteDocument(final String collectionID, final String documentID) {
 			URI url = config.buildUrl(collectionID, documentID, null);
 			HttpDelete	request = new HttpDelete(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
@@ -244,7 +276,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 			throw new RuntimeException("HttpRespone is null");
 		}
 		
-		private ResponseMessage getDocument(final String collectionID, final String documentID){
+		private ResponseMessage getDocument(final String collectionID, final String documentID) {
 			URI url = config.buildUrl(collectionID, documentID, null);
 			HttpGet 	request = new HttpGet(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
@@ -264,7 +296,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 			throw new RuntimeException("HttpRespone is null");
 		}
 		
-		private ResponseMessage postDocument(final String collectionID, final String documentID, final String documentBody){
+		private ResponseMessage postDocument(final String collectionID, final String documentID, final String documentBody) {
 			URI url = config.buildUrl(collectionID, documentID, null);
 			HttpPost	request = new HttpPost(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
@@ -292,7 +324,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 		}
 		
 		@SuppressWarnings("unused")
-		private ResponseMessage putDocument(final String collectionID, final String documentID, final String documentBody){
+		private ResponseMessage putDocument(final String collectionID, final String documentID, final String documentBody) {
 			URI url = config.buildUrl(collectionID, documentID, null);
 			HttpPut	request = new HttpPut(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
@@ -320,7 +352,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 		}
 		
 		@SuppressWarnings("unused")
-		private ResponseMessage deleteField(final String collectionID, final String documentID, final String fieldID){
+		private ResponseMessage deleteField(final String collectionID, final String documentID, final String fieldID) {
 			URI url = config.buildUrl(collectionID, documentID, fieldID);
 			HttpDelete	request = new HttpDelete(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
@@ -336,7 +368,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 			throw new RuntimeException("HttpRespone is null");
 		}
 		
-		private ResponseMessage getField(final String collectionID, final String documentID, final String fieldID){
+		private ResponseMessage getField(final String collectionID, final String documentID, final String fieldID) {
 			URI url = config.buildUrl(collectionID, documentID, fieldID);
 			HttpGet 	request = new HttpGet(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
@@ -362,7 +394,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 			throw new RuntimeException("HttpRespone is null");
 		}
 
-		private ResponseMessage postField(final String collectionID, final String documentID, final String fieldID, final String documentBody){
+		private ResponseMessage postField(final String collectionID, final String documentID, final String fieldID, final String documentBody) {
 			HttpPost	request = new HttpPost(config.buildUrl(collectionID, documentID, fieldID));
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
 						request.addHeader(KEYWORD_ACCEPT, APPLICATION_JSON);
@@ -387,7 +419,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 			throw new RuntimeException("HttpRespone is null");
 		}
 		
-		private ResponseMessage putField(final String collectionID, final String documentID, final String fieldID, final String documentBody){
+		private ResponseMessage putField(final String collectionID, final String documentID, final String fieldID, final String documentBody) {
 			URI url = config.buildUrl(collectionID, documentID, fieldID);
 			HttpPut	request = new HttpPut(url);
 					request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
@@ -414,7 +446,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 		}
 		
 		@SuppressWarnings("unused")
-		private ResponseMessage getDocuments(final String collectionID){
+		private ResponseMessage getDocuments(final String collectionID) {
 			URI url = config.buildUrl(collectionID, null, null);
 			HttpGet 	request = new HttpGet(url);
 			request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());
@@ -432,7 +464,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 		}
 		
 		@SuppressWarnings("unused")
-		private ResponseMessage getForAllDocuments(final String collectionID, final String fieldID){		
+		private ResponseMessage getForAllDocuments(final String collectionID, final String fieldID) {		
 			URI url = config.buildUrl(collectionID, null, fieldID);
 			HttpGet 	request = new HttpGet(url);
 						request.addHeader(KEYWORD_AUTHORIZATION, buildAuth());

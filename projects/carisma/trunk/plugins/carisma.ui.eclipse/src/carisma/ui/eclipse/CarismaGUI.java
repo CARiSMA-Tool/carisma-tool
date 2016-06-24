@@ -518,7 +518,14 @@ public class CarismaGUI extends AbstractUIPlugin {
 				String carismaField = preferencesStore.getString(KEY_CARISMA_FIELD);
 				MongoDBDynamicConfiguration carismaConfiguration = new MongoDBDynamicConfiguration(url, carismaCollection, carismaDocument, carismaField);
 				boolean success = db.write(carismaConfiguration, contentXml);
-				
+				StringBuilder errorMessageBuilder = new StringBuilder();
+				if (!success) { 
+					String response = db.getResponseMessage().toString();
+					
+					errorMessageBuilder.append("Export of the XMI failed for the following reason:");
+					errorMessageBuilder.append(response);
+					errorMessageBuilder.append("\n");
+				}
 				db = new MongoDBRestAPI(user, secret, url);
 				
 				String plaCollection = preferencesStore.getString(KEY_PLA_COLLECTION);
@@ -530,7 +537,12 @@ public class CarismaGUI extends AbstractUIPlugin {
 				Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 				String dialogTitle = "Vision Database Export";
 				if (!success) {
-					String responseMessage = db.getResponseMessage().toString();
+					String response = db.getResponseMessage().toString();
+					
+					errorMessageBuilder.append("Export of the html report failed for the following reason:");
+					errorMessageBuilder.append(response);
+					String responseMessage = errorMessageBuilder.toString();
+					
 					Status status = new Status(IStatus.ERROR, "carisma.core.io", responseMessage);
 					ErrorDialog.openError(activeShell, dialogTitle, "Export to VisiOn Database failed", status); 
 				} else {
