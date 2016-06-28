@@ -111,35 +111,31 @@ public class AutomatedAnalysis {
 			 */
 
 			for (String s : keywords) {
-				if (keywords.contains(s)) {
 
-					if (s.equalsIgnoreCase("SecureDependency")) {
+				if (s.equalsIgnoreCase("SecureDependency")) {
 
-						CheckReference sd = cr.createReference(secureDependency);
-						sd.setEnabled(false);
-						checks.add(sd);
-					}
+					CheckReference sd = cr.createReference(secureDependency);
+					sd.setEnabled(false);
+					checks.add(sd);
+				}
 
-					if (s.equalsIgnoreCase("SecureLinks")) {
+				if (s.equalsIgnoreCase("SecureLinks")) {
 
-						CheckReference sl = cr.createReference(secureLinks);
-						sl.setEnabled(false);
-						checks.add(sl);
+					CheckReference sl = cr.createReference(secureLinks);
+					sl.setEnabled(false);
+					checks.add(sl);
 
-					}
+				}
 
-					if (s.equalsIgnoreCase("RABAC")) {
+				if (s.equalsIgnoreCase("RABAC")) {
 
-						CheckReference r1 = cr.createReference(rabacconf);
-						r1.setEnabled(false);
-						CheckReference r2 = cr.createReference(rabac);
-						r2.setEnabled(false);
+					CheckReference r1 = cr.createReference(rabacconf);
+					r1.setEnabled(false);
+					CheckReference r2 = cr.createReference(rabac);
+					r2.setEnabled(false);
 
-						checks.add(r1);
-						checks.add(r2);
-
-					}
-
+					checks.add(r1);
+					checks.add(r2);
 				}
 			}
 

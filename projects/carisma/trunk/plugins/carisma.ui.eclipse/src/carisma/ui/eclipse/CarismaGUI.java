@@ -34,7 +34,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
@@ -597,49 +596,15 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 		a.runAnalysis(ana.getAnalysis(), new EclipseUIConnector());
 
-		/*
-		 * the option to try it on the disk (ignoring the Resources of eclipse)
-		 */
-		// get model path in workspace
-		String path = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-		// get model name
-		String name = ana.getAnalysis().getName();
-		// get path of new analysis on disk
-		String anaPath = ana.getPathstring();
-		// merge the paths
-
-		// String analysisPath = path + anaPath + name;
-		String analysisPath = name ;
-		System.out.println(name);
-		// System.out.println(container.toString() + "/" + name);
-		// System.out.println(analysisPath + ".adf");
-		// store the created analysis in the right project on the workspace.
-
-
-		
-		/*
-		 * Version with the Resource plugins, doesnt works
-		 * 
-		 */
-		 try {
-			System.out.println(ana.getAnalysis().getIFile().getContents());
-		} catch (CoreException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-
-		
-		 InputStream stream = new ByteArrayInputStream(analysisPath.getBytes(StandardCharsets.UTF_8));
-
-	
+		String name = ana.getAnalysis().getName() + ".adf";
 		try {
 			IFile file = null;
 			if (container instanceof IFolder) {
 				IFolder folder = (IFolder) container;
-				file = folder.getFile(analysisPath + ".adf");
+				file = folder.getFile(name);
 				if (!file.exists()) {
 					try {
-						file.create(stream, IResource.NONE, null);
+						file.create(new ByteArrayInputStream(new byte[0]), IResource.NONE, null);
 					} catch (CoreException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -648,19 +613,18 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 			} else if (container instanceof IProject) {
 				IProject project = (IProject) container;
-				file = project.getFile(analysisPath + ".adf");
+				file = project.getFile(name);
 
 				if (!file.exists()) {
 					try {
-						file.create(stream, IResource.NONE, null);
+						file.create(new ByteArrayInputStream(new byte[0]), IResource.NONE, null);
 					} catch (CoreException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
 				}
-				AnalysisUtil.storeAnalysis(ana.getAnalysis(), path  + anaPath + name + ".adf");
-				System.out.println("THE PATH IS: " + path +  anaPath + name);
+				AnalysisUtil.storeAnalysis(ana.getAnalysis(), file.getRawLocation().toString());
 				 
 				file.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor() );
 			}
