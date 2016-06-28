@@ -1,10 +1,10 @@
 package carisma.core.analysis;
 
-import java.util.List;
 import java.io.StringReader;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -20,7 +20,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-
+import carisma.core.Carisma;
+import carisma.core.checks.CheckDescriptor;
+import carisma.core.checks.CheckRegistry;
 
 public class AutomatedAnalysis {
 
@@ -29,11 +31,26 @@ public class AutomatedAnalysis {
 	final String securelinksId = "carisma.check.staticcheck.securelinks";
 	final String securedependencyId = "carisma.check.staticcheck.securedependency";
 
+	List<CheckDescriptor> checkDescriptors = Carisma.getInstance().getCheckRegistry().getRegisteredChecks();
+
 	List<CheckReference> checks = new ArrayList<CheckReference>();
 	Path path = null;
 	String pathstring = "";
+	CheckRegistry cr = new CheckRegistry();
 
 	public AutomatedAnalysis(String helpDocument, IContainer container) {
+
+		/*
+		 * initializing the Checkregistry
+		 * 
+		 */
+
+		cr.initialize();
+
+		CheckDescriptor rabacconf = cr.getCheckDescriptor(rabacId1);
+		CheckDescriptor rabac = cr.getCheckDescriptor(rabacId2);
+		CheckDescriptor secureLinks = cr.getCheckDescriptor(securelinksId);
+		CheckDescriptor secureDependency = cr.getCheckDescriptor(securedependencyId);
 
 		Set<String> keywords = new HashSet<String>();
 		String reportDump = "";
@@ -42,6 +59,7 @@ public class AutomatedAnalysis {
 		checkIds.add("RABAC");
 		checkIds.add("SecureLinks");
 		checkIds.add("SecureDependency");
+
 		/*
 		 * parse XML file
 		 * 
@@ -62,16 +80,14 @@ public class AutomatedAnalysis {
 			for (int temp = 0; temp < elements.getLength(); temp++) {
 
 				Node nNode = elements.item(temp);
-			//	System.out.println(nNode.toString());
+				// System.out.println(nNode.toString());
 
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
 					if (eElement.getTagName().equals("Filepath")) {
-						 pathstring = eElement.getTextContent().replace('\\', '/');
+						pathstring = eElement.getTextContent().replace('\\', '/');
 
-						
 					}
-			
 
 					if (eElement.getTagName().equals("ReportDump")) {
 						reportDump = eElement.getTextContent();
@@ -99,21 +115,25 @@ public class AutomatedAnalysis {
 
 					if (s.equalsIgnoreCase("SecureDependency")) {
 
-						CheckReference sd = new CheckReference(securedependencyId, false);
+						CheckReference sd = cr.createReference(secureDependency);
+						sd.setEnabled(false);
 						checks.add(sd);
 					}
 
 					if (s.equalsIgnoreCase("SecureLinks")) {
 
-						CheckReference sl = new CheckReference(securelinksId, false);
+						CheckReference sl = cr.createReference(secureLinks);
+						sl.setEnabled(false);
 						checks.add(sl);
 
 					}
 
 					if (s.equalsIgnoreCase("RABAC")) {
 
-						CheckReference r1 = new CheckReference(rabacId1, false);
-						CheckReference r2 = new CheckReference(rabacId2, false);
+						CheckReference r1 = cr.createReference(rabacconf);
+						r1.setEnabled(false);
+						CheckReference r2 = cr.createReference(rabac);
+						r2.setEnabled(false);
 
 						checks.add(r1);
 						checks.add(r2);
@@ -136,23 +156,29 @@ public class AutomatedAnalysis {
 	public Analysis getAnalysis() {
 
 		IFile file1 = (IFile) ResourcesPlugin.getWorkspace().getRoot().findMember(pathstring.replace('\\', '/'));
-		
-		
+
 		String name = "automated_analysis_" + carisma.core.util.Utils.getISOTimestamp();
 		Analysis ana = new Analysis(name, "UML2", file1);
-		
-		
+
 		for (int i = 0; i < checks.size(); i++) {
 			ana.getChecks().add(checks.get(i));
 		}
-		
-		
+
 		return ana;
 
 	}
 
-	
-	public String getPathstring(){
+	public String getPathstring() {
 		return pathstring.substring(0, pathstring.lastIndexOf('/')) + "/";
 	}
+
+	public CheckDescriptor getCheckDescriptor(String name) {
+		for (CheckDescriptor cd : checkDescriptors) {
+			if (name.equalsIgnoreCase(cd.getName())) {
+				return cd;
+			}
+		}
+		return null;
+	}
+
 }
