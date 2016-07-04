@@ -10,5 +10,13 @@
             nsURI="http://www.w3.org/2002/07/owl">
       </modeltype>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="carisma.modeltype.owl2.model.owl.OwlPackage"
+            genModel="model/owl2.genmodel"
+            uri="http:///owl.ecore">
+      </package>
+   </extension>
 
 </plugin>

@@ -12,10 +12,5 @@ Bundle-ClassPath: .,
  lib/owlapi-distribution-3.4.3-bin.jar,
  lib/xmlcatalog.jar,
  lib/log4j.jar
-Export-Package: carisma.modeltype.owl2,
- carisma.modeltype.owl2.change,
- carisma.modeltype.owl2.hide,
- carisma.modeltype.owl2.model.owl,
- carisma.modeltype.owl2.model.owl.impl,
- carisma.modeltype.owl2.model.owl.util,
- carisma.modeltype.owl2.type
+Export-Package: carisma.modeltype.owl2.model.owl,
+ carisma.modeltype.owl2.model.owl.impl
