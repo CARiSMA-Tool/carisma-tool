@@ -2,11 +2,20 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.uml2.uml.dynamic_package">
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
-            location="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml"
-            uri="http://www.umlsec.de/profiles/UMLsec/RABAC">
+            iconpath="icons/Logo16x16.png"
+            name="carisma.profile.UMLsec.RABAC"
+            path="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml">
       </profile>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RABAC -->
+      <package
+            uri="http://www.umlsec.de/profiles/UMLsec/RABAC"
+            class="RABAC.RABACPackage"
+            genModel="profile/RABAC.genmodel"/>
    </extension>
 
 </plugin>

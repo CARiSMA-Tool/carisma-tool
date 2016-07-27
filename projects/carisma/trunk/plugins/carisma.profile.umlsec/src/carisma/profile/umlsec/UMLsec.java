@@ -43,7 +43,7 @@ public enum UMLsec {
 	ALLOWED_USERS ("allowed users"),
 	SAP_TRANSACTION ("SAP Transaction"),
 	USED_BY ("used-by"),
-	PROTECTED ("protected"),
+	PROTECTED_ACTION ("protected action"),
 	AUTHORIZED_STATUS ("authorized-status"),
 	LOCKED_STATUS ("locked-status"),
 	IDENTIFIABLE ("identifiable"),

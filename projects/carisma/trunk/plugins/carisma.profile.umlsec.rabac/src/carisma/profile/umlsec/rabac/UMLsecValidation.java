@@ -69,7 +69,7 @@ public final class UMLsecValidation {
 //				seperation of duty
 //				SAP Transaction
 //				used-by
-//				protected
+//				protected action
 	
 	/**
 	 * Making constructor private.
@@ -678,7 +678,7 @@ public final class UMLsecValidation {
 	 * @return if the stereotype is filled correctly, false otherwise
 	 */
 	//check if stereotype 'rbac' is applied to a Sequence Diagram but not to a model
-	//check if tag 'protected' got content
+	//check if tag 'protected actions' got content
 	//check if tag 'role' got content and is filled correct as tuples in braces
 	//check if tag 'right' got content and is filled correct as tuples in braces
 	@SuppressWarnings("unchecked")
@@ -697,9 +697,9 @@ public final class UMLsecValidation {
 					+ ((NamedElement) stereoApp.getExtendedElement()).getName() + "!");
 			return validations;
 		}
-		TaggedValue protectedTag = stereoApp.getTaggedValue("protected");
+		TaggedValue protectedTag = stereoApp.getTaggedValue("protected actions");
 		if ((protectedTag.getValue() == null) || (((List<String>) protectedTag.getValue()).size() == 0)) {
-			validations.add("Empty protected tag of Stereotype <<rbc>> at Element " + stereoApp.getExtendedElementName() + "!");
+			validations.add("Empty protected actions tag of Stereotype <<rbc>> at Element " + stereoApp.getExtendedElementName() + "!");
 		}
 		
 		TaggedValue roleTag = stereoApp.getTaggedValue("role");

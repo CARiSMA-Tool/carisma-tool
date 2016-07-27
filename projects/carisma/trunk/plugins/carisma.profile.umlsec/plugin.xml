@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated UMLsec -->
+      <package
+            uri="http:///UMLsec.ecore"
+            class="UMLsec.UMLsecPackage"
+            genModel="profile/UMLsec.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            iconpath="icons/Logo16x16.png"
+            name="carisma.profile.UMLsec"
+            path="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml">
+      </profile>
+   </extension>
    <extension
          point="org.eclipse.uml2.uml.dynamic_package">
       <profile
-            location="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"
+            location="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml"
             uri="http://www.umlsec.de/profiles/UMLsec">
       </profile>
    </extension>
