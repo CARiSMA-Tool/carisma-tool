@@ -7,6 +7,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: carisma.core,
  org.eclipse.core.runtime;bundle-version="3.6.0",
  carisma.modeltype.uml2;bundle-version="1.1.1"
-Export-Package: carisma.profile.umlsec
+Export-Package: UMLsec,
+ UMLsec.impl,
+ UMLsec.util,
+ carisma.profile.umlsec
 Bundle-Activator: carisma.profile.umlsec.Activator
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
