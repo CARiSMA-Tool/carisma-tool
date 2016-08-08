@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -385,7 +383,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 */
 	public EList<String> getPrivacy() {
 		if (privacy == null) {
-			privacy = new EDataTypeUniqueEList<String>(String.class, this, UMLsecPackage.CRITICAL__PRIVACY);
+			privacy = new EDataTypeEList<String>(String.class, this, UMLsecPackage.CRITICAL__PRIVACY);
 		}
 		return privacy;
 	}

@@ -214,5 +214,11 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//requires/actions"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//privacy">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//privacy/base_Dependency"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//privacy/base_Connector"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

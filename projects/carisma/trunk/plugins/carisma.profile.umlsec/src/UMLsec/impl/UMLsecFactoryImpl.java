@@ -88,6 +88,7 @@ public class UMLsecFactoryImpl extends EFactoryImpl implements UMLsecFactory {
 			case UMLsecPackage.AUTHORIZEDSTATUS: return createauthorizedstatus();
 			case UMLsecPackage.LOCKEDSTATUS: return createlockedstatus();
 			case UMLsecPackage.REQUIRES: return createrequires();
+			case UMLsecPackage.PRIVACY: return createprivacy();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -411,6 +412,16 @@ public class UMLsecFactoryImpl extends EFactoryImpl implements UMLsecFactory {
 	public requires createrequires() {
 		requiresImpl requires = new requiresImpl();
 		return requires;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public privacy createprivacy() {
+		privacyImpl privacy = new privacyImpl();
+		return privacy;
 	}
 
 	/**

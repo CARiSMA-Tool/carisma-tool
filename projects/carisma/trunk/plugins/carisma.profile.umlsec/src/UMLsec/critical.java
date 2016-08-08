@@ -231,7 +231,7 @@ public interface critical extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Privacy</em>' attribute list.
 	 * @see UMLsec.UMLsecPackage#getcritical_Privacy()
-	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
+	 * @model unique="false" dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
 	EList<String> getPrivacy();

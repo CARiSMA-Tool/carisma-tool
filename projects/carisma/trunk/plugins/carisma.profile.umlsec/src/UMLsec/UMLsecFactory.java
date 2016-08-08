@@ -310,6 +310,15 @@ public interface UMLsecFactory extends EFactory {
 	requires createrequires();
 
 	/**
+	 * Returns a new object of class '<em>privacy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>privacy</em>'.
+	 * @generated
+	 */
+	privacy createprivacy();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

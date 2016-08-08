@@ -196,6 +196,10 @@ public class UMLsecAdapterFactory extends AdapterFactoryImpl {
 				return createrequiresAdapter();
 			}
 			@Override
+			public Adapter caseprivacy(privacy object) {
+				return createprivacyAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -660,6 +664,20 @@ public class UMLsecAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createrequiresAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link UMLsec.privacy <em>privacy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see UMLsec.privacy
+	 * @generated
+	 */
+	public Adapter createprivacyAdapter() {
 		return null;
 	}
 

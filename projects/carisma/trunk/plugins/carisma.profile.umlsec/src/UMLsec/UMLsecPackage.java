@@ -38,7 +38,7 @@ public interface UMLsecPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http:///UMLsec.ecore";
+	String eNS_URI = "http://www.umlsec.de/profiles/UMLsec";
 
 	/**
 	 * The package namespace name.
@@ -1584,6 +1584,53 @@ public interface UMLsecPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link UMLsec.impl.privacyImpl <em>privacy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see UMLsec.impl.privacyImpl
+	 * @see UMLsec.impl.UMLsecPackageImpl#getprivacy()
+	 * @generated
+	 */
+	int PRIVACY = 32;
+
+	/**
+	 * The feature id for the '<em><b>Base Dependency</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY__BASE_DEPENDENCY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Base Connector</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY__BASE_CONNECTOR = 1;
+
+	/**
+	 * The number of structural features of the '<em>privacy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>privacy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link UMLsec.protectedaction <em>protectedaction</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2674,6 +2721,38 @@ public interface UMLsecPackage extends EPackage {
 	EReference getrequires_Actions();
 
 	/**
+	 * Returns the meta object for class '{@link UMLsec.privacy <em>privacy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>privacy</em>'.
+	 * @see UMLsec.privacy
+	 * @generated
+	 */
+	EClass getprivacy();
+
+	/**
+	 * Returns the meta object for the reference '{@link UMLsec.privacy#getBase_Dependency <em>Base Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Dependency</em>'.
+	 * @see UMLsec.privacy#getBase_Dependency()
+	 * @see #getprivacy()
+	 * @generated
+	 */
+	EReference getprivacy_Base_Dependency();
+
+	/**
+	 * Returns the meta object for the reference '{@link UMLsec.privacy#getBase_Connector <em>Base Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Connector</em>'.
+	 * @see UMLsec.privacy#getBase_Connector()
+	 * @see #getprivacy()
+	 * @generated
+	 */
+	EReference getprivacy_Base_Connector();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3575,6 +3654,32 @@ public interface UMLsecPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REQUIRES__ACTIONS = eINSTANCE.getrequires_Actions();
+
+		/**
+		 * The meta object literal for the '{@link UMLsec.impl.privacyImpl <em>privacy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see UMLsec.impl.privacyImpl
+		 * @see UMLsec.impl.UMLsecPackageImpl#getprivacy()
+		 * @generated
+		 */
+		EClass PRIVACY = eINSTANCE.getprivacy();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Dependency</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRIVACY__BASE_DEPENDENCY = eINSTANCE.getprivacy_Base_Dependency();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Connector</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRIVACY__BASE_CONNECTOR = eINSTANCE.getprivacy_Base_Connector();
 
 	}
 

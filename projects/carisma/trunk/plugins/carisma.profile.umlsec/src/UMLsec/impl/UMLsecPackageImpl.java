@@ -23,6 +23,7 @@ import UMLsec.issuernode;
 import UMLsec.lockedstatus;
 import UMLsec.nodownflow;
 import UMLsec.noupflow;
+import UMLsec.privacy;
 import UMLsec.protectedaction;
 import UMLsec.provable;
 import UMLsec.rbac;
@@ -277,6 +278,13 @@ public class UMLsecPackageImpl extends EPackageImpl implements UMLsecPackage {
 	 * @generated
 	 */
 	private EClass requiresEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass privacyEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1265,6 +1273,33 @@ public class UMLsecPackageImpl extends EPackageImpl implements UMLsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getprivacy() {
+		return privacyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getprivacy_Base_Dependency() {
+		return (EReference)privacyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getprivacy_Base_Connector() {
+		return (EReference)privacyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UMLsecFactory getUMLsecFactory() {
 		return (UMLsecFactory)getEFactoryInstance();
 	}
@@ -1421,6 +1456,10 @@ public class UMLsecPackageImpl extends EPackageImpl implements UMLsecPackage {
 		requiresEClass = createEClass(REQUIRES);
 		createEReference(requiresEClass, REQUIRES__BASE_ACTION);
 		createEReference(requiresEClass, REQUIRES__ACTIONS);
+
+		privacyEClass = createEClass(PRIVACY);
+		createEReference(privacyEClass, PRIVACY__BASE_DEPENDENCY);
+		createEReference(privacyEClass, PRIVACY__BASE_CONNECTOR);
 	}
 
 	/**
@@ -1542,7 +1581,7 @@ public class UMLsecPackageImpl extends EPackageImpl implements UMLsecPackage {
 		initEAttribute(getcritical_Authenticity(), theTypesPackage.getString(), "authenticity", null, 0, -1, critical.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getcritical_Base_InstanceSpecification(), theUMLPackage.getInstanceSpecification(), null, "base_InstanceSpecification", null, 1, 1, critical.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getcritical_Base_Classifier(), theUMLPackage.getClassifier(), null, "base_Classifier", null, 1, 1, critical.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getcritical_Privacy(), theTypesPackage.getString(), "privacy", null, 0, -1, critical.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getcritical_Privacy(), theTypesPackage.getString(), "privacy", null, 0, -1, critical.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(datasecurityEClass, datasecurity.class, "datasecurity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getdatasecurity_Adversary(), theTypesPackage.getString(), "adversary", null, 1, 1, datasecurity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1590,6 +1629,10 @@ public class UMLsecPackageImpl extends EPackageImpl implements UMLsecPackage {
 		initEClass(requiresEClass, requires.class, "requires", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getrequires_Base_Action(), theUMLPackage.getAction(), null, "base_Action", null, 1, 1, requires.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getrequires_Actions(), theUMLPackage.getAction(), null, "actions", null, 1, -1, requires.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(privacyEClass, privacy.class, "privacy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getprivacy_Base_Dependency(), theUMLPackage.getDependency(), null, "base_Dependency", null, 1, 1, privacy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getprivacy_Base_Connector(), theUMLPackage.getConnector(), null, "base_Connector", null, 1, 1, privacy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

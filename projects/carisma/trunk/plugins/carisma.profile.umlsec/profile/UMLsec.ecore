@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="UMLsec" nsURI="http:///UMLsec.ecore" nsPrefix="UMLsec">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="UMLsec" nsURI="http://www.umlsec.de/profiles/UMLsec" nsPrefix="UMLsec">
   <eClassifiers xsi:type="ecore:EClass" name="protectedaction">
     <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
       <details key="originalName" value="protected action"/>
@@ -183,7 +183,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Classifier" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="privacy" ordered="false"
-        upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        unique="false" upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="datasecurity">
     <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -280,5 +280,11 @@
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" ordered="false"
         lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="privacy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Dependency" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Connector" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Connector"/>
   </eClassifiers>
 </ecore:EPackage>
