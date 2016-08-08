@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Static Secure Dependency Check</title>
+</head>
+
+<body>
+<h2>UMLsec Static Secure Dependency Check</h2>
+
+<h3>Overview</h3>
+
+<p>This check analyzes UML static structure diagrams marked with the
+UMLsec stereotype &laquo;secure dependency&raquo; (cf. "Secure Systems Development with UML", p. 59 ff.).
+For each &laquo;usage dependency&raquo; marked with &laquo;call&raquo; or &laquo;send&raquo;, the check analyzes if the involved classes and interfaces fulfill the rules of the &laquo;secure dependency&raquo; property.</p>
+
+<h3>Usage</h3>
+
+<p>Annotate a package containing a class/interface structure with the &laquo;secure dependency&raquo; stereotype.
+Add the desired &laquo;critical&raquo; stereotypes and mark the appropriate methods in the tags.
+After this steps are done, <a href="../../../carisma.core/help/html/userguide/stepByStep.html">create a new CARiSMA analysis on the model</a>.
+Add the <i>Static Secure Dependency Check</i> to the used checks and click "Run" to start the analysis.</p>
+
+<p>The Analysis Results View displays whether the check was successful. If any &laquo;critical&raquo; section is not defined in all involved classes and interfaces,
+information about the location and type of that violation are also displayed in the Analysis Results View.</p>
+
+<h4>Example1: SecureDependency is violated</h4>
+<img src="images/secureDependencyWrong.png" alt="secure dependency violation" name="secure dependency violation" />
+<p>The example model is consciously designed to contain a &laquo;secure dependency&raquo; violation, which is described in the
+Analysis Results View.</p>
+<img src="images/secureDependencyAnalysisWrong.png" alt="secure dependency violation shown in the analysis view" name="secure dependency violation in the analysis view" />
+
+<h4>Example2: SecureDependency is fulfilled</h4>
+<img src="images/secureDependencyRight.png" alt="secure dependency corrected" name="secure dependency corrected" />
+<p>After correcting the model, the analysis reports the success of the check.</p> 
+<img src="images/secureDependencyAnalysisRight.png" alt="secure dependency result view" name="secure dependency result view" />
+</body>
+</html>

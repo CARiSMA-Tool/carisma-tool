@@ -1,27 +1,21 @@
 package carisma.check.createhelpdocument;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static carisma.ui.eclipse.preferences.pages.VisiOn.*;
-
-import java.io.File;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Package;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.BooleanParameter;
@@ -29,22 +23,21 @@ import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheck;
 import carisma.core.checks.CheckParameter;
-import carisma.core.io.content.Content;
-import carisma.core.io.content.ContentFactory;
-import carisma.core.io.implementations.FileIO;
-import carisma.core.io.implementations.db.mongodb.restapi.MongoDBDynamicConfiguration;
-import carisma.core.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
 import carisma.modeltype.uml2.UMLDeploymentHelper;
 import carisma.modeltype.uml2.UMLHelper;
-import carisma.ui.eclipse.CarismaGUI;
+
+import carisma.vision.dbAccess.*;
 
 public class CreateHelpDocument implements CarismaCheck {
+	
+	File securelinksHelpFile = null;
 
 	AnalysisHost host;
 
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
-
+		
+		
 		this.host = host;
 		Resource model = host.getAnalyzedModel();
 
@@ -61,9 +54,9 @@ public class CreateHelpDocument implements CarismaCheck {
 				
 				Document doc;
 				if (fileOrDB.getValue()) {
-					doc = loadSTSInputFromFile();
+					doc = dbAccess.loadSTSInputFromFile();
 				} else {
-					doc = loadSTSInputFromDB();
+					doc = dbAccess.loadSTSInputFromDB();
 					if (doc == null) {
 						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Unable to load STS input from DB"));
 						return false;
@@ -103,7 +96,6 @@ public class CreateHelpDocument implements CarismaCheck {
 
 				NodeList elements = doc.getElementsByTagName("commitment");
 
-				host.appendToReport("----------------------------");
 
 				HashSet<String> roles = new HashSet<String>();
 				HashSet<String> nodeNames = new HashSet<String>();
@@ -239,9 +231,8 @@ public class CreateHelpDocument implements CarismaCheck {
 											host.appendToReport("\n| CARiSMA check = SecureLinks " + " |"
 													+ "\n| UML Diagram = Deployment Diagram | \n");
 											host.appendToReport(
-													"| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> expand 'Static Checks' -> click on 'Secure Links'"
-															+ " |");
-
+											"| Find explanation: Click on 'Help' -> 'Help Contents' -> expand 'CARiSMA' -> expand 'Checks' -> expand 'Static Checks' -> click on 'Secure Links'"
+											+ " |");
 											Set<Dependency> dependencies = UMLDeploymentHelper
 													.getAllDependencies(content);
 
@@ -527,30 +518,9 @@ public class CreateHelpDocument implements CarismaCheck {
 
 	}
 
-	private Document loadSTSInputFromDB() {
-		IPreferenceStore preferencesStore = CarismaGUI.INSTANCE.getPreferenceStore();
 
-		String user = preferencesStore.getString(KEY_USER);
-		String secret = preferencesStore.getString(KEY_SECRET);
-		String url = preferencesStore.getString(KEY_URL);
+	
+	
 
-		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
 
-		String stsCollection = preferencesStore.getString(KEY_STS_COLLECTION);
-		String stsDocument = preferencesStore.getString(KEY_STS_DOCUMENT);
-		String stsField = preferencesStore.getString(KEY_STS_FIELD);
-
-		MongoDBDynamicConfiguration config = new MongoDBDynamicConfiguration(url, stsCollection, stsDocument, stsField);
-		Content content = db.read(config);
-		return ContentFactory.convertToXmlDom(content).getDocument();
-	}
-
-	private Document loadSTSInputFromFile() {
-		Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		FileDialog dialog = new FileDialog(activeShell);
-		dialog.open();
-		String filterPath = dialog.getFilterPath();
-		String fileName = dialog.getFileName();
-		return FileIO.read(new File(new File(filterPath), fileName));
-	}
 }

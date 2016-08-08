@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: CreateHelpDocument
 Bundle-SymbolicName: carisma.check.createHelpDocument;singleton:=true
-Bundle-Version: 1.0.3.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: carisma.check.createhelpdocument.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -15,6 +15,10 @@ Require-Bundle: org.eclipse.ui,
  org.apache.httpcomponents.httpclient,
  org.apache.httpcomponents.httpcore;bundle-version="4.3.3",
  carisma.core.io,
- carisma.ui.eclipse
+ carisma.ui.eclipse,
+ org.eclipse.osgi,
+ org.eclipse.equinox.registry,
+ carisma.ui.vision;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.pde.internal.core.bundle
