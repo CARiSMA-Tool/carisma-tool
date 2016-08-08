@@ -163,7 +163,7 @@ public final class SecureDependencyChecks {
 		}
 		if (!privacyTagValuesOfClient.isEmpty() || !relevantSignaturesForPrivacy.isEmpty()) {
 			host.appendLineToReport("  - analyzing privacy tag values ...");
-			String error = checkLists("privacy", relevantSignaturesForPrivacy, privacyTagValuesOfClient, irrelevantSignatures);
+			String error = privacyCheckLists("privacy", relevantSignaturesForPrivacy, privacyTagValuesOfClient, irrelevantSignatures);
 			if (error != null) {
 				errors.add(new SecureDependencyViolation(error, dependency, client, supplier));
 				host.appendLineToReport("    " + error);
@@ -232,6 +232,43 @@ public final class SecureDependencyChecks {
 		}
 		return error;
 	}
+	
+	
+	
+	
+	private String privacyCheckLists(
+			final String tagName, 
+			final List<String> allPrivacyTagsOfSupplierAndChildren, 
+			final List<String> PrivacyTagsOfClient, 
+			final List<String> irrelevantSignatures) {
+		List<String> clientPrivacyTagsNotInSupplier = new ArrayList<String>();
+		List<String> privacyTagsNotInClient = new ArrayList<String>();
+		for (String s : allPrivacyTagsOfSupplierAndChildren) {
+			if (!PrivacyTagsOfClient.contains(s)) {
+				privacyTagsNotInClient.add(s);
+			}
+		}
+		for (String s : PrivacyTagsOfClient) {
+			if (!allPrivacyTagsOfSupplierAndChildren.contains(s) && irrelevantSignatures.contains(s)) {
+				clientPrivacyTagsNotInSupplier.add(s);
+			}
+		}
+		String error = null;
+		if (!privacyTagsNotInClient.isEmpty()) {
+			error = "Supplier or one of its subelements defines {" + tagName + "=" + toString(privacyTagsNotInClient) + "}, but client does not!";
+		}
+		String tocnis = null;
+		if (!clientPrivacyTagsNotInSupplier.isEmpty()) {
+			tocnis = "Client defines {" + tagName + "=" + toString(clientPrivacyTagsNotInSupplier) + "}, but neither supplier nor subelement of supplier does!";
+		}
+		if (error == null && tocnis != null) {
+			error = tocnis;
+		} else if (error != null && tocnis != null) {
+			error = error + " And c" + tocnis.substring(1);
+		}
+		return error;
+	}
+	
 	/**
 	 * Retrieves all distinct tag values of the given tag name from the classifier and all of its subclassifiers.
 	 * @param classifier
