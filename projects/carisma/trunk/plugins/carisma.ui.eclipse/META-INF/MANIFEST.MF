@@ -12,7 +12,9 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  carisma.core;bundle-version="1.4.0";visibility:=reexport,
  org.eclipse.jface,
  carisma.core.io,
- org.eclipse.swt
+ org.eclipse.swt,
+ org.eclipse.equinox.registry,
+ org.eclipse.e4.core.di;bundle-version="1.6.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: carisma.ui.eclipse,
@@ -20,7 +22,8 @@ Export-Package: carisma.ui.eclipse,
  carisma.ui.eclipse.editors,
  carisma.ui.eclipse.popup.actions,
  carisma.ui.eclipse.preferences.pages,
- carisma.ui.eclipse.views
+ carisma.ui.eclipse.views,
+ carisma.ui.popup.actions
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Import-Package: org.eclipse.emf.edit.ui.dnd
 Bundle-ClassPath: lib/java-json.jar,

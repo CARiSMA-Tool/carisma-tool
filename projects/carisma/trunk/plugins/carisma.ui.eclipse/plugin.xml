@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="carisma.ui.eclipse.editor.description" name="EditorDescription" schema="schema/carisma.ui.eclipse.editor.description.exsd"/>
+   <extension-point id="carisma.ui.eclipse.analysis.popup.menu" name="AnalysisPopupMenu" schema="schema/carisma.ui.eclipse.analysis.popup.menu.exsd"/>
 	
 	<extension point="org.eclipse.ui.newWizards">
       <category
@@ -99,12 +100,6 @@
              class="carisma.ui.eclipse.preferences.pages.Carisma_index"
              id="carisma.ui.eclipse.index"
              name="CARiSMA">
-       </page>
-       <page
-             category="carisma.ui.eclipse.index"
-             class="carisma.ui.eclipse.preferences.pages.VisiOn"
-             id="carisma.ui.eclipse.vision"
-             name="VisiOn">
        </page>
     </extension>
     <extension
@@ -789,10 +784,12 @@
          </key>
       </extension>
       <extension
-            point="org.eclipse.core.runtime.preferences">
-         <initializer
-               class="carisma.ui.eclipse.preferences.initializer.VisiOnInitializer">
-         </initializer>
+            point="carisma.ui.eclipse.analysis.popup.menu">
+            <popupmenu
+                  class="carisma.ui.popup.actions.HtmlOutput"/>
+            <popupmenu
+                  class="carisma.ui.popup.actions.XMLOutput">
+            </popupmenu>
       </extension>
 
 </plugin>

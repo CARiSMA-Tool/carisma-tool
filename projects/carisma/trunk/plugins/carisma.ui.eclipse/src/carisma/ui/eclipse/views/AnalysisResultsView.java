@@ -12,6 +12,9 @@ package carisma.ui.eclipse.views;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -38,24 +41,24 @@ import carisma.core.analysis.result.AnalysisResultStatus;
 import carisma.core.analysis.result.CheckResult;
 import carisma.core.analysis.result.StatusType;
 import carisma.ui.eclipse.CarismaGUI;
-
+import carisma.ui.popup.actions.PopUpAction;
 
 /**
  * 
  */
 public class AnalysisResultsView extends ViewPart {
-	
+
 	/**
 	 * The ID string.
 	 */
 	public static final String ID = "carisma.ui.eclipse.views.AnalysisResultsView";
-	
+
 	/**
 	 * The TreeViewer.
 	 */
 	private TreeViewer viewer = null;
-	
-	//########################################################################################
+
+	// ########################################################################################
 	/**
 	 * Constructor (empty).
 	 */
@@ -63,7 +66,8 @@ public class AnalysisResultsView extends ViewPart {
 	}
 
 	/**
-	 * @param parent Parent Composite
+	 * @param parent
+	 *            Parent Composite
 	 */
 	@Override
 	public final void createPartControl(final Composite parent) {
@@ -87,6 +91,7 @@ public class AnalysisResultsView extends ViewPart {
 					return null;
 				}
 			}
+
 			@Override
 			public Image getImage(final Object element) {
 				if (element instanceof AnalysisResult) {
@@ -106,7 +111,7 @@ public class AnalysisResultsView extends ViewPart {
 						} else if (((CheckResult) element).getStatus() == StatusType.ERROR) {
 							result = CarismaGUI.INSTANCE.getImageRegistry().get(CarismaGUI.IMG_SUCCESSERROR_ID);
 						}
-					} 
+					}
 					return result;
 				} else if (element instanceof AnalysisResultMessage) {
 					switch (((AnalysisResultMessage) element).getStatus()) {
@@ -148,7 +153,7 @@ public class AnalysisResultsView extends ViewPart {
 					return (((AnalysisResult) element).getTimestamp());
 				} else if (element instanceof AnalysisResultMessage) {
 					return (((AnalysisResultMessage) element).getAdditionalInformation());
-				}							 
+				}
 				return null;
 			}
 		});
@@ -156,7 +161,7 @@ public class AnalysisResultsView extends ViewPart {
 		this.initContextMenu();
 		update();
 	}
-	
+
 	/**
 	 * Initializes the ContextMenu.
 	 */
@@ -167,117 +172,55 @@ public class AnalysisResultsView extends ViewPart {
 			@Override
 			public void menuAboutToShow(final IMenuManager manager) {
 				Object firstElement = ((IStructuredSelection) viewer.getSelection()).getFirstElement();
-				
+
 				AnalysisResult tmpAnalysisResult;
 				if (firstElement instanceof carisma.core.analysis.result.AnalysisResult) {
 					tmpAnalysisResult = (AnalysisResult) firstElement;
-				}
-				else if (firstElement instanceof carisma.core.analysis.result.CheckResult) {
+				} else if (firstElement instanceof carisma.core.analysis.result.CheckResult) {
 					tmpAnalysisResult = ((CheckResult) firstElement).getParent();
-				}
-				else if (firstElement instanceof carisma.core.analysis.result.AnalysisResultMessage) {
+				} else if (firstElement instanceof carisma.core.analysis.result.AnalysisResultMessage) {
 					tmpAnalysisResult = ((AnalysisResultMessage) firstElement).getParent().getParent();
+				} else {
+					throw new RuntimeException("Unknown Selection: " + firstElement);
 				}
-				else{
-					throw new RuntimeException("Unknown Selection: "+firstElement);
-				}
-				final AnalysisResult analysisResult = tmpAnalysisResult;				
+				final AnalysisResult analysisResult = tmpAnalysisResult;
 				
-				Action action = new Action() {
-					public void run() {
-						super.run();
-						CarismaGUI.INSTANCE.openReport(analysisResult);
-
-					}
-				};
-				action.setText("Create report for selected analysis");
-				manager.add(action);
-
-				/*
-				 * initializing xml output menu. 
-				 * (similar to above)
-				 * 
-				 */
-				Action action2 = new Action() {
-					public void run() {
-						super.run();
-						CarismaGUI.INSTANCE.saveXml(analysisResult);
-					}
-				};
-				action2.setText("Create XML-Output for selected analysis");
-				manager.add(action2);
-				
-				/*
-				 * initializing output to VisiOn DB.
-				 * 
-				 */
-				Action action3 = new Action() {
-					public void run() {
-						super.run();
-						CarismaGUI.INSTANCE.exportToDb(analysisResult);
-					}
-				};
-				
-				action3.setText("Export report to VisiOn Database");
-				manager.add(action3);
-				
-				// Don't enable action for RABAC transformation input creation
-				int forbidden = 0;
-				for(CheckResult chkR : analysisResult.getCheckResults()){
-					if(chkR.getName().compareTo("RABACsec: Create transformation input")==0){ // TODO: Call Name Method for compare
-						forbidden++;
-					}
-					else if(chkR.getName().compareTo("Create Help Document for STS mapping")==0){ // TODO: Call Name Method for compare
-						forbidden++;
+				for(IConfigurationElement extension : Platform.getExtensionRegistry().getConfigurationElementsFor("carisma.ui.eclipse.analysis.popup.menu")){
+					try {
+						((PopUpAction) extension.createExecutableExtension("class")).perform(menuMgr, analysisResult);
+					} catch (CoreException e) {
+						e.printStackTrace();
 					}
 				}
-				if(forbidden==analysisResult.getCheckResults().size()){
-					action3.setEnabled(false);
-				}
-				
-				Action action4 = new Action() {
-					public void run() {
-						super.run();
-						CarismaGUI.INSTANCE.startAutomatedAnalysis(analysisResult);
-					}
-				};
-				action4.setEnabled(false);
-				for(CheckResult chkR : analysisResult.getCheckResults()){
-					if(chkR.getName().compareTo("Create Help Document for STS mapping")==0){ // TODO: Call Name Method for compare
-						action4.setEnabled(true);
-					}
-				}
-				action4.setText("Create automated analysis from help document");
-				manager.add(action4);
 			}
 		});
 		Menu menu = menuMgr.createContextMenu(viewer.getTree());
 		viewer.getTree().setMenu(menu);
 		getSite().registerContextMenu(menuMgr, viewer);
-		
+
 	}
-	
+
 	/**
 	 * Insert Actions into the ActionBar.
 	 */
 	private void createActions() {
-	    Action resetItemAction = new Action("Reset") {
+		Action resetItemAction = new Action("Reset") {
 			public void run() {
 				CarismaGUI.INSTANCE.reset();
 			};
-			
+
 		};
 		resetItemAction.setText("Reset results");
 		resetItemAction.setDescription("Reset results");
-        ImageDescriptor deleteImage = PlatformUI.getWorkbench().
-        		getSharedImages().getImageDescriptor(ISharedImages.IMG_TOOL_DELETE);
-        resetItemAction.setImageDescriptor(deleteImage); 
-        
-        IToolBarManager mgr = getViewSite().getActionBars().getToolBarManager();
-        mgr.add(resetItemAction);
+		ImageDescriptor deleteImage = PlatformUI.getWorkbench().getSharedImages()
+				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE);
+		resetItemAction.setImageDescriptor(deleteImage);
+
+		IToolBarManager mgr = getViewSite().getActionBars().getToolBarManager();
+		mgr.add(resetItemAction);
 
 	}
-	
+
 	/**
 	 * Calls the update() method.
 	 */
@@ -285,14 +228,14 @@ public class AnalysisResultsView extends ViewPart {
 	public final void setFocus() {
 		update();
 	}
-	
+
 	/**
 	 * Updates the viewer input.
 	 */
 	public final void update() {
 		viewer.setInput(CarismaGUI.INSTANCE.getAnalysisResults());
 	}
-	
+
 	/**
 	 * Nested Class: Implements ITreeContentProvider.
 	 */
@@ -305,8 +248,7 @@ public class AnalysisResultsView extends ViewPart {
 			} else if (parentElement instanceof CheckResult) {
 				return (((CheckResult) parentElement).getResults().toArray());
 			} else if (parentElement instanceof AnalysisResult) {
-				return (((AnalysisResult) parentElement).getCheckResults()
-						.toArray());
+				return (((AnalysisResult) parentElement).getCheckResults().toArray());
 			} else {
 				return null;
 			}
