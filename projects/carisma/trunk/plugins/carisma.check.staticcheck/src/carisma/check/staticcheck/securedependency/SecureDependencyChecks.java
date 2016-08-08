@@ -117,7 +117,10 @@ public final class SecureDependencyChecks {
 				getAllDistinctTagValuesOfClassifierAndSubclasses(supplier, UMLsec.TAG_CRITICAL_INTEGRITY);
 		List<String> allHighTagValuesOfSupplierAndChildren = 
 				getAllDistinctTagValuesOfClassifierAndSubclasses(supplier, UMLsec.TAG_CRITICAL_HIGH);
+		List<String> allPrivacyTagValuesOfSupplierAndChildren = 
+				getAllDistinctTagValuesOfClassifierAndSubclasses(supplier, UMLsec.TAG_CRITICAL_PRIVACY);
 		List<String> relevantSignaturesForSecrecy = new ArrayList<String>();
+		List<String> relevantSignaturesForPrivacy = new ArrayList<String>();
 		List<String> relevantSignaturesForIntegrity = new ArrayList<String>();
 		List<String> relevantSignaturesForHigh = new ArrayList<String>();
 		List<String> irrelevantSignatures = new ArrayList<String>();
@@ -128,12 +131,17 @@ public final class SecureDependencyChecks {
 				relevantSignaturesForIntegrity.add(sig);
 			} else if (allHighTagValuesOfSupplierAndChildren.contains(sig)) {
 				relevantSignaturesForHigh.add(sig);
+			} else if (allPrivacyTagValuesOfSupplierAndChildren.contains(sig)) {
+				relevantSignaturesForPrivacy.add(sig);
 			} else {
+				
 				irrelevantSignatures.add(sig);
 			}
 		}
 		List<String> secrecyTagValuesOfClient = new ArrayList<String>();
 		getDistinctTagValues(secrecyTagValuesOfClient, client, UMLsec.TAG_CRITICAL_SECRECY);
+		List<String> privacyTagValuesOfClient = new ArrayList<String>();
+		getDistinctTagValues(secrecyTagValuesOfClient, client, UMLsec.TAG_CRITICAL_PRIVACY);
 		List<String> integrityTagValuesOfClient = new ArrayList<String>();
 		getDistinctTagValues(integrityTagValuesOfClient, client, UMLsec.TAG_CRITICAL_INTEGRITY);
 		List<String> highTagValuesOfClient = new ArrayList<String>();
@@ -151,6 +159,18 @@ public final class SecureDependencyChecks {
 			if (!UMLsecUtil.hasStereotype(dependency, UMLsec.SECRECY)) {
 				errors.add(new SecureDependencyViolation("Dependency misses stereotype <<secrecy>>!", dependency, client, supplier));
 				host.appendLineToReport("    Dependency misses stereotype <<secrecy>>!");
+			}
+		}
+		if (!privacyTagValuesOfClient.isEmpty() || !relevantSignaturesForPrivacy.isEmpty()) {
+			host.appendLineToReport("  - analyzing privacy tag values ...");
+			String error = checkLists("privacy", relevantSignaturesForPrivacy, privacyTagValuesOfClient, irrelevantSignatures);
+			if (error != null) {
+				errors.add(new SecureDependencyViolation(error, dependency, client, supplier));
+				host.appendLineToReport("    " + error);
+			}
+			if (!UMLsecUtil.hasStereotype(dependency, UMLsec.PRIVACY)) {
+				errors.add(new SecureDependencyViolation("Dependency misses stereotype <<privacy>>!", dependency, client, supplier));
+				host.appendLineToReport("    Dependency misses stereotype <<privacy>>!");
 			}
 		}
 		if (!integrityTagValuesOfClient.isEmpty() || !relevantSignaturesForIntegrity.isEmpty()) {
