@@ -141,7 +141,7 @@ public final class SecureDependencyChecks {
 		List<String> secrecyTagValuesOfClient = new ArrayList<String>();
 		getDistinctTagValues(secrecyTagValuesOfClient, client, UMLsec.TAG_CRITICAL_SECRECY);
 		List<String> privacyTagValuesOfClient = new ArrayList<String>();
-		getDistinctTagValues(secrecyTagValuesOfClient, client, UMLsec.TAG_CRITICAL_PRIVACY);
+		getDistinctTagValues(privacyTagValuesOfClient, client, UMLsec.TAG_CRITICAL_PRIVACY);
 		List<String> integrityTagValuesOfClient = new ArrayList<String>();
 		getDistinctTagValues(integrityTagValuesOfClient, client, UMLsec.TAG_CRITICAL_INTEGRITY);
 		List<String> highTagValuesOfClient = new ArrayList<String>();
