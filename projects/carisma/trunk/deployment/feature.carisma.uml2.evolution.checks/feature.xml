@@ -3,7 +3,7 @@
       id="feature.carisma.uml2.evolution.checks"
       label="CARiSMA UML2 Evolution Checks"
       version="1.2.0.qualifier"
-      provider-name="Software Engineering Institute, TU Dortmund">
+      provider-name="RGSE, University of Koblenz-Landau">
 
    <description url="http://carisma.umlsec.de">
       Visit the CARiSMA homepage for more information!
@@ -11,6 +11,7 @@
 
    <copyright>
       /*******************************************************************************
+* Copyright (c) 2016 RGSE, University of Koblenz-Landau.
 * Copyright (c) 2011 Software Engineering Institute, TU Dortmund.
 * All rights reserved. This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License
@@ -20,8 +21,8 @@ v1.0
 *
 * Contributors:
 *    Software Engineering Institute, TU Dortmund - initial API
-and implementation and/or
-initial documentation
+and implementation and/or initial documentation
+*    RGSE, University of Koblenz-Landau - maintenance and new features
 *******************************************************************************/
    </copyright>
 
@@ -43,8 +44,7 @@ from and are distributed by that particular Contributor. A Contribution
 &apos;originates&apos; from a Contributor if it was added to the Program
 by such Contributor itself or anyone acting on such Contributor&apos;s
 behalf. Contributions do not include additions to the Program
-which: 
-(i) are separate modules of software distributed in conjunction
+which: (i) are separate modules of software distributed in conjunction
 with the Program under their own license agreement, and (ii)
 are not derivative works of the Program.
 &quot;Contributor&quot; means any person or entity that distributes the
@@ -225,27 +225,43 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
+   <url>
+      <update label="CARiSMA Update Site" url="https://rgse.uni-koblenz.de/carisma/updatesite/"/>
+   </url>
+
+   <includes
+         id="feature.carisma.uml2.evolution"
+         version="0.0.0"/>
+
+   <includes
+         id="feature.carisma.uml2"
+         version="0.0.0"/>
+
+   <includes
+         id="feature.carisma.uml2.checks"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="carisma.modeltype.uml2" version="1.1.0" match="greaterOrEqual"/>
       <import plugin="carisma.evolution.uml2"/>
-      <import plugin="carisma.profile.umlsec"/>
       <import plugin="carisma.check.smartcard"/>
+      <import plugin="org.eclipse.uml2.uml"/>
       <import plugin="carisma.check.staticcheck"/>
-      <import plugin="carisma.core" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="carisma.profile.umlsec"/>
    </requires>
 
    <plugin
          id="carisma.check.smartcard.evolution"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.1.2.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.check.staticcheck.evolution"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.1.2.qualifier"
          unpack="false"/>
 
 </feature>

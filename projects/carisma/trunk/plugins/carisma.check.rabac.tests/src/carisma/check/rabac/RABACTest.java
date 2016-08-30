@@ -20,6 +20,7 @@ import carisma.core.analysis.UserAbortedAnalysisException;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CheckParameterDescriptor;
+import carisma.profile.umlsec.rabac.RabacActivator;
 import carisma.tests.modelutils.uml.TestHelper;
 
 public class RABACTest extends TestCase {
@@ -92,7 +93,7 @@ public class RABACTest extends TestCase {
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION,
 					UMLResource.Factory.INSTANCE);
 			UMLPackage.eINSTANCE.getClass();
-			URIConverter.URI_MAP.put(URI.createURI("platform:/plugin/carisma.profile.umlsec.rabac/profile/"), URI
+			URIConverter.URI_MAP.put(URI.createURI(RabacActivator.RABAC_PROFILE_FOLDER), URI
 					.createFileURI(new File("../carisma.profile.umlsec.rabac/profile/").getAbsolutePath())
 					.appendSegment(""));
 		}

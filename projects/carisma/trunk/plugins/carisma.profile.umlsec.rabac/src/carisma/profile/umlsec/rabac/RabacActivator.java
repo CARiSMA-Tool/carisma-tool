@@ -17,7 +17,9 @@ import carisma.core.Carisma;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 
-public class Activator implements BundleActivator {
+public class RabacActivator implements BundleActivator {
+
+	public static final String RABAC_PROFILE_FOLDER = "platform:/plugin/carisma.profile.umlsec.rabac/profile/";
 
 	@Override
 	public void start(BundleContext context) throws Exception {

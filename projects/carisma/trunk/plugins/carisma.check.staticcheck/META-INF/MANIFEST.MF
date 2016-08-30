@@ -4,7 +4,8 @@ Bundle-Name: CARiSMA Static UMLsec Checks
 Bundle-SymbolicName: carisma.check.staticcheck;singleton:=true
 Bundle-Version: 1.0.4.qualifier
 Require-Bundle: carisma.modeltype.uml2,
- carisma.profile.umlsec
+ carisma.profile.umlsec,
+ org.eclipse.uml2.uml
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: carisma.check.staticcheck,
  carisma.check.staticcheck.fairexchange,

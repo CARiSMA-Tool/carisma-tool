@@ -3,7 +3,7 @@
       id="feature.carisma.bpmn2"
       label="BPMN2 Support for CARiSMA"
       version="1.0.0.qualifier"
-      provider-name="Software Engineering Institute, TU Dortmund">
+      provider-name="RGSE, University of Koblenz-Landau">
 
    <description url="http://carisma.umlsec.de">
       Visit the CARiSMA homepage for more information!
@@ -11,6 +11,7 @@
 
    <copyright>
       /*******************************************************************************
+* Copyright (c) 2016 RGSE, University of Koblenz-Landau.
 * Copyright (c) 2011 Software Engineering Institute, TU Dortmund.
 * All rights reserved. This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License
@@ -21,6 +22,7 @@ v1.0
 * Contributors:
 *    Software Engineering Institute, TU Dortmund - initial API
 and implementation and/or initial documentation
+*    RGSE, University of Koblenz-Landau - maintenance and new features
 *******************************************************************************/
    </copyright>
 
@@ -223,54 +225,63 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
+   <url>
+      <update label="CARiSMA Update Site" url="https://rgse.uni-koblenz.de/carisma/updatesite/"/>
+   </url>
+
+   <includes
+         id="feature.carisma.core"
+         version="0.0.0"/>
+
    <requires>
-      <import plugin="org.eclipse.bpmn2"/>
-      <import plugin="org.eclipse.emf.ecore.xmi" version="2.4.0" match="compatible"/>
+      <import plugin="carisma.core" version="1.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xsd"/>
-      <import plugin="org.eclipse.help"/>
+      <import plugin="org.eclipse.bpmn2"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="carisma.modeltype.bpmn2.extension"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.core.runtime" version="3.12.0" match="greaterOrEqual"/>
+      <import plugin="carisma.modeltype.bpmn2.extension.edit"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
-      <import feature="feature.carisma.core" version="1.4.0.qualifier"/>
    </requires>
 
    <plugin
          id="carisma.modeltype.bpmn2"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.modeltype.bpmn2.extended"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.modeltype.bpmn2.extension"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.modeltype.bpmn2.extension.edit"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.modeltype.bpmn2.extension.editor"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.1.qualifier"
          unpack="false"/>
 
 </feature>

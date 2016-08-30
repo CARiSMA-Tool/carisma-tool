@@ -6,11 +6,9 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: carisma.check.rabac.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.core.resources,
- org.eclipse.help,
- carisma.core,
  carisma.modeltype.uml2,
- carisma.ocl,
- carisma.profile.umlsec.rabac
+ carisma.profile.umlsec.rabac,
+ org.eclipse.uml2.uml,
+ carisma.ocl
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

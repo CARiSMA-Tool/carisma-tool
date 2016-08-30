@@ -7,6 +7,6 @@ Fragment-Host: carisma.check.rabac;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit;bundle-version="4.11.0",
  org.eclipse.emf.ecore,
- carisma.profile.umlsec,
- carisma.tests.modelutils.uml
-Import-Package: org.eclipse.uml2.uml
+ carisma.profile.umlsec.rabac,
+ carisma.tests.modelutils.uml,
+ org.eclipse.uml2.uml

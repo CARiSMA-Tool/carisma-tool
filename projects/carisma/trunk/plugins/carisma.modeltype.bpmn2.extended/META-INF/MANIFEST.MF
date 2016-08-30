@@ -28,7 +28,6 @@ Export-Package: carisma.modeltype.bpmn2.extended;uses:="org.eclipse.emf.ecore.re
    org.eclipse.bpmn2,
    org.eclipse.emf.common.notify.impl,
    carisma.modeltype.bpmn2extended"
-Require-Bundle: org.eclipse.emf.ecore.xmi;visibility:=reexport,
- carisma.modeltype.bpmn2.extension;visibility:=reexport,
+Require-Bundle: carisma.modeltype.bpmn2.extension;visibility:=reexport,
  carisma.modeltype.bpmn2;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy

@@ -9,7 +9,7 @@ Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: carisma.modeltype.bpmn2.extension.provider
-Require-Bundle: org.eclipse.core.runtime,
- carisma.modeltype.bpmn2.extension;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport
+Require-Bundle: carisma.modeltype.bpmn2.extension;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.core.runtime;bundle-version="3.12.0"
 Bundle-ActivationPolicy: lazy

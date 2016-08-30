@@ -7,8 +7,7 @@ Bundle-Activator: carisma.check.bpmn2.dummy.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  carisma.core;bundle-version="1.0.0",
- carisma.modeltype.bpmn2;bundle-version="1.0.0",
- org.eclipse.help
+ carisma.modeltype.bpmn2;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: Software Engineering Institute, TU Dortmund

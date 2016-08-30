@@ -35,6 +35,7 @@ import org.eclipse.pde.ui.templates.OptionTemplateSection;
 import org.eclipse.pde.ui.templates.PluginReference;
 import org.eclipse.pde.ui.templates.TemplateOption;
 
+import carisma.core.Carisma;
 import carisma.template.main.Activator;
 import carisma.template.main.ShareWizardData;
 
@@ -235,7 +236,7 @@ public class PrefPageSection extends OptionTemplateSection {
 
 		result.add(new PluginReference("org.eclipse.core.runtime", null, 0));
 		result.add(new PluginReference("org.eclipse.ui", null, 0));
-		result.add(new PluginReference("carisma.core", null, 0));
+		result.add(new PluginReference(Carisma.PLUGIN_ID, null, 0));
 
 		return (IPluginReference[]) result.toArray(
 				new IPluginReference[result.size()]);

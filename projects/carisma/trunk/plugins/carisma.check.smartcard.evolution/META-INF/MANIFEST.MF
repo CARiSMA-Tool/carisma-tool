@@ -6,7 +6,8 @@ Bundle-Version: 1.1.2.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: carisma.modeltype.uml2;bundle-version="1.1.0",
  carisma.evolution.uml2,
- carisma.check.smartcard
+ carisma.check.smartcard,
+ org.eclipse.uml2.uml
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Export-Package: carisma.check.smartcard.evolution.authorizedstatuscheck,
  carisma.check.smartcard.evolution.lockedstatuscheck

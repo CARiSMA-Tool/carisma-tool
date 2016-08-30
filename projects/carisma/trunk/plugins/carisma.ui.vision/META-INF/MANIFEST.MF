@@ -3,9 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: VisionGUI
 Bundle-SymbolicName: carisma.ui.vision;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.resources,
- carisma.ui.eclipse;bundle-version="1.4.6",
+Require-Bundle: carisma.ui.eclipse;bundle-version="1.4.6",
  carisma.core.io
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: carisma.ui.vision.eclipse.preferences.pages,
