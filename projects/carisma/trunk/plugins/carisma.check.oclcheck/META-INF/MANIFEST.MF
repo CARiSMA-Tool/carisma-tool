@@ -11,7 +11,6 @@ Require-Bundle:
  carisma.ocl.library;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: org.eclipse.emf.query.ocl.conditions,
- org.eclipse.jface.resource,
+Import-Package: org.eclipse.jface.resource,
  org.eclipse.ui.plugin
 Bundle-Vendor: Software Engineering Institute, TU Dortmund

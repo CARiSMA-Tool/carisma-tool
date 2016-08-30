@@ -4,7 +4,9 @@ Bundle-Name: CARiSMA Smartcard Check
 Bundle-SymbolicName: carisma.check.smartcard;singleton:=true
 Bundle-Version: 1.0.3.qualifier
 Require-Bundle: carisma.modeltype.uml2,
- carisma.profile.umlsec;visibility:=reexport
+ carisma.profile.umlsec;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.uml2.uml
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: carisma.check.smartcard.authorizedstatus,
  carisma.check.smartcard.lockedstatus,

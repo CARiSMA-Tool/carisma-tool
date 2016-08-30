@@ -3,7 +3,7 @@
       id="feature.carisma.core"
       label="CARiSMA Core"
       version="1.4.6.qualifier"
-      provider-name="Software Engineering Institute, TU Dortmund">
+      provider-name="RGSE, University of Koblenz-Landau">
 
    <description url="http://carisma.umlsec.de">
       Visit the CARiSMA homepage for more information!
@@ -11,14 +11,18 @@
 
    <copyright>
       /*******************************************************************************
+* Copyright (c) 2016 RGSE, University of Koblenz-Landau.
 * Copyright (c) 2011 Software Engineering Institute, TU Dortmund.
 * All rights reserved. This program and the accompanying materials
-* are made available under the terms of the Eclipse Public License v1.0
+* are made available under the terms of the Eclipse Public License
+v1.0
 * which accompanies this distribution, and is available at
 * http://www.eclipse.org/legal/epl-v10.html
 *
 * Contributors:
-*    Software Engineering Institute, TU Dortmund - initial API and implementation and/or initial documentation
+*    Software Engineering Institute, TU Dortmund - initial API
+and implementation and/or initial documentation
+*    RGSE, University of Koblenz-Landau - maintenance and new features
 *******************************************************************************/
    </copyright>
 
@@ -221,40 +225,27 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
-   <includes
-         id="feature.carisma.ocl"
-         version="1.0.0.qualifier"
-         name="CARiSMA OCL Feature"/>
+   <url>
+      <update label="CARiSMA Update Site" url="https://rgse.uni-koblenz.de/carisma/updatesite/"/>
+   </url>
 
    <requires>
+      <import plugin="org.eclipse.equinox.app" version="1.3.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.osgi"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.query.ocl"/>
-      <import plugin="org.eclipse.jface"/>
-      <import plugin="org.eclipse.ui.workbench"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.ui.forms"/>
+      <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.equinox.app" version="1.3.100" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.osgi"/>
-      <import feature="feature.carisma.ocl" version="1.0.0.qualifier"/>
-      <import plugin="org.eclipse.ui" version="3.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui.forms" version="3.5.1" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ui.ide" version="3.5.0" match="greaterOrEqual"/>
-      <import plugin="carisma.core.io"/>
    </requires>
-
-   <plugin
-         id="carisma.check.oclcheck"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
    <plugin
          id="carisma.ui.eclipse.descriptor"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          fragment="true"
          unpack="false"/>
 
@@ -262,28 +253,28 @@ litigation.
          id="carisma.ui.console"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.core"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.4.3.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.ui.eclipse"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.4.6.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.core.io"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
 </feature>

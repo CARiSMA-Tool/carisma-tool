@@ -6,7 +6,7 @@ Bundle-Version: 1.2.0.qualifier
 Require-Bundle: carisma.evolution;visibility:=reexport,
  carisma.profile.umlchange,
  carisma.modeltype.uml2;bundle-version="1.1.0",
- carisma.core
+ org.eclipse.uml2.uml
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: carisma.evolution.uml2.umlchange;
@@ -16,4 +16,3 @@ Export-Package: carisma.evolution.uml2.umlchange;
    carisma.evolution.uml2.parser,
    carisma.evolution"
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
-Import-Package: carisma.core.logging

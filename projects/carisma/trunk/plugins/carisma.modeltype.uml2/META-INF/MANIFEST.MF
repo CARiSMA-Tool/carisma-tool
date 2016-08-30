@@ -3,9 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: CARiSMA model type support for UML2
 Bundle-SymbolicName: carisma.modeltype.uml2;singleton:=true
 Bundle-Version: 1.1.4.qualifier
-Require-Bundle: carisma.core;visibility:=reexport,
- org.eclipse.uml2.uml;bundle-version="3.0.0";visibility:=reexport,
- org.eclipse.uml2.uml.resources;bundle-version="3.0.0"
+Require-Bundle: org.eclipse.uml2.uml.resources;bundle-version="3.0.0",
+ carisma.core;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: carisma.modeltype.uml2,
  carisma.modeltype.uml2.activity,

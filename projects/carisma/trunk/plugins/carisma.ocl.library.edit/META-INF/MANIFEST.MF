@@ -9,7 +9,7 @@ Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: carisma.ocl.library.provider
-Require-Bundle: org.eclipse.core.runtime,
- carisma.ocl.library;visibility:=reexport,
- org.eclipse.emf.edit
+Require-Bundle: carisma.ocl.library;visibility:=reexport,
+ org.eclipse.emf.edit,
+ org.eclipse.core.runtime;bundle-version="3.12.0"
 Bundle-ActivationPolicy: lazy

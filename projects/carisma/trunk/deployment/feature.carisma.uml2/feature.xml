@@ -3,7 +3,7 @@
       id="feature.carisma.uml2"
       label="UML2 Support for CARiSMA"
       version="1.1.7.qualifier"
-      provider-name="Software Engineering Institute, TU Dortmund">
+      provider-name="RGSE, University of Koblenz-Landau">
 
    <description url="http://carisma.umlsec.de">
       Visit the CARiSMA homepage for more information!
@@ -11,14 +11,18 @@
 
    <copyright>
       /*******************************************************************************
+* Copyright (c) 2016 RGSE, University of Koblenz-Landau.
 * Copyright (c) 2011 Software Engineering Institute, TU Dortmund.
 * All rights reserved. This program and the accompanying materials
-* are made available under the terms of the Eclipse Public License v1.0
+* are made available under the terms of the Eclipse Public License
+v1.0
 * which accompanies this distribution, and is available at
 * http://www.eclipse.org/legal/epl-v10.html
 *
 * Contributors:
-*    Software Engineering Institute, TU Dortmund - initial API and implementation and/or initial documentation
+*    Software Engineering Institute, TU Dortmund - initial API
+and implementation and/or initial documentation
+*    RGSE, University of Koblenz-Landau - maintenance and new features
 *******************************************************************************/
    </copyright>
 
@@ -221,49 +225,61 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
+   <url>
+      <update label="CARiSMA Update Site" url="https://rgse.uni-koblenz.de/carisma/updatesite/"/>
+   </url>
+
+   <includes
+         id="feature.carisma.core"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.uml2"
+         version="0.0.0"/>
+
    <requires>
-      <import plugin="org.eclipse.core.resources" version="3.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.uml2.uml"/>
+      <import plugin="org.eclipse.uml2.uml.resources" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="carisma.core"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.pde.ui"/>
       <import plugin="org.eclipse.core.runtime" version="3.6.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.uml2.uml" version="3.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.uml2.uml.resources" version="3.0.0" match="greaterOrEqual"/>
-      <import feature="feature.carisma.core" version="1.4.0.qualifier"/>
+      <import plugin="org.eclipse.core.resources" version="3.11.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
          id="carisma.check.dummy"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.1.1.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.modeltype.uml2"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.1.4.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.check.template"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.2.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.profile.umlsec.rabac"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="carisma.profile.umlsec"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.6.qualifier"
          unpack="false"/>
 
 </feature>

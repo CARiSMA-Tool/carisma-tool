@@ -38,7 +38,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 	private final String SECRET;
 	private final String USER;
 	
-	private HttpClient httpClient = HttpClientBuilder.create().build();
+	private HttpClient httpClient;
 	private Content contentObject;
 	private ResponseMessage response;
 	
@@ -54,6 +54,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 		}
 		USER = user;
 		SECRET = secret;
+		
+		HttpClientBuilder create = HttpClientBuilder.create();
+		httpClient =  create.build();
 	}
 	
 	/*

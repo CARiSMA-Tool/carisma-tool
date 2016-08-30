@@ -9,12 +9,7 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.ui.forms,
  org.eclipse.ui.ide;visibility:=reexport,
- carisma.core;bundle-version="1.4.0";visibility:=reexport,
- org.eclipse.jface,
- carisma.core.io,
- org.eclipse.swt,
- org.eclipse.equinox.registry,
- org.eclipse.e4.core.di
+ carisma.core;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: carisma.ui.eclipse,
