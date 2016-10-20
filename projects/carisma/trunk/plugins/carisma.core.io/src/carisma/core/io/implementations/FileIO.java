@@ -4,8 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -41,9 +39,8 @@ public class FileIO {
 		return doc;
 	}
 	
-	//function for saving the XML document at the specific location
+	//function for saving a Content at the specific location
 		public void write(Content content, File file) {
-			//defining the specific location with the path
 			BufferedWriter bufferedWriter = null;
 			try {
 			if(!file.exists()){
