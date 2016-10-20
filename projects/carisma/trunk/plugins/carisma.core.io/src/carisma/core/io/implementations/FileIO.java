@@ -1,7 +1,10 @@
 package carisma.core.io.implementations;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -9,6 +12,8 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
+
+import carisma.core.io.content.Content;
 
 
 public class FileIO {
@@ -35,5 +40,29 @@ public class FileIO {
 		doc.getDocumentElement().normalize();
 		return doc;
 	}
+	
+	//function for saving the XML document at the specific location
+		public void write(Content content, File file) {
+			//defining the specific location with the path
+			BufferedWriter bufferedWriter = null;
+			try {
+			if(!file.exists()){
+				file.createNewFile();
+			}
+				bufferedWriter = new BufferedWriter(new FileWriter(file));
+				bufferedWriter.write(content.asString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			finally {
+				if(bufferedWriter!=null){
+					try {
+						bufferedWriter.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
 
 }
