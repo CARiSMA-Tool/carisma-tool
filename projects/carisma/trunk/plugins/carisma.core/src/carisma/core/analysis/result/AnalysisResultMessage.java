@@ -10,11 +10,16 @@
  *******************************************************************************/
 package carisma.core.analysis.result;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author buerger
  * Represents results of an analysis which has just run.
  */
+@XmlRootElement(name = "AnalysisResultMessage")
+@XmlType(propOrder = { "status","text","modelElement","additionalInformation"})
 public class AnalysisResultMessage{
 	private String text;
 	private StatusType status;
@@ -35,12 +40,19 @@ public class AnalysisResultMessage{
 		this(text, status, null, null);
 	}
 	
+	public AnalysisResultMessage(){
+		
+	}
+	
+
+	@XmlElement(name = "text")
 	public String getText() {
 		return text;
 	}
 	public void setText(String text) {
 		this.text = text;
 	}
+	@XmlElement(name = "status")
 	public StatusType getStatus() {
 		return status;
 	}

@@ -11,13 +11,19 @@
 package carisma.core.analysis.result;
 
 import java.util.ArrayList;
-import java.util.Collections;
+//import java.util.Collections;
 import java.util.List;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author buerger
  * This class represents the results of a check.
  */
+@XmlRootElement(name = "CheckResult")
+@XmlType(propOrder = { "name","successful","results"})
 public class CheckResult{
 
 	/**
@@ -45,6 +51,7 @@ public class CheckResult{
 		results=new ArrayList<AnalysisResultMessage>();
 	}
 	
+	@XmlElement(name = "sucessful")
 	public boolean isSuccessful() {
 		return successful;
 	}
@@ -52,7 +59,9 @@ public class CheckResult{
 	public void setSuccessful(boolean successful) {
 		this.successful = successful;
 	}
-
+	
+	
+	@XmlElement(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -60,9 +69,12 @@ public class CheckResult{
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	
+	//return Collections.unmodifiableList(results);
+	@XmlElement(name = "results")
 	public List<AnalysisResultMessage> getResults() {
-		return Collections.unmodifiableList(results);
+		return results;
 	}
 	
 	public void addResult(AnalysisResultMessage result) {

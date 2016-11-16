@@ -10,25 +10,31 @@
  *******************************************************************************/
 package carisma.core.analysis.result;
 
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlEnumValue;
 
 /**
  * @author buerger
  * @see AnalysisResultMessage
  * Enumeration representing a kind of result message
  */
+@XmlEnum
 public enum StatusType {
 	
 	/**
 	 * Errors indicate that something went wrong, e.g. a check failed.
 	 */
+	@XmlEnumValue("ERROR")
 	ERROR("ERROR"),
 	/**
 	 * Warnings are items the user should look at.
 	 */
+	@XmlEnumValue("WARNING")
 	WARNING("WARNING"),
 	/**
 	 * Information that is helps the user to understand the analysis.
 	 */
+	@XmlEnumValue("INFO")
 	INFO("INFO");
 	
 	/**

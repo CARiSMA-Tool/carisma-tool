@@ -40,7 +40,7 @@ public class FileIO {
 	}
 	
 	//function for saving a Content at the specific location
-		public void write(Content content, File file) {
+		public static void write(Content content, File file) {
 			BufferedWriter bufferedWriter = null;
 			try {
 			if(!file.exists()){

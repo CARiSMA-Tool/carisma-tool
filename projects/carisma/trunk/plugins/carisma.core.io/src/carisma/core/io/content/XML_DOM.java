@@ -23,7 +23,7 @@ public class XML_DOM implements Content {
 	private Document xmlDocument;
 	
 	
-	protected XML_DOM(final Document document){
+	public XML_DOM(final Document document){
 		this.xmlDocument = document;
 	}
 	
