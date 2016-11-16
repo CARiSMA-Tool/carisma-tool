@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test
+Bundle-SymbolicName: carisma.ui.vision.test
+Bundle-Version: 1.0.0.qualifier
+Export-Package: carisma.ui.vision.test.popup.actions
+Require-Bundle: org.junit,
+ carisma.core,
+ carisma.core.io;bundle-version="1.0.0",
+ carisma.ui.vision;bundle-version="1.0.0"
+Import-Package: org.apache.commons.lang3.builder

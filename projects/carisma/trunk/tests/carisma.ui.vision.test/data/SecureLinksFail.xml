@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AnalysisResult>
+    <AnalyzedModel>model_analysis (UML2)</AnalyzedModel>
+    <Filepath>\test\model.uml</Filepath>
+    <Status>FAIL</Status>
+    <Timestamp>20161103-111711</Timestamp>
+    <CheckResult>
+        <name>UMLsec secure links Check</name>
+        <sucessful>false</sucessful>
+        <results>
+            <status>ERROR</status>
+            <text>default attacker can insert at CommunicationPath 'link1'.</text>
+        </results>
+        <results>
+            <status>ERROR</status>
+            <text>default attacker can read at CommunicationPath 'link1'.</text>
+        </results>
+    </CheckResult>
+    <ReportDump>------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Running check : UMLsec secure links Check
+------------------------------------------------------------------------------------
+ERROR: default attacker can insert at CommunicationPath 'link1'.
+
+default attacker can insert at CommunicationPath 'link1'.
+
+ERROR: default attacker can read at CommunicationPath 'link1'.
+
+default attacker can read at CommunicationPath 'link1'.
+</ReportDump>
+</AnalysisResult>
