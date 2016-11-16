@@ -41,6 +41,9 @@
       <popupmenu
             class="carisma.ui.vision.popup.actions.VisiOnDBOutput">
       </popupmenu>
+      <popupmenu
+            class="carisma.ui.vision.popup.actions.QuestionGenerationPopUpAction">
+      </popupmenu>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">

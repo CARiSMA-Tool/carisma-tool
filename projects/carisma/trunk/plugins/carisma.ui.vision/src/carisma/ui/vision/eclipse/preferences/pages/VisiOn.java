@@ -18,6 +18,9 @@ public class VisiOn extends FieldEditorPreferencePage implements IWorkbenchPrefe
 	public static final String KEY_STS_FIELD = "STS_Field";
 	public static final String KEY_STS_DOCUMENT = "STS_Document";
 	public static final String KEY_STS_COLLECTION = "STS_Collection";
+	public static final String KEY_QUESTION_FIELD = "QUESTION_Field";
+	public static final String KEY_QUESTION_DOCUMENT = "QUESTION_Document";
+	public static final String KEY_QUESTION_COLLECTION = "QUESTION_Collection";
 	public static final String KEY_URL = "Url";
 	public static final String KEY_SECRET = "Secret";
 	public static final String KEY_USER = "User";
@@ -95,6 +98,24 @@ public class VisiOn extends FieldEditorPreferencePage implements IWorkbenchPrefe
 		        getFieldEditorParent());
 		carisma_field.setEmptyStringAllowed(true);
 		addField(carisma_field);
+		
+		/*
+		 * Location of CARiSMA Questions
+		 */
+		StringFieldEditor question_collection = new StringFieldEditor(KEY_QUESTION_COLLECTION, "Collection of CARiSMA Question output:\t",
+		        getFieldEditorParent());
+		//question_collection.setEmptyStringAllowed(false);
+		addField(question_collection);
+		
+		StringFieldEditor question_document = new StringFieldEditor(KEY_QUESTION_DOCUMENT, "Document of CARiSMA Question output:\t",
+		        getFieldEditorParent());
+		//question_document.setEmptyStringAllowed(false);
+		addField(question_document);
+		
+		StringFieldEditor question_field = new StringFieldEditor(KEY_QUESTION_FIELD, "Field of CARiSMA Question output:\t\t",
+		        getFieldEditorParent());
+		//question_field.setEmptyStringAllowed(true);
+		addField(question_field);
 	}
 
 }

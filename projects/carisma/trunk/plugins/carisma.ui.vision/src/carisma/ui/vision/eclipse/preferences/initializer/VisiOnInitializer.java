@@ -25,6 +25,11 @@ public class VisiOnInitializer extends AbstractPreferenceInitializer {
 		preferencesStore.setDefault(VisiOn.KEY_STS_DOCUMENT, "sts_model");
 		preferencesStore.setDefault(VisiOn.KEY_STS_FIELD, "srs");
 		
+		preferencesStore.setDefault(VisiOn.KEY_QUESTION_COLLECTION, "testCollection");
+		preferencesStore.setDefault(VisiOn.KEY_QUESTION_DOCUMENT, "questions");
+		preferencesStore.setDefault(VisiOn.KEY_QUESTION_FIELD, "CARISMA");
+		
+		
 		preferencesStore.setDefault(VisiOn.KEY_PLA_COLLECTION, "testCollection");
 		preferencesStore.setDefault(VisiOn.KEY_PLA_DOCUMENT, "commonPAPLA");
 		preferencesStore.setDefault(VisiOn.KEY_PLA_FIELD, "trustAnalysis");

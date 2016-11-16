@@ -100,4 +100,6 @@ public interface AnalysisHost {
 	 * 			 new file (with another name), after interacting with user
 	 */
 	File getFileToBeWritten(File file) throws UserAbortedAnalysisException;
+
+	
 }

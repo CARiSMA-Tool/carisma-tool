@@ -11,7 +11,6 @@
 package carisma.core.analysis.result;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import carisma.core.analysis.Analysis;
@@ -50,6 +49,7 @@ public class AnalysisResult {
 	 * 
 	 */
 	private ArrayList<CheckResult> checkResults;
+	
 	/**
 	 * 
 	 */
@@ -62,7 +62,8 @@ public class AnalysisResult {
 	 */
 	@SuppressWarnings("unused")
 	private AnalysisResult() {
-	    throw new UnsupportedOperationException("No-arg constructor is just to keep JAXB from complaining");
+		checkResults = new ArrayList<CheckResult>();
+	    //throw new UnsupportedOperationException("No-arg constructor is just to keep JAXB from complaining");
 	}
 	
 	/**
@@ -127,13 +128,16 @@ public class AnalysisResult {
 		return status;
 	}
 	
+
 	/**
-	 * @return a list ot CheckResults
+	 * @return a list of CheckResults
+	 * should it be return Collections.unmodifiableList(checkResults);
 	 */
 	@XmlElement(name = "CheckResult")
 	public final List<CheckResult> getCheckResults() {
-		return Collections.unmodifiableList(checkResults);
+		return checkResults;
 	}
+	
 	
 	/**
 	 * @param text the message
@@ -164,5 +168,6 @@ public class AnalysisResult {
 		checkResults.add(result);
 		result.setParent(this);
 	}
+	
 }
 	
