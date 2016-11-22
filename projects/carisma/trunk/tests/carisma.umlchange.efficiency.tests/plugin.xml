@@ -69,14 +69,5 @@
          </parameter>
       </check>
    </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            name="Locked Status efficiency"
-            category="carisma.core.index"
-            class="carisma.check.samplepackage.preferencepage.MyPrefPage"
-            id="carisma.check.samplepackage.preferencepage.My Preference Page">
-      </page>
-   </extension>
 
 </plugin>
