@@ -45,7 +45,7 @@ public class Convert {
 	/**
 	 * Manages the activity diagram.
 	 */
-	private ActivityDiagramManager man;
+	//private ActivityDiagramManager man;
 	
 	/**
 	 * host for report.
@@ -58,7 +58,7 @@ public class Convert {
 	 */
 	public Convert(final Model model) {
 		this.model = model;
-		man = new ActivityDiagramManager(model);
+		//this.man = new ActivityDiagramManager(model);
 	}
 	
 	/**
@@ -68,9 +68,9 @@ public class Convert {
 	 */
 	public Convert(final Model model, final AnalysisHost analysisHost) {
 		this.model = model;
-		man = new ActivityDiagramManager(model);
+	//	this.man = new ActivityDiagramManager(model);
 		if (analysisHost != null) {
-			host = analysisHost;
+			this.host = analysisHost;
 		}
 	}
 	
@@ -85,26 +85,32 @@ public class Convert {
         Element initialNode = null;
     	
         //determining the initial state of the activity diagram
-        Element activity = model.getMembers().get(0);
-       	while (!(activity instanceof Activity)) {
-       		if (activity.getOwnedElements().size() == 0) {
-       			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Found no activity"));
-       			host.appendLineToReport("Found no activity");
+        
+        Activity activity = null;
+        Element element = this.model.getMembers().get(0);
+       	while (activity == null) {
+       		if (element.getOwnedElements().size() == 0) {
+       			this.host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Found no activity"));
+       			this.host.appendLineToReport("Found no activity");
        			return petriNet;
-       		} else {
-       			activity = activity.getOwnedElements().get(0);
+       		}
+       		else if(element instanceof Activity) { 
+       			activity = (Activity) element;
+       		} 
+       		else {
+       			element = element.getOwnedElements().get(0);
        		}
 		}
-		for (Element element : activity.getOwnedElements()) {
-			if (element instanceof InitialNode) {
-				initialNode = (InitialNode) element;
+		for (ActivityNode node : activity.getOwnedNodes()) {
+			if (node instanceof InitialNode) {
+				initialNode = node;
 			}
 		}
 //		TODO KR: ein Aktivitätsdigramm kann mehrere Initialnodes haben
 //		das muss hier berücksichtigt werden, entsprechende places mit tokens erstellen
 		if (initialNode == null) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Found no initial node"));
-   			host.appendLineToReport("Found no initial node");
+			this.host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Found no initial node"));
+   			this.host.appendLineToReport("Found no initial node");
 			return petriNet;
 		}
         // start to traverse the activity diagram from the initial state, converting it into a petri net 
@@ -123,7 +129,7 @@ public class Convert {
 	private void convertRek(final PetriNet petri, final Element elt) {
 		if (elt == null) {
 			return;
-		} else if (man.isDecisionOrMergeNode(elt) || man.isFinalNode(elt) || man.isInitialNode(elt)) {
+		} else if (ActivityDiagramManager.isDecisionOrMergeNode(elt) || ActivityDiagramManager.isFinalNode(elt) || ActivityDiagramManager.isInitialNode(elt)) {
 				String name = " ";
 				ActivityNode aN = (ActivityNode) elt;
 				if (aN.getName() != null) { 
@@ -134,14 +140,14 @@ public class Convert {
 				if (exists) { 
 					return; 
 				}
-				if (!man.isFinalNode(aN)) {
+				if (!ActivityDiagramManager.isFinalNode(aN)) {
 					for (ActivityEdge aE : aN.getOutgoings()) {
 						convertRek(petri , aE);
 					}
 					return;
 				}
 		//rule 2		
-		} else if (man.isAction(elt) || man.isForkNode(elt) || man.isJoinNode(elt)) {
+		} else if (ActivityDiagramManager.isAction(elt) || ActivityDiagramManager.isForkNode(elt) || ActivityDiagramManager.isJoinNode(elt)) {
 			String name = " ";
 			ActivityNode aN = (ActivityNode) elt;
 			if (aN.getName() != null) { name = aN.getName(); }
@@ -152,20 +158,20 @@ public class Convert {
 				convertRek(petri , aE);
 			}
 			return;
-		} else if (man.isEdge(elt)) {
+		} else if (ActivityDiagramManager.isEdge(elt)) {
 			ControlFlow cf = (ControlFlow) elt;
 			ActivityNode source = cf.getSource();
 			
 			ActivityNode target = cf.getTarget();
 			    //rule 3
 			if (
-					   (man.isAction(source)   && man.isAction(target)) 
-					|| (man.isAction(source)   && man.isForkNode(target))  
-					|| (man.isAction(source)   && man.isJoinNode(target))  
-					|| (man.isForkNode(source) && man.isAction(target))
-					|| (man.isForkNode(source) && man.isJoinNode(target))  
-					|| (man.isJoinNode(source) && man.isAction(target))
-					|| (man.isJoinNode(source) && man.isForkNode(target))
+					   (ActivityDiagramManager.isAction(source)   && ActivityDiagramManager.isAction(target)) 
+					|| (ActivityDiagramManager.isAction(source)   && ActivityDiagramManager.isForkNode(target))  
+					|| (ActivityDiagramManager.isAction(source)   && ActivityDiagramManager.isJoinNode(target))  
+					|| (ActivityDiagramManager.isForkNode(source) && ActivityDiagramManager.isAction(target))
+					|| (ActivityDiagramManager.isForkNode(source) && ActivityDiagramManager.isJoinNode(target))  
+					|| (ActivityDiagramManager.isJoinNode(source) && ActivityDiagramManager.isAction(target))
+					|| (ActivityDiagramManager.isJoinNode(source) && ActivityDiagramManager.isForkNode(target))
 					
 			) {	
 				String name = " ";
@@ -180,9 +186,9 @@ public class Convert {
 			}
 			    //rule 4
 			if (
-				   (man.isInitialNode(source) && man.isDecisionOrMergeNode(target))
-				|| (man.isDecisionOrMergeNode(source) && man.isDecisionOrMergeNode(target))
-				|| (man.isDecisionOrMergeNode(source) && man.isFinalNode(target))
+				   (ActivityDiagramManager.isInitialNode(source) && ActivityDiagramManager.isDecisionOrMergeNode(target))
+				|| (ActivityDiagramManager.isDecisionOrMergeNode(source) && ActivityDiagramManager.isDecisionOrMergeNode(target))
+				|| (ActivityDiagramManager.isDecisionOrMergeNode(source) && ActivityDiagramManager.isFinalNode(target))
 			) {
 				String name = " ";
 				if (cf.getName() != null) { name = cf.getName(); }
@@ -196,20 +202,20 @@ public class Convert {
 			}
 				//rule 5 
 			if (
-				   (man.isAction(source)   && man.isFinalNode(target))
-				|| (man.isAction(source)   && man.isDecisionOrMergeNode(target))
-				|| (man.isForkNode(source) && man.isFinalNode(target))
-				|| (man.isForkNode(source) && man.isDecisionOrMergeNode(target))
-				|| (man.isJoinNode(source) && man.isFinalNode(target))
-				|| (man.isJoinNode(source) && man.isDecisionOrMergeNode(target))
+				   (ActivityDiagramManager.isAction(source)   && ActivityDiagramManager.isFinalNode(target))
+				|| (ActivityDiagramManager.isAction(source)   && ActivityDiagramManager.isDecisionOrMergeNode(target))
+				|| (ActivityDiagramManager.isForkNode(source) && ActivityDiagramManager.isFinalNode(target))
+				|| (ActivityDiagramManager.isForkNode(source) && ActivityDiagramManager.isDecisionOrMergeNode(target))
+				|| (ActivityDiagramManager.isJoinNode(source) && ActivityDiagramManager.isFinalNode(target))
+				|| (ActivityDiagramManager.isJoinNode(source) && ActivityDiagramManager.isDecisionOrMergeNode(target))
 				||		
 				
 				//rule 6
-				   (man.isInitialNode(source)         && man.isAction(target))
-				|| (man.isInitialNode(source)         && man.isForkNode(target))
-				|| (man.isDecisionOrMergeNode(source) && man.isAction(target))
-				|| (man.isDecisionOrMergeNode(source) && man.isForkNode(target))
-				|| (man.isDecisionOrMergeNode(source) && man.isJoinNode(target))
+				   (ActivityDiagramManager.isInitialNode(source)         && ActivityDiagramManager.isAction(target))
+				|| (ActivityDiagramManager.isInitialNode(source)         && ActivityDiagramManager.isForkNode(target))
+				|| (ActivityDiagramManager.isDecisionOrMergeNode(source) && ActivityDiagramManager.isAction(target))
+				|| (ActivityDiagramManager.isDecisionOrMergeNode(source) && ActivityDiagramManager.isForkNode(target))
+				|| (ActivityDiagramManager.isDecisionOrMergeNode(source) && ActivityDiagramManager.isJoinNode(target))
 			) {
 				boolean exists = false;
 				exists = !petri.addArc(new Arc(cf.getQualifiedName(), source.getQualifiedName(), target.getQualifiedName()));
