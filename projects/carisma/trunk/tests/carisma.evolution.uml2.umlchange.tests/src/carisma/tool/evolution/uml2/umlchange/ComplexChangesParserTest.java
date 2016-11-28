@@ -67,12 +67,12 @@ public class ComplexChangesParserTest {
 	
 	@Test
 	public void testAddSingleComplexClass() {
-		model = TestHelper.loadModel(testmodeldir, "addSingleComplexClass.uml");
-		assertNotNull(model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
-		List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(model);
+		this.model = TestHelper.loadModel(this.testmodeldir, "addSingleComplexClass.uml");
+		assertNotNull(this.model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
+		List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(this.model);
 		assertNotNull(applications);
 		assertEquals(1, applications.size());
-		UMLchangeParser parser = new UMLchangeParser(model);
+		UMLchangeParser parser = new UMLchangeParser(this.model);
 		assertNotNull(parser);
 		List<Change> changes = parser.generateDeltaDescriptions();
 		assertNotNull(changes);
@@ -91,16 +91,16 @@ public class ComplexChangesParserTest {
 		EditElement edit = (EditElement) de;
 		assertEquals(1, edit.getValues().size());
 		assertTrue(edit.getValues().containsKey(OWNER));
-		assertEquals(model.getMember(TARGET_PKG), edit.getValues().get(OWNER));
+		assertEquals(this.model.getMember(TARGET_PKG), edit.getValues().get(OWNER));
 	}
 	
 	@Test
 	public void testAddMultipleClasses() {
-		model = TestHelper.loadModel(testmodeldir, "addMultipleClasses.uml");
-		assertNotNull(model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
-		List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(model);
+		this.model = TestHelper.loadModel(this.testmodeldir, "addMultipleClasses.uml");
+		assertNotNull(this.model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
+		List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(this.model);
 		assertEquals(1, applications.size());
-		UMLchangeParser parser = new UMLchangeParser(model);
+		UMLchangeParser parser = new UMLchangeParser(this.model);
 		List<Change> changes = parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		Change complexChange = changes.get(0);
@@ -114,17 +114,17 @@ public class ComplexChangesParserTest {
 			EditElement edit = (EditElement) de;
 			assertEquals(1, edit.getValues().size());
 			assertTrue(edit.getValues().containsKey(OWNER));
-			assertEquals(model.getMember(TARGET_PKG), edit.getValues().get(OWNER));
+			assertEquals(this.model.getMember(TARGET_PKG), edit.getValues().get(OWNER));
 		}
 	}
 	
 	@Test
 	public void testAddMultipleElementsWithConnections() {
-		model = TestHelper.loadModel(testmodeldir, "addMultipleWithConnections.uml");
-		assertNotNull(model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
-		List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(model);
+		this.model = TestHelper.loadModel(this.testmodeldir, "addMultipleWithConnections.uml");
+		assertNotNull(this.model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
+		List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(this.model);
 		assertEquals(1, applications.size());
-		UMLchangeParser parser = new UMLchangeParser(model);
+		UMLchangeParser parser = new UMLchangeParser(this.model);
 		List<Change> changes = parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		List<DeltaElement> complexElements = changes.get(0).getAlternatives().get(0).getDeltaElements();
@@ -134,18 +134,18 @@ public class ComplexChangesParserTest {
 			EditElement edit = (EditElement) de;
 			assertEquals(1, edit.getValues().size());
 			assertTrue(edit.getValues().containsKey(OWNER));
-			assertEquals(model.getMember(TARGET_PKG), edit.getValues().get(OWNER));
+			assertEquals(this.model.getMember(TARGET_PKG), edit.getValues().get(OWNER));
 		}
 	}
 	
 	@Test
 	public void testAddToOldClass() {
-		model = TestHelper.loadModel(testmodeldir, "addToOldClass.uml");
+		this.model = TestHelper.loadModel(this.testmodeldir, "addToOldClass.uml");
 		try {
-			assertNotNull(model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
-			List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(model);
+			assertNotNull(this.model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
+			List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(this.model);
 			assertEquals(4, applications.size());
-			UMLchangeParser parser = new UMLchangeParser(model);
+			UMLchangeParser parser = new UMLchangeParser(this.model);
 			List<Change> changes = parser.generateDeltaDescriptions();
 			assertEquals(1, changes.size());
 			List<DeltaElement> complexElements = changes.get(0).getAlternatives().get(0).getDeltaElements();
@@ -153,7 +153,7 @@ public class ComplexChangesParserTest {
 			EditElement edit = (EditElement) complexElements.get(0);
 			assertEquals(1, edit.getValues().size());
 			assertTrue(edit.getValues().containsKey(OWNER));
-			assertEquals(UMLHelper.getElementByName(model, "targetPkg::OldClass"), edit.getValues().get(OWNER));
+			assertEquals(UMLHelper.getElementByName(this.model, "targetPkg::OldClass"), edit.getValues().get(OWNER));
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
@@ -162,13 +162,13 @@ public class ComplexChangesParserTest {
 
 	@Test
 	public void testAddExtensions() {
-		model = TestHelper.loadModel(testmodeldir, "addExtensions.uml");
+		this.model = TestHelper.loadModel(this.testmodeldir, "addExtensions.uml");
 		try {
-			assertNotNull(model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
-			assertNotNull(model.getAppliedProfile("UMLsec"));
-			List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(model);
+			assertNotNull(this.model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
+			assertNotNull(this.model.getAppliedProfile("UMLsec"));
+			List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(this.model);
 			assertEquals(2, applications.size());
-			UMLchangeParser parser = new UMLchangeParser(model);
+			UMLchangeParser parser = new UMLchangeParser(this.model);
 			List<Change> changes = parser.generateDeltaDescriptions();
 			assertEquals(2, changes.size());
 			List<DeltaElement> addThisElements = changes.get(0).getAlternatives().get(0).getDeltaElements();
@@ -177,7 +177,7 @@ public class ComplexChangesParserTest {
 			assertEquals(UMLPackage.eINSTANCE.getStereotype(), add.getMetaClass());
 			assertEquals(1, add.getValues().size());
 			assertTrue(add.getValues().containsKey(NAME));
-			Element oldClass = UMLHelper.getElementByName(model, "OldClass");
+			Element oldClass = UMLHelper.getElementByName(this.model, "OldClass");
 			assertNotNull(oldClass);
 			assertEquals(oldClass, add.getTarget());
 			assertEquals("UMLsec::critical", add.getValues().get(NAME));
@@ -187,7 +187,7 @@ public class ComplexChangesParserTest {
 			assertEquals(UMLPackage.eINSTANCE.getProperty(), add.getMetaClass());
 			assertEquals(2, add.getValues().size());
 			assertTrue(add.getValues().containsKey(NAME));
-			oldClass = UMLHelper.getElementByName(model, "OldExtendedClass");
+			oldClass = UMLHelper.getElementByName(this.model, "OldExtendedClass");
 			assertNotNull(oldClass);
 			Stereotype critical = oldClass.getAppliedStereotype("UMLsec::critical");
 			StereotypeApplication oldCriticalApp = new StereotypeApplication(critical, oldClass);
@@ -206,19 +206,19 @@ public class ComplexChangesParserTest {
 
 	@Test
 	public void testAddNewConnectionToOld() {
-		model = TestHelper.loadModel(testmodeldir, "addNewConnectionToOld.uml");
+		this.model = TestHelper.loadModel(this.testmodeldir, "addNewConnectionToOld.uml");
 		try {
-			assertNotNull(model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
-			List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(model);
+			assertNotNull(this.model.getAppliedProfile(UMLchange.DESCRIPTOR.getProfileName()));
+			List<StereotypeApplication> applications = UMLchangeUtil.getStereotypeApplications(this.model);
 			assertEquals(4, applications.size());
-			UMLchangeParser parser = new UMLchangeParser(model);
+			UMLchangeParser parser = new UMLchangeParser(this.model);
 			List<Change> changes = parser.generateDeltaDescriptions();
 			assertEquals(1, changes.size());
 			List<DeltaElement> complexElements = changes.get(0).getAlternatives().get(0).getDeltaElements();
 			assertEquals(3, complexElements.size());
 			for (DeltaElement de : complexElements) {
 				EditElement edit = (EditElement) de;
-				if (edit.getTarget().equals(UMLHelper.getElementByName(model, "testAss1"))) {
+				if (edit.getTarget().equals(UMLHelper.getElementByName(this.model, "testAss1"))) {
 					assertEquals(2, edit.getValues().size());
 					assertTrue(edit.getValues().containsKey("end1"));
 					assertTrue(edit.getValues().containsKey("end2"));
@@ -226,12 +226,12 @@ public class ComplexChangesParserTest {
 					String end2Value = (String) edit.getValues().get("end2");
 					assertEquals("add::targetPkg::addThis::OldClass;;add::targetPkg::OldClass", end1Value);
 					assertEquals("add::targetPkg::addThis::SecondOldClass;;add::targetPkg::SecondOldClass", end2Value);
-				} else if (edit.getTarget().equals(UMLHelper.getElementByName(model, "testDep1"))) {
+				} else if (edit.getTarget().equals(UMLHelper.getElementByName(this.model, "testDep1"))) {
 					assertTrue(edit.getValues().containsKey("client"));
-					assertEquals(UMLHelper.getElementByName(model, "targetPkg::ThirdClass"), edit.getValues().get("client"));
-				} else if (edit.getTarget().equals(UMLHelper.getElementByName(model, "NewClass"))) {
+					assertEquals(UMLHelper.getElementByName(this.model, "targetPkg::ThirdClass"), edit.getValues().get("client"));
+				} else if (edit.getTarget().equals(UMLHelper.getElementByName(this.model, "NewClass"))) {
 					assertTrue(edit.getValues().containsKey(OWNER));
-					assertEquals(UMLHelper.getElementByName(model, TARGET_PKG), edit.getValues().get(OWNER));
+					assertEquals(UMLHelper.getElementByName(this.model, TARGET_PKG), edit.getValues().get(OWNER));
 				} else {
 					assertTrue(false);
 				}
@@ -243,7 +243,7 @@ public class ComplexChangesParserTest {
 	}
 	
 	@Test
-	public void testWhatAreNamedElements() {
+	public static void testWhatAreNamedElements() {
 		// ref: refID
 		// ext: refID=critical.high
 		// new: Property(name=high,value=newValue)
@@ -265,9 +265,9 @@ public class ComplexChangesParserTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

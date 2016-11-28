@@ -56,7 +56,7 @@ public class UMLchangeValidatorTest {
 		
 	@Before
 	public final void init() {
-		validator = new UMLchangeValidator();
+		this.validator = new UMLchangeValidator();
 	}
 	
 //	/**
@@ -221,7 +221,7 @@ public class UMLchangeValidatorTest {
 	 */
 	@Test
 	public final void testConstraint() {
-
+		//TODO: Implement test	
 	}
 	
 	/**
@@ -229,7 +229,7 @@ public class UMLchangeValidatorTest {
 	 */
 	@Test
 	public final void testExt() {
-			
+		//TODO: Implement test	
 	}
 	
 	/**
@@ -237,7 +237,7 @@ public class UMLchangeValidatorTest {
 	 */
 	@Test
 	public final void testNew() {
-		
+		//TODO: Implement test	
 	}
 	
 	/**
@@ -245,16 +245,16 @@ public class UMLchangeValidatorTest {
 	 */
 	@Test
 	public final void testModel() {
-		model = TestHelper.loadModel(filepath, UML_CHANGE_VALIDATOR);
-		assertTrue(validator.isValidModel(model));
+		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
+		assertTrue(this.validator.isValidModel(this.model));
 	}
 	
 	@Test
 	public final void testInvalidKeep() {
-		model = TestHelper.loadModel(filepath, UML_CHANGE_VALIDATOR);
+		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class keepClass = null;
 		try {
-			keepClass = (Class) UMLHelper.getElementByName(model, "Class3");
+			keepClass = (Class) UMLHelper.getElementByName(this.model, "Class3");
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, "At least one expected elemtent hasn't been found.", e);
 			fail("Couln't find ModelElement Class3.");
@@ -263,16 +263,16 @@ public class UMLchangeValidatorTest {
 		StereotypeApplication stereoApp = UMLchangeUtil.getStereotypeApplication(UMLchange.KEEP, keepClass);
 		assertNotNull(stereoApp);
 		stereoApp.getTaggedValue("adopter").setValue("");
-		assertFalse(validator.isValidModel(model));
+		assertFalse(this.validator.isValidModel(this.model));
 	}
 	
 
 	@Test
 	public final void testInvalidDelRef() {
-		model = TestHelper.loadModel(filepath, UML_CHANGE_VALIDATOR);
+		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class delClass = null;
 		try {
-			delClass = (Class) UMLHelper.getElementByName(model, "Class1");
+			delClass = (Class) UMLHelper.getElementByName(this.model, "Class1");
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, "At least one expected elemtent hasn't been found.", e);
 			fail("Couln't find ModelElement Class1.");
@@ -281,15 +281,15 @@ public class UMLchangeValidatorTest {
 		StereotypeApplication stereoApp = UMLchangeUtil.getStereotypeApplication(UMLchange.DEL, delClass);
 		assertNotNull(stereoApp);
 		stereoApp.getTaggedValue("constraint").setValue("delRef=AND(invalidRef)");
-		assertFalse(validator.isValidModel(model));
+		assertFalse(this.validator.isValidModel(this.model));
 	}
 	
 	@Test
 	public final void testInvalidPattern() {
-		model = TestHelper.loadModel(filepath, UML_CHANGE_VALIDATOR);
+		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class patternClass = null;
 		try {
-			patternClass = (Class) UMLHelper.getElementByName(model, "Class7");
+			patternClass = (Class) UMLHelper.getElementByName(this.model, "Class7");
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, "At least one expected elemtent hasn't been found.", e);
 			fail("Couln't find ModelElement Class7.");
@@ -298,12 +298,13 @@ public class UMLchangeValidatorTest {
 		StereotypeApplication stereoApp = UMLchangeUtil.getStereotypeApplication(UMLchange.ADDALL, patternClass);
 		assertNotNull(stereoApp);
 		stereoApp.getTaggedValue("pattern").setValue("addAllRef=this.pattern.is.invalid");
-		assertFalse(validator.isValidModel(model));
+		assertFalse(this.validator.isValidModel(this.model));
 	}
 	
 	
 	@Test
 	public final void testContentsPairs() {
+		//TODO: Implement test	
 	}
 	
 	/**
@@ -311,7 +312,7 @@ public class UMLchangeValidatorTest {
 	 */
 	@Test
 	public final void testExtContent() {
-		model = TestHelper.loadModel(filepath, "testValidatorExt.uml");
+		this.model = TestHelper.loadModel(this.filepath, "testValidatorExt.uml");
 	}
 	
 	@Test
@@ -321,19 +322,19 @@ public class UMLchangeValidatorTest {
 		valids.add("validID");
 		valids.add("correctID");
 		String value = "changeID=AND(otherID)";
-		assertTrue(validator.hasInvalidReferences(value, valids));
+		assertTrue(this.validator.hasInvalidReferences(value, valids));
 		value = "changeID=AND(validID)";
-		assertFalse(validator.hasInvalidReferences(value, valids));
+		assertFalse(this.validator.hasInvalidReferences(value, valids));
 		value = "changeID=AND(validID)NOT(invalidID)";
-		assertTrue(validator.hasInvalidReferences(value, valids));
+		assertTrue(this.validator.hasInvalidReferences(value, valids));
 	}
 	
 	@Test
 	public final void testStereoExt() {
-		model = TestHelper.loadModel(filepath, UML_CHANGE_VALIDATOR);
+		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class c1 = null;
 		try {
-			c1 = (Class) UMLHelper.getElementByName(model, "Class1");
+			c1 = (Class) UMLHelper.getElementByName(this.model, "Class1");
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
@@ -342,7 +343,7 @@ public class UMLchangeValidatorTest {
 		StereotypeApplication delApp = UMLchangeUtil.getStereotypeApplication(UMLchange.DEL, c1);
 		assertNotNull(delApp);
 		delApp.getTaggedValue("ext").setValue("b.u.l.l.s.h.i.t.");
-		assertFalse(validator.isValidApplication(delApp, new ArrayList<String>()));
+		assertFalse(this.validator.isValidApplication(delApp, new ArrayList<String>()));
 	}
 	
 	/**
@@ -350,10 +351,10 @@ public class UMLchangeValidatorTest {
 	 */
 	@Test
 	public final void testSubst() {
-		model = TestHelper.loadModel(filepath, UML_CHANGE_VALIDATOR);
+		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class substClass = null;
 		try {
-			substClass = (Class) UMLHelper.getElementByName(model, "testUMLchangeValidator::Class9");
+			substClass = (Class) UMLHelper.getElementByName(this.model, "testUMLchangeValidator::Class9");
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
@@ -361,19 +362,19 @@ public class UMLchangeValidatorTest {
 		assertNotNull(substClass);
 		StereotypeApplication substApp = UMLchangeUtil.getStereotypeApplication(UMLchange.SUBST, substClass);
 		assertNotNull(substApp);
-		assertTrue(validator.isValidApplication(substApp, new ArrayList<String>()));
+		assertTrue(this.validator.isValidApplication(substApp, new ArrayList<String>()));
 		substApp.getTaggedValue(NEW).removeValue();
 		substApp.getTaggedValue(NEW).setValue("oldRef={@invalidNamespace}");
-		assertFalse(validator.isValidApplication(substApp, new ArrayList<String>()));
+		assertFalse(this.validator.isValidApplication(substApp, new ArrayList<String>()));
 		substApp.getTaggedValue(NEW).removeValue();
 		substApp.getTaggedValue(NEW).setValue("oldRef={@oldName},{@oldName}");
-		assertTrue(validator.isValidApplication(substApp, new ArrayList<String>()));
+		assertTrue(this.validator.isValidApplication(substApp, new ArrayList<String>()));
 		substApp.getTaggedValue(NEW).removeValue();
 		substApp.getTaggedValue(NEW).setValue("oldRef={@oldName},{@invalidNamespace}");
-		assertFalse(validator.isValidApplication(substApp, new ArrayList<String>()));
+		assertFalse(this.validator.isValidApplication(substApp, new ArrayList<String>()));
 		Class substClass2 = null;
 		try {
-			substClass2 = (Class) UMLHelper.getElementByName(model, "testUMLchangeValidator::Class4");
+			substClass2 = (Class) UMLHelper.getElementByName(this.model, "testUMLchangeValidator::Class4");
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
@@ -384,7 +385,7 @@ public class UMLchangeValidatorTest {
 		List<String> refList = new ArrayList<String>();
 		refList.add("substRef");
 		refList.add("delRef");
-		assertTrue(validator.isValidApplication(substApp2, refList));
+		assertTrue(this.validator.isValidApplication(substApp2, refList));
 	}
 	
 	/**
@@ -392,10 +393,10 @@ public class UMLchangeValidatorTest {
 	 */
 	@Test
 	public final void testOld() {
-		model = TestHelper.loadModel(filepath, UML_CHANGE_VALIDATOR);
+		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class oldClass = null;
 		try {
-			 oldClass = (Class) UMLHelper.getElementByName(model, "oldName::Class9");
+			 oldClass = (Class) UMLHelper.getElementByName(this.model, "oldName::Class9");
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
@@ -403,17 +404,17 @@ public class UMLchangeValidatorTest {
 		assertNotNull(oldClass);
 		StereotypeApplication oldApp = UMLchangeUtil.getStereotypeApplication(UMLchange.OLD,  oldClass);
 		assertNotNull(oldApp);
-		assertTrue(validator.isValidApplication(oldApp, new ArrayList<String>()));
+		assertTrue(this.validator.isValidApplication(oldApp, new ArrayList<String>()));
 		Class class9 = null;
 		try {
-			class9 = (Class) UMLHelper.getElementByName(model, "testUMLchangeValidator::Class9");
+			class9 = (Class) UMLHelper.getElementByName(this.model, "testUMLchangeValidator::Class9");
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
 		}
 		assertNotNull(class9);
 		class9.destroy();
-		assertFalse(validator.isValidApplication(oldApp, new ArrayList<String>()));
+		assertFalse(this.validator.isValidApplication(oldApp, new ArrayList<String>()));
 	}
  
 }

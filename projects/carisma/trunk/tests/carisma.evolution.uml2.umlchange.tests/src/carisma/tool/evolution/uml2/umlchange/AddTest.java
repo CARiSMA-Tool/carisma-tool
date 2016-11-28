@@ -30,12 +30,12 @@ public class AddTest {
 		
 	@Test
 	public void testAddSingleElement() {
-		model = TestHelper.loadModel(testmodeldir, "addSingle_Element.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		Class class1 = TestHelper.checkedGetElement(model, "Class1", Class.class);
+		this.model = TestHelper.loadModel(this.testmodeldir, "addSingle_Element.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		Class class1 = TestHelper.checkedGetElement(this.model, "Class1", Class.class);
 		assertTrue(UMLchangeUtil.hasStereotype(UMLchange.ADD, class1));
-		List<Change> changes = parser.generateDeltaDescriptions();
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		Change addSomething = changes.get(0);
 		assertNotNull(addSomething);
@@ -56,18 +56,18 @@ public class AddTest {
 	
 	@Test
 	public void testNonExistingMetaclass() {
-		model = TestHelper.loadModel(testmodeldir, "addSingle_NonExistingMetaclass.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		assertEquals(0, parser.generateDeltaDescriptions().size());
+		this.model = TestHelper.loadModel(this.testmodeldir, "addSingle_NonExistingMetaclass.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		assertEquals(0, this.parser.generateDeltaDescriptions().size());
 	}
 	
 	@Test
 	public void testSimpleWithContent() {
-		model = TestHelper.loadModel(testmodeldir, "addSingle_WithContent.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "addSingle_WithContent.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		Change change = changes.get(0);
 		assertEquals(1, change.getAlternatives().size());
@@ -87,10 +87,10 @@ public class AddTest {
 	
 	@Test
 	public void testSimpleWithContentThreeLevels() {
-		model = TestHelper.loadModel(testmodeldir, "addSingle_WithContentThreeLevels.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "addSingle_WithContentThreeLevels.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		Change change = changes.get(0);
 		assertEquals(1, change.getAlternatives().size());
@@ -115,10 +115,10 @@ public class AddTest {
 
 	@Test
 	public void testSimpleContentNonExistingMetaclass() {
-		model = TestHelper.loadModel(testmodeldir, "addSingle_ContentNonExistingMetaclass.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "addSingle_ContentNonExistingMetaclass.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		Change change = changes.get(0);
 		assertEquals(1, change.getAlternatives().size());
@@ -139,9 +139,9 @@ public class AddTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 

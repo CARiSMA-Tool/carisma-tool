@@ -10,7 +10,7 @@ import carisma.evolution.uml2.umlchange.UMLchangeSyntax;
 public class UMLchangeSyntaxTest {
 
 	@Test
-	public final void testExt() {
+	public final static void testExt() {
 		assertTrue("refID=Stereotype".matches(UMLchangeSyntax.REGEX_EXT_VALUE));
 		assertTrue("refID=Stereotype.Tag".matches(UMLchangeSyntax.REGEX_EXT_VALUE));
 		
@@ -21,7 +21,7 @@ public class UMLchangeSyntaxTest {
 	}
 	
 	@Test
-	public final void testConstraint() {
+	public final static void testConstraint() {
 		assertTrue("someRef=AND(otherRef),NOT(falseRef)".matches(UMLchangeSyntax.REGEX_CONSTRAINT_VALUE));
 		assertTrue("someRef=AND(otherRef),NOT(falseRef)".matches(UMLchangeSyntax.REGEX_CONSTRAINT_VALUE));
 		assertFalse("someRef=ANDotherRef,NOTfalseRef".matches(UMLchangeSyntax.REGEX_CONSTRAINT_VALUE));
@@ -29,7 +29,7 @@ public class UMLchangeSyntaxTest {
 	}
 	
 	@Test
-	public final void testNew() {
+	public final static void testNew() {
 		assertTrue("refID={Class(name=.)}".matches(UMLchangeSyntax.REGEX_NEW_VALUE));
 		assertTrue("refID={Class(name=newName)}".matches(UMLchangeSyntax.REGEX_NEW_VALUE));
 		
@@ -41,7 +41,7 @@ public class UMLchangeSyntaxTest {
 	}
 	
 	@Test
-	public final void testKeyValuePairs() {
+	public final static void testKeyValuePairs() {
 		assertTrue("contents=<blabla>".matches(UMLchangeSyntax.REGEX_KEYVALUEPAIR));
 		assertFalse("contents=blabla".matches(UMLchangeSyntax.REGEX_KEYVALUEPAIR));
 		assertTrue("name=blabla".matches(UMLchangeSyntax.REGEX_KEYVALUEPAIR));

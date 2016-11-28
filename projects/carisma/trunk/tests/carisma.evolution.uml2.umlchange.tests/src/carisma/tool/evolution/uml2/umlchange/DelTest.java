@@ -44,28 +44,28 @@ public class DelTest {
 	 */
 	@Test
 	public final void testDelSingleElement() {
-		model = TestHelper.loadModel(testmodeldir, "Del_SingleElement.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "Del_SingleElement.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		DelElement delClass = (DelElement) changes.get(0).getAlternatives().get(0).getDeltaElements().get(0);
-		Class class1 = TestHelper.checkedGetElement(model, "Class1", Class.class);
+		Class class1 = TestHelper.checkedGetElement(this.model, "Class1", Class.class);
 		assertEquals(class1, delClass.getTarget());
 		assertEquals(9, delClass.getAccompanyingDeletions().size());
 	}
 	
 	@Test
 	public void testDelSingleWithStereotype() {
-		model = TestHelper.loadModel(testmodeldir, "Del_SingleWithStereotype.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "Del_SingleWithStereotype.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		DelElement delClass = (DelElement) changes.get(0).getAlternatives().get(0).getDeltaElements().get(0);
-		Class class1 = TestHelper.checkedGetElement(model, "Class1", Class.class);
+		Class class1 = TestHelper.checkedGetElement(this.model, "Class1", Class.class);
 		assertEquals(class1, delClass.getTarget());
 		assertEquals(2, delClass.getAccompanyingDeletions().size());
 	}
@@ -76,14 +76,14 @@ public class DelTest {
 	 */
 	@Test
 	public final void testDelSingleAssociation() {
-		model = TestHelper.loadModel(testmodeldir, "Del_SingleAssociation.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "Del_SingleAssociation.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		DelElement delClass = (DelElement) changes.get(0).getAlternatives().get(0).getDeltaElements().get(0);
-		Association assC1C2 = TestHelper.checkedGetElement(model, "Ass_C1C2", Association.class);
+		Association assC1C2 = TestHelper.checkedGetElement(this.model, "Ass_C1C2", Association.class);
 		assertEquals(assC1C2, delClass.getTarget());
 		assertEquals(7, delClass.getAccompanyingDeletions().size());
 	}
@@ -93,9 +93,9 @@ public class DelTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}	
 }

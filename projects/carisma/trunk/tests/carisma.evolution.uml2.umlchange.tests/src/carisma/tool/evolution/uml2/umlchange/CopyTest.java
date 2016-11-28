@@ -45,11 +45,11 @@ public class CopyTest {
 	 */
 	@Test
 	public final void testCopyStereotypes() {
-		model = TestHelper.loadModel(filepath, "testCopyValues.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "testCopyValues.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(2, changeList.size());
 		assertEquals(1, changeList.get(0).getAlternatives().size());
 		assertEquals(1, changeList.get(0).getAlternatives().size());
@@ -66,11 +66,11 @@ public class CopyTest {
 	 */
 	@Test
 	public final void testNullTarget() {
-		model = TestHelper.loadModel(filepath, "testCopyValues.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "testCopyValues.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(2, changeList.size());
 	}
 	
@@ -79,11 +79,11 @@ public class CopyTest {
 	 */
 	@Test
 	public final void testNamespace() {
-		model = TestHelper.loadModel(filepath, "testCopySameNamespace.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "testCopySameNamespace.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(2, changeList.size());
 		for (Change change : changeList) {
 			if (change.getRef().equalsIgnoreCase("someRef1")) {
@@ -101,9 +101,9 @@ public class CopyTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

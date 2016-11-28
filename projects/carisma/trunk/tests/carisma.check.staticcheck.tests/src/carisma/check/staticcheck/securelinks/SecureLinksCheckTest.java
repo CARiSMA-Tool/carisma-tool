@@ -27,7 +27,6 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.junit.Test;
 
-import carisma.check.staticcheck.securelinks.SecureLinksCheck;
 import carisma.check.staticcheck.securelinks.SecureLinksHelper;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
@@ -52,26 +51,26 @@ public class SecureLinksCheckTest {
 	private Model model = null;
 	
 	public final void loadModel(final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new UML2ModelLoader();
+		if (this.ml == null) {
+			this.ml = new UML2ModelLoader();
 		}
 		try {
-			modelres = ml.load(testmodelfile);
+			this.modelres = this.ml.load(testmodelfile);
 		} catch (IOException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
 		}
-		assertNotNull(modelres);
-		model = (Model) modelres.getContents().get(0);
-		assertNotNull(model);
+		assertNotNull(this.modelres);
+		this.model = (Model) this.modelres.getContents().get(0);
+		assertNotNull(this.model);
 	}
 	
 	@Test
 	public final void testRequirements() {
 		loadModel("testRequirements.uml");
-		NamedElement ne = model.getMember("pkg");
+		NamedElement ne = this.model.getMember("pkg");
 		assertNotNull(ne);
 		Package pkg = (Package) ne;
 		ne = pkg.getMember("dep");
@@ -89,51 +88,50 @@ public class SecureLinksCheckTest {
 		requirementApp = UMLsecUtil.getStereotypeApplication(dep, UMLsec.CALL);
 		assertNotNull(requirementApp);
 		assertFalse(SecureLinksHelper.isSecureLinksRequirement(requirementApp.getAppliedStereotype()));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	@Test
 	public final void testCheckAttacker() {
 		loadModel("testRequirements.uml");
-		SecureLinksCheck theCheck = new SecureLinksCheck();
-		assertEquals("insider",theCheck.getAttacker(model));
-		NamedElement ne = model.getMember("pkg");
+		assertEquals("insider",SecureLinks.getAttacker(this.model));
+		NamedElement ne = this.model.getMember("pkg");
 		assertNotNull(ne);
 		Package pkg = (Package) ne;
 		ne = pkg.getMember("aNode");
-		assertEquals("custom",theCheck.getAttacker(ne));
+		assertEquals("custom",SecureLinks.getAttacker(ne));
 		ne = pkg.getMember("bNode");
-		assertEquals("custom",theCheck.getAttacker(ne));
+		assertEquals("custom",SecureLinks.getAttacker(ne));
 		ne = pkg.getMember("dep");
-		assertEquals("custom",theCheck.getAttacker(ne));
+		assertEquals("custom",SecureLinks.getAttacker(ne));
 	}
 	
 	@Test
 	public final void testCheckWrongLinktype() {
 		loadModel("testDeploymentWrongLinktype.uml");
-		SecureLinksCheck theCheck = new SecureLinksCheck();
-		assertEquals(1, theCheck.checkSecureLinks(model));
+		SecureLinks theCheck = new SecureLinks();
+		assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
 	
 	@Test
 	public final void testCheckRightLinktype() {
 		loadModel("testDeploymentRightLinktype.uml");
-		SecureLinksCheck theCheck = new SecureLinksCheck();
-		assertEquals(0, theCheck.checkSecureLinks(model));
+		SecureLinks theCheck = new SecureLinks();
+		assertEquals(0, theCheck.checkSecureLinks(this.model));
 	}
 	
 	@Test
 	public final void testCheckWrongCustomMultipleRequirements() {
 		loadModel("testDeploymentWrongCustomMultipleRequirements.uml");
-		SecureLinksCheck theCheck = new SecureLinksCheck();
-		assertEquals(1, theCheck.checkSecureLinks(model));
+		SecureLinks theCheck = new SecureLinks();
+		assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
 	
 	@Test
 	public final void testCheckNonUMLsecStereotypes() {
 		loadModel("testDeploymentNonUMLsecStereotype.uml");
-		SecureLinksCheck theCheck = new SecureLinksCheck();
-		assertEquals(0, theCheck.checkSecureLinks(model));
+		SecureLinks theCheck = new SecureLinks();
+		assertEquals(0, theCheck.checkSecureLinks(this.model));
 	}
 	
 }

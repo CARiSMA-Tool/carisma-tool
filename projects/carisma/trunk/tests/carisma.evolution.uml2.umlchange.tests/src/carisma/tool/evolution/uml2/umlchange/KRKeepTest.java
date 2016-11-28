@@ -46,11 +46,11 @@ public class KRKeepTest {
 	 */
 	@Test
 	public final void test() {
-		model = TestHelper.loadModel(filepath, "ParserKeep.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "ParserKeep.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changeList.size());
 		Change change = changeList.get(0);
 		assertEquals(2, change.getAlternatives().size());
@@ -67,9 +67,9 @@ public class KRKeepTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

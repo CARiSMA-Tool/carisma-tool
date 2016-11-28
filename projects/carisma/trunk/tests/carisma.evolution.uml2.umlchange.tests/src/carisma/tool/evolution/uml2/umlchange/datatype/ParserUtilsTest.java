@@ -25,7 +25,7 @@ import carisma.evolution.uml2.umlchange.datatype.ParserUtils;
 public class ParserUtilsTest {
 
 	@Test
-	public void testExtract() {
+	public static void testExtract() {
 		ArrayList<String> parts = new ArrayList<String>();
 		parts.add("name=Klasse");
 		assertEquals(parts,ParserUtils.extract("name=Klasse", ','));
@@ -34,7 +34,7 @@ public class ParserUtilsTest {
 	}
 
 	@Test
-	public void testFindMetaclassName() {
+	public static void testFindMetaclassName() {
 		assertEquals("Class",ParserUtils.findMetaclassName("Class(Stuff,MoreStuff)"));
 		assertEquals("Test",ParserUtils.findMetaclassName("Test(Key=Value,OtherKey=Stuff)"));
 		assertEquals("",ParserUtils.findMetaclassName("ClassStuff,MoreStuff)"));
@@ -43,7 +43,7 @@ public class ParserUtilsTest {
 	}
 
 	@Test
-	public void testFindNamespace() {
+	public static void testFindNamespace() {
 		assertEquals("Here",ParserUtils.findNamespace("@Here"));
 		assertEquals("Here",ParserUtils.findNamespace("blabla,@Here"));
 		assertEquals("There",ParserUtils.findNamespace("blabla,@There,agasehga"));
@@ -55,7 +55,7 @@ public class ParserUtilsTest {
 	}
 
 	@Test
-	public void testFindKeyValuePairs() {
+	public static void testFindKeyValuePairs() {
 		HashMap<String, String> keyValuePairs = new HashMap<String, String>();
 		keyValuePairs.put("name", "Klasse");
 		keyValuePairs.put("visibility", "public");
@@ -68,7 +68,7 @@ public class ParserUtilsTest {
 	}
 
 	@Test
-	public void testReferenceValues() {
+	public static void testReferenceValues() {
 		List<String> testValues = new ArrayList<String>();
 		String ref = "someRef";
 		testValues.add("someRef={Alt1},{Alt2}");

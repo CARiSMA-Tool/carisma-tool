@@ -28,7 +28,7 @@ public class GrammarBlockTest {
 	private static final String CLASS = "Class";
 	
 	@Test
-	public void testSingleAlternative() {
+	public static void testSingleAlternative() {
 		String grammar = "{Class(" + NAME + "=" + BLA + "),Stereotype(name=blubb,someKey=Zing)}";
 		GrammarBlock parsedGrammar = new GrammarBlock(grammar);
 		assertEquals(grammar, parsedGrammar.getGrammarString());
@@ -56,7 +56,7 @@ public class GrammarBlockTest {
 	}
 
 	@Test
-	public void testTwoAlternatives() {
+	public static void testTwoAlternatives() {
 		String grammar = "{Class(name=BLA)},{Stereotype(name=blubb,someKey=Zing)}";
 		GrammarBlock parsedGrammar = new GrammarBlock(grammar);
 		assertEquals(grammar, parsedGrammar.getGrammarString());
@@ -87,7 +87,7 @@ public class GrammarBlockTest {
 	}
 
 	@Test
-	public void testOneAlternativeWithContent() {
+	public static void testOneAlternativeWithContent() {
 		String grammar = "{Class(name=BLA,contents=<Operation(name=someOp),Property(name=someAtt)>)}";
 		GrammarBlock parsedGrammar = new GrammarBlock(grammar);
 		assertEquals(grammar, parsedGrammar.getGrammarString());
@@ -123,7 +123,7 @@ public class GrammarBlockTest {
 	}
 	
 	@Test
-	public void testOneAlternativeThreeLevelContent() {
+	public static void testOneAlternativeThreeLevelContent() {
 		String grammar = "{Class(name=BLA,contents=<Operation(name=someOp,contents=<Property(name=someAtt," 
 				+ "contents=<NotPossible(name=NIX)>,visibility=public)>)>)}";
 		GrammarBlock parsedGrammar = new GrammarBlock(grammar);
@@ -169,7 +169,7 @@ public class GrammarBlockTest {
 	}
 	
 	@Test
-	public final void testForgotRoundBrackets() {
+	public final static void testForgotRoundBrackets() {
 		String grammarString = "{name=" + BLA + "}";
 		GrammarBlock block = new GrammarBlock(grammarString);
 		assertEquals(grammarString, block.getGrammarString());

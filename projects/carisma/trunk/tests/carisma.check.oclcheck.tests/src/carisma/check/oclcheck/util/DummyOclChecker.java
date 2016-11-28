@@ -27,6 +27,10 @@ import carisma.core.checks.CheckParameter;
  */
 public class DummyOclChecker extends AbstractOclChecker {
 
+	// Not registered at carisma.carismacheck
+	private static final String CHECK_ID = null;
+	private static final String CHECK_NAME = null;
+	
 	private String oclStatement = "";
 	
 	@Override
@@ -36,16 +40,26 @@ public class DummyOclChecker extends AbstractOclChecker {
 	}
 
 	public final void setOclStatement(String str) {
-		oclStatement = str;
+		this.oclStatement = str;
 	}
 	
 	@Override
 	protected String getOclStatement() {
-		return oclStatement;
+		return this.oclStatement;
 	}
 
 	@Override
 	protected EClass getOclContext() {
 		return null;
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 }

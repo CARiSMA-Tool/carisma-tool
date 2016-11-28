@@ -18,7 +18,7 @@ import carisma.evolution.uml2.UMLModifierCheck;
 import carisma.evolution.uml2.io.ModelExporterCheck;
 import carisma.evolution.uml2.umlchange.UMLchangeParserCheck;
 import carisma.modeltype.uml2.UML2ModelLoader;
-import carisma.check.smartcard.lockedstatus.Check;
+import carisma.check.smartcard.lockedstatus.LockedStatusCheck;
 
 
 
@@ -32,7 +32,7 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 	/**
 	 * host for reports.
 	 */
-	private AnalysisHost host;
+	private AnalysisHost analysisHost;
 	
 	/**
 	 * path to the "tmp" folder as string.
@@ -42,7 +42,7 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 	/**
 	 * path to the "tmp" folder as {@link File}.
 	 */
-	private File folderFile = new File(pathToTmpFolder);
+	private File folderFile = new File(this.pathToTmpFolder);
 	
 	/**
 	 * integer to save the amount of models for the nonEvolution check.
@@ -66,16 +66,16 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 	
 	@Override
 	public final boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost host) {
-		this.host = host;
+		this.analysisHost = host;
 		TestingHost changeHost = new TestingHost(false);
 		fillExportParameters(parameters);
 		initHost(parameters, changeHost);
-		folderFile.mkdir();
+		this.folderFile.mkdir();
 		String buffer = "";
 		if (host != null) {
-			this.host = host;
+			this.analysisHost = host;
 		} else {
-			this.host = new TestingHost(true);
+			this.analysisHost = new TestingHost(true);
 		}
 		UMLchangeParserCheck parser = new UMLchangeParserCheck();
 		long time = System.currentTimeMillis();
@@ -95,7 +95,7 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 		time = System.currentTimeMillis() - time;
 		umlmc = null;
 		buffer += "UMLModifier last " + time + " millisecs\n";
-		LockedStatusEvolutionDeltaOnlyCheck lset = new LockedStatusEvolutionDeltaOnlyCheck(false);
+		LockedStatusEvolutionDeltaOnlyCheck lset = new LockedStatusEvolutionDeltaOnlyCheck(Boolean.FALSE);
 		time = System.currentTimeMillis();
 		lset.perform(parameters, changeHost); //Evolution aware test
 		time = System.currentTimeMillis() - time;
@@ -110,9 +110,9 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 		changeHost = null;
 		time = nonEvolutionCheck();
 		buffer += "Non-Evolution check last " + time + " millisecs\n";
-		buffer += modelAmount + " models have been analyzed";
-		host.appendLineToReport(messages);
-		host.appendLineToReport(buffer);
+		buffer += this.modelAmount + " models have been analyzed";
+		this.analysisHost.appendLineToReport(this.messages);
+		this.analysisHost.appendLineToReport(buffer);
 		return true;
 	}
 	
@@ -124,31 +124,31 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 	 */
 	private long nonEvolutionCheck() {
 		long completeTime = 0;
-		for (File f : folderFile.listFiles()) {
+		for (File f : this.folderFile.listFiles()) {
 			if (f.getAbsolutePath().endsWith(".uml")) {
 				long time;
-				modelAmount++;
-				Check check  = new Check();  //locked-status check
+				this.modelAmount++;
+				LockedStatusCheck lockedStatusCheck  = new LockedStatusCheck();  //locked-status check
 				Resource res = loadModel(f.getAbsolutePath());
 				TestingHost h = new TestingHost(false);
 				h.setAnalyzedModel(res);
 				time = System.currentTimeMillis();
-				check.perform(null, h);
+				lockedStatusCheck.perform(null, h);
 				time = System.currentTimeMillis() - time;
 				completeTime += time;
 				try {
 					res.delete(null);
 				} catch (IOException e) {
-					messages += "Could not load model " + f.getAbsolutePath() + "\n!"; //kann eigentlich nicht passieren
+					this.messages += "Could not load model " + f.getAbsolutePath() + "\n!"; //kann eigentlich nicht passieren
 					e.printStackTrace();
 				}
 				h.delete();
 				h = null;
-				check = null;
+				lockedStatusCheck = null;
 			}
 			f.delete();
 		}
-		folderFile.delete();
+		this.folderFile.delete();
 		return completeTime;
 	}
 	
@@ -157,7 +157,7 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 	 * @param parameters parameters of the check.
 	 */
 	private void fillExportParameters(final Map<String, CheckParameter> parameters) {
-		Boolean maxDelta = true;
+		boolean maxDelta = true;
 		String maxDeltaString = "carisma.check.umlchange.efficiency.maxdelta";
 		String folder = "carisma.check.modelexporter.outputfolder";
 		String  notAll = "carisma.check.modelexporter.onlyMaxSuccessfulDeltas";
@@ -166,12 +166,12 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 			if (maxDeltaParameter instanceof BooleanParameter) {
 				maxDelta = ((BooleanParameter) maxDeltaParameter).getValue();
 			} else {
-				messages += "Wrong parameter type for the maxDeltas!\n";
+				this.messages += "Wrong parameter type for the maxDeltas!\n";
 			}
 		} else {
-			messages += "Missing value for maxDeltas!\n";
+			this.messages += "Missing value for maxDeltas!\n";
 		}
-		FolderParameter fp = new FolderParameter(null, folderFile);
+		FolderParameter fp = new FolderParameter(null, this.folderFile);
 		BooleanParameter  bp = new BooleanParameter(null, maxDelta);
 		parameters.put(folder, fp);
 		parameters.put(notAll, bp);
@@ -191,7 +191,7 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 		try {
 			returnValue = ml.load(file);
 		} catch (IOException e) {
-			host.appendLineToReport("Fail to open " + file.getAbsolutePath());
+			this.analysisHost.appendLineToReport("Fail to open " + file.getAbsolutePath());
 		}
 		return returnValue;
 	}
@@ -203,8 +203,8 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 	 * @param h {@link TestingHost} to initialize
 	 */
 	private void initHost(final Map<String, CheckParameter> parameters, final TestingHost h) {
-		CheckParameter percentageParameter = parameters.get(percentage);
-		CheckParameter pathsParameter = parameters.get(paths);
+		CheckParameter percentageParameter = parameters.get(this.percentage);
+		CheckParameter pathsParameter = parameters.get(this.paths);
 		float percentValue = 10;
 		int pathValue = 100;
 		Resource rs = null;
@@ -212,25 +212,25 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 			if (percentageParameter instanceof FloatParameter) {
 				percentValue = ((FloatParameter) percentageParameter).getValue();
 			} else {
-				messages += "Wrong parameter type for the percentages of paths with UMLchange stereotypes!\n";
+				this.messages += "Wrong parameter type for the percentages of paths with UMLchange stereotypes!\n";
 			}
 		} else {
-			messages += "Missing value for the percentages of paths with UMLchange stereotypes!\n";
+			this.messages += "Missing value for the percentages of paths with UMLchange stereotypes!\n";
 		}
 		if (pathsParameter != null) {
 			if (pathsParameter instanceof IntegerParameter) {
 				pathValue = ((IntegerParameter) pathsParameter).getValue();
 			} else {
-				messages += "Wrong parameter type for the ammounts of paths!\n";
+				this.messages += "Wrong parameter type for the ammounts of paths!\n";
 			}
 		} else {
-			messages += "Missing value for the ammounts of paths!\n";
+			this.messages += "Missing value for the ammounts of paths!\n";
 		}
 		LockedStatusModelCreater lsmc = new LockedStatusModelCreater();
 		long  time = System.currentTimeMillis();
 		rs = lsmc.getNewModel("TestModel", pathValue, percentValue);
 		time = System.currentTimeMillis() - time;
-		host.appendLineToReport("Modelcreation last " + time + " millisecs");
+		this.analysisHost.appendLineToReport("Modelcreation last " + time + " millisecs");
 		h.setAnalyzedModel(rs);
 	}
 

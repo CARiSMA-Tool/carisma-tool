@@ -53,17 +53,17 @@ public class AllTest {
 	 */
 	@Test
 	public final void delSingleClassTest() {
-		model = TestHelper.loadModel(testmodeldir, "del-allSingleClass.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "del-allSingleClass.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		assertEquals(1, changes.get(0).getAlternatives().size());
 		assertEquals(1, changes.get(0).getAlternatives().get(0).getDeltaElements().size());
 		
 		DelElement delEle = (DelElement) changes.get(0).getAlternatives().get(0).getDeltaElements().get(0);
 		
-		Element extendedEle = TestHelper.checkedGetElement(model, "Package1::Class1", Class.class);
+		Element extendedEle = TestHelper.checkedGetElement(this.model, "Package1::Class1", Class.class);
 
 		assertEquals(extendedEle, delEle.getTarget());
 	}
@@ -74,17 +74,17 @@ public class AllTest {
 	 */
 	@Test
 	public final void delPropertyTest() {
-		model = TestHelper.loadModel(testmodeldir, "DelAllProperties.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "DelAllProperties.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		assertEquals(1, changes.get(0).getAlternatives().size());
 		assertEquals(1, changes.get(0).getAlternatives().get(0).getDeltaElements().size());
 		
 		DeltaElement delEle = changes.get(0).getAlternatives().get(0).getDeltaElements().get(0);
 		
-		Element extendedEle = TestHelper.checkedGetElement(model, "classProperty", Property.class);
+		Element extendedEle = TestHelper.checkedGetElement(this.model, "classProperty", Property.class);
 		
 		assertEquals(extendedEle, delEle.getTarget());
 	}
@@ -97,17 +97,17 @@ public class AllTest {
 	 */
 	@Test
 	public final void delTaggedValueTest() {
-		model = TestHelper.loadModel(testmodeldir, "DelAllTaggedValue.uml"); 
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "DelAllTaggedValue.uml"); 
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		assertEquals(1, changes.get(0).getAlternatives().size());
 		assertEquals(1, changes.get(0).getAlternatives().get(0).getDeltaElements().size());
 		
 		DeltaElement delEle = changes.get(0).getAlternatives().get(0).getDeltaElements().get(0);
 		
-		Element extendedEle = TestHelper.checkedGetElement(model, "Class1", Class.class);
+		Element extendedEle = TestHelper.checkedGetElement(this.model, "Class1", Class.class);
 
 		StereotypeApplication stereoApp = UMLHelper.getStereotypeApplication(extendedEle, "identifiable");
 		assertEquals(stereoApp.getTaggedValue("id"), delEle.getTarget());
@@ -119,17 +119,17 @@ public class AllTest {
 	 */
 	@Test
 	public final void getPatternMatchesTest() {
-		model = TestHelper.loadModel(testmodeldir, "GetPatternMatches.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);		
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "GetPatternMatches.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);		
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		assertEquals(1, changes.get(0).getAlternatives().size());
 		Alternative alter1 = changes.get(0).getAlternatives().get(0);
 		assertEquals(1, alter1.getDeltaElements().size());
 		
 		DelElement delEle = (DelElement) alter1.getDeltaElements().get(0);
-		Class class1 = TestHelper.checkedGetElement(model, "Class1", Class.class);
+		Class class1 = TestHelper.checkedGetElement(this.model, "Class1", Class.class);
 		assertEquals(UMLHelper.getAppliedStereotype(class1, "identifiable"), ((StereotypeApplication) delEle.getTarget()).getAppliedStereotype());
 	}
 	
@@ -147,10 +147,10 @@ public class AllTest {
 	 */
 	@Test
 	public final void ignoreUMLChangeTest() {
-		model = TestHelper.loadModel(testmodeldir, "ignoreUMLChangeStereotypes.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "ignoreUMLChangeStereotypes.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(0, changes.size());
 	}
 	
@@ -159,9 +159,9 @@ public class AllTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 

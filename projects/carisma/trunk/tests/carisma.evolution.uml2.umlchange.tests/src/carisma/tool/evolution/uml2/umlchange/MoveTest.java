@@ -8,7 +8,6 @@ import java.util.List;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.junit.After;
 import org.junit.Test;
@@ -45,20 +44,20 @@ public class MoveTest {
 	 */
 	@Test
 	public final void testMoveProperty() {
-		model = TestHelper.loadModel(filepath, "testMoveProperty.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		Element elementToChange = TestHelper.checkedGetElement(model, "Class2", Class.class);
-		Element targetElement = TestHelper.checkedGetElement(model, "propertyToMove", Property.class);
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "testMoveProperty.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		Element elementToChange = TestHelper.checkedGetElement(this.model, "Class2", Class.class);
+		Element targetElement = TestHelper.checkedGetElement(this.model, "propertyToMove", Property.class);
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changeList.size());
 		EditElement editElement = (EditElement) changeList.get(0).getAlternatives().get(0).getDeltaElements().get(0);
 		assertEquals(1, changeList.get(0).getAlternatives().size());
 		assertNotNull(editElement);
 		assertEquals(changeList.get(0).getRef(), "toClass2");
 		assertEquals(editElement.getValues().get("name"), "moved");
-		assertEquals(((NamedElement) editElement.getValues().get("owner")), elementToChange);
-		assertEquals(((NamedElement) editElement.getTarget()), targetElement);
+		assertEquals((editElement.getValues().get("owner")), elementToChange);
+		assertEquals((editElement.getTarget()), targetElement);
 	}
 	
 	
@@ -67,10 +66,10 @@ public class MoveTest {
 	 */
 	@Test
 	public final void testMoveNotExistingTarget() {
-		model = TestHelper.loadModel(filepath, "testMoveNotExistingTarget.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "testMoveNotExistingTarget.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(0, changeList.size());
 	}
 	
@@ -79,10 +78,10 @@ public class MoveTest {
 	 */
 	@Test
 	public final void testMoveNameNotQualifiedEnough() {
-		model = TestHelper.loadModel(filepath, "testMoveNameNotQualifiedEnough.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "testMoveNameNotQualifiedEnough.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(0, changeList.size());
 	}
 
@@ -91,9 +90,9 @@ public class MoveTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

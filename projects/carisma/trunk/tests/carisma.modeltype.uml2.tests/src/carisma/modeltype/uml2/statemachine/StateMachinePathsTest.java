@@ -36,19 +36,18 @@ public class StateMachinePathsTest {
 	 */
 	private String filepath = "resources/models/stateMachinePath/";
 	
-	/**
-	 * 
-	 */
 	private Model model;
+	
+	
 		
 	/**
 	 * this test tests if the plugin works correct if there is no path in a state-machine.
 	 */
 	@Test
 	public final void testNoPath() {
-		Model model = TestHelper.loadModel(filepath, "stateMachinePathsNoPath.uml");
+		this.model = TestHelper.loadModel(this.filepath, "stateMachinePathsNoPath.uml");
 		StateMachinePaths smp = new StateMachinePaths();
-		List<StateMachine> smList = UMLHelper.getAllElementsOfType(model, StateMachine.class);
+		List<StateMachine> smList = UMLHelper.getAllElementsOfType(this.model, StateMachine.class);
 		assertEquals(1, smList.size());
 		List<List<Element>> results = smp.getPaths(smList.get(0), null, false);
 		assertNotNull(results);
@@ -60,9 +59,9 @@ public class StateMachinePathsTest {
 	 */
 	@Test
 	public final void testCorrect() {
-		Model model = TestHelper.loadModel(filepath, "stateMachinePathsCorrect.uml");
+		this.model = TestHelper.loadModel(this.filepath, "stateMachinePathsCorrect.uml");
 		StateMachinePaths smp = new StateMachinePaths();
-		List<StateMachine> smList = UMLHelper.getAllElementsOfType(model, StateMachine.class);
+		List<StateMachine> smList = UMLHelper.getAllElementsOfType(this.model, StateMachine.class);
 		assertEquals(1, smList.size());
 		List<List<Element>> results = smp.getPaths(smList.get(0), null, false);
 		assertNotNull(results);
@@ -74,9 +73,9 @@ public class StateMachinePathsTest {
 	 */
 	@Test
 	public final void testCorrectWithParallelization() {
-		Model model = TestHelper.loadModel(filepath, "stateMachinePathsCorrectWithParallel.uml");
+		this.model = TestHelper.loadModel(this.filepath, "stateMachinePathsCorrectWithParallel.uml");
 		StateMachinePaths smp = new StateMachinePaths();
-		List<StateMachine> smList = UMLHelper.getAllElementsOfType(model, StateMachine.class);
+		List<StateMachine> smList = UMLHelper.getAllElementsOfType(this.model, StateMachine.class);
 		assertEquals(1, smList.size());
 		List<List<Element>> results = smp.getPaths(smList.get(0), null, false);
 		assertNotNull(results);
@@ -87,7 +86,7 @@ public class StateMachinePathsTest {
 	 * this test tests if the plugin throws a NullpointerException if the given StateMachien is null.
 	 */
 	@Test (expected = NullPointerException.class)
-	public final void testNull() {
+	public final static void testNull() {
 		StateMachinePaths smp = new StateMachinePaths();
 		smp.getPaths(null, null, false);
 	}
@@ -98,9 +97,9 @@ public class StateMachinePathsTest {
 	 */
 	@Test
 	public final void testCorrectWithSubState() {
-		model = TestHelper.loadModel(filepath, "stateMachinePathsCorrectWithSubStates.uml");
+		this.model = TestHelper.loadModel(this.filepath, "stateMachinePathsCorrectWithSubStates.uml");
 		StateMachinePaths smp = new StateMachinePaths();
-		List<StateMachine> smList = UMLHelper.getAllElementsOfType(model, StateMachine.class);
+		List<StateMachine> smList = UMLHelper.getAllElementsOfType(this.model, StateMachine.class);
 		assertEquals(1, smList.size());
 		List<List<Element>> results = smp.getPaths(smList.get(0), null, false);
 		assertNotNull(results);
@@ -159,9 +158,9 @@ public class StateMachinePathsTest {
 	 */
 	@Test
 	public final void testEmptySubState() {
-		model = TestHelper.loadModel(filepath, "stateMachinePathsEmptySubState.uml");
+		this.model = TestHelper.loadModel(this.filepath, "stateMachinePathsEmptySubState.uml");
 		StateMachinePaths smp = new StateMachinePaths();
-		List<StateMachine> smList = UMLHelper.getAllElementsOfType(model, StateMachine.class);
+		List<StateMachine> smList = UMLHelper.getAllElementsOfType(this.model, StateMachine.class);
 		assertEquals(1, smList.size());
 		List<List<Element>> results = smp.getPaths(smList.get(0), null, false);
 		assertNotNull(results);
@@ -173,9 +172,9 @@ public class StateMachinePathsTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 	

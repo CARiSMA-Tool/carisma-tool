@@ -41,7 +41,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheckTest {
 	/**
 	 * The test model.
 	 */
-	private Model model;
+	Model model;
 	
 	/**
 	 * A dummy AnalysisHost for the test.
@@ -152,11 +152,11 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheckTest {
 		boolean checkSuccess = false;
 		initTest(testModelFileName);
 		UMLchangeParserCheck umlChangeParser = new UMLchangeParserCheck();
-		umlChangeParserSuccess = umlChangeParser.perform(null, testHost);
+		umlChangeParserSuccess = umlChangeParser.perform(null, this.testHost);
 		DeltaFactoryCheck deltaCalculator = new DeltaFactoryCheck();
-		deltaCalculatorSuccess = deltaCalculator.perform(null, testHost);
+		deltaCalculatorSuccess = deltaCalculator.perform(null, this.testHost);
 		AuthorizedStatusEvolutionDeltaOnlyCheck theCheck = new AuthorizedStatusEvolutionDeltaOnlyCheck();
-		checkSuccess = theCheck.perform(null, testHost);
+		checkSuccess = theCheck.perform(null, this.testHost);
 		return (umlChangeParserSuccess & deltaCalculatorSuccess & checkSuccess);
 	}
 	
@@ -165,12 +165,12 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheckTest {
 	 * @param testModelFileName the filename of the test model
 	 */
 	private void initTest(final String testModelFileName) {
-		testHost = new TestHost();
-		assertNotNull(testHost);
-		model = TestHelper.loadModel(filepath, testModelFileName);
-		assertTrue(testHost.getAnalyzedModel().isLoaded());
-		assertTrue(UMLHelper.isProfileApplied(model, UMLsec.DESCRIPTOR));
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
+		this.testHost = new TestHost();
+		assertNotNull(this.testHost);
+		this.model = TestHelper.loadModel(this.filepath, testModelFileName);
+		assertTrue(this.testHost.getAnalyzedModel().isLoaded());
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLsec.DESCRIPTOR));
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
 	}
 	
 	/**
@@ -187,13 +187,13 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheckTest {
 		 * Constructor.
 		 */
 		public TestHost() {
-			register = new HashMap<String, Object>();
+			this.register = new HashMap<String, Object>();
 		}
 		
 		@Override
 		public Resource getAnalyzedModel() {
-			if (model != null) {
-				return model.eResource();
+			if (AuthorizedStatusEvolutionDeltaOnlyCheckTest.this.model != null) {
+				return AuthorizedStatusEvolutionDeltaOnlyCheckTest.this.model.eResource();
 			}
 			return null;
 		}

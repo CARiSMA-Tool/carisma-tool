@@ -11,27 +11,16 @@
 package carisma.check.smartcard.lockedstatus;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.io.File;
-import java.io.IOException;
-
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Test;
 
-import carisma.check.smartcard.lockedstatus.LockedStatusCheck;
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
-import carisma.modeltype.uml2.UML2ModelLoader;
+import carisma.check.smartcard.lockedstatus.LockedStatus;
 import carisma.tests.modelutils.uml.TestHelper;
 
 
 public class LockedStatusCheckTest {
 	
-	private String filepath = "resources/models/";
+	private static final String filepath = "resources/models/";
 	
 	/*private UML2ModelLoader ml = null;
 	
@@ -52,9 +41,9 @@ public class LockedStatusCheckTest {
 	}*/
 
 	@Test
-	public void testLockedStatus() {
+	public static void testLockedStatus() {
 		Model model = TestHelper.loadModel(filepath, "testLockedStatus.uml");
-		LockedStatusCheck check = new LockedStatusCheck();
+		LockedStatus check = new LockedStatus();
 		assertEquals(1, check.startCheck(model));
 	}
 

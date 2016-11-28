@@ -30,10 +30,10 @@ public class UML2ModelLoaderTest {
 			
 	@Test
 	public void testProfileWithoutPrefix() {
-		model = TestHelper.loadModel(filepath, "profileNoPrefix.uml");
-		assertNotNull(model);
-		assertEquals(4, model.getAllAppliedProfiles().size());
-		for (Profile p : model.getAllAppliedProfiles()) {
+		this.model = TestHelper.loadModel(this.filepath, "profileNoPrefix.uml");
+		assertNotNull(this.model);
+		assertEquals(4, this.model.getAllAppliedProfiles().size());
+		for (Profile p : this.model.getAllAppliedProfiles()) {
             Logger.log(LogLevel.INFO, p.toString());
 		}
 	}
@@ -43,9 +43,9 @@ public class UML2ModelLoaderTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 	

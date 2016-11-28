@@ -2,11 +2,8 @@ package carisma.check.activitypaths;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.ActivityFinalNode;
 import org.eclipse.uml2.uml.ControlFlow;
 import org.eclipse.uml2.uml.DecisionNode;
@@ -20,9 +17,6 @@ import org.eclipse.uml2.uml.Package;
 import org.junit.After;
 import org.junit.Test;
 
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
 import carisma.tests.modelutils.uml.TestHelper;
@@ -36,96 +30,97 @@ public class ActivitypathsTest {
 	
 	@Test
 	public void testFalse() {
-		model = TestHelper.loadModel(filepath, "testActivityFail.uml");
-		ActivityDiagramManager adm = new ActivityDiagramManager(model);
+		this.model = TestHelper.loadModel(this.filepath, "testActivityFail.uml");
+		ActivityDiagramManager adm = new ActivityDiagramManager(this.model);
 		assertEquals(0, adm.getAllPaths().size());
 	}
 	
 	@Test
 	public void testTrue() {
-		model = TestHelper.loadModel(filepath, "testActivitySuccess.uml");
-		ActivityDiagramManager adm = new ActivityDiagramManager((Package) (model).getOwnedElements().get(0));
+		this.model = TestHelper.loadModel(this.filepath, "testActivitySuccess.uml");
+		ActivityDiagramManager adm = new ActivityDiagramManager((Package) (this.model).getOwnedElements().get(0));
 		boolean b = false;
 		if (adm.getAllPaths().size() > 0) {
 			b = true;
 		}
 		assertTrue(b);
 		b = true;
-		List<InitialNode> l = UMLHelper.getAllElementsOfType(model, InitialNode.class);
+		List<InitialNode> l = UMLHelper.getAllElementsOfType(this.model, InitialNode.class);
 		if (l.size() == 0) {
 			b = false;
 		}
 		assertTrue(b);
-		for (Element initalNode  : UMLHelper.getAllElementsOfType(model, InitialNode.class)) {
-			assertTrue(adm.isInitialNode(initalNode));
+		for (Element initalNode  : UMLHelper.getAllElementsOfType(this.model, InitialNode.class)) {
+			assertTrue(ActivityDiagramManager.isInitialNode(initalNode));
 		}
 		b = true;
-		if (UMLHelper.getAllElementsOfType(model, ActivityFinalNode.class).size() == 0) {
+		if (UMLHelper.getAllElementsOfType(this.model, ActivityFinalNode.class).size() == 0) {
 			b = false;
 		}
 		assertTrue(b);
-		for (Element finalNode  : UMLHelper.getAllElementsOfType(model, ActivityFinalNode.class)) {
-			assertTrue(adm.isFinalNode(finalNode));
-			assertFalse(adm.isForkNode(finalNode));
+		for (Element finalNode  : UMLHelper.getAllElementsOfType(this.model, ActivityFinalNode.class)) {
+			assertTrue(ActivityDiagramManager.isFinalNode(finalNode));
+			assertFalse(ActivityDiagramManager.isForkNode(finalNode));
 		}
 		b = true;
-		if (UMLHelper.getAllElementsOfType(model, ControlFlow.class).size() == 0) {
+		if (UMLHelper.getAllElementsOfType(this.model, ControlFlow.class).size() == 0) {
 			b = false;
 		}
 		assertTrue(b);
-		for (Element edge  : UMLHelper.getAllElementsOfType(model, ControlFlow.class)) {
-			assertTrue(adm.isEdge(edge));
-			assertFalse(adm.isForkNode(edge));
+		for (Element edge  : UMLHelper.getAllElementsOfType(this.model, ControlFlow.class)) {
+			assertTrue(ActivityDiagramManager.isEdge(edge));
+			assertFalse(ActivityDiagramManager.isForkNode(edge));
 		}
 		b = true;
-		if (UMLHelper.getAllElementsOfType(model, DecisionNode.class).size() == 0) {
+		if (UMLHelper.getAllElementsOfType(this.model, DecisionNode.class).size() == 0) {
 			b = false;
 		}
 		assertTrue(b);
-		for (Element dNode  : UMLHelper.getAllElementsOfType(model, DecisionNode.class)) {
-			assertTrue(adm.isDecisionNode(dNode));
-			assertFalse(adm.isForkNode(dNode));
+		for (Element dNode  : UMLHelper.getAllElementsOfType(this.model, DecisionNode.class)) {
+			assertTrue(ActivityDiagramManager.isDecisionNode(dNode));
+			assertFalse(ActivityDiagramManager.isForkNode(dNode));
 		}
 		b = true;
-		if (UMLHelper.getAllElementsOfType(model, MergeNode.class).size() == 0) {
+		if (UMLHelper.getAllElementsOfType(this.model, MergeNode.class).size() == 0) {
 			b = false;
 		}
 		assertTrue(b);
-		for (Element mNode  : UMLHelper.getAllElementsOfType(model, MergeNode.class)) {
-			assertTrue(adm.isMergeNode(mNode));
-			assertFalse(adm.isForkNode(mNode));
+		for (Element mNode  : UMLHelper.getAllElementsOfType(this.model, MergeNode.class)) {
+			assertTrue(ActivityDiagramManager.isMergeNode(mNode));
+			assertFalse(ActivityDiagramManager.isForkNode(mNode));
 		}
 	}
 	
 	@Test
 	public void testForkJoin() {
-		model = TestHelper.loadModel(filepath, "testActivityForkJoin.uml");
-		ActivityDiagramManager adm = new ActivityDiagramManager((Package) ((Element) model).getOwnedElements().get(0));
+		this.model = TestHelper.loadModel(this.filepath, "testActivityForkJoin.uml");
+		ActivityDiagramManager adm = new ActivityDiagramManager((Package) ((Element) this.model).getOwnedElements().get(0));
 		boolean b = false;
 		if (adm.getAllPaths().size() > 0) {
 			b = true;
 		}
 		assertTrue(b);
 		b = true;
-		if (UMLHelper.getAllElementsOfType(model, ForkNode.class).size() == 0) {
+		if (UMLHelper.getAllElementsOfType(this.model, ForkNode.class).size() == 0) {
 			b = false;
 		}
 		assertTrue(b);
-		for (Element forkNode  : UMLHelper.getAllElementsOfType(model, ForkNode.class)) {
-			assertTrue(adm.isForkNode(forkNode));
-			assertFalse(adm.isJoinNode(forkNode));
+		for (Element forkNode  : UMLHelper.getAllElementsOfType(this.model, ForkNode.class)) {
+			assertTrue(ActivityDiagramManager.isForkNode(forkNode));
+			assertFalse(ActivityDiagramManager.isJoinNode(forkNode));
 		}
 		b = true;
-		if (UMLHelper.getAllElementsOfType(model, JoinNode.class).size() == 0) {
+		if (UMLHelper.getAllElementsOfType(this.model, JoinNode.class).size() == 0) {
 			b = false;
 		}
 		assertTrue(b);
-		for (Element joinNode  : UMLHelper.getAllElementsOfType(model, JoinNode.class)) {
-			assertTrue(adm.isJoinNode(joinNode));
-			assertFalse(adm.isForkNode(joinNode));
+		for (Element joinNode  : UMLHelper.getAllElementsOfType(this.model, JoinNode.class)) {
+			assertTrue(ActivityDiagramManager.isJoinNode(joinNode));
+			assertFalse(ActivityDiagramManager.isForkNode(joinNode));
 		}
 	}
 	
+	@SuppressWarnings("static-method")
 	@Test(expected = NullPointerException.class)
 	public final void testNull() {
 		@SuppressWarnings("unused")
@@ -134,9 +129,9 @@ public class ActivitypathsTest {
 	
 	@After
 	public final void cleanUp() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

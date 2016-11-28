@@ -63,33 +63,33 @@ public class TestingHost implements AnalysisHost {
 	 * @param printToSystemOut true if messages should be printed on the console, false otherwise
 	 */
 	public TestingHost(final boolean printToSystemOut) {
-		toSystemHost = printToSystemOut;
+		this.toSystemHost = printToSystemOut;
 	}
 	
 	@Override
 	public final void addResultMessage(final AnalysisResultMessage resultMessage) {
-		if (toSystemHost) {
+		if (this.toSystemHost) {
 			System.out.println(resultMessage.getText());
 		}
 	}
 
 	@Override
 	public final void appendToReport(final String text) {
-		if (toSystemHost) {
+		if (this.toSystemHost) {
 			System.out.print(text);
 		}
 	}
 
 	@Override
 	public final void appendLineToReport(final String text) {
-		if (toSystemHost) {
+		if (this.toSystemHost) {
 			System.out.println(text);
 		}
 	}
 
 	@Override
 	public final Resource getAnalyzedModel() {
-		return res;
+		return this.res;
 	}
 	
 	/**
@@ -97,12 +97,12 @@ public class TestingHost implements AnalysisHost {
 	 * @param resource the new resource
 	 */
 	public final void setAnalyzedModel(final Resource resource) {
-		res = resource;
+		this.res = resource;
 	}
 	
 	@Override
 	public final String getCurrentModelFilename() {
-		return res.getURI().toString();
+		return this.res.getURI().toString();
 	}
 
 	@Override
@@ -110,12 +110,12 @@ public class TestingHost implements AnalysisHost {
 		if (isRegisterInUse(registerName)) {
 			throw new RegisterInUseException(registerName);
 		}
-		register.put(registerName, data);
+		this.register.put(registerName, data);
 	}
 
 	@Override
 	public final boolean isRegisterInUse(final String registerName) {
-		if (register.keySet().contains(registerName)) {
+		if (this.register.keySet().contains(registerName)) {
 			return true;
 		}
 		return false;
@@ -123,18 +123,18 @@ public class TestingHost implements AnalysisHost {
 
 	@Override
 	public final Object getFromRegister(final String registerName) throws RegisterNotInUseException {
-		if (!register.keySet().contains(registerName)) {
+		if (!this.register.keySet().contains(registerName)) {
 			throw new RegisterNotInUseException(registerName);
 		}
-		return register.get(registerName);
+		return this.register.get(registerName);
 	}
 
 	@Override
 	public final Object removeFromRegister(final String registerName) throws RegisterNotInUseException {
-		if (!register.keySet().contains(registerName)) {
+		if (!this.register.keySet().contains(registerName)) {
 			throw new RegisterNotInUseException(registerName);
 		}
-		return register.remove(registerName);
+		return this.register.remove(registerName);
 	}
 
 	@Override
@@ -153,17 +153,17 @@ public class TestingHost implements AnalysisHost {
 	 */
 	public final void delete() {
 		deleteModifier();
-		res = null;
-		register = null;
+		this.res = null;
+		this.register = null;
 	}
 	
 	/**
 	 * deletes the modifiers an loaded models.
 	 */
 	private void deleteModifier() {
-		if (register.keySet().contains(mODIFIERS_REGISTER_KEY)) {
-			ModifierMap deltaModifiers = (ModifierMap) register.get(mODIFIERS_REGISTER_KEY);
-			DeltaList deltas = (DeltaList) register.get(deltaRegistry);
+		if (this.register.keySet().contains(this.mODIFIERS_REGISTER_KEY)) {
+			ModifierMap deltaModifiers = (ModifierMap) this.register.get(this.mODIFIERS_REGISTER_KEY);
+			DeltaList deltas = (DeltaList) this.register.get(this.deltaRegistry);
 			try {
 			if (deltaModifiers != null) {
 				for (Delta d : deltas.getAllDeltas()) {

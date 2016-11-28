@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import carisma.core.models.ModelLoader;
 
-
+@Deprecated
 public class UniversalModelLoader implements ModelLoader {
 
 	@Override

@@ -10,13 +10,14 @@ Require-Bundle: org.eclipse.ui,
  carisma.modeltype.uml2,
  carisma.profile.umlchange,
  org.eclipse.core.resources,
- carisma.check.smartcard.evolution;bundle-version="1.1.2",
+ carisma.check.smartcard.evolution,
  carisma.check.smartcard,
  org.eclipse.emf.common,
  org.eclipse.emf.ecore,
- org.eclipse.uml2.uml
+ org.eclipse.uml2.uml,
+ org.junit
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: carisma.check.smartcard.lockedstatus,
  carisma.evolution,
  carisma.evolution.uml2,

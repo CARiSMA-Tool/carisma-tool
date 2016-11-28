@@ -48,12 +48,12 @@ public class TaggedValueTest {
 			
 	@Test
 	public final void testEmptyTagsAlreadyApplied() {
-		model = TestHelper.loadModel(testmodeldir, MODEL_NAME);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
+		this.model = TestHelper.loadModel(this.testmodeldir, MODEL_NAME);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
 		try {
-			Class class1 = UMLHelper.getElementOfNameAndType(model, CLASS_ONE, Class.class);
+			Class class1 = UMLHelper.getElementOfNameAndType(this.model, CLASS_ONE, Class.class);
 			assertNotNull(class1);
-			Class class2 = UMLHelper.getElementOfNameAndType(model, CLASS_TWO, Class.class);
+			Class class2 = UMLHelper.getElementOfNameAndType(this.model, CLASS_TWO, Class.class);
 			assertNotNull(class2);
 			StereotypeApplication addApp2 = UMLchangeUtil.getStereotypeApplication(UMLchange.ADD, class2);
 			assertNotNull(addApp2);
@@ -69,12 +69,12 @@ public class TaggedValueTest {
 	
 	@Test
 	public final void testEmptyTagsNewApplication() {
-		model = TestHelper.loadModel(testmodeldir, MODEL_NAME);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
+		this.model = TestHelper.loadModel(this.testmodeldir, MODEL_NAME);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
 		try {
-			Class class1 = UMLHelper.getElementOfNameAndType(model, CLASS_ONE, Class.class);
+			Class class1 = UMLHelper.getElementOfNameAndType(this.model, CLASS_ONE, Class.class);
 			assertNotNull(class1);
-			Class class2 = UMLHelper.getElementOfNameAndType(model, CLASS_TWO, Class.class);
+			Class class2 = UMLHelper.getElementOfNameAndType(this.model, CLASS_TWO, Class.class);
 			assertNotNull(class2);
 			StereotypeApplication addApp1 = UMLHelper.applyStereotype(class1, "UMLchange::add");
 			assertNotNull(addApp1);
@@ -89,12 +89,12 @@ public class TaggedValueTest {
 	
 	@Test
 	public final void testCheckTagInitializationAlreadyApplied() {
-		model = TestHelper.loadModel(testmodeldir, MODEL_NAME);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
+		this.model = TestHelper.loadModel(this.testmodeldir, MODEL_NAME);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
 		try {
-			Class class1 = UMLHelper.getElementOfNameAndType(model, CLASS_ONE, Class.class);
+			Class class1 = UMLHelper.getElementOfNameAndType(this.model, CLASS_ONE, Class.class);
 			assertNotNull(class1);
-			Class class2 = UMLHelper.getElementOfNameAndType(model, CLASS_TWO, Class.class);
+			Class class2 = UMLHelper.getElementOfNameAndType(this.model, CLASS_TWO, Class.class);
 			assertNotNull(class2);
 			StereotypeApplication addApp2 = UMLchangeUtil.getStereotypeApplication(UMLchange.ADD, class2);
 			assertNotNull(addApp2);
@@ -108,12 +108,12 @@ public class TaggedValueTest {
 
 	@Test
 	public final void testCheckTagInitializationNewApplication() {
-		model = TestHelper.loadModel(testmodeldir, MODEL_NAME);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
+		this.model = TestHelper.loadModel(this.testmodeldir, MODEL_NAME);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
 		try {
-			Class class1 = UMLHelper.getElementOfNameAndType(model, CLASS_ONE, Class.class);
+			Class class1 = UMLHelper.getElementOfNameAndType(this.model, CLASS_ONE, Class.class);
 			assertNotNull(class1);
-			Class class2 = UMLHelper.getElementOfNameAndType(model, CLASS_TWO, Class.class);
+			Class class2 = UMLHelper.getElementOfNameAndType(this.model, CLASS_TWO, Class.class);
 			assertNotNull(class2);
 			StereotypeApplication addApp1 = UMLHelper.applyStereotype(class1, "UMLchange::add");
 			assertNotNull(addApp1);
@@ -130,9 +130,9 @@ public class TaggedValueTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

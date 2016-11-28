@@ -47,11 +47,6 @@ import carisma.modeltype.bpmn2.extension.util.ExtensionUtil;
 public class MergeModelsTest {
 
 	/**
-	 * The model merger.
-	 */
-	private MergeModels merger = new MergeModels();
-	
-	/**
 	 * The bpmn2 model loader.
 	 */
 	private BPMN2ModelLoader ml = null;
@@ -72,13 +67,13 @@ public class MergeModelsTest {
 	 * @return If successful the model otherwise null
 	 */
 	public final Resource loadModel(final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new BPMN2ModelLoader();
+		if (this.ml == null) {
+			this.ml = new BPMN2ModelLoader();
 		}
 		try {
-			return ml.load(testmodelfile);
+			return this.ml.load(testmodelfile);
 		} catch (IOException e) {
 			fail(e.getMessage());
 			return null;
@@ -91,7 +86,7 @@ public class MergeModelsTest {
 	 * @return If successful the model otherwise null
 	 */
 	public final Resource loadExtensionModel(final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
 		try {
 			return ExtensionUtil.loadResource(testmodelfile);
@@ -107,7 +102,7 @@ public class MergeModelsTest {
 	 * @param obj The EObject which contains the attribute
 	 * @return Returns the string value of the attribute
 	 */
-	public final String getStructuralFeature(final String name, final EObject obj) {
+	public final static String getStructuralFeature(final String name, final EObject obj) {
 		if (obj != null) {
 			EStructuralFeature sf = obj.eClass().getEStructuralFeature(name);
 			if (sf == null) {
@@ -119,25 +114,23 @@ public class MergeModelsTest {
 			}
 			if (sf != null) {
 				return String.valueOf(obj.eGet(sf));
-			} else {
-				return "[" + obj.eClass().getName() + "]";
 			}
-		} else {
-			return "[no element]";
+			return "[" + obj.eClass().getName() + "]";
 		}
+		return "[no element]";
 	}
 	
 	/**
 	 * Tests the merge method with null permutations.
 	 */
 	@Test
-	public final void testMergeModelsNull() {
+	public final static void testMergeModelsNull() {
 		Bpmn2Factory factory = Bpmn2Factory.eINSTANCE;
 		Resource bpmn2res = factory.createDefinitions().eResource();
 		
-		assertNull(merger.run(bpmn2res, null));
-		assertNull(merger.run(null, bpmn2res));
-		assertNull(merger.run(null, null));
+		assertNull(MergeModels.run(bpmn2res, null));
+		assertNull(MergeModels.run(null, bpmn2res));
+		assertNull(MergeModels.run(null, null));
 	}
 	
 	/**
@@ -160,7 +153,7 @@ public class MergeModelsTest {
 		Resource extensionModel = loadExtensionModel("trade.bpmn2extension");
 		assertNotNull(extensionModel);
 		
-		Resource extendedModel = merger.run(modelres, extensionModel);
+		Resource extendedModel = MergeModels.run(modelres, extensionModel);
 		
 		ExtendedDocumentRoot extendedRoot = null;
 		try {
@@ -208,7 +201,7 @@ public class MergeModelsTest {
 		Resource extensionModel = loadExtensionModel("trade.bpmn2extension");
 		assertNotNull(extensionModel);
 		
-		Resource extendedModel = merger.run(modelres, extensionModel);
+		Resource extendedModel = MergeModels.run(modelres, extensionModel);
 		
 		ExtendedDocumentRoot extendedRoot = null;
 		try {
@@ -259,7 +252,7 @@ public class MergeModelsTest {
 		}
 		assertNotNull(extensionRoot);
 		
-		Resource extendedModel = merger.run(modelres, extensionModel);
+		Resource extendedModel = MergeModels.run(modelres, extensionModel);
 		
 		ExtendedDocumentRoot extendedRoot = null;
 		try {

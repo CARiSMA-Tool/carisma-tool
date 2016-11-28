@@ -19,8 +19,8 @@ public class UMLchangeParserStereotype_allTest {
 	
 	@Test
 	public void regularAddAllTest() {
-		model = TestHelper.loadModel(testmodeldir, "RegularAdd_AllModel.uml");
-		UMLchangeParser parser = new UMLchangeParser(model);
+		this.model = TestHelper.loadModel(this.testmodeldir, "RegularAdd_AllModel.uml");
+		UMLchangeParser parser = new UMLchangeParser(this.model);
 
 		assertEquals(2, parser.generateDeltaDescriptions().get(0)
 				.getAlternatives().get(0).getDeltaElements().size());
@@ -53,9 +53,9 @@ public class UMLchangeParserStereotype_allTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

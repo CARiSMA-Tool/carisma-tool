@@ -20,10 +20,11 @@ import carisma.profile.umlsec.UMLsec;
 
 public class ProfileEnumConformanceTest {
 
+	@SuppressWarnings("static-method")
 	@Test
 	public void test() {
 		Profile profile = null;
-		URI profileUri = URI.createURI("platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml");
+		URI profileUri = URI.createURI(UMLsecActivator.UML_FILE);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource profileResource = resourceSet.getResource(profileUri, true);
 		try {

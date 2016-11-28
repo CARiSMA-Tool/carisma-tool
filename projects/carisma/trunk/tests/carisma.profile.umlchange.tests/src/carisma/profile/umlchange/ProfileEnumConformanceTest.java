@@ -21,10 +21,11 @@ import carisma.profile.umlchange.UMLchange;
 
 public class ProfileEnumConformanceTest {
 
+	@SuppressWarnings("static-method")
 	@Test
 	public void test() {
 		Profile profile = null;
-		URI profileUri = URI.createURI("platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml");
+		URI profileUri = URI.createURI(UMLChangeActivator.UML_FILE);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource profileResource = resourceSet.getResource(profileUri, true);
 		try {

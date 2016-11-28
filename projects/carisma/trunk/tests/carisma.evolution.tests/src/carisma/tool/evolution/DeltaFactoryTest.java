@@ -145,10 +145,10 @@ public class DeltaFactoryTest {
 	 *  Input is an empty Map<Change, Set<Change>> .
 	 */
 	@Test
-	public final void hasCycleEmptyInputTest() {
+	public final static void hasCycleEmptyInputTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		try {
-			assertFalse((Boolean) hasCycles.invoke(deltaFact, new HashMap<Change, Set<Change>>()));
+			assertFalse(((Boolean) hasCycles.invoke(deltaFact, new HashMap<Change, Set<Change>>())).booleanValue());
 		} catch (Exception e) {
 			Logger.log(LogLevel.ERROR, "", e);
 			fail(e.getMessage());
@@ -162,7 +162,7 @@ public class DeltaFactoryTest {
 	 * THIRD_CHANGE  <-> FOURTH_CHANGE
 	 */
 	@Test
-	public final void hasCycleChainTest() {
+	public final static void hasCycleChainTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		try {
 			Change first = new Change(FIRST_CHANGE);
@@ -178,7 +178,7 @@ public class DeltaFactoryTest {
 			andDependencies.get(second).add(third);
 			andDependencies.get(third).add(fourth);
 			
-			assertFalse((Boolean) hasCycles.invoke(deltaFact, andDependencies));
+			assertFalse(((Boolean) hasCycles.invoke(deltaFact, andDependencies)).booleanValue());
 		} catch (Exception e) {
 			Logger.log(LogLevel.ERROR, "", e);
 			fail(e.getMessage());
@@ -192,7 +192,7 @@ public class DeltaFactoryTest {
 	 * ThirdChange requires FirstChange
 	 */
 	@Test
-	public final void hasCycleMultipleRequirementsTest() {
+	public final static void hasCycleMultipleRequirementsTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		
 		Change first = new Change(FIRST_CHANGE);
@@ -208,7 +208,7 @@ public class DeltaFactoryTest {
 		andDependencies.get(first).add(third);
 		andDependencies.get(second).add(first);
 		try {
-			assertTrue((Boolean) hasCycles.invoke(deltaFact, andDependencies));
+			assertTrue(((Boolean) hasCycles.invoke(deltaFact, andDependencies)).booleanValue());
 		} catch (Exception e) {
 			Logger.log(LogLevel.ERROR, "", e);
 			fail(e.getMessage());
@@ -221,7 +221,7 @@ public class DeltaFactoryTest {
 	 * FristChange requires First
 	 */
 	@Test
-	public final void hasCycleSimpleCycleTest() {
+	public final static void hasCycleSimpleCycleTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		try {
 			Change first = new Change(FIRST_CHANGE);
@@ -229,7 +229,7 @@ public class DeltaFactoryTest {
 			andDependencies.put(first, new HashSet<Change>());
 			andDependencies.get(first).add(first);
 	
-			assertTrue((Boolean) hasCycles.invoke(deltaFact, andDependencies));
+			assertTrue(((Boolean) hasCycles.invoke(deltaFact, andDependencies)).booleanValue());
 		} catch (Exception e) {
 			Logger.log(LogLevel.ERROR, "", e);
 			fail(e.getMessage());
@@ -245,7 +245,7 @@ public class DeltaFactoryTest {
 	 * FourthChange requires FirstChange.
 	 */
 	@Test
-	public final void hasCycleTest() {
+	public final static void hasCycleTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		try {
 			Change first = new Change(FIRST_CHANGE);
@@ -262,7 +262,7 @@ public class DeltaFactoryTest {
 			andDependencies.get(third).add(fourth);
 			andDependencies.get(fourth).add(first);
 			
-			assertTrue((Boolean) hasCycles.invoke(deltaFact, andDependencies));
+			assertTrue(((Boolean) hasCycles.invoke(deltaFact, andDependencies)).booleanValue());
 		} catch (Exception e) {
 			Logger.log(LogLevel.ERROR, "", e);
 			fail(e.getMessage());
@@ -274,7 +274,7 @@ public class DeltaFactoryTest {
 	 *  Expected return value is an empty List of Changes.
 	 */
 	@Test 
-	public final void computeMaxNumberOfDeltasEmptyList() {
+	public final static void computeMaxNumberOfDeltasEmptyList() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -282,8 +282,8 @@ public class DeltaFactoryTest {
 			method.setAccessible(true);
 			List<Change> changes = new ArrayList<Change>();
 			
-			int number = (Integer) method.invoke(deltaFact, changes);
-			assertEquals(0,  number);
+			Integer number = (Integer) method.invoke(deltaFact, changes);
+			assertEquals(0,  number.intValue());
 		} catch (Exception e) {
 			Logger.log(LogLevel.ERROR, "", e);
 			fail(e.getMessage());
@@ -295,7 +295,7 @@ public class DeltaFactoryTest {
 	 *  3 Changes: two with 4 alternatives and one with 1 alternative.
 	 */
 	@Test 
-	public final void computeMaxNumberOfDeltasInputList() {
+	public final static void computeMaxNumberOfDeltasInputList() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -352,7 +352,7 @@ public class DeltaFactoryTest {
 	 * Input: Empty List 
 	 */
 	@Test
-	public final void processConstraintsEmptyList() {
+	public final static void processConstraintsEmptyList() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -371,7 +371,7 @@ public class DeltaFactoryTest {
 	 * Return: empty List since the one Delta is not in compliance with the Constraint.
 	 */
 	@Test
-	public final void processConstraintsSimpleANDListFail() {
+	public final static void processConstraintsSimpleANDListFail() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -412,7 +412,7 @@ public class DeltaFactoryTest {
 	 * Return: unchange list of Deltas
 	 */
 	@Test
-	public final void processConstraintsSimpleANDListMatch() {
+	public final static void processConstraintsSimpleANDListMatch() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -459,7 +459,7 @@ public class DeltaFactoryTest {
 	 * Return: empty List since the one Delta is not in compliance with the Constraint.
 	 */
 	@Test
-	public final void processConstraintsSimpleNOTListFail() {
+	public final static void processConstraintsSimpleNOTListFail() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -502,7 +502,7 @@ public class DeltaFactoryTest {
 	 * Return: unchange list of Deltas
 	 */
 	@Test
-	public final void processConstraintsSimpleNOTListMatch() {
+	public final static void processConstraintsSimpleNOTListMatch() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -545,7 +545,7 @@ public class DeltaFactoryTest {
 	 * Return: empty List since the one Delta is not in compliance with the Constraint.
 	 */
 	@Test
-	public final void processConstraintsSimpleREQListFail() {
+	public final static void processConstraintsSimpleREQListFail() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -587,7 +587,7 @@ public class DeltaFactoryTest {
 	 * Return: unchange list of Deltas
 	 */
 	@Test
-	public final void processConstraintsSimpleREQListMatch() {
+	public final static void processConstraintsSimpleREQListMatch() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -634,7 +634,7 @@ public class DeltaFactoryTest {
 	 * FirstChange=AND(SecondChange, ThirdChange)
 	 */
 	@Test 
-	public final void processConstraintsAndList() {
+	public final static void processConstraintsAndList() {
 		try {
 			//-------- create test-data ----------//
 			Change first = new Change(FIRST_CHANGE);
@@ -673,7 +673,7 @@ public class DeltaFactoryTest {
 	 * @param third thirdChange
 	 * @return a List of Deltas.
 	 */
-	private List<Delta> createTestDataForConstraintsAndListTest(final Change first, final Change second, final Change third) {
+	private static List<Delta> createTestDataForConstraintsAndListTest(final Change first, final Change second, final Change third) {
 		List<Change> changes = new ArrayList<Change>();
 		EClass someMetaclass = null;
 		try {
@@ -824,7 +824,7 @@ public class DeltaFactoryTest {
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
-	public final void parseConstraintsEmptyInputTest() {
+	public final static void parseConstraintsEmptyInputTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -867,7 +867,7 @@ public class DeltaFactoryTest {
 	 * Third=AND(First,Second,Fourth)
 	 */
 	@Test
-	public final void parseConstraintsAndInputTest() {
+	public final static void parseConstraintsAndInputTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		
@@ -941,7 +941,7 @@ public class DeltaFactoryTest {
 	 * First=NOT(Second,Third)
 	 */
 	@Test
-	public final void parseConstraintsNotInputTest() {
+	public final static void parseConstraintsNotInputTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -999,7 +999,7 @@ public class DeltaFactoryTest {
 	 * Third=REQ(Second)
 	 */
 	@Test
-	public final void parseConstraintsReqInputTest() {
+	public final static void parseConstraintsReqInputTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
@@ -1022,7 +1022,7 @@ public class DeltaFactoryTest {
 			changes.add(second);
 			changes.add(third);
 			
-			deltaFact.getDeltas(changes);
+			DeltaFactory.getDeltas(changes);
 			
 			method.invoke(deltaFact);
 			
@@ -1058,7 +1058,7 @@ public class DeltaFactoryTest {
 	 * and the SecondChange has to be used before the FourthChange.
 	 */	
 	@Test
-	public final void sortChangesTest() {
+	public final static void sortChangesTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -1133,7 +1133,7 @@ public class DeltaFactoryTest {
 	 * SecondChange - FourthChange - ThirdChange - FirstChange
 	 */	
 	@Test
-	public final void sortChangesChainTest() {
+	public final static void sortChangesChainTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -1191,7 +1191,7 @@ public class DeltaFactoryTest {
 	 * the Delta which uses none of the Changes shall be ignored.
 	 */
 	@Test
-	public final void getDeltaSimpleTest() {
+	public final static void getDeltaSimpleTest() {
 		//------TestDataCreation----------------------
 		EClass someMetaclass = null;
 		try {
@@ -1219,8 +1219,7 @@ public class DeltaFactoryTest {
 		changes.add(first);
 		//------TestDataCreation Finished-------------
 		
-		DeltaFactory deltaFactory = new DeltaFactory();		
-		List<Delta> deltas = deltaFactory.getDeltas(changes);
+		List<Delta> deltas = DeltaFactory.getDeltas(changes);
 		assertEquals(2, deltas.size());
 
 		assertEquals(1, deltas.get(0).getNumberOfUsedChanges());
@@ -1238,7 +1237,7 @@ public class DeltaFactoryTest {
 	 * the Delta which uses none of the Changes shall be ignored.
 	 */
 	@Test
-	public final void getDeltaTest() {
+	public final static void getDeltaTest() {
 		//------TestDataCreation----------------------
 		
 		//creating MetaClass for DeltaElements
@@ -1293,8 +1292,7 @@ public class DeltaFactoryTest {
 		//------TestDataCreation Finished-------------
 
 		
-		DeltaFactory deltaFactory = new DeltaFactory();		
-		List<Delta> deltas = deltaFactory.getDeltas(changes);
+		List<Delta> deltas = DeltaFactory.getDeltas(changes);
 		
 		
 		assertEquals(11, deltas.size());
@@ -1362,7 +1360,7 @@ public class DeltaFactoryTest {
 		 * @return String name of the Target.
 		 */
 		public String getName() {
-			return name;
+			return this.name;
 		}
 		
 		@Override

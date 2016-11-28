@@ -18,20 +18,22 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Collections;
 
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Test;
 
 import carisma.check.oclcheck.SingleOclChecker;
 import carisma.check.oclcheck.util.DebugHost;
-import carisma.check.oclcheck.util.UniversalModelLoader;
-import carisma.core.models.ModelLoader;
 
 
 /**
@@ -53,11 +55,13 @@ public class SingleOclCheckerTest {
 	 * @return If successful the model as resource otherwise null
 	 * 
 	 */
-	public final Resource loadModel(final ModelLoader modelLoader, final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+	public final Resource loadModel(final String testmodelname) {
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		try {
-			return modelLoader.load(testmodelfile);
+		try (FileInputStream in = new FileInputStream(testmodelfile)){
+			Resource r = new ResourceSetImpl().createResource(URI.createURI(testmodelfile.getPath()));
+			r.load(in, Collections.EMPTY_MAP);
+			return r;
 		} catch (IOException e) {
 			fail(e.getMessage());
 			return null;
@@ -70,7 +74,6 @@ public class SingleOclCheckerTest {
 	@Test
 	public final void findContextInPackageTest() {
 		String methodName = "findContextInPackage";
-		UniversalModelLoader modelLoader = new UniversalModelLoader();
 		DebugHost host = new DebugHost();
 		SingleOclChecker oclChecker = new SingleOclChecker();
 		
@@ -84,7 +87,7 @@ public class SingleOclCheckerTest {
 				"sequencediagram.uml",
 				"statemachinediagram.uml",
 				"usecasediagram.uml"}) {
-			Resource model = loadModel(modelLoader, modelname);
+			Resource model = loadModel(modelname);
 			host.setAnalyzedModel(model);
 			assertNotNull(model);
 			
@@ -98,7 +101,7 @@ public class SingleOclCheckerTest {
 					methods[i].setAccessible(true);
 					try {
 						
-						Field analysisHostField = oclChecker.getClass().getDeclaredField("host");
+						Field analysisHostField = oclChecker.getClass().getDeclaredField("analysisHost");
 						analysisHostField.setAccessible(true);
 						analysisHostField.set(oclChecker, host);
 						
@@ -111,12 +114,13 @@ public class SingleOclCheckerTest {
 						
 
 					} catch (Exception e) {
+						e.printStackTrace();
 						fail("Error during invoke (" + modelname + ")");
 					}
 					break;
 				}
 			}
-			assertNotSame(-1, methodIndex);
+			assertNotSame(Integer.valueOf(-1), Integer.valueOf(methodIndex));
 		}
 	}
 		

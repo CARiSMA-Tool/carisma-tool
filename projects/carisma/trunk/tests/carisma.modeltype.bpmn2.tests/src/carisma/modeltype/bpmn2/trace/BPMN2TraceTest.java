@@ -80,13 +80,13 @@ public class BPMN2TraceTest {
 	 *            The model name
 	 */
 	private void loadModel(final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new BPMN2ModelLoader();
+		if (this.ml == null) {
+			this.ml = new BPMN2ModelLoader();
 		}
 		try {
-			modelres = ml.load(testmodelfile);
+			this.modelres = this.ml.load(testmodelfile);
 		} catch (IOException e) {
 			fail(e.getMessage());
 		}
@@ -110,20 +110,20 @@ public class BPMN2TraceTest {
 		String activtyAfterName = "after";
 		String containerName = CONTAINER;
 		ArrayList<Tupel<String, Boolean>> testModels = new ArrayList<Tupel<String, Boolean>>();
-		testModels.add(new Tupel<String, Boolean>("TracesAfterOk1.bpmn2", true));
-		testModels.add(new Tupel<String, Boolean>("TracesAfterOk2.bpmn2", true));
-		testModels.add(new Tupel<String, Boolean>("TracesAfterBad1.bpmn2", false));
-		testModels.add(new Tupel<String, Boolean>("TracesAfterBad2.bpmn2", false));
-		testModels.add(new Tupel<String, Boolean>("TracesAfterBad3.bpmn2", false));
+		testModels.add(new Tupel<String, Boolean>("TracesAfterOk1.bpmn2", Boolean.TRUE));
+		testModels.add(new Tupel<String, Boolean>("TracesAfterOk2.bpmn2", Boolean.TRUE));
+		testModels.add(new Tupel<String, Boolean>("TracesAfterBad1.bpmn2", Boolean.FALSE));
+		testModels.add(new Tupel<String, Boolean>("TracesAfterBad2.bpmn2", Boolean.FALSE));
+		testModels.add(new Tupel<String, Boolean>("TracesAfterBad3.bpmn2", Boolean.FALSE));
 
 		for (Tupel<String, Boolean> testModel : testModels) {
 			loadModel(testModel.getO1());
-			assertNotNull("model is null", modelres);
+			assertNotNull("model is null", this.modelres);
 
 			Activity activityBefore = null, activityAfter = null;
 			Process process = null;
 			
-			TreeIterator<EObject> iterator = modelres.getAllContents();
+			TreeIterator<EObject> iterator = this.modelres.getAllContents();
 			while (iterator.hasNext()) {
 				EObject obj = iterator.next();
 				if (obj instanceof Activity) {
@@ -142,10 +142,10 @@ public class BPMN2TraceTest {
 			assertNotNull("No \"activityAfter\" element is declared in the model", activityAfter);
 			assertNotNull("No process element found", process);
 
-			assertTrue("Traces could not be calculated", traceHelper.calculateTraces(process));
+			assertTrue("Traces could not be calculated", this.traceHelper.calculateTraces(process));
 			try {
 				assertEquals("(" + testModel.getO1() + "): allTracesBeforeError", 
-						traceHelper.allTracesBefore(activityBefore, activityAfter),
+						Boolean.valueOf(this.traceHelper.allTracesBefore(activityBefore, activityAfter)),
 						testModel.getO2());
 			} catch (NoTracesCalculatedException e) {
 				fail(ERROR_MSG);
@@ -167,20 +167,20 @@ public class BPMN2TraceTest {
 		String activityName = "markedActivity";
 		String containerName = CONTAINER;
 		ArrayList<Tupel<String, Boolean>> testModels = new ArrayList<Tupel<String, Boolean>>();
-		testModels.add(new Tupel<String, Boolean>("TracesIncludeOk1.bpmn2", true));
-		testModels.add(new Tupel<String, Boolean>("TracesIncludeOk2.bpmn2", true));
-		testModels.add(new Tupel<String, Boolean>("TracesIncludeBad1.bpmn2", false));
-		testModels.add(new Tupel<String, Boolean>("TracesIncludeBad2.bpmn2", false));
+		testModels.add(new Tupel<String, Boolean>("TracesIncludeOk1.bpmn2", Boolean.TRUE));
+		testModels.add(new Tupel<String, Boolean>("TracesIncludeOk2.bpmn2", Boolean.TRUE));
+		testModels.add(new Tupel<String, Boolean>("TracesIncludeBad1.bpmn2", Boolean.FALSE));
+		testModels.add(new Tupel<String, Boolean>("TracesIncludeBad2.bpmn2", Boolean.FALSE));
 
 		for (Tupel<String, Boolean> testModel : testModels) {
 			loadModel(testModel.getO1());
-			assertNotNull("model is null", modelres);
+			assertNotNull("model is null", this.modelres);
 
 			Activity markedActivity = null;
 			Process process = null;
 
 			boolean foundMarkedActivity = false;
-			TreeIterator<EObject> iterator = modelres.getAllContents();
+			TreeIterator<EObject> iterator = this.modelres.getAllContents();
 			while (iterator.hasNext() && !foundMarkedActivity) {
 				EObject obj = iterator.next();
 				if (obj instanceof Activity && ((Activity) obj).getName().equalsIgnoreCase(activityName)) {
@@ -196,9 +196,10 @@ public class BPMN2TraceTest {
 			assertNotNull("The \"marked\" element is null", markedActivity);
 			assertNotNull("No process element found", process);
 
-			assertTrue("Traces could not be calculated", traceHelper.calculateTraces(process));
+			assertTrue("Traces could not be calculated", this.traceHelper.calculateTraces(process));
 			try {
-				assertEquals("(" + testModel + ") allTracesIncludeError", traceHelper.allTracesInclude(markedActivity),
+				assertEquals("(" + testModel + ") allTracesIncludeError", 
+						Boolean.valueOf(this.traceHelper.allTracesInclude(markedActivity)),
 						testModel.getO2());
 			} catch (NoTracesCalculatedException e) {
 				fail(ERROR_MSG);
@@ -222,11 +223,11 @@ public class BPMN2TraceTest {
 
 		for (String testModel : testModels) {
 			loadModel(testModel);
-			assertNotNull("model is null", modelres);
+			assertNotNull("model is null", this.modelres);
 
 			ArrayList<Activity> activityList = new ArrayList<Activity>();
 			Process process = null;
-			TreeIterator<EObject> iterator = modelres.getAllContents();
+			TreeIterator<EObject> iterator = this.modelres.getAllContents();
 			while (iterator.hasNext()) {
 				EObject obj = iterator.next();
 				if (obj instanceof Activity && ((Activity) obj).getName().toLowerCase(Locale.ENGLISH).matches(regExActivityName)) {
@@ -240,10 +241,10 @@ public class BPMN2TraceTest {
 					activityList.size() > 0);
 			assertNotNull("No process element found", process);
 
-			assertTrue("Traces could not be calculated", traceHelper.calculateTraces(process));
+			assertTrue("Traces could not be calculated", this.traceHelper.calculateTraces(process));
 			try {
 				assertTrue("(" + testModel + ") HasTraceError11: Trace not found", 
-						traceHelper.hasTrace(activityList, null));
+						this.traceHelper.hasTrace(activityList, null));
 			} catch (NoTracesCalculatedException e2) {
 				fail(ERROR_MSG);
 			}
@@ -258,7 +259,7 @@ public class BPMN2TraceTest {
 				activityList.add(first);
 				try {
 					assertFalse("(" + testModel + ") HasTraceError12: Trace should not exist", 
-							traceHelper.hasTrace(activityList, null));
+							this.traceHelper.hasTrace(activityList, null));
 				} catch (NoTracesCalculatedException e1) {
 					fail(ERROR_MSG);
 				}
@@ -270,7 +271,7 @@ public class BPMN2TraceTest {
 				activityList.add(0, first);
 				try {
 					assertTrue("(" + testModel + ") HasTraceError13: Trace not found", 
-							traceHelper.hasTrace(activityList, null));
+							this.traceHelper.hasTrace(activityList, null));
 				} catch (NoTracesCalculatedException e) {
 					fail(ERROR_MSG);
 				}
@@ -300,11 +301,11 @@ public class BPMN2TraceTest {
 
 		for (String testModel : testModels) {
 			loadModel(testModel);
-			assertNotNull("model is null", modelres);
+			assertNotNull("model is null", this.modelres);
 
 			ArrayList<Activity> activityList = new ArrayList<Activity>();
 			Process process = null;
-			TreeIterator<EObject> iterator = modelres.getAllContents();
+			TreeIterator<EObject> iterator = this.modelres.getAllContents();
 			while (iterator.hasNext()) {
 				EObject obj = iterator.next();
 				if (obj instanceof Activity) {
@@ -321,13 +322,14 @@ public class BPMN2TraceTest {
 
 			assertNotNull("No process element found", process);
 			assertSame("Not all defined activities could be found in the process", 
-					activityList.size(), activityNames.length);
+					Integer.valueOf(activityList.size()), 
+					Integer.valueOf(activityNames.length));
 
 			Activity removedElement = null;
-			assertTrue("Traces could not be calculated", traceHelper.calculateTraces(process));
+			assertTrue("Traces could not be calculated", this.traceHelper.calculateTraces(process));
 			try {
 				assertTrue("(" + testModel + ") HasTraceError21: Trace not found", 
-						traceHelper.hasTrace(activityList, null));
+						this.traceHelper.hasTrace(activityList, null));
 			} catch (NoTracesCalculatedException e) {
 				fail(ERROR_MSG);
 			}
@@ -335,7 +337,7 @@ public class BPMN2TraceTest {
 			removedElement = activityList.remove(activityList.size() - 2);
 			try {
 				assertTrue("(" + testModel + ") HasTraceError22: Trace not found", 
-						traceHelper.hasTrace(activityList, null));
+						this.traceHelper.hasTrace(activityList, null));
 			} catch (NoTracesCalculatedException e) {
 				fail(ERROR_MSG);
 			}
@@ -344,7 +346,7 @@ public class BPMN2TraceTest {
 			removedElement = activityList.remove(activityList.size() - 1);
 			try {
 				assertTrue("(" + testModel + ") HasTraceError23: Trace not found", 
-						traceHelper.hasTrace(activityList, null));
+						this.traceHelper.hasTrace(activityList, null));
 			} catch (NoTracesCalculatedException e) {
 				fail(ERROR_MSG);
 			}
@@ -353,7 +355,7 @@ public class BPMN2TraceTest {
 			removedElement = activityList.remove(0);
 			try {
 				assertTrue("(" + testModel + ") HasTraceError24: Trace not found", 
-						traceHelper.hasTrace(activityList, null));
+						this.traceHelper.hasTrace(activityList, null));
 			} catch (NoTracesCalculatedException e) {
 				fail(ERROR_MSG);
 			}

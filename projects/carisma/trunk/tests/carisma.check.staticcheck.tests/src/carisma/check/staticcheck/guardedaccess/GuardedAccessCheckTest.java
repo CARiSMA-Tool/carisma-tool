@@ -70,12 +70,12 @@ public class GuardedAccessCheckTest {
 
 		@Override
 		public Resource getAnalyzedModel() {
-			return modelres;
+			return GuardedAccessCheckTest.this.modelres;
 		}
 
 		@Override
 		public String getCurrentModelFilename() {
-			return modelres.getURI().toFileString();
+			return GuardedAccessCheckTest.this.modelres.getURI().toFileString();
 		}
 
 		@Override
@@ -123,20 +123,20 @@ public class GuardedAccessCheckTest {
 	 * @param testmodelname - the name of the UML file
 	 */
 	public final void loadModel(final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new UML2ModelLoader();
+		if (this.ml == null) {
+			this.ml = new UML2ModelLoader();
 		}
 		try {
-			modelres = ml.load(testmodelfile);
+			this.modelres = this.ml.load(testmodelfile);
 		} catch (IOException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
 		}
-		assertNotNull(modelres);
-		model = (Model) modelres.getContents().get(0);
-		assertNotNull(model);
+		assertNotNull(this.modelres);
+		this.model = (Model) this.modelres.getContents().get(0);
+		assertNotNull(this.model);
 	}
 	
 	
@@ -145,7 +145,7 @@ public class GuardedAccessCheckTest {
 	 */
 	@Test
 	public final void testNullModel() {
-		assertNull(modelres);
+		assertNull(this.modelres);
 		GuardedAccessCheck check = new GuardedAccessCheck();
 		TestHost analysisHost = new TestHost();
 		assertFalse(check.perform(null, analysisHost));
@@ -156,14 +156,14 @@ public class GuardedAccessCheckTest {
 	 */
 	@Test
 	public final void testNoStereotype() {
-		assertNull(modelres);
+		assertNull(this.modelres);
 		loadModel("testGuardedAccessNoStereotype.uml");
 		GuardedAccessCheck check = new GuardedAccessCheck();
-		StereotypeApplication guardedAccessApp = UMLsecUtil.getStereotypeApplication(model, UMLsec.GUARDED_ACCESS);
+		StereotypeApplication guardedAccessApp = UMLsecUtil.getStereotypeApplication(this.model, UMLsec.GUARDED_ACCESS);
 		assertNull(guardedAccessApp);
 		TestHost analysisHost = new TestHost();
 		assertTrue(check.perform(null, analysisHost));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -173,14 +173,14 @@ public class GuardedAccessCheckTest {
 	 */
 	@Test
 	public final void testFail() {
-		assertNull(modelres);
+		assertNull(this.modelres);
 		loadModel("testGuardedAccess1.uml");
 		GuardedAccessCheck check = new GuardedAccessCheck();
-		StereotypeApplication guardedAccessApp = UMLsecUtil.getStereotypeApplication(model, UMLsec.GUARDED_ACCESS);
+		StereotypeApplication guardedAccessApp = UMLsecUtil.getStereotypeApplication(this.model, UMLsec.GUARDED_ACCESS);
 		assertNotNull(guardedAccessApp);
 		TestHost analysisHost = new TestHost();
 		assertFalse(check.perform(null, analysisHost));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -188,14 +188,14 @@ public class GuardedAccessCheckTest {
 	 */
 	@Test
 	public final void testSuccessEmptyModel() {
-		assertNull(modelres);
+		assertNull(this.modelres);
 		loadModel("testGuardedAccess2.uml");
 		GuardedAccessCheck check = new GuardedAccessCheck();
-		StereotypeApplication guardedAccessApp = UMLsecUtil.getStereotypeApplication(model, UMLsec.GUARDED_ACCESS);
+		StereotypeApplication guardedAccessApp = UMLsecUtil.getStereotypeApplication(this.model, UMLsec.GUARDED_ACCESS);
 		assertNotNull(guardedAccessApp);
 		TestHost analysisHost = new TestHost();
 		assertTrue(check.perform(null, analysisHost));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -203,14 +203,14 @@ public class GuardedAccessCheckTest {
 	 */
 	@Test
 	public final void testSuccess() {
-		assertNull(modelres);
+		assertNull(this.modelres);
 		loadModel("testGuardedAccess3.uml");
 		GuardedAccessCheck check = new GuardedAccessCheck();
-		StereotypeApplication guardedAccessApp = UMLsecUtil.getStereotypeApplication(model, UMLsec.GUARDED_ACCESS);
+		StereotypeApplication guardedAccessApp = UMLsecUtil.getStereotypeApplication(this.model, UMLsec.GUARDED_ACCESS);
 		assertNotNull(guardedAccessApp);
 		TestHost analysisHost = new TestHost();
 		assertTrue(check.perform(null, analysisHost));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 }
