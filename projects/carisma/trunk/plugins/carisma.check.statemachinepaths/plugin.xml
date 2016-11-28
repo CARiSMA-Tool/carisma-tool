@@ -5,7 +5,7 @@
    <extension
          point="carisma.carismacheck">
       <check
-            implementingClass="carisma.check.statemachinepaths.Check"
+            implementingClass="carisma.check.statemachinepaths.StatemachinePathsCheck"
             name="statemachinepathscheck"
             publisher="Klaus Rudack"
             description="State Machine check."

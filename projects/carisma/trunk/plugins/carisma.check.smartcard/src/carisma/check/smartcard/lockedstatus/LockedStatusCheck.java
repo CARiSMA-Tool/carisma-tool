@@ -10,91 +10,74 @@
  *******************************************************************************/
 package carisma.check.smartcard.lockedstatus;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.State;
-import org.eclipse.uml2.uml.Transition;
 
 import carisma.check.smartcard.utils.AnalysisMessage;
 import carisma.check.smartcard.utils.OutputTarget;
+import carisma.core.analysis.AnalysisHost;
+import carisma.core.analysis.DummyHost;
+import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.modeltype.uml2.UMLHelper;
-import carisma.profile.umlsec.UMLsec;
-import carisma.profile.umlsec.UMLsecUtil;
+import carisma.core.checks.CarismaCheckWithID;
+import carisma.core.checks.CheckParameter;
 
 
-/**
- * Class to check a state machine with respect to locked status.
- * @author Klaus Rudack
- *
- */
-public class LockedStatusCheck {
+public class LockedStatusCheck implements CarismaCheckWithID {
 
-	private List<AnalysisMessage> errorMessages = null;
+	public static final String CHECK_ID = "carisma.check.smartcard.lockedstatuscheck";
+	public static final String CHECK_NAME = "UMLsec locked-status Check";
+
+	private AnalysisHost analysisHost;
 	
-	/**
-	 * constructor.
-	 */
-	public LockedStatusCheck() {
-		errorMessages = new ArrayList<AnalysisMessage>();
-	}
-	
-	public List<AnalysisMessage> getErrorMessages() {
-		return Collections.unmodifiableList(errorMessages);
-	}
-	
-	/**
-	 * checks a model with respect to locked status.
-	 * @param model the model to test
-	 * @param newHost analysisHost for details
-	 * @return boolean if check was successful or not
-	 */
-	public final int startCheck(final Package model) {
-		errorMessages.clear();
-		errorMessages.addAll(checkAllLockedStates(model));
-		return errorMessages.size();
-	}
-	
-	/**
-	 * checks all States in the given Model if it has outgoing transition, this will cause the test to fail.
-	 * @param model the given Model
-	 */
-	public final List<AnalysisMessage> checkAllLockedStates(final Package model) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
-		for (State s : UMLHelper.getAllElementsOfType(model, State.class)) {
-			errors.addAll(checkLockedStatus(s));
+	@Override
+	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost newHost) {
+		if (newHost != null) {
+			this.analysisHost = newHost;			
+		} else {
+			this.analysisHost = new DummyHost(true);
 		}
-		return errors;
-	}
-	
-	public List<AnalysisMessage> checkLockedStatus(final State s) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
-		if (UMLsecUtil.hasStereotype(s, UMLsec.LOCKED_STATUS)) {
-			for (Transition t : s.getOutgoings()) {
-				if (t.getTarget() != s) {
-					errors.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH, Messages.stateHasOutgoingTransitions(s, t)));
+		Resource currentModel = this.analysisHost.getAnalyzedModel();
+		if (currentModel.getContents().isEmpty()) {
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
+			return false;
+		}
+		if (!(currentModel.getContents().get(0) instanceof Package)) {
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
+			return false;
+		}
+		boolean noErrors = true;
+		Package model = (Package) currentModel.getContents().get(0);
+		LockedStatus lockedCheck = new LockedStatus();
+		if (lockedCheck.startCheck(model) > 0) {
+			for (AnalysisMessage errorMessage : lockedCheck.getErrorMessages()) {
+				if (errorMessage.getType() == StatusType.ERROR) {
+					noErrors = false;
+					break;
 				}
 			}
+			for (AnalysisMessage errorMessage : lockedCheck.getErrorMessages()) {
+				errorMessage.print(newHost, null);
+			}
+			return noErrors;
 		}
-		return errors;
+		AnalysisMessage successfulCheck =
+				new AnalysisMessage(StatusType.INFO, OutputTarget.BOTH, Messages.allLockedStatesCorrect());
+		successfulCheck.print(newHost, null);
+		return true;
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 	
-	public List<AnalysisMessage> checkTransition(final Transition outgoingTransition) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
-		if (outgoingTransition.getSource() instanceof State) {
-			State sourceState = (State) outgoingTransition.getSource();
-			if ((UMLsecUtil.hasStereotype(sourceState, UMLsec.LOCKED_STATUS)) 
-					&& outgoingTransition.getTarget() != sourceState) {
-				errors.add(
-							new AnalysisMessage(
-									StatusType.ERROR,
-									OutputTarget.BOTH,
-									Messages.outgoingTransitionFromLockedStatus(outgoingTransition, sourceState)));				
-			}
-		}
-		return errors;
-	}
+
 }

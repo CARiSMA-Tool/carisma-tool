@@ -47,7 +47,7 @@ public class FloatParameter extends CheckParameter {
 	 * @return the value in float
 	 */
 	public final float getValue() {
-		return value;
+		return this.value;
 	}
 	/**
 	 * setter for value.

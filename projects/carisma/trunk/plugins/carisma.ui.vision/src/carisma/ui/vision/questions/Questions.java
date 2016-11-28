@@ -13,7 +13,7 @@ public class Questions {
 
 	@XmlElement(name = "question")
 	public List<Question> getQuestions() {
-		return question;
+		return this.question;
 	}
 
 	public void setQuestions(List<Question> question) {

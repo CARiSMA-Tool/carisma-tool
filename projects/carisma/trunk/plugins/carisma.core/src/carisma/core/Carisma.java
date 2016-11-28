@@ -42,6 +42,12 @@ public class Carisma implements BundleActivator {
 	public static final String PLUGIN_ID = "carisma.core"; //$NON-NLS-1$
 	
 	/**
+	 * IDs of defined extension points
+	 */
+	public static final String EXTENSION_POINT_CARISMACHECK = "carisma.carismacheck"; //$NON-NLS-1$
+	public static final String EXTENSION_POINT_CARISMAMODELTYPE = "carisma.modeltype"; //$NON-NLS-1$
+	
+	/**
 	 *  The shared instance.
 	 */
 	private static Carisma instance;
@@ -82,6 +88,8 @@ public class Carisma implements BundleActivator {
 	
 	private PreferenceManager preferenceManager;
 
+	public static final String EXTENSION_POINT_CARISMA_CARISMACHECK = "carisma.carismacheck";
+
 	/**
 	 * The Carisma constructor.
 	 */
@@ -101,7 +109,7 @@ public class Carisma implements BundleActivator {
 	 * @return List<AnalysisResult>
 	 */
 	public final List<AnalysisResult> getAnalysisResults() {
-		return analysisResults;
+		return this.analysisResults;
 	}
 	
 	protected void loadPreferences() {
@@ -123,6 +131,7 @@ public class Carisma implements BundleActivator {
 	 * @param context
 	 * @throws Exception an Exception
 	 */
+	@Override
 	public final void start(final BundleContext context) throws Exception {
 		//super.start(context);
 		this.modelTypeRegistry.initialize();
@@ -134,7 +143,7 @@ public class Carisma implements BundleActivator {
 	 * 
 	 * @param context BundleContext
 	 */
-	private void activateProfiles(final BundleContext context) {
+	private static void activateProfiles(final BundleContext context) {
 		for (Bundle b : context.getBundles()) {
 			if (b.getSymbolicName() != null 
 				&& b.getSymbolicName().startsWith("carisma.profile") 
@@ -161,6 +170,7 @@ public class Carisma implements BundleActivator {
 	 * @param context BundleContext
 	 * @throws Exception  
 	 */
+	@Override
 	public final void stop(final BundleContext context) throws Exception {
 		instance = null;
 		//super.stop(context);
@@ -187,7 +197,7 @@ public class Carisma implements BundleActivator {
 	 * @return modelManager
 	 */
 	public final ModelManager getModelManager() {
-		return modelManager;
+		return this.modelManager;
 	}
 
 	/**
@@ -195,7 +205,7 @@ public class Carisma implements BundleActivator {
 	 * @return modelManager
 	 */
 	public final PreferenceManager getPreferenceManager() {
-		return preferenceManager;
+		return this.preferenceManager;
 	}
 
 	/**

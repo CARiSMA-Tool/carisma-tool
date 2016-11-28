@@ -31,14 +31,14 @@ public class Alternative {
 	 * Constructor for an alternative.
 	 */
 	public Alternative() {
-		deltaElements = new ArrayList<DeltaElement>();
+		this.deltaElements = new ArrayList<DeltaElement>();
 	}
 	/**
 	 * Returns the non-modifiable list of delta elements.  
 	 * @return - list of delta elements
 	 */
 	public List<DeltaElement> getDeltaElements() {
-		return Collections.unmodifiableList(deltaElements);
+		return Collections.unmodifiableList(this.deltaElements);
 	}
 	
 	/**
@@ -46,8 +46,8 @@ public class Alternative {
 	 * @param newDeltaElements - the new delta elements
 	 */
 	public void replaceDeltaElements(final List<? extends DeltaElement> newDeltaElements) {
-		deltaElements.clear();
-		deltaElements.addAll(newDeltaElements);
+		this.deltaElements.clear();
+		this.deltaElements.addAll(newDeltaElements);
 	}
 	/**
 	 * Adds a delta element to the alternative.
@@ -55,7 +55,7 @@ public class Alternative {
 	 * @return - true, if the element could be added
 	 */
 	public boolean addDeltaElement(final DeltaElement newDeltaElement) {
-		return deltaElements.add(newDeltaElement);
+		return this.deltaElements.add(newDeltaElement);
 	}
 	/**
 	 * Adds a list of delta elements to the alternative.
@@ -63,7 +63,7 @@ public class Alternative {
 	 * @return - true, if the elements could be added
 	 */	
 	public boolean addDeltaElements(final List<? extends DeltaElement> newDeltaElements) {
-		return deltaElements.addAll(newDeltaElements);
+		return this.deltaElements.addAll(newDeltaElements);
 	}
 	/**
 	 * Removes a delta element from the alternative.
@@ -71,12 +71,12 @@ public class Alternative {
 	 * @return - true, if the element could be removed
 	 */
 	public boolean removeDeltaElement(final DeltaElement oldDeltaElement) {
-		return deltaElements.remove(oldDeltaElement);
+		return this.deltaElements.remove(oldDeltaElement);
 	}
 	/**
 	 * Empties the set of delta elements.
 	 */
 	public void clearDeltaElements() {
-		deltaElements.clear();
+		this.deltaElements.clear();
 	}
 }

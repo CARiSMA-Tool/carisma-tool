@@ -28,11 +28,11 @@ public class DelElement extends DeltaElement {
 	
 	public DelElement(final EObject newTarget) {
 		super(newTarget);
-		accompanyingDeletions = new ArrayList<EObject>();
+		this.accompanyingDeletions = new ArrayList<EObject>();
 	}
 	
 	public List<EObject> getAccompanyingDeletions() {
-		return accompanyingDeletions;
+		return this.accompanyingDeletions;
 	}
 	/**
 	 * Replaces the accompanying deletions with a new set.
@@ -40,7 +40,7 @@ public class DelElement extends DeltaElement {
 	 */
 	public void replaceAccompanyingDeletions(final List<EObject> newDeletions) {
 		if (newDeletions != null) {
-			accompanyingDeletions.clear();
+			this.accompanyingDeletions.clear();
 			for (EObject accDel : newDeletions) {
 				addDeletion(accDel);
 			}
@@ -53,8 +53,8 @@ public class DelElement extends DeltaElement {
 	 * @return - true if addition of deleted element successful
 	 */
 	public boolean addDeletion(final EObject deletedElement) {
-		if (!accompanyingDeletions.contains(deletedElement)) {
-			return accompanyingDeletions.add(deletedElement);
+		if (!this.accompanyingDeletions.contains(deletedElement)) {
+			return this.accompanyingDeletions.add(deletedElement);
 		}
 		return false;
 	}
@@ -67,7 +67,7 @@ public class DelElement extends DeltaElement {
 	public boolean addDeletions(final List<EObject> newDeletions) {
 		if (newDeletions != null) {
 			for (EObject newDeletion : newDeletions) {
-				if (!accompanyingDeletions.contains(newDeletion)) { 
+				if (!this.accompanyingDeletions.contains(newDeletion)) { 
 					addDeletion(newDeletion);
 				}
 			}
@@ -76,7 +76,7 @@ public class DelElement extends DeltaElement {
 	}
 
 	public boolean removeDeletion(final EObject oldDeletion) {
-		return accompanyingDeletions.remove(oldDeletion);
+		return this.accompanyingDeletions.remove(oldDeletion);
 	}
 	
 	@Override
@@ -84,9 +84,9 @@ public class DelElement extends DeltaElement {
 		StringBuffer buf = new StringBuffer();
 		buf.append("Deleting ");
 		buf.append(EObjectUtil.getTypeAndName(this.getTarget()));
-		if (!accompanyingDeletions.isEmpty()) {
+		if (!this.accompanyingDeletions.isEmpty()) {
 			buf.append(". Also deleting:");
-			for (EObject deletion : accompanyingDeletions) {
+			for (EObject deletion : this.accompanyingDeletions) {
 				buf.append("  ");
 				buf.append(EObjectUtil.getTypeAndName(deletion));
 				buf.append(",");

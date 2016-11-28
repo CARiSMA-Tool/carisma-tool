@@ -30,11 +30,11 @@ public abstract class CheckParameter {
 	}
 	
 	public CheckParameterDescriptor getDescriptor() {
-		return descriptor;
+		return this.descriptor;
 	}
 
 	public boolean isQueryOnDemand() {
-		return queryOnDemand;
+		return this.queryOnDemand;
 	}
 
 	public void setQueryOnDemand(boolean queryOnDemand) {

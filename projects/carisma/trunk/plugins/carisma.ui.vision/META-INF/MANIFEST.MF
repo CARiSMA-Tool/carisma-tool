@@ -3,14 +3,19 @@ Bundle-ManifestVersion: 2
 Bundle-Name: VisionGUI
 Bundle-SymbolicName: carisma.ui.vision;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Require-Bundle: carisma.ui.eclipse;bundle-version="1.4.6",
- carisma.core.io,
- carisma.core,
- org.junit,
- javax.xml;bundle-version="1.3.4",
- org.eclipse.jface
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: carisma.ui.vision.eclipse.preferences.pages,
  carisma.ui.vision.popup.actions,
  carisma.ui.vision.questions,
  carisma.vision.dbAccess
+Require-Bundle: org.eclipse.ui.workbench,
+ carisma.ui.eclipse,
+ org.eclipse.jface,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ carisma.core.io,
+ org.apache.httpcomponents.httpclient,
+ org.apache.httpcomponents.httpcore,
+ carisma.check.rabac,
+ carisma.check.staticcheck,
+ org.eclipse.ui.ide

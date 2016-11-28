@@ -11,7 +11,9 @@
 package carisma.bpmn2.marisk.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 
@@ -140,11 +142,11 @@ public class MariskHelper {
 	 * Maps the activity to model elements. 
 	 * @param model The model resource
 	 * @param activityNames The names of the activities
-	 * @return if successful a list of model elements otherwise null
+	 * @return if successful a list of model elements
+	 * @throws IncompleteMappingExeption if not all nodes could be mapped
 	 */
-	public static List<Activity> mapActivities(final Resource model, final String[] activityNames) {
-		Activity[] tmpActivity = new Activity[activityNames.length];
-		List<Activity> activityList = new ArrayList<Activity>();
+	public static List<Activity> mapActivities(final Resource model, final String[] activityNames) throws IncompleteMappingExeption {
+		Hashtable<String, Activity> activityList = new Hashtable<String, Activity>();
 
 		TreeIterator<EObject> iterator = model.getAllContents();
 		while (iterator.hasNext()) {
@@ -155,18 +157,22 @@ public class MariskHelper {
 				for (int i = 0; i < activityNames.length && !found; i++) {
 					if (name.equalsIgnoreCase(activityNames[i])) {
 						found = true;
-						tmpActivity[i] = (Activity) obj;
+						activityList.put(activityNames[i], (Activity) obj);
 					}
 				}
 			}
 		}
 		
-		for (Activity a : tmpActivity) {
-			if (a != null) {
-				activityList.add(a);
+		if(activityList.size() != activityNames.length){
+			Collection<String> notfound = new ArrayList<>();
+			for (String name : activityNames) {
+				if(!activityList.contains(name)){
+					notfound.add(name);
+				}
 			}
+			throw new IncompleteMappingExeption(notfound, activityList.values());
 		}
-		return activityList;
+		return new ArrayList<Activity>(activityList.values());
 	}
 	
 	/**

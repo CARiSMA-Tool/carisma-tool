@@ -30,6 +30,7 @@ public class Application implements IApplication {
 	 * @param context IApplicationContext
 	 * @return Obejct
 	 */
+	@Override
 	public final Object start(final IApplicationContext context) {
 		Display display = PlatformUI.createDisplay();
 		try {
@@ -53,6 +54,7 @@ public class Application implements IApplication {
 	/**
 	 * 
 	 */
+	@Override
 	public final void stop() {
 		final IWorkbench workbench = PlatformUI.getWorkbench();
 		if (workbench == null) {
@@ -60,6 +62,7 @@ public class Application implements IApplication {
 		}
 		final Display display = workbench.getDisplay();
 		display.syncExec(new Runnable() {
+			@Override
 			public void run() {
 				if (!display.isDisposed()) {
 					workbench.close();

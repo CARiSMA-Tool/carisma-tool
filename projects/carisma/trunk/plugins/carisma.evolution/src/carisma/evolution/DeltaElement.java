@@ -29,15 +29,15 @@ public abstract class DeltaElement {
 	 */
 	public DeltaElement(
 			final EObject newTarget) {
-		target = newTarget;
+		this.target = newTarget;
 	}
 	
 	public EObject getTarget() {
-		return target;
+		return this.target;
 	}
 	
 	public void setTarget(final EObject newTarget) {
-		target = newTarget;
+		this.target = newTarget;
 	}
 	
 }

@@ -47,26 +47,26 @@ public class AnalysisResultMessage{
 
 	@XmlElement(name = "text")
 	public String getText() {
-		return text;
+		return this.text;
 	}
 	public void setText(String text) {
 		this.text = text;
 	}
 	@XmlElement(name = "status")
 	public StatusType getStatus() {
-		return status;
+		return this.status;
 	}
 	public void setStatus(StatusType status) {
 		this.status = status;
 	}
 	public String getModelElement() {
-		return modelElement;
+		return this.modelElement;
 	}
 	public void setModelElement(String modelElement) {
 		this.modelElement = modelElement;
 	}
 	public String getAdditionalInformation() {
-		return additionalInformation;
+		return this.additionalInformation;
 	}
 	public void setAdditionalInformation(String additionalInformation) {
 		this.additionalInformation = additionalInformation;
@@ -75,7 +75,7 @@ public class AnalysisResultMessage{
 		this.parent = parent;
 	}
 	public CheckResult getParent() {
-		return parent;
+		return this.parent;
 	}
 
 

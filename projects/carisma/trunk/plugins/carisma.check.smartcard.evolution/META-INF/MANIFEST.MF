@@ -3,11 +3,13 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Evolution Support for Smartcard Checks
 Bundle-SymbolicName: carisma.check.smartcard.evolution;singleton:=true
 Bundle-Version: 1.1.2.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: carisma.modeltype.uml2;bundle-version="1.1.0",
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: carisma.evolution,
+ carisma.modeltype.uml2;bundle-version="1.1.0",
  carisma.evolution.uml2,
  carisma.check.smartcard,
- org.eclipse.uml2.uml
+ org.eclipse.uml2.uml,
+ carisma.core
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Export-Package: carisma.check.smartcard.evolution.authorizedstatuscheck,
  carisma.check.smartcard.evolution.lockedstatuscheck

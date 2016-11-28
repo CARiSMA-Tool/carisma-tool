@@ -30,7 +30,7 @@ public class ConvertToUMLChangeNavigatorHandler extends AbstractHandler implemen
 	 * Constructor.
 	 */
 	public ConvertToUMLChangeNavigatorHandler() {
-		convertAction = new ConvertToUMLChangeAnalysis();
+		this.convertAction = new ConvertToUMLChangeAnalysis();
 	}
 	
 	
@@ -38,8 +38,8 @@ public class ConvertToUMLChangeNavigatorHandler extends AbstractHandler implemen
 	public final Object execute(final ExecutionEvent event)
 			throws ExecutionException {
 		
-		if (convertAction.initSelectionByService()) {
-			convertAction.run(null);
+		if (this.convertAction.initSelectionByService()) {
+			this.convertAction.run(null);
 		}
 		return null;
 	}

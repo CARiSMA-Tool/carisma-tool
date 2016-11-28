@@ -69,32 +69,32 @@ public class ParallelPath {
 	 * start function to get all possible path through parallelization.
 	 *
 	 * @param forkState fork-element where the parallelization starts
-	 * @param transitions boolean if transitions should be in the result
+	 * @param includeTransitions boolean if transitions should be in the result
 	 * @return list with all paths through a StateMachine beginning with the given path
 	 */
-	public final List<List<Element>> getParallelPath(final Pseudostate forkState, final boolean transitions) {
-		this.transitions = transitions;
+	public final List<List<Element>> getParallelPath(final Pseudostate forkState, final boolean includeTransitions) {
+		this.transitions = includeTransitions;
 		Map<Element, Element> map = new HashMap<Element, Element>();
 		
-		topState = forkState.getOwner().getOwner();
+		this.topState = forkState.getOwner().getOwner();
 		for (int i = 0; i < forkState.getOutgoings().size(); i++) {
 			List<Element> sl = new ArrayList<Element>();
 			sl.add(forkState);
-			if (transitions) {
+			if (includeTransitions) {
 				sl.add(forkState.getOutgoings().get(i));
 			}
 			sl.add(((Vertex) forkState).getOutgoings().get(i).getTarget());
 			start(sl, map);
 		}
 		deleteDoubles();
-		endsWith = mergeList.get(0).get(mergeList.get(0).size() - 1);
+		this.endsWith = this.mergeList.get(0).get(this.mergeList.get(0).size() - 1);
 		mergeLists();
-		for (int i = allParallelPaths.size() - 1; i >= 0; i--) {
-			if (allParallelPaths.get(i).size() < 1) {
-				allParallelPaths.remove(i);
+		for (int i = this.allParallelPaths.size() - 1; i >= 0; i--) {
+			if (this.allParallelPaths.get(i).size() < 1) {
+				this.allParallelPaths.remove(i);
 			}
 		}
-		return allParallelPaths;
+		return this.allParallelPaths;
 	}
 	
 	/**
@@ -131,12 +131,12 @@ public class ParallelPath {
 				|| ((Pseudostate) acc).getKind().equals(PseudostateKind.CHOICE_LITERAL)
 				|| ((Pseudostate) acc).getKind().equals(PseudostateKind.JUNCTION_LITERAL))) {
 			if (((Pseudostate) acc).getKind().equals(PseudostateKind.JOIN_LITERAL)) {
-				mergeList.add(newList2);
+				this.mergeList.add(newList2);
 				gone = true;
 			}
 			if (((Pseudostate) acc).getKind().equals(PseudostateKind.FORK_LITERAL)) { 
 				ParallelPath pWay = new ParallelPath();
-				List<List<Element>> t = pWay.getParallelPath((Pseudostate) acc, transitions);
+				List<List<Element>> t = pWay.getParallelPath((Pseudostate) acc, this.transitions);
 				for (int i = 0; i < t.size(); i++) {
 					List<Element> ll = new ArrayList<Element>(newList2);
 					ll.addAll(t.get(i));
@@ -157,7 +157,7 @@ public class ParallelPath {
 							newList.add(acc1);
 							start(newList, historyCopy);
 						} else {
-							allParallelPaths.add(newList2);
+							this.allParallelPaths.add(newList2);
 						}
 					} else {
 						if (acc.getOwnedElements().size() < 1) {
@@ -169,7 +169,7 @@ public class ParallelPath {
 									newList.add(first);
 									start(newList, historyCopy);
 								} else {
-									allParallelPaths.add(newList);
+									this.allParallelPaths.add(newList);
 								}	
 							}
 						}
@@ -189,7 +189,7 @@ public class ParallelPath {
 								newList.add(acc1);
 								start(newList, historyCopy);
 							} else {
-								allParallelPaths.add(newList2);
+								this.allParallelPaths.add(newList2);
 							}
 						} else {
 							if (acc.getOwnedElements().size() < 1) {
@@ -201,7 +201,7 @@ public class ParallelPath {
 										newList.add(first);
 										start(newList, historyCopy);
 									} else {
-										allParallelPaths.add(newList);
+										this.allParallelPaths.add(newList);
 									}	
 								}
 							}
@@ -222,7 +222,7 @@ public class ParallelPath {
 			if (((Vertex) acc).getOutgoings().size() > 0) {
 				for (int i = 0; i < ((Vertex) acc).getOutgoings().size(); i++) {
 					List<Element> list1 = new ArrayList<Element>(newList2);
-					if (transitions) {
+					if (this.transitions) {
 						list1.add(((Vertex) acc).getOutgoings().get(i));
 					}
 					Element acc1 = ((Vertex) acc).getOutgoings().get(i).getTarget();
@@ -237,10 +237,10 @@ public class ParallelPath {
 					List<Element> cutted = newList2;
 					cutted.remove(cutted.size() - 1);
 					cutted = cutList(cutted, newAcc);
-					allParallelPaths.add(cutted);
+					this.allParallelPaths.add(cutted);
 				}
 			} else {
-				allParallelPaths.add(newList2);
+				this.allParallelPaths.add(newList2);
 			}
 		}
 	}
@@ -252,7 +252,7 @@ public class ParallelPath {
 	 * @return true if there is a loop in the end of the path, false otherwise
 	 *
 	 */
-	private boolean contains(final List<Element> newList, final Element element) {
+	private static boolean contains(final List<Element> newList, final Element element) {
 		boolean path = false;
 		for (int i = newList.size() - 1; i > 0; i--) {
 			if (newList.get(i) == element) {
@@ -279,7 +279,7 @@ public class ParallelPath {
 	 * @param element element where the loop starts/ends
 	 * @return list without loop at the end
 	 */
-	private List<Element> cutList(final List<Element> cutted, final Element element) {
+	private static List<Element> cutList(final List<Element> cutted, final Element element) {
 		List<Element> returnList = new ArrayList<Element>(cutted);
 		int count;
 		
@@ -297,28 +297,28 @@ public class ParallelPath {
 	 * 
 	 */
 	private void mergeLists() {	
-		for (int i = 0; i < mergeList.size(); i++) {
-			mergeList.get(i).remove(0);
-			mergeList.get(i).remove(mergeList.get(i).size() - 1);
+		for (int i = 0; i < this.mergeList.size(); i++) {
+			this.mergeList.get(i).remove(0);
+			this.mergeList.get(i).remove(this.mergeList.get(i).size() - 1);
 		}
-		Element acc = mergeList.get(mergeList.size() - 1).get(0);
-		for (int i = mergeList.size() - 1; i >= 0; i--) {
-			if (mergeList.get(i).get(0) == acc) {
-				allParallelPaths.add(mergeList.get(i));
-				mergeList.remove(i);
+		Element acc = this.mergeList.get(this.mergeList.size() - 1).get(0);
+		for (int i = this.mergeList.size() - 1; i >= 0; i--) {
+			if (this.mergeList.get(i).get(0) == acc) {
+				this.allParallelPaths.add(this.mergeList.get(i));
+				this.mergeList.remove(i);
 			}
 		}
-		while (mergeList.size() > 0) {
-			acc = mergeList.get(mergeList.size() - 1).get(0);
+		while (this.mergeList.size() > 0) {
+			acc = this.mergeList.get(this.mergeList.size() - 1).get(0);
 			List<List<Element>> newMerge1 = new ArrayList<List<Element>>();
-			List<List<Element>> newMerge2 = new ArrayList<List<Element>>(allParallelPaths);
-			for (int i = mergeList.size() - 1; i >= 0; i--) {
-				if (mergeList.get(i).get(0) == acc) {
-					newMerge1.add(mergeList.get(i));
-					mergeList.remove(i);
+			List<List<Element>> newMerge2 = new ArrayList<List<Element>>(this.allParallelPaths);
+			for (int i = this.mergeList.size() - 1; i >= 0; i--) {
+				if (this.mergeList.get(i).get(0) == acc) {
+					newMerge1.add(this.mergeList.get(i));
+					this.mergeList.remove(i);
 				}
 			}
-			allParallelPaths.clear();
+			this.allParallelPaths.clear();
 			for (int i = 0; i < newMerge1.size(); i++) {
 				for (int j = 0; j < newMerge2.size(); j++) {
 					List<Element> r = new ArrayList<Element>();
@@ -326,8 +326,8 @@ public class ParallelPath {
 				}
 			}
 		}
-		for (int i = 0; i < allParallelPaths.size(); i++) {
-			allParallelPaths.get(i).add(endsWith);
+		for (int i = 0; i < this.allParallelPaths.size(); i++) {
+			this.allParallelPaths.get(i).add(this.endsWith);
 		}
 	}
 	
@@ -341,17 +341,17 @@ public class ParallelPath {
 	private void startMerge(final List<Element> path1, final List<Element> path2, final List<Element> parallelPrefix) {
 	
 		if ((path1.size() == 0) && (path2.size() == 0)) {
-			allParallelPaths.add(parallelPrefix);
+			this.allParallelPaths.add(parallelPrefix);
 		}
 		if ((path1.size() != 0) && (path2.size() == 0)) {
 			List<Element> res = new ArrayList<Element>(parallelPrefix);
 			res.addAll(path1);
-			allParallelPaths.add(res);
+			this.allParallelPaths.add(res);
 		}
 		if ((path1.size() == 0) && (path2.size() != 0)) {
 			List<Element> res = new ArrayList<Element>(parallelPrefix);
 			res.addAll(path2);
-			allParallelPaths.add(res);
+			this.allParallelPaths.add(res);
 		}
 		if ((path1.size() != 0) && (path2.size() != 0)) {
 			List<Element> newPrefix1 = new ArrayList<Element>(parallelPrefix);
@@ -372,11 +372,11 @@ public class ParallelPath {
 	 *
 	 */
 	private void deleteDoubles() {
-		for (int i = 0; i < mergeList.size(); i++) {
-			for (int z = 0; z < mergeList.size(); z++) {
+		for (int i = 0; i < this.mergeList.size(); i++) {
+			for (int z = 0; z < this.mergeList.size(); z++) {
 				if (i != z 
-						&& isDouble(mergeList.get(z), mergeList.get(i))) {
-					mergeList.remove(z);
+						&& isDouble(this.mergeList.get(z), this.mergeList.get(i))) {
+					this.mergeList.remove(z);
 				}
 			}
 		}
@@ -389,7 +389,7 @@ public class ParallelPath {
 	 * @param list2 list 2 to test
 	 * @return boolean if the two paths are the same
 	 */
-	private boolean isDouble(final List<Element> list1, final List<Element> list2) {
+	private static boolean isDouble(final List<Element> list1, final List<Element> list2) {
 		boolean returnValue = true;
 		
 		if (list1.size() > list2.size()) {
@@ -430,7 +430,7 @@ public class ParallelPath {
 			for (int i = 0; i < ((Vertex) nextParent).getOutgoings().size(); i++) {
 				List<Element> newList = new ArrayList<Element>(newList2);
 				Element acc1 = ((Vertex) nextParent).getOutgoings().get(i).getTarget();
-				if (transitions) {
+				if (this.transitions) {
 					newList.add(((Vertex) nextParent).getOutgoings().get(i));
 				}
 				if (!contains(newList, acc1)) {
@@ -439,14 +439,14 @@ public class ParallelPath {
 					start(newList, historyClone);
 				}
 			}
-			if (nextParent.getOwner().getOwner() != topState) {
+			if (nextParent.getOwner().getOwner() != this.topState) {
 				nextParent = nextParent.getOwner().getOwner();
 			} else {
 				nextParent = null;
 			}
 			}
 			if (!way) {
-				allParallelPaths.add(newList2);
+				this.allParallelPaths.add(newList2);
 			}
 		}
 	}

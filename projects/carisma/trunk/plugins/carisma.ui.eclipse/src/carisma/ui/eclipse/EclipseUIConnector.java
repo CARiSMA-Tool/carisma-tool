@@ -28,7 +28,7 @@ public class EclipseUIConnector implements UIConnector {
 	 */
 	@Override
 	public final void updateView() {
-		CarismaGUI.INSTANCE.showAnalysisResultsView();
+		CarismaGUI.showAnalysisResultsView();
 	}
 
 	/**

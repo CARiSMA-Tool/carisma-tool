@@ -5,6 +5,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -41,7 +42,7 @@ public class CreateAnalysisHandler extends AbstractHandler {
 			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 			IProject[] projects = workspaceRoot.getProjects();
 			for (IProject projectToRefresh : projects) {
-				projectToRefresh.refreshLocal(IProject.DEPTH_INFINITE, null);
+				projectToRefresh.refreshLocal(IResource.DEPTH_INFINITE, null);
 			}
 		} catch (CoreException e) {
 			//TODO Fehler ausgabe
@@ -58,18 +59,17 @@ public class CreateAnalysisHandler extends AbstractHandler {
 	 * @param analyseFile Path to the AnalyseFile
 	 * @return Returns false if the modeltype is unknown, otherwise true is returned.
 	 */
-	public final boolean initAdfFile(final String analyseName, final IFile modelFile, final String analyseFile) {
-		ModelType type = CarismaGUI.INSTANCE.getModelTypeRegistry().getTypeForExtension(modelFile.getFileExtension());
+	public final static boolean initAdfFile(final String analyseName, final IFile modelFile, final String analyseFile) {
+		ModelType type = CarismaGUI.getModelTypeRegistry().getTypeForExtension(modelFile.getFileExtension());
 		if (type == null) {
 
 			//TODO Fehler ausgabe!!
 //			MessageDialog.openError(shell, "CARiSMA", "Unable to determine modeltype for file\n" + modelFile.getName());
 			return false;
-		} else {
-			Analysis analysis = new Analysis(analyseName, type.getName(), modelFile);
-			AnalysisUtil.storeAnalysis(analysis, analyseFile);
-			return true;
-		}	
+		}
+		Analysis analysis = new Analysis(analyseName, type.getName(), modelFile);
+		AnalysisUtil.storeAnalysis(analysis, analyseFile);
+		return true;	
 	}
 
 }

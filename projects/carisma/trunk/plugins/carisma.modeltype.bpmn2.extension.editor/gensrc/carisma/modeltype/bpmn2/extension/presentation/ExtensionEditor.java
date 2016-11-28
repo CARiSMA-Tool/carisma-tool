@@ -332,16 +332,17 @@ public class ExtensionEditor
 	 */
 	protected IPartListener partListener =
 		new IPartListener() {
+			@Override
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
-					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
+					if (((ContentOutline)p).getCurrentPage() == ExtensionEditor.this.contentOutlinePage) {
 						getActionBarContributor().setActiveEditor(ExtensionEditor.this);
 
-						setCurrentViewer(contentOutlineViewer);
+						setCurrentViewer(ExtensionEditor.this.contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
-					if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
+					if (((PropertySheet)p).getCurrentPage() == ExtensionEditor.this.propertySheetPage) {
 						getActionBarContributor().setActiveEditor(ExtensionEditor.this);
 						handleActivate();
 					}
@@ -350,15 +351,19 @@ public class ExtensionEditor
 					handleActivate();
 				}
 			}
+			@Override
 			public void partBroughtToTop(IWorkbenchPart p) {
 				// Ignore.
 			}
+			@Override
 			public void partClosed(IWorkbenchPart p) {
 				// Ignore.
 			}
+			@Override
 			public void partDeactivated(IWorkbenchPart p) {
 				// Ignore.
 			}
+			@Override
 			public void partOpened(IWorkbenchPart p) {
 				// Ignore.
 			}
@@ -422,16 +427,17 @@ public class ExtensionEditor
 							Resource resource = (Resource)notification.getNotifier();
 							Diagnostic diagnostic = analyzeResourceProblems(resource, null);
 							if (diagnostic.getSeverity() != Diagnostic.OK) {
-								resourceToDiagnosticMap.put(resource, diagnostic);
+								ExtensionEditor.this.resourceToDiagnosticMap.put(resource, diagnostic);
 							}
 							else {
-								resourceToDiagnosticMap.remove(resource);
+								ExtensionEditor.this.resourceToDiagnosticMap.remove(resource);
 							}
 
-							if (updateProblemIndication) {
+							if (ExtensionEditor.this.updateProblemIndication) {
 								getSite().getShell().getDisplay().asyncExec
 									(new Runnable() {
-										 public void run() {
+										 @Override
+										public void run() {
 											 updateProblemIndication();
 										 }
 									 });
@@ -464,25 +470,27 @@ public class ExtensionEditor
 	 */
 	protected IResourceChangeListener resourceChangeListener =
 		new IResourceChangeListener() {
+			@Override
 			public void resourceChanged(IResourceChangeEvent event) {
 				IResourceDelta delta = event.getDelta();
 				try {
 					class ResourceDeltaVisitor implements IResourceDeltaVisitor {
-						protected ResourceSet resourceSet = editingDomain.getResourceSet();
+						protected ResourceSet resourceSet = ExtensionEditor.this.editingDomain.getResourceSet();
 						protected Collection<Resource> changedResources = new ArrayList<Resource>();
 						protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
+						@Override
 						public boolean visit(IResourceDelta delta) {
 							if (delta.getResource().getType() == IResource.FILE) {
 								if (delta.getKind() == IResourceDelta.REMOVED ||
 								    delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
-									Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
+									Resource resource = this.resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
 									if (resource != null) {
 										if (delta.getKind() == IResourceDelta.REMOVED) {
-											removedResources.add(resource);
+											this.removedResources.add(resource);
 										}
-										else if (!savedResources.remove(resource)) {
-											changedResources.add(resource);
+										else if (!ExtensionEditor.this.savedResources.remove(resource)) {
+											this.changedResources.add(resource);
 										}
 									}
 								}
@@ -492,11 +500,11 @@ public class ExtensionEditor
 						}
 
 						public Collection<Resource> getChangedResources() {
-							return changedResources;
+							return this.changedResources;
 						}
 
 						public Collection<Resource> getRemovedResources() {
-							return removedResources;
+							return this.removedResources;
 						}
 					}
 
@@ -506,8 +514,9 @@ public class ExtensionEditor
 					if (!visitor.getRemovedResources().isEmpty()) {
 						getSite().getShell().getDisplay().asyncExec
 							(new Runnable() {
-								 public void run() {
-									 removedResources.addAll(visitor.getRemovedResources());
+								 @Override
+								public void run() {
+									 ExtensionEditor.this.removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
 										 getSite().getPage().closeEditor(ExtensionEditor.this, false);
 									 }
@@ -518,8 +527,9 @@ public class ExtensionEditor
 					if (!visitor.getChangedResources().isEmpty()) {
 						getSite().getShell().getDisplay().asyncExec
 							(new Runnable() {
-								 public void run() {
-									 changedResources.addAll(visitor.getChangedResources());
+								 @Override
+								public void run() {
+									 ExtensionEditor.this.changedResources.addAll(visitor.getChangedResources());
 									 if (getSite().getPage().getActiveEditor() == ExtensionEditor.this) {
 										 handleActivate();
 									 }
@@ -542,29 +552,29 @@ public class ExtensionEditor
 	protected void handleActivate() {
 		// Recompute the read only state.
 		//
-		if (editingDomain.getResourceToReadOnlyMap() != null) {
-		  editingDomain.getResourceToReadOnlyMap().clear();
+		if (this.editingDomain.getResourceToReadOnlyMap() != null) {
+		  this.editingDomain.getResourceToReadOnlyMap().clear();
 
 		  // Refresh any actions that may become enabled or disabled.
 		  //
 		  setSelection(getSelection());
 		}
 
-		if (!removedResources.isEmpty()) {
+		if (!this.removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(ExtensionEditor.this, false);
 			}
 			else {
-				removedResources.clear();
-				changedResources.clear();
-				savedResources.clear();
+				this.removedResources.clear();
+				this.changedResources.clear();
+				this.savedResources.clear();
 			}
 		}
-		else if (!changedResources.isEmpty()) {
-			changedResources.removeAll(savedResources);
+		else if (!this.changedResources.isEmpty()) {
+			this.changedResources.removeAll(this.savedResources);
 			handleChangedResources();
-			changedResources.clear();
-			savedResources.clear();
+			this.changedResources.clear();
+			this.savedResources.clear();
 		}
 	}
 
@@ -575,32 +585,32 @@ public class ExtensionEditor
 	 * @generated
 	 */
 	protected void handleChangedResources() {
-		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
+		if (!this.changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
 			if (isDirty()) {
-				changedResources.addAll(editingDomain.getResourceSet().getResources());
+				this.changedResources.addAll(this.editingDomain.getResourceSet().getResources());
 			}
-			editingDomain.getCommandStack().flush();
+			this.editingDomain.getCommandStack().flush();
 
-			updateProblemIndication = false;
-			for (Resource resource : changedResources) {
+			this.updateProblemIndication = false;
+			for (Resource resource : this.changedResources) {
 				if (resource.isLoaded()) {
 					resource.unload();
 					try {
 						resource.load(Collections.EMPTY_MAP);
 					}
 					catch (IOException exception) {
-						if (!resourceToDiagnosticMap.containsKey(resource)) {
-							resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+						if (!this.resourceToDiagnosticMap.containsKey(resource)) {
+							this.resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
 						}
 					}
 				}
 			}
 
-			if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
+			if (AdapterFactoryEditingDomain.isStale(this.editorSelection)) {
 				setSelection(StructuredSelection.EMPTY);
 			}
 
-			updateProblemIndication = true;
+			this.updateProblemIndication = true;
 			updateProblemIndication();
 		}
 	}
@@ -612,15 +622,15 @@ public class ExtensionEditor
 	 * @generated
 	 */
 	protected void updateProblemIndication() {
-		if (updateProblemIndication) {
+		if (this.updateProblemIndication) {
 			BasicDiagnostic diagnostic =
 				new BasicDiagnostic
 					(Diagnostic.OK,
 					 "carisma.modeltype.bpmn2.extension.editor",
 					 0,
 					 null,
-					 new Object [] { editingDomain.getResourceSet() });
-			for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
+					 new Object [] { this.editingDomain.getResourceSet() });
+			for (Diagnostic childDiagnostic : this.resourceToDiagnosticMap.values()) {
 				if (childDiagnostic.getSeverity() != Diagnostic.OK) {
 					diagnostic.add(childDiagnostic);
 				}
@@ -636,7 +646,7 @@ public class ExtensionEditor
 			else if (diagnostic.getSeverity() != Diagnostic.OK) {
 				ProblemEditorPart problemEditorPart = new ProblemEditorPart();
 				problemEditorPart.setDiagnostic(diagnostic);
-				problemEditorPart.setMarkerHelper(markerHelper);
+				problemEditorPart.setMarkerHelper(this.markerHelper);
 				try {
 					addPage(++lastEditorPage, problemEditorPart, getEditorInput());
 					setPageText(lastEditorPage, problemEditorPart.getPartName());
@@ -648,11 +658,11 @@ public class ExtensionEditor
 				}
 			}
 
-			if (markerHelper.hasMarkers(editingDomain.getResourceSet())) {
-				markerHelper.deleteMarkers(editingDomain.getResourceSet());
+			if (this.markerHelper.hasMarkers(this.editingDomain.getResourceSet())) {
+				this.markerHelper.deleteMarkers(this.editingDomain.getResourceSet());
 				if (diagnostic.getSeverity() != Diagnostic.OK) {
 					try {
-						markerHelper.createMarkers(diagnostic);
+						this.markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
 						ExtensionEditorPlugin.INSTANCE.log(exception);
@@ -696,11 +706,11 @@ public class ExtensionEditor
 	protected void initializeEditingDomain() {
 		// Create an adapter factory that yields item providers.
 		//
-		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		this.adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new ExtensionItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new ExtensionItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
 		//
@@ -710,10 +720,12 @@ public class ExtensionEditor
 		//
 		commandStack.addCommandStackListener
 			(new CommandStackListener() {
-				 public void commandStackChanged(final EventObject event) {
+				 @Override
+				public void commandStackChanged(final EventObject event) {
 					 getContainer().getDisplay().asyncExec
 						 (new Runnable() {
-							  public void run() {
+							  @Override
+							public void run() {
 								  firePropertyChange(IEditorPart.PROP_DIRTY);
 
 								  // Try to select the affected objects.
@@ -722,8 +734,8 @@ public class ExtensionEditor
 								  if (mostRecentCommand != null) {
 									  setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 								  }
-								  if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
-									  propertySheetPage.refresh();
+								  if (ExtensionEditor.this.propertySheetPage != null && !ExtensionEditor.this.propertySheetPage.getControl().isDisposed()) {
+									  ExtensionEditor.this.propertySheetPage.refresh();
 								  }
 							  }
 						  });
@@ -732,7 +744,7 @@ public class ExtensionEditor
 
 		// Create the editing domain with a special command stack.
 		//
-		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+		this.editingDomain = new AdapterFactoryEditingDomain(this.adapterFactory, commandStack, new HashMap<Resource, Boolean>());
 	}
 
 	/**
@@ -759,11 +771,12 @@ public class ExtensionEditor
 		if (theSelection != null && !theSelection.isEmpty()) {
 			Runnable runnable =
 				new Runnable() {
+					@Override
 					public void run() {
 						// Try to select the items in the current content viewer of the editor.
 						//
-						if (currentViewer != null) {
-							currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
+						if (ExtensionEditor.this.currentViewer != null) {
+							ExtensionEditor.this.currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
 						}
 					}
 				};
@@ -779,8 +792,9 @@ public class ExtensionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EditingDomain getEditingDomain() {
-		return editingDomain;
+		return this.editingDomain;
 	}
 
 	/**
@@ -848,13 +862,13 @@ public class ExtensionEditor
 	 * @generated
 	 */
 	public void setCurrentViewerPane(ViewerPane viewerPane) {
-		if (currentViewerPane != viewerPane) {
-			if (currentViewerPane != null) {
-				currentViewerPane.showFocus(false);
+		if (this.currentViewerPane != viewerPane) {
+			if (this.currentViewerPane != null) {
+				this.currentViewerPane.showFocus(false);
 			}
-			currentViewerPane = viewerPane;
+			this.currentViewerPane = viewerPane;
 		}
-		setCurrentViewer(currentViewerPane.getViewer());
+		setCurrentViewer(this.currentViewerPane.getViewer());
 	}
 
 	/**
@@ -867,14 +881,15 @@ public class ExtensionEditor
 	public void setCurrentViewer(Viewer viewer) {
 		// If it is changing...
 		//
-		if (currentViewer != viewer) {
-			if (selectionChangedListener == null) {
+		if (this.currentViewer != viewer) {
+			if (this.selectionChangedListener == null) {
 				// Create the listener on demand.
 				//
-				selectionChangedListener =
+				this.selectionChangedListener =
 					new ISelectionChangedListener() {
 						// This just notifies those things that are affected by the section.
 						//
+						@Override
 						public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
 							setSelection(selectionChangedEvent.getSelection());
 						}
@@ -883,23 +898,23 @@ public class ExtensionEditor
 
 			// Stop listening to the old one.
 			//
-			if (currentViewer != null) {
-				currentViewer.removeSelectionChangedListener(selectionChangedListener);
+			if (this.currentViewer != null) {
+				this.currentViewer.removeSelectionChangedListener(this.selectionChangedListener);
 			}
 
 			// Start listening to the new one.
 			//
 			if (viewer != null) {
-				viewer.addSelectionChangedListener(selectionChangedListener);
+				viewer.addSelectionChangedListener(this.selectionChangedListener);
 			}
 
 			// Remember it.
 			//
-			currentViewer = viewer;
+			this.currentViewer = viewer;
 
 			// Set the editors selection based on the current viewer's selection.
 			//
-			setSelection(currentViewer == null ? StructuredSelection.EMPTY : currentViewer.getSelection());
+			setSelection(this.currentViewer == null ? StructuredSelection.EMPTY : this.currentViewer.getSelection());
 		}
 	}
 
@@ -909,8 +924,9 @@ public class ExtensionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Viewer getViewer() {
-		return currentViewer;
+		return this.currentViewer;
 	}
 
 	/**
@@ -931,7 +947,7 @@ public class ExtensionEditor
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
-		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
+		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(this.editingDomain, viewer));
 	}
 
 	/**
@@ -947,18 +963,18 @@ public class ExtensionEditor
 		try {
 			// Load the resource through the editing domain.
 			//
-			resource = editingDomain.getResourceSet().getResource(resourceURI, true);
+			resource = this.editingDomain.getResourceSet().getResource(resourceURI, true);
 		}
 		catch (Exception e) {
 			exception = e;
-			resource = editingDomain.getResourceSet().getResource(resourceURI, false);
+			resource = this.editingDomain.getResourceSet().getResource(resourceURI, false);
 		}
 
 		Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
 		if (diagnostic.getSeverity() != Diagnostic.OK) {
-			resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
+			this.resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
 		}
-		editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
+		this.editingDomain.getResourceSet().eAdapters().add(this.problemIndicationAdapter);
 	}
 
 	/**
@@ -1028,17 +1044,17 @@ public class ExtensionEditor
 					};
 				viewerPane.createControl(getContainer());
 
-				selectionViewer = (TreeViewer)viewerPane.getViewer();
-				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				this.selectionViewer = (TreeViewer)viewerPane.getViewer();
+				this.selectionViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
 
-				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-				selectionViewer.setInput(editingDomain.getResourceSet());
-				selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
-				viewerPane.setTitle(editingDomain.getResourceSet());
+				this.selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
+				this.selectionViewer.setInput(this.editingDomain.getResourceSet());
+				this.selectionViewer.setSelection(new StructuredSelection(this.editingDomain.getResourceSet().getResources().get(0)), true);
+				viewerPane.setTitle(this.editingDomain.getResourceSet());
 
-				new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
+				new AdapterFactoryTreeEditor(this.selectionViewer.getTree(), this.adapterFactory);
 
-				createContextMenuFor(selectionViewer);
+				createContextMenuFor(this.selectionViewer);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
 			}
@@ -1062,12 +1078,12 @@ public class ExtensionEditor
 					};
 				viewerPane.createControl(getContainer());
 
-				parentViewer = (TreeViewer)viewerPane.getViewer();
-				parentViewer.setAutoExpandLevel(30);
-				parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(adapterFactory));
-				parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				this.parentViewer = (TreeViewer)viewerPane.getViewer();
+				this.parentViewer.setAutoExpandLevel(30);
+				this.parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(this.adapterFactory));
+				this.parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-				createContextMenuFor(parentViewer);
+				createContextMenuFor(this.parentViewer);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_ParentPage_label"));
 			}
@@ -1088,11 +1104,11 @@ public class ExtensionEditor
 						}
 					};
 				viewerPane.createControl(getContainer());
-				listViewer = (ListViewer)viewerPane.getViewer();
-				listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				listViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				this.listViewer = (ListViewer)viewerPane.getViewer();
+				this.listViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+				this.listViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-				createContextMenuFor(listViewer);
+				createContextMenuFor(this.listViewer);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_ListPage_label"));
 			}
@@ -1113,13 +1129,13 @@ public class ExtensionEditor
 						}
 					};
 				viewerPane.createControl(getContainer());
-				treeViewer = (TreeViewer)viewerPane.getViewer();
-				treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				this.treeViewer = (TreeViewer)viewerPane.getViewer();
+				this.treeViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+				this.treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-				new AdapterFactoryTreeEditor(treeViewer.getTree(), adapterFactory);
+				new AdapterFactoryTreeEditor(this.treeViewer.getTree(), this.adapterFactory);
 
-				createContextMenuFor(treeViewer);
+				createContextMenuFor(this.treeViewer);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_TreePage_label"));
 			}
@@ -1140,9 +1156,9 @@ public class ExtensionEditor
 						}
 					};
 				viewerPane.createControl(getContainer());
-				tableViewer = (TableViewer)viewerPane.getViewer();
+				this.tableViewer = (TableViewer)viewerPane.getViewer();
 
-				Table table = tableViewer.getTable();
+				Table table = this.tableViewer.getTable();
 				TableLayout layout = new TableLayout();
 				table.setLayout(layout);
 				table.setHeaderVisible(true);
@@ -1158,11 +1174,11 @@ public class ExtensionEditor
 				selfColumn.setText(getString("_UI_SelfColumn_label"));
 				selfColumn.setResizable(true);
 
-				tableViewer.setColumnProperties(new String [] {"a", "b"});
-				tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				this.tableViewer.setColumnProperties(new String [] {"a", "b"});
+				this.tableViewer.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+				this.tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-				createContextMenuFor(tableViewer);
+				createContextMenuFor(this.tableViewer);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_TablePage_label"));
 			}
@@ -1184,9 +1200,9 @@ public class ExtensionEditor
 					};
 				viewerPane.createControl(getContainer());
 
-				treeViewerWithColumns = (TreeViewer)viewerPane.getViewer();
+				this.treeViewerWithColumns = (TreeViewer)viewerPane.getViewer();
 
-				Tree tree = treeViewerWithColumns.getTree();
+				Tree tree = this.treeViewerWithColumns.getTree();
 				tree.setLayoutData(new FillLayout());
 				tree.setHeaderVisible(true);
 				tree.setLinesVisible(true);
@@ -1201,18 +1217,19 @@ public class ExtensionEditor
 				selfColumn.setResizable(true);
 				selfColumn.setWidth(200);
 
-				treeViewerWithColumns.setColumnProperties(new String [] {"a", "b"});
-				treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				this.treeViewerWithColumns.setColumnProperties(new String [] {"a", "b"});
+				this.treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(this.adapterFactory));
+				this.treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(this.adapterFactory));
 
-				createContextMenuFor(treeViewerWithColumns);
+				createContextMenuFor(this.treeViewerWithColumns);
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label"));
 			}
 
 			getSite().getShell().getDisplay().asyncExec
 				(new Runnable() {
-					 public void run() {
+					 @Override
+					public void run() {
 						 setActivePage(0);
 					 }
 				 });
@@ -1226,17 +1243,18 @@ public class ExtensionEditor
 				boolean guard = false;
 				@Override
 				public void controlResized(ControlEvent event) {
-					if (!guard) {
-						guard = true;
+					if (!this.guard) {
+						this.guard = true;
 						hideTabs();
-						guard = false;
+						this.guard = false;
 					}
 				}
 			 });
 
 		getSite().getShell().getDisplay().asyncExec
 			(new Runnable() {
-				 public void run() {
+				 @Override
+				public void run() {
 					 updateProblemIndication();
 				 }
 			 });
@@ -1288,8 +1306,8 @@ public class ExtensionEditor
 	protected void pageChange(int pageIndex) {
 		super.pageChange(pageIndex);
 
-		if (contentOutlinePage != null) {
-			handleContentOutlineSelection(contentOutlinePage.getSelection());
+		if (this.contentOutlinePage != null) {
+			handleContentOutlineSelection(this.contentOutlinePage.getSelection());
 		}
 	}
 
@@ -1323,37 +1341,37 @@ public class ExtensionEditor
 	 * @generated
 	 */
 	public IContentOutlinePage getContentOutlinePage() {
-		if (contentOutlinePage == null) {
+		if (this.contentOutlinePage == null) {
 			// The content outline is just a tree.
 			//
 			class MyContentOutlinePage extends ContentOutlinePage {
 				@Override
 				public void createControl(Composite parent) {
 					super.createControl(parent);
-					contentOutlineViewer = getTreeViewer();
-					contentOutlineViewer.addSelectionChangedListener(this);
+					ExtensionEditor.this.contentOutlineViewer = getTreeViewer();
+					ExtensionEditor.this.contentOutlineViewer.addSelectionChangedListener(this);
 
 					// Set up the tree viewer.
 					//
-					contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-					contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-					contentOutlineViewer.setInput(editingDomain.getResourceSet());
+					ExtensionEditor.this.contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(ExtensionEditor.this.adapterFactory));
+					ExtensionEditor.this.contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(ExtensionEditor.this.adapterFactory));
+					ExtensionEditor.this.contentOutlineViewer.setInput(ExtensionEditor.this.editingDomain.getResourceSet());
 
 					// Make sure our popups work.
 					//
-					createContextMenuFor(contentOutlineViewer);
+					createContextMenuFor(ExtensionEditor.this.contentOutlineViewer);
 
-					if (!editingDomain.getResourceSet().getResources().isEmpty()) {
+					if (!ExtensionEditor.this.editingDomain.getResourceSet().getResources().isEmpty()) {
 					  // Select the root object in the view.
 					  //
-					  contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+					  ExtensionEditor.this.contentOutlineViewer.setSelection(new StructuredSelection(ExtensionEditor.this.editingDomain.getResourceSet().getResources().get(0)), true);
 					}
 				}
 
 				@Override
 				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
 					super.makeContributions(menuManager, toolBarManager, statusLineManager);
-					contentOutlineStatusLineManager = statusLineManager;
+					ExtensionEditor.this.contentOutlineStatusLineManager = statusLineManager;
 				}
 
 				@Override
@@ -1363,21 +1381,22 @@ public class ExtensionEditor
 				}
 			}
 
-			contentOutlinePage = new MyContentOutlinePage();
+			this.contentOutlinePage = new MyContentOutlinePage();
 
 			// Listen to selection so that we can handle it is a special way.
 			//
-			contentOutlinePage.addSelectionChangedListener
+			this.contentOutlinePage.addSelectionChangedListener
 				(new ISelectionChangedListener() {
 					 // This ensures that we handle selections correctly.
 					 //
-					 public void selectionChanged(SelectionChangedEvent event) {
+					 @Override
+					public void selectionChanged(SelectionChangedEvent event) {
 						 handleContentOutlineSelection(event.getSelection());
 					 }
 				 });
 		}
 
-		return contentOutlinePage;
+		return this.contentOutlinePage;
 	}
 
 	/**
@@ -1387,9 +1406,9 @@ public class ExtensionEditor
 	 * @generated
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
-		if (propertySheetPage == null) {
-			propertySheetPage =
-				new ExtendedPropertySheetPage(editingDomain) {
+		if (this.propertySheetPage == null) {
+			this.propertySheetPage =
+				new ExtendedPropertySheetPage(this.editingDomain) {
 					@Override
 					public void setSelectionToViewer(List<?> selection) {
 						ExtensionEditor.this.setSelectionToViewer(selection);
@@ -1402,10 +1421,10 @@ public class ExtensionEditor
 						getActionBarContributor().shareGlobalActions(this, actionBars);
 					}
 				};
-			propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+			this.propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(this.adapterFactory));
 		}
 
-		return propertySheetPage;
+		return this.propertySheetPage;
 	}
 
 	/**
@@ -1415,7 +1434,7 @@ public class ExtensionEditor
 	 * @generated
 	 */
 	public void handleContentOutlineSelection(ISelection selection) {
-		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
+		if (this.currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
 			Iterator<?> selectedElements = ((IStructuredSelection)selection).iterator();
 			if (selectedElements.hasNext()) {
 				// Get the first selected element.
@@ -1424,7 +1443,7 @@ public class ExtensionEditor
 
 				// If it's the selection viewer, then we want it to select the same selection as this selection.
 				//
-				if (currentViewerPane.getViewer() == selectionViewer) {
+				if (this.currentViewerPane.getViewer() == this.selectionViewer) {
 					ArrayList<Object> selectionList = new ArrayList<Object>();
 					selectionList.add(selectedElement);
 					while (selectedElements.hasNext()) {
@@ -1433,14 +1452,14 @@ public class ExtensionEditor
 
 					// Set the selection to the widget.
 					//
-					selectionViewer.setSelection(new StructuredSelection(selectionList));
+					this.selectionViewer.setSelection(new StructuredSelection(selectionList));
 				}
 				else {
 					// Set the input to the widget.
 					//
-					if (currentViewerPane.getViewer().getInput() != selectedElement) {
-						currentViewerPane.getViewer().setInput(selectedElement);
-						currentViewerPane.setTitle(selectedElement);
+					if (this.currentViewerPane.getViewer().getInput() != selectedElement) {
+						this.currentViewerPane.getViewer().setInput(selectedElement);
+						this.currentViewerPane.setTitle(selectedElement);
 					}
 				}
 			}
@@ -1455,7 +1474,7 @@ public class ExtensionEditor
 	 */
 	@Override
 	public boolean isDirty() {
-		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
+		return ((BasicCommandStack)this.editingDomain.getCommandStack()).isSaveNeeded();
 	}
 
 	/**
@@ -1482,17 +1501,17 @@ public class ExtensionEditor
 					// Save the resources to the file system.
 					//
 					boolean first = true;
-					for (Resource resource : editingDomain.getResourceSet().getResources()) {
-						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
+					for (Resource resource : ExtensionEditor.this.editingDomain.getResourceSet().getResources()) {
+						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !ExtensionEditor.this.editingDomain.isReadOnly(resource)) {
 							try {
 								long timeStamp = resource.getTimeStamp();
 								resource.save(saveOptions);
 								if (resource.getTimeStamp() != timeStamp) {
-									savedResources.add(resource);
+									ExtensionEditor.this.savedResources.add(resource);
 								}
 							}
 							catch (Exception exception) {
-								resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+								ExtensionEditor.this.resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
 							}
 							first = false;
 						}
@@ -1500,7 +1519,7 @@ public class ExtensionEditor
 				}
 			};
 
-		updateProblemIndication = false;
+		this.updateProblemIndication = false;
 		try {
 			// This runs the options, and shows progress.
 			//
@@ -1508,7 +1527,7 @@ public class ExtensionEditor
 
 			// Refresh the necessary state.
 			//
-			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
+			((BasicCommandStack)this.editingDomain.getCommandStack()).saveIsDone();
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
 		catch (Exception exception) {
@@ -1516,7 +1535,7 @@ public class ExtensionEditor
 			//
 			ExtensionEditorPlugin.INSTANCE.log(exception);
 		}
-		updateProblemIndication = true;
+		this.updateProblemIndication = true;
 		updateProblemIndication();
 	}
 
@@ -1530,7 +1549,7 @@ public class ExtensionEditor
 	protected boolean isPersisted(Resource resource) {
 		boolean result = false;
 		try {
-			InputStream stream = editingDomain.getResourceSet().getURIConverter().createInputStream(resource.getURI());
+			InputStream stream = this.editingDomain.getResourceSet().getURIConverter().createInputStream(resource.getURI());
 			if (stream != null) {
 				result = true;
 				stream.close();
@@ -1578,7 +1597,7 @@ public class ExtensionEditor
 	 * @generated
 	 */
 	protected void doSaveAs(URI uri, IEditorInput editorInput) {
-		(editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
+		(this.editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
 		IProgressMonitor progressMonitor =
@@ -1593,15 +1612,16 @@ public class ExtensionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void gotoMarker(IMarker marker) {
 		try {
 			if (marker.getType().equals(EValidator.MARKER)) {
 				String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
 				if (uriAttribute != null) {
 					URI uri = URI.createURI(uriAttribute);
-					EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
+					EObject eObject = this.editingDomain.getResourceSet().getEObject(uri, true);
 					if (eObject != null) {
-					  setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
+					  setSelectionToViewer(Collections.singleton(this.editingDomain.getWrapper(eObject)));
 					}
 				}
 			}
@@ -1623,8 +1643,8 @@ public class ExtensionEditor
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
 		site.setSelectionProvider(this);
-		site.getPage().addPartListener(partListener);
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
+		site.getPage().addPartListener(this.partListener);
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(this.resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
 	}
 
 	/**
@@ -1634,8 +1654,8 @@ public class ExtensionEditor
 	 */
 	@Override
 	public void setFocus() {
-		if (currentViewerPane != null) {
-			currentViewerPane.setFocus();
+		if (this.currentViewerPane != null) {
+			this.currentViewerPane.setFocus();
 		}
 		else {
 			getControl(getActivePage()).setFocus();
@@ -1648,8 +1668,9 @@ public class ExtensionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addSelectionChangedListener(ISelectionChangedListener listener) {
-		selectionChangedListeners.add(listener);
+		this.selectionChangedListeners.add(listener);
 	}
 
 	/**
@@ -1658,8 +1679,9 @@ public class ExtensionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
-		selectionChangedListeners.remove(listener);
+		this.selectionChangedListeners.remove(listener);
 	}
 
 	/**
@@ -1668,8 +1690,9 @@ public class ExtensionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ISelection getSelection() {
-		return editorSelection;
+		return this.editorSelection;
 	}
 
 	/**
@@ -1679,10 +1702,11 @@ public class ExtensionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSelection(ISelection selection) {
-		editorSelection = selection;
+		this.editorSelection = selection;
 
-		for (ISelectionChangedListener listener : selectionChangedListeners) {
+		for (ISelectionChangedListener listener : this.selectionChangedListeners) {
 			listener.selectionChanged(new SelectionChangedEvent(this, selection));
 		}
 		setStatusLineManager(selection);
@@ -1694,8 +1718,8 @@ public class ExtensionEditor
 	 * @generated
 	 */
 	public void setStatusLineManager(ISelection selection) {
-		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ?
-			contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
+		IStatusLineManager statusLineManager = this.currentViewer != null && this.currentViewer == this.contentOutlineViewer ?
+			this.contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
 
 		if (statusLineManager != null) {
 			if (selection instanceof IStructuredSelection) {
@@ -1706,7 +1730,7 @@ public class ExtensionEditor
 						break;
 					}
 					case 1: {
-						String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
+						String text = new AdapterFactoryItemDelegator(this.adapterFactory).getText(collection.iterator().next());
 						statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
 						break;
 					}
@@ -1748,6 +1772,7 @@ public class ExtensionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void menuAboutToShow(IMenuManager menuManager) {
 		((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
 	}
@@ -1776,7 +1801,7 @@ public class ExtensionEditor
 	 * @generated
 	 */
 	public AdapterFactory getAdapterFactory() {
-		return adapterFactory;
+		return this.adapterFactory;
 	}
 
 	/**
@@ -1786,24 +1811,24 @@ public class ExtensionEditor
 	 */
 	@Override
 	public void dispose() {
-		updateProblemIndication = false;
+		this.updateProblemIndication = false;
 
-		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this.resourceChangeListener);
 
-		getSite().getPage().removePartListener(partListener);
+		getSite().getPage().removePartListener(this.partListener);
 
-		adapterFactory.dispose();
+		this.adapterFactory.dispose();
 
 		if (getActionBarContributor().getActiveEditor() == this) {
 			getActionBarContributor().setActiveEditor(null);
 		}
 
-		if (propertySheetPage != null) {
-			propertySheetPage.dispose();
+		if (this.propertySheetPage != null) {
+			this.propertySheetPage.dispose();
 		}
 
-		if (contentOutlinePage != null) {
-			contentOutlinePage.dispose();
+		if (this.contentOutlinePage != null) {
+			this.contentOutlinePage.dispose();
 		}
 
 		super.dispose();

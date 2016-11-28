@@ -85,7 +85,7 @@ public class EditorPriorityList extends FieldEditor {
 	/**
 	 * List Control for the items. 
 	 */
-	private List guiList = null;
+	List guiList = null;
 	/** 
 	 * Constant to separate different entries.
 	 */
@@ -105,7 +105,7 @@ public class EditorPriorityList extends FieldEditor {
 	/**
 	 * Combo box for available model types.
 	 */
-	private Combo modelTypeCombo = null;
+	Combo modelTypeCombo = null;
 	/**
 	 * List of available model types.
 	 */
@@ -113,7 +113,7 @@ public class EditorPriorityList extends FieldEditor {
 	/**
 	 * Structure to manage model types and selected editors. 
 	 */
-	private HashMap<String, ArrayList<String>> selectedEditors = null;
+	HashMap<String, ArrayList<String>> selectedEditors = null;
 	
 	/**
 	 * Konstruktor.
@@ -126,28 +126,28 @@ public class EditorPriorityList extends FieldEditor {
 		init(name, labelText);
 		createControl(parent);
 		
-		container = parent;
+		this.container = parent;
 	}
 
 	@Override
 	protected final void adjustForNumColumns(final int numColumns) {
 
-		((GridData) container.getLayoutData()).horizontalSpan = numColumns;
+		((GridData) this.container.getLayoutData()).horizontalSpan = numColumns;
 	}
 
 	@Override
 	protected final void doFillIntoGrid(final Composite parent, final int numColumns) {
-		container = parent;
+		this.container = parent;
 		GridLayout layout = new GridLayout(2, false);
-		container.setLayout(layout);
-		container.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		this.container.setLayout(layout);
+		this.container.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
 		
-		modelTypeLabel = new Label(container, SWT.LEFT);
-		modelTypeLabel.setText("Select ModelType:");
-		modelTypeCombo = new Combo(container, SWT.READ_ONLY);
+		this.modelTypeLabel = new Label(this.container, SWT.LEFT);
+		this.modelTypeLabel.setText("Select ModelType:");
+		this.modelTypeCombo = new Combo(this.container, SWT.READ_ONLY);
 
-		modelTypeCombo.addSelectionListener(new SelectionListener() {
+		this.modelTypeCombo.addSelectionListener(new SelectionListener() {
 			
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
@@ -162,23 +162,24 @@ public class EditorPriorityList extends FieldEditor {
 			}
 		});
 
-		titleLabel = getLabelControl(container);
+		this.titleLabel = getLabelControl(this.container);
 		GridData gdTitleLabel = new GridData(GridData.FILL_HORIZONTAL);
 		gdTitleLabel.horizontalSpan = 2;
-		titleLabel.setLayoutData(gdTitleLabel);		
+		this.titleLabel.setLayoutData(gdTitleLabel);		
 
-		guiList = new List(container, SWT.BORDER);
+		this.guiList = new List(this.container, SWT.BORDER);
 		GridData listGd = new GridData(SWT.FILL, SWT.FILL, true, true); 
 		listGd.verticalAlignment = GridData.FILL;
 		listGd.horizontalAlignment = GridData.FILL;
-		guiList.setLayoutData(listGd);
-		guiList.addSelectionListener(new SelectionAdapter() {
+		this.guiList.setLayoutData(listGd);
+		this.guiList.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				selectionChanged(); 				
-			};
+			}
 		});	
 
-		Composite addRemoveGroup = new Composite(container, SWT.NONE);
+		Composite addRemoveGroup = new Composite(this.container, SWT.NONE);
 		addRemoveGroup.setLayoutData(new GridData());
 
 		GridLayout addRemoveLayout = new GridLayout();
@@ -194,96 +195,96 @@ public class EditorPriorityList extends FieldEditor {
 		buttonLayout.marginWidth = 0;
 		buttonGroup.setLayout(buttonLayout);
 
-		btAdd = new Button(buttonGroup, SWT.PUSH);
-		btAdd.setText("Add");
-		btAdd.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		btAdd.addSelectionListener(new SelectionAdapter() {
+		this.btAdd = new Button(buttonGroup, SWT.PUSH);
+		this.btAdd.setText("Add");
+		this.btAdd.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		this.btAdd.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				super.widgetSelected(e);
 				String result = openEditorSelectionDialog();
 				if (result != null) {
-					guiList.add(result);
-					ArrayList<String> list = selectedEditors.get(modelTypeCombo.getText());
+					EditorPriorityList.this.guiList.add(result);
+					ArrayList<String> list = EditorPriorityList.this.selectedEditors.get(EditorPriorityList.this.modelTypeCombo.getText());
 					if (list != null) {
 						list.add(result);
 					} else {
 						ArrayList<String> editor = new ArrayList<String>();
 						editor.add(result);
-						selectedEditors.put(modelTypeCombo.getText(), editor);
+						EditorPriorityList.this.selectedEditors.put(EditorPriorityList.this.modelTypeCombo.getText(), editor);
 					}
 					selectionChanged();
 				}
 			}
 		});			
 			
-		btRemove = new Button(buttonGroup, SWT.PUSH);
-		btRemove.setText("Remove");
-		btRemove.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		this.btRemove = new Button(buttonGroup, SWT.PUSH);
+		this.btRemove.setText("Remove");
+		this.btRemove.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-		btRemove.addSelectionListener(new SelectionAdapter() {
+		this.btRemove.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				super.widgetSelected(e);
-				int selection = guiList.getSelectionIndex();
+				int selection = EditorPriorityList.this.guiList.getSelectionIndex();
 				if (selection > -1) {
-					java.util.List<String> editors = selectedEditors.get(modelTypeCombo.getText());
-					editors.remove(guiList.getItem(guiList.getSelectionIndex()));
+					java.util.List<String> editors = EditorPriorityList.this.selectedEditors.get(EditorPriorityList.this.modelTypeCombo.getText());
+					editors.remove(EditorPriorityList.this.guiList.getItem(EditorPriorityList.this.guiList.getSelectionIndex()));
 					
-					guiList.remove(guiList.getSelectionIndex());
+					EditorPriorityList.this.guiList.remove(EditorPriorityList.this.guiList.getSelectionIndex());
 					selectionChanged();
 				}
 			}
 		});
 		
-		btUp = new Button(buttonGroup, SWT.PUSH);
-		btUp.setText("Up");
-		btUp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		btUp.addSelectionListener(new SelectionAdapter() {
+		this.btUp = new Button(buttonGroup, SWT.PUSH);
+		this.btUp.setText("Up");
+		this.btUp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		this.btUp.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				super.widgetSelected(e);
-				int index = guiList.getSelectionIndex();
+				int index = EditorPriorityList.this.guiList.getSelectionIndex();
 				if (index > 0) {					
-					String selectedItem = guiList.getItem(index); 				
-					String itemAboveSelected = guiList.getItem(index - 1); 
+					String selectedItem = EditorPriorityList.this.guiList.getItem(index); 				
+					String itemAboveSelected = EditorPriorityList.this.guiList.getItem(index - 1); 
 					
-					java.util.List<String> editors = selectedEditors.get(modelTypeCombo.getText());
+					java.util.List<String> editors = EditorPriorityList.this.selectedEditors.get(EditorPriorityList.this.modelTypeCombo.getText());
 					editors.add(index - 1, editors.remove(index));
 					
-					guiList.add(selectedItem, index - 1);					
-					guiList.remove(index);					
-					guiList.add(itemAboveSelected, index);
-					guiList.remove(index + 1);
-					guiList.select(index - 1);
+					EditorPriorityList.this.guiList.add(selectedItem, index - 1);					
+					EditorPriorityList.this.guiList.remove(index);					
+					EditorPriorityList.this.guiList.add(itemAboveSelected, index);
+					EditorPriorityList.this.guiList.remove(index + 1);
+					EditorPriorityList.this.guiList.select(index - 1);
 				}
 			}
 		});
 		
-		btDown = new Button(buttonGroup, SWT.PUSH);
-		btDown.setText("Down");
-		btDown.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		btDown.addSelectionListener(new SelectionAdapter() {
+		this.btDown = new Button(buttonGroup, SWT.PUSH);
+		this.btDown.setText("Down");
+		this.btDown.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		this.btDown.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				super.widgetSelected(e);
-				int index = guiList.getSelectionIndex();
-				if (index > -1 && index < guiList.getItemCount() - 1) {
-					String selectedItem = guiList.getItem(index);  
-					String itemBelowSelected = guiList.getItem(index + 1);
+				int index = EditorPriorityList.this.guiList.getSelectionIndex();
+				if (index > -1 && index < EditorPriorityList.this.guiList.getItemCount() - 1) {
+					String selectedItem = EditorPriorityList.this.guiList.getItem(index);  
+					String itemBelowSelected = EditorPriorityList.this.guiList.getItem(index + 1);
 					
-					java.util.List<String> editors = selectedEditors.get(modelTypeCombo.getText());
+					java.util.List<String> editors = EditorPriorityList.this.selectedEditors.get(EditorPriorityList.this.modelTypeCombo.getText());
 					editors.add(index + 1, editors.remove(index));
 					
-					guiList.remove(index + 1);
-					guiList.remove(index);
-					guiList.add(itemBelowSelected, index);
-					guiList.add(selectedItem, index + 1);	
-					guiList.select(index + 1);
+					EditorPriorityList.this.guiList.remove(index + 1);
+					EditorPriorityList.this.guiList.remove(index);
+					EditorPriorityList.this.guiList.add(itemBelowSelected, index);
+					EditorPriorityList.this.guiList.add(selectedItem, index + 1);	
+					EditorPriorityList.this.guiList.select(index + 1);
 				}				
 			}
 		});
-		Composite addComposite = new Composite(container, SWT.NONE);
+		Composite addComposite = new Composite(this.container, SWT.NONE);
 		layout  = new GridLayout(2, false);
 		layout.marginWidth = 0;
 		layout.marginHeight = 0;
@@ -325,14 +326,14 @@ public class EditorPriorityList extends FieldEditor {
 	@Override
 	protected final void doStore() {
 		java.util.List<String> toBeSaved = new java.util.ArrayList<String>(); 
-		Set<Map.Entry<String, java.util.ArrayList<String>>> set = selectedEditors.entrySet();
+		Set<Map.Entry<String, java.util.ArrayList<String>>> set = this.selectedEditors.entrySet();
 		for (Map.Entry<String, java.util.ArrayList<String>> entry : set) {
 			for (String editor : entry.getValue()) {
 				toBeSaved.add(entry.getKey() + ":" + editor);
 			}
 		}
 		StringBuffer result = new StringBuffer();
-		result.append(SELECTED_MODELTYPE + modelTypeCombo.getText() + SEPARATOR);
+		result.append(SELECTED_MODELTYPE + this.modelTypeCombo.getText() + SEPARATOR);
 		result.append(LIST_ITEMS);
 		for (int i = 0; i < toBeSaved.size(); i++) {
 			result.append(toBeSaved.get(i));
@@ -340,9 +341,7 @@ public class EditorPriorityList extends FieldEditor {
 				result.append(SEPARATOR_LIST);
 			}
 		}	
-		if (result != null) {
-			CarismaGUI.INSTANCE.getPreferenceStore().setValue(getPreferenceName(), result.toString());
-		}	
+		CarismaGUI.INSTANCE.getPreferenceStore().setValue(getPreferenceName(), result.toString());	
 	}
 
 	@Override
@@ -363,21 +362,21 @@ public class EditorPriorityList extends FieldEditor {
 	 * @param propertyString The saved properties represented as string
 	 */
 	private void init(final String propertyString) {
-		listModelTypes = Carisma.getInstance().getModelTypeRegistry().getSupportedTypes();
+		this.listModelTypes = Carisma.getInstance().getModelTypeRegistry().getSupportedTypes();
 		
-		modelTypeCombo.removeAll();
-		for (ModelType type : listModelTypes) {
-			modelTypeCombo.add(type.getName());
+		this.modelTypeCombo.removeAll();
+		for (ModelType type : this.listModelTypes) {
+			this.modelTypeCombo.add(type.getName());
 		}
 		
-		selectedEditors = new HashMap<String, java.util.ArrayList<String>>();
-		guiList.removeAll();
-		for (ModelType mt : listModelTypes) {
+		this.selectedEditors = new HashMap<String, java.util.ArrayList<String>>();
+		this.guiList.removeAll();
+		for (ModelType mt : this.listModelTypes) {
 			java.util.List<String> editors = getSavedEditorsByModelType(propertyString, mt.getName());
 			if (editors.size() > 0) {
-				selectedEditors.put(mt.getName(), (ArrayList<String>) editors);
+				this.selectedEditors.put(mt.getName(), (ArrayList<String>) editors);
 			} else {
-				selectedEditors.put(mt.getName(),
+				this.selectedEditors.put(mt.getName(),
 						new ArrayList<String>(Arrays.asList(new String[] {TextEditorDescriptor.NAME})));
 			}
 		}
@@ -392,7 +391,7 @@ public class EditorPriorityList extends FieldEditor {
 	private void initModeltypeCombo(final String propertyString) {
 		String selectedModeltype = getProperty(propertyString, SELECTED_MODELTYPE);
 
-		String[] comboItems = modelTypeCombo.getItems();
+		String[] comboItems = this.modelTypeCombo.getItems();
 		int index = -1;
 		for (int i = 0; i < comboItems.length; i++) {
 			if (comboItems[i].equalsIgnoreCase(selectedModeltype)) {
@@ -400,10 +399,10 @@ public class EditorPriorityList extends FieldEditor {
 			}
 		}
 		if (index != -1) {
-			modelTypeCombo.select(index);
+			this.modelTypeCombo.select(index);
 		} else {
 			if (comboItems.length > 0) {
-				modelTypeCombo.select(0);
+				this.modelTypeCombo.select(0);
 			}
 		}
 	}
@@ -411,13 +410,13 @@ public class EditorPriorityList extends FieldEditor {
 	/**
 	 * Updates the priority list.
 	 */
-	private void updatePriorityList() {
-		guiList.removeAll();
-		String selectedModeltype = modelTypeCombo.getText();
-		java.util.List<String> items = selectedEditors.get(selectedModeltype);
+	void updatePriorityList() {
+		this.guiList.removeAll();
+		String selectedModeltype = this.modelTypeCombo.getText();
+		java.util.List<String> items = this.selectedEditors.get(selectedModeltype);
 		if (items != null) {
 			for (String editor : items) {
-				guiList.add(editor);
+				this.guiList.add(editor);
 			}
 		}
 	}
@@ -426,8 +425,8 @@ public class EditorPriorityList extends FieldEditor {
 	 * Opens a dialog to add an editor to the priority list.
 	 * @return the result, or <code>null</code> if nothing chosen
 	 */
-	private String openEditorSelectionDialog() {
-		ListDialog dialog = new ListDialog(container.getShell());
+	String openEditorSelectionDialog() {
+		ListDialog dialog = new ListDialog(this.container.getShell());
 		dialog.setContentProvider(ArrayContentProvider.getInstance());
 		dialog.setLabelProvider(new LabelProvider());
 		dialog.setTitle("Add editor for automatic opening");
@@ -451,7 +450,7 @@ public class EditorPriorityList extends FieldEditor {
 	 * @return java.util.List<String> List of available editors represented as string object
 	 */
 	private java.util.List<String> getAvailableEditors() {
-		java.util.List<String> choosenEditors = Arrays.asList(guiList.getItems());
+		java.util.List<String> choosenEditors = Arrays.asList(this.guiList.getItems());
 		
 		// Info: availableItems must be a copy of list. Otherwise, when removing items in list, they are no more there
 		java.util.ArrayList<String> availableItems  = new ArrayList<String>();
@@ -461,9 +460,9 @@ public class EditorPriorityList extends FieldEditor {
 			if (edDesc.isAvailable() 
 					&& !choosenEditors.contains(edDesc.getName())
 					&& (edDesc.getTypes().contains(".*") 
-							|| edDesc.getTypes().contains(modelTypeCombo.getText().toLowerCase()) 
-							|| (modelTypeCombo.getText().equalsIgnoreCase("uml2") ? edDesc.getTypes().contains("uml") 
-									: modelTypeCombo.getText().equalsIgnoreCase("bpmn2") ? edDesc.getTypes().contains("bpmn") : false))) {
+							|| edDesc.getTypes().contains(this.modelTypeCombo.getText().toLowerCase()) 
+							|| (this.modelTypeCombo.getText().equalsIgnoreCase("uml2") ? edDesc.getTypes().contains("uml") 
+									: this.modelTypeCombo.getText().equalsIgnoreCase("bpmn2") ? edDesc.getTypes().contains("bpmn") : false))) {
 				availableItems.add(edDesc.getName());
 			}
 		}
@@ -474,20 +473,18 @@ public class EditorPriorityList extends FieldEditor {
 	/**
 	 * Remove-/Up-/Down-Buttons are disabled, when listControl contains only one entry.
 	 */
-	private void selectionChanged() {
+	void selectionChanged() {
 
-		int count = guiList.getItemCount();
+		int count = this.guiList.getItemCount();
 		if (count > 1) {
-			btRemove.setEnabled(true);
-			btUp.setEnabled(true);
-			btDown.setEnabled(true);
+			this.btRemove.setEnabled(true);
+			this.btUp.setEnabled(true);
+			this.btDown.setEnabled(true);
 			return;
-		} else {
-			btRemove.setEnabled(false);
-			btUp.setEnabled(false);
-			btDown.setEnabled(false);
-			
 		}
+		this.btRemove.setEnabled(false);
+		this.btUp.setEnabled(false);
+		this.btDown.setEnabled(false);
 		
 	}
 	
@@ -500,16 +497,16 @@ public class EditorPriorityList extends FieldEditor {
 	@Override
 	public final void setEnabled(final boolean enabled, final Composite parent) {
 		super.setEnabled(enabled, parent);
-		btAdd.setEnabled(enabled);
-		btRemove.setEnabled(enabled);
-		btUp.setEnabled(enabled);
-		btDown.setEnabled(enabled);
+		this.btAdd.setEnabled(enabled);
+		this.btRemove.setEnabled(enabled);
+		this.btUp.setEnabled(enabled);
+		this.btDown.setEnabled(enabled);
 		
-		modelTypeCombo.setEnabled(enabled);
-		guiList.setEnabled(enabled);
+		this.modelTypeCombo.setEnabled(enabled);
+		this.guiList.setEnabled(enabled);
 		
-		modelTypeLabel.setEnabled(enabled);
-		titleLabel.setEnabled(enabled);
+		this.modelTypeLabel.setEnabled(enabled);
+		this.titleLabel.setEnabled(enabled);
 		/*noteLabel1.setEnabled(enabled);
 		noteLabel2.setEnabled(enabled);*/
 		
@@ -553,9 +550,8 @@ public class EditorPriorityList extends FieldEditor {
 				}
 			}
 			return result;
-		} else {
-			return result;
 		}
+		return result;
 	}
 	
 	/**

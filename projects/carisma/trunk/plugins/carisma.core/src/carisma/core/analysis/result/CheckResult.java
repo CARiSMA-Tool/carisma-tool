@@ -46,14 +46,14 @@ public class CheckResult{
 	private AnalysisResult parent;
 
 	public CheckResult(){
-		successful=false;
-		name="";
-		results=new ArrayList<AnalysisResultMessage>();
+		this.successful=false;
+		this.name="";
+		this.results=new ArrayList<AnalysisResultMessage>();
 	}
 	
 	@XmlElement(name = "sucessful")
 	public boolean isSuccessful() {
-		return successful;
+		return this.successful;
 	}
 
 	public void setSuccessful(boolean successful) {
@@ -63,7 +63,7 @@ public class CheckResult{
 	
 	@XmlElement(name = "name")
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -74,7 +74,7 @@ public class CheckResult{
 	//return Collections.unmodifiableList(results);
 	@XmlElement(name = "results")
 	public List<AnalysisResultMessage> getResults() {
-		return results;
+		return this.results;
 	}
 	
 	public void addResult(AnalysisResultMessage result) {
@@ -88,7 +88,7 @@ public class CheckResult{
 	}
 
 	public AnalysisResult getParent() {
-		return parent;
+		return this.parent;
 	}
 	
 	public StatusType getStatus() {

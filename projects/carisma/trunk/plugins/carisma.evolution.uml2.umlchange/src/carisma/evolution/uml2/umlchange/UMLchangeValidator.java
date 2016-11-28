@@ -25,7 +25,7 @@ import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.DummyHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.UMLHelper;
@@ -45,8 +45,12 @@ import carisma.profile.umlchange.UMLchangeUtil;
  * @author Klaus Rudack, Daniel Warzecha
  *
  */
-public class UMLchangeValidator implements CarismaCheck {
+public class UMLchangeValidator implements CarismaCheckWithID {
 	
+	//TODO: Currently not registered at carisma.carismackeck extension point
+	private static final String CHECK_ID = null;
+	private static final String CHECK_NAME = null;
+
 	private List<String> complexNamespaces = null;
 
     /**
@@ -63,12 +67,11 @@ public class UMLchangeValidator implements CarismaCheck {
      * Constant String for output.
      */
     private static final String AT = "' at ";
-    
-    
+
 	/**
 	 * AnalysisHost for report.
 	 */
-	private AnalysisHost host = null;
+	private AnalysisHost analysisHost = null;
 	
 	/**
 	 * Constructor initializes the 
@@ -82,29 +85,30 @@ public class UMLchangeValidator implements CarismaCheck {
 	 */
 	public final void init(final AnalysisHost newHost) {
 		if (newHost != null) {
-			host = newHost;
-		} else if (host == null) {
-			host = new DummyHost(true);
+			this.analysisHost = newHost;
+		} else if (this.analysisHost == null) {
+			this.analysisHost = new DummyHost(true);
 		}
-		if (complexNamespaces == null) {
-			complexNamespaces = new ArrayList<String>();
+		if (this.complexNamespaces == null) {
+			this.complexNamespaces = new ArrayList<String>();
 		} else {
-			complexNamespaces.clear();
+			this.complexNamespaces.clear();
 		}
 	}
 	
 	/**
 	 * Performs the CARiSMA check to validate the given analysis model.
 	 * @param parameters - The check parameters
-	 * @param newHost - the analysis host
+	 * @param host - the analysis host
 	 */
-	public boolean perform(final Map<String,CheckParameter> parameters, final AnalysisHost newHost) {
-		init(newHost);
+	@Override
+	public boolean perform(final Map<String,CheckParameter> parameters, final AnalysisHost host) {
+		init(host);
 		Model modelToAnalyze = null;
-		if (host.getAnalyzedModel() != null 
-				&& !host.getAnalyzedModel().getContents().isEmpty() 
-				&& host.getAnalyzedModel().getContents().get(0) instanceof Model) {
-			modelToAnalyze = (Model) host.getAnalyzedModel().getContents().get(0);
+		if (this.analysisHost.getAnalyzedModel() != null 
+				&& !this.analysisHost.getAnalyzedModel().getContents().isEmpty() 
+				&& this.analysisHost.getAnalyzedModel().getContents().get(0) instanceof Model) {
+			modelToAnalyze = (Model) this.analysisHost.getAnalyzedModel().getContents().get(0);
 		}
 		return isValidModel(modelToAnalyze);
 	}
@@ -118,7 +122,7 @@ public class UMLchangeValidator implements CarismaCheck {
 	 */
 	public final boolean isValidModel(final Model theModel) {
 		if (!UMLHelper.isProfileApplied(theModel, UMLchange.DESCRIPTOR)) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "No UMLchange profile applied to the model."));
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "No UMLchange profile applied to the model."));
 			return true;
 		}
 		List<StereotypeApplication> allChangeApps = UMLchangeUtil.getStereotypeApplications(theModel);
@@ -131,7 +135,7 @@ public class UMLchangeValidator implements CarismaCheck {
 			}
 		}
 		if (hasInvalidApplications || hasDuplicateIds) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Invalid application of UMLchange profile."));
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Invalid application of UMLchange profile."));
 			return false;
 		}
 		return true;
@@ -159,9 +163,8 @@ public class UMLchangeValidator implements CarismaCheck {
 			boolean passesBasicAppValidation = basicAppValidation(umlChangeApp);
 			if (hasInvalidExtEntries || hasInvalidConstraintEntries || !passesBasicAppValidation) {
 				return false;
-			} else {
-				return specialAppValidation(umlChangeApp);
 			}
+			return specialAppValidation(umlChangeApp);
 		}
 		return true;
 	}
@@ -189,7 +192,7 @@ public class UMLchangeValidator implements CarismaCheck {
 		} else if (UMLchange.OLD.isEqual(changeStereo)) {
 			return true;
 		} else {
-			host.appendLineToReport("Not known UMLchange Stereotype " + umlChangeApp);
+			this.analysisHost.appendLineToReport("Not known UMLchange Stereotype " + umlChangeApp);
 			return false;
 		}
 	}
@@ -208,7 +211,7 @@ public class UMLchangeValidator implements CarismaCheck {
 			return returnValue;
 		} else if (UMLchange.KEEP.isEqual(changeStereo)) {
 			if (umlChangeApp.getTaggedValue("adopter").getStringValues().isEmpty()) {
-				host.appendLineToReport("The adopter-tag in stereotype <<keep>> at element \"" + umlChangeApp.getExtendedElementName()
+				this.analysisHost.appendLineToReport("The adopter-tag in stereotype <<keep>> at element \"" + umlChangeApp.getExtendedElementName()
 						+ "\" should have content");
 				return false;
 			}
@@ -222,7 +225,7 @@ public class UMLchangeValidator implements CarismaCheck {
 	 * @param changeIds
 	 * @return
 	 */
-	public boolean hasDuplicateChangeIds(final List<StereotypeApplication> changeApps) {
+	public static boolean hasDuplicateChangeIds(final List<StereotypeApplication> changeApps) {
 		List<String> changeIds = new ArrayList<String>();
 		for (StereotypeApplication umlChangeApp : changeApps) {
 			if (umlChangeApp.hasTagValue(REF)) {
@@ -237,7 +240,7 @@ public class UMLchangeValidator implements CarismaCheck {
 		return false;
 	}
 	
-	public List<String> collectChangeIds(final Model forModel) {
+	public static List<String> collectChangeIds(final Model forModel) {
 		List<String> changeIds = new ArrayList<String>();
 		for (StereotypeApplication umlChangeApp : UMLchangeUtil.getStereotypeApplications(forModel)) {
 			if (umlChangeApp.hasTagValue(REF)) {
@@ -256,7 +259,7 @@ public class UMLchangeValidator implements CarismaCheck {
 		}
 		for (String changeId : umlChangeApp.getTaggedValue(REF).getStringValues()) {
 			if (!matchesSyntax(changeId, "^" + UMLchangeSyntax.REGEX_REFID + "$")) {
-				host.addResultMessage(new AnalysisResultMessage(
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(
 						StatusType.ERROR, "Invalid change ID '" + changeId + AT + umlChangeApp.toString()));
 				definesInvalidChangeIds = true;
 			}
@@ -270,7 +273,7 @@ public class UMLchangeValidator implements CarismaCheck {
 		if (m.find()) {
 			String stereoName = m.group();
 			if (UMLchange.getValue(stereoName) != null) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{ext}: Targets an UMLchange app '" + extValue + "'"));
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{ext}: Targets an UMLchange app '" + extValue + "'"));
 				return true;
 			}
 			boolean foundApp = false;
@@ -279,14 +282,14 @@ public class UMLchangeValidator implements CarismaCheck {
 					foundApp = true; 
 				}
 				if (!foundApp) {
-					host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{ext}: Targets non-applied stereotype '" + extValue + "'"));
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{ext}: Targets non-applied stereotype '" + extValue + "'"));
 					return true;
 				}
 				m.usePattern(Pattern.compile("(?<=\\.)" + UMLchangeSyntax.REGEX_TAG));
 				if (m.find()) {
 					String tagName = m.group();
 					if (app.getTaggedValue(tagName) == null) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{ext}: Wrong tag '" + extValue + "'"));
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{ext}: Wrong tag '" + extValue + "'"));
 						return true;
 					}
 				}
@@ -309,7 +312,7 @@ public class UMLchangeValidator implements CarismaCheck {
 		return hasInvalidExtEntries;
 	}
 	
-	public boolean hasInvalidChangeReference(final String referencingValue, final List<String> validReferences) {
+	public static boolean hasInvalidChangeReference(final String referencingValue, final List<String> validReferences) {
 		if (referencingValue.isEmpty()) {
 			return false;
 		}
@@ -334,7 +337,7 @@ public class UMLchangeValidator implements CarismaCheck {
 				String referencedChangeId = m.group();
 				if (selfId.equalsIgnoreCase(referencedChangeId)
 						|| !validReferences.contains(referencedChangeId)) {
-					host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{constraints}: Wrong refID '" + referencedChangeId + "'"));
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{constraints}: Wrong refID '" + referencedChangeId + "'"));
 					return true;
 				}
 			}
@@ -350,7 +353,7 @@ public class UMLchangeValidator implements CarismaCheck {
 		hasInvalidConstraintEntries = (!basicTagValidation(umlChangeApp, "constraint", UMLchangeSyntax.REGEX_CONSTRAINT_VALUE));
 		for (String constraintValue : umlChangeApp.getTaggedValue("constraint").getStringValues()) {
 			if (hasInvalidReferences(constraintValue, validChangeIds)) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{constraint}: invalid constraint '" + constraintValue + AT
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{constraint}: invalid constraint '" + constraintValue + AT
 			+ umlChangeApp + "."));
 				hasInvalidConstraintEntries = true;
 			}
@@ -358,7 +361,7 @@ public class UMLchangeValidator implements CarismaCheck {
 		return hasInvalidConstraintEntries;
 	}
 	
-	public boolean matchesSyntax(final List<String> values, final String syntax) {
+	public static boolean matchesSyntax(final List<String> values, final String syntax) {
 		for (String value : values) {
 			if (!matchesSyntax(value, syntax)) {
 				return false;
@@ -367,7 +370,7 @@ public class UMLchangeValidator implements CarismaCheck {
 		return true;
 	}
 	
-	public boolean matchesSyntax(final String value, final String syntax) {
+	public static boolean matchesSyntax(final String value, final String syntax) {
 		Pattern p = Pattern.compile(syntax);
 		Matcher m = p.matcher(value);
 		return m.find();
@@ -379,13 +382,13 @@ public class UMLchangeValidator implements CarismaCheck {
 		
 		for (String tagValue : tagValues) {
 			if (!matchesSyntax(tagValue, syntax)) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{" + tagName + "}: Wrong syntax '" + tagValue + AT + umlChangeApp
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{" + tagName + "}: Wrong syntax '" + tagValue + AT + umlChangeApp
 						+ "."));
 				validTagValues = false;
 				continue;
 			}
 			if (hasInvalidChangeReference(tagValue, umlChangeApp.getTaggedValue(REF).getStringValues())) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{" + tagName + "}: Invalid change reference '" + tagValue + AT
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "{" + tagName + "}: Invalid change reference '" + tagValue + AT
 			+ umlChangeApp + "."));
 				validTagValues = false;
 			}
@@ -398,7 +401,7 @@ public class UMLchangeValidator implements CarismaCheck {
 	 * @param umlChangeApp - the UMLchange move StereotypeApplication
 	 * @return - true if the StereotypeApplication is a valid UMLchange old StereotypeApplication, false otherwise
 	 */
-	public final boolean isValidOldApplication(final StereotypeApplication umlChangeApp) {
+	public final static boolean isValidOldApplication(final StereotypeApplication umlChangeApp) {
 		if (!UMLchange.OLD.isEqual(umlChangeApp.getAppliedStereotype())) {
 			return false;
 		}
@@ -427,15 +430,23 @@ public class UMLchangeValidator implements CarismaCheck {
 			Model model = UMLHelper.getModel(umlChangeApp.getExtendedElement());
 			List<NamedElement> referencedElements = UMLHelper.getAllSameNameElements(model, namespace);
 			if (referencedElements.size() > 1) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Error, duplicatet Namespace \"" + namespace + "\"."));
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Error, duplicatet Namespace \"" + namespace + "\"."));
 				returnValue = true;
 			} else if (referencedElements.size() == 0) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No Element found for the complex Namespace \"" + namespace
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No Element found for the complex Namespace \"" + namespace
 						+ "\" at Stereotype <<"	+ umlChangeApp.getStereotypeName() + ">> at Element \""
 						+ ((NamedElement) umlChangeApp.getExtendedElement()).getQualifiedName() + "\"."));
 				returnValue = true;
 			}
 		}
 		return returnValue;
+	}
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 }

@@ -21,19 +21,24 @@ import org.eclipse.uml2.uml.Stereotype;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
 
 
-public class Check implements CarismaCheck {
+public class Check implements CarismaCheckWithID {
 
-	private AnalysisHost host = null;
+	public static final String CHECK_ID = "carisma.check.dummy";
+	public static final String PARAM_STRING = "carisma.check.dummy.testString";
+	public static final String PARAM_NUMBER = "carisma.check.dummy.number";
+	public static final String CHECK_NAME = "CARiSMA Dummy Check";
+
+	private AnalysisHost analysisHost = null;
 	private int numOfElements = 0;
 	
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
-		this.host = host;
+		this.analysisHost = host;
 		this.numOfElements = 0;
 		Resource currentModel = host.getAnalyzedModel();
 		if (currentModel.getContents().isEmpty()) {
@@ -46,7 +51,7 @@ public class Check implements CarismaCheck {
 			for (Stereotype e : UMLHelper.getAllElementsOfType(model, Stereotype.class)) {
 				host.appendLineToReport(e.toString());
 			}
-			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "number of elements counted: "+numOfElements));
+			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "number of elements counted: "+this.numOfElements));
 			return true;
 		}
 		host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
@@ -54,23 +59,33 @@ public class Check implements CarismaCheck {
 	}
 	
 	public void printContent(Element element, String indent) {
-		numOfElements++;
-		host.appendToReport(indent+element.eClass().getName()+": ");
+		this.numOfElements++;
+		this.analysisHost.appendToReport(indent+element.eClass().getName()+": ");
 		if (!element.getAppliedStereotypes().isEmpty()) {
-			host.appendToReport("<<");
+			this.analysisHost.appendToReport("<<");
 			for (Stereotype st : element.getAppliedStereotypes()) {
-				host.appendToReport(st.getName()+",");
+				this.analysisHost.appendToReport(st.getName()+",");
 			}
-			host.appendToReport(">> ");
+			this.analysisHost.appendToReport(">> ");
 		}
 		if (element instanceof NamedElement) {
 			NamedElement namedElement = (NamedElement)element;
-			host.appendToReport(namedElement.getName());
+			this.analysisHost.appendToReport(namedElement.getName());
 		}
-		host.appendLineToReport("");
+		this.analysisHost.appendLineToReport("");
 		for (Element child : element.allOwnedElements()) {
 			printContent(child, indent+"  ");
 		}
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 
 	

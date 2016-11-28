@@ -25,7 +25,7 @@ public class PetriNet {
 	/**
 	 * The ID of the petri net object.
 	 */
-	private String id;
+	private String petriNetObjectID;
 	/**
 	 * The type of this object.
 	 */
@@ -45,11 +45,11 @@ public class PetriNet {
 	/**
 	 * Number of places.
 	 */
-	private Integer placeCount; // TODO: braucht man das wirklich? Kann das überhaupt != places.size werden?
+	private int placeCount; // TODO: braucht man das wirklich? Kann das überhaupt != places.size werden?
 	/**
 	 * Number of transitions.
 	 */
-	private Integer transCount; // TODO: s.o.
+	private int transCount; // TODO: s.o.
 
 	/**
 	 * Constructs a new petri net object.
@@ -59,11 +59,11 @@ public class PetriNet {
 	public PetriNet(final String id, final String type) {
 		this.setId(id);
 		this.setType(type);
-		arcs = new ArrayList<Arc>();
-		places = new ArrayList<Place>();
-		transitions = new ArrayList<Transition>();
-		placeCount = 0;
-		transCount = 0;
+		this.arcs = new ArrayList<Arc>();
+		this.places = new ArrayList<Place>();
+		this.transitions = new ArrayList<Transition>();
+		this.placeCount = 0;
+		this.transCount = 0;
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class PetriNet {
 	 * @param id the id of the petri net
 	 */
 	public final void setId(final String id) {
-		this.id = id;
+		this.petriNetObjectID = id;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class PetriNet {
 	 * @return the id.
 	 */
 	public final String getId() {
-		return id;
+		return this.petriNetObjectID;
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class PetriNet {
 	 * @return type of this object.
 	 */
 	public final String getType() {
-		return type;
+		return this.type;
 	}
 	/**
 	 * Adds a place to the petri net.
@@ -128,8 +128,8 @@ public class PetriNet {
 	public final boolean addPlace(final Place p) {
 		if (!containsPlace(p.getId())) {
 			if (p.getName().trim().equals("")) {
-				p.setName("p" + placeCount.toString());
-				placeCount++;
+				p.setName("p" + this.placeCount);
+				this.placeCount++;
 			}
 			this.places.add(p);
 			return true;
@@ -154,8 +154,8 @@ public class PetriNet {
 	public final boolean addTransition(final Transition t) {
 		if (!containsTransition(t.getId())) {
 			if (t.getName().trim().equals("")) {
-				t.setName("t" + transCount.toString());
-				transCount++;
+				t.setName("t" + this.transCount);
+				this.transCount++;
 			}
 			this.transitions.add(t);
 			return true;
@@ -200,7 +200,7 @@ public class PetriNet {
 	 * @return truth value
 	 */
 	public final boolean containsArc(final String id) {
-		for (Arc arc : arcs) {
+		for (Arc arc : this.arcs) {
 			if (arc.getId().equals(id)) {
 				return true;
 			}
@@ -214,7 +214,7 @@ public class PetriNet {
 	 * @return truth value
 	 */
 	public final boolean containsPlace(final String id) {
-		for (Place place : places) {
+		for (Place place : this.places) {
 			if (place.getId().equals(id)) {
 				return true;
 			}
@@ -228,7 +228,7 @@ public class PetriNet {
 	 * @return truth value
 	 */
 	public final boolean containsTransition(final String id) {
-		for (Transition trans : transitions) {
+		for (Transition trans : this.transitions) {
 			if (trans.getId().equals(id)) {
 				return true;
 			}

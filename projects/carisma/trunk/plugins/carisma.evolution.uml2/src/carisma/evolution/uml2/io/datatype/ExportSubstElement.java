@@ -30,13 +30,13 @@ public class ExportSubstElement extends ExportAdditiveElement {
      * @param subE Element which is transformed.
      */
 	public ExportSubstElement(final SubstElement subE) {
-		components = new ArrayList<ExportAddElement>();
+		this.components = new ArrayList<ExportAddElement>();
 		if (subE.getAllAddedElements() != null) {
     		for (AddElement e : subE.getAllAddedElements()) {
-    			components.add(new ExportAddElement(e));
+    			this.components.add(new ExportAddElement(e));
     		}
 		}
-		string = subE.toString();
+		this.string = subE.toString();
 //		if(subE.getAccompanyingDeletions() != null){
 //			accompanyingDeletions = new ArrayList<ExportExtTag>();
 //			for(EObject accompanyingDeletion : subE.getAccompanyingDeletions()) { 
@@ -56,7 +56,7 @@ public class ExportSubstElement extends ExportAdditiveElement {
      * @return List with all components.
      */
 	public final List<ExportAddElement> getComponents() {
-		return components;
+		return this.components;
 	}
 	
     
@@ -64,9 +64,10 @@ public class ExportSubstElement extends ExportAdditiveElement {
      * Normally uses the toString() method of the EditElement with which the constructor was called.
      * @return the output String.
      */
+	@Override
 	public final String toString() {
-		if (string != null) {
-			return string;
+		if (this.string != null) {
+			return this.string;
 		}
 		StringBuffer output = new StringBuffer("- REPLACE");
 		output.append(this.getTarget().getType());

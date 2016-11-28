@@ -49,8 +49,8 @@ public class SelectedChecksDropListener extends ViewerDropAdapter {
 	
 	@Override
 	public final void drop(final DropTargetEvent event) {
-		location = this.determineLocation(event);
-		target = (CheckReference) determineTarget(event);
+		this.location = this.determineLocation(event);
+		this.target = (CheckReference) determineTarget(event);
 		super.drop(event);
 	}
 
@@ -65,7 +65,7 @@ public class SelectedChecksDropListener extends ViewerDropAdapter {
 
 	@Override
 	public final boolean validateDrop(
-			final Object target, 
+			final Object targetObject, 
 			final int operation,
 			final TransferData transferType) {
 		return true;
@@ -78,34 +78,34 @@ public class SelectedChecksDropListener extends ViewerDropAdapter {
 	 */
 	private boolean dropAtTarget(final CheckReference dropItem) {
 		if (dropItem != null) {
-			if (target != null && target.equals(dropItem)) {
+			if (this.target != null && this.target.equals(dropItem)) {
 				return false;
 			}
-			int targetIndex = controller.getSelectedChecksList().size() - 1;
-			if (location >= 1 && location <= 3) {
+			int targetIndex = this.controller.getSelectedChecksList().size() - 1;
+			if (this.location >= 1 && this.location <= 3) {
 				targetIndex = getTargetIndex();
 			}
-			controller.removeCheck(dropItem);
+			this.controller.removeCheck(dropItem);
 			if (targetIndex >= 0) {
 				int insertIndex;
-				switch (location) {
+				switch (this.location) {
 				case 1: // Before target
-					controller.getSelectedChecksList().add(targetIndex, dropItem);
+					this.controller.getSelectedChecksList().add(targetIndex, dropItem);
 					break;
 				case 2: // After target
 					insertIndex = targetIndex + 1;
-					if (insertIndex > controller.getSelectedChecksList().size()) {
-						insertIndex = controller.getSelectedChecksList().size();
+					if (insertIndex > this.controller.getSelectedChecksList().size()) {
+						insertIndex = this.controller.getSelectedChecksList().size();
 					}
-					controller.getSelectedChecksList().add(insertIndex, dropItem);
+					this.controller.getSelectedChecksList().add(insertIndex, dropItem);
 					break;
 				case 3: // On target
-					controller.getSelectedChecksList().add(targetIndex, dropItem);
+					this.controller.getSelectedChecksList().add(targetIndex, dropItem);
 					break;
 				default: // Into nothing
-					controller.getSelectedChecksList().add(dropItem);
+					this.controller.getSelectedChecksList().add(dropItem);
 				}
-				tableViewer.refresh();
+				this.tableViewer.refresh();
 				return true;
 			}
 		}
@@ -117,9 +117,9 @@ public class SelectedChecksDropListener extends ViewerDropAdapter {
 	 * @return The index or -1 if the element was not found
 	 */
 	private int getTargetIndex() {
-		List<CheckReference> checkReferenceList = controller.getSelectedChecksList(); 
-		if (target != null && checkReferenceList != null) {
-			return checkReferenceList.indexOf(target);
+		List<CheckReference> checkReferenceList = this.controller.getSelectedChecksList(); 
+		if (this.target != null && checkReferenceList != null) {
+			return checkReferenceList.indexOf(this.target);
 		}
 		return -1;
 	}

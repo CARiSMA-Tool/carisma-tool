@@ -32,14 +32,22 @@ package carisma.profile.umlsec;
 //	wire				UMLsec::wire
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Model;
@@ -49,7 +57,6 @@ import org.eclipse.uml2.uml.Stereotype;
 
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.TaggedValue;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 
@@ -80,48 +87,48 @@ public final class UMLsecValidation {
 	}
 	
 	/**
-	 * Checks all UMLsec Stereotypes of a given UML-Model.
-	 * @param file The UML Model
-	 * @throws IllegalArgumentException if the given file is null or does not exist
-	 * @return false if any Stereotype isn't filled correctly or is applied to an element where it does not belong to, true otherwise
-	 */
-	public static List<String> validateModel(final File file) {
-		Model model = null;
-		UML2ModelLoader ml = new UML2ModelLoader();
-		Resource modelres = null;
-		if ((file == null) || !file.exists()) {
-			throw new IllegalArgumentException("The given File ist not allowed to be null and has to exist!");
-		}
-		try {
-			modelres = ml.load(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-			List<String> exceptionValue = new ArrayList<String>();
-			exceptionValue.add("IOException occured  while loading the model");
-			return exceptionValue;
-		}
-		if (modelres == null) {
-//			TODO KR: Fehlermeldung
-		}
-		model = (Model) modelres.getContents().get(0);
-		if (model == null) {
-//			TODO KR: Fehlermeldung, dies müsste bedeuteten, dass das UML-Model leer ist
-		}
-		return validateModel(model);
+ * Checks all UMLsec Stereotypes of a given UML-Model.
+ * @param file Path to the UML Model
+ * @return false if any Stereotype isn't filled correctly or is applied to an element where it does not belong to, true otherwise
+ * @throws IllegalArgumentException if the file doesn't contain exactly one Model
+ * @throws IOException If the file couldn't be read.
+ * @throws FileNotFoundException if the given file is null or does not exist
+ */
+public static List<String> validateModel(final String file) throws FileNotFoundException, IOException, IllegalArgumentException {
+	File modelFile = new File(file);
+	if (!modelFile.exists()) {
+		throw new IllegalArgumentException("The given String has to lead to an existing UML model!");
 	}
-	
+	return validateModel(modelFile);
+}
+
 	/**
 	 * Checks all UMLsec Stereotypes of a given UML-Model.
-	 * @param file Path to the UML Model
-	 * @throws IllegalArgumentException if the given String does not lead to an existing file
+	 * @param file The UML Model
 	 * @return false if any Stereotype isn't filled correctly or is applied to an element where it does not belong to, true otherwise
+	 * @throws IllegalArgumentException if the file doesn't contain exactly one Model
+	 * @throws IOException If the file couldn't be read.
+	 * @throws FileNotFoundException if the given file is null or does not exist
 	 */
-	public static List<String> validateModel(final String file) {
-		File modelFile = new File(file);
-		if ((modelFile == null) || !modelFile.exists()) {
-			throw new IllegalArgumentException("The given String has to lead to an existing UML model!");
+	public static List<String> validateModel(final File file) throws FileNotFoundException, IOException, IllegalArgumentException {
+		if(!file.exists()){
+			throw new FileNotFoundException("File "+file.toString()+" doesn't exist.");
 		}
-		return validateModel(modelFile);
+		ResourceSet rs = new ResourceSetImpl();
+		Resource r = rs.createResource(URI.createFileURI(file.toString()));
+		
+		try (FileInputStream stream = new FileInputStream(file)){
+			r.load(stream, Collections.EMPTY_MAP);
+			EList<EObject> contents = r.getContents();
+			if(contents.size() != 1){
+				throw new IllegalArgumentException("There is more than one root in the model.");
+			}
+			EObject eObject = contents.get(0);
+			if(eObject instanceof Model ){
+				return validateModel((Model) eObject); 
+			}
+			throw new IllegalArgumentException("The model roor is not of type \"org.eclipse.uml2.uml.Model\".");
+		}
 	}
 	
 	/**
@@ -130,7 +137,7 @@ public final class UMLsecValidation {
 	 * @throws IllegalArgumentException if the given model is null
 	 * @return  true if every UMLsec Stereotype is filled correctly, false otherwise
 	 */
-	public static List<String> validateModel(final Model model) {
+	public static List<String> validateModel(final Model model) throws IllegalArgumentException {
 		List<String> validations = new ArrayList<String>();
 		if (model == null) {
 			throw new IllegalArgumentException("The model is not allowed to be null!");
@@ -719,7 +726,10 @@ public final class UMLsecValidation {
 			return validations;
 		}
 		TaggedValue protectedTag = stereoApp.getTaggedValue("protected");
-		if ((protectedTag.getValue() == null) || (((List<String>) protectedTag.getValue()).size() == 0)) {
+		if(protectedTag == null){
+			validations.add("No protected tag of Stereotype <<rbc>> at Element " + stereoApp.getExtendedElementName() + "!");
+		}
+		else if ((protectedTag.getValue() == null) || (((List<String>) protectedTag.getValue()).size() == 0)) {
 			validations.add("Empty protected tag of Stereotype <<rbc>> at Element " + stereoApp.getExtendedElementName() + "!");
 		}
 		

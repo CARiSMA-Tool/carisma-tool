@@ -13,12 +13,12 @@ public class AllChanges {
 	private List<ExportChange> changes;
 	
 	public AllChanges(){
-		changes = new ArrayList<ExportChange>();
+		this.changes = new ArrayList<ExportChange>();
 	}
 	
 	
 	public void addChange(ExportChange change){
-		changes.add(change);
+		this.changes.add(change);
 	}
 	
 	public void addChanges(List<ExportChange> changes){
@@ -26,11 +26,11 @@ public class AllChanges {
 	}
 	
 	public ExportChange getChange(int i){
-		return changes.get(i);
+		return this.changes.get(i);
 	}
 	
 	public List<ExportChange> getChanges(){
-		return changes;
+		return this.changes;
 	}
 	
 

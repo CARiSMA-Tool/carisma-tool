@@ -58,7 +58,7 @@ public class MergeModels {
 	 * @param extensionModel The extension model
 	 * @return returns resource if the merge was successful otherwise null
 	 */
-	public final Resource run(final Resource bpmn2Model, final Resource extensionModel) {
+	public static final Resource run(final Resource bpmn2Model, final Resource extensionModel) {
 		
 		if (bpmn2Model == null || extensionModel == null) {
 			return null;
@@ -75,7 +75,7 @@ public class MergeModels {
 	 * @param extensionModel The extensionbmn2 model
 	 * @return Returns merged bpmn2extended model as resource
 	 */
-	private Resource merge(final Resource stdModel, final Resource extensionModel) {
+	private static Resource merge(final Resource stdModel, final Resource extensionModel) {
 		
 		// Source bpmn2model
 		DocumentRoot bpmn2ModelRoot = (DocumentRoot) stdModel.getContents().get(0);
@@ -137,7 +137,7 @@ public class MergeModels {
 	 * @param extensionRoot Includes the additional information
 	 * @param extLanes The lane objects, which should be extended
 	 */
-	private void extendLaneElements(ExtensionRoot extensionRoot,
+	private static void extendLaneElements(ExtensionRoot extensionRoot,
 			ArrayList<Tupel<Lane, ExtendedLane>> extLanes) {
 		// Creating HashMap to map elements name to extension information
 		Map<String, carisma.modeltype.bpmn2.extension.Lane> extensionMapLane = 
@@ -169,7 +169,7 @@ public class MergeModels {
 	 * @param extTasks The task objects, which should be extended
 	 * @param conversationLinks The conversation link objects must be manually updated
 	 */
-	private void extendTaskElements(ExtensionRoot extensionRoot, 
+	private static void extendTaskElements(ExtensionRoot extensionRoot, 
 			List<Tupel<Task, ExtendedTask>> extTasks, List<ConversationLink> conversationLinks) {
 		// Creating HashMap to map elements name to extension information
 		Map<String, carisma.modeltype.bpmn2.extension.Task> extensionMapTask = 
@@ -230,7 +230,7 @@ public class MergeModels {
 	 * @param list The Objects which should be mapped
 	 * @return Map of the Objects
 	 */
-	private <T> Map<String, T> createHashMap(final EList<T> list) {
+	private static <T> Map<String, T> createHashMap(final EList<T> list) {
 		Map<String, T> map = new HashMap<String, T>();
 		for (T elem : list) {
 			if (elem instanceof carisma.modeltype.bpmn2.extension.Task) {
@@ -247,7 +247,7 @@ public class MergeModels {
 	 * @param obj1 The object from which to copy
 	 * @param obj2 The object to copy to
 	 */
-	private void copyFeatures(final EObject obj1, final EObject obj2) {
+	private static void copyFeatures(final EObject obj1, final EObject obj2) {
 		for (EStructuralFeature feature : obj1.eClass().getEAllStructuralFeatures()) {
 			
 			// Case Task: incoming and outgoing conversation links cannot be copied
@@ -264,7 +264,7 @@ public class MergeModels {
 	 * @param root The rootObject
 	 */
 	@SuppressWarnings("unused")
-	private void printContent(final EObject root) {
+	private static void printContent(final EObject root) {
 		TreeIterator<EObject> iterator = root.eAllContents();
 		while (iterator.hasNext()) {
 			EObject obj = iterator.next();

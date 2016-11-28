@@ -10,33 +10,31 @@
  *******************************************************************************/
 package carisma.profile.umlsec.rabac;
 
-import org.osgi.framework.BundleActivator;
+import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
 import carisma.core.Carisma;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 
-public class RabacActivator implements BundleActivator {
+public class RabacActivator extends Plugin {
 
-	public static final String RABAC_PROFILE_FOLDER = "platform:/plugin/carisma.profile.umlsec.rabac/profile/";
-
+	public static final String EMF_URI = "http://www.umlsec.de/profiles/UMLsec/RABAC";
+	public static final String EMF_FILE = "platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.ecore";
+	
+	public static final String UML_URI = "http://www.umlsec.de/profiles/UMLsec/RABAC";
+	public static final String UML_FILE = "platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml";
+	
 	@Override
 	public void start(BundleContext context) throws Exception {
 		try {
 			Carisma.getInstance()
 					.getModelManager()
 					.addMapping("RABAC.profile.uml",
-							"platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml");
+							RabacActivator.UML_FILE);
 		} catch (Exception e) {
 			Logger.log(LogLevel.ERROR, "Error while putting profile path to map", e);
 		}
-	}
-
-	@Override
-	public void stop(BundleContext context) throws Exception {
-		// TODO Auto-generated method stub
-
 	}
 
 }

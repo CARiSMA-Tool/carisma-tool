@@ -44,12 +44,12 @@ public class SelectEditorDialog extends ListDialog {
 	/**
 	 * Flag to remember a decision/selection. 
 	 */
-	private boolean remember = false;
+	boolean remember = false;
 	
 	/**
 	 * A check button to remember.
 	 */
-	private Button rememberButton;
+	Button rememberButton;
 
 	//########################################################################################
 	/**
@@ -60,9 +60,9 @@ public class SelectEditorDialog extends ListDialog {
 	 */
 	public SelectEditorDialog(final Shell parent, final String saveSelectionId, final IFile fileName) {
 		super(parent);
-		shell = parent;
+		this.shell = parent;
 		if (saveSelectionId != null && !"".equals(saveSelectionId)) {
-			remember = true;
+			this.remember = true;
 		}
 		init(fileName);
 	}
@@ -77,7 +77,7 @@ public class SelectEditorDialog extends ListDialog {
 		
 		setContentProvider(ArrayContentProvider.getInstance());
 		setLabelProvider(new LabelProvider());
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(shell, CarismaGUI.PLUGIN_ID + ".AdfEditor");
+		PlatformUI.getWorkbench().getHelpSystem().setHelp(this.shell, CarismaGUI.PLUGIN_ID + ".AdfEditor");
 		setHelpAvailable(true); 
 		
 		List<String> input = new ArrayList<String>();
@@ -101,13 +101,14 @@ public class SelectEditorDialog extends ListDialog {
 	protected final void createButtonsForButtonBar(final Composite parent) {
 		super.createButtonsForButtonBar(parent);
 		
-		rememberButton = new Button(parent, SWT.CHECK);
-		rememberButton.setText("Remember my decision");
-		rememberButton.setSelection(remember);
-		rememberButton.addSelectionListener(new SelectionAdapter() {
+		this.rememberButton = new Button(parent, SWT.CHECK);
+		this.rememberButton.setText("Remember my decision");
+		this.rememberButton.setSelection(this.remember);
+		this.rememberButton.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				remember = rememberButton.getSelection();
-			};
+				SelectEditorDialog.this.remember = SelectEditorDialog.this.rememberButton.getSelection();
+			}
 		}); 
 	}
 
@@ -116,7 +117,7 @@ public class SelectEditorDialog extends ListDialog {
 	 * @return remember decision flag
 	 */
 	public final boolean getRemember() {	
-		return remember;
+		return this.remember;
 	}
 
 }

@@ -15,7 +15,7 @@ public class Question {
  
   @XmlElement(name="text")
   public String getText() {
-	return text;
+	return this.text;
 }
 
   
@@ -25,7 +25,7 @@ public class Question {
 
   @XmlElement(name="commPath")
   public String getCommPath() {
-	return commPath;
+	return this.commPath;
   }
 
   public void setCommPath(String commPath) {
@@ -34,7 +34,7 @@ public class Question {
 
   @XmlElement(name="attacker")
   public String getAttacker() {
-	return attacker;
+	return this.attacker;
   }
   
   public void setAttacker(String outputAttacker) {
@@ -43,7 +43,7 @@ public class Question {
   
   @XmlElement(name="ability")
   public String getAbility() {
-	return ability;
+	return this.ability;
   }
   
   public void setAbility(String ability) {

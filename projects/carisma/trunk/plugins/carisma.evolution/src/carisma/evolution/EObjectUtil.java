@@ -36,23 +36,19 @@ public final class EObjectUtil {
 			}
 			if (sf != null) {
 				return String.valueOf(obj.eGet(sf));
-			} else {
-				return "[unnamed " + obj.eClass().getName() + "]";
 			}
-		} else {
-			return "[no element]";
+			return "[unnamed " + obj.eClass().getName() + "]";
 		}
+		return "[no element]";
 	}
 
 	public static String getTypeAndName(final EObject obj) {
 		if (obj != null) {
 			if (obj.getClass().getName().equalsIgnoreCase("StereotypeApplication") || obj.getClass().getName().equalsIgnoreCase("TaggedValue")) {
 				return obj.toString();
-			} else {
-				return obj.eClass().getName() + " '" + getName(obj) + "'";				
 			}
-		} else {
-			return "[no element]";
+			return obj.eClass().getName() + " '" + getName(obj) + "'";
 		}
+		return "[no element]";
 	}
 }

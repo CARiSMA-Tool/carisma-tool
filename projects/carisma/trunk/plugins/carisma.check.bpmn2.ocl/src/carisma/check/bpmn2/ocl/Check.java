@@ -33,7 +33,7 @@ import carisma.core.analysis.InputFileParameter;
 import carisma.core.analysis.StringParameter;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.core.util.EObjectUtil;
 import carisma.modeltype.bpmn2.BPMN2Helper;
@@ -53,7 +53,16 @@ import carisma.ocl.library.OclLibrary;
  * This Class performs an OCL query on a given bpmn2 Model.
  * @author Marcel Michel
  */
-public class Check implements CarismaCheck {
+public class Check implements CarismaCheckWithID {
+
+	public static final String CHECK_ID = "carisma.check.bpmn2.ocl";
+
+	public static final String PARAM_EXTENSIONFILE = "carisma.check.bpmn2.ocl.extensionfile";
+	public static final String PARAM_OCL_SELECTION = "carisma.check.bpmn2.ocl.pattern";
+	public static final String PARAM_MARK_VIOLATIONG_ELEMENTS = "carisma.check.bpmn2.ocl.markElements";
+	public static final String PARAM_OCL_LIBRARY = "carisma.check.bpmn2.ocl.library";
+	
+	public static final String CHECK_NAME = "BPMN2 OCL Check";
 
 	/**
 	 * The AnalysisHost.
@@ -101,22 +110,23 @@ public class Check implements CarismaCheck {
 	 * Line to divide the query results in the report.
 	 */
 	private static final String DIVIDING_LINE = "------------------------------------------------------------------------------------";
-	
+
 	/**
 	 * Method tries to load file parameters, model and oclExpression. 
 	 * If successful it delegates the query to the performQuery method.
 	 * 
 	 * @param parameters The PluginParameters
-	 * @param host The AnalysisHost
+	 * @param analysisHost The AnalysisHost
 	 * @return returns true if the query was successful otherwise false
 	 */
-	public final boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost host) {
-		this.host = host;
-		oclHelper = new OclHelper();
+	@Override
+	public final boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost analysisHost) {
+		this.host = analysisHost;
+		this.oclHelper = new OclHelper();
 
-		Resource currentModel = host.getAnalyzedModel();
+		Resource currentModel = analysisHost.getAnalyzedModel();
 		if (currentModel.getContents().isEmpty()) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, 
+			analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, 
 					"No content loaded"));
 			return false;
 		}
@@ -125,30 +135,30 @@ public class Check implements CarismaCheck {
 		String pattern = null;
 		String extensionFileName = null;
 		if (parameters != null &&
-				parameters.containsKey("carisma.check.bpmn2.ocl.library") && 
-				parameters.containsKey("carisma.check.bpmn2.ocl.markElements") &&
-				parameters.containsKey("carisma.check.bpmn2.ocl.pattern") &&
-				parameters.containsKey("carisma.check.bpmn2.ocl.extensionfile")) {
+				parameters.containsKey(Check.PARAM_OCL_LIBRARY) && 
+				parameters.containsKey(Check.PARAM_MARK_VIOLATIONG_ELEMENTS) &&
+				parameters.containsKey(Check.PARAM_OCL_SELECTION) &&
+				parameters.containsKey(Check.PARAM_EXTENSIONFILE)) {
 			
 			oclFile = (InputFileParameter) 
-					parameters.get("carisma.check.bpmn2.ocl.library");
-			markElements = ((BooleanParameter) 
-					parameters.get("carisma.check.bpmn2.ocl.markElements")).getValue();
+					parameters.get(Check.PARAM_OCL_LIBRARY);
+			this.markElements = ((BooleanParameter) 
+					parameters.get(Check.PARAM_MARK_VIOLATIONG_ELEMENTS)).getValue();
 			
 			String tmp = "";
 			tmp = ((StringParameter)
-					parameters.get("carisma.check.bpmn2.ocl.pattern")).getValue();
+					parameters.get(Check.PARAM_OCL_SELECTION)).getValue();
 			if (tmp != null && isShortPatternDefinition(tmp)) {
 				pattern = tmp;
 			}
 			tmp = "";
 			tmp = ((StringParameter)
-					parameters.get("carisma.check.bpmn2.ocl.extensionfile")).getValue();
+					parameters.get(Check.PARAM_EXTENSIONFILE)).getValue();
 			if (tmp != null && isShortExtDefinition(tmp)) {
 				extensionFileName = tmp;
 			}
 		} else {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
+			analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
 					"Could not resolve necessary parameters"));
 			return false;
 		}
@@ -169,13 +179,11 @@ public class Check implements CarismaCheck {
 		}*/
 		
 		if (extensionFileName == null) {
-			host.addResultMessage(new AnalysisResultMessage(
+			analysisHost.addResultMessage(new AnalysisResultMessage(
 				StatusType.INFO, "No extension file defined"));
 		} else {
 			File extensionFile = new File(new File(currentModel.getURI().toFileString()).getParent() + "\\" + extensionFileName);
 			if (extensionFile.exists()) {
-				MergeModels merge = new MergeModels();
-
 				Resource extensionModel;
 				try {
 					extensionModel = ExtensionUtil.loadResource(extensionFile);
@@ -183,32 +191,32 @@ public class Check implements CarismaCheck {
 					extensionModel = null;
 				}
 				
-				Resource tmp = merge.run(currentModel, extensionModel);
+				Resource tmp = MergeModels.run(currentModel, extensionModel);
 				if (tmp != null) {
-					originalResource = currentModel;
+					this.originalResource = currentModel;
 					currentModel = tmp;
-					isExtendedModel = true;
+					this.isExtendedModel = true;
 				}
-				host.addResultMessage(new AnalysisResultMessage(
+				analysisHost.addResultMessage(new AnalysisResultMessage(
 						StatusType.INFO, "Extension file: " + extensionFileName));
 			} else {
-				host.addResultMessage(new AnalysisResultMessage(
+				analysisHost.addResultMessage(new AnalysisResultMessage(
 						StatusType.ERROR, "Extension file '" + extensionFile.getAbsolutePath() + "' not found or could not be loaded!"));
-				successful = false; 
+				this.successful = false; 
 			}
 		}
 		
 		if (pattern != null) {
-			host.addResultMessage(new AnalysisResultMessage(
+			analysisHost.addResultMessage(new AnalysisResultMessage(
 					StatusType.INFO, "Patterns: " + pattern));
 		} else {
-			host.addResultMessage(new AnalysisResultMessage(
+			analysisHost.addResultMessage(new AnalysisResultMessage(
 					StatusType.ERROR, "No query patterns defined. Must meet scheme: (*|(\\w+(,\\w+)*))"));
 			return false;
 		}
 		
 		if (oclFile.getValue() == null) {
-			host.addResultMessage(new AnalysisResultMessage(
+			analysisHost.addResultMessage(new AnalysisResultMessage(
 					StatusType.ERROR, "No OCL-File selected"));
 			return false;
 		}
@@ -216,18 +224,18 @@ public class Check implements CarismaCheck {
 		OclLibrary lib = null;
 		List<OclExpression> ocl = null;
 		try {
-			lib = oclHelper.getOclLibrary(oclFile.getValue());
-			host.addResultMessage(new AnalysisResultMessage(
+			lib = OclHelper.getOclLibrary(oclFile.getValue());
+			analysisHost.addResultMessage(new AnalysisResultMessage(
 					StatusType.INFO, "OCL-Library: " + lib.getName()));
 			ocl = getOclExpression(lib.getOclExpressions(), pattern);
 		} catch (Exception e) {
-			host.addResultMessage(new AnalysisResultMessage(
+			analysisHost.addResultMessage(new AnalysisResultMessage(
 					StatusType.ERROR, "Could not load OCL Expression: " + e.getMessage()));
 			return false;
 		}
 		
 		
-		host.appendLineToReport(DIVIDING_LINE);
+		analysisHost.appendLineToReport(DIVIDING_LINE);
 		return performQuery(currentModel, ocl);
 	}
 
@@ -264,9 +272,9 @@ public class Check implements CarismaCheck {
 					if (constraintMap.containsKey(s.toLowerCase(Locale.ENGLISH))) {
 						result.add(constraintMap.get(s.toLowerCase(Locale.ENGLISH)));
 					} else {
-						host.addResultMessage(new AnalysisResultMessage(
+						this.host.addResultMessage(new AnalysisResultMessage(
 								StatusType.ERROR, "Could not resolve string '" + s + "'"));
-						successful = false;
+						this.successful = false;
 					}
 				}
 			}
@@ -288,9 +296,9 @@ public class Check implements CarismaCheck {
 		EObject content = currentModel.getContents().get(0);
 		if (content instanceof DocumentRoot || content instanceof ExtendedDocumentRoot) {
 			
-			if (markElements) {
-				if (isExtendedModel) {
-					YaoqiangHelper.clearAllWarningAndInfoFlags(originalResource.getContents().get(0));
+			if (this.markElements) {
+				if (this.isExtendedModel) {
+					YaoqiangHelper.clearAllWarningAndInfoFlags(this.originalResource.getContents().get(0));
 				} else {
 					YaoqiangHelper.clearAllWarningAndInfoFlags(content);
 				}
@@ -304,11 +312,11 @@ public class Check implements CarismaCheck {
 				if (!oclExpression.getContext().equalsIgnoreCase("context-free")) {
 					oclContext = resolveOclContext(content, oclExpression.getContext());
 					if (oclContext == null) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
+						this.host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
 								"Context '" + oclExpression.getContext() + "' not found. Querying model context-free"));
 					}
 				} else {
-					host.addResultMessage(new AnalysisResultMessage(StatusType.INFO,
+					this.host.addResultMessage(new AnalysisResultMessage(StatusType.INFO,
 							"Querying model context-free"));
 				}
 				
@@ -318,46 +326,46 @@ public class Check implements CarismaCheck {
 					StatusType resultStatus;
 					if (qResult.isViolated()) {
 						resultStatus = StatusType.ERROR;
-						successful = false;
+						this.successful = false;
 					} else {
 						resultStatus = StatusType.INFO;
 					}
 					
-					host.addResultMessage(new AnalysisResultMessage(
+					this.host.addResultMessage(new AnalysisResultMessage(
 							resultStatus, 
 							oclExpression.getName() + (resultStatus == StatusType.INFO 
 									?  " passed" : " violated (" 
 										+  (qResult.size() > 1 
 											? qResult.size() + " elements)" : "1 element)"))));
 					generateReport(qResult);
-					if (markElements) {						
+					if (this.markElements) {						
 						markViolatingElements(qResult);
 					}
 					
 				} catch (ParserException e) {
 					String err = oclExpression.getName() + ": Parser Exception during OCL query (" + e.getMessage() + ")";
-					host.addResultMessage(new AnalysisResultMessage(
+					this.host.addResultMessage(new AnalysisResultMessage(
 							StatusType.ERROR, err));
-					host.appendLineToReport(err);
-					host.appendLineToReport(DIVIDING_LINE);
-					successful = false;
+					this.host.appendLineToReport(err);
+					this.host.appendLineToReport(DIVIDING_LINE);
+					this.successful = false;
 				}
 			}
 		}
 		
-		if (markElements) {
+		if (this.markElements) {
 			try {
-				if (isExtendedModel) {
-					originalResource.save(Collections.EMPTY_MAP);
+				if (this.isExtendedModel) {
+					this.originalResource.save(Collections.EMPTY_MAP);
 				} else
 					currentModel.save(Collections.EMPTY_MAP);
 			} catch (IOException e) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, 
+				this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, 
 						"Error during saving: " + e.getMessage()));
 			}
 		}
 		
-		return successful;
+		return this.successful;
 	}
 	
 	/**
@@ -368,9 +376,9 @@ public class Check implements CarismaCheck {
 	 */
 	private EClass resolveOclContext(EObject documentRoot, String contextString) {
 		if (documentRoot instanceof DocumentRoot) {
-			return oclHelper.getContextClass(contextString);
+			return this.oclHelper.getContextClass(contextString);
 		} else if (documentRoot instanceof ExtendedDocumentRoot) {
-			return oclHelper.getExtendedContextClass(contextString);
+			return this.oclHelper.getExtendedContextClass(contextString);
 		} else {
 			return null;
 		}
@@ -386,31 +394,31 @@ public class Check implements CarismaCheck {
 				if (elem instanceof BaseElement) {
 					setWarningFlagToElement((BaseElement) elem, query.getContextString(), query.getStatement());
 					
-					if (isExtendedModel) {
-						EObject originalModel = originalResource.getContents().get(0);
+					if (this.isExtendedModel) {
+						EObject originalModel = this.originalResource.getContents().get(0);
 						BaseElement originalElem = BPMN2Helper.findBaseElementById(originalModel, ((BaseElement) elem).getId());
 						if (originalElem != null) {
 							setWarningFlagToElement(originalElem, query.getContextString(), query.getStatement());
 						} else {
-							host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, 
+							this.host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, 
 									"Element '" + EObjectUtil.getName(elem) + "' could not be found in the model."));
 						}
 					}
 				} else if (elem instanceof TaskSet) {
 					List<Task> taskList = ((TaskSet) elem).getSelectedTasks();
 					for (Task task : taskList) {
-						EObject originalModel = originalResource.getContents().get(0);						
+						EObject originalModel = this.originalResource.getContents().get(0);						
 						BaseElement originalElem = BPMN2Helper.findBaseElementById(originalModel, task.getId());
 						if (originalElem != null) {
 							setWarningFlagToElement(originalElem, query.getContextString(), query.getStatement());
 						} else {
-							host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, 
+							this.host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, 
 									"Element '" + EObjectUtil.getName(elem) + "' could not be found in the model."));
 						}
 					}
 				}
 				else {
-					host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, 
+					this.host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, 
 							"Element '" + EObjectUtil.getName(elem) + "' could not be marked. It is not a Bpmn2 model element."));
 				}
 			}
@@ -423,7 +431,7 @@ public class Check implements CarismaCheck {
 	 * @param context The violated context string
 	 * @param statement The violated statement string 
 	 */
-	private void setWarningFlagToElement(BaseElement baseElement, String context, String statement) {
+	private static void setWarningFlagToElement(BaseElement baseElement, String context, String statement) {
 		YaoqiangHelper.setWarningFlagToBpmn2Element(baseElement, "Vioalates Constraint: [ " +
 				context + " | " + statement + " ]");
 	}
@@ -435,15 +443,15 @@ public class Check implements CarismaCheck {
 	 */
 	private void generateReport(final OclQueryResult query) {
 		if (query.isViolated()) {
-			host.appendLineToReport("Violated: [ " + query.getContextString() + " | " + query.getStatement() + " ]");
+			this.host.appendLineToReport("Violated: [ " + query.getContextString() + " | " + query.getStatement() + " ]");
 			for (EObject elem : query.getElements()) {
-				host.appendLineToReport("\t" + elem.eClass().getName()  
+				this.host.appendLineToReport("\t" + elem.eClass().getName()  
 						+ " | " + EObjectUtil.getName(elem));
 			}
 		} else {
-			host.appendLineToReport("Passed: [ " + query.getContextString() + " | " + query.getStatement() + " ]");
+			this.host.appendLineToReport("Passed: [ " + query.getContextString() + " | " + query.getStatement() + " ]");
 		}
-		host.appendLineToReport(DIVIDING_LINE);
+		this.host.appendLineToReport(DIVIDING_LINE);
 	}
 	
 	/**
@@ -457,7 +465,7 @@ public class Check implements CarismaCheck {
 	 * @return If string matches the pattern return true otherwise false
 	 */
 	@SuppressWarnings("unused")
-	private boolean isExtDefinition(final String str) {
+	private static boolean isExtDefinition(final String str) {
 		return str.matches(REG_EXTFILE);
 	}
 	
@@ -467,7 +475,7 @@ public class Check implements CarismaCheck {
 	 * @param str The string which should be checked
 	 * @return If string matches the pattern return true otherwise false
 	 */
-	private boolean isShortExtDefinition(final String str) {
+	private static boolean isShortExtDefinition(final String str) {
 		return str.matches(REG_EXTFILE.substring(6, REG_EXTFILE.length() - 2));
 	}
 	
@@ -483,7 +491,7 @@ public class Check implements CarismaCheck {
 	 * @return If string matches the pattern return true otherwise false
 	 */
 	@SuppressWarnings("unused")
-	private boolean isPatternDefinition(final String str) {
+	private static boolean isPatternDefinition(final String str) {
 		return str.matches(REG_PATTERN);
 	}
 	
@@ -493,7 +501,7 @@ public class Check implements CarismaCheck {
 	 * @param str The string which should be checked
 	 * @return If string matches the pattern return true otherwise false
 	 */
-	private boolean isShortPatternDefinition(final String str) {
+	private static boolean isShortPatternDefinition(final String str) {
 		return str.matches(REG_PATTERN.substring(13, REG_PATTERN.length() - 5));
 	}
 	
@@ -526,6 +534,16 @@ public class Check implements CarismaCheck {
 	@SuppressWarnings("unused")
 	private static String getPatternDefinition(final String str) {
 		return str.substring(11, str.length() - 3);
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 	
 }

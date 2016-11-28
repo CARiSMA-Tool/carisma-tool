@@ -49,40 +49,40 @@ public class TaggedValue extends EObjectImpl {
 	private StereotypeApplication correspondingApplication = null;
 	
 	public TaggedValue(final Property newProperty, final StereotypeApplication newApplication) {
-		tag = newProperty;
-		correspondingApplication = newApplication;
+		this.tag = newProperty;
+		this.correspondingApplication = newApplication;
 	}
 	
 	public Property getTag() {
-		return tag;
+		return this.tag;
 	}
 	
 	public StereotypeApplication getCorrespondingApplication() {
-		return correspondingApplication;
+		return this.correspondingApplication;
 	}
 	
 	public boolean isMultivalued() {
-		return tag.isMultivalued();
+		return this.tag.isMultivalued();
 	}
 	
 	public Stereotype getStereotype() {
-		return correspondingApplication.getAppliedStereotype();
+		return this.correspondingApplication.getAppliedStereotype();
 	}
 	
 	public String getQualifiedStereotypeName() {
-		return correspondingApplication.getAppliedStereotype().getQualifiedName();
+		return this.correspondingApplication.getAppliedStereotype().getQualifiedName();
 	}
 	
 	public String getStereotypeName() {
-		return correspondingApplication.getAppliedStereotype().getName();
+		return this.correspondingApplication.getAppliedStereotype().getName();
 	}
 	
 	public Element getElement() {
-		return correspondingApplication.getExtendedElement();
+		return this.correspondingApplication.getExtendedElement();
 	}
 	
 	public String getName() {
-		return tag.getName();
+		return this.tag.getName();
 	}
 	
 	@Override
@@ -93,8 +93,8 @@ public class TaggedValue extends EObjectImpl {
 
 	public Object getValue() {
 		checkTagInitialization();
-		Element extendedElement = correspondingApplication.getExtendedElement();
-		Stereotype appliedStereo = correspondingApplication.getAppliedStereotype();
+		Element extendedElement = this.correspondingApplication.getExtendedElement();
+		Stereotype appliedStereo = this.correspondingApplication.getAppliedStereotype();
 		return extendedElement.getValue(appliedStereo, this.getName());
 	}
 	
@@ -138,7 +138,7 @@ public class TaggedValue extends EObjectImpl {
 			List<Object> list = (List<Object>) getValue();
 			list.clear();
 		} else {
-			correspondingApplication.getExtendedElement().setValue(correspondingApplication.getAppliedStereotype(), getName(), null);
+			this.correspondingApplication.getExtendedElement().setValue(this.correspondingApplication.getAppliedStereotype(), getName(), null);
 		}
 	}
 	
@@ -149,7 +149,7 @@ public class TaggedValue extends EObjectImpl {
 			List<Object> list = (List<Object>) getValue();
 			list.remove(oldValue);
 		} else {
-			correspondingApplication.getExtendedElement().setValue(correspondingApplication.getAppliedStereotype(), getName(), null);
+			this.correspondingApplication.getExtendedElement().setValue(this.correspondingApplication.getAppliedStereotype(), getName(), null);
 		}
 			
 	}
@@ -161,20 +161,20 @@ public class TaggedValue extends EObjectImpl {
 			List<Object> list = (List<Object>) getValue();
 			list.remove(index);
 		} else {
-			correspondingApplication.getExtendedElement().setValue(correspondingApplication.getAppliedStereotype(), getName(), null);
+			this.correspondingApplication.getExtendedElement().setValue(this.correspondingApplication.getAppliedStereotype(), getName(), null);
 		}
 	}
 	
 	public boolean hasValue() {
-		if (correspondingApplication.hasTagValue(tag.getName())) {
+		if (this.correspondingApplication.hasTagValue(this.tag.getName())) {
 			return true;			
 		}
 		return false;
 	}
 	
 	private void checkTagInitialization() {
-		Element extendedElement = correspondingApplication.getExtendedElement();
-		Stereotype appliedStereo = correspondingApplication.getAppliedStereotype();
+		Element extendedElement = this.correspondingApplication.getExtendedElement();
+		Stereotype appliedStereo = this.correspondingApplication.getAppliedStereotype();
 		Object value = extendedElement.getValue(appliedStereo, this.getName());
 		if (value == null) {
 			DataType type = getTag().getDatatype();
@@ -184,7 +184,7 @@ public class TaggedValue extends EObjectImpl {
 	
 	private void setTagValue(final Object newValue) {
 		checkTagInitialization();
-		correspondingApplication.getExtendedElement().setValue(correspondingApplication.getAppliedStereotype(), getName(), newValue);
+		this.correspondingApplication.getExtendedElement().setValue(this.correspondingApplication.getAppliedStereotype(), getName(), newValue);
 	}
 
 	@Override
@@ -194,8 +194,8 @@ public class TaggedValue extends EObjectImpl {
 		}
 		if (other instanceof TaggedValue) {
 			TaggedValue otherTagValue = (TaggedValue) other;
-			if (otherTagValue.getTag().equals(tag) 
-					&& otherTagValue.getCorrespondingApplication().equals(correspondingApplication)) {
+			if (otherTagValue.getTag().equals(this.tag) 
+					&& otherTagValue.getCorrespondingApplication().equals(this.correspondingApplication)) {
 				return true;
 			}
 		}
@@ -213,7 +213,7 @@ public class TaggedValue extends EObjectImpl {
 	
 	@Override
 	public String toString() {
-		return "TaggedValue {" + tag.getName() + "=" + getValue() + "}";
+		return "TaggedValue {" + this.tag.getName() + "=" + getValue() + "}";
 	}
 
 	@Override

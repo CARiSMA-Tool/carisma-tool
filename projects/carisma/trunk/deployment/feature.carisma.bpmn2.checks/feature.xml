@@ -233,37 +233,60 @@ litigation.
          id="feature.carisma.bpmn2"
          version="0.0.0"/>
 
+   <includes
+         id="feature.carisma.core"
+         version="0.0.0"/>
+
+   <includes
+         id="feature.carisma.ocl"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.eclipse.bpmn2.feature"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.eclipse.emf.ecore"
+         version="0.0.0"
+         search-location="self"/>
+
    <requires>
-      <import plugin="carisma.modeltype.bpmn2" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="carisma.ocl" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="carisma.core"/>
+      <import plugin="carisma.modeltype.bpmn2"/>
+      <import plugin="carisma.ocl"/>
+      <import plugin="org.eclipse.bpmn2"/>
+      <import plugin="org.eclipse.core.runtime"/>
       <import plugin="carisma.core" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="carisma.ocl" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="carisma.modeltype.bpmn2.extended" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="carisma.modeltype.bpmn2" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="carisma.modeltype.bpmn2.extension"/>
       <import plugin="carisma.ocl.library"/>
-      <import plugin="org.eclipse.bpmn2"/>
       <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
    </requires>
 
    <plugin
          id="carisma.check.bpmn2.marisk"
          download-size="0"
          install-size="0"
-         version="1.0.1.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="carisma.check.bpmn2.ocl"
          download-size="0"
          install-size="0"
-         version="1.0.1.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="carisma.check.bpmn2.dummy"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

@@ -53,7 +53,7 @@ public class ParallelPath {
 	/**
 	 * AnalysisHost for report.
 	 */
-	private AnalysisHost host = null;
+	private AnalysisHost analysisHost = null;
 	
 	/**
 	 * main function to start the parallelization.
@@ -63,9 +63,9 @@ public class ParallelPath {
 	 */
 	public final List<List<Element>> getParallelPaths(final ForkNode forkNode, final AnalysisHost host) {
 		if (host == null) {
-			this.host = new DummyHost(true);
+			this.analysisHost = new DummyHost(true);
 		} else {
-			this.host = host;
+			this.analysisHost = host;
 		}
 		for (Element start : forkNode.getOutgoings()) {
 			try {
@@ -73,29 +73,29 @@ public class ParallelPath {
 				startList.add(((ActivityEdge) start).getTarget());
 				getPaths(startList);
 			} catch (NullPointerException exception) {
-				host.appendLineToReport("Diagram is not correct!\n" + forkNode.getName() + " has one incorrect outgoing transition");
+				this.analysisHost.appendLineToReport("Diagram is not correct!\n" + forkNode.getName() + " has one incorrect outgoing transition");
 			}
 		}
 
 		try {
-			endsWith = (JoinNode) mergeList.get(0).get(mergeList.get(0).size() - 1);
+			this.endsWith = (JoinNode) this.mergeList.get(0).get(this.mergeList.get(0).size() - 1);
 		} catch (Exception exception) {
-			host.appendLineToReport("No correct diagram");
+			this.analysisHost.appendLineToReport("No correct diagram");
 		}
-		for (int i = mergeList.size() - 1; i >= 0; i--) {
-			if (mergeList.get(i).size() < 1) {
-				mergeList.remove(i);
+		for (int i = this.mergeList.size() - 1; i >= 0; i--) {
+			if (this.mergeList.get(i).size() < 1) {
+				this.mergeList.remove(i);
 			}
 		}
 		mergePaths();
-		for (int i = results.size() - 1; i >= 0; i--) {
-			if (results.get(i).size() < 1) {
-				results.remove(i);
+		for (int i = this.results.size() - 1; i >= 0; i--) {
+			if (this.results.get(i).size() < 1) {
+				this.results.remove(i);
 			}
 		}
 		deleteDoubles();
 		deleteFollows();
-		return results;
+		return this.results;
 	}
 	
 	/**
@@ -106,7 +106,7 @@ public class ParallelPath {
 		Element last = list.get(list.size() - 1);
 		if (last instanceof ForkNode) {
 			ParallelPath parallelPath = new ParallelPath();
-			List<List<Element>> parallelList = parallelPath.getParallelPaths((ForkNode) last, host);
+			List<List<Element>> parallelList = parallelPath.getParallelPaths((ForkNode) last, this.analysisHost);
 			for (List<Element> path : parallelList) {
 				List<Element> newList = new ArrayList<Element>();
 				newList.addAll(list);
@@ -116,7 +116,7 @@ public class ParallelPath {
 			}
 		} else {
 			if (last instanceof JoinNode) {
-				mergeList.add(list);
+				this.mergeList.add(list);
 			} else {
 				try {
 					if (((ActivityNode) last).getOutgoings().size() > 0) {
@@ -132,14 +132,14 @@ public class ParallelPath {
 								cutted.addAll(list);
 								cutted.remove(cutted.size() - 1);
 								cutted = cutList(cutted, newAcc);
-								mergeList.add(cutted);
+								this.mergeList.add(cutted);
 							}
 						}
 					} else {
-						mergeList.add(list);
+						this.mergeList.add(list);
 					}
 				} catch (NullPointerException exception) {
-					host.appendLineToReport("Diagram is not correct!\n" + ((NamedElement) last).getName() + " has one incorrect outgoing transition");
+					this.analysisHost.appendLineToReport("Diagram is not correct!\n" + ((NamedElement) last).getName() + " has one incorrect outgoing transition");
 				}
 			}
 		}
@@ -151,28 +151,28 @@ public class ParallelPath {
 	 */
 	private void mergePaths() {
 		
-		for (int i = 0; i < mergeList.size(); i++) {
-			mergeList.get(i).remove(mergeList.get(i).size() - 1);
+		for (int i = 0; i < this.mergeList.size(); i++) {
+			this.mergeList.get(i).remove(this.mergeList.get(i).size() - 1);
 		}
-		Element acc = mergeList.get(mergeList.size() - 1).get(0);
-		for (int i = mergeList.size() - 1; i >= 0; i--) {
-			if (mergeList.get(i).get(0) == acc) {
-				results.add(mergeList.get(i));
-				mergeList.remove(i);
+		Element acc = this.mergeList.get(this.mergeList.size() - 1).get(0);
+		for (int i = this.mergeList.size() - 1; i >= 0; i--) {
+			if (this.mergeList.get(i).get(0) == acc) {
+				this.results.add(this.mergeList.get(i));
+				this.mergeList.remove(i);
 			}
 		}
-		while (mergeList.size() > 0) {
-			acc = mergeList.get(mergeList.size() - 1).get(0);
+		while (this.mergeList.size() > 0) {
+			acc = this.mergeList.get(this.mergeList.size() - 1).get(0);
 			List<List<Element>> newMerge1 = new ArrayList<List<Element>>();
 			List<List<Element>> newMerge2 = new ArrayList<List<Element>>();
-			for (int i = mergeList.size() - 1; i >= 0; i--) {
-				if (mergeList.get(i).get(0) == acc) {
-					newMerge1.add(mergeList.get(i));
-					mergeList.remove(i);
+			for (int i = this.mergeList.size() - 1; i >= 0; i--) {
+				if (this.mergeList.get(i).get(0) == acc) {
+					newMerge1.add(this.mergeList.get(i));
+					this.mergeList.remove(i);
 				}
 			}
-			newMerge2.addAll(results);
-			results.clear();
+			newMerge2.addAll(this.results);
+			this.results.clear();
 			for (int i = 0; i < newMerge1.size(); i++) {
 				for (int j = 0; j < newMerge2.size(); j++) {
 					ArrayList<Element> r = new ArrayList<Element>();
@@ -180,8 +180,8 @@ public class ParallelPath {
 				}
 			}
 		}
-		for (int i = 0; i < results.size(); i++) {
-			results.get(i).add(endsWith);
+		for (int i = 0; i < this.results.size(); i++) {
+			this.results.get(i).add(this.endsWith);
 		}
 	}
 	
@@ -195,19 +195,19 @@ public class ParallelPath {
 	private void startMerge(final List<Element> l1, final List<Element> l2, final List<Element> r) {
 	
 		if ((l1.size() == 0) && (l2.size() == 0)) {
-			results.add(r);
+			this.results.add(r);
 		}
 		if ((l1.size() != 0) && (l2.size() == 0)) {
 			List<Element> res = new ArrayList<Element>();
 			res.addAll(r);
 			res.addAll(l1);
-			results.add(res);
+			this.results.add(res);
 		}
 		if ((l1.size() == 0) && (l2.size() != 0)) {
 			ArrayList<Element> res = new ArrayList<Element>();
 			res.addAll(r);
 			res.addAll(l2);
-			results.add(res);
+			this.results.add(res);
 		}
 		if ((l1.size() != 0) && (l2.size() != 0)) {
 			List<Element> newR1 = new ArrayList<Element>();
@@ -234,7 +234,7 @@ public class ParallelPath {
 	 * @return boolean if there is a loop in the end of the path
 	 *
 	 */
-	private boolean contains(final List<Element> list, final Element element) {
+	private static boolean contains(final List<Element> list, final Element element) {
 		boolean path = false;
 		for (int i = list.size() - 1; i > 0; i--) {
 			if (list.get(i) == element) {
@@ -261,7 +261,7 @@ public class ParallelPath {
 	 * @param element element where the loop starts/ends
 	 * @return list without loop at the end
 	 */
-	private List<Element> cutList(final List<Element> list, final Element element) {
+	private static List<Element> cutList(final List<Element> list, final Element element) {
 		List<Element> returnList = new ArrayList<Element>();
 		int count;
 		
@@ -278,10 +278,10 @@ public class ParallelPath {
 	 * deletes an element if it follows itself.
 	 */
 	private void deleteFollows() {
-		for (int i = results.size() - 1; i >= 0; i--) {
-			for (int j = results.get(i).size() - 1; j > 0; j--) {
-				if (results.get(i).get(j) == results.get(i).get(j - 1)) {
-					results.get(i).remove(j);
+		for (int i = this.results.size() - 1; i >= 0; i--) {
+			for (int j = this.results.get(i).size() - 1; j > 0; j--) {
+				if (this.results.get(i).get(j) == this.results.get(i).get(j - 1)) {
+					this.results.get(i).remove(j);
 				}
 			}
 		}
@@ -292,11 +292,11 @@ public class ParallelPath {
 	 *
 	 */
 	private void deleteDoubles() {		
-		for (int i = results.size() - 1; i >= 0; i--) {
-			for (int j = results.size() - 1; j >= 0; j--) {
+		for (int i = this.results.size() - 1; i >= 0; i--) {
+			for (int j = this.results.size() - 1; j >= 0; j--) {
 				if (i != j 
-						&& isDouble(results.get(i), results.get(j))) {
-					results.remove(i);
+						&& isDouble(this.results.get(i), this.results.get(j))) {
+					this.results.remove(i);
 				}
 			}
 		}
@@ -309,7 +309,7 @@ public class ParallelPath {
 	 * @param list2 list 2 to test
 	 * @return boolean if the two paths are the same
 	 */
-	private boolean isDouble(final List<Element> list1, final List<Element> list2) {
+	private static boolean isDouble(final List<Element> list1, final List<Element> list2) {
 		boolean returnValue = true;
 		
 		if (list1.size() > list2.size()) {

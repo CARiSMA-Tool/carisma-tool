@@ -113,9 +113,8 @@ public final class Logger {
 	private static boolean forwardToExternalPrinter(StackTraceElement ste, LogLevel level, String message) {
 		if (externalLogPrinter == null) {
 			return false;
-		} else {
-			return externalLogPrinter.print(ste, level, message);
 		}
+		return externalLogPrinter.print(ste, level, message);
 	}
 
 

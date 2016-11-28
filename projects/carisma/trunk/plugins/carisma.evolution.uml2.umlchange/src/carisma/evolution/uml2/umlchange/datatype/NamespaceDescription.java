@@ -22,19 +22,20 @@ public class NamespaceDescription extends ElementDescription {
 	private String namespaceName = "";
 	
 	public String getNamespaceName() {
-		return namespaceName;
+		return this.namespaceName;
 	}
 	
 	public NamespaceDescription(final String grammar) {
 		super(grammar);
-		namespaceName = ParserUtils.findNamespace(grammar);
+		this.namespaceName = ParserUtils.findNamespace(grammar);
 	}
 	
+	@Override
 	public boolean isValid() {
 		if (getGrammarString() == null || getGrammarString().isEmpty()) {
 			return false;
 		}
-		if (namespaceName == null || namespaceName.isEmpty()) {
+		if (this.namespaceName == null || this.namespaceName.isEmpty()) {
 			return false;
 		}
 		return true;

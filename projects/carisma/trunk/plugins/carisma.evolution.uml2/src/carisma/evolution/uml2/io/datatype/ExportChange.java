@@ -10,20 +10,20 @@ public class ExportChange {
 	private List<ExportAlternative> alternatives;
 	
 	public ExportChange(){
-		ref = "";
-		constraints = new ArrayList<ExportChangeConstraint>();
-		alternatives = new ArrayList<ExportAlternative>();
+		this.ref = "";
+		this.constraints = new ArrayList<ExportChangeConstraint>();
+		this.alternatives = new ArrayList<ExportAlternative>();
 	}
 	
 	public ExportChange(String ref){
 		this.ref = ref;
-		alternatives = new ArrayList<ExportAlternative>();
+		this.alternatives = new ArrayList<ExportAlternative>();
 	}
 	
 	public ExportChange(String ref, List<ExportChangeConstraint> constrains){
 		this.ref = ref;
 		this.constraints = constrains;
-		alternatives = new ArrayList<ExportAlternative>();
+		this.alternatives = new ArrayList<ExportAlternative>();
 	}
 	
 	public void setRef(String ref){
@@ -37,19 +37,19 @@ public class ExportChange {
 	
 	
 	public void addAlternative(ExportAlternative alt) {
-		alternatives.add(alt);
+		this.alternatives.add(alt);
 	}
 	
 	public List<ExportAlternative> getAlternatives(){
-		return alternatives;
+		return this.alternatives;
 	}
 	
 	public String getRef(){
-		return ref;
+		return this.ref;
 	}
 	
 	public List<ExportChangeConstraint> getConstraints(){
-		return constraints;
+		return this.constraints;
 	}
 	
 }

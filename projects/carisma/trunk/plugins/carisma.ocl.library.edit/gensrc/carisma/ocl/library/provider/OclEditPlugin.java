@@ -35,7 +35,7 @@ public final class OclEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static Implementation plugin;
+	static Implementation plugin;
 
 	/**
 	 * Create the instance.

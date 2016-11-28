@@ -10,6 +10,7 @@ import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -32,7 +33,6 @@ public class QuestionsGenerationTestFail {
 	 private AnalysisResult analysisResult;
 	 private XML_DOM qTest;
 	 private SecureLinksBuilder secureLinksBuilder;
-	 private QuestionGenerationAction qO;
 	 
 	 
 	 public QuestionsGenerationTestFail(AnalysisResult analysisResult, XML_DOM qTest) {
@@ -44,9 +44,7 @@ public class QuestionsGenerationTestFail {
 
 	 @Before
 	   public void initialize() {
-		 secureLinksBuilder = new SecureLinksBuilder(analysisResult);
-		 qO = new QuestionGenerationAction(analysisResult);
-		 
+		 this.secureLinksBuilder = new SecureLinksBuilder(this.analysisResult);		 
 	   }
 
 	   @Parameterized.Parameters
@@ -105,15 +103,15 @@ public class QuestionsGenerationTestFail {
 
 
 	   @Test(expected=IllegalArgumentException.class) 
-	   public void test() {
-	      System.out.println("AnalysisResult is : " + analysisResult);
-	      List<Question> questionList = secureLinksBuilder.generateQuestion();
+	   public void test() throws ParserConfigurationException, JAXBException {
+	      System.out.println("AnalysisResult is : " + this.analysisResult);
+	      List<Question> questionList = this.secureLinksBuilder.generateQuestion();
 	      Questions questions = new Questions();
 	      questions.setQuestions(questionList);
-	      XML_DOM questionsXmlDom = qO.buildQuestionsXml(questions);
-	      System.out.println(qTest.asString());
+	      XML_DOM questionsXmlDom = QuestionGenerationAction.buildQuestionsXml(questions);
+	      System.out.println(this.qTest.asString());
 	      System.out.println(questionsXmlDom.asString());
-	      Document doc1 = qTest.getDocument();
+	      Document doc1 = this.qTest.getDocument();
 	      Document doc2 = questionsXmlDom.getDocument();
 	      doc1.normalize();
 	      doc2.normalize();

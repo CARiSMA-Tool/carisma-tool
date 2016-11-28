@@ -38,21 +38,21 @@ public class Delta {
 		if (changeIDList == null) {
 			throw new IllegalArgumentException("Parameter 'chaneIDList' is null");
 		}
-		changeIDs.addAll(changeIDList);
-		deltaContent = new ArrayList<DeltaElement>();
-		deltaContent.addAll(content);
+		this.changeIDs.addAll(changeIDList);
+		this.deltaContent = new ArrayList<DeltaElement>();
+		this.deltaContent.addAll(content);
 	}
 	
 	public int getNumberOfUsedChanges() {
-		return changeIDs.size();
+		return this.changeIDs.size();
 	}
 	
 	public List<String> getChangeIDs() {
-		return Collections.unmodifiableList(changeIDs);
+		return Collections.unmodifiableList(this.changeIDs);
 	}
 	
 	public List<DeltaElement> getContent() {
-		return deltaContent;
+		return this.deltaContent;
 	}
 	
 	/**
@@ -188,7 +188,7 @@ public class Delta {
 	 * @param pattern - the pattern to be fulfilled by matching AddElements
 	 * @return - true if the pattern is matched by the possible match
 	 */
-	private final boolean matchesAddedElement(final AddElement possibleMatch, final AddElement pattern) {
+	private final static boolean matchesAddedElement(final AddElement possibleMatch, final AddElement pattern) {
 		boolean matchesTarget = false;
 		boolean matchesMetaclass = false;
 		boolean matchesKeyValues = true;
@@ -226,7 +226,7 @@ public class Delta {
 	 */
 	private <T extends DeltaElement> List<T> getAllOfType(final Class<T> type) {
 		List<T> allOfType = new ArrayList<T>();
-		for (DeltaElement de : deltaContent) {
+		for (DeltaElement de : this.deltaContent) {
 			if (type.isInstance(de)) {
 				allOfType.add(type.cast(de));
 			}
@@ -239,7 +239,7 @@ public class Delta {
 	 * @return - true, if delta is empty
 	 */
 	public boolean isEmpty() {
-		return deltaContent.isEmpty();
+		return this.deltaContent.isEmpty();
 	}
 	
 }

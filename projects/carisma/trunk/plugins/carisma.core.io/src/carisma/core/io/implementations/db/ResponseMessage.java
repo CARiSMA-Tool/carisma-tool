@@ -17,6 +17,7 @@ public interface ResponseMessage {
 	 * Returns a human readable description of the response status.
 	 * @return human readable description
 	 */
+	@Override
 	String toString();
 
 }

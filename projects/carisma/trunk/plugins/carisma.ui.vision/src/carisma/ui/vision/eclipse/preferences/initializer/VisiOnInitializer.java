@@ -2,6 +2,7 @@ package carisma.ui.vision.eclipse.preferences.initializer;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import carisma.ui.eclipse.CarismaGUI;
 import carisma.ui.vision.eclipse.preferences.pages.VisiOn;
@@ -13,7 +14,8 @@ public class VisiOnInitializer extends AbstractPreferenceInitializer {
 
 	@Override
 	public void initializeDefaultPreferences() {
-		IPreferenceStore preferencesStore = CarismaGUI.INSTANCE.getPreferenceStore();		
+		AbstractUIPlugin carisma = CarismaGUI.INSTANCE;
+		IPreferenceStore preferencesStore = carisma.getPreferenceStore();		
 		
 		preferencesStore.setDefault(VisiOn.KEY_URL, "212.34.151.216");
 		

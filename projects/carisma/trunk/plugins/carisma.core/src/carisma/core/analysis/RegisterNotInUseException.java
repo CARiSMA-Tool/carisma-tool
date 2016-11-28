@@ -34,7 +34,7 @@ public class RegisterNotInUseException extends Exception {
 	 * @return the name
 	 */
 	public final String getName() {
-		return name;
+		return this.name;
 	}
 
 }

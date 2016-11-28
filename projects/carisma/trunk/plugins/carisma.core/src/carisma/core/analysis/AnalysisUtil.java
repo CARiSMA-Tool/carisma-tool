@@ -58,22 +58,15 @@ public final class AnalysisUtil {
 	 */
 	public static void storeAnalysis(Analysis analysis, String filename) {
 		XStream xStream = createXStream();
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(filename);
+		try (FileOutputStream fos = new FileOutputStream(filename)){
 			xStream.toXML(analysis, fos);
 			System.out.println(filename);
 		} catch (FileNotFoundException e) {
 			AnalysisUtil.logFileNotFoundException(filename, e);
-		} finally {
-			try {
-				if (fos != null) {
-					fos.close();
-				}
-			} catch (IOException e) {
-				Logger.log(LogLevel.ERROR, "Error on closing \"" + filename, e);
-			}
+		} catch (IOException e) {
+			Logger.log(LogLevel.ERROR, "Error on closing \"" + filename, e);
 		}
+		
 	}
 	
 	private static void logFileNotFoundException(String filename, FileNotFoundException e) {
@@ -94,9 +87,8 @@ public final class AnalysisUtil {
 	 */
 	public static Analysis readAnalysis(String filename) {
 		XStream xStream = createXStream();
-		try {
-			FileInputStream fis = new FileInputStream(filename);
-			InputStreamReader isr = new InputStreamReader(fis, "ISO-8859-1");
+		try (FileInputStream fis = new FileInputStream(filename);
+			InputStreamReader isr = new InputStreamReader(fis, "ISO-8859-1");){
 			Analysis readAnalysis = (Analysis) xStream.fromXML(isr);
 			if (readAnalysis.getSelectedEditorId() == null) {
 				readAnalysis.setSelectedEditorId("");
@@ -105,7 +97,8 @@ public final class AnalysisUtil {
 		} catch (FileNotFoundException e) {
 			AnalysisUtil.logFileNotFoundException(filename, e);
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
+			Logger.log(LogLevel.ERROR, "", e);
+		} catch (IOException e) {
 			Logger.log(LogLevel.ERROR, "", e);
 		}
 		return null;

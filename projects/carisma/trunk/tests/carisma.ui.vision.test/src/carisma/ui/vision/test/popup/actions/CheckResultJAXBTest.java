@@ -22,6 +22,7 @@ import carisma.core.io.content.XML_DOM;
 
 public class CheckResultJAXBTest {
 
+	@SuppressWarnings("static-method")
 	@Test
 	public void test() {
 		//initialize a checkResult
@@ -66,8 +67,9 @@ public class CheckResultJAXBTest {
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			jaxbCheckResult1 = (CheckResult) jaxbUnmarshaller.unmarshal(checkResultDocument); 
 		} catch (JAXBException e) {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
+			throw new AssertionError();
+		}
 		
 
 		//test if the unmarshalled checkResult is the same as the actual

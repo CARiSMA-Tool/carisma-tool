@@ -22,6 +22,11 @@ public class Place extends PetriNetObject {
 		return this == obj; //TODO: reicht das so, oder koennen Referenzen unterschiedlich sein?
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
 	/**
 	 * The number of tokens on this place at initialization of the net.
 	 **/

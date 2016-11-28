@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="feature.carisma.vision"
-      label="VisiOn Extensions for CARiSMA"
+      label="Vision"
       version="1.0.0.qualifier"
-      provider-name="RGSE, University of Koblenz-Landau">
+      provider-name="University of Koblenz-Landau">
 
    <description url="http://carisma.umlsec.de">
       Visit the CARiSMA homepage for more information!
@@ -12,6 +12,7 @@
    <copyright>
       /*******************************************************************************
 * Copyright (c) 2016 RGSE, University of Koblenz-Landau.
+* Copyright (c) 2011 Software Engineering Institute, TU Dortmund.
 * All rights reserved. This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License
 v1.0
@@ -19,6 +20,8 @@ v1.0
 * http://www.eclipse.org/legal/epl-v10.html
 *
 * Contributors:
+*    Software Engineering Institute, TU Dortmund - initial API
+and implementation and/or initial documentation
 *    RGSE, University of Koblenz-Landau - maintenance and new
 features
 *******************************************************************************/
@@ -223,16 +226,8 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
-   <url>
-      <update label="CARiSMA Update Site" url="https://rgse.uni-koblenz.de/carisma/updatesite/"/>
-   </url>
-
    <includes
          id="feature.carisma.core"
-         version="0.0.0"/>
-
-   <includes
-         id="feature.carisma.uml2"
          version="0.0.0"/>
 
    <includes
@@ -240,23 +235,30 @@ litigation.
          version="0.0.0"/>
 
    <requires>
-      <import plugin="carisma.modeltype.uml2"/>
+      <import plugin="org.eclipse.ui.workbench"/>
       <import plugin="carisma.ui.eclipse"/>
-      <import plugin="carisma.ui.vision" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.uml2.uml"/>
-      <import plugin="carisma.ui.eclipse" version="1.4.6" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.core.runtime"/>
       <import plugin="carisma.core.io"/>
+      <import plugin="org.apache.httpcomponents.httpclient"/>
+      <import plugin="org.apache.httpcomponents.httpcore"/>
+      <import plugin="carisma.check.rabac"/>
+      <import plugin="carisma.check.staticcheck"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="carisma.modeltype.uml2"/>
+      <import plugin="org.eclipse.uml2.uml"/>
    </requires>
 
    <plugin
-         id="carisma.check.createHelpDocument"
+         id="carisma.ui.vision"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="carisma.ui.vision"
+         id="carisma.check.createHelpDocument"
          download-size="0"
          install-size="0"
          version="0.0.0"

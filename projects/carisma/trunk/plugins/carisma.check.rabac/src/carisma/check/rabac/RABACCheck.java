@@ -34,7 +34,7 @@ import carisma.core.analysis.InputFileParameter;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CheckParameter;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.profile.umlsec.rabac.UMLsec;
 import carisma.profile.umlsec.rabac.UMLsecUtil;
 import carisma.modeltype.uml2.UMLHelper;
@@ -42,12 +42,18 @@ import carisma.modeltype.uml2.statemachine.StateMachinePaths;
 import carisma.ocl.OclEvaluator;
 
 /**
- * CARiSMA Check for analyzing RABAC models. Requires a valid configuration file
+ * CARiSMA Check for analyzing CHECK_ID models. Requires a valid configuration file
  * containing at least the sessions to make decisions.
  */
 
-public class RABACCheck implements CarismaCheck {
-	AnalysisHost host;
+public class RABACCheck implements CarismaCheckWithID {
+
+	// Check IDs
+	public static final String CHECK_ID = "carisma.check.rabac"; //$NON-NLS-1$
+	public static final String PARAM_CONFIGURATION = "carisma.check.rabac.configuration"; //$NON-NLS-1$
+	public static final String CHECK_NAME = "RABACsec: Use transformation input"; //$NON-NLS-1$
+
+	AnalysisHost analysisHost;
 
 	Map<String, SetWrapper> sessions;
 	Set<Attribute> attributes;
@@ -63,7 +69,7 @@ public class RABACCheck implements CarismaCheck {
 	 */
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
-		this.host = host;
+		this.analysisHost = host;
 		Resource model = host.getAnalyzedModel();
 
 		if (model.getContents().isEmpty()) {
@@ -78,12 +84,12 @@ public class RABACCheck implements CarismaCheck {
 			int abacNum = abac.size();
 			if (abacNum == 0) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
-						"Could not find the main RABAC stereotype!"));
+						"Could not find the main CHECK_ID stereotype!"));
 				return false;
 			}
 			if (abacNum > 1) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Found " + abacNum
-						+ " main RABAC stereotypes, model must only contain one!"));
+						+ " main CHECK_ID stereotypes, model must only contain one!"));
 				return false;
 			}
 			Element abacClass = abac.get(0);
@@ -111,16 +117,16 @@ public class RABACCheck implements CarismaCheck {
 						.newInstance(RABACConfig.class)
 						.createUnmarshaller()
 						.unmarshal(
-								((InputFileParameter) parameters.get("carisma.check.rabac.configuration")).getValue());
-				sessions = config.getSessions();
-				attributes = config.getAttributes();
+								((InputFileParameter) parameters.get(PARAM_CONFIGURATION)).getValue());
+				this.sessions = config.getSessions();
+				this.attributes = config.getAttributes();
 			} catch (Exception e) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Error reading configuration file!"));
 				return false;
 			}
 
-			if (!sessions.keySet().isEmpty()) {
-				for (String u : sessions.keySet()) {
+			if (!this.sessions.keySet().isEmpty()) {
+				for (String u : this.sessions.keySet()) {
 					if (!users.contains(u)) {
 						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Loaded sessions, but user "
 								+ u + " is not valid for this model!"));
@@ -142,9 +148,9 @@ public class RABACCheck implements CarismaCheck {
 									"Dynamic seperation of duty contains invalid syntax!"));
 							return false;
 						}
-						for (String u : sessions.keySet()) {
+						for (String u : this.sessions.keySet()) {
 							int numRoles = 0;
-							for (String r : sessions.get(u).getSet()) {
+							for (String r : this.sessions.get(u).getSet()) {
 								if (Arrays.asList(dsdElements).toString().contains(r)) {
 									numRoles++;
 								}
@@ -165,7 +171,7 @@ public class RABACCheck implements CarismaCheck {
 
 				List<Element> abacRequire = UMLsecUtil.getStereotypedElements(content, UMLsec.ABACREQUIRE);
 				if (abacRequire.isEmpty()) {
-					host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "No RABAC constraints found!"));
+					host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "No CHECK_ID constraints found!"));
 					return true;
 				}
 
@@ -183,12 +189,12 @@ public class RABACCheck implements CarismaCheck {
 					globalFilter = attributeFiltersTag.get(0);
 				}
 
-				for (String u : sessions.keySet()) {
+				for (String u : this.sessions.keySet()) {
 					host.appendLineToReport("User " + u + " has access to the following protected items:");
 
 					Set<Transition> validTransitions = new HashSet<Transition>();
 					// verify constraints based on all elements which contain a
-					// RABAC stereotype
+					// CHECK_ID stereotype
 					for (Element e : abacRequire) {
 						List<String> right = UMLsecUtil.getStringValues("right", UMLsec.ABACREQUIRE, e);
 						if (right.isEmpty()) {
@@ -197,7 +203,7 @@ public class RABACCheck implements CarismaCheck {
 							return false;
 						}
 
-						Set<String> roles = sessions.get(u).getSet();
+						Set<String> roles = this.sessions.get(u).getSet();
 						List<String> rhTag = UMLsecUtil.getStringValues("rh", UMLsec.ABAC, abacClass);
 						if (rhTag.size() > 0) {
 							roles = getElementsFromHierarchy(roles, rhTag.get(0));
@@ -227,7 +233,7 @@ public class RABACCheck implements CarismaCheck {
 					}
 
 					// choose state machine paths with transitions that have
-					// passed RABAC
+					// passed CHECK_ID
 					for (List<List<Element>> m : paths) {
 						Set<Element> states = new HashSet<Element>();
 						boolean printMachine = true;
@@ -285,7 +291,7 @@ public class RABACCheck implements CarismaCheck {
 			}
 
 			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO,
-					"Verified RABAC constraints, view report for details"));
+					"Verified CHECK_ID constraints, view report for details"));
 			return true;
 		}
 
@@ -357,14 +363,14 @@ public class RABACCheck implements CarismaCheck {
 	 *            string to convert
 	 * @return compatible class
 	 */
-	public Object convertToECore(EAttribute attribute, String value) {
+	public static Object convertToECore(EAttribute attribute, String value) {
 		if (value != null) {
 			if (attribute.getUpperBound() == -1) {
 				String elements[] = value.substring(1, value.length() - 1).split(",");
 				if (attribute.getEType().getName().equals("EDouble")) {
 					EList<Double> list = new BasicEList<Double>();
 					for (String s : elements) {
-						list.add(Double.parseDouble(s));
+						list.add(Double.valueOf(s));
 					}
 					return list;
 				}
@@ -376,7 +382,7 @@ public class RABACCheck implements CarismaCheck {
 					return list;
 				}
 			} else if (attribute.getEType().getName().equals("EDouble")) {
-				return Double.parseDouble(value);
+				return Double.valueOf(value);
 			}
 		}
 
@@ -393,7 +399,7 @@ public class RABACCheck implements CarismaCheck {
 		EPackage model = ef.createEPackage();
 		model.getEClassifiers().add(filter);
 
-		for (Attribute a : attributes) {
+		for (Attribute a : this.attributes) {
 			EAttribute attribute = ef.createEAttribute();
 			attribute.setName(a.getName());
 			attribute.setEType(ep.getEString());
@@ -415,7 +421,7 @@ public class RABACCheck implements CarismaCheck {
 		List<EAttribute> attributeInstances = filter.getEAllAttributes();
 		EObject filterInstance = model.getEFactoryInstance().create(filter);
 		// set values of attributes according to configuration
-		for (Attribute a : attributes) {
+		for (Attribute a : this.attributes) {
 			if (a.getType() != null) {
 				for (EAttribute e : attributeInstances) {
 					if (e.getName().equals(a.getName())) {
@@ -436,10 +442,20 @@ public class RABACCheck implements CarismaCheck {
 			// evaluate filter on the helper model
 			return !OclEvaluator.query(model, model.eClass(), filter).isViolated();
 		} catch (ParserException e) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Parsing of filter failed: "
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Parsing of filter failed: "
 					+ e.getMessage()));
 			return false;
 		}
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 
 }

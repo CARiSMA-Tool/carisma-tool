@@ -4,7 +4,8 @@ Bundle-Name: CARiSMA UML Dummy Check
 Bundle-SymbolicName: carisma.check.dummy;singleton:=true
 Bundle-Version: 1.1.1.qualifier
 Require-Bundle: carisma.modeltype.uml2;bundle-version="1.1.2",
- org.eclipse.uml2.uml
+ org.eclipse.uml2.uml,
+ carisma.core
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: Software Engineering Institute, TU Dortmund

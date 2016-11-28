@@ -62,7 +62,7 @@ public class AnalysisResult {
 	 */
 	@SuppressWarnings("unused")
 	private AnalysisResult() {
-		checkResults = new ArrayList<CheckResult>();
+		this.checkResults = new ArrayList<CheckResult>();
 	    //throw new UnsupportedOperationException("No-arg constructor is just to keep JAXB from complaining");
 	}
 	
@@ -71,11 +71,11 @@ public class AnalysisResult {
 	 */
 	public AnalysisResult(final Analysis analysis){
 		this.analysis = analysis;
-		timestamp = "";
-		status = AnalysisResultStatus.FAIL;
-		checkResults = new ArrayList<CheckResult>();
-		report = new StringBuffer();
-		modelPath = analysis.getModelFile().toString();//das
+		this.timestamp = "";
+		this.status = AnalysisResultStatus.FAIL;
+		this.checkResults = new ArrayList<CheckResult>();
+		this.report = new StringBuffer();
+		this.modelPath = analysis.getModelFile().toString();//das
 	}
 
 	/**
@@ -83,13 +83,13 @@ public class AnalysisResult {
 	 */
 	@XmlElement(name = "AnalyzedModel")
 	public final String getName() {
-		return name;
+		return this.name;
 	}
 
 	
 	@XmlElement(name = "Filepath")
 	public final String getModelPath(){
-		return modelPath;
+		return this.modelPath;
 	}
 	/**
 	 * @param name the name
@@ -103,7 +103,7 @@ public class AnalysisResult {
 	 */
 	@XmlElement(name = "Timestamp")
 	public final String getTimestamp() {
-		return timestamp;
+		return this.timestamp;
 	}
 	
 	/**
@@ -125,7 +125,7 @@ public class AnalysisResult {
 	 */
 	@XmlElement(name = "Status")
 	public final AnalysisResultStatus getStatus(){
-		return status;
+		return this.status;
 	}
 	
 
@@ -135,7 +135,7 @@ public class AnalysisResult {
 	 */
 	@XmlElement(name = "CheckResult")
 	public final List<CheckResult> getCheckResults() {
-		return checkResults;
+		return this.checkResults;
 	}
 	
 	
@@ -143,7 +143,7 @@ public class AnalysisResult {
 	 * @param text the message
 	 */
 	public final void appendToReport(final String text) {
-		report.append(text);
+		this.report.append(text);
 	}
 	
 	/**
@@ -151,21 +151,21 @@ public class AnalysisResult {
 	 */
 	@XmlElement(name = "ReportDump")
 	public final String getReport() {
-		return report.toString();
+		return this.report.toString();
 	}
 	
 	/**
 	 * @return analysis
 	 */
 	public final Analysis getAnalysis() {
-		return analysis;
+		return this.analysis;
 	}
 	/**
 	 * 
 	 * @param result the CheckReuslt
 	 */
 	public final void addCheckResult(final CheckResult result) {
-		checkResults.add(result);
+		this.checkResults.add(result);
 		result.setParent(this);
 	}
 	

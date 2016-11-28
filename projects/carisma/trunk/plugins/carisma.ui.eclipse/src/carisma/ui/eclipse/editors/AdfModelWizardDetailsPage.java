@@ -52,7 +52,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 	/**
 	 * Contains the model file extensions which are valid.
 	 */
-	private String[] extensionFilter;
+	String[] extensionFilter;
 	
 	/**
 	 * The second page of the AdfModelWizard.
@@ -62,7 +62,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 	/**
 	 * The text box which displays the path to the model file.
 	 */
-	private Text modelFileText = null;
+	private Text pathToModelFileText = null;
 	
 	/**
 	 * Constructor.
@@ -98,7 +98,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 		GridData gridDataSpan = new GridData(GridData.FILL_HORIZONTAL);
 		gridDataSpan.horizontalSpan = 2;
 		typeCombo.setLayoutData(gridDataSpan);
-		final List<ModelType> modeltypeList = CarismaGUI.INSTANCE.getModelTypeRegistry().getSupportedTypes();
+		final List<ModelType> modeltypeList = CarismaGUI.getModelTypeRegistry().getSupportedTypes();
 		String[] types = new String[modeltypeList.size()];
 		int umlIndex = 0;
 		for (int i = 0; i < modeltypeList.size(); i++) {
@@ -109,7 +109,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 		}
 		typeCombo.setItems(types);
 		typeCombo.select(umlIndex);
-		extensionFilter = modeltypeList.get(typeCombo.getSelectionIndex()).getFileExtension().split(",");
+		this.extensionFilter = modeltypeList.get(typeCombo.getSelectionIndex()).getFileExtension().split(",");
 		setModelType(typeCombo.getItem(typeCombo.getSelectionIndex()));
 		typeCombo.setToolTipText("Select a model type from the given list");
 
@@ -118,20 +118,20 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 			public void widgetSelected(final SelectionEvent e) {
 				setModelType(typeCombo.getItem(typeCombo
 						.getSelectionIndex()));
-				extensionFilter = modeltypeList.get(typeCombo.getSelectionIndex()).getFileExtension().split(",");
+				AdfModelWizardDetailsPage.this.extensionFilter = modeltypeList.get(typeCombo.getSelectionIndex()).getFileExtension().split(",");
 				setPageComplete(validatePage());
 			}
 		});
 		
 		new Label(composite, SWT.NONE).setText("Select the model file");
 
-		modelFileText = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		modelFileText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		modelFileText.setText("");
-		modelFileText.setEditable(false);
-		modelFileText.setToolTipText("Displays the path to the selected model file");
+		this.pathToModelFileText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		this.pathToModelFileText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		this.pathToModelFileText.setText("");
+		this.pathToModelFileText.setEditable(false);
+		this.pathToModelFileText.setToolTipText("Displays the path to the selected model file");
 
-		createBrowse(composite, modelFileText);
+		createBrowse(composite, this.pathToModelFileText);
 		 
 		setControl(composite);
 	}
@@ -147,7 +147,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 	 * @return the source file for the analysis, e.g. "model.uml"
 	 */
 	public final IFile getSourceFile() {
-		return sourceFile;
+		return this.sourceFile;
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 	 * @return the model type, e.g. "UML2"
 	 */
 	public final String getModelType() {
-		return modelType;
+		return this.modelType;
 	}
 	
 	/**
@@ -174,19 +174,17 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 		if ((getSourceFile() != null) 
 				&& (getModelType() != null)
 				&& !"".equals(getModelType())) {
-			if (Arrays.asList(extensionFilter).contains(getSourceFile().getFileExtension())) {
+			if (Arrays.asList(this.extensionFilter).contains(getSourceFile().getFileExtension())) {
 				this.setErrorMessage(null); 
 				setPageComplete(true);
 				return true;					
-			} else {
-				this.setErrorMessage("Model file is not of type " + getModelType());
-				return false;
-			}					
-		} else {
-			setDescription("Choose the model file and its type");
-			setPageComplete(false);
-			return false;
+			}
+			this.setErrorMessage("Model file is not of type " + getModelType());
+			return false;					
 		}
+		setDescription("Choose the model file and its type");
+		setPageComplete(false);
+		return false;
 	}
 
 	@Override
@@ -220,13 +218,13 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 	 * @param composite The parent composite
 	 * @param onlyWorkspace Indicates if the root path is the workspace location
 	 */
-	private void openFileDialog(final Composite composite, final boolean onlyWorkspace) {
+	void openFileDialog(final Composite composite, final boolean onlyWorkspace) {
 		FileDialog fileDialog = new FileDialog(composite.getShell(), SWT.OPEN);
 		
 		// Filter the files via the chosen extension
-		final String[] fileDialogExtensionFilter = new String[extensionFilter.length];
+		final String[] fileDialogExtensionFilter = new String[this.extensionFilter.length];
 		int iterate = 0;
-		for (String singleExtension : extensionFilter) {
+		for (String singleExtension : this.extensionFilter) {
 			fileDialogExtensionFilter[iterate++] = "*." + singleExtension;
 		}
 		fileDialog.setFilterExtensions(fileDialogExtensionFilter);
@@ -246,8 +244,8 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 			try {
 				IFile modelIFile = getLinkedIFile(filepath);
 				setSourceFile(modelIFile);
-				modelFileText.setText(getSourceFile().getFullPath().toString());
-				newFilePage.suggestFileNameAndFolder(getSourceFile().getName(), getSourceFile().getFullPath());
+				this.pathToModelFileText.setText(getSourceFile().getFullPath().toString());
+				this.newFilePage.suggestFileNameAndFolder(getSourceFile().getName(), getSourceFile().getFullPath());
 				setPageComplete(validatePage());
 			} catch (Exception exc) {
 				iNSTANCE.setErrorMessage("Must select file");
@@ -262,7 +260,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 	 * @return The IFile object of the selected file
 	 * @throws CoreException If the IFile could not be created
 	 */
-	private IFile getLinkedIFile(final String filepath) throws CoreException {
+	private static IFile getLinkedIFile(final String filepath) throws CoreException {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IPath location = Path.fromOSString(filepath);
 		IFile modelIFile = workspace.getRoot().getFileForLocation(location);

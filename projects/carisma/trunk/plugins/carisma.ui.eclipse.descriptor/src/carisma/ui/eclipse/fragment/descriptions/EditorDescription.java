@@ -46,19 +46,19 @@ public class EditorDescription extends AbstractEditorDescriptor {
 	
 	@Override
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 
 	@Override
 	public String getId() {
-		return editorID;
+		return this.editorID;
 	}
 	
 	@Override
 	public final boolean isApplicable(final IFile modelIFile) {
 		
-		if (fileExtension != null) {
+		if (this.fileExtension != null) {
 			IFile toTest = getAlternativeFile(modelIFile);
 			if (toTest == null || !toTest.exists()) {
 				return false;
@@ -67,8 +67,8 @@ public class EditorDescription extends AbstractEditorDescriptor {
 		
 		if (modelIFile != null
 				&& modelIFile.exists()
-				&& !types.isEmpty()) {
-			for (String type : types) {
+				&& !this.types.isEmpty()) {
+			for (String type : this.types) {
 				if (modelIFile.getFileExtension().toLowerCase().matches(type.toLowerCase())
 						//bpmn2 modeler registers only bpmn2 extension, should be fixed soon...
 						|| (modelIFile.getFileExtension().equalsIgnoreCase("bpmn") ? "bpmn2".matches(type.toLowerCase()) : false)) {
@@ -81,11 +81,10 @@ public class EditorDescription extends AbstractEditorDescriptor {
 	
 	@Override
 	public final boolean forceOpen(final IFile modelIFile) {
-		if (fileExtension == null) {
+		if (this.fileExtension == null) {
 			return super.forceOpen(modelIFile);
-		} else {
-			return super.forceOpen(getAlternativeFile(modelIFile));
 		}
+		return super.forceOpen(getAlternativeFile(modelIFile));
 	}
 	
 	
@@ -98,7 +97,7 @@ public class EditorDescription extends AbstractEditorDescriptor {
 		String fileWithoutExt = modelIFile.getFullPath().toOSString().substring(0,
 				modelIFile.getFullPath().toOSString().length() - 4);
 		IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-		IPath path = Path.fromOSString(fileWithoutExt + "." + fileExtension); 
+		IPath path = Path.fromOSString(fileWithoutExt + "." + this.fileExtension); 
 		IFile grIfile = workspaceRoot.getFile(path);
 		return grIfile;
 	}
@@ -119,7 +118,7 @@ public class EditorDescription extends AbstractEditorDescriptor {
 	}
 
 	public String getFileExtension() {
-		return fileExtension;
+		return this.fileExtension;
 	}
 
 	public void setFileExtension(String fileExtension) {
@@ -134,7 +133,7 @@ public class EditorDescription extends AbstractEditorDescriptor {
 
 	@Override
 	public void setExtension(String extension) {
-		fileExtension = extension;
+		this.fileExtension = extension;
 	}
 
 	@Override

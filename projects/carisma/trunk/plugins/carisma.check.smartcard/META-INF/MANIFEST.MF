@@ -6,8 +6,9 @@ Bundle-Version: 1.0.3.qualifier
 Require-Bundle: carisma.modeltype.uml2,
  carisma.profile.umlsec;visibility:=reexport,
  org.eclipse.emf.ecore.xmi,
- org.eclipse.uml2.uml
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+ org.eclipse.uml2.uml,
+ carisma.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: carisma.check.smartcard.authorizedstatus,
  carisma.check.smartcard.lockedstatus,
  carisma.check.smartcard.utils

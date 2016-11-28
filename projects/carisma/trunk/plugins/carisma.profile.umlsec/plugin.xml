@@ -4,9 +4,9 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated UMLsec -->
       <package
-            uri="http:///UMLsec.ecore"
+            uri="http://www.umlsec.de/profiles/UMLsec"
             class="UMLsec.UMLsecPackage"
-            genModel="profile/UMLsec.genmodel"/>
+            genModel="profile/UMLsec.profile.genmodel"/>
    </extension>
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">

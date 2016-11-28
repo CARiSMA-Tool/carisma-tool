@@ -47,7 +47,7 @@ public class IntegerParameter extends CheckParameter {
 	 * @return value of this parameter
 	 */
 	public final int getValue() {
-		return value;
+		return this.value;
 	}
 	/**
 	 * setter for value.

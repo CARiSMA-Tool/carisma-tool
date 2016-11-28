@@ -33,7 +33,7 @@ public final class Messages {
 	}
 	
 	static String allLockedStatesCorrect() {
-		return "Check successful with respect to locked-status";
+		return "LockedStatusCheck successful with respect to locked-status";
 	}
 	
 	static String outgoingTransitionFromLockedStatus(

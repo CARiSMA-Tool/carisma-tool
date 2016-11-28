@@ -46,7 +46,7 @@ public class FolderParameter extends CheckParameter {
 	 * @return value value of this parameter
 	 */
 	public final File getValue() {
-		return value;
+		return this.value;
 	}
 	/**
 	 * setter for value.

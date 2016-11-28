@@ -17,7 +17,7 @@ import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.OutputFileParameter;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.bpmn2.yaoqiang.YaoqiangHelper;
 
@@ -26,8 +26,15 @@ import carisma.modeltype.bpmn2.yaoqiang.YaoqiangHelper;
  * @author Marcel Michel
  *
  */
-public class ConvertEmfCheck implements CarismaCheck {
+public class ConvertEmfCheck implements CarismaCheckWithID {
 
+	private static final String CHECK_ID = "carisma.modeltype.bpmn2.emfconverter";
+	private static final String PARAM_OUTPUTMODEL = "carisma.modeltype.bpmn2.outputmodel";
+
+	private static final String CHECK_NAME = "EMF to Yaoqiang Converter";
+	
+	private static final String ANALYSISMODEL = "analysismodel";
+	
 	/**
 	 * Performs conversion.
 	 * @param parameters The Checkparameters
@@ -40,23 +47,18 @@ public class ConvertEmfCheck implements CarismaCheck {
 		File modelFile = new File(host.getAnalyzedModel().getURI().toFileString());
 		
 		File outputFile = null;
-		boolean parameterError = false;
-		if (parameters.containsKey("carisma.modeltype.bpmn2.outputmodel")) {
-			outputFile = ((OutputFileParameter) parameters.get("carisma.modeltype.bpmn2.outputmodel")).getValue();
+		//TODO: Check this chains
+		if (parameters.containsKey(PARAM_OUTPUTMODEL)) {
+			outputFile = ((OutputFileParameter) parameters.get(PARAM_OUTPUTMODEL)).getValue();
 			if (outputFile != null) {
-				if (outputFile.getName().equalsIgnoreCase("analysismodel")) {
+				if (outputFile.getName().equalsIgnoreCase(ANALYSISMODEL)) {
 					outputFile = modelFile;
 				}
 			} else {
-				parameterError = true;
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, 
 						"Output File is not defined. To overwrite the default model use 'AnalysisModel'"));
 			}
 		} else {
-			parameterError = true;
-		}
-		
-		if (parameterError) {
 			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, 
 				"Could not resolve necessary parameters!"));
 			return false;
@@ -66,10 +68,19 @@ public class ConvertEmfCheck implements CarismaCheck {
 		if (YaoqiangHelper.emf2yaoqiangModel(modelFile.getAbsolutePath(), 
 				outputFile.getAbsolutePath())) {
 			return true;
-		} else {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
-				"Error during conversion!"));
-			return false;
 		}
+		host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
+			"Error during conversion!"));
+		return false;
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 }

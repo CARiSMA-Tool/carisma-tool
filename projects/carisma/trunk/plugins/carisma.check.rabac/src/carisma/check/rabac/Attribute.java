@@ -8,7 +8,7 @@ public class Attribute {
 	private HashMap<String, String> values = new HashMap<String, String>();
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -16,7 +16,7 @@ public class Attribute {
 	}
 
 	public String getType() {
-		return type;
+		return this.type;
 	}
 
 	public void setType(String type) {
@@ -24,7 +24,7 @@ public class Attribute {
 	}
 
 	public HashMap<String, String> getValues() {
-		return values;
+		return this.values;
 	}
 
 	public void setValues(HashMap<String, String> values) {

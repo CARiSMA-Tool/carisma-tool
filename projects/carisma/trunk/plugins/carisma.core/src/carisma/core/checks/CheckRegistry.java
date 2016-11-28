@@ -63,7 +63,7 @@ public class CheckRegistry {
 	public void initialize() {
 		// search for adapters in ExtensionRegistry
 		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
-		IExtensionPoint extensionPoint = extensionRegistry.getExtensionPoint("carisma.carismacheck");
+		IExtensionPoint extensionPoint = extensionRegistry.getExtensionPoint(Carisma.EXTENSION_POINT_CARISMA_CARISMACHECK);
 		
 		for (IExtension extension : extensionPoint.getExtensions()) { 
 			for (IConfigurationElement checkElement : extension.getConfigurationElements()) {
@@ -117,7 +117,7 @@ public class CheckRegistry {
 	 * @return
 	 */
 	public List<CheckDescriptor> getRegisteredChecks() {
-		return Collections.unmodifiableList(registeredChecks);
+		return Collections.unmodifiableList(this.registeredChecks);
 	}
 	
 	/**
@@ -127,7 +127,7 @@ public class CheckRegistry {
 	 */
 	public List<CheckDescriptor> findChecks(String modelType) {
 		ArrayList<CheckDescriptor> result = new ArrayList<CheckDescriptor>();
-		for (CheckDescriptor cd : registeredChecks) {
+		for (CheckDescriptor cd : this.registeredChecks) {
 			String[] modelTypes = cd.getTargetModelType().split(",");
 			for (String mt : modelTypes) {
 				if (modelType.equalsIgnoreCase(mt)
@@ -145,7 +145,7 @@ public class CheckRegistry {
 	 * @return
 	 */
 	public CheckDescriptor getCheckDescriptor(String id) {
-		for (CheckDescriptor cd : registeredChecks) {
+		for (CheckDescriptor cd : this.registeredChecks) {
 			if (cd.getCheckDescriptorId().equalsIgnoreCase(id)) {
 				return cd;
 			}
@@ -158,14 +158,14 @@ public class CheckRegistry {
 	 * @param checkDescriptor
 	 * @return
 	 */
-	public CarismaCheck getCheck(CheckDescriptor checkDescriptor) {
+	public static CarismaCheckWithID getCheck(CheckDescriptor checkDescriptor) {
 		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
-		IExtensionPoint extensionPoint = extensionRegistry.getExtensionPoint("carisma.carismacheck");
+		IExtensionPoint extensionPoint = extensionRegistry.getExtensionPoint(Carisma.EXTENSION_POINT_CARISMACHECK);
 		for (IExtension extension : extensionPoint.getExtensions()) {
 			for (IConfigurationElement checkElement : extension.getConfigurationElements()) {
 				if (checkDescriptor.getCheckDescriptorId().equalsIgnoreCase(checkElement.getAttribute("id"))) {
 					try {
-						return (CarismaCheck) checkElement.createExecutableExtension("implementingClass");
+						return (CarismaCheckWithID) checkElement.createExecutableExtension("implementingClass");
 					} catch (CoreException e) {
 						Logger.log(LogLevel.ERROR, "Unable to load check class: " + checkDescriptor.getCheckDescriptorId(), e);
 					}
@@ -181,7 +181,7 @@ public class CheckRegistry {
 	 * @param descriptor
 	 * @return
 	 */
-	public  CheckReference createReference(CheckDescriptor descriptor) {
+	public static  CheckReference createReference(CheckDescriptor descriptor) {
 		CheckReference reference = new CheckReference(descriptor.getCheckDescriptorId(), true);
 		for (CheckParameterDescriptor cpd : descriptor.getParameters()) {
 			if (cpd.getType() == ParameterType.STRING) {
@@ -193,7 +193,7 @@ public class CheckRegistry {
 			} else if (cpd.getType() == ParameterType.BOOLEAN) {
 				BooleanParameter param = new BooleanParameter(cpd);
 				if (cpd.getDefaultValue() != null) {
-					param.setValue(Boolean.valueOf(cpd.getDefaultValue()));
+					param.setValue(Boolean.parseBoolean(cpd.getDefaultValue()));
 				}
 				reference.getParameters().add(param);
 			} else if (cpd.getType() == ParameterType.INTEGER) {
@@ -244,41 +244,33 @@ public class CheckRegistry {
 	 */
 	public List<CheckDescriptor> getRecommendedChecks(IFile modelIFile) {
 		String content = "";
-		InputStream is = null;
 		try {
 			if (modelIFile.exists()) {
 				
 				// Ress might be out of sync if the file is modified outside of eclipse
 				modelIFile.refreshLocal(IResource.DEPTH_ZERO, null);
 				
-				is = modelIFile.getContents();
-				int buffersize = INITIAL_BUFFER_SIZE; // 8K, default size
-				byte[] buf = new byte[buffersize];				
-				int bytesred = 0;
-				while (is.available() != 0) { 
-					bytesred += is.read(buf, bytesred, INITIAL_BUFFER_SIZE);
-					if (bytesred == buffersize)  {
-						buffersize += INITIAL_BUFFER_SIZE;
-						byte[] newBuf = new byte[buffersize];
-						System.arraycopy(buf, 0, newBuf, 0, bytesred);
-						buf = newBuf;
-					}													
+				try(InputStream is = modelIFile.getContents()){
+					int buffersize = INITIAL_BUFFER_SIZE; // 8K, default size
+					byte[] buf = new byte[buffersize];				
+					int bytesred = 0;
+					while (is.available() != 0) { 
+						bytesred += is.read(buf, bytesred, INITIAL_BUFFER_SIZE);
+						if (bytesred == buffersize)  {
+							buffersize += INITIAL_BUFFER_SIZE;
+							byte[] newBuf = new byte[buffersize];
+							System.arraycopy(buf, 0, newBuf, 0, bytesred);
+							buf = newBuf;
+						}													
+					}
+					content = new String(buf, 0, bytesred);
+				} catch (IOException e) {
+					Logger.log(LogLevel.ERROR, "Cannot read file", e);
+					
 				}
-				content = new String(buf, 0, bytesred);
 			}
 		} catch (CoreException e) {
 			Logger.log(LogLevel.ERROR, "Cannot find or read file" ,	e);
-		} catch (IOException e) {
-			Logger.log(LogLevel.ERROR, "Cannot read file", e);
-			
-		} finally {
-			if (is != null) {
-				try {
-					is.close();
-				} catch (IOException e) {
-					Logger.log(LogLevel.ERROR, "IOExcption while closing InputStrea \"" + modelIFile.getName(), e);
-				}
-			}
 		}
 		List<CheckDescriptor> recChecks = new ArrayList<CheckDescriptor>();
 		

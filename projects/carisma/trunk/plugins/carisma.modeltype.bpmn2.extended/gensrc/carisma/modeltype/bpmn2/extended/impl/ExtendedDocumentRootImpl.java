@@ -86,8 +86,9 @@ public class ExtendedDocumentRootImpl extends EObjectImpl implements ExtendedDoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Definitions getExtendedDefinitions() {
-		return extendedDefinitions;
+		return this.extendedDefinitions;
 	}
 
 	/**
@@ -96,8 +97,8 @@ public class ExtendedDocumentRootImpl extends EObjectImpl implements ExtendedDoc
 	 * @generated
 	 */
 	public NotificationChain basicSetExtendedDefinitions(Definitions newExtendedDefinitions, NotificationChain msgs) {
-		Definitions oldExtendedDefinitions = extendedDefinitions;
-		extendedDefinitions = newExtendedDefinitions;
+		Definitions oldExtendedDefinitions = this.extendedDefinitions;
+		this.extendedDefinitions = newExtendedDefinitions;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENDED_DEFINITIONS, oldExtendedDefinitions, newExtendedDefinitions);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
@@ -110,11 +111,12 @@ public class ExtendedDocumentRootImpl extends EObjectImpl implements ExtendedDoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExtendedDefinitions(Definitions newExtendedDefinitions) {
-		if (newExtendedDefinitions != extendedDefinitions) {
+		if (newExtendedDefinitions != this.extendedDefinitions) {
 			NotificationChain msgs = null;
-			if (extendedDefinitions != null)
-				msgs = ((InternalEObject)extendedDefinitions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENDED_DEFINITIONS, null, msgs);
+			if (this.extendedDefinitions != null)
+				msgs = ((InternalEObject)this.extendedDefinitions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENDED_DEFINITIONS, null, msgs);
 			if (newExtendedDefinitions != null)
 				msgs = ((InternalEObject)newExtendedDefinitions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENDED_DEFINITIONS, null, msgs);
 			msgs = basicSetExtendedDefinitions(newExtendedDefinitions, msgs);
@@ -129,8 +131,9 @@ public class ExtendedDocumentRootImpl extends EObjectImpl implements ExtendedDoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtensionRoot getExtensionRoot() {
-		return extensionRoot;
+		return this.extensionRoot;
 	}
 
 	/**
@@ -139,8 +142,8 @@ public class ExtendedDocumentRootImpl extends EObjectImpl implements ExtendedDoc
 	 * @generated
 	 */
 	public NotificationChain basicSetExtensionRoot(ExtensionRoot newExtensionRoot, NotificationChain msgs) {
-		ExtensionRoot oldExtensionRoot = extensionRoot;
-		extensionRoot = newExtensionRoot;
+		ExtensionRoot oldExtensionRoot = this.extensionRoot;
+		this.extensionRoot = newExtensionRoot;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENSION_ROOT, oldExtensionRoot, newExtensionRoot);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
@@ -153,11 +156,12 @@ public class ExtendedDocumentRootImpl extends EObjectImpl implements ExtendedDoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExtensionRoot(ExtensionRoot newExtensionRoot) {
-		if (newExtensionRoot != extensionRoot) {
+		if (newExtensionRoot != this.extensionRoot) {
 			NotificationChain msgs = null;
-			if (extensionRoot != null)
-				msgs = ((InternalEObject)extensionRoot).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENSION_ROOT, null, msgs);
+			if (this.extensionRoot != null)
+				msgs = ((InternalEObject)this.extensionRoot).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENSION_ROOT, null, msgs);
 			if (newExtensionRoot != null)
 				msgs = ((InternalEObject)newExtensionRoot).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENSION_ROOT, null, msgs);
 			msgs = basicSetExtensionRoot(newExtensionRoot, msgs);
@@ -179,8 +183,9 @@ public class ExtendedDocumentRootImpl extends EObjectImpl implements ExtendedDoc
 				return basicSetExtendedDefinitions(null, msgs);
 			case ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENSION_ROOT:
 				return basicSetExtensionRoot(null, msgs);
+			default:
+				return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -195,8 +200,9 @@ public class ExtendedDocumentRootImpl extends EObjectImpl implements ExtendedDoc
 				return getExtendedDefinitions();
 			case ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENSION_ROOT:
 				return getExtensionRoot();
+			default:
+				return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -209,12 +215,14 @@ public class ExtendedDocumentRootImpl extends EObjectImpl implements ExtendedDoc
 		switch (featureID) {
 			case ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENDED_DEFINITIONS:
 				setExtendedDefinitions((Definitions)newValue);
-				return;
+				break;
 			case ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENSION_ROOT:
 				setExtensionRoot((ExtensionRoot)newValue);
-				return;
+				break;
+			default:
+				super.eSet(featureID, newValue);
+				break;
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -227,12 +235,14 @@ public class ExtendedDocumentRootImpl extends EObjectImpl implements ExtendedDoc
 		switch (featureID) {
 			case ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENDED_DEFINITIONS:
 				setExtendedDefinitions((Definitions)null);
-				return;
+				break;
 			case ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENSION_ROOT:
 				setExtensionRoot((ExtensionRoot)null);
-				return;
+				break;
+			default:
+				super.eUnset(featureID);
+				break;
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -244,9 +254,9 @@ public class ExtendedDocumentRootImpl extends EObjectImpl implements ExtendedDoc
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENDED_DEFINITIONS:
-				return extendedDefinitions != null;
+				return this.extendedDefinitions != null;
 			case ExtendedPackage.EXTENDED_DOCUMENT_ROOT__EXTENSION_ROOT:
-				return extensionRoot != null;
+				return this.extensionRoot != null;
 		}
 		return super.eIsSet(featureID);
 	}

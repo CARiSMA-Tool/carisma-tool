@@ -98,9 +98,8 @@ public final class SecureLinksHelper {
 	isSecureLinksRequirement(final Stereotype stereotype) {
 		if (!stereotype.getProfile().getName().contains("UMLsec")) {
 			return false;
-		} else {
-			return isSecureLinksRequirement(stereotype.getName());
 		}
+		return isSecureLinksRequirement(stereotype.getName());
 	}
 	
 	/**
@@ -144,9 +143,8 @@ public final class SecureLinksHelper {
 		String stName = stereotype.getName().toLowerCase(Locale.ENGLISH);
 		if (!stereotype.getProfile().getName().contains("UMLsec")) {
 			return false;
-		} else {
-			return isSecureLinksLinktype(stName);
 		}
+		return isSecureLinksLinktype(stName);
 	}
 	
 	public static boolean 

@@ -77,6 +77,7 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OclExpression createOclExpression() {
 		OclExpressionImpl oclExpression = new OclExpressionImpl();
 		return oclExpression;
@@ -87,6 +88,7 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OclLibrary createOclLibrary() {
 		OclLibraryImpl oclLibrary = new OclLibraryImpl();
 		return oclLibrary;
@@ -97,6 +99,7 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LibraryPackage getLibraryPackage() {
 		return (LibraryPackage)getEPackage();
 	}

@@ -93,14 +93,14 @@ public class PrefPageSection extends OptionTemplateSection {
 		page.setDescription("Configure your preference page.");
 		wizard.addPage(page);
 		markPagesAdded();
-		validateOptions(createPage);
+		validateOptions(this.createPage);
 	}
 
 	/**
 	 * Adds Options to a WizardPage.
 	 */
 	public final void createOptions() {
-		createPage = (BooleanOption) addOption("Create_a_PreferencePage",
+		this.createPage = (BooleanOption) addOption("Create_a_PreferencePage",
 				"Create a Preference Page.", false, 0);
 		addOption(CLASS_NAME, "Class Name", "MyPrefPage", 0);
 		addOption(PAGE_NAME, "Page Name", "My Preference Page", 0);
@@ -109,20 +109,20 @@ public class PrefPageSection extends OptionTemplateSection {
 
 	@Override
 	public final void validateOptions(final TemplateOption source) {
-		if (firsttime) {
+		if (this.firsttime) {
 
 			TemplateOption[] allPageOptions2 = getOptions(0);
 			for (TemplateOption tOption : allPageOptions2) {
 				if (KEY_PACKAGE_NAME.equals(tOption.getName())) {
 					tOption.setValue(ShareWizardData.getPackageName() + ".preferencepage");
 					if (!"".equals(ShareWizardData.getPackageName())) {
-						firsttime = false;
+						this.firsttime = false;
 					}
 				}
 			}
 		}
 
-		if (createPage.isSelected()) {
+		if (this.createPage.isSelected()) {
 			TemplateOption[] allPageOptions = getOptions(0);
 			for (int i = 0; i < allPageOptions.length; i++) {
 				TemplateOption nextOption = allPageOptions[i];
@@ -137,8 +137,8 @@ public class PrefPageSection extends OptionTemplateSection {
 									+ "CHECK_NAME\".preferencepage");
 					// this.getPage(0).setPageComplete(false);
 				} else if (KEY_PACKAGE_NAME.equals(nextOption.getName())
-						&& !nextOption.getValue().equals((String) helper.toLowerCase(Locale.ENGLISH).trim())) {
-					nextOption.setValue((String) helper.toLowerCase(Locale.ENGLISH).trim().replaceAll("[-]", "_"));
+						&& !nextOption.getValue().equals(helper.toLowerCase(Locale.ENGLISH).trim())) {
+					nextOption.setValue(helper.toLowerCase(Locale.ENGLISH).trim().replaceAll("[-]", "_"));
 					super.validateOptions(source);
 				}
 			}
@@ -155,60 +155,70 @@ public class PrefPageSection extends OptionTemplateSection {
 		}
 	}
 
+	@Override
 	protected void initializeFields(IFieldData data) {
 		String id = data.getId();
 		initializeOption(KEY_MAIN_PACKAGE_NAME, id);
 		this.mainPackageName = id.toLowerCase(Locale.ENGLISH);
 	}
 
+	@Override
 	public String getLabel() {
 		return "CARiSMA Pref Page";
 	}
 
+	@Override
 	public String getDescription() {
 		return "A simple Preference Page.";
 	}
 
+	@Override
 	public String getStringOption(String name) {
 	    if (name == null) {
 	        throw new IllegalArgumentException("Parameter 'name' shall not be null");
-	    } else if (mainPackageName == null) {
+	    } else if (this.mainPackageName == null) {
             logger.log(Level.SEVERE, "The import failed. Activator needs to be changed.");
             return "fail";
 	    } else if (name.equals(KEY_MAIN_PACKAGE_NAME)) {
-			return mainPackageName.toLowerCase(Locale.ENGLISH);
+			return this.mainPackageName.toLowerCase(Locale.ENGLISH);
 		} else {
 		    return super.getStringOption(name);
 		}
 	}
 
+	@Override
 	public String getUsedExtensionPoint() {
 		return "org.eclipse.ui.preferencePages";
 	}
 
+	@Override
 	public String[] getNewFiles() {
 		return new String[0];
 	}
 
+	@Override
 	public String getSectionId() {
 		return "preferencepagetemplate";
 	}
 
+	@Override
 	protected URL getInstallURL() {
 		return Activator.getiNSTANCE().getBundle().getEntry("/");
 	}
 
+	@Override
 	protected ResourceBundle getPluginResourceBundle() {
 		return Platform.getResourceBundle(Activator.getiNSTANCE().getBundle());
 	}
 
+	@Override
 	protected void updateModel(IProgressMonitor monitor) throws CoreException {
 
-		if (createPage.isSelected()) {
+		if (this.createPage.isSelected()) {
 
 			IPluginExtension extensionPrefPage = createExtension("org.eclipse.ui.preferencePages", true);
-			IPluginModelFactory factory = model.getPluginFactory();
-			IPluginBase plugin = model.getPluginBase();
+			IPluginModelFactory factory = this.model.getPluginFactory();
+			IPluginBase plugin = this.model.getPluginBase();
 			IPluginElement element = factory.createElement(extensionPrefPage);
 
 			element.setName("page");
@@ -223,14 +233,17 @@ public class PrefPageSection extends OptionTemplateSection {
 		}
 	}
 
+	@Override
 	public boolean isDependentOnParentWizard() {
 		return true;
 	}
 
+	@Override
 	public int getNumberOfWorkUnits() {
 		return super.getNumberOfWorkUnits() + 1;
 	}
 
+	@Override
 	public IPluginReference[] getDependencies(String schemaVersion) {
 		ArrayList<IPluginReference> result = new ArrayList<IPluginReference>();
 
@@ -238,15 +251,14 @@ public class PrefPageSection extends OptionTemplateSection {
 		result.add(new PluginReference("org.eclipse.ui", null, 0));
 		result.add(new PluginReference(Carisma.PLUGIN_ID, null, 0));
 
-		return (IPluginReference[]) result.toArray(
-				new IPluginReference[result.size()]);
+		return result.toArray(new IPluginReference[result.size()]);
 	}
 
 	@Override
 	protected boolean isOkToCreateFolder(File sourceFolder) {
 		if (sourceFolder.getName().equals(".svn")) {
 			return false;
-		} else if (!createPage.isSelected()) {
+		} else if (!this.createPage.isSelected()) {
 			return false;
 		}
 		return true;
@@ -291,6 +303,6 @@ public class PrefPageSection extends OptionTemplateSection {
 		if (version >= 3.0) {
 			result.add("templates_3.0" + "/" + getSectionId() + "/"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
-		return (String[]) result.toArray(new String[result.size()]);
+		return result.toArray(new String[result.size()]);
 	}
 }

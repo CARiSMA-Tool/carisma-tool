@@ -25,7 +25,7 @@ public final class EvolutionUtility {
 	 * or no element if the given ID is at this extensionPoint
 	 */
 	public static String getNonEvolutionCheck(final String evolutionID) {
-		String extensionPointId = "carisma.evolution.EvolutionCheckMapping";
+		String extensionPointId = EvolutionActivator.EXTENSION_POINT_EVOLUTION_CHECK_MAPPING;
 		IExtensionRegistry extensionRegestry = Platform.getExtensionRegistry();
 		IExtensionPoint extensionPoint = extensionRegestry.getExtensionPoint(extensionPointId);
 		if (extensionPoint == null) {
@@ -49,7 +49,7 @@ public final class EvolutionUtility {
 	 * or no element if the given ID is at this extensionPoint
 	 */
 	public static String getEvolutionCheck(final String nonEvolutionCheck) {
-		String extensionPointId = "carisma.evolution.EvolutionCheckMapping";
+		String extensionPointId = EvolutionActivator.EXTENSION_POINT_EVOLUTION_CHECK_MAPPING;
 		IExtensionRegistry extensionRegestry = Platform.getExtensionRegistry();
 		IExtensionPoint extensionPoint = extensionRegestry.getExtensionPoint(extensionPointId);
 		if (extensionPoint == null) {

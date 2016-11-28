@@ -12,26 +12,26 @@ public class ChangeConstraint {
 			final Change newReferencedChange,
 			final Change newConstrainedChange) {
 		if (newType != null && newReferencedChange != null && newConstrainedChange != null) {
-			type = newType;
-			referencedChange = newReferencedChange;
-			constrainedChange = newConstrainedChange;
+			this.type = newType;
+			this.referencedChange = newReferencedChange;
+			this.constrainedChange = newConstrainedChange;
 		}
 	}
 	
 	public ConstraintType getType() {
-		return type;
+		return this.type;
 	}
 	
 	public Change getReferencedChange() {
-		return referencedChange;
+		return this.referencedChange;
 	}
 	
 	public Change getConstrainedChange() {
-		return constrainedChange;
+		return this.constrainedChange;
 	}
 	@Override
 	public final String toString() {
-		return constrainedChange.getRef() + "=" + type.toString() + "(" + referencedChange.getRef() + ")";
+		return this.constrainedChange.getRef() + "=" + this.type.toString() + "(" + this.referencedChange.getRef() + ")";
 	}
 	
 	@Override

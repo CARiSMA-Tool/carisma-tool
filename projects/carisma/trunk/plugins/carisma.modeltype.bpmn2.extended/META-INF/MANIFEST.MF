@@ -6,7 +6,7 @@ Bundle-Version: 1.0.1.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: carisma.modeltype.bpmn2.extended;uses:="org.eclipse.emf.ecore.resource",
  carisma.modeltype.bpmn2.extended.impl;
   uses:="org.eclipse.bpmn2,
@@ -28,6 +28,8 @@ Export-Package: carisma.modeltype.bpmn2.extended;uses:="org.eclipse.emf.ecore.re
    org.eclipse.bpmn2,
    org.eclipse.emf.common.notify.impl,
    carisma.modeltype.bpmn2extended"
-Require-Bundle: carisma.modeltype.bpmn2.extension;visibility:=reexport,
- carisma.modeltype.bpmn2;bundle-version="1.0.0"
+Require-Bundle: carisma.modeltype.bpmn2.extension,
+ carisma.modeltype.bpmn2,
+ org.eclipse.uml2.uml,
+ org.eclipse.bpmn2
 Bundle-ActivationPolicy: lazy

@@ -3,8 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: MaRisk
 Bundle-SymbolicName: carisma.check.bpmn2.marisk;singleton:=true
 Bundle-Version: 1.0.1.qualifier
-Require-Bundle: carisma.core;bundle-version="1.1.1",
- carisma.modeltype.bpmn2;bundle-version="1.0.0",
- carisma.ocl;bundle-version="1.0.0"
+Require-Bundle: carisma.core,
+ carisma.modeltype.bpmn2,
+ carisma.ocl,
+ org.eclipse.bpmn2,
+ org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Activator: carisma.bpmn2.marisk.BPMN2MariskActivator

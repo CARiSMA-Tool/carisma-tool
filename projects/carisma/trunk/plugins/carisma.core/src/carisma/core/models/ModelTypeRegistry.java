@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.URIConverter;
 
+import carisma.core.Carisma;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 
@@ -44,7 +45,7 @@ public class ModelTypeRegistry {
 	public void initialize() {
 		// search for adapters in ExtensionRegistry
 		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
-		IExtensionPoint extensionPoint = extensionRegistry.getExtensionPoint("carisma.modeltype");
+		IExtensionPoint extensionPoint = extensionRegistry.getExtensionPoint(Carisma.EXTENSION_POINT_CARISMAMODELTYPE);
 		for (IExtension extension : extensionPoint.getExtensions()) {
 			for (IConfigurationElement pluginElement : extension.getConfigurationElements()) {
 				String name = pluginElement.getAttribute("name");
@@ -57,7 +58,7 @@ public class ModelTypeRegistry {
 	}
 	
 	public boolean isSupportedType(String modelType) {
-		for (ModelType mt : registeredTypes) {
+		for (ModelType mt : this.registeredTypes) {
 			if (mt.getName().equalsIgnoreCase(modelType)) {
 				return true;
 			}
@@ -65,8 +66,9 @@ public class ModelTypeRegistry {
 		return false;
 	}
 	
+	@Deprecated
 	public ModelLoader getLoader(String modelType) {
-		for (ModelType mt : registeredTypes) {
+		for (ModelType mt : this.registeredTypes) {
 			if (mt.getName().equalsIgnoreCase(modelType)) {
 				return mt.instantiateLoader();
 			}
@@ -75,7 +77,7 @@ public class ModelTypeRegistry {
 		return null;
 	}
 	
-	public void registerURIMapping(String uri, String mapping) {
+	public static void registerURIMapping(String uri, String mapping) {
 		URI modelUri = URI.createURI(uri);
 		if (!URIConverter.URI_MAP.containsKey(modelUri)) {
 			URIConverter.URI_MAP.put(modelUri, URI.createURI(mapping));
@@ -83,11 +85,11 @@ public class ModelTypeRegistry {
 	}
 	
 	public List<ModelType> getSupportedTypes() {
-		return registeredTypes;
+		return this.registeredTypes;
 	}
 
 	public ModelType getTypeForExtension(String fileExtension) {
-		for (ModelType mt : registeredTypes) {
+		for (ModelType mt : this.registeredTypes) {
 			String[] modelTypes = mt.getFileExtension().split(",");
 			for (String modelExtension : modelTypes) {
 				if (modelExtension.equalsIgnoreCase(fileExtension)) {
@@ -99,7 +101,7 @@ public class ModelTypeRegistry {
 	}
 	
 	public ModelType getModelTypeWithName(String typeName) {
-		for (ModelType mt : registeredTypes) {
+		for (ModelType mt : this.registeredTypes) {
 			if (mt.getName().equalsIgnoreCase(typeName)) {
 				return mt;
 			}

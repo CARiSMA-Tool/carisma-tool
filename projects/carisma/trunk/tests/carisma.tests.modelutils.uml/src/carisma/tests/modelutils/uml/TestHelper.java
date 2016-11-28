@@ -6,22 +6,26 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Collections;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 
 public class TestHelper {
 	
-	private static UML2ModelLoader ml = null;
+	private static ResourceSet rs = new ResourceSetImpl();
 	
 	/**
 	 * Loads model when unit testing.
@@ -32,12 +36,9 @@ public class TestHelper {
 	public static final Model loadModel(final String modelFolderPath, final String testmodelname) {
 		File testmodelfile = new File(modelFolderPath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new UML2ModelLoader();
-		}
-		Resource modelres = null;
-		try {
-			modelres = ml.load(testmodelfile);
+		Resource modelres = rs.createResource(URI.createURI(testmodelfile.getPath()));
+		try (FileInputStream stream = new FileInputStream(testmodelfile)){
+			modelres.load(stream, Collections.EMPTY_MAP);
 		} catch (IOException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());

@@ -13,6 +13,7 @@ package carisma.modeltype.bpmn2;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -103,33 +104,63 @@ public final class BPMN2Helper {
 	 * @return If successful true otherwise false
 	 */
 	public static boolean xslTransformation(final String inFilename, final String outFilename, final String xslResourcePath) {
+		TransformerFactory factory = TransformerFactory.newInstance();
+
+		Templates template;
 		try {
-			TransformerFactory factory = TransformerFactory.newInstance();
+			template = factory.newTemplates(new StreamSource(
+				BPMN2Helper.class.getClassLoader().getResourceAsStream(xslResourcePath)
+			));
+		} catch (TransformerConfigurationException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		Transformer xformer;
+		try {
+			xformer = template.newTransformer();
+		} catch (TransformerConfigurationException e) {
+			e.printStackTrace();
+			return false;
+		}
 
-			Templates template = factory.newTemplates(new StreamSource(
-					BPMN2Helper.class.getClassLoader().getResourceAsStream(xslResourcePath)));
-            Transformer xformer = template.newTransformer();
-
-            Source source = new StreamSource(new FileInputStream(inFilename));
+        Source source;
+		try (FileInputStream fileInputStream = new FileInputStream(inFilename);) {
+			
+			source = new StreamSource(fileInputStream);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e1) {
+			e1.printStackTrace();
+			return false;
+		}
             
-            Result result;
-            if (outFilename != null) {
-            	result = new StreamResult(new FileOutputStream(outFilename));
-            } else {
-            	xsltOutputWriter = new StringWriter();
-                result = new StreamResult(xsltOutputWriter);
-            }
-
-            xformer.transform(source, result);
-            
-            return true;
-        } catch (FileNotFoundException e) {
-        	return false;
-        } catch (TransformerConfigurationException e) {
-        	return false;
-        } catch (TransformerException e) {
-        	return false;
+        Result result;
+        if (outFilename != null) {
+          	try (FileOutputStream fileOutputStream = new FileOutputStream(outFilename);){
+				result = new StreamResult(fileOutputStream);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+				return false;
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				return false;
+			}
+        } else {
+        	xsltOutputWriter = new StringWriter();
+        	result = new StreamResult(xsltOutputWriter);
         }
+
+        try {
+			xformer.transform(source, result);
+		} catch (TransformerException e) {
+			e.printStackTrace();
+			return false;
+		}
+            
+        return true;
+        
     }
 	
 	/**

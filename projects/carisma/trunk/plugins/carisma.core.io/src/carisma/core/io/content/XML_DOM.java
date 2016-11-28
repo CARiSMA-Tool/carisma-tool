@@ -38,13 +38,13 @@ public class XML_DOM implements Content {
 			throw new ContentException(e);
 		}
 		try {
-			xmlDocument = dBuilder.parse(in);
+			this.xmlDocument = dBuilder.parse(in);
 		} catch (SAXException e) {
 			throw new ContentException(e);
 		} catch (IOException e) {
 			throw new ContentException(e);
 		}
-		xmlDocument.getDocumentElement().normalize();
+		this.xmlDocument.getDocumentElement().normalize();
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class XML_DOM implements Content {
 	@Override
 	public final String asString() {
 		try {
-			DOMSource domSource = new DOMSource(xmlDocument);
+			DOMSource domSource = new DOMSource(this.xmlDocument);
 			StringWriter writer = new StringWriter();
 		    StreamResult result = new StreamResult(writer);
 		    TransformerFactory tf = TransformerFactory.newInstance();
@@ -69,6 +69,6 @@ public class XML_DOM implements Content {
 	}
 
 	public final Document getDocument() {
-		return xmlDocument;
+		return this.xmlDocument;
 	}
 }

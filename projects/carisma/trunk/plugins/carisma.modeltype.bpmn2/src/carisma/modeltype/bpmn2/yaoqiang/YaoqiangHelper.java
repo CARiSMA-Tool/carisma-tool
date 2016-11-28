@@ -24,7 +24,6 @@ import org.eclipse.bpmn2.BaseElement;
 import org.eclipse.bpmn2.Bpmn2Factory;
 import org.eclipse.bpmn2.Documentation;
 import org.eclipse.bpmn2.ExtensionAttributeValue;
-import org.eclipse.bpmn2.util.XmlExtendedMetadata;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -37,8 +36,6 @@ import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
-import org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl;
-
 import carisma.modeltype.bpmn2.BPMN2Helper;
 
 
@@ -99,10 +96,8 @@ public final class YaoqiangHelper {
 	 */
 	public static String emf2yaoqiangModel(final String inFilePath) {
 		String output = "";
-		BufferedReader in = null;
-		try {
-			in = new BufferedReader(new InputStreamReader(
-					new FileInputStream(inFilePath)));
+		try (BufferedReader in = new BufferedReader(new InputStreamReader(
+					new FileInputStream(inFilePath)))){
 	
 			String line;
 			line = in.readLine();
@@ -194,16 +189,7 @@ public final class YaoqiangHelper {
 		} catch (IOException e) {
 			output = "";
 		}
-		finally{
-			if(in!=null){
-				try {
-					in.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	
+			
 		return output;
 		
 		//TODO
@@ -221,10 +207,8 @@ public final class YaoqiangHelper {
 	 * @return if successful true otherwise false
 	 */
 	public static boolean emf2yaoqiangModel(final String inFilePath, final String outFilePath) {
-		PrintWriter out = null;
-		try {
-			String output = emf2yaoqiangModel(inFilePath);
-			out = new PrintWriter(new FileWriter(outFilePath));
+		String output = emf2yaoqiangModel(inFilePath);
+		try (PrintWriter out = new PrintWriter(new FileWriter(outFilePath))){
 			
 			if (!output.equals("")) {
 				out.print(output);
@@ -233,11 +217,6 @@ public final class YaoqiangHelper {
 			}	
 		} catch (IOException e) {
 			return false;
-		}
-		finally{
-			if(out!=null){
-				out.close();
-			}
 		}
 		return true;
 		
@@ -263,9 +242,8 @@ public final class YaoqiangHelper {
 	public static String yaoqiang2emfModel(final String inFilePath) {
 		if (BPMN2Helper.xslTransformation(inFilePath, null, XSL_YAO_QIANG_2_EMF)) {
 			return BPMN2Helper.getXsltOutputWriter().toString();
-		} else {
-			return "";
 		}
+		return "";
 	}
 	
 	/**
@@ -331,7 +309,7 @@ public final class YaoqiangHelper {
 	 * @return The ExtensionAttributeValue
 	 */
 	private static ExtensionAttributeValue createYaoqiangColorElement(final String color) {
-		ExtendedMetaData meta = XmlExtendedMetadata.INSTANCE;
+		ExtendedMetaData meta = ExtendedMetaData.INSTANCE;
 
 		ExtensionAttributeValue extV = Bpmn2Factory.eINSTANCE
 				.createExtensionAttributeValue();
@@ -352,7 +330,7 @@ public final class YaoqiangHelper {
 				true, true);
 		style.setChangeable(true);
 		
-		AnyType extE = (AnyTypeImpl) XMLTypeFactory.eINSTANCE.createAnyType();
+		AnyType extE = XMLTypeFactory.eINSTANCE.createAnyType();
 
 		ext.add(style, extE);
 

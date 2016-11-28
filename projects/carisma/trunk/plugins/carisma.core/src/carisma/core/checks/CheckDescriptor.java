@@ -50,48 +50,48 @@ public class CheckDescriptor {
 	}
 
 	public String getCheckDescriptorId() {
-		return id;
+		return this.id;
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public String getPublisher() {
-		return publisher;
+		return this.publisher;
 	}
 
 	public String getTargetModelType() {
-		return targetModelType;
+		return this.targetModelType;
 	}
 
 	public String getImplementingClass() {
-		return implementingClass;
+		return this.implementingClass;
 	}
 
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public String getMagicKeys() {
-		return magicKeys;
+		return this.magicKeys;
 	}
 
 	public List<CheckParameterDescriptor> getParameters() {
-		return parameters;
+		return this.parameters;
 	}
 
 	public List<String> getRequiredKeys() {
-		return preconditions;
+		return this.preconditions;
 	}
 
 	public List<String> getProvidedKeys() {
-		return postconditions;
+		return this.postconditions;
 	}
 
-	public CheckParameterDescriptor getParameterByID(String id) {
+	public CheckParameterDescriptor getParameterByID(String paramID) {
 		for (CheckParameterDescriptor cpd : getParameters()) {
-			if (cpd.getID().equalsIgnoreCase(id)) {
+			if (cpd.getID().equalsIgnoreCase(paramID)) {
 				return cpd;
 			}
 		}
@@ -100,7 +100,7 @@ public class CheckDescriptor {
 	
 	@Override
 	public String toString() {
-		return id;
+		return this.id;
 	}
 	
 /*	@Override

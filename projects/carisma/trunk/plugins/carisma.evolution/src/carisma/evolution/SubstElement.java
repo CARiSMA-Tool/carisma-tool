@@ -39,13 +39,13 @@ public class SubstElement extends AdditiveElement {
 			final EObject newTarget,
 			final List<AddElement> theSubstitutes) {
 		super(newTarget);
-		components = new ArrayList<AddElement>();
-		components.addAll(theSubstitutes);
-		accompanyingDeletions = new ArrayList<EObject>();
+		this.components = new ArrayList<AddElement>();
+		this.components.addAll(theSubstitutes);
+		this.accompanyingDeletions = new ArrayList<EObject>();
 	}
 	
 	public List<EObject> getAccompanyingDeletions() {
-		return accompanyingDeletions;
+		return this.accompanyingDeletions;
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public class SubstElement extends AdditiveElement {
 	 */
 	public void replaceAccompanyingDeletions(final List<EObject> newDeletions) {
 		if (newDeletions != null) {
-			accompanyingDeletions.clear();
+			this.accompanyingDeletions.clear();
 			for (EObject newDeletion : newDeletions) {
 				addDeletion(newDeletion);
 			}
@@ -67,8 +67,8 @@ public class SubstElement extends AdditiveElement {
 	 * @return - true if addition of deleted element successful
 	 */
 	public boolean addDeletion(final EObject deletedElement) {
-		if (deletedElement != null && (!accompanyingDeletions.contains(deletedElement))) {
-			return accompanyingDeletions.add(deletedElement);
+		if (deletedElement != null && (!this.accompanyingDeletions.contains(deletedElement))) {
+			return this.accompanyingDeletions.add(deletedElement);
 		}
 		return false;
 	}
@@ -89,16 +89,16 @@ public class SubstElement extends AdditiveElement {
 	}
 
 	public boolean removeDeletion(final EObject oldDeletion) {
-		return accompanyingDeletions.remove(oldDeletion);
+		return this.accompanyingDeletions.remove(oldDeletion);
 	}
 	
 	public List<AddElement> getComponents() {
-		return components;
+		return this.components;
 	}
 	
 	public List<AddElement> getAllAddedElements() {
 		List<AddElement> allAddedElements = new ArrayList<AddElement>();
-		for (AddElement addElem : components) {
+		for (AddElement addElem : this.components) {
 			allAddedElements.addAll(addElem.getAllAddedElements());
 		}
 		return allAddedElements;
@@ -110,19 +110,19 @@ public class SubstElement extends AdditiveElement {
 	 * @param newComponents - new components
 	 */
 	public void replaceComponents(final List<AddElement> newComponents) {
-		for (AddElement c : components) {
+		for (AddElement c : this.components) {
 			c.setParent(null);
 		}
-		components.clear();
+		this.components.clear();
 		for (AddElement c : newComponents) {
 			addComponent(c);
 		}
 	}
 	
 	public boolean addComponent(final AddElement newComponent) {
-		if (newComponent != null && (!components.contains(newComponent))) {
+		if (newComponent != null && (!this.components.contains(newComponent))) {
 			newComponent.setParent(this);
-			return components.add(newComponent);			
+			return this.components.add(newComponent);			
 		}
 		return false;
 	}
@@ -135,9 +135,9 @@ public class SubstElement extends AdditiveElement {
 	}
 
 	public boolean removeComponent(final AddElement oldComponent) {
-		if (components.contains(oldComponent)) {
+		if (this.components.contains(oldComponent)) {
 			oldComponent.setParent(null);
-			return components.remove(oldComponent);
+			return this.components.remove(oldComponent);
 		}
 		return false;
 	}
@@ -148,7 +148,7 @@ public class SubstElement extends AdditiveElement {
 		buf.append("Substituting "
 				+ EObjectUtil.getTypeAndName(this.getTarget())
 				+ " with ");
-		buf.append(components.toString());
+		buf.append(this.components.toString());
 		return buf.toString();
 	}
 	

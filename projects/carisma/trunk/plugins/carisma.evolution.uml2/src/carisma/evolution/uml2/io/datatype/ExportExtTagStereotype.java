@@ -23,7 +23,7 @@ public class ExportExtTagStereotype extends ExportExtTag{
 	}
 
 	public String getExtendedElement() {
-		return extendedElement;
+		return this.extendedElement;
 	}
 
 	public void setExtendedElement(String extendedElement) {
@@ -31,6 +31,6 @@ public class ExportExtTagStereotype extends ExportExtTag{
 	}
 	
 	public String getProfile(){
-		return profile;
+		return this.profile;
 	}
 }

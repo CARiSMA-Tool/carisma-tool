@@ -29,6 +29,7 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 	 * @param configurer IWorkbenchWindowConfigurer
 	 * @return new ApplicationWorkbenchWindowAdvisor
 	 */
+	@Override
 	public final WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(
 			final IWorkbenchWindowConfigurer configurer) {
 		return new ApplicationWorkbenchWindowAdvisor(configurer);
@@ -36,6 +37,7 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 	/**
 	 * @return Perspective.ID
 	 */
+	@Override
 	public final String getInitialWindowPerspectiveId() {
 		return Perspective.ID;
 	}
@@ -44,6 +46,7 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 	 * To get the resource workspace as input, override this method.
 	 * @return the Root 
 	 */
+	@Override
 	public final IAdaptable getDefaultPageInput() {
 		return ResourcesPlugin.getWorkspace().getRoot();   
 	}

@@ -56,7 +56,7 @@ public class AnalysisResultsView extends ViewPart {
 	/**
 	 * The TreeViewer.
 	 */
-	private TreeViewer viewer = null;
+	TreeViewer viewer = null;
 
 	// ########################################################################################
 	/**
@@ -71,11 +71,11 @@ public class AnalysisResultsView extends ViewPart {
 	 */
 	@Override
 	public final void createPartControl(final Composite parent) {
-		viewer = new TreeViewer(parent);
-		viewer.setContentProvider(new MyTreeContentProvider());
-		viewer.getTree().setHeaderVisible(true);
+		this.viewer = new TreeViewer(parent);
+		this.viewer.setContentProvider(new MyTreeContentProvider());
+		this.viewer.getTree().setHeaderVisible(true);
 
-		TreeViewerColumn pluginColumn = new TreeViewerColumn(viewer, SWT.NONE);
+		TreeViewerColumn pluginColumn = new TreeViewerColumn(this.viewer, SWT.NONE);
 		pluginColumn.getColumn().setText("Analysis / Check / Messages");
 		pluginColumn.getColumn().setWidth(350);
 		pluginColumn.setLabelProvider(new ColumnLabelProvider() {
@@ -129,7 +129,7 @@ public class AnalysisResultsView extends ViewPart {
 			}
 		});
 
-		TreeViewerColumn modelElementColumn = new TreeViewerColumn(viewer, SWT.NONE);
+		TreeViewerColumn modelElementColumn = new TreeViewerColumn(this.viewer, SWT.NONE);
 		modelElementColumn.getColumn().setText("model element");
 		modelElementColumn.getColumn().setWidth(100);
 		modelElementColumn.setLabelProvider(new ColumnLabelProvider() {
@@ -137,13 +137,12 @@ public class AnalysisResultsView extends ViewPart {
 			public String getText(final Object element) {
 				if (element instanceof AnalysisResultMessage) {
 					return ((AnalysisResultMessage) element).getModelElement();
-				} else {
-					return null;
 				}
+				return null;
 			}
 		});
 
-		TreeViewerColumn addInfoColumn = new TreeViewerColumn(viewer, SWT.NONE);
+		TreeViewerColumn addInfoColumn = new TreeViewerColumn(this.viewer, SWT.NONE);
 		addInfoColumn.getColumn().setText("add. info");
 		addInfoColumn.getColumn().setWidth(100);
 		addInfoColumn.setLabelProvider(new ColumnLabelProvider() {
@@ -171,7 +170,7 @@ public class AnalysisResultsView extends ViewPart {
 		menuMgr.addMenuListener(new IMenuListener() {
 			@Override
 			public void menuAboutToShow(final IMenuManager manager) {
-				Object firstElement = ((IStructuredSelection) viewer.getSelection()).getFirstElement();
+				Object firstElement = ((IStructuredSelection) AnalysisResultsView.this.viewer.getSelection()).getFirstElement();
 
 				AnalysisResult tmpAnalysisResult;
 				if (firstElement instanceof carisma.core.analysis.result.AnalysisResult) {
@@ -185,7 +184,7 @@ public class AnalysisResultsView extends ViewPart {
 				}
 				final AnalysisResult analysisResult = tmpAnalysisResult;
 				
-				for(IConfigurationElement extension : Platform.getExtensionRegistry().getConfigurationElementsFor("carisma.ui.eclipse.analysis.popup.menu")){
+				for(IConfigurationElement extension : Platform.getExtensionRegistry().getConfigurationElementsFor(CarismaGUI.ANALYSIS_POPUP_MENU)){
 					try {
 						((PopUpAction) extension.createExecutableExtension("class")).perform(menuMgr, analysisResult);
 					} catch (CoreException e) {
@@ -194,9 +193,9 @@ public class AnalysisResultsView extends ViewPart {
 				}
 			}
 		});
-		Menu menu = menuMgr.createContextMenu(viewer.getTree());
-		viewer.getTree().setMenu(menu);
-		getSite().registerContextMenu(menuMgr, viewer);
+		Menu menu = menuMgr.createContextMenu(this.viewer.getTree());
+		this.viewer.getTree().setMenu(menu);
+		getSite().registerContextMenu(menuMgr, this.viewer);
 
 	}
 
@@ -205,9 +204,10 @@ public class AnalysisResultsView extends ViewPart {
 	 */
 	private void createActions() {
 		Action resetItemAction = new Action("Reset") {
+			@Override
 			public void run() {
-				CarismaGUI.INSTANCE.reset();
-			};
+				CarismaGUI.reset();
+			}
 
 		};
 		resetItemAction.setText("Reset results");
@@ -233,7 +233,7 @@ public class AnalysisResultsView extends ViewPart {
 	 * Updates the viewer input.
 	 */
 	public final void update() {
-		viewer.setInput(CarismaGUI.INSTANCE.getAnalysisResults());
+		this.viewer.setInput(CarismaGUI.getAnalysisResults());
 	}
 
 	/**

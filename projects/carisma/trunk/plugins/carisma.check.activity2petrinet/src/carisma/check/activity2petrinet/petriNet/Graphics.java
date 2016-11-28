@@ -61,7 +61,7 @@ public class Graphics {
 	 * @return returns the x coordinate for the position of the object
 	 */
 	public final int getPositionX() {
-		return positionX;
+		return this.positionX;
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class Graphics {
 	 * @return the y coordinate for the position of the object.
 	 */
 	public final int getPositionY() {
-		return positionY;
+		return this.positionY;
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class Graphics {
 	 * @return the x coordinate for the Dimension of the object.
 	 */
 	public final int getDimensionX() {
-		return dimensionX;
+		return this.dimensionX;
 	}
 
 	/**
@@ -109,6 +109,6 @@ public class Graphics {
 	 * @return the y coordinate for the Dimension of the object.
 	 */
 	public final int getDimensionY() {
-		return dimensionY;
+		return this.dimensionY;
 	}
 }

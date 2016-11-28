@@ -91,9 +91,9 @@ public class StateMachinePaths {
 			host = new DummyHost(true);
 		}
 			
-		withTransitions = transitions;
+		this.withTransitions = transitions;
 		Element first;
-		sm = stateMachine;
+		this.sm = stateMachine;
 		first = getInitialState(stateMachine.getOwnedElements().get(0));
 		if (first != null) {
 			Map<Element, Element> lastStateMapping = new HashMap<Element, Element>();
@@ -110,7 +110,7 @@ public class StateMachinePaths {
 			deleteHistoryEndings();
 			deleteDoubles();
 		}
-		return allPaths;
+		return this.allPaths;
 	}
 	
 	/**
@@ -125,7 +125,7 @@ public class StateMachinePaths {
 		if (current instanceof FinalState) {
 			newHash.remove(parentState);
 		}
-		if (!(parentState.equals(sm)) && !(current instanceof Pseudostate)) {
+		if (!(parentState.equals(this.sm)) && !(current instanceof Pseudostate)) {
 			if (!(current instanceof FinalState)) {
 				newHash.put(parentState, current);
 			}
@@ -141,7 +141,7 @@ public class StateMachinePaths {
 				|| ((Pseudostate) current).getKind().equals(PseudostateKind.JUNCTION_LITERAL))) {
 			if (((Pseudostate) current).getKind().equals(PseudostateKind.FORK_LITERAL)) {
 				ParallelPath pPath = new ParallelPath();
-				List<List<Element>> parallelPaths = pPath.getParallelPath((Pseudostate) current , withTransitions);
+				List<List<Element>> parallelPaths = pPath.getParallelPath((Pseudostate) current , this.withTransitions);
 				for (int i = 0; i < parallelPaths.size(); i++) {
 					List<Element> pathPrefixClone = new ArrayList<Element>(pathPrefix);
 					pathPrefixClone.addAll(parallelPaths.get(i));
@@ -156,7 +156,7 @@ public class StateMachinePaths {
 							shallowHistoryPath.add(acc1);
 							findPaths(shallowHistoryPath, newHash);
 						} else {
-							allPaths.add(pathPrefix);
+							this.allPaths.add(pathPrefix);
 						}
 					} else {
 						if (current.getOwnedElements().size() < 1) {
@@ -167,7 +167,7 @@ public class StateMachinePaths {
 									newList.add(first);
 									findPaths(newList, newHash);
 								} else {
-									allPaths.add(newList);
+									this.allPaths.add(newList);
 								}	
 							}
 						}
@@ -187,7 +187,7 @@ public class StateMachinePaths {
 								deepHistoryPath.add(historizedState);
 								findPaths(deepHistoryPath, newHash);
 							} else {
-								allPaths.add(pathPrefix);
+								this.allPaths.add(pathPrefix);
 							}
 						} else {
 							if (current.getOwnedElements().size() < 1) {
@@ -199,7 +199,7 @@ public class StateMachinePaths {
 										newList.add(first);
 										findPaths(newList, newHash);
 									} else {
-										allPaths.add(newList);
+										this.allPaths.add(newList);
 									}	
 								}
 							}
@@ -219,7 +219,7 @@ public class StateMachinePaths {
 			if (current.getOutgoings().size() > 0) {
 				for (int i = 0; i < current.getOutgoings().size(); i++) {
 					List<Element> normalSuccessorPath = new ArrayList<Element>(pathPrefix);
-					if (withTransitions) {
+					if (this.withTransitions) {
 						normalSuccessorPath.add(current.getOutgoings().get(i));
 					}
 					Element successor = current.getOutgoings().get(i).getTarget();
@@ -234,15 +234,15 @@ public class StateMachinePaths {
 					Element newAcc = pathPrefix.get(pathPrefix.size() - 1);
 					cutted.remove(cutted.size() - 1);
 					cutted = cutListAfterLast(cutted, newAcc);
-					allPaths.add(cutted);
+					this.allPaths.add(cutted);
 				}
 			} else {
-				if (pathPrefix.get(pathPrefix.size() - 1).getOwner().getOwner() != sm) {
+				if (pathPrefix.get(pathPrefix.size() - 1).getOwner().getOwner() != this.sm) {
 					Element owner = pathPrefix.get(pathPrefix.size() - 1).getOwner().getOwner();
 					if (((Vertex) owner).getOutgoings().size() > 0) {
 						for (int i = 0; i < ((Vertex) owner).getOutgoings().size(); i++) {
 							List<Element> list1 = new ArrayList<Element>(pathPrefix);
-							if (withTransitions) {
+							if (this.withTransitions) {
 								list1.add(((Vertex) owner).getOutgoings().get(i));
 							}
 							Element acc1 = ((Vertex) owner).getOutgoings().get(i).getTarget();
@@ -258,10 +258,10 @@ public class StateMachinePaths {
 						Element newAcc = pathPrefix.get(pathPrefix.size() - 1);
 						possibleCirclePath.remove(possibleCirclePath.size() - 1);
 						possibleCirclePath = cutListAfterLast(possibleCirclePath, newAcc);
-						allPaths.add(possibleCirclePath);
+						this.allPaths.add(possibleCirclePath);
 					}
 				} else {
-					allPaths.add(pathPrefix);
+					this.allPaths.add(pathPrefix);
 				}
 			}
 		}
@@ -289,7 +289,7 @@ public class StateMachinePaths {
 	 * @param element region to get the starting element within
 	 * @return the InitialState
 	 */
-	public final Pseudostate getInitialState(final Element element) {
+	public final static Pseudostate getInitialState(final Element element) {
 		LinkedList<Pair<Element,Boolean>> q=new LinkedList<Pair<Element,Boolean>>();//boolean visited 
 		q.add(new Pair<Element, Boolean>(element,new Boolean(true)));
 		Element e=null;
@@ -304,7 +304,7 @@ public class StateMachinePaths {
 				list.add(new Pair<Element, Boolean>(e2,Boolean.FALSE));
 			}
 				for (Pair<Element,Boolean> le : list){
-					if (!le.getSecond()) {
+					if (!le.getSecond().booleanValue()) {
 						q.push(le);
 					}
 				}
@@ -318,7 +318,7 @@ public class StateMachinePaths {
 	 * @param stateMachine StateMachine that could have EntryPoints in it
 	 * @return list with all the EntryPoints in stateMachine
 	 */
-	private List<Pseudostate> getEntryPoints(final StateMachine stateMachine) {
+	private static List<Pseudostate> getEntryPoints(final StateMachine stateMachine) {
 		List<Pseudostate> entryList = new ArrayList<Pseudostate>();
 		for (Pseudostate pseudo : UMLHelper.getAllElementsOfType(stateMachine, Pseudostate.class)) {
 			if (pseudo.getKind().equals(PseudostateKind.ENTRY_POINT_LITERAL)) {
@@ -335,7 +335,7 @@ public class StateMachinePaths {
 	 * @return true if there is a loop at the end of the path, false otherwise
 	 *
 	 */
-	private boolean hasLoopAtEnd(final List<Element> path, final Element element) {
+	private static boolean hasLoopAtEnd(final List<Element> path, final Element element) {
 		boolean possibleLoop = false;
 		for (int i = path.size() - 1; i > 0; i--) {
 			if (path.get(i) == element) {
@@ -361,7 +361,7 @@ public class StateMachinePaths {
 	 * @param element element where the loop starts/ends
 	 * @return list without loop at the end
 	 */
-	private List<Element> cutListAfterLast(final List<Element> list, final Element element) {
+	private static List<Element> cutListAfterLast(final List<Element> list, final Element element) {
 		List<Element> returnList = new ArrayList<Element>(list);
 		int count;
 		
@@ -381,18 +381,18 @@ public class StateMachinePaths {
 	private void deleteDoubles() {
 		List<List<Element>> paths = new ArrayList<List<Element>>();
 		boolean isDouble = false;
-		for (int i = 0; i < allPaths.size(); i++) {
+		for (int i = 0; i < this.allPaths.size(); i++) {
 			for (int j = 0; j < paths.size(); j++) {
-				if (allPaths.get(i).equals(paths.get(j))) {
+				if (this.allPaths.get(i).equals(paths.get(j))) {
 					isDouble = true;
 				}
 			}
 			if (!isDouble) {
-				paths.add(allPaths.get(i));
+				paths.add(this.allPaths.get(i));
 			}
 			isDouble = false;
 		}
-		allPaths = paths;
+		this.allPaths = paths;
 	}
 	
 	
@@ -420,7 +420,7 @@ public class StateMachinePaths {
 			for (int i = 0; i < ((Vertex) nextParent).getOutgoings().size(); i++) {
 				List<Element> newList = new ArrayList<Element>(currentPath);
 				Element acc1 = ((Vertex) nextParent).getOutgoings().get(i).getTarget();
-				if (withTransitions) {
+				if (this.withTransitions) {
 					newList.add(((Vertex) nextParent).getOutgoings().get(i));
 				}
 				if (!hasLoopAtEnd(newList, acc1)) {
@@ -429,14 +429,14 @@ public class StateMachinePaths {
 					findPaths(newList, historyClone);
 				}
 			}
-			if (nextParent.getOwner().getOwner() != sm) {
+			if (nextParent.getOwner().getOwner() != this.sm) {
 				nextParent = nextParent.getOwner().getOwner();
 			} else {
 				nextParent = null;
 			}
 			}
 			if (!foundSuccessor) {
-				allPaths.add(currentPath);
+				this.allPaths.add(currentPath);
 			}
 		}
 	}
@@ -446,12 +446,12 @@ public class StateMachinePaths {
 	 */
 	private void deleteHistoryEndings() {
 		
-		for (int i = allPaths.size() - 1; i >= 0; i--) {
-			Element last = allPaths.get(i).get(allPaths.get(i).size() - 1);
+		for (int i = this.allPaths.size() - 1; i >= 0; i--) {
+			Element last = this.allPaths.get(i).get(this.allPaths.get(i).size() - 1);
 			if (last instanceof Pseudostate 
 					&& ((((Pseudostate) last).getKind().equals(PseudostateKind.DEEP_HISTORY_LITERAL))
 					|| ((Pseudostate) last).getKind().equals(PseudostateKind.SHALLOW_HISTORY_LITERAL))) {
-				allPaths.remove(i);
+				this.allPaths.remove(i);
 			}
 		}
 	}
@@ -460,10 +460,10 @@ public class StateMachinePaths {
 	 * deletes an element if it follows itself.
 	 */
 	private void deleteFollows() {
-		for (int i = allPaths.size() - 1; i >= 0; i--) {
-			for (int j = allPaths.get(i).size() - 1; j > 0; j--) {
-				if (allPaths.get(i).get(j) == allPaths.get(i).get(j - 1)) {
-					allPaths.get(i).remove(j);
+		for (int i = this.allPaths.size() - 1; i >= 0; i--) {
+			for (int j = this.allPaths.get(i).size() - 1; j > 0; j--) {
+				if (this.allPaths.get(i).get(j) == this.allPaths.get(i).get(j - 1)) {
+					this.allPaths.get(i).remove(j);
 				}
 			}
 		}
@@ -474,11 +474,11 @@ public class StateMachinePaths {
 	 */
 	private void deletePartPaths() {
 		boolean found = false;
-		for (int i = allPaths.size() - 1; i > 0; i--) {
+		for (int i = this.allPaths.size() - 1; i > 0; i--) {
 			found = false;
 			for (int j = i - 1; j >= 0; j--) {
 				if (!found) {
-					if (allPaths.get(i).size() < allPaths.get(j).size()) {
+					if (this.allPaths.get(i).size() < this.allPaths.get(j).size()) {
 					found = compare(i, j);
 					} else {
 						found = compare(j, i);
@@ -496,18 +496,19 @@ public class StateMachinePaths {
 	 */
 	private boolean compare(final int i, final int j) {
 		boolean possibleResult = false;
-		if (allPaths.get(i).size() > allPaths.get(j).size()) {
+		if (this.allPaths.get(i).size() > this.allPaths.get(j).size()) {
 			return false;
-		} else {
-			possibleResult = true;
-		    for (int l = 0; l <= allPaths.get(i).size() - 1; l++) {
-			    if (allPaths.get(i).get(l) != allPaths.get(j).get(l)) {
-			    	possibleResult = false;
-			    }
+		}
+		
+		possibleResult = true;
+		for (int l = 0; l <= this.allPaths.get(i).size() - 1; l++) {
+		    if (this.allPaths.get(i).get(l) != this.allPaths.get(j).get(l)) {
+		    	possibleResult = false;
 		    }
 		}
+		
 		if (possibleResult) {
-			allPaths.remove(i);
+			this.allPaths.remove(i);
 		}
 		return possibleResult;
 	}

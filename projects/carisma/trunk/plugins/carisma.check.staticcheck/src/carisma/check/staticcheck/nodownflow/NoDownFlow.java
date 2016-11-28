@@ -29,7 +29,7 @@ public class NoDownFlow {
 	/**
 	 * AnalysisHost for report.
 	 */
-	private AnalysisHost host = null;
+	private AnalysisHost analysisHost = null;
 	
 	/**
 	 * variable to save if an error occurred that violates the diagram.
@@ -51,36 +51,35 @@ public class NoDownFlow {
 	/**
 	 * Main function to analyze the model with respect to nodownflow.
 	 * @param noDownFlowModel the UML-model to analyze
-	 * @param newHost AnalysisHost for report, should be null if you have none. A new host will be created than.
+	 * @param host AnalysisHost for report, should be null if you have none. A new host will be created than.
 	 * @return true if the diagram is correct with respect to nodownflow, false otherwise
 	 */
-	public final boolean startCheck(final Package noDownFlowModel, final AnalysisHost newHost) {
+	protected final boolean startCheck(final Package noDownFlowModel, final AnalysisHost host) {
 		if (noDownFlowModel == null) {
 			throw new IllegalArgumentException("The UML model is not allowed be 'null'.");
-		} else {
-			model = noDownFlowModel;
 		}
-		if (newHost != null) {
-			host = newHost;
+		this.model = noDownFlowModel;
+		if (host != null) {
+			this.analysisHost = host;
 		} else {
-			host = new DummyHost(true);
-			host.appendLineToReport("No AnalysisHost is given, initialize a new AnalysisHost.");
+			this.analysisHost = new DummyHost(true);
+			this.analysisHost.appendLineToReport("No AnalysisHost is given, initialize a new AnalysisHost.");
 		}
-		if (!UMLHelper.isProfileApplied(model, UMLsec.DESCRIPTOR)) {
-			host.appendLineToReport("No UMLsec profile applied.\nCheck successful with respect to no-down-flow.");
+		if (!UMLHelper.isProfileApplied(this.model, UMLsec.DESCRIPTOR)) {
+			this.analysisHost.appendLineToReport("No UMLsec profile applied.\nCheck successful with respect to no-down-flow.");
 			AnalysisResultMessage message = new AnalysisResultMessage(StatusType.INFO, "No UMLsec profile applied");
-			host.addResultMessage(message);
-			message = new AnalysisResultMessage(StatusType.INFO, "Check successful with respect to no-down-flow");
-			host.addResultMessage(message);
+			this.analysisHost.addResultMessage(message);
+			message = new AnalysisResultMessage(StatusType.INFO, "NoDownFlowCheck successful with respect to no-down-flow");
+			this.analysisHost.addResultMessage(message);
 			return true;
 		}
-		List<Element> noDownFlowElements = UMLsecUtil.getStereotypedElements(model, UMLsec.NO_DOWN_FLOW);
+		List<Element> noDownFlowElements = UMLsecUtil.getStereotypedElements(this.model, UMLsec.NO_DOWN_FLOW);
 		if ((noDownFlowElements == null) || (noDownFlowElements.size() == 0)) {
-			host.appendLineToReport("No stereotype <<no-down-flow>> applied.\nCheck successful with respect to no-down-flow.");
+			this.analysisHost.appendLineToReport("No stereotype <<no-down-flow>> applied.\nCheck successful with respect to no-down-flow.");
 			AnalysisResultMessage message = new AnalysisResultMessage(StatusType.INFO, "No stereotype <<no-down-flow>> applied");
-			host.addResultMessage(message);
-			message = new AnalysisResultMessage(StatusType.INFO, "Check successful with respect to no-down-flow");
-			host.addResultMessage(message);
+			this.analysisHost.addResultMessage(message);
+			message = new AnalysisResultMessage(StatusType.INFO, "NoDownFlowCheck successful with respect to no-down-flow");
+			this.analysisHost.addResultMessage(message);
 			return true;
 		}
 		for (Element noDownFlowElement : noDownFlowElements) {
@@ -88,15 +87,15 @@ public class NoDownFlow {
 				startTest((Package) noDownFlowElement);
 			}
 		}
-		if (isSuccessful) {
-			host.appendLineToReport("Check successful with respect to no-down-flow.");
-			AnalysisResultMessage message = new AnalysisResultMessage(StatusType.INFO, "Check successful with respect to noDownFlow");
-			host.addResultMessage(message);
+		if (this.isSuccessful) {
+			this.analysisHost.appendLineToReport("NoDownFlowCheck successful with respect to no-down-flow.");
+			AnalysisResultMessage message = new AnalysisResultMessage(StatusType.INFO, "NoDownFlowCheck successful with respect to noDownFlow");
+			this.analysisHost.addResultMessage(message);
 		} else {
-			AnalysisResultMessage message = new AnalysisResultMessage(StatusType.ERROR, "Check failed with respect to noDownFlow");
-			host.addResultMessage(message);
+			AnalysisResultMessage message = new AnalysisResultMessage(StatusType.ERROR, "NoDownFlowCheck failed with respect to noDownFlow");
+			this.analysisHost.addResultMessage(message);
 		}
-		return isSuccessful;
+		return this.isSuccessful;
 	}
 
 	/**
@@ -106,20 +105,20 @@ public class NoDownFlow {
 	private void startTest(final Package noDownFlowElement) {
 		for (Element element : UMLsecUtil.getStereotypedElements(noDownFlowElement, UMLsec.CRITICAL)) {
 			for (Object object : UMLsecUtil.getStringValues("high", UMLsec.CRITICAL, element)) {
-					highValues.add((String) object);
+					this.highValues.add((String) object);
 			}
 		}
-		if (highValues.size() == 0) {
-			host.appendLineToReport("No sensitive methods and properties.");
+		if (this.highValues.size() == 0) {
+			this.analysisHost.appendLineToReport("No sensitive methods and properties.");
 			AnalysisResultMessage message = new AnalysisResultMessage(StatusType.INFO,
 					"No sensitive methods and properties\nCheck successfull with respect to noDownFlow");
-			host.addResultMessage(message);
+			this.analysisHost.addResultMessage(message);
 			return;
 		}
 		for (Transition transition : UMLHelper.getAllElementsOfType(noDownFlowElement, Transition.class)) {
 			List<Trigger> triggerList = transition.getTriggers();
 			for (Trigger trigger : triggerList) {
-				for (String highValue : highValues) {
+				for (String highValue : this.highValues) {
 					if (trigger.getEvent().getName().contains(highValue)) {
 						testDataLeak(transition);
 					}
@@ -141,7 +140,7 @@ public class NoDownFlow {
 			List<Trigger> triggerList = trans.getTriggers();
 			boolean highTrigger = false;
 			for (Trigger trigger : triggerList) {
-				for (String highValue : highValues) {
+				for (String highValue : this.highValues) {
 					if (trigger.getEvent().getName().equals(highValue)) {
 						highTrigger = true;
 					}
@@ -157,7 +156,7 @@ public class NoDownFlow {
 			List<Trigger> triggerList = trans.getTriggers();
 			boolean highTrigger = false;
 			for (Trigger trigger : triggerList) {
-				for (String highValue : highValues) {
+				for (String highValue : this.highValues) {
 					if (trigger.getEvent().getName().equals(highValue)) {
 						highTrigger = true;
 					}
@@ -173,8 +172,8 @@ public class NoDownFlow {
 //					Algorythmus angemerkt hatte.
 					if (nonHighTriggerEffects.containsKey(triggerName) 
 							&& (!nonHighTriggerEffects.get(triggerName).equals(effectName))) {
-						isSuccessful = false;
-						host.appendLineToReport("The trigger " + triggerName + " in states " + transition.getTarget().getName()
+						this.isSuccessful = false;
+						this.analysisHost.appendLineToReport("The trigger " + triggerName + " in states " + transition.getTarget().getName()
 								+ " , " + transition.getSource().getName() + " leaks sensitive data");
 					}
 				}

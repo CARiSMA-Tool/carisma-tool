@@ -21,13 +21,13 @@ public class PreferenceManager {
 	private HashMap<String, PreferenceValue> defaults;
 	
 	public PreferenceManager() {
-		values = new HashMap<String, PreferenceValue>();
-		defaults = new HashMap<String, PreferenceValue>();
+		this.values = new HashMap<String, PreferenceValue>();
+		this.defaults = new HashMap<String, PreferenceValue>();
 	}
 	
 	public Object getPreferenceValue(String name) {
 		Object result = null;
-		PreferenceValue val = values.get(name);
+		PreferenceValue val = this.values.get(name);
 		if (val != null) {
 			result = val.getValue();
 		} else {
@@ -37,17 +37,17 @@ public class PreferenceManager {
 	}
 	
 	public void setPreferenceValue(String name, Object value) {
-		PreferenceValue val = values.get(name);
+		PreferenceValue val = this.values.get(name);
 		if (val != null) {
 			val.setValue(value);
 		} else {
-			values.put(name, new PreferenceValue(name, value));
+			this.values.put(name, new PreferenceValue(name, value));
 		}
 	}
 	
 	public Object getDefaultPreferenceValue(String name) {
 		Object result = null;
-		PreferenceValue val = defaults.get(name);
+		PreferenceValue val = this.defaults.get(name);
 		if (val != null) {
 			result = val.getValue();
 		}
@@ -55,11 +55,11 @@ public class PreferenceManager {
 	}
 	
 	public void setDefaultPreferenceValue(String name, Object value) {
-		PreferenceValue val = defaults.get(name);
+		PreferenceValue val = this.defaults.get(name);
 		if (val != null) {
 			val.setValue(value);
 		} else {
-			defaults.put(name, new PreferenceValue(name, value));
+			this.defaults.put(name, new PreferenceValue(name, value));
 		}
 	}
 	
@@ -80,14 +80,12 @@ public class PreferenceManager {
 	 */
 	public void storePreferences(String filename, boolean includeDefaults) {
 		XStream xStream = createXStream();
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(filename);
+		try (FileOutputStream fos = new FileOutputStream(filename)){
 			ArrayList<PreferenceValue> vals = new ArrayList<PreferenceValue>();
-			vals.addAll(values.values());
+			vals.addAll(this.values.values());
 			if (includeDefaults) {
-				for (PreferenceValue pv : defaults.values()) {
-					if (!values.containsKey(pv.getName())) {
+				for (PreferenceValue pv : this.defaults.values()) {
+					if (!this.values.containsKey(pv.getName())) {
 						vals.add(pv);
 					}
 				}
@@ -95,14 +93,8 @@ public class PreferenceManager {
 			xStream.toXML(vals.toArray(), fos);
 		} catch (FileNotFoundException e) {
 			logFileNotFoundException(filename, e);
-		} finally {
-			try {
-				if (fos != null) {
-					fos.close();
-				}
-			} catch (IOException e) {
-				Logger.log(LogLevel.ERROR, "Error on closing \"" + filename, e);
-			}
+		} catch (IOException e) {
+			Logger.log(LogLevel.ERROR, "Error on closing \"" + filename, e);
 		}
 	}
 	
@@ -124,14 +116,13 @@ public class PreferenceManager {
 	 */
 	public void loadPreferences(String filename) {
 		XStream xStream = createXStream();
-		try {
-			FileInputStream fis = new FileInputStream(filename);
-			InputStreamReader isr = new InputStreamReader(fis, "ISO-8859-1");
-			values.clear();
+		try (FileInputStream fis = new FileInputStream(filename);
+				InputStreamReader isr = new InputStreamReader(fis, "ISO-8859-1");){
+			this.values.clear();
 			Object[] loadedValues = (Object[])xStream.fromXML(isr);
 			for (Object val : loadedValues) {
 				PreferenceValue value = (PreferenceValue)val;
-				values.put(value.getName(), value);
+				this.values.put(value.getName(), value);
 			}
 		} catch (FileNotFoundException e) {
 			logFileNotFoundException(filename, e);

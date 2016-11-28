@@ -9,15 +9,18 @@ import carisma.core.analysis.RegisterInUseException;
 import carisma.core.analysis.RegisterNotInUseException;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 
-public class UMLModifierCheck implements CarismaCheck {
+public class UMLModifierCheck implements CarismaCheckWithID {
 	
-
-	private static final String MODIFIERS_REGISTER_KEY = "carisma.data.evolution.modifiers"; 
+	public static final String CHECK_ID = "carisma.evolution.uml2.UMLModifierCheck";
+	
+	public static final String POSTCONDITION_MODIFIERS_REGISTER_KEY = "carisma.data.evolution.modifiers"; 
+	
+	public static final String CHECK_NAME = "UML2 Model Modifier";
 	
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
@@ -27,15 +30,15 @@ public class UMLModifierCheck implements CarismaCheck {
 		}
 		
 		ModifierMap deltaModifiers = new ModifierMap(currentModel);
-		if (host.isRegisterInUse(MODIFIERS_REGISTER_KEY)) {
+		if (host.isRegisterInUse(POSTCONDITION_MODIFIERS_REGISTER_KEY)) {
 			try {
-				host.removeFromRegister(MODIFIERS_REGISTER_KEY);
+				host.removeFromRegister(POSTCONDITION_MODIFIERS_REGISTER_KEY);
 			} catch (RegisterNotInUseException e) {
 				Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			}
 		}
 		try {
-			host.putToRegister(MODIFIERS_REGISTER_KEY, deltaModifiers);
+			host.putToRegister(POSTCONDITION_MODIFIERS_REGISTER_KEY, deltaModifiers);
 		} catch (RegisterInUseException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			return false;
@@ -43,5 +46,15 @@ public class UMLModifierCheck implements CarismaCheck {
 		host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "UML Model Modifier initialized."));
 		return true;
 		
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 }

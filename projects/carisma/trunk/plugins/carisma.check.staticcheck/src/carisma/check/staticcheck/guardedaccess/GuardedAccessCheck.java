@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Transition;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.profile.umlsec.UMLsec;
@@ -42,12 +42,15 @@ import carisma.profile.umlsec.UMLsecUtil;
  * @author Johannes Kowald
  *
  */
-public class GuardedAccessCheck implements CarismaCheck {
+public class GuardedAccessCheck implements CarismaCheckWithID {
+	
+	public static final String CHECK_ID = "carisma.check.staticcheck.guardedaccess";
+	public static final String CHECK_NAME = "UMLsec guarded access Check";
 	
 	/**
 	 * The AnalysisHost.
 	 */
-	private AnalysisHost host;
+	private AnalysisHost analysisHost;
 	
 	/**
 	 * A map for the name (String) of the element with applied stereotype <<guarded>> and
@@ -64,36 +67,35 @@ public class GuardedAccessCheck implements CarismaCheck {
 	
 	@Override
 	public final boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost analysisHost) {
-		this.host = analysisHost;
+		this.analysisHost = analysisHost;
 		this.violations = "";
 		
-		host.appendLineToReport("############################################################################");
-		host.appendLineToReport("# UMLsec <<guarded access>> check                                          #");
-		host.appendLineToReport("# All element names are adequate qualified names                           #");
-		host.appendLineToReport("############################################################################");
-		host.appendLineToReport("# Step 1: Searching for element with applied stereotype <<guarded access>> #");
-		host.appendLineToReport("############################################################################");
+		this.analysisHost.appendLineToReport("############################################################################");
+		this.analysisHost.appendLineToReport("# UMLsec <<guarded access>> check                                          #");
+		this.analysisHost.appendLineToReport("# All element names are adequate qualified names                           #");
+		this.analysisHost.appendLineToReport("############################################################################");
+		this.analysisHost.appendLineToReport("# Step 1: Searching for element with applied stereotype <<guarded access>> #");
+		this.analysisHost.appendLineToReport("############################################################################");
 		
-		Resource currentModel = host.getAnalyzedModel();
+		Resource currentModel = this.analysisHost.getAnalyzedModel();
 		if (currentModel == null) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Resource is null"));
-			host.appendLineToReport("Error: Resource is null");
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Resource is null"));
+			this.analysisHost.appendLineToReport("Error: Resource is null");
 			return false;
 		}
 		if (currentModel.getContents().isEmpty()) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
-			host.appendLineToReport("Error: The model is empty");
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
+			this.analysisHost.appendLineToReport("Error: The model is empty");
 			return false;
 		}
 		if (currentModel.getContents().get(0) instanceof Package) {
 			Package pack = (Package) currentModel.getContents().get(0);
-			guardingInformations = new HashMap<String, String>();
+			this.guardingInformations = new HashMap<String, String>();
 			return guardedAccess(pack);
-		} else {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
-			host.appendLineToReport("Error: The content is not a model");
-			return false;
 		}
+		this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
+		this.analysisHost.appendLineToReport("Error: The content is not a model");
+		return false;
 	}
 	
 	/**
@@ -106,8 +108,8 @@ public class GuardedAccessCheck implements CarismaCheck {
 		if (stereotype == null) {
 			List<Element> stereotypeList = UMLsecUtil.getStereotypedElements(pack, UMLsec.GUARDED_ACCESS);
 			if ((stereotypeList == null) || (stereotypeList.size() < 1)) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "No stereotype <<guarded access>> applied."));
-				host.appendLineToReport("Error: No stereotype <<guarded access>> applied.");
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "No stereotype <<guarded access>> applied."));
+				this.analysisHost.appendLineToReport("Error: No stereotype <<guarded access>> applied.");
 			} else {
 				for (Element subElement : stereotypeList) {
 					GuardedAccessCheck gac = new GuardedAccessCheck();
@@ -115,42 +117,42 @@ public class GuardedAccessCheck implements CarismaCheck {
 				}
 			}
 		} else {
-			host.appendLineToReport("Stereotype <<guarded access>> found!");
-			host.appendLineToReport("Stereotype <<guarded access>> is applied to the element with the name '" + pack.getName() + "'");
-			host.appendLineToReport("");
-			host.appendLineToReport("############################################################################");
-			host.appendLineToReport("# Step 2: Searching for elements with applied stereotype <<guarded>>.      #");
-			host.appendLineToReport("#         Dumping the qualified name of the element and the value of the   #");
-			host.appendLineToReport("#         tag {guard} belonging to the stereotype.                         #");
-			host.appendLineToReport("############################################################################");
+			this.analysisHost.appendLineToReport("Stereotype <<guarded access>> found!");
+			this.analysisHost.appendLineToReport("Stereotype <<guarded access>> is applied to the element with the name '" + pack.getName() + "'");
+			this.analysisHost.appendLineToReport("");
+			this.analysisHost.appendLineToReport("############################################################################");
+			this.analysisHost.appendLineToReport("# Step 2: Searching for elements with applied stereotype <<guarded>>.      #");
+			this.analysisHost.appendLineToReport("#         Dumping the qualified name of the element and the value of the   #");
+			this.analysisHost.appendLineToReport("#         tag {guard} belonging to the stereotype.                         #");
+			this.analysisHost.appendLineToReport("############################################################################");
 			
 			findElementsWithStereotypeGuarded(pack);
 			
-			host.appendLineToReport("############################################################################");
-			host.appendLineToReport("# Step 3: Searching for transitions with a guard and a effect, to check    #");
-			host.appendLineToReport("#         their conformity with the rules of <<guarded access>>. Dumping   #");
-			host.appendLineToReport("#         all possible candidates with guard and effect                    #");
-			host.appendLineToReport("############################################################################");
+			this.analysisHost.appendLineToReport("############################################################################");
+			this.analysisHost.appendLineToReport("# Step 3: Searching for transitions with a guard and a effect, to check    #");
+			this.analysisHost.appendLineToReport("#         their conformity with the rules of <<guarded access>>. Dumping   #");
+			this.analysisHost.appendLineToReport("#         all possible candidates with guard and effect                    #");
+			this.analysisHost.appendLineToReport("############################################################################");
 			
 			boolean stereotypeSatisfied = analyseTransitions(pack);
 			
-			host.appendLineToReport("############################################################################");
-			host.appendLineToReport("# Step 4: Conclusion                                                       #");
-			host.appendLineToReport("############################################################################");
+			this.analysisHost.appendLineToReport("############################################################################");
+			this.analysisHost.appendLineToReport("# Step 4: Conclusion                                                       #");
+			this.analysisHost.appendLineToReport("############################################################################");
 			
 			if (stereotypeSatisfied) {
-				host.appendLineToReport("The model satisfies the rules of the stereotype <<guarded access>>");
-				host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The model satisfies the rules of the stereotype <<guarded access>>"));
+				this.analysisHost.appendLineToReport("The model satisfies the rules of the stereotype <<guarded access>>");
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The model satisfies the rules of the stereotype <<guarded access>>"));
 			} else {
-				host.appendLineToReport("The model violates the rules of the stereotype <<guarded access>>");
-				host.appendLineToReport("Violations:");
-				host.appendLineToReport(this.violations);
-				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "The model violates the rules of the stereotype <<guarded access>>"));
+				this.analysisHost.appendLineToReport("The model violates the rules of the stereotype <<guarded access>>");
+				this.analysisHost.appendLineToReport("Violations:");
+				this.analysisHost.appendLineToReport(this.violations);
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "The model violates the rules of the stereotype <<guarded access>>"));
 			}
 			
 			return stereotypeSatisfied;
 		}
-		host.appendLineToReport("WARNING: The check is not finished yet!");
+		this.analysisHost.appendLineToReport("WARNING: The check is not finished yet!");
 		return true;
 	}
 	
@@ -167,30 +169,30 @@ public class GuardedAccessCheck implements CarismaCheck {
 			for (Element element : elementsWithGuarded) {
 				if (element instanceof NamedElement) {
 					NamedElement namedElement = (NamedElement) element;
-					host.appendLineToReport("[" + (++elementCounter) + "] Name of the element:");
-					//host.appendLineToReport("       " + namedElement.getQualifiedName());
-					host.appendLineToReport("       " + UMLHelper.getAdequateQualifiedName(pack, namedElement));
+					this.analysisHost.appendLineToReport("[" + (++elementCounter) + "] Name of the element:");
+					//analysisHost.appendLineToReport("       " + namedElement.getQualifiedName());
+					this.analysisHost.appendLineToReport("       " + UMLHelper.getAdequateQualifiedName(pack, namedElement));
 					List<String> taggedValues = UMLsecUtil.getStringValues("guard", UMLsec.GUARDED, namedElement);
 					if (taggedValues != null) {
-						host.appendLineToReport("    Noteworthy Values:");
+						this.analysisHost.appendLineToReport("    Noteworthy Values:");
 						if (taggedValues.size() > 0) {
 							for (String tagValue : taggedValues) {
-								host.appendLineToReport("       guard=" + tagValue);
-								guardingInformations.put(namedElement.getName(), tagValue);
+								this.analysisHost.appendLineToReport("       guard=" + tagValue);
+								this.guardingInformations.put(namedElement.getName(), tagValue);
 							}
 						} else {
-							host.appendLineToReport("       guard is empty");
-							guardingInformations.put(namedElement.getName(), "");
+							this.analysisHost.appendLineToReport("       guard is empty");
+							this.guardingInformations.put(namedElement.getName(), "");
 						}
 					}
-					host.appendLineToReport("");
+					this.analysisHost.appendLineToReport("");
 				}
 			}
 		} else {
-			host.appendLineToReport("No elements found with applied stereotype <<guarded>>");
-			host.appendLineToReport("Nothing to check!");
-			host.appendLineToReport("");
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "No elements found with applied stereotype <<guarded>>"));
+			this.analysisHost.appendLineToReport("No elements found with applied stereotype <<guarded>>");
+			this.analysisHost.appendLineToReport("Nothing to check!");
+			this.analysisHost.appendLineToReport("");
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "No elements found with applied stereotype <<guarded>>"));
 		}
 	}
 	
@@ -209,9 +211,9 @@ public class GuardedAccessCheck implements CarismaCheck {
 				}
 			}
 		} else {
-			host.appendLineToReport("No transitions found with guard and effect");
-			host.appendLineToReport("");
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "No transitions found with guard and effect"));
+			this.analysisHost.appendLineToReport("No transitions found with guard and effect");
+			this.analysisHost.appendLineToReport("");
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "No transitions found with guard and effect"));
 			return true;
 		}
 		
@@ -226,44 +228,44 @@ public class GuardedAccessCheck implements CarismaCheck {
 		boolean returnBool = true;
 		String adequateQualifiedName = "";
 		
-		host.appendLineToReport("[" + transitionCounter + "] Name of the transition: ");
-		adequateQualifiedName = UMLHelper.getAdequateQualifiedName(pack, (NamedElement) transition);
-		host.appendLineToReport("       " + adequateQualifiedName);
+		this.analysisHost.appendLineToReport("[" + transitionCounter + "] Name of the transition: ");
+		adequateQualifiedName = UMLHelper.getAdequateQualifiedName(pack, transition);
+		this.analysisHost.appendLineToReport("       " + adequateQualifiedName);
 		
 		List<String> guardBodies = analyseGuardProperties(transition.getGuard());
 		String effectValue = analyseEffectProperties(pack, transition.getEffect());
 		
-		host.appendLineToReport("    Result:");
+		this.analysisHost.appendLineToReport("    Result:");
 		
 		if (effectValue != null && guardBodies != null && guardBodies.size() > 0) {
 			for (String guardBody : guardBodies) {
 				if (guardBody.substring(0, 4).equals("obj=")) {
 					String guardBodyCut = guardBody.substring(4);
-					if (guardingInformations.get(guardBodyCut) != null) { 
-						if (!guardingInformations.get(guardBodyCut).equals(effectValue)) {
-							host.appendLineToReport("       This transition violates the rules of the stereotype <<guarded access>>");
-							host.appendLineToReport("       because:");
-							host.appendLineToReport("          The element, referenced by the guard value 'obj' is stereotyped <<guarded>>");
-							host.appendLineToReport("          but the method, referenced by the effect, belongs to a class, which is not");
-							host.appendLineToReport("          part of the {guard} tag of the <<guarded>> stereotype.");
+					if (this.guardingInformations.get(guardBodyCut) != null) { 
+						if (!this.guardingInformations.get(guardBodyCut).equals(effectValue)) {
+							this.analysisHost.appendLineToReport("       This transition violates the rules of the stereotype <<guarded access>>");
+							this.analysisHost.appendLineToReport("       because:");
+							this.analysisHost.appendLineToReport("          The element, referenced by the guard value 'obj' is stereotyped <<guarded>>");
+							this.analysisHost.appendLineToReport("          but the method, referenced by the effect, belongs to a class, which is not");
+							this.analysisHost.appendLineToReport("          part of the {guard} tag of the <<guarded>> stereotype.");
 							this.violations += "The effect of the transition '" + adequateQualifiedName + "' violates the rules.\n "
 									+ "See the result of step 3 entry [" + transitionCounter + "] for more details.\n";
-							host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "The effect of the transition '"
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "The effect of the transition '"
 									+ adequateQualifiedName + "' violates the rules"));
 							returnBool &= false;
 						} else {
-							host.appendLineToReport("       This transition satisfies the rules of the stereotype <<guarded access>>");
+							this.analysisHost.appendLineToReport("       This transition satisfies the rules of the stereotype <<guarded access>>");
 						}
 					} else {
-						host.appendLineToReport("       No guarding informations found for this transition (guard='" + guardBody 
+						this.analysisHost.appendLineToReport("       No guarding informations found for this transition (guard='" + guardBody 
 								+ "', effect='" + effectValue + "')");
 					}
 				}
 			}
 		} else {
-			host.appendLineToReport("       The transition has no guard or effect, so there is no check necessary");
+			this.analysisHost.appendLineToReport("       The transition has no guard or effect, so there is no check necessary");
 		}
-		host.appendLineToReport("");
+		this.analysisHost.appendLineToReport("");
 		return returnBool;
 	}
 	
@@ -272,7 +274,7 @@ public class GuardedAccessCheck implements CarismaCheck {
 	 * @param constraint
 	 */
 	private List<String> analyseGuardProperties(Constraint constraint) {
-		host.appendLineToReport("    Guards:");
+		this.analysisHost.appendLineToReport("    Guards:");
 		
 		List<String> guardBodies = new ArrayList<String>();
 		
@@ -283,7 +285,7 @@ public class GuardedAccessCheck implements CarismaCheck {
 					OpaqueExpression guard = (OpaqueExpression) guardElement;
 					guardBodies.addAll(guard.getBodies());
 					for (String guardBody : guard.getBodies()) {
-						host.appendLineToReport("       " + guardBody);
+						this.analysisHost.appendLineToReport("       " + guardBody);
 					}
 				}		
 			}
@@ -301,29 +303,41 @@ public class GuardedAccessCheck implements CarismaCheck {
 			OpaqueBehavior opaqueBehavior = (OpaqueBehavior) behavior;
 			BehavioralFeature behavioralFeature = opaqueBehavior.getSpecification();
 			if (behavioralFeature != null) {
-				host.appendLineToReport("    Effects:");
-				host.appendLineToReport("       the following informations are about the element, which is referenced by the effect");
-				//host.appendLineToReport("       Name: " + behavioralFeature.getQualifiedName());
-				host.appendLineToReport("       Name: " + UMLHelper.getAdequateQualifiedName(pack, (NamedElement) behavioralFeature));
+				this.analysisHost.appendLineToReport("    Effects:");
+				this.analysisHost.appendLineToReport("       the following informations are about the element, which is referenced by the effect");
+				//analysisHost.appendLineToReport("       Name: " + behavioralFeature.getQualifiedName());
+				this.analysisHost.appendLineToReport("       Name: " + UMLHelper.getAdequateQualifiedName(pack, behavioralFeature));
 				
 				// Search for parent class of the operation
 				if (behavioralFeature instanceof Operation) {
 					Operation operation = (Operation) behavioralFeature;
 					NamedElement parentElement = (NamedElement) operation.getOwner();
-					//host.appendLineToReport("       Name of the parent element: " + parentElement.getQualifiedName());
-					host.appendLineToReport("       Name of the parent element: " + UMLHelper.getAdequateQualifiedName(pack, parentElement));
+					//analysisHost.appendLineToReport("       Name of the parent element: " + parentElement.getQualifiedName());
+					this.analysisHost.appendLineToReport("       Name of the parent element: " + UMLHelper.getAdequateQualifiedName(pack, parentElement));
 					return parentElement.getName();
 				}
 				
 				// If nothing was return yet, return the Name of the BehavioralFeature as a NamedElement
-				if (behavioralFeature instanceof NamedElement) {
-					NamedElement namedElement = (NamedElement) behavioralFeature;
-					namedElement.getName();
-				}
+				
+				//TODO: something is wrong here
+//				if (behavioralFeature instanceof NamedElement) {
+//					NamedElement namedElement = (NamedElement) behavioralFeature;
+//					namedElement.getName();
+//				}
 			}
 		}
 		
 		return null;
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 	
 }

@@ -53,29 +53,29 @@ public class SimpleElementDescription extends ElementDescription {
 	 */
 	public SimpleElementDescription(final String grammar) {
 		super(grammar);
-		metaclassName = ParserUtils.findMetaclassName(grammar);
-		keyValuePairs = ParserUtils.findKeyValuePairs(grammar.replaceFirst(metaclassName, ""));
-		contents = new ArrayList<SimpleElementDescription>();
-		String contentsValue = keyValuePairs.get("contents");
+		this.metaclassName = ParserUtils.findMetaclassName(grammar);
+		this.keyValuePairs = ParserUtils.findKeyValuePairs(grammar.replaceFirst(this.metaclassName, ""));
+		this.contents = new ArrayList<SimpleElementDescription>();
+		String contentsValue = this.keyValuePairs.get("contents");
 		if (contentsValue != null) {
 			List<String> extractedDescriptions = ParserUtils.extract(contentsValue.substring(1, contentsValue.length() - 1), ',');
 			for (String extractedDescription : extractedDescriptions) {
-				contents.add(new SimpleElementDescription(extractedDescription));
+				this.contents.add(new SimpleElementDescription(extractedDescription));
 			}
-			keyValuePairs.remove("contents");
+			this.keyValuePairs.remove("contents");
 		}
 	}
 	
 	public String getMetaclassName() {
-		return metaclassName;
+		return this.metaclassName;
 	}
 	
 	public Map<String,String> getKeyValuePairs() {
-		return keyValuePairs;
+		return this.keyValuePairs;
 	}
 	
 	public List<SimpleElementDescription> getContainedElements() {
-		return contents;
+		return this.contents;
 	}
 	
 	@Override
@@ -85,9 +85,9 @@ public class SimpleElementDescription extends ElementDescription {
 		}
 		if (other instanceof SimpleElementDescription) {
 			SimpleElementDescription otherDescription = (SimpleElementDescription) other;
-			if (otherDescription.getMetaclassName().equals(metaclassName)
-					&& otherDescription.getKeyValuePairs().equals(keyValuePairs)
-					&& otherDescription.getContainedElements().equals(contents)) {
+			if (otherDescription.getMetaclassName().equals(this.metaclassName)
+					&& otherDescription.getKeyValuePairs().equals(this.keyValuePairs)
+					&& otherDescription.getContainedElements().equals(this.contents)) {
 				return true;
 			}			
 		}
@@ -105,20 +105,21 @@ public class SimpleElementDescription extends ElementDescription {
 		return result;
 	}
 	
+	@Override
 	public boolean isValid() {
 		if (getGrammarString() == null || getGrammarString().isEmpty()) {
 			return false;
 		}
-		if (metaclassName == null) {
+		if (this.metaclassName == null) {
 			return false;
 		}
-		if (keyValuePairs == null) {
+		if (this.keyValuePairs == null) {
 			return false;
 		}
-		if (contents == null) {
+		if (this.contents == null) {
 			return false;
 		}
-		for (SimpleElementDescription sed : contents) {
+		for (SimpleElementDescription sed : this.contents) {
 			if (!sed.isValid()) {
 				return false;
 			}

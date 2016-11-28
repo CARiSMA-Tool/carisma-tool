@@ -3,6 +3,7 @@ package carisma.ui.vision.questions;
 import java.util.ArrayList;
 import java.util.List;
 
+import carisma.check.staticcheck.securelinks.SecureLinksCheck;
 import carisma.core.analysis.result.AnalysisResult;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.CheckResult;
@@ -24,10 +25,10 @@ public class SecureLinksBuilder implements Builder {
 		List<Question> questions = new ArrayList<Question>();
 		List<String> messages = new ArrayList<String>() ;
 		//a list for the checks
-		List<CheckResult> checks = analysisResult.getCheckResults();
+		List<CheckResult> checks = this.analysisResult.getCheckResults();
 		for( int i = 0;  i < checks.size(); i++ ){
 			String checkName = checks.get(i).getName();
-			if (checkName.equals("UMLsec secure links Check")){
+			if (checkName.equals(SecureLinksCheck.CHECK_NAME)){
 				//List<CheckResult> checkResults = analysisResult.getCheckResults();
 				//for(int l = 0; l < checkResults.size(); l++){
 					if(!(checks.get(i).isSuccessful())){

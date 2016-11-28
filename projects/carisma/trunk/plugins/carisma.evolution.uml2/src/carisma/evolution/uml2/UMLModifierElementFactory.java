@@ -95,7 +95,7 @@ public class UMLModifierElementFactory {
 	 * @param de - the add element describing the new model element.
 	 * @return - the new UML Model element
 	 */
-	public final EObject createElement(final AddElement de) {
+	public final static EObject createElement(final AddElement de) {
 		EClass classOfAddedElem = de.getMetaClass();
 		if (classOfAddedElem.getName().equalsIgnoreCase("CommunicationPath")) {
 			return createCommunicationPath(de);
@@ -130,7 +130,7 @@ public class UMLModifierElementFactory {
 	 * @param add - the AddElement to use for the Association
 	 * @return - the created Association
 	 */
-	private final Association createAssociation(final AddElement add) {
+	private final static Association createAssociation(final AddElement add) {
 		Model theModel = UMLHelper.getModel(add.getTarget());
 		if (theModel == null) {
 			return null;
@@ -141,14 +141,14 @@ public class UMLModifierElementFactory {
 		AggregationKind sourceEndKind = getAggregationKind((String) add.getValues().get("sourceEndKind"), AggregationKind.COMPOSITE_LITERAL);
 		int sourceLowerBound = getBound((String) add.getValues().get("sourceLowerBound"));
 		int sourceUpperBound = getBound((String) add.getValues().get("sourceUpperBound"));
-		boolean sourceNavigable = getBoolean((String) add.getValues().get("sourceNavigable"));
+		boolean sourceNavigable = Boolean.parseBoolean((String) add.getValues().get("sourceNavigable"));
 
 		String targetName = (String) add.getValues().get("target");
 		String targetEndName = getEndName((String) add.getValues().get("targetEndName"));
 		AggregationKind targetEndKind = getAggregationKind((String) add.getValues().get("targetEndKind"), AggregationKind.NONE_LITERAL);
 		int targetLowerBound = getBound((String) add.getValues().get("targetLowerBound"));
 		int targetUpperBound = getBound((String) add.getValues().get("targetUpperBound"));
-		boolean targetNavigable = getBoolean((String) add.getValues().get("sourceNavigable"));
+		boolean targetNavigable = Boolean.parseBoolean((String) add.getValues().get("sourceNavigable"));
 		try {
 			Classifier source = UMLHelper.getElementOfNameAndType(theModel, sourceName, Classifier.class);
 			Classifier target = UMLHelper.getElementOfNameAndType(theModel, targetName, Classifier.class);
@@ -178,7 +178,7 @@ public class UMLModifierElementFactory {
 	 * @param add - the AddElement to use for the CommunicationPath
 	 * @return - the created CommunicationPath
 	 */
-	private final CommunicationPath createCommunicationPath(final AddElement add) {
+	private final static CommunicationPath createCommunicationPath(final AddElement add) {
 		Model theModel = UMLHelper.getModel(add.getTarget());
 		if (theModel == null) {
 			return null;
@@ -208,7 +208,7 @@ public class UMLModifierElementFactory {
 	 * @param add - the AddElement to use for the Deployment
 	 * @return - the created Deployment
 	 */
-	private final Deployment createDeployment(final AddElement add) {
+	private final static Deployment createDeployment(final AddElement add) {
 		Model theModel = UMLHelper.getModel(add.getTarget());
 		if (theModel == null) {
 			return null;
@@ -238,7 +238,7 @@ public class UMLModifierElementFactory {
 	 * @param de
 	 * @return
 	 */
-	private StereotypeApplication createStereotypeApplication(final AddElement de) {
+	private static StereotypeApplication createStereotypeApplication(final AddElement de) {
 		Model theModel = UMLHelper.getModel(de.getTarget());
 		if (theModel == null) {
 			return null;
@@ -247,11 +247,10 @@ public class UMLModifierElementFactory {
 		Element target = (Element) de.getTarget();
 		if (stereoName.contains("::")) {
 			return UMLHelper.applyStereotype(target, stereoName);			
-		} else {
-			for (Profile p : target.getModel().getAllAppliedProfiles()) {
-				if (p.getOwnedStereotype(stereoName) != null) {
-					return UMLHelper.applyStereotype(target, p.getName() + "::" + stereoName);
-				}
+		}
+		for (Profile p : target.getModel().getAllAppliedProfiles()) {
+			if (p.getOwnedStereotype(stereoName) != null) {
+				return UMLHelper.applyStereotype(target, p.getName() + "::" + stereoName);
 			}
 		}
 		return null;
@@ -262,7 +261,7 @@ public class UMLModifierElementFactory {
 	 * @param add
 	 * @return
 	 */
-	private TaggedValue createTaggedValue(final AddElement add) {
+	private static TaggedValue createTaggedValue(final AddElement add) {
 		StereotypeApplication sta = (StereotypeApplication) add.getTarget();
 		String tagName = (String) add.getValues().get(NAME);
 		String tagValue = (String) add.getValues().get(VALUE);
@@ -276,7 +275,7 @@ public class UMLModifierElementFactory {
 	 * @param add
 	 * @return
 	 */
-	private Constraint createConstraint(final AddElement add) {
+	private static Constraint createConstraint(final AddElement add) {
 		Model theModel = UMLHelper.getModel(add.getTarget());
 		if (theModel == null) {
 			return null;
@@ -306,7 +305,7 @@ public class UMLModifierElementFactory {
 	 * @param substituteValue
 	 */
 	@SuppressWarnings("unchecked")
-	public void editStructuralFeatureValue(final Element targetElement, final String key, final Object realValue, final boolean substituteValue) {
+	public static void editStructuralFeatureValue(final Element targetElement, final String key, final Object realValue, final boolean substituteValue) {
 		EStructuralFeature sf = targetElement.eClass().getEStructuralFeature(key);
 		if (sf != null) {
 			if (sf.isMany()) {
@@ -343,7 +342,7 @@ public class UMLModifierElementFactory {
 	 * @param container - the element containing the new element
 	 * @param containedElement - the new element
 	 */
-	public void insertContainmentRelationship(final Element container, final Element containedElement) {
+	public static void insertContainmentRelationship(final Element container, final Element containedElement) {
 		UMLPackage umlPackage = UMLPackage.eINSTANCE;
 		if (umlPackage.getElement().isInstance(container)
 				&& umlPackage.getComment().isInstance(containedElement)) {
@@ -519,7 +518,7 @@ public class UMLModifierElementFactory {
 	 * @param container - the element containing the new element
 	 * @param containedElement - the new element
 	 */
-	private void insertContainmentRelationshipForActivity(final Element container, final Element containedElement) {
+	private static void insertContainmentRelationshipForActivity(final Element container, final Element containedElement) {
 		UMLPackage uml = UMLPackage.eINSTANCE;
 		//TODO maybe ONE UMLPackage reference for the whole class.
 		if (container.equals(containedElement)) {
@@ -620,7 +619,7 @@ public class UMLModifierElementFactory {
 	 * @param value -
 	 * @return -
 	 */
-	public final Object findRealValue(final Model model, final String key, final Object value) {
+	public final static Object findRealValue(final Model model, final String key, final Object value) {
 		try { 
 			if (value instanceof String) {
 				String stringValue = (String) value;
@@ -635,13 +634,13 @@ public class UMLModifierElementFactory {
 				}
 				if (key.equals("sourceLowerBound") || key.equals("targetLowerBound") ||
 						key.equals("sourceUpperBound") || key.equals("targetUpperBound")) {
-					return getBound(stringValue);
+					return Integer.valueOf(getBound(stringValue));
 				}
 				if (key.equals("sourceNavigable") || key.equals("targetNavigable")) {
-					return getBoolean(stringValue);
+					return Boolean.valueOf(stringValue);
 				}
 				if (key.startsWith("is") && (stringValue.equals("true") || stringValue.equals("false"))) {
-					return getBoolean(stringValue);
+					return Boolean.valueOf(stringValue);
 				}
 				if (key.startsWith("end")) {
 					// was ist mit "alterSource;;neuerSource"?
@@ -671,9 +670,8 @@ public class UMLModifierElementFactory {
 				Element realElement = UMLHelper.getElementByName(model, stringValue);
 				if (realElement != null) {
 					return realElement;
-				} else {
-					Logger.log(LogLevel.ERROR, "Couldn't find model element " + stringValue);
 				}
+				Logger.log(LogLevel.ERROR, "Couldn't find model element " + stringValue);
 			}
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);			
@@ -686,7 +684,7 @@ public class UMLModifierElementFactory {
 	 * @param value
 	 * @return
 	 */
-	private String getEndName(final String value) {
+	private static String getEndName(final String value) {
 		if (value == null) {
 			return "";
 		}
@@ -699,7 +697,7 @@ public class UMLModifierElementFactory {
 	 * @param defaultValue
 	 * @return
 	 */
-	private AggregationKind getAggregationKind(final String value, final AggregationKind defaultValue) {
+	private static AggregationKind getAggregationKind(final String value, final AggregationKind defaultValue) {
 		if (value != null) {
 			if (value.equalsIgnoreCase("none")) {
 				return AggregationKind.NONE_LITERAL;
@@ -713,9 +711,8 @@ public class UMLModifierElementFactory {
 		}
 		if (defaultValue != null) {
 			return defaultValue;
-		} else {
-			return AggregationKind.COMPOSITE_LITERAL;
 		}
+		return AggregationKind.COMPOSITE_LITERAL;
 
 	}
 	
@@ -725,7 +722,7 @@ public class UMLModifierElementFactory {
 	 * @param defaultValue
 	 * @return
 	 */
-	private VisibilityKind getVisibilityKind(final String value, final VisibilityKind defaultValue) {
+	private static VisibilityKind getVisibilityKind(final String value, final VisibilityKind defaultValue) {
 		if (value != null) {
 			if (value.equalsIgnoreCase("public")) {
 				return VisibilityKind.PUBLIC_LITERAL;
@@ -742,9 +739,8 @@ public class UMLModifierElementFactory {
 		}
 		if (defaultValue != null) {
 			return defaultValue;
-		} else {
-			return VisibilityKind.PUBLIC_LITERAL;
 		}
+		return VisibilityKind.PUBLIC_LITERAL;
 	}
 	
 	/**
@@ -752,7 +748,7 @@ public class UMLModifierElementFactory {
 	 * @param value
 	 * @return
 	 */
-	private int getBound(final String value) {
+	private static int getBound(final String value) {
 		if (value == null) {
 			return 1;
 		}
@@ -767,20 +763,5 @@ public class UMLModifierElementFactory {
 			return -1;
 		}
 		return 1;
-	}
-	
-	/**
-	 * 
-	 * @param value
-	 * @return
-	 */
-	private boolean getBoolean(final String value) {
-		if (value == null || value.isEmpty()) {
-			return false;
-		}
-		if (value.equalsIgnoreCase("true")) {
-			return true;
-		}
-		return false;	
 	}
 }

@@ -48,7 +48,7 @@ public class InputFileParameter extends CheckParameter {
 	 * @return value of this parameter
 	 */
 	public final File getValue() {
-		return value;
+		return this.value;
 	}
 	/**
 	 * setter for value.

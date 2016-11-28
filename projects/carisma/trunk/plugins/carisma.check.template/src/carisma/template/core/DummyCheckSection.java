@@ -32,6 +32,9 @@ import org.eclipse.pde.core.plugin.IPluginReference;
 import org.eclipse.pde.ui.templates.OptionTemplateSection;
 import org.eclipse.pde.ui.templates.PluginReference;
 import org.eclipse.pde.ui.templates.TemplateOption;
+
+import carisma.core.Carisma;
+import carisma.modeltype.uml2.ModeltypeUML2Activator;
 import carisma.template.main.Activator;
 import carisma.template.main.ShareWizardData;
 
@@ -130,14 +133,14 @@ public class DummyCheckSection extends OptionTemplateSection {
 
 	@Override
 	public final String getUsedExtensionPoint() {
-		return "carisma.carismacheck";
+		return Carisma.EXTENSION_POINT_CARISMA_CARISMACHECK;
 	}
 	
 	@Override
 	public final IPluginReference[] getDependencies(final String schemaVersion) {
 		return new IPluginReference[] {new PluginReference("org.eclipse.ui",  //$NON-NLS-1$
 				null, 0), new PluginReference("org.eclipse.core.runtime", null, 0),
-				new PluginReference("carisma.modeltype.uml2", null, 0),
+				new PluginReference(ModeltypeUML2Activator.PLUGIN_ID, null, 0),
 				new PluginReference("org.eclipse.core.resources", null, 0)
 				};
 	}
@@ -174,11 +177,11 @@ public class DummyCheckSection extends OptionTemplateSection {
 
 	@Override
 	protected final void updateModel(final IProgressMonitor monitor) throws CoreException {
-		IPluginModelFactory modelFactory = model.getPluginFactory();
-		IPluginBase plugin = model.getPluginBase();
+		IPluginModelFactory modelFactory = this.model.getPluginFactory();
+		IPluginBase plugin = this.model.getPluginBase();
 		//------------ \begin{IPluginExtension} -------------------
 
-		IPluginExtension analysisExtension = createExtension("carisma.carismacheck", true);
+		IPluginExtension analysisExtension = createExtension(Carisma.EXTENSION_POINT_CARISMA_CARISMACHECK, true);
 		IPluginElement element = modelFactory.createElement(plugin);
 		IPluginElement parameter1 = modelFactory.createElement(plugin); 
 		IPluginElement parameter2 = modelFactory.createElement(plugin); 

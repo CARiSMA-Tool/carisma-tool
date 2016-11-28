@@ -11,9 +11,10 @@ import org.w3c.dom.Document;
 import carisma.core.io.content.Content;
 import carisma.core.io.content.ContentFactory;
 import carisma.core.io.implementations.FileIO;
-import carisma.core.io.implementations.db.mongodb.restapi.MongoDBDynamicConfiguration;
-import carisma.core.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
 import carisma.ui.eclipse.CarismaGUI;
+import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
+import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI.MongoDBDestination;
+
 import static carisma.ui.vision.eclipse.preferences.pages.VisiOn.*;
 
 public class dbAccess {
@@ -30,7 +31,7 @@ public class dbAccess {
 		String stsDocument = preferencesStore.getString(KEY_STS_DOCUMENT);
 		String stsField = preferencesStore.getString(KEY_STS_FIELD);
 
-		MongoDBDynamicConfiguration config = new MongoDBDynamicConfiguration(url, stsCollection, stsDocument, stsField);
+		MongoDBDestination config = new MongoDBDestination(stsCollection, stsDocument, stsField);
 		Content content = db.read(config);
 		return ContentFactory.convertToXmlDom(content).getDocument();
 	}

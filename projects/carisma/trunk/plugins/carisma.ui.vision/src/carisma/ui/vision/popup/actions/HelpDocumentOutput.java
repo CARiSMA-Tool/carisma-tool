@@ -5,17 +5,18 @@ import org.eclipse.jface.action.IMenuManager;
 
 import carisma.core.analysis.result.AnalysisResult;
 import carisma.core.analysis.result.CheckResult;
-import carisma.ui.eclipse.CarismaGUI;
 import carisma.ui.popup.actions.PopUpAction;
+import carisma.ui.vision.automatedanalysis.AutomatedAnalysis;
 
 public class HelpDocumentOutput implements PopUpAction {
 
 	@Override
 	public boolean perform(final IMenuManager manager, final AnalysisResult analysisResult) {
 		Action action4 = new Action() {
+			@Override
 			public void run() {
 				super.run();
-				CarismaGUI.INSTANCE.startAutomatedAnalysis(analysisResult);
+				AutomatedAnalysis.startAutomatedAnalysis(analysisResult);
 			}
 		};
 		action4.setEnabled(false);

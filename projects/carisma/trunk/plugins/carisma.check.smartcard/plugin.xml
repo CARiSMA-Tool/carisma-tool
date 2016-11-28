@@ -7,7 +7,7 @@
             description="Checks the given model with respect to locked status"
             id="carisma.check.smartcard.lockedstatuscheck"
             name="UMLsec locked-status Check"
-            implementingClass="carisma.check.smartcard.lockedstatus.Check"
+            implementingClass="carisma.check.smartcard.lockedstatus.LockedStatusCheck"
             publisher="Klaus Rudack"
             targetModelType="UML2">
       </check>
@@ -15,14 +15,14 @@
             description="Checks the given model with respect to authorized status"
             id="carisma.check.smartcard.authorizedstatuscheck"
             name="UMLsec authorized-status Check"
-            implementingClass="carisma.check.smartcard.authorizedstatus.Check"
+            implementingClass="carisma.check.smartcard.authorizedstatus.AuthorizedStatusCheck"
             publisher="Klaus Rudack"
             targetModelType="UML2">
       </check>
       <check
             description="Exports a triple, from an UML diagram, which can be used to generate a Schema"
             id="carisma.check.hoartriple.exporter.lockedstatus"
-            implementingClass="carisma.check.exporter_for_schema_generation.LockedStatus"
+            implementingClass="carisma.check.exporter_for_schema_generation.LockedStatusTripleExporter"
             name="UMLsec locked-status Triple Exporter"
             publisher="Berghoff"
             targetModelType="UML2">
@@ -44,7 +44,7 @@
       <check
             description="Exports a triple, from an UML diagram, which can be used to generate a Schema"
             id="carisma.check.hoartriple.exporter.authorized-status"
-            implementingClass="carisma.check.exporter_for_schema_generation.AuthorizedStatus"
+            implementingClass="carisma.check.exporter_for_schema_generation.AuthorizedStatusTripleExporter"
             name="UMLsec authorized-status Triple Exporter"
             publisher="Berghoff"
             targetModelType="UML2">

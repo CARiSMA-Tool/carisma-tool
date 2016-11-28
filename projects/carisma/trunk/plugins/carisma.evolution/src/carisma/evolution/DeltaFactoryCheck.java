@@ -8,24 +8,29 @@ import carisma.core.analysis.RegisterInUseException;
 import carisma.core.analysis.RegisterNotInUseException;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 
 
-public class DeltaFactoryCheck implements CarismaCheck {
+public class DeltaFactoryCheck implements CarismaCheckWithID {
 		
-	private static final String CHANGE_REGISTER_NAME = "carisma.data.evolution.changes"; 
-	
-	private static final String DELTA_REGISTER_NAME = "carisma.data.evolution.deltas";
+	public static final String CHECK_ID = "carisma.evolution.DeltaFactoryCheck";
 
+	public static final String PRECONDITION_CHANGE_REGISTER_NAME = "carisma.data.evolution.changes"; 
+	
+	public static final String PRECONDITION_DELTA_REGISTER_NAME = "carisma.data.evolution.deltas";
+	
+	public static final String CHECK_NAME = "Delta Calculator";
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public final boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost host) {
 	    
 		List<Change> changes = null;
 		try {
-			changes = (List<Change>) host.getFromRegister(CHANGE_REGISTER_NAME);
+			changes = (List<Change>) host.getFromRegister(PRECONDITION_CHANGE_REGISTER_NAME);
 		} catch (RegisterNotInUseException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			return false;
@@ -36,18 +41,17 @@ public class DeltaFactoryCheck implements CarismaCheck {
 		if (changes.isEmpty()) {
 			return false;
 		}
-		DeltaFactory theFactory = new DeltaFactory();
-		List<Delta> computedDeltas = theFactory.getDeltas(changes);
+		List<Delta> computedDeltas = DeltaFactory.getDeltas(changes);
 		DeltaList deltas = new DeltaList(computedDeltas);
-		if (host.isRegisterInUse(DELTA_REGISTER_NAME)) {
+		if (host.isRegisterInUse(PRECONDITION_DELTA_REGISTER_NAME)) {
 			try {
-				host.removeFromRegister(DELTA_REGISTER_NAME);
+				host.removeFromRegister(PRECONDITION_DELTA_REGISTER_NAME);
 			} catch (RegisterNotInUseException e) {
 				Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			}
 		}
 		try {
-			host.putToRegister(DELTA_REGISTER_NAME, deltas);
+			host.putToRegister(PRECONDITION_DELTA_REGISTER_NAME, deltas);
 		} catch (RegisterInUseException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			return false;
@@ -56,5 +60,14 @@ public class DeltaFactoryCheck implements CarismaCheck {
 		        StatusType.INFO, deltas.remainingSize() + " Deltas built (max. used changes: " + deltas.getHighestChangeCountAllTime() + ")."));
 		return true;
 	}
-	
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
+	}
 }

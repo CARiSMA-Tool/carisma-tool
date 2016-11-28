@@ -5,14 +5,15 @@ public class ExportDeltaElement {
 	private ExportExtTag target = null;
 	
 	public void setExt(ExportExtTag newTarget) { 
-		target = newTarget;
+		this.target = newTarget;
 	}
 	
 	public ExportExtTag getTarget() {
-		return target;
+		return this.target;
 	}
 	
+	@Override
 	public String toString() {
-		return target.getName();
+		return this.target.getName();
 	}
 }

@@ -85,7 +85,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	/**
 	 * Host.
 	 */
-	private AnalysisHost host = null;
+	private AnalysisHost analysisHost = null;
 
 	/**
 	 * Constant name for the key 'name'.
@@ -145,9 +145,9 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 */
 	public final void setHost(final AnalysisHost theHost) {
 		if (theHost != null) {
-			host = theHost;
-		} else if (host == null) {
-			host = new DummyHost(true);
+			this.analysisHost = theHost;
+		} else if (this.analysisHost == null) {
+			this.analysisHost = new DummyHost(true);
 		}
 	}
 	
@@ -156,8 +156,8 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * @param newModel - the new model
 	 */
 	public final void setModel(final Model newModel) {
-		if (newModel != null && !newModel.equals(theModel)) {
-			theModel = newModel;
+		if (newModel != null && !newModel.equals(this.theModel)) {
+			this.theModel = newModel;
 		}
 		init();
 	}
@@ -167,7 +167,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * @return - the model
 	 */
 	public final Model getModel() {
-		return theModel;
+		return this.theModel;
 	}
 	
 	/** init Method provides 'fresh' fields.
@@ -177,35 +177,35 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 *  
 	 */
 	private void init() {
-		if (oldMarkedOriginalElementMapping == null) {
-			oldMarkedOriginalElementMapping = new HashMap<NamedElement, NamedElement>();
+		if (this.oldMarkedOriginalElementMapping == null) {
+			this.oldMarkedOriginalElementMapping = new HashMap<NamedElement, NamedElement>();
 		} else {
-			oldMarkedOriginalElementMapping.clear();
+			this.oldMarkedOriginalElementMapping.clear();
 		}
-		if (changeRefChangeMapping == null) {
-			changeRefChangeMapping = new HashMap<String, Change>();
+		if (this.changeRefChangeMapping == null) {
+			this.changeRefChangeMapping = new HashMap<String, Change>();
 		} else {
-			changeRefChangeMapping.clear();
+			this.changeRefChangeMapping.clear();
 		}
-		if (changeConstraintMapping == null) {
-			changeConstraintMapping = new HashMap<Change, String>();
+		if (this.changeConstraintMapping == null) {
+			this.changeConstraintMapping = new HashMap<Change, String>();
 		} else {
-			changeConstraintMapping.clear();
+			this.changeConstraintMapping.clear();
 		}
 		for (UMLchange e : UMLchange.values()) {
-			if (stereotypeMapping.get(e) == null) {
-				stereotypeMapping.put(e, new ArrayList<Element>());
+			if (this.stereotypeMapping.get(e) == null) {
+				this.stereotypeMapping.put(e, new ArrayList<Element>());
 			} else {
-				stereotypeMapping.get(e).clear();
+				this.stereotypeMapping.get(e).clear();
 			}
 		}
 	}
 	
 	private void storeStereotypeMapping() {
-		for (Element elem : theModel.allOwnedElements()) {
+		for (Element elem : this.theModel.allOwnedElements()) {
 			for (UMLchange e : UMLchange.values()) {
 				if (UMLchangeUtil.hasStereotype(e, elem)) {
-					stereotypeMapping.get(e).add(elem);
+					this.stereotypeMapping.get(e).add(elem);
 				}				
 			}
 		}
@@ -215,29 +215,30 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * by parsing the model for UMLchange stereotypes.
 	 * @return - list of change descriptions
 	 */
+	@Override
 	public final List<Change> generateDeltaDescriptions() {
 		List<Change> changes = new ArrayList<Change>();
-		if (UMLHelper.isProfileApplied(theModel, UMLchange.DESCRIPTOR)) {
+		if (UMLHelper.isProfileApplied(this.theModel, UMLchange.DESCRIPTOR)) {
 			init();
 			storeStereotypeMapping();
 			createOldOriginalMapping();
 			for (UMLchange e : UMLchange.values()) {
-				for (Element extendedElement : stereotypeMapping.get(e)) {
+				for (Element extendedElement : this.stereotypeMapping.get(e)) {
 					changes.addAll(processUMLchangeApplications(extendedElement));
 				}				
 			}
 			for (Change change : changes) {
-				change.replaceConstraints(createChangeConstraints(change, changeConstraintMapping.get(change)));
+				change.replaceConstraints(createChangeConstraints(change, this.changeConstraintMapping.get(change)));
 			}
 		}
 		return changes;
 	}
 
 	private void createOldOriginalMapping() {
-		for (Element oldElement : stereotypeMapping.get(UMLchange.OLD)) {
+		for (Element oldElement : this.stereotypeMapping.get(UMLchange.OLD)) {
 			if (oldElement instanceof NamedElement) {
 				NamedElement namedOldElement = (NamedElement) oldElement;
-				oldMarkedOriginalElementMapping.put(namedOldElement, getOriginalElement(namedOldElement, theModel));
+				this.oldMarkedOriginalElementMapping.put(namedOldElement, getOriginalElement(namedOldElement, this.theModel));
 			}
 		}
 	}
@@ -254,7 +255,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 						changeConstraints.add(con);
 					}
 				} catch (IllegalArgumentException e) {
-					host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));					
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));					
 				}
 			}
 		}
@@ -280,7 +281,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 					throw new IllegalArgumentException("Constraint type " + type + " at constrained change " + constrainedChange.getRef() + " does not exist.");
 				}
 				ConstraintType theType = ConstraintType.valueOf(type);
-				Change theReferencedChange = changeRefChangeMapping.get(referencedChange);
+				Change theReferencedChange = this.changeRefChangeMapping.get(referencedChange);
 				if (theReferencedChange == null) {
 					throw new IllegalArgumentException("Change " + referencedChange + " at constrained change " 
 				+ constrainedChange.getRef() + " does not exist.");					
@@ -298,7 +299,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 		for (Element elementInScope : searchScope.allOwnedElements()) {
 			if (elementInScope instanceof NamedElement) {
 				NamedElement candidate = (NamedElement) elementInScope;
-				if (candidate.getName().equalsIgnoreCase(oldName) && !(stereotypeMapping.get(UMLchange.OLD).contains(candidate))) {
+				if (candidate.getName().equalsIgnoreCase(oldName) && !(this.stereotypeMapping.get(UMLchange.OLD).contains(candidate))) {
 					return candidate;
 				}
 			}
@@ -323,7 +324,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			
 			List<String> refValues = changeApplication.getTaggedValue("ref").getStringValues();
 			if (refValues.isEmpty()) {
-				host.addResultMessage(
+				this.analysisHost.addResultMessage(
 						new AnalysisResultMessage(
 								StatusType.WARNING, "UMLchange application of " 
 						+ type.toString() + " at " 
@@ -351,7 +352,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			
 			for (String refValue : refValues) {
 				if (refValue.isEmpty()) {
-					host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Empty string as ref at " + EObjectUtil.getTypeAndName(extendedElement) + "."));					
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Empty string as ref at " + EObjectUtil.getTypeAndName(extendedElement) + "."));					
 					continue;
 				}
 				String extValue = ParserUtils.getMatchingValues(refValue, extValues);
@@ -362,13 +363,13 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 				if (UMLchangeUtil.hasNew(type)) {
 					newValue = ParserUtils.getMatchingValues(refValue, newValues);
 					if (newValue.isEmpty()) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Couldn't find corresponding new value for " + refValue + "."));					
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Couldn't find corresponding new value for " + refValue + "."));					
 						continue;						
 					}
 // FIXME: use UMLchangeValidator class for validating new, pattern, to, values
 					newBlock = new GrammarBlock(newValue);
 					if (!newBlock.isValid()) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Wrong syntax used for new value " + newValue + "."));
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Wrong syntax used for new value " + newValue + "."));
 						continue;												
 					}
 				}
@@ -378,13 +379,13 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 				if (UMLchangeUtil.hasPattern(type)) {
 					patternValue = ParserUtils.getMatchingValues(refValue, patternValues);
 					if (patternValue.isEmpty()) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Couldn't find corresponding pattern value for " + refValue + "."));
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Couldn't find corresponding pattern value for " + refValue + "."));
 						continue;						
 					}
 					// FIXME: use UMLchangeValidator class for validating new, pattern, to, values
 					GrammarBlock patternBlock = new GrammarBlock(patternValue);
 					if (!patternBlock.isValid()) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Wrong syntax used for pattern value " + patternValue + "."));
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Wrong syntax used for pattern value " + patternValue + "."));
 						continue;												
 					}
 					try {
@@ -395,24 +396,24 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 						
 						List<Element> matchingElements = getPatternMatches(extendedElement, patternDescription);
 						if (matchingElements.isEmpty()) {
-							host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Couldn't find matching elements for " + patternDescription + "."));
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Couldn't find matching elements for " + patternDescription + "."));
 						}
 						
 						for (Element matchingElement : matchingElements) {
 							try {	
-								EObject changedElement = determineChangedElement(extValue, (Element) matchingElement);
+								EObject changedElement = determineChangedElement(extValue, matchingElement);
 								if (changedElement != null) {
 									realMatchingElements.add(changedElement);
 								}
 							} catch (ModelElementNotFoundException e) {
-								host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
+								this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
 										"Couldn't find the changed element described by " + extValue + "." 
 										+ " Searched at " + EObjectUtil.getTypeAndName(matchingElement) + "."));
 								continue;
 							}
 						}
 					} catch (IndexOutOfBoundsException e) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Pattern description either has zero alternatives or zero descriptions. "));
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Pattern description either has zero alternatives or zero descriptions. "));
 					}
 				}
 				
@@ -421,13 +422,13 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 				if (UMLchangeUtil.hasTo(type)) {
 					toValue = ParserUtils.getMatchingValues(refValue, toValues);
 					if (toValue.isEmpty()) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Couldn't find corresponding to value for " + refValue + "."));
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Couldn't find corresponding to value for " + refValue + "."));
 						continue;						
 					}
 					// FIXME: use UMLchangeValidator class for validating new, pattern, to, values
 					toBlock = new GrammarBlock(toValue);
 					if (!toBlock.isValid()) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Wrong syntax used for to value " + toValue + "."));
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Wrong syntax used for to value " + toValue + "."));
 						continue;												
 					}
 				}
@@ -437,7 +438,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 					try {
 						changedElement = determineChangedElement(extValue, extendedElement);
 					} catch (ModelElementNotFoundException e) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
 								"Couldn't find the changed element described by " + extValue + "." 
 								+ " Searched at " + EObjectUtil.getTypeAndName(extendedElement) + "."));
 						continue;
@@ -452,13 +453,13 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 						List<String> editedValues = changeApplication.getTaggedValue("values").getStringValues();
 						String editValue = ParserUtils.getMatchingValues(refValue, editedValues);
 						if (editValue.isEmpty()) {
-							host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Couldn't find corresponding values value for " + refValue + "."));
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Couldn't find corresponding values value for " + refValue + "."));
 							continue;						
 						}
 						// FIXME: use UMLchangeValidator class for validating new, pattern, to, values
 						GrammarBlock editBlock = new GrammarBlock(editValue);
 						if (!editBlock.isValid()) {
-							host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Wrong syntax used for edit value " + editValue + "."));
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Wrong syntax used for edit value " + editValue + "."));
 							continue;
 						}
 						alternatives.addAll(parseEditChange(changedElement, editBlock));
@@ -484,8 +485,8 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 				if (!alternatives.isEmpty()) {
 					Change change = new Change(refValue);
 					change.replaceAlternatives(alternatives);
-					changeRefChangeMapping.put(refValue, change);
-					changeConstraintMapping.put(change, constraintValue);
+					this.changeRefChangeMapping.put(refValue, change);
+					this.changeConstraintMapping.put(change, constraintValue);
 					changes.add(change);
 				}
 			}
@@ -493,7 +494,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 		return changes;
 	}
 	
-	private Alternative parseDelChange(final EObject changedElement) {
+	private static Alternative parseDelChange(final EObject changedElement) {
 		Alternative onlyAlternative = new Alternative();
 		DelElement del = new DelElement(changedElement);
 		del.getAccompanyingDeletions().addAll((collectDeletedElements(changedElement, UMLchange.DEL)));
@@ -528,7 +529,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 					NamespaceDescription nsDesc = (NamespaceDescription) desc;
 					Namespace complexNamespace = null;
 					try {
-						complexNamespace = UMLHelper.getElementOfNameAndType(theModel, nsDesc.getNamespaceName(), Namespace.class);
+						complexNamespace = UMLHelper.getElementOfNameAndType(this.theModel, nsDesc.getNamespaceName(), Namespace.class);
 					} catch (ModelElementNotFoundException e) {
 						Logger.log(LogLevel.ERROR, e.getMessage());
 						continue;
@@ -585,9 +586,9 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 					NamespaceDescription nsDesc = (NamespaceDescription) desc;
 					Namespace complexNamespace = null;
 					try {
-						complexNamespace = UMLHelper.getElementOfNameAndType(theModel, nsDesc.getNamespaceName(), Namespace.class);							
+						complexNamespace = UMLHelper.getElementOfNameAndType(this.theModel, nsDesc.getNamespaceName(), Namespace.class);							
 					} catch (ModelElementNotFoundException e) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));
 						continue;
 					}
 					if (complexNamespace != null) {
@@ -620,9 +621,9 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	private List<EditElement> generateEditsOfKeep(final NamedElement changedElement,
 			final int subAlternativeCount, final String refValue, final int maxAlternatives, final String targetNameSpace) {
 		List<EditElement> editList = new ArrayList<EditElement>();
-		for (Element keepElement : UMLchangeUtil.getStereotypedElements(UMLchange.KEEP, (NamedElement) changedElement)) {
+		for (Element keepElement : UMLchangeUtil.getStereotypedElements(UMLchange.KEEP, changedElement)) {
 				if (keepElement instanceof Association) {
-					host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Associations " + ((NamedElement) keepElement).getName()
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Associations " + ((NamedElement) keepElement).getName()
 							+ " in Element " + changedElement.getName() + " won't be handled!"));
 				} else {
 					StereotypeApplication changeApplication = UMLchangeUtil.getStereotypeApplication(UMLchange.KEEP, keepElement);
@@ -630,7 +631,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 					String adoptValue = ParserUtils.getMatchingValues(refValue, adoptings);
 					GrammarBlock adoptBlock = new GrammarBlock(adoptValue);
 					if (adoptBlock.getAlternatives().size() > maxAlternatives) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "More alternatives in the <<keep>> stereotype of Element "
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "More alternatives in the <<keep>> stereotype of Element "
 								+ keepElement + " than in the <<subst>> stereotype of " + changedElement));
 					} else {
 						int keepAlternativeCount = 0;
@@ -664,7 +665,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	private List<Alternative> parseEditChange(final EObject editedElement, final GrammarBlock editBlock) {
 		List<Alternative> editAlternatives = new ArrayList<Alternative>();
 		if (editedElement instanceof StereotypeApplication) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "<<edit>> can't edit StereotypeApplications!"));
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "<<edit>> can't edit StereotypeApplications!"));
 			return editAlternatives;
 		}
 		for (GrammarAlternative editAlt : editBlock.getAlternatives()) {
@@ -675,7 +676,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 					if (editedElement instanceof Association
 							&& ((sed.getKeyValuePairs().containsKey("source") 
 									|| sed.getKeyValuePairs().containsKey("target")))) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Can't <<edit>> Association ends."));
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Can't <<edit>> Association ends."));
 						continue;
 					}
 					EditElement editElement = new EditElement(editedElement);
@@ -695,12 +696,12 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	private List<Alternative> parseMoveChange(final EObject movedElement, final GrammarBlock toBlock) {
 		List<Alternative> toAlternatives = new ArrayList<Alternative>();
 		if (movedElement instanceof Association) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Associations cannot be moved!"));
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Associations cannot be moved!"));
 			return toAlternatives;
 		}
 		for (GrammarAlternative toAlt : toBlock.getAlternatives()) {
 			if (toAlt.getDescriptions().size() > 1) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Too many targets for <<move>>. The following are ignored: "));
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Too many targets for <<move>>. The following are ignored: "));
 				for (ElementDescription desc : toAlt.getDescriptions()) {
 					Logger.log(LogLevel.ERROR, desc.getGrammarString());
 				}
@@ -709,9 +710,9 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			String newOwnerName = sed.getMetaclassName();
 			Element newOwner = null;
 			try {
-				newOwner = UMLHelper.getElementByName(theModel, newOwnerName);					
+				newOwner = UMLHelper.getElementByName(this.theModel, newOwnerName);					
 			} catch (ModelElementNotFoundException e) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Can't find new owner of moved element. " + e.getMessage()));
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Can't find new owner of moved element. " + e.getMessage()));
 				continue;
 			}
 			EditElement editElement = new EditElement(movedElement);
@@ -734,12 +735,12 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	private List<Alternative> parseCopyChange(final EObject copiedElement, final GrammarBlock toBlock) {
 		List<Alternative> toAlternatives = new ArrayList<Alternative>();
 		if (copiedElement instanceof Association) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Associations cannot be copied!"));
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Associations cannot be copied!"));
 			return toAlternatives;
 		}
 		EObject originalParent = copiedElement.eContainer();
 		if (originalParent == null) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Can't copy "
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Can't copy "
 		+ EObjectUtil.getTypeAndName(copiedElement) + "." + " Element not integrated into model (parent = null)."));
 			return toAlternatives;
 		}
@@ -751,9 +752,9 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 					SimpleElementDescription copyDesc = (SimpleElementDescription) desc;
 					Element receivingTarget = null;
 					try {
-						receivingTarget = UMLHelper.getElementByName(theModel, copyDesc.getMetaclassName());
+						receivingTarget = UMLHelper.getElementByName(this.theModel, copyDesc.getMetaclassName());
 					} catch (ModelElementNotFoundException e) {
-						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, 
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, 
 								"Couldn't find receiving element " 
 										+ copyDesc.getMetaclassName() 
 										+ " of copy of " 
@@ -767,7 +768,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 							sameName = true;
 						}
 						if ((originalParent.equals(receivingTarget)) && sameName) {
-							host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, 
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, 
 									"Tried to copy element to same namespace without changing the name: " 
 									+ EObjectUtil.getTypeAndName(copiedElement)));
 							continue;
@@ -787,7 +788,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 		return toAlternatives;
 	}
 
-	private Alternative parseDelAllChange(List<EObject> realMatchingElements) {
+	private static Alternative parseDelAllChange(List<EObject> realMatchingElements) {
 		Alternative delAllAlternative = new Alternative();
 		if (realMatchingElements != null) {
 			for (EObject realMatch : realMatchingElements) {
@@ -812,14 +813,14 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 						NamespaceDescription nsDesc = (NamespaceDescription) desc;
 						Namespace complexNamespace = null;
 						try {
-							complexNamespace = UMLHelper.getElementOfNameAndType(theModel, nsDesc.getNamespaceName(), Namespace.class);
+							complexNamespace = UMLHelper.getElementOfNameAndType(this.theModel, nsDesc.getNamespaceName(), Namespace.class);
 						} catch (ModelElementNotFoundException e) {
-							host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));
 							continue;
 						}
 						for (Element oldMarkedElement : UMLchangeUtil.getStereotypedElements(UMLchange.OLD, complexNamespace)) {
 							UMLHelper.unapplyStereotype(oldMarkedElement, "UMLchange::old");
-							host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Ignored <<old>> element: "
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Ignored <<old>> element: "
 							+ EObjectUtil.getTypeAndName(oldMarkedElement)));
 						}
 						altContent.addAll(parseNamespace(complexNamespace, realMatch));
@@ -860,14 +861,14 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 						NamespaceDescription nsDesc = (NamespaceDescription) desc;
 						Namespace complexNamespace = null;
 						try {
-							complexNamespace = UMLHelper.getElementOfNameAndType(theModel, nsDesc.getNamespaceName(), Namespace.class);
+							complexNamespace = UMLHelper.getElementOfNameAndType(this.theModel, nsDesc.getNamespaceName(), Namespace.class);
 						} catch (ModelElementNotFoundException e) {
-							host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));
 							continue;
 						}
 						for (Element oldMarkedElement : UMLchangeUtil.getStereotypedElements(UMLchange.OLD, complexNamespace)) {
 							UMLHelper.unapplyStereotype(oldMarkedElement, "UMLchange::old");
-							host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Ignored <<old>> element: " + EObjectUtil.getTypeAndName(oldMarkedElement)));
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Ignored <<old>> element: " + EObjectUtil.getTypeAndName(oldMarkedElement)));
 						}
 						DelElement del = new DelElement(realMatch);
 						del.getAccompanyingDeletions().addAll(((collectDeletedElements(realMatch, UMLchange.SUBST))));
@@ -938,7 +939,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	}
 	
 	
-	private EObject determineSubstituteOwner(final EObject changedElement) {
+	private static EObject determineSubstituteOwner(final EObject changedElement) {
 		if (changedElement instanceof Element) {
 			return ((Element) changedElement).getOwner();
 		} else if (changedElement instanceof StereotypeApplication) {
@@ -1001,7 +1002,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			} else {
 				try {
 					EClass mc = UMLHelper.getMetaClass(metaClass);
-					for (Element containedElement : UMLHelper.getAllElementsOfType((Namespace) candidate, mc)) {
+					for (Element containedElement : UMLHelper.getAllElementsOfType(candidate, mc)) {
 						if (matchesPattern(containedElement, subPattern)) {
 							return true;
 						}
@@ -1023,7 +1024,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * @param pattern - pattern to fit
 	 * @return - true if the StereotypeApplication fits the pattern. false otherwise
 	 */
-	private boolean checkPatternForStereotype(final StereotypeApplication stereoApp,
+	private static boolean checkPatternForStereotype(final StereotypeApplication stereoApp,
 			final SimpleElementDescription pattern) {
 		if (stereoApp.getAppliedStereotype().getProfile().getName().equals(UMLchange.DESCRIPTOR.getProfileName())) {
 			return false;
@@ -1032,7 +1033,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 		for (String key : pattern.getKeyValuePairs().keySet()) {
 			if (key.equals(NAME)) {
 				String stereoName = stereoApp.getStereotypeName();
-				if (!(stereoName.matches(((String) pattern.getKeyValuePairs().get(key)).replaceAll(ASTERISK, ".*")))) {
+				if (!(stereoName.matches(pattern.getKeyValuePairs().get(key).replaceAll(ASTERISK, ".*")))) {
 					return false;
 				}
 			}
@@ -1060,7 +1061,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * @return  true if the Tag fits the description in the SimpleElementDescription.
 	 * <br>false if the tag belongs to an UMLChange Stereotype
 	 */
-	private boolean checkPatternForTaggedValue(final TaggedValue tag, final SimpleElementDescription pattern) {
+	private static boolean checkPatternForTaggedValue(final TaggedValue tag, final SimpleElementDescription pattern) {
 		if (tag.getStereotype().getProfile().getName().equals(UMLchange.DESCRIPTOR.getProfileName())) {
 			return false;
 		}
@@ -1091,7 +1092,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * @param changeParent - the parent of the UMLchange stereotype
 	 * @return - the changed element
 	 */
-	private EObject determineChangedElement(final String extValue, final Element changeParent) throws ModelElementNotFoundException {
+	private static EObject determineChangedElement(final String extValue, final Element changeParent) throws ModelElementNotFoundException {
 		if (changeParent == null) {
 			throw new IllegalArgumentException("Can't determine changed element with a null element.");
 		}
@@ -1109,18 +1110,16 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			foundApp = UMLHelper.getStereotypeApplication(changeParent, changedStereoName);
 			if (foundApp == null) {
 				throw new ModelElementNotFoundException("Couldn't find application of stereotype " + changedStereoName);
-			} else {
-				if (nameMatcher.find()) {
-					changedTagName = nameMatcher.group();
-					changedTag = foundApp.getTaggedValue(changedTagName);
-					if (changedTag == null) {
-						throw new ModelElementNotFoundException("Couldn't find tag " + changedTagName + " at " + foundApp);										
-					} else {
-						return changedTag;
-					}
-				}
-				return foundApp;
 			}
+			if (nameMatcher.find()) {
+				changedTagName = nameMatcher.group();
+				changedTag = foundApp.getTaggedValue(changedTagName);
+				if (changedTag == null) {
+					throw new ModelElementNotFoundException("Couldn't find tag " + changedTagName + " at " + foundApp);										
+				}
+				return changedTag;
+			}
+			return foundApp;
 		}
 		throw new IllegalArgumentException("Couldn't determine changed element. Ext value: " + extValue);
 	}
@@ -1134,7 +1133,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * @param deletedElement - Element that will be deleted
 	 * @return - all deleted elements
 	 */
-	private Set<EObject> collectDeletedElements(final EObject deletedElement, final UMLchange type) {
+	private static Set<EObject> collectDeletedElements(final EObject deletedElement, final UMLchange type) {
 		Set<EObject> deletedElements = new HashSet<EObject>();
 		if (deletedElement instanceof StereotypeApplication) {
 			StereotypeApplication deletedApp = (StereotypeApplication) deletedElement;
@@ -1238,17 +1237,15 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			String metaclassname = description.getMetaclassName();
 			try {
 				AddElement addElem = new AddElement(targetElement, UMLHelper.getMetaClass(metaclassname), null);
-				if (addElem != null) {
-					if (description.getKeyValuePairs() != null) {
-						addElem.replaceValues(description.getKeyValuePairs());
-					}
-					addElem.addContainedElements(createAddContent(description, addElem));
-					addElements.add(addElem);
+				if (description.getKeyValuePairs() != null) {
+					addElem.replaceValues(description.getKeyValuePairs());
 				}
+				addElem.addContainedElements(createAddContent(description, addElem));
+				addElements.add(addElem);
 			} catch (IllegalArgumentException e) {
 			    Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			} catch (InvalidMetaclassException e) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));
 			}
 		}
 		return addElements;
@@ -1271,7 +1268,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 							if (newElement.getOwner() instanceof NamedElement) {
 								NamedElement oldMarkedOwner = (NamedElement) newElement.getOwner();
 //TODO: We should handle elements that seem to be new (modeled in namespace, no <<old>>), but already exist in the original model
-								NamedElement originalElement = oldMarkedOriginalElementMapping.get(oldMarkedOwner);
+								NamedElement originalElement = this.oldMarkedOriginalElementMapping.get(oldMarkedOwner);
 								if (originalElement != null && !originalElement.equals(oldMarkedOwner)) {
 									editOwner.addKeyValuePair(OWNER, originalElement);
 								}
@@ -1312,7 +1309,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			NamedElement namedOldElement = (NamedElement) newApplication.getExtendedElement();
 			NamedElement originalElement = null;
 			if (UMLchangeUtil.hasStereotype(UMLchange.OLD, namedOldElement)) {
-				originalElement = oldMarkedOriginalElementMapping.get(namedOldElement);
+				originalElement = this.oldMarkedOriginalElementMapping.get(namedOldElement);
 			} else if (targetElement != null) {
 				originalElement = targetElement;
 			}
@@ -1338,6 +1335,8 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 							extensionAdds.add(addTagValue);													
 						} else {
 							addTagValue = new AddElement(null, tag.eClass(), addStereotype);
+							
+							//TODO: Don't use null check of originalApp to check whether addStereotype is initialized
 							addStereotype.addContainedElement(addTagValue);
 						}
 						addTagValue.addKeyValuePair(NAME, tag.getName());
@@ -1383,7 +1382,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * @param oldElement - the element marked with <<old>>
 	 * @return - all new stereotype applications
 	 */
-	private List<StereotypeApplication> getNewApplications(final Element oldElement) {
+	private static List<StereotypeApplication> getNewApplications(final Element oldElement) {
 // FIXME: What about old applications with new tag values? (getExtensionAdds does something like it)
 		List<StereotypeApplication> newApplications = new ArrayList<StereotypeApplication>();
 		for (Stereotype appliedStereo : oldElement.getAppliedStereotypes()) {
@@ -1404,7 +1403,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			for (Property memberEnd : newAssoc.getMemberEnds()) {
 				Type endElement = memberEnd.getType();
 				if (UMLchangeUtil.hasStereotype(UMLchange.OLD, endElement)) {
-					NamedElement originalElement = oldMarkedOriginalElementMapping.get(endElement);
+					NamedElement originalElement = this.oldMarkedOriginalElementMapping.get(endElement);
 					// Variante: "source" "ALT;;NEU"
 					// "sourceKind" "ID;;AggregationKind"
 					if (originalElement != null && !originalElement.equals(endElement)) {
@@ -1417,7 +1416,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			Dependency newDependency = (Dependency) newConnection;
 			for (NamedElement client : newDependency.getClients()) {
 				if (UMLchangeUtil.hasStereotype(UMLchange.OLD, client)) {
-					NamedElement originalElement = oldMarkedOriginalElementMapping.get(client);
+					NamedElement originalElement = this.oldMarkedOriginalElementMapping.get(client);
 					if (originalElement != null && originalElement != client) {
 						connEdit.addKeyValuePair("client", originalElement);					
 					}
@@ -1425,7 +1424,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			}
 			for (NamedElement supplier : newDependency.getSuppliers()) {
 				if (UMLchangeUtil.hasStereotype(UMLchange.OLD, supplier)) {
-					NamedElement originalElement = oldMarkedOriginalElementMapping.get(supplier);
+					NamedElement originalElement = this.oldMarkedOriginalElementMapping.get(supplier);
 					if (originalElement != null && originalElement != supplier) {
 						connEdit.addKeyValuePair("supplier", originalElement);					
 					}
@@ -1435,14 +1434,14 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			Transition newTransition = (Transition) newConnection;
 			Vertex source = newTransition.getSource();
 			if (UMLchangeUtil.hasStereotype(UMLchange.OLD, source)) {
-				NamedElement originalElement = oldMarkedOriginalElementMapping.get(source);
+				NamedElement originalElement = this.oldMarkedOriginalElementMapping.get(source);
 				if (originalElement != null && !originalElement.equals(source)) {
 					connEdit.addKeyValuePair("source", originalElement);
 				}
 			}
 			Vertex target = newTransition.getTarget();
 			if (UMLchangeUtil.hasStereotype(UMLchange.OLD, target)) {
-				NamedElement originalElement = oldMarkedOriginalElementMapping.get(target);
+				NamedElement originalElement = this.oldMarkedOriginalElementMapping.get(target);
 				if (originalElement != null && !originalElement.equals(target)) {
 					connEdit.addKeyValuePair("target", originalElement);
 				}
@@ -1533,7 +1532,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 					content.add(containedAddedElement);
 					containedAddedElement.addContainedElements(createAddContent(contentDesc, containedAddedElement));
 				} catch (InvalidMetaclassException e) {
-					host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, e.getMessage()));
 				}
 			}
 		return content;

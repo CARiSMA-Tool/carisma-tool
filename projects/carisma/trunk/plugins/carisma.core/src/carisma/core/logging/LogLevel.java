@@ -26,7 +26,7 @@ public enum LogLevel {
 	
 	@Override
 	public String toString() {
-		return name;
+		return this.name;
 	}
 	
 	

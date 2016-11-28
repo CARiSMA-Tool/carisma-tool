@@ -7,9 +7,9 @@ Bundle-ClassPath: .
 Bundle-Activator: carisma.ocl.library.provider.OclEditPlugin$Implementation
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: carisma.ocl.library.provider
 Require-Bundle: carisma.ocl.library;visibility:=reexport,
  org.eclipse.emf.edit,
- org.eclipse.core.runtime;bundle-version="3.12.0"
+ org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy

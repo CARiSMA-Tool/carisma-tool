@@ -29,11 +29,10 @@ public class QuestionGenerationPopUpAction implements PopUpAction {
 		questionGenerationAction.setEnabled(false);
 		
 		//enable the generate question button if there is a builder
-		BuilderFactory builderfactory = new BuilderFactory();
-		List<Builder> builder = builderfactory.getBuilder(analysisResult);
+		List<Builder> builder = BuilderFactory.getBuilder(analysisResult);
 		if (builder.size() >= 1){
 			questionGenerationAction.setEnabled(true);
-		};
+		}
 		
 		manager.add(questionGenerationAction);
 		return false;

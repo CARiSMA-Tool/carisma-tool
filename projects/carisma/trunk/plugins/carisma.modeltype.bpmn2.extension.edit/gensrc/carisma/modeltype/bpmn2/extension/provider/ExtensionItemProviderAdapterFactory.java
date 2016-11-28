@@ -73,11 +73,11 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 * @generated
 	 */
 	public ExtensionItemProviderAdapterFactory() {
-		supportedTypes.add(IEditingDomainItemProvider.class);
-		supportedTypes.add(IStructuredItemContentProvider.class);
-		supportedTypes.add(ITreeItemContentProvider.class);
-		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);
+		this.supportedTypes.add(IEditingDomainItemProvider.class);
+		this.supportedTypes.add(IStructuredItemContentProvider.class);
+		this.supportedTypes.add(ITreeItemContentProvider.class);
+		this.supportedTypes.add(IItemLabelProvider.class);
+		this.supportedTypes.add(IItemPropertySource.class);
 	}
 
 	/**
@@ -96,11 +96,11 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 */
 	@Override
 	public Adapter createExtensionRootAdapter() {
-		if (extensionRootItemProvider == null) {
-			extensionRootItemProvider = new ExtensionRootItemProvider(this);
+		if (this.extensionRootItemProvider == null) {
+			this.extensionRootItemProvider = new ExtensionRootItemProvider(this);
 		}
 
-		return extensionRootItemProvider;
+		return this.extensionRootItemProvider;
 	}
 
 	/**
@@ -119,11 +119,11 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 */
 	@Override
 	public Adapter createWorkItemAdapter() {
-		if (workItemItemProvider == null) {
-			workItemItemProvider = new WorkItemItemProvider(this);
+		if (this.workItemItemProvider == null) {
+			this.workItemItemProvider = new WorkItemItemProvider(this);
 		}
 
-		return workItemItemProvider;
+		return this.workItemItemProvider;
 	}
 
 	/**
@@ -142,11 +142,11 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 */
 	@Override
 	public Adapter createPerformerAdapter() {
-		if (performerItemProvider == null) {
-			performerItemProvider = new PerformerItemProvider(this);
+		if (this.performerItemProvider == null) {
+			this.performerItemProvider = new PerformerItemProvider(this);
 		}
 
-		return performerItemProvider;
+		return this.performerItemProvider;
 	}
 
 	/**
@@ -165,11 +165,11 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 */
 	@Override
 	public Adapter createRoleAdapter() {
-		if (roleItemProvider == null) {
-			roleItemProvider = new RoleItemProvider(this);
+		if (this.roleItemProvider == null) {
+			this.roleItemProvider = new RoleItemProvider(this);
 		}
 
-		return roleItemProvider;
+		return this.roleItemProvider;
 	}
 
 	/**
@@ -188,11 +188,11 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 */
 	@Override
 	public Adapter createLaneAdapter() {
-		if (laneItemProvider == null) {
-			laneItemProvider = new LaneItemProvider(this);
+		if (this.laneItemProvider == null) {
+			this.laneItemProvider = new LaneItemProvider(this);
 		}
 
-		return laneItemProvider;
+		return this.laneItemProvider;
 	}
 
 	/**
@@ -211,11 +211,11 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 */
 	@Override
 	public Adapter createTaskAdapter() {
-		if (taskItemProvider == null) {
-			taskItemProvider = new TaskItemProvider(this);
+		if (this.taskItemProvider == null) {
+			this.taskItemProvider = new TaskItemProvider(this);
 		}
 
-		return taskItemProvider;
+		return this.taskItemProvider;
 	}
 
 	/**
@@ -234,11 +234,11 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 */
 	@Override
 	public Adapter createTaskSetAdapter() {
-		if (taskSetItemProvider == null) {
-			taskSetItemProvider = new TaskSetItemProvider(this);
+		if (this.taskSetItemProvider == null) {
+			this.taskSetItemProvider = new TaskSetItemProvider(this);
 		}
 
-		return taskSetItemProvider;
+		return this.taskSetItemProvider;
 	}
 
 	/**
@@ -257,11 +257,11 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 */
 	@Override
 	public Adapter createSelectionAdapter() {
-		if (selectionItemProvider == null) {
-			selectionItemProvider = new SelectionItemProvider(this);
+		if (this.selectionItemProvider == null) {
+			this.selectionItemProvider = new SelectionItemProvider(this);
 		}
 
-		return selectionItemProvider;
+		return this.selectionItemProvider;
 	}
 
 	/**
@@ -280,11 +280,11 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 */
 	@Override
 	public Adapter createBaseElementAdapter() {
-		if (baseElementItemProvider == null) {
-			baseElementItemProvider = new BaseElementItemProvider(this);
+		if (this.baseElementItemProvider == null) {
+			this.baseElementItemProvider = new BaseElementItemProvider(this);
 		}
 
-		return baseElementItemProvider;
+		return this.baseElementItemProvider;
 	}
 
 	/**
@@ -293,8 +293,9 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return this.parentAdapterFactory == null ? this : this.parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -303,6 +304,7 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -314,7 +316,7 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 */
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return supportedTypes.contains(type) || super.isFactoryForType(type);
+		return this.supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
 
 	/**
@@ -351,8 +353,9 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.addListener(notifyChangedListener);
+		this.changeNotifier.addListener(notifyChangedListener);
 	}
 
 	/**
@@ -361,8 +364,9 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.removeListener(notifyChangedListener);
+		this.changeNotifier.removeListener(notifyChangedListener);
 	}
 
 	/**
@@ -371,11 +375,12 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
-		changeNotifier.fireNotifyChanged(notification);
+		this.changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
-			parentAdapterFactory.fireNotifyChanged(notification);
+		if (this.parentAdapterFactory != null) {
+			this.parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
 
@@ -385,16 +390,17 @@ public class ExtensionItemProviderAdapterFactory extends ExtensionAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
-		if (extensionRootItemProvider != null) extensionRootItemProvider.dispose();
-		if (workItemItemProvider != null) workItemItemProvider.dispose();
-		if (performerItemProvider != null) performerItemProvider.dispose();
-		if (roleItemProvider != null) roleItemProvider.dispose();
-		if (laneItemProvider != null) laneItemProvider.dispose();
-		if (taskItemProvider != null) taskItemProvider.dispose();
-		if (taskSetItemProvider != null) taskSetItemProvider.dispose();
-		if (selectionItemProvider != null) selectionItemProvider.dispose();
-		if (baseElementItemProvider != null) baseElementItemProvider.dispose();
+		if (this.extensionRootItemProvider != null) this.extensionRootItemProvider.dispose();
+		if (this.workItemItemProvider != null) this.workItemItemProvider.dispose();
+		if (this.performerItemProvider != null) this.performerItemProvider.dispose();
+		if (this.roleItemProvider != null) this.roleItemProvider.dispose();
+		if (this.laneItemProvider != null) this.laneItemProvider.dispose();
+		if (this.taskItemProvider != null) this.taskItemProvider.dispose();
+		if (this.taskSetItemProvider != null) this.taskSetItemProvider.dispose();
+		if (this.selectionItemProvider != null) this.selectionItemProvider.dispose();
+		if (this.baseElementItemProvider != null) this.baseElementItemProvider.dispose();
 	}
 
 }

@@ -14,9 +14,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
-
 
 /**
  * This class exports a petri net object to a file in pnml format.
@@ -59,9 +56,9 @@ public class Export {
 		exportString.append("<pnml xmlns=\"http://www.pnml.org/version-2009/grammar/pnml\">\n");
 		
 		exportString.append("<net id=\"");
-		exportString.append(petriNet.getId());
+		exportString.append(this.petriNet.getId());
 		exportString.append("\" type=\"");
-		exportString.append(petriNet.getType());
+		exportString.append(this.petriNet.getType());
 		exportString.append("\">\n");
 		
 		if (withPage) {
@@ -163,22 +160,11 @@ public class Export {
 		exportString.append("</net>\n"); 
 		exportString.append("</pnml>\n");
 		
-		BufferedWriter out = null;
-		try {
-			out = new BufferedWriter(new FileWriter(filePath));
+		try(BufferedWriter out = new BufferedWriter(new FileWriter(filePath))){
 			out.write(exportString.toString());
 			return true;
 		} catch (IOException e) {
 			return false;
-		} finally {
-		    if (out != null) {
-		        try {
-                    out.close();
-                } catch (IOException e) {
-                    Logger.log(LogLevel.ERROR, e.getMessage(), e);
-                    return false;
-                }
-		    }
 		}
 	}
 }

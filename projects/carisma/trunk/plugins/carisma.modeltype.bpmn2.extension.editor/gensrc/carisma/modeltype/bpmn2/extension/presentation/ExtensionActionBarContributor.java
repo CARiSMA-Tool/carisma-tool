@@ -102,13 +102,13 @@ public class ExtensionActionBarContributor
 		new Action(ExtensionEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 			@Override
 			public boolean isEnabled() {
-				return activeEditorPart instanceof IViewerProvider;
+				return ExtensionActionBarContributor.this.activeEditorPart instanceof IViewerProvider;
 			}
 
 			@Override
 			public void run() {
-				if (activeEditorPart instanceof IViewerProvider) {
-					Viewer viewer = ((IViewerProvider)activeEditorPart).getViewer();
+				if (ExtensionActionBarContributor.this.activeEditorPart instanceof IViewerProvider) {
+					Viewer viewer = ((IViewerProvider)ExtensionActionBarContributor.this.activeEditorPart).getViewer();
 					if (viewer != null) {
 						viewer.refresh();
 					}
@@ -158,9 +158,9 @@ public class ExtensionActionBarContributor
 	 */
 	public ExtensionActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
-		loadResourceAction = new LoadResourceAction();
-		validateAction = new ValidateAction();
-		controlAction = new ControlAction();
+		this.loadResourceAction = new LoadResourceAction();
+		this.validateAction = new ValidateAction();
+		this.controlAction = new ControlAction();
 	}
 
 	/**
@@ -195,20 +195,21 @@ public class ExtensionActionBarContributor
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(ExtensionEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
-		submenuManager.insertBefore("additions", createChildMenuManager);
+		this.createChildMenuManager = new MenuManager(ExtensionEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		submenuManager.insertBefore("additions", this.createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(ExtensionEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
-		submenuManager.insertBefore("additions", createSiblingMenuManager);
+		this.createSiblingMenuManager = new MenuManager(ExtensionEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		submenuManager.insertBefore("additions", this.createSiblingMenuManager);
 
 		// Force an update because Eclipse hides empty menus now.
 		//
 		submenuManager.addMenuListener
 			(new IMenuListener() {
-				 public void menuAboutToShow(IMenuManager menuManager) {
-					 menuManager.updateAll(true);
+				 @Override
+				public void menuAboutToShow(IMenuManager iMenuManager) {
+					 iMenuManager.updateAll(true);
 				 }
 			 });
 
@@ -224,24 +225,24 @@ public class ExtensionActionBarContributor
 	@Override
 	public void setActiveEditor(IEditorPart part) {
 		super.setActiveEditor(part);
-		activeEditorPart = part;
+		this.activeEditorPart = part;
 
 		// Switch to the new selection provider.
 		//
-		if (selectionProvider != null) {
-			selectionProvider.removeSelectionChangedListener(this);
+		if (this.selectionProvider != null) {
+			this.selectionProvider.removeSelectionChangedListener(this);
 		}
 		if (part == null) {
-			selectionProvider = null;
+			this.selectionProvider = null;
 		}
 		else {
-			selectionProvider = part.getSite().getSelectionProvider();
-			selectionProvider.addSelectionChangedListener(this);
+			this.selectionProvider = part.getSite().getSelectionProvider();
+			this.selectionProvider.addSelectionChangedListener(this);
 
 			// Fake a selection changed event to update the menus.
 			//
-			if (selectionProvider.getSelection() != null) {
-				selectionChanged(new SelectionChangedEvent(selectionProvider, selectionProvider.getSelection()));
+			if (this.selectionProvider.getSelection() != null) {
+				selectionChanged(new SelectionChangedEvent(this.selectionProvider, this.selectionProvider.getSelection()));
 			}
 		}
 	}
@@ -254,14 +255,15 @@ public class ExtensionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		// Remove any menu items for old selection.
 		//
-		if (createChildMenuManager != null) {
-			depopulateManager(createChildMenuManager, createChildActions);
+		if (this.createChildMenuManager != null) {
+			depopulateManager(this.createChildMenuManager, this.createChildActions);
 		}
-		if (createSiblingMenuManager != null) {
-			depopulateManager(createSiblingMenuManager, createSiblingActions);
+		if (this.createSiblingMenuManager != null) {
+			depopulateManager(this.createSiblingMenuManager, this.createSiblingActions);
 		}
 
 		// Query the new selection for appropriate new child/sibling descriptors
@@ -273,7 +275,7 @@ public class ExtensionActionBarContributor
 		if (selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1) {
 			Object object = ((IStructuredSelection)selection).getFirstElement();
 
-			EditingDomain domain = ((IEditingDomainProvider)activeEditorPart).getEditingDomain();
+			EditingDomain domain = ((IEditingDomainProvider)this.activeEditorPart).getEditingDomain();
 
 			newChildDescriptors = domain.getNewChildDescriptors(object, null);
 			newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
@@ -281,16 +283,16 @@ public class ExtensionActionBarContributor
 
 		// Generate actions for selection; populate and redraw the menus.
 		//
-		createChildActions = generateCreateChildActions(newChildDescriptors, selection);
-		createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
+		this.createChildActions = generateCreateChildActions(newChildDescriptors, selection);
+		this.createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
 
-		if (createChildMenuManager != null) {
-			populateManager(createChildMenuManager, createChildActions, null);
-			createChildMenuManager.update(true);
+		if (this.createChildMenuManager != null) {
+			populateManager(this.createChildMenuManager, this.createChildActions, null);
+			this.createChildMenuManager.update(true);
 		}
-		if (createSiblingMenuManager != null) {
-			populateManager(createSiblingMenuManager, createSiblingActions, null);
-			createSiblingMenuManager.update(true);
+		if (this.createSiblingMenuManager != null) {
+			populateManager(this.createSiblingMenuManager, this.createSiblingActions, null);
+			this.createSiblingMenuManager.update(true);
 		}
 	}
 
@@ -305,7 +307,7 @@ public class ExtensionActionBarContributor
 		Collection<IAction> actions = new ArrayList<IAction>();
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
-				actions.add(new CreateChildAction(activeEditorPart, selection, descriptor));
+				actions.add(new CreateChildAction(this.activeEditorPart, selection, descriptor));
 			}
 		}
 		return actions;
@@ -322,7 +324,7 @@ public class ExtensionActionBarContributor
 		Collection<IAction> actions = new ArrayList<IAction>();
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
-				actions.add(new CreateSiblingAction(activeEditorPart, selection, descriptor));
+				actions.add(new CreateSiblingAction(this.activeEditorPart, selection, descriptor));
 			}
 		}
 		return actions;
@@ -337,7 +339,7 @@ public class ExtensionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
+	protected static void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
 		if (actions != null) {
 			for (IAction action : actions) {
 				if (contributionID != null) {
@@ -357,7 +359,7 @@ public class ExtensionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
+	protected static void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
 		if (actions != null) {
 			IContributionItem[] items = manager.getItems();
 			for (int i = 0; i < items.length; i++) {
@@ -392,11 +394,11 @@ public class ExtensionActionBarContributor
 		MenuManager submenuManager = null;
 
 		submenuManager = new MenuManager(ExtensionEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
-		populateManager(submenuManager, createChildActions, null);
+		populateManager(submenuManager, this.createChildActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 
 		submenuManager = new MenuManager(ExtensionEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
-		populateManager(submenuManager, createSiblingActions, null);
+		populateManager(submenuManager, this.createSiblingActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 	}
 
@@ -409,10 +411,10 @@ public class ExtensionActionBarContributor
 	@Override
 	protected void addGlobalActions(IMenuManager menuManager) {
 		menuManager.insertAfter("additions-end", new Separator("ui-actions"));
-		menuManager.insertAfter("ui-actions", showPropertiesViewAction);
+		menuManager.insertAfter("ui-actions", this.showPropertiesViewAction);
 
-		refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());		
-		menuManager.insertAfter("ui-actions", refreshViewerAction);
+		this.refreshViewerAction.setEnabled(this.refreshViewerAction.isEnabled());		
+		menuManager.insertAfter("ui-actions", this.refreshViewerAction);
 
 		super.addGlobalActions(menuManager);
 	}

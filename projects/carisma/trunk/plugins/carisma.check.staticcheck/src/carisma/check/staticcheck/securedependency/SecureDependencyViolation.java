@@ -16,19 +16,19 @@ import org.eclipse.uml2.uml.Dependency;
 public class SecureDependencyViolation {
     
 	public Dependency getDependency() {
-        return dependency;
+        return this.dependency;
     }
 
     public Classifier getClient() {
-        return client;
+        return this.client;
     }
 
     public Classifier getSupplier() {
-        return supplier;
+        return this.supplier;
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     private Dependency dependency;

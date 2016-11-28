@@ -30,6 +30,7 @@ public class Perspective implements IPerspectiveFactory {
 	/**
 	 * @param layout the page layout
 	 */
+	@Override
 	public final void createInitialLayout(final IPageLayout layout) {
 		String editorArea = layout.getEditorArea();
 		layout.setEditorAreaVisible(true);

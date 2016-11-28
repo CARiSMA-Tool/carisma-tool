@@ -14,6 +14,7 @@ import java.io.File;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -62,12 +63,13 @@ public class ConvertYaoqiangAction implements IObjectActionDelegate {
 	/**
 	 * @see IActionDelegate#run(IAction)
 	 */
+	@Override
 	public final void run(final IAction action) {
-		if (selectedFile != null) {
-			String ext = "." + selectedFile.getFileExtension();	
-			String name = selectedFile.getName().substring(0, selectedFile.getName().indexOf(ext));
+		if (this.selectedFile != null) {
+			String ext = "." + this.selectedFile.getFileExtension();	
+			String name = this.selectedFile.getName().substring(0, this.selectedFile.getName().indexOf(ext));
 			String updatedName = name;
-			String path = selectedFile.getLocation().toString().substring(0, selectedFile.getLocation().toString().indexOf(name));
+			String path = this.selectedFile.getLocation().toString().substring(0, this.selectedFile.getLocation().toString().indexOf(name));
 			String outputfile = "";
 			
 			if (name.length() > ConvertEmfAction.SUFFIX.length() 
@@ -80,21 +82,21 @@ public class ConvertYaoqiangAction implements IObjectActionDelegate {
 				outputfile = Utils.incrementFileNameIfNecessary(path + updatedName + ".bpmn2");
 			}
 			if (!YaoqiangHelper.isYaoqiangModel(path + name + ext)) {
-				if (MessageDialog.openConfirm(shell, "CARiSMA", "Model seems not be a Yaonqiang Model. Still start transformation?")) {
+				if (MessageDialog.openConfirm(this.shell, "CARiSMA", "Model seems not be a Yaonqiang Model. Still start transformation?")) {
 					startYaoqiangTransformation(path + name + ext, outputfile);
 				}
 			} else {
 				startYaoqiangTransformation(path + name + ext, outputfile);
 			}
 		} else {
-			MessageDialog.openError(shell, "Carisma", "No file selected!");
+			MessageDialog.openError(this.shell, "Carisma", "No file selected!");
 		}
 		// refresh resources
 		try {
 			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 			IProject[] projects = workspaceRoot.getProjects();
 			for (IProject projectToRefresh : projects) {
-				projectToRefresh.refreshLocal(IProject.DEPTH_INFINITE, null);
+				projectToRefresh.refreshLocal(IResource.DEPTH_INFINITE, null);
 			}
 		} catch (CoreException e) {
 			Logger.log(LogLevel.ERROR, "could not refresh resource");
@@ -110,11 +112,11 @@ public class ConvertYaoqiangAction implements IObjectActionDelegate {
 		File model = new File(inputFile);
 		if (YaoqiangHelper.yaoqiang2emfModel(inputFile, outputFile)) {
 			MessageDialog.openInformation(
-					shell,
+					this.shell,
 					"CARiSMA",
 					"Successfully transformed model " + model.getName() + ".");
 		} else {
-			MessageDialog.openError(shell, "Carisma", "Error during transformation!");
+			MessageDialog.openError(this.shell, "Carisma", "Error during transformation!");
 		}
 	}
 
@@ -125,7 +127,7 @@ public class ConvertYaoqiangAction implements IObjectActionDelegate {
 	public void selectionChanged(final IAction action, final ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
             IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-            selectedFile = (IFile) structuredSelection.getFirstElement();
+            this.selectedFile = (IFile) structuredSelection.getFirstElement();
         }
 	}
 
@@ -134,7 +136,7 @@ public class ConvertYaoqiangAction implements IObjectActionDelegate {
 	 */
 	@Override
 	public void setActivePart(final IAction action, final IWorkbenchPart targetPart) {
-		shell = targetPart.getSite().getShell();
+		this.shell = targetPart.getSite().getShell();
 	}
 
 }

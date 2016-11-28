@@ -1,17 +1,21 @@
 package carisma.modeltype.bpmn2.extension.presentation.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.bpmn2.Lane;
 import org.eclipse.bpmn2.Task;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import carisma.modeltype.bpmn2.BPMN2Helper;
-import carisma.modeltype.bpmn2.BPMN2ModelLoader;
 import carisma.modeltype.bpmn2.extension.ExtensionFactory;
 import carisma.modeltype.bpmn2.extension.ExtensionRoot;
 
@@ -30,9 +34,11 @@ public class ExtensionModelWizardHelper {
 	 * @throws IOException If bpmn2 model could not be read
 	 */
 	public static void addExtensibleObjectsToModel(EObject rootObject, File bpmn2File) throws IOException {
-		BPMN2ModelLoader bpmn2loader = new BPMN2ModelLoader(); 
-		Resource bpmn2model = bpmn2loader.load(bpmn2File);
-		
+		ResourceSet rs = new ResourceSetImpl();
+		Resource bpmn2model = rs.createResource(URI.createURI(bpmn2File.getPath()));
+		try(FileInputStream inputStream = new FileInputStream(bpmn2File)){
+			bpmn2model.load(inputStream, Collections.EMPTY_MAP);
+		}
 		DocumentRoot root =  (DocumentRoot) bpmn2model.getContents().get(0);
 		
 		List<Task> taskList = BPMN2Helper.getAllElementsOfType(root, Task.class);

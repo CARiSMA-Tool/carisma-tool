@@ -13,7 +13,7 @@ public class TransitionWithProperties extends Transition {
 	private HashMap<String, Object> properties = new HashMap<String, Object>();
 
 	public HashMap<String, Object> getProperties() {
-		return properties;
+		return this.properties;
 	}
 	
 	public void setProperty(String key, Object value){
@@ -25,7 +25,7 @@ public class TransitionWithProperties extends Transition {
 	}
 
 	public boolean getBooleanProperty(String key){
-		return (Boolean)this.properties.get(key);
+		return ((Boolean)this.properties.get(key)).booleanValue();
 	}
 
 	public boolean hasBooleanProperty(String key){

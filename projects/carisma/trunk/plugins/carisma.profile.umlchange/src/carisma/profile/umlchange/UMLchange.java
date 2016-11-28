@@ -46,12 +46,12 @@ public enum UMLchange {
 	private final String readableName;
 
 	private UMLchange(final String newName) {
-		readableName = newName;
+		this.readableName = newName;
 	}
 	
 	@Override
 	public String toString() {
-		return readableName;
+		return this.readableName;
 	}
 	
 	/**

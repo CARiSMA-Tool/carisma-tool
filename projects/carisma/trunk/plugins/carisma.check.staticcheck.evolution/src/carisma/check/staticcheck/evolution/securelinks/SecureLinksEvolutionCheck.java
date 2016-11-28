@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Stereotype;
 
-import carisma.check.staticcheck.securelinks.SecureLinksCheck;
+import carisma.check.staticcheck.securelinks.SecureLinks;
 import carisma.check.staticcheck.securelinks.SecureLinksHelper;
 import carisma.check.staticcheck.securelinks.utils.AnalysisMessage;
 import carisma.check.staticcheck.securelinks.utils.OutputTarget;
@@ -34,7 +34,7 @@ import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.RegisterNotInUseException;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
@@ -55,11 +55,15 @@ import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 
 
-public class SecureLinksEvolutionCheck implements CarismaCheck {
+public class SecureLinksEvolutionCheck implements CarismaCheckWithID {
 
-	public static final String DELTAS_REGISTER_KEY = "carisma.data.evolution.deltas";
-	public static final String MODIFIERS_REGISTRY_KEY = "carisma.data.evolution.modifiers";
+	public static final String CHECK_ID = "carisma.check.staticcheck.evolution.securelinks";
+	
+	public static final String PRECONDITION_DELTAS_REGISTER_KEY = "carisma.data.evolution.deltas";
+	public static final String PRECONDITION_MODIFIERS_REGISTRY_KEY = "carisma.data.evolution.modifiers";
 
+	public static final String CHECK_NAME = "Evolution-aware Secure Links Check";
+	
 	private AnalysisHost host;
 	
 	private Model model = null;
@@ -68,9 +72,7 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 	private ModifierMap deltaModifiers = null;
 	
 	private UMLModifier deltaModifier = null;
-	
-	private SecureLinksCheck staticSecureLinks = null;
-	
+		
 	private List<DeltaElement> processedDeltaElements = null;
 	private List<AnalysisMessage> errorMessages = null;
 	
@@ -82,89 +84,88 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 	
 	@Override
 	public boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost newHost) {
-		host = newHost;
+		this.host = newHost;
 		
-		Resource currentModel = host.getAnalyzedModel();
+		Resource currentModel = this.host.getAnalyzedModel();
 		if (currentModel.getContents().isEmpty()) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
+			this.host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
 			return false;
 		}
 		if (!(currentModel.getContents().get(0) instanceof Model)) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
+			this.host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
 			return false;
 		}
-		model = (Model) currentModel.getContents().get(0);
+		this.model = (Model) currentModel.getContents().get(0);
 		
 		try {
-			deltaList = (DeltaList) host.getFromRegister(DELTAS_REGISTER_KEY);
-			deltaModifiers = (ModifierMap) host.getFromRegister(MODIFIERS_REGISTRY_KEY);
+			this.deltaList = (DeltaList) this.host.getFromRegister(PRECONDITION_DELTAS_REGISTER_KEY);
+			this.deltaModifiers = (ModifierMap) this.host.getFromRegister(PRECONDITION_MODIFIERS_REGISTRY_KEY);
 		} catch (RegisterNotInUseException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			return false;
 		}
-		if (deltaList == null || deltaModifiers == null) {
+		if (this.deltaList == null || this.deltaModifiers == null) {
 			return false;
 		}
-		if (deltaList.isEmpty()) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No deltaList left to analyze."));
+		if (this.deltaList.isEmpty()) {
+			this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No deltaList left to analyze."));
 			return true;
 		}
-		int beforeMaxChanges = deltaList.getHighestChangeCountNow();
+		int beforeMaxChanges = this.deltaList.getHighestChangeCountNow();
 		boolean isSuccessful = checkDeltas();
 		if (isSuccessful) {
-			host.addResultMessage(
+			this.host.addResultMessage(
 					new AnalysisResultMessage(
 							StatusType.INFO,
-							"A successful maximum Delta (using " + deltaList.getHighestChangeCountNow() + " changes) exists."));
+							"A successful maximum Delta (using " + this.deltaList.getHighestChangeCountNow() + " changes) exists."));
 		} else {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No successful maximum Delta (" + beforeMaxChanges + " changes) found."));
-			if (deltaList.getHighestChangeCountNow() == 0) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "All Deltas violate <<secure links>>."));
+			this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No successful maximum Delta (" + beforeMaxChanges + " changes) found."));
+			if (this.deltaList.getHighestChangeCountNow() == 0) {
+				this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "All Deltas violate <<secure links>>."));
 			} else {
-				host.addResultMessage(
+				this.host.addResultMessage(
 						new AnalysisResultMessage(
 								StatusType.ERROR,
-								"Maximum successful Delta has " + deltaList.getHighestChangeCountNow() + " changes."));
+								"Maximum successful Delta has " + this.deltaList.getHighestChangeCountNow() + " changes."));
 			}
 		}
 		return isSuccessful;
 	}
 
 		private void init(final Delta d) {
-			deltaModifier = deltaModifiers.get(d);
-			if (processedDeltaElements == null) {
-				processedDeltaElements = new ArrayList<DeltaElement>();
+			this.deltaModifier = this.deltaModifiers.get(d);
+			if (this.processedDeltaElements == null) {
+				this.processedDeltaElements = new ArrayList<DeltaElement>();
 			}
-			processedDeltaElements.clear();
-			if (errorMessages == null) {
-				errorMessages = new ArrayList<AnalysisMessage>();
+			this.processedDeltaElements.clear();
+			if (this.errorMessages == null) {
+				this.errorMessages = new ArrayList<AnalysisMessage>();
 			}
-			errorMessages.clear();
-			staticSecureLinks = new SecureLinksCheck();
+			this.errorMessages.clear();
 		}
 		
 		private boolean checkDeltas() {
 			boolean hasMaxSuccessfulDelta = false;
 			List<Delta> violatingEvolutions = new ArrayList<Delta>();
-			for (Delta d : deltaList.getRemainingDeltas()) {
+			for (Delta d : this.deltaList.getRemainingDeltas()) {
 				boolean deltaSuccessful = true;
 				checkDelta(d);
-				for (AnalysisMessage errorMessage : errorMessages) {
+				for (AnalysisMessage errorMessage : this.errorMessages) {
 					if (errorMessage.getType() == StatusType.ERROR) {
 						violatingEvolutions.add(d);
 						deltaSuccessful = false;
 						break;
 					}
 				}
-				for (AnalysisMessage errorMessage : errorMessages) {
-					errorMessage.print(host);
+				for (AnalysisMessage errorMessage : this.errorMessages) {
+					errorMessage.print(this.host);
 				}
 				if (deltaSuccessful 
-						&& d.getNumberOfUsedChanges() == deltaList.getHighestChangeCountNow()) {
+						&& d.getNumberOfUsedChanges() == this.deltaList.getHighestChangeCountNow()) {
 					hasMaxSuccessfulDelta = true;
 				}
 			}
-			deltaList.removeAll(violatingEvolutions);
+			this.deltaList.removeAll(violatingEvolutions);
 			return hasMaxSuccessfulDelta;
 		}
 		
@@ -179,7 +180,7 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 		private void processDelElements(final List<DelElement> allDeletions) {
 			for (DelElement delElement : allDeletions) {
 				processDelElement(delElement);
-				processedDeltaElements.add(delElement);
+				this.processedDeltaElements.add(delElement);
 			}
 		}
 		
@@ -199,7 +200,7 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 		private void processAddElements(final List<AddElement> allAdditions) {
 			for (AddElement addElement : allAdditions) {
 				processAddElement(addElement);
-				processedDeltaElements.add(addElement);
+				this.processedDeltaElements.add(addElement);
 				processContent(addElement);
 			}
 		}
@@ -207,14 +208,14 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 		private void processContent(final AddElement addElement) {
 			for (AddElement containedElement : addElement.getContent()) {
 				processAddElement(containedElement);
-				processedDeltaElements.add(containedElement);
+				this.processedDeltaElements.add(containedElement);
 				processContent(containedElement);
 			}
 		}
 		
 		private void processAddElement(final AddElement addElement) {
 			EClass newElemClass = addElement.getMetaClass();
-			AddElement addElemCopy = (AddElement) deltaModifier.get(addElement);
+			AddElement addElemCopy = (AddElement) this.deltaModifier.get(addElement);
 			if (newElemClass.getName().equalsIgnoreCase("Property")
 					&& addElemCopy.getTarget() instanceof StereotypeApplication
 					&& ((StereotypeApplication) addElemCopy.getTarget()).getAppliedStereotype().getName().equalsIgnoreCase("secure links")) {
@@ -240,33 +241,33 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 				for (AddElement component : substElement.getComponents()) {
 					processAddElement(component);
 				}
-				processedDeltaElements.add(substElement);
+				this.processedDeltaElements.add(substElement);
 			}
 		}
 		
 		private void processLinkDeletion(final DeltaElement delElement) {
 			CommunicationPath affectedLink = (CommunicationPath) delElement.getTarget();		
 			if (!linkStillRequired(affectedLink)) {
-				errorMessages.add(
+				this.errorMessages.add(
 						new AnalysisMessage(
 								StatusType.INFO, OutputTarget.REPORT, 
 								Messages.linkDeletionAllowed(delElement)));
 			} else {
 				if (deletedLinkIsReplaced(affectedLink)) {
 					CommunicationPath postLink = getLinkReplacement(affectedLink);
-					if (!staticSecureLinks.compliesWithRequirements(postLink).isEmpty()) {
-						errorMessages.add(
+					if (!SecureLinks.compliesWithRequirements(postLink).isEmpty()) {
+						this.errorMessages.add(
 								new AnalysisMessage(
 										StatusType.ERROR, OutputTarget.BOTH, 
 										Messages.linkDeletionNotAllowed(delElement)));
 					} else {
-						errorMessages.add(
+						this.errorMessages.add(
 								new AnalysisMessage(
 										StatusType.INFO, OutputTarget.REPORT, 
 										Messages.linkDeletionAllowed(delElement)));
 					}
 				} else {
-					errorMessages.add(
+					this.errorMessages.add(
 							new AnalysisMessage(
 									StatusType.ERROR, OutputTarget.BOTH, 
 									Messages.linkDeletionNotAllowed(delElement)));
@@ -278,27 +279,27 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 			StereotypeApplication stapp = (StereotypeApplication) delElement.getTarget();
 			CommunicationPath affectedLink = (CommunicationPath) stapp.getExtendedElement();
 			if (!linkStillRequired(affectedLink)) {
-				errorMessages.add(
+				this.errorMessages.add(
 						new AnalysisMessage(
 								StatusType.INFO, OutputTarget.REPORT, 
 								Messages.linktypeDeletionAllowed(delElement)));
 			} else {
 				if (linkGetsNewLinktype(affectedLink)) {
 					CommunicationPath postLink = getLinkReplacement(affectedLink);
-					StereotypeApplication postLinktype = staticSecureLinks.getLinktype(postLink);
-					if (!(staticSecureLinks.compliesWithRequirements(postLink).isEmpty())) {
-						errorMessages.add(
+					StereotypeApplication postLinktype = SecureLinks.getLinktype(postLink);
+					if (!(SecureLinks.compliesWithRequirements(postLink).isEmpty())) {
+						this.errorMessages.add(
 								new AnalysisMessage(
 										StatusType.ERROR, OutputTarget.BOTH, 
 										Messages.linktypeReplacementWrong(delElement, postLink, postLinktype.getAppliedStereotype())));
 					} else {
-						errorMessages.add(
+						this.errorMessages.add(
 								new AnalysisMessage(
 										StatusType.INFO, OutputTarget.REPORT, 
 										Messages.linktypeDeletionAllowed(delElement)));
 					}				
 				} else {
-					errorMessages.add(
+					this.errorMessages.add(
 							new AnalysisMessage(
 									StatusType.ERROR, OutputTarget.BOTH, 
 									Messages.linktypeDeletionNotAllowed(delElement)));
@@ -316,16 +317,16 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 			} else {
 				if (appliedStereo.getName().equalsIgnoreCase("secure links")) {
 					Element extElem = deletedApplication.getExtendedElement();
-					Element extElemCopy = (Element) deltaModifier.getMapping().get(extElem);
+					Element extElemCopy = (Element) this.deltaModifier.getMapping().get(extElem);
 					if (extElemCopy == null) {
-						errorMessages.add(
+						this.errorMessages.add(
 								new AnalysisMessage(
 										StatusType.INFO, OutputTarget.REPORT, 
 										Messages.otherDeletion(delElem)));
 					} else {
 						StereotypeApplication secureLinksAppCopy = UMLsecUtil.getStereotypeApplication(extElemCopy, UMLsec.SECURE_LINKS);
 						if (secureLinksAppCopy == null) {
-							errorMessages.add(
+							this.errorMessages.add(
 									new AnalysisMessage(
 											StatusType.WARNING, OutputTarget.BOTH, 
 											Messages.secureLinksDeletion(delElem)));
@@ -333,12 +334,12 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 							List<String> tagValues = UMLsecUtil.getStringValues(ADVERSARY, UMLsec.SECURE_LINKS, extElem);
 							List<String> tagValuesCopy = UMLsecUtil.getStringValues(ADVERSARY, UMLsec.SECURE_LINKS, extElemCopy);
 							if (tagValues.size() == tagValuesCopy.size() && tagValues.containsAll(tagValuesCopy)) {
-								errorMessages.add(
+								this.errorMessages.add(
 										new AnalysisMessage(
 												StatusType.INFO, OutputTarget.REPORT, 
 												Messages.otherDeletion(delElem)));
 							} else {
-								errorMessages.add(
+								this.errorMessages.add(
 										new AnalysisMessage(
 												StatusType.ERROR, OutputTarget.BOTH, 
 												Messages.adversaryTagAdded()));
@@ -346,7 +347,7 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 						}
 					}
 				} else {
-					errorMessages.add(
+					this.errorMessages.add(
 							new AnalysisMessage(
 									StatusType.INFO, OutputTarget.REPORT, 
 									Messages.otherDeletion(delElem)));
@@ -359,26 +360,26 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 			if (tag.getName().equalsIgnoreCase(ADVERSARY)) {
 				String tagValue = (String) tag.getValue();
 				if (tagValue.equalsIgnoreCase("default")) {
-					errorMessages.add(
+					this.errorMessages.add(
 							new AnalysisMessage(
 									StatusType.INFO, OutputTarget.REPORT, 
 									Messages.otherDeletion(delElem)));
 				} else {
-					Element extElemCopy = (Element) deltaModifier.getMapping().get(tag.getCorrespondingApplication().getExtendedElement());
+					Element extElemCopy = (Element) this.deltaModifier.getMapping().get(tag.getCorrespondingApplication().getExtendedElement());
 					if (extElemCopy == null) {
-						errorMessages.add(
+						this.errorMessages.add(
 								new AnalysisMessage(
 										StatusType.INFO, OutputTarget.REPORT, 
 										Messages.otherDeletion(delElem)));
 					} else {
 						List<String> tagValueCopy = UMLsecUtil.getStringValues(ADVERSARY, UMLsec.SECURE_LINKS, extElemCopy);
 						if (tagValueCopy.contains(tagValue)) {
-							errorMessages.add(
+							this.errorMessages.add(
 									new AnalysisMessage(
 											StatusType.INFO, OutputTarget.REPORT, 
 											Messages.otherDeletion(delElem)));
 						} else {
-							errorMessages.add(
+							this.errorMessages.add(
 									new AnalysisMessage(
 											StatusType.ERROR, OutputTarget.BOTH, 
 											Messages.adversaryTagDeleted(delElem)));
@@ -389,7 +390,7 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 		}
 		
 		private void processOtherElementDeletion(final DeltaElement delElem) {
-			errorMessages.add(
+			this.errorMessages.add(
 					new AnalysisMessage(
 							StatusType.INFO, OutputTarget.REPORT, 
 							Messages.otherDeletion(delElem)));
@@ -398,7 +399,7 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 		private void processAdversaryAddition(final AddElement addElement) {
 			String adversaryValue = (String) addElement.getValues().get("value");
 			if (!adversaryValue.equalsIgnoreCase("default")) {
-				errorMessages.add(
+				this.errorMessages.add(
 						new AnalysisMessage(
 								StatusType.ERROR, OutputTarget.BOTH, 
 								Messages.adversaryTagAdded()));
@@ -406,15 +407,15 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 		}
 
 		private void processRequirementAddition(final AddElement addElement) {
-			AddElement addElementCopy = (AddElement) deltaModifier.get(addElement);
+			AddElement addElementCopy = (AddElement) this.deltaModifier.get(addElement);
 			String requirementName = (String) addElement.getValues().get("name");
 			Dependency depCopy = (Dependency) addElementCopy.getTarget();
 			if (depCopy != null) {
 				Stereotype newStereo = depCopy.getAppliedStereotype(requirementName);
 				for (CommunicationPath commPath : UMLDeploymentHelper.getCommunicationPaths(depCopy)) {
-					if (!staticSecureLinks.compliesWithRequirement(commPath, newStereo).isEmpty()) {
-						StereotypeApplication linktype = staticSecureLinks.getLinktype(commPath);
-						errorMessages.add(
+					if (!SecureLinks.compliesWithRequirement(commPath, newStereo).isEmpty()) {
+						StereotypeApplication linktype = SecureLinks.getLinktype(commPath);
+						this.errorMessages.add(
 								new AnalysisMessage(
 										StatusType.ERROR, OutputTarget.BOTH, 
 										Messages.newRequirementNotMet(addElement, commPath, linktype.getAppliedStereotype())));
@@ -424,12 +425,12 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 		}
 		
 		private void processLinktypeAddition(final AddElement addElement) {
-			AddElement addElementCopy = (AddElement) deltaModifier.get(addElement);
+			AddElement addElementCopy = (AddElement) this.deltaModifier.get(addElement);
 			CommunicationPath parentLinkCopy = (CommunicationPath) addElementCopy.getTarget();
 			if (parentLinkCopy != null) {
 				for (Dependency dep : UMLDeploymentHelper.getAllDependencies(parentLinkCopy)) {
-					if (!staticSecureLinks.compliesWithRequirements(parentLinkCopy, dep).isEmpty()) {
-						errorMessages.add(
+					if (!SecureLinks.compliesWithRequirements(parentLinkCopy, dep).isEmpty()) {
+						this.errorMessages.add(
 								new AnalysisMessage(
 										StatusType.ERROR, OutputTarget.BOTH, 
 										Messages.newLinktypeNotAppropriate(addElement, dep)));
@@ -443,7 +444,7 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 		private void processDeploymentAddition(final AddElement addElement) {
 			String locationName = (String) addElement.getValues().get("location");
 			String artifactName = (String) addElement.getValues().get("deployedArtifact");
-			Model modelCopy = (Model) deltaModifier.getMapping().get(model);
+			Model modelCopy = (Model) this.deltaModifier.getMapping().get(this.model);
 			try {
 				Node locationCopy = (Node) UMLHelper.getElementByName(modelCopy, locationName);
 				Artifact deployedArtifactCopy = (Artifact) UMLHelper.getElementByName(modelCopy, artifactName);
@@ -455,19 +456,19 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 						for (Node nodeCopy : UMLDeploymentHelper.getDeploymentLocations(allOtherArtifacts)) {
 							CommunicationPath commPath = UMLDeploymentHelper.getCommunicationPath(locationCopy, nodeCopy);
 							if (commPath == null) {
-								errorMessages.add(
+								this.errorMessages.add(
 										new AnalysisMessage(
 												StatusType.ERROR, OutputTarget.BOTH, 
 												Messages.newDeploymentNoLink(addElement, locationCopy, nodeCopy, deployedArtifactCopy, depCopy)));
 							} else {
-								StereotypeApplication linktype = staticSecureLinks.getLinktype(commPath);
+								StereotypeApplication linktype = SecureLinks.getLinktype(commPath);
 								if (linktype == null) {
-									errorMessages.add(
+									this.errorMessages.add(
 											new AnalysisMessage(
 													StatusType.ERROR, OutputTarget.BOTH, 
 													Messages.newLinkNoLinktype(addElement, commPath, depCopy)));								
-								} else if (!staticSecureLinks.compliesWithRequirements(commPath, depCopy).isEmpty()) {
-									errorMessages.add(
+								} else if (!SecureLinks.compliesWithRequirements(commPath, depCopy).isEmpty()) {
+									this.errorMessages.add(
 											new AnalysisMessage(
 													StatusType.ERROR, OutputTarget.BOTH, 
 													Messages.newDeploymentLinkNotAppropriate(addElement, locationCopy, depCopy, commPath, linktype.getAppliedStereotype())));
@@ -483,7 +484,7 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 		}
 		
 		private void processOtherElementAddition(final AddElement addElement) {
-			errorMessages.add(
+			this.errorMessages.add(
 					new AnalysisMessage(
 							StatusType.INFO, OutputTarget.REPORT, 
 							Messages.otherElementAddition(addElement)));
@@ -501,14 +502,14 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 				return false;
 			}
 			List<Node> newNodes = new ArrayList<Node>();
-			Node newNode1 = (Node) deltaModifier.getMapping().get(oldNodes.get(0));
-			Node newNode2 = (Node) deltaModifier.getMapping().get(oldNodes.get(1));
+			Node newNode1 = (Node) this.deltaModifier.getMapping().get(oldNodes.get(0));
+			Node newNode2 = (Node) this.deltaModifier.getMapping().get(oldNodes.get(1));
 			if (newNode1 == null || newNode2 == null) {
 				return false;
 			}
 			newNodes.add(newNode1);
 			newNodes.add(newNode2);
-			if (staticSecureLinks.linkIsNeeded(newNodes)) {
+			if (SecureLinks.linkIsNeeded(newNodes)) {
 				return true;
 			}
 			return false;
@@ -519,8 +520,8 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 			if (oldNodes.size() != 2) {
 				return false;
 			}
-			Node newNode1 = (Node) deltaModifier.getMapping().get(oldNodes.get(0));
-			Node newNode2 = (Node) deltaModifier.getMapping().get(oldNodes.get(1));
+			Node newNode1 = (Node) this.deltaModifier.getMapping().get(oldNodes.get(0));
+			Node newNode2 = (Node) this.deltaModifier.getMapping().get(oldNodes.get(1));
 			if (newNode1 == null || newNode2 == null) {
 				return false;
 			}
@@ -539,8 +540,8 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 			if (oldNodes.size() != 2) {
 				return null;
 			}
-			Node newNode1 = (Node) deltaModifier.getMapping().get(oldNodes.get(0));
-			Node newNode2 = (Node) deltaModifier.getMapping().get(oldNodes.get(1));
+			Node newNode1 = (Node) this.deltaModifier.getMapping().get(oldNodes.get(0));
+			Node newNode2 = (Node) this.deltaModifier.getMapping().get(oldNodes.get(1));
 			if (newNode1 == null || newNode2 == null) {
 				return null;
 			}
@@ -549,15 +550,25 @@ public class SecureLinksEvolutionCheck implements CarismaCheck {
 		
 		private boolean linkGetsNewLinktype(final CommunicationPath theLink) {
 			CommunicationPath linkCopy =
-				(CommunicationPath) deltaModifier.getMapping().get(theLink);
+				(CommunicationPath) this.deltaModifier.getMapping().get(theLink);
 			if (linkCopy == null) {
 				return false;
 			}
-			StereotypeApplication postLinktype = staticSecureLinks.getLinktype(linkCopy);
+			StereotypeApplication postLinktype = SecureLinks.getLinktype(linkCopy);
 			if (postLinktype != null) {
 				return true;
 			}
 			return false;
+		}
+
+		@Override
+		public String getCheckID() {
+			return CHECK_ID;
+		}
+
+		@Override
+		public String getName() {
+			return CHECK_NAME;
 		}
 		
 }

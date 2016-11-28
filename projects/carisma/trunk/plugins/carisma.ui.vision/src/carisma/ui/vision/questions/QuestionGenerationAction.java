@@ -24,9 +24,9 @@ import org.w3c.dom.Document;
 
 import carisma.core.analysis.result.AnalysisResult;
 import carisma.core.io.content.XML_DOM;
-import carisma.core.io.implementations.db.mongodb.restapi.MongoDBDynamicConfiguration;
-import carisma.core.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
 import carisma.ui.eclipse.CarismaGUI;
+import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
+import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI.MongoDBDestination;
 
 public class QuestionGenerationAction extends Action {
 	
@@ -47,8 +47,7 @@ public class QuestionGenerationAction extends Action {
 		//A builder list for all Builder for all checks 
 		List<Builder> b = new ArrayList<Builder>();
 		//A BuilderFactory for getting all the builders
-		BuilderFactory bf = new BuilderFactory();
-		b = bf.getBuilder(this.analyisResult);
+		b = BuilderFactory.getBuilder(this.analyisResult);
 		//tests if there is no builder and throws an exception
 		if (b.size() < 1){
 			throw new IllegalArgumentException("No Builder for this checks!");
@@ -64,44 +63,40 @@ public class QuestionGenerationAction extends Action {
 		Questions questionsAll = new Questions();
 		questionsAll.setQuestions(questionsList);
 		
-		//function for generating the XML_DOM document with a Questions Element
-		XML_DOM questionsXmlDom = buildQuestionsXml(questionsAll);
-		
-		//function for saving the XML document in the database
-		writeDB(questionsXmlDom);
-		
+		try {
+			//function for generating the XML_DOM document with a Questions Element
+			XML_DOM questionsXmlDom = buildQuestionsXml(questionsAll);
+			
+			//function for saving the XML document in the database
+			writeDB(questionsXmlDom);
+		}
+		catch (JAXBException e){
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
 	}
 
 	//function for generating the XML_DOM document with a Questions Element
-	public XML_DOM buildQuestionsXml(Questions questionsAll) {
-		//document for the XML_DOM questions
-		Document questionsXml = null;
+	public static XML_DOM buildQuestionsXml(Questions questionsAll) throws ParserConfigurationException, JAXBException {
 		
 		//building the document
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 	    dbf.setNamespaceAware(true);
-	    DocumentBuilder db = null;
-		try {
-			db = dbf.newDocumentBuilder();
-			questionsXml = db.newDocument();
-		} catch (ParserConfigurationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	    DocumentBuilder db =  dbf.newDocumentBuilder();
+	  
+	    //document for the XML_DOM questions
+		Document questionsXml = db.newDocument();
 		//instantiating the document with the questions
-		try {
-			JAXBContext jc = JAXBContext.newInstance(Questions.class);
-			Marshaller m = jc.createMarshaller();
-			m.marshal( questionsAll, questionsXml );
-		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		JAXBContext jc = JAXBContext.newInstance(Questions.class);
+		Marshaller m = jc.createMarshaller();
+		m.marshal( questionsAll, questionsXml );
+		
 		XML_DOM xml = new XML_DOM(questionsXml);
 		return xml;
 	}
 	
-	private void writeDB(XML_DOM questionsXmlDom){
+	private static void writeDB(XML_DOM questionsXmlDom){
 		IPreferenceStore preferencesStore = CarismaGUI.INSTANCE.getPreferenceStore();
 
 		String user = preferencesStore.getString(KEY_USER);
@@ -113,8 +108,7 @@ public class QuestionGenerationAction extends Action {
 		String questionCollection = preferencesStore.getString(KEY_QUESTION_COLLECTION);
 		String questionDocument = preferencesStore.getString(KEY_QUESTION_DOCUMENT);
 		String questionField = preferencesStore.getString(KEY_QUESTION_FIELD);
-		MongoDBDynamicConfiguration carismaConfiguration = new MongoDBDynamicConfiguration(url,
-				questionCollection, questionDocument, questionField);
+		MongoDBDestination carismaConfiguration = new MongoDBDestination(questionCollection, questionDocument, questionField);
 		boolean success = db.write(carismaConfiguration, questionsXmlDom);
 		StringBuilder errorMessageBuilder = new StringBuilder();
 		if (!success) {

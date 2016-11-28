@@ -15,13 +15,6 @@
                   name="group1">
             </separator>
          </menu>
-         <action
-               label="New Action"
-               class="carisma.ui.vision.popup.actions.NewAction"
-               menubarPath="carisma.ui.vision.menu1/group1"
-               enablesFor="1"
-               id="carisma.ui.vision.newAction">
-         </action>
       </objectContribution>
    </extension>
    <extension

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource;
  * @author wenzel
  *
  */
+@Deprecated
 public interface ModelLoader {
 	
 	Resource load(File file) throws IOException;

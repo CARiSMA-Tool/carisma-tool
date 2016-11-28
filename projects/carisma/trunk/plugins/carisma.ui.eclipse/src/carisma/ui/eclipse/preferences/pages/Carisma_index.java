@@ -32,7 +32,8 @@ import carisma.ui.eclipse.preferences.Constants;
 public class Carisma_index extends FieldEditorPreferencePage implements
 		IWorkbenchPreferencePage {
 
-    
+    public static final String EXTENSION_ID = "carisma.ui.eclipse.index";
+	
     /**
      * Constant String for Page description.
      */
@@ -40,7 +41,7 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	/**
 	 * editors.
 	 */
-	private EditorRadioGroupFieldEditor editors;
+	EditorRadioGroupFieldEditor editors;
 	/**
 	 * Composite top.
 	 */
@@ -122,51 +123,51 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	 */
 	@Override
 	protected final Control createContents(final Composite parent) {
-		top = new Composite(parent, SWT.LEFT);
+		this.top = new Composite(parent, SWT.LEFT);
 
-		top.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		top.setLayout(new GridLayout());
+		this.top.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		this.top.setLayout(new GridLayout());
 
-		selectEditor(top);
+		selectEditor(this.top);
 
-		return top;
+		return this.top;
 	}
 
 	/**
 	 * 
-	 * @param top the composite
+	 * @param composite the composite
 	 */
-	private void selectEditor(final Composite top) {
+	private void selectEditor(final Composite composite) {
 		
-		editors = new EditorRadioGroupFieldEditor(Constants.EDITOR_SELECTION_ART, 
+		this.editors = new EditorRadioGroupFieldEditor(Constants.EDITOR_SELECTION_ART, 
 				"Open a Model with", 1, new String[][] {
 				{"&Editor selection combo box", Constants.MANUALLY},
 				{"&Use editor priority list", Constants.AUTO},
-		}, top, true, getPreferenceStore().getString(Constants.EDITOR_SELECTION_ART));
+		}, composite, true, getPreferenceStore().getString(Constants.EDITOR_SELECTION_ART));
 				
-		editors.setPage(this);
-		editors.setPreferenceStore(getPreferenceStore());
-		editors.load();
+		this.editors.setPage(this);
+		this.editors.setPreferenceStore(getPreferenceStore());
+		this.editors.load();
 		
-		edGroup = new Group(top, SWT.NONE);
+		this.edGroup = new Group(composite, SWT.NONE);
 		
-		list = new EditorPriorityList(
+		this.list = new EditorPriorityList(
 				Constants.EDITORS_LIST,
 				"Editor priority list",
-				edGroup); 
-		list.setPage(this);
-		list.setPreferenceStore(getPreferenceStore());
-		list.load();
+				this.edGroup); 
+		this.list.setPage(this);
+		this.list.setPreferenceStore(getPreferenceStore());
+		this.list.load();
 		
 		selectionArtChanged(getPreferenceStore().getString(Constants.EDITOR_SELECTION_ART));
 		
-		editors.setPropertyChangeListener(new IPropertyChangeListener() {	
+		this.editors.setPropertyChangeListener(new IPropertyChangeListener() {	
 			@Override
 			public void propertyChange(final PropertyChangeEvent event) {
 				if (!event.getNewValue().toString().equals(event.getOldValue().toString())) {					
 //					updateApplyButton();					
 					String newSelectionIdValue = event.getNewValue().toString();
-					editors.setEditorSelectionId(newSelectionIdValue);
+					Carisma_index.this.editors.setEditorSelectionId(newSelectionIdValue);
 					selectionArtChanged(newSelectionIdValue);
 				}
 			}
@@ -179,11 +180,11 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	 */
 	@Override
 	public final boolean performOk() {
-		if (editors != null) {
-			editors.store();
+		if (this.editors != null) {
+			this.editors.store();
 		}
-		if (list != null) {
-			list.store();
+		if (this.list != null) {
+			this.list.store();
 		}
 		return super.performOk();
 	}
@@ -199,8 +200,8 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	@Override
 	public final boolean isValid() {
 	
-		if (editors != null) {			
-			if (!editors.isValid()) {
+		if (this.editors != null) {			
+			if (!this.editors.isValid()) {
 				setErrorMessage("Editor is not active or installed");
 				return false;
 			}
@@ -215,8 +216,8 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	 */
 	@Override
 	protected final void performDefaults() {
-		editors.loadDefault();
-		list.loadDefault();		
+		this.editors.loadDefault();
+		this.list.loadDefault();		
 		selectionArtChanged(getPreferenceStore().getString(Constants.EDITOR_ID));
 		super.performDefaults();
 	}
@@ -226,23 +227,23 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	 * @return top
 	 */
 	public final Composite getTop() {
-		return top;
+		return this.top;
 	}
 
 	/**
 	 * @param newValue the new value of Selection art
 	 */
-	private void selectionArtChanged(final String newValue) {
+	void selectionArtChanged(final String newValue) {
 		
 		if (newValue.equals(Constants.AUTO)) {
-			if (list != null) {
+			if (this.list != null) {
 				//TODO init
 			}
-			edGroup.setEnabled(true);
-			list.setEnabled(true, edGroup);
+			this.edGroup.setEnabled(true);
+			this.list.setEnabled(true, this.edGroup);
 		} else {
-			edGroup.setEnabled(false);
-			list.setEnabled(false, edGroup);
+			this.edGroup.setEnabled(false);
+			this.list.setEnabled(false, this.edGroup);
 		}
 	}
 }

@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.Platform;
 
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
+import carisma.ui.eclipse.CarismaGUI;
 import carisma.ui.eclipse.editors.descriptions.EditorDescriptor;
 
 /**
@@ -48,7 +49,7 @@ public class EditorRegistry {
 	public final void initialize() {
 		// search for adapters in ExtensionRegistry
 		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
-		IExtensionPoint extensionPoint = extensionRegistry.getExtensionPoint("carisma.ui.eclipse.editor.description");
+		IExtensionPoint extensionPoint = extensionRegistry.getExtensionPoint(CarismaGUI.EDITOR_DESCRIPTION);
 		
 		for (IExtension extension : extensionPoint.getExtensions()) {
 			for (IConfigurationElement checkElement : extension.getConfigurationElements()) {
@@ -75,7 +76,7 @@ public class EditorRegistry {
 	 * @return registeredEditors
 	 */
 	public final List<EditorDescriptor> getRegisteredEditors() {
-		return registeredEditors;
+		return this.registeredEditors;
 	}
 	
 	/**
@@ -84,7 +85,7 @@ public class EditorRegistry {
 	 * @return <code>EditorDescriptor</code> for this name or <code>null</code> when EditorDescriptor not found
 	 */
 	public final EditorDescriptor getEditorDescriptorByName(final String name) {
-		for (EditorDescriptor ed : registeredEditors) {
+		for (EditorDescriptor ed : this.registeredEditors) {
 			if (ed.getName().equalsIgnoreCase(name)) {
 				return ed;
 			}
@@ -98,7 +99,7 @@ public class EditorRegistry {
 	 * @return <code>EditorDescriptor</code> for this Id or <code>null</code> when EditorDescriptor not found 
 	 */
 	public final EditorDescriptor getEditorDescriptorById(final String id) {
-		for (EditorDescriptor ed : registeredEditors) {
+		for (EditorDescriptor ed : this.registeredEditors) {
 			if (ed.getId().equalsIgnoreCase(id)) {
 				return ed;
 			}

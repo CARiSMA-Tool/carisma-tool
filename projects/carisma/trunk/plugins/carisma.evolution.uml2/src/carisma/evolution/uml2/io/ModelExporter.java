@@ -58,30 +58,20 @@ public class ModelExporter {
 	 * @param resource The Resource which defines the xmi-ID etc.
 	 * @return true if no Exception is thrown during writing the xml file.
 	 */
-	public final boolean writeDeltasToFile(final File outputFile, final List<Delta> deltas, final Resource resource) {
+	public final static boolean writeDeltasToFile(final File outputFile, final List<Delta> deltas, final Resource resource) {
 		boolean result = true;
 		XStream stream = XStreamAlias.getXStream();
 		
 		List<ExportDelta> toBeExported = generateXMLOutput(deltas, resource);
 
-		FileOutputStream outStream;
-		try {
-			outStream = new FileOutputStream(outputFile);
-		} catch (FileNotFoundException e) {
-			Logger.log(LogLevel.ERROR, e.getMessage(), e);
-			return false;
-		}
-		try {
+		try (FileOutputStream outStream = new FileOutputStream(outputFile)){
 			stream.toXML(toBeExported, new OutputStreamWriter(outStream, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			Logger.log(LogLevel.ERROR, "Wrong Encoding", e);
 			result = false;
-		} finally {
-			try {
-				outStream.close();
-			} catch (IOException e) {
-				Logger.log(LogLevel.ERROR, e.getMessage(), e);
-			}
+		} catch (IOException e) {
+			Logger.log(LogLevel.ERROR, e.getMessage(), e);
+			result = false;
 		}
 		return result;
 	}
@@ -93,31 +83,24 @@ public class ModelExporter {
 	 * @param resource The Resource which defines the xmi-ID etc.
 	 * @return returns true if everything worked out.
 	 */
-	public final boolean writeDeltaToFile(final File outputFile, final Delta delta, final Resource resource) {
+	public final static boolean writeDeltaToFile(final File outputFile, final Delta delta, final Resource resource) {
 		boolean result = true;
 		XStream stream = XStreamAlias.getXStream();
 		
 		ExportDelta toBeExported = generateXMLOutput(delta, resource);
 		
-		FileOutputStream outStream;
-		try {
-			outStream = new FileOutputStream(outputFile);
-		} catch (FileNotFoundException e) {
-			Logger.log(LogLevel.ERROR, e.getMessage(), e);
-			return false;
-		}
-		try {
+		try (FileOutputStream outStream = new FileOutputStream(outputFile)){
 				stream.toXML(toBeExported, new OutputStreamWriter(outStream, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			Logger.log(LogLevel.ERROR, "Wrong Encoding", e);
 			result = false;
-		} finally {
-			try {
-				outStream.close();
-			} catch (IOException e) {
-				Logger.log(LogLevel.ERROR, e.getMessage(), e);
-			}
-		}
+		} catch (FileNotFoundException e) {
+			Logger.log(LogLevel.ERROR, e.getMessage(), e);
+			return false;
+		} catch (IOException e) {
+			Logger.log(LogLevel.ERROR, e.getMessage(), e);
+			return false;
+		} 
 		return result;
 	}
 	
@@ -127,7 +110,7 @@ public class ModelExporter {
 	 * @param resource The Resource which defines the xmi-ID etc.
 	 * @return returns true if everything worked out.
 	 */
-	private List<ExportDelta> generateXMLOutput(final List<Delta> deltasToExport, final Resource resource) { 
+	private static List<ExportDelta> generateXMLOutput(final List<Delta> deltasToExport, final Resource resource) { 
 		List<ExportDelta> deltas = new ArrayList<ExportDelta>();
 		for (Delta delta : deltasToExport) {
 			deltas.add(generateXMLOutput(delta, resource));
@@ -143,7 +126,7 @@ public class ModelExporter {
 	 * @param resource the Resource which contains the Delta
 	 * @return the new output DataStructure.
 	 */
-	public final ExportDelta generateXMLOutput(final Delta deltaToExport, final Resource resource) {
+	public final static ExportDelta generateXMLOutput(final Delta deltaToExport, final Resource resource) {
 		
 		if (deltaToExport == null || resource == null) { 
 			return null;
@@ -188,7 +171,7 @@ public class ModelExporter {
 	 * @param resource the resource which contains the target.
 	 * @return The Target in the new Datastructure
 	 */
-	private ExportExtTag getExportTarget(final EObject target, final Resource resource) {
+	private static ExportExtTag getExportTarget(final EObject target, final Resource resource) {
 		ExportExtTag expTarget = null;
 		if (target instanceof TaggedValue) {
 			TaggedValue value = (TaggedValue)
@@ -255,30 +238,19 @@ public class ModelExporter {
 	 * @param overwrite True if one wants to override an existing File.
 	 * @return true if and only if no Exception is thrown during the attempt of writing down the File.
 	 */
-	public final boolean writeToFile(final File outputFile, final List<ExportChange> exportChanges, final boolean overwrite) {
+	public final static boolean writeToFile(final File outputFile, final List<ExportChange> exportChanges, final boolean overwrite) {
 
-		boolean result = true;
 		XStream stream = XStreamAlias.getXStream();
 		
-		FileOutputStream outStream;
-		try {
-			outStream = new FileOutputStream(outputFile);
-		} catch (FileNotFoundException e) {
-			Logger.log(LogLevel.ERROR, e.getMessage(), e);
-			return false;
-		}
-		try {
+		try (FileOutputStream outStream = new FileOutputStream(outputFile)){
 			stream.toXML(exportChanges, new OutputStreamWriter(outStream, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			Logger.log(LogLevel.ERROR, "Wrong Encoding", e);
-			result = false;
-		} finally {
-			try {
-				outStream.close();
-			} catch (IOException e) {
-				Logger.log(LogLevel.ERROR, "", e);
-			}
+			return false;
+		} catch (IOException e) {
+			Logger.log(LogLevel.ERROR, "", e);
+			return false;
 		}
-		return result;
+		return true;
 	}
 }

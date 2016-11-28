@@ -32,7 +32,7 @@ public class RunAnalysisNavigatorHandler extends AbstractHandler {
 	 * Constructor.
 	 */
 	public RunAnalysisNavigatorHandler() {
-		runAction = new RunAnalysisAction();
+		this.runAction = new RunAnalysisAction();
 	}
 
 	/* (non-Javadoc)
@@ -41,8 +41,8 @@ public class RunAnalysisNavigatorHandler extends AbstractHandler {
 	@Override
 	public final Object execute(final ExecutionEvent event) throws ExecutionException {
 
-		if (runAction.initSelectionByService()) {
-			runAction.run(null);
+		if (this.runAction.initSelectionByService()) {
+			this.runAction.run(null);
 		}
 		
 		return null;

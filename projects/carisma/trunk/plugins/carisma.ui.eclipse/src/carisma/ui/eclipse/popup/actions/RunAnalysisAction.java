@@ -62,16 +62,16 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 	//########################################################################################
 	@Override
 	public final void run(final IAction action) {
-		analysis = AnalysisUtil.readAnalysis(selectedFile.getLocation()
+		this.analysis = AnalysisUtil.readAnalysis(this.selectedFile.getLocation()
 				.toOSString());
-		List<CheckReference> checks = analysis.getChecks();
+		List<CheckReference> checks = this.analysis.getChecks();
 
 		if (!checks.isEmpty()) {
-			List<CheckReference> unsetRequiredParameters = analysis.getChecksWithInvalidParameters();
+			List<CheckReference> unsetRequiredParameters = this.analysis.getChecksWithInvalidParameters();
 			if (unsetRequiredParameters.size() > 0) {
 				showUnsetRequiredParameters(unsetRequiredParameters);
 			} else {
-				CarismaGUI.INSTANCE.runAnalysis(analysis);
+				CarismaGUI.runAnalysis(this.analysis);
 			}
 		} else {
 			Display display = Display.getDefault();
@@ -119,7 +119,7 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 	 */
 	private List<CheckReference> getChecksWithRequiredParameters() {
 
-		List<CheckReference> checks = analysis.getChecks();
+		List<CheckReference> checks = this.analysis.getChecks();
 		List<CheckReference> checksWithRequiredParameters = new ArrayList<CheckReference>();
 
 		for (CheckReference check : checks) {
@@ -136,7 +136,7 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 	 * filled, used to stop Run process if necessary.
 	 * @param checksWithUnsetRequiredParameters A list of checks, for those required parameter are not filled
 	 */
-	private void showUnsetRequiredParameters(
+	private static void showUnsetRequiredParameters(
 			final List<CheckReference> checksWithUnsetRequiredParameters) {
 		StringBuffer message = new StringBuffer("Required parameters not set in: \n");
 
@@ -159,7 +159,7 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 	public final void selectionChanged(final IAction action, final ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			selectedFile = (IFile) structuredSelection.getFirstElement();
+			this.selectedFile = (IFile) structuredSelection.getFirstElement();
 		}
 
 	}
@@ -177,9 +177,9 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 		IWorkbenchPage page = org.eclipse.ui.PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 	    try {
 	    	FileEditorInput editorInput = (FileEditorInput) page.getActiveEditor().getEditorInput();
-	    	selectedFile = editorInput.getFile();
+	    	this.selectedFile = editorInput.getFile();
 	    	
-	    	if (selectedFile.getName().endsWith(".adf")) {
+	    	if (this.selectedFile.getName().endsWith(".adf")) {
 	    		return true;
 	    	}
 	    } catch (NullPointerException npe) {
@@ -198,7 +198,7 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 			IWorkbenchWindow ww = org.eclipse.ui.PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 			ISelection selection = ww.getSelectionService().getSelection();
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			selectedFile = (IFile) structuredSelection.getFirstElement();
+			this.selectedFile = (IFile) structuredSelection.getFirstElement();
 			
 			return true;
 			

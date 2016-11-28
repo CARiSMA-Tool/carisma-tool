@@ -35,7 +35,7 @@ public class EditElement extends DeltaElement {
 	 */
 	public EditElement(final EObject newTarget) {
 		super(newTarget);
-		values = new HashMap<String, Object>();
+		this.values = new HashMap<String, Object>();
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class EditElement extends DeltaElement {
 	 * @return - the content
 	 */
 	public final Map<String, Object> getValues() {
-		return Collections.unmodifiableMap(values);
+		return Collections.unmodifiableMap(this.values);
 	}
 	
 	/**
@@ -52,8 +52,8 @@ public class EditElement extends DeltaElement {
 	 * @param newValues - new property values
 	 */
 	public final void replaceValues(final Map<? extends String, ? extends Object> newValues) {
-		values.clear();
-		values.putAll(newValues);
+		this.values.clear();
+		this.values.putAll(newValues);
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class EditElement extends DeltaElement {
 	 * @return - returns true if the adding was succesfull
 	 */
 	public final boolean addKeyValuePair(final String newKey, final Object newValue) {
-		values.put(newKey, newValue);
+		this.values.put(newKey, newValue);
 		return true;
 	}
 	
@@ -73,7 +73,7 @@ public class EditElement extends DeltaElement {
 	 * @return - true if the removeing was successful
 	 */
 	public final boolean removeKeyValuePair(final String oldKey) {
-		values.remove(oldKey);
+		this.values.remove(oldKey);
 		return true;
 	}
 	
@@ -84,8 +84,8 @@ public class EditElement extends DeltaElement {
 	 * @return - false if the old Value was null, true otherwise
 	 */
 	public final boolean editKeyValuePair(final String oldKey, final Object newValue) {
-		Object oldValue = values.remove(oldKey);
-		values.put(oldKey, newValue);
+		Object oldValue = this.values.remove(oldKey);
+		this.values.put(oldKey, newValue);
 		if (oldValue == null) {
 			return false;
 		}
@@ -131,8 +131,8 @@ public class EditElement extends DeltaElement {
 					+ ": ");
 		}
 		buf.append(" (");
-		for (String key : values.keySet()) {
-			Object value = values.get(key);
+		for (String key : this.values.keySet()) {
+			Object value = this.values.get(key);
 			buf.append(key + "=");
 			if (value instanceof EObject) {
 				EObject valObj = (EObject) value;

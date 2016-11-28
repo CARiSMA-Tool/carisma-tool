@@ -12,7 +12,7 @@ public class PLAIN implements Content {
 	
 	@Override
 	public final String asString() {
-		return text;
+		return this.text;
 	}
 
 	@Override

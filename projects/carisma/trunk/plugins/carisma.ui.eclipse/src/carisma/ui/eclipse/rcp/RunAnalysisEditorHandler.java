@@ -31,13 +31,13 @@ public class RunAnalysisEditorHandler extends AbstractHandler {
 	 * Constructor.
 	 */
 	public RunAnalysisEditorHandler() {
-		runAction = new RunAnalysisAction();
+		this.runAction = new RunAnalysisAction();
 	}
 	
 	@Override
 	public final Object execute(final ExecutionEvent event) throws ExecutionException {
-		if (runAction.initSelectionByEditor()) {
-			runAction.run(null);
+		if (this.runAction.initSelectionByEditor()) {
+			this.runAction.run(null);
 		}
 		
 		return null;

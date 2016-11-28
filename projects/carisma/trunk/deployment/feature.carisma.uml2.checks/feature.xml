@@ -238,17 +238,24 @@ litigation.
          version="0.0.0"/>
 
    <includes
-         id="feature.carisma.core"
-         version="0.0.0"/>
+         id="org.eclipse.uml2"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.eclipse.emf.ecore"
+         version="0.0.0"
+         search-location="self"/>
 
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="carisma.modeltype.uml2"/>
       <import plugin="org.eclipse.uml2.uml"/>
+      <import plugin="carisma.core"/>
       <import plugin="carisma.profile.umlsec"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import plugin="carisma.modeltype.uml2" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.workbench"/>
       <import plugin="carisma.profile.umlsec.rabac"/>
       <import plugin="carisma.ocl"/>
    </requires>

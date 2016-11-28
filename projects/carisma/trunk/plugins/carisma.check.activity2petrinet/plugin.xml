@@ -10,7 +10,7 @@
             description="Converts an activity diagram to a petri net"
             id="carisma.check.activity2petrinet"
             name="CARiSMA Activity to Petri Net Converter"
-            implementingClass="carisma.check.activity2petrinet.Check"
+            implementingClass="carisma.check.activity2petrinet.Activity2PetrinetCheck"
             publisher="Kubi Mensah"
             targetModelType="UML2">
          <parameter

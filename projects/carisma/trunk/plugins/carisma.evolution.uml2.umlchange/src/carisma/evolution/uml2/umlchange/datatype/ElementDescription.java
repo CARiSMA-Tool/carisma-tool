@@ -23,11 +23,11 @@ public abstract class ElementDescription {
 	private String grammarString = "";
 	
 	public ElementDescription(final String grammar) {
-		grammarString = grammar.trim();	
+		this.grammarString = grammar.trim();	
 	}
 	
 	public String getGrammarString() {
-		return grammarString;
+		return this.grammarString;
 	}
 	
 	public abstract boolean isValid();

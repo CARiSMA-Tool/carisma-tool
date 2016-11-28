@@ -21,7 +21,7 @@ import org.eclipse.ocl.ParserException;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.core.util.EObjectUtil;
 import carisma.ocl.OclEvaluator;
@@ -33,12 +33,12 @@ import carisma.ocl.OclQueryResult;
  * @author Marcel Michel
  *
  */
-public abstract class AbstractOclChecker implements CarismaCheck {
+public abstract class AbstractOclChecker implements CarismaCheckWithID {
 
 	/**
 	 * The AnalysisHost.
 	 */
-	private AnalysisHost host = null;
+	private AnalysisHost analysisHost = null;
 	
 	/**
 	 * String for output.
@@ -46,12 +46,13 @@ public abstract class AbstractOclChecker implements CarismaCheck {
 	private static final String STATEMENT = "' Statement = '";
 	
 	/**
-	 * Abstract method to implement the CarismaCheck Interface.
+	 * Abstract method to implement the CarismaCheckWithID Interface.
 	 * 
 	 * @param parameters The PluginParameters
 	 * @param host The AnalysisHost
 	 * @return returns true if the query was successful otherwise false
 	 */
+	@Override
 	public abstract boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost host);
 	
 	/**
@@ -63,7 +64,7 @@ public abstract class AbstractOclChecker implements CarismaCheck {
 	 * @return returns true if the query was successful otherwise false
 	 */
 	public final boolean performOclQuery(final AnalysisHost host) {
-		this.host = host;
+		this.analysisHost = host;
 		
 		EClass contextClass = getOclContext();
 		String statement = getOclStatement();
@@ -121,14 +122,14 @@ public abstract class AbstractOclChecker implements CarismaCheck {
 	private void generateReport(final List<OclQueryResult> resultList) {
 		for (OclQueryResult query : resultList) {
 			if (query.isViolated()) {
-				host.appendLineToReport("Constraint violated: Context = '" + query.getContextString() + STATEMENT + query.getStatement() + "'");
-				host.appendLineToReport("List of violating objects:");
+				this.analysisHost.appendLineToReport("Constraint violated: Context = '" + query.getContextString() + STATEMENT + query.getStatement() + "'");
+				this.analysisHost.appendLineToReport("List of violating objects:");
 				for (EObject elem : query.getElements()) {
-					host.appendLineToReport("\t Class = '" + elem.eClass().getName()  
+					this.analysisHost.appendLineToReport("\t Class = '" + elem.eClass().getName()  
 							+ "' Name = '" + EObjectUtil.getName(elem) + "'");	
 				}
 			} else {
-				host.appendLineToReport("Constraint passed: Context = '" + query.getContextString() + STATEMENT + query.getStatement() + "'");
+				this.analysisHost.appendLineToReport("Constraint passed: Context = '" + query.getContextString() + STATEMENT + query.getStatement() + "'");
 			}
 		}
 	}
@@ -159,7 +160,7 @@ public abstract class AbstractOclChecker implements CarismaCheck {
 	 * @return If all desired parameters are in the pool, the resolved list
 	 * will be returned, otherwise null
 	 */
-	protected final List<CheckParameter> resolveParameters(final Map<String, CheckParameter> parameters, 
+	protected final static List<CheckParameter> resolveParameters(final Map<String, CheckParameter> parameters, 
 			final List<CheckParameter> desiredParameters) {
 		List<CheckParameter> result = new ArrayList<CheckParameter>();
 		for (int i = 0; i < desiredParameters.size(); i++) {
