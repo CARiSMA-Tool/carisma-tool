@@ -52,10 +52,10 @@ public class AddAllTest {
 	 */
 	@Test
 	public final void testMain() {
-		model = TestHelper.loadModel(filepath, "add-all.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "add-all.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changeList.size());
 		assertEquals(2, changeList.get(0).getAlternatives().size());
 		for (Alternative alt : changeList.get(0).getAlternatives()) {
@@ -69,17 +69,17 @@ public class AddAllTest {
 	 */
 	@Test
 	public final void testFalseUML2Class() {
-		model = TestHelper.loadModel(filepath, "add-all.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		NamedElement packageElement = TestHelper.checkedGetElement(model, "add-allPkg", NamedElement.class);
+		this.model = TestHelper.loadModel(this.filepath, "add-all.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		NamedElement packageElement = TestHelper.checkedGetElement(this.model, "add-allPkg", NamedElement.class);
 		StereotypeApplication addAllApplication = UMLchangeUtil.getStereotypeApplication(UMLchange.ADDALL, packageElement);
 		assertNotNull(addAllApplication);
 		TaggedValue pattern = addAllApplication.getTaggedValue("pattern");
 		assertNotNull(pattern);
 		pattern.removeValue();
 		pattern.setValue("someRef={InvalidUML2Class(visibility=public)}");		
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(0, changeList.size());
 	}
 	
@@ -88,7 +88,7 @@ public class AddAllTest {
 	 */
 	@Test
 	public final void test() {
-		model = TestHelper.loadModel(filepath, "add-all.uml");
+		this.model = TestHelper.loadModel(this.filepath, "add-all.uml");
 		UMLFactory uml = UMLFactory.eINSTANCE;
 		ExpansionRegion e = uml.createExpansionRegion();
 		OpaqueAction o = uml.createOpaqueAction();
@@ -107,9 +107,9 @@ public class AddAllTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

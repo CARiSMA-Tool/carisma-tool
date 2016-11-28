@@ -21,6 +21,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.TaggedValue;
 import carisma.modeltype.uml2.UMLHelper;
+import carisma.profile.umlchange.UMLChangeActivator;
+import carisma.profile.umlsec.UMLsecActivator;
 
 /**
  * this class creates a model with UMLsec locked-status stereotypes and UMLChange stereotypes for performance tests.
@@ -37,22 +39,12 @@ public class LockedStatusModelCreater {
 	/**
 	 * the first state in the StateMachine, every single path starts here.
 	 */
-	private State first = null;
+	private State firstState = null;
 	
 	/**
 	 * the last state in the StateMachine, every ingle path ends here.
 	 */
-	private State last = null;
-	
-	/**
-	 * URI as String to the UMLsec profile.
-	 */
-	private String uMLsec = "platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml";
-	
-	/**
-	 * URI as String to the UMLchange profile.
-	 */
-	private String uMLchange = "platform:/plugin/carisma.profile.umlchange/profile/UMLchange.profile.uml";
+	private State lastState = null;
 	
 	/**
 	 * qualified string for UMLsec locked status.
@@ -98,8 +90,8 @@ public class LockedStatusModelCreater {
 		URI uri = URI.createURI("testmodel.uml");
 		Resource model = rs.createResource(uri);
 		model.getContents().add(m);
-		UMLHelper.applyProfile(m, uMLsec);
-		UMLHelper.applyProfile(m, uMLchange);
+		UMLHelper.applyProfile(m, UMLsecActivator.UML_FILE);
+		UMLHelper.applyProfile(m, UMLChangeActivator.UML_FILE);
 		init(region);
 		for (int i = 0; i < change; i++) {
 			createPath(region, true);
@@ -123,9 +115,9 @@ public class LockedStatusModelCreater {
 		init.setKind(PseudostateKind.INITIAL_LITERAL);
 		FinalState finalState = (FinalState) region.createSubvertex("Final", uMLfac.createFinalState().eClass());
 		State first = (State) region.createSubvertex("First", uMLfac.createState().eClass());
-		this.first = first;
+		this.firstState = first;
 		State last = (State) region.createSubvertex("Last", uMLfac.createState().eClass());
-		this.last = last;
+		this.lastState = last;
 		Transition t1 = region.createTransition("t1");
 		t1.setSource(init);
 		t1.setTarget(first);
@@ -140,22 +132,22 @@ public class LockedStatusModelCreater {
 	 * @param change true if in this path should occur an UMLChange Stereotype, false otherwise
 	 */
 	private void createPath(final Region region, final boolean change) {
-		State s1 = (State) region.createSubvertex("s1" + counter, uMLfac.createState().eClass());
-		State s2 = (State) region.createSubvertex("s2" + counter, uMLfac.createState().eClass());
-		State s3 = (State) region.createSubvertex("s3" + counter, uMLfac.createState().eClass());
-		State s4 = (State) region.createSubvertex("s4" + counter, uMLfac.createState().eClass());
-		State s5 = (State) region.createSubvertex("s5" + counter, uMLfac.createState().eClass());
-		State s6 = (State) region.createSubvertex("s6ChangeState" + counter, uMLfac.createState().eClass());
-		State s7 = (State) region.createSubvertex("s7" + counter, uMLfac.createState().eClass());
-		Transition t1 = region.createTransition("t1" + counter);
-		Transition t2 = region.createTransition("t2" + counter);
-		Transition t3 = region.createTransition("t3" + counter);
-		Transition t4 = region.createTransition("t4" + counter);
-		Transition t5 = region.createTransition("t5" + counter);
-		Transition t6 = region.createTransition("t6" + counter);
-		Transition t7 = region.createTransition("t7" + counter);
-		Transition t8 = region.createTransition("t8" + counter);
-		t1.setSource(first);
+		State s1 = (State) region.createSubvertex("s1" + this.counter, uMLfac.createState().eClass());
+		State s2 = (State) region.createSubvertex("s2" + this.counter, uMLfac.createState().eClass());
+		State s3 = (State) region.createSubvertex("s3" + this.counter, uMLfac.createState().eClass());
+		State s4 = (State) region.createSubvertex("s4" + this.counter, uMLfac.createState().eClass());
+		State s5 = (State) region.createSubvertex("s5" + this.counter, uMLfac.createState().eClass());
+		State s6 = (State) region.createSubvertex("s6ChangeState" + this.counter, uMLfac.createState().eClass());
+		State s7 = (State) region.createSubvertex("s7" + this.counter, uMLfac.createState().eClass());
+		Transition t1 = region.createTransition("t1" + this.counter);
+		Transition t2 = region.createTransition("t2" + this.counter);
+		Transition t3 = region.createTransition("t3" + this.counter);
+		Transition t4 = region.createTransition("t4" + this.counter);
+		Transition t5 = region.createTransition("t5" + this.counter);
+		Transition t6 = region.createTransition("t6" + this.counter);
+		Transition t7 = region.createTransition("t7" + this.counter);
+		Transition t8 = region.createTransition("t8" + this.counter);
+		t1.setSource(this.firstState);
 		t1.setTarget(s1);
 		t2.setSource(s1);
 		t2.setTarget(s2);
@@ -166,17 +158,17 @@ public class LockedStatusModelCreater {
 		t5.setSource(s4);
 		t5.setTarget(s5);
 		t6.setSource(s5);
-		t6.setTarget(last);
+		t6.setTarget(this.lastState);
 		t7.setSource(s2);
 		t7.setTarget(s6);
 		t8.setSource(s4);
 		t8.setTarget(s7);
-		StereotypeApplication stereoAppLockedStatus = UMLHelper.applyStereotype(s6, lockedStatus);
+		StereotypeApplication stereoAppLockedStatus = UMLHelper.applyStereotype(s6, this.lockedStatus);
 		if (stereoAppLockedStatus == null) {
 //			TODO: Ausgabe etc wegen Fehler
 		}
 		if (change) {
-			counter++;
+			this.counter++;
 		}
 	}
 	
@@ -187,7 +179,7 @@ public class LockedStatusModelCreater {
 	 */
 	private void createAdds(final Region region, final int amount) {
 		if (amount > 0) {
-			StereotypeApplication stereoAppAdd =  UMLHelper.applyStereotype(region, add);
+			StereotypeApplication stereoAppAdd =  UMLHelper.applyStereotype(region, this.add);
 			if (stereoAppAdd != null) {
 				TaggedValue refTag = stereoAppAdd.getTaggedValue("ref");
 				TaggedValue newTag = stereoAppAdd.getTaggedValue("new");

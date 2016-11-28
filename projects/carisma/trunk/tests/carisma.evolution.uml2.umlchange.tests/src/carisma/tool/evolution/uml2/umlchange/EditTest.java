@@ -53,11 +53,11 @@ public class EditTest {
 	 */
 	@Test
 	public final void testEditStereotype() {
-		model = TestHelper.loadModel(filepath, "testEditParser.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "testEditParser.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(2, changeList.size());
 		
 		Map<String, Object> edits = ((EditElement) changeList.get(0).getAlternatives().get(0).getDeltaElements().get(0)).getValues();
@@ -82,21 +82,21 @@ public class EditTest {
 	 */
 	@Test
 	public final void testNullTarget() {
-		model = TestHelper.loadModel(filepath, "testEditParser.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "testEditParser.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(2, changeList.size());		
 	}
 	
 	@Test
 	public final void testWrongValueSyntax() {
-		model = TestHelper.loadModel(filepath, "testEditWrongValueSyntax.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "testEditWrongValueSyntax.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		Change ch = changes.get(0);
 		EditElement edit = (EditElement) ch.getAlternatives().get(0).getDeltaElements().get(0);
@@ -108,9 +108,9 @@ public class EditTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

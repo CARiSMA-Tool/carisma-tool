@@ -13,12 +13,6 @@ package carisma.check.smartcard.authorizedstatus;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.io.File;
-import java.io.IOException;
-
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Model;
@@ -30,13 +24,12 @@ import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
 import org.junit.Test;
 
-import carisma.check.smartcard.authorizedstatus.AuthorizedStatusCheck;
+import carisma.check.smartcard.authorizedstatus.AuthorizedStatus;
 import carisma.check.smartcard.utils.AnalysisMessage;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.TaggedValue;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.UMLStateMachineHelper;
 import carisma.profile.umlsec.UMLsec;
@@ -46,11 +39,11 @@ import carisma.tests.modelutils.uml.TestHelper;
 
 public class AuthorizedStatusCheckTest {
 
-	private String filepath = "resources/models/";
+	private static final String filepath = "resources/models/";
 		
 	@Test
-	public void testAuthorizedStatus() {
-		Model model = TestHelper.loadModel(filepath, "testStateMachine.uml");
+	public static void testAuthorizedStatus() {
+		Model model = TestHelper.loadModel(AuthorizedStatusCheckTest.filepath, "testStateMachine.uml");
 		assertNotNull(model.getAppliedProfile("UMLsec"));
 		Package p1 = (Package) model.getMember("testStateMachine");
 		assertNotNull(p1);
@@ -82,7 +75,7 @@ public class AuthorizedStatusCheckTest {
 		}
 		assertEquals(t, c.getOwner());
 		assertEquals(s, t.getTarget());
-		AuthorizedStatusCheck check = new AuthorizedStatusCheck();
+		AuthorizedStatus check = new AuthorizedStatus();
 		assertEquals(1,check.checkAllAuthorizedStates(model));
 		permissionTag.setValue("Rums Rummel Dudel");
 		assertEquals(0, check.checkAllAuthorizedStates(model));

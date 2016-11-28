@@ -6,6 +6,7 @@ import org.junit.Test;
 
 public class AnalyzerTest {
 
+	@SuppressWarnings("static-method")
 	@Test
 	public void test() {
 		fail("Not yet implemented");

@@ -45,13 +45,13 @@ public class NoDownFlowTest {
 	 * @param testmodelname - name of the model-file
 	 */
 	public final void loadModel(final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new UML2ModelLoader();
+		if (this.ml == null) {
+			this.ml = new UML2ModelLoader();
 		}
 		try {
-			modelres = ml.load(testmodelfile);
+			this.modelres = this.ml.load(testmodelfile);
 		} catch (IOException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
@@ -73,10 +73,10 @@ public class NoDownFlowTest {
 	@Test
 	public final void testNoProfile() {
 		loadModel("testNoDownFlowNoProfile.uml");
-		assertNotNull(modelres);
+		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
-		assertTrue(ndf.startCheck((Package) modelres.getContents().get(0), null));
-		modelres.unload();
+		assertTrue(ndf.startCheck((Package) this.modelres.getContents().get(0), null));
+		this.modelres.unload();
 	}
 	
 	/**
@@ -85,10 +85,10 @@ public class NoDownFlowTest {
 	@Test
 	public final void testNoStereotype() {
 		loadModel("testNoDownFlowNoStereotype.uml");
-		assertNotNull(modelres);
+		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
-		assertTrue(ndf.startCheck((Package) modelres.getContents().get(0), null));
-		modelres.unload();
+		assertTrue(ndf.startCheck((Package) this.modelres.getContents().get(0), null));
+		this.modelres.unload();
 	}
 	
 	/**
@@ -97,10 +97,10 @@ public class NoDownFlowTest {
 	@Test
 	public final void test() {
 		loadModel("testNoDownFlow.uml");
-		assertNotNull(modelres);
+		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
-		assertFalse(ndf.startCheck((Package) modelres.getContents().get(0), null));
-		modelres.unload();
+		assertFalse(ndf.startCheck((Package) this.modelres.getContents().get(0), null));
+		this.modelres.unload();
 	}
 	
 	/**
@@ -109,10 +109,10 @@ public class NoDownFlowTest {
 	@Test
 	public final void testCorrect() {
 		loadModel("testNoDownFlowCorrect.uml");
-		assertNotNull(modelres);
+		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
-		assertTrue(ndf.startCheck((Package) modelres.getContents().get(0), null));
-		modelres.unload();
+		assertTrue(ndf.startCheck((Package) this.modelres.getContents().get(0), null));
+		this.modelres.unload();
 	}
 	
 	/**
@@ -121,10 +121,10 @@ public class NoDownFlowTest {
 	@Test
 	public final void test4Algo() {
 		loadModel("testNoDownFlowFalseAlgoExample.uml");
-		assertNotNull(modelres);
+		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
-		assertTrue(ndf.startCheck((Package) modelres.getContents().get(0), null));
-		modelres.unload();
+		assertTrue(ndf.startCheck((Package) this.modelres.getContents().get(0), null));
+		this.modelres.unload();
 	}
 	 
 	/**
@@ -134,10 +134,10 @@ public class NoDownFlowTest {
 	@Test
 	public final void testBookExample() {
 		loadModel("testNoDownFlowBookExample.uml");
-		assertNotNull(modelres);
+		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
-		assertFalse(ndf.startCheck((Package) modelres.getContents().get(0), null));
-		modelres.unload();
+		assertFalse(ndf.startCheck((Package) this.modelres.getContents().get(0), null));
+		this.modelres.unload();
 	}
 	
 	/**
@@ -147,9 +147,9 @@ public class NoDownFlowTest {
 	@Test
 	public final void testContains() {
 		loadModel("testNoDownFlowContains.uml");
-		assertNotNull(modelres);
+		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
-		assertTrue(ndf.startCheck((Package) modelres.getContents().get(0), null));
-		modelres.unload();
+		assertTrue(ndf.startCheck((Package) this.modelres.getContents().get(0), null));
+		this.modelres.unload();
 	}
 }

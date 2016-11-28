@@ -30,8 +30,8 @@ public class UMLDeploymentHelperTest {
 	
 	@Test
 	public final void testGetDeploymentLocations() {
-		model = TestHelper.loadModel(filepath, "testDeploymentHelper.uml");
-		Package pkg = (Package) model.getMember("testDeploymentHelperPackage");
+		this.model = TestHelper.loadModel(this.filepath, "testDeploymentHelper.uml");
+		Package pkg = (Package) this.model.getMember("testDeploymentHelperPackage");
 		assertNotNull(pkg);
 		Artifact arti1 = (Artifact) pkg.getMember("Artifact1");
 		assertNotNull(arti1);
@@ -46,8 +46,8 @@ public class UMLDeploymentHelperTest {
 	
 	@Test
 	public final void testGetDeployedArtifacts() {
-		model = TestHelper.loadModel(filepath, "testDeploymentHelper.uml");
-		Package pkg = (Package) model.getMember("testDeploymentHelperPackage");
+		this.model = TestHelper.loadModel(this.filepath, "testDeploymentHelper.uml");
+		Package pkg = (Package) this.model.getMember("testDeploymentHelperPackage");
 		assertNotNull(pkg);
 		Node node1 = (Node) pkg.getMember("Node1");
 		assertNotNull(node1);
@@ -62,9 +62,9 @@ public class UMLDeploymentHelperTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

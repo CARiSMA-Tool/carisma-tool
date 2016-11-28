@@ -4,6 +4,6 @@ Bundle-Name: Tests
 Bundle-SymbolicName: carisma.check.smartcard.tests;singleton:=true
 Bundle-Version: 1.0.1.qualifier
 Fragment-Host: carisma.check.smartcard;bundle-version="1.0.1"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: carisma.tests.modelutils.uml;bundle-version="1.0.0",
  org.junit;bundle-version="4.11.0"

@@ -14,13 +14,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,14 +37,17 @@ import org.eclipse.bpmn2.SignalEventDefinition;
 import org.eclipse.bpmn2.Task;
 import org.eclipse.bpmn2.TimerEventDefinition;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Test;
 
+import carisma.bpmn2.marisk.util.IncompleteMappingExeption;
 import carisma.bpmn2.marisk.util.MariskHelper;
 import carisma.check.bpmn2.marisk.util.Tupel;
-import carisma.modeltype.bpmn2.BPMN2ModelLoader;
 
 public class MariskHelperTest {
 
@@ -55,7 +59,7 @@ public class MariskHelperTest {
 	/**
 	 * The bpmn2 model loader.
 	 */
-	private BPMN2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 
 	/**
 	 * The model resource.
@@ -80,13 +84,11 @@ public class MariskHelperTest {
 	 *            The model name
 	 */
 	private void loadModel(final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new BPMN2ModelLoader();
-		}
-		try {
-			modelres = ml.load(testmodelfile);
+		try (FileInputStream in = new FileInputStream(testmodelfile)){
+			this.modelres = this.rs.createResource(URI.createURI(testmodelfile.getPath()));
+			this.modelres.load(in, Collections.EMPTY_MAP);
 		} catch (IOException e) {
 			fail(e.getMessage());
 		}
@@ -108,17 +110,16 @@ public class MariskHelperTest {
 			}
 			if (sf != null) {
 				return String.valueOf(obj.eGet(sf));
-			} else {
-				return "[unnamed " + obj.eClass().getName() + "]";
 			}
-		} else {
-			return "[no element]";
+			return "[unnamed " + obj.eClass().getName() + "]";
 		}
+		return "[no element]";
 	}
 	
 	/**
 	 * Tests the extractActivity Method.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
 	public final void extractActivitiesTest() {
 		List<Tupel<String, String[]>> testList = new ArrayList<Tupel<String,String[]>>();
@@ -158,28 +159,29 @@ public class MariskHelperTest {
 	/**
 	 * Tests the parseActivities method.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
 	public final void parseActivitiesTest() {
 		List<Tupel<String, Boolean>> testList = new ArrayList<Tupel<String, Boolean>>();
 		testList.add(new Tupel<String, Boolean> (
-				"Activity1,Activity2", true));
+				"Activity1,Activity2", Boolean.TRUE));
 		testList.add(new Tupel<String, Boolean> (
-				"Activity 1 , Activity 2", true));
+				"Activity 1 , Activity 2", Boolean.TRUE));
 		testList.add(new Tupel<String, Boolean> (
-				"Activity1", true));
+				"Activity1", Boolean.TRUE));
 		testList.add(new Tupel<String, Boolean> (
-				"Activity 1", true));
+				"Activity 1", Boolean.TRUE));
 		testList.add(new Tupel<String, Boolean> (
-				"Activity1,Activity2,", false));
+				"Activity1,Activity2,", Boolean.FALSE));
 		testList.add(new Tupel<String, Boolean> (
-				",Activity1,Activity2", false));
+				",Activity1,Activity2", Boolean.FALSE));
 		testList.add(new Tupel<String, Boolean> (
-				"", false));
+				"", Boolean.FALSE));
 		testList.add(new Tupel<String, Boolean> (
-				",", false));
+				",", Boolean.FALSE));
 		
 		for (Tupel<String, Boolean> testEntry : testList) {
-			assertEquals(MariskHelper.parseActivities(testEntry.getO1()), testEntry.getO2());
+			assertEquals(Boolean.valueOf(MariskHelper.parseActivities(testEntry.getO1())), testEntry.getO2());
 		}
 	}
 	
@@ -188,13 +190,12 @@ public class MariskHelperTest {
 	 */
 	@Test
 	public final void getUnmatchedActivitiesTest() {
-		Bpmn2Factory factory = Bpmn2Factory.eINSTANCE;
 		
-		Activity act1 = factory.createTask();
+		Activity act1 = this.factory.createTask();
 		act1.setName("act1");
-		Activity act2 = factory.createTask();
+		Activity act2 = this.factory.createTask();
 		act2.setName("act2");
-		Activity act3 = factory.createTask();
+		Activity act3 = this.factory.createTask();
 		act3.setName("act3");
 		
 		List<Activity> testList = new ArrayList<Activity>();
@@ -256,29 +257,49 @@ public class MariskHelperTest {
 	@Test
 	public final void mapActivitiesTest() {
 		loadModel("MapActivitiesContainer.bpmn2");
-		assertNotNull(modelres);
+		assertNotNull(this.modelres);
 		
-		List<Activity> result = MariskHelper.mapActivities(modelres, new String[] {"act1"});
-		assertEquals(1, result.size());
-		assertTrue(result.get(0).getName().equalsIgnoreCase("act1"));
+		try	{
+			List<Activity> result = MariskHelper.mapActivities(this.modelres, new String[] {"act1"});
+			assertEquals(1, result.size());
+			assertTrue(result.get(0).getName().equalsIgnoreCase("act1"));
+		}
+		catch(IncompleteMappingExeption e){
+			fail();
+		}
 		
-		result = MariskHelper.mapActivities(modelres, new String[] {"act1", "notAvailable"});
-		assertNull(result);
+		try {
+			MariskHelper.mapActivities(this.modelres, new String[] {"act1", "notAvailable"});
+			fail();
+		}
+		catch(IncompleteMappingExeption e){
+			// Exception is expected
+		}
 		
-		result = MariskHelper.mapActivities(modelres, new String[] {"notAvailable", "act1"});
-		assertNull(result);
+		try {
+			MariskHelper.mapActivities(this.modelres, new String[] {"notAvailable", "act1"});
+			fail();
+		}
+		catch(IncompleteMappingExeption e){
+			// Exception is expected
+		}
 		
-		result = MariskHelper.mapActivities(modelres, new String[] {"act1", "act2", "act3"});
-		assertEquals(3, result.size());
-		assertTrue(result.get(0).getName().equalsIgnoreCase("act1") ||
-				result.get(1).getName().equalsIgnoreCase("act1") || 
-				result.get(2).getName().equalsIgnoreCase("act1"));
-		assertTrue(result.get(0).getName().equalsIgnoreCase("act2") ||
-				result.get(1).getName().equalsIgnoreCase("act2") || 
-				result.get(2).getName().equalsIgnoreCase("act2"));
-		assertTrue(result.get(0).getName().equalsIgnoreCase("act3") ||
-				result.get(1).getName().equalsIgnoreCase("act3") || 
-				result.get(2).getName().equalsIgnoreCase("act3"));
+		try {
+			List<Activity> result = MariskHelper.mapActivities(this.modelres, new String[] {"act1", "act2", "act3"});
+			assertEquals(3, result.size());
+			assertTrue(result.get(0).getName().equalsIgnoreCase("act1") ||
+					result.get(1).getName().equalsIgnoreCase("act1") || 
+					result.get(2).getName().equalsIgnoreCase("act1"));
+			assertTrue(result.get(0).getName().equalsIgnoreCase("act2") ||
+					result.get(1).getName().equalsIgnoreCase("act2") || 
+					result.get(2).getName().equalsIgnoreCase("act2"));
+			assertTrue(result.get(0).getName().equalsIgnoreCase("act3") ||
+					result.get(1).getName().equalsIgnoreCase("act3") || 
+					result.get(2).getName().equalsIgnoreCase("act3"));
+		}
+		catch(IncompleteMappingExeption e){
+			fail();
+		}
 		
 	}
 
@@ -288,11 +309,11 @@ public class MariskHelperTest {
 	@Test
 	public final void mapContainerTest() {
 		loadModel("MapActivitiesContainer.bpmn2");
-		assertNotNull(modelres);
+		assertNotNull(this.modelres);
 		
-		FlowElementsContainer container = MariskHelper.mapContainer(modelres, "InvalidContainerName");
+		FlowElementsContainer container = MariskHelper.mapContainer(this.modelres, "InvalidContainerName");
 		assertNull(container);
-		container = MariskHelper.mapContainer(modelres, "Process for Pool nr 1");
+		container = MariskHelper.mapContainer(this.modelres, "Process for Pool nr 1");
 		assertNotNull(container);
 		assertTrue(getName(container).equals("Process for Pool nr 1"));
 	}
@@ -304,13 +325,13 @@ public class MariskHelperTest {
 	public final void findContextInPackageTest() {
 		for (String modelname : new String[] {"TracesAfterOk1.bpmn2"}) {
 			loadModel(modelname);
-			assertNotNull(modelres);
+			assertNotNull(this.modelres);
 			
-			TreeIterator<EObject> iterator = modelres.getAllContents();
+			TreeIterator<EObject> iterator = this.modelres.getAllContents();
 			while (iterator.hasNext()) {
 				EObject obj = iterator.next();
 				assertEquals(obj.eClass().getName(), 
-						MariskHelper.findEClass(obj.eClass().getName(), modelres).getName());
+						MariskHelper.findEClass(obj.eClass().getName(), this.modelres).getName());
 			}
 		}
 	}
@@ -325,15 +346,15 @@ public class MariskHelperTest {
 	 */
 	@Test
 	public final void checkDutySeparationTest() {
-		Task t1 = factory.createTask();
-		Task t2 = factory.createTask();
+		Task t1 = this.factory.createTask();
+		Task t2 = this.factory.createTask();
 
 		assertTrue("SoD1: Tasks t1 and t2 are separated " +
 				"(should not violate the SoD constraint)", 
 				MariskHelper.checkSeparationOfDuty(t1, t2));
 
-		Lane l1 = factory.createLane();
-		Lane l2 = factory.createLane();
+		Lane l1 = this.factory.createLane();
+		Lane l2 = this.factory.createLane();
 
 		l1.getFlowNodeRefs().add(t1);
 		assertTrue("SoD2: Tasks t1 and t2 are separated " +
@@ -381,11 +402,11 @@ public class MariskHelperTest {
 		
 		for (String testModel : testModels) {
 			loadModel(testModel);
-			assertNotNull("model is null", modelres);
+			assertNotNull("model is null", this.modelres);
 			
 			ArrayList<Activity> activityList = new ArrayList<Activity>();
 			Process process = null;
-			TreeIterator<EObject> iterator = modelres.getAllContents();
+			TreeIterator<EObject> iterator = this.modelres.getAllContents();
 			while (iterator.hasNext()) {
 				EObject obj = iterator.next();
 				if (obj instanceof Activity) {
@@ -402,8 +423,8 @@ public class MariskHelperTest {
 			}
 			
 			assertNotNull("No process element found", process);
-			assertSame("Not all defined activities could be found in the process", 
-					activityList.size(), activityNames.length);
+			assertTrue("Not all defined activities could be found in the process", 
+					activityList.size() == activityNames.length);
 			
 			for (Activity a : activityList) {
 				if (a.getName().equalsIgnoreCase(escalationEvent)) {

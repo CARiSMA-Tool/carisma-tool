@@ -36,7 +36,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
 import carisma.check.staticcheck.evolution.securelinks.SecureLinksEvolutionCheck;
-import carisma.check.staticcheck.securelinks.SecureLinksCheck;
+import carisma.check.staticcheck.securelinks.SecureLinks;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.RegisterInUseException;
 import carisma.core.analysis.RegisterNotInUseException;
@@ -66,78 +66,7 @@ public class SecureLinksEvolutionCheckTest {
      */
     private static final String NAME = "name";
 	
-	private class TestHost implements AnalysisHost {
-
-		@Override
-		public void addResultMessage(final AnalysisResultMessage detail) {
-			Logger.log(LogLevel.INFO, detail.getText());
-		}
-
-		@Override
-		public void appendToReport(final String text) {
-		    Logger.log(LogLevel.INFO, text);			
-		}
-
-		@Override
-		public void appendLineToReport(final String text) {
-		    Logger.log(LogLevel.INFO, text);			
-		}
-
-		@Override
-		public Resource getAnalyzedModel() {
-			return modelres;
-		}
-
-		@Override
-		public String getCurrentModelFilename() {
-			return modelres.getURI().toFileString();
-		}
-
-		@Override
-		public void putToRegister(final String registerName, final Object data)
-				throws RegisterInUseException {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public boolean isRegisterInUse(final String registerName) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public Object getFromRegister(final String registerName)
-				throws RegisterNotInUseException {
-			if (registerName.equals(SecureLinksEvolutionCheck.DELTAS_REGISTER_KEY)) {
-				return new DeltaList(deltas);
-			} else if (registerName.equals(SecureLinksEvolutionCheck.MODIFIERS_REGISTRY_KEY)) {
-				return modifierMap;
-			}
-			return null;
-		}
-
-		@Override
-		public Object removeFromRegister(final String registerName)
-				throws RegisterNotInUseException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public void displayError(final String message) {
-			// TODO Auto-generated method stub
-		}
-
-		@Override
-		public File getFileToBeWritten(final File file)
-				throws UserAbortedAnalysisException {
-			// TODO Auto-generated method stub
-			return file;
-		}
-	}
-
-    /** 
+	/** 
      * Constant String for the name of the 'UMLchange' profile.
      */
     private static final String UML_CHANGE = "UMLchange";
@@ -178,33 +107,33 @@ public class SecureLinksEvolutionCheckTest {
 	
 	private UML2ModelLoader ml = null;
 	
-	private Resource modelres = null;
+	Resource modelres = null;
 	
-	private List<Delta> deltas = null;
+	List<Delta> deltas = null;
 	
-	private ModifierMap modifierMap = null;
+	ModifierMap modifierMap = null;
 	
 	public final void loadModel(final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue("File does not exist? (" + testmodelfile.getAbsolutePath() + ")", testmodelfile.exists());
-		if (ml == null) {
-			ml = new UML2ModelLoader();
+		if (this.ml == null) {
+			this.ml = new UML2ModelLoader();
 		}
 		try {
-			modelres = ml.load(testmodelfile);
+			this.modelres = this.ml.load(testmodelfile);
 		} catch (IOException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
 		}
-		assertNotNull(modelres);
-		modifierMap = new ModifierMap(modelres);
+		assertNotNull(this.modelres);
+		this.modifierMap = new ModifierMap(this.modelres);
 	}
 	
 	@Test
 	public final void testDeleteLink() {
-		deltas = new ArrayList<Delta>();
+		this.deltas = new ArrayList<Delta>();
 		loadModel("testSLDeleteLink.uml");
-		Model model = (Model) modelres.getContents().get(0);
+		Model model = (Model) this.modelres.getContents().get(0);
 		Logger.log(LogLevel.DEBUG, model.toString());
 		assertNotNull(model);
 		assertNotNull(model.getAppliedProfile(UML_CHANGE));
@@ -217,36 +146,35 @@ public class SecureLinksEvolutionCheckTest {
 		assertNotNull(commPath);
 		List<DeltaElement> elements = new ArrayList<DeltaElement>();
 		elements.add(new DelElement(commPath));
-		deltas.add(new Delta(elements));
+		this.deltas.add(new Delta(elements));
 		assertEquals(2, model.getAllAppliedProfiles().size());
 		assertEquals(2, commPath.getAppliedStereotypes().size());
 		SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
-		assertFalse(evoCheck.perform(null, testHost));
+		assertFalse(evoCheck.perform(null, this.testHost));
 		Dependency dep = (Dependency) package1.getMember(DEP);
-		SecureLinksCheck staticCheck = new SecureLinksCheck();
-		assertEquals(1, staticCheck.getThreats(commPath).size());
+		assertEquals(1, SecureLinks.getThreats(commPath).size());
 		assertNotNull(dep);
-		assertFalse(staticCheck.compliesWithRequirements(commPath, dep).isEmpty());
+		assertFalse(SecureLinks.compliesWithRequirements(commPath, dep).isEmpty());
 		assertTrue(UMLHelper.unapplyStereotype(dep, UML_SEC_HIGH));
-		assertTrue(staticCheck.compliesWithRequirements(commPath, dep).isEmpty());
+		assertTrue(SecureLinks.compliesWithRequirements(commPath, dep).isEmpty());
 		assertNotNull(UMLHelper.applyStereotype(dep, UML_SEC_SECRECY));
-		assertTrue(staticCheck.compliesWithRequirements(commPath, dep).isEmpty());
+		assertTrue(SecureLinks.compliesWithRequirements(commPath, dep).isEmpty());
 		evoCheck = new SecureLinksEvolutionCheck();
-		deltas.clear();
-		deltas.add(new Delta(elements));
-		assertFalse(evoCheck.perform(null, testHost));		
+		this.deltas.clear();
+		this.deltas.add(new Delta(elements));
+		assertFalse(evoCheck.perform(null, this.testHost));		
 		assertTrue(UMLHelper.unapplyStereotype(dep, UML_SEC_SECRECY));
 		evoCheck = new SecureLinksEvolutionCheck();
-		deltas.clear();
-		deltas.add(new Delta(elements));
-		assertTrue(evoCheck.perform(null, testHost));
+		this.deltas.clear();
+		this.deltas.add(new Delta(elements));
+		assertTrue(evoCheck.perform(null, this.testHost));
 	}
 	
 	@Test
 	public final void testDeleteLinktype() {
-		deltas = new ArrayList<Delta>();
+		this.deltas = new ArrayList<Delta>();
 		loadModel("testSLDeleteLinktype.uml");
-		Model model = (Model) modelres.getContents().get(0);
+		Model model = (Model) this.modelres.getContents().get(0);
 		assertNotNull(model);
 		assertNotNull(model.getAppliedProfile(UML_CHANGE));
 		assertNotNull(model.getAppliedProfile(UML_SEC));
@@ -261,34 +189,33 @@ public class SecureLinksEvolutionCheckTest {
 		assertEquals(2, commPath.getAppliedStereotypes().size());
 		List<DeltaElement> elements = new ArrayList<DeltaElement>();
 		elements.add(new DelElement(lan));
-		deltas.add(new Delta(elements));
+		this.deltas.add(new Delta(elements));
 		SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
-		SecureLinksCheck staticCheck = new SecureLinksCheck();
-		assertFalse(evoCheck.perform(null, testHost));
+		assertFalse(evoCheck.perform(null, this.testHost));
 		Dependency dep = (Dependency) package1.getMember(DEP);
 		assertNotNull(dep);
-		assertEquals(1, staticCheck.getThreats(commPath).size());
-		assertFalse(staticCheck.compliesWithRequirements(commPath, dep).isEmpty());
+		assertEquals(1, SecureLinks.getThreats(commPath).size());
+		assertFalse(SecureLinks.compliesWithRequirements(commPath, dep).isEmpty());
 		assertTrue(UMLHelper.unapplyStereotype(dep, UML_SEC_HIGH));
-		assertTrue(staticCheck.compliesWithRequirements(commPath, dep).isEmpty());
+		assertTrue(SecureLinks.compliesWithRequirements(commPath, dep).isEmpty());
 		assertNotNull(UMLHelper.applyStereotype(dep, UML_SEC_SECRECY));
-		assertTrue(staticCheck.compliesWithRequirements(commPath, dep).isEmpty());
+		assertTrue(SecureLinks.compliesWithRequirements(commPath, dep).isEmpty());
 		evoCheck = new SecureLinksEvolutionCheck();
-		deltas.clear();
-		deltas.add(new Delta(elements));
-		assertFalse(evoCheck.perform(null, testHost));
+		this.deltas.clear();
+		this.deltas.add(new Delta(elements));
+		assertFalse(evoCheck.perform(null, this.testHost));
 		assertTrue(UMLHelper.unapplyStereotype(dep, UML_SEC_SECRECY));
 		evoCheck = new SecureLinksEvolutionCheck();
-		deltas.clear();
-		deltas.add(new Delta(elements));
-		assertTrue(evoCheck.perform(null, testHost));
+		this.deltas.clear();
+		this.deltas.add(new Delta(elements));
+		assertTrue(evoCheck.perform(null, this.testHost));
 	}
 	
 	@Test
 	public final void testDeleteSecureLinks() {
-		deltas = new ArrayList<Delta>();
+		this.deltas = new ArrayList<Delta>();
 		loadModel("testSLDeleteSecureLinks.uml");
-		Model model = (Model) modelres.getContents().get(0);
+		Model model = (Model) this.modelres.getContents().get(0);
 		assertNotNull(model);
 		assertNotNull(model.getAppliedProfile(UML_CHANGE));
 		assertNotNull(model.getAppliedProfile(UML_SEC));
@@ -303,16 +230,16 @@ public class SecureLinksEvolutionCheckTest {
 		StereotypeApplication secureLinks = UMLHelper.getStereotypeApplication(model, "secure links");
 		assertNotNull(secureLinks);
 		elements.add(new DelElement(secureLinks));
-		deltas.add(new Delta(elements));
+		this.deltas.add(new Delta(elements));
 		SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
-		assertTrue(evoCheck.perform(null, testHost));
+		assertTrue(evoCheck.perform(null, this.testHost));
 	}
 	
 	@Test
 	public final void testDeleteAdversary() {
-		deltas = new ArrayList<Delta>();
+		this.deltas = new ArrayList<Delta>();
 		loadModel("testSLDeleteAdversary.uml");
-		Model model = (Model) modelres.getContents().get(0);
+		Model model = (Model) this.modelres.getContents().get(0);
 		assertNotNull(model);
 		assertNotNull(model.getAppliedProfile(UML_CHANGE));
 		assertNotNull(model.getAppliedProfile(UML_SEC));
@@ -328,17 +255,17 @@ public class SecureLinksEvolutionCheckTest {
 		TaggedValue adversary = secureLinks.getTaggedValue("adversary");
 		assertNotNull(adversary);
 		elements.add(new DelElement(adversary));
-		deltas.add(new Delta(elements));
+		this.deltas.add(new Delta(elements));
 		SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
-		assertTrue(evoCheck.perform(null, testHost));
+		assertTrue(evoCheck.perform(null, this.testHost));
 	}
 	
 	@Test
 	public final void testAddRequirement() {
-		deltas = new ArrayList<Delta>();
+		this.deltas = new ArrayList<Delta>();
 		loadModel("testSLAddRequirement.uml");
 		try {
-			Model model = (Model) modelres.getContents().get(0);
+			Model model = (Model) this.modelres.getContents().get(0);
 			assertNotNull(model);
 			assertNotNull(model.getAppliedProfile(UML_CHANGE));
 			assertNotNull(model.getAppliedProfile(UML_SEC));
@@ -349,8 +276,8 @@ public class SecureLinksEvolutionCheckTest {
 			AddElement newRequirement = new AddElement(dep, UMLPackage.eINSTANCE.getStereotype(), null);
 			newRequirement.addKeyValuePair(NAME, UML_SEC_HIGH);
 			elements.add(newRequirement);
-			deltas.add(new Delta(elements));
-			assertFalse(evoCheck.perform(null, testHost));
+			this.deltas.add(new Delta(elements));
+			assertFalse(evoCheck.perform(null, this.testHost));
 			Package package1 = (Package) model.getOwnedElements().get(0);
 			assertNotNull(package1);
 			CommunicationPath commPath = (CommunicationPath) package1.getMember(AB_LINK);
@@ -358,9 +285,9 @@ public class SecureLinksEvolutionCheckTest {
 			assertTrue(UMLHelper.unapplyStereotype(commPath, "UMLsec::Internet"));
 			assertNotNull(UMLHelper.applyStereotype(commPath, UML_SEC_LAN));
 			evoCheck = new SecureLinksEvolutionCheck();
-			deltas.clear();
-			deltas.add(new Delta(elements));
-			assertTrue(evoCheck.perform(null, testHost));
+			this.deltas.clear();
+			this.deltas.add(new Delta(elements));
+			assertTrue(evoCheck.perform(null, this.testHost));
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, "", e);
 			fail(e.getMessage());
@@ -369,10 +296,10 @@ public class SecureLinksEvolutionCheckTest {
 	
 	@Test
 	public final void testAddLinktype() {
-		deltas = new ArrayList<Delta>();		
+		this.deltas = new ArrayList<Delta>();		
 		loadModel("testSLAddLinkType.uml");
 		try {
-			Model model = (Model) modelres.getContents().get(0);
+			Model model = (Model) this.modelres.getContents().get(0);
 			assertNotNull(model);
 			assertNotNull(model.getAppliedProfile(UML_CHANGE));
 			assertNotNull(model.getAppliedProfile(UML_SEC));
@@ -383,17 +310,17 @@ public class SecureLinksEvolutionCheckTest {
 			newLinktype.addKeyValuePair(NAME, UML_SEC_LAN);
 			List<DeltaElement> elements = new ArrayList<DeltaElement>();
 			elements.add(newLinktype);
-			deltas.add(new Delta(elements));
+			this.deltas.add(new Delta(elements));
 			SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
-			assertTrue(evoCheck.perform(null, testHost));
+			assertTrue(evoCheck.perform(null, this.testHost));
 			Dependency dep = UMLHelper.getElementOfNameAndType(model, DEP, Dependency.class);
 			assertNotNull(dep);
 			StereotypeApplication high = UMLHelper.applyStereotype(dep, UML_SEC_HIGH);
 			assertNotNull(high);
-			deltas.clear();
-			deltas.add(new Delta(elements));
+			this.deltas.clear();
+			this.deltas.add(new Delta(elements));
 			evoCheck = new SecureLinksEvolutionCheck();
-			assertFalse(evoCheck.perform(null, testHost));		
+			assertFalse(evoCheck.perform(null, this.testHost));		
 		}
 		catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, "", e);
@@ -403,15 +330,14 @@ public class SecureLinksEvolutionCheckTest {
 	
 	@Test
 	public final void testAddDeployment() {
-		deltas = new ArrayList<Delta>();		
+		this.deltas = new ArrayList<Delta>();		
 		loadModel("testSLAddDeployment.uml");
 		try {
-			Model model = (Model) modelres.getContents().get(0);
+			Model model = (Model) this.modelres.getContents().get(0);
 			assertNotNull(model);
 			assertNotNull(model.getAppliedProfile(UML_CHANGE));
 			assertNotNull(model.getAppliedProfile(UML_SEC));
-			SecureLinksCheck staticCheck = new SecureLinksCheck();
-			assertEquals("default", staticCheck.getAttacker(model));
+			assertEquals("default", SecureLinks.getAttacker(model));
 			assertTrue(UMLsecUtil.hasStereotype(model, UMLsec.SECURE_LINKS));
 			Node node1 = UMLHelper.getElementOfNameAndType(model, "Node1", Node.class);
 			assertNotNull(node1);
@@ -421,9 +347,9 @@ public class SecureLinksEvolutionCheckTest {
 			newDeployment.addKeyValuePair("deployedArtifact", "Artifact1");		
 			List<DeltaElement> elements = new ArrayList<DeltaElement>();
 			elements.add(newDeployment);
-			deltas.add(new Delta(elements));
+			this.deltas.add(new Delta(elements));
 			SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
-			assertFalse(evoCheck.perform(null, testHost));
+			assertFalse(evoCheck.perform(null, this.testHost));
 			Package package1 = (Package) model.getOwnedElements().get(0);
 			assertNotNull(package1);
 			CommunicationPath commPath = (CommunicationPath) package1.getMember(AB_LINK);
@@ -432,21 +358,21 @@ public class SecureLinksEvolutionCheckTest {
 			assertNotNull(dep);
 			assertTrue(UMLHelper.unapplyStereotype(commPath, "UMLsec::Internet"));
 			assertNotNull(UMLHelper.applyStereotype(commPath, UML_SEC_LAN));
-			deltas.clear();
-			deltas.add(new Delta(elements));
+			this.deltas.clear();
+			this.deltas.add(new Delta(elements));
 			evoCheck = new SecureLinksEvolutionCheck();
-			assertTrue(evoCheck.perform(null, testHost));
+			assertTrue(evoCheck.perform(null, this.testHost));
 			assertTrue(UMLHelper.unapplyStereotype(commPath, UML_SEC_LAN));
 			assertNotNull(UMLHelper.applyStereotype(commPath, "UMLsec::encrypted"));
-			deltas.clear();
-			deltas.add(new Delta(elements));
+			this.deltas.clear();
+			this.deltas.add(new Delta(elements));
 			evoCheck = new SecureLinksEvolutionCheck();
-			assertTrue(evoCheck.perform(null, testHost));
+			assertTrue(evoCheck.perform(null, this.testHost));
 			assertNotNull(UMLHelper.applyStereotype(dep, UML_SEC_HIGH));
-			deltas.clear();
-			deltas.add(new Delta(elements));
+			this.deltas.clear();
+			this.deltas.add(new Delta(elements));
 			evoCheck = new SecureLinksEvolutionCheck();
-			assertFalse(evoCheck.perform(null, testHost));
+			assertFalse(evoCheck.perform(null, this.testHost));
 		} catch (ModelElementNotFoundException e) {
 			Logger.log(LogLevel.ERROR, "", e);
 			fail(e.getMessage());
@@ -455,14 +381,13 @@ public class SecureLinksEvolutionCheckTest {
 	
 	@Test
 	public final void testSLAddNodeWithDeployment() {
-		deltas = new ArrayList<Delta>();		
+		this.deltas = new ArrayList<Delta>();		
 		loadModel("testSLAddNodeWithDeploymentNoLink.uml");
-		Model model = (Model) modelres.getContents().get(0);
+		Model model = (Model) this.modelres.getContents().get(0);
 		assertNotNull(model);
 		assertNotNull(model.getAppliedProfile(UML_CHANGE));
 		assertNotNull(model.getAppliedProfile(UML_SEC));
-		SecureLinksCheck staticCheck = new SecureLinksCheck();
-		assertEquals("default", staticCheck.getAttacker(model));
+		assertEquals("default", SecureLinks.getAttacker(model));
 		assertTrue(UMLsecUtil.hasStereotype(model, UMLsec.SECURE_LINKS));		
 		AddElement newNode = new AddElement(model, UMLPackage.eINSTANCE.getNode(), null);
 		newNode.addKeyValuePair(NAME, "newNode");
@@ -473,51 +398,126 @@ public class SecureLinksEvolutionCheckTest {
 		newNode.addContainedElement(newDeployment);
 		List<DeltaElement> elements = new ArrayList<DeltaElement>();
 		elements.add(newNode);
-		deltas.add(new Delta(elements));
+		this.deltas.add(new Delta(elements));
 		SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
-		assertFalse(evoCheck.perform(null, testHost));
+		assertFalse(evoCheck.perform(null, this.testHost));
 		AddElement newCommPath = new AddElement(null, UMLPackage.eINSTANCE.getCommunicationPath(), newNode);
 		newCommPath.addKeyValuePair(NAME, "newCommPath");
 		newCommPath.addKeyValuePair("source", "newNode");		
 		newCommPath.addKeyValuePair("target", "Node1");
 		newNode.addContainedElement(newCommPath);
-		deltas.clear();
-		deltas.add(new Delta(elements));
+		this.deltas.clear();
+		this.deltas.add(new Delta(elements));
 		evoCheck = new SecureLinksEvolutionCheck();		
-		assertFalse(evoCheck.perform(null, testHost));
+		assertFalse(evoCheck.perform(null, this.testHost));
 		AddElement newInternetStereotype = new AddElement(null, UMLPackage.eINSTANCE.getStereotype(), newCommPath);
 		newInternetStereotype.addKeyValuePair(NAME, "UMLsec::internet");
 		newCommPath.addContainedElement(newInternetStereotype);
-		deltas.clear();
-		deltas.add(new Delta(elements));
+		this.deltas.clear();
+		this.deltas.add(new Delta(elements));
 		evoCheck = new SecureLinksEvolutionCheck();		
-		assertFalse(evoCheck.perform(null, testHost));
+		assertFalse(evoCheck.perform(null, this.testHost));
 		newCommPath.removeContainedElement(newInternetStereotype);
 		AddElement newLanStereotype = new AddElement(null, UMLPackage.eINSTANCE.getStereotype(), newCommPath);
 		newLanStereotype.addKeyValuePair(NAME, UML_SEC_LAN);
 		newCommPath.addContainedElement(newLanStereotype);
-		deltas.clear();
-		deltas.add(new Delta(elements));
+		this.deltas.clear();
+		this.deltas.add(new Delta(elements));
 		evoCheck = new SecureLinksEvolutionCheck();		
-		assertTrue(evoCheck.perform(null, testHost));
+		assertTrue(evoCheck.perform(null, this.testHost));
 	}
 	
 	@Test
 	public final void testCopyModel() {
 		loadModel("testSLAddRequirement.uml");
-		Model model = (Model) modelres.getContents().get(0);
+		Model model = (Model) this.modelres.getContents().get(0);
 		assertNotNull(model);
 		Copier copier = new Copier();
-		URI oldUri = modelres.getURI();
+		URI oldUri = this.modelres.getURI();
 		URI newUri = URI.createURI(oldUri.toString().concat("modified"));
 		Resource newModel = new ResourceImpl(newUri);
 		copier.clear();
-		Collection<EObject> allObjects = copier.copyAll(modelres.getContents());
+		Collection<EObject> allObjects = copier.copyAll(this.modelres.getContents());
 		copier.copyReferences();
 		newModel.getContents().addAll(allObjects);
 		Model modelCopy = (Model) copier.get(model);
 		assertNotNull(modelCopy);
 		assertTrue(UMLsecUtil.hasStereotype(model));
 		assertTrue(UMLsecUtil.hasStereotype(modelCopy));
+	}
+
+	private class TestHost implements AnalysisHost {
+	
+		public TestHost() {
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public void addResultMessage(final AnalysisResultMessage detail) {
+			Logger.log(LogLevel.INFO, detail.getText());
+		}
+	
+		@Override
+		public void appendToReport(final String text) {
+		    Logger.log(LogLevel.INFO, text);			
+		}
+	
+		@Override
+		public void appendLineToReport(final String text) {
+		    Logger.log(LogLevel.INFO, text);			
+		}
+	
+		@Override
+		public Resource getAnalyzedModel() {
+			return SecureLinksEvolutionCheckTest.this.modelres;
+		}
+	
+		@Override
+		public String getCurrentModelFilename() {
+			return SecureLinksEvolutionCheckTest.this.modelres.getURI().toFileString();
+		}
+	
+		@Override
+		public void putToRegister(final String registerName, final Object data)
+				throws RegisterInUseException {
+			// TODO Auto-generated method stub
+			
+		}
+	
+		@Override
+		public boolean isRegisterInUse(final String registerName) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+	
+		@Override
+		public Object getFromRegister(final String registerName)
+				throws RegisterNotInUseException {
+			if (registerName.equals(SecureLinksEvolutionCheck.PRECONDITION_DELTAS_REGISTER_KEY)) {
+				return new DeltaList(SecureLinksEvolutionCheckTest.this.deltas);
+			} else if (registerName.equals(SecureLinksEvolutionCheck.PRECONDITION_MODIFIERS_REGISTRY_KEY)) {
+				return SecureLinksEvolutionCheckTest.this.modifierMap;
+			}
+			return null;
+		}
+	
+		@Override
+		public Object removeFromRegister(final String registerName)
+				throws RegisterNotInUseException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	
+		@Override
+		public void displayError(final String message) {
+			// TODO Auto-generated method stub
+		}
+	
+		@Override
+		public File getFileToBeWritten(final File file)
+				throws UserAbortedAnalysisException {
+			// TODO Auto-generated method stub
+			return file;
+		}
 	}
 }

@@ -48,11 +48,11 @@ public class AsteriskTest {
 	 */
 	@Test
 	public final void testEndsWith() {
-		model = TestHelper.loadModel(filepath, "testStarString.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "testStarString.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changeList.size());
 		assertEquals(1, changeList.get(0).getAlternatives().size());
 		assertEquals(2, changeList.get(0).getAlternatives().get(0).getDeltaElements().size());
@@ -67,18 +67,18 @@ public class AsteriskTest {
 	 */
 	@Test
 	public final void testBeginWith() {
-		model = TestHelper.loadModel(filepath, "testStarString.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		NamedElement pkg = TestHelper.checkedGetElement(model, "testStarStringPkg", NamedElement.class);
+		this.model = TestHelper.loadModel(this.filepath, "testStarString.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		NamedElement pkg = TestHelper.checkedGetElement(this.model, "testStarStringPkg", NamedElement.class);
 		StereotypeApplication delAllApplication = UMLchangeUtil.getStereotypeApplications(pkg).get(0);
 		assertNotNull(delAllApplication);
 		TaggedValue pattern = delAllApplication.getTaggedValue("pattern");
 		assertNotNull(pattern);
 		pattern.removeValue();
 		pattern.setValue("someRef={Property(name=test*)}");
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changeList.size());
 		assertEquals(1, changeList.get(0).getAlternatives().size());
 		assertEquals(2, changeList.get(0).getAlternatives().get(0).getDeltaElements().size());
@@ -89,11 +89,11 @@ public class AsteriskTest {
 	 */
 	@Test
 	public final void testContaining() {
-		model = TestHelper.loadModel(filepath, "testStarString.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		NamedElement pkg = TestHelper.checkedGetElement(model, "testStarStringPkg", NamedElement.class);
+		this.model = TestHelper.loadModel(this.filepath, "testStarString.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		NamedElement pkg = TestHelper.checkedGetElement(this.model, "testStarStringPkg", NamedElement.class);
 		StereotypeApplication delAllApplication = UMLchangeUtil.getStereotypeApplications(pkg).get(0);
 		assertNotNull(delAllApplication);
 		TaggedValue pattern = delAllApplication.getTaggedValue("pattern");
@@ -102,7 +102,7 @@ public class AsteriskTest {
 		pattern.setValue("someRef={Property(name=*test*)}");
 		TaggedValue p2 = delAllApplication.getTaggedValue("pattern");
 		assertEquals("someRef={Property(name=*test*)}", p2.getStringValues().get(0));
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changeList.size());
 		assertEquals(1, changeList.get(0).getAlternatives().size());
 		assertEquals(4, changeList.get(0).getAlternatives().get(0).getDeltaElements().size());
@@ -113,9 +113,9 @@ public class AsteriskTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

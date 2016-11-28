@@ -8,10 +8,16 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Test;
@@ -19,7 +25,6 @@ import org.junit.Test;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 import carisma.modeltype.uml2.StereotypeApplication;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 
@@ -79,7 +84,7 @@ public class UMLsecValidationTest {
 	private String modelElementsFilePath = "resources" + File.separator + "models";
 	
 	/** UML2ModelLoader. */
-	private UML2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 	
 	/** The modelresource. */
 	private Resource modelres = null;
@@ -94,18 +99,16 @@ public class UMLsecValidationTest {
 	public final void loadModel(final String testmodelname) {
 		File testmodelfile = new File(testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new UML2ModelLoader();
-		}
-		try {
-			modelres = ml.load(testmodelfile);
+		try (FileInputStream in = new FileInputStream(testmodelfile)){
+			this.modelres = this.rs.createResource(URI.createURI(testmodelname));
+			this.modelres.load(in, Collections.EMPTY_MAP);
 		} catch (IOException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
 		}
-		assertNotNull(modelres);
-		model = (Model) modelres.getContents().get(0);
-		assertNotNull(model);
+		assertNotNull(this.modelres);
+		this.model = (Model) this.modelres.getContents().get(0);
+		assertNotNull(this.model);
 	}
 	
 	/**
@@ -115,11 +118,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testFairExchangeWrongSterotype() {
 		String modelName = "AuthorizedStatusNoContent.uml";
-		assertNull(modelres);
-		loadModel(authorizedStatusFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.authorizedStatusFilePath + File.separator + modelName);
 		Element authorizedElement = null;
 		try {
-			authorizedElement = UMLHelper.getElementByName(model, "State2");
+			authorizedElement = UMLHelper.getElementByName(this.model, "State2");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element State2 has not been found!");
 		}
@@ -130,7 +133,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<fair exchange>> expected, but was <<authorized-status>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -142,9 +145,9 @@ public class UMLsecValidationTest {
 		//this Stereotype is correct according to fair exchange but is applied to the Model, not to a Package
 		//the testing algorithm where the Stereotype is applied to is the same in every check (if needed), so its just tested once
 		String modelName = "FairExchangeModelStereotype.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication fairExchangeApp = stereoList.get(0);
@@ -154,7 +157,7 @@ public class UMLsecValidationTest {
 		assertEquals(1, result.size());
 		assertEquals("Stereotype <<fair exchange>> is only  allowed to be applied to a Package! Actually it is applied to FairExchangeModelStereotypeModel!"
 				, result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -163,9 +166,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testFairExchangeNoStart() {
 		String modelName = "FairExchangeNoStart.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication fairExchangeApp = stereoList.get(0);
@@ -174,11 +177,11 @@ public class UMLsecValidationTest {
 		assertNotNull(resultSingle);
 		assertEquals(1, resultSingle.size());
 		assertEquals("Empty Tag start of Stereotype <<fair exchange>> at Element FairExchangeNoStartPackage!", resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Empty Tag start of Stereotype <<fair exchange>> at Element FairExchangeNoStartPackage!", resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -187,9 +190,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testFairExchangeNoStop() {
 		String modelName = "FairExchangeNoStop.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication fairExchangeApp = stereoList.get(0);
@@ -198,7 +201,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Empty Tag stop of Stereotype <<fair exchange>> at Element FairExchangeNoStopPackage!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -207,9 +210,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testFairExchangeCorrect() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication fairExchangeApp = stereoList.get(0);
@@ -217,7 +220,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateFairExchange(fairExchangeApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -227,9 +230,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testAuthorizedStatusWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication authorizedStatusApp = stereoList.get(0);
@@ -238,7 +241,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<authorized status>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -247,11 +250,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testAuthorizedStatusNoContent() {
 		String modelName = "AuthorizedStatusNoContent.uml";
-		assertNull(modelres);
-		loadModel(authorizedStatusFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.authorizedStatusFilePath + File.separator + modelName);
 		Element authorizedElement = null;
 		try {
-			authorizedElement = UMLHelper.getElementByName(model, "State2");
+			authorizedElement = UMLHelper.getElementByName(this.model, "State2");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element State2 has not been found!");
 		}
@@ -262,11 +265,11 @@ public class UMLsecValidationTest {
 		assertNotNull(resultSingle);
 		assertEquals(1, resultSingle.size());
 		assertEquals("Empty permission tag of Stereotype <<authorized-status>> at Element State2!", resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Empty permission tag of Stereotype <<authorized-status>> at Element State2!", resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -276,11 +279,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testAuthorizedStatusPseudostate() {
 		String modelName = "AuthorizedStatusPseudostate.uml";
-		assertNull(modelres);
-		loadModel(authorizedStatusFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.authorizedStatusFilePath + File.separator + modelName);
 		Element authorizedElement = null;
 		try {
-			authorizedElement = UMLHelper.getElementByName(model, "FinalState1");
+			authorizedElement = UMLHelper.getElementByName(this.model, "FinalState1");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element FinalState1 has not been found!");
 		}
@@ -291,7 +294,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Stereotype <<authorized status>> is not allowed to be applied to a Final State! Actually it is applied to FinalState1!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -300,11 +303,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testAuthorizedStatusCorrect() {
 		String modelName = "AuthorizedStatusCorrect.uml";
-		assertNull(modelres);
-		loadModel(authorizedStatusFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.authorizedStatusFilePath + File.separator + modelName);
 		Element authorizedElement = null;
 		try {
-			authorizedElement = UMLHelper.getElementByName(model, "State2");
+			authorizedElement = UMLHelper.getElementByName(this.model, "State2");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element State2 has not been found!");
 		}
@@ -314,7 +317,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateAuthorizedStatus(authorizedStatusApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 
 	/**
@@ -324,9 +327,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testGuardedWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication guardedApp = stereoList.get(0);
@@ -335,7 +338,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <guarded>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -344,11 +347,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testGuardedNoContent() {
 		String modelName = "GuardedNoContent.uml";
-		assertNull(modelres);
-		loadModel(guardedFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.guardedFilePath + File.separator + modelName);
 		Element guardedElement = null;
 		try {
-			guardedElement = UMLHelper.getElementByName(model, "Class1");
+			guardedElement = UMLHelper.getElementByName(this.model, "Class1");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element Class1 has not been found!");
 		}
@@ -359,11 +362,11 @@ public class UMLsecValidationTest {
 		assertNotNull(resultSingle);
 		assertEquals(1, resultSingle.size());
 		assertEquals("Empty guard tag of Stereotype <<guarded>> at Element Class1!", resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Empty guard tag of Stereotype <<guarded>> at Element Class1!", resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -372,11 +375,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testGuardedCorrect() {
 		String modelName = "GuardedCorrect.uml";
-		assertNull(modelres);
-		loadModel(guardedFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.guardedFilePath + File.separator + modelName);
 		Element guardedElement = null;
 		try {
-			guardedElement = UMLHelper.getElementByName(model, "Class1");
+			guardedElement = UMLHelper.getElementByName(this.model, "Class1");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element Class1 has not been found!");
 		}
@@ -386,7 +389,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateGuarded(guardedApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -396,9 +399,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testLockedStatusWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication lockedStatusApp = stereoList.get(0);
@@ -407,7 +410,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<lockes status>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -417,11 +420,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testLockedStatusFinalState() {
 		String modelName = "LockedStatusFinalState.uml";
-		assertNull(modelres);
-		loadModel(lockedStatusFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.lockedStatusFilePath + File.separator + modelName);
 		Element lockedStatusElement = null;
 		try {
-			lockedStatusElement = UMLHelper.getElementByName(model, "FinalState1");
+			lockedStatusElement = UMLHelper.getElementByName(this.model, "FinalState1");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element FinalState1 has not been found!");
 		}
@@ -432,11 +435,11 @@ public class UMLsecValidationTest {
 		assertNotNull(resultSingle);
 		assertEquals(1, resultSingle.size());
 		assertEquals("Stereotype <<locked status>> is not allowed to be applied to a FinalState! Actually it is applied to FinalState1!", resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Stereotype <<locked status>> is not allowed to be applied to a FinalState! Actually it is applied to FinalState1!", resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -446,11 +449,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testLockedStatusCorrect() {
 		String modelName = "LockedStatusCorrect.uml";
-		assertNull(modelres);
-		loadModel(lockedStatusFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.lockedStatusFilePath + File.separator + modelName);
 		Element lockedStatusElement = null;
 		try {
-			lockedStatusElement = UMLHelper.getElementByName(model, "State1");
+			lockedStatusElement = UMLHelper.getElementByName(this.model, "State1");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element State1 has not been found!");
 		}
@@ -460,7 +463,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateLockedStatus(lockedStatusApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 
 	/**
@@ -470,9 +473,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testSecureLinksWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication secureLinksApp = stereoList.get(0);
@@ -481,7 +484,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<secure links>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -491,9 +494,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testSecureLinksNoAdversary() {
 		String modelName = "SecureLinksNoAdversary.uml";
-		assertNull(modelres);
-		loadModel(secureLinksFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.SECURE_LINKS);
+		assertNull(this.modelres);
+		loadModel(this.secureLinksFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.SECURE_LINKS);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication secureLinksApp = stereoList.get(0);
@@ -502,11 +505,11 @@ public class UMLsecValidationTest {
 		assertNotNull(resultSingle);
 		assertEquals(1, resultSingle.size());
 		assertEquals("Empty adversary tag of Stereotype <<secure links>> at Element SecureLinksNoAttackerPackage!", resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Empty adversary tag of Stereotype <<secure links>> at Element SecureLinksNoAttackerPackage!", resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -516,9 +519,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testSecureLinksCorrect() {
 		String modelName = "SecureLinksCorrect.uml";
-		assertNull(modelres);
-		loadModel(secureLinksFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.SECURE_LINKS);
+		assertNull(this.modelres);
+		loadModel(this.secureLinksFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.SECURE_LINKS);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication secureLinksApp = stereoList.get(0);
@@ -526,7 +529,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateSecureLinks(secureLinksApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -536,9 +539,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testCriticalWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication criticalApp = stereoList.get(0);
@@ -547,7 +550,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<critical>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -557,11 +560,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testCriticalNoContent() {
 		String modelName = "CriticalNoContent.uml";
-		assertNull(modelres);
-		loadModel(criticalFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.criticalFilePath + File.separator + modelName);
 		Element criticalElement = null;
 		try {
-			criticalElement = UMLHelper.getElementByName(model, "Class1");
+			criticalElement = UMLHelper.getElementByName(this.model, "Class1");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element Class1 has not been found!");
 		}
@@ -572,11 +575,11 @@ public class UMLsecValidationTest {
 		assertNotNull(resultSingle);
 		assertEquals(1, resultSingle.size());
 		assertEquals("One of the tags 'secrecy, integrity, high, fresh, authenticity' of Sterotype <<critical>> has to hold content!", resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("One of the tags 'secrecy, integrity, high, fresh, authenticity' of Sterotype <<critical>> has to hold content!", resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -586,11 +589,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testCriticalCorrect() {
 		String modelName = "CriticalCorrect.uml";
-		assertNull(modelres);
-		loadModel(criticalFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.criticalFilePath + File.separator + modelName);
 		Element criticalElement = null;
 		try {
-			criticalElement = UMLHelper.getElementByName(model, "Class1");
+			criticalElement = UMLHelper.getElementByName(this.model, "Class1");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element Class1 has not been found!");
 		}
@@ -600,7 +603,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateCritical(criticalApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -610,9 +613,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testRequiresWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication requiresApp = stereoList.get(0);
@@ -621,7 +624,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<requires>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -631,11 +634,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testRequiresNoContent() {
 		String modelName = "RequiresNoContent.uml";
-		assertNull(modelres);
-		loadModel(requiresFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.requiresFilePath + File.separator + modelName);
 		Element requiresElement = null;
 		try {
-			requiresElement = UMLHelper.getElementByName(model, "OpaqueAction2");
+			requiresElement = UMLHelper.getElementByName(this.model, "OpaqueAction2");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element OpaqueAction2 has not been found!");
 		}
@@ -646,11 +649,11 @@ public class UMLsecValidationTest {
 		assertNotNull(resultSingle);
 		assertEquals(1, resultSingle.size());
 		assertEquals("Empty actions tag of Stereotype <<requires>> at Element OpaqueAction2!", resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Empty actions tag of Stereotype <<requires>> at Element OpaqueAction2!", resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -660,11 +663,11 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testRequiresCorrect() {
 		String modelName = "RequiresCorrect.uml";
-		assertNull(modelres);
-		loadModel(requiresFilePath + File.separator + modelName);
+		assertNull(this.modelres);
+		loadModel(this.requiresFilePath + File.separator + modelName);
 		Element requiresElement = null;
 		try {
-			requiresElement = UMLHelper.getElementByName(model, "OpaqueAction2");
+			requiresElement = UMLHelper.getElementByName(this.model, "OpaqueAction2");
 		} catch (ModelElementNotFoundException e) {
 			fail("Element OpaqueAction2 has not been found!");
 		}
@@ -674,7 +677,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateRequires(requiresApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -684,9 +687,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testProvableWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication provableApp = stereoList.get(0);
@@ -695,7 +698,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<provable>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -705,9 +708,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testProvableNoAction() {
 		String modelName = "ProvableNoAction.uml";
-		assertNull(modelres);
-		loadModel(provableFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.PROVABLE);
+		assertNull(this.modelres);
+		loadModel(this.provableFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.PROVABLE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication provableApp = stereoList.get(0);
@@ -716,11 +719,11 @@ public class UMLsecValidationTest {
 		assertNotNull(resultSingle);
 		assertEquals(1, resultSingle.size());
 		assertEquals("Empty action tag of Stereotype <<provable>> at Element ProvableNoAction!", resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Empty action tag of Stereotype <<provable>> at Element ProvableNoAction!", resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -730,9 +733,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testProvableNoAdversary() {
 		String modelName = "ProvableNoAdversary.uml";
-		assertNull(modelres);
-		loadModel(provableFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.PROVABLE);
+		assertNull(this.modelres);
+		loadModel(this.provableFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.PROVABLE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication provableApp = stereoList.get(0);
@@ -741,7 +744,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Empty adversary tag of Stereotype <<provable>> at Element ProvableNoAdversaryPackage!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	
@@ -752,9 +755,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testProvableNoCert() {
 		String modelName = "ProvableNoCert.uml";
-		assertNull(modelres);
-		loadModel(provableFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.PROVABLE);
+		assertNull(this.modelres);
+		loadModel(this.provableFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.PROVABLE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication provableApp = stereoList.get(0);
@@ -763,7 +766,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Empty cert tag of Stereotype <<provable>> at Element ProvableNoCertPackage!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -773,9 +776,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testProvableCorrect() {
 		String modelName = "ProvableCorrect.uml";
-		assertNull(modelres);
-		loadModel(provableFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.PROVABLE);
+		assertNull(this.modelres);
+		loadModel(this.provableFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.PROVABLE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication provableApp = stereoList.get(0);
@@ -783,7 +786,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateProvable(provableApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -793,9 +796,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testNoDownFlowWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication noDownFlowApp = stereoList.get(0);
@@ -804,7 +807,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<no down flow>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -814,9 +817,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testNoDownFlowModelStereotype() {
 		String modelName = "NoDownFlowModelStereotype.uml";
-		assertNull(modelres);
-		loadModel(noDownFlowFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.NO_DOWN_FLOW);
+		assertNull(this.modelres);
+		loadModel(this.noDownFlowFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.NO_DOWN_FLOW);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication noDownFlowApp = stereoList.get(0);
@@ -826,12 +829,12 @@ public class UMLsecValidationTest {
 		assertEquals(1, resultSingle.size());
 		assertEquals("Stereotype <<no down flow>> is only  allowed to be applied to a Package! Actually it is applied to "
 				+ "NoDownFlowModelStereotypeModel!", resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Stereotype <<no down flow>> is only  allowed to be applied to a Package! Actually it is applied to "
 				+ "NoDownFlowModelStereotypeModel!", resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -841,9 +844,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testNoDownFlowCorrect() {
 		String modelName = "NoDownFlowCorrect.uml";
-		assertNull(modelres);
-		loadModel(noDownFlowFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.NO_DOWN_FLOW);
+		assertNull(this.modelres);
+		loadModel(this.noDownFlowFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.NO_DOWN_FLOW);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication noDownFlowApp = stereoList.get(0);
@@ -851,7 +854,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateNoDownFlow(noDownFlowApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -861,9 +864,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testSecureDependencyWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication secureDependencyApp = stereoList.get(0);
@@ -872,7 +875,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<secure dependency>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -882,9 +885,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testSecureDependencyModelStereotype() {
 		String modelName = "SecureDependencyModelStereotype.uml";
-		assertNull(modelres);
-		loadModel(secureDependencyFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.SECURE_DEPENDENCY);
+		assertNull(this.modelres);
+		loadModel(this.secureDependencyFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.SECURE_DEPENDENCY);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication noDownFlowApp = stereoList.get(0);
@@ -894,12 +897,12 @@ public class UMLsecValidationTest {
 		assertEquals(1, resultSingle.size());
 		assertEquals("Stereotype <<secure dependency>> is only  allowed to be applied to a Package! Actually it is applied to "
 				+ "SecureDependencyModelStereotypeModel!", resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Stereotype <<secure dependency>> is only  allowed to be applied to a Package! Actually it is applied to "
 				+ "SecureDependencyModelStereotypeModel!", resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -909,9 +912,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testSecureDependencyCorrect() {
 		String modelName = "SecureDependencyCorrect.uml";
-		assertNull(modelres);
-		loadModel(secureDependencyFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.SECURE_DEPENDENCY);
+		assertNull(this.modelres);
+		loadModel(this.secureDependencyFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.SECURE_DEPENDENCY);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication secureDependencyApp = stereoList.get(0);
@@ -919,7 +922,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateSecureDependency(secureDependencyApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -929,9 +932,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testGuardedAccessWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication guardedAccessApp = stereoList.get(0);
@@ -940,7 +943,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<guarded access>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -950,9 +953,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testGuardedAccessModelStereotype() {
 		String modelName = "GuardedAccessModelStereotype.uml";
-		assertNull(modelres);
-		loadModel(guardedAccessFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.GUARDED_ACCESS);
+		assertNull(this.modelres);
+		loadModel(this.guardedAccessFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.GUARDED_ACCESS);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication guardedAccessApp = stereoList.get(0);
@@ -962,12 +965,12 @@ public class UMLsecValidationTest {
 		assertEquals(1, resultSingle.size());
 		assertEquals("Stereotype <<guarded access>> is only  allowed to be applied to a Package! Actually it is applied to GuardedAccessModelStereotypeModel!"
 				, resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Stereotype <<guarded access>> is only  allowed to be applied to a Package! Actually it is applied to GuardedAccessModelStereotypeModel!"
 				, resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -977,9 +980,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testGuardedAccessCorrect() {
 		String modelName = "GuardedAccessCorrect.uml";
-		assertNull(modelres);
-		loadModel(guardedAccessFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.GUARDED_ACCESS);
+		assertNull(this.modelres);
+		loadModel(this.guardedAccessFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.GUARDED_ACCESS);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication guardedAccessApp = stereoList.get(0);
@@ -987,7 +990,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateGuardedAccess(guardedAccessApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -997,9 +1000,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testNoUpFlowWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication noUpFlowApp = stereoList.get(0);
@@ -1008,7 +1011,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<no up flow>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -1018,9 +1021,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testNoUpFlowModelStereotype() {
 		String modelName = "NoUpFlowModelStereotype.uml";
-		assertNull(modelres);
-		loadModel(noUpFlowFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.NO_UP_FLOW);
+		assertNull(this.modelres);
+		loadModel(this.noUpFlowFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.NO_UP_FLOW);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication noUpFlowApp = stereoList.get(0);
@@ -1030,12 +1033,12 @@ public class UMLsecValidationTest {
 		assertEquals(1, resultSingle.size());
 		assertEquals("Stereotype <<no up flow>> is only  allowed to be applied to a Package! Actually it is applied to NoUpFlowModelStereotypeModel!"
 				, resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Stereotype <<no up flow>> is only  allowed to be applied to a Package! Actually it is applied to NoUpFlowModelStereotypeModel!"
 				, resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -1045,9 +1048,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testNoUpFlowCorrect() {
 		String modelName = "NoUpFlowCorrect.uml";
-		assertNull(modelres);
-		loadModel(noUpFlowFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.NO_UP_FLOW);
+		assertNull(this.modelres);
+		loadModel(this.noUpFlowFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.NO_UP_FLOW);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication noUpFlowApp = stereoList.get(0);
@@ -1055,7 +1058,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateNoUpFlow(noUpFlowApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	
@@ -1066,9 +1069,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testDataSecurityWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication dataSecurityApp = stereoList.get(0);
@@ -1077,7 +1080,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Wrong stereotype. <<data security>> expected, but was <<fair exchange>>!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -1087,9 +1090,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testDataSecurityNoAdversary() {
 		String modelName = "DataSecurityNoAdversary.uml";
-		assertNull(modelres);
-		loadModel(dataSecurityFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.DATA_SECURITY);
+		assertNull(this.modelres);
+		loadModel(this.dataSecurityFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.DATA_SECURITY);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication dataSecurityApp = stereoList.get(0);
@@ -1098,11 +1101,11 @@ public class UMLsecValidationTest {
 		assertNotNull(resultSingle);
 		assertEquals(1, resultSingle.size());
 		assertEquals("Empty adversary tag of Stereotype <<data security>> at Element DataSecurityNoAdversaryPackage!", resultSingle.get(0));
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
 		assertEquals("Empty adversary tag of Stereotype <<data security>> at Element DataSecurityNoAdversaryPackage!", resultModel.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -1112,9 +1115,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testDataSecurityNoAuthenticity() {
 		String modelName = "DataSecurityNoAuthenticity.uml";
-		assertNull(modelres);
-		loadModel(dataSecurityFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.DATA_SECURITY);
+		assertNull(this.modelres);
+		loadModel(this.dataSecurityFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.DATA_SECURITY);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication dataSecurityApp = stereoList.get(0);
@@ -1123,7 +1126,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Empty authenthicity tag of Stereotype <<data security>> at Element DataSecurityNoAuthenticityPackage!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	
@@ -1134,9 +1137,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testDataSecurityNoIntegrity() {
 		String modelName = "DataSecurityNoIntegrity.uml";
-		assertNull(modelres);
-		loadModel(dataSecurityFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.DATA_SECURITY);
+		assertNull(this.modelres);
+		loadModel(this.dataSecurityFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.DATA_SECURITY);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication dataSecurityApp = stereoList.get(0);
@@ -1145,7 +1148,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Empty integrity tag of Stereotype <<data security>> at Element DataSecurityNoIntegrityPackage!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -1155,9 +1158,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testDataSecurityCorrect() {
 		String modelName = "DataSecurityCorrect.uml";
-		assertNull(modelres);
-		loadModel(dataSecurityFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.DATA_SECURITY);
+		assertNull(this.modelres);
+		loadModel(this.dataSecurityFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.DATA_SECURITY);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication dataSecurityApp = stereoList.get(0);
@@ -1165,7 +1168,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateDataSecurity(dataSecurityApp);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -1175,9 +1178,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testRBACWrongStereotype() {
 		String modelName = "FairExchangeCorrect.uml";
-		assertNull(modelres);
-		loadModel(fairExchangeFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.FAIR_EXCHANGE);
+		assertNull(this.modelres);
+		loadModel(this.fairExchangeFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication rbacApp = stereoList.get(0);
@@ -1186,7 +1189,7 @@ public class UMLsecValidationTest {
 		assertNotNull(results);
 		assertEquals(1, results.size());
 		assertEquals("Wrong stereotype. <<rbac>> expected, but was <<fair exchange>>!", results.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 
 	/**
@@ -1195,9 +1198,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testRBACnoProtected() {
 		String modelName = "RBACnoProtected.uml";
-		assertNull(modelres);
-		loadModel(rbacFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.RBAC);
+		assertNull(this.modelres);
+		loadModel(this.rbacFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.RBAC);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication rbacApp = stereoList.get(0);
@@ -1205,8 +1208,8 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateRBAC(rbacApp);
 		assertNotNull(result);
 		assertEquals(1, result.size());
-		assertEquals("Empty protected tag of Stereotype <<rbc>> at Element RBACnoProtectedPackage!", result.get(0));
-		modelres.unload();
+		assertEquals("No protected tag of Stereotype <<rbc>> at Element RBACnoProtectedPackage!", result.get(0));
+		this.modelres.unload();
 	}
 	
 	/**
@@ -1215,9 +1218,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testRBACnoRole() {
 		String modelName = "RBACnoRole.uml";
-		assertNull(modelres);
-		loadModel(rbacFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.RBAC);
+		assertNull(this.modelres);
+		loadModel(this.rbacFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.RBAC);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication rbacApp = stereoList.get(0);
@@ -1226,7 +1229,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Empty role tag of Stereotype <<rbc>> at Element RBACnoRolePackage!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -1235,9 +1238,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testRBACnoRight() {
 		String modelName = "RBACnoRight.uml";
-		assertNull(modelres);
-		loadModel(rbacFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.RBAC);
+		assertNull(this.modelres);
+		loadModel(this.rbacFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.RBAC);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication rbacApp = stereoList.get(0);
@@ -1246,7 +1249,7 @@ public class UMLsecValidationTest {
 		assertNotNull(result);
 		assertEquals(1, result.size());
 		assertEquals("Empty right tag of Stereotype <<rbc>> at Element RBACnoRightPackage!", result.get(0));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	
@@ -1257,9 +1260,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testRBACCorrect() {
 		String modelName = "RBACCorrect.uml";
-		assertNull(modelres);
-		loadModel(rbacFilePath + File.separator + modelName);
-		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(model, UMLsec.RBAC);
+		assertNull(this.modelres);
+		loadModel(this.rbacFilePath + File.separator + modelName);
+		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.RBAC);
 		assertNotNull(stereoList);
 		assertEquals(1, stereoList.size());
 		StereotypeApplication rbacApp = stereoList.get(0);
@@ -1267,10 +1270,10 @@ public class UMLsecValidationTest {
 		List<String> resultSingle = UMLsecValidation.validateRBAC(rbacApp);
 		assertNotNull(resultSingle);
 		assertTrue(resultSingle.isEmpty());
-		List<String> resultModel = UMLsecValidation.validateModel(model);
+		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertTrue(resultModel.isEmpty());
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -1279,9 +1282,9 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testMultipleWrong() {
 		String modelName = "RBACFairExchangeWrong.uml";
-		assertNull(modelres);
-		loadModel(multiplePath + File.separator + modelName);
-		List<String> result = UMLsecValidation.validateModel(model);
+		assertNull(this.modelres);
+		loadModel(this.multiplePath + File.separator + modelName);
+		List<String> result = UMLsecValidation.validateModel(this.model);
 		assertNotNull(result);
 		assertEquals(5, result.size());
 		assertTrue(result.contains("Empty Tag start of Stereotype <<fair exchange>> at Element RBACFairExchangeWrong!"));
@@ -1289,7 +1292,7 @@ public class UMLsecValidationTest {
 		assertTrue(result.contains("Empty protected tag of Stereotype <<rbc>> at Element RBACFairExchangeWrong!"));
 		assertTrue(result.contains("Empty role tag of Stereotype <<rbc>> at Element RBACFairExchangeWrong!"));
 		assertTrue(result.contains("Empty right tag of Stereotype <<rbc>> at Element RBACFairExchangeWrong!"));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -1299,9 +1302,9 @@ public class UMLsecValidationTest {
 	
 	public final void testNoCheckStereotypes() {
 		String modelName = "resources" + File.separator + "models" + File.separator + "StereotypesNotToCheck" + File.separator + "StereotypesNotToCheck.uml";
-		assertNull(modelres);
+		assertNull(this.modelres);
 		loadModel(modelName);
-		List<String> result = UMLsecValidation.validateModel(model);
+		List<String> result = UMLsecValidation.validateModel(this.model);
 		assertNotNull(result);
 		assertTrue(result.isEmpty());
 	}
@@ -1312,16 +1315,17 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testFindModelElements() {
 		String modelName = "ModelElements.uml";
-		assertNull(modelres);
-		loadModel(modelElementsFilePath + File.separator + modelName);
-		assertTrue(UMLsecValidation.findModelElement(model, "OpaqueAction1"));
-		assertFalse(UMLsecValidation.findModelElement(model, "OpaqueAction2"));
-		assertFalse(UMLsecValidation.findModelElement(model, "OpaqueAction3"));
+		assertNull(this.modelres);
+		loadModel(this.modelElementsFilePath + File.separator + modelName);
+		assertTrue(UMLsecValidation.findModelElement(this.model, "OpaqueAction1"));
+		assertFalse(UMLsecValidation.findModelElement(this.model, "OpaqueAction2"));
+		assertFalse(UMLsecValidation.findModelElement(this.model, "OpaqueAction3"));
 	}
 	
 	/**
 	 * This test tests the testCheckTuple method.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
 	public final void testCheckTuple() {
 		assertFalse(UMLsecValidation.checkTuple(""));
@@ -1339,16 +1343,19 @@ public class UMLsecValidationTest {
 	@Test
 	public final void testAllStereo() {
 		String modelName = "resources" + File.separator + "secureLinks.uml";
-		assertNull(modelres);
+		assertNull(this.modelres);
 		loadModel(modelName);
 //		assertTrue(UMLsecValidation.validateModel(model));
 	}
 	
 	/**
-	 * This test calls the Constructor expecting one String and test if an IllegalArgumentException will be thrown if the String does not lead to a file.
+	 * This test calls the Constructor expecting one String and test if an Exception will be thrown if the String does not lead to a file.
+	 * @throws IOException 
+	 * @throws IllegalArgumentException 
+	 * @throws FileNotFoundException 
 	 */
-	@Test(expected = IllegalArgumentException.class)
-	public final void testValidateModelNullFile() {
-		UMLsecValidation.validateModel(" ");
-	}
+	@SuppressWarnings("static-method")
+	@Test(expected = Exception.class)
+	public final void testValidateModelNullFile() throws FileNotFoundException, IllegalArgumentException, IOException {
+		UMLsecValidation.validateModel(" ");	}
 }

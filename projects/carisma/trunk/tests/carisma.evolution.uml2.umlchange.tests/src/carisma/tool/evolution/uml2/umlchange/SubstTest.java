@@ -32,13 +32,13 @@ public class SubstTest {
 		
 	@Test
 	public void testSubstSimpleElement() {
-		model = TestHelper.loadModel(testmodeldir, "subst_SimpleElement.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		Class class1 = TestHelper.checkedGetElement(model, "Class1", Class.class);
+		this.model = TestHelper.loadModel(this.testmodeldir, "subst_SimpleElement.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		Class class1 = TestHelper.checkedGetElement(this.model, "Class1", Class.class);
 		assertTrue(UMLchangeUtil.hasStereotype(UMLchange.SUBST, class1));
-		List<Change> changes = parser.generateDeltaDescriptions();
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		Change substClass = changes.get(0);
 		assertEquals(1, substClass.getAlternatives().size());
@@ -48,7 +48,7 @@ public class SubstTest {
 		assertEquals(0, de.getAccompanyingDeletions().size());
 		assertEquals(1, de.getComponents().size());
 		AddElement component = de.getComponents().get(0);
-		Package pkg = TestHelper.checkedGetElement(model, "subst_SimpleElement", Package.class);
+		Package pkg = TestHelper.checkedGetElement(this.model, "subst_SimpleElement", Package.class);
 		assertEquals(pkg, component.getTarget());
 		assertEquals("Class", component.getMetaClass().getName());
 		assertNull(component.getParent());
@@ -57,13 +57,13 @@ public class SubstTest {
 
 	@Test
 	public void testSubstSimpleWithKeep() {
-		model = TestHelper.loadModel(testmodeldir, "Subst_SimpleWithKeep.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		Class class1 = TestHelper.checkedGetElement(model, "Class1", Class.class);
+		this.model = TestHelper.loadModel(this.testmodeldir, "Subst_SimpleWithKeep.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		Class class1 = TestHelper.checkedGetElement(this.model, "Class1", Class.class);
 		assertTrue(UMLchangeUtil.hasStereotype(UMLchange.SUBST, class1));
-		List<Change> changes = parser.generateDeltaDescriptions();
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		Change substClass = changes.get(0);
 		assertEquals(1, substClass.getAlternatives().size());
@@ -73,7 +73,7 @@ public class SubstTest {
 		assertEquals(1, de.getAccompanyingDeletions().size());
 		assertEquals(1, de.getComponents().size());
 		AddElement component = de.getComponents().get(0);
-		Package pkg = TestHelper.checkedGetElement(model, "Subst_SimpleWithKeep", Package.class);
+		Package pkg = TestHelper.checkedGetElement(this.model, "Subst_SimpleWithKeep", Package.class);
 		assertEquals(pkg, component.getTarget());
 		assertEquals("Class", component.getMetaClass().getName());
 		assertNull(component.getParent());
@@ -85,9 +85,9 @@ public class SubstTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

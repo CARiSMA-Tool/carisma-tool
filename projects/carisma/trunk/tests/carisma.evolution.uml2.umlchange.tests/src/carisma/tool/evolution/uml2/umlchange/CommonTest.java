@@ -26,32 +26,32 @@ public class CommonTest {
 		
 	@Test
 	public void testNoProfileApplied() {
-		model = TestHelper.loadModel(testmodeldir, "NoProfile.uml");		
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		assertEquals(0, parser.generateDeltaDescriptions().size());
+		this.model = TestHelper.loadModel(this.testmodeldir, "NoProfile.uml");		
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		assertEquals(0, this.parser.generateDeltaDescriptions().size());
 	}
 	
 	@Test
 	public void testNoModel() {
-		parser = new UMLchangeParser(null);
-		assertEquals(0, parser.generateDeltaDescriptions().size());
+		this.parser = new UMLchangeParser(null);
+		assertEquals(0, this.parser.generateDeltaDescriptions().size());
 	}
 	
 	@Test
 	public void testProfileNoApplications() {
-		model = TestHelper.loadModel(testmodeldir, "ProfileNoApplications.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		assertEquals(0, parser.generateDeltaDescriptions().size());		
+		this.model = TestHelper.loadModel(this.testmodeldir, "ProfileNoApplications.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		assertEquals(0, this.parser.generateDeltaDescriptions().size());		
 	}
 	
 	@Test
 	public void testCorrectChangeConstraints() {
-		model = TestHelper.loadModel(testmodeldir, "CorrectChangeConstraints.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions(); 
+		this.model = TestHelper.loadModel(this.testmodeldir, "CorrectChangeConstraints.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions(); 
 		assertEquals(3, changes.size());
 		Change addOp = null;
 		Change substClass = null;
@@ -98,10 +98,10 @@ public class CommonTest {
 	
 	@Test
 	public void testDuplicateConstraints() {
-		model = TestHelper.loadModel(testmodeldir, "DuplicateConstraints.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions(); 
+		this.model = TestHelper.loadModel(this.testmodeldir, "DuplicateConstraints.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions(); 
 		assertEquals(2, changes.size());
 		Change addOp = null;
 		Change delClass = null;
@@ -133,10 +133,10 @@ public class CommonTest {
 	
 	@Test
 	public void testWrongSyntaxConstraints() {
-		model = TestHelper.loadModel(testmodeldir, "WrongSyntaxConstraints.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions(); 
+		this.model = TestHelper.loadModel(this.testmodeldir, "WrongSyntaxConstraints.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions(); 
 		assertEquals(3, changes.size());
 		Change addOp = null;
 		Change substClass = null;
@@ -172,19 +172,19 @@ public class CommonTest {
 	
 	@Test
 	public void testWrongChangeValues() {
-		model = TestHelper.loadModel(testmodeldir, "WrongChangeValues.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions(); 
+		this.model = TestHelper.loadModel(this.testmodeldir, "WrongChangeValues.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions(); 
 		assertEquals(0, changes.size());
 	}
 	
 	@Test
 	public void testWrongExt() {
-		model = TestHelper.loadModel(testmodeldir, "WrongExt.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions(); 
+		this.model = TestHelper.loadModel(this.testmodeldir, "WrongExt.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions(); 
 		assertEquals(0, changes.size());				
 	}
 	
@@ -193,9 +193,9 @@ public class CommonTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

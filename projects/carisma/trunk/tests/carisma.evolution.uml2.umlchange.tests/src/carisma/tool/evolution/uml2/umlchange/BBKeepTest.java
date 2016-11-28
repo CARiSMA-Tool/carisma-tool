@@ -69,11 +69,11 @@ public class BBKeepTest {
 	 */
 	@Test
 	public final void keepAssoziationTest() {
-		model = TestHelper.loadModel(testmodeldir, "KeepAssociation.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "KeepAssociation.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		assertEquals(1, changes.get(0).getAlternatives().size());
 		assertEquals(2, changes.get(0).getAlternatives().get(0).getDeltaElements().size());
@@ -95,11 +95,11 @@ public class BBKeepTest {
 	 */
 	@Test
 	public final void complexKeepTest() { 
-		model = TestHelper.loadModel(testmodeldir, "ComplexAdopterParserKeep.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "ComplexAdopterParserKeep.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		assertEquals(1, changes.get(0).getAlternatives().size());
 		
@@ -118,7 +118,7 @@ public class BBKeepTest {
 		boolean hastoBeKeptTarget = false; 
 		
 		for (DeltaElement deltaEle : deltaEles) { 
-			if (deltaEle.getTarget() == TestHelper.checkedGetElement(model, "toBeKept", Operation.class)) {
+			if (deltaEle.getTarget() == TestHelper.checkedGetElement(this.model, "toBeKept", Operation.class)) {
 				hastoBeKeptTarget = true;
 				break;
 			}
@@ -129,15 +129,15 @@ public class BBKeepTest {
 			if (deltaEle instanceof EditElement) {
 				EditElement edEle = (EditElement) deltaEle;
 				
-				if (((NamedElement) deltaEle.getTarget()) == TestHelper.checkedGetElement(model, "NewClass", Class.class)) { 
-					assertEquals(TestHelper.checkedGetElement(model, "model::ComplexAdopterParserKeep", Package.class), edEle.getValues().get(OWNER));
+				if (((NamedElement) deltaEle.getTarget()) == TestHelper.checkedGetElement(this.model, "NewClass", Class.class)) { 
+					assertEquals(TestHelper.checkedGetElement(this.model, "model::ComplexAdopterParserKeep", Package.class), edEle.getValues().get(OWNER));
 					
-				} else if (((NamedElement) deltaEle.getTarget()) == TestHelper.checkedGetElement(model, "MyNamespace::OldClass", Class.class)) {
-					assertEquals(TestHelper.checkedGetElement(model, "model::ComplexAdopterParserKeep", Package.class), edEle.getValues().get(OWNER));
+				} else if (((NamedElement) deltaEle.getTarget()) == TestHelper.checkedGetElement(this.model, "MyNamespace::OldClass", Class.class)) {
+					assertEquals(TestHelper.checkedGetElement(this.model, "model::ComplexAdopterParserKeep", Package.class), edEle.getValues().get(OWNER));
 					
-				} else if (((NamedElement) deltaEle.getTarget()) == TestHelper.checkedGetElement(model, "toBeKept", Operation.class)) {
+				} else if (((NamedElement) deltaEle.getTarget()) == TestHelper.checkedGetElement(this.model, "toBeKept", Operation.class)) {
 					assertEquals("OldClass", edEle.getValues().get("name"));
-					assertEquals(TestHelper.checkedGetElement(model, "MyNamespace::OldClass", Class.class), edEle.getValues().get(OWNER));
+					assertEquals(TestHelper.checkedGetElement(this.model, "MyNamespace::OldClass", Class.class), edEle.getValues().get(OWNER));
 				} else { 
 					fail(edEle.toString());
 				}
@@ -151,11 +151,11 @@ public class BBKeepTest {
 	 */
 	@Test
 	public final void missingAdopterTest() { 
-		model = TestHelper.loadModel(testmodeldir, "WrongNamespace.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "WrongNamespace.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		assertEquals(1, changes.get(0).getAlternatives().size());
 		
@@ -166,9 +166,9 @@ public class BBKeepTest {
 		assertEquals(2, deltaEles.size());
 
 	
-		assertEquals(TestHelper.checkedGetElement(model, "NewClass", Class.class), deltaEles.get(1).getTarget());
+		assertEquals(TestHelper.checkedGetElement(this.model, "NewClass", Class.class), deltaEles.get(1).getTarget());
 		assertEquals(
-				TestHelper.checkedGetElement(model, "model::ComplexAdopterParserKeep", Package.class), 
+				TestHelper.checkedGetElement(this.model, "model::ComplexAdopterParserKeep", Package.class), 
 				((EditElement) deltaEles.get(1)).getValues().get(OWNER));
 		
 	}
@@ -178,11 +178,11 @@ public class BBKeepTest {
 	 */
 	@Test
 	public final void keepForSecondAlternativeTest() {
-		model = TestHelper.loadModel(testmodeldir, "KeepForSecondAlternative.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "KeepForSecondAlternative.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		assertEquals(2, changes.get(0).getAlternatives().size());
 		
@@ -195,8 +195,8 @@ public class BBKeepTest {
 		
 		boolean hasEditElement = false;
 		for (DeltaElement deltaEle : alter2.getDeltaElements()) {
-			if (TestHelper.checkedGetElement(model, "NewClass", Class.class) == deltaEle.getTarget()) {
-				assertEquals(TestHelper.checkedGetElement(model, "KeepForSecondAlternative", Package.class), ((EditElement) deltaEle).getValues().get(OWNER));
+			if (TestHelper.checkedGetElement(this.model, "NewClass", Class.class) == deltaEle.getTarget()) {
+				assertEquals(TestHelper.checkedGetElement(this.model, "KeepForSecondAlternative", Package.class), ((EditElement) deltaEle).getValues().get(OWNER));
 				hasEditElement = true;
 				break;
 			}
@@ -210,11 +210,11 @@ public class BBKeepTest {
 	 */
 	@Test
 	public final void classWithOperationTest() {
-		model = TestHelper.loadModel(testmodeldir, "KeepOnEleWithChildren.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "KeepOnEleWithChildren.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		assertEquals(1, changes.get(0).getAlternatives().size());
 		
@@ -224,8 +224,8 @@ public class BBKeepTest {
 		DelElement del = (DelElement) alter1.getDeltaElements().get(1);
 		
 		for (EObject deletion : del.getAccompanyingDeletions()) {
-			if (TestHelper.checkedGetElement(model, "Operation1", Operation.class) == deletion
-					|| TestHelper.checkedGetElement(model, "OldClass", Class.class) == deletion) {
+			if (TestHelper.checkedGetElement(this.model, "Operation1", Operation.class) == deletion
+					|| TestHelper.checkedGetElement(this.model, "OldClass", Class.class) == deletion) {
 				fail("Created wrong Deletion");
 			}
 		}
@@ -233,18 +233,18 @@ public class BBKeepTest {
 		
 		boolean hasEditPackageOwner = false; 
 		for (DeltaElement ele : alter1.getDeltaElements()) {
-			if (ele.getTarget() == TestHelper.checkedGetElement(model, "InnerPackage", Package.class)) {
+			if (ele.getTarget() == TestHelper.checkedGetElement(this.model, "InnerPackage", Package.class)) {
 				hasEditPackageOwner = true;
-				assertEquals(TestHelper.checkedGetElement(model, "KeepOnEleWithChildren", Package.class), ((EditElement) ele).getValues().get(OWNER));
+				assertEquals(TestHelper.checkedGetElement(this.model, "KeepOnEleWithChildren", Package.class), ((EditElement) ele).getValues().get(OWNER));
 			}
 		}
 		assertTrue("Does not have EditElement to change Change Owner of the Package", hasEditPackageOwner);
 		
 		boolean hasEditClassOwner = false; 
 		for (DeltaElement ele : alter1.getDeltaElements()) {
-			if (ele.getTarget() == TestHelper.checkedGetElement(model, "OldClass", Class.class)) {
+			if (ele.getTarget() == TestHelper.checkedGetElement(this.model, "OldClass", Class.class)) {
 				hasEditClassOwner = true;
-				assertEquals(TestHelper.checkedGetElement(model, "InnerPackage", Package.class), ((EditElement) ele).getValues().get(OWNER));
+				assertEquals(TestHelper.checkedGetElement(this.model, "InnerPackage", Package.class), ((EditElement) ele).getValues().get(OWNER));
 			}
 		}
 		assertTrue("Does not have EditElement to change Change Owner of the Class", hasEditClassOwner);
@@ -255,11 +255,11 @@ public class BBKeepTest {
 	 */
 	@Test
 	public final void adoptorSimpleEleDescription() {
-		model = TestHelper.loadModel(testmodeldir, "AdopterSimpleEleDescription.uml");
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser); 
-		List<Change> changes = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.testmodeldir, "AdopterSimpleEleDescription.uml");
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser); 
+		List<Change> changes = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changes.size());
 		assertEquals(1, changes.get(0).getAlternatives().size());
 
@@ -272,9 +272,9 @@ public class BBKeepTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }

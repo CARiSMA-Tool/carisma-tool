@@ -63,7 +63,7 @@ public class AbstrOclCheckerTest {
 	 * 
 	 */
 	public final Resource loadModel(final ModelLoader modelLoader, final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
 		try {
 			return modelLoader.load(testmodelfile);
@@ -78,23 +78,23 @@ public class AbstrOclCheckerTest {
 	 */
 	@Test
 	public final void oclQueryBpmn2ModelTest() {
-		oclChecker = new DummyOclChecker();
-		host = new DebugHost();
-		modelLoader = new UniversalModelLoader();
+		this.oclChecker = new DummyOclChecker();
+		this.host = new DebugHost();
+		this.modelLoader = new UniversalModelLoader();
 		
 		boolean successful;
 
 		Resource model;
-		model = loadModel(modelLoader, "bpmn2model.bpmn2");
+		model = loadModel(this.modelLoader, "bpmn2model.bpmn2");
 		assertNotNull(model);
-		host.setAnalyzedModel(model);
+		this.host.setAnalyzedModel(model);
 		
-		oclChecker.setOclStatement("true");
-		successful = oclChecker.performOclQuery(host);
+		this.oclChecker.setOclStatement("true");
+		successful = this.oclChecker.performOclQuery(this.host);
 		assertTrue(successful);
 		
-		oclChecker.setOclStatement("false");
-		successful = oclChecker.performOclQuery(host);
+		this.oclChecker.setOclStatement("false");
+		successful = this.oclChecker.performOclQuery(this.host);
 		assertFalse(successful);
 	}
 	
@@ -104,23 +104,23 @@ public class AbstrOclCheckerTest {
 	 */
 	@Test
 	public final void oclQueryUml2ModelTest() {
-		oclChecker = new DummyOclChecker();
-		host = new DebugHost();
-		modelLoader = new UniversalModelLoader();
+		this.oclChecker = new DummyOclChecker();
+		this.host = new DebugHost();
+		this.modelLoader = new UniversalModelLoader();
 		
 		boolean successful;
 
 		Resource model;
-		model = loadModel(modelLoader, "activitydiagram.uml");
+		model = loadModel(this.modelLoader, "activitydiagram.uml");
 		assertNotNull(model);
-		host.setAnalyzedModel(model);
+		this.host.setAnalyzedModel(model);
 		
-		oclChecker.setOclStatement("true");
-		successful = oclChecker.performOclQuery(host);
+		this.oclChecker.setOclStatement("true");
+		successful = this.oclChecker.performOclQuery(this.host);
 		assertTrue(successful);
 		
-		oclChecker.setOclStatement("false");
-		successful = oclChecker.performOclQuery(host);
+		this.oclChecker.setOclStatement("false");
+		successful = this.oclChecker.performOclQuery(this.host);
 		assertFalse(successful);
 	}
 }

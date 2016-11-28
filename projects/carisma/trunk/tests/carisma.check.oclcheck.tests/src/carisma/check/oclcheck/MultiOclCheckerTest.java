@@ -55,7 +55,7 @@ public class MultiOclCheckerTest {
 	 * 
 	 */
 	public final Resource loadModel(final ModelLoader modelLoader, final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
 		try {
 			return modelLoader.load(testmodelfile);
@@ -71,7 +71,7 @@ public class MultiOclCheckerTest {
 	@Test 
 	public final void loadOclLibraryTest() {
 		String testmodelfilename = "testLibrary.col";
-		File testmodelfile = new File(filepath + File.separator + testmodelfilename);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelfilename);
 		assertTrue(testmodelfile.exists());
 		
 		OclLibrary oclLibrary = null;
@@ -101,7 +101,7 @@ public class MultiOclCheckerTest {
 			}
 		}
 		
-		assertNotSame(-1, methodIndex);
+		assertNotSame(Integer.valueOf(-1), Integer.valueOf(methodIndex));
 	}
 	
 	/**
@@ -158,7 +158,7 @@ public class MultiOclCheckerTest {
 					break;
 				}
 			}
-			assertNotSame(-1, methodIndex);
+			assertNotSame(Integer.valueOf(-1), Integer.valueOf(methodIndex));
 		}
 	}
 }

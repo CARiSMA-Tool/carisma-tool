@@ -17,7 +17,7 @@ public class EvolutionUtilityTest {
 	 * tests the method getNonEvolutionCheck(String id).
 	 */
 	@Test
-	public final void testGetNonEvolutionCheck() {
+	public final static void testGetNonEvolutionCheck() {
 		String testCheck = "carisma.evolution.check";
 		String expectedResult = "carisma.nonEvolution.check";
 		assertEquals(expectedResult, EvolutionUtility.getNonEvolutionCheck(testCheck));
@@ -28,7 +28,7 @@ public class EvolutionUtilityTest {
 	 * tests the method getEvolutionCheck(String ID).
 	 */
 	@Test
-	public final void testGetEvolutionCheck() {
+	public final static void testGetEvolutionCheck() {
 		String expectedResult = "carisma.evolution.check";
 		String testCheck = "carisma.nonEvolution.check";
 		assertEquals(expectedResult, EvolutionUtility.getEvolutionCheck(testCheck));

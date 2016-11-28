@@ -64,12 +64,12 @@ public class FairExchangeTest {
 
 		@Override
 		public Resource getAnalyzedModel() {
-			return modelres;
+			return FairExchangeTest.this.modelres;
 		}
 
 		@Override
 		public String getCurrentModelFilename() {
-			return modelres.getURI().toFileString();
+			return FairExchangeTest.this.modelres.getURI().toFileString();
 		}
 
 		@Override
@@ -140,20 +140,20 @@ public class FairExchangeTest {
 	 * @param testmodelname - the name of the UML file
 	 */
 	public final void loadModel(final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new UML2ModelLoader();
+		if (this.ml == null) {
+			this.ml = new UML2ModelLoader();
 		}
 		try {
-			modelres = ml.load(testmodelfile);
+			this.modelres = this.ml.load(testmodelfile);
 		} catch (IOException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			fail(e.getMessage());
 		}
-		assertNotNull(modelres);
-		model = (Model) modelres.getContents().get(0);
-		assertNotNull(model);
+		assertNotNull(this.modelres);
+		this.model = (Model) this.modelres.getContents().get(0);
+		assertNotNull(this.model);
 	}
 	
 	/**
@@ -163,11 +163,11 @@ public class FairExchangeTest {
 	public final void testSuccess() {
 		loadModel("testFairExchangeSuccess.uml");
 		FairExchangeCheck fe = new FairExchangeCheck();
-		StereotypeApplication fairExchangeApp = UMLsecUtil.getStereotypeApplication(model, UMLsec.FAIR_EXCHANGE);
+		StereotypeApplication fairExchangeApp = UMLsecUtil.getStereotypeApplication(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(fairExchangeApp);
 		TestHost analysisHost = new TestHost();
 		assertTrue(fe.perform(null, analysisHost));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -178,10 +178,10 @@ public class FairExchangeTest {
 		TestHost analysisHost = new TestHost();
 		loadModel("testFairExchangeViolated.uml");
 		FairExchangeCheck fe = new FairExchangeCheck();
-		StereotypeApplication fairExchangeApp = UMLsecUtil.getStereotypeApplication(model, UMLsec.FAIR_EXCHANGE);
+		StereotypeApplication fairExchangeApp = UMLsecUtil.getStereotypeApplication(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(fairExchangeApp);
 		assertFalse(fe.perform(null, analysisHost));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -203,12 +203,12 @@ public class FairExchangeTest {
 		TestHost analysisHost = new TestHost();
 		FairExchangeCheck fe = new FairExchangeCheck();
 		assertTrue(fe.perform(null, analysisHost));
-		modelres.unload();
+		this.modelres.unload();
 		loadModel("testFairExchangeNoStereotype.uml");
-		StereotypeApplication fairExchangeApp = UMLsecUtil.getStereotypeApplication(model, UMLsec.FAIR_EXCHANGE);
+		StereotypeApplication fairExchangeApp = UMLsecUtil.getStereotypeApplication(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNull(fairExchangeApp);
 		assertTrue(fe.perform(null, analysisHost));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -218,13 +218,13 @@ public class FairExchangeTest {
 	public final void testStartTag() {
 		loadModel("testFairExchangeNoStart.uml");
 		TestHost analysisHost = new TestHost();
-		StereotypeApplication fairExchangeApp = UMLsecUtil.getStereotypeApplication(model, UMLsec.FAIR_EXCHANGE);
+		StereotypeApplication fairExchangeApp = UMLsecUtil.getStereotypeApplication(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(fairExchangeApp);
-		EObjectResolvingEList<?> start = (EObjectResolvingEList<?>) model.getValue(model.getAppliedStereotype("UMLsec::fair exchange"), "start");
+		EObjectResolvingEList<?> start = (EObjectResolvingEList<?>) this.model.getValue(this.model.getAppliedStereotype("UMLsec::fair exchange"), "start");
 		FairExchangeCheck fe = new FairExchangeCheck();
 		assertTrue(start.size() == 0);
 		assertFalse(fe.perform(null, analysisHost));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -236,15 +236,15 @@ public class FairExchangeTest {
 		TestHost analysisHost = new TestHost();
 		
 		EObjectResolvingEList<?> start;
-		StereotypeApplication fairExchangeApp = UMLsecUtil.getStereotypeApplication(model, UMLsec.FAIR_EXCHANGE);
+		StereotypeApplication fairExchangeApp = UMLsecUtil.getStereotypeApplication(this.model, UMLsec.FAIR_EXCHANGE);
 		assertNotNull(fairExchangeApp);
-		start = (EObjectResolvingEList<?>) model.getValue(model.getAppliedStereotype("UMLsec::fair exchange"), "start");
-		EObjectResolvingEList<?> stop = (EObjectResolvingEList<?>) model.getValue(model.getAppliedStereotype("UMLsec::fair exchange"), "stop");
+		start = (EObjectResolvingEList<?>) this.model.getValue(this.model.getAppliedStereotype("UMLsec::fair exchange"), "start");
+		EObjectResolvingEList<?> stop = (EObjectResolvingEList<?>) this.model.getValue(this.model.getAppliedStereotype("UMLsec::fair exchange"), "stop");
 		FairExchangeCheck fe = new FairExchangeCheck();
 		assertFalse(start.size() == 0);
 		assertTrue(stop.size() == 0);
 		assertFalse(fe.perform(null, analysisHost));
-		modelres.unload();
+		this.modelres.unload();
 	}
 	
 	/**
@@ -254,7 +254,7 @@ public class FairExchangeTest {
 	public final void testNoWays() {
 		TestHost analysisHost = new TestHost();
 		loadModel("testFairExchangeNoWay.uml");
-		ActivityDiagramManager adm = new ActivityDiagramManager(model, new DummyHost(true));
+		ActivityDiagramManager adm = new ActivityDiagramManager(this.model, new DummyHost(true));
 		List<List<Element>> list = adm.getAllPaths();
 		assertTrue(list.size() == 0);
 		FairExchangeCheck fe = new FairExchangeCheck();

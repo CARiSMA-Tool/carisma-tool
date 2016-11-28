@@ -2,11 +2,9 @@ package carisma.check.smartcard.evolution.lockedstatuscheck;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +22,6 @@ import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 import carisma.evolution.DeltaFactoryCheck;
 import carisma.evolution.uml2.umlchange.UMLchangeParserCheck;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlchange.UMLchange;
@@ -45,7 +42,7 @@ public class LockedStatusEvolutionDeltaOnlyCheckTest {
 	/**
 	 * The test model.
 	 */
-	private Model model;
+	Model model;
 		
 	/**
 	 * A dummy AnalysisHost for the test.
@@ -116,9 +113,9 @@ public class LockedStatusEvolutionDeltaOnlyCheckTest {
 	 */
 	@After
 	public final void cleanUp() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 	
@@ -135,11 +132,11 @@ public class LockedStatusEvolutionDeltaOnlyCheckTest {
 		boolean checkSuccess = false;
 		initTest(testModelFileName);
 		UMLchangeParserCheck umlChangeParser = new UMLchangeParserCheck();
-		umlChangeParserSuccess = umlChangeParser.perform(null, testHost);
+		umlChangeParserSuccess = umlChangeParser.perform(null, this.testHost);
 		DeltaFactoryCheck deltaCalculator = new DeltaFactoryCheck();
-		deltaCalculatorSuccess = deltaCalculator.perform(null, testHost);
+		deltaCalculatorSuccess = deltaCalculator.perform(null, this.testHost);
 		LockedStatusEvolutionDeltaOnlyCheck theCheck = new LockedStatusEvolutionDeltaOnlyCheck();
-		checkSuccess = theCheck.perform(null, testHost);
+		checkSuccess = theCheck.perform(null, this.testHost);
 		return (umlChangeParserSuccess & deltaCalculatorSuccess & checkSuccess);
 	}
 	
@@ -148,12 +145,12 @@ public class LockedStatusEvolutionDeltaOnlyCheckTest {
 	 * @param testModelFileName the filename of the test model
 	 */
 	private void initTest(final String testModelFileName) {
-		testHost = new TestHost();
-		assertNotNull(testHost);
-		model = TestHelper.loadModel(filepath, testModelFileName);
-		assertTrue(testHost.getAnalyzedModel().isLoaded());
-		assertTrue(UMLHelper.isProfileApplied(model, UMLsec.DESCRIPTOR));
-		assertTrue(UMLHelper.isProfileApplied(model, UMLchange.DESCRIPTOR));
+		this.testHost = new TestHost();
+		assertNotNull(this.testHost);
+		this.model = TestHelper.loadModel(this.filepath, testModelFileName);
+		assertTrue(this.testHost.getAnalyzedModel().isLoaded());
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLsec.DESCRIPTOR));
+		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
 	}
 		
 	/**
@@ -170,13 +167,13 @@ public class LockedStatusEvolutionDeltaOnlyCheckTest {
 		 * Constructor.
 		 */
 		public TestHost() {
-			register = new HashMap<String, Object>();
+			this.register = new HashMap<String, Object>();
 		}
 		
 		@Override
 		public Resource getAnalyzedModel() {
-			if (model != null) {
-				return model.eResource();
+			if (LockedStatusEvolutionDeltaOnlyCheckTest.this.model != null) {
+				return LockedStatusEvolutionDeltaOnlyCheckTest.this.model.eResource();
 			}
 			return null;
 		}

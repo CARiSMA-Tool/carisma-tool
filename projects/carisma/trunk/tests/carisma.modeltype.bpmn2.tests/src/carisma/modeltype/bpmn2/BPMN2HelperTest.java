@@ -36,10 +36,10 @@ public class BPMN2HelperTest {
 	 */
 	@Test
 	public void isYaoqiangModelTest() {
-		assertFalse(YaoqiangHelper.isYaoqiangModel(filepath + "ThisFileDoesNotExist"));
+		assertFalse(YaoqiangHelper.isYaoqiangModel(this.filepath + "ThisFileDoesNotExist"));
 		
-		assertTrue(YaoqiangHelper.isYaoqiangModel(filepath + "yaoqiang.bpmn"));
-		assertFalse(YaoqiangHelper.isYaoqiangModel(filepath + "nonYaoqiang.bpmn"));
+		assertTrue(YaoqiangHelper.isYaoqiangModel(this.filepath + "yaoqiang.bpmn"));
+		assertFalse(YaoqiangHelper.isYaoqiangModel(this.filepath + "nonYaoqiang.bpmn"));
 	}
 	
 	/**
@@ -49,11 +49,11 @@ public class BPMN2HelperTest {
 	 */
 	@Test
 	public void yaoqiang2emfModelTest() {
-		String output = YaoqiangHelper.yaoqiang2emfModel(filepath + "yaoqiang.bpmn");
+		String output = YaoqiangHelper.yaoqiang2emfModel(this.filepath + "yaoqiang.bpmn");
 		assertFalse(output.contains("targetElement"));
 		assertFalse(output.contains("sourceElement"));
 		
-		output = YaoqiangHelper.yaoqiang2emfModel(filepath + "ThisFileDoesNotExist");
+		output = YaoqiangHelper.yaoqiang2emfModel(this.filepath + "ThisFileDoesNotExist");
 		assertTrue(output.equals(""));
 	}
 }

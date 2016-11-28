@@ -1,10 +1,16 @@
 package carisma.check.umlchange.efficiency.authorizedstatus;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.BooleanParameter;
 import carisma.core.analysis.FloatParameter;
@@ -12,12 +18,11 @@ import carisma.core.analysis.FolderParameter;
 import carisma.core.analysis.IntegerParameter;
 import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CarismaCheck;
-import carisma.check.smartcard.authorizedstatus.Check;
+import carisma.check.smartcard.authorizedstatus.AuthorizedStatusCheck;
 import carisma.evolution.DeltaFactoryCheck;
 import carisma.evolution.uml2.UMLModifierCheck;
 import carisma.evolution.uml2.io.ModelExporterCheck;
 import carisma.evolution.uml2.umlchange.UMLchangeParserCheck;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.check.smartcard.evolution.authorizedstatuscheck.AuthorizedStatusEvolutionDeltaOnlyCheck;
 
 
@@ -32,7 +37,7 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 	/**
 	 * host for reports.
 	 */
-	private AnalysisHost host;
+	private AnalysisHost analysisHost;
 	
 	/**
 	 * path to the "tmp" folder as string.
@@ -42,7 +47,7 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 	/**
 	 * path to the "tmp" folder as {@link File}.
 	 */
-	private File folderFile = new File(pathToTmpFolder);
+	private File folderFile = new File(this.pathToTmpFolder);
 	
 	/**
 	 * integer to save the amount of models for the nonEvolution check.
@@ -66,16 +71,15 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 	
 	@Override
 	public final boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost host) {
-		this.host = host;
 		TestingHost changeHost = new TestingHost(false);
 		fillExportParameters(parameters);
 		initHost(parameters, changeHost);
-		folderFile.mkdir();
+		this.folderFile.mkdir();
 		String buffer = "";
 		if (host != null) {
-			this.host = host;
+			this.analysisHost = host;
 		} else {
-			this.host = new TestingHost(true);
+			this.analysisHost = new TestingHost(true);
 		}
 		UMLchangeParserCheck parser = new UMLchangeParserCheck();
 		long time = System.currentTimeMillis();
@@ -110,9 +114,9 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 		changeHost = null;
 		time = nonEvolutionCheck();
 		buffer += "Non-Evolution check last " + time + " millisecs\n";
-		buffer += modelAmount + " models have been analyzed";
-		host.appendLineToReport(messages);
-		host.appendLineToReport(buffer);
+		buffer += this.modelAmount + " models have been analyzed";
+		this.analysisHost.appendLineToReport(this.messages);
+		this.analysisHost.appendLineToReport(buffer);
 		return true;
 	}
 	
@@ -124,11 +128,11 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 	 */
 	private long nonEvolutionCheck() {
 		long completeTime = 0;
-		for (File f : folderFile.listFiles()) {
+		for (File f : this.folderFile.listFiles()) {
 			if (f.getAbsolutePath().endsWith(".uml")) {
 				long time;
-				modelAmount++;
-				Check authorizedStatusCheck  = new Check();  //authorized-status check
+				this.modelAmount++;
+				AuthorizedStatusCheck authorizedStatusCheck  = new AuthorizedStatusCheck();  //authorized-status check
 				Resource res = loadModel(f.getAbsolutePath());
 				TestingHost h = new TestingHost(false);
 				h.setAnalyzedModel(res);
@@ -139,7 +143,7 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 				try {
 					res.delete(null);
 				} catch (IOException e) {
-					messages += "Could not load model " + f.getAbsolutePath() + "\n!"; //kann eigentlich nicht passieren
+					this.messages += "Could not load model " + f.getAbsolutePath() + "\n!"; //kann eigentlich nicht passieren
 					e.printStackTrace();
 				}
 				h.delete();
@@ -148,7 +152,7 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 			}
 			f.delete();
 		}
-		folderFile.delete();
+		this.folderFile.delete();
 		return completeTime;
 	}
 	
@@ -157,7 +161,7 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 	 * @param parameters parameters of the check.
 	 */
 	private void fillExportParameters(final Map<String, CheckParameter> parameters) {
-		Boolean maxDelta = true;
+		boolean maxDelta = true;
 		String maxDeltaString = "carisma.check.umlchange.efficiency.authorizedstatus.maxdelta";
 		String folder = "carisma.check.modelexporter.outputfolder";
 		String  notAll = "carisma.check.modelexporter.onlyMaxSuccessfulDeltas";
@@ -166,12 +170,12 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 			if (maxDeltaParameter instanceof BooleanParameter) {
 				maxDelta = ((BooleanParameter) maxDeltaParameter).getValue();
 			} else {
-				messages += "Wrong parameter type for the maxDeltas!\n";
+				this.messages += "Wrong parameter type for the maxDeltas!\n";
 			}
 		} else {
-			messages += "Missing value for maxDeltas!\n";
+			this.messages += "Missing value for maxDeltas!\n";
 		}
-		FolderParameter fp = new FolderParameter(null, folderFile);
+		FolderParameter fp = new FolderParameter(null, this.folderFile);
 		BooleanParameter  bp = new BooleanParameter(null, maxDelta);
 		parameters.put(folder, fp);
 		parameters.put(notAll, bp);
@@ -184,13 +188,18 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 	 * @return {@link Resource} object of the model
 	 */
 	public final Resource loadModel(final String filePath) {
-		UML2ModelLoader ml = new UML2ModelLoader();
 		File file = new File(filePath);
+		if(file.exists()){
+			this.analysisHost.appendLineToReport("Fail to open " + file.getAbsolutePath());
+			return null;
+		}
+		ResourceSet rs = new ResourceSetImpl();
 		Resource returnValue = null;
-		try {
-			returnValue = ml.load(file);
+		try (FileInputStream in = new FileInputStream(file)) {
+			returnValue = rs.createResource(URI.createURI(filePath));
+			returnValue.load(in, Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			host.appendLineToReport("Fail to open " + file.getAbsolutePath());
+			this.analysisHost.appendLineToReport("Fail to open " + file.getAbsolutePath());
 		}
 		return returnValue;
 	}
@@ -202,8 +211,8 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 	 * @param h {@link TestingHost} to initialize
 	 */
 	private void initHost(final Map<String, CheckParameter> parameters, final TestingHost h) {
-		CheckParameter percentageParameter = parameters.get(percentage);
-		CheckParameter pathsParameter = parameters.get(paths);
+		CheckParameter percentageParameter = parameters.get(this.percentage);
+		CheckParameter pathsParameter = parameters.get(this.paths);
 		float percentValue = 10;
 		int pathValue = 100;
 		Resource rs = null;
@@ -211,25 +220,25 @@ public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 			if (percentageParameter instanceof FloatParameter) {
 				percentValue = ((FloatParameter) percentageParameter).getValue();
 			} else {
-				messages += "Wrong parameter type for the percentages of paths with UMLchange stereotypes!\n";
+				this.messages += "Wrong parameter type for the percentages of paths with UMLchange stereotypes!\n";
 			}
 		} else {
-			messages += "Missing value for the percentages of paths with UMLchange stereotypes!\n";
+			this.messages += "Missing value for the percentages of paths with UMLchange stereotypes!\n";
 		}
 		if (pathsParameter != null) {
 			if (pathsParameter instanceof IntegerParameter) {
 				pathValue = ((IntegerParameter) pathsParameter).getValue();
 			} else {
-				messages += "Wrong parameter type for the ammounts of paths!\n";
+				this.messages += "Wrong parameter type for the ammounts of paths!\n";
 			}
 		} else {
-			messages += "Missing value for the ammounts of paths!\n";
+			this.messages += "Missing value for the ammounts of paths!\n";
 		}
 		AuthorizedStatusModelCreater lsmc = new AuthorizedStatusModelCreater();
 		long  time = System.currentTimeMillis();
 		rs = lsmc.getNewModel("TestModel", pathValue, percentValue);
 		time = System.currentTimeMillis() - time;
-		host.appendLineToReport("Modelcreation last " + time + " millisecs");
+		this.analysisHost.appendLineToReport("Modelcreation last " + time + " millisecs");
 		h.setAnalyzedModel(rs);
 	}
 }

@@ -79,8 +79,8 @@ public class DebugHost implements AnalysisHost {
 	 */
 	@Override
 	public final void addResultMessage(final AnalysisResultMessage detail) {
-		resultMessages.add(detail);
-		if (enableSystemOutput) {
+		this.resultMessages.add(detail);
+		if (this.enableSystemOutput) {
 			Logger.log(LogLevel.INFO, (this.getClass().getName().toUpperCase(Locale.ENGLISH) + ": " + detail.getText()));
 		}
 	}
@@ -99,8 +99,8 @@ public class DebugHost implements AnalysisHost {
 	 */
 	@Override
 	public final void appendToReport(final String text) {
-		reportMessages.add(text);
-		if (enableSystemOutput) {
+		this.reportMessages.add(text);
+		if (this.enableSystemOutput) {
 		    Logger.log(LogLevel.INFO, (this.getClass().getName().toUpperCase(Locale.ENGLISH) + ": " + text));
 		}
 	}
@@ -111,8 +111,8 @@ public class DebugHost implements AnalysisHost {
 	 */
 	@Override
 	public final void appendLineToReport(final String text) {
-		reportMessages.add(text);
-		if (enableSystemOutput) {
+		this.reportMessages.add(text);
+		if (this.enableSystemOutput) {
 		    Logger.log(LogLevel.INFO, (this.getClass().getName().toUpperCase(Locale.ENGLISH) + ": " + text));
 		}
 	}
@@ -131,7 +131,7 @@ public class DebugHost implements AnalysisHost {
 	 */
 	@Override
 	public final Resource getAnalyzedModel() {
-		return analyzedModel;
+		return this.analyzedModel;
 	}
 	
 	/**
@@ -139,7 +139,7 @@ public class DebugHost implements AnalysisHost {
 	 * @param model The model
 	 */
 	public final void setAnalyzedModel(Resource model) {
-		analyzedModel = model;
+		this.analyzedModel = model;
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class DebugHost implements AnalysisHost {
 	@Override
 	public void putToRegister(final String registerName, final Object data)
 			throws RegisterInUseException {
-		
+		// Do nothing, only a dummy
 	}
 
 	/**

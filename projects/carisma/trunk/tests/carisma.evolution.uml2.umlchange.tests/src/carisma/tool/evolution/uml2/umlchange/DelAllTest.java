@@ -43,10 +43,10 @@ public class DelAllTest {
 	 */
 	@Test
 	public final void testNoContent() {
-		model = TestHelper.loadModel(filepath, "del-all.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "del-all.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changeList.size());
 		assertEquals(1, changeList.get(0).getAlternatives().size());
 		assertEquals(2, changeList.get(0).getAlternatives().get(0).getDeltaElements().size());
@@ -58,10 +58,10 @@ public class DelAllTest {
 	 */
 	@Test
 	public final void testWithContent() {
-		model = TestHelper.loadModel(filepath, "del-allContent.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "del-allContent.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertEquals(1, changeList.size());
 		assertEquals(1, changeList.get(0).getAlternatives().size());
 		assertEquals(1, changeList.get(0).getAlternatives().get(0).getDeltaElements().size());
@@ -72,10 +72,10 @@ public class DelAllTest {
 	 */
 	@Test
 	public final void testModelRenaming() {
-		model = TestHelper.loadModel(filepath, "SecureDependencies.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		assertEquals("someName", (model.getName()));
+		this.model = TestHelper.loadModel(this.filepath, "SecureDependencies.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		assertEquals("someName", (this.model.getName()));
 	}
 	
 	/**
@@ -83,10 +83,10 @@ public class DelAllTest {
 	 */
 	@Test
 	public final void testStereotype() {
-		model = TestHelper.loadModel(filepath, "SecureDependencies.uml");
-		parser = new UMLchangeParser(model);
-		assertNotNull(parser);
-		List<Change> changeList = parser.generateDeltaDescriptions();
+		this.model = TestHelper.loadModel(this.filepath, "SecureDependencies.uml");
+		this.parser = new UMLchangeParser(this.model);
+		assertNotNull(this.parser);
+		List<Change> changeList = this.parser.generateDeltaDescriptions();
 		assertNotNull(changeList);
 		assertEquals(1, changeList.size());
 		Change change = changeList.get(0);
@@ -104,9 +104,9 @@ public class DelAllTest {
 	 */
 	@After
 	public final void unload() {
-		if (model != null) {
-			TestHelper.unloadModel(model);
-			model = null;
+		if (this.model != null) {
+			TestHelper.unloadModel(this.model);
+			this.model = null;
 		}
 	}
 }
