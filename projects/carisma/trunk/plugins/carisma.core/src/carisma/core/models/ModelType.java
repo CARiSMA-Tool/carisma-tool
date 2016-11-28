@@ -37,16 +37,17 @@ public class ModelType {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public String getNsURI() {
-		return nsURI;
+		return this.nsURI;
 	}
 
+	@Deprecated
 	public ModelLoader instantiateLoader() {
 		try {
-			return (ModelLoader) extensionPointConfigurationElement.createExecutableExtension("loader");
+			return (ModelLoader) this.extensionPointConfigurationElement.createExecutableExtension("loader");
 		} catch (CoreException e) {
 			// TODO Fehlermeldung ausgeben
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
@@ -55,7 +56,7 @@ public class ModelType {
 	}
 
 	public String getFileExtension() {
-		return fileExtension;
+		return this.fileExtension;
 	}
 	
 }

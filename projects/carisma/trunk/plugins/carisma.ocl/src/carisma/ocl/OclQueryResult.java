@@ -47,7 +47,7 @@ public class OclQueryResult {
 	private IQueryResult elements;
 	
 	public IQueryResult getElements() {
-        return elements;
+        return this.elements;
     }
 
     /**
@@ -68,7 +68,7 @@ public class OclQueryResult {
 	 * @return Returns true if the QuereyResult contains Object o otherwise false 
 	 */
 	public boolean contains(Object o) {
-		return elements.contains(o);
+		return this.elements.contains(o);
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class OclQueryResult {
 	 * @return Returns true if the QuereyResult contains Collection c otherwise false
 	 */
 	public boolean containsAll(Collection<?> c) {
-		return elements.containsAll(c);
+		return this.elements.containsAll(c);
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class OclQueryResult {
 	 * @return Returns set of the EObjects
 	 */
 	public Set<? extends EObject> getEObjects() {
-		return elements.getEObjects();
+		return this.elements.getEObjects();
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class OclQueryResult {
 	 * @return Returns the exception of the query
 	 */
 	public Exception getException() {
-		return elements.getException();
+		return this.elements.getException();
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class OclQueryResult {
 	 * @return Returns the iterator of the QueryResult
 	 */
 	public Iterator<EObject> iterator() {
-		return elements.iterator();
+		return this.elements.iterator();
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class OclQueryResult {
 	 * @return Returns size of the QueryResult
 	 */
 	public int size() {
-		return elements.size();
+		return this.elements.size();
 	}
 	
 	/**
@@ -123,7 +123,7 @@ public class OclQueryResult {
 	 * @return Returns EObject class of the context
 	 */
 	public EClass getContext() {
-		return context;
+		return this.context;
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class OclQueryResult {
 	 * name of the EObject
 	 */
 	public String getContextString() {
-		return (context == null) ? OclEvaluator.CONTEXT_FREE : context.getName();
+		return (this.context == null) ? OclEvaluator.CONTEXT_FREE : this.context.getName();
 	}
 	
 	/**
@@ -143,6 +143,6 @@ public class OclQueryResult {
 	 * @return Returns ocl statement
 	 */
 	public String getStatement() {
-		return statement;
+		return this.statement;
 	}
 }

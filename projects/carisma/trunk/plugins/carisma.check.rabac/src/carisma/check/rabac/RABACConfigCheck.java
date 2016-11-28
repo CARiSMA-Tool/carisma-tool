@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.xml.bind.JAXBContext;
@@ -33,13 +34,19 @@ import carisma.core.analysis.OutputFileParameter;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CheckParameter;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.profile.umlsec.rabac.UMLsec;
 import carisma.profile.umlsec.rabac.UMLsecUtil;
 
-public class RABACConfigCheck implements CarismaCheck, ActionListener {
-	AnalysisHost host;
-	Map<String, CheckParameter> parameters;
+public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
+	
+	// Check IDs
+	public static final String CHECK_ID = "carisma.check.rabac.configuration"; //$NON-NLS-1$
+	public static final String PARAM_CONFIGURATION = "carisma.check.rabac.configuration"; //$NON-NLS-1$
+	public static final String CHECK_NAME = "RABACsec: Create transformation input"; //$NON-NLS-1$
+
+	AnalysisHost analysisHost;
+	Map<String, CheckParameter> checkParameters;
 
 	RABACConfig config = new RABACConfig();
 
@@ -63,8 +70,8 @@ public class RABACConfigCheck implements CarismaCheck, ActionListener {
 	 */
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
-		this.host = host;
-		this.parameters = parameters;
+		this.analysisHost = host;
+		this.checkParameters = parameters;
 		Resource model = host.getAnalyzedModel();
 
 		if (model.getContents().isEmpty()) {
@@ -87,21 +94,21 @@ public class RABACConfigCheck implements CarismaCheck, ActionListener {
 			}
 			Element abacClass = abac.get(0);
 
-			usersTag = UMLsecUtil.getStringValues("roles", UMLsec.ABAC, abacClass);
-			if (usersTag.size() == 0) {
+			this.usersTag = UMLsecUtil.getStringValues("roles", UMLsec.ABAC, abacClass);
+			if (this.usersTag.size() == 0) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Roles missing!"));
 				return false;
 			}
-			users = RABACCheck.parseTag(usersTag.get(0), null, 0);
-			if (users.size() == 0) {
+			this.users = RABACCheck.parseTag(this.usersTag.get(0), null, 0);
+			if (this.users.size() == 0) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Roles missing!"));
 				return false;
 			}
 
 			List<Element> abacRequire = UMLsecUtil.getStereotypedElements(content, UMLsec.ABACREQUIRE);
-			objects = new HashSet<String>();
+			this.objects = new HashSet<String>();
 			for (Element e : abacRequire) {
-				objects.add(e instanceof Transition ? ((Transition) e).containingStateMachine().getName()
+				this.objects.add(e instanceof Transition ? ((Transition) e).containingStateMachine().getName()
 						: ((Operation) e).getClass_().getName());
 			}
 
@@ -111,7 +118,7 @@ public class RABACConfigCheck implements CarismaCheck, ActionListener {
 				// use name of operation when no explicit one is given
 				String name = nameTag.size() == 0 ? ((NamedElement) e).getName() : nameTag.get(0);
 
-				for (Attribute a : config.getAttributes()) {
+				for (Attribute a : this.config.getAttributes()) {
 					if (a.getName().equals(name)) {
 						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Duplicate attribute " + name
 								+ " !"));
@@ -121,10 +128,10 @@ public class RABACConfigCheck implements CarismaCheck, ActionListener {
 
 				Attribute a = new Attribute();
 				a.setName(name);
-				config.getAttributes().add(a);
+				this.config.getAttributes().add(a);
 			}
 
-			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "RABAC stereotypes are valid"));
+			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "CHECK_ID stereotypes are valid"));
 			configGUI();
 			return true;
 		}
@@ -135,145 +142,155 @@ public class RABACConfigCheck implements CarismaCheck, ActionListener {
 
 	private void configGUI() {
 		// build data structure to store session roles
-		for (String u : users) {
-			config.getSessions().put(u, new SetWrapper());
+		for (String u : this.users) {
+			this.config.getSessions().put(u, new SetWrapper());
 		}
 
 		JPanel session = new JPanel();
 		((FlowLayout) session.getLayout()).setAlignment(0);
 		session.add(new JLabel("User:"));
-		user = new JComboBox<String>(users.toArray(new String[0]));
-		session.add(user);
+		this.user = new JComboBox<String>(this.users.toArray(new String[0]));
+		session.add(this.user);
 		session.add(new JLabel("Role:"));
-		role = new JComboBox<String>();
-		session.add(role);
-		active.setEnabled(false);
-		session.add(active);
+		this.role = new JComboBox<String>();
+		session.add(this.role);
+		this.active.setEnabled(false);
+		session.add(this.active);
 
 		JPanel filter = new JPanel();
 		((FlowLayout) filter.getLayout()).setAlignment(0);
 		filter.add(new JLabel("Attribute:"));
-		attribute = new JComboBox<String>();
-		for (Attribute a : config.getAttributes()) {
-			attribute.addItem(a.getName());
+		this.attribute = new JComboBox<String>();
+		for (Attribute a : this.config.getAttributes()) {
+			this.attribute.addItem(a.getName());
 		}
-		filter.add(attribute);
+		filter.add(this.attribute);
 		filter.add(new JLabel("Type:"));
-		filter.add(type);
+		filter.add(this.type);
 		filter.add(new JLabel("Object:"));
-		object = new JComboBox<String>(objects.toArray(new String[0]));
-		object.setEnabled(false);
-		filter.add(object);
+		this.object = new JComboBox<String>(this.objects.toArray(new String[0]));
+		this.object.setEnabled(false);
+		filter.add(this.object);
 		filter.add(new JLabel("Value:"));
-		filter.add(value);
+		filter.add(this.value);
 
-		save.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.save.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		user.addActionListener(this);
-		role.addActionListener(this);
-		active.addActionListener(this);
-		attribute.addActionListener(this);
-		type.addActionListener(this);
-		object.addActionListener(this);
-		value.addActionListener(this);
-		save.addActionListener(this);
+		this.user.addActionListener(this);
+		this.role.addActionListener(this);
+		this.active.addActionListener(this);
+		this.attribute.addActionListener(this);
+		this.type.addActionListener(this);
+		this.object.addActionListener(this);
+		this.value.addActionListener(this);
+		this.save.addActionListener(this);
 
 		JFrame configGUI = new JFrame();
 		configGUI.setLayout(new BoxLayout(configGUI.getContentPane(), BoxLayout.Y_AXIS));
-		configGUI.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		configGUI.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		configGUI.setTitle("RABACsec transformation input");
 		configGUI.setSize(600, 150);
 		configGUI.setLocationRelativeTo(null);
 		configGUI.add(session);
 		configGUI.add(filter);
-		configGUI.add(save);
+		configGUI.add(this.save);
 		configGUI.setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		if (event.getSource() == user) {
-			role.removeAllItems();
-			role.setModel(new DefaultComboBoxModel<String>(RABACCheck.parseTag(usersTag.get(0),
-					(String) user.getSelectedItem(), 0).toArray(new String[0])));
-			role.setSelectedIndex(-1);
-			active.setEnabled(false);
+		if (event.getSource() == this.user) {
+			this.role.removeAllItems();
+			this.role.setModel(new DefaultComboBoxModel<String>(RABACCheck.parseTag(this.usersTag.get(0),
+					(String) this.user.getSelectedItem(), 0).toArray(new String[0])));
+			this.role.setSelectedIndex(-1);
+			this.active.setEnabled(false);
 		}
 
-		if (event.getSource() == role) {
-			active.setEnabled(true);
-			active.setSelected(config.getSessions().get((String) user.getSelectedItem()).getSet()
-					.contains(role.getSelectedItem()));
+		if (event.getSource() == this.role) {
+			this.active.setEnabled(true);
+			this.active.setSelected(this.config.getSessions().get(this.user.getSelectedItem()).getSet()
+					.contains(this.role.getSelectedItem()));
 		}
 
-		if (event.getSource() == active) {
-			Set<String> roles = config.getSessions().get((String) user.getSelectedItem()).getSet();
-			if (active.isSelected()) {
-				roles.add((String) role.getSelectedItem());
+		if (event.getSource() == this.active) {
+			Set<String> roles = this.config.getSessions().get(this.user.getSelectedItem()).getSet();
+			if (this.active.isSelected()) {
+				roles.add((String) this.role.getSelectedItem());
 			} else {
-				roles.remove((String) role.getSelectedItem());
+				roles.remove(this.role.getSelectedItem());
 			}
 		}
 
-		if (event.getSource() == attribute) {
-			for (Attribute a : config.getAttributes()) {
-				if (a.getName().equals(attribute.getSelectedItem())) {
-					type.setSelectedItem(a.getName());
-					value.setText(a.getValues().get(
-							type.getSelectedItem().equals("User") ? user.getSelectedItem() : object.getSelectedItem()));
+		if (event.getSource() == this.attribute) {
+			for (Attribute a : this.config.getAttributes()) {
+				if (a.getName().equals(this.attribute.getSelectedItem())) {
+					this.type.setSelectedItem(a.getName());
+					this.value.setText(a.getValues().get(
+							this.type.getSelectedItem().equals("User") ? this.user.getSelectedItem() : this.object.getSelectedItem()));
 					break;
 				}
 			}
 		}
 
-		if (event.getSource() == type) {
-			object.setEnabled(!type.getSelectedItem().equals("User"));
+		if (event.getSource() == this.type) {
+			this.object.setEnabled(!this.type.getSelectedItem().equals("User"));
 			updateAttributes();
 		}
 
-		if (event.getSource() == object) {
-			for (Attribute a : config.getAttributes()) {
-				if (a.getName().equals(attribute.getSelectedItem())) {
-					value.setText(a.getValues().get(object.getSelectedItem()));
+		if (event.getSource() == this.object) {
+			for (Attribute a : this.config.getAttributes()) {
+				if (a.getName().equals(this.attribute.getSelectedItem())) {
+					this.value.setText(a.getValues().get(this.object.getSelectedItem()));
 					break;
 				}
 			}
 		}
 
-		if (event.getSource() == value) {
+		if (event.getSource() == this.value) {
 			updateAttributes();
 		}
 
-		if (event.getSource() == save) {
+		if (event.getSource() == this.save) {
 			// reduce file size
-			for (String u : users) {
-				if (config.getSessions().get(u) != null && config.getSessions().get(u).getSet().isEmpty()) {
-					config.getSessions().remove(u);
+			for (String u : this.users) {
+				if (this.config.getSessions().get(u) != null && this.config.getSessions().get(u).getSet().isEmpty()) {
+					this.config.getSessions().remove(u);
 				}
 			}
 
 			try {
 				Marshaller m = JAXBContext.newInstance(RABACConfig.class).createMarshaller();
-				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-				m.marshal(config,
-						((OutputFileParameter) parameters.get("carisma.check.rabac.configuration")).getValue());
+				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+				m.marshal(this.config,
+						((OutputFileParameter) this.checkParameters.get(PARAM_CONFIGURATION)).getValue());
 			} catch (Exception e) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Error writing configuration file!"));
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Error writing configuration file!"));
 			}
-			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Saved configuration file"));
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Saved configuration file"));
 		}
 	}
 
 	private void updateAttributes() {
-		for (Attribute a : config.getAttributes()) {
-			if (a.getName().equals(attribute.getSelectedItem())) {
-				a.setType((String) type.getSelectedItem());
+		for (Attribute a : this.config.getAttributes()) {
+			if (a.getName().equals(this.attribute.getSelectedItem())) {
+				a.setType((String) this.type.getSelectedItem());
 				a.getValues().put(
-						(String) (type.getSelectedItem().equals("User") ? user.getSelectedItem()
-								: object.getSelectedItem()), value.getText());
+						(String) (this.type.getSelectedItem().equals("User") ? this.user.getSelectedItem()
+								: this.object.getSelectedItem()), this.value.getText());
 				break;
 			}
 		}
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 
 }

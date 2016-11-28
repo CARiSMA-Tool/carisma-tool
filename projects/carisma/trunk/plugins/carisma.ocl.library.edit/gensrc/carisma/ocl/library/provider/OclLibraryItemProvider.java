@@ -69,12 +69,12 @@ public class OclLibraryItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -84,9 +84,9 @@ public class OclLibraryItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+		this.itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_OclLibrary_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OclLibrary_name_feature", "_UI_OclLibrary_type"),
@@ -109,11 +109,11 @@ public class OclLibraryItemProvider
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LibraryPackage.Literals.OCL_LIBRARY__OCL_EXPRESSIONS);
+			this.childrenFeatures.add(LibraryPackage.Literals.OCL_LIBRARY__OCL_EXPRESSIONS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
@@ -168,12 +168,14 @@ public class OclLibraryItemProvider
 		switch (notification.getFeatureID(OclLibrary.class)) {
 			case LibraryPackage.OCL_LIBRARY__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+				break;
 			case LibraryPackage.OCL_LIBRARY__OCL_EXPRESSIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+				break;
+			default:
+				super.notifyChanged(notification);
+				break;
 		}
-		super.notifyChanged(notification);
 	}
 
 	/**

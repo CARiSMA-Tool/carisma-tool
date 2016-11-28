@@ -15,7 +15,7 @@ import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.Transition;
 
-import carisma.check.smartcard.authorizedstatus.AuthorizedStatusCheck;
+import carisma.check.smartcard.authorizedstatus.AuthorizedStatus;
 import carisma.check.smartcard.authorizedstatus.AuthorizedStatusHelper;
 import carisma.core.util.EObjectUtil;
 import carisma.modeltype.uml2.UMLStateMachineHelper;
@@ -164,7 +164,7 @@ final class Messages {
 		return "Edited the "
 				+ EObjectUtil.getTypeAndName(editedTransition)
 				+ " without adjusting the guard '"
-				+ AuthorizedStatusCheck.getGuardString(editedTransition)
+				+ AuthorizedStatus.getGuardString(editedTransition)
 				+ "' to permission '"
 				+ AuthorizedStatusHelper.getPermission(editedTransition)
 				+ "'.";
@@ -172,7 +172,7 @@ final class Messages {
 
 	static String editedGuardWrong(final Transition editedGuardTransition) {
 		return "Edited the guard '"
-				+ AuthorizedStatusCheck.getGuardString(editedGuardTransition)
+				+ AuthorizedStatus.getGuardString(editedGuardTransition)
 				+ "' at "
 				+ EObjectUtil.getTypeAndName(editedGuardTransition)
 				+ " without adhering to permission '"
@@ -188,7 +188,7 @@ final class Messages {
 				+ AuthorizedStatusHelper.getPermission(incomingTransition)
 				+ "'"
 				+ " but did not adjust Transition guard '"
-				+ AuthorizedStatusCheck.getGuardString(incomingTransition)
+				+ AuthorizedStatus.getGuardString(incomingTransition)
 				+ "'.";
 	}
 }

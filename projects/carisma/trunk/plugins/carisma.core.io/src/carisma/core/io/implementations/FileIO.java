@@ -40,26 +40,18 @@ public class FileIO {
 	}
 	
 	//function for saving a Content at the specific location
-		public static void write(Content content, File file) {
-			BufferedWriter bufferedWriter = null;
-			try {
+	public static void write(Content content, File file) {
+		try{
 			if(!file.exists()){
 				file.createNewFile();
 			}
-				bufferedWriter = new BufferedWriter(new FileWriter(file));
+			try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))){
 				bufferedWriter.write(content.asString());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			finally {
-				if(bufferedWriter!=null){
-					try {
-						bufferedWriter.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-
+	}
 }

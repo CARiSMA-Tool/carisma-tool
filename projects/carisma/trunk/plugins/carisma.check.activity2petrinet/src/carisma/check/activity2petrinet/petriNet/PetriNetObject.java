@@ -64,7 +64,7 @@ public abstract class PetriNetObject {
 	 * @return type
 	 */
 	public final String getType() {
-		return type;
+		return this.type;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public abstract class PetriNetObject {
 	 * @return the object id
 	 */
 	public final String getId() {
-		return id;
+		return this.id;
 	}
 
 	/**
@@ -96,7 +96,7 @@ public abstract class PetriNetObject {
 	 * @return graphics the graphics object
 	 */
 	public final Graphics getGraphics() {
-		return graphics;
+		return this.graphics;
 	}
 
 	/**
@@ -112,7 +112,7 @@ public abstract class PetriNetObject {
 	 * @return name the object name
 	 */
 	public final String getName() {
-		return name;
+		return this.name;
 	}
 
 }

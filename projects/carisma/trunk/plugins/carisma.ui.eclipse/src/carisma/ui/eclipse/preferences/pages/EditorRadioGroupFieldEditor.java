@@ -53,7 +53,7 @@ public class EditorRadioGroupFieldEditor extends RadioGroupFieldEditor {
 	 * @param id Id of the chosen editor
 	 */
 	public final void setEditorId(final String id) {
-		editorId = id;
+		this.editorId = id;
 	}
 	
 	/**
@@ -61,20 +61,20 @@ public class EditorRadioGroupFieldEditor extends RadioGroupFieldEditor {
 	 * @return Id of this editor
 	 */
 	public final String getEditorId() {
-		return editorId;
+		return this.editorId;
 	}
 	/**
 	 * Id of selection Art (e.g. "default", "manually")
 	 * @param id 
 	 */
 	public final void setEditorSelectionId(final String id) {
-		editorSelectionId = id;
+		this.editorSelectionId = id;
 	}
 	/**
 	 * 
 	 * @return Id of selection Art (e.g. "default", "manually")
 	 */
 	public final String getEditorSelectionId() {
-		return editorSelectionId;
+		return this.editorSelectionId;
 	}
 }

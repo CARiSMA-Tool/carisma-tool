@@ -21,21 +21,21 @@ public class AnalysisMessage {
 	
 	public AnalysisMessage(
 			final StatusType messageType, final OutputTarget messageTarget, final String newMessage) {
-		type = messageType;
-		target = messageTarget;
-		message = newMessage;
+		this.type = messageType;
+		this.target = messageTarget;
+		this.message = newMessage;
 	}
 	
 	public StatusType getType() {
-		return type;
+		return this.type;
 	}
 	
 	public OutputTarget getTarget() {
-		return target;
+		return this.target;
 	}
 	
 	public String getMessage() {
-		return message;
+		return this.message;
 	}
 
 	public void print(final AnalysisHost host, final String usedPrefix) {
@@ -44,17 +44,17 @@ public class AnalysisMessage {
 			prefix = usedPrefix;
 		}
 		if (host != null) {
-			if (target == OutputTarget.BOTH) {
-				host.addResultMessage(new AnalysisResultMessage(type, prefix + message));
-				host.appendLineToReport(prefix + message);
+			if (this.target == OutputTarget.BOTH) {
+				host.addResultMessage(new AnalysisResultMessage(this.type, prefix + this.message));
+				host.appendLineToReport(prefix + this.message);
 				return;
 			}
-			if (target == OutputTarget.DETAIL) {
-				host.addResultMessage(new AnalysisResultMessage(type, prefix + message));
+			if (this.target == OutputTarget.DETAIL) {
+				host.addResultMessage(new AnalysisResultMessage(this.type, prefix + this.message));
 				return;
 			}
-			if (target == OutputTarget.REPORT) {
-				host.appendLineToReport(prefix + message);
+			if (this.target == OutputTarget.REPORT) {
+				host.appendLineToReport(prefix + this.message);
 				return;
 			}
 		}

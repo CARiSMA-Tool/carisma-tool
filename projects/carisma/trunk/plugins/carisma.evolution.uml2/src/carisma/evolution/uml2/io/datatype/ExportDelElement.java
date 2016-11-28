@@ -8,13 +8,14 @@ public class ExportDelElement extends ExportDeltaElement{
 	private String string = null;
 	
 	public ExportDelElement(DelElement delEle) {
-		string = delEle.toString();
+		this.string = delEle.toString();
 	}
 	
 
+	@Override
 	public String toString() {
-		if (string != null) {
-			return string;
+		if (this.string != null) {
+			return this.string;
 		}
 		return "- DELETEs: " + this.getTarget().getType() + " '" + this.getTarget().getType() + "'";
 	}

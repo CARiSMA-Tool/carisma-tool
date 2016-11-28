@@ -46,6 +46,7 @@ public abstract class AbstractEditorDescriptor implements EditorDescriptor {
 	 * @param modelIFile - the model IFile
 	 * @return true if file is opened successfully
 	 */
+	@Override
 	public boolean forceOpen(final IFile modelIFile) {
 		if (modelIFile != null) {
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();

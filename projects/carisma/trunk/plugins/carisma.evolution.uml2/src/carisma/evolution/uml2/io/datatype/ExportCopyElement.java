@@ -31,9 +31,9 @@ public class ExportCopyElement extends ExportAdditiveElement {
      * @param cpEle Element which is transformed.
      */
 	public ExportCopyElement(final CopyElement cpEle) {
-		changedValues = new HashMap<String, Object>(
+		this.changedValues = new HashMap<String, Object>(
 				cpEle.getChangedValues());
-		string = cpEle.toString();
+		this.string = cpEle.toString();
 	}
 
 	/** Set the target.
@@ -41,7 +41,7 @@ public class ExportCopyElement extends ExportAdditiveElement {
      * @param newTargetOwner target to set.
      */
 	public final void setTargetOwner(final ExportExtTag newTargetOwner) {
-		targetOwner = newTargetOwner;
+		this.targetOwner = newTargetOwner;
 	}
 	
 	/** Getter for the changed values.
@@ -49,7 +49,7 @@ public class ExportCopyElement extends ExportAdditiveElement {
      * @return key value pair.
      */
 	public final Map<String, Object> getChangedValues() {
-		return changedValues;
+		return this.changedValues;
 	}
 	
 	/** Getter for the target.
@@ -57,16 +57,17 @@ public class ExportCopyElement extends ExportAdditiveElement {
      * @return the target saved as an ExportExtTag.
      */
 	public final ExportExtTag getTargetOwner() {
-		return targetOwner;
+		return this.targetOwner;
 	}
 	
 	/** String output of this instance.
      * Normally uses the toString() method of the EditElement with which the constructor was called.
      * @return the output String.
      */
+	@Override
 	public final String toString() {
-		if (string != null) {
-			return string;
+		if (this.string != null) {
+			return this.string;
 		}
 		StringBuffer output = new StringBuffer("- COPY: ");
 		output.append(this.getTarget().getType());

@@ -48,12 +48,13 @@ public class Activator extends AbstractUIPlugin {
 	 * (non-Javadoc)
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		iNSTANCE = this;
 	}
 	
-	public URL getInstallURL(){
+	public static URL getInstallURL(){
 		return getiNSTANCE().getBundle().getEntry("/");
 	}
 
@@ -61,6 +62,7 @@ public class Activator extends AbstractUIPlugin {
 	 * (non-Javadoc)
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		iNSTANCE = null;
 		super.stop(context);

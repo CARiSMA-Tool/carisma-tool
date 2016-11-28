@@ -31,14 +31,21 @@ package carisma.profile.umlsec.rabac;
 //	wire				UMLsec::wire
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Model;
@@ -48,7 +55,6 @@ import org.eclipse.uml2.uml.Stereotype;
 
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.TaggedValue;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 
@@ -86,25 +92,24 @@ public final class UMLsecValidation {
 	 */
 	public static List<String> validateModel(final File file) {
 		Model model = null;
-		UML2ModelLoader ml = new UML2ModelLoader();
-		Resource modelres = null;
 		if ((file == null) || !file.exists()) {
 			throw new IllegalArgumentException("The given File ist not allowed to be null and has to exist!");
 		}
-		try {
-			modelres = ml.load(file);
+		ResourceSet rs = new ResourceSetImpl();
+		Resource resource = rs.createResource(URI.createURI(file.getPath()));
+		try(FileInputStream inputStream = new FileInputStream(file)){
+			resource.load(inputStream, Collections.EMPTY_MAP);
 		} catch (IOException e) {
 			e.printStackTrace();
 			List<String> exceptionValue = new ArrayList<String>();
 			exceptionValue.add("IOException occured  while loading the model");
 			return exceptionValue;
 		}
-		if (modelres == null) {
-//			TODO KR: Fehlermeldung
-		}
-		model = (Model) modelres.getContents().get(0);
+		EList<EObject> contents = resource.getContents();
+		model = (Model) contents.get(0);
 		if (model == null) {
-//			TODO KR: Fehlermeldung, dies m�sste bedeuteten, dass das UML-Model leer ist
+			resource.unload();
+			throw new IllegalArgumentException("");
 		}
 		return validateModel(model);
 	}
@@ -117,7 +122,7 @@ public final class UMLsecValidation {
 	 */
 	public static List<String> validateModel(final String file) {
 		File modelFile = new File(file);
-		if ((modelFile == null) || !modelFile.exists()) {
+		if (!modelFile.exists()) {
 			throw new IllegalArgumentException("The given String has to lead to an existing UML model!");
 		}
 		return validateModel(modelFile);

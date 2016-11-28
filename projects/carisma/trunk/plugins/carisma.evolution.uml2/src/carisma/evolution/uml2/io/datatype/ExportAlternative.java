@@ -8,31 +8,31 @@ public class ExportAlternative {
 	
 	private List<ExportDeltaElement> elementDescriptions;
 
-	private ExportExtTag extValue;
+	private ExportExtTag exportExtTagValue;
 	
 	public ExportAlternative(){
-		elementDescriptions = new ArrayList<ExportDeltaElement>();
-		extValue = null;
+		this.elementDescriptions = new ArrayList<ExportDeltaElement>();
+		this.exportExtTagValue = null;
 	}
 	
 	public void addExtValue(ExportExtTag extValue){
-		this.extValue = extValue;
+		this.exportExtTagValue = extValue;
 	}
 	
 	public void add(ExportDeltaElement ele){
-		elementDescriptions.add(ele); 
+		this.elementDescriptions.add(ele); 
 	}
 	
 	
 	public List<ExportDeltaElement> getElementDescriptions(){
-		return elementDescriptions;
+		return this.elementDescriptions;
 	}
 	
 	public void setExt(ExportExtTag extValue){
-		this.extValue = extValue;
+		this.exportExtTagValue = extValue;
 	}
 	
 	public ExportExtTag getExt(){
-		return extValue; 
+		return this.exportExtTagValue; 
 	}
 }

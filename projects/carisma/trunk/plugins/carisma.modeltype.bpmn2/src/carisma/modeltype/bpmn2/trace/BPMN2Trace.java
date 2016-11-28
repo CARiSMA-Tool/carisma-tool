@@ -48,24 +48,24 @@ public class BPMN2Trace {
 	 * @return If successful true, otherwise false
 	 */
 	public final boolean calculateTraces(final FlowElementsContainer flowElementsContainer) {
-		allTraces = new LinkedList<List<FlowNode>>();
+		this.allTraces = new LinkedList<List<FlowNode>>();
 		
 		for (FlowElement elem : flowElementsContainer.getFlowElements()) {
 			if (elem instanceof StartEvent) {
-				allTraces.addAll(getTraces((StartEvent) elem, new LinkedList<FlowNode>()));
+				this.allTraces.addAll(getTraces((StartEvent) elem, new LinkedList<FlowNode>()));
 			} else if (elem instanceof Activity	&& ((Activity) elem).getIncoming().size() == 0) {
-				allTraces.addAll(getTraces((Activity) elem, new LinkedList<FlowNode>()));
+				this.allTraces.addAll(getTraces((Activity) elem, new LinkedList<FlowNode>()));
 			}
 		}
 
 		//remove traces with endloops
-		for (int i = allTraces.size() - 1; i >= 0; i--) {
-			if (loopInTrace(allTraces.get(i))) {
-				allTraces.remove(i);
+		for (int i = this.allTraces.size() - 1; i >= 0; i--) {
+			if (loopInTrace(this.allTraces.get(i))) {
+				this.allTraces.remove(i);
 			}
 		}
 		
-		return (allTraces.size() > 0) ? true : false; 
+		return (this.allTraces.size() > 0) ? true : false; 
 	}
 	
 	/**
@@ -76,13 +76,13 @@ public class BPMN2Trace {
 	 * @throws NoTracesCalculatedException if no traces were calculated before.
 	 */
 	public final boolean allTracesBefore(final Activity act1, final Activity act2) throws NoTracesCalculatedException {
-		if (allTraces == null) {
-			throw new NoTracesCalculatedException(NO_TRACES_CALCULATED_ERROR);
+		if (this.allTraces == null) {
+			throw new NoTracesCalculatedException(this.NO_TRACES_CALCULATED_ERROR);
 		}
 		
 		int pos1 = 0;
 		int pos2 = 0;
-		for (List<FlowNode> lfn : allTraces) {
+		for (List<FlowNode> lfn : this.allTraces) {
 			pos1 = lfn.indexOf(act1);
 			pos2 = lfn.indexOf(act2);
 			if (pos2 != -1 && (pos1 == -1 || pos2 < pos1)) {
@@ -99,11 +99,11 @@ public class BPMN2Trace {
 	 * @throws NoTracesCalculatedException if no traces were calculated before.
 	 */
 	public final boolean allTracesInclude(final Activity activity) throws NoTracesCalculatedException {
-		if (allTraces == null) {
-			throw new NoTracesCalculatedException(NO_TRACES_CALCULATED_ERROR);
+		if (this.allTraces == null) {
+			throw new NoTracesCalculatedException(this.NO_TRACES_CALCULATED_ERROR);
 		}
 		
-		for (List<FlowNode> lfn : allTraces) {
+		for (List<FlowNode> lfn : this.allTraces) {
 			if (!lfn.contains(activity)) {
 				return false;
 			}
@@ -120,16 +120,16 @@ public class BPMN2Trace {
 	 * @return True if a trace with the given order of activities exists in allTraces.
 	 */
 	public final <T extends EventDefinition> boolean hasTrace(final List<Activity> activities, final Class<T> startEventType) throws NoTracesCalculatedException {
-		if (allTraces == null) {
-			throw new NoTracesCalculatedException(NO_TRACES_CALCULATED_ERROR);
+		if (this.allTraces == null) {
+			throw new NoTracesCalculatedException(this.NO_TRACES_CALCULATED_ERROR);
 		}
 		
 		List<List<FlowNode>> tmpList = new LinkedList<List<FlowNode>>();
 
 		if (startEventType == null) {
-			tmpList = allTraces;
+			tmpList = this.allTraces;
 		} else {
-			for (List<FlowNode> lfn : allTraces) {
+			for (List<FlowNode> lfn : this.allTraces) {
 				if (lfn.get(0) instanceof StartEvent) {
 					for (EventDefinition event : ((StartEvent) lfn.get(0)).getEventDefinitions()) {
 						if (startEventType.isInstance(event)) {
@@ -221,7 +221,7 @@ public class BPMN2Trace {
 	 * @param trace The trace which is to be checked.
 	 * @return Returns True if a loop at the end was found otherwise false
 	 */
-	private boolean loopInTrace(final List<FlowNode> trace) {
+	private static boolean loopInTrace(final List<FlowNode> trace) {
 		if (trace == null || trace.size() < 2) {
 			return false;
 		}

@@ -22,26 +22,26 @@ public class DummyHost implements AnalysisHost {
 	private boolean toSystemHost = false;
 		
 	public DummyHost(boolean printToSystemOut) {
-		toSystemHost = printToSystemOut;
+		this.toSystemHost = printToSystemOut;
 	}
 	
 	@Override
 	public void addResultMessage(AnalysisResultMessage resultMessage) {
-		if (toSystemHost) {
+		if (this.toSystemHost) {
 			System.out.println(resultMessage.getText());
 		}
 	}
 
 	@Override
 	public void appendToReport(String text) {
-		if (toSystemHost) {
+		if (this.toSystemHost) {
 			System.out.print(text);
 		}
 	}
 
 	@Override
 	public void appendLineToReport(String text) {
-		if (toSystemHost) {
+		if (this.toSystemHost) {
 			System.out.println(text);
 		}
 	}

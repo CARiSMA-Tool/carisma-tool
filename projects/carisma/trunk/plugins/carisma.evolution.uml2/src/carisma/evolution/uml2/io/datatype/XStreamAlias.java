@@ -67,11 +67,13 @@ public final class XStreamAlias {
 
 
 class MapEntryConverter implements Converter{
+	@Override
 	@SuppressWarnings("rawtypes")
 	public boolean canConvert(Class clazz) {
 		return HashMap.class.isAssignableFrom(clazz);
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public void marshal(Object value, HierarchicalStreamWriter writer, MarshallingContext context) {
 	    AbstractMap<String, Object> map = (AbstractMap<String, Object>) value;
@@ -87,6 +89,7 @@ class MapEntryConverter implements Converter{
 	    }
 	}
 	
+	@Override
 	public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
 	    Map<String, Object> map = new HashMap<String, Object>();
 	

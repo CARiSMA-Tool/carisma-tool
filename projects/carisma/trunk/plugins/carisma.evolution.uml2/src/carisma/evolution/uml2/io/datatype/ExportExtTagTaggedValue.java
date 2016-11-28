@@ -24,7 +24,7 @@ public class ExportExtTagTaggedValue extends ExportExtTagStereotype {
 	}
 
 	public String getStereotype() {
-		return stereotype;
+		return this.stereotype;
 	}
 
 	public void setStereotype(String stereotype) {

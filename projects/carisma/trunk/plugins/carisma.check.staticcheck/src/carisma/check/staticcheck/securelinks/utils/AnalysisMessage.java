@@ -21,36 +21,36 @@ public class AnalysisMessage {
 	
 	public AnalysisMessage(
 			final StatusType messageType, final OutputTarget messageTarget, final String newMessage) {
-		type = messageType;
-		target = messageTarget;
-		message = newMessage;
+		this.type = messageType;
+		this.target = messageTarget;
+		this.message = newMessage;
 	}
 	
 	public StatusType getType() {
-		return type;
+		return this.type;
 	}
 	
 	public OutputTarget getTarget() {
-		return target;
+		return this.target;
 	}
 	
 	public String getMessage() {
-		return message;
+		return this.message;
 	}
 
 	public void print(final AnalysisHost host) {
 		if (host != null) {
-			if (target == OutputTarget.BOTH) {
-				host.addResultMessage(new AnalysisResultMessage(type, message));
-				host.appendLineToReport(message);
+			if (this.target == OutputTarget.BOTH) {
+				host.addResultMessage(new AnalysisResultMessage(this.type, this.message));
+				host.appendLineToReport(this.message);
 				return;
 			}
-			if (target == OutputTarget.DETAIL) {
-				host.addResultMessage(new AnalysisResultMessage(type, message));
+			if (this.target == OutputTarget.DETAIL) {
+				host.addResultMessage(new AnalysisResultMessage(this.type, this.message));
 				return;
 			}
-			if (target == OutputTarget.REPORT) {
-				host.appendLineToReport(message);
+			if (this.target == OutputTarget.REPORT) {
+				host.appendLineToReport(this.message);
 				return;
 			}
 		}

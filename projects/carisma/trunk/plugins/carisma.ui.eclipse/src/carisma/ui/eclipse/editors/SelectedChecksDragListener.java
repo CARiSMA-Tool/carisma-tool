@@ -31,7 +31,7 @@ public class SelectedChecksDragListener implements DragSourceListener {
 
 	@Override
 	public final void dragSetData(final DragSourceEvent event) {
-		IStructuredSelection selection = (IStructuredSelection) tableViewer.getSelection();
+		IStructuredSelection selection = (IStructuredSelection) this.tableViewer.getSelection();
 		CheckReference firstElement = (CheckReference) selection.getFirstElement();
 		event.data = firstElement;
 	}

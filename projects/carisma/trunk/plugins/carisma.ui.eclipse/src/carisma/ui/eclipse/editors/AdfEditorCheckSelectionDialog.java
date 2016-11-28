@@ -57,7 +57,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 	/**
 	 * List of recommended checks.
 	 */
-	private List<CheckDescriptor> recommendedChecks = null;
+	List<CheckDescriptor> recommendedChecks = null;
 	
 	/**
 	 * Label string.
@@ -87,12 +87,12 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
     /**
      * Button to select the recommended checks.
      */
-    private Button recommendedChecksButton = null;
+    Button recommendedChecksButton = null;
 
     /**
      * The visual selection widget group.
      */
-    private CheckboxTableViewer listViewer;
+    CheckboxTableViewer listViewer;
 
     /**
      * Sizing constant.
@@ -120,7 +120,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
             final ILabelProvider labelProvider, final String message) {
         super(parentShell);
         setTitle("Selection needed");
-        inputElements = sortCheckListAlphabetically(input);
+        this.inputElements = sortCheckListAlphabetically(input);
         this.contentProvider = contentProvider;
         this.labelProvider = labelProvider;
         if (message != null) {
@@ -144,20 +144,20 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
         buttonComposite.setLayout(layout);
         buttonComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
-		recommendedChecksButton = new Button(buttonComposite, SWT.CHECK);
-		recommendedChecksButton.setLayoutData(new GridData(SWT.LEFT));
-		recommendedChecksButton.setText("Select recommended checks");
+		this.recommendedChecksButton = new Button(buttonComposite, SWT.CHECK);
+		this.recommendedChecksButton.setLayoutData(new GridData(SWT.LEFT));
+		this.recommendedChecksButton.setText("Select recommended checks");
 		//setRecommendedChecks(recommendedChecks, true);	// remove comment to initially add the checked Checks to the recommendChecks-List
-		recommendedChecksButton.setSelection(false);		// set this on true to initially check the recommendedChecks
+		this.recommendedChecksButton.setSelection(false);		// set this on true to initially check the recommendedChecks
 		
-		recommendedChecksButton.addSelectionListener(new SelectionAdapter() {
+		this.recommendedChecksButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				if (recommendedChecks != null) {
-					if (recommendedChecksButton.getSelection()) {
-						setRecommendedChecks(recommendedChecks, true);
+				if (AdfEditorCheckSelectionDialog.this.recommendedChecks != null) {
+					if (AdfEditorCheckSelectionDialog.this.recommendedChecksButton.getSelection()) {
+						setRecommendedChecks(AdfEditorCheckSelectionDialog.this.recommendedChecks, true);
 					} else {
-						setRecommendedChecks(recommendedChecks, false);
+						setRecommendedChecks(AdfEditorCheckSelectionDialog.this.recommendedChecks, false);
 					}
 				}
 			}
@@ -167,8 +167,9 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
                 IDialogConstants.SELECT_ALL_ID, SELECT_ALL, false); 
  
         SelectionListener listener = new SelectionAdapter() {
-            public void widgetSelected(final SelectionEvent e) {
-                listViewer.setAllChecked(true);
+            @Override
+			public void widgetSelected(final SelectionEvent e) {
+                AdfEditorCheckSelectionDialog.this.listViewer.setAllChecked(true);
             }
         };
         selectButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL, GridData.VERTICAL_ALIGN_FILL, false, false));
@@ -179,8 +180,9 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
         deselectButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL, GridData.VERTICAL_ALIGN_FILL, false, false));
         
         listener = new SelectionAdapter() {
-            public void widgetSelected(final SelectionEvent e) {
-                listViewer.setAllChecked(false);
+            @Override
+			public void widgetSelected(final SelectionEvent e) {
+                AdfEditorCheckSelectionDialog.this.listViewer.setAllChecked(false);
             }
         };
         deselectButton.addSelectionListener(listener);
@@ -192,7 +194,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
      */
     private void checkInitialSelections() {
     	for (Object obj : getInitialElementSelections()) {
-			listViewer.setChecked(obj, true);    		
+			this.listViewer.setChecked(obj, true);    		
     	}
     }
     
@@ -201,7 +203,8 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
      * 
      * @param shell Shell
      */
-    protected final void configureShell(final Shell shell) {
+    @Override
+	protected final void configureShell(final Shell shell) {
         super.configureShell(shell);
         PlatformUI.getWorkbench().getHelpSystem().setHelp(shell, CarismaGUI.PLUGIN_ID + ".Checks");
     }
@@ -212,7 +215,8 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
      * @param parent the Composite
      * @return Control
      */
-    protected final Control createDialogArea(final Composite parent) {
+    @Override
+	protected final Control createDialogArea(final Composite parent) {
         Composite composite = (Composite) super.createDialogArea(parent);
         parent.getShell().setMinimumSize(450, 450);
         
@@ -220,38 +224,38 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
         
         createMessageArea(composite);
 
-        listViewer = CheckboxTableViewer.newCheckList(composite, SWT.BORDER);
+        this.listViewer = CheckboxTableViewer.newCheckList(composite, SWT.BORDER);
         GridData data = new GridData(GridData.FILL_BOTH);
         data.heightHint = SIZING_SELECTION_WIDGET_HEIGHT;
         data.widthHint = SIZING_SELECTION_WIDGET_WIDTH;
-        listViewer.getTable().setLayoutData(data);
+        this.listViewer.getTable().setLayoutData(data);
 
-        listViewer.setLabelProvider(labelProvider);
-        listViewer.setContentProvider(contentProvider);
+        this.listViewer.setLabelProvider(this.labelProvider);
+        this.listViewer.setContentProvider(this.contentProvider);
 
         addSelectionButtons(composite);
 
         initializeViewer();
         
-        if (recommendedChecksButton.getSelection()
-        		&& (recommendedChecks != null 
-        		&& recommendedChecks.size() > 0)) {
-	        setInitialSelections(recommendedChecks.toArray());
+        if (this.recommendedChecksButton.getSelection()
+        		&& (this.recommendedChecks != null 
+        		&& this.recommendedChecks.size() > 0)) {
+	        setInitialSelections(this.recommendedChecks.toArray());
         }
         if (!getInitialElementSelections().isEmpty()) {
 			checkInitialSelections();
 		}
         Dialog.applyDialogFont(composite);
         
-        listViewer.addDoubleClickListener(new IDoubleClickListener() {
+        this.listViewer.addDoubleClickListener(new IDoubleClickListener() {
 			@Override
 			public void doubleClick(final DoubleClickEvent event) {
-				Object selection = ((IStructuredSelection) listViewer.getSelection()).getFirstElement();
+				Object selection = ((IStructuredSelection) AdfEditorCheckSelectionDialog.this.listViewer.getSelection()).getFirstElement();
 				if (selection != null) {
-					boolean state = listViewer.getChecked(selection);
+					boolean state = AdfEditorCheckSelectionDialog.this.listViewer.getChecked(selection);
 					state = state ^ true; // XOR swaps
-					listViewer.setChecked(selection, state);
-					listViewer.refresh();
+					AdfEditorCheckSelectionDialog.this.listViewer.setChecked(selection, state);
+					AdfEditorCheckSelectionDialog.this.listViewer.refresh();
 				}
 			}
 		});
@@ -265,14 +269,14 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
      * @return the viewer, or <code>null</code> if not yet created
      */
     protected final CheckboxTableViewer getViewer() {
-        return listViewer;
+        return this.listViewer;
     }
 
     /**
      * Initializes this dialog's viewer after it has been laid out.
      */
     private void initializeViewer() {
-        listViewer.setInput(inputElements);
+        this.listViewer.setInput(this.inputElements);
     }
 
     /**
@@ -280,17 +284,18 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
      * <code>Dialog</code> method builds a list of the selected elements for later
      * retrieval by the client and closes this dialog.
      */
-    protected final void okPressed() {
+    @Override
+	protected final void okPressed() {
     	
         // Get the input children.
-        Object[] children = contentProvider.getElements(inputElements);
+        Object[] children = this.contentProvider.getElements(this.inputElements);
 
         // Build a list of selected children.
         if (children != null) {
             ArrayList<CheckDescriptor> list = new ArrayList<CheckDescriptor>();
             for (int i = 0; i < children.length; ++i) {
                 Object element = children[i];
-                if (listViewer.getChecked(element)) {
+                if (this.listViewer.getChecked(element)) {
 					list.add((CheckDescriptor) element);
 				}
             }
@@ -307,10 +312,12 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 
 		@Override
 		public void dispose() {
+			//TODO: Why empty?
 		}
 
 		@Override
 		public void inputChanged(final Viewer viewer, final Object oldInput, final Object newInput) {
+			//TODO: Why empty?
 		}
 
 		@Override
@@ -336,11 +343,11 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 				return (Object[]) inputElement;
 			}
 			
-			Object[] inputs = new Object[CarismaGUI.INSTANCE.getCheckRegistry()
+			Object[] inputs = new Object[CarismaGUI.getCheckRegistry()
 					.getRegisteredChecks().size()];
-			for (int i = 0; i < CarismaGUI.INSTANCE.getCheckRegistry()
+			for (int i = 0; i < CarismaGUI.getCheckRegistry()
 					.getRegisteredChecks().size(); i++) {
-				inputs[i] = CarismaGUI.INSTANCE.getCheckRegistry()
+				inputs[i] = CarismaGUI.getCheckRegistry()
 						.getRegisteredChecks().get(i);
 			}
 			return inputs;
@@ -360,7 +367,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 		 * @param index the index
 		 * @return String the object
 		 */
-		public String getColumnText(final Object obj, final int index) {
+		public static String getColumnText(final Object obj, final int index) {
 			return obj.toString();
 		}
 		
@@ -371,22 +378,23 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 		 * @param index the index
 		 * @return the Image
 		 */
-		public Image getColumnImage(final Object obj, final int index) {
+		public static Image getColumnImage(final Object obj, final int index) {
 			if (obj instanceof CheckDescriptor) {
 				return PlatformUI.getWorkbench().getSharedImages()
 						.getImage(ISharedImages.IMG_OBJ_ELEMENT);
-			} else {
-				return PlatformUI.getWorkbench().getSharedImages()
-						.getImage(ISharedImages.IMG_OBJ_FILE);
 			}
+			return PlatformUI.getWorkbench().getSharedImages()
+					.getImage(ISharedImages.IMG_OBJ_FILE);
 		}
 
 		@Override
 		public void addListener(final ILabelProviderListener listener) {
+			//TODO: Why empty?
 		}
 
 		@Override
 		public void dispose() {
+			//TODO: Why empty?
 		}
 
 		@Override
@@ -396,6 +404,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 
 		@Override
 		public void removeListener(final ILabelProviderListener listener) {
+			//TODO: Why empty?
 		}
 
 		@Override
@@ -403,10 +412,9 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 			if (element instanceof CheckDescriptor) {
 				return PlatformUI.getWorkbench().getSharedImages()
 						.getImage(ISharedImages.IMG_OBJ_ELEMENT);
-			} else {
-				return PlatformUI.getWorkbench().getSharedImages()
-						.getImage(ISharedImages.IMG_OBJ_FILE);
 			}
+			return PlatformUI.getWorkbench().getSharedImages()
+					.getImage(ISharedImages.IMG_OBJ_FILE);
 		}
 
 		@Override
@@ -421,12 +429,12 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 	 * @param newRecommendedChecks an object array of recommended checks
 	 */
 	public final void setRecommendedChecks(final List<CheckDescriptor> newRecommendedChecks) {
-		if (recommendedChecks != null) {
-			recommendedChecks.clear();
+		if (this.recommendedChecks != null) {
+			this.recommendedChecks.clear();
 		} else {
-			recommendedChecks = new ArrayList<CheckDescriptor>();
+			this.recommendedChecks = new ArrayList<CheckDescriptor>();
 		}
-		recommendedChecks.addAll(newRecommendedChecks);
+		this.recommendedChecks.addAll(newRecommendedChecks);
 	}
 	
 	/**
@@ -449,7 +457,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 	 * @param checkList the unsorted list of checks
 	 * @return Returns a list of checks which is sorted alphabetically
 	 */
-	private Object[] sortCheckListAlphabetically(final List<CheckDescriptor> checkList) {
+	private static Object[] sortCheckListAlphabetically(final List<CheckDescriptor> checkList) {
 		Object[] returnObject = new Object[checkList.size()];
 		Comparator<CheckDescriptor> comparator = new CheckDescriptorNameComparator();
 		Collections.sort(checkList, comparator);

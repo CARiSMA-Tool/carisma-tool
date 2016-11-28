@@ -52,7 +52,7 @@ import com.thoughtworks.xstream.XStream;
  *
  */
 public class ModelImporter {
-
+	//TODO: Shouldn't this class implement CarismaCheckWithID as it is registered at the extension point carisma.carismacheck? 
 	
 	/**
 	 * The Resource on which the Delta is based.
@@ -76,44 +76,45 @@ public class ModelImporter {
 		if (inputXML == null || modelRes == null) { 
 			return null;
 		}
-		model = (Model) modelRes.getContents().get(0);
-		modelres = modelRes;
+		this.model = (Model) modelRes.getContents().get(0);
+		this.modelres = modelRes;
 		
 		XStream stream = XStreamAlias.getXStream();
 		ExportDelta expDelta;
-		try {
-			expDelta = (ExportDelta) stream.fromXML(new FileReader(inputXML));
+		try (FileReader fileReader = new FileReader(inputXML)){
+			expDelta = (ExportDelta) stream.fromXML(fileReader);
+		
+			ArrayList<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			for (ExportDeltaElement expDeltaEle : expDelta.getContent()) {
+				
+				EObject target = getTarget(expDeltaEle.getTarget());
+	
+				if (target != null) {
+					DeltaElement deltaEle = null;
+					if (expDeltaEle instanceof ExportAddElement) { 
+						deltaEle = getAddElement(
+								(ExportAddElement) expDeltaEle, target,	null);
+					} else if (expDeltaEle instanceof ExportDelElement) {
+						deltaEle = getDelElement(target);
+					} else if (expDeltaEle instanceof ExportSubstElement) {
+						deltaEle = getSubstElement(
+								(ExportSubstElement) expDeltaEle, target);
+					} else if (expDeltaEle instanceof ExportEditElement) {
+						deltaEle = getEditElement(
+								(ExportEditElement) expDeltaEle, target);
+					} else if (expDeltaEle instanceof ExportCopyElement) {
+						deltaEle = getCopyElement(
+								(ExportCopyElement) expDeltaEle, target);
+					}
+					deltaElements.add(deltaEle);
+				}
+	
+			}
+			return new Delta(expDelta.getUsedChangesID(), deltaElements);
 		} catch (Exception e) { 
 			Logger.log(LogLevel.ERROR, "Error while reading the input XML File", e);
 			return null;
 		}
-		ArrayList<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
-		for (ExportDeltaElement expDeltaEle : expDelta.getContent()) {
-			
-			EObject target = getTarget(expDeltaEle.getTarget());
-
-			if (target != null) {
-				DeltaElement deltaEle = null;
-				if (expDeltaEle instanceof ExportAddElement) { 
-					deltaEle = getAddElement(
-							(ExportAddElement) expDeltaEle, target,	null);
-				} else if (expDeltaEle instanceof ExportDelElement) {
-					deltaEle = getDelElement(target);
-				} else if (expDeltaEle instanceof ExportSubstElement) {
-					deltaEle = getSubstElement(
-							(ExportSubstElement) expDeltaEle, target);
-				} else if (expDeltaEle instanceof ExportEditElement) {
-					deltaEle = getEditElement(
-							(ExportEditElement) expDeltaEle, target);
-				} else if (expDeltaEle instanceof ExportCopyElement) {
-					deltaEle = getCopyElement(
-							(ExportCopyElement) expDeltaEle, target);
-				}
-				deltaElements.add(deltaEle);
-			}
-
-		}
-		return new Delta(expDelta.getUsedChangesID(), deltaElements);
 	}
 	
 	/** Returns the EObject represented by expTarget.
@@ -155,7 +156,7 @@ public class ModelImporter {
 	 * @param target the target of the new DelElement
 	 * @return created DelElement.
 	 */
-	private DelElement getDelElement(final EObject target) {
+	private static DelElement getDelElement(final EObject target) {
 		return new DelElement(target);
 	}
 
@@ -165,7 +166,7 @@ public class ModelImporter {
 	 * @param target the actual target in the model.  
 	 * @return an EditElement
 	 */
-	private EditElement getEditElement(final ExportEditElement ed, final EObject target) {
+	private static EditElement getEditElement(final ExportEditElement ed, final EObject target) {
 		EditElement editEle = new EditElement(target);
 		editEle.replaceValues(ExporterUtility.getValuesWithNull(ed.getValues()));
 		
@@ -225,7 +226,7 @@ public class ModelImporter {
 	private EObject getTargetByNameAndType(final ExportExtTagNamedElement target) {
 		List<NamedElement> allElements = new ArrayList<NamedElement>();
 
-		TreeIterator<EObject> allContent = modelres.getAllContents();
+		TreeIterator<EObject> allContent = this.modelres.getAllContents();
 
 		while (allContent.hasNext()) {
 			EObject content = allContent.next();
@@ -255,7 +256,7 @@ public class ModelImporter {
 		TaggedValue value = null;
 		StereotypeApplication stereoApp = null;
 		try {
-			NamedElement extendedElement = UMLHelper.getElementByName(model, ext.getExtendedElement());
+			NamedElement extendedElement = UMLHelper.getElementByName(this.model, ext.getExtendedElement());
 			for (Stereotype stereo : extendedElement.getAppliedStereotypes()) {
 				if (stereo.getQualifiedName().contains(ext.getStereotype()) && stereo.getQualifiedName().contains(ext.getProfile())) {
 					stereoApp = new StereotypeApplication(stereo, extendedElement);
@@ -286,7 +287,7 @@ public class ModelImporter {
 	private EObject getStereoTarget(final ExportExtTagStereotype ext) {
 		StereotypeApplication stereoApp = null;
 		try {
-			NamedElement extendedElement = UMLHelper.getElementByName(model, ext.getExtendedElement());
+			NamedElement extendedElement = UMLHelper.getElementByName(this.model, ext.getExtendedElement());
 			if (extendedElement == null) { 
 					return null;
 			}

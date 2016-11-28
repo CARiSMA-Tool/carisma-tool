@@ -10,7 +10,6 @@
  *******************************************************************************/
 package carisma.core.util;
 
-import java.io.InputStream;
 import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -21,15 +20,6 @@ public final class Utils {
 	 * To hide the default constructor.
 	 */
 	private Utils() {
-	}
-	
-	/**
-	 * Creates an InputStream from a given String.
-	 * @param string
-	 * @return
-	 */
-	public static InputStream createInputStreamFromString(String string) {
-		return new StringInputStream(string);
 	}
 	
 	/**
@@ -82,42 +72,41 @@ public final class Utils {
 		File file = new File(fileName);
 		  if (!file.exists()) {
 			return fileName;
-		} else {
-			String pathString = "";
-			String fileString = fileName;
-			String fileEnding = "";
-			String newFile;
-			if (fileName.lastIndexOf('/') >= 0) {
-				pathString = fileName.substring(0, fileName.lastIndexOf('/')) + "/";
-				fileString = fileName.substring(fileName.lastIndexOf('/'));
+		}
+		String pathString = "";
+		String fileString = fileName;
+		String fileEnding = "";
+		String newFile;
+		if (fileName.lastIndexOf('/') >= 0) {
+			pathString = fileName.substring(0, fileName.lastIndexOf('/')) + "/";
+			fileString = fileName.substring(fileName.lastIndexOf('/'));
+		}
+		if (fileString.lastIndexOf('.') >= 0) {
+			fileEnding = fileString.substring(fileString.lastIndexOf('.'));
+			fileString = fileString.substring(0, fileString.lastIndexOf('.'));
+		}
+		int count = 2;
+		String integer;
+		if ((fileString.lastIndexOf('_') >= 0) && (fileString.lastIndexOf('_') < fileString.length() - 1)) {
+			integer = fileString.substring(fileString.lastIndexOf('_') + 1);
+			try {
+				count = Integer.valueOf(integer).intValue();
+				fileString = fileString.substring(0, fileString.lastIndexOf('_')) + "_";
+			} catch (Exception e) {
+				/*This try-catch block is just for checking if the filename ends with an underline-character
+				followed by an integer, so there is no need of an handling of the exception.*/
 			}
-			if (fileString.lastIndexOf('.') >= 0) {
-				fileEnding = fileString.substring(fileString.lastIndexOf('.'));
-				fileString = fileString.substring(0, fileString.lastIndexOf('.'));
-			}
-			int count = 2;
-			String integer;
-			if ((fileString.lastIndexOf('_') >= 0) && (fileString.lastIndexOf('_') < fileString.length() - 1)) {
-				integer = fileString.substring(fileString.lastIndexOf('_') + 1);
-				try {
-					count = Integer.valueOf(integer);
-					fileString = fileString.substring(0, fileString.lastIndexOf('_')) + "_";
-				} catch (Exception e) {
-					/*This try-catch block is just for checking if the filename ends with an underline-character
-					followed by an integer, so there is no need of an handling of the exception.*/
-				}
-			}
-			if (fileString.lastIndexOf('_') < 0) {
-				fileString += "_";
-			}
+		}
+		if (fileString.lastIndexOf('_') < 0) {
+			fileString += "_";
+		}
+		newFile = pathString + fileString + count + fileEnding;
+		file = new File(newFile);
+		while (file.exists()) {
+			count++;
 			newFile = pathString + fileString + count + fileEnding;
 			file = new File(newFile);
-			while (file.exists()) {
-				count++;
-				newFile = pathString + fileString + count + fileEnding;
-				file = new File(newFile);
-			}
-			return newFile;
-		  }
+		}
+		return newFile;
 	}
 }

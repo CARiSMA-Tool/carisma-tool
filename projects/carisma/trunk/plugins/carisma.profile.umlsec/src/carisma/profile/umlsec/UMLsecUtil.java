@@ -87,7 +87,7 @@ public final class UMLsecUtil {
 	 */
 	public static StereotypeApplication getStereotypeApplication(
 			final Element element, final UMLsec stereo) {
-		for (StereotypeApplication stereoApp : getStereotypeApplications(element, stereo)) {
+		for (StereotypeApplication stereoApp : getStereotypeApplications(element)) {
 			UMLsec type = UMLsec.getValue(stereoApp.getAppliedStereotype().getName());
 			if (type.equals(stereo)) {
 				return stereoApp;
@@ -124,7 +124,7 @@ public final class UMLsecUtil {
 	 * @param element - the element to inspect
 	 * @return - list of UMLsec stereotype applications
 	 */
-	public static List<StereotypeApplication> getStereotypeApplications(final Element element, final UMLsec stereotype) {
+	public static List<StereotypeApplication> getStereotypeApplications(final Element element) {
 		List<StereotypeApplication> result = new ArrayList<StereotypeApplication>();
 		for (Stereotype stereo : element.getAppliedStereotypes()) {
 			if (UMLsec.contains(stereo)) {

@@ -31,8 +31,8 @@ public class Tupel<T, V> {
 	 * @param o2 object2
 	 */
 	public Tupel(final T o1, final V o2) {
-		object1 = o1;
-		object2 = o2;
+		this.object1 = o1;
+		this.object2 = o2;
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class Tupel<T, V> {
 	 * @return object1
 	 */
 	public final T getO1() {
-		return object1;
+		return this.object1;
 	}
 
 	/**
@@ -48,6 +48,6 @@ public class Tupel<T, V> {
 	 * @return object2
 	 */
 	public final V getO2() {
-		return object2;
+		return this.object2;
 	}
 }

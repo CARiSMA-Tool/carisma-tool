@@ -22,6 +22,7 @@ import carisma.core.Carisma;
 import carisma.core.analysis.Analysis;
 import carisma.core.analysis.AnalysisUtil;
 import carisma.core.analysis.CheckReference;
+import carisma.core.checks.CheckRegistry;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 import carisma.evolution.EvolutionUtility;
@@ -81,14 +82,16 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 	 * @param action The action
 	 * @param targetPart The IWorkbenchPart
 	 */
+	@Override
 	public final void setActivePart(final IAction action, final IWorkbenchPart targetPart) {
-		shell = targetPart.getSite().getShell();
+		this.shell = targetPart.getSite().getShell();
 	}
 
 	/**
 	 * @see IActionDelegate#run(IAction)
 	 * @param action The action
 	 */
+	@Override
 	@SuppressWarnings("deprecation")
 	public final void run(final IAction action) {
 		// Init all variables
@@ -106,11 +109,11 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 		for (IEditorPart iep : activePage.getEditors()) {
 			if (iep.getEditorInput() instanceof FileEditorInput) {
 				FileEditorInput fei = (FileEditorInput) iep.getEditorInput();
-				if (fei.getFile().equals(selectedFile)) {
+				if (fei.getFile().equals(this.selectedFile)) {
 					activePage.closeEditor(iep, false);
 					if (iep.isDirty()) {
 						MessageDialog mDialog = new MessageDialog(
-								shell, "Save and Launch", null, "Do you want to save the changes?", 0, new String[]{"OK", "Cancel"}, 0);
+								this.shell, "Save and Launch", null, "Do you want to save the changes?", 0, new String[]{"OK", "Cancel"}, 0);
 						mDialog.open();
 						if (mDialog.getReturnCode() == 0) {
 							iep.doSave(null);
@@ -122,7 +125,7 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 		}
 		
 		// Read the adf-File
-		Analysis analysisFile = AnalysisUtil.readAnalysis(selectedFile.getLocation().toOSString());
+		Analysis analysisFile = AnalysisUtil.readAnalysis(this.selectedFile.getLocation().toOSString());
 		
 		// Find the corresponding checks
 		List<CheckReference> checkList = analysisFile.getChecks();
@@ -148,7 +151,8 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 			actionsPerformedString.append(this.firstString);
 			actionsPerformedString.append("', moved to first position\n");
 		} else {
-			firstCheck = Carisma.getInstance().getCheckRegistry().createReference(Carisma.getInstance().getCheckRegistry().getCheckDescriptor(this.firstString));
+			Carisma.getInstance().getCheckRegistry();
+			firstCheck = CheckRegistry.createReference(Carisma.getInstance().getCheckRegistry().getCheckDescriptor(this.firstString));
 			actionsPerformedString.append(DID_NOT_FOUND_CHECK);
 			actionsPerformedString.append(this.firstString);
 			actionsPerformedString.append("', added to first position\n");
@@ -161,7 +165,8 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 			actionsPerformedString.append(this.secondString);
 			actionsPerformedString.append("', moved to second position\n");
 		} else {
-			secondCheck = Carisma.getInstance().getCheckRegistry().createReference(Carisma.getInstance().getCheckRegistry().getCheckDescriptor(this.secondString));
+			Carisma.getInstance().getCheckRegistry();
+			secondCheck = CheckRegistry.createReference(Carisma.getInstance().getCheckRegistry().getCheckDescriptor(this.secondString));
 			actionsPerformedString.append(DID_NOT_FOUND_CHECK);
 			actionsPerformedString.append(this.secondString);
 			actionsPerformedString.append("', added to second position\n");
@@ -174,7 +179,8 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 			actionsPerformedString.append(this.thirdString);
 			actionsPerformedString.append("', moved to third position\n");
 		} else {
-			thirdCheck = Carisma.getInstance().getCheckRegistry().createReference(Carisma.getInstance().getCheckRegistry().getCheckDescriptor(this.thirdString));
+			Carisma.getInstance().getCheckRegistry();
+			thirdCheck = CheckRegistry.createReference(Carisma.getInstance().getCheckRegistry().getCheckDescriptor(this.thirdString));
 			actionsPerformedString.append(DID_NOT_FOUND_CHECK);
 			actionsPerformedString.append(this.thirdString);
 			actionsPerformedString.append("', added to third position\n");
@@ -187,7 +193,8 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 			actionsPerformedString.append(this.lastString);
 			actionsPerformedString.append("', moved to last position\n");
 		} else {
-			lastCheck = Carisma.getInstance().getCheckRegistry().createReference(Carisma.getInstance().getCheckRegistry().getCheckDescriptor(this.lastString));
+			Carisma.getInstance().getCheckRegistry();
+			lastCheck = CheckRegistry.createReference(Carisma.getInstance().getCheckRegistry().getCheckDescriptor(this.lastString));
 			actionsPerformedString.append(DID_NOT_FOUND_CHECK);
 			actionsPerformedString.append(this.lastString);
 			actionsPerformedString.append("', added to last position\n");
@@ -199,7 +206,8 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 
 				String evoID = EvolutionUtility.getEvolutionCheck(checkID);
 				if (evoID != null) {
-					CheckReference checkRef = Carisma.getInstance().getCheckRegistry().createReference(
+					Carisma.getInstance().getCheckRegistry();
+					CheckReference checkRef = CheckRegistry.createReference(
 							Carisma.getInstance().getCheckRegistry().getCheckDescriptor(evoID));
 					if (checkRef != null) {
 						checkList.remove(i);
@@ -224,21 +232,21 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 		}
 		
 		// Save to adf-File
-		AnalysisUtil.storeAnalysis(analysisFile, selectedFile.getLocation().toOSString());
+		AnalysisUtil.storeAnalysis(analysisFile, this.selectedFile.getLocation().toOSString());
 		
 		// Reopen the adf-File if it was open before
 		if (adfWasOpen) {
 			try {
-				IEditorInput newEditor = new FileEditorInput(selectedFile);
+				IEditorInput newEditor = new FileEditorInput(this.selectedFile);
 				activePage.openEditor(newEditor, "carisma.core.editors.AdfEditor");
 			} catch (Exception e) {
 				Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			}
 		}
 		// refresh resource
-		if (selectedFile != null) {
+		if (this.selectedFile != null) {
 			try {
-				selectedFile.refreshLocal(IResource.DEPTH_ZERO, null);
+				this.selectedFile.refreshLocal(IResource.DEPTH_ZERO, null);
 			} catch (CoreException e) {
 				Logger.log(LogLevel.INFO, "Could not refresh resource");
 			}
@@ -246,9 +254,9 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 		
 		// Success Message
 		MessageDialog.openInformation(
-				shell,
+				this.shell,
 				"CARiSMA",
-				"Successfully converted " + selectedFile.getName() + " to an UMLchange analysis\n" 
+				"Successfully converted " + this.selectedFile.getName() + " to an UMLchange analysis\n" 
 				+ "Actions performed:\n" 
 				+ actionsPerformedString
 				);
@@ -259,10 +267,11 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 	 * @param action The IAction
 	 * @param selection The ISelection
 	 */
+	@Override
 	public final void selectionChanged(final IAction action, final ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
             IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-            selectedFile = (IFile) structuredSelection.getFirstElement();
+            this.selectedFile = (IFile) structuredSelection.getFirstElement();
         }
 	}
 
@@ -279,7 +288,7 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 	    	FileEditorInput editorInput = (FileEditorInput) page.getActiveEditor().getEditorInput();
 	    	IFile file = editorInput.getFile();
 	    	if (file != null && file.getName().endsWith(".adf")) {
-	    		selectedFile = file;
+	    		this.selectedFile = file;
 	    		return true;
 	    	}
 	    } catch (NullPointerException npe) {
@@ -299,7 +308,7 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 			IWorkbenchWindow ww = org.eclipse.ui.PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 			ISelection selection = ww.getSelectionService().getSelection();
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			selectedFile = (IFile) structuredSelection.getFirstElement();
+			this.selectedFile = (IFile) structuredSelection.getFirstElement();
 			
 			return true;
 			

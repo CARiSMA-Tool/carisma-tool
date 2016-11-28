@@ -60,13 +60,12 @@ public class ActivityDiagramManager {
 			AnalysisResultMessage detail = new AnalysisResultMessage(StatusType.WARNING, "internal error");
 			host.addResultMessage(detail);
 			throw new IllegalArgumentException("the given Model is null.");
-			} else {
-				this.model = model;
-				if (host == null) {
-					this.host = new DummyHost(true);
-				} else {
-					this.host = host;
-				}
+		}
+		this.model = model;
+		if (host == null) {
+			this.host = new DummyHost(true);
+		} else {
+			this.host = host;
 		}
 	}
 	
@@ -90,7 +89,7 @@ public class ActivityDiagramManager {
 		}
 		deleteDoubles();
 		deleteFollows();
-		return resultList;
+		return this.resultList;
 	}
 	
 	/**
@@ -100,8 +99,8 @@ public class ActivityDiagramManager {
 	 */
 	private List<Element> getInitalNodes() {
 		List<Element> returnList = new ArrayList<Element>();
-		for (Element element : UMLHelper.getAllElementsOfType(model, InitialNode.class)) {
-			if ((element.getOwner().getOwner() == model) || (element.getOwner().getOwner().getOwner() == model)) {
+		for (Element element : UMLHelper.getAllElementsOfType(this.model, InitialNode.class)) {
+			if ((element.getOwner().getOwner() == this.model) || (element.getOwner().getOwner().getOwner() == this.model)) {
 				returnList.add(element);
 			}
 		}
@@ -116,7 +115,7 @@ public class ActivityDiagramManager {
 		Element last = list.get(list.size() - 1);
 		if (last instanceof ForkNode) {
 			ParallelPath parallelPath = new ParallelPath();
-			List<List<Element>> parallelList = parallelPath.getParallelPaths((ForkNode) last, host);
+			List<List<Element>> parallelList = parallelPath.getParallelPaths((ForkNode) last, this.host);
 			for (List<Element> path : parallelList) {
 				List<Element> newList = new ArrayList<Element>();
 				newList.addAll(list);
@@ -139,14 +138,14 @@ public class ActivityDiagramManager {
     							cutted.addAll(list);
     							cutted.remove(cutted.size() - 1);
     							cutted = cutList(cutted, newAcc);
-    							resultList.add(cutted);
+    							this.resultList.add(cutted);
     						}
     				}
     			} else {
-    				resultList.add(list);
+    				this.resultList.add(list);
     			}
 			} catch (NullPointerException exception) {
-				host.appendLineToReport("Diagram is not correct!\n" + ((NamedElement) last).getName() + " has one incorrect outgoing transition");
+				this.host.appendLineToReport("Diagram is not correct!\n" + ((NamedElement) last).getName() + " has one incorrect outgoing transition");
 			}
 			
 		}
@@ -159,7 +158,7 @@ public class ActivityDiagramManager {
 	 * @return boolean if there is a loop in the end of the path
 	 *
 	 */
-	private boolean contains(final List<Element> list, final Element element) {
+	private static boolean contains(final List<Element> list, final Element element) {
 		boolean path = false;
 		for (int i = list.size() - 1; i > 0; i--) {
 			if (list.get(i) == element) {
@@ -186,7 +185,7 @@ public class ActivityDiagramManager {
 	 * @param element element where the loop starts/ends
 	 * @return list without loop at the end
 	 */
-	private List<Element> cutList(final List<Element> list, final Element element) {
+	private static List<Element> cutList(final List<Element> list, final Element element) {
 		List<Element> returnList = new ArrayList<Element>();
 		int count;
 		
@@ -205,7 +204,7 @@ public class ActivityDiagramManager {
 	 */
 	public final String debugOutput() {
 		StringBuffer returnString = new StringBuffer();
-		ActivityDiagramManager manager = new ActivityDiagramManager(model, host);
+		ActivityDiagramManager manager = new ActivityDiagramManager(this.model, this.host);
 		List<List<Element>> paths = manager.getAllPaths();
 		for (List<Element> list : paths) {
 			for (Element element : list) {
@@ -221,10 +220,10 @@ public class ActivityDiagramManager {
 	 * deletes an element if it follows itself.
 	 */
 	private void deleteFollows() {
-		for (int i = resultList.size() - 1; i >= 0; i--) {
-			for (int j = resultList.get(i).size() - 1; j > 0; j--) {
-				if (resultList.get(i).get(j) == resultList.get(i).get(j - 1)) {
-					resultList.get(i).remove(j);
+		for (int i = this.resultList.size() - 1; i >= 0; i--) {
+			for (int j = this.resultList.get(i).size() - 1; j > 0; j--) {
+				if (this.resultList.get(i).get(j) == this.resultList.get(i).get(j - 1)) {
+					this.resultList.get(i).remove(j);
 				}
 			}
 		}
@@ -235,11 +234,11 @@ public class ActivityDiagramManager {
 	 *
 	 */
 	private void deleteDoubles() {		
-		for (int i = resultList.size() - 1; i >= 0; i--) {
-			for (int j = resultList.size() - 1; j >= 0; j--) {
+		for (int i = this.resultList.size() - 1; i >= 0; i--) {
+			for (int j = this.resultList.size() - 1; j >= 0; j--) {
 				if (i != j 
-						&& isDouble(resultList.get(i), resultList.get(j))) {
-					resultList.remove(i);
+						&& isDouble(this.resultList.get(i), this.resultList.get(j))) {
+					this.resultList.remove(i);
 				}
 			}
 		}
@@ -252,7 +251,7 @@ public class ActivityDiagramManager {
 	 * @param list2 list 2 to test
 	 * @return boolean if the two paths are the same
 	 */
-	private boolean isDouble(final List<Element> list1, final List<Element> list2) {
+	private static boolean isDouble(final List<Element> list1, final List<Element> list2) {
 		boolean returnValue = true;
 		
 		if (list1.size() > list2.size()) {
@@ -273,7 +272,7 @@ public class ActivityDiagramManager {
 	 * @param elt the UML element
 	 * @return truth value
 	 */
-	public final boolean isAction(final Element elt) {
+	public final static boolean isAction(final Element elt) {
 		if (elt instanceof org.eclipse.uml2.uml.OpaqueAction) {
 			return true;
 		}
@@ -285,7 +284,7 @@ public class ActivityDiagramManager {
 	 * @param elt the UML element
 	 * @return truth value
 	 */
-	public final boolean isDecisionOrMergeNode(final Element elt) {
+	public final static boolean isDecisionOrMergeNode(final Element elt) {
 		return isDecisionNode(elt) || isMergeNode(elt);
 	}
 	
@@ -294,7 +293,7 @@ public class ActivityDiagramManager {
 	 * @param elt the UML element
 	 * @return truth value
 	 */
-	public final boolean isDecisionNode(final Element elt) {
+	public final static boolean isDecisionNode(final Element elt) {
 		if (elt instanceof org.eclipse.uml2.uml.DecisionNode) {
 			return true;
 		}
@@ -306,7 +305,7 @@ public class ActivityDiagramManager {
 	 * @param elt the UML element
 	 * @return truth value
 	 */
-	public final boolean isMergeNode(final Element elt) {
+	public final static boolean isMergeNode(final Element elt) {
 		if (elt instanceof org.eclipse.uml2.uml.MergeNode) {
 			return true;
 		}
@@ -318,7 +317,7 @@ public class ActivityDiagramManager {
 	 * @param elt the UML element
 	 * @return truth value
 	 */
-	public final boolean isInitialNode(final Element elt) {
+	public final static boolean isInitialNode(final Element elt) {
 		if (elt instanceof org.eclipse.uml2.uml.InitialNode) {
 			return true;
 		}
@@ -331,7 +330,7 @@ public class ActivityDiagramManager {
 	 * @param elt the UML element
 	 * @return truth value
 	 */
-	public final boolean isFinalNode(final Element elt) {
+	public final static boolean isFinalNode(final Element elt) {
 		if (elt instanceof org.eclipse.uml2.uml.ActivityFinalNode) {
 			return true;
 		}
@@ -344,7 +343,7 @@ public class ActivityDiagramManager {
 	 * @param elt the UML element
 	 * @return truth value
 	 */
-	public final boolean isEdge(final Element elt) {
+	public final static boolean isEdge(final Element elt) {
 		if (elt instanceof org.eclipse.uml2.uml.ControlFlow) {
 			return true;
 		}
@@ -356,7 +355,7 @@ public class ActivityDiagramManager {
 	 * @param elt the UML element
 	 * @return truth value
 	 */
-	public final boolean isJoinNode(final Element elt) {
+	public final static boolean isJoinNode(final Element elt) {
 		if (elt instanceof org.eclipse.uml2.uml.JoinNode) {
 			return true;
 		}
@@ -368,7 +367,7 @@ public class ActivityDiagramManager {
 	 * @param elt the UML element
 	 * @return truth value
 	 */
-	public final boolean isForkNode(final Element elt) {
+	public final static boolean isForkNode(final Element elt) {
 		if (elt instanceof org.eclipse.uml2.uml.ForkNode) {
 			return true;
 		}

@@ -63,16 +63,16 @@ public class ParameterDialogUtil extends Dialog {
 	 * @return the new value of the String Parameter
 	 */
 	public final String queryStringParameter(final StringParameter parameter) {
-		InputDialog id = new InputDialog(super.getShell(), checkDescriptor.getName(),
+		InputDialog id = new InputDialog(super.getShell(), this.checkDescriptor.getName(),
 				DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (STRING)", 
 				parameter.getValue(),
 				null);
 		int result = id.open();
 		if (result == 0) {		// OK-Button
 			return id.getValue();
-		} else { 				// Cancel
-			return parameter.getValue();
 		}
+		// Cancel
+		return parameter.getValue();
 	}
 
 	/**
@@ -84,6 +84,7 @@ public class ParameterDialogUtil extends Dialog {
 		final InputDialog inputDialog;
 		
 		IInputValidator inputValidator = new IInputValidator() {
+			@Override
 			public String isValid(final String newText) {
 				try {
 					Float.parseFloat(newText);
@@ -94,16 +95,16 @@ public class ParameterDialogUtil extends Dialog {
 			}
 		};
 		
-		inputDialog = new InputDialog(super.getShell(), checkDescriptor.getName(),
+		inputDialog = new InputDialog(super.getShell(), this.checkDescriptor.getName(),
 				DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (FLOAT)", 
 				String.valueOf(parameter.getValue()),
 				inputValidator);
 		int result = inputDialog.open();
 		if (result == 0) {		// OK-Button
 			return Float.parseFloat(inputDialog.getValue());
-		} else { 				// Cancel
-			return parameter.getValue();
 		}
+		// Cancel
+		return parameter.getValue();
 	}
 
 	/**
@@ -114,6 +115,7 @@ public class ParameterDialogUtil extends Dialog {
 	public final int queryIntegerParameter(final IntegerParameter parameter) {
 		final InputDialog id;
 		IInputValidator iv = new IInputValidator() {
+			@Override
 			public String isValid(final String newText) {
 				try {
 					Integer.parseInt(newText);
@@ -124,7 +126,7 @@ public class ParameterDialogUtil extends Dialog {
 			}
 		};
 		
-		id = new InputDialog(super.getShell(), checkDescriptor.getName(),
+		id = new InputDialog(super.getShell(), this.checkDescriptor.getName(),
 				DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (INTEGER)",
 				String.valueOf(parameter.getValue()), 
 				iv);
@@ -141,12 +143,12 @@ public class ParameterDialogUtil extends Dialog {
 			String value = id.getValue();
 			Integer valueInt = null;
 			try {
-				valueInt = Integer.parseInt(value);
+				valueInt = Integer.valueOf(value);
 			} catch (NumberFormatException nfe) {
 				isANumber = false;
 			}
 			if (isANumber) {
-				return valueInt;
+				return valueInt.intValue();
 			}
 		}
 		return parameter.getValue();
@@ -163,7 +165,7 @@ public class ParameterDialogUtil extends Dialog {
 			result = 1;
 		}
 		MessageDialog md = new MessageDialog(super.getShell(),
-				checkDescriptor.getName(), null,
+				this.checkDescriptor.getName(), null,
 				DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (BOOLEAN)", 
 				0, 
 				new String[] {"True", "False" }, 
@@ -184,7 +186,7 @@ public class ParameterDialogUtil extends Dialog {
 		if (parameter.getValue() != null) {
 			fDialog.setFileName(parameter.getValue().toString());
 		}
-		fDialog.setText(checkDescriptor.getName() + ": " + DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (INPUTFILE)");
+		fDialog.setText(this.checkDescriptor.getName() + ": " + DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (INPUTFILE)");
 		String selected = fDialog.open();
 		if (selected != null) {
 			return new File(selected);
@@ -200,12 +202,12 @@ public class ParameterDialogUtil extends Dialog {
 	public final File queryFolderParameter(final FolderParameter parameter) {
 		DirectoryDialog dirDialog = new DirectoryDialog(super.getParentShell());
 		final String folderValue; 
-		if (((FolderParameter) parameter).getValue() != null) {
-			folderValue = ((FolderParameter) parameter).getValue().getPath();
+		if (parameter.getValue() != null) {
+			folderValue = parameter.getValue().getPath();
 		} else {
 			folderValue = "";
 		}
-		dirDialog.setText(checkDescriptor.getName() + ": " + DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (FOLDER)");
+		dirDialog.setText(this.checkDescriptor.getName() + ": " + DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (FOLDER)");
 		dirDialog.setFilterPath(folderValue);
 		String result = dirDialog.open();
 		if (result != null && !"".equals(result)) {
@@ -222,11 +224,11 @@ public class ParameterDialogUtil extends Dialog {
 	public final File queryOutputFileParameter(final OutputFileParameter parameter) {
 		FileDialog fDialog = new FileDialog(super.getParentShell(), SWT.SAVE);
 		fDialog.setOverwrite(true);
-		fDialog.setText(checkDescriptor.getName() + ": " + DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (OUTPUTFILE)");
+		fDialog.setText(this.checkDescriptor.getName() + ": " + DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (OUTPUTFILE)");
 		String selection;
 		
-		if (((OutputFileParameter) parameter).getValue() != null) {
-			selection = ((OutputFileParameter) parameter).getValue().getPath();
+		if (parameter.getValue() != null) {
+			selection = parameter.getValue().getPath();
 			fDialog.setFileName(selection);
 		} else {
 			selection = "";

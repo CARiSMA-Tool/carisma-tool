@@ -11,7 +11,7 @@ import carisma.core.analysis.RegisterInUseException;
 import carisma.core.analysis.RegisterNotInUseException;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
@@ -22,8 +22,12 @@ import carisma.evolution.Change;
  * Wraps the UMLchangeParser in a check and puts the parser results in the registry.
  */
 
-public class UMLchangeParserCheck implements CarismaCheck {
+public class UMLchangeParserCheck implements CarismaCheckWithID {
 
+	public static final String CHECK_ID = "carisma.evolution.uml2.umlchange.UMLchangeParserCheck";
+	
+	public static final String CHECK_NAME = "UMLchange Parser";
+	
     /** Named used to register.
      */
 	private static final String CHANGE_REGISTER_NAME = "carisma.data.evolution.changes"; 
@@ -56,5 +60,15 @@ public class UMLchangeParserCheck implements CarismaCheck {
 		host.addResultMessage(new AnalysisResultMessage(
 		        StatusType.INFO, "Parsed model for Changes with the UMLchange parser. Found " + changes.size() + " changes."));
 		return true;
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 }

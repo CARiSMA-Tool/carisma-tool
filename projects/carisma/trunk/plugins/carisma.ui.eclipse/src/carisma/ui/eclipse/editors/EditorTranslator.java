@@ -64,7 +64,7 @@ public class EditorTranslator {
 				CarismaGUI.INSTANCE.getPreferenceStore().getString(Constants.EDITOR_SELECTION_ART);
 		// Priority list
 		if (editorSelectionArt.equals(Constants.AUTO)) {
-			List<String> editorPriorityList = EditorPriorityList.getPriorityList(analysis.getModelType());
+			List<String> editorPriorityList = EditorPriorityList.getPriorityList(this.analysis.getModelType());
 			if (editorPriorityList == null || editorPriorityList.size() < 1) {
 				MessageDialog mDialog = new MessageDialog(Display.getDefault().getActiveShell(),
 						"Error", null, 
@@ -77,7 +77,7 @@ public class EditorTranslator {
 			}
 			for (String editorName : editorPriorityList) {
 				EditorDescriptor editorDesc = editorRegistry.getEditorDescriptorByName(editorName);
-				if (editorDesc.forceOpen(analysis.getIFile())) {
+				if (editorDesc.forceOpen(this.analysis.getIFile())) {
 					return true;
 				}
 			}
@@ -89,30 +89,28 @@ public class EditorTranslator {
 				editorDesc = getDefaultEditor();
 			} else {
 				// Find selected editor in the editor registry
-				String selectedEditorId = analysis.getSelectedEditorId();
+				String selectedEditorId = this.analysis.getSelectedEditorId();
 				editorDesc = editorRegistry.getEditorDescriptorById(selectedEditorId);
 			}
 			if (editorDesc != null) {
-				if (editorDesc.forceOpen(analysis.getIFile())) {
+				if (editorDesc.forceOpen(this.analysis.getIFile())) {
 					return true;
-				} else {
-					MessageDialog mDialog = new MessageDialog(Display.getDefault().getActiveShell(),
-							"Error", null, 
-							"The selected editor cannot be opened", 
-							MessageDialog.ERROR, 
-							new String[]{"OK"}, 0);
-					mDialog.open();
-					return false;
 				}
-			} else {
 				MessageDialog mDialog = new MessageDialog(Display.getDefault().getActiveShell(),
 						"Error", null, 
-						"The selected editor was not found", 
+						"The selected editor cannot be opened", 
 						MessageDialog.ERROR, 
 						new String[]{"OK"}, 0);
 				mDialog.open();
 				return false;
 			}
+			MessageDialog mDialog = new MessageDialog(Display.getDefault().getActiveShell(),
+					"Error", null, 
+					"The selected editor was not found", 
+					MessageDialog.ERROR, 
+					new String[]{"OK"}, 0);
+			mDialog.open();
+			return false;
 		}
 		return false;
 	}
@@ -125,7 +123,7 @@ public class EditorTranslator {
 	public final EditorDescriptor getDefaultEditor() {
 		IContentDescription contentDescription = null;
 		try {
-			IFile currentFile = analysis.getIFile();
+			IFile currentFile = this.analysis.getIFile();
 			//Workaround for *.bpmn suffix
 			if (currentFile.getFileExtension().equals("bpmn")) {
 				contentDescription = Platform.getContentTypeManager()
@@ -142,7 +140,7 @@ public class EditorTranslator {
 			IEditorDescriptor desc = null;
 			IContentType contentType = contentDescription.getContentType();
 			if (contentType != null) {
-				desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(analysis.getIFile().getName(), contentType);
+				desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(this.analysis.getIFile().getName(), contentType);
 				return CarismaGUI.INSTANCE.getEditorRegistry().getEditorDescriptorById(desc.getId());
 			}
 		}

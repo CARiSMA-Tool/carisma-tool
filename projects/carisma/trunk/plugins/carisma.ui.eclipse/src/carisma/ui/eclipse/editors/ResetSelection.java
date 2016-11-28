@@ -33,24 +33,24 @@ public class ResetSelection implements IObjectActionDelegate {
 	public final void run(final IAction action) {
 		Logger.log(LogLevel.DEBUG, "Test Message");
 
-		Analysis analysis = AnalysisUtil.readAnalysis(selectedFile.getLocation()
+		Analysis analysis = AnalysisUtil.readAnalysis(this.selectedFile.getLocation()
 				.toOSString());
 		analysis.setSelectedEditorId("");
 		
 		// save analysis 	
-		AnalysisUtil.storeAnalysis(analysis, selectedFile.getLocation().toOSString());
+		AnalysisUtil.storeAnalysis(analysis, this.selectedFile.getLocation().toOSString());
 		// refresh resource
 
 		IWorkbenchPage[] pages = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPages();
 		try {
-			selectedFile.refreshLocal(IResource.DEPTH_ZERO, null);
+			this.selectedFile.refreshLocal(IResource.DEPTH_ZERO, null);
 		} catch (CoreException e) {
 			Logger.log(LogLevel.INFO, "Could not refresh resource");
 		}
 		for (IWorkbenchPage page : pages) {
 			for (IEditorReference editorRef : page.getEditorReferences()) {
 				if (editorRef != null 
-						&& selectedFile.getName().equals(editorRef.getName())
+						&& this.selectedFile.getName().equals(editorRef.getName())
 						&& editorRef.getEditor(false) instanceof AdfEditor) {
 					((AdfEditor) editorRef.getEditor(false)).loadAnalysis();
 				}
@@ -62,7 +62,7 @@ public class ResetSelection implements IObjectActionDelegate {
 	public final void selectionChanged(final IAction action, final ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			selectedFile = (IFile) structuredSelection.getFirstElement();
+			this.selectedFile = (IFile) structuredSelection.getFirstElement();
 		}
 	}
 

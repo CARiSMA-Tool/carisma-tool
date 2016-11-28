@@ -60,20 +60,19 @@ public enum UMLsec {
 	
 	private static final String PROFILE_NAME = "RABAC";
 	private static final String PROFILE_VERSION = "1";
-	private static final String PROFILE_URI = "platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml";
-
-	public static final CarismaProfileDescriptor DESCRIPTOR = new CarismaProfileDescriptor(PROFILE_NAME, PROFILE_VERSION, PROFILE_URI);
+	
+	public static final CarismaProfileDescriptor DESCRIPTOR = new CarismaProfileDescriptor(PROFILE_NAME, PROFILE_VERSION, RabacActivator.UML_URI);
 
 	
 	private final String readableName;
 	
 	private UMLsec(final String newName) {
-		readableName = newName;
+		this.readableName = newName;
 	}
 	
 	@Override
 	public String toString() {
-		return readableName;
+		return this.readableName;
 	}
 	
 	public static UMLsec getValue(final String name) {

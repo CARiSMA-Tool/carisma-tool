@@ -33,26 +33,26 @@ public class GrammarBlock {
 	private List<GrammarAlternative> alternatives = null;
 
 	public GrammarBlock(final String grammar) {
-		grammarString = grammar.trim();
-		alternatives = new ArrayList<GrammarAlternative>();
+		this.grammarString = grammar.trim();
+		this.alternatives = new ArrayList<GrammarAlternative>();
 		List<String> extractedAlternatives =
 			ParserUtils.extract(
-					grammarString, ',');
+					this.grammarString, ',');
 		for (String extractedAlternative : extractedAlternatives) {
-			alternatives.add(new GrammarAlternative(extractedAlternative));
+			this.alternatives.add(new GrammarAlternative(extractedAlternative));
 		}			
 	}
 	
 	public String getGrammarString() {
-		return grammarString;
+		return this.grammarString;
 	}
 	
 	public List<GrammarAlternative> getAlternatives() {
-		return alternatives;
+		return this.alternatives;
 	}
 	
 	public boolean hasNamespaceDescriptions() {
-		for (GrammarAlternative alt : alternatives) {
+		for (GrammarAlternative alt : this.alternatives) {
 			if (alt.hasNamespaceDescription()) {
 				return true;
 			}
@@ -61,13 +61,13 @@ public class GrammarBlock {
 	}
 	
 	public boolean isValid() {
-		if (alternatives == null || alternatives.isEmpty()) {
+		if (this.alternatives == null || this.alternatives.isEmpty()) {
 			return false;
 		}
-		if (grammarString == null || grammarString.isEmpty()) {
+		if (this.grammarString == null || this.grammarString.isEmpty()) {
 			return false;
 		}
-		for (GrammarAlternative alt : alternatives) {
+		for (GrammarAlternative alt : this.alternatives) {
 			if (!alt.isValid()) {
 				return false;
 			}

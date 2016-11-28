@@ -25,37 +25,38 @@ public class ConsoleApplication implements IApplication {
 			String arg = args[i];
 			//System.out.println("..."+arg);
 			if (PARAM_ANALYSIS.equalsIgnoreCase(arg)) {
-				analysisFilename = args[i+1];
+				this.analysisFilename = args[i+1];
 				i++;
 			}
 			if (PARAM_WORKDIR.equalsIgnoreCase(arg)) {
-				analysisWorkdir = args[i+1];
+				this.analysisWorkdir = args[i+1];
 				i++;
 			}
 			i++;
 		}
-		if (analysisFilename == null) {
+		if (this.analysisFilename == null) {
 			System.out.println("No analysis file specified! ("+PARAM_ANALYSIS+" [*.adf file])");
-			return -1;
+			return Integer.valueOf(-1);
 		}
-		if (analysisWorkdir == null) {
+		if (this.analysisWorkdir == null) {
 			System.out.println("No working directory specified! ("+PARAM_WORKDIR+" [workdir])");
-			return -1;
+			return Integer.valueOf(-1);
 		}
-		System.out.println("Starting CARiSMA with working directory '"+analysisWorkdir+"'...");
+		System.out.println("Starting CARiSMA with working directory '"+this.analysisWorkdir+"'...");
 		
-		if (analysisFilename.startsWith(analysisWorkdir)) {
+		if (this.analysisFilename.startsWith(this.analysisWorkdir)) {
+			//TODO: what happens here?
 		}
 
-		analysisFilename = analysisWorkdir+"/"+analysisFilename;
+		this.analysisFilename = this.analysisWorkdir+"/"+this.analysisFilename;
 
-		System.out.println("analysis file = "+analysisFilename);
+		System.out.println("analysis file = "+this.analysisFilename);
 		
 		
 		
-		Carisma.getInstance().getModelManager().setWorkingDirectory(new File(analysisWorkdir));
+		Carisma.getInstance().getModelManager().setWorkingDirectory(new File(this.analysisWorkdir));
 
-		Analysis analysis = AnalysisUtil.readAnalysis(analysisFilename);
+		Analysis analysis = AnalysisUtil.readAnalysis(this.analysisFilename);
 		Carisma.getInstance().runAnalysis(analysis, new ConsoleUIConnector());
 		return IApplication.EXIT_OK;
 	}

@@ -33,6 +33,7 @@ import carisma.modeltype.bpmn2.yaoqiang.YaoqiangHelper;
  * @author Marcel Michel
  * 
  */
+@Deprecated
 public class BPMN2ModelLoader implements ModelLoader {
 
 	/**
@@ -46,25 +47,27 @@ public class BPMN2ModelLoader implements ModelLoader {
 		// Model must have the prefix bpmn2. See Ticket #1175 for further info.
 		File newFile = File.createTempFile(".tmp", ".bpmn2", file.getParentFile());
 		//FIX DP: To write with an UTF-8 encoding you need to explicitly state that
-		OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(newFile),"UTF-8"); 
+		try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(newFile),"UTF-8")){
 
-		if (YaoqiangHelper.isYaoqiangModel(file.getAbsolutePath())) {
-			String content = YaoqiangHelper.yaoqiang2emfModel(file.getAbsolutePath());
-			writer.write(content);
-			writer.flush();
-			writer.close();
-			/* Nice to know: 
-			 * resource.load(new URIConverter.ReadableInputStream(StringContent), null); */
-		} else {
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String line = reader.readLine();
-			while (line != null) {
-				writer.write(line);
-				line = reader.readLine();
+			if (YaoqiangHelper.isYaoqiangModel(file.getAbsolutePath())) {
+				String content = YaoqiangHelper.yaoqiang2emfModel(file.getAbsolutePath());
+				writer.write(content);
+				writer.flush();
+				writer.close();
+				/* Nice to know: 
+				 * resource.load(new URIConverter.ReadableInputStream(StringContent), null); */
+			} else {
+				try(BufferedReader reader = new BufferedReader(new FileReader(file))){
+					String line = reader.readLine();
+					while (line != null) {
+						writer.write(line);
+						line = reader.readLine();
+					}
+					writer.flush();
+					writer.close();
+					reader.close();
+				}
 			}
-			writer.flush();
-			writer.close();
-			reader.close();
 		}
 
 		ResourceSet resourceSet = new ResourceSetImpl();

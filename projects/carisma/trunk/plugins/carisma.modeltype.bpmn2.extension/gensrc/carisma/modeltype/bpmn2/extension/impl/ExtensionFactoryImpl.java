@@ -84,6 +84,7 @@ public class ExtensionFactoryImpl extends EFactoryImpl implements ExtensionFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtensionRoot createExtensionRoot() {
 		ExtensionRootImpl extensionRoot = new ExtensionRootImpl();
 		return extensionRoot;
@@ -94,6 +95,7 @@ public class ExtensionFactoryImpl extends EFactoryImpl implements ExtensionFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public WorkItem createWorkItem() {
 		WorkItemImpl workItem = new WorkItemImpl();
 		return workItem;
@@ -104,6 +106,7 @@ public class ExtensionFactoryImpl extends EFactoryImpl implements ExtensionFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Performer createPerformer() {
 		PerformerImpl performer = new PerformerImpl();
 		return performer;
@@ -114,6 +117,7 @@ public class ExtensionFactoryImpl extends EFactoryImpl implements ExtensionFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Role createRole() {
 		RoleImpl role = new RoleImpl();
 		return role;
@@ -124,6 +128,7 @@ public class ExtensionFactoryImpl extends EFactoryImpl implements ExtensionFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Lane createLane() {
 		LaneImpl lane = new LaneImpl();
 		return lane;
@@ -134,6 +139,7 @@ public class ExtensionFactoryImpl extends EFactoryImpl implements ExtensionFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Task createTask() {
 		TaskImpl task = new TaskImpl();
 		return task;
@@ -144,6 +150,7 @@ public class ExtensionFactoryImpl extends EFactoryImpl implements ExtensionFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TaskSet createTaskSet() {
 		TaskSetImpl taskSet = new TaskSetImpl();
 		return taskSet;
@@ -154,6 +161,7 @@ public class ExtensionFactoryImpl extends EFactoryImpl implements ExtensionFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Selection createSelection() {
 		SelectionImpl selection = new SelectionImpl();
 		return selection;
@@ -164,6 +172,7 @@ public class ExtensionFactoryImpl extends EFactoryImpl implements ExtensionFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BaseElement createBaseElement() {
 		BaseElementImpl baseElement = new BaseElementImpl();
 		return baseElement;
@@ -174,6 +183,7 @@ public class ExtensionFactoryImpl extends EFactoryImpl implements ExtensionFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtensionPackage getExtensionPackage() {
 		return (ExtensionPackage)getEPackage();
 	}

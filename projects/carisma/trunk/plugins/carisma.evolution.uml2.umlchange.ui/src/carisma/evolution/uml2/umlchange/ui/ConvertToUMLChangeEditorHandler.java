@@ -30,7 +30,7 @@ public class ConvertToUMLChangeEditorHandler extends AbstractHandler implements
 	 * Constructor.
 	 */
 	public ConvertToUMLChangeEditorHandler() {
-		convertAction = new ConvertToUMLChangeAnalysis();
+		this.convertAction = new ConvertToUMLChangeAnalysis();
 	}
 	
 	
@@ -38,8 +38,8 @@ public class ConvertToUMLChangeEditorHandler extends AbstractHandler implements
 	public final Object execute(final ExecutionEvent event)
 			throws ExecutionException {
 		
-		if (convertAction.initSelectionByEditor()) {
-			convertAction.run(null);
+		if (this.convertAction.initSelectionByEditor()) {
+			this.convertAction.run(null);
 		}
 
 		return null;

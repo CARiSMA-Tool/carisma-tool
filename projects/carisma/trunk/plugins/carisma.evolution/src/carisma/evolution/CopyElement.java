@@ -17,16 +17,16 @@ public class CopyElement extends AdditiveElement {
 	
 	public CopyElement(final EObject changeTarget, final EObject newReceiver) {
 		super(changeTarget);
-		changedValues = new HashMap<String, Object>();
-		receivingElement = newReceiver;
+		this.changedValues = new HashMap<String, Object>();
+		this.receivingElement = newReceiver;
 	}
 	
 	public EObject getReceivingElement() {
-		return receivingElement;
+		return this.receivingElement;
 	}
 	
 	public Map<String, Object> getChangedValues() {
-		return Collections.unmodifiableMap(changedValues);
+		return Collections.unmodifiableMap(this.changedValues);
 	}
 	
 	/**
@@ -35,17 +35,17 @@ public class CopyElement extends AdditiveElement {
 	 * @param newValues - new property values
 	 */
 	public void replaceChangedValues(final Map<? extends String,? extends Object> newValues) {
-		changedValues.clear();
-		changedValues.putAll(newValues);
+		this.changedValues.clear();
+		this.changedValues.putAll(newValues);
 	}
 	
 	public boolean addChangedValuePair(final String newKey, final Object newValue) {
-		changedValues.put(newKey, newValue);
+		this.changedValues.put(newKey, newValue);
 		return true;
 	}
 	
 	public boolean removeChangedValuePair(final String oldKey) {
-		changedValues.remove(oldKey);
+		this.changedValues.remove(oldKey);
 		return true;
 	}
 	

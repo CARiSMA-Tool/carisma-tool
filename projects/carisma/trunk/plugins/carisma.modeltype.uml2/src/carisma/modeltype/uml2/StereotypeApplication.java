@@ -49,24 +49,24 @@ public class StereotypeApplication extends EObjectImpl {
 	private Element extendedElement = null;
 	
 	public StereotypeApplication(final Stereotype newStereotype, final Element newExtendedElement) {
-		stereotype = newStereotype;
-		extendedElement = newExtendedElement;
+		this.stereotype = newStereotype;
+		this.extendedElement = newExtendedElement;
 	}
 	
 	public Stereotype getAppliedStereotype() {
-		return stereotype;
+		return this.stereotype;
 	}
 	
 	public String getQualifiedStereotypeName() {
-		return stereotype.getQualifiedName();
+		return this.stereotype.getQualifiedName();
 	}
 	
 	public String getStereotypeName() {
-		return stereotype.getName();
+		return this.stereotype.getName();
 	}
 	
 	public Model getModel() {
-		return extendedElement.getModel();
+		return this.extendedElement.getModel();
 	}
 	
 	/**
@@ -78,15 +78,14 @@ public class StereotypeApplication extends EObjectImpl {
 	}
 	
 	public String getExtendedElementName() {
-		if (extendedElement instanceof NamedElement) {
-			return ((NamedElement) extendedElement).getName();
-		} else {
-			return "[Unnamed Element]";
+		if (this.extendedElement instanceof NamedElement) {
+			return ((NamedElement) this.extendedElement).getName();
 		}
+		return "[Unnamed Element]";
 	}
 	
 	public Element getExtendedElement() {
-		return extendedElement;
+		return this.extendedElement;
 	}
 	
 	@Override
@@ -101,7 +100,7 @@ public class StereotypeApplication extends EObjectImpl {
 	 */
 	public List<TaggedValue> getTaggedValues() {
 		List<TaggedValue> tagValues = new ArrayList<TaggedValue>();
-		for (Property tag : stereotype.getAllAttributes()) {
+		for (Property tag : this.stereotype.getAllAttributes()) {
 			if (!tag.isDerived()) {
 				String [] parts = tag.getName().split("_");
 				if ((parts[0].equals("base") && parts.length > 1) 
@@ -132,7 +131,7 @@ public class StereotypeApplication extends EObjectImpl {
 	 * @return
 	 */
 	public TaggedValue getTaggedValue(final String name) {
-		for (Property tag : stereotype.getAllAttributes()) {
+		for (Property tag : this.stereotype.getAllAttributes()) {
 			if (!tag.isDerived() && tag.getName().equalsIgnoreCase(name)) {
 				return new TaggedValue(tag,this);
 			}
@@ -146,9 +145,9 @@ public class StereotypeApplication extends EObjectImpl {
 	 * @return - false if value is default or tag doesn't exist
 	 */
 	public boolean hasTagValue(final String tagName) {
-		for (Property tag : stereotype.getAllAttributes()) {
+		for (Property tag : this.stereotype.getAllAttributes()) {
 			if ((!tag.isDerived() && tag.getName().equalsIgnoreCase(tagName))
-					&& (extendedElement.hasValue(stereotype, tagName))) {
+					&& (this.extendedElement.hasValue(this.stereotype, tagName))) {
 				return true;
 			}
 		}
@@ -163,8 +162,8 @@ public class StereotypeApplication extends EObjectImpl {
 		}
 		if (other instanceof StereotypeApplication) {
 			StereotypeApplication otherApplication = (StereotypeApplication) other;
-			if (otherApplication.getAppliedStereotype().equals(stereotype) 
-					&& otherApplication.getExtendedElement().equals(extendedElement)) {
+			if (otherApplication.getAppliedStereotype().equals(this.stereotype) 
+					&& otherApplication.getExtendedElement().equals(this.extendedElement)) {
 				return true;
 			}
 		}
@@ -182,7 +181,7 @@ public class StereotypeApplication extends EObjectImpl {
 	
 	@Override
 	public String toString() {
-		return "StereotypeApplication of <<" + stereotype.getName() + ">> at " + EObjectUtil.getTypeAndName(extendedElement) + ".";
+		return "StereotypeApplication of <<" + this.stereotype.getName() + ">> at " + EObjectUtil.getTypeAndName(this.extendedElement) + ".";
 	}
 	
 	@Override

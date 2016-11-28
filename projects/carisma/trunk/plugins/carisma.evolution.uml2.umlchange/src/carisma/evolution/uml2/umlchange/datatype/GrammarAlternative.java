@@ -35,30 +35,30 @@ public class GrammarAlternative {
 	 * @param grammar - string to parse
 	 */
 	public GrammarAlternative(final String grammar) {
-		grammarString = grammar.trim();
-		descriptions = new ArrayList<ElementDescription>();
+		this.grammarString = grammar.trim();
+		this.descriptions = new ArrayList<ElementDescription>();
 		List<String> extractedDescriptions =
 			ParserUtils.extract(
-					grammarString.substring(1, grammarString.length() - 1), ',');
+					this.grammarString.substring(1, this.grammarString.length() - 1), ',');
 		for (String extractedDescription : extractedDescriptions) {
 			if (extractedDescription.contains("=") || extractedDescription.endsWith("()")) {
-				descriptions.add(new SimpleElementDescription(extractedDescription));
+				this.descriptions.add(new SimpleElementDescription(extractedDescription));
 			} else if (extractedDescription.contains("@")) {
-				descriptions.add(new NamespaceDescription(extractedDescription));
+				this.descriptions.add(new NamespaceDescription(extractedDescription));
 			}
 		}
 	}
 	
 	public String getGrammarString() {
-		return grammarString;
+		return this.grammarString;
 	}
 	
 	public List<ElementDescription> getDescriptions() {
-		return descriptions;
+		return this.descriptions;
 	}
 	
 	public boolean hasNamespaceDescription() {
-		for (ElementDescription desc : descriptions) {
+		for (ElementDescription desc : this.descriptions) {
 			if (desc instanceof NamespaceDescription) {
 				return true;
 			}
@@ -67,13 +67,13 @@ public class GrammarAlternative {
 	}
 	
 	public boolean isValid() {
-		if (grammarString == null || grammarString.isEmpty()) {
+		if (this.grammarString == null || this.grammarString.isEmpty()) {
 			return false;
 		}
-		if (descriptions == null || descriptions.isEmpty()) {
+		if (this.descriptions == null || this.descriptions.isEmpty()) {
 			return false;
 		}
-		for (ElementDescription desc : descriptions) {
+		for (ElementDescription desc : this.descriptions) {
 			if (!desc.isValid()) {
 				return false;
 			}

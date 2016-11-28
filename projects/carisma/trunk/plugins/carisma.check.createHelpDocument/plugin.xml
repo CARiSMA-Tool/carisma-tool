@@ -6,7 +6,7 @@
       <check
             description="Used to annotate CARiSMA models according to STS models"
             id="carisma.check.createHelpDocument"
-            implementingClass="carisma.check.createhelpdocument.CreateHelpDocument"
+            implementingClass="carisma.check.createhelpdocument.CreateHelpDocumentCheck"
             name="Create Help Document for STS mapping"
             publisher="Karsten Krämer"
             targetModelType="UML2">

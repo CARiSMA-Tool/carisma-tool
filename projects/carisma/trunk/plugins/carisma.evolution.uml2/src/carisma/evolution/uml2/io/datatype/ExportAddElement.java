@@ -37,20 +37,20 @@ public class ExportAddElement extends ExportAdditiveElement {
 		 * @param addE .
 		 */
 		public ExportAddElement(final AddElement addE) {
-			typename = addE.getMetaClass().getName();
-            values = ExporterUtility.getValuesWithStringNull(addE.getValues());
-			content = new ArrayList<ExportAddElement>();
+			this.typename = addE.getMetaClass().getName();
+            this.values = ExporterUtility.getValuesWithStringNull(addE.getValues());
+			this.content = new ArrayList<ExportAddElement>();
 			for (AddElement ele : addE.getContent()) {
-				content.add(new ExportAddElement(ele));
+				this.content.add(new ExportAddElement(ele));
 			}
-			string = addE.toString();
+			this.string = addE.toString();
 		}
 
 		/** Getter for the field 'typename'.
 		 * @return the name of the type.
 		 */
 		public final String getType() {
-			return typename;
+			return this.typename;
 		}
 
 		/** Getter for the field 'content'.
@@ -58,7 +58,7 @@ public class ExportAddElement extends ExportAdditiveElement {
 		 * @return the content of the AddElement.
 		 */
 		public final List<ExportAddElement> getContent() {
-			return content;
+			return this.content;
 		}
 		
 		/** Gett for the field 'values'.
@@ -66,14 +66,14 @@ public class ExportAddElement extends ExportAdditiveElement {
 		 * @return the values of the AddElement.
 		 */
 		public final  Map<String, Object> getValues() {
-			return values;
+			return this.values;
 		}
 
 		@Override
         public final String toString() {
 			
-			if (string != null) {
-				return string;
+			if (this.string != null) {
+				return this.string;
 			}
 			StringBuffer output = new StringBuffer("- INSERT: ");
 			output.append(this.getType());

@@ -91,7 +91,7 @@ public class PapyrusEditorDescriptor extends AbstractEditorDescriptor {
 	 * @param modelIFile the graphical IFile
 	 * @return the graphical IFile for the model
 	 */
-	private IFile getGraphicalFile(final IFile modelIFile) {
+	private static IFile getGraphicalFile(final IFile modelIFile) {
 		if (!modelIFile.getFileExtension().equalsIgnoreCase("uml")) {
 			return null;
 		}

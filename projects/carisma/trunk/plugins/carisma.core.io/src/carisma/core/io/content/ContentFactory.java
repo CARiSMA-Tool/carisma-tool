@@ -32,7 +32,7 @@ public final class ContentFactory {
 	/**
 	 * Private constructor use the shared instance instead.
 	 */
-	private ContentFactory() { };
+	private ContentFactory() { }
 	
 	/**
 	 * Creates a Content object according to the type of the String parameter.
@@ -184,9 +184,11 @@ public final class ContentFactory {
 			if (format != ContentFormats.F_PLAIN) {
 				return convertToJson(realContent);
 			}
-			return convertToJson(createContent("{" + realContent.toString() +"}"));
+			String escapedContent = StringEscapeUtils.escapeJson(realContent.toString());
+			return convertToJson(createContent("{" + escapedContent +"}"));
 		case F_XML_DOM:
-			return new JSON(XML.toJSONObject(contentString).toString());
+			String string = XML.toJSONObject(contentString).toString();
+			return new JSON(string);
 		default:
 			String contentFormat = content.getFormat();
 			String message = "Unsupported input format: " + contentFormat;
@@ -257,8 +259,8 @@ public final class ContentFactory {
 		 * @return An String ID
 		 */
 		public String getId() {
-			return id;
-		};
+			return this.id;
+		}
 
 		/**
 		 * Get an enum value for a Content implementation.
@@ -270,9 +272,8 @@ public final class ContentFactory {
 			String formatID = content.getFormat();
 			if (formatID.startsWith("F_")) {
 				return ContentFormats.valueOf(formatID);
-			} else {
-				return ContentFormats.valueOf("F_" + formatID);
 			}
+			return ContentFormats.valueOf("F_" + formatID);
 		}
 		
 	}

@@ -130,7 +130,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExtensionFactory extensionFactory = extensionPackage.getExtensionFactory();
+	protected ExtensionFactory extensionFactory = this.extensionPackage.getExtensionFactory();
 
 	/**
 	 * This is the file creation page.
@@ -186,6 +186,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
@@ -200,19 +201,19 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected Collection<String> getInitialObjectNames() {
-		if (initialObjectNames == null) {
-			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : extensionPackage.getEClassifiers()) {
+		if (this.initialObjectNames == null) {
+			this.initialObjectNames = new ArrayList<String>();
+			for (EClassifier eClassifier : this.extensionPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
-						initialObjectNames.add(eClass.getName());
+						this.initialObjectNames.add(eClass.getName());
 					}
 				}
 			}
-			Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
+			Collections.sort(this.initialObjectNames, CommonPlugin.INSTANCE.getComparator());
 		}
-		return initialObjectNames;
+		return this.initialObjectNames;
 	}
 
 	/**
@@ -225,9 +226,9 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 		
 		/** Define Root Object manually */
 		//EClass eClass = (EClass)extensionPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EClass eClass = (EClass)extensionPackage.getEClassifier("ExtensionRoot");
+		EClass eClass = (EClass)this.extensionPackage.getEClassifier("ExtensionRoot");
 		
-		EObject rootObject = extensionFactory.create(eClass);
+		EObject rootObject = this.extensionFactory.create(eClass);
 		
 		return rootObject;
 	}
@@ -270,8 +271,8 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 							if (rootObject != null) {
 								resource.getContents().add(rootObject);
 								
-								if (detailsPage.sourceFile != null) {
-									ExtensionModelWizardHelper.addExtensibleObjectsToModel(rootObject, detailsPage.sourceFile.getLocation().toFile());
+								if (ExtensionModelWizard.this.detailsPage.sourceFile != null) {
+									ExtensionModelWizardHelper.addExtensibleObjectsToModel(rootObject, ExtensionModelWizard.this.detailsPage.sourceFile.getLocation().toFile());
 								}
 							}
 
@@ -298,14 +299,15 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 
 			// Select the new file resource in the current view.
 			//
-			IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+			IWorkbenchWindow workbenchWindow = this.workbench.getActiveWorkbenchWindow();
 			IWorkbenchPage page = workbenchWindow.getActivePage();
 			final IWorkbenchPart activePart = page.getActivePart();
 			if (activePart instanceof ISetSelectionTarget) {
 				final ISelection targetSelection = new StructuredSelection(modelFile);
 				getShell().getDisplay().asyncExec
 					(new Runnable() {
-						 public void run() {
+						 @Override
+						public void run() {
 							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
 						 }
 					 });
@@ -316,7 +318,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 			try {
 				page.openEditor
 					(new FileEditorInput(modelFile),
-					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
+					 this.workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
 				MessageDialog.openError(workbenchWindow.getShell(), ExtensionEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
@@ -443,6 +445,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public void createControl(Composite parent) {
 			Composite composite = new Composite(parent, SWT.NONE);
 			{
@@ -467,22 +470,22 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 				containerLabel.setLayoutData(data);
 			}
 
-			initialObjectField = new Combo(composite, SWT.BORDER);
+			this.initialObjectField = new Combo(composite, SWT.BORDER);
 			{
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
 				data.grabExcessHorizontalSpace = true;
-				initialObjectField.setLayoutData(data);
+				this.initialObjectField.setLayoutData(data);
 			}
 
 			for (String objectName : getInitialObjectNames()) {
-				initialObjectField.add(getLabel(objectName));
+				this.initialObjectField.add(getLabel(objectName));
 			}
 
-			if (initialObjectField.getItemCount() == 1) {
-				initialObjectField.select(0);
+			if (this.initialObjectField.getItemCount() == 1) {
+				this.initialObjectField.select(0);
 			}
-			initialObjectField.addModifyListener(validator);
+			this.initialObjectField.addModifyListener(this.validator);
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
@@ -492,20 +495,20 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 				data.horizontalAlignment = GridData.FILL;
 				encodingLabel.setLayoutData(data);
 			}
-			encodingField = new Combo(composite, SWT.BORDER);
+			this.encodingField = new Combo(composite, SWT.BORDER);
 			{
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
 				data.grabExcessHorizontalSpace = true;
-				encodingField.setLayoutData(data);
+				this.encodingField.setLayoutData(data);
 			}
 
 			for (String encoding : getEncodings()) {
-				encodingField.add(encoding);
+				this.encodingField.add(encoding);
 			}
 
-			encodingField.select(0);
-			encodingField.addModifyListener(validator);
+			this.encodingField.select(0);
+			this.encodingField.addModifyListener(this.validator);
 
 			setPageComplete(validatePage());
 			setControl(composite);
@@ -518,6 +521,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 		 */
 		protected ModifyListener validator =
 			new ModifyListener() {
+				@Override
 				public void modifyText(ModifyEvent e) {
 					setPageComplete(validatePage());
 				}
@@ -529,7 +533,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		protected boolean validatePage() {
-			return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
+			return getInitialObjectName() != null && getEncodings().contains(this.encodingField.getText());
 		}
 
 		/**
@@ -541,13 +545,13 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 		public void setVisible(boolean visible) {
 			super.setVisible(visible);
 			if (visible) {
-				if (initialObjectField.getItemCount() == 1) {
-					initialObjectField.clearSelection();
-					encodingField.setFocus();
+				if (this.initialObjectField.getItemCount() == 1) {
+					this.initialObjectField.clearSelection();
+					this.encodingField.setFocus();
 				}
 				else {
-					encodingField.clearSelection();
-					initialObjectField.setFocus();
+					this.encodingField.clearSelection();
+					this.initialObjectField.setFocus();
 				}
 			}
 		}
@@ -558,7 +562,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public String getInitialObjectName() {
-			String label = initialObjectField.getText();
+			String label = this.initialObjectField.getText();
 
 			for (String name : getInitialObjectNames()) {
 				if (getLabel(name).equals(label)) {
@@ -574,7 +578,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public String getEncoding() {
-			return encodingField.getText();
+			return this.encodingField.getText();
 		}
 
 		/**
@@ -599,13 +603,13 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		protected Collection<String> getEncodings() {
-			if (encodings == null) {
-				encodings = new ArrayList<String>();
+			if (this.encodings == null) {
+				this.encodings = new ArrayList<String>();
 				for (StringTokenizer stringTokenizer = new StringTokenizer(ExtensionEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
-					encodings.add(stringTokenizer.nextToken());
+					this.encodings.add(stringTokenizer.nextToken());
 				}
 			}
-			return encodings;
+			return this.encodings;
 		}
 	}
 
@@ -619,18 +623,18 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new ExtensionModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(ExtensionEditorPlugin.INSTANCE.getString("_UI_ExtensionModelWizard_label"));
-		newFileCreationPage.setDescription(ExtensionEditorPlugin.INSTANCE.getString("_UI_ExtensionModelWizard_description"));
-		newFileCreationPage.setFileName(ExtensionEditorPlugin.INSTANCE.getString("_UI_ExtensionEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
-		addPage(newFileCreationPage);
+		this.newFileCreationPage = new ExtensionModelWizardNewFileCreationPage("Whatever", this.selection);
+		this.newFileCreationPage.setTitle(ExtensionEditorPlugin.INSTANCE.getString("_UI_ExtensionModelWizard_label"));
+		this.newFileCreationPage.setDescription(ExtensionEditorPlugin.INSTANCE.getString("_UI_ExtensionModelWizard_description"));
+		this.newFileCreationPage.setFileName(ExtensionEditorPlugin.INSTANCE.getString("_UI_ExtensionEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		addPage(this.newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
 		//
-		if (selection != null && !selection.isEmpty()) {
+		if (this.selection != null && !this.selection.isEmpty()) {
 			// Get the resource...
 			//
-			Object selectedElement = selection.iterator().next();
+			Object selectedElement = this.selection.iterator().next();
 			if (selectedElement instanceof IResource) {
 				// Get the resource parent, if its a file.
 				//
@@ -644,7 +648,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 				if (selectedResource instanceof IFolder || selectedResource instanceof IProject) {
 					// Set this for the container.
 					//
-					newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
+					this.newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
 
 					// Make up a unique new name here.
 					//
@@ -654,7 +658,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
 						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
 					}
-					newFileCreationPage.setFileName(modelFilename);
+					this.newFileCreationPage.setFileName(modelFilename);
 				}
 			}
 		}
@@ -666,10 +670,10 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 		//initialObjectCreationPage.setDescription(ExtensionEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		//addPage(initialObjectCreationPage);
 		
-		detailsPage = new ExtensioModelWizardDetailsPage("Whatever2");
-		detailsPage.setTitle(ExtensionEditorPlugin.INSTANCE.getString("_UI_ExtensionModelWizard_label"));
-		detailsPage.setDescription(ExtensionEditorPlugin.INSTANCE.getString("_UI_ExtensionModelWizard_description"));
-		addPage(detailsPage);
+		this.detailsPage = new ExtensioModelWizardDetailsPage("Whatever2");
+		this.detailsPage.setTitle(ExtensionEditorPlugin.INSTANCE.getString("_UI_ExtensionModelWizard_label"));
+		this.detailsPage.setDescription(ExtensionEditorPlugin.INSTANCE.getString("_UI_ExtensionModelWizard_description"));
+		addPage(this.detailsPage);
 	}
 
 	/**
@@ -679,7 +683,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public IFile getModelFile() {
-		return newFileCreationPage.getModelFile();
+		return this.newFileCreationPage.getModelFile();
 	}
 	
 	/**
@@ -688,7 +692,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 	protected class ExtensioModelWizardDetailsPage extends WizardPage {
 
 		private IFile sourceFile;
-		private String extensionFilter="bpmn2";
+		final static String extensionFilter = "bpmn2";
 		
 		/**
 		 * @param pageName
@@ -744,20 +748,18 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 					selectionDialog.setValidator(new ISelectionStatusValidator() {
 						@Override
 						public IStatus validate(Object[] selection) {
-							if ( (selection != null) && (selection.length>0)) {							
+							if ( (selection != null) && (selection.length > 0)) {							
 								if (selection[0] instanceof IFile ) {
-									if ( !"".equals(extensionFilter)) { 
+									if ( !"".equals(ExtensioModelWizardDetailsPage.extensionFilter)) { 
 										// "modeltype" known, but wrong fileExtension
-										if ( ((IFile) selection[0]).getFullPath().toString().endsWith("." + extensionFilter) ){
+										if ( ((IFile) selection[0]).getFullPath().toString().endsWith("." + ExtensioModelWizardDetailsPage.extensionFilter) ){
 											return Status.OK_STATUS;								
-										} else {
-											// "modeltype" known and fileExtension is right
-											return new Status(IStatus.ERROR, PlatformUI.PLUGIN_ID, IStatus.ERROR, "Model file must ends with \"." + extensionFilter +  "\"", null);
-										}
-									} else {
-										// "modeltype" not known, each file can be choosen
-										return Status.OK_STATUS;
+										} 
+										// "modeltype" known and fileExtension is right
+										return new Status(IStatus.ERROR, PlatformUI.PLUGIN_ID, IStatus.ERROR, "Model file must ends with \"." + ExtensioModelWizardDetailsPage.extensionFilter +  "\"", null);
 									}
+									// "modeltype" not known, each file can be choosen
+									return Status.OK_STATUS;
 								}
 							}
 							return new Status(IStatus.ERROR, PlatformUI.PLUGIN_ID,
@@ -775,7 +777,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 								mf.setText(mfile.getFullPath().toString());
 								setPageComplete(validatePage());
 							} catch (ClassCastException cce) {
-								detailsPage.setErrorMessage("Must select file");
+								ExtensionModelWizard.this.detailsPage.setErrorMessage("Must select file");
 							}
 					}
 				}
@@ -795,25 +797,23 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 		 * @return the source file for the analysis, e.g. "model.uml"
 		 */
 		public IFile getSourceFile() {
-			return sourceFile;
+			return this.sourceFile;
 		}
 
 		protected boolean validatePage() {
 			if (getSourceFile() != null) {
-				if (getSourceFile().toString().endsWith("." + extensionFilter)) {
-					detailsPage.setErrorMessage(null); 
-					detailsPage.setDescription(null);
+				if (getSourceFile().toString().endsWith("." + ExtensioModelWizardDetailsPage.extensionFilter)) {
+					ExtensionModelWizard.this.detailsPage.setErrorMessage(null); 
+					ExtensionModelWizard.this.detailsPage.setDescription(null);
 					setPageComplete(true);
 					return true;					
-				} else {
-					detailsPage.setErrorMessage("Model file is not of type "+ extensionFilter.toUpperCase(Locale.ENGLISH));
-					return false;
-				}					
-			} else {
-				setDescription("Choose the model file and its type");
-				setPageComplete(false);
-				return false;
+				}
+				ExtensionModelWizard.this.detailsPage.setErrorMessage("Model file is not of type "+ ExtensioModelWizardDetailsPage.extensionFilter.toUpperCase(Locale.ENGLISH));
+				return false;					
 			}
+			setDescription("Choose the model file and its type");
+			setPageComplete(false);
+			return false;
 		}
 		
 		@Override

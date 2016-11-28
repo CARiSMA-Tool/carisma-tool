@@ -57,7 +57,7 @@ public class CheckReference {
 	 * @return String the checkId
 	 */
 	public final String getCheckID() {
-		return checkID;
+		return this.checkID;
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class CheckReference {
 	 * @return boolean enabled
 	 */
 	public final boolean isEnabled() {
-		return enabled;
+		return this.enabled;
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public class CheckReference {
 	 * @return the parameters in the reference
 	 */
 	public final List<CheckParameter> getParameters() {
-		return parameters;
+		return this.parameters;
 	}
 
 	/**

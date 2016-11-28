@@ -58,26 +58,26 @@ public class DeltaFactory {
 	 * @param changeList list of Changes used to create list of Deltas
 	 */
 	private void init(final List<Change> changeList) {
-		if (changes == null) {
-			changes = new ArrayList<Change>();
+		if (this.changes == null) {
+			this.changes = new ArrayList<Change>();
 		}
-		changes.clear();
-		if (notDependencies == null) {
-			notDependencies 	= new HashMap<Change, Set<Change>>();			
+		this.changes.clear();
+		if (this.notDependencies == null) {
+			this.notDependencies 	= new HashMap<Change, Set<Change>>();			
 		}
-		notDependencies.clear();
+		this.notDependencies.clear();
 
-		if (andDependencies == null) {
-			andDependencies 	= new HashMap<Change, Set<Change>>();			
+		if (this.andDependencies == null) {
+			this.andDependencies 	= new HashMap<Change, Set<Change>>();			
 		}
-		andDependencies.clear();
-		if (reqDependencies == null) {
-			reqDependencies 	= new HashMap<Change, Set<Change>>();			
+		this.andDependencies.clear();
+		if (this.reqDependencies == null) {
+			this.reqDependencies 	= new HashMap<Change, Set<Change>>();			
 		}
-		reqDependencies.clear();
+		this.reqDependencies.clear();
 
-		changes.clear();
-		changes.addAll(changeList);
+		this.changes.clear();
+		this.changes.addAll(changeList);
 	}
 	
 	/** Fetches the change structures and builds a list of deltas.
@@ -98,7 +98,7 @@ public class DeltaFactory {
 	 * @param changeList the list of Changes which are used to create the list of Deltas
 	 * @return a Collection of Deltas. returns null if the constraints containing cycles.
 	 */
-	public final List<Delta> getDeltas(final List<Change> changeList) {
+	public final static List<Delta> getDeltas(final List<Change> changeList) {
 		
 		List<Delta> deltas = new ArrayList<Delta>();
 		List<DeltaElement> content = new ArrayList<DeltaElement>();
@@ -153,7 +153,7 @@ public class DeltaFactory {
          * the repetition for the second alternatives {1,2} would be 3 ( the product over the number of preceding alternatives )
          */
         int repetition = 1;
-        for (Change ch : changes) {
+        for (Change ch : this.changes) {
             int numberOfAlternatives = ch.getAlternatives().size();
             // numberOfChoices: alternatives count + "do not put any alternative in delta"
             int numberOfChoices = numberOfAlternatives + 1;
@@ -184,7 +184,7 @@ public class DeltaFactory {
 	 * @param changes List of Changes.
 	 * @return number of deltas
 	 */
-	private int computeMaxNumberOfDeltas(final List<Change> changes) {
+	private static int computeMaxNumberOfDeltas(final List<Change> changes) {
 		int deltaCount = 1;
 		if (changes.isEmpty()) { 
 			return 0;
@@ -199,28 +199,28 @@ public class DeltaFactory {
 	/** Gets the Constraints into a better form to work with.
 	 */
 	private void parseConstraints() {
-		for (Change ch : changes) {
+		for (Change ch : this.changes) {
 			
 			for (ChangeConstraint constraint : ch.getConstraints()) {
 				if (constraint.getType() == ConstraintType.AND) {
-					if (!(andDependencies.containsKey(ch))) {
-						andDependencies.put(ch, new HashSet<Change>());
+					if (!(this.andDependencies.containsKey(ch))) {
+						this.andDependencies.put(ch, new HashSet<Change>());
 					}
-					andDependencies.get(ch).add(constraint.getReferencedChange());
-					if (!(andDependencies.containsKey(constraint.getReferencedChange()))) {
-						andDependencies.put(constraint.getReferencedChange(), new HashSet<Change>());
+					this.andDependencies.get(ch).add(constraint.getReferencedChange());
+					if (!(this.andDependencies.containsKey(constraint.getReferencedChange()))) {
+						this.andDependencies.put(constraint.getReferencedChange(), new HashSet<Change>());
 					}
-					andDependencies.get(constraint.getReferencedChange()).add(constraint.getConstrainedChange());
+					this.andDependencies.get(constraint.getReferencedChange()).add(constraint.getConstrainedChange());
 				} else if (constraint.getType() == ConstraintType.REQ) {
-					if (!reqDependencies.containsKey(constraint.getConstrainedChange())) {
-						reqDependencies.put(constraint.getConstrainedChange(), new HashSet<Change>());
+					if (!this.reqDependencies.containsKey(constraint.getConstrainedChange())) {
+						this.reqDependencies.put(constraint.getConstrainedChange(), new HashSet<Change>());
 					}
-					reqDependencies.get(constraint.getConstrainedChange()).add(constraint.getReferencedChange());
+					this.reqDependencies.get(constraint.getConstrainedChange()).add(constraint.getReferencedChange());
 				} else if (constraint.getType() == ConstraintType.NOT) {
-					if (!notDependencies.containsKey(constraint.getConstrainedChange())) { 
-						notDependencies.put(constraint.getConstrainedChange(), new HashSet<Change>());
+					if (!this.notDependencies.containsKey(constraint.getConstrainedChange())) { 
+						this.notDependencies.put(constraint.getConstrainedChange(), new HashSet<Change>());
 					}
-					notDependencies.get(constraint.getConstrainedChange()).add(constraint.getReferencedChange());
+					this.notDependencies.get(constraint.getConstrainedChange()).add(constraint.getReferencedChange());
 				}
 			}
 		}
@@ -259,8 +259,8 @@ public class DeltaFactory {
 	/** Sorts a List to match the implicit given order in reqDependencies.
 	 */
 	private void sortChanges() { 
-		Compar x = new Compar(reqDependencies);
-		Collections.sort(changes, x);
+		Compar x = new Compar(this.reqDependencies);
+		Collections.sort(this.changes, x);
 	}
 	
 	
@@ -271,10 +271,10 @@ public class DeltaFactory {
 	 */
 	private boolean violatesAndDependencies(final Delta delta) {
 		
-		if (andDependencies != null && !andDependencies.isEmpty()) {
-			for (Change neededKey : andDependencies.keySet()) {
+		if (this.andDependencies != null && !this.andDependencies.isEmpty()) {
+			for (Change neededKey : this.andDependencies.keySet()) {
 				if (containsChangeID(delta.getChangeIDs(), neededKey.getRef())) {
-					for (Change valueNeed : andDependencies.get(neededKey)) {
+					for (Change valueNeed : this.andDependencies.get(neededKey)) {
 						if (!containsChangeID(delta.getChangeIDs(), valueNeed.getRef())) {
 							return true;
 						}
@@ -291,10 +291,10 @@ public class DeltaFactory {
 	 * @return returns true if the dependencies are violated. Else false.
 	 */
 	private boolean violatesNotDependencies(final Delta delta) {
-		if (notDependencies != null && !notDependencies.isEmpty()) {
-			for (Change keyNot : notDependencies.keySet()) {
+		if (this.notDependencies != null && !this.notDependencies.isEmpty()) {
+			for (Change keyNot : this.notDependencies.keySet()) {
 				if (containsChangeID(delta.getChangeIDs(), keyNot.getRef())) {
-					for (Change valueNot : notDependencies.get(keyNot)) {
+					for (Change valueNot : this.notDependencies.get(keyNot)) {
 						if (containsChangeID(delta.getChangeIDs(), valueNot.getRef())) {
 							return true;
 						}
@@ -311,10 +311,10 @@ public class DeltaFactory {
 	 * @return returns true if the dependencies are violated. Else false.
 	 */
 	private boolean violatesReqDependencies(final Delta delta) {
-		if (reqDependencies != null && !reqDependencies.isEmpty()) {
-			for (Change keyRequired : reqDependencies.keySet()) {
+		if (this.reqDependencies != null && !this.reqDependencies.isEmpty()) {
+			for (Change keyRequired : this.reqDependencies.keySet()) {
 				if (containsChangeID(delta.getChangeIDs(), keyRequired.getRef())) {
-					for (Change valueRequired : reqDependencies.get(keyRequired)) {
+					for (Change valueRequired : this.reqDependencies.get(keyRequired)) {
 						if (!containsChangeID(delta.getChangeIDs(), valueRequired.getRef())) {
 							return true;
 						}
@@ -331,7 +331,7 @@ public class DeltaFactory {
 	 * @param changeID The ChangeID to be compared ages.
 	 * @return returns true if one of the List Elements starts with the String changeID.
 	 */
-	private boolean containsChangeID(final List<String> changeIDs, final String changeID) {
+	private static boolean containsChangeID(final List<String> changeIDs, final String changeID) {
 		for (String oldChangeID : changeIDs) {
 			if (oldChangeID.replaceAll(CHANGE_ID_PATTERN, "").equals(changeID)) {
 				return  true;
@@ -402,15 +402,15 @@ public class DeltaFactory {
 		private void call(final Change key, final Set<Change> values, final Map<Change, Set<Change>> require) {
 			if (values != null) {
 				for (Change value : values) {
-					if (!order.contains(value) && require.keySet().contains(value)) {
+					if (!this.order.contains(value) && require.keySet().contains(value)) {
 						call(value, require.get(value), require);
-					} else if (!(order.contains(value))) {
-							order.addFirst(value);
+					} else if (!(this.order.contains(value))) {
+							this.order.addFirst(value);
 					}
 				}
 			}
-			if (!order.contains(key)) {
-				order.addLast(key);
+			if (!this.order.contains(key)) {
+				this.order.addLast(key);
 			}
 		}
 		
@@ -423,9 +423,9 @@ public class DeltaFactory {
 		 */
 		@Override
 		public int compare(final Change o1, final Change o2) {
-			if (order.indexOf(o1) < order.indexOf(o2)) {
+			if (this.order.indexOf(o1) < this.order.indexOf(o2)) {
 				return -1;
-			} else if (order.indexOf(o1) == order.indexOf(o2)) {
+			} else if (this.order.indexOf(o1) == this.order.indexOf(o2)) {
 				return 0;
 			}
 			return 1;

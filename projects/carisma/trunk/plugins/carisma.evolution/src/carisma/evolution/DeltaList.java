@@ -15,38 +15,38 @@ public class DeltaList {
 	
 	public DeltaList(final List<Delta> containedDeltas) {
 		init();
-		allDeltas.addAll(containedDeltas);
-		highestChangeCountAllTime = calculateHighestChangeCount();
-		highestChangeCountNow = highestChangeCountAllTime;
+		this.allDeltas.addAll(containedDeltas);
+		this.highestChangeCountAllTime = calculateHighestChangeCount();
+		this.highestChangeCountNow = this.highestChangeCountAllTime;
 	}
 	
 	public void init() {
-		if (allDeltas == null) {
-			allDeltas = new ArrayList<Delta>();			
+		if (this.allDeltas == null) {
+			this.allDeltas = new ArrayList<Delta>();			
 		} else {
-			allDeltas.clear();
+			this.allDeltas.clear();
 		}
-		if (unsuccessfulDeltas == null) {
-			unsuccessfulDeltas = new ArrayList<Delta>();
+		if (this.unsuccessfulDeltas == null) {
+			this.unsuccessfulDeltas = new ArrayList<Delta>();
 		} else {
-			unsuccessfulDeltas.clear();
+			this.unsuccessfulDeltas.clear();
 		}
 		
 	}
 	
 	public int getHighestChangeCountAllTime() {
-		return highestChangeCountAllTime;
+		return this.highestChangeCountAllTime;
 	}
 	
 	public int getHighestChangeCountNow() {
-		return highestChangeCountNow;
+		return this.highestChangeCountNow;
 	}
 	
 	private int calculateHighestChangeCount() {
 		int maxChangeCount = 0;
 		
-		for (Delta d : allDeltas) {
-			if (!(unsuccessfulDeltas.contains(d))) {
+		for (Delta d : this.allDeltas) {
+			if (!(this.unsuccessfulDeltas.contains(d))) {
 				maxChangeCount = Math.max(maxChangeCount, d.getNumberOfUsedChanges());				
 			}
 		}
@@ -54,33 +54,33 @@ public class DeltaList {
 	}
 	
 	public List<Delta> getAllDeltas() {
-		return Collections.unmodifiableList(allDeltas);
+		return Collections.unmodifiableList(this.allDeltas);
 	}
 	
 	public List<Delta> getUnsuccessfulDeltas() {
-		return Collections.unmodifiableList(unsuccessfulDeltas);		
+		return Collections.unmodifiableList(this.unsuccessfulDeltas);		
 	}
 	
 	public List<Delta> getRemainingDeltas() {
 		List<Delta> remainingDeltas = new ArrayList<Delta>();
-		remainingDeltas.addAll(allDeltas);
-		remainingDeltas.removeAll(unsuccessfulDeltas);
+		remainingDeltas.addAll(this.allDeltas);
+		remainingDeltas.removeAll(this.unsuccessfulDeltas);
 		return Collections.unmodifiableList(remainingDeltas);
 	}
 	
 	public boolean isEmpty() {
-		if (allDeltas.size() - unsuccessfulDeltas.size() == 0) {
+		if (this.allDeltas.size() - this.unsuccessfulDeltas.size() == 0) {
 			return true;
 		}
 		return false;
 	}
 	
 	public int allSize() {
-		return allDeltas.size();
+		return this.allDeltas.size();
 	}
 	
 	public int remainingSize() {
-		return allDeltas.size() - unsuccessfulDeltas.size();
+		return this.allDeltas.size() - this.unsuccessfulDeltas.size();
 	}
 	
 	public boolean removeAll(final List<Delta> oldDeltas) {
@@ -94,14 +94,13 @@ public class DeltaList {
 	}
 	
 	public boolean remove(final Delta d) {
-		if (allDeltas.contains(d)) {
-			unsuccessfulDeltas.add(d); 
-			if (d.getNumberOfUsedChanges() == highestChangeCountNow) {
-				highestChangeCountNow = calculateHighestChangeCount();
+		if (this.allDeltas.contains(d)) {
+			this.unsuccessfulDeltas.add(d); 
+			if (d.getNumberOfUsedChanges() == this.highestChangeCountNow) {
+				this.highestChangeCountNow = calculateHighestChangeCount();
 			}
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 }

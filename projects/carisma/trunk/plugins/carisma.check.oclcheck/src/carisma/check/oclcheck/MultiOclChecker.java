@@ -50,6 +50,10 @@ import carisma.ocl.library.OclLibrary;
  */ 
 public class MultiOclChecker extends AbstractOclChecker {
 	
+	public static final String CHECK_ID = "carisma.check.multioclcheck";
+	public static final String PARAM_QUERY_FILE = "carisma.check.oclcheck.oclfile";
+	public static final String CHECK_NAME = "MultiOclChecker";
+
 	/**
 	 * The ocl-expression for the query.
 	 */
@@ -73,7 +77,7 @@ public class MultiOclChecker extends AbstractOclChecker {
 		//check parameter
 		List<CheckParameter> desiredParameters = new ArrayList<CheckParameter>();
 		desiredParameters.add(new InputFileParameter(
-				new CheckParameterDescriptor("carisma.check.oclcheck.oclfile", "", "", ParameterType.INPUTFILE, true, "")));
+				new CheckParameterDescriptor(PARAM_QUERY_FILE, "", "", ParameterType.INPUTFILE, true, "")));
 		desiredParameters = resolveParameters(parameters, desiredParameters);
 		
 		if (desiredParameters == null) {
@@ -117,15 +121,15 @@ public class MultiOclChecker extends AbstractOclChecker {
 		int missed = 0;
 		for (OclExpression expr : oclExpressions) {
 			
-			statement = expr.getQuery().trim();
-			context = contextMap.get(expr.getContext().toLowerCase(Locale.ENGLISH).trim());
+			this.statement = expr.getQuery().trim();
+			this.context = this.contextMap.get(expr.getContext().toLowerCase(Locale.ENGLISH).trim());
 			
-			if (context == null && !expr.getContext().equalsIgnoreCase(OclEvaluator.CONTEXT_FREE)) {
+			if (this.context == null && !expr.getContext().equalsIgnoreCase(OclEvaluator.CONTEXT_FREE)) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
 						"Model contains no " + expr.getContext() + " object."));
 				host.addResultMessage(new AnalysisResultMessage(StatusType.INFO,
-						"Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + statement + "'"));
-				host.appendLineToReport("Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + statement
+						"Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + this.statement + "'"));
+				host.appendLineToReport("Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + this.statement
 										+ "' - No object of type '" + expr.getContext() + "' in model.");
 			} else {
 				if (!super.performOclQuery(host)) {
@@ -156,7 +160,7 @@ public class MultiOclChecker extends AbstractOclChecker {
 	 * @return If successful the method returns an OCL-Library otherwise null 
 	 * @throws IOException If the OCL-Library could not be loaded
 	 */
-	private OclLibrary getOclLibrary(final File file) throws IOException {
+	private static OclLibrary getOclLibrary(final File file) throws IOException {
 		URI uri = URI.createFileURI(file.getAbsolutePath());
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.getResource(uri, true);
@@ -165,9 +169,8 @@ public class MultiOclChecker extends AbstractOclChecker {
 		EObject content = resource.getContents().get(0);
 		if (content instanceof OclLibrary) { 
 			return (OclLibrary) resource.getContents().get(0);
-		} else {
-			return null;
 		}
+		return null;
 	}
 	
 	/**
@@ -177,7 +180,7 @@ public class MultiOclChecker extends AbstractOclChecker {
 	private void createMapWithPackages(final Resource model) {
 			
 		if (model == null) {
-			contextMap = null;
+			this.contextMap = null;
 			return;
 		}
 				
@@ -215,18 +218,30 @@ public class MultiOclChecker extends AbstractOclChecker {
 			}
 		}
 			
-		contextMap = Collections.unmodifiableMap(contextMapTemp);
+		this.contextMap = Collections.unmodifiableMap(contextMapTemp);
 	}
 	
 
 	@Override
 	protected final String getOclStatement() {
-		return statement;
+		return this.statement;
 	}
 
 	@Override
 	protected final EClass getOclContext() {
-		return context;
+		return this.context;
+	}
+
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 
 }

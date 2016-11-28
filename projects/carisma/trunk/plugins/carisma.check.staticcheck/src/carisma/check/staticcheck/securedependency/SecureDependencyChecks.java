@@ -43,7 +43,7 @@ import carisma.profile.umlsec.UMLsecUtil;
 public final class SecureDependencyChecks {
 	
 	private List<SecureDependencyViolation> secureDependencyViolations;
-	private AnalysisHost host;
+	private AnalysisHost analysisHost;
 	
 	/**
 	 * Private constructor.
@@ -51,16 +51,16 @@ public final class SecureDependencyChecks {
 	 */
 	public SecureDependencyChecks(AnalysisHost host) {
 		if (host != null) {
-			this.host = host;
+			this.analysisHost = host;
 		} else {
-			this.host = new DummyHost(true);
+			this.analysisHost = new DummyHost(true);
 		}
 		
 		this.secureDependencyViolations = new ArrayList<SecureDependencyViolation>();
 	}
 	
 	public List<SecureDependencyViolation> getViolations() {
-		return Collections.unmodifiableList(secureDependencyViolations);
+		return Collections.unmodifiableList(this.secureDependencyViolations);
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public final class SecureDependencyChecks {
 		for (Dependency dep : dependenciesToCheck) {
 			analyzeDependency(dep);
 		}
-		return secureDependencyViolations.size();
+		return this.secureDependencyViolations.size();
 	}
 	
 	/**
@@ -91,17 +91,17 @@ public final class SecureDependencyChecks {
 		for (NamedElement c : clients) {
 			for (NamedElement s : suppliers) {
 				if (c instanceof Classifier && s instanceof Classifier) {
-					secureDependencyViolations.addAll(checkDependency(dep, (Classifier) c, (Classifier) s));
+					this.secureDependencyViolations.addAll(checkDependency(dep, (Classifier) c, (Classifier) s));
 				}
 			}
 		}
 	}
 	
 	public List<SecureDependencyViolation> checkDependency(Dependency dependency, Classifier client, Classifier supplier) {
-		host.appendLineToReport("Processing dependency '" + dependency.getQualifiedName()
+		this.analysisHost.appendLineToReport("Processing dependency '" + dependency.getQualifiedName()
 		        + "' between '" + client.getQualifiedName() + "' and '" + supplier.getQualifiedName() + "'");
 		if (!isRelevantDependency(dependency)) {
-			host.appendLineToReport("  - not in scope of <<secure dependency>> -> nothing to check!");
+			this.analysisHost.appendLineToReport("  - not in scope of <<secure dependency>> -> nothing to check!");
 			return Collections.emptyList();
 		}
 		// get messages of supplier
@@ -150,57 +150,57 @@ public final class SecureDependencyChecks {
 		List<SecureDependencyViolation> errors = new ArrayList<SecureDependencyViolation>();
 
 		if (!secrecyTagValuesOfClient.isEmpty() || !relevantSignaturesForSecrecy.isEmpty()) {
-			host.appendLineToReport("  - analyzing secrecy tag values ...");
+			this.analysisHost.appendLineToReport("  - analyzing secrecy tag values ...");
 			String error = checkLists("secrecy", relevantSignaturesForSecrecy, secrecyTagValuesOfClient, irrelevantSignatures);
 			if (error != null) {
 				errors.add(new SecureDependencyViolation(error, dependency, client, supplier));
-				host.appendLineToReport("    " + error);
+				this.analysisHost.appendLineToReport("    " + error);
 			}
 			if (!UMLsecUtil.hasStereotype(dependency, UMLsec.SECRECY)) {
 				errors.add(new SecureDependencyViolation("Dependency misses stereotype <<secrecy>>!", dependency, client, supplier));
-				host.appendLineToReport("    Dependency misses stereotype <<secrecy>>!");
+				this.analysisHost.appendLineToReport("    Dependency misses stereotype <<secrecy>>!");
 			}
 		}
 		if (!privacyTagValuesOfClient.isEmpty() || !relevantSignaturesForPrivacy.isEmpty()) {
-			host.appendLineToReport("  - analyzing privacy tag values ...");
+			this.analysisHost.appendLineToReport("  - analyzing privacy tag values ...");
 			String error = privacyCheckLists("privacy", relevantSignaturesForPrivacy, privacyTagValuesOfClient, irrelevantSignatures);
 			if (error != null) {
 				errors.add(new SecureDependencyViolation(error, dependency, client, supplier));
-				host.appendLineToReport("    " + error);
+				this.analysisHost.appendLineToReport("    " + error);
 			}
 			if (!UMLsecUtil.hasStereotype(dependency, UMLsec.PRIVACY)) {
 				errors.add(new SecureDependencyViolation("Dependency misses stereotype <<privacy>>!", dependency, client, supplier));
-				host.appendLineToReport("    Dependency misses stereotype <<privacy>>!");
+				this.analysisHost.appendLineToReport("    Dependency misses stereotype <<privacy>>!");
 			}
 		}
 		if (!integrityTagValuesOfClient.isEmpty() || !relevantSignaturesForIntegrity.isEmpty()) {
-			host.appendLineToReport("  - analyzing integrity tags ...");
+			this.analysisHost.appendLineToReport("  - analyzing integrity tags ...");
 			String error = checkLists("integrity", relevantSignaturesForIntegrity, integrityTagValuesOfClient, irrelevantSignatures);
 			if (error != null) {
 				errors.add(new SecureDependencyViolation(error, dependency, client, supplier));
-				host.appendLineToReport("    " + error);
+				this.analysisHost.appendLineToReport("    " + error);
 			}
 			if (!UMLsecUtil.hasStereotype(dependency, UMLsec.INTEGRITY)) {
 				errors.add(new SecureDependencyViolation("Dependency misses stereotype <<integrity>>!", dependency, client, supplier));
-				host.appendLineToReport("    Dependency misses stereotype <<integrity>>!");
+				this.analysisHost.appendLineToReport("    Dependency misses stereotype <<integrity>>!");
 			}
 		}
 		if (!highTagValuesOfClient.isEmpty() || !relevantSignaturesForHigh.isEmpty()) {
-			host.appendLineToReport("  - analyzing high tags ...");
+			this.analysisHost.appendLineToReport("  - analyzing high tags ...");
 			String error = checkLists("high", relevantSignaturesForHigh, highTagValuesOfClient, irrelevantSignatures);
 			if (error != null) {
 				errors.add(new SecureDependencyViolation(error, dependency, client, supplier));
-				host.appendLineToReport("    " + error);
+				this.analysisHost.appendLineToReport("    " + error);
 			}
 			if (!UMLsecUtil.hasStereotype(dependency, UMLsec.HIGH)) {
 				errors.add(new SecureDependencyViolation("Dependency misses stereotype <<high>>!", dependency, client, supplier));
-				host.appendLineToReport("    Dependency misses stereotype <<high>>!");
+				this.analysisHost.appendLineToReport("    Dependency misses stereotype <<high>>!");
 			}
 		}
 		return errors;
 	}
 	
-	private String checkLists(
+	private static String checkLists(
 			final String tagName, 
 			final List<String> allSecrecyTagsOfSupplierAndChildren, 
 			final List<String> secrecyTagsOfClient, 
@@ -236,7 +236,7 @@ public final class SecureDependencyChecks {
 	
 	
 	
-	private String privacyCheckLists(
+	private static String privacyCheckLists(
 			final String tagName, 
 			final List<String> allPrivacyTagsOfSupplierAndChildren, 
 			final List<String> PrivacyTagsOfClient, 
@@ -275,7 +275,7 @@ public final class SecureDependencyChecks {
 	 * @param tagName
 	 * @return
 	 */
-	public List<String> getAllDistinctTagValuesOfClassifierAndSubclasses(final Classifier classifier,final String tagName) {
+	public static List<String> getAllDistinctTagValuesOfClassifierAndSubclasses(final Classifier classifier,final String tagName) {
 		List<String> distinctTagValues = new ArrayList<String>();
 		for (Classifier subClassifier : getSubClassifiers(classifier)) {
 			getDistinctTagValues(distinctTagValues, subClassifier, tagName);
@@ -289,7 +289,7 @@ public final class SecureDependencyChecks {
 	 * @param classifier - the given classifier
 	 * @param tagName - the tag name to collect the values from
 	 */
-	private void getDistinctTagValues(final List<String> distinctTagValues, final Classifier classifier, final String tagName) {
+	private static void getDistinctTagValues(final List<String> distinctTagValues, final Classifier classifier, final String tagName) {
 		StereotypeApplication criticalApp = UMLsecUtil.getStereotypeApplication(classifier, UMLsec.CRITICAL);
 		if (criticalApp != null) {
 			List<String> tagValues = UMLsecUtil.getStringValues(tagName, UMLsec.CRITICAL, classifier);
@@ -309,7 +309,7 @@ public final class SecureDependencyChecks {
 	 * @param classifier - the classifier whose operation signatures are to be collected
 	 * @return - a list of operation signature strings
 	 */
-	public List<String> getOperationSignatures(final Classifier classifier) {
+	public static List<String> getOperationSignatures(final Classifier classifier) {
 		List<String> signatures = new ArrayList<String>();
 		for (Operation operation : classifier.getAllOperations()) {
 			String signature = operation.getName() + "(";

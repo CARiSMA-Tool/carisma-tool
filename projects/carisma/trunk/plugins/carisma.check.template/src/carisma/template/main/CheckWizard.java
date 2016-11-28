@@ -22,12 +22,14 @@ import carisma.template.core.DummyCheckSection;
 
 public class CheckWizard extends NewPluginTemplateWizard  {
 	
+	@Override
 	public void init(IFieldData data){
 		super.init(data);
 		setWindowTitle("Wizard for a CARiSMA check");
 		
 	}
  
+	@Override
 	public ITemplateSection[] createTemplateSections() {
 		return new ITemplateSection[]{new DummyCheckSection(), new PrefPageSection()};
 	}

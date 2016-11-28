@@ -79,7 +79,7 @@ public class Analysis {
 	 * @return the name of the analysis
 	 */
 	public final String getName() {
-		return name;
+		return this.name;
 	}
 	
 	/**
@@ -87,7 +87,7 @@ public class Analysis {
 	 * @return the model file of this analysis
 	 */
 	public final File getModelFile() {
-		return modelFile;
+		return this.modelFile;
 	}
 	
 	/**
@@ -95,19 +95,19 @@ public class Analysis {
 	 * @return the model type of the analysis
 	 */
 	public final String getModelType() {
-		return modelType;
+		return this.modelType;
 	}
 	
 	/**
 	 * @return Return the IFile object of the model to be analyzed.
 	 */
 	public final IFile getIFile() {
-		if (iFile == null) {
+		if (this.iFile == null) {
 			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-			IPath p = Path.fromOSString(modelFile.toString());
-			iFile = workspaceRoot.getFile(p);
+			IPath p = Path.fromOSString(this.modelFile.toString());
+			this.iFile = workspaceRoot.getFile(p);
 		}
-		return iFile;
+		return this.iFile;
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class Analysis {
 	 * @param file the IFile object of the model
 	 */
 	public final  void setIFile(final IFile file) {
-		iFile = file;
+		this.iFile = file;
 		this.modelFile = file.getFullPath().toFile();
 	}
 	
@@ -125,7 +125,7 @@ public class Analysis {
 	 * @return a list of CheckReferences
 	 */
 	public final List<CheckReference> getChecks() {
-		return checks;
+		return this.checks;
 	}
 	
 	/**
@@ -149,7 +149,7 @@ public class Analysis {
 	 * @return the Name
 	 */
 	public final String getSelectedEditorId() {
-		return selectedEditor;
+		return this.selectedEditor;
 	}
 	
 	/**
@@ -159,7 +159,7 @@ public class Analysis {
 	public final List<CheckReference> getChecksWithInvalidParameters() {
 		List<CheckReference> checksWithInvalidParameters = new ArrayList<CheckReference>();
 		
-		for (CheckReference check : checks) {
+		for (CheckReference check : this.checks) {
 			if (!check.getUnsetRequiredParameters().isEmpty()) { 
 				checksWithInvalidParameters.add(check);
 			}

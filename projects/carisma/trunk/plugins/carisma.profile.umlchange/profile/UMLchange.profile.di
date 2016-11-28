@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="ASCII"?>
-<di:SashWindowsMngr xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.eclipse.org/papyrus/0.7.0/sashdi">
+<di:SashWindowsMngr xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:XMI="http://www.omg.org/XMI" xmlns:di="http://www.eclipse.org/papyrus/0.7.0/sashdi" XMI:version="2.0">
   <pageList>
-    <availablePage>
-      <emfPageIdentifier href="UMLchange.profile.notation#_CrxmUD6AEeCVwfLnZes45A"/>
-    </availablePage>
+    <availablePage/>
   </pageList>
-  <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
+  <sashModel currentSelection="#//@sashModel/@windows.0/@children.0">
     <windows>
       <children xsi:type="di:TabFolder">
-        <children>
-          <emfPageIdentifier href="UMLchange.profile.notation#_CrxmUD6AEeCVwfLnZes45A"/>
-        </children>
+        <children emfPageIdentifier="papyrus.welcome:dynamic#/"/>
+        <children emfPageIdentifier="UMLchange.profile.notation#_CrxmUD6AEeCVwfLnZes45A"/>
       </children>
     </windows>
   </sashModel>

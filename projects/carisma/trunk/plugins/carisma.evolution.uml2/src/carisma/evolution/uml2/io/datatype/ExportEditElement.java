@@ -25,10 +25,8 @@ public class ExportEditElement extends ExportDeltaElement {
 	 * @param editElement Element which is transformed.
 	 */
 	public ExportEditElement(final EditElement editElement) { 
-	    if (editElement != null) {
-	        values = ExporterUtility.getValuesWithStringNull(editElement.getValues());
-	    }
-		string = editElement.toString();
+	    this.values = ExporterUtility.getValuesWithStringNull(editElement.getValues());
+		this.string = editElement.toString();
 	}
 	
 	/** Getter for the values.
@@ -36,7 +34,7 @@ public class ExportEditElement extends ExportDeltaElement {
 	 * @return key value pair.
 	 */
 	public final Map<String, Object> getValues() {
-		return values;
+		return this.values;
 	}
 
 	/** Set the key value pair.
@@ -51,9 +49,10 @@ public class ExportEditElement extends ExportDeltaElement {
 	 * Normally uses the toString() method of the EditElement with which the constructor was called.
 	 * @return the output String.
 	 */
+	@Override
 	public final String toString() {
-		if (string != null) {
-			return string;
+		if (this.string != null) {
+			return this.string;
 		}
 		StringBuffer output = new StringBuffer("- EDIT: ");
 		output.append(this.getTarget().getType());

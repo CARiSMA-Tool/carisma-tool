@@ -3,13 +3,17 @@ Bundle-ManifestVersion: 2
 Bundle-Name: CARiSAMA Input and Output Operations
 Bundle-SymbolicName: carisma.core.io
 Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: carisma.core.io.configuration,
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: carisma.core.io,
+ carisma.core.io.configuration,
  carisma.core.io.content;uses:="org.w3c.dom,org.json",
  carisma.core.io.implementations;uses:="org.w3c.dom",
  carisma.core.io.implementations.db,
- carisma.core.io.implementations.db.mongodb.restapi
+ carisma.core.io.util
 Bundle-ClassPath: lib/java-json.jar,
- .
+ .,
+ lib/commons-lang3-3.4.jar
 Require-Bundle: org.apache.httpcomponents.httpcore,
- org.apache.httpcomponents.httpclient
+ org.apache.httpcomponents.httpclient,
+ org.eclipse.core.runtime
+Bundle-Activator: carisma.core.io.IOActivator

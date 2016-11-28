@@ -110,7 +110,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	/**
 	 * The controller between model (analysis) and view (adf editor).
 	 */
-	private AdfEditorController controller;
+	AdfEditorController controller;
 
 	/**
 	 * A String which contains 'Browse...'.
@@ -120,7 +120,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	/**
 	 * Map to get the query on demand check box for a parameter.
 	 */
-	private HashMap<CheckParameter, Button> qodButtonMap;
+	HashMap<CheckParameter, Button> qodButtonMap;
 
 	/**
 	 * TODO .
@@ -152,6 +152,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	 * @param mform
 	 *            the managedForm
 	 */
+	@Override
 	public final void initialize(final IManagedForm mform) {
 		this.managedForm = mform;
 	}
@@ -162,17 +163,18 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	 * @param parent
 	 *            the parent composite
 	 */
+	@Override
 	public final void createContents(final Composite parent) {
-		if (parentComposite == null) {
-			parentComposite = parent;
+		if (this.parentComposite == null) {
+			this.parentComposite = parent;
 		}
-		toolkit = managedForm.getToolkit();
+		this.toolkit = this.managedForm.getToolkit();
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 1;
-		gridLayout.marginHeight = toolkit.getBorderStyle() == SWT.BORDER ? 0
+		gridLayout.marginHeight = this.toolkit.getBorderStyle() == SWT.BORDER ? 0
 				: 2;
-		gridLayout.marginWidth = toolkit.getBorderStyle() == SWT.BORDER ? 0 : 2;
-		parentComposite.setLayout(gridLayout);
+		gridLayout.marginWidth = this.toolkit.getBorderStyle() == SWT.BORDER ? 0 : 2;
+		this.parentComposite.setLayout(gridLayout);
 	}
 
 	@Override
@@ -218,49 +220,49 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	private void createDescriptionSection(final CheckReference input) {
 
 		if (input != null) {
-			CheckDescriptor checkDescriptor = CarismaGUI.INSTANCE
+			CheckDescriptor checkDescriptor = CarismaGUI
 					.getCheckRegistry().getCheckDescriptor(input.getCheckID());
 			if (checkDescriptor != null) {
-				descriptionSection = toolkit.createSection(parentComposite,
+				this.descriptionSection = this.toolkit.createSection(this.parentComposite,
 						Section.DESCRIPTION);
-				descriptionSection.marginWidth = 10;
-				descriptionSection.setText(checkDescriptor.getName());
-				descriptionSection.setLayoutData(new GridData(
+				this.descriptionSection.marginWidth = 10;
+				this.descriptionSection.setText(checkDescriptor.getName());
+				this.descriptionSection.setLayoutData(new GridData(
 						GridData.FILL_HORIZONTAL));
-				toolkit.createCompositeSeparator(descriptionSection);
+				this.toolkit.createCompositeSeparator(this.descriptionSection);
 
-				if (descriptionComposite == null) {
-					descriptionComposite = toolkit
-							.createComposite(parentComposite);
-				} else if (!descriptionComposite.isDisposed()) {
-					descriptionComposite.dispose();
-					descriptionComposite = toolkit.createComposite(
-							parentComposite, SWT.NONE);
+				if (this.descriptionComposite == null) {
+					this.descriptionComposite = this.toolkit
+							.createComposite(this.parentComposite);
+				} else if (!this.descriptionComposite.isDisposed()) {
+					this.descriptionComposite.dispose();
+					this.descriptionComposite = this.toolkit.createComposite(
+							this.parentComposite, SWT.NONE);
 				}
 				GridLayout gridLayout = new GridLayout(1, false);
 				gridLayout.marginTop = 2;
 				gridLayout.marginRight = 2;
 				gridLayout.marginBottom = 10;
 				gridLayout.marginLeft = 10;
-				descriptionComposite.setLayout(gridLayout);
-				descriptionComposite.setLayoutData(new GridData(
+				this.descriptionComposite.setLayout(gridLayout);
+				this.descriptionComposite.setLayoutData(new GridData(
 						GridData.FILL_HORIZONTAL));
 
 				// The ID
-				Label labelId = toolkit
-						.createLabel(descriptionComposite, "ID:");
+				Label labelId = this.toolkit
+						.createLabel(this.descriptionComposite, "ID:");
 				setBoldFont(labelId);
-				toolkit.createLabel(descriptionComposite,
+				this.toolkit.createLabel(this.descriptionComposite,
 						checkDescriptor.getCheckDescriptorId());
 
 				// The description text
-				Label labelDescription = toolkit.createLabel(
-						descriptionComposite, "Description:");
+				Label labelDescription = this.toolkit.createLabel(
+						this.descriptionComposite, "Description:");
 				labelDescription.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
 						true, true));
 				setBoldFont(labelDescription);
-				Label labelDescriptionValue = toolkit.createLabel(
-						descriptionComposite, checkDescriptor.getDescription(),
+				Label labelDescriptionValue = this.toolkit.createLabel(
+						this.descriptionComposite, checkDescriptor.getDescription(),
 						SWT.WRAP);
 				labelDescriptionValue.setLayoutData(new GridData(SWT.FILL,
 						SWT.FILL, true, true));
@@ -268,14 +270,14 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				// List of preconditions
 				List<String> preconditions = checkDescriptor.getRequiredKeys();
 				if (preconditions.size() > 0) {
-					Label labelPrecon = toolkit.createLabel(
-							descriptionComposite, "Preconditions:");
+					Label labelPrecon = this.toolkit.createLabel(
+							this.descriptionComposite, "Preconditions:");
 					labelPrecon.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
 							true, true));
 					setBoldFont(labelPrecon);
 					for (String str : preconditions) {
-						Label labelPreconValue = toolkit.createLabel(
-								descriptionComposite, str);
+						Label labelPreconValue = this.toolkit.createLabel(
+								this.descriptionComposite, str);
 						labelPreconValue.setLayoutData(new GridData(SWT.FILL,
 								SWT.FILL, true, true));
 					}
@@ -284,24 +286,24 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				// List of postconditions
 				List<String> postconditions = checkDescriptor.getProvidedKeys();
 				if (postconditions.size() > 0) {
-					Label labelPostcon = toolkit.createLabel(
-							descriptionComposite, "Postconditions:");
+					Label labelPostcon = this.toolkit.createLabel(
+							this.descriptionComposite, "Postconditions:");
 					labelPostcon.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
 							true, true));
 					setBoldFont(labelPostcon);
 					for (String str : postconditions) {
-						Label labelPostconValue = toolkit.createLabel(
-								descriptionComposite, str);
+						Label labelPostconValue = this.toolkit.createLabel(
+								this.descriptionComposite, str);
 						labelPostconValue.setLayoutData(new GridData(SWT.FILL,
 								SWT.FILL, true, true));
 					}
 				}
 			} else {
-				toolkit.createLabel(parentComposite,
+				this.toolkit.createLabel(this.parentComposite,
 						"ERROR: CheckDescriptor was not found!");
 			}
 		} else {
-			toolkit.createLabel(parentComposite,
+			this.toolkit.createLabel(this.parentComposite,
 					"ERROR: CheckDescriptor is null");
 		}
 	}
@@ -315,51 +317,51 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	 *            MasterDetailBlock
 	 */
 	private void createParameterSection(final CheckReference checkReference) {
-		parameterSection = toolkit.createSection(parentComposite,
+		this.parameterSection = this.toolkit.createSection(this.parentComposite,
 				Section.DESCRIPTION);
 
 		// Create a new composite if not a existent or the page has been
 		// switched
-		if (parameterComposite == null) {
-			parameterComposite = toolkit.createComposite(parentComposite);
-		} else if (!parameterComposite.isDisposed()) {
-			parameterComposite.dispose();
-			parameterComposite = toolkit.createComposite(parentComposite,
+		if (this.parameterComposite == null) {
+			this.parameterComposite = this.toolkit.createComposite(this.parentComposite);
+		} else if (!this.parameterComposite.isDisposed()) {
+			this.parameterComposite.dispose();
+			this.parameterComposite = this.toolkit.createComposite(this.parentComposite,
 					SWT.NONE);
 		}
 
 		// If there are no parameters, the parameter section will be empty
 		if (checkReference.getParameters().size() > 0) {
-			qodButtonMap = new HashMap<CheckParameter, Button>();
+			this.qodButtonMap = new HashMap<CheckParameter, Button>();
 
-			parameterSection.marginWidth = 10;
-			parameterSection.setText("Parameters");
-			parameterSection.setLayoutData(new GridData(
+			this.parameterSection.marginWidth = 10;
+			this.parameterSection.setText("Parameters");
+			this.parameterSection.setLayoutData(new GridData(
 					GridData.FILL_HORIZONTAL));
-			toolkit.createCompositeSeparator(parameterSection);
+			this.toolkit.createCompositeSeparator(this.parameterSection);
 
 			GridLayout singleParameterGridLayout = new GridLayout(3, false);
 			singleParameterGridLayout.marginHeight = 2;
 			singleParameterGridLayout.marginRight = 10;
 			singleParameterGridLayout.marginLeft = 10;
-			parameterComposite.setLayout(singleParameterGridLayout);
-			parameterComposite.setLayoutData(new GridData(
+			this.parameterComposite.setLayout(singleParameterGridLayout);
+			this.parameterComposite.setLayoutData(new GridData(
 					GridData.FILL_HORIZONTAL));
 
 			// Create the header labels
-			Label labelHeaderName = toolkit.createLabel(parameterComposite,
+			Label labelHeaderName = this.toolkit.createLabel(this.parameterComposite,
 					"Name");
 			setBoldFont(labelHeaderName);
 			labelHeaderName.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER,
 					false, false));
 
-			Label labelHeaderValue = toolkit.createLabel(parameterComposite,
+			Label labelHeaderValue = this.toolkit.createLabel(this.parameterComposite,
 					"Value");
 			setBoldFont(labelHeaderValue);
 			labelHeaderValue.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER,
 					true, false));
 
-			Label labelHeaderQod = toolkit.createLabel(parameterComposite,
+			Label labelHeaderQod = this.toolkit.createLabel(this.parameterComposite,
 					"Ask?");
 			setBoldFont(labelHeaderQod);
 			labelHeaderQod.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER,
@@ -379,7 +381,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 					parameterName += "*";
 				}
 				parameterName += ":";
-				final Label labelName = toolkit.createLabel(parameterComposite,
+				final Label labelName = this.toolkit.createLabel(this.parameterComposite,
 						parameterName);
 				//Bug #1518: Wie kann man die Position des Tooltips verändern?
 				//http://stackoverflow.com/questions/11375250/set-tooltip-text-at-a-particular-location
@@ -389,8 +391,8 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 						false, false));
 
 				// Composite to place the parameter input elements
-				final Composite singleParameterComposite = toolkit
-						.createComposite(parameterComposite);
+				final Composite singleParameterComposite = this.toolkit
+						.createComposite(this.parameterComposite);
 				GridLayout valueGridLayout = new GridLayout(2, false);
 				valueGridLayout.marginLeft = 2;
 				singleParameterComposite.setLayout(valueGridLayout);
@@ -398,8 +400,8 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 						SWT.CENTER, true, false));
 
 				// Query on demand check box
-				final Button buttonQod = toolkit.createButton(
-						parameterComposite, "", SWT.CHECK);
+				final Button buttonQod = this.toolkit.createButton(
+						this.parameterComposite, "", SWT.CHECK);
 				buttonQod.setToolTipText("Ask for parameter at runtime?");
 				buttonQod.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER,
 						false, false));
@@ -407,12 +409,12 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				buttonQod.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(final SelectionEvent e) {
-						controller.setParameterQod(checkParameter,
+						AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter,
 								buttonQod.getSelection());
 					}
 				});
 				buttonQod.addListener(SWT.Selection, this.masterListener);
-				qodButtonMap.put(checkParameter, buttonQod);
+				this.qodButtonMap.put(checkParameter, buttonQod);
 
 				// Handle different check parameter
 				if (checkParameter.getDescriptor().getType()
@@ -450,14 +452,14 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				GridData horSpanGridData = new GridData(
 						GridData.FILL_HORIZONTAL);
 				horSpanGridData.horizontalSpan = 4;
-				Label labelOptional = toolkit.createLabel(parameterComposite,
+				Label labelOptional = this.toolkit.createLabel(this.parameterComposite,
 						"* Parameter is required");
 				setItalicFont(labelOptional);
 				labelOptional.setAlignment(SWT.RIGHT);
 				labelOptional.setLayoutData(horSpanGridData);
 			}
 
-			parentComposite.layout();
+			this.parentComposite.layout();
 		}
 	}
 
@@ -467,16 +469,16 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 		if (selection != null && !selection.isEmpty()) {
 			IStructuredSelection ssel = (IStructuredSelection) selection;
 			if (ssel.size() == 1) {
-				input = (CheckReference) ssel.getFirstElement();
-				if (descriptionSection != null) {
-					descriptionSection.dispose();
+				this.input = (CheckReference) ssel.getFirstElement();
+				if (this.descriptionSection != null) {
+					this.descriptionSection.dispose();
 				}
-				if (parameterSection != null) {
-					parameterSection.dispose();
+				if (this.parameterSection != null) {
+					this.parameterSection.dispose();
 				}
-				createDescriptionSection(input);
-				createParameterSection(input);
-				parentComposite.layout(); // refresh
+				createDescriptionSection(this.input);
+				createParameterSection(this.input);
+				this.parentComposite.layout(); // refresh
 			}
 		} else {
 			createDescriptionSection(null);
@@ -493,7 +495,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	 */
 	private void handleTextParameter(final Composite comp,
 			final CheckParameter checkParameter) {
-		final Text text = toolkit.createText(comp, "", SWT.SINGLE);
+		final Text text = this.toolkit.createText(comp, "", SWT.SINGLE);
 		GridData layoutData = new GridData(SWT.FILL, SWT.TOP, true, false);
 		layoutData.horizontalSpan = 2;
 		text.setLayoutData(layoutData);
@@ -507,15 +509,15 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 		text.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(final ModifyEvent e) {
-				controller.setParameter(checkParameter, text.getText());
+				AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter, text.getText());
 				if (text.getText().isEmpty()) {
 					if (!checkParameter.getDescriptor().isOptional()) {
-						controller.setParameterQod(checkParameter, true);
+						AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, true);
 					}
 				} else {
-					controller.setParameterQod(checkParameter, false);
+					AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, false);
 				}
-				qodButtonMap.get(checkParameter).setSelection(
+				AdfEditorCheckDetailsPage.this.qodButtonMap.get(checkParameter).setSelection(
 						checkParameter.isQueryOnDemand());
 			}
 		});
@@ -534,7 +536,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			final CheckParameter checkParameter) {
 		final String errorText = "Please insert an integer value!";
 
-		final Text text = toolkit.createText(comp, "", SWT.SINGLE);
+		final Text text = this.toolkit.createText(comp, "", SWT.SINGLE);
 		GridData layoutData = new GridData(SWT.FILL, SWT.TOP, true, false);
 		layoutData.horizontalSpan = 2;
 		text.setLayoutData(layoutData);
@@ -555,23 +557,23 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			@Override
 			public void modifyText(final ModifyEvent e) {
 				try {
-					controller.setParameter(checkParameter,
-							Integer.parseInt(text.getText()));
+					AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter,
+							Integer.valueOf(text.getText()));
 					decoration.hide();
 				} catch (Exception exc) {
-					controller.setParameter(checkParameter,
-							Integer.parseInt("0"));
+					AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter,
+							new Integer(0));
 					decoration.show();
 					decoration.showHoverText(errorText);
 				}
 				if (text.getText().isEmpty()) {
 					if (!checkParameter.getDescriptor().isOptional()) {
-						controller.setParameterQod(checkParameter, true);
+						AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, true);
 					}
 				} else {
-					controller.setParameterQod(checkParameter, false);
+					AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, false);
 				}
-				qodButtonMap.get(checkParameter).setSelection(
+				AdfEditorCheckDetailsPage.this.qodButtonMap.get(checkParameter).setSelection(
 						checkParameter.isQueryOnDemand());
 			}
 		});
@@ -608,7 +610,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			}
 		});
 		
-		text.addListener(SWT.Modify, masterListener);
+		text.addListener(SWT.Modify, this.masterListener);
 	}
 
 	/**
@@ -623,7 +625,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			final CheckParameter checkParameter) {
 		final String errorText = "Please insert a float value!";
 
-		final Text text = toolkit.createText(comp, "", SWT.SINGLE);
+		final Text text = this.toolkit.createText(comp, "", SWT.SINGLE);
 		GridData layoutData = new GridData(SWT.FILL, SWT.TOP, true, false);
 		layoutData.horizontalSpan = 2;
 		text.setLayoutData(layoutData);
@@ -644,20 +646,20 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			@Override
 			public void modifyText(final ModifyEvent e) {
 				try {
-					controller.setParameter(checkParameter,
-							Float.parseFloat(text.getText()));
-					controller.setParameterQod(checkParameter, false);
+					AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter,
+							Float.valueOf(text.getText()));
+					AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, false);
 					decoration.hide();
 				} catch (Exception exc) { // e.g. field is empty
-					controller.setParameter(checkParameter,
-							Float.parseFloat("0"));
+					AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter,
+							new Float(0.0f));
 					if (!checkParameter.getDescriptor().isOptional()) {
-						controller.setParameterQod(checkParameter, true);
+						AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, true);
 					}
 					decoration.show();
 					decoration.showHoverText(errorText);
 				}
-				qodButtonMap.get(checkParameter).setSelection(
+				AdfEditorCheckDetailsPage.this.qodButtonMap.get(checkParameter).setSelection(
 						checkParameter.isQueryOnDemand());
 			}
 		});
@@ -703,7 +705,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			}
 		});
 		
-		text.addListener(SWT.Modify, masterListener);
+		text.addListener(SWT.Modify, this.masterListener);
 	}
 
 	/**
@@ -716,10 +718,10 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	 */
 	private void handleBooleanParameter(final Composite comp,
 			final CheckParameter checkParameter) {
-		Button buttonTrue = toolkit.createButton(comp, "true", SWT.RADIO);
+		Button buttonTrue = this.toolkit.createButton(comp, "true", SWT.RADIO);
 		buttonTrue.setToolTipText(checkParameter.getDescriptor()
 				.getDescription());
-		Button buttonFalse = toolkit.createButton(comp, "false", SWT.RADIO);
+		Button buttonFalse = this.toolkit.createButton(comp, "false", SWT.RADIO);
 		buttonFalse.setToolTipText(checkParameter.getDescriptor()
 				.getDescription());
 		if (((BooleanParameter) checkParameter).getValue()) {
@@ -732,17 +734,17 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 		buttonTrue.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				controller.setParameter(checkParameter, true);
-				controller.setParameterQod(checkParameter, false);
-				qodButtonMap.get(checkParameter).setSelection(false);
+				AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter, Boolean.TRUE);
+				AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, false);
+				AdfEditorCheckDetailsPage.this.qodButtonMap.get(checkParameter).setSelection(false);
 			}
 		});
 		buttonFalse.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				controller.setParameter(checkParameter, false);
-				controller.setParameterQod(checkParameter, false);
-				qodButtonMap.get(checkParameter).setSelection(false);
+				AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter, Boolean.FALSE);
+				AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, false);
+				AdfEditorCheckDetailsPage.this.qodButtonMap.get(checkParameter).setSelection(false);
 			}
 		});
 	}
@@ -757,12 +759,12 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	 */
 	private void handleInputFileParameter(final Composite comp,
 			final CheckParameter checkParameter) {
-		final Text text = toolkit.createText(comp, "");
+		final Text text = this.toolkit.createText(comp, "");
 		text.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 		text.setEditable(false);
 		text.setToolTipText(checkParameter.getDescriptor().getDescription());
 
-		Button browse = toolkit.createButton(comp,
+		Button browse = this.toolkit.createButton(comp,
 				AdfEditorCheckDetailsPage.BROWSE, SWT.PUSH);
 		browse.setToolTipText("Browse for an\ninput file");
 		browse.setLayoutData(new GridData(SWT.NONE, SWT.TOP, false, false));
@@ -805,33 +807,34 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			}
 		});
 		
-		text.addListener(SWT.Modify, masterListener);
+		text.addListener(SWT.Modify, this.masterListener);
 
 		// Open file dialog
 		browse.addSelectionListener(new SelectionAdapter() {
 			private FileDialog fileDialog = null;
 
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				fileDialog = new FileDialog(comp.getShell());
-				fileDialog.setText("Input File Selection");
+				this.fileDialog = new FileDialog(comp.getShell());
+				this.fileDialog.setText("Input File Selection");
 				if (!text.getText().isEmpty()) {
-					fileDialog.setFilterPath(text.getText());
+					this.fileDialog.setFilterPath(text.getText());
 				} else {
-					fileDialog.setFilterPath(ResourcesPlugin.getWorkspace()
+					this.fileDialog.setFilterPath(ResourcesPlugin.getWorkspace()
 							.getRoot().getLocation().toOSString());
 				}
-				String path = fileDialog.open();
+				String path = this.fileDialog.open();
 				if (path != null) {
 					File inputFile = new File(path);
 					if (inputFile.canRead()) {
-						controller.setParameter(checkParameter, inputFile);
+						AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter, inputFile);
 						decoration.hide();
 						text.setText(inputFile.getPath());
 						text.update();
-						controller.setParameterQod(checkParameter, false);
-						qodButtonMap.get(checkParameter).setSelection(false);
+						AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, false);
+						AdfEditorCheckDetailsPage.this.qodButtonMap.get(checkParameter).setSelection(false);
 					} else {
-						controller.setParameter(checkParameter, null);
+						AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter, null);
 						decoration.show();
 						decoration.setShowHover(true);
 						decoration
@@ -839,8 +842,8 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 						text.setText("");
 						text.update();
 						if (!checkParameter.getDescriptor().isOptional()) {
-							controller.setParameterQod(checkParameter, true);
-							qodButtonMap.get(checkParameter).setSelection(true);
+							AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, true);
+							AdfEditorCheckDetailsPage.this.qodButtonMap.get(checkParameter).setSelection(true);
 						}
 					}
 				}
@@ -866,7 +869,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			folderValue = "";
 		}
 
-		final Text text = toolkit.createText(comp, folderValue);
+		final Text text = this.toolkit.createText(comp, folderValue);
 		text.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 		text.setEditable(false);
 		text.setToolTipText(checkParameter.getDescriptor().getDescription());
@@ -884,13 +887,13 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			public void modifyText(final ModifyEvent e) {
 				File inputFile = new File(text.getText());
 				if (!inputFile.canRead() || !inputFile.isDirectory()) {
-					controller.setParameter(checkParameter, null);
+					AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter, null);
 					decoration.show();
 					decoration.setShowHover(true);
 					decoration
 							.showHoverText("Invalid input folder.\nFully qualified path is needed and has to exist.");
 				} else {
-					controller.setParameter(checkParameter, inputFile);
+					AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter, inputFile);
 					decoration.hide();
 				}
 			}
@@ -907,14 +910,15 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			}
 		});
 		
-		text.addListener(SWT.Modify, masterListener);
+		text.addListener(SWT.Modify, this.masterListener);
 
-		Button folderOpen = toolkit.createButton(comp,
+		Button folderOpen = this.toolkit.createButton(comp,
 				AdfEditorCheckDetailsPage.BROWSE, SWT.PUSH);
 		folderOpen.setLayoutData(new GridData(SWT.NONE, SWT.TOP, false, false));
 		folderOpen.setToolTipText("Browse for a folder");
 
 		folderOpen.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				DirectoryDialog dirDialog = new DirectoryDialog(comp.getShell());
 				dirDialog.setText("Folder Selection");
@@ -927,11 +931,11 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				String result = dirDialog.open();
 				if (result != null && !result.isEmpty()) {
 					File outputFile = new File(result);
-					controller.setParameter(checkParameter, outputFile);
+					AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter, outputFile);
 					text.setText(outputFile.getPath());
 					text.update();
-					controller.setParameterQod(checkParameter, false);
-					qodButtonMap.get(checkParameter).setSelection(false);
+					AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, false);
+					AdfEditorCheckDetailsPage.this.qodButtonMap.get(checkParameter).setSelection(false);
 				}
 			}
 		});
@@ -956,12 +960,12 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			outputFileValue = "";
 		}
 
-		final Text text = toolkit.createText(comp, outputFileValue);
+		final Text text = this.toolkit.createText(comp, outputFileValue);
 		text.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 		text.setEditable(false);
 		text.setToolTipText(checkParameter.getDescriptor().getDescription());
 
-		Button outputFileOpen = toolkit.createButton(comp,
+		Button outputFileOpen = this.toolkit.createButton(comp,
 				AdfEditorCheckDetailsPage.BROWSE, SWT.PUSH);
 		outputFileOpen.setLayoutData(new GridData(SWT.NONE, SWT.TOP, false,
 				false));
@@ -981,10 +985,10 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			public void modifyText(final ModifyEvent e) {
 				try {
 					if (!text.getText().isEmpty()) {
-						controller.setParameter(checkParameter,
+						AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter,
 								new File(text.getText()));
 					} else {
-						controller.setParameter(checkParameter, null);
+						AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter, null);
 					}
 					if (((OutputFileParameter) checkParameter)
 							.isInsertedValueValid()) {
@@ -1011,7 +1015,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 			}
 		});
 		
-		text.addListener(SWT.Modify, masterListener);
+		text.addListener(SWT.Modify, this.masterListener);
 
 		outputFileOpen.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -1026,12 +1030,12 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				}
 				String selection = fDialog.open();
 				if (selection != null && !selection.isEmpty()) {
-					controller
+					AdfEditorCheckDetailsPage.this.controller
 							.setParameter(checkParameter, new File(selection));
 					text.setText(selection);
 					text.update();
-					controller.setParameterQod(checkParameter, false);
-					qodButtonMap.get(checkParameter).setSelection(false);
+					AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, false);
+					AdfEditorCheckDetailsPage.this.qodButtonMap.get(checkParameter).setSelection(false);
 				}
 			}
 		});
@@ -1046,7 +1050,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	 *            The event to apply
 	 * @return The possible new content of the text element
 	 */
-	private String applyEventToText(final Text text, final Event event) {
+	static String applyEventToText(final Text text, final Event event) {
 		String oldTextBefore = text.getText(0, event.start - 1);
 		String oldTextAfter = text.getText(event.end, text.getText().length());
 		String returnText = oldTextBefore + event.text + oldTextAfter;
@@ -1059,7 +1063,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	 * @param label
 	 *            the label which gets the bold font
 	 */
-	private void setBoldFont(final Label label) {
+	private static void setBoldFont(final Label label) {
 		FontData[] boldFont = label.getFont().getFontData();
 		for (FontData font : boldFont) {
 			font.setStyle(SWT.BOLD);
@@ -1073,7 +1077,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	 * @param label
 	 *            the label which gets the bold font
 	 */
-	private void setItalicFont(final Label label) {
+	private static void setItalicFont(final Label label) {
 		FontData[] italicFont = label.getFont().getFontData();
 		for (FontData font : italicFont) {
 			font.setStyle(SWT.ITALIC);

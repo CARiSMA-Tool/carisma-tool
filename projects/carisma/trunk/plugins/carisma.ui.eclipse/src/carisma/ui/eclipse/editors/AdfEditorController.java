@@ -28,6 +28,7 @@ import carisma.core.analysis.OutputFileParameter;
 import carisma.core.analysis.StringParameter;
 import carisma.core.checks.CheckDescriptor;
 import carisma.core.checks.CheckParameter;
+import carisma.core.checks.CheckRegistry;
 import carisma.core.checks.ParameterType;
 import carisma.ui.eclipse.CarismaGUI;
 
@@ -106,9 +107,10 @@ public class AdfEditorController {
 	 *            The ID of the {@link CheckDescriptor} which will be created
 	 */
 	protected final void createCheck(final String checkDescriptorId) {
-		CheckReference reference = CarismaGUI.INSTANCE.getCheckRegistry()
+		CarismaGUI.getCheckRegistry();
+		CheckReference reference = CheckRegistry
 				.createReference(
-						CarismaGUI.INSTANCE.getCheckRegistry()
+						CarismaGUI.getCheckRegistry()
 								.getCheckDescriptor(checkDescriptorId));
 		addCheck(reference);
 	}
@@ -280,7 +282,7 @@ public class AdfEditorController {
 	 */
 	protected final void runAnalysis() {
 		if (!this.editor.isDirty()) {
-			CarismaGUI.INSTANCE.runAnalysis(this.analysis);
+			CarismaGUI.runAnalysis(this.analysis);
 		}
 	}
 
@@ -294,7 +296,7 @@ public class AdfEditorController {
 	 * @throws CoreException
 	 *             If the {@link IFile} could not be created
 	 */
-	protected final IFile getLinkedIFile(final String filepath)
+	protected final static IFile getLinkedIFile(final String filepath)
 			throws CoreException {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IPath location = Path.fromOSString(filepath);
@@ -346,18 +348,21 @@ public class AdfEditorController {
 		} else if (checkParameter.getDescriptor().getType()
 				.equals(ParameterType.INTEGER)) {
 			IntegerParameter integerParameter = (IntegerParameter) checkParameter;
-			newValue = !(integerParameter.getValue() == (Integer) value);
-			integerParameter.setValue((Integer) value);
+			int intValue = ((Integer) value).intValue();
+			newValue = !(integerParameter.getValue() == intValue);
+			integerParameter.setValue(intValue);
 		} else if (checkParameter.getDescriptor().getType()
 				.equals(ParameterType.FLOAT)) {
 			FloatParameter floatParameter = (FloatParameter) checkParameter;
-			newValue = !(floatParameter.getValue() == (Float) value);
-			floatParameter.setValue((Float) value);
+			float floatValue = ((Float) value).floatValue();
+			newValue = !(floatParameter.getValue() == floatValue);
+			floatParameter.setValue(floatValue);
 		} else if (checkParameter.getDescriptor().getType()
 				.equals(ParameterType.BOOLEAN)) {
 			BooleanParameter booleanParameter = (BooleanParameter) checkParameter;
-			newValue = !(booleanParameter.getValue() == (Boolean) value);
-			booleanParameter.setValue((Boolean) value);
+			boolean booleanValue = ((Boolean) value).booleanValue();
+			newValue = !(booleanParameter.getValue() == booleanValue);
+			booleanParameter.setValue(booleanValue);
 		} else if (checkParameter.getDescriptor().getType()
 				.equals(ParameterType.INPUTFILE)) {
 			InputFileParameter inputFileParameter = (InputFileParameter) checkParameter;
@@ -433,88 +438,87 @@ public class AdfEditorController {
 						|| parameter.getDescriptor().isOptional()) {
 					removeProblem(check, parameter);
 					continue;
-				} else {
-					ParameterType actualParameterType = parameter
-							.getDescriptor().getType();
-					// INTEGER, FLOAT AND BOOLEAN PARAMETER ARE ALWAYS VALID
-					if (actualParameterType.equals(ParameterType.INTEGER)
-							|| actualParameterType.equals(ParameterType.FLOAT)
-							|| actualParameterType.equals(ParameterType.BOOLEAN)) {
+				}
+				ParameterType actualParameterType = parameter
+						.getDescriptor().getType();
+				// INTEGER, FLOAT AND BOOLEAN PARAMETER ARE ALWAYS VALID
+				if (actualParameterType.equals(ParameterType.INTEGER)
+						|| actualParameterType.equals(ParameterType.FLOAT)
+						|| actualParameterType.equals(ParameterType.BOOLEAN)) {
+					continue;
+				}
+				// STRING PARAMETER
+				if (actualParameterType.equals(ParameterType.STRING)) {
+					StringParameter stringParameter = (StringParameter) parameter;
+					if (stringParameter.getValue() == null) {
+						addProblem(check, parameter,
+								"String is null, not optional and has no query on demand");
+						valid = false;
 						continue;
 					}
-					// STRING PARAMETER
-					if (actualParameterType.equals(ParameterType.STRING)) {
-						StringParameter stringParameter = (StringParameter) parameter;
-						if (stringParameter.getValue() == null) {
-							addProblem(check, parameter,
-									"String is null, not optional and has no query on demand");
-							valid = false;
-							continue;
-						}
-						if (stringParameter.getValue().isEmpty()) {
-							addProblem(check, parameter,
-									"String is empty, not optional and has no query on demand");
-							valid = false;
-							continue;
-						}
-						removeProblem(check, parameter);
+					if (stringParameter.getValue().isEmpty()) {
+						addProblem(check, parameter,
+								"String is empty, not optional and has no query on demand");
+						valid = false;
 						continue;
 					}
-					// INPUT FILE
-					if (actualParameterType.equals(ParameterType.INPUTFILE)) {
-						InputFileParameter inputfileParameter = (InputFileParameter) parameter;
-						if (inputfileParameter.getValue() == null) {
-							addProblem(check, parameter,
-									"File is null, not optional and has no query on demand");
-							valid = false;
-							continue;
-						}
-						if (!inputfileParameter.getValue().exists()) {
-							addProblem(check, parameter,
-									"File does not exist, is not optional and has no query on demand");
-							valid = false;
-							continue;
-						}
-						removeProblem(check, parameter);
+					removeProblem(check, parameter);
+					continue;
+				}
+				// INPUT FILE
+				if (actualParameterType.equals(ParameterType.INPUTFILE)) {
+					InputFileParameter inputfileParameter = (InputFileParameter) parameter;
+					if (inputfileParameter.getValue() == null) {
+						addProblem(check, parameter,
+								"File is null, not optional and has no query on demand");
+						valid = false;
 						continue;
 					}
-					// OUTPUT FILE
-					if (actualParameterType.equals(ParameterType.OUTPUTFILE)) {
-						OutputFileParameter outputfileParameter = (OutputFileParameter) parameter;
-						if (outputfileParameter.getValue() == null) {
-							addProblem(check, parameter,
-									"File is null, not optional and has no query on demand");
-							valid = false;
-							continue;
-						}
-						if (!outputfileParameter.isInsertedValueValid()) {
-							addProblem(check, parameter,
-									"Inserted value is not valid, not optional and has no query on demand");
-							valid = false;
-							continue;
-						}
-						removeProblem(check, parameter);
+					if (!inputfileParameter.getValue().exists()) {
+						addProblem(check, parameter,
+								"File does not exist, is not optional and has no query on demand");
+						valid = false;
 						continue;
 					}
-					// FOLDER PARAMETER
-					if (actualParameterType.equals(ParameterType.FOLDER)) {
-						FolderParameter folderParameter = (FolderParameter) parameter;
-						if (folderParameter.getValue() == null) {
-							addProblem(check, parameter,
-									"Value is null, not optional and has no query on demand");
-							valid = false;
-							continue;
-						}
-						if (folderParameter.getValue().getAbsolutePath()
-								.isEmpty()) {
-							addProblem(check, parameter,
-									"Absolute path is empty, parameter is not optional and has no query on demand");
-							valid = false;
-							continue;
-						}
-						removeProblem(check, parameter);
+					removeProblem(check, parameter);
+					continue;
+				}
+				// OUTPUT FILE
+				if (actualParameterType.equals(ParameterType.OUTPUTFILE)) {
+					OutputFileParameter outputfileParameter = (OutputFileParameter) parameter;
+					if (outputfileParameter.getValue() == null) {
+						addProblem(check, parameter,
+								"File is null, not optional and has no query on demand");
+						valid = false;
 						continue;
 					}
+					if (!outputfileParameter.isInsertedValueValid()) {
+						addProblem(check, parameter,
+								"Inserted value is not valid, not optional and has no query on demand");
+						valid = false;
+						continue;
+					}
+					removeProblem(check, parameter);
+					continue;
+				}
+				// FOLDER PARAMETER
+				if (actualParameterType.equals(ParameterType.FOLDER)) {
+					FolderParameter folderParameter = (FolderParameter) parameter;
+					if (folderParameter.getValue() == null) {
+						addProblem(check, parameter,
+								"Value is null, not optional and has no query on demand");
+						valid = false;
+						continue;
+					}
+					if (folderParameter.getValue().getAbsolutePath()
+							.isEmpty()) {
+						addProblem(check, parameter,
+								"Absolute path is empty, parameter is not optional and has no query on demand");
+						valid = false;
+						continue;
+					}
+					removeProblem(check, parameter);
+					continue;
 				}
 			}
 		}
@@ -533,15 +537,15 @@ public class AdfEditorController {
 	 */
 	protected final void addProblem(final CheckReference checkReference,
 			final CheckParameter checkParameter, final String text) {
-		if (problemList.containsKey(checkReference)) {
-			Object valueObject = problemList.get(checkReference);
+		if (this.problemList.containsKey(checkReference)) {
+			Object valueObject = this.problemList.get(checkReference);
 			@SuppressWarnings("unchecked")
 			HashMap<CheckParameter, String> valueMap = (HashMap<CheckParameter, String>) valueObject;
 			valueMap.put(checkParameter, text);
 		} else {
 			Map<CheckParameter, String> valueMap = new HashMap<CheckParameter, String>();
 			valueMap.put(checkParameter, text);
-			problemList.put(checkReference, valueMap);
+			this.problemList.put(checkReference, valueMap);
 		}
 	}
 
@@ -569,19 +573,19 @@ public class AdfEditorController {
 	 */
 	protected final void removeProblem(final CheckReference checkReference,
 			final CheckParameter checkParameter) {
-		if (problemList.containsKey(checkReference)) {
+		if (this.problemList.containsKey(checkReference)) {
 			if (checkParameter != null) {
-				Object valueObject = problemList.get(checkReference);
+				Object valueObject = this.problemList.get(checkReference);
 				if (valueObject instanceof Map<?, ?>) {
 					@SuppressWarnings("unchecked")
 					Map<CheckParameter, String> valueMap = (Map<CheckParameter, String>) valueObject;
 					valueMap.remove(checkParameter);
 					if (valueMap.isEmpty()) {
-						problemList.remove(checkReference);
+						this.problemList.remove(checkReference);
 					}
 				}
 			} else {
-				problemList.remove(checkReference);
+				this.problemList.remove(checkReference);
 			}
 		}
 	}
@@ -593,14 +597,14 @@ public class AdfEditorController {
 	 *            An identifier of the source of the problem
 	 */
 	protected final void removeProblem(final String source) {
-		problemList.remove(source);
+		this.problemList.remove(source);
 	}
 
 	/**
 	 * Clears the list of problems.
 	 */
 	protected final void clearProblems() {
-		problemList.clear();
+		this.problemList.clear();
 	}
 
 	/**
@@ -610,7 +614,7 @@ public class AdfEditorController {
 	 */
 	protected final List<String> getProblems() {
 		List<String> returnProblemList = new ArrayList<String>();
-		for (Entry<Object, Object> problemEntry : problemList.entrySet()) {
+		for (Entry<Object, Object> problemEntry : this.problemList.entrySet()) {
 			if (problemEntry.getKey() instanceof String) {
 				returnProblemList.add(problemEntry.getKey().toString() + ": "
 						+ problemEntry.getValue().toString());
@@ -618,7 +622,7 @@ public class AdfEditorController {
 			if (problemEntry.getKey() instanceof CheckReference) {
 				CheckReference problemCheck = (CheckReference) problemEntry
 						.getKey();
-				CheckDescriptor checkDescriptor = CarismaGUI.INSTANCE
+				CheckDescriptor checkDescriptor = CarismaGUI
 						.getCheckRegistry().getCheckDescriptor(
 								problemCheck.getCheckID());
 				if (checkDescriptor != null) {

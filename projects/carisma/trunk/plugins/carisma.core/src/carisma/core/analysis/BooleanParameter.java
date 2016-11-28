@@ -45,7 +45,7 @@ public class BooleanParameter extends CheckParameter {
 	 * @return value of this parameter
 	 */
 	public final boolean getValue() {
-		return value;
+		return this.value;
 	}
 	/**
 	 * setter for value.

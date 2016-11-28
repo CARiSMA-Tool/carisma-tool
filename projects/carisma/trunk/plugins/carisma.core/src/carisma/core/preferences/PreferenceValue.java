@@ -13,7 +13,7 @@ public class PreferenceValue {
 	}
 	
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -21,7 +21,7 @@ public class PreferenceValue {
 	}
 
 	public Object getValue() {
-		return value;
+		return this.value;
 	}
 
 	public void setValue(Object value) {

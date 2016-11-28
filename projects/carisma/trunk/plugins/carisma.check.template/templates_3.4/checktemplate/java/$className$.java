@@ -13,7 +13,7 @@ import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CheckParameter;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 
 /** Contains a Simple CARiSMA Check which returns all elements of a given Model.
  *

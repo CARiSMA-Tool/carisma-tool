@@ -61,8 +61,8 @@
             primary="false">
       </toc>
    </extension>
-      <extension
-         point="carisma.evolution.EvolutionCheckMapping">
+   <extension
+            point="carisma.evolution.EvolutionCheckMapping">
       <check
             EvolutionCheckID="carisma.check.smartcard.evolution.authorizedstatusmodifiercheck"
             NonEvolutionCheckID="carisma.check.smartcard.authorizedstatuscheck">

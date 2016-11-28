@@ -99,7 +99,7 @@ final class Messages {
 	static String linktypeDeletionNotAllowed(final DeltaElement delElement) {
 		StereotypeApplication delApp = (StereotypeApplication) delElement.getTarget();
 		CommunicationPath commPath = (CommunicationPath) delApp.getExtendedElement();
-		Stereotype appliedStereo = (Stereotype) delApp.getAppliedStereotype();
+		Stereotype appliedStereo = delApp.getAppliedStereotype();
 		List<Node> linkNodes = UMLDeploymentHelper.getNodes(commPath);
 		StringBuffer buf = new StringBuffer();
 		for (Iterator<Node> nodeIt = linkNodes.iterator(); nodeIt.hasNext();) {

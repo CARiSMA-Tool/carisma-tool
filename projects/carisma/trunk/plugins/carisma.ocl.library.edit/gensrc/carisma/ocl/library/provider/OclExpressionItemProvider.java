@@ -66,7 +66,7 @@ public class OclExpressionItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -74,7 +74,7 @@ public class OclExpressionItemProvider
 			addQueryPropertyDescriptor(object);
 			addContextPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -84,9 +84,9 @@ public class OclExpressionItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+		this.itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_OclExpression_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OclExpression_name_feature", "_UI_OclExpression_type"),
@@ -106,9 +106,9 @@ public class OclExpressionItemProvider
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+		this.itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_OclExpression_description_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OclExpression_description_feature", "_UI_OclExpression_type"),
@@ -128,9 +128,9 @@ public class OclExpressionItemProvider
 	 * @generated
 	 */
 	protected void addQueryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+		this.itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_OclExpression_query_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OclExpression_query_feature", "_UI_OclExpression_type"),
@@ -150,9 +150,9 @@ public class OclExpressionItemProvider
 	 * @generated
 	 */
 	protected void addContextPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+		this.itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_OclExpression_context_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OclExpression_context_feature", "_UI_OclExpression_type"),
@@ -207,9 +207,11 @@ public class OclExpressionItemProvider
 			case LibraryPackage.OCL_EXPRESSION__QUERY:
 			case LibraryPackage.OCL_EXPRESSION__CONTEXT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+				break;
+			default:
+				super.notifyChanged(notification);
+				break;
 		}
-		super.notifyChanged(notification);
 	}
 
 	/**

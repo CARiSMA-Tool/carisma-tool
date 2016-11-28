@@ -45,12 +45,10 @@ public final class EObjectUtil {
 			}
 			if (sf != null) {
 				return String.valueOf(obj.eGet(sf));
-			} else {
-				return "[unnamed " + obj.eClass().getName() + "]";
 			}
-		} else {
-			return "[no element]";
+			return "[unnamed " + obj.eClass().getName() + "]";
 		}
+		return "[no element]";
 	}
 
 	/**
@@ -61,9 +59,8 @@ public final class EObjectUtil {
 	public static String getTypeAndName(final EObject obj) {
 		if (obj != null) {
 			return obj.eClass().getName() + " '" + getName(obj) + "'";
-		} else {
-			return "[no element]";
 		}
+		return "[no element]";
 	}
 	
 	/**

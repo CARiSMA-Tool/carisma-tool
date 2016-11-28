@@ -16,19 +16,19 @@ public class ModifierMap {
 	private Resource modelResource = null;
 
 	public ModifierMap(final Resource usedModelResource) {
-		wrappedMap = new HashMap<Delta, UMLModifier>();
-		modelResource = usedModelResource;
+		this.wrappedMap = new HashMap<Delta, UMLModifier>();
+		this.modelResource = usedModelResource;
 	}
 	
 	public UMLModifier get(final Delta delta) {
 		UMLModifier aModifier = null;
-		if (wrappedMap.containsKey(delta)) {
+		if (this.wrappedMap.containsKey(delta)) {
 			System.out.println("Modifier von dem Delta schon da...");
-			aModifier = wrappedMap.get(delta);
+			aModifier = this.wrappedMap.get(delta);
 		} else {
 			System.out.println("Modifier noch nicht da, mache einen...");
-			aModifier = new UMLModifier(modelResource, delta);
-			wrappedMap.put(delta, aModifier);
+			aModifier = new UMLModifier(this.modelResource, delta);
+			this.wrappedMap.put(delta, aModifier);
 		}
 		return aModifier;
 	}

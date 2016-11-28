@@ -80,6 +80,7 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtendedDocumentRoot createExtendedDocumentRoot() {
 		ExtendedDocumentRootImpl extendedDocumentRoot = new ExtendedDocumentRootImpl();
 		return extendedDocumentRoot;
@@ -90,6 +91,7 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtendedProcess createExtendedProcess() {
 		ExtendedProcessImpl extendedProcess = new ExtendedProcessImpl();
 		return extendedProcess;
@@ -100,6 +102,7 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtendedTask createExtendedTask() {
 		ExtendedTaskImpl extendedTask = new ExtendedTaskImpl();
 		return extendedTask;
@@ -110,6 +113,7 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtendedLane createExtendedLane() {
 		ExtendedLaneImpl extendedLane = new ExtendedLaneImpl();
 		return extendedLane;
@@ -120,6 +124,7 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtendedPackage getExtendedPackage() {
 		return (ExtendedPackage)getEPackage();
 	}

@@ -45,7 +45,7 @@ public class ModelManager {
 		if (iFile.getLocation()!=null) {
 			file = iFile.getLocation().toFile();
 		} else {
-			String path = workdir.getAbsolutePath();
+			String path = this.workdir.getAbsolutePath();
 			if (path.endsWith("/")) {
 				path = path.substring(0, path.length()-2);
 			}
@@ -62,7 +62,8 @@ public class ModelManager {
 	 * @return
 	 * @throws IOException
 	 */
-	public Resource loadModel(File file, String modelType) throws IOException {
+	@Deprecated
+	public static Resource loadModel(File file, String modelType) throws IOException {
 		ModelLoader loader = Carisma.getInstance().getModelTypeRegistry().getLoader(modelType);
 		if (loader != null) {
 			return loader.load(file);
@@ -76,11 +77,11 @@ public class ModelManager {
 	 * @param value new Value
 	 */
 	public final void addMapping(final String key, final String value) {
-		profileMapping.put(key, value);
+		this.profileMapping.put(key, value);
 	}
 	
 	public final Map<String, String> getMapping() {
-		return Collections.unmodifiableMap(profileMapping);
+		return Collections.unmodifiableMap(this.profileMapping);
 
 	}
 	
@@ -88,7 +89,7 @@ public class ModelManager {
 	 * Use loadModel instead!
 	 */
 	@Deprecated 
-	public Resource loadModelSeperately(File file, String modelType) throws IOException {
+	public static Resource loadModelSeperately(File file, String modelType) throws IOException {
 		return loadModel(file, modelType);
 	}
 

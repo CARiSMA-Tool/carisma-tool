@@ -29,7 +29,7 @@ import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.RegisterNotInUseException;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
@@ -47,11 +47,13 @@ import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 
 
-public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
+public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 
-	private static final String DELTAS_REGISTER_KEY = "carisma.data.evolution.deltas";
+	private static final String CHECK_ID = "carisma.check.smartcard.evolution.lockedstatusdeltaonlycheck";
+	private static final String PRECONDITION_DELTAS_REGISTER_KEY = "carisma.data.evolution.deltas";
+	private static final String CHECK_NAME = "Evolution-aware Locked Status Check (Delta Only version)";
 
-	private AnalysisHost host;
+	private AnalysisHost analysisHost;
 	
 	private DeltaList deltaList = null;
 	
@@ -73,11 +75,11 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 	 * Normally you choose to delete them, but need to keep them for performance test.
 	 * @author Klaus Rudack
 	 */
-	private Boolean removeViolations = true;
+	private Boolean removeViolations = Boolean.TRUE;
 	
 	public LockedStatusEvolutionDeltaOnlyCheck() {
-		processedStates = new HashMap<State, DeltaElement>();
-		errorMessages = new ArrayList<AnalysisMessage>();
+		this.processedStates = new HashMap<State, DeltaElement>();
+		this.errorMessages = new ArrayList<AnalysisMessage>();
 	}
 	
 	/**
@@ -86,63 +88,62 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 	 * @param removeViolations false if  the violating changes should remain, false otherwise
 	 */
 	public LockedStatusEvolutionDeltaOnlyCheck(final Boolean removeViolations) {
-		processedStates = new HashMap<State, DeltaElement>();
-		errorMessages = new ArrayList<AnalysisMessage>();
+		this.processedStates = new HashMap<State, DeltaElement>();
+		this.errorMessages = new ArrayList<AnalysisMessage>();
 		if (removeViolations != null) {
 			this.removeViolations = removeViolations;
 		}
 	}
 	
 	@Override
-	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost newHost) {
-		host = newHost;
-		Resource currentModelRes = host.getAnalyzedModel();
+	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
+		this.analysisHost = host;
+		Resource currentModelRes = this.analysisHost.getAnalyzedModel();
 		if (currentModelRes.getContents().isEmpty()) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
 			return false;
 		}
 		if (!(currentModelRes.getContents().get(0) instanceof Model)) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
 			return false;
-		} else {
-			currentModel = (Model) currentModelRes.getContents().get(0);
 		}
-		stateMapping.clear();
-		for (State s : UMLHelper.getAllElementsOfType(currentModel, State.class)) {
-			if (stateMapping.get(s.getName()) == null) {
-				stateMapping.put(s.getName(), new ArrayList<State>());
+		this.currentModel = (Model) currentModelRes.getContents().get(0);
+		this.stateMapping.clear();
+		for (State s : UMLHelper.getAllElementsOfType(this.currentModel, State.class)) {
+			if (this.stateMapping.get(s.getName()) == null) {
+				this.stateMapping.put(s.getName(), new ArrayList<State>());
 			}
-			stateMapping.get(s.getName()).add(s);
+			this.stateMapping.get(s.getName()).add(s);
 		}
 		try {
-			deltaList = (DeltaList) host.getFromRegister(DELTAS_REGISTER_KEY);
+			this.deltaList = (DeltaList) this.analysisHost.getFromRegister(PRECONDITION_DELTAS_REGISTER_KEY);
 		} catch (RegisterNotInUseException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			return false;
 		}
-		if (deltaList == null) {
+		if (this.deltaList == null) {
 			return false;
 		}
-		if (deltaList.isEmpty()) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No delta left to analyze."));
+		if (this.deltaList.isEmpty()) {
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No delta left to analyze."));
 			return true;
 		}
-		int beforeMaxChanges = deltaList.getHighestChangeCountNow();
+		int beforeMaxChanges = this.deltaList.getHighestChangeCountNow();
 		boolean isSuccessful = checkDeltas();
 		if (isSuccessful) {
-			host.addResultMessage(
+			this.analysisHost.addResultMessage(
 					new AnalysisResultMessage(
 							StatusType.INFO,
-							"A successful maximum Delta (using " + deltaList.getHighestChangeCountNow() + " changes) exists."));
+							"A successful maximum Delta (using " + this.deltaList.getHighestChangeCountNow() + " changes) exists."));
 		} else {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No successful maximum Delta (" + beforeMaxChanges + " changes) found."));
-			if (deltaList.getHighestChangeCountNow() == 0) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "All Deltas violate <<locked-status>>."));
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No successful maximum Delta (" + beforeMaxChanges + " changes) found."));
+			if (this.deltaList.getHighestChangeCountNow() == 0) {
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "All Deltas violate <<locked-status>>."));
 			} else {
-				host.addResultMessage(
+				this.analysisHost.addResultMessage(
 						new AnalysisResultMessage(
 								StatusType.ERROR,
-								"Maximum successful Delta has " + deltaList.getHighestChangeCountNow() + " changes."));
+								"Maximum successful Delta has " + this.deltaList.getHighestChangeCountNow() + " changes."));
 			}
 		}
 		return isSuccessful;
@@ -152,60 +153,60 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		boolean hasMaxSuccessfulDelta = false;
 		int deltaCounter = 1;
 		List<Delta> violatingEvolutions = new ArrayList<Delta>();
-		for (Delta d : deltaList.getRemainingDeltas()) {
-			activeDelta = d;
+		for (Delta d : this.deltaList.getRemainingDeltas()) {
+			this.activeDelta = d;
 			boolean deltaSuccessful = true;
 			checkActiveDelta();
-			for (AnalysisMessage errorMessage : errorMessages) {
+			for (AnalysisMessage errorMessage : this.errorMessages) {
 				if (errorMessage.getType() == StatusType.ERROR) {
 					violatingEvolutions.add(d);
 					deltaSuccessful = false;
 					break;
 				}
 			}
-			for (AnalysisMessage errorMessage : errorMessages) {
-				errorMessage.print(host, "Delta " + deltaCounter + ":");
+			for (AnalysisMessage errorMessage : this.errorMessages) {
+				errorMessage.print(this.analysisHost, "Delta " + deltaCounter + ":");
 			}
 			if (deltaSuccessful 
-					&& d.getNumberOfUsedChanges() == deltaList.getHighestChangeCountNow()) {
+					&& d.getNumberOfUsedChanges() == this.deltaList.getHighestChangeCountNow()) {
 				hasMaxSuccessfulDelta = true;
 			}
 			deltaCounter++;
 		}
 		// KR: request if the violated deltas should be remove, need to keep them for performance test
-		if (removeViolations) {
-			deltaList.removeAll(violatingEvolutions);
+		if (this.removeViolations.booleanValue()) {
+			this.deltaList.removeAll(violatingEvolutions);
 		}
 		return hasMaxSuccessfulDelta;
 	}
 	
-	private void init(final Delta d) {
-		if (errorMessages == null) {
-			errorMessages = new ArrayList<AnalysisMessage>();
+	private void init() {
+		if (this.errorMessages == null) {
+			this.errorMessages = new ArrayList<AnalysisMessage>();
 		}
-		errorMessages.clear();
-		if (processedDeltaElements == null) {
-			processedDeltaElements = new ArrayList<DeltaElement>();
+		this.errorMessages.clear();
+		if (this.processedDeltaElements == null) {
+			this.processedDeltaElements = new ArrayList<DeltaElement>();
 		}
-		processedDeltaElements.clear();
-		if (processedStates == null) {
-			processedStates = new HashMap<State, DeltaElement>();
+		this.processedDeltaElements.clear();
+		if (this.processedStates == null) {
+			this.processedStates = new HashMap<State, DeltaElement>();
 		}
-		processedStates.clear();
+		this.processedStates.clear();
 	}
 	
 	private void checkActiveDelta() {
-		init(activeDelta);
-		processAddElements(activeDelta.getAllAdditions());
-		processSubstElements(activeDelta.getAllSubstitutions());
-		processEditElements(activeDelta.getAllEdits());
-		processCopyElements(activeDelta.getAllCopies());
+		init();
+		processAddElements(this.activeDelta.getAllAdditions());
+		processSubstElements(this.activeDelta.getAllSubstitutions());
+		processEditElements(this.activeDelta.getAllEdits());
+		processCopyElements(this.activeDelta.getAllCopies());
 	}
 		
 	private void processAddElements(final List<AddElement> allAdditions) {
 		for (AddElement addElement : allAdditions) {
 			processAddElement(addElement);
-			processedDeltaElements.add(addElement);
+			this.processedDeltaElements.add(addElement);
 			processContent(addElement);
 		}
 	}
@@ -221,14 +222,14 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 	private void processEditElements(final List<EditElement> allEdits) {
 		for (EditElement editElement : allEdits) {
 			processEditElement(editElement);
-			processedDeltaElements.add(editElement);
+			this.processedDeltaElements.add(editElement);
 		}
 	}
 	
 	private void processCopyElements(final List<CopyElement> allCopies) {
 		for (CopyElement copyElement : allCopies) {
 			processCopyElement(copyElement);
-			processedDeltaElements.add(copyElement);
+			this.processedDeltaElements.add(copyElement);
 		}
 	}
 	
@@ -274,7 +275,7 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		try {
 			transitionMetaclass = UMLHelper.getMetaClass("Transition");
 		} catch (InvalidMetaclassException e) {
-			
+			e.printStackTrace();
 		}
 		AddElement addTransition = new AddElement(null, transitionMetaclass, null);
 		addTransition.addKeyValuePair("source", editElement.getValues().get("source"));
@@ -286,7 +287,7 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		try {
 			transitionMetaclass = UMLHelper.getMetaClass("Transition");
 		} catch (InvalidMetaclassException e) {
-			
+			e.printStackTrace();
 		}
 		AddElement addTransition = new AddElement(null, transitionMetaclass, null);
 		addTransition.addKeyValuePair("source", copyElement.getChangedValues().get("source"));
@@ -299,7 +300,7 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		try {
 			stereotypeMetaclass = UMLHelper.getMetaClass("Stereotype");
 		} catch (InvalidMetaclassException e) {
-			
+			e.printStackTrace();
 		}		
 		AddElement addLocked = new AddElement(copyElement.getReceivingElement(), stereotypeMetaclass, null);
 		addLocked.addKeyValuePair("name", UMLsec.LOCKED_STATUS.toString());
@@ -313,7 +314,7 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		if (sourceValue instanceof String) {
 			sourceName = (String) sourceValue;
 			List<String> parts = Arrays.asList(sourceName.split("::"));
-			List<State> possibleStates = stateMapping.get(parts.get(parts.size() - 1));
+			List<State> possibleStates = this.stateMapping.get(parts.get(parts.size() - 1));
 			for (State possibleState : possibleStates) {
 				if (possibleState.getQualifiedName().endsWith(sourceName)) {
 					sourceState = possibleState;
@@ -323,11 +324,11 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		} else {
 			sourceState = (State) sourceValue;
 		}
-		if (sourceState != null && !processedStates.containsKey(sourceState)) {
+		if (sourceState != null && !this.processedStates.containsKey(sourceState)) {
 			StereotypeApplication lockedStatusApp = UMLsecUtil.getStereotypeApplication(sourceState, UMLsec.LOCKED_STATUS);
 			if (lockedStatusApp != null) {
-				if (!activeDelta.removes(lockedStatusApp)) {
-					errorMessages.add(new AnalysisMessage(
+				if (!this.activeDelta.removes(lockedStatusApp)) {
+					this.errorMessages.add(new AnalysisMessage(
 							StatusType.ERROR,
 							OutputTarget.BOTH,
 							Messages.addedForbiddenTransition(sourceState)));
@@ -337,28 +338,28 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 				try {
 					stereotypeMetaclass = UMLHelper.getMetaClass("Stereotype");
 				} catch (InvalidMetaclassException e) {
-					
+					e.printStackTrace();
 				}
 				AddElement addedLockedStatus = new AddElement(sourceState, stereotypeMetaclass, null);
 				addedLockedStatus.addKeyValuePair("name", UMLsec.LOCKED_STATUS.toString());
-				if (activeDelta.adds(addedLockedStatus)) {
-					errorMessages.add(new AnalysisMessage(
+				if (this.activeDelta.adds(addedLockedStatus)) {
+					this.errorMessages.add(new AnalysisMessage(
 							StatusType.ERROR,
 							OutputTarget.BOTH,
 							Messages.addedForbiddenTransition(sourceState)));								
 				}
 			}
-			processedStates.put(sourceState, addElement);
+			this.processedStates.put(sourceState, addElement);
 		}
 	}
 	
 	private void processLockedStatusAddition(final AddElement addElement) {
 		State lockedState = (State) addElement.getTarget();
-		if (lockedState != null && !processedStates.containsKey(lockedState)) {
+		if (lockedState != null && !this.processedStates.containsKey(lockedState)) {
 			List<Transition> remainingOutgoingTransitions = new ArrayList<Transition>();
 			remainingOutgoingTransitions.addAll(lockedState.getOutgoings());
 			for (Transition outgoingTransition: lockedState.getOutgoings()) {
-				if (activeDelta.removes(outgoingTransition)) {
+				if (this.activeDelta.removes(outgoingTransition)) {
 					remainingOutgoingTransitions.remove(outgoingTransition);
 				}
 			}
@@ -367,24 +368,34 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 			try {
 				transitionMetaclass = UMLHelper.getMetaClass("Transition");
 			} catch (InvalidMetaclassException e) {
-				
+				e.printStackTrace();
 			}
 			AddElement addedOutgoingTransition = new AddElement(null, transitionMetaclass, null);
 			addedOutgoingTransition.addKeyValuePair("source", lockedState.getName());
-			newOutgoingTransitions.addAll(activeDelta.getMatchingAdditions(addedOutgoingTransition));
+			newOutgoingTransitions.addAll(this.activeDelta.getMatchingAdditions(addedOutgoingTransition));
 			if (!remainingOutgoingTransitions.isEmpty()) {
-				errorMessages.add(new AnalysisMessage(
+				this.errorMessages.add(new AnalysisMessage(
 						StatusType.ERROR,
 						OutputTarget.BOTH,
 						Messages.addedLockedStatusWithoutDeletingOutgoingTransitions(lockedState)));
 			}
 			if (!newOutgoingTransitions.isEmpty()) {
-				errorMessages.add(new AnalysisMessage(
+				this.errorMessages.add(new AnalysisMessage(
 						StatusType.ERROR,
 						OutputTarget.BOTH,
 						Messages.addedForbiddenTransition(lockedState)));				
 			}
-			processedStates.put(lockedState, addElement);
+			this.processedStates.put(lockedState, addElement);
 		}
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 }

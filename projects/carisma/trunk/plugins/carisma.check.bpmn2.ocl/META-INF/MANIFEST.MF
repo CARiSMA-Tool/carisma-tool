@@ -6,9 +6,10 @@ Bundle-Version: 1.0.1.qualifier
 Require-Bundle: carisma.core;bundle-version="1.0.0",
  carisma.ocl;bundle-version="1.0.0",
  carisma.modeltype.bpmn2.extended;bundle-version="1.0.0",
- carisma.modeltype.bpmn2;bundle-version="1.0.0"
+ carisma.modeltype.bpmn2;bundle-version="1.0.0",
+ carisma.modeltype.bpmn2.extension
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: carisma.modeltype.bpmn2.extension.util,
  carisma.ocl.library,
  org.eclipse.bpmn2

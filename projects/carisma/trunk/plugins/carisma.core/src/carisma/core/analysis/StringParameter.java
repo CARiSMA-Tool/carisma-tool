@@ -45,7 +45,7 @@ public class StringParameter extends CheckParameter {
 	 * @return value of this parameter
 	 */
 	public final String getValue() {
-		return value;
+		return this.value;
 	}
 	/**
 	 * setter for value.

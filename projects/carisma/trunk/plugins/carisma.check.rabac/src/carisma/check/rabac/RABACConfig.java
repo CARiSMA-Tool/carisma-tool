@@ -11,7 +11,7 @@ public class RABACConfig {
 	private HashSet<Attribute> attributes = new HashSet<Attribute>();
 
 	public HashMap<String, SetWrapper> getSessions() {
-		return sessions;
+		return this.sessions;
 	}
 
 	// without a setter marshalling fails
@@ -20,7 +20,7 @@ public class RABACConfig {
 	}
 
 	public HashSet<Attribute> getAttributes() {
-		return attributes;
+		return this.attributes;
 	}
 
 	public void setAttributes(HashSet<Attribute> attributes) {

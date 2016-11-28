@@ -12,6 +12,7 @@ package carisma.modeltype.uml2;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -127,6 +128,10 @@ public final class UMLDeploymentHelper {
 		Set<Node> clientNodes = null;
 		for (Artifact client : clientArtifacts) {
 			clientNodes = getDeploymentLocations(client);
+		}
+		if(clientNodes==null){
+			System.err.println("carisma.modeltype.uml2.UMLDeploymentHelper: clientnodes is null.");
+			return Collections.emptyMap();
 		}
 		Set<Node> supplierNodes = null;
 		for (Artifact supplier : supplierArtifacts) {

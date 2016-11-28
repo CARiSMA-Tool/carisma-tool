@@ -33,7 +33,7 @@ import carisma.core.analysis.DummyHost;
 import carisma.core.analysis.RegisterNotInUseException;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
@@ -49,9 +49,16 @@ import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.TaggedValue;
 
 
-public class SecureDependencyEvolutionCheck implements CarismaCheck {
+public class SecureDependencyEvolutionCheck implements CarismaCheckWithID {
     
-    /**
+    private static final String CHECK_ID = "carisma.check.staticcheck.evolution.securedependency";
+
+    public static final String PRECONDITION_DELTAS_REGISTER_KEY = "carisma.data.evolution.deltas";
+    public static final String PRECONDITIONS_MODIFIERS_REGISTRY_KEY = "carisma.data.evolution.modifiers";
+
+    private static final String CHECK_NAME = "Evolution-aware Secure Dependency Check";
+
+	/**
      * Constant String for the name of the Stereotype 'critical'.
      */
     private static final String CRITICAL = "UMLsec::critical";
@@ -62,11 +69,11 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
     private static final String NAME = "name";
 
     private final class UsageDescription {
-        private Usage usageDependency;
-        private Classifier client;
-        private Classifier supplier;
+        Usage usageDependency;
+        Classifier client;
+        Classifier supplier;
 
-        private UsageDescription(Usage usageDependency, Classifier client, Classifier supplier) {
+        UsageDescription(Usage usageDependency, Classifier client, Classifier supplier) {
             super();
             this.usageDependency = usageDependency;
             this.client = client;
@@ -78,9 +85,9 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
             final int prime = 31;
             int result = 1;
             result = prime * result + SecureDependencyEvolutionCheck.this.hashCode();
-            result = prime * result + ((client == null) ? 0 : client.hashCode());
-            result = prime * result + ((usageDependency == null) ? 0 : usageDependency.hashCode());
-            result = prime * result + ((supplier == null) ? 0 : supplier.hashCode());
+            result = prime * result + ((this.client == null) ? 0 : this.client.hashCode());
+            result = prime * result + ((this.usageDependency == null) ? 0 : this.usageDependency.hashCode());
+            result = prime * result + ((this.supplier == null) ? 0 : this.supplier.hashCode());
             return result;
         }
 
@@ -96,35 +103,32 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
                 return false;
             }
             UsageDescription other = (UsageDescription) obj;
-            if (client == null) {
+            if (this.client == null) {
                 if (other.client != null) {
                     return false;
                 }
-            } else if (!client.equals(other.client)) {
+            } else if (!this.client.equals(other.client)) {
                 return false;
             }
-            if (usageDependency == null) {
+            if (this.usageDependency == null) {
                 if (other.usageDependency != null) {
                     return false;
                 }
-            } else if (!usageDependency.equals(other.usageDependency)) {
+            } else if (!this.usageDependency.equals(other.usageDependency)) {
                 return false;
             }
-            if (supplier == null) {
+            if (this.supplier == null) {
                 if (other.supplier != null) {
                     return false;
                 }
-            } else if (!supplier.equals(other.supplier)) {
+            } else if (!this.supplier.equals(other.supplier)) {
                 return false;
             }
             return true;
         }
     }
 
-    public static final String DELTAS_REGISTER_KEY = "carisma.data.evolution.deltas";
-    public static final String MODIFIERS_REGISTRY_KEY = "carisma.data.evolution.modifiers";
-
-    private AnalysisHost host = null;
+	private AnalysisHost host = null;
 
     private DeltaList deltaList = null;
     private ModifierMap deltaModifiers = null;
@@ -138,60 +142,60 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
      * Private constructor. UMLsec will never be initialized.
      */
     public SecureDependencyEvolutionCheck() {
-        secureDependencyViolations = new ArrayList<SecureDependencyViolation>();
-        processedUsageDependencies = new HashMap<UsageDescription, DeltaElement>();
+        this.secureDependencyViolations = new ArrayList<SecureDependencyViolation>();
+        this.processedUsageDependencies = new HashMap<UsageDescription, DeltaElement>();
     }
 
     public List<SecureDependencyViolation> getViolations() {
-        return Collections.unmodifiableList(secureDependencyViolations);
+        return Collections.unmodifiableList(this.secureDependencyViolations);
     }
 
     @Override
     public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost newHost) {
         if (newHost != null) {
-            host = newHost;
+            this.host = newHost;
         } else {
-            host = new DummyHost(true);
+            this.host = new DummyHost(true);
         }
-        Resource currentModel = host.getAnalyzedModel();
+        Resource currentModel = this.host.getAnalyzedModel();
         if (currentModel.getContents().isEmpty()) {
-            host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
+            this.host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
             return false;
         }
         if (!(currentModel.getContents().get(0) instanceof Model)) {
-            host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
+            this.host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
             return false;
         }
         try {
-            deltaList = (DeltaList) host.getFromRegister(DELTAS_REGISTER_KEY);
-            deltaModifiers = (ModifierMap) host.getFromRegister(MODIFIERS_REGISTRY_KEY);
+            this.deltaList = (DeltaList) this.host.getFromRegister(PRECONDITION_DELTAS_REGISTER_KEY);
+            this.deltaModifiers = (ModifierMap) this.host.getFromRegister(PRECONDITIONS_MODIFIERS_REGISTRY_KEY);
         } catch (RegisterNotInUseException e) {
             Logger.log(LogLevel.ERROR, e.getMessage(), e);
             return false;
         }
-        if (deltaList == null || deltaModifiers == null) {
+        if (this.deltaList == null || this.deltaModifiers == null) {
             return false;
         }
-        if (deltaList.isEmpty()) {
-            host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No deltaList left to analyze."));
+        if (this.deltaList.isEmpty()) {
+            this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No deltaList left to analyze."));
             return true;
         }
-        int beforeMaxChanges = deltaList.getHighestChangeCountNow();
+        int beforeMaxChanges = this.deltaList.getHighestChangeCountNow();
         boolean isSuccessful = checkDeltas();
         if (isSuccessful) {
-            host.addResultMessage(
+            this.host.addResultMessage(
                     new AnalysisResultMessage(
                             StatusType.INFO,
-                            "A successful maximum Delta (using " + deltaList.getHighestChangeCountNow() + " changes) exists."));
+                            "A successful maximum Delta (using " + this.deltaList.getHighestChangeCountNow() + " changes) exists."));
         } else {
-            host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No successful maximum Delta (" + beforeMaxChanges + " changes) found."));
-            if (deltaList.getHighestChangeCountNow() == 0) {
-                host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "All Deltas violate <<secure dependency>>."));
+            this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No successful maximum Delta (" + beforeMaxChanges + " changes) found."));
+            if (this.deltaList.getHighestChangeCountNow() == 0) {
+                this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "All Deltas violate <<secure dependency>>."));
             } else {
-                host.addResultMessage(
+                this.host.addResultMessage(
                         new AnalysisResultMessage(
                                 StatusType.ERROR,
-                                "Maximum successful Delta has " + deltaList.getHighestChangeCountNow() + " changes."));
+                                "Maximum successful Delta has " + this.deltaList.getHighestChangeCountNow() + " changes."));
             }
         }
         return isSuccessful;
@@ -200,22 +204,22 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
     private boolean checkDeltas() {
         boolean hasMaxSuccessfulDelta = false;
         List<Delta> violatingEvolutions = new ArrayList<Delta>();
-        for (Delta d : deltaList.getRemainingDeltas()) {
+        for (Delta d : this.deltaList.getRemainingDeltas()) {
             boolean deltaSuccessful = true;
             checkDelta(d);
-            if (!secureDependencyViolations.isEmpty()) {
+            if (!this.secureDependencyViolations.isEmpty()) {
                 violatingEvolutions.add(d);
                 deltaSuccessful = false;
-                for (SecureDependencyViolation v : secureDependencyViolations) {
-                    host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, v.getDescription()));
+                for (SecureDependencyViolation v : this.secureDependencyViolations) {
+                    this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, v.getDescription()));
                 }
             }
             if (deltaSuccessful
-                    && d.getNumberOfUsedChanges() == deltaList.getHighestChangeCountNow()) {
+                    && d.getNumberOfUsedChanges() == this.deltaList.getHighestChangeCountNow()) {
                 hasMaxSuccessfulDelta = true;
             }
         }
-        deltaList.removeAll(violatingEvolutions);
+        this.deltaList.removeAll(violatingEvolutions);
         return hasMaxSuccessfulDelta;
     }
 
@@ -233,19 +237,19 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
     }
 
     private void init(final Delta d) {
-        deltaModifier = deltaModifiers.get(d);
-        if (secureDependencyViolations == null) {
-            secureDependencyViolations = new ArrayList<SecureDependencyViolation>();
+        this.deltaModifier = this.deltaModifiers.get(d);
+        if (this.secureDependencyViolations == null) {
+            this.secureDependencyViolations = new ArrayList<SecureDependencyViolation>();
         }
-        secureDependencyViolations.clear();
-        if (processedUsageDependencies == null) {
-            processedUsageDependencies = new HashMap<UsageDescription, DeltaElement>();
+        this.secureDependencyViolations.clear();
+        if (this.processedUsageDependencies == null) {
+            this.processedUsageDependencies = new HashMap<UsageDescription, DeltaElement>();
         }
-        processedUsageDependencies.clear();
+        this.processedUsageDependencies.clear();
     }
 
     private void checkAddition(AddElement add) {
-        host.appendLineToReport("Checking addition '" + add + "'...");
+        this.host.appendLineToReport("Checking addition '" + add + "'...");
         if (add.getMetaClass().equals(UMLPackage.eINSTANCE.getUsage())) {
             processAddedUsageDependency(add);
         } else if (add.getMetaClass().equals(UMLPackage.eINSTANCE.getClassifier())) {
@@ -258,7 +262,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
     }
 
     private void checkDeletion(DelElement del) {
-        host.appendLineToReport("Checking deletion '" + del + "'...");
+        this.host.appendLineToReport("Checking deletion '" + del + "'...");
         if (del.getTarget() instanceof Classifier) {
             processDeletedClassifier(del);
         } else if (del.getTarget() instanceof StereotypeApplication) {
@@ -269,7 +273,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
     }
 
     private void checkSubstitution(SubstElement sub) {
-        host.appendLineToReport("Checking substitution '" + sub + "'...");
+        this.host.appendLineToReport("Checking substitution '" + sub + "'...");
         if (sub.getTarget() instanceof Classifier) {
             processDeletedClassifier(sub);
         } else if (sub.getTarget() instanceof StereotypeApplication) {
@@ -283,7 +287,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
     }
 
     private void processAddedTaggedValue(AddElement add) {
-        TaggedValue taggedValue = (TaggedValue) deltaModifier.getAddedElement(add);
+        TaggedValue taggedValue = (TaggedValue) this.deltaModifier.getAddedElement(add);
         if (taggedValue == null) {
             Logger.log(LogLevel.ERROR, "added tagged value is null?!");
             return;
@@ -303,7 +307,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
     }
 
     private void processAddedStereotype(AddElement add) {
-        StereotypeApplication application = (StereotypeApplication) deltaModifier.getAddedElement(add);
+        StereotypeApplication application = (StereotypeApplication) this.deltaModifier.getAddedElement(add);
         if (application == null) {
             Logger.log(LogLevel.ERROR, "added stereotype is null?!");
             return;
@@ -330,7 +334,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
     }
 
     private void processAddedClassifier(AddElement add) {
-        Classifier classifier = (Classifier) deltaModifier.getAddedElement(add);
+        Classifier classifier = (Classifier) this.deltaModifier.getAddedElement(add);
         if (classifier == null) {
             Logger.log(LogLevel.ERROR, "added classifier is null?!");
             return;
@@ -341,8 +345,8 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
     }
 
     private void processAddedUsageDependency(AddElement add) {
-        host.appendLineToReport("Checking added Usage Dependency...");
-        Usage dependency = (Usage) deltaModifier.getAddedElement(add);
+        this.host.appendLineToReport("Checking added Usage Dependency...");
+        Usage dependency = (Usage) this.deltaModifier.getAddedElement(add);
         if (dependency == null) {
             Logger.log(LogLevel.ERROR, "added usageDependency is null?!");
             return;
@@ -356,7 +360,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
         StereotypeApplication oldStereotypeApplication = oldTaggedValue.getCorrespondingApplication();
         // tagged values of stereotype <<critical>>
         if (CRITICAL.equals(oldStereotypeApplication.getAppliedStereotype().getQualifiedName())) {
-            StereotypeApplication newStereotypeApplication = deltaModifier.getCorrespondingStereotypeApplication(oldStereotypeApplication);
+            StereotypeApplication newStereotypeApplication = this.deltaModifier.getCorrespondingStereotypeApplication(oldStereotypeApplication);
             if (newStereotypeApplication != null && newStereotypeApplication.getExtendedElement() instanceof Classifier) {
                 Classifier classifier = (Classifier) newStereotypeApplication.getExtendedElement();
                 List<UsageDescription> deps = getTuplesOfIncomingDependencies(classifier);
@@ -373,7 +377,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
         if (CRITICAL.equals(oldStereotypeApplication.getAppliedStereotype().getQualifiedName())) {
             if (oldStereotypeApplication.getExtendedElement() instanceof Classifier) {
                 Classifier oldClassifier = (Classifier) oldStereotypeApplication.getExtendedElement();
-                Classifier classifier = (Classifier) deltaModifier.getMapping().get(oldClassifier);
+                Classifier classifier = (Classifier) this.deltaModifier.getMapping().get(oldClassifier);
                 List<UsageDescription> deps = getTuplesOfIncomingDependencies(classifier);
                 deps.addAll(getTuplesOfOutgoingDependencies(classifier));
                 check(deps, del, oldStereotypeApplication);
@@ -384,7 +388,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
                 || "UMLsec::high".equals(oldStereotypeApplication.getAppliedStereotype().getQualifiedName()))
                 && oldStereotypeApplication.getExtendedElement() instanceof Usage) {
             Usage oldUsage = (Usage) oldStereotypeApplication.getExtendedElement();
-            Usage usage = (Usage) deltaModifier.getMapping().get(oldUsage);
+            Usage usage = (Usage) this.deltaModifier.getMapping().get(oldUsage);
             List<UsageDescription> deps = getTuples(usage);
             check(deps, del, oldStereotypeApplication);
         }
@@ -405,9 +409,9 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
             Classifier oldClient = oldDependency.client;
             Classifier oldSupplier = oldDependency.supplier;
             Usage oldDependency2 = oldDependency.usageDependency;
-            Classifier newClient = (Classifier) deltaModifier.getMapping().get(oldClient);
-            Classifier newSupplier = (Classifier) deltaModifier.getMapping().get(oldSupplier);
-            Usage newDependency2 = (Usage) deltaModifier.getMapping().get(oldDependency2);
+            Classifier newClient = (Classifier) this.deltaModifier.getMapping().get(oldClient);
+            Classifier newSupplier = (Classifier) this.deltaModifier.getMapping().get(oldSupplier);
+            Usage newDependency2 = (Usage) this.deltaModifier.getMapping().get(oldDependency2);
             if (newDependency2 != null && newClient != null && newSupplier != null) {
                 newDependencies.add(new UsageDescription(newDependency2, newClient, newSupplier));
             }
@@ -416,12 +420,12 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
     }
 
     private boolean isNotYetProcessed(UsageDescription dd, DeltaElement deltaElement) {
-        DeltaElement processedBy = processedUsageDependencies.get(dd);
+        DeltaElement processedBy = this.processedUsageDependencies.get(dd);
         if (processedBy != null) {
-            host.appendLineToReport("  ... has already been checked with '" + processedBy + "'.");
+            this.host.appendLineToReport("  ... has already been checked with '" + processedBy + "'.");
             return false;
         }
-        processedUsageDependencies.put(dd, deltaElement);
+        this.processedUsageDependencies.put(dd, deltaElement);
         return true;
     }
 
@@ -448,15 +452,15 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
         }
         for (UsageDescription dd : deps) {
             if (isNotYetProcessed(dd, deltaElement)) {
-                SecureDependencyChecks sdc = new SecureDependencyChecks(host);
+                SecureDependencyChecks sdc = new SecureDependencyChecks(this.host);
                 List<SecureDependencyViolation> violations = sdc.checkDependency(dd.usageDependency, dd.client, dd.supplier);
                 if (!violations.isEmpty()) {
-                    secureDependencyViolations.addAll(violations);
-                    host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
+                    this.secureDependencyViolations.addAll(violations);
+                    this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
                             evo + " of " + type + " '" + name + "' violates the property <<secure usageDependency>> (see report for details)"));
-                    host.appendLineToReport(evo + " of " + type + " '" + name + "' violates the property <<secure usageDependency>>");
+                    this.host.appendLineToReport(evo + " of " + type + " '" + name + "' violates the property <<secure usageDependency>>");
                     for (SecureDependencyViolation v : violations) {
-                        host.appendLineToReport("  " + v.getDescription());
+                        this.host.appendLineToReport("  " + v.getDescription());
                     }
                 }
             }
@@ -509,5 +513,15 @@ public class SecureDependencyEvolutionCheck implements CarismaCheck {
         }
         return opposites;
     }
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
+	}
 
 }

@@ -13,13 +13,13 @@ public class CarismaProfileDescriptor {
 	}
 	
 	public String getProfileName() {
-		return profileName;
+		return this.profileName;
 	}
 	public String getProfileVersion() {
-		return profileVersion;
+		return this.profileVersion;
 	}
 	public String getProfileURI() {
-		return profileURI;
+		return this.profileURI;
 	}
 	
 }

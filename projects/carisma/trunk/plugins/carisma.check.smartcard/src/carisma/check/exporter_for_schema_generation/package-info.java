@@ -9,6 +9,6 @@
  *    {SecSE group} - initial API and implementation and/or initial documentation
  *******************************************************************************/
 /**
-* This package contains the exporter for schema generation for the AuthorizedStatus and LockStatus Check.
+* This package contains the exporter for schema generation for the AuthorizedStatusTripleExporter and LockStatus LockedStatusCheck.
 */
 package carisma.check.exporter_for_schema_generation;

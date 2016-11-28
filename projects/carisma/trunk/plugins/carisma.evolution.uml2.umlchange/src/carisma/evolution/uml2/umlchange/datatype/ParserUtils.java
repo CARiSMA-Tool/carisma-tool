@@ -60,7 +60,7 @@ public final class ParserUtils {
 			default:
 				if (ch == separator
 						&& bracketLevelCount == 0) {
-					separatorIndices.add(index);
+					separatorIndices.add(Integer.valueOf(index));
 				}
 			}
 		}
@@ -150,21 +150,21 @@ public final class ParserUtils {
 		return "";
 	}
 
-public static String getMatchingValues(final String refValue, final List<String> valueList) {
-	StringBuffer completeRef = new StringBuffer();
-	if (refValue != null && valueList != null && !(valueList.isEmpty())) {
-		for (String value : valueList) {
-			if (value.startsWith(refValue + "=")) {
-				completeRef.append(value.replaceFirst(refValue + "=", ""));
-				completeRef.append(",");
+	public static String getMatchingValues(final String refValue, final List<String> valueList) {
+		StringBuffer completeRef = new StringBuffer();
+		if (refValue != null && valueList != null && !(valueList.isEmpty())) {
+			for (String value : valueList) {
+				if (value.startsWith(refValue + "=")) {
+					completeRef.append(value.replaceFirst(refValue + "=", ""));
+					completeRef.append(",");
+				}
+			}
+			if (completeRef.length() > 0) {
+				completeRef.deleteCharAt(completeRef.lastIndexOf(","));
 			}
 		}
-		if (completeRef.length() > 0) {
-			completeRef.deleteCharAt(completeRef.lastIndexOf(","));
-		}
+		
+		return completeRef.toString();
 	}
-	
-	return completeRef.toString();
-}
 
 }

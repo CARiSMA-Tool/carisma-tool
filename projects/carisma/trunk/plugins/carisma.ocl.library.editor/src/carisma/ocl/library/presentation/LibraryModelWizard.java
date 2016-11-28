@@ -134,7 +134,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LibraryFactory libraryFactory = libraryPackage.getLibraryFactory();
+	protected LibraryFactory libraryFactory = this.libraryPackage.getLibraryFactory();
 
 	/**
 	 * This is the file creation page.
@@ -158,7 +158,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IStructuredSelection selection;
+	protected IStructuredSelection iStructuredSelection;
 
 	/**
 	 * Remember the workbench during initialization.
@@ -166,7 +166,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IWorkbench workbench;
+	protected IWorkbench iWorkbench;
 
 	/**
 	 * Caches the names of the types that can be created as the root object.
@@ -182,9 +182,10 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		this.workbench = workbench;
-		this.selection = selection;
+		this.iWorkbench = workbench;
+		this.iStructuredSelection = selection;
 		setWindowTitle(OclEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
 		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(OclEditorPlugin.INSTANCE.getImage("full/wizban/NewLibrary")));
 	}
@@ -196,19 +197,19 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected Collection<String> getInitialObjectNames() {
-		if (initialObjectNames == null) {
-			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : libraryPackage.getEClassifiers()) {
+		if (this.initialObjectNames == null) {
+			this.initialObjectNames = new ArrayList<String>();
+			for (EClassifier eClassifier : this.libraryPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
-						initialObjectNames.add(eClass.getName());
+						this.initialObjectNames.add(eClass.getName());
 					}
 				}
 			}
-			Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
+			Collections.sort(this.initialObjectNames, CommonPlugin.INSTANCE.getComparator());
 		}
-		return initialObjectNames;
+		return this.initialObjectNames;
 	}
 
 	/**
@@ -221,9 +222,9 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 		
 		/** Define Root Object manually */
 		//EClass eClass = (EClass)libraryPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EClass eClass = (EClass)libraryPackage.getEClassifier("OclLibrary");
+		EClass eClass = (EClass)this.libraryPackage.getEClassifier("OclLibrary");
 		
-		EObject rootObject = libraryFactory.create(eClass);
+		EObject rootObject = this.libraryFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -289,14 +290,15 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 
 			// Select the new file resource in the current view.
 			//
-			IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+			IWorkbenchWindow workbenchWindow = this.iWorkbench.getActiveWorkbenchWindow();
 			IWorkbenchPage page = workbenchWindow.getActivePage();
 			final IWorkbenchPart activePart = page.getActivePart();
 			if (activePart instanceof ISetSelectionTarget) {
 				final ISelection targetSelection = new StructuredSelection(modelFile);
 				getShell().getDisplay().asyncExec
 					(new Runnable() {
-						 public void run() {
+						 @Override
+						public void run() {
 							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
 						 }
 					 });
@@ -307,7 +309,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 			try {
 				page.openEditor
 					(new FileEditorInput(modelFile),
-					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
+					 this.iWorkbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
 				MessageDialog.openError(workbenchWindow.getShell(), OclEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
@@ -412,6 +414,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public void createControl(Composite parent) {
 			Composite composite = new Composite(parent, SWT.NONE); {
 				GridLayout layout = new GridLayout();
@@ -435,22 +438,22 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 				containerLabel.setLayoutData(data);
 			}
 
-			initialObjectField = new Combo(composite, SWT.BORDER);
+			this.initialObjectField = new Combo(composite, SWT.BORDER);
 			{
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
 				data.grabExcessHorizontalSpace = true;
-				initialObjectField.setLayoutData(data);
+				this.initialObjectField.setLayoutData(data);
 			}
 
 			for (String objectName : getInitialObjectNames()) {
-				initialObjectField.add(getLabel(objectName));
+				this.initialObjectField.add(getLabel(objectName));
 			}
 
-			if (initialObjectField.getItemCount() == 1) {
-				initialObjectField.select(0);
+			if (this.initialObjectField.getItemCount() == 1) {
+				this.initialObjectField.select(0);
 			}
-			initialObjectField.addModifyListener(validator);
+			this.initialObjectField.addModifyListener(this.validator);
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
@@ -460,20 +463,20 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 				data.horizontalAlignment = GridData.FILL;
 				encodingLabel.setLayoutData(data);
 			}
-			encodingField = new Combo(composite, SWT.BORDER);
+			this.encodingField = new Combo(composite, SWT.BORDER);
 			{
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
 				data.grabExcessHorizontalSpace = true;
-				encodingField.setLayoutData(data);
+				this.encodingField.setLayoutData(data);
 			}
 
 			for (String encoding : getEncodings()) {
-				encodingField.add(encoding);
+				this.encodingField.add(encoding);
 			}
 
-			encodingField.select(0);
-			encodingField.addModifyListener(validator);
+			this.encodingField.select(0);
+			this.encodingField.addModifyListener(this.validator);
 
 			setPageComplete(validatePage());
 			setControl(composite);
@@ -486,6 +489,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 		 */
 		protected ModifyListener validator =
 			new ModifyListener() {
+				@Override
 				public void modifyText(ModifyEvent e) {
 					setPageComplete(validatePage());
 				}
@@ -497,7 +501,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		protected boolean validatePage() {
-			return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
+			return getInitialObjectName() != null && getEncodings().contains(this.encodingField.getText());
 		}
 
 		/**
@@ -509,13 +513,13 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 		public void setVisible(boolean visible) {
 			super.setVisible(visible);
 			if (visible) {
-				if (initialObjectField.getItemCount() == 1) {
-					initialObjectField.clearSelection();
-					encodingField.setFocus();
+				if (this.initialObjectField.getItemCount() == 1) {
+					this.initialObjectField.clearSelection();
+					this.encodingField.setFocus();
 				}
 				else {
-					encodingField.clearSelection();
-					initialObjectField.setFocus();
+					this.encodingField.clearSelection();
+					this.initialObjectField.setFocus();
 				}
 			}
 		}
@@ -526,7 +530,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public String getInitialObjectName() {
-			String label = initialObjectField.getText();
+			String label = this.initialObjectField.getText();
 
 			for (String name : getInitialObjectNames()) {
 				if (getLabel(name).equals(label)) {
@@ -542,7 +546,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public String getEncoding() {
-			return encodingField.getText();
+			return this.encodingField.getText();
 		}
 
 		/**
@@ -567,13 +571,13 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		protected Collection<String> getEncodings() {
-			if (encodings == null) {
-				encodings = new ArrayList<String>();
+			if (this.encodings == null) {
+				this.encodings = new ArrayList<String>();
 				for (StringTokenizer stringTokenizer = new StringTokenizer(OclEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
-					encodings.add(stringTokenizer.nextToken());
+					this.encodings.add(stringTokenizer.nextToken());
 				}
 			}
-			return encodings;
+			return this.encodings;
 		}
 	}
 
@@ -587,18 +591,18 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new LibraryModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(OclEditorPlugin.INSTANCE.getString("_UI_LibraryModelWizard_label"));
-		newFileCreationPage.setDescription(OclEditorPlugin.INSTANCE.getString("_UI_LibraryModelWizard_description"));
-		newFileCreationPage.setFileName(OclEditorPlugin.INSTANCE.getString("_UI_LibraryEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
-		addPage(newFileCreationPage);
+		this.newFileCreationPage = new LibraryModelWizardNewFileCreationPage("Whatever", this.iStructuredSelection);
+		this.newFileCreationPage.setTitle(OclEditorPlugin.INSTANCE.getString("_UI_LibraryModelWizard_label"));
+		this.newFileCreationPage.setDescription(OclEditorPlugin.INSTANCE.getString("_UI_LibraryModelWizard_description"));
+		this.newFileCreationPage.setFileName(OclEditorPlugin.INSTANCE.getString("_UI_LibraryEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		addPage(this.newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
 		//
-		if (selection != null && !selection.isEmpty()) {
+		if (this.iStructuredSelection != null && !this.iStructuredSelection.isEmpty()) {
 			// Get the resource...
 			//
-			Object selectedElement = selection.iterator().next();
+			Object selectedElement = this.iStructuredSelection.iterator().next();
 			if (selectedElement instanceof IResource) {
 				// Get the resource parent, if its a file.
 				//
@@ -612,7 +616,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 				if (selectedResource instanceof IFolder || selectedResource instanceof IProject) {
 					// Set this for the container.
 					//
-					newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
+					this.newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
 
 					// Make up a unique new name here.
 					//
@@ -622,7 +626,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
 						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
 					}
-					newFileCreationPage.setFileName(modelFilename);
+					this.newFileCreationPage.setFileName(modelFilename);
 				}
 			}
 		}
@@ -642,7 +646,7 @@ public class LibraryModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public IFile getModelFile() {
-		return newFileCreationPage.getModelFile();
+		return this.newFileCreationPage.getModelFile();
 	}
 
 }

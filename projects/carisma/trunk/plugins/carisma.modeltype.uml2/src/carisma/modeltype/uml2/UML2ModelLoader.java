@@ -36,7 +36,7 @@ import carisma.core.logging.Logger;
 import carisma.core.models.ModelLoader;
 
 
-
+@Deprecated
 public class UML2ModelLoader implements ModelLoader {
 
 	/**
@@ -46,17 +46,16 @@ public class UML2ModelLoader implements ModelLoader {
 	 * @return the new model
 	 */
 	@Override
+	@Deprecated
 	public final Resource load(final File file) throws IOException {
-		IOException tmp = null;
-		BufferedReader reader = null;
-		BufferedWriter writer = null;
-		File newFile = null;
+		
+		Map<String, String> profileLocationMapping;
+		File newFile = File.createTempFile(".tmp", ".uml", file.getParentFile());
 		ResourceSet resourceSet = null;
-		try {
-    		Map<String, String> profileLocationMapping;
-    		newFile = File.createTempFile(".tmp", ".uml", file.getParentFile());
-    		reader = new BufferedReader(new FileReader(file));
-    		writer = new BufferedWriter(new FileWriter(newFile));
+		try (
+				BufferedReader reader = new BufferedReader(new FileReader(file));
+				BufferedWriter writer = new BufferedWriter(new FileWriter(newFile)))
+		{
     		String lineToCheck;
     		profileLocationMapping = Carisma.getInstance().getModelManager().getMapping();
     		resourceSet = new ResourceSetImpl();
@@ -85,28 +84,8 @@ public class UML2ModelLoader implements ModelLoader {
     			lineToCheck = reader.readLine();
     		}
             writer.flush();
-		} catch (IOException e) {
-			tmp = e;
-		} finally {
-			try {
-				if (writer != null) {
-					writer.close();
-				} 
-			} catch (IOException e) {
-				tmp = e;
-			}
-			try {
-				if (reader != null) {
-					reader.close();
-				}
-			} catch (IOException e) {
-				tmp = e;
-			}
 		}
-
-		if (tmp != null) {
-			throw tmp;
-		}
+		
 		URI uri = URI.createFileURI(newFile.getAbsolutePath());
 		Resource resource = resourceSet.getResource(uri, true);
 		resource.load(new HashMap<String, Object>());

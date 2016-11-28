@@ -5,7 +5,7 @@
    <extension
          point="carisma.carismacheck">
       <check
-            implementingClass="carisma.check.activitypaths.Check"
+            implementingClass="carisma.check.activitypaths.ActivityPathsCheck"
             name="activitypaths"
             publisher="Moussa Oumarou"
             description="Check for the calculation of different Paths in an acitivity diagramm"

@@ -49,7 +49,7 @@ public class OclHelper {
         		bpmnMap.put(((EClass) obj).getName().toLowerCase(Locale.ENGLISH), (EClass) obj);
         	}
         }
-        mapContext = Collections.unmodifiableMap(bpmnMap);
+        this.mapContext = Collections.unmodifiableMap(bpmnMap);
     }
     
     /**
@@ -64,7 +64,7 @@ public class OclHelper {
         bpmnMap.put("process", ExtendedPackage.eINSTANCE.getExtendedProcess());
         bpmnMap.put("selection", ExtensionPackage.eINSTANCE.getSelection());
         bpmnMap.put("taskset", ExtensionPackage.eINSTANCE.getTaskSet());
-        mapExtendedContext = Collections.unmodifiableMap(bpmnMap);
+        this.mapExtendedContext = Collections.unmodifiableMap(bpmnMap);
     }
 	
 	/**
@@ -74,7 +74,7 @@ public class OclHelper {
 	 * @return If successful the method returns an OCL-Library otherwise null 
 	 * @throws IOException If the OCL-Library could not be loaded
 	 */
-	public final OclLibrary getOclLibrary(final File file) throws IOException {
+	public final static OclLibrary getOclLibrary(final File file) throws IOException {
 		URI uri = URI.createFileURI(file.getAbsolutePath());
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.getResource(uri, true);
@@ -83,9 +83,8 @@ public class OclHelper {
 		EObject content = resource.getContents().get(0);
 		if (content instanceof OclLibrary) { 
 			return (OclLibrary) resource.getContents().get(0);
-		} else {
-			return null;
 		}
+		return null;
 	}
 	
 	/**
@@ -96,11 +95,10 @@ public class OclHelper {
 	 * 	If the context string could not be resolved the method returns null
 	 */
 	public final EClass getContextClass(final String context) {
-		if (mapContext.containsKey(context.toLowerCase(Locale.ENGLISH))) {
-			return mapContext.get(context.toLowerCase(Locale.ENGLISH));
-		} else {
-			return null;
+		if (this.mapContext.containsKey(context.toLowerCase(Locale.ENGLISH))) {
+			return this.mapContext.get(context.toLowerCase(Locale.ENGLISH));
 		}
+		return null;
 	}
 	
 	/**
@@ -111,10 +109,10 @@ public class OclHelper {
 	 * 	If the context string could not be resolved the method returns null
 	 */
 	public final EClass getExtendedContextClass(final String context) {
-		if (mapExtendedContext.containsKey(context.toLowerCase(Locale.ENGLISH))) {
-			return mapExtendedContext.get(context.toLowerCase(Locale.ENGLISH));
-		} else if (mapContext.containsKey(context.toLowerCase(Locale.ENGLISH))) {
-			return mapContext.get(context.toLowerCase(Locale.ENGLISH));
+		if (this.mapExtendedContext.containsKey(context.toLowerCase(Locale.ENGLISH))) {
+			return this.mapExtendedContext.get(context.toLowerCase(Locale.ENGLISH));
+		} else if (this.mapContext.containsKey(context.toLowerCase(Locale.ENGLISH))) {
+			return this.mapContext.get(context.toLowerCase(Locale.ENGLISH));
 		} else {
 			return null;
 		}

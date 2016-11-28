@@ -15,7 +15,7 @@
             description="Performs a secure links check"
             id="carisma.check.staticcheck.securelinks"
             name="UMLsec secure links Check"
-            implementingClass="carisma.check.staticcheck.securelinks.Check"
+            implementingClass="carisma.check.staticcheck.securelinks.SecureLinksCheck"
             publisher="Daniel Warzecha"
             targetModelType="UML2">
       </check>
@@ -23,7 +23,7 @@
             description="Performs a secure dependency check"
             id="carisma.check.staticcheck.securedependency"
             name="UMLsec secure dependency Check"
-            implementingClass="carisma.check.staticcheck.securedependency.Check"
+            implementingClass="carisma.check.staticcheck.securedependency.SecureDependenciesCheck"
             publisher="Sven Wenzel"
             targetModelType="UML2">
          <parameter
@@ -38,7 +38,7 @@
       <check
             description="Performs a nodownflow Check"
             id="carisma.check.staticcheck.nodownflow"
-            implementingClass="carisma.check.staticcheck.nodownflow.Check"
+            implementingClass="carisma.check.staticcheck.nodownflow.NoDownFlowCheck"
             name="UMLsec nodownflow Check"
             publisher="Sven Wenzel"
             targetModelType="UML2">

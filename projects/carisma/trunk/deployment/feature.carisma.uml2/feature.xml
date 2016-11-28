@@ -227,6 +227,8 @@ litigation.
 
    <url>
       <update label="CARiSMA Update Site" url="https://rgse.uni-koblenz.de/carisma/updatesite/"/>
+      <discovery label="Papyrus for Eclipse Neon" url="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon"/>
+      <discovery label="Papyrus for Eclipse Mars" url="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/mars"/>
    </url>
 
    <includes
@@ -235,51 +237,59 @@ litigation.
 
    <includes
          id="org.eclipse.uml2"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.eclipse.papyrus.sdk.feature"
          version="0.0.0"/>
 
    <requires>
+      <import plugin="carisma.modeltype.uml2" version="1.1.2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.uml2.uml"/>
-      <import plugin="org.eclipse.uml2.uml.resources" version="3.0.0" match="greaterOrEqual"/>
       <import plugin="carisma.core"/>
+      <import plugin="org.eclipse.uml2.uml.resources"/>
+      <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.pde.core"/>
       <import plugin="org.eclipse.pde.ui"/>
-      <import plugin="org.eclipse.core.runtime" version="3.6.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.core.resources" version="3.11.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.papyrus.editor"/>
    </requires>
 
    <plugin
          id="carisma.check.dummy"
          download-size="0"
          install-size="0"
-         version="1.1.1.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="carisma.modeltype.uml2"
          download-size="0"
          install-size="0"
-         version="1.1.4.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="carisma.check.template"
          download-size="0"
          install-size="0"
-         version="1.2.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="carisma.profile.umlsec.rabac"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="carisma.profile.umlsec"
          download-size="0"
          install-size="0"
-         version="1.0.6.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

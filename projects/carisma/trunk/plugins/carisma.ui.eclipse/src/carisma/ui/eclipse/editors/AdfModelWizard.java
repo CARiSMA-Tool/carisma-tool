@@ -11,6 +11,7 @@
 package carisma.ui.eclipse.editors;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -33,6 +34,8 @@ import carisma.core.logging.Logger;
  * Wizard for the creation of adf files.
  */
 public class AdfModelWizard extends Wizard implements INewWizard {
+	
+	public static final String EXTENSION_ID = "carisma.ui.eclipse.editors.AdfModelWizardID";
 	
 	/**
 	 * Wizard page for new file.
@@ -60,45 +63,45 @@ public class AdfModelWizard extends Wizard implements INewWizard {
 	protected static final String ADFWIZARDCONTEXTID = "AdfWizard";
 	
 	@Override
-	public final void init(final IWorkbench workbench, final IStructuredSelection selection) {
-		this.workbench = workbench;
-		this.selection = selection;
+	public final void init(final IWorkbench iWorkbench, final IStructuredSelection iStructuresSelection) {
+		this.workbench = iWorkbench;
+		this.selection = iStructuresSelection;
 		setWindowTitle("New analysis file");
 	}
 
 	@Override
 	public final void addPages() {
-		createnewfilePage = new AdfModelWizardNewFileCreationPage("newFilePage", selection);
-		createnewfilePage.setPageComplete(false);
+		this.createnewfilePage = new AdfModelWizardNewFileCreationPage("newFilePage", this.selection);
+		this.createnewfilePage.setPageComplete(false);
 		
-		detailsPage = new AdfModelWizardDetailsPage("DetailsPage", createnewfilePage);
-		detailsPage.setPageComplete(false);
+		this.detailsPage = new AdfModelWizardDetailsPage("DetailsPage", this.createnewfilePage);
+		this.detailsPage.setPageComplete(false);
 
-		addPage(detailsPage);
-		addPage(createnewfilePage);
+		addPage(this.detailsPage);
+		addPage(this.createnewfilePage);
 		
 	}
 
 	@Override
 	public final boolean performFinish() {
 		try {
-			createnewfilePage.setFileExtension("adf");
-			createnewfilePage.createNewFile();
+			this.createnewfilePage.setFileExtension("adf");
+			this.createnewfilePage.createNewFile();
 			
 			// create name of Analyse Editor taking the filename whitout the extension 
-			String filenameWithoutExt = createnewfilePage.getTargetFile().getName();
+			String filenameWithoutExt = this.createnewfilePage.getTargetFile().getName();
 			int index = filenameWithoutExt.lastIndexOf('.');
 			if (index > 0 && index <= filenameWithoutExt.length() - 2) {
 				filenameWithoutExt = filenameWithoutExt.substring(0, index);
 			}  
 			
-			Analysis analysis = new Analysis(filenameWithoutExt, detailsPage.getModelType(), detailsPage.getSourceFile());
-			AnalysisUtil.storeAnalysis(analysis, createnewfilePage.getTargetFile().getLocation().toString());
+			Analysis analysis = new Analysis(filenameWithoutExt, this.detailsPage.getModelType(), this.detailsPage.getSourceFile());
+			AnalysisUtil.storeAnalysis(analysis, this.createnewfilePage.getTargetFile().getLocation().toString());
 
 			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 			IProject[] projects = workspaceRoot.getProjects();
 			for (IProject projectToRefresh : projects) {
-				projectToRefresh.refreshLocal(IProject.DEPTH_ONE, null);
+				projectToRefresh.refreshLocal(IResource.DEPTH_ONE, null);
 			}
 			
 		} catch (CoreException e) {
@@ -106,11 +109,11 @@ public class AdfModelWizard extends Wizard implements INewWizard {
 		}
 
 		// Open an editor on the new file.
-		IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+		IWorkbenchWindow workbenchWindow = this.workbench.getActiveWorkbenchWindow();
 		IWorkbenchPage page = workbenchWindow.getActivePage();
 		try {
-			page.openEditor(new FileEditorInput(createnewfilePage.getTargetFile()),
-				 workbench.getEditorRegistry().getDefaultEditor(createnewfilePage.getTargetFile().getFullPath().toString()).getId());					 	 
+			page.openEditor(new FileEditorInput(this.createnewfilePage.getTargetFile()),
+				 this.workbench.getEditorRegistry().getDefaultEditor(this.createnewfilePage.getTargetFile().getFullPath().toString()).getId());					 	 
 		} catch (PartInitException exception) {
 			MessageDialog.openError(workbenchWindow.getShell(), "Analysis Editor", exception.getMessage());
 			return false;

@@ -11,14 +11,18 @@
 package carisma.core.analysis;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import carisma.core.Carisma;
 import carisma.core.analysis.result.AnalysisResult;
@@ -26,10 +30,11 @@ import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.AnalysisResultStatus;
 import carisma.core.analysis.result.CheckResult;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckDescriptor;
 import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CheckParameterDescriptor;
+import carisma.core.checks.CheckRegistry;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 import carisma.core.util.Utils;
@@ -80,8 +85,9 @@ public class Analyzer implements AnalysisHost {
 	/**
 	 * @return String the current model file name
 	 */
+	@Override
 	public final String getCurrentModelFilename() {
-		return currentModelFilename;
+		return this.currentModelFilename;
 	}
 	
 	/**
@@ -94,9 +100,9 @@ public class Analyzer implements AnalysisHost {
 		this.result = new AnalysisResult(analysis);
 		this.result.setName(analysis.getName() + " (" + analysis.getModelType() + ")");
 		this.result.setTimestamp(Utils.getISOTimestamp());
-		uiConnector = connector;
-		Carisma.getInstance().getAnalysisResults().add(result);
-		uiConnector.updateView();
+		this.uiConnector = connector;
+		Carisma.getInstance().getAnalysisResults().add(this.result);
+		this.uiConnector.updateView();
 		
 		AnalysisResultStatus status = AnalysisResultStatus.RUNNING;
 		this.result.setStatus(AnalysisResultStatus.RUNNING);
@@ -104,7 +110,7 @@ public class Analyzer implements AnalysisHost {
 		Map<CheckDescriptor, List<String>> failedCheckConditions = checkConditions(analysis);
 		if (!failedCheckConditions.isEmpty()) {
 			this.result.setStatus(AnalysisResultStatus.FAIL);
-			uiConnector.updateView();
+			this.uiConnector.updateView();
 			Logger.log(LogLevel.ERROR, "Analysis not executed due to missing requirements!");
 			for (Entry<CheckDescriptor, List<String>> entry : failedCheckConditions.entrySet()) {
 				Logger.log(LogLevel.ERROR, "Check '" + entry.getKey().getName() + "' misses:");
@@ -118,47 +124,48 @@ public class Analyzer implements AnalysisHost {
 		
 		// load model
 		File file = Carisma.getInstance().getModelManager().getFile(analysis.getIFile());
-		try {
-			currentModel = Carisma.getInstance().getModelManager().loadModel(file, analysis.getModelType());
+		try (FileInputStream in = new FileInputStream(file)) {
+			this.currentModel = new ResourceSetImpl().createResource(URI.createURI(file.getPath()));
+			this.currentModel.load(in, Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			currentCheckResult = new CheckResult();
-			currentCheckResult.setName("ERROR");
-			this.result.addCheckResult(currentCheckResult);
+			this.currentCheckResult = new CheckResult();
+			this.currentCheckResult.setName("ERROR");
+			this.result.addCheckResult(this.currentCheckResult);
 			addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
 					"Model file not found. Please check your analysis configuration."));
 			this.result.setStatus(AnalysisResultStatus.FAIL);
-			uiConnector.updateView();
+			this.uiConnector.updateView();
 			Logger.log(LogLevel.ERROR, "Unable to load model '" + file.getAbsolutePath() + "'", e);
 			String answer[] = {"Ok"};
-			uiConnector.sendMessage("Error", "Unable to load model '" + file.getAbsolutePath() + "'", StatusType.ERROR, answer, 0);
+			this.uiConnector.sendMessage("Error", "Unable to load model '" + file.getAbsolutePath() + "'", StatusType.ERROR, answer, 0);
 			return;
 		}
 		
-		currentModelFilename = analysis.getIFile().getName();
+		this.currentModelFilename = analysis.getIFile().getName();
 		
 		// run analysis
 		for (CheckReference checkReference : analysis.getChecks()) {
 			if (!checkReference.isEnabled()) {
 				continue;
 			}
-			CheckDescriptor checkDescriptor = checkDescriptorMapping.get(checkReference);
+			CheckDescriptor checkDescriptor = this.checkDescriptorMapping.get(checkReference);
 			if (checkDescriptor == null) {
 				this.result.setStatus(AnalysisResultStatus.FAIL);
-				uiConnector.updateView();
+				this.uiConnector.updateView();
 				Logger.log(LogLevel.ERROR, "Descriptor of check '" + checkReference.getCheckID() + "' not found!");
 				return;
 			}
 			
-			currentCheckDescriptor = checkDescriptor;
+			this.currentCheckDescriptor = checkDescriptor;
 			
-			currentCheckResult = new CheckResult();
-			currentCheckResult.setName(checkDescriptor.getName());
-			this.result.addCheckResult(currentCheckResult);
-			uiConnector.updateView();
+			this.currentCheckResult = new CheckResult();
+			this.currentCheckResult.setName(checkDescriptor.getName());
+			this.result.addCheckResult(this.currentCheckResult);
+			this.uiConnector.updateView();
 			this.lastReportSource = 0;
 			this.internalAppendLineToReport("------------------------------------------------------------------------------------");
 			this.internalAppendLineToReport("------------------------------------------------------------------------------------");
-			this.internalAppendLineToReport("Running check : " + currentCheckResult.getName());
+			this.internalAppendLineToReport("Running check : " + this.currentCheckResult.getName());
 
 			// check preconditions
 			{
@@ -172,7 +179,7 @@ public class Analyzer implements AnalysisHost {
 					addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
 							"Preconditions violated! " + missingPreconditions.size() + "registry content(s) missing - view report for more information."));
 					this.result.setStatus(AnalysisResultStatus.FAIL);
-					uiConnector.updateView();
+					this.uiConnector.updateView();
 					return;
 				}
 			}
@@ -202,19 +209,19 @@ public class Analyzer implements AnalysisHost {
 //FIXME: DW-Aufraeumen
 				if (tmpPara != null) {
 					if (param.isQueryOnDemand()) {
-						tmpPara = uiConnector.askParameter(checkDescriptor, tmpPara);
+						tmpPara = this.uiConnector.askParameter(checkDescriptor, tmpPara);
 					} else {
 						if (param instanceof OutputFileParameter) {
 							try { 
 								File newFile = getFileToBeWritten(((OutputFileParameter) param).getValue());
 								tmpPara = new OutputFileParameter(param.getDescriptor(), newFile);
-								uiConnector.updateView();
+								this.uiConnector.updateView();
 							} catch (UserAbortedAnalysisException e) {
 								Logger.log(LogLevel.ERROR, "Abort due to user: " + checkReference.getCheckID() 
 										+ " at parameter of type " + param.getDescriptor().getType()
 										+ " (" + ((OutputFileParameter) param).getValue() + ")");
 								this.result.setStatus(AnalysisResultStatus.FAIL);
-								uiConnector.updateView();
+								this.uiConnector.updateView();
 								return;
 							}
 						}
@@ -226,7 +233,7 @@ public class Analyzer implements AnalysisHost {
 									"Folder referenced by parameter '" + param.getDescriptor().getName() + "' does not exist!"));
 							Logger.log(LogLevel.ERROR, "Folder referenced by parameter '" + param.getDescriptor().getName() + "' does not exist!");
 							this.result.setStatus(AnalysisResultStatus.FAIL);
-							uiConnector.updateView();
+							this.uiConnector.updateView();
 							return;
 						}
 					}
@@ -249,7 +256,7 @@ public class Analyzer implements AnalysisHost {
 				Logger.log(LogLevel.ERROR, "Parameters undefined: " + errorString.toString());
 			}
 			
-			CarismaCheck check = Carisma.getInstance().getCheckRegistry().getCheck(checkDescriptor);
+			CarismaCheckWithID check = CheckRegistry.getCheck(checkDescriptor);
 
 			if (!(checkParameters.size() < 1)) {
 				this.internalAppendLineToReport("Parameters:");
@@ -314,7 +321,7 @@ public class Analyzer implements AnalysisHost {
 					checkSuccess = false;
 				}
 			}
-			currentCheckResult.setSuccessful(checkSuccess);
+			this.currentCheckResult.setSuccessful(checkSuccess);
 			if (!checkSuccess) {
 				status = AnalysisResultStatus.FAIL;
 			}
@@ -323,7 +330,7 @@ public class Analyzer implements AnalysisHost {
 			status = AnalysisResultStatus.SUCCESS;
 		}
 		this.result.setStatus(status);
-		uiConnector.updateView();
+		this.uiConnector.updateView();
 	}
 	
 	/**
@@ -391,7 +398,7 @@ public class Analyzer implements AnalysisHost {
 
 	@Override
 	public final void addResultMessage(final AnalysisResultMessage detail) {
-		if (lastReportSource == 2) {
+		if (this.lastReportSource == 2) {
 			internalAppendToReport("\n");
 		}
 		internalAppendToReport(detail.getStatus().toString() + ": " + detail.getText());
@@ -402,9 +409,9 @@ public class Analyzer implements AnalysisHost {
 			internalAppendToReport(" " + detail.getAdditionalInformation());
 		}
 		internalAppendLineToReport("");
-		currentCheckResult.addResult(detail);
-		uiConnector.updateView();
-		lastReportSource = 1;
+		this.currentCheckResult.addResult(detail);
+		this.uiConnector.updateView();
+		this.lastReportSource = 1;
 	}
 	
 	/**
@@ -430,11 +437,11 @@ public class Analyzer implements AnalysisHost {
 	 */
 	@Override
 	public final void appendToReport(final String text) {
-		if (lastReportSource == 1) {
+		if (this.lastReportSource == 1) {
 			internalAppendToReport("\n");
 		}
 		internalAppendToReport(text);
-		lastReportSource = 2;
+		this.lastReportSource = 2;
 	}
 
 	/**
@@ -442,12 +449,12 @@ public class Analyzer implements AnalysisHost {
 	 */
 	@Override
 	public final void appendLineToReport(final String text) {
-		if (lastReportSource == 1) {
+		if (this.lastReportSource == 1) {
 			internalAppendToReport("\n");
 		}
 		Logger.log(LogLevel.DEBUG, "Report: " + text, 1);
 		this.result.appendToReport(text + "\n");
-		lastReportSource = 2;
+		this.lastReportSource = 2;
 	}
 
 	/**
@@ -455,7 +462,7 @@ public class Analyzer implements AnalysisHost {
 	 */
 	@Override
 	public final Resource getAnalyzedModel() {
-		return currentModel;
+		return this.currentModel;
 	}
 
 	/**
@@ -508,8 +515,8 @@ public class Analyzer implements AnalysisHost {
 
 	@Override
 	public final void displayError(final String message) {
-		uiConnector.sendMessage("Error", 
-				currentCheckDescriptor.getName() + ": " + message,
+		this.uiConnector.sendMessage("Error", 
+				this.currentCheckDescriptor.getName() + ": " + message,
 				StatusType.ERROR,
 				new String[]{"OK"}, 0);
 	}
@@ -526,7 +533,7 @@ public class Analyzer implements AnalysisHost {
 			return file;
 		}
 				
-		int answer = uiConnector.sendMessage("", 
+		int answer = this.uiConnector.sendMessage("", 
 				"File " + file + " already exists. Do you want to overwrite it?", 
 				StatusType.INFO, 
 				new String[]{"OK", "New File", "Cancel"}, 
@@ -538,7 +545,7 @@ public class Analyzer implements AnalysisHost {
 			String filepath = Utils.incrementFileNameIfNecessary(file.getAbsolutePath());
 			File tmp = new File(filepath);
 			if (!tmp.getName().equals(file.getName())) {
-				uiConnector.sendMessage("File Name", 
+				this.uiConnector.sendMessage("File Name", 
 						"Using file '" + tmp.getAbsolutePath() + "' for output.",
 						StatusType.INFO,
 						new String[] {"OK"}, 0);

@@ -83,7 +83,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	/**
 	 * The controller between model (analysis) and view (adf editor).
 	 */
-	private AdfEditorController controller;
+	AdfEditorController controller;
 
 	/**
 	 * The open model button.
@@ -93,12 +93,12 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	/**
 	 * Combo menu for selected editor.
 	 */
-	private Combo selectedEditorCombo;
+	Combo selectedEditorCombo;
 
 	/**
 	 * The corresponding table viewer.
 	 */
-	private CheckboxTableViewer viewer;
+	CheckboxTableViewer viewer;
 
 	/**
 	 * The del-button.
@@ -128,7 +128,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	/**
 	 * A boolean which indicates if the editor priority queue is used.
 	 */
-	private boolean selectedEditorPriorityListEnabled;
+	boolean selectedEditorPriorityListEnabled;
 
 	/**
 	 * A static name of the default editor selection.
@@ -179,10 +179,11 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 * @param parent
 	 *            the parent Composite
 	 */
+	@Override
 	protected final void createMasterPart(final IManagedForm managedForm,
 			final Composite parent) {
 		FormToolkit toolkit;
-		controller.loadAnalysis();
+		this.controller.loadAnalysis();
 		toolkit = managedForm.getToolkit();
 
 		createMasterValidationModifyListener();
@@ -208,7 +209,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 		// Create model type informations
 		toolkit.createLabel(masterComposite, "Modeltype:");
 		Label modeltypeLabel = toolkit.createLabel(masterComposite,
-				controller.getModelType());
+				this.controller.getModelType());
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.horizontalSpan = 2;
 		gridData.horizontalIndent = 6;
@@ -288,7 +289,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 			final Composite composite) {
 		toolkit.createLabel(composite, "Name:", SWT.LEFT);
 		final Text textAnalysisName = toolkit.createText(composite,
-				controller.getAnalysisName(), SWT.SINGLE);
+				this.controller.getAnalysisName(), SWT.SINGLE);
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.horizontalSpan = 2;
 		gridData.horizontalIndent = 6;
@@ -297,7 +298,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 		textAnalysisName.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(final ModifyEvent e) {
-				controller.setAnalysisName(textAnalysisName.getText());
+				AdfEditorMasterDetailsBlock.this.controller.setAnalysisName(textAnalysisName.getText());
 			}
 		});
 	}
@@ -320,25 +321,25 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 		gridData.horizontalIndent = 6;
 		modelFileName.setLayoutData(gridData);
 		modelFileName.setEditable(false);
-		final String modelfile = controller.getModelFile().toString();
+		final String modelfile = this.controller.getModelFile().toString();
 		modelFileName.setText(modelfile);
 
 		// Red cross if model does not exist
-		modelFileNameDecoration = new ControlDecoration(modelFileName, SWT.LEFT
+		this.modelFileNameDecoration = new ControlDecoration(modelFileName, SWT.LEFT
 				| SWT.TOP);
 		Image errorDecoration = FieldDecorationRegistry.getDefault()
 				.getFieldDecoration(FieldDecorationRegistry.DEC_ERROR)
 				.getImage();
-		modelFileNameDecoration.setImage(errorDecoration);
-		modelFileNameDecoration.setShowHover(true);
-		modelFileNameDecoration
+		this.modelFileNameDecoration.setImage(errorDecoration);
+		this.modelFileNameDecoration.setShowHover(true);
+		this.modelFileNameDecoration
 				.setDescriptionText("The model file does not exist! Please\n"
 						+ "recover the selected file or use the\n"
 						+ "'Browse' button to choose a new one.");
-		if (controller.isModelFileValid()) {
-			modelFileNameDecoration.hide();
+		if (this.controller.isModelFileValid()) {
+			this.modelFileNameDecoration.hide();
 		} else {
-			modelFileNameDecoration.show();
+			this.modelFileNameDecoration.show();
 		}
 
 		Button browse = toolkit.createButton(composite, "Browse...", SWT.PUSH);
@@ -352,10 +353,10 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 						SWT.OPEN);
 				fileDialog.setText("Choose a model file");
 
-				ModelTypeRegistry modelTypeRegistry = CarismaGUI.INSTANCE
+				ModelTypeRegistry modelTypeRegistry = CarismaGUI
 						.getModelTypeRegistry();
 				String extensions = modelTypeRegistry.getModelTypeWithName(
-						controller.getModelType()).getFileExtension();
+						AdfEditorMasterDetailsBlock.this.controller.getModelType()).getFileExtension();
 
 				// Delete whitespaces and add '*.' in front of the extension to
 				// set up
@@ -368,7 +369,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 				fileDialog.setFilterExtensions(extensionArray);
 
 				// Determine initial path of file dialog
-				String initialPath = controller.getModelIFile()
+				String initialPath = AdfEditorMasterDetailsBlock.this.controller.getModelIFile()
 						.getRawLocation().toOSString();
 				// Cut off file name from path
 				if (initialPath.contains("\\")) {
@@ -384,10 +385,10 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 				String filepath = fileDialog.open();
 				if (filepath != null) {
 					try {
-						IFile modelIFile = controller.getLinkedIFile(filepath);
+						IFile modelIFile = AdfEditorController.getLinkedIFile(filepath);
 						modelFileName.setText(modelIFile.getFullPath()
 								.toString());
-						controller.setModelIFile(modelIFile);
+						AdfEditorMasterDetailsBlock.this.controller.setModelIFile(modelIFile);
 						updateRunButtonEnable();
 						updateOpenModelButtonEnable();
 					} catch (Exception exc) {
@@ -410,22 +411,22 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 			final Composite composite) {
 		toolkit.createLabel(composite, "Associated Editor:");
 
-		selectedEditorCombo = new Combo(composite, SWT.DROP_DOWN | SWT.BORDER | SWT.READ_ONLY);
+		this.selectedEditorCombo = new Combo(composite, SWT.DROP_DOWN | SWT.BORDER | SWT.READ_ONLY);
 		GridData gridData = new GridData(SWT.FILL, SWT.TOP, true, false);
 		gridData.horizontalIndent = 6;
-		selectedEditorCombo.setLayoutData(gridData);
+		this.selectedEditorCombo.setLayoutData(gridData);
 		// The enable state will be updated later. Have to false for now
 		// See updateGuiEnableState(..) for more information
-		selectedEditorCombo.setEnabled(false);
+		this.selectedEditorCombo.setEnabled(false);
 
 		// Information icon if priority queue is used
-		selectedEditorDecoration = new ControlDecoration(selectedEditorCombo,
+		this.selectedEditorDecoration = new ControlDecoration(this.selectedEditorCombo,
 				SWT.LEFT | SWT.TOP);
 		Image questionDecoration = FieldDecorationRegistry.getDefault()
 				.getFieldDecoration(FieldDecorationRegistry.DEC_INFORMATION)
 				.getImage();
-		selectedEditorDecoration.setImage(questionDecoration);
-		selectedEditorDecoration.setShowHover(true);
+		this.selectedEditorDecoration.setImage(questionDecoration);
+		this.selectedEditorDecoration.setShowHover(true);
 
 		// Change Listener for the EDITOR_SELECTION_ART property
 		final IPropertyChangeListener propertyChangeListener = new IPropertyChangeListener() {
@@ -434,9 +435,9 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 				if (event.getProperty().equals(Constants.EDITOR_SELECTION_ART)) {
 					String editorSelectionArt = event.getNewValue().toString();
 					if (editorSelectionArt.equals(Constants.AUTO)) {
-						selectedEditorPriorityListEnabled = true;
+						AdfEditorMasterDetailsBlock.this.selectedEditorPriorityListEnabled = true;
 					} else {
-						selectedEditorPriorityListEnabled = false;
+						AdfEditorMasterDetailsBlock.this.selectedEditorPriorityListEnabled = false;
 					}
 					updateOpenModelButtonEnable();
 				}
@@ -448,23 +449,24 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 		// Selection Listener
 		final EditorRegistry editorRegistry = CarismaGUI.INSTANCE
 				.getEditorRegistry();
-		selectedEditorCombo.addSelectionListener(new SelectionListener() {
+		this.selectedEditorCombo.addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				String actualSelectedEditorName = selectedEditorCombo
-						.getItem(selectedEditorCombo.getSelectionIndex());
+				String actualSelectedEditorName = AdfEditorMasterDetailsBlock.this.selectedEditorCombo
+						.getItem(AdfEditorMasterDetailsBlock.this.selectedEditorCombo.getSelectionIndex());
 				if (!actualSelectedEditorName.equals(DEFAULT_EDITOR)) {
 					EditorDescriptor actualEditorDescriptor = editorRegistry
 							.getEditorDescriptorByName(actualSelectedEditorName);
-					controller.setSelectedEditorId(actualEditorDescriptor
+					AdfEditorMasterDetailsBlock.this.controller.setSelectedEditorId(actualEditorDescriptor
 							.getId());
 				} else {
-					controller.setSelectedEditorId(DEFAULT_EDITOR);
+					AdfEditorMasterDetailsBlock.this.controller.setSelectedEditorId(DEFAULT_EDITOR);
 				}
 			}
 
 			@Override
 			public void widgetDefaultSelected(final SelectionEvent e) {
+				//TODO: Why empty?
 			}
 		});
 
@@ -488,11 +490,11 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 */
 	private void createOpenModelButton(final FormToolkit toolkit,
 			final Composite composite) {
-		openModel = toolkit.createButton(composite, "Open Model", SWT.PUSH);
-		openModel.setEnabled(controller.isModelFileValid());
-		openModel.setToolTipText("Browse for a\n" + "new model file");
+		this.openModel = toolkit.createButton(composite, "Open Model", SWT.PUSH);
+		this.openModel.setEnabled(this.controller.isModelFileValid());
+		this.openModel.setToolTipText("Browse for a\n" + "new model file");
 
-		openModel
+		this.openModel
 				.setToolTipText("Open a model with an associated editor or an \n"
 						+ "editor, defined in the editor priority list.\n"
 						+ "Set CARiSMA's preferences to change the functionallity\n"
@@ -500,12 +502,12 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 						+ "save the choice in the analysis file.\n\n"
 						+ "Read the Help article for more information.");
 
-		openModel.addSelectionListener(new SelectionAdapter() {
+		this.openModel.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				String selectedEditorName = selectedEditorCombo
-						.getItem(selectedEditorCombo.getSelectionIndex());
-				controller.openModelEditor(selectedEditorName
+				String selectedEditorName = AdfEditorMasterDetailsBlock.this.selectedEditorCombo
+						.getItem(AdfEditorMasterDetailsBlock.this.selectedEditorCombo.getSelectionIndex());
+				AdfEditorMasterDetailsBlock.this.controller.openModelEditor(selectedEditorName
 						.equals(DEFAULT_EDITOR));
 			}
 		});
@@ -531,6 +533,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 		table.setLayoutData(gridData);
 
 		ISelectionChangedListener selectionChangeListener = new ISelectionChangedListener() {
+			@Override
 			public void selectionChanged(final SelectionChangedEvent event) {
 				if (listSelectionChanged()) {
 					managedForm.fireSelectionChanged(new SectionPart(composite,
@@ -539,38 +542,38 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 			}
 		};
 
-		viewer = new CheckboxTableViewer(table);
-		viewer.addSelectionChangedListener(selectionChangeListener);
+		this.viewer = new CheckboxTableViewer(table);
+		this.viewer.addSelectionChangedListener(selectionChangeListener);
 
-		viewer.addDoubleClickListener(new IDoubleClickListener() {
+		this.viewer.addDoubleClickListener(new IDoubleClickListener() {
 			@Override
 			public void doubleClick(final DoubleClickEvent event) {
-				Object selection = ((IStructuredSelection) viewer
+				Object selection = ((IStructuredSelection) AdfEditorMasterDetailsBlock.this.viewer
 						.getSelection()).getFirstElement();
 				if (selection != null && selection instanceof CheckReference) {
-					boolean state = viewer.getChecked(selection);
+					boolean state = AdfEditorMasterDetailsBlock.this.viewer.getChecked(selection);
 					state = state ^ true; // XOR swaps
-					viewer.setChecked(selection, state);
-					viewer.refresh();
-					controller.setCheckSelection((CheckReference) selection,
+					AdfEditorMasterDetailsBlock.this.viewer.setChecked(selection, state);
+					AdfEditorMasterDetailsBlock.this.viewer.refresh();
+					AdfEditorMasterDetailsBlock.this.controller.setCheckSelection((CheckReference) selection,
 							state);
 					updateRunButtonEnable();
 				}
 			}
 		});
 
-		viewer.addCheckStateListener(new ICheckStateListener() {
+		this.viewer.addCheckStateListener(new ICheckStateListener() {
 			@Override
 			public void checkStateChanged(final CheckStateChangedEvent event) {
 				Object obj = event.getElement();
-				controller.setCheckSelection((CheckReference) obj,
+				AdfEditorMasterDetailsBlock.this.controller.setCheckSelection((CheckReference) obj,
 						event.getChecked());
 				listSelectionChanged();
 				updateRunButtonEnable();
 			}
 		});
 
-		viewer.getTable().addKeyListener(new KeyListener() {
+		this.viewer.getTable().addKeyListener(new KeyListener() {
 			@Override
 			public void keyPressed(final KeyEvent e) {
 				if (e.keyCode == SWT.DEL) {
@@ -584,18 +587,18 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 			}
 		});
 
-		viewer.setContentProvider(new SelectedChecksContentProvider());
-		viewer.setLabelProvider(new SelectedChecksLabelProvider());
-		viewer.setInput(controller.getSelectedChecksList());
+		this.viewer.setContentProvider(new SelectedChecksContentProvider());
+		this.viewer.setLabelProvider(new SelectedChecksLabelProvider());
+		this.viewer.setInput(this.controller.getSelectedChecksList());
 		int dragAndDropOperations = DND.DROP_MOVE;
 		Transfer[] transferTypes = new Transfer[] { LocalTransfer.getInstance() };
-		viewer.addDragSupport(dragAndDropOperations, transferTypes,
-				new SelectedChecksDragListener(viewer));
-		viewer.addDropSupport(dragAndDropOperations, transferTypes,
-				new SelectedChecksDropListener(viewer, controller));
+		this.viewer.addDragSupport(dragAndDropOperations, transferTypes,
+				new SelectedChecksDragListener(this.viewer));
+		this.viewer.addDropSupport(dragAndDropOperations, transferTypes,
+				new SelectedChecksDropListener(this.viewer, this.controller));
 
 		updateTable();
-		viewer.getTable().select(0);
+		this.viewer.getTable().select(0);
 		//seems that selecting also works if there is no entry in the table
 		//than nothing will be selected, but also no NullpointerException etc.
 		initInvalidChecks();
@@ -617,19 +620,20 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 		add.setToolTipText("Add checks\n" + "to the list");
 
 		add.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				List<CheckDescriptor> fittingChecks = CarismaGUI.INSTANCE
+				List<CheckDescriptor> fittingChecks = CarismaGUI
 						.getCheckRegistry().findChecks(
-								controller.getModelType());
+								AdfEditorMasterDetailsBlock.this.controller.getModelType());
 
 				AdfEditorCheckSelectionDialog dialog = new AdfEditorCheckSelectionDialog(
 						composite.getShell(), fittingChecks,
 						new CheckSelectionContentProvider(),
 						new CheckSelectionLabelProvider(), "Choose from checks");
 
-				List<CheckDescriptor> recChecks = CarismaGUI.INSTANCE
+				List<CheckDescriptor> recChecks = CarismaGUI
 						.getCheckRegistry().getRecommendedChecks(
-								controller.getModelIFile());
+								AdfEditorMasterDetailsBlock.this.controller.getModelIFile());
 				if (recChecks != null && recChecks.size() > 0) {
 					dialog.setRecommendedChecks(recChecks);
 				}
@@ -638,8 +642,8 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 				if (dialog.getResult() != null) {
 					for (Object id : dialog.getResult()) {
-						controller.createCheck(id.toString());
-						viewer.refresh();
+						AdfEditorMasterDetailsBlock.this.controller.createCheck(id.toString());
+						AdfEditorMasterDetailsBlock.this.viewer.refresh();
 						updateTable();
 						updateRunButtonEnable();
 					}
@@ -659,12 +663,13 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 */
 	private void createDelButton(final FormToolkit toolkit,
 			final Composite composite) {
-		del = toolkit.createButton(composite, "", SWT.PUSH);
-		del.setImage(PlatformUI.getWorkbench().getSharedImages()
+		this.del = toolkit.createButton(composite, "", SWT.PUSH);
+		this.del.setImage(PlatformUI.getWorkbench().getSharedImages()
 				.getImage(ISharedImages.IMG_ETOOL_DELETE));
-		del.setToolTipText("Delete the selected\n" + "check from the list");
+		this.del.setToolTipText("Delete the selected\n" + "check from the list");
 
-		del.addSelectionListener(new SelectionAdapter() {
+		this.del.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				deleteSelectedCheck();
 			}
@@ -681,23 +686,24 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 */
 	private void createUpButton(final FormToolkit toolkit,
 			final Composite composite) {
-		up = toolkit.createButton(composite, "", SWT.PUSH);
-		up.setImage(CarismaGUI.INSTANCE.getImageRegistry().get(
+		this.up = toolkit.createButton(composite, "", SWT.PUSH);
+		this.up.setImage(CarismaGUI.INSTANCE.getImageRegistry().get(
 				CarismaGUI.IMG_UP));
-		up.setToolTipText("Move the check upwards");
-		up.setEnabled(false);
+		this.up.setToolTipText("Move the check upwards");
+		this.up.setEnabled(false);
 
-		up.addSelectionListener(new SelectionAdapter() {
+		this.up.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				if (viewer.getTable().getSelectionIndex() > -1) {
-					Object entryToBeMoved = viewer.getElementAt(viewer
+				if (AdfEditorMasterDetailsBlock.this.viewer.getTable().getSelectionIndex() > -1) {
+					Object entryToBeMoved = AdfEditorMasterDetailsBlock.this.viewer.getElementAt(AdfEditorMasterDetailsBlock.this.viewer
 							.getTable().getSelectionIndex());
-					controller.removeCheck((CheckReference) entryToBeMoved);
-					controller.getSelectedChecksList().add(
-							viewer.getTable().getSelectionIndex() - 1,
+					AdfEditorMasterDetailsBlock.this.controller.removeCheck((CheckReference) entryToBeMoved);
+					AdfEditorMasterDetailsBlock.this.controller.getSelectedChecksList().add(
+							AdfEditorMasterDetailsBlock.this.viewer.getTable().getSelectionIndex() - 1,
 							(CheckReference) entryToBeMoved);
 				}
-				viewer.refresh();
+				AdfEditorMasterDetailsBlock.this.viewer.refresh();
 				listSelectionChanged();
 			}
 		});
@@ -713,24 +719,25 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 */
 	private void createDownButton(final FormToolkit toolkit,
 			final Composite composite) {
-		down = toolkit.createButton(composite, "", SWT.PUSH);
-		down.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false));
-		down.setImage(CarismaGUI.INSTANCE.getImageRegistry().get(
+		this.down = toolkit.createButton(composite, "", SWT.PUSH);
+		this.down.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false));
+		this.down.setImage(CarismaGUI.INSTANCE.getImageRegistry().get(
 				CarismaGUI.IMG_DOWN));
-		down.setToolTipText("Move the check downwards");
-		down.setEnabled(false);
+		this.down.setToolTipText("Move the check downwards");
+		this.down.setEnabled(false);
 
-		down.addSelectionListener(new SelectionAdapter() {
+		this.down.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				if (viewer.getTable().getSelectionIndex() > -1) {
-					Object entryToBeMoved = viewer.getElementAt(viewer
+				if (AdfEditorMasterDetailsBlock.this.viewer.getTable().getSelectionIndex() > -1) {
+					Object entryToBeMoved = AdfEditorMasterDetailsBlock.this.viewer.getElementAt(AdfEditorMasterDetailsBlock.this.viewer
 							.getTable().getSelectionIndex());
-					controller.removeCheck((CheckReference) entryToBeMoved);
-					controller.getSelectedChecksList().add(
-							viewer.getTable().getSelectionIndex() + 1,
+					AdfEditorMasterDetailsBlock.this.controller.removeCheck((CheckReference) entryToBeMoved);
+					AdfEditorMasterDetailsBlock.this.controller.getSelectedChecksList().add(
+							AdfEditorMasterDetailsBlock.this.viewer.getTable().getSelectionIndex() + 1,
 							(CheckReference) entryToBeMoved);
 				}
-				viewer.refresh();
+				AdfEditorMasterDetailsBlock.this.viewer.refresh();
 				listSelectionChanged();
 			}
 		});
@@ -746,41 +753,43 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 */
 	private void createRunButton(final FormToolkit toolkit,
 			final Composite composite) {
-		run = toolkit.createButton(composite, "RUN", SWT.PUSH);
-		run.setEnabled(controller.isModelFileValid());
+		this.run = toolkit.createButton(composite, "RUN", SWT.PUSH);
+		this.run.setEnabled(this.controller.isModelFileValid());
 		//Bug #1518: Wie kann man die Position des Tooltips verändern?
 		//http://stackoverflow.com/questions/11375250/set-tooltip-text-at-a-particular-location
-		run.setToolTipText("Runs the analysis");
+		this.run.setToolTipText("Runs the analysis");
 
-		run.addSelectionListener(new SelectionAdapter() {
+		this.run.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				listSelectionChanged();
-				if (controller.isEditorDirty()) {
+				if (AdfEditorMasterDetailsBlock.this.controller.isEditorDirty()) {
 					MessageDialog messageDialog = new MessageDialog(composite
 							.getShell(), "Save and Launch", null,
 							"Do you want to save the changes?", 0,
 							new String[] { "OK", "Cancel" }, 0);
 					messageDialog.open();
 					if (messageDialog.getReturnCode() == 0) {
-						controller.saveAnalysis();
+						AdfEditorMasterDetailsBlock.this.controller.saveAnalysis();
 					}
 				}
-				if (controller.hasAnalysisInvalidParameters()
-						|| !controller.isModelFileValid()
+				if (AdfEditorMasterDetailsBlock.this.controller.hasAnalysisInvalidParameters()
+						|| !AdfEditorMasterDetailsBlock.this.controller.isModelFileValid()
 						|| !isOneCheckEnabled()) {
 					updateRunButtonEnable();
 					showProblems();
 				} else {
-					controller.runAnalysis();
+					AdfEditorMasterDetailsBlock.this.controller.runAnalysis();
 				}
 			}
 		});
 
-		problemLink = new Link(composite, SWT.NONE);
-		problemLink.setText("<a>Show problems</a>");
-		problemLink.setBackground(new Color(null, 255, 255, 255));
-		problemLink.setVisible(false);
-		problemLink.addSelectionListener(new SelectionAdapter() {
+		this.problemLink = new Link(composite, SWT.NONE);
+		this.problemLink.setText("<a>Show problems</a>");
+		this.problemLink.setBackground(new Color(null, 255, 255, 255));
+		this.problemLink.setVisible(false);
+		this.problemLink.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				showProblems();
 			}
@@ -792,15 +801,15 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 * and set then an enabled/disabled check box on the left of each row. This
 	 * method is called every time the table has to be drawn
 	 */
-	private void updateTable() {
-		if (viewer != null) {
-			if (viewer.getTable().getItemCount() > 0) {
-				for (int i = 0; i < viewer.getTable().getItemCount(); i++) {
-					Object obj = viewer.getElementAt(i);
-					viewer.setChecked(obj, ((CheckReference) obj).isEnabled());
+	void updateTable() {
+		if (this.viewer != null) {
+			if (this.viewer.getTable().getItemCount() > 0) {
+				for (int i = 0; i < this.viewer.getTable().getItemCount(); i++) {
+					Object obj = this.viewer.getElementAt(i);
+					this.viewer.setChecked(obj, ((CheckReference) obj).isEnabled());
 				}
 			}
-			viewer.refresh();
+			this.viewer.refresh();
 		}
 	}
 
@@ -811,10 +820,10 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 * 
 	 * @return A boolean which indicates if the selection really changed
 	 */
-	private boolean listSelectionChanged() {
+	boolean listSelectionChanged() {
 		updateListButtonsEnable();
-		if (!viewer.getSelection().equals(lastSelection)) {
-			lastSelection = viewer.getSelection();
+		if (!this.viewer.getSelection().equals(this.lastSelection)) {
+			this.lastSelection = this.viewer.getSelection();
 			resizeDetailPart();
 			return true;
 		}
@@ -848,9 +857,9 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 */
 	private void initInvalidChecks() {
 		List<CheckReference> uninputs = new ArrayList<CheckReference>();
-		List<CheckReference> checks = controller.getSelectedChecksList();
+		List<CheckReference> checks = this.controller.getSelectedChecksList();
 		for (CheckReference checkReference : checks) {
-			CheckDescriptor checkDescriptor = CarismaGUI.INSTANCE
+			CheckDescriptor checkDescriptor = CarismaGUI
 					.getCheckRegistry().getCheckDescriptor(
 							checkReference.getCheckID());
 			if (checkDescriptor == null) {
@@ -860,7 +869,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 		if (uninputs.size() > 0) {
 			StringBuffer warning = new StringBuffer();
 			if (uninputs.size() == 1) {
-				viewer.getTable().setToolTipText(
+				this.viewer.getTable().setToolTipText(
 						"Invalid CheckReference " + "\""
 								+ uninputs.get(0).getCheckID() + "\"");
 			} else {
@@ -869,7 +878,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 					warning.append(cr.getCheckID());
 					warning.append("\"");
 				}
-				viewer.getTable().setToolTipText(
+				this.viewer.getTable().setToolTipText(
 						"Invalid CheckReferences: " + warning.toString());
 			}
 		}
@@ -878,13 +887,13 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	/**
 	 * Displays a message box which contains a list of problems.
 	 */
-	private void showProblems() {
+	void showProblems() {
 		StringBuffer message = new StringBuffer("");
 
-		for (String line : controller.getProblems()) {
+		for (String line : this.controller.getProblems()) {
 			message.append(line + System.getProperty("line.separator"));
 		}
-		MessageDialog messageDialog = new MessageDialog(sashForm.getShell(),
+		MessageDialog messageDialog = new MessageDialog(this.sashForm.getShell(),
 				"Analysis problems", null, message.toString(),
 				MessageDialog.ERROR, new String[] { "OK" }, 0);
 		messageDialog.open();
@@ -893,13 +902,13 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	/**
 	 * Deletes the actual selected check from the list of checks.
 	 */
-	private void deleteSelectedCheck() {
-		if (viewer.getTable().getSelectionIndex() > -1) {
-			Object entryToBeDeleted = viewer.getElementAt(viewer.getTable()
+	void deleteSelectedCheck() {
+		if (this.viewer.getTable().getSelectionIndex() > -1) {
+			Object entryToBeDeleted = this.viewer.getElementAt(this.viewer.getTable()
 					.getSelectionIndex());
-			controller.removeCheck((CheckReference) entryToBeDeleted);
+			this.controller.removeCheck((CheckReference) entryToBeDeleted);
 		}
-		viewer.refresh();
+		this.viewer.refresh();
 		initInvalidChecks();
 		listSelectionChanged();
 		updateRunButtonEnable();
@@ -910,8 +919,8 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 * 
 	 * @return true when at least one check is enabled
 	 */
-	private boolean isOneCheckEnabled() {
-		List<CheckReference> checks = controller.getSelectedChecksList();
+	boolean isOneCheckEnabled() {
+		List<CheckReference> checks = this.controller.getSelectedChecksList();
 		int countEnabled = 0;
 		for (CheckReference check : checks) {
 			if (check.isEnabled()) {
@@ -924,19 +933,19 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	/**
 	 * Disables the open model button if necessary.
 	 */
-	private void updateOpenModelButtonEnable() {
+	void updateOpenModelButtonEnable() {
 		// Is model file valid?
-		if (controller.isModelFileValid()) {
-			openModel.setEnabled(true);
-			updateSelectedEditorEnableState(!selectedEditorPriorityListEnabled,
+		if (this.controller.isModelFileValid()) {
+			this.openModel.setEnabled(true);
+			updateSelectedEditorEnableState(!this.selectedEditorPriorityListEnabled,
 					"Editor priority list is used.\n"
 							+ "Change this setting in the CARiSMA preferences.");
-			modelFileNameDecoration.hide();
+			this.modelFileNameDecoration.hide();
 		} else {
-			openModel.setEnabled(false);
+			this.openModel.setEnabled(false);
 			updateSelectedEditorEnableState(false,
 					"The referenced model file is invalid");
-			modelFileNameDecoration.show();			
+			this.modelFileNameDecoration.show();			
 		}
 	}
 
@@ -945,21 +954,21 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 * down button if they first or last check is selected.
 	 */
 	private void updateListButtonsEnable() {
-		if (viewer.getSelection().isEmpty()) {
-			del.setEnabled(false);
+		if (this.viewer.getSelection().isEmpty()) {
+			this.del.setEnabled(false);
 		} else {
-			del.setEnabled(true);
-			int selectionIndex = viewer.getTable().getSelectionIndex();
+			this.del.setEnabled(true);
+			int selectionIndex = this.viewer.getTable().getSelectionIndex();
 			if (selectionIndex > 0) {
-				up.setEnabled(true);
+				this.up.setEnabled(true);
 			} else {
-				up.setEnabled(false);
+				this.up.setEnabled(false);
 			}
-			if (viewer.getTable().getSelectionIndex() < (viewer.getTable()
+			if (this.viewer.getTable().getSelectionIndex() < (this.viewer.getTable()
 					.getItems().length - 1)) {
-				down.setEnabled(true);
+				this.down.setEnabled(true);
 			} else {
-				down.setEnabled(false);
+				this.down.setEnabled(false);
 			}
 		}
 	}
@@ -969,31 +978,31 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 * checks has no entry or if no check is enabled or if one of the parameters
 	 * is invalid.
 	 */
-	private void updateRunButtonEnable() {
-		boolean hasInvalidParameters = controller
+	void updateRunButtonEnable() {
+		boolean hasInvalidParameters = this.controller
 				.hasAnalysisInvalidParameters();
-		if (controller.isModelFileValid()) {
-			controller.removeProblem(AdfEditorController.PROBLEM_MODEL);
+		if (this.controller.isModelFileValid()) {
+			this.controller.removeProblem(AdfEditorController.PROBLEM_MODEL);
 			if (isOneCheckEnabled()) {
-				controller.removeProblem(AdfEditorController.PROBLEM_CHECK);
+				this.controller.removeProblem(AdfEditorController.PROBLEM_CHECK);
 				if (!hasInvalidParameters) {
 					setEnableRunButton(true);
-					controller.clearProblems();
+					this.controller.clearProblems();
 				} else {
 					setEnableRunButton(false);
 				}
 			} else {
-				controller.addProblem(AdfEditorController.PROBLEM_CHECK,
+				this.controller.addProblem(AdfEditorController.PROBLEM_CHECK,
 						"The list contains no check or none is enabled");
 				setEnableRunButton(false);
 			}
 		} else {
-			controller.addProblem(AdfEditorController.PROBLEM_MODEL,
+			this.controller.addProblem(AdfEditorController.PROBLEM_MODEL,
 					"File is invalid");
 			if (isOneCheckEnabled()) {
-				controller.removeProblem(AdfEditorController.PROBLEM_CHECK);
+				this.controller.removeProblem(AdfEditorController.PROBLEM_CHECK);
 			} else {
-				controller.addProblem(AdfEditorController.PROBLEM_CHECK,
+				this.controller.addProblem(AdfEditorController.PROBLEM_CHECK,
 						"The list contains no check or none is enabled");
 			}
 			setEnableRunButton(false);
@@ -1007,8 +1016,8 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 *            The new enable state of the run button
 	 */
 	private void setEnableRunButton(final boolean enableState) {
-		run.setEnabled(enableState);
-		problemLink.setVisible(!enableState);
+		this.run.setEnabled(enableState);
+		this.problemLink.setVisible(!enableState);
 	}
 
 	/**
@@ -1022,70 +1031,70 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	private void updateSelectedEditorEnableState(final boolean active,
 			final String message) {
 		boolean validEditor = false;
-		if (selectedEditorCombo.getEnabled() != active) {
-			selectedEditorCombo.removeAll();
+		if (this.selectedEditorCombo.getEnabled() != active) {
+			this.selectedEditorCombo.removeAll();
 			if (active) {
-				selectedEditorCombo.setEnabled(true);
+				this.selectedEditorCombo.setEnabled(true);
 				// Get the editors
 				final EditorRegistry editorRegistry = CarismaGUI.INSTANCE
 						.getEditorRegistry();
 				List<EditorDescriptor> editorDescriptorList = editorRegistry
 						.getRegisteredEditors();
-				selectedEditorCombo.add(DEFAULT_EDITOR);
+				this.selectedEditorCombo.add(DEFAULT_EDITOR);
 				// Add all applicable editors to the combo box
 				for (EditorDescriptor editorDesc : editorDescriptorList) {
 					if (editorDesc.isAvailable()
-							&& editorDesc.isApplicable(controller
+							&& editorDesc.isApplicable(this.controller
 									.getModelIFile())) {
-						selectedEditorCombo.add(editorDesc.getName());
+						this.selectedEditorCombo.add(editorDesc.getName());
 					}
 				}
 				// Select 'Default Eclipse Editor' by default or the editor,
 				// which is saved in the adf file
-				selectedEditorCombo.select(0);
+				this.selectedEditorCombo.select(0);
 				EditorDescriptor savedEditorDescriptor = editorRegistry
-						.getEditorDescriptorById(controller
+						.getEditorDescriptorById(this.controller
 								.getSelectedEditorId());
 				if (savedEditorDescriptor != null) {
 					int index = 0;
-					for (String item : selectedEditorCombo.getItems()) {
+					for (String item : this.selectedEditorCombo.getItems()) {
 						if (item.equals(savedEditorDescriptor.getName())) {
-							selectedEditorCombo.select(index);
+							this.selectedEditorCombo.select(index);
 							validEditor = true;
 							break;
 						}
 						index++;
 					}
 				} else {
-					if ((controller.getSelectedEditorId().equals("")) || (controller.getSelectedEditorId().equals("Default Eclipse Editor"))) {
+					if ((this.controller.getSelectedEditorId().equals("")) || (this.controller.getSelectedEditorId().equals("Default Eclipse Editor"))) {
 						validEditor = true;
 					}
 				}
-				selectedEditorCombo
+				this.selectedEditorCombo
 						.setToolTipText("Choose an editor to open the model.");
-				selectedEditorDecoration.hide();
+				this.selectedEditorDecoration.hide();
 			} else {
-				if (EditorPriorityList.getPriorityList(controller
+				if (EditorPriorityList.getPriorityList(this.controller
 						.getModelType()) != null
 						&& EditorPriorityList.getPriorityList(
-								controller.getModelType()).size() >= 1) {
-					selectedEditorCombo.add(EditorPriorityList.getPriorityList(
-							controller.getModelType()).get(0));
+								this.controller.getModelType()).size() >= 1) {
+					this.selectedEditorCombo.add(EditorPriorityList.getPriorityList(
+							this.controller.getModelType()).get(0));
 				} else {
-					selectedEditorCombo.add("Priority list is empty!");
+					this.selectedEditorCombo.add("Priority list is empty!");
 				}
-				selectedEditorCombo.select(0);
-				selectedEditorCombo.setEnabled(false);
-				selectedEditorDecoration.setDescriptionText(message);
-				selectedEditorCombo.setToolTipText("");
-				selectedEditorDecoration.show();
+				this.selectedEditorCombo.select(0);
+				this.selectedEditorCombo.setEnabled(false);
+				this.selectedEditorDecoration.setDescriptionText(message);
+				this.selectedEditorCombo.setToolTipText("");
+				this.selectedEditorDecoration.show();
 			}
 			if (!validEditor) {
 				//MessageBox if the stored editor is invalid
-				MessageDialog messageDialog = new MessageDialog(selectedEditorCombo.getShell(),
+				MessageDialog messageDialog = new MessageDialog(this.selectedEditorCombo.getShell(),
 						"Invalid Model-Editor", null,
 						"The chosen editor for the modeltype of the CARiSMA analysis is invalid."
-						+ "\nThe ID is \"" + controller.getSelectedEditorId() + "\"."
+						+ "\nThe ID is \"" + this.controller.getSelectedEditorId() + "\"."
 						+ "\nThe default editor will be chosen."
 						+ "\nClick \"OK && remove ID\" to change the editor to the default editor in the analysis file.",
 						MessageDialog.INFORMATION,
@@ -1105,8 +1114,8 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 */
 	private void setEditorToDefault() {
 		String defaultEditor = "Default Eclipse Editor";
-		controller.setSelectedEditorId(defaultEditor);
-		controller.saveAnalysis();
+		this.controller.setSelectedEditorId(defaultEditor);
+		this.controller.saveAnalysis();
 	}
 
 	@Override

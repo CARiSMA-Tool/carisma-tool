@@ -76,7 +76,7 @@ public class Arc {
 	 * @return ID of the source node
 	 */
 	public final String getSource() {
-		return source;
+		return this.source;
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class Arc {
 	 * @return the ID of the target node
 	 */
 	public final String getTarget() {
-		return target;
+		return this.target;
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class Arc {
 	 * @return the type of the object
 	 */
 	public final String getType() {
-		return type;
+		return this.type;
 	}
 
 	/** 
@@ -125,7 +125,7 @@ public class Arc {
 	 * @return ID of this arc object
 	 */
 	public final String getId() {
-		return id;
+		return this.id;
 	}
 
 }

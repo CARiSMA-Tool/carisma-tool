@@ -28,62 +28,71 @@ public class ForgetEditorEditorHandler extends ForgetEditorHandler {
 	/**
 	 * this Handler.
 	 */
-	private ForgetEditorEditorHandler handler;
+	ForgetEditorEditorHandler handler;
 
 	@Override
 	final ForgetEditorHandler getHandler() {
-		return handler;
+		return this.handler;
 	}
 
 	/**
 	 * 
 	 * @return the selected file
 	 */
+	@Override
 	final IFile getSelectedFile() {
 		return HandlerUtilz.getSelectedEditorFile();
 	}
 
 	/**
+	 * Makes method accessible for anonymous class implementing IPartListener in method installListener()
+	 */
+	@Override
+	protected void fireHandlerChanged(HandlerEvent handlerEvent) {
+		super.fireHandlerChanged(handlerEvent);
+	}
+	
+	/**
 	 * Adds listeners for this handler to listen if an selection in AdfEditor has changed.
 	 */
+	@Override
 	protected final void installListener() {
 		if (getAlreadyInstalledSelectionListener()) {
 			return;
 		}
 		IPartService partService = PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getPartService();
-		handler = this;
+		this.handler = this;
 
 		partService.addPartListener(new IPartListener() {
-
+			
 			@Override
 			public void partActivated(final IWorkbenchPart part) {
-				fireHandlerChanged(new HandlerEvent(handler, true, false));
+				fireHandlerChanged(new HandlerEvent(ForgetEditorEditorHandler.this.handler, true, false));
 			}
-
+		
 			@Override
 			public void partOpened(final IWorkbenchPart part) {
-
-				fireHandlerChanged(new HandlerEvent(handler, true, false));
+		
+				fireHandlerChanged(new HandlerEvent(ForgetEditorEditorHandler.this.handler, true, false));
 			}
-
+		
 			@Override
 			public void partDeactivated(final IWorkbenchPart part) {
-				fireHandlerChanged(new HandlerEvent(handler, true, false));
+				fireHandlerChanged(new HandlerEvent(ForgetEditorEditorHandler.this.handler, true, false));
 			}
-
+		
 			@Override
 			public void partClosed(final IWorkbenchPart part) {
-				fireHandlerChanged(new HandlerEvent(handler, true, false));
+				fireHandlerChanged(new HandlerEvent(ForgetEditorEditorHandler.this.handler, true, false));
 			}
-
+		
 			@Override
 			public void partBroughtToTop(final IWorkbenchPart part) {
-				fireHandlerChanged(new HandlerEvent(handler, true, false));
+				fireHandlerChanged(new HandlerEvent(ForgetEditorEditorHandler.this.handler, true, false));
 			}
 		});
 
 		setAlreadyInstalledSelectionListener(true);
 	}
-
 }

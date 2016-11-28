@@ -6,7 +6,7 @@
       <check
             description="Prints the content of a BPMN 2 model to the console"
             id="carisma.check.bpmn2dummy"
-            implementingClass="carisma.check.bpmn2.dummy.Check"
+            implementingClass="carisma.check.bpmn2.dummy.BPMN2DummyCheck"
             magicKeys="bpmn2"
             name="BPMN2 Dummy Check"
             publisher="Marcel Michel"

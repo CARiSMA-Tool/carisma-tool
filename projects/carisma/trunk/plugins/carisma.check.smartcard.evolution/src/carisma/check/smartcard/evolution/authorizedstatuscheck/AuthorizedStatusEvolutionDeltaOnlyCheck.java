@@ -26,14 +26,14 @@ import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.Transition;
 
-import carisma.check.smartcard.authorizedstatus.AuthorizedStatusCheck;
+import carisma.check.smartcard.authorizedstatus.AuthorizedStatus;
 import carisma.check.smartcard.utils.AnalysisMessage;
 import carisma.check.smartcard.utils.OutputTarget;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.RegisterNotInUseException;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
@@ -56,9 +56,13 @@ import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 
 
-public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
+public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 
-	public static final String DELTAS_REGISTER_KEY = "carisma.data.evolution.deltas";
+	private static final String CHECK_ID = "carisma.check.smartcard.evolution.authorizedstatusdeltaonlycheck";
+
+	public static final String PRECONDITION_DELTAS_REGISTER_KEY = "carisma.data.evolution.deltas";
+
+	private static final String CHECK_NAME = "Evolution-aware Authorized Status Check (Delta only version)";
 
 	private AnalysisHost host;
 	
@@ -67,8 +71,6 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 	private Model currentModel = null;
 	
 	private Delta activeDelta = null;	
-
-	private AuthorizedStatusCheck authorizedChecks = null;
 	
 	private List<AnalysisMessage> errorMessages = null;
 	
@@ -83,59 +85,58 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 	 * Constant String for the name of the TaggedValue 'permission'.
 	 */
 	private static final String PERMISSION = "permission";
-	
+
 	public AuthorizedStatusEvolutionDeltaOnlyCheck() {
-		processedDeltaElements = new ArrayList<DeltaElement>();
-		processedTransitions = new HashMap<Transition, DeltaElement>();
-		processedStates = new HashMap<State, DeltaElement>();
-		processedIncomings = new HashMap<Transition, State>();
-		errorMessages = new ArrayList<AnalysisMessage>();		
+		this.processedDeltaElements = new ArrayList<DeltaElement>();
+		this.processedTransitions = new HashMap<Transition, DeltaElement>();
+		this.processedStates = new HashMap<State, DeltaElement>();
+		this.processedIncomings = new HashMap<Transition, State>();
+		this.errorMessages = new ArrayList<AnalysisMessage>();		
 	}
 	
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost newHost) {
-		host = newHost;
-		Resource currentModelRes = host.getAnalyzedModel();
+		this.host = newHost;
+		Resource currentModelRes = this.host.getAnalyzedModel();
 		if (currentModelRes.getContents().isEmpty()) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
+			this.host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
 			return false;
 		}
 		if (!(currentModelRes.getContents().get(0) instanceof Model)) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
+			this.host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
 			return false;
-		} else {
-			currentModel = (Model) currentModelRes.getContents().get(0);
 		}
+		this.currentModel = (Model) currentModelRes.getContents().get(0);
 		
 		try {
-			deltaList = (DeltaList) host.getFromRegister(DELTAS_REGISTER_KEY);
+			this.deltaList = (DeltaList) this.host.getFromRegister(PRECONDITION_DELTAS_REGISTER_KEY);
 		} catch (RegisterNotInUseException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			return false;
 		}
-		if (deltaList == null) {
+		if (this.deltaList == null) {
 			return false;
 		}
-		if (deltaList.isEmpty()) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No deltas left to analyze."));
+		if (this.deltaList.isEmpty()) {
+			this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No deltas left to analyze."));
 			return true;
 		}
-		int beforeMaxChanges = deltaList.getHighestChangeCountNow();
+		int beforeMaxChanges = this.deltaList.getHighestChangeCountNow();
 		boolean isSuccessful = checkDeltas();
 		if (isSuccessful) {
-			host.addResultMessage(
+			this.host.addResultMessage(
 					new AnalysisResultMessage(
 							StatusType.INFO,
-							"A successful maximum Delta (using " + deltaList.getHighestChangeCountNow() + " changes) exists."));
+							"A successful maximum Delta (using " + this.deltaList.getHighestChangeCountNow() + " changes) exists."));
 		} else {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No successful maximum Delta (max: " + beforeMaxChanges + " changes) found."));
-			if (deltaList.getHighestChangeCountNow() == 0) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "All Deltas violate <<authorized-status>>."));
+			this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No successful maximum Delta (max: " + beforeMaxChanges + " changes) found."));
+			if (this.deltaList.getHighestChangeCountNow() == 0) {
+				this.host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "All Deltas violate <<authorized-status>>."));
 			} else {
-				host.addResultMessage(
+				this.host.addResultMessage(
 						new AnalysisResultMessage(
 								StatusType.ERROR,
-								"Maximum successful Delta has " + deltaList.getHighestChangeCountNow() + " changes."));
+								"Maximum successful Delta has " + this.deltaList.getHighestChangeCountNow() + " changes."));
 			}
 		}
 		return isSuccessful;
@@ -145,67 +146,66 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		boolean hasMaxSuccessfulDelta = false;
 		int deltaCounter = 1;
 		List<Delta> violatingEvolutions = new ArrayList<Delta>();
-		for (Delta d : deltaList.getRemainingDeltas()) {
-			activeDelta = d;
+		for (Delta d : this.deltaList.getRemainingDeltas()) {
+			this.activeDelta = d;
 			boolean deltaSuccessful = true;
 			checkActiveDelta();
-			for (AnalysisMessage errorMessage : errorMessages) {
+			for (AnalysisMessage errorMessage : this.errorMessages) {
 				if (errorMessage.getType() == StatusType.ERROR) {
 					violatingEvolutions.add(d);
 					deltaSuccessful = false;
 					break;
 				}
 			}
-			for (AnalysisMessage errorMessage : errorMessages) {
-				errorMessage.print(host, "Delta " + deltaCounter + ":");
+			for (AnalysisMessage errorMessage : this.errorMessages) {
+				errorMessage.print(this.host, "Delta " + deltaCounter + ":");
 			}
 			if (deltaSuccessful
-			        && d.getNumberOfUsedChanges() == deltaList.getHighestChangeCountNow()) {
+			        && d.getNumberOfUsedChanges() == this.deltaList.getHighestChangeCountNow()) {
 				hasMaxSuccessfulDelta = true;
 			}
 			deltaCounter++;
 		}
-		deltaList.removeAll(violatingEvolutions);
+		this.deltaList.removeAll(violatingEvolutions);
 		return hasMaxSuccessfulDelta;
 	}
 	
 	private void checkActiveDelta() {
-		init(activeDelta);
-		processDelElements(activeDelta.getAllDeletions());
-		processAddElements(activeDelta.getAllAdditions());
-		processSubstElements(activeDelta.getAllSubstitutions());	
-		processEditElements(activeDelta.getAllEdits());
-		processCopyElements(activeDelta.getAllCopies());
+		init(this.activeDelta);
+		processDelElements(this.activeDelta.getAllDeletions());
+		processAddElements(this.activeDelta.getAllAdditions());
+		processSubstElements(this.activeDelta.getAllSubstitutions());	
+		processEditElements(this.activeDelta.getAllEdits());
+		processCopyElements(this.activeDelta.getAllCopies());
 	}
 		
 	private void init(final Delta d) {
-		if (errorMessages == null) {
-			errorMessages = new ArrayList<AnalysisMessage>();
+		if (this.errorMessages == null) {
+			this.errorMessages = new ArrayList<AnalysisMessage>();
 		}
-		errorMessages.clear();
-		if (processedDeltaElements == null) {
-			processedDeltaElements = new ArrayList<DeltaElement>();
+		this.errorMessages.clear();
+		if (this.processedDeltaElements == null) {
+			this.processedDeltaElements = new ArrayList<DeltaElement>();
 		}
-		processedDeltaElements.clear();
-		if (processedTransitions == null) {
-			processedTransitions = new HashMap<Transition, DeltaElement>();
+		this.processedDeltaElements.clear();
+		if (this.processedTransitions == null) {
+			this.processedTransitions = new HashMap<Transition, DeltaElement>();
 		}
-		processedTransitions.clear();
-		if (processedStates == null) {
-			processedStates = new HashMap<State, DeltaElement>();
+		this.processedTransitions.clear();
+		if (this.processedStates == null) {
+			this.processedStates = new HashMap<State, DeltaElement>();
 		}
-		processedTransitions.clear();
-		if (processedIncomings == null) {
-			processedIncomings = new HashMap<Transition, State>();
+		this.processedTransitions.clear();
+		if (this.processedIncomings == null) {
+			this.processedIncomings = new HashMap<Transition, State>();
 		}
-		processedIncomings.clear();
-		authorizedChecks = new AuthorizedStatusCheck();
+		this.processedIncomings.clear();
 	}
 	
 	private void processAddElements(final List<AddElement> allAdditions) {
 		for (AddElement addElement : allAdditions) {
 			processAddElement(addElement);
-			processedDeltaElements.add(addElement);
+			this.processedDeltaElements.add(addElement);
 			processContent(addElement);
 		}
 	}
@@ -213,21 +213,21 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 	private void processCopyElements(final List<CopyElement> allCopies) {
 		for (CopyElement copyElement : allCopies) {
 			processCopyElement(copyElement);
-			processedDeltaElements.add(copyElement);
+			this.processedDeltaElements.add(copyElement);
 		}
 	}
 	
 	private void processDelElements(final List<DelElement> allDeletions) {
 		for (DelElement delElement : allDeletions) {
 			processDelElement(delElement);
-			processedDeltaElements.add(delElement);
+			this.processedDeltaElements.add(delElement);
 		}
 	}
 	
 	private void processEditElements(final List<EditElement> allEdits) {
 		for (EditElement editElement : allEdits) {
 			processEditElement(editElement);
-			processedDeltaElements.add(editElement);
+			this.processedDeltaElements.add(editElement);
 		}
 	}
 	
@@ -242,14 +242,14 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 					processAddElement(component);
 				}
 			}
-			processedDeltaElements.add(substElement);
+			this.processedDeltaElements.add(substElement);
 		}
 	}
 	
 	private void processContent(final AddElement addElement) {
 		for (AddElement containedElement : addElement.getContent()) {
 			processAddElement(containedElement);
-			processedDeltaElements.add(containedElement);
+			this.processedDeltaElements.add(containedElement);
 			processContent(containedElement);
 		}
 	}
@@ -265,7 +265,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 			for (Transition t : changedState.getIncomings()) {
 				String newGuard = getAfterGuard(t);
 				if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
-					errorMessages.add(new AnalysisMessage(
+					this.errorMessages.add(new AnalysisMessage(
 							StatusType.ERROR,
 							OutputTarget.BOTH,
 							Messages.newPermissionWrongGuard(t, 
@@ -316,14 +316,14 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		String newTargetName = getElementName(copyElement.getChangedValues(), "target");
 		State newTargetState = null;
 		try {
-			newTargetState = UMLHelper.getElementOfNameAndType(currentModel, newTargetName, State.class);
+			newTargetState = UMLHelper.getElementOfNameAndType(this.currentModel, newTargetName, State.class);
 		} catch (ModelElementNotFoundException e) {
 			// TODO: catch
 		}
 		String newPermission = getAfterPermission(newTargetState);
 		String newGuard = getAfterGuard(oldTransition);
 		if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
-			errorMessages.add(new AnalysisMessage(StatusType.ERROR, 
+			this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, 
 					OutputTarget.BOTH, Messages.copiedTransitionNotAdjusted(oldTransition, newTargetState, newPermission)));
 		}
 	}
@@ -334,7 +334,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		for (Transition incomingTransition : receivingState.getIncomings()) {
 			String newGuard = getAfterGuard(incomingTransition);
 			if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
-				errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH,
+				this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH,
 						Messages.copiedPermissionGuardNotAdjusted(receivingState, newPermission, incomingTransition)));
 			}
 		}
@@ -346,7 +346,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		String newPermission = getAfterPermission(authState);
 		String newGuard = getAfterGuard(receivingTransition);
 		if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
-			errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH, Messages.copiedGuardIncorrect(receivingTransition)));
+			this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH, Messages.copiedGuardIncorrect(receivingTransition)));
 		}
 	}
 	
@@ -356,14 +356,14 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		if (targetValue != null) {
 			State newTargetState = null;
 			try {
-				newTargetState = UMLHelper.getElementOfNameAndType(currentModel, targetValue, State.class);
+				newTargetState = UMLHelper.getElementOfNameAndType(this.currentModel, targetValue, State.class);
 			} catch (ModelElementNotFoundException e) {
 				// TODO: catch
 			}
 			String newPermission = getAfterPermission(newTargetState);
 			String newGuard = getAfterGuard(editedTransition);
 			if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
-				errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH, Messages.editedTransitionWrongGuard(editedTransition)));
+				this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH, Messages.editedTransitionWrongGuard(editedTransition)));
 			}
 		}
 	}
@@ -375,7 +375,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		String newPermission = getAfterPermission(targetState);
 		String newGuard = getAfterGuard(editedTransition);
 		if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
-			errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH, Messages.editedGuardWrong(editedTransition)));
+			this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH, Messages.editedGuardWrong(editedTransition)));
 		}
 	}
 	
@@ -386,7 +386,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		for (Transition incomingTransition : authState.getIncomings()) {
 			String newGuard = getAfterGuard(incomingTransition);
 			if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
-					errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH,
+					this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH,
 							Messages.editedPermissionTransitionNotAdjusted(incomingTransition))); 
 			}
 		}
@@ -396,18 +396,18 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		Constraint constraint = (Constraint) delElement.getTarget();
 		OpaqueExpression guardExpression = UMLStateMachineHelper.getGuard(constraint);
 		Transition owningTransition = UMLStateMachineHelper.getTransition(guardExpression);
-		if (processedIncomings.containsKey(owningTransition)) {
+		if (this.processedIncomings.containsKey(owningTransition)) {
 			return;
 		}
 		State targetState = UMLStateMachineHelper.getTargetState(owningTransition);
-		processedIncomings.put(owningTransition, targetState);
-		if (activeDelta.removes(targetState)) {
+		this.processedIncomings.put(owningTransition, targetState);
+		if (this.activeDelta.removes(targetState)) {
 			return;
 		}
 		String newGuard = getAfterGuard(owningTransition);
 		String permission = getAfterPermission(targetState);
 		if (!permission.isEmpty() && !newGuard.equals(permission)) {
-			errorMessages.add(new AnalysisMessage(
+			this.errorMessages.add(new AnalysisMessage(
 					StatusType.ERROR,
 					OutputTarget.BOTH,
 					Messages.deletedNecessaryGuard(owningTransition, guardExpression, newGuard, permission)));
@@ -420,7 +420,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		String targetString = getElementName(addElement.getValues(),"target");
 		State targetState = null;
 		try {
-			targetState = UMLHelper.getElementOfNameAndType(currentModel, targetString, State.class);
+			targetState = UMLHelper.getElementOfNameAndType(this.currentModel, targetString, State.class);
 		} catch (ModelElementNotFoundException e) {
 			// TODO: catch and report
 		}
@@ -434,7 +434,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 				}
 			}
 			if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
-				errorMessages.add(new AnalysisMessage(
+				this.errorMessages.add(new AnalysisMessage(
 						StatusType.ERROR,
 						OutputTarget.BOTH,
 						Messages.addedTransitionWrongGuard(targetState, sourceString, newPermission, newGuard)));
@@ -449,11 +449,11 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		for (Transition incomingTransition : authState.getIncomings()) {
 			String newGuard = getAfterGuard(incomingTransition);
 			if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
-				errorMessages.add(new AnalysisMessage(
+				this.errorMessages.add(new AnalysisMessage(
 						StatusType.ERROR,
 						OutputTarget.BOTH,
 						Messages.newPermissionWrongGuard(incomingTransition, 
-						        authState, newPermission, AuthorizedStatusCheck.getGuardString(incomingTransition))));
+						        authState, newPermission, AuthorizedStatus.getGuardString(incomingTransition))));
 			}
 		}
 	}
@@ -466,7 +466,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		String newPermission = getAfterPermission(authorizedState);
 		String newGuard = getAfterGuard(incomingTransition);
 		if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
-			errorMessages.add(new AnalysisMessage(
+			this.errorMessages.add(new AnalysisMessage(
 					StatusType.ERROR,
 					OutputTarget.BOTH,
 					Messages.substitutedGuardNotAppropriate(incomingTransition, authorizedState, guard, newPermission)));
@@ -480,7 +480,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 	 */
 	private String getAfterPermission(final State someState) {
 		String permission = "";
-		if (activeDelta.removes(someState)) {
+		if (this.activeDelta.removes(someState)) {
 			return "";
 		}
 		StereotypeApplication authApp = UMLsecUtil.getStereotypeApplication(someState, UMLsec.AUTHORIZED_STATUS);
@@ -489,19 +489,19 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 			permissionTag = authApp.getTaggedValue(PERMISSION);
 			if (permissionTag != null) {
 				permission = (String) permissionTag.getValue();
-				List<EditElement> edits = activeDelta.getEdits(permissionTag);
+				List<EditElement> edits = this.activeDelta.getEdits(permissionTag);
 				if (!edits.isEmpty()) {
 					if (edits.size() == 1) {
 						return getElementName(edits.get(0).getValues(),"value");
-					} else {
-						// something is wrong, non-deterministic behaviour, 2 edits changing the same value
-					}
+					} 
+					// something is wrong, non-deterministic behavior, 2 edits changing the same value
+					//TODO: handle this
 				}
 			} else {
 				AddElement addsNewPermission = new AddElement(authApp, getPropertyClass(), null);
 				addsNewPermission.addKeyValuePair("name", PERMISSION);
-				List<AddElement> matchingAdditions = activeDelta.getMatchingAdditions(addsNewPermission);
-				matchingAdditions = activeDelta.getMatchingAdditions(addsNewPermission);
+				List<AddElement> matchingAdditions = this.activeDelta.getMatchingAdditions(addsNewPermission);
+				matchingAdditions = this.activeDelta.getMatchingAdditions(addsNewPermission);
 				if (!matchingAdditions.isEmpty()) {
 					AddElement permissionAdd = matchingAdditions.get(0);
 					return (String) permissionAdd.getValues().get("value");
@@ -510,7 +510,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		} else {
 			AddElement addsNewAuthApp = new AddElement(someState, getStereotypeClass(), null);
 			addsNewAuthApp.addKeyValuePair("name", UMLsec.AUTHORIZED_STATUS.toString());
-			List<AddElement> matchingAdditions = activeDelta.getMatchingAdditions(addsNewAuthApp);
+			List<AddElement> matchingAdditions = this.activeDelta.getMatchingAdditions(addsNewAuthApp);
 			if (!matchingAdditions.isEmpty()) {
 				AddElement matchingAddition = matchingAdditions.get(0);
 				if (!matchingAddition.getContent().isEmpty()) {
@@ -523,21 +523,21 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 	}
 	
 	private String getAfterGuard(final Transition someTransition) {
-		if (activeDelta.removes(someTransition)) {
+		if (this.activeDelta.removes(someTransition)) {
 			return "";
 		}
 		Constraint constraint = someTransition.getGuard();
 		OpaqueExpression guard = UMLStateMachineHelper.getGuard(someTransition);
 		if (constraint != null) {
-			if (!activeDelta.removes(constraint) && !activeDelta.edits(constraint)) {
+			if (!this.activeDelta.removes(constraint) && !this.activeDelta.edits(constraint)) {
 				return guard.stringValue();
 			}
-			if (activeDelta.edits(constraint)) {
-				return getElementName(activeDelta.getEdits(constraint).get(0).getValues(),"specification");
+			if (this.activeDelta.edits(constraint)) {
+				return getElementName(this.activeDelta.getEdits(constraint).get(0).getValues(),"specification");
 			}
-			if (activeDelta.removes(constraint)) {
+			if (this.activeDelta.removes(constraint)) {
 				AddElement addsNewGuard = new AddElement(someTransition, getConstraintClass(), null);
-				List<AddElement> matchingAdditions = activeDelta.getMatchingAdditions(addsNewGuard);
+				List<AddElement> matchingAdditions = this.activeDelta.getMatchingAdditions(addsNewGuard);
 				if (!matchingAdditions.isEmpty()) {
 					AddElement match = matchingAdditions.get(0);
 					return getElementName(match.getValues(),"specification");
@@ -545,18 +545,17 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 			}
 		} else {
 			AddElement addsConstraint = new AddElement(someTransition,getConstraintClass(),null);
-			List<AddElement> matches = activeDelta.getMatchingAdditions(addsConstraint);
+			List<AddElement> matches = this.activeDelta.getMatchingAdditions(addsConstraint);
 			if (matches.isEmpty()) {
 				return "";
-			} else {
-				AddElement match = matches.get(0);
-				return getElementName(match.getValues(),"specification");
 			}
+			AddElement match = matches.get(0);
+			return getElementName(match.getValues(),"specification");
 		}
 		return "";
 	}
 	
-	private EClass getStereotypeClass() {
+	private static EClass getStereotypeClass() {
 		EClass stereotypeClass = null;
 		try {
 			stereotypeClass = UMLHelper.getMetaClass("Stereotype");
@@ -566,7 +565,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		return stereotypeClass;
 	}
 
-	private EClass getPropertyClass() {
+	private static EClass getPropertyClass() {
 		EClass propertyClass = null;
 		try {
 			propertyClass = UMLHelper.getMetaClass("Property");
@@ -576,7 +575,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		return propertyClass;
 	}
 	
-	private EClass getConstraintClass() {
+	private static EClass getConstraintClass() {
 		EClass constraintClass = null;
 		try {
 			constraintClass = UMLHelper.getMetaClass("Constraint");
@@ -590,7 +589,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 	 * @param de - the changing delta element
 	 * @return - the changed model element
 	 */
-	private Element getChangedModelElement(final DeltaElement de) {
+	private static Element getChangedModelElement(final DeltaElement de) {
 		EObject target = de.getTarget();
 		if (de instanceof AddElement) {
 			AddElement add = (AddElement) de;
@@ -641,5 +640,15 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheck {
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 }

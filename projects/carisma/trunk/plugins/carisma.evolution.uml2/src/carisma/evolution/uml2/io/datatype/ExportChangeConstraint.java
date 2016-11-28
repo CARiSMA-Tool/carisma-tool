@@ -5,20 +5,20 @@ public class ExportChangeConstraint {
 	private String referencedChange;
 
 	public ExportChangeConstraint() {
-		type = "";
-		referencedChange = "";
+		this.type = "";
+		this.referencedChange = "";
 	}
 	
 	public ExportChangeConstraint(final String newType,final String newReferencedChange) {
-		type = newType;
-		referencedChange = newReferencedChange;
+		this.type = newType;
+		this.referencedChange = newReferencedChange;
 	}
 	
 	public String getType() {
-		return type;
+		return this.type;
 	}
 	
 	public String getReferencedChange() {
-		return referencedChange;
+		return this.referencedChange;
 	}
 }

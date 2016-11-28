@@ -7,7 +7,8 @@ Bundle-Activator: carisma.check.statemachinepaths.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  carisma.modeltype.uml2,
- org.eclipse.uml2.uml
+ org.eclipse.uml2.uml,
+ carisma.core
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: Software Engineering Institute, TU Dortmund

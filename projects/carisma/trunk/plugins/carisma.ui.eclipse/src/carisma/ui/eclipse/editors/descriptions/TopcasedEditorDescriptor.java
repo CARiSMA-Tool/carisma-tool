@@ -89,7 +89,7 @@ public class TopcasedEditorDescriptor extends AbstractEditorDescriptor {
 	 * @param modelIFile the corresponding topcased graphic file
 	 * @return IFile
 	 */
-	private IFile getGraphicalFile(final IFile modelIFile) {
+	private static IFile getGraphicalFile(final IFile modelIFile) {
 		if (!modelIFile.getFileExtension().equalsIgnoreCase("uml")) {
 			return null;
 		}

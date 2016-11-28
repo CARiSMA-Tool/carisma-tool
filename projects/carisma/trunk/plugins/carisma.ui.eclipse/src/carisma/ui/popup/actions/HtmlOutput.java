@@ -11,9 +11,10 @@ public class HtmlOutput implements PopUpAction {
 	@Override
 	public boolean perform(final IMenuManager manager, final AnalysisResult analysisResult) {
 		Action action = new Action() {
+			@Override
 			public void run() {
 				super.run();
-				CarismaGUI.INSTANCE.openReport(analysisResult);
+				CarismaGUI.openReport(analysisResult);
 			}
 		};
 		action.setText("Create report for selected analysis");

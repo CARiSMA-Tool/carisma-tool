@@ -17,7 +17,7 @@ public class SelectedChecksLabelProvider extends LabelProvider implements ITable
 	@Override
 	public final String getColumnText(final Object obj, final int index) {
 		if (obj instanceof CheckReference) {
-			CheckDescriptor checkDescriptor = CarismaGUI.INSTANCE.getCheckRegistry().
+			CheckDescriptor checkDescriptor = CarismaGUI.getCheckRegistry().
 					getCheckDescriptor(((CheckReference) obj).getCheckID());
 			if (checkDescriptor != null) {
 				return checkDescriptor.getName();
@@ -30,15 +30,14 @@ public class SelectedChecksLabelProvider extends LabelProvider implements ITable
 	public final Image getColumnImage(final Object obj, final int index) {
 		if (obj instanceof CheckReference) {
 			CheckDescriptor checkDescriptor = 
-				CarismaGUI.INSTANCE.getCheckRegistry().getCheckDescriptor(((CheckReference) obj).getCheckID());
+				CarismaGUI.getCheckRegistry().getCheckDescriptor(((CheckReference) obj).getCheckID());
 			if (checkDescriptor == null) {
 				return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
 			} 
 			return PlatformUI.getWorkbench().getSharedImages().getImage(
 					ISharedImages.IMG_OBJ_ELEMENT);
-		} else {
-			return PlatformUI.getWorkbench().getSharedImages().getImage(
-					ISharedImages.IMG_OBJ_FILE);
 		}
+		return PlatformUI.getWorkbench().getSharedImages().getImage(
+				ISharedImages.IMG_OBJ_FILE);
 	}
 }

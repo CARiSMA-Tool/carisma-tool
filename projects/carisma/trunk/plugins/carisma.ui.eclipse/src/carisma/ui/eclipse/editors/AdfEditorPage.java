@@ -32,13 +32,13 @@ public class AdfEditorPage extends FormPage {
 	 */
 	public AdfEditorPage(final AdfEditor editor, final AdfEditorController controller) {
 		super(editor, "analysisEditor", "Analysis Editor");
-		block = new AdfEditorMasterDetailsBlock(controller);
+		this.block = new AdfEditorMasterDetailsBlock(controller);
 	}
 		
 	@Override
 	protected final void createFormContent(final IManagedForm managedForm) {
 		final ScrolledForm form = managedForm.getForm();
 		form.setText("Analysis Editor");
-		block.createContent(managedForm);
+		this.block.createContent(managedForm);
 	}
 }

@@ -38,6 +38,11 @@ import carisma.ocl.OclEvaluator;
  */
 public class SingleOclChecker extends AbstractOclChecker {
 
+	public static final String CHECK_ID = "carisma.check.singleoclcheck";
+	public static final String PARAM_CONTEXT = "carisma.check.oclchecker.context";
+	public static final String PARAM_STATEMENT = "carisma.check.oclchecker.statement";
+	public static final String CHECK_NAME = "SingleOclChecker";
+
 	/**
 	 * The ocl-expression for the query.
 	 */
@@ -51,19 +56,19 @@ public class SingleOclChecker extends AbstractOclChecker {
 	/**
 	 * The host for the query.
 	 */
-	private AnalysisHost host = null;
+	private AnalysisHost analysisHost = null;
 	
 	@Override
 	public final boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost host) {
 				
-		this.host = host;
+		this.analysisHost = host;
 		
 		//check parameters
 		List<CheckParameter> desiredParameters = new ArrayList<CheckParameter>();
 		desiredParameters.add(new StringParameter(
-				new CheckParameterDescriptor("carisma.check.oclchecker.context", "", "", ParameterType.STRING, true, "")));
+				new CheckParameterDescriptor(PARAM_CONTEXT, "", "", ParameterType.STRING, true, "")));
 		desiredParameters.add(new StringParameter(
-				new CheckParameterDescriptor("carisma.check.oclchecker.statement", "", "", ParameterType.STRING, true, "")));
+				new CheckParameterDescriptor(PARAM_STATEMENT, "", "", ParameterType.STRING, true, "")));
 		desiredParameters = resolveParameters(parameters, desiredParameters);
 		
 		if (desiredParameters == null) {
@@ -73,27 +78,27 @@ public class SingleOclChecker extends AbstractOclChecker {
 		} 
 		
 		String contextString = ((StringParameter) desiredParameters.get(0)).getValue().trim();
-		statement = ((StringParameter) desiredParameters.get(1)).getValue().trim();
+		this.statement = ((StringParameter) desiredParameters.get(1)).getValue().trim();
 
 		
-		if (contextString == null || statement == null) {
+		if (contextString == null || this.statement == null) {
 			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
 					"Parameters not set"));
 			return false;
 		}
 
 		//parse string to class
-		context = null;
+		this.context = null;
 		if (!contextString.equalsIgnoreCase(OclEvaluator.CONTEXT_FREE)) {
 		
-			context = findContextInPackage(contextString);
+			this.context = findContextInPackage(contextString);
 			
-			if (context == null) {
+			if (this.context == null) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
 						"Model contains no " + contextString + " object."));
 				host.addResultMessage(new AnalysisResultMessage(StatusType.INFO,
-						"Constraint passed: Context = '" + contextString + "' Statement = '" + statement + "'"));
-				host.appendLineToReport("Constraint passed: Context = '" + contextString + "' Statement = '" + statement
+						"Constraint passed: Context = '" + contextString + "' Statement = '" + this.statement + "'"));
+				host.appendLineToReport("Constraint passed: Context = '" + contextString + "' Statement = '" + this.statement
 										+ "' - No object of type '" + contextString + "' in model.");
 				return true;	
 			}
@@ -105,12 +110,12 @@ public class SingleOclChecker extends AbstractOclChecker {
 	
 	@Override
 	protected final String getOclStatement() {
-		return statement;
+		return this.statement;
 	}
 
 	@Override
 	protected final EClass getOclContext() {
-		return context;
+		return this.context;
 	}
 
 	/**
@@ -121,14 +126,14 @@ public class SingleOclChecker extends AbstractOclChecker {
 	 */
 	private EClass findContextInPackage(final String contextString) {
 		
-		if (host == null) {
+		if (this.analysisHost == null) {
 			return null;
 		}
 		
 		EObject tmpObject = null;
 		
 		//list packages of model
-		TreeIterator<EObject> modelIterator = host.getAnalyzedModel().getAllContents();
+		TreeIterator<EObject> modelIterator = this.analysisHost.getAnalyzedModel().getAllContents();
 		Set<EPackage> pacSet = new HashSet<EPackage>();
 		
 		while (modelIterator.hasNext()) {
@@ -160,6 +165,18 @@ public class SingleOclChecker extends AbstractOclChecker {
 		
 		return null;
 		
+	}
+
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 	
 }

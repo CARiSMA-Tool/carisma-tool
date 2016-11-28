@@ -46,18 +46,18 @@ public class AddElement extends AdditiveElement {
 		if (newMetaClass == null) {
 			throw new IllegalArgumentException("Tried to initialize AddElement with null Metaclass!");
 		}
-		metaClass = newMetaClass;
-		values = new HashMap<String, Object>();
-		content = new ArrayList<AddElement>();
-		parent = newParent;
+		this.metaClass = newMetaClass;
+		this.values = new HashMap<String, Object>();
+		this.content = new ArrayList<AddElement>();
+		this.parent = newParent;
 	}
 	
 	public EClass getMetaClass() {
-		return metaClass;
+		return this.metaClass;
 	}
 	
 	public Map<String, Object> getValues() {
-		return Collections.unmodifiableMap(values);
+		return Collections.unmodifiableMap(this.values);
 	}
 	
 	/**
@@ -69,25 +69,25 @@ public class AddElement extends AdditiveElement {
 		if (newValues == null) {
 			throw new IllegalArgumentException("Tried to replace values map with null map.");
 		}
-		values.clear();
-		values.putAll(newValues);
+		this.values.clear();
+		this.values.putAll(newValues);
 	}
 	
 	public boolean addKeyValuePair(final String newKey, final Object newValue) {
 		if (newKey == null || newKey.isEmpty()) {
 			throw new IllegalArgumentException("Given new key is null or empty.");
 		}
-		values.put(newKey, newValue);
+		this.values.put(newKey, newValue);
 		return true;
 	}
 	
 	public boolean removeKeyValuePair(final String oldKey) {
-		values.remove(oldKey);
+		this.values.remove(oldKey);
 		return true;
 	}
 
 	public List<AddElement> getContent() {
-		return Collections.unmodifiableList(content);
+		return Collections.unmodifiableList(this.content);
 	}
 	/**
 	 * Returns the set of all added elements directly or
@@ -98,7 +98,7 @@ public class AddElement extends AdditiveElement {
 	public List<AddElement> getAllAddedElements() {
 		List<AddElement> allAddedElements = new ArrayList<AddElement>();
 		allAddedElements.add(this);
-		for (AddElement containedElem : content) {
+		for (AddElement containedElem : this.content) {
 			allAddedElements.addAll(containedElem.getAllAddedElements());
 		}
 		return allAddedElements;
@@ -110,7 +110,7 @@ public class AddElement extends AdditiveElement {
 	 */
 	public void updateContent(final EObject newElement) {
 // TODO: validate that the newElement is the element described by this AddElement
-		for (AddElement addElem : content) {
+		for (AddElement addElem : this.content) {
 			addElem.setTarget(newElement);
 		}
 	}
@@ -121,10 +121,10 @@ public class AddElement extends AdditiveElement {
 	 * @param newContent - new contained elements
 	 */
 	public void replaceContent(final List<AddElement> newContent) {
-		for (AddElement c : content) {
+		for (AddElement c : this.content) {
 			c.setParent(null);
 		}
-		content.clear();
+		this.content.clear();
 		for (AddElement c : newContent) {
 			addContainedElement(c);
 		}
@@ -134,9 +134,9 @@ public class AddElement extends AdditiveElement {
 		if (newElement == null) {
 			throw new IllegalArgumentException("Tried to add null AddElement to the content.");
 		}
-		if (!content.contains(newElement)) {
+		if (!this.content.contains(newElement)) {
 			newElement.setParent(this);
-			return content.add(newElement);
+			return this.content.add(newElement);
 		}
 		return false;
 	}
@@ -153,15 +153,15 @@ public class AddElement extends AdditiveElement {
 
 	public boolean removeContainedElement(final AddElement oldElement) {
 		oldElement.setParent(null);
-		return content.remove(oldElement);
+		return this.content.remove(oldElement);
 	}
 	
 	void setParent(AdditiveElement newParent) {
-		parent = newParent;
+		this.parent = newParent;
 	}
 
 	public AdditiveElement getParent() {
-		return parent;
+		return this.parent;
 	}
 
 	/**
@@ -181,15 +181,15 @@ public class AddElement extends AdditiveElement {
 			if (
 				(	
 					(otherElement.getMetaClass() == null && this.getMetaClass() == null) 
-					|| otherElement.getMetaClass().equals(metaClass)
+					|| otherElement.getMetaClass().equals(this.metaClass)
 				)
 				&& 
 				(
 					(otherElement.getTarget() == null && this.getTarget() == null) 
 					|| otherElement.getTarget().equals(this.getTarget())
 				)
-					&& otherElement.getValues().equals(values)
-					&& otherElement.getContent().equals(content)) {
+					&& otherElement.getValues().equals(this.values)
+					&& otherElement.getContent().equals(this.content)) {
 				return true;
 			}
 		}
@@ -216,10 +216,10 @@ public class AddElement extends AdditiveElement {
 					+ EObjectUtil.getTypeAndName(this.getTarget())
 					+ ": ");
 		}
-		buf.append(metaClass.getName());
+		buf.append(this.metaClass.getName());
 		buf.append(" (");
-		for (String key : values.keySet()) {
-			Object value = values.get(key);
+		for (String key : this.values.keySet()) {
+			Object value = this.values.get(key);
 			buf.append(key + "=");
 			if (value instanceof EObject) {
 				EObject valObj = (EObject) value;
@@ -231,12 +231,12 @@ public class AddElement extends AdditiveElement {
 			}
 			buf.append(",");
 		}
-		if (!values.isEmpty()) {
+		if (!this.values.isEmpty()) {
 			buf.deleteCharAt(buf.length() - 1);			
 		}
 		buf.append(")");
-		if (!content.isEmpty()) {
-			buf.append(", containing " + content.toString());
+		if (!this.content.isEmpty()) {
+			buf.append(", containing " + this.content.toString());
 		}
 		return buf.toString();
 	}

@@ -91,11 +91,12 @@ public class ExtendedTaskImpl extends TaskImpl implements ExtendedTask {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<WorkItem> getWorkItem() {
-		if (workItem == null) {
-			workItem = new EObjectResolvingEList<WorkItem>(WorkItem.class, this, ExtendedPackage.EXTENDED_TASK__WORK_ITEM);
+		if (this.workItem == null) {
+			this.workItem = new EObjectResolvingEList<WorkItem>(WorkItem.class, this, ExtendedPackage.EXTENDED_TASK__WORK_ITEM);
 		}
-		return workItem;
+		return this.workItem;
 	}
 
 	/**
@@ -108,8 +109,9 @@ public class ExtendedTaskImpl extends TaskImpl implements ExtendedTask {
 		switch (featureID) {
 			case ExtendedPackage.EXTENDED_TASK__WORK_ITEM:
 				return getWorkItem();
+			default:
+				return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -124,9 +126,11 @@ public class ExtendedTaskImpl extends TaskImpl implements ExtendedTask {
 			case ExtendedPackage.EXTENDED_TASK__WORK_ITEM:
 				getWorkItem().clear();
 				getWorkItem().addAll((Collection<? extends WorkItem>)newValue);
-				return;
+				break;
+			default:
+				super.eSet(featureID, newValue);
+				break;
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -139,9 +143,11 @@ public class ExtendedTaskImpl extends TaskImpl implements ExtendedTask {
 		switch (featureID) {
 			case ExtendedPackage.EXTENDED_TASK__WORK_ITEM:
 				getWorkItem().clear();
-				return;
+				break;
+			default:
+				super.eUnset(featureID);
+				break;
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -153,9 +159,10 @@ public class ExtendedTaskImpl extends TaskImpl implements ExtendedTask {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ExtendedPackage.EXTENDED_TASK__WORK_ITEM:
-				return workItem != null && !workItem.isEmpty();
+				return this.workItem != null && !this.workItem.isEmpty();
+			default:
+				return super.eIsSet(featureID);
 		}
-		return super.eIsSet(featureID);
 	}
 	
 	/**
@@ -165,7 +172,7 @@ public class ExtendedTaskImpl extends TaskImpl implements ExtendedTask {
 	 */
 	@Override
 	public List<ConversationLink> getIncomingConversationLinks() {
-        return incomingConversationLinks;
+        return this.incomingConversationLinks;
     }
 	
 	/**
@@ -184,7 +191,7 @@ public class ExtendedTaskImpl extends TaskImpl implements ExtendedTask {
 	 */
 	@Override
 	public List<ConversationLink> getOutgoingConversationLinks() {
-        return incomingConversationLinks;
+        return this.incomingConversationLinks;
     }
 	
 	/**

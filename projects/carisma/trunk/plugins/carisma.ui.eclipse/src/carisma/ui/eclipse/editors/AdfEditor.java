@@ -32,6 +32,8 @@ import carisma.core.logging.Logger;
  */
 public class AdfEditor extends FormEditor {
 		
+	public static final String EXTENSION_ID = "carisma.ui.eclipse.editors.AdfEditor";
+	
 	/**
 	 * Corresponding analysis.
 	 */
@@ -53,7 +55,7 @@ public class AdfEditor extends FormEditor {
 	public AdfEditor() {
 		super();
 		this.dirty = false;
-		this.controller = new AdfEditorController(this, analysis);
+		this.controller = new AdfEditorController(this, this.analysis);
 	}
 	
 	/**
@@ -116,7 +118,7 @@ public class AdfEditor extends FormEditor {
 				IEditorInput editorInput = new FileEditorInput(file);
 				setInputWithNotify(editorInput);
 				setPartName(editorInput.getName());
-				AnalysisUtil.storeAnalysis(analysis, file.getLocation().toOSString());
+				AnalysisUtil.storeAnalysis(this.analysis, file.getLocation().toOSString());
 				saveAnalysis();
 				commitPages(isDirty());
 			}
@@ -140,9 +142,9 @@ public class AdfEditor extends FormEditor {
 	 */
 	protected final Analysis loadAnalysis() {
 		if (getEditorInput().getAdapter(IFile.class) != null) {
-			IFile file = (IFile) getEditorInput().getAdapter(IFile.class);
-			analysis = AnalysisUtil.readAnalysis(file.getLocation().toOSString());
-			return analysis;
+			IFile file = getEditorInput().getAdapter(IFile.class);
+			this.analysis = AnalysisUtil.readAnalysis(file.getLocation().toOSString());
+			return this.analysis;
 		}
 		return null;
 	}
@@ -151,8 +153,8 @@ public class AdfEditor extends FormEditor {
 	 * Saves the analysis to file.
 	 */
 	protected final void saveAnalysis() {
-		IFile file = (IFile) getEditorInput().getAdapter(IFile.class);
-		AnalysisUtil.storeAnalysis(analysis, file.getLocation().toOSString());
+		IFile file = getEditorInput().getAdapter(IFile.class);
+		AnalysisUtil.storeAnalysis(this.analysis, file.getLocation().toOSString());
 		// refresh resources
 		try {
 			file.refreshLocal(IResource.DEPTH_ZERO, null);
@@ -165,7 +167,7 @@ public class AdfEditor extends FormEditor {
 	protected final void saveAutomaticAnalysis(Analysis ana){
 	
 		IFile file = ana.getIFile();
-		AnalysisUtil.storeAnalysis(analysis, file.getLocation().toOSString());
+		AnalysisUtil.storeAnalysis(this.analysis, file.getLocation().toOSString());
 		// refresh resources
 		try {
 			file.refreshLocal(IResource.DEPTH_ZERO, null);

@@ -287,6 +287,7 @@ public final class UMLHelper {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T> T getSingleTaggedValue(final Element element, final String unqualifiedStereotypeName, final String tagName, Class<T> type) {
 		T result = null;
 		Stereotype st = getAppliedStereotype(element, unqualifiedStereotypeName);
@@ -315,19 +316,21 @@ public final class UMLHelper {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static <T> List<T> getManyTaggedValue(final Element element, final String unqualifiedStereotypeName, final String tagName, Class<T> type) {
 		List<T> result = null;
 		Stereotype st = getAppliedStereotype(element, unqualifiedStereotypeName);
 		if (st != null) {
 			Object firstResult = element.getValue(st, tagName);
 			if (firstResult instanceof Collection<?>) {
-				Collection<?> firstCol = ((Collection<?>) firstResult);
-				if (firstCol.isEmpty()) {
+				Collection<?> firstCollection = ((Collection<?>) firstResult);
+				if (firstCollection.isEmpty()) {
 					result = new ArrayList<T>();
 				} else {
-					Object firstElement = firstCol.iterator().next();
+					Object firstElement = firstCollection.iterator().next();
 					if (type.isInstance(firstElement)) {
-						result = new ArrayList<T>((Collection<T>) firstCol);
+						Collection<T> firstCollectionT = (Collection<T>) firstCollection;
+						result = new ArrayList<T>(firstCollectionT);
 					} else {
 						throw new IllegalArgumentException(
 								"Tag '" + tagName + OPENING + unqualifiedStereotypeName + CLOSING + type.getName() + APOSTROPHE);
@@ -437,6 +440,7 @@ public final class UMLHelper {
 		List<T> extendedElems = new ArrayList<T>();
 		for (Element elem : pkg.allOwnedElements()) {
 			if (type.isInstance(elem)) {
+				@SuppressWarnings("unchecked")
 				T t = (T) elem;
 				if (t.isStereotypeApplied(stereo)) {
 					extendedElems.add(t);
@@ -710,7 +714,7 @@ public final class UMLHelper {
 	public static String getAdequateQualifiedName(Package pkg, NamedElement namedElement) {
 		if (pkg != null && namedElement != null) {
 			String qualifiedName = namedElement.getQualifiedName();
-			if (!qualifiedName.isEmpty() || qualifiedName != null) {
+			if (!qualifiedName.isEmpty()) {
 				// Initialize the variables for search
 				String adequateQualifiedName = qualifiedName.substring(qualifiedName.lastIndexOf(":")+1);
 				String restOfQualifiedName = qualifiedName.substring(0,qualifiedName.lastIndexOf(":")-1);
@@ -732,11 +736,10 @@ public final class UMLHelper {
 					// (e.g. <parent element name>:: + <actual string>)
 					if (sameQualifiedElement == 1) {
 						return adequateQualifiedName;
-					} else {
-						adequateQualifiedName = restOfQualifiedName.substring(restOfQualifiedName.lastIndexOf(":")+1) + "::" + adequateQualifiedName;
-						if (restOfQualifiedName.lastIndexOf(":") != -1) {
-							restOfQualifiedName = restOfQualifiedName.substring(0,restOfQualifiedName.lastIndexOf(":")-1);
-						}
+					}
+					adequateQualifiedName = restOfQualifiedName.substring(restOfQualifiedName.lastIndexOf(":")+1) + "::" + adequateQualifiedName;
+					if (restOfQualifiedName.lastIndexOf(":") != -1) {
+						restOfQualifiedName = restOfQualifiedName.substring(0,restOfQualifiedName.lastIndexOf(":")-1);
 					}
 				}
 				return adequateQualifiedName;

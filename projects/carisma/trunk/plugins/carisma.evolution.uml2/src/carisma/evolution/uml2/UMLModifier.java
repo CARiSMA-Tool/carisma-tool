@@ -104,12 +104,7 @@ public class UMLModifier implements IModifier {
 	 * Returns the model element in the resource representing the original UML model.
 	 * @return - the UML Model element in the original model.
 	 */
-	private Map<DeltaElement, DeltaElement> oldNewDeltaElems;
-	
-	/**
-	 * 
-	 */
-	private UMLModifierElementFactory modifierElementFactory;
+	private Map<DeltaElement, DeltaElement> oldNewDeltaElementsMap;
 	
 	/**
 	 * Creates a new modifier using a given model.
@@ -128,21 +123,20 @@ public class UMLModifier implements IModifier {
 	 * @param delta - the delta to use to modify the model
 	 */
 	public UMLModifier(final Resource newModel, final Delta delta) {
-		oldNewDeltaElems = new HashMap<DeltaElement, DeltaElement>();
-		usedDelta = delta;
-		originalModel = newModel;
-		copier = new Copier();
-        modifierElementFactory = new UMLModifierElementFactory();
-		modifiedModel = edit(newModel, delta);
+		this.oldNewDeltaElementsMap = new HashMap<DeltaElement, DeltaElement>();
+		this.usedDelta = delta;
+		this.originalModel = newModel;
+		this.copier = new Copier();
+		this.modifiedModel = edit(newModel, delta);
 	}
 	
 	public DeltaElement get(DeltaElement oldDeltaElement) {
-		return oldNewDeltaElems.get(oldDeltaElement);
+		return this.oldNewDeltaElementsMap.get(oldDeltaElement);
 	}
 	
 	public EObject getAddedElement(AddElement addElement) {
-		DeltaElement newAddElement = oldNewDeltaElems.get(addElement);
-		return addedElements.get(newAddElement);
+		DeltaElement newAddElement = this.oldNewDeltaElementsMap.get(addElement);
+		return this.addedElements.get(newAddElement);
 	}
 
 	/**
@@ -150,14 +144,13 @@ public class UMLModifier implements IModifier {
 	 * @return - the original model
 	 */
 	public final Model getOriginalModel() {
-		if (originalModel == null) {
+		if (this.originalModel == null) {
 			return null;
 		}
-		if (originalModel.getContents().get(0) instanceof Model) {
-			return (Model) originalModel.getContents().get(0);
-		} else {
-			return null;
+		if (this.originalModel.getContents().get(0) instanceof Model) {
+			return (Model) this.originalModel.getContents().get(0);
 		}
+		return null;
 	}
 
 	/**
@@ -165,18 +158,17 @@ public class UMLModifier implements IModifier {
 	 * @return - the UML Model element in the modified model.
 	 */
 	public final Model getModifiedModel() {
-		if (modifiedModel == null) {
+		if (this.modifiedModel == null) {
 			return null;
 		}
-		if (modifiedModel.getContents().get(0) instanceof Model) {
-			return (Model) modifiedModel.getContents().get(0);
-		} else {
-			return null;
+		if (this.modifiedModel.getContents().get(0) instanceof Model) {
+			return (Model) this.modifiedModel.getContents().get(0);
 		}
+		return null;
 	}
 
 	public Copier getMapping() {
-		return copier;
+		return this.copier;
 	}
 
 	/**
@@ -184,7 +176,7 @@ public class UMLModifier implements IModifier {
 	 * @return - the used delta element
 	 */
 	public final Delta getUsedDelta() {
-		return usedDelta;
+		return this.usedDelta;
 	}
 	
 	/**
@@ -200,58 +192,57 @@ public class UMLModifier implements IModifier {
 			return null;
 		}
 		//TODO: If no delta or an empty delta is given, do we need to copy the model?
-		originalModel = oldModel;
-		oldNewDeltaElems.clear();
-		usedDelta = delta;
+		this.originalModel = oldModel;
+		this.oldNewDeltaElementsMap.clear();
+		this.usedDelta = delta;
 		URI oldUri = oldModel.getURI();
 		URI newUri = URI.createURI(oldUri.toString().replaceAll("\\.uml$", "_modified.uml"));
 		Resource newModel = oldModel.getResourceSet().createResource(newUri);
-		copier.clear();
-		Collection<EObject> allObjects = copier.copyAll(oldModel.getContents());
-		copier.copyReferences();
+		this.copier.clear();
+		Collection<EObject> allObjects = this.copier.copyAll(oldModel.getContents());
+		this.copier.copyReferences();
 		newModel.getContents().addAll(allObjects);
-		modifiedModel = newModel;
+		this.modifiedModel = newModel;
 		if (delta == null || delta.isEmpty()) {
 			return newModel;
-		} else {
-			Delta newDelta = copyDelta(delta);
-			if (newModel.getContents().get(0) instanceof Model) {
-				for (DeltaElement de : newDelta.getContent()) {
-					boolean deletedElement = false;
-					if (de instanceof AddElement) {
-						addElement((AddElement) de);
-					} else if (de instanceof CopyElement) {
-							copyElement((CopyElement) de);						
-					} else if (de instanceof CopyElement) {
+		}
+		Delta newDelta = copyDelta(delta);
+		if (newModel.getContents().get(0) instanceof Model) {
+			for (DeltaElement de : newDelta.getContent()) {
+				boolean deletedElement = false;
+				if (de instanceof AddElement) {
+					addElement((AddElement) de);
+				} else if (de instanceof CopyElement) {
 						copyElement((CopyElement) de);						
-					} else if (de instanceof DelElement) {
-						deleteElement((DelElement) de);
-						deletedElement = true;
-					} else if (de instanceof EditElement) {
-						editElement((EditElement) de);						
-					} else if (de instanceof SubstElement) {
-						substituteElement((SubstElement) de);
-						deletedElement = true;
-					}
-					if (deletedElement) {
-						updateOldNewMapping();
-					}
+				} else if (de instanceof CopyElement) {
+					copyElement((CopyElement) de);						
+				} else if (de instanceof DelElement) {
+					deleteElement((DelElement) de);
+					deletedElement = true;
+				} else if (de instanceof EditElement) {
+					editElement((EditElement) de);						
+				} else if (de instanceof SubstElement) {
+					substituteElement((SubstElement) de);
+					deletedElement = true;
+				}
+				if (deletedElement) {
+					updateOldNewMapping();
 				}
 			}
-			return newModel;
 		}
+		return newModel;
 	}
 
 	private void updateOldNewMapping() {
 		List<EObject> deletedElements = new ArrayList<EObject>();
-		for (EObject oldElem : copier.keySet()) {
-			EObject elemCopy = copier.get(oldElem);
+		for (EObject oldElem : this.copier.keySet()) {
+			EObject elemCopy = this.copier.get(oldElem);
 			if (elemCopy == null || elemCopy.eContainer() == null) {
 				deletedElements.add(oldElem);
 			}
 		}
 		for (EObject deletedElement : deletedElements) {
-			copier.remove(deletedElement);
+			this.copier.remove(deletedElement);
 		}		
 	}
 	
@@ -263,7 +254,7 @@ public class UMLModifier implements IModifier {
 	 * @param filename - the model filename to use
 	 */
 // FIXME: Extract saveModel to UMLModelLoader
-	public final void saveModel(final Model modelToSave, final File folder, final String filename, final boolean removeUMLchange) {
+	public final static void saveModel(final Model modelToSave, final File folder, final String filename, final boolean removeUMLchange) {
 		// TODO: Better handling of saving models (overwrite old file, option)
 		if (folder != null && !"".equals(filename) && modelToSave != null) {
 			if (!folder.exists()) {
@@ -288,7 +279,7 @@ public class UMLModifier implements IModifier {
 		}
 	}
 
-	private void removeUMLchange(final Model theModel) {
+	private static void removeUMLchange(final Model theModel) {
 		if (UMLHelper.isProfileApplied(theModel, UMLchange.DESCRIPTOR)) {
 			for (Element elem : UMLchangeUtil.getStereotypedElements(theModel)) {
 				for (Stereotype appliedStereo : UMLchangeUtil.getAppliedStereotypes(elem)) {
@@ -309,28 +300,29 @@ public class UMLModifier implements IModifier {
 	 * @param oldDelta - the old delta to copy
 	 * @return - the delta copy
 	 */
+	@Override
 	public final Delta copyDelta(final Delta oldDelta) {
 		List<DeltaElement> newDeltaContent = new ArrayList<DeltaElement>();
 		for (DeltaElement oldDe : oldDelta.getContent()) {
 			if (oldDe instanceof AddElement) {
-				AddElement newAddElem = copyAddElement((AddElement) oldDe, oldNewDeltaElems);
+				AddElement newAddElem = copyAddElement((AddElement) oldDe, this.oldNewDeltaElementsMap);
 				newDeltaContent.add(newAddElem);				
 			}
 			if (oldDe instanceof CopyElement) {
-				CopyElement newCopyElem = copyCopyElement((CopyElement) oldDe, oldNewDeltaElems);
+				CopyElement newCopyElem = copyCopyElement((CopyElement) oldDe, this.oldNewDeltaElementsMap);
 				newDeltaContent.add(newCopyElem);
 			}
 			if (oldDe instanceof DelElement) {
 				DelElement newDelElem = copyDelElement((DelElement) oldDe);
 				newDeltaContent.add(newDelElem);
-				oldNewDeltaElems.put(oldDe, newDelElem);
+				this.oldNewDeltaElementsMap.put(oldDe, newDelElem);
 			}
 			if (oldDe instanceof EditElement) {
-				EditElement newEditElem = copyEditElement((EditElement) oldDe, oldNewDeltaElems);
+				EditElement newEditElem = copyEditElement((EditElement) oldDe, this.oldNewDeltaElementsMap);
 				newDeltaContent.add(newEditElem);
 			}
 			if (oldDe instanceof SubstElement) {
-				SubstElement newSubstElem = copySubstElement((SubstElement) oldDe, oldNewDeltaElems);
+				SubstElement newSubstElem = copySubstElement((SubstElement) oldDe, this.oldNewDeltaElementsMap);
 				newDeltaContent.add(newSubstElem);
 			}
 		}
@@ -365,7 +357,7 @@ public class UMLModifier implements IModifier {
 		for (String oldKey : oldAddElement.getValues().keySet()) {
 			Object oldValue = oldAddElement.getValues().get(oldKey);
 			 if (oldValue instanceof Element) {
-				newAddElem.addKeyValuePair(oldKey, copier.get(oldValue));
+				newAddElem.addKeyValuePair(oldKey, this.copier.get(oldValue));
 			} else {
 				newAddElem.addKeyValuePair(oldKey, oldValue);
 			}
@@ -423,7 +415,7 @@ public class UMLModifier implements IModifier {
 		for (String oldKey : oldEditElem.getValues().keySet()) {
 			Object oldValue = oldEditElem.getValues().get(oldKey);
 			if (oldValue instanceof Element) {
-				 newEditElem.addKeyValuePair(oldKey, copier.get(oldValue));
+				 newEditElem.addKeyValuePair(oldKey, this.copier.get(oldValue));
 			} else {
 				newEditElem.addKeyValuePair(oldKey, oldValue);
 			}
@@ -445,7 +437,7 @@ public class UMLModifier implements IModifier {
 		for (String oldKey : oldCopyElem.getChangedValues().keySet()) {
 			Object oldValue = oldCopyElem.getChangedValues().get(oldKey);
 			if (oldValue instanceof Element) {
-				 newCopyElem.addChangedValuePair(oldKey, copier.get(oldValue));
+				 newCopyElem.addChangedValuePair(oldKey, this.copier.get(oldValue));
 			} else {
 				newCopyElem.addChangedValuePair(oldKey, oldValue);
 			}
@@ -459,7 +451,7 @@ public class UMLModifier implements IModifier {
 	 */
 	private StereotypeApplication getNewStereotypeApplication(final StereotypeApplication oldApp) {
 		Element oldExtendedElem = oldApp.getExtendedElement();
-		Element newExtendedElem = (Element) copier.get(oldExtendedElem);
+		Element newExtendedElem = (Element) this.copier.get(oldExtendedElem);
 		if (newExtendedElem != null) {
 			return UMLHelper.getStereotypeApplication(newExtendedElem, oldApp.getStereotypeName());
 		}
@@ -471,7 +463,7 @@ public class UMLModifier implements IModifier {
 	 * @return - the new version of the TaggedValue
 	 */
 	private TaggedValue getNewTaggedValue(final TaggedValue oldTagValue) {
-		Element newExtended = (Element) copier.get(oldTagValue.getCorrespondingApplication().getExtendedElement());
+		Element newExtended = (Element) this.copier.get(oldTagValue.getCorrespondingApplication().getExtendedElement());
 		if (newExtended != null) {
 			return UMLHelper.getStereotypeApplication(newExtended, oldTagValue.getStereotypeName()).getTaggedValue(oldTagValue.getName());
 		}
@@ -485,7 +477,7 @@ public class UMLModifier implements IModifier {
 	private EObject findOrCreateNewTarget(final EObject oldTarget) {
 		if (oldTarget != null) {
 			if (oldTarget instanceof Element) {
-				return copier.get(oldTarget);
+				return this.copier.get(oldTarget);
 			} else if (oldTarget instanceof StereotypeApplication) {
 				return getNewStereotypeApplication((StereotypeApplication) oldTarget);
 			} else if (oldTarget instanceof TaggedValue) {
@@ -503,8 +495,8 @@ public class UMLModifier implements IModifier {
 	public final List<Element> getRemainingElements(final List<Element> oldElements) {
 		List<Element> remainingElements = new ArrayList<Element>();
 		for (Element oldElement : oldElements) {
-			Model newModel = (Model) copier.get(oldElement.getModel());
-			Element copiedElement = (Element) copier.get(oldElement);
+			Model newModel = (Model) this.copier.get(oldElement.getModel());
+			Element copiedElement = (Element) this.copier.get(oldElement);
 			if (newModel.allOwnedElements().contains(copiedElement)) {
 				remainingElements.add(copiedElement);
 			}
@@ -550,8 +542,8 @@ public class UMLModifier implements IModifier {
 	 */
 	public final void addElement(final AddElement add) {
 		if (add != null) {
-			EObject addedElem = modifierElementFactory.createElement(add);
-			addedElements.put(add, addedElem);
+			EObject addedElem = UMLModifierElementFactory.createElement(add);
+			this.addedElements.put(add, addedElem);
 			add.updateContent(addedElem);
 			addContent(add);
 		}
@@ -587,13 +579,13 @@ public class UMLModifier implements IModifier {
 		}
 	}
 	
-	private void editUMLElement(final EditElement edit) {
+	private static void editUMLElement(final EditElement edit) {
 		Element targetElement = (Element) edit.getTarget();
 		for (String key : edit.getValues().keySet()) {
 			Object mapValue = edit.getValues().get(key);
-			Object realValue = modifierElementFactory.findRealValue(UMLHelper.getModel(targetElement),key, mapValue);					
+			Object realValue = UMLModifierElementFactory.findRealValue(UMLHelper.getModel(targetElement),key, mapValue);					
 			if (key.equals(OWNER) && realValue instanceof Element) {
-				modifierElementFactory.insertContainmentRelationship((Element) realValue, targetElement);
+				UMLModifierElementFactory.insertContainmentRelationship((Element) realValue, targetElement);
 			} else if (targetElement instanceof Association && key.startsWith("end")) {
 				//FIXME: just doesn't work; don't know of a way to identify the end
 				//example: an element has an association to itself; how to know which end?
@@ -601,7 +593,7 @@ public class UMLModifier implements IModifier {
 //				editAssociationEnd((Association) targetElement, realValue);
 				editAssociationEnd();
 			} else {
-				modifierElementFactory.editStructuralFeatureValue(targetElement, key, realValue, true);
+				UMLModifierElementFactory.editStructuralFeatureValue(targetElement, key, realValue, true);
 			}
 		}
 	}
@@ -672,7 +664,7 @@ public class UMLModifier implements IModifier {
 			elementCopier.copyReferences();
 //FIXME: What if I copy an element having relationships? Are they copied as well? Does the copy have a reference to the old
 //			relations?
-			modifierElementFactory.insertContainmentRelationship(receivingElement, elemCopy);
+			UMLModifierElementFactory.insertContainmentRelationship(receivingElement, elemCopy);
 			if (elemCopy.getModel() == null && elemCopy.getOwner() == null) {
 				Logger.log(LogLevel.ERROR, "Tried to copy an element but couldn't insert it into new owner!");
 			}
@@ -710,7 +702,7 @@ public class UMLModifier implements IModifier {
 	 */
 // TODO Look at me
 //	private boolean editAssociationEnd(Association association, final Object realValue) {
-	private boolean editAssociationEnd() {
+	private static boolean editAssociationEnd() {
 		return false;
 //		if (association == null) {
 //			return false;
@@ -790,7 +782,7 @@ public class UMLModifier implements IModifier {
 	 */
 	public final void addContent(final AddElement container) {
 		for (AddElement containedElem : container.getContent()) {
-			EObject instancedElem = modifierElementFactory.createElement(containedElem);
+			EObject instancedElem = UMLModifierElementFactory.createElement(containedElem);
 			containedElem.updateContent(instancedElem);
 			addContent(containedElem);
 		}

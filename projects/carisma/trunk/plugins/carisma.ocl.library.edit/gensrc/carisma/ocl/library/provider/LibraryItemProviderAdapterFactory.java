@@ -73,11 +73,11 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 * @generated
 	 */
 	public LibraryItemProviderAdapterFactory() {
-		supportedTypes.add(IEditingDomainItemProvider.class);
-		supportedTypes.add(IStructuredItemContentProvider.class);
-		supportedTypes.add(ITreeItemContentProvider.class);
-		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);
+		this.supportedTypes.add(IEditingDomainItemProvider.class);
+		this.supportedTypes.add(IStructuredItemContentProvider.class);
+		this.supportedTypes.add(ITreeItemContentProvider.class);
+		this.supportedTypes.add(IItemLabelProvider.class);
+		this.supportedTypes.add(IItemPropertySource.class);
 	}
 
 	/**
@@ -96,11 +96,11 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 */
 	@Override
 	public Adapter createOclExpressionAdapter() {
-		if (oclExpressionItemProvider == null) {
-			oclExpressionItemProvider = new OclExpressionItemProvider(this);
+		if (this.oclExpressionItemProvider == null) {
+			this.oclExpressionItemProvider = new OclExpressionItemProvider(this);
 		}
 
-		return oclExpressionItemProvider;
+		return this.oclExpressionItemProvider;
 	}
 
 	/**
@@ -119,11 +119,11 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 */
 	@Override
 	public Adapter createOclLibraryAdapter() {
-		if (oclLibraryItemProvider == null) {
-			oclLibraryItemProvider = new OclLibraryItemProvider(this);
+		if (this.oclLibraryItemProvider == null) {
+			this.oclLibraryItemProvider = new OclLibraryItemProvider(this);
 		}
 
-		return oclLibraryItemProvider;
+		return this.oclLibraryItemProvider;
 	}
 
 	/**
@@ -132,8 +132,9 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return this.parentAdapterFactory == null ? this : this.parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -142,6 +143,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -153,7 +155,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 */
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return supportedTypes.contains(type) || super.isFactoryForType(type);
+		return this.supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
 
 	/**
@@ -190,8 +192,9 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.addListener(notifyChangedListener);
+		this.changeNotifier.addListener(notifyChangedListener);
 	}
 
 	/**
@@ -200,8 +203,9 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.removeListener(notifyChangedListener);
+		this.changeNotifier.removeListener(notifyChangedListener);
 	}
 
 	/**
@@ -210,11 +214,12 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
-		changeNotifier.fireNotifyChanged(notification);
+		this.changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
-			parentAdapterFactory.fireNotifyChanged(notification);
+		if (this.parentAdapterFactory != null) {
+			this.parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
 
@@ -224,9 +229,10 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
-		if (oclExpressionItemProvider != null) oclExpressionItemProvider.dispose();
-		if (oclLibraryItemProvider != null) oclLibraryItemProvider.dispose();
+		if (this.oclExpressionItemProvider != null) this.oclExpressionItemProvider.dispose();
+		if (this.oclLibraryItemProvider != null) this.oclLibraryItemProvider.dispose();
 	}
 
 }

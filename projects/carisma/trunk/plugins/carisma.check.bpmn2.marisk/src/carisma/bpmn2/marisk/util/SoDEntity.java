@@ -47,7 +47,7 @@ public class SoDEntity<T> {
 	 * @return seperatedActivities1
 	 */
 	public final List<T> getSeparatedActivities1() {
-		return separatedActivities1;
+		return this.separatedActivities1;
 	}
 
 	/**
@@ -55,6 +55,6 @@ public class SoDEntity<T> {
 	 * @return seperatedActivities2
 	 */
 	public final List<T> getSeparatedActivities2() {
-		return separatedActivities2;
+		return this.separatedActivities2;
 	}
 }

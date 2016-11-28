@@ -59,32 +59,32 @@ public class CheckParameterDescriptor {
 	}
 	
 	public String getID() {
-		return id;
+		return this.id;
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 	
 	public ParameterType getType() {
-		return type;
+		return this.type;
 	}
 	
 	public boolean isOptional() {
-		return optional;
+		return this.optional;
 	}
 
 	public String getDefaultValue() {
-		return defaultValue;
+		return this.defaultValue;
 	}
 	@Override
 	public String toString() {
-		return "CheckParameterDescriptor [id=" + id + ", name=" + name + ", type=" + type
-				+ ", optional=" + optional + "]";
+		return "CheckParameterDescriptor [id=" + this.id + ", name=" + this.name + ", type=" + this.type
+				+ ", optional=" + this.optional + "]";
 	}
 
 	@Override

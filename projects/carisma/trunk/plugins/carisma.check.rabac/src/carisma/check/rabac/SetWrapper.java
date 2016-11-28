@@ -6,7 +6,7 @@ class SetWrapper {
 	private HashSet<String> set = new HashSet<String>();
 
 	public HashSet<String> getSet() {
-		return set;
+		return this.set;
 	}
 
 	public void setSet(HashSet<String> set) {

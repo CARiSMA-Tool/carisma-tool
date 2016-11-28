@@ -32,6 +32,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	 * @param configurer IActionBarConfigurer
 	 * @return new ApplicationActionBarAdvisor
 	 */
+	@Override
 	public final ActionBarAdvisor createActionBarAdvisor(
 			final IActionBarConfigurer configurer) {
 		return new ApplicationActionBarAdvisor(configurer);
@@ -39,6 +40,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	/**
 	 * 
 	 */
+	@Override
 	public final void preWindowOpen() {
 		IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
 		configurer.setInitialSize(new Point(1024, 768));

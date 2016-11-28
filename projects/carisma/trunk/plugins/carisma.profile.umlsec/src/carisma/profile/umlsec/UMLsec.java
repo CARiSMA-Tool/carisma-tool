@@ -66,12 +66,12 @@ public enum UMLsec {
 	private final String readableName;
 	
 	private UMLsec(final String newName) {
-		readableName = newName;
+		this.readableName = newName;
 	}
 	
 	@Override
 	public String toString() {
-		return readableName;
+		return this.readableName;
 	}
 	
 	public static UMLsec getValue(final String name) {

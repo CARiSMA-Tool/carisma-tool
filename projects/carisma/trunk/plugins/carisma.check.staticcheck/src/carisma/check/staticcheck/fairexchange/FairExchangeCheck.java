@@ -25,7 +25,7 @@ import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.DummyHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheck;
+import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
 import carisma.profile.umlsec.UMLsec;
@@ -37,7 +37,10 @@ import carisma.profile.umlsec.UMLsecUtil;
  * @author Klaus Rudack
  *
  */
-public class FairExchangeCheck implements CarismaCheck {
+public class FairExchangeCheck implements CarismaCheckWithID {
+	
+	public static final String CHECK_ID = "carisma.check.staticcheck.fairexchange";
+	public static final String CHECK_NAME = "UMLsec fairexchange Check";
 
 	/**
 	 * variable to save if an error occurred.
@@ -62,7 +65,7 @@ public class FairExchangeCheck implements CarismaCheck {
 	/**
 	 * AnalysisHost for report.
 	 */
-	private AnalysisHost host = new DummyHost(true);
+	private AnalysisHost dummyHost = new DummyHost(true);
 	
 	/**
 	 * default constructor.
@@ -76,20 +79,20 @@ public class FairExchangeCheck implements CarismaCheck {
 	 */
 	private boolean fairExchangeAnalysis(final Package givenModel) {
 		String fairName = "UMLsec::fair exchange";
-			elementWithFairExchange = givenModel;
+			this.elementWithFairExchange = givenModel;
 		if (givenModel == null) {
 			AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.WARNING, "The given Model is null.");
-			host.addResultMessage(analysisResultMessage);
+			this.dummyHost.addResultMessage(analysisResultMessage);
 			return false;
 		}
-		stereotype = elementWithFairExchange.getAppliedStereotype(fairName);
-		if (stereotype == null) {
+		this.stereotype = this.elementWithFairExchange.getAppliedStereotype(fairName);
+		if (this.stereotype == null) {
 			List<Element> stereotypeList = UMLsecUtil.getStereotypedElements(givenModel, UMLsec.FAIR_EXCHANGE);
 			if ((stereotypeList == null) || (stereotypeList.size() < 1)) {
-				host.appendLineToReport("No stereotype <<fair-exchange>> applied.");
+				this.dummyHost.appendLineToReport("No stereotype <<fair-exchange>> applied.");
 				AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.INFO,
 						"No stereotype <<fair-exchange>> applied.");
-				host.addResultMessage(analysisResultMessage);
+				this.dummyHost.addResultMessage(analysisResultMessage);
 			} else {
 				for (Element fairExchangedElement : stereotypeList) {
 					FairExchangeCheck fe = new FairExchangeCheck();
@@ -100,24 +103,24 @@ public class FairExchangeCheck implements CarismaCheck {
 			if (!checkStereotype()) {
 				return false;
 			}
-				ActivityDiagramManager adm = new ActivityDiagramManager(givenModel, host);
-				pathsList = adm.getAllPaths();
-				if (pathsList.size() < 1) {
-					host.appendLineToReport("No possible way through this ActivityDiagramm.");
+				ActivityDiagramManager adm = new ActivityDiagramManager(givenModel, this.dummyHost);
+				this.pathsList = adm.getAllPaths();
+				if (this.pathsList.size() < 1) {
+					this.dummyHost.appendLineToReport("No possible way through this ActivityDiagramm.");
 					AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.INFO,
 							"No possible way through this ActivityDiagramm.");
-					host.addResultMessage(analysisResultMessage);
+					this.dummyHost.addResultMessage(analysisResultMessage);
 				} else {
-					startAnalysis(host);
+					startAnalysis(this.dummyHost);
 				}
 		}
-		if (!hasError) {
-			host.appendLineToReport("Check successfull with respect to <<fair exchange>>.");
+		if (!this.hasError) {
+			this.dummyHost.appendLineToReport("NoDownFlowCheck successfull with respect to <<fair exchange>>.");
 			AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.INFO,
 					"Test successfull with respect to <<fair-exchange>>.");
-			host.addResultMessage(analysisResultMessage);
+			this.dummyHost.addResultMessage(analysisResultMessage);
 		}
-		return !hasError;
+		return !this.hasError;
 	}
 	
 	/**
@@ -126,20 +129,20 @@ public class FairExchangeCheck implements CarismaCheck {
 	 */
 	@SuppressWarnings("unchecked")
 	private boolean checkStereotype() {
-		if (((List<List<Element>>) elementWithFairExchange.getValue(stereotype, "start")).size() < 1) {
-			host.appendLineToReport("No start-Elements are defined.");
-			host.appendLineToReport("Check failed with respect to fair exchange.");
+		if (((List<List<Element>>) this.elementWithFairExchange.getValue(this.stereotype, "start")).size() < 1) {
+			this.dummyHost.appendLineToReport("No start-Elements are defined.");
+			this.dummyHost.appendLineToReport("NoDownFlowCheck failed with respect to fair exchange.");
 			AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.WARNING,
 					"No start-Elements are defined.");
-			host.addResultMessage(analysisResultMessage);
+			this.dummyHost.addResultMessage(analysisResultMessage);
 			return false;
 		}
-		if (((List<List<Element>>) elementWithFairExchange.getValue(stereotype, "stop")).size() < 1) {
-			host.appendLineToReport("No stop-Elements are defined.");
-			host.appendLineToReport("Check failed with respect to fair exchange.");
+		if (((List<List<Element>>) this.elementWithFairExchange.getValue(this.stereotype, "stop")).size() < 1) {
+			this.dummyHost.appendLineToReport("No stop-Elements are defined.");
+			this.dummyHost.appendLineToReport("NoDownFlowCheck failed with respect to fair exchange.");
 			AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.ERROR,
 					"No stop-Elements are defined.");
-			host.addResultMessage(analysisResultMessage);
+			this.dummyHost.addResultMessage(analysisResultMessage);
 			return false;
 		}
 		return true;
@@ -150,9 +153,9 @@ public class FairExchangeCheck implements CarismaCheck {
 	 * @param host AnalysisHost for report
 	 */
 	private void startAnalysis(final AnalysisHost host) {
-		EObjectResolvingEList<?> startList = (EObjectResolvingEList<?>) elementWithFairExchange.getValue(stereotype, "start");
-		EObjectResolvingEList<?> stopList = (EObjectResolvingEList<?>) elementWithFairExchange.getValue(stereotype, "stop");
-		for (List<Element> path : pathsList) {
+		EObjectResolvingEList<?> startList = (EObjectResolvingEList<?>) this.elementWithFairExchange.getValue(this.stereotype, "start");
+		EObjectResolvingEList<?> stopList = (EObjectResolvingEList<?>) this.elementWithFairExchange.getValue(this.stereotype, "stop");
+		for (List<Element> path : this.pathsList) {
 			boolean found = false;
 			for (int j = path.size() - 1; j >= 0; j--) {
 				if (!found) {
@@ -165,7 +168,7 @@ public class FairExchangeCheck implements CarismaCheck {
 						found = true;
 						ArrayList<Element> resultList = new ArrayList<Element>();
 						resultList.addAll(path);
-						if (!hasError) { /*hier wird auf Fehler geprüft. Ist "hasError" noch auf false, 
+						if (!this.hasError) { /*hier wird auf Fehler geprüft. Ist "hasError" noch auf false, 
 							heisst dies, dass vorher noch kein Fehler gefunden wurde. Für eine strukturierte 
 							Ausgabe wird dann als erstes in den Report geschrieben, dass der Test fehl schlug.*/
 							host.appendLineToReport("Test failed with respect to <<fair-exchange>>.");
@@ -178,7 +181,7 @@ public class FairExchangeCheck implements CarismaCheck {
 							host.appendToReport("--->" + ((NamedElement) activity).getName());
 						}
 						host.appendToReport("\n");
-						hasError = true;
+						this.hasError = true;
 					}
 				}
 			}
@@ -188,23 +191,32 @@ public class FairExchangeCheck implements CarismaCheck {
 	@Override
 	public final boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost analysisHost) {
 		if (analysisHost != null) {
-			host = analysisHost;
+			this.dummyHost = analysisHost;
 		}
-		Resource currentModel = host.getAnalyzedModel();
+		Resource currentModel = this.dummyHost.getAnalyzedModel();
 		if (currentModel == null) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Resource is null"));
+			this.dummyHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Resource is null"));
 			return false;
 		}
 		if (currentModel.getContents().isEmpty()) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
+			this.dummyHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
 			return false;
 		}
 		if (currentModel.getContents().get(0) instanceof Package) {
-			elementWithFairExchange = (Package) currentModel.getContents().get(0);
-			return fairExchangeAnalysis(elementWithFairExchange);
-		} else {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
-		return false;
+			this.elementWithFairExchange = (Package) currentModel.getContents().get(0);
+			return fairExchangeAnalysis(this.elementWithFairExchange);
 		}
+		this.dummyHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
+return false;
+	}
+
+	@Override
+	public String getCheckID() {
+		return CHECK_ID;
+	}
+
+	@Override
+	public String getName() {
+		return CHECK_NAME;
 	}
 }

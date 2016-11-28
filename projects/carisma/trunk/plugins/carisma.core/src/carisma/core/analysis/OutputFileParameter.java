@@ -51,26 +51,26 @@ public class OutputFileParameter extends CheckParameter {
 	 * false else.
 	 */  
 	public final boolean isInsertedValueValid() {		
-		if (value == null) {
+		if (this.value == null) {
 			if (getDescriptor().isOptional()) {
 				return true;
 			}
 			return false;
-		} else if ("".equals(value.getPath().trim())) {
+		} else if ("".equals(this.value.getPath().trim())) {
  			if (getDescriptor().isOptional()) {
 				return true;
 			}
 			return false;
-		} else if (value.getName().contains("?") 
-				|| value.getName().contains("*") 
-				|| value.getName().contains("\"")
-				|| value.getName().contains(":")
-				|| value.getName().contains("<")
-				|| value.getName().contains(">")
-				|| value.getName().contains("|")
-			    || value.isDirectory()
-				|| !value.getAbsolutePath().equals(value.getPath())
-				|| (value.getParentFile() != null && !value.getParentFile().isDirectory())) {
+		} else if (this.value.getName().contains("?") 
+				|| this.value.getName().contains("*") 
+				|| this.value.getName().contains("\"")
+				|| this.value.getName().contains(":")
+				|| this.value.getName().contains("<")
+				|| this.value.getName().contains(">")
+				|| this.value.getName().contains("|")
+			    || this.value.isDirectory()
+				|| !this.value.getAbsolutePath().equals(this.value.getPath())
+				|| (this.value.getParentFile() != null && !this.value.getParentFile().isDirectory())) {
 			return false;
 		}
 		return true;
@@ -81,7 +81,7 @@ public class OutputFileParameter extends CheckParameter {
 	 * @return File the value
 	 */
 	public final File getValue() {
-		return value;
+		return this.value;
 	}
 
 	/**

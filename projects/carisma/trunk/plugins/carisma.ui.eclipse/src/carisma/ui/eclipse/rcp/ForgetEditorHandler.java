@@ -70,7 +70,7 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 	 * @return the boolean value of alreadyInstalledSelectionListener.
 	 */
 	public final boolean getAlreadyInstalledSelectionListener() {
-	    return alreadyInstalledSelectionListener;
+	    return this.alreadyInstalledSelectionListener;
 	}
 	
 	/** Setter for alreadyInstalledSelectionListener.
@@ -78,7 +78,7 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 	 * @param newValue the new value for alreadyInstalledSelectionListener.
 	 */
 	public final void setAlreadyInstalledSelectionListener(final boolean newValue) {
-	    alreadyInstalledSelectionListener = newValue;
+	    this.alreadyInstalledSelectionListener = newValue;
 	}
 
 	
@@ -88,13 +88,13 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 	@Override
 	public final Object execute(final ExecutionEvent event) throws ExecutionException {
 
-		analysis = AnalysisUtil.readAnalysis(selectedFile.getLocation()
+		this.analysis = AnalysisUtil.readAnalysis(this.selectedFile.getLocation()
 				.toOSString());
 
-		if (analysis == null) {
+		if (this.analysis == null) {
 			return null;
-		} else if (analysis.getSelectedEditorId() == null
-				|| analysis.getSelectedEditorId().equals("")) {
+		} else if (this.analysis.getSelectedEditorId() == null
+				|| this.analysis.getSelectedEditorId().equals("")) {
 
 			Display display = Display.getDefault();
 			Shell shell = new Shell(display);
@@ -104,7 +104,7 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 			mDialog.open();
 			return null;
 		}
-		analysis.setSelectedEditorId(null);
+		this.analysis.setSelectedEditorId(null);
 		fireHandlerChanged(new HandlerEvent(getHandler(), true, false));
 		saveChanges();
 		
@@ -113,12 +113,12 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 		for (IWorkbenchPage page : pages) {
 			for (IEditorReference editorRef : page.getEditorReferences()) {
 				if (editorRef != null 
-						&& selectedFile.getName().equals(editorRef.getName())
+						&& this.selectedFile.getName().equals(editorRef.getName())
 						&& editorRef.getEditor(false) instanceof AdfEditor) {
 					IEditorInput editInput = ((AdfEditor) editorRef.getEditor(false)).getEditorInput();
 					if (editInput.getAdapter(IFile.class) != null) {
-						IFile file = (IFile) editInput.getAdapter(IFile.class);
-						analysis = AnalysisUtil.readAnalysis(file.getLocation().toOSString());
+						IFile file = editInput.getAdapter(IFile.class);
+						this.analysis = AnalysisUtil.readAnalysis(file.getLocation().toOSString());
 					}
 				}
 			}
@@ -138,18 +138,17 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 	 */
 	@Override
 	public final boolean isEnabled() {
-		selectedFile = getSelectedFile();
-		if (selectedFile != null) {
-			Analysis analysis = AnalysisUtil.readAnalysis(selectedFile
+		this.selectedFile = getSelectedFile();
+		if (this.selectedFile != null) {
+			Analysis analysis = AnalysisUtil.readAnalysis(this.selectedFile
 					.getLocation().toOSString());
 			if (analysis.getSelectedEditorId() == null
 					|| "".equals(analysis.getSelectedEditorId())) {
 				setBaseEnabled(false);
 				return false;
-			} else {
-				setBaseEnabled(true);
-				return true;
 			}
+			setBaseEnabled(true);
+			return true;
 		}
 		return false;
 	}
@@ -166,7 +165,7 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 	 * save changes to resource.
 	 */
 	private void saveChanges() {
-	    if (selectedFile == null) {
+	    if (this.selectedFile == null) {
 	        // TODO
 	        return;
 	    }
@@ -174,17 +173,17 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 		Shell shell = new Shell(display);
 		MessageDialog mDialog = new MessageDialog(shell, "Save and Launch",
 				null, "Do you want to save the changes in"
-						+ selectedFile.getLocation().toOSString() + "?", 0,
+						+ this.selectedFile.getLocation().toOSString() + "?", 0,
 				new String[] { "OK", "Cancel" }, 0);
 		mDialog.open();
 
 		if (mDialog.getReturnCode() == 0) { // save analysis
-			AnalysisUtil.storeAnalysis(analysis, selectedFile.getLocation()
+			AnalysisUtil.storeAnalysis(this.analysis, this.selectedFile.getLocation()
 					.toOSString());
 			// refresh resource
 			
 			try {
-				selectedFile.refreshLocal(IResource.DEPTH_ZERO, null);
+				this.selectedFile.refreshLocal(IResource.DEPTH_ZERO, null);
 			} catch (CoreException e) {
 				Logger.log(LogLevel.INFO, "Could not refresh resource");
 			

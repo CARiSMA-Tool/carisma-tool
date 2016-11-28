@@ -18,7 +18,7 @@ public abstract class ExportExtTag {
 	}
 
 	public String getType() {
-		return type;
+		return this.type;
 	}
 
 	public void setType(String type) {
@@ -26,7 +26,7 @@ public abstract class ExportExtTag {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -34,7 +34,7 @@ public abstract class ExportExtTag {
 	}
 
 	public String getXmiID() {
-		return xmiID;
+		return this.xmiID;
 	}
 
 	public void setXmiID(String xmiID) {

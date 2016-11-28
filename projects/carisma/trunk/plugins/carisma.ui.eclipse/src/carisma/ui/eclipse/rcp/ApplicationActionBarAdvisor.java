@@ -16,6 +16,8 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 /**
  * 
  */
+
+//TODO: What is the purpose of this class?
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	/**
 	 * 
@@ -33,6 +35,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	/**
 	 * @param menuBar IMenuManager
 	 */
+	@Override
 	protected void fillMenuBar(final IMenuManager menuBar) {
 		
 	}

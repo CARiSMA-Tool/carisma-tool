@@ -1,6 +1,6 @@
 package carisma.core.io.content;
 
-import java.util.Base64;
+import javax.xml.bind.DatatypeConverter;
 
 public class BASE64 implements Content {
 
@@ -14,7 +14,7 @@ public class BASE64 implements Content {
 	
 	protected BASE64(final String content) {
 		byte[] nonBase64 = content.getBytes();
-		this.bytes = Base64.getEncoder().encode(nonBase64);
+		this.bytes = DatatypeConverter.printBase64Binary(nonBase64).getBytes();
 	}
 	
 	@Override
@@ -28,11 +28,11 @@ public class BASE64 implements Content {
 	}
 
 	public final byte[] getBytes(){
-		return bytes;
+		return this.bytes;
 	}
 	
 	public final byte[] getBytesDecoded() {
-		return Base64.getDecoder().decode(bytes);
+		return DatatypeConverter.parseBase64Binary(new String(this.bytes));
 	}
 
 }

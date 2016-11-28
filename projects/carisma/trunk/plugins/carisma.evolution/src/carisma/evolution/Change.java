@@ -73,23 +73,23 @@ public class Change {
 	}
 	
 	private void init() {
-		if (constraints == null) {
-			constraints = new ArrayList<ChangeConstraint>();
+		if (this.constraints == null) {
+			this.constraints = new ArrayList<ChangeConstraint>();
 		}
-		constraints.clear();
-		if (alternatives == null) {
-			alternatives = new ArrayList<Alternative>();
+		this.constraints.clear();
+		if (this.alternatives == null) {
+			this.alternatives = new ArrayList<Alternative>();
 		}
-		alternatives.clear();
-		if (constraintsInvolvedIn == null) {
-			constraintsInvolvedIn = new ArrayList<ChangeConstraint>();
+		this.alternatives.clear();
+		if (this.constraintsInvolvedIn == null) {
+			this.constraintsInvolvedIn = new ArrayList<ChangeConstraint>();
 		}
-		constraintsInvolvedIn.clear();
+		this.constraintsInvolvedIn.clear();
 	}
 	
 	
 	public final String getRef() {
-		return ref;
+		return this.ref;
 	}
 	/**
 	 * Sets the reference name to a non-empty string.
@@ -99,17 +99,17 @@ public class Change {
 		if (newRef.equals("")) {
 			// TODO: Was dann?
 		} else {
-			ref = newRef;
+			this.ref = newRef;
 		}
 	}
 
 	public List<ChangeConstraint> getConstraints() {
-		return Collections.unmodifiableList(constraints);
+		return Collections.unmodifiableList(this.constraints);
 	}
 
 	public final void addConstraint(final ChangeConstraint newConstraint) {
-		if (newConstraint != null && !constraints.contains(newConstraint)) {
-			constraints.add(newConstraint);
+		if (newConstraint != null && !this.constraints.contains(newConstraint)) {
+			this.constraints.add(newConstraint);
 		}
 	}
 
@@ -122,7 +122,7 @@ public class Change {
 	}
 
 	public void removeConstraint(final ChangeConstraint oldConstraint) {
-		constraints.remove(oldConstraint);
+		this.constraints.remove(oldConstraint);
 	}
 
 	public final void replaceConstraints(final List<ChangeConstraint> newConstraints) {
@@ -131,11 +131,11 @@ public class Change {
 	}
 
 	public void clearConstraints() {
-		constraints.clear();
+		this.constraints.clear();
 	}
 
 	public List<Alternative> getAlternatives() {
-		return Collections.unmodifiableList(alternatives);
+		return Collections.unmodifiableList(this.alternatives);
 	}
 	/**
 	 * Replaces all alternatives in the change with a new set of alternatives.
@@ -144,7 +144,7 @@ public class Change {
 	public void replaceAlternatives(final List<Alternative> newAlternatives) {
 		clearAlternatives();
 		if (newAlternatives != null) {
-			alternatives.addAll(newAlternatives);
+			this.alternatives.addAll(newAlternatives);
 		}
 	}
 	/**
@@ -154,7 +154,7 @@ public class Change {
 	 */
 	public void addAlternative(final Alternative newAlternative) {
 		if (newAlternative != null) {
-			alternatives.add(newAlternative);
+			this.alternatives.add(newAlternative);
 		}
 	}
 	/**
@@ -164,14 +164,14 @@ public class Change {
 	 */
 	public void removeAlternative(final Alternative oldAlternative) {
 		if (oldAlternative != null) {
-			alternatives.remove(oldAlternative);
+			this.alternatives.remove(oldAlternative);
 		}
 	}
 	/**
 	 * Empties the set of alternatives.
 	 */
 	public void clearAlternatives() {
-		alternatives.clear();
+		this.alternatives.clear();
 	}
 
 }
