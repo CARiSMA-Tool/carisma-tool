@@ -202,7 +202,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 	 */
 	protected Collection<String> getInitialObjectNames() {
 		if (this.initialObjectNames == null) {
-			this.initialObjectNames = new ArrayList<String>();
+			this.initialObjectNames = new ArrayList<>();
 			for (EClassifier eClassifier : this.extensionPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
@@ -278,7 +278,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 
 							// Save the contents of the resource to the file system.
 							//
-							Map<Object, Object> options = new HashMap<Object, Object>();
+							Map<Object, Object> options = new HashMap<>();
 							
 							/** Define Encoding manually */
 							//options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
@@ -604,7 +604,7 @@ public class ExtensionModelWizard extends Wizard implements INewWizard {
 		 */
 		protected Collection<String> getEncodings() {
 			if (this.encodings == null) {
-				this.encodings = new ArrayList<String>();
+				this.encodings = new ArrayList<>();
 				for (StringTokenizer stringTokenizer = new StringTokenizer(ExtensionEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
 					this.encodings.add(stringTokenizer.nextToken());
 				}

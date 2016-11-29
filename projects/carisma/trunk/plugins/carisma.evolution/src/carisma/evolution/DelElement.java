@@ -28,7 +28,7 @@ public class DelElement extends DeltaElement {
 	
 	public DelElement(final EObject newTarget) {
 		super(newTarget);
-		this.accompanyingDeletions = new ArrayList<EObject>();
+		this.accompanyingDeletions = new ArrayList<>();
 	}
 	
 	public List<EObject> getAccompanyingDeletions() {

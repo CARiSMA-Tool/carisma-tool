@@ -147,19 +147,19 @@ public class MariskSoDCheck implements CarismaCheckWithID {
 	 * @return A List of the extracted SoD Entities
 	 */
 	private static List<SoDEntity<String>> extractSoDActivites(final String sodParameter) {
-		List<SoDEntity<String>> result = new ArrayList<SoDEntity<String>>();
+		List<SoDEntity<String>> result = new ArrayList<>();
 		String[] constraints = sodParameter.split(";");
 		for (String con : constraints) {
 			String[] sep = con.trim().split("\\|");
-			List<String> activities1 = new ArrayList<String>();
-			List<String> activities2 = new ArrayList<String>();
+			List<String> activities1 = new ArrayList<>();
+			List<String> activities2 = new ArrayList<>();
 			for (String str : sep[0].split(",")) {
 				activities1.add(str.trim());
 			}
 			for (String str : sep[1].split(",")) {
 				activities2.add(str.trim());
 			}
-			result.add(new SoDEntity<String>(activities1, activities2));
+			result.add(new SoDEntity<>(activities1, activities2));
 		}
 		return result;
 	}
@@ -170,10 +170,10 @@ public class MariskSoDCheck implements CarismaCheckWithID {
 	 * @return The List of the mapped SoD Entities
 	 */
 	private List<SoDEntity<Activity>> mapSoDActivities(final List<SoDEntity<String>> sodList) {
-		List<SoDEntity<Activity>> result = new ArrayList<SoDEntity<Activity>>();
+		List<SoDEntity<Activity>> result = new ArrayList<>();
 		
 		for (SoDEntity<String> obj : sodList) {
-			result.add(new SoDEntity<Activity>(
+			result.add(new SoDEntity<>(
 					new ArrayList<Activity>(obj.getSeparatedActivities1().size()), 
 					new ArrayList<Activity>(obj.getSeparatedActivities2().size())));
 		}
@@ -210,8 +210,8 @@ public class MariskSoDCheck implements CarismaCheckWithID {
 	 * @return The names of unmatched activity elements
 	 */
 	private static List<String> checkProperSoDMapping(final List<SoDEntity<Activity>> sodActivities, final List<SoDEntity<String>> sodNames) {
-		List<String> localActivityNames = new ArrayList<String>();
-		List<String> stringNames = new ArrayList<String>();
+		List<String> localActivityNames = new ArrayList<>();
+		List<String> stringNames = new ArrayList<>();
 		
 		for (SoDEntity<Activity> obj : sodActivities) {
 			for (Activity a : obj.getSeparatedActivities1()) {

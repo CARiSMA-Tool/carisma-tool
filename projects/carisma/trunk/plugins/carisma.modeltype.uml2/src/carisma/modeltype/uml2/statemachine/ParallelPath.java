@@ -34,7 +34,7 @@ public class ParallelPath {
 	/**
 	 * list with all the possible paths in it.
 	 */
-	private List<List<Element>> allParallelPaths = new ArrayList<List<Element>>();
+	private List<List<Element>> allParallelPaths = new ArrayList<>();
 	
 	/**
 	 * true if transitions should also be in the paths of a StateMachines.
@@ -44,7 +44,7 @@ public class ParallelPath {
 	/**
 	 *  list that is needed to merge the single paths in a parallelization.
 	 */
-	private List<List<Element>> mergeList = new ArrayList<List<Element>>();
+	private List<List<Element>> mergeList = new ArrayList<>();
 	
 	/**
 	 * element where the parallelization ends.
@@ -74,11 +74,11 @@ public class ParallelPath {
 	 */
 	public final List<List<Element>> getParallelPath(final Pseudostate forkState, final boolean includeTransitions) {
 		this.transitions = includeTransitions;
-		Map<Element, Element> map = new HashMap<Element, Element>();
+		Map<Element, Element> map = new HashMap<>();
 		
 		this.topState = forkState.getOwner().getOwner();
 		for (int i = 0; i < forkState.getOutgoings().size(); i++) {
-			List<Element> sl = new ArrayList<Element>();
+			List<Element> sl = new ArrayList<>();
 			sl.add(forkState);
 			if (includeTransitions) {
 				sl.add(forkState.getOutgoings().get(i));
@@ -108,7 +108,7 @@ public class ParallelPath {
 		if (acc == null) {
 			return;
 		}
-		Map<Element, Element> historyCopy = new HashMap<Element, Element>(history);
+		Map<Element, Element> historyCopy = new HashMap<>(history);
 		Element parent = acc.getOwner().getOwner();
 		boolean gone = false;
 		boolean way = false;
@@ -138,10 +138,10 @@ public class ParallelPath {
 				ParallelPath pWay = new ParallelPath();
 				List<List<Element>> t = pWay.getParallelPath((Pseudostate) acc, this.transitions);
 				for (int i = 0; i < t.size(); i++) {
-					List<Element> ll = new ArrayList<Element>(newList2);
+					List<Element> ll = new ArrayList<>(newList2);
 					ll.addAll(t.get(i));
 					for (int j = 0; j < ((Vertex) ll.get(ll.size() - 1)).getOutgoings().size(); j++) {
-						List<Element> newStart = new ArrayList<Element>(ll);
+						List<Element> newStart = new ArrayList<>(ll);
 						newStart.add(((Vertex) ll.get(ll.size() - 1)).getOutgoings().get(j).getTarget());
 						start(newStart, historyCopy);
 					}
@@ -151,7 +151,7 @@ public class ParallelPath {
 				if (((Pseudostate) acc).getKind().equals(PseudostateKind.SHALLOW_HISTORY_LITERAL)) { 
 					if (historyCopy.containsKey(acc.getOwner().getOwner())) {
 						gone = true;
-						List<Element> newList = new ArrayList<Element>(newList2);
+						List<Element> newList = new ArrayList<>(newList2);
 						Element acc1 = historyCopy.get(acc.getOwner().getOwner());
 						if (!contains(newList, acc1)) {
 							newList.add(acc1);
@@ -164,7 +164,7 @@ public class ParallelPath {
 							gone = true;
 							Element first = getFirst(parent);
 							if (first != null) {
-								List<Element> newList = new ArrayList<Element>(newList2);
+								List<Element> newList = new ArrayList<>(newList2);
 								if (!contains(newList, first)) {
 									newList.add(first);
 									start(newList, historyCopy);
@@ -184,7 +184,7 @@ public class ParallelPath {
 								top = acc1;
 								acc1 = historyCopy.get(top);
 							}
-							List<Element> newList = new ArrayList<Element>(newList2);
+							List<Element> newList = new ArrayList<>(newList2);
 							if (!contains(newList, acc1)) {
 								newList.add(acc1);
 								start(newList, historyCopy);
@@ -196,7 +196,7 @@ public class ParallelPath {
 								gone = true;
 								Element first = getFirst(acc.getOwner().getOwner());
 								if (first != null) {
-									List<Element> newList = new ArrayList<Element>(newList2);
+									List<Element> newList = new ArrayList<>(newList2);
 									if (!contains(newList, first)) {
 										newList.add(first);
 										start(newList, historyCopy);
@@ -214,14 +214,14 @@ public class ParallelPath {
 			if (acc.getOwnedElements().size() > 0) {
 				Element first = getFirst(acc.getOwnedElements().get(0));
 				if (first != null) {
-					List<Element> newList = new ArrayList<Element>(newList2);
+					List<Element> newList = new ArrayList<>(newList2);
 					newList.add(first);
 					start(newList, historyCopy);
 				}
 			}
 			if (((Vertex) acc).getOutgoings().size() > 0) {
 				for (int i = 0; i < ((Vertex) acc).getOutgoings().size(); i++) {
-					List<Element> list1 = new ArrayList<Element>(newList2);
+					List<Element> list1 = new ArrayList<>(newList2);
 					if (this.transitions) {
 						list1.add(((Vertex) acc).getOutgoings().get(i));
 					}
@@ -280,7 +280,7 @@ public class ParallelPath {
 	 * @return list without loop at the end
 	 */
 	private static List<Element> cutList(final List<Element> cutted, final Element element) {
-		List<Element> returnList = new ArrayList<Element>(cutted);
+		List<Element> returnList = new ArrayList<>(cutted);
 		int count;
 		
 		count = returnList.size() - 1;
@@ -310,8 +310,8 @@ public class ParallelPath {
 		}
 		while (this.mergeList.size() > 0) {
 			acc = this.mergeList.get(this.mergeList.size() - 1).get(0);
-			List<List<Element>> newMerge1 = new ArrayList<List<Element>>();
-			List<List<Element>> newMerge2 = new ArrayList<List<Element>>(this.allParallelPaths);
+			List<List<Element>> newMerge1 = new ArrayList<>();
+			List<List<Element>> newMerge2 = new ArrayList<>(this.allParallelPaths);
 			for (int i = this.mergeList.size() - 1; i >= 0; i--) {
 				if (this.mergeList.get(i).get(0) == acc) {
 					newMerge1.add(this.mergeList.get(i));
@@ -321,7 +321,7 @@ public class ParallelPath {
 			this.allParallelPaths.clear();
 			for (int i = 0; i < newMerge1.size(); i++) {
 				for (int j = 0; j < newMerge2.size(); j++) {
-					List<Element> r = new ArrayList<Element>();
+					List<Element> r = new ArrayList<>();
 					startMerge(newMerge1.get(i), newMerge2.get(j), r);
 				}
 			}
@@ -344,20 +344,20 @@ public class ParallelPath {
 			this.allParallelPaths.add(parallelPrefix);
 		}
 		if ((path1.size() != 0) && (path2.size() == 0)) {
-			List<Element> res = new ArrayList<Element>(parallelPrefix);
+			List<Element> res = new ArrayList<>(parallelPrefix);
 			res.addAll(path1);
 			this.allParallelPaths.add(res);
 		}
 		if ((path1.size() == 0) && (path2.size() != 0)) {
-			List<Element> res = new ArrayList<Element>(parallelPrefix);
+			List<Element> res = new ArrayList<>(parallelPrefix);
 			res.addAll(path2);
 			this.allParallelPaths.add(res);
 		}
 		if ((path1.size() != 0) && (path2.size() != 0)) {
-			List<Element> newPrefix1 = new ArrayList<Element>(parallelPrefix);
-			List<Element> newPrefix2 = new ArrayList<Element>(parallelPrefix);
-			List<Element> newPath1 = new ArrayList<Element>(path1);
-			List<Element> newPath2 = new ArrayList<Element>(path2);
+			List<Element> newPrefix1 = new ArrayList<>(parallelPrefix);
+			List<Element> newPrefix2 = new ArrayList<>(parallelPrefix);
+			List<Element> newPath1 = new ArrayList<>(path1);
+			List<Element> newPath2 = new ArrayList<>(path2);
 			newPrefix1.add(newPath1.get(0));
 			newPath1.remove(0);
 			newPrefix2.add(newPath2.get(0));
@@ -417,7 +417,7 @@ public class ParallelPath {
 		String className1 = "org.eclipse.uml2.uml.internal.impl.PseudostateImpl";
 		String className2 = "org.eclipse.uml2.uml.internal.impl.FinalStateImpl";
 
-		Map<Element, Element> historyClone = new HashMap<Element, Element>(history);
+		Map<Element, Element> historyClone = new HashMap<>(history);
 		if (historyClone.containsKey(parentState) && !(current.getClass().getCanonicalName().equals(className1))) {
 			historyClone.remove(parentState);
 		}
@@ -428,7 +428,7 @@ public class ParallelPath {
 			Element nextParent = parentState;
 			while (nextParent != null) {
 			for (int i = 0; i < ((Vertex) nextParent).getOutgoings().size(); i++) {
-				List<Element> newList = new ArrayList<Element>(newList2);
+				List<Element> newList = new ArrayList<>(newList2);
 				Element acc1 = ((Vertex) nextParent).getOutgoings().get(i).getTarget();
 				if (this.transitions) {
 					newList.add(((Vertex) nextParent).getOutgoings().get(i));

@@ -80,7 +80,7 @@ public class CreateHelpDocumentCheck implements CarismaCheckWithID {
 				 */
 
 				List<org.eclipse.uml2.uml.Element> UMLelements = UMLHelper.getAllElements(content);
-				List<String> classes = new ArrayList<String>(30);
+				List<String> classes = new ArrayList<>(30);
 				int classesIndex = 0;
 				for (int m = 0; m < UMLelements.size(); m++) {
 					org.eclipse.uml2.uml.Element n = UMLelements.get(m);
@@ -106,9 +106,9 @@ public class CreateHelpDocumentCheck implements CarismaCheckWithID {
 				NodeList elements = doc.getElementsByTagName("commitment");
 
 
-				HashSet<String> roles = new HashSet<String>();
-				HashSet<String> nodeNames = new HashSet<String>();
-				HashSet<String> documents = new HashSet<String>();
+				HashSet<String> roles = new HashSet<>();
+				HashSet<String> nodeNames = new HashSet<>();
+				HashSet<String> documents = new HashSet<>();
 
 				for (int temp = 0; temp < elements.getLength(); temp++) {
 

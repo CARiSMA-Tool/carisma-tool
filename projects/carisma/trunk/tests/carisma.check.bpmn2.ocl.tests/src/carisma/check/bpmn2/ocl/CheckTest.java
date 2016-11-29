@@ -21,17 +21,21 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.junit.After;
 import org.junit.Test;
 
 import carisma.check.bpmn2.ocl.Check;
 import carisma.check.bpmn2.ocl.OclHelper;
 import carisma.check.tests.tools.DebugHost;
-import carisma.modeltype.bpmn2.BPMN2ModelLoader;
 import carisma.ocl.library.LibraryFactory;
 import carisma.ocl.library.OclExpression;
 
@@ -75,7 +79,7 @@ public class CheckTest {
 	/**
 	 * The bpmn2 model loader.
 	 */
-	private BPMN2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 	
 	/**
 	 * The bpmn2 model resource.
@@ -86,18 +90,13 @@ public class CheckTest {
 	 * Method to load a bpmn2 model.
 	 * The model will be stored in the modelres variable.  
 	 * @param testmodelname The model name
+	 * @throws IOException 
 	 */
-	public final void loadModel(final String testmodelname) {
-		File testmodelfile = new File(filepath + File.separator + testmodelname);
+	public final void loadModel(final String testmodelname) throws IOException {
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new BPMN2ModelLoader();
-		}
-		try {
-			modelres = ml.load(testmodelfile);
-		} catch (IOException e) {
-			fail(e.getMessage());
-		}
+		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		this.modelres.load(Collections.EMPTY_MAP);
 	}
 	
 	/**
@@ -107,7 +106,7 @@ public class CheckTest {
 	public final void regCheckPatternDefinition() {
 		String methodName = "getPatternDefinition";
 
-		final Method[] methods = check.getClass().getDeclaredMethods();
+		final Method[] methods = this.check.getClass().getDeclaredMethods();
 		int methodIndex = -1;
 		
 		for (int i = 0; i < methods.length; i++) {
@@ -116,19 +115,20 @@ public class CheckTest {
 				methods[i].setAccessible(true);
 				try {
 					assertTrue("pattern1,pattern2".equals(
-							(String) methods[i].invoke(check, 
+							methods[i].invoke(this.check, 
 									"<<pattern={pattern1,pattern2}>>")));
 
 					assertTrue("pattern1".equals(
-							(String) methods[i].invoke(check, 
+							methods[i].invoke(this.check, 
 									"<<pattern={pattern1}>>")));
 				} catch (Exception e) {
+					e.printStackTrace();
 					fail(INVOKE_ERROR);
 				}
 				break;
 			}
 		}
-		assertNotSame(-1, methodIndex);
+		assertNotSame(Integer.valueOf(-1), Integer.valueOf(methodIndex));
 	}
 	
 	/**
@@ -138,7 +138,7 @@ public class CheckTest {
 	public final void regCheckExtDefinition() {
 		String methodName = "getExtDefinition";
 
-		final Method[] methods = check.getClass().getDeclaredMethods();
+		final Method[] methods = this.check.getClass().getDeclaredMethods();
 		int methodIndex = -1;
 		
 		for (int i = 0; i < methods.length; i++) {
@@ -147,7 +147,7 @@ public class CheckTest {
 				methods[i].setAccessible(true);
 				try {
 					assertTrue("extension.bpmn2extension".equals(
-							(String) methods[i].invoke(check, 
+							methods[i].invoke(this.check, 
 									"<<ext=extension.bpmn2extension>>")));
 				} catch (Exception e) {
 					fail(INVOKE_ERROR);
@@ -155,7 +155,7 @@ public class CheckTest {
 				break;
 			}
 		}
-		assertNotSame(-1, methodIndex);
+		assertNotSame(Integer.valueOf(-1), Integer.valueOf(methodIndex));
 	}
 	
 	/**
@@ -165,7 +165,7 @@ public class CheckTest {
 	public final void regCheckIsExtDefinition() {
 		String methodName = "isExtDefinition";
 
-		final Method[] methods = check.getClass().getDeclaredMethods();
+		final Method[] methods = this.check.getClass().getDeclaredMethods();
 		int methodIndex = -1;
 		
 		for (int i = 0; i < methods.length; i++) {
@@ -173,19 +173,19 @@ public class CheckTest {
 				methodIndex = i;
 				methods[i].setAccessible(true);
 				try {
-					assertTrue(Boolean.TRUE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.TRUE.equals(methods[i].invoke(this.check, 
 							"<<ext=extension.bpmn2extension>>")));
-					assertTrue(Boolean.TRUE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.TRUE.equals(methods[i].invoke(this.check, 
 							"<<ext=a.b>>")));
-					assertTrue(Boolean.FALSE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.FALSE.equals(methods[i].invoke(this.check, 
 							"<<ext=.bpmn2extension>>")));
-					assertTrue(Boolean.FALSE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.FALSE.equals(methods[i].invoke(this.check, 
 							"<<ext=bpmn2extension>>")));
-					assertTrue(Boolean.FALSE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.FALSE.equals(methods[i].invoke(this.check, 
 							"<<extension.bpmn2extension>>")));
-					assertTrue(Boolean.FALSE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.FALSE.equals(methods[i].invoke(this.check, 
 							"ext=extension.bpmn2extension")));
-					assertTrue(Boolean.FALSE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.FALSE.equals(methods[i].invoke(this.check, 
 							"extension.bpmn2extension")));
 					
 				} catch (Exception e) {
@@ -194,7 +194,7 @@ public class CheckTest {
 				break;
 			}
 		}
-		assertNotSame(-1, methodIndex);
+		assertNotSame(Integer.valueOf(-1), Integer.valueOf(methodIndex));
 	}
 	
 	/**
@@ -204,7 +204,7 @@ public class CheckTest {
 	public final void regCheckIsPatternDefinition() {
 		String methodName = "isPatternDefinition";
 
-		final Method[] methods = check.getClass().getDeclaredMethods();
+		final Method[] methods = this.check.getClass().getDeclaredMethods();
 		int methodIndex = -1;
 		
 		for (int i = 0; i < methods.length; i++) {
@@ -212,19 +212,19 @@ public class CheckTest {
 				methodIndex = i;
 				methods[i].setAccessible(true);
 				try {
-					assertTrue(Boolean.TRUE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.TRUE.equals(methods[i].invoke(this.check, 
 							"<<pattern={pattern1,pattern2}>>")));
-					assertTrue(Boolean.TRUE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.TRUE.equals(methods[i].invoke(this.check, 
 							"<<pattern={1,2}>>")));
-					assertTrue(Boolean.TRUE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.TRUE.equals(methods[i].invoke(this.check, 
 							"<<pattern={pattern1}>>")));
-					assertTrue(Boolean.TRUE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.TRUE.equals(methods[i].invoke(this.check, 
 							"<<pattern={*}>>")));
-					assertTrue(Boolean.FALSE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.FALSE.equals(methods[i].invoke(this.check, 
 							"<<pattern={pattern1,}>>")));
-					assertTrue(Boolean.FALSE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.FALSE.equals(methods[i].invoke(this.check, 
 							"<<pattern={*,pattern1}>>")));
-					assertTrue(Boolean.FALSE.equals(methods[i].invoke(check, 
+					assertTrue(Boolean.FALSE.equals(methods[i].invoke(this.check, 
 							"<<pattern=pattern1>>")));
 					
 				} catch (Exception e) {
@@ -233,7 +233,7 @@ public class CheckTest {
 				break;
 			}
 		}
-		assertNotSame(-1, methodIndex);
+		assertNotSame(Integer.valueOf(-1), Integer.valueOf(methodIndex));
 	}
 	
 	/**
@@ -243,7 +243,7 @@ public class CheckTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public final void oclExpressions() {
-		EList<OclExpression> inputList = new BasicEList<OclExpression>();
+		EList<OclExpression> inputList = new BasicEList<>();
 		
 		OclExpression expr1 = LibraryFactory.eINSTANCE.createOclExpression();
 		expr1.setName(FIRST_EXPRESSION_NAME);
@@ -257,55 +257,55 @@ public class CheckTest {
 		inputList.add(expr3);
 		
 		String methodName = "getOclExpression";
-		final Method[] methods = check.getClass().getDeclaredMethods();
+		final Method[] methods = this.check.getClass().getDeclaredMethods();
 		int methodIndex = -1;
 		for (int i = 0; i < methods.length; i++) {
 			if (methods[i].getName().equals(methodName)) {
 				methodIndex = i;
 				methods[i].setAccessible(true);
 				try {
-					List<OclExpression> outputList = (ArrayList<OclExpression>) methods[i].invoke(check, inputList, "*");
+					List<OclExpression> outputList = (ArrayList<OclExpression>) methods[i].invoke(this.check, inputList, "*");
 					assertTrue(outputList.size() == 3);
 					assertTrue(outputList.get(0).getName().equals(FIRST_EXPRESSION_NAME));
 					assertTrue(outputList.get(1).getName().equals(SECOND_EXPRESSION_NAME));
 					assertTrue(outputList.get(2).getName().equals(THIRD_EXPRESSION_NAME));
 					
-					outputList = (ArrayList<OclExpression>) methods[i].invoke(check, inputList, "all");
+					outputList = (ArrayList<OclExpression>) methods[i].invoke(this.check, inputList, "all");
 					assertTrue(outputList.size() == 3);
 					assertTrue(outputList.get(0).getName().equals(FIRST_EXPRESSION_NAME));
 					assertTrue(outputList.get(1).getName().equals(SECOND_EXPRESSION_NAME));
 					assertTrue(outputList.get(2).getName().equals(THIRD_EXPRESSION_NAME));
 					
-					outputList = (ArrayList<OclExpression>) methods[i].invoke(check, inputList, "0");
+					outputList = (ArrayList<OclExpression>) methods[i].invoke(this.check, inputList, "0");
 					assertTrue(outputList.size() == 1);
 					assertTrue(outputList.get(0).getName().equals(FIRST_EXPRESSION_NAME));
 					
-					outputList = (ArrayList<OclExpression>) methods[i].invoke(check, inputList, "1");
+					outputList = (ArrayList<OclExpression>) methods[i].invoke(this.check, inputList, "1");
 					assertTrue(outputList.size() == 1);
 					assertTrue(outputList.get(0).getName().equals(SECOND_EXPRESSION_NAME));
 					
-					outputList = (ArrayList<OclExpression>) methods[i].invoke(check, inputList, "2");
+					outputList = (ArrayList<OclExpression>) methods[i].invoke(this.check, inputList, "2");
 					assertTrue(outputList.size() == 1);
 					assertTrue(outputList.get(0).getName().equals(THIRD_EXPRESSION_NAME));
 					
-					outputList = (ArrayList<OclExpression>) methods[i].invoke(check, inputList, FIRST_EXPRESSION_NAME);
+					outputList = (ArrayList<OclExpression>) methods[i].invoke(this.check, inputList, FIRST_EXPRESSION_NAME);
 					assertTrue(outputList.size() == 1);
 					assertTrue(outputList.get(0).getName().equals(FIRST_EXPRESSION_NAME));
 					
-					outputList = (ArrayList<OclExpression>) methods[i].invoke(check, inputList, SECOND_EXPRESSION_NAME);
+					outputList = (ArrayList<OclExpression>) methods[i].invoke(this.check, inputList, SECOND_EXPRESSION_NAME);
 					assertTrue(outputList.size() == 1);
 					assertTrue(outputList.get(0).getName().equals(SECOND_EXPRESSION_NAME));
 					
-					outputList = (ArrayList<OclExpression>) methods[i].invoke(check, inputList, THIRD_EXPRESSION_NAME);
+					outputList = (ArrayList<OclExpression>) methods[i].invoke(this.check, inputList, THIRD_EXPRESSION_NAME);
 					assertTrue(outputList.size() == 1);
 					assertTrue(outputList.get(0).getName().equals(THIRD_EXPRESSION_NAME));
 					
-					outputList = (ArrayList<OclExpression>) methods[i].invoke(check, inputList, "0,third");
+					outputList = (ArrayList<OclExpression>) methods[i].invoke(this.check, inputList, "0,third");
 					assertTrue(outputList.size() == 2);
 					assertTrue(outputList.get(0).getName().equals(FIRST_EXPRESSION_NAME));
 					assertTrue(outputList.get(1).getName().equals(THIRD_EXPRESSION_NAME));
 					
-					outputList = (ArrayList<OclExpression>) methods[i].invoke(check, inputList, "third,0");
+					outputList = (ArrayList<OclExpression>) methods[i].invoke(this.check, inputList, "third,0");
 					assertTrue(outputList.size() == 2);
 					assertTrue(outputList.get(0).getName().equals(THIRD_EXPRESSION_NAME));
 					assertTrue(outputList.get(1).getName().equals(FIRST_EXPRESSION_NAME));
@@ -316,14 +316,15 @@ public class CheckTest {
 				break;
 			}
 		}
-		assertNotSame(-1, methodIndex);
+		assertNotSame(Integer.valueOf(-1), Integer.valueOf(methodIndex));
 	}
 	
 	/**
 	 * Test will perform two OCL queries with a given model.
+	 * @throws IOException 
 	 */
 	@Test
-	public final void performQuery() {
+	public final void performQuery() throws IOException {
 		ArrayList<OclExpression> oclExpressions;
 		
 		OclExpression expr1 = LibraryFactory.eINSTANCE.createOclExpression();
@@ -335,13 +336,13 @@ public class CheckTest {
 		expr2.setQuery("false");
 		
 		loadModel("trade.bpmn2");
-		assertNotNull(modelres);
+		assertNotNull(this.modelres);
 		
 		Field oclHelperField;
 		try {
-			oclHelperField = check.getClass().getDeclaredField("oclHelper");
+			oclHelperField = this.check.getClass().getDeclaredField("oclHelper");
 			oclHelperField.setAccessible(true);
-			oclHelperField.set(check, new OclHelper());
+			oclHelperField.set(this.check, new OclHelper());
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}
@@ -349,26 +350,26 @@ public class CheckTest {
 		
 		Field analysisHostField;
 		try {
-			analysisHostField = check.getClass().getDeclaredField("host");
+			analysisHostField = this.check.getClass().getDeclaredField("host");
 			analysisHostField.setAccessible(true);
-			analysisHostField.set(check, new DebugHost(false));
+			analysisHostField.set(this.check, new DebugHost(false));
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}
 		
 		String methodName = "performQuery";
-		final Method[] methods = check.getClass().getDeclaredMethods();
+		final Method[] methods = this.check.getClass().getDeclaredMethods();
 		int methodIndex = -1;
 		for (int i = 0; i < methods.length; i++) {
 			if (methods[i].getName().equals(methodName)) {
 				methodIndex = i;
 				methods[i].setAccessible(true);
 				try {
-					oclExpressions = new ArrayList<OclExpression>();
+					oclExpressions = new ArrayList<>();
 					oclExpressions.add(expr1);
-					assertTrue(Boolean.TRUE.equals((Boolean) methods[i].invoke(check, modelres, oclExpressions)));
+					assertTrue(Boolean.TRUE.equals(methods[i].invoke(this.check, this.modelres, oclExpressions)));
 					oclExpressions.add(expr2);
-					assertTrue(Boolean.FALSE.equals((Boolean) methods[i].invoke(check, modelres, oclExpressions)));
+					assertTrue(Boolean.FALSE.equals(methods[i].invoke(this.check, this.modelres, oclExpressions)));
 					
 				} catch (Exception e) {
 					fail(INVOKE_ERROR);
@@ -376,6 +377,13 @@ public class CheckTest {
 				break;
 			}
 		}
-		assertNotSame(-1, methodIndex);
+		assertNotSame(Integer.valueOf(-1), Integer.valueOf(methodIndex));
+	}
+	
+	@After
+	public void unloadModels(){
+		for(Resource r : this.rs.getResources()){
+			r.unload();
+		}
 	}
 }

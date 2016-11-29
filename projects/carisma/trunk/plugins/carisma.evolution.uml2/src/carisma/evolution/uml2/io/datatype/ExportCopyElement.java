@@ -31,7 +31,7 @@ public class ExportCopyElement extends ExportAdditiveElement {
      * @param cpEle Element which is transformed.
      */
 	public ExportCopyElement(final CopyElement cpEle) {
-		this.changedValues = new HashMap<String, Object>(
+		this.changedValues = new HashMap<>(
 				cpEle.getChangedValues());
 		this.string = cpEle.toString();
 	}

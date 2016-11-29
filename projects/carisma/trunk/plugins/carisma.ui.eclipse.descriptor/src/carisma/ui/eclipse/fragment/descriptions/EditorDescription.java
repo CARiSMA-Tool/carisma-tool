@@ -114,7 +114,7 @@ public class EditorDescription extends AbstractEditorDescriptor {
 
 	@Override
 	public void setTypes(List<String> types) {
-		this.types = new ArrayList<String>(types);
+		this.types = new ArrayList<>(types);
 	}
 
 	public String getFileExtension() {

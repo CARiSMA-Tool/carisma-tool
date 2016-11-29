@@ -99,7 +99,7 @@ public class StereotypeApplication extends EObjectImpl {
 	 * @return - list of tagged values
 	 */
 	public List<TaggedValue> getTaggedValues() {
-		List<TaggedValue> tagValues = new ArrayList<TaggedValue>();
+		List<TaggedValue> tagValues = new ArrayList<>();
 		for (Property tag : this.stereotype.getAllAttributes()) {
 			if (!tag.isDerived()) {
 				String [] parts = tag.getName().split("_");

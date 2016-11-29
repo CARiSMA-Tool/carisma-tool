@@ -91,7 +91,7 @@ class MapEntryConverter implements Converter{
 	
 	@Override
 	public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
-	    Map<String, Object> map = new HashMap<String, Object>();
+	    Map<String, Object> map = new HashMap<>();
 	
 	    while (reader.hasMoreChildren()) {
 	        reader.moveDown();

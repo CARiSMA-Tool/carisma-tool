@@ -16,7 +16,7 @@ public class ModifierMap {
 	private Resource modelResource = null;
 
 	public ModifierMap(final Resource usedModelResource) {
-		this.wrappedMap = new HashMap<Delta, UMLModifier>();
+		this.wrappedMap = new HashMap<>();
 		this.modelResource = usedModelResource;
 	}
 	

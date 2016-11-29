@@ -12,7 +12,7 @@ import carisma.core.analysis.AnalysisHost;
 public class helper {
 
 	public static Collection<Dependency> makeCollection(Set<Dependency> a) {
-		Collection<Dependency> coll = new HashSet<Dependency>();
+		Collection<Dependency> coll = new HashSet<>();
 		coll.addAll(a);
 		return coll;
 	}

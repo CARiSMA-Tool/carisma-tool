@@ -59,20 +59,20 @@ public class DeltaFactory {
 	 */
 	private void init(final List<Change> changeList) {
 		if (this.changes == null) {
-			this.changes = new ArrayList<Change>();
+			this.changes = new ArrayList<>();
 		}
 		this.changes.clear();
 		if (this.notDependencies == null) {
-			this.notDependencies 	= new HashMap<Change, Set<Change>>();			
+			this.notDependencies 	= new HashMap<>();			
 		}
 		this.notDependencies.clear();
 
 		if (this.andDependencies == null) {
-			this.andDependencies 	= new HashMap<Change, Set<Change>>();			
+			this.andDependencies 	= new HashMap<>();			
 		}
 		this.andDependencies.clear();
 		if (this.reqDependencies == null) {
-			this.reqDependencies 	= new HashMap<Change, Set<Change>>();			
+			this.reqDependencies 	= new HashMap<>();			
 		}
 		this.reqDependencies.clear();
 
@@ -100,8 +100,8 @@ public class DeltaFactory {
 	 */
 	public final static List<Delta> getDeltas(final List<Change> changeList) {
 		
-		List<Delta> deltas = new ArrayList<Delta>();
-		List<DeltaElement> content = new ArrayList<DeltaElement>();
+		List<Delta> deltas = new ArrayList<>();
+		List<DeltaElement> content = new ArrayList<>();
 		
 		for (Change change : changeList) {
 			content.addAll(change.getAlternatives().get(0).getDeltaElements());
@@ -239,7 +239,7 @@ public class DeltaFactory {
 		}
 
 		// remove entries which don't have a Value which is also a Key. 
-		Map<Change, Set<Change>> remainingRequirementsMapping = new HashMap<Change, Set<Change>>();
+		Map<Change, Set<Change>> remainingRequirementsMapping = new HashMap<>();
 		for (Entry<Change, Set<Change>> entry : changeRequiredChangesMapping.entrySet()) {
 		    for (Change requiredChange : entry.getValue()) {
 		        if (changeRequiredChangesMapping.containsKey(requiredChange) 
@@ -346,7 +346,7 @@ public class DeltaFactory {
 	 * @param deltas Receives the combinations
 	 */
 	private void processConstraints(final List<Delta> deltas) {
-		List<Integer> toBeDeleted = new Stack<Integer>();
+		List<Integer> toBeDeleted = new Stack<>();
 		for (int i = deltas.size() - 1; i >= 0; i--) {
 			if (deltas.get(i).isEmpty()) {
 				toBeDeleted.add(Integer.valueOf(i));
@@ -383,7 +383,7 @@ public class DeltaFactory {
         /** 
 		 * A list of Changes which describes the order of the Alternatives used in the Deltas.
 		 */
-		private LinkedList<Change> order = new LinkedList<Change>();
+		private LinkedList<Change> order = new LinkedList<>();
 				
 		/** Public Constructor.
 		 * @param require 

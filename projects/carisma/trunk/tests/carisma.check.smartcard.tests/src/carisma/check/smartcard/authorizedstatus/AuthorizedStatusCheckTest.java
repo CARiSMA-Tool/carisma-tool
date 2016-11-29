@@ -41,8 +41,9 @@ public class AuthorizedStatusCheckTest {
 
 	private static final String filepath = "resources/models/";
 		
+	@SuppressWarnings("static-method")
 	@Test
-	public static void testAuthorizedStatus() {
+	public void testAuthorizedStatus() {
 		Model model = TestHelper.loadModel(AuthorizedStatusCheckTest.filepath, "testStateMachine.uml");
 		assertNotNull(model.getAppliedProfile("UMLsec"));
 		Package p1 = (Package) model.getMember("testStateMachine");

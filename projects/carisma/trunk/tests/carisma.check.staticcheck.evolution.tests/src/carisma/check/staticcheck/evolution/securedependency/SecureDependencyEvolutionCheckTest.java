@@ -20,9 +20,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Interface;
@@ -51,7 +55,6 @@ import carisma.evolution.SubstElement;
 import carisma.evolution.uml2.ModifierMap;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.TaggedValue;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 import carisma.profile.umlsec.UMLsec;
@@ -214,7 +217,7 @@ public class SecureDependencyEvolutionCheckTest {
 	
 	private String filepath = "resources/models/securedependency";
 	
-	private UML2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 	
 	Resource modelres = null;
 	
@@ -236,18 +239,11 @@ public class SecureDependencyEvolutionCheckTest {
 	private Dependency dep2 = null;
 	private Dependency dep5 = null;
 	
-	public final void loadModel(final String testmodelname) {
+	public final void loadModel(final String testmodelname) throws IOException {
 		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (this.ml == null) {
-			this.ml = new UML2ModelLoader();
-		}
-		try {
-			this.modelres = this.ml.load(testmodelfile);
-		} catch (IOException e) {
-			Logger.log(LogLevel.ERROR, "", e);
-			fail(e.getMessage());
-		}
+		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		this.modelres.load(Collections.EMPTY_MAP);
 	}
 	
 	public final static <T extends NamedElement> T getMember(Package model, String name, Class<T> clazz) {
@@ -280,12 +276,20 @@ public class SecureDependencyEvolutionCheckTest {
 	
 	public final void init(final String modelfilename) {
 		this.testHost = new TestHost();
-		this.deltas = new ArrayList<Delta>();
+		this.deltas = new ArrayList<>();
 		boolean isBasisModel = false;
 		if (modelfilename != null && (!modelfilename.isEmpty())) {
-			loadModel(modelfilename);
+			try {
+				loadModel(modelfilename);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
-			loadModel("SDE-basis.uml");
+			try {
+				loadModel("SDE-basis.uml");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			isBasisModel = true;
 		}
 		assertNotNull(this.modelres);
@@ -316,7 +320,7 @@ public class SecureDependencyEvolutionCheckTest {
 		addCall.addKeyValuePair(NAME, STANDARD_CALL);
 		addUsage3.addContainedElement(addCall);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(addUsage3);
 		this.deltas.add(new Delta(new ArrayList<String>(), elements));
 
@@ -337,7 +341,7 @@ public class SecureDependencyEvolutionCheckTest {
 			addCall.addKeyValuePair(NAME, STANDARD_CALL);
 			addUsage34.addContainedElement(addCall);
 			
-			List<DeltaElement> elements = new ArrayList<DeltaElement>();
+			List<DeltaElement> elements = new ArrayList<>();
 			elements.add(addUsage34);
 			this.deltas.add(new Delta(new ArrayList<String>(), elements));
 			
@@ -369,7 +373,7 @@ public class SecureDependencyEvolutionCheckTest {
 		addIntegrity.addKeyValuePair(NAME, "UMLsec::integrity");
 		addUsage34.addContainedElement(addIntegrity);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(addUsage34);
 		this.deltas.add(new Delta(elements));
 
@@ -402,7 +406,7 @@ public class SecureDependencyEvolutionCheckTest {
 		setIntegrity.addKeyValuePair(VALUE, "op4()");
 		addCritical.addContainedElement(setIntegrity);
 
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(addUsage34);
 		elements.add(addCritical);
 		this.deltas.add(new Delta(elements));
@@ -422,7 +426,7 @@ public class SecureDependencyEvolutionCheckTest {
 		setIntegrity.addKeyValuePair(VALUE, OP5);
 		addCritical.addContainedElement(setIntegrity);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(addCritical);
 		this.deltas.add(new Delta(elements));
 		
@@ -450,7 +454,7 @@ public class SecureDependencyEvolutionCheckTest {
 		setIntegrity2.addKeyValuePair(VALUE, OP5);
 		addCritical2.addContainedElement(setIntegrity2);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(addCritical);
 		elements.add(addCritical2);
 		this.deltas.add(new Delta(elements));
@@ -482,7 +486,7 @@ public class SecureDependencyEvolutionCheckTest {
 		AddElement addIntegrity = new AddElement(this.dep5, UMLPackage.eINSTANCE.getStereotype(), null);
 		addIntegrity.addKeyValuePair(NAME, "UMLsec::integrity");
 
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(addCritical);
 		elements.add(addCritical2);
 		elements.add(addIntegrity);
@@ -500,7 +504,7 @@ public class SecureDependencyEvolutionCheckTest {
 		addIntegrityValue.addKeyValuePair(NAME, INTEGRITY);
 		addIntegrityValue.addKeyValuePair(VALUE, OP2A);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(addIntegrityValue);
 		this.deltas.add(new Delta(elements));
 		
@@ -516,7 +520,7 @@ public class SecureDependencyEvolutionCheckTest {
 		addIntegrityValue.addKeyValuePair(NAME, INTEGRITY);
 		addIntegrityValue.addKeyValuePair(VALUE, "op2b()");
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(addIntegrityValue);
 		this.deltas.add(new Delta(elements));
 
@@ -530,7 +534,7 @@ public class SecureDependencyEvolutionCheckTest {
 		init(null);
 		DelElement delDep1 = new DelElement(this.dep1);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(delDep1);
 		this.deltas.add(new Delta(elements));
 		
@@ -543,7 +547,7 @@ public class SecureDependencyEvolutionCheckTest {
 		init(null);
 		DelElement delSupplier2 = new DelElement(this.supplier2);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(delSupplier2);
 		this.deltas.add(new Delta(elements));
 		
@@ -557,7 +561,7 @@ public class SecureDependencyEvolutionCheckTest {
 		init(null);
 		DelElement delClient1 = new DelElement(this.client1);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(delClient1);
 		this.deltas.add(new Delta(elements));
 		
@@ -575,7 +579,7 @@ public class SecureDependencyEvolutionCheckTest {
 		StereotypeApplication secrecyApp = UMLHelper.getStereotypeApplication(this.dep1, "secrecy");
 		DelElement delApp = new DelElement(secrecyApp);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(delApp);
 		this.deltas.add(new Delta(elements));
 		
@@ -591,7 +595,7 @@ public class SecureDependencyEvolutionCheckTest {
 		TaggedValue secrecyTagValue = criticalApp.getTaggedValue("secrecy");
 		DelElement delTagValue = new DelElement(secrecyTagValue);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(delTagValue);
 		this.deltas.add(new Delta(elements));
 		
@@ -606,7 +610,7 @@ public class SecureDependencyEvolutionCheckTest {
 		StereotypeApplication criticalApp = UMLHelper.getStereotypeApplication(this.supplier1, CRITICAL);
 		DelElement delCritical = new DelElement(criticalApp);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(delCritical);
 		this.deltas.add(new Delta(elements));
 		
@@ -621,7 +625,7 @@ public class SecureDependencyEvolutionCheckTest {
 		StereotypeApplication criticalApp = UMLHelper.getStereotypeApplication(this.client1, CRITICAL);
 		DelElement delCritical = new DelElement(criticalApp);
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(delCritical);
 		this.deltas.add(new Delta(elements));
 		
@@ -638,7 +642,7 @@ public class SecureDependencyEvolutionCheckTest {
 		addHigh.addKeyValuePair(NAME, "UMLsec::high");
 		SubstElement substSecrecy = new SubstElement(secrecyApp, Arrays.asList(addHigh));
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(substSecrecy);
 		this.deltas.add(new Delta(elements));
 		
@@ -658,7 +662,7 @@ public class SecureDependencyEvolutionCheckTest {
 		addHighValue.addKeyValuePair(VALUE, "op2b()");
 		SubstElement substHighValues = new SubstElement(highTagValue, Arrays.asList(addHighValue));
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(substHighValues);
 		this.deltas.add(new Delta(elements));
 		
@@ -687,7 +691,7 @@ public class SecureDependencyEvolutionCheckTest {
 		newHighValue2.addKeyValuePair(VALUE, OP2A);
 		SubstElement substHighValues2 = new SubstElement(highValue2, Arrays.asList(newHighValue2));
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(addOp2a);
 		elements.add(substHighValues);
 		elements.add(substHighValues2);
@@ -711,7 +715,7 @@ public class SecureDependencyEvolutionCheckTest {
 		newHighValue.addKeyValuePair(VALUE, OP2A);
 		SubstElement substHighValues = new SubstElement(highValue, Arrays.asList(newHighValue));
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(addOp2a);
 		elements.add(substHighValues);
 		this.deltas.add(new Delta(elements));
@@ -737,7 +741,7 @@ public class SecureDependencyEvolutionCheckTest {
 		newHighValue.addKeyValuePair(VALUE, OP2A);
 		SubstElement substHighValues = new SubstElement(highValue, Arrays.asList(newHighValue));
 		
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(addOp2a);
 		elements.add(delHighStereo);
 		elements.add(substHighValues);
@@ -746,5 +750,12 @@ public class SecureDependencyEvolutionCheckTest {
 		SecureDependencyEvolutionCheck sdec = new SecureDependencyEvolutionCheck();
 		assertFalse(sdec.perform(null, this.testHost));
 		assertEquals(2, sdec.getViolations().size());
+	}
+	
+	@After
+	public void unloadModel(){
+		for(Resource r : this.rs.getResources()){
+			r.unload();
+		}
 	}
 }

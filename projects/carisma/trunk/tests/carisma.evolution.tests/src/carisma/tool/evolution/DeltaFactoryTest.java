@@ -144,8 +144,9 @@ public class DeltaFactoryTest {
 	/** Test the private method hasCycles().
 	 *  Input is an empty Map<Change, Set<Change>> .
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void hasCycleEmptyInputTest() {
+	public final void hasCycleEmptyInputTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		try {
 			assertFalse(((Boolean) hasCycles.invoke(deltaFact, new HashMap<Change, Set<Change>>())).booleanValue());
@@ -161,15 +162,16 @@ public class DeltaFactoryTest {
 	 * SECOND_CHANGE <-> THIRD_CHANGE
 	 * THIRD_CHANGE  <-> FOURTH_CHANGE
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void hasCycleChainTest() {
+	public final void hasCycleChainTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		try {
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			Change third = new Change(THIRD_CHANGE);
 			Change fourth = new Change(FOURTH_CHANGE);
-			Map<Change, Set<Change>> andDependencies = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> andDependencies = new HashMap<>();
 			andDependencies.put(first, new HashSet<Change>());
 			andDependencies.put(second, new HashSet<Change>());
 			andDependencies.put(third, new HashSet<Change>());
@@ -191,15 +193,16 @@ public class DeltaFactoryTest {
 	 * FirstChange requires ThirdChange
 	 * ThirdChange requires FirstChange
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void hasCycleMultipleRequirementsTest() {
+	public final void hasCycleMultipleRequirementsTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		
 		Change first = new Change(FIRST_CHANGE);
 		Change second = new Change(SECOND_CHANGE);
 		Change third = new Change(THIRD_CHANGE);
 		
-		Map<Change, Set<Change>> andDependencies = new HashMap<Change, Set<Change>>();
+		Map<Change, Set<Change>> andDependencies = new HashMap<>();
 		andDependencies.put(first, new HashSet<Change>());
 		andDependencies.put(second, new HashSet<Change>());
 		andDependencies.put(third, new HashSet<Change>());
@@ -220,12 +223,13 @@ public class DeltaFactoryTest {
 	 * Cycle.
 	 * FristChange requires First
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void hasCycleSimpleCycleTest() {
+	public final void hasCycleSimpleCycleTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		try {
 			Change first = new Change(FIRST_CHANGE);
-			Map<Change, Set<Change>> andDependencies = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> andDependencies = new HashMap<>();
 			andDependencies.put(first, new HashSet<Change>());
 			andDependencies.get(first).add(first);
 	
@@ -244,15 +248,16 @@ public class DeltaFactoryTest {
 	 * ThirdChange requires FourthChange.
 	 * FourthChange requires FirstChange.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void hasCycleTest() {
+	public final void hasCycleTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		try {
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			Change third = new Change(THIRD_CHANGE);
 			Change fourth = new Change(FOURTH_CHANGE);
-			Map<Change, Set<Change>> andDependencies = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> andDependencies = new HashMap<>();
 			andDependencies.put(first, new HashSet<Change>());
 			andDependencies.put(second, new HashSet<Change>());
 			andDependencies.put(third, new HashSet<Change>());
@@ -273,14 +278,15 @@ public class DeltaFactoryTest {
 	/** Test the private method computeMaxNumberOfDeltas.
 	 *  Expected return value is an empty List of Changes.
 	 */
+	@SuppressWarnings("static-method")
 	@Test 
-	public final static void computeMaxNumberOfDeltasEmptyList() {
+	public final void computeMaxNumberOfDeltasEmptyList() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
 			Method method = deltaFactoryClass.getDeclaredMethod("computeMaxNumberOfDeltas", List.class);
 			method.setAccessible(true);
-			List<Change> changes = new ArrayList<Change>();
+			List<Change> changes = new ArrayList<>();
 			
 			Integer number = (Integer) method.invoke(deltaFact, changes);
 			assertEquals(0,  number.intValue());
@@ -294,8 +300,9 @@ public class DeltaFactoryTest {
 	/** Test the private method computeMaxNumberOfDeltas.
 	 *  3 Changes: two with 4 alternatives and one with 1 alternative.
 	 */
+	@SuppressWarnings("static-method")
 	@Test 
-	public final static void computeMaxNumberOfDeltasInputList() {
+	public final void computeMaxNumberOfDeltasInputList() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -303,7 +310,7 @@ public class DeltaFactoryTest {
 			method.setAccessible(true);
 			
 			//---------Initializing test-data------------------//
-			List<Change> changes = new ArrayList<Change>();
+			List<Change> changes = new ArrayList<>();
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			Change third = new Change(THIRD_CHANGE);
@@ -351,12 +358,13 @@ public class DeltaFactoryTest {
 	/** Tests the private method processConstraints.
 	 * Input: Empty List 
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void processConstraintsEmptyList() {
+	public final void processConstraintsEmptyList() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
-			List<Delta> deltas = new ArrayList<Delta>();
+			List<Delta> deltas = new ArrayList<>();
 			Method method = deltaFactoryClass.getDeclaredMethod(PROCESS_CONSTRAINTS, List.class);
 			method.setAccessible(true);
 			method.invoke(deltaFact, deltas);
@@ -370,8 +378,9 @@ public class DeltaFactoryTest {
 	 * Input: List contains one AND Constraint
 	 * Return: empty List since the one Delta is not in compliance with the Constraint.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void processConstraintsSimpleANDListFail() {
+	public final void processConstraintsSimpleANDListFail() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -379,22 +388,22 @@ public class DeltaFactoryTest {
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			
-			List<String> changeIDList = new ArrayList<String>();
+			List<String> changeIDList = new ArrayList<>();
 			changeIDList.add(first.getRef());
 			
 			DelElement delEle = new DelElement(new TargetMock(DELE_TARGET_NAME));
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 			deltaElements.add(delEle);
 			Delta fail = new Delta(changeIDList, deltaElements);
 			
 			Field andDependencies = deltaFactoryClass.getDeclaredField(AND_DEPENDENCIES);
 			andDependencies.setAccessible(true);
-			Map<Change, Set<Change>> dependen = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> dependen = new HashMap<>();
 			dependen.put(first, new HashSet<Change>());
 			dependen.get(first).add(second);
 			
 			andDependencies.set(deltaFact, dependen);
-			List<Delta> deltas = new ArrayList<Delta>();
+			List<Delta> deltas = new ArrayList<>();
 			deltas.add(fail);
 			assertEquals(1, deltas.size());
 			Method method = deltaFactoryClass.getDeclaredMethod(PROCESS_CONSTRAINTS, List.class);
@@ -411,8 +420,9 @@ public class DeltaFactoryTest {
 	 * Input: List contains one AND Constraint
 	 * Return: unchange list of Deltas
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void processConstraintsSimpleANDListMatch() {
+	public final void processConstraintsSimpleANDListMatch() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -420,25 +430,25 @@ public class DeltaFactoryTest {
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			
-			List<String> changeIDList = new ArrayList<String>();
+			List<String> changeIDList = new ArrayList<>();
 			changeIDList.add(first.getRef());
 			changeIDList.add(second.getRef());
 
 			DelElement delEle = new DelElement(new TargetMock(DELE_TARGET_NAME));
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 			deltaElements.add(delEle);
 			Delta fail = new Delta(changeIDList, deltaElements);
 			
 			Field andDependencies = deltaFactoryClass.getDeclaredField(AND_DEPENDENCIES);
 			andDependencies.setAccessible(true);
-			Map<Change, Set<Change>> dependen = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> dependen = new HashMap<>();
 			dependen.put(first, new HashSet<Change>());
 			dependen.get(first).add(second);
 			dependen.put(second, new HashSet<Change>());
 			dependen.get(second).add(first);
 			
 			andDependencies.set(deltaFact, dependen);
-			List<Delta> deltas = new ArrayList<Delta>();
+			List<Delta> deltas = new ArrayList<>();
 			deltas.add(fail);
 			assertEquals(1, deltas.size());
 			
@@ -458,8 +468,9 @@ public class DeltaFactoryTest {
 	 * Input: List contains one NOT Constraint
 	 * Return: empty List since the one Delta is not in compliance with the Constraint.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void processConstraintsSimpleNOTListFail() {
+	public final void processConstraintsSimpleNOTListFail() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -467,23 +478,23 @@ public class DeltaFactoryTest {
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			
-			List<String> changeIDList = new ArrayList<String>();
+			List<String> changeIDList = new ArrayList<>();
 			changeIDList.add(first.getRef());
 			changeIDList.add(second.getRef());
 			
 			DelElement delEle = new DelElement(new TargetMock(DELE_TARGET_NAME));
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 			deltaElements.add(delEle);
 			Delta fail = new Delta(changeIDList, deltaElements);
 			
 			Field notDependencies = deltaFactoryClass.getDeclaredField(NOT_DEPENDENCIES);
 			notDependencies.setAccessible(true);
-			Map<Change, Set<Change>> dependen = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> dependen = new HashMap<>();
 			dependen.put(first, new HashSet<Change>());
 			dependen.get(first).add(second);
 			
 			notDependencies.set(deltaFact, dependen);
-			List<Delta> deltas = new ArrayList<Delta>();
+			List<Delta> deltas = new ArrayList<>();
 			deltas.add(fail);
 			assertEquals(1, deltas.size());
 			Method method = deltaFactoryClass.getDeclaredMethod(PROCESS_CONSTRAINTS, List.class);
@@ -501,8 +512,9 @@ public class DeltaFactoryTest {
 	 * Input: List contains one NOT Constraint
 	 * Return: unchange list of Deltas
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void processConstraintsSimpleNOTListMatch() {
+	public final void processConstraintsSimpleNOTListMatch() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -510,22 +522,22 @@ public class DeltaFactoryTest {
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			
-			List<String> changeIDList = new ArrayList<String>();
+			List<String> changeIDList = new ArrayList<>();
 			changeIDList.add(first.getRef());
 			
 			DelElement delEle = new DelElement(new TargetMock(DELE_TARGET_NAME));
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 			deltaElements.add(delEle);
 			Delta fail = new Delta(changeIDList, deltaElements);
 			
 			Field notDependencies = deltaFactoryClass.getDeclaredField(NOT_DEPENDENCIES);
 			notDependencies.setAccessible(true);
-			Map<Change, Set<Change>> dependen = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> dependen = new HashMap<>();
 			dependen.put(first, new HashSet<Change>());
 			dependen.get(first).add(second);
 			
 			notDependencies.set(deltaFact, dependen);
-			List<Delta> deltas = new ArrayList<Delta>();
+			List<Delta> deltas = new ArrayList<>();
 			deltas.add(fail);
 			assertEquals(1, deltas.size());
 			Method method = deltaFactoryClass.getDeclaredMethod(PROCESS_CONSTRAINTS, List.class);
@@ -544,8 +556,9 @@ public class DeltaFactoryTest {
 	 * Input: List contains one REQ Constraint
 	 * Return: empty List since the one Delta is not in compliance with the Constraint.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void processConstraintsSimpleREQListFail() {
+	public final void processConstraintsSimpleREQListFail() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -553,22 +566,22 @@ public class DeltaFactoryTest {
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			
-			List<String> changeIDList = new ArrayList<String>();
+			List<String> changeIDList = new ArrayList<>();
 			changeIDList.add(first.getRef());
 			
 			DelElement delEle = new DelElement(new TargetMock(DELE_TARGET_NAME));
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 			deltaElements.add(delEle);
 			Delta fail = new Delta(changeIDList, deltaElements);
 			
 			Field andDependencies = deltaFactoryClass.getDeclaredField("reqDependencies");
 			andDependencies.setAccessible(true);
-			Map<Change, Set<Change>> dependen = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> dependen = new HashMap<>();
 			dependen.put(first, new HashSet<Change>());
 			dependen.get(first).add(second);
 			
 			andDependencies.set(deltaFact, dependen);
-			List<Delta> deltas = new ArrayList<Delta>();
+			List<Delta> deltas = new ArrayList<>();
 			deltas.add(fail);
 			assertEquals(1, deltas.size());
 			Method method = deltaFactoryClass.getDeclaredMethod(PROCESS_CONSTRAINTS, List.class);
@@ -586,8 +599,9 @@ public class DeltaFactoryTest {
 	 * Input: List contains one REQ Constraint
 	 * Return: unchange list of Deltas
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void processConstraintsSimpleREQListMatch() {
+	public final void processConstraintsSimpleREQListMatch() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
@@ -595,23 +609,23 @@ public class DeltaFactoryTest {
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			
-			List<String> changeIDList = new ArrayList<String>();
+			List<String> changeIDList = new ArrayList<>();
 			changeIDList.add(first.getRef());
 			changeIDList.add(second.getRef());
 			
 			DelElement delEle = new DelElement(new TargetMock(DELE_TARGET_NAME));
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 			deltaElements.add(delEle);
 			Delta fail = new Delta(changeIDList, deltaElements);
 			
 			Field reqDependencies = deltaFactoryClass.getDeclaredField("reqDependencies");
 			reqDependencies.setAccessible(true);
-			Map<Change, Set<Change>> dependen = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> dependen = new HashMap<>();
 			dependen.put(first, new HashSet<Change>());
 			dependen.get(first).add(second);
 			
 			reqDependencies.set(deltaFact, dependen);
-			List<Delta> deltas = new ArrayList<Delta>();
+			List<Delta> deltas = new ArrayList<>();
 			deltas.add(fail);
 			assertEquals(1, deltas.size());
 			Method method = deltaFactoryClass.getDeclaredMethod(PROCESS_CONSTRAINTS, List.class);
@@ -633,8 +647,9 @@ public class DeltaFactoryTest {
 	 * 
 	 * FirstChange=AND(SecondChange, ThirdChange)
 	 */
+	@SuppressWarnings("static-method")
 	@Test 
-	public final static void processConstraintsAndList() {
+	public final void processConstraintsAndList() {
 		try {
 			//-------- create test-data ----------//
 			Change first = new Change(FIRST_CHANGE);
@@ -646,7 +661,7 @@ public class DeltaFactoryTest {
 			Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 			Field andDependencies = deltaFactoryClass.getDeclaredField(AND_DEPENDENCIES);
 			andDependencies.setAccessible(true);
-			Map<Change, Set<Change>> dependen = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> dependen = new HashMap<>();
 			dependen.put(first, new HashSet<Change>());
 			dependen.get(first).add(second);
 			dependen.get(first).add(third);
@@ -674,7 +689,7 @@ public class DeltaFactoryTest {
 	 * @return a List of Deltas.
 	 */
 	private static List<Delta> createTestDataForConstraintsAndListTest(final Change first, final Change second, final Change third) {
-		List<Change> changes = new ArrayList<Change>();
+		List<Change> changes = new ArrayList<>();
 		EClass someMetaclass = null;
 		try {
 			someMetaclass = UMLHelper.getMetaClass("Stereotype");
@@ -711,9 +726,9 @@ public class DeltaFactoryTest {
 		changes.add(second);
 		changes.add(third);
 		
-		List<DeltaElement> content = new ArrayList<DeltaElement>();
-		List<Delta> deltas = new ArrayList<Delta>();
-		List<String> changeIDs = new ArrayList<String>();
+		List<DeltaElement> content = new ArrayList<>();
+		List<Delta> deltas = new ArrayList<>();
+		List<String> changeIDs = new ArrayList<>();
 		
 		content.addAll(firstA.getDeltaElements());
 		content.addAll(secondA.getDeltaElements());
@@ -822,15 +837,15 @@ public class DeltaFactoryTest {
 	/** Test the private method parseConstraints.
 	 *  Empty input.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "static-method" })
 	@Test
-	public final static void parseConstraintsEmptyInputTest() {
+	public final void parseConstraintsEmptyInputTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
 			Method method = deltaFactoryClass.getDeclaredMethod(PARSE_CONSTRAINTS);
 			method.setAccessible(true);
-			List<Change> changes = new ArrayList<Change>();
+			List<Change> changes = new ArrayList<>();
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			Change third = new Change(THIRD_CHANGE);
@@ -866,15 +881,16 @@ public class DeltaFactoryTest {
 	 * First=AND(Second,Third)
 	 * Third=AND(First,Second,Fourth)
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void parseConstraintsAndInputTest() {
+	public final void parseConstraintsAndInputTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		
 		try {
 			Method method = deltaFactoryClass.getDeclaredMethod(PARSE_CONSTRAINTS);
 			method.setAccessible(true);
-			List<Change> changes = new ArrayList<Change>();
+			List<Change> changes = new ArrayList<>();
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			Change third = new Change(THIRD_CHANGE);
@@ -940,14 +956,15 @@ public class DeltaFactoryTest {
 	/** Test the private method parseConstraints.
 	 * First=NOT(Second,Third)
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void parseConstraintsNotInputTest() {
+	public final void parseConstraintsNotInputTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
 			Method method = deltaFactoryClass.getDeclaredMethod(PARSE_CONSTRAINTS);
 			method.setAccessible(true);
-			List<Change> changes = new ArrayList<Change>();
+			List<Change> changes = new ArrayList<>();
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			Change third = new Change(THIRD_CHANGE);
@@ -998,15 +1015,16 @@ public class DeltaFactoryTest {
 	 * Second=REQ(First)
 	 * Third=REQ(Second)
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void parseConstraintsReqInputTest() {
+	public final void parseConstraintsReqInputTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
 			Method method = deltaFactoryClass.getDeclaredMethod(PARSE_CONSTRAINTS);
 			method.setAccessible(true);
-			List<Change> changes = new ArrayList<Change>();
+			List<Change> changes = new ArrayList<>();
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			Change third = new Change(THIRD_CHANGE);
@@ -1057,14 +1075,15 @@ public class DeltaFactoryTest {
 	 * So by all means the ThirdChange has to be used before the FirstChange
 	 * and the SecondChange has to be used before the FourthChange.
 	 */	
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void sortChangesTest() {
+	public final void sortChangesTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
 			Method method = deltaFactoryClass.getDeclaredMethod("sortChanges");
 			method.setAccessible(true);
-			List<Change> changes = new ArrayList<Change>();
+			List<Change> changes = new ArrayList<>();
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			Change third = new Change(THIRD_CHANGE);
@@ -1076,7 +1095,7 @@ public class DeltaFactoryTest {
 			second.addConstraint(firstReqThird);
 			third.addConstraint(fourthReqSecond);
 			
-			Map<Change, Set<Change>> reqDependencies = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> reqDependencies = new HashMap<>();
 			reqDependencies.put(first, new HashSet<Change>());
 			reqDependencies.get(first).add(third);
 			
@@ -1132,20 +1151,21 @@ public class DeltaFactoryTest {
 	 * The Expected order of used Changes is:
 	 * SecondChange - FourthChange - ThirdChange - FirstChange
 	 */	
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void sortChangesChainTest() {
+	public final void sortChangesChainTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 		Class<? extends DeltaFactory> deltaFactoryClass = deltaFact.getClass();
 		try {
 			Method method = deltaFactoryClass.getDeclaredMethod("sortChanges");
 			method.setAccessible(true);
-			List<Change> changes = new ArrayList<Change>();
+			List<Change> changes = new ArrayList<>();
 			Change first = new Change(FIRST_CHANGE);
 			Change second = new Change(SECOND_CHANGE);
 			Change third = new Change(THIRD_CHANGE);
 			Change fourth = new Change(FOURTH_CHANGE);
 			
-			Map<Change, Set<Change>> reqDependencies = new HashMap<Change, Set<Change>>();
+			Map<Change, Set<Change>> reqDependencies = new HashMap<>();
 			reqDependencies.put(first, new HashSet<Change>());
 			reqDependencies.get(first).add(third);
 			
@@ -1190,8 +1210,9 @@ public class DeltaFactoryTest {
 	 * In Total there are 3 different Deltas possible, the output is expected to have 2 Deltas because
 	 * the Delta which uses none of the Changes shall be ignored.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void getDeltaSimpleTest() {
+	public final void getDeltaSimpleTest() {
 		//------TestDataCreation----------------------
 		EClass someMetaclass = null;
 		try {
@@ -1205,7 +1226,7 @@ public class DeltaFactoryTest {
 		AddElement firstADeltaEle = new AddElement(firstADeltaEleTarget, someMetaclass, null);
 		AddElement firstBDeltaEle = new AddElement(firstBDeltaEleTarget, someMetaclass, null);
 
-		List<Change> changes = new ArrayList<Change>();
+		List<Change> changes = new ArrayList<>();
 		Change first = new Change(FIRST_CHANGE);
 		
 		Alternative firstA = new Alternative();
@@ -1236,8 +1257,9 @@ public class DeltaFactoryTest {
 	 * In Total there are 12 different Deltas possible, the output is expected to have 11 Deltas because
 	 * the Delta which uses none of the Changes shall be ignored.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void getDeltaTest() {
+	public final void getDeltaTest() {
 		//------TestDataCreation----------------------
 		
 		//creating MetaClass for DeltaElements
@@ -1263,7 +1285,7 @@ public class DeltaFactoryTest {
 		AddElement secondCDeltaEle = new AddElement(secondCDeltaEleTarget, someMetaclass, null);
 		
 		//creating Changes
-		List<Change> changes = new ArrayList<Change>();
+		List<Change> changes = new ArrayList<>();
 		Change first = new Change(FIRST_CHANGE);		
 		Change second = new Change(SECOND_CHANGE);
 		

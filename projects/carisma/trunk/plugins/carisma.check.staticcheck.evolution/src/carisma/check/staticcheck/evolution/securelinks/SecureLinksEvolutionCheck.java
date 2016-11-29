@@ -135,18 +135,18 @@ public class SecureLinksEvolutionCheck implements CarismaCheckWithID {
 		private void init(final Delta d) {
 			this.deltaModifier = this.deltaModifiers.get(d);
 			if (this.processedDeltaElements == null) {
-				this.processedDeltaElements = new ArrayList<DeltaElement>();
+				this.processedDeltaElements = new ArrayList<>();
 			}
 			this.processedDeltaElements.clear();
 			if (this.errorMessages == null) {
-				this.errorMessages = new ArrayList<AnalysisMessage>();
+				this.errorMessages = new ArrayList<>();
 			}
 			this.errorMessages.clear();
 		}
 		
 		private boolean checkDeltas() {
 			boolean hasMaxSuccessfulDelta = false;
-			List<Delta> violatingEvolutions = new ArrayList<Delta>();
+			List<Delta> violatingEvolutions = new ArrayList<>();
 			for (Delta d : this.deltaList.getRemainingDeltas()) {
 				boolean deltaSuccessful = true;
 				checkDelta(d);
@@ -501,7 +501,7 @@ public class SecureLinksEvolutionCheck implements CarismaCheckWithID {
 			if (oldNodes.size() != 2) {
 				return false;
 			}
-			List<Node> newNodes = new ArrayList<Node>();
+			List<Node> newNodes = new ArrayList<>();
 			Node newNode1 = (Node) this.deltaModifier.getMapping().get(oldNodes.get(0));
 			Node newNode2 = (Node) this.deltaModifier.getMapping().get(oldNodes.get(1));
 			if (newNode1 == null || newNode2 == null) {

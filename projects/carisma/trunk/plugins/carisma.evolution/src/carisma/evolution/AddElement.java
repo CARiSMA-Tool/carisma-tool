@@ -47,8 +47,8 @@ public class AddElement extends AdditiveElement {
 			throw new IllegalArgumentException("Tried to initialize AddElement with null Metaclass!");
 		}
 		this.metaClass = newMetaClass;
-		this.values = new HashMap<String, Object>();
-		this.content = new ArrayList<AddElement>();
+		this.values = new HashMap<>();
+		this.content = new ArrayList<>();
 		this.parent = newParent;
 	}
 	
@@ -96,7 +96,7 @@ public class AddElement extends AdditiveElement {
 	 * @return - the set of all added elements
 	 */
 	public List<AddElement> getAllAddedElements() {
-		List<AddElement> allAddedElements = new ArrayList<AddElement>();
+		List<AddElement> allAddedElements = new ArrayList<>();
 		allAddedElements.add(this);
 		for (AddElement containedElem : this.content) {
 			allAddedElements.addAll(containedElem.getAllAddedElements());

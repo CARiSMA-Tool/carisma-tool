@@ -39,7 +39,7 @@ public class ExportAddElement extends ExportAdditiveElement {
 		public ExportAddElement(final AddElement addE) {
 			this.typename = addE.getMetaClass().getName();
             this.values = ExporterUtility.getValuesWithStringNull(addE.getValues());
-			this.content = new ArrayList<ExportAddElement>();
+			this.content = new ArrayList<>();
 			for (AddElement ele : addE.getContent()) {
 				this.content.add(new ExportAddElement(ele));
 			}

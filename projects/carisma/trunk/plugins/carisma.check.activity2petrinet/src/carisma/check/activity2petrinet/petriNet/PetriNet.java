@@ -59,9 +59,9 @@ public class PetriNet {
 	public PetriNet(final String id, final String type) {
 		this.setId(id);
 		this.setType(type);
-		this.arcs = new ArrayList<Arc>();
-		this.places = new ArrayList<Place>();
-		this.transitions = new ArrayList<Transition>();
+		this.arcs = new ArrayList<>();
+		this.places = new ArrayList<>();
+		this.transitions = new ArrayList<>();
 		this.placeCount = 0;
 		this.transCount = 0;
 	}
@@ -273,7 +273,7 @@ public class PetriNet {
 	}
 	
 	public final Collection<String> getInputPlaces(final String transitionName){
-		LinkedList<String> ret = new LinkedList<String>();
+		LinkedList<String> ret = new LinkedList<>();
 
 		for (Arc curArc : this.getArcs()) {
 			if (curArc.getTarget().equals(transitionName)) {
@@ -284,7 +284,7 @@ public class PetriNet {
 	}
 
 	public final Collection<String> getOutputPlaces(final String transitionName){
-		LinkedList<String> ret = new LinkedList<String>();
+		LinkedList<String> ret = new LinkedList<>();
 
 		for (Arc curArc : this.getArcs()) {
 			if (curArc.getSource().equals(transitionName)) {

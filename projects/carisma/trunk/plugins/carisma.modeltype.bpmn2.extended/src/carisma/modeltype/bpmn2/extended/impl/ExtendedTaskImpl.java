@@ -72,8 +72,8 @@ public class ExtendedTaskImpl extends TaskImpl implements ExtendedTask {
 	 */
 	protected ExtendedTaskImpl() {
 		super();
-		this.incomingConversationLinks = new ArrayList<ConversationLink>();
-		this.outgoingConversationLinks = new ArrayList<ConversationLink>();
+		this.incomingConversationLinks = new ArrayList<>();
+		this.outgoingConversationLinks = new ArrayList<>();
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class ExtendedTaskImpl extends TaskImpl implements ExtendedTask {
 	@Override
 	public EList<WorkItem> getWorkItem() {
 		if (this.workItem == null) {
-			this.workItem = new EObjectResolvingEList<WorkItem>(WorkItem.class, this, ExtendedPackage.EXTENDED_TASK__WORK_ITEM);
+			this.workItem = new EObjectResolvingEList<>(WorkItem.class, this, ExtendedPackage.EXTENDED_TASK__WORK_ITEM);
 		}
 		return this.workItem;
 	}

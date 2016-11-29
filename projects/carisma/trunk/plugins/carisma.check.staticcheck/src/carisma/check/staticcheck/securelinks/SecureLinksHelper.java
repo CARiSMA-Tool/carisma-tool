@@ -36,7 +36,7 @@ public final class SecureLinksHelper {
 	}
 	
 	public static Set<Dependency> getAllRelevantDependencies(final Package pkg) {
-		Set<Dependency> relevantDependencies = new HashSet<Dependency>();
+		Set<Dependency> relevantDependencies = new HashSet<>();
 		if (UMLsecUtil.hasStereotype(pkg, UMLsec.SECURE_LINKS)) {
 			relevantDependencies.addAll(UMLHelper.getAllElementsOfType(pkg, Dependency.class));
 		} else {
@@ -50,7 +50,7 @@ public final class SecureLinksHelper {
 	}
 	
 	public static Set<Dependency> getAllDependenciesWithRequirements(final Collection<Artifact> artifacts) {
-		Set<Dependency> requirementDependencies = new HashSet<Dependency>();
+		Set<Dependency> requirementDependencies = new HashSet<>();
 		for (Artifact arti : artifacts) {
 			requirementDependencies.addAll(getAllDependenciesWithRequirements(arti));
 		}
@@ -58,7 +58,7 @@ public final class SecureLinksHelper {
 	}
 	
 	public static Set<Dependency> getAllDependenciesWithRequirements(final Artifact artifact) {
-		Set<Dependency> requirementDependencies = new HashSet<Dependency>();
+		Set<Dependency> requirementDependencies = new HashSet<>();
 		for (Dependency dep : UMLDeploymentHelper.getAllDependencies(artifact)) {
 			if (hasSecureLinksRequirements(dep)) {
 				requirementDependencies.add(dep);
@@ -79,7 +79,7 @@ public final class SecureLinksHelper {
 	}
 	
 	public static Set<Stereotype> getAllRequirements(final Dependency dep) {
-		Set<Stereotype> allRequirements = new HashSet<Stereotype>();
+		Set<Stereotype> allRequirements = new HashSet<>();
 		for (Stereotype stereo : dep.getAppliedStereotypes()) {
 			if (isSecureLinksRequirement(stereo)) {
 				allRequirements.add(stereo);

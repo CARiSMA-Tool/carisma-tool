@@ -90,7 +90,7 @@ public class GuardedAccessCheck implements CarismaCheckWithID {
 		}
 		if (currentModel.getContents().get(0) instanceof Package) {
 			Package pack = (Package) currentModel.getContents().get(0);
-			this.guardingInformations = new HashMap<String, String>();
+			this.guardingInformations = new HashMap<>();
 			return guardedAccess(pack);
 		}
 		this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
@@ -276,7 +276,7 @@ public class GuardedAccessCheck implements CarismaCheckWithID {
 	private List<String> analyseGuardProperties(Constraint constraint) {
 		this.analysisHost.appendLineToReport("    Guards:");
 		
-		List<String> guardBodies = new ArrayList<String>();
+		List<String> guardBodies = new ArrayList<>();
 		
 		List<Element> guardList = constraint.allOwnedElements();
 		if (guardList != null && guardList.size() > 0) {

@@ -64,7 +64,7 @@ public class SingleOclChecker extends AbstractOclChecker {
 		this.analysisHost = host;
 		
 		//check parameters
-		List<CheckParameter> desiredParameters = new ArrayList<CheckParameter>();
+		List<CheckParameter> desiredParameters = new ArrayList<>();
 		desiredParameters.add(new StringParameter(
 				new CheckParameterDescriptor(PARAM_CONTEXT, "", "", ParameterType.STRING, true, "")));
 		desiredParameters.add(new StringParameter(
@@ -134,7 +134,7 @@ public class SingleOclChecker extends AbstractOclChecker {
 		
 		//list packages of model
 		TreeIterator<EObject> modelIterator = this.analysisHost.getAnalyzedModel().getAllContents();
-		Set<EPackage> pacSet = new HashSet<EPackage>();
+		Set<EPackage> pacSet = new HashSet<>();
 		
 		while (modelIterator.hasNext()) {
 			tmpObject = modelIterator.next();

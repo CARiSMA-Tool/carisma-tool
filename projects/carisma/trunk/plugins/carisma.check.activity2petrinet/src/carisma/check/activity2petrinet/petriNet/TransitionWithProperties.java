@@ -10,7 +10,7 @@ import java.util.HashMap;
  */
 
 public class TransitionWithProperties extends Transition {
-	private HashMap<String, Object> properties = new HashMap<String, Object>();
+	private HashMap<String, Object> properties = new HashMap<>();
 
 	public HashMap<String, Object> getProperties() {
 		return this.properties;

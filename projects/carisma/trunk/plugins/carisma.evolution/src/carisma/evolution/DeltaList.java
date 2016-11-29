@@ -22,12 +22,12 @@ public class DeltaList {
 	
 	public void init() {
 		if (this.allDeltas == null) {
-			this.allDeltas = new ArrayList<Delta>();			
+			this.allDeltas = new ArrayList<>();			
 		} else {
 			this.allDeltas.clear();
 		}
 		if (this.unsuccessfulDeltas == null) {
-			this.unsuccessfulDeltas = new ArrayList<Delta>();
+			this.unsuccessfulDeltas = new ArrayList<>();
 		} else {
 			this.unsuccessfulDeltas.clear();
 		}
@@ -62,7 +62,7 @@ public class DeltaList {
 	}
 	
 	public List<Delta> getRemainingDeltas() {
-		List<Delta> remainingDeltas = new ArrayList<Delta>();
+		List<Delta> remainingDeltas = new ArrayList<>();
 		remainingDeltas.addAll(this.allDeltas);
 		remainingDeltas.removeAll(this.unsuccessfulDeltas);
 		return Collections.unmodifiableList(remainingDeltas);

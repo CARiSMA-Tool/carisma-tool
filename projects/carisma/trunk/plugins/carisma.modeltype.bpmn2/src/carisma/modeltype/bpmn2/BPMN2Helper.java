@@ -66,7 +66,7 @@ public final class BPMN2Helper {
      */
 	@SuppressWarnings("unchecked")
 	public static <T> List<T> getAllElementsOfType(final DocumentRoot root, final Class<T> type) {
-		ArrayList<T> result = new ArrayList<T>();
+		ArrayList<T> result = new ArrayList<>();
 		TreeIterator<EObject> iterator = root.eAllContents();
 		while (iterator.hasNext()) {
 			EObject element = iterator.next();

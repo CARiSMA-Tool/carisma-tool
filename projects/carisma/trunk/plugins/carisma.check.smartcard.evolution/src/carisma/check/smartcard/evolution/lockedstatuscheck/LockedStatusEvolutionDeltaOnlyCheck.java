@@ -68,7 +68,7 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 	
 	/** Key unqualified Name; Value List of states with this name.
 	*/
-	private Map<String, List<State>> stateMapping = new HashMap<String, List<State>>();
+	private Map<String, List<State>> stateMapping = new HashMap<>();
 	
 	/**
 	 * Boolean whether to remove the violated models or not.
@@ -78,8 +78,8 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 	private Boolean removeViolations = Boolean.TRUE;
 	
 	public LockedStatusEvolutionDeltaOnlyCheck() {
-		this.processedStates = new HashMap<State, DeltaElement>();
-		this.errorMessages = new ArrayList<AnalysisMessage>();
+		this.processedStates = new HashMap<>();
+		this.errorMessages = new ArrayList<>();
 	}
 	
 	/**
@@ -88,8 +88,8 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 	 * @param removeViolations false if  the violating changes should remain, false otherwise
 	 */
 	public LockedStatusEvolutionDeltaOnlyCheck(final Boolean removeViolations) {
-		this.processedStates = new HashMap<State, DeltaElement>();
-		this.errorMessages = new ArrayList<AnalysisMessage>();
+		this.processedStates = new HashMap<>();
+		this.errorMessages = new ArrayList<>();
 		if (removeViolations != null) {
 			this.removeViolations = removeViolations;
 		}
@@ -152,7 +152,7 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 	private boolean checkDeltas() {
 		boolean hasMaxSuccessfulDelta = false;
 		int deltaCounter = 1;
-		List<Delta> violatingEvolutions = new ArrayList<Delta>();
+		List<Delta> violatingEvolutions = new ArrayList<>();
 		for (Delta d : this.deltaList.getRemainingDeltas()) {
 			this.activeDelta = d;
 			boolean deltaSuccessful = true;
@@ -182,15 +182,15 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 	
 	private void init() {
 		if (this.errorMessages == null) {
-			this.errorMessages = new ArrayList<AnalysisMessage>();
+			this.errorMessages = new ArrayList<>();
 		}
 		this.errorMessages.clear();
 		if (this.processedDeltaElements == null) {
-			this.processedDeltaElements = new ArrayList<DeltaElement>();
+			this.processedDeltaElements = new ArrayList<>();
 		}
 		this.processedDeltaElements.clear();
 		if (this.processedStates == null) {
-			this.processedStates = new HashMap<State, DeltaElement>();
+			this.processedStates = new HashMap<>();
 		}
 		this.processedStates.clear();
 	}
@@ -356,14 +356,14 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 	private void processLockedStatusAddition(final AddElement addElement) {
 		State lockedState = (State) addElement.getTarget();
 		if (lockedState != null && !this.processedStates.containsKey(lockedState)) {
-			List<Transition> remainingOutgoingTransitions = new ArrayList<Transition>();
+			List<Transition> remainingOutgoingTransitions = new ArrayList<>();
 			remainingOutgoingTransitions.addAll(lockedState.getOutgoings());
 			for (Transition outgoingTransition: lockedState.getOutgoings()) {
 				if (this.activeDelta.removes(outgoingTransition)) {
 					remainingOutgoingTransitions.remove(outgoingTransition);
 				}
 			}
-			List<AddElement> newOutgoingTransitions = new ArrayList<AddElement>();
+			List<AddElement> newOutgoingTransitions = new ArrayList<>();
 			EClass transitionMetaclass = null;
 			try {
 				transitionMetaclass = UMLHelper.getMetaClass("Transition");

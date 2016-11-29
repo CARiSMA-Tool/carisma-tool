@@ -653,14 +653,14 @@ public class UMLModifierElementFactory {
 						String newElement = oldNew[1];
 						Element newRealElement = UMLHelper.getElementByName(model, newElement);
 						if (oldRealElement != null && newRealElement != null) {
-							Map<Element, Element> oldNewElement = new HashMap<Element, Element>();
+							Map<Element, Element> oldNewElement = new HashMap<>();
 							oldNewElement.put(oldRealElement, newRealElement);
 							return oldNewElement;
 						}
 					}
 				}
 				if (key.equals(VALUE)) {
-					List<String> values = new ArrayList<String>();
+					List<String> values = new ArrayList<>();
 					values.addAll(Arrays.asList(((String) value).split(VALUE_SEPARATOR)));
 					return values;
 				}

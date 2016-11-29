@@ -39,9 +39,9 @@ public class SubstElement extends AdditiveElement {
 			final EObject newTarget,
 			final List<AddElement> theSubstitutes) {
 		super(newTarget);
-		this.components = new ArrayList<AddElement>();
+		this.components = new ArrayList<>();
 		this.components.addAll(theSubstitutes);
-		this.accompanyingDeletions = new ArrayList<EObject>();
+		this.accompanyingDeletions = new ArrayList<>();
 	}
 	
 	public List<EObject> getAccompanyingDeletions() {
@@ -97,7 +97,7 @@ public class SubstElement extends AdditiveElement {
 	}
 	
 	public List<AddElement> getAllAddedElements() {
-		List<AddElement> allAddedElements = new ArrayList<AddElement>();
+		List<AddElement> allAddedElements = new ArrayList<>();
 		for (AddElement addElem : this.components) {
 			allAddedElements.addAll(addElem.getAllAddedElements());
 		}

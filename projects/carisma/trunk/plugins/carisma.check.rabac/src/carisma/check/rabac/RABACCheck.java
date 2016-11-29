@@ -177,7 +177,7 @@ public class RABACCheck implements CarismaCheckWithID {
 
 				// save paths of all StateMachines
 				StateMachinePaths pathFinder = new StateMachinePaths();
-				List<List<List<Element>>> paths = new ArrayList<List<List<Element>>>();
+				List<List<List<Element>>> paths = new ArrayList<>();
 				for (StateMachine m : stateMachines) {
 					paths.add(pathFinder.getPaths(m, host, true));
 				}
@@ -192,7 +192,7 @@ public class RABACCheck implements CarismaCheckWithID {
 				for (String u : this.sessions.keySet()) {
 					host.appendLineToReport("User " + u + " has access to the following protected items:");
 
-					Set<Transition> validTransitions = new HashSet<Transition>();
+					Set<Transition> validTransitions = new HashSet<>();
 					// verify constraints based on all elements which contain a
 					// CHECK_ID stereotype
 					for (Element e : abacRequire) {
@@ -235,7 +235,7 @@ public class RABACCheck implements CarismaCheckWithID {
 					// choose state machine paths with transitions that have
 					// passed CHECK_ID
 					for (List<List<Element>> m : paths) {
-						Set<Element> states = new HashSet<Element>();
+						Set<Element> states = new HashSet<>();
 						boolean printMachine = true;
 						for (List<Element> p : m) {
 							boolean printPath = false;
@@ -264,7 +264,7 @@ public class RABACCheck implements CarismaCheckWithID {
 								}
 
 								host.appendToReport("\t\t");
-								states = new HashSet<Element>();
+								states = new HashSet<>();
 								// print the path by its state names
 								for (Element e : p) {
 									if (validTransitions.contains(e)) {
@@ -318,9 +318,9 @@ public class RABACCheck implements CarismaCheckWithID {
 				"\\(" + (side == 0 && match != null ? match : validNames) + ","
 						+ (side == 1 && match != null ? match : validNames) + "+\\)").matcher(tag);
 		if (match != null) {
-			side = side ^ 1;
+			side = side ^ 1; //TODO: Was passiert hier?
 		}
-		Set<String> elements = new HashSet<String>();
+		Set<String> elements = new HashSet<>();
 		while (matcher.find()) {
 			String[] e = matcher.group().split(",");
 			if (side == 0) {
@@ -342,7 +342,7 @@ public class RABACCheck implements CarismaCheckWithID {
 	 * @return all elements including their heirs
 	 */
 	public static Set<String> getElementsFromHierarchy(Set<String> elements, String hierarchy) {
-		Set<String> newElements = new HashSet<String>(elements);
+		Set<String> newElements = new HashSet<>(elements);
 		for (String e : elements) {
 			Set<String> inheritedElements = parseTag(hierarchy, e, 1);
 			if (!inheritedElements.isEmpty() && !elements.containsAll(inheritedElements)) {
@@ -368,14 +368,14 @@ public class RABACCheck implements CarismaCheckWithID {
 			if (attribute.getUpperBound() == -1) {
 				String elements[] = value.substring(1, value.length() - 1).split(",");
 				if (attribute.getEType().getName().equals("EDouble")) {
-					EList<Double> list = new BasicEList<Double>();
+					EList<Double> list = new BasicEList<>();
 					for (String s : elements) {
 						list.add(Double.valueOf(s));
 					}
 					return list;
 				}
 				if (attribute.getEType().getName().equals("EString")) {
-					EList<String> list = new BasicEList<String>();
+					EList<String> list = new BasicEList<>();
 					for (String s : elements) {
 						list.add(s);
 					}

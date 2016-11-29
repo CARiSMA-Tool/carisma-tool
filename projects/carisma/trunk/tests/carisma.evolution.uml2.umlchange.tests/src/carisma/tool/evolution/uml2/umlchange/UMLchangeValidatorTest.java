@@ -317,7 +317,7 @@ public class UMLchangeValidatorTest {
 	
 	@Test
 	public final void testConstraints() {
-		List<String> valids = new ArrayList<String>();
+		List<String> valids = new ArrayList<>();
 		valids.add("changeID");
 		valids.add("validID");
 		valids.add("correctID");
@@ -382,7 +382,7 @@ public class UMLchangeValidatorTest {
 		assertNotNull(substClass2);
 		StereotypeApplication substApp2 = UMLchangeUtil.getStereotypeApplication(UMLchange.SUBST, substClass2);
 		assertNotNull(substApp2);
-		List<String> refList = new ArrayList<String>();
+		List<String> refList = new ArrayList<>();
 		refList.add("substRef");
 		refList.add("delRef");
 		assertTrue(this.validator.isValidApplication(substApp2, refList));

@@ -98,7 +98,7 @@ public class Carisma implements BundleActivator {
 		this.checkRegistry = new CheckRegistry();
 		this.modelTypeRegistry = new ModelTypeRegistry();
 		this.modelManager = new ModelManager();
-		this.analysisResults = new ArrayList<AnalysisResult>();
+		this.analysisResults = new ArrayList<>();
 		this.analyzer = new Analyzer();
 		this.preferenceManager = new PreferenceManager();
 		loadPreferences();

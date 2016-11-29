@@ -96,7 +96,7 @@ public class Analyzer implements AnalysisHost {
 	 */
 	public final void runAnalysis(final Analysis analysis, UIConnector connector) {
 		// initialize
-		this.register = new HashMap<String, Object>();
+		this.register = new HashMap<>();
 		this.result = new AnalysisResult(analysis);
 		this.result.setName(analysis.getName() + " (" + analysis.getModelType() + ")");
 		this.result.setTimestamp(Utils.getISOTimestamp());
@@ -184,8 +184,8 @@ public class Analyzer implements AnalysisHost {
 				}
 			}
 			// check parameters and create copy for performing the check
-			List<CheckParameterDescriptor> paramDescriptors = new ArrayList<CheckParameterDescriptor>(checkDescriptor.getParameters());
-			Map<String, CheckParameter> checkParameters = new HashMap<String, CheckParameter>(checkReference.getParameters().size());
+			List<CheckParameterDescriptor> paramDescriptors = new ArrayList<>(checkDescriptor.getParameters());
+			Map<String, CheckParameter> checkParameters = new HashMap<>(checkReference.getParameters().size());
 			
 			for (CheckParameter param : checkReference.getParameters()) {
 				CheckParameter tmpPara = null;
@@ -339,7 +339,7 @@ public class Analyzer implements AnalysisHost {
 	 * @return ListString failed
 	 */
 	private List<String> checkPreconditions(final CheckDescriptor checkDescriptor) {
-		ArrayList<String> failed = new ArrayList<String>();
+		ArrayList<String> failed = new ArrayList<>();
 		for (String requiredKey : checkDescriptor.getRequiredKeys()) {
 			if (!isRegisterInUse(requiredKey)) {
 				failed.add(requiredKey);
@@ -354,7 +354,7 @@ public class Analyzer implements AnalysisHost {
 	 * @return List<String> failed
 	 */
 	private List<String> checkPostconditions(final CheckDescriptor checkDescriptor) {
-		ArrayList<String> failed = new ArrayList<String>();
+		ArrayList<String> failed = new ArrayList<>();
 		for (String providedKey : checkDescriptor.getProvidedKeys()) {
 			if (!isRegisterInUse(providedKey)) {
 				failed.add(providedKey);
@@ -369,12 +369,12 @@ public class Analyzer implements AnalysisHost {
 	 * @return Map<CheckDescrpitor, List<String> failed
 	 */
 	private Map<CheckDescriptor, List<String>> checkConditions(final Analysis analysis) {
-		Map<CheckDescriptor, List<String>> failedChecks = new HashMap<CheckDescriptor, List<String>>();
-		this.checkDescriptorMapping = new HashMap<CheckReference, CheckDescriptor>();
-		List<String> simulatedRegistry = new ArrayList<String>();
+		Map<CheckDescriptor, List<String>> failedChecks = new HashMap<>();
+		this.checkDescriptorMapping = new HashMap<>();
+		List<String> simulatedRegistry = new ArrayList<>();
 		for (CheckReference check : analysis.getChecks()) {
 			if(check.isEnabled()){
-				List<String> missingConditions = new ArrayList<String>();
+				List<String> missingConditions = new ArrayList<>();
 				CheckDescriptor checkDescriptor = Carisma.getInstance().getCheckRegistry().getCheckDescriptor(check.getCheckID());
 				this.checkDescriptorMapping.put(check, checkDescriptor);
 				for (String precondition : checkDescriptor.getRequiredKeys()) {

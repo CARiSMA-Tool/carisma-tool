@@ -55,7 +55,7 @@ public final class SecureLinks {
 	private List<AnalysisMessage> errorMessages = null;
 
 	public SecureLinks() {
-		this.errorMessages = new ArrayList<AnalysisMessage>();
+		this.errorMessages = new ArrayList<>();
 	}
 	
 	public List<AnalysisMessage> getErrorMessages() {
@@ -92,7 +92,7 @@ public final class SecureLinks {
 	 */
 	public static Set<Stereotype> getRequirements(
 			final Dependency aDep) {
-		HashSet<Stereotype> requirements = new HashSet<Stereotype>();
+		HashSet<Stereotype> requirements = new HashSet<>();
 		for (Stereotype stereo : aDep.getAppliedStereotypes()) {
 			if (SecureLinksHelper.isSecureLinksRequirement(stereo)) {
 				requirements.add(stereo);
@@ -127,7 +127,7 @@ public final class SecureLinks {
 	 */
 	public static List<AnalysisMessage> compliesWithRequirement(
 		final CommunicationPath aLink, final Stereotype stRequirement) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
+		List<AnalysisMessage> errors = new ArrayList<>();
 		String attacker = getAttacker(aLink);
 		Set<String> threats = getThreats(aLink);
 		List<String> violations = getViolations(stRequirement, threats);
@@ -150,7 +150,7 @@ public final class SecureLinks {
 	 */
 	public static List<String> getViolations(
 			final Stereotype stRequirement, final Set<String> threats) {
-		List<String> violations = new ArrayList<String>();
+		List<String> violations = new ArrayList<>();
 		final String requirement = stRequirement.getName();
 		if (requirement.equalsIgnoreCase("high")) {
 			if (!(threats.isEmpty())) {
@@ -177,7 +177,7 @@ public final class SecureLinks {
 	 */
 	public static List<AnalysisMessage> 
 	compliesWithRequirements(final CommunicationPath aLink, final Dependency aDep) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
+		List<AnalysisMessage> errors = new ArrayList<>();
 		for (Stereotype stRequirement : getRequirements(aDep)) {
 			errors.addAll(compliesWithRequirement(aLink, stRequirement));
 		}
@@ -185,7 +185,7 @@ public final class SecureLinks {
 	}
 
 	public static List<AnalysisMessage> compliesWithRequirements(final CommunicationPath aLink) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
+		List<AnalysisMessage> errors = new ArrayList<>();
 		for (Dependency dep : UMLDeploymentHelper.getAllDependencies(aLink)) {
 			errors.addAll((compliesWithRequirements(aLink, dep)));
 		}
@@ -201,7 +201,7 @@ public final class SecureLinks {
 	 */
 	private static Set<String> getThreats(
 			final String linktype, final String attacker) {
-		HashSet<String> threats = new HashSet<String>();
+		HashSet<String> threats = new HashSet<>();
 		if (attacker.equalsIgnoreCase("default")) {
 			if (linktype.equalsIgnoreCase("internet")) {
 				threats.add(DELETE);
@@ -243,7 +243,7 @@ public final class SecureLinks {
 	 */
 	public static Set<String> getThreats(
 			final StereotypeApplication linktypeApplication, final String attacker) {
-		HashSet<String> threats = new HashSet<String>();
+		HashSet<String> threats = new HashSet<>();
 		if (linktypeApplication != null) {
 			Stereotype stLinktype = linktypeApplication.getAppliedStereotype();
 			if (SecureLinksHelper.isSecureLinksLinktype(stLinktype)) {

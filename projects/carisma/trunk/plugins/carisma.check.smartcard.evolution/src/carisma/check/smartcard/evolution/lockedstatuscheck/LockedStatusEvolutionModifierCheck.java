@@ -79,8 +79,8 @@ public class LockedStatusEvolutionModifierCheck implements CarismaCheckWithID {
 	private boolean removeViolations = true;
 	
 	public LockedStatusEvolutionModifierCheck() {
-		this.processedStates = new HashMap<State, DeltaElement>();
-		this.errorMessages = new ArrayList<AnalysisMessage>();
+		this.processedStates = new HashMap<>();
+		this.errorMessages = new ArrayList<>();
 	}
 	
 	/**
@@ -89,8 +89,8 @@ public class LockedStatusEvolutionModifierCheck implements CarismaCheckWithID {
 	 * @param removeViolations false if  the violating changes should remain, false otherwise
 	 */
 	public LockedStatusEvolutionModifierCheck(final boolean removeViolations) {
-		this.processedStates = new HashMap<State, DeltaElement>();
-		this.errorMessages = new ArrayList<AnalysisMessage>();
+		this.processedStates = new HashMap<>();
+		this.errorMessages = new ArrayList<>();
 		this.removeViolations = removeViolations;
 	}
 	
@@ -145,7 +145,7 @@ public class LockedStatusEvolutionModifierCheck implements CarismaCheckWithID {
 	private boolean checkDeltas() {
 		boolean hasMaxSuccessfulDelta = false;
 		int deltaCounter = 1;
-		List<Delta> violatingEvolutions = new ArrayList<Delta>();
+		List<Delta> violatingEvolutions = new ArrayList<>();
 		for (Delta d : this.deltaList.getRemainingDeltas()) {
 			boolean deltaSuccessful = true;
 			checkDelta(d);
@@ -175,15 +175,15 @@ public class LockedStatusEvolutionModifierCheck implements CarismaCheckWithID {
 	private void init(final Delta d) {
 		this.deltaModifier = this.deltaModifiers.get(d);
 		if (this.errorMessages == null) {
-			this.errorMessages = new ArrayList<AnalysisMessage>();
+			this.errorMessages = new ArrayList<>();
 		}
 		this.errorMessages.clear();
 		if (this.processedDeltaElements == null) {
-			this.processedDeltaElements = new ArrayList<DeltaElement>();
+			this.processedDeltaElements = new ArrayList<>();
 		}
 		this.processedDeltaElements.clear();
 		if (this.processedStates == null) {
-			this.processedStates = new HashMap<State, DeltaElement>();
+			this.processedStates = new HashMap<>();
 		}
 		this.processedStates.clear();
 	}

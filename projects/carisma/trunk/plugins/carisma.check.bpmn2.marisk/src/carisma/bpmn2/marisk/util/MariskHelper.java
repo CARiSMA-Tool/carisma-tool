@@ -76,7 +76,7 @@ public class MariskHelper {
 	 * @return The names of unmatched activity elements
 	 */
 	public static List<String> getUnmatchedActivities(final String[] activityNames, final List<Activity> activityList) {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		
 		for (String str : activityNames) {
 			result.add(str);
@@ -107,7 +107,7 @@ public class MariskHelper {
 		
 		//list packages of model
 		TreeIterator<EObject> modelIterator = model.getAllContents();
-		Set<EPackage> pacSet = new HashSet<EPackage>();
+		Set<EPackage> pacSet = new HashSet<>();
 		
 		while (modelIterator.hasNext()) {
 			tmpObject = modelIterator.next();
@@ -146,7 +146,7 @@ public class MariskHelper {
 	 * @throws IncompleteMappingExeption if not all nodes could be mapped
 	 */
 	public static List<Activity> mapActivities(final Resource model, final String[] activityNames) throws IncompleteMappingExeption {
-		Hashtable<String, Activity> activityList = new Hashtable<String, Activity>();
+		Hashtable<String, Activity> activityList = new Hashtable<>();
 
 		TreeIterator<EObject> iterator = model.getAllContents();
 		while (iterator.hasNext()) {
@@ -172,7 +172,7 @@ public class MariskHelper {
 			}
 			throw new IncompleteMappingExeption(notfound, activityList.values());
 		}
-		return new ArrayList<Activity>(activityList.values());
+		return new ArrayList<>(activityList.values());
 	}
 	
 	/**

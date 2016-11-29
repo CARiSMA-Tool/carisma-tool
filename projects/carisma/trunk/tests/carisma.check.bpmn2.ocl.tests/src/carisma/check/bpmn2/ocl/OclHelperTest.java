@@ -48,30 +48,31 @@ public class OclHelperTest {
 	/**
 	 * Tests the correct mapping.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
 	public final void extendedContext() {
 		OclHelper oclHelper = new OclHelper();
 		assertNull(oclHelper.getExtendedContextClass("ThisClassShouldNotExist"));
 
-		ArrayList<Tupel<EClass, String[]>> testCases = new ArrayList<Tupel<EClass, String[]>>();
+		ArrayList<Tupel<EClass, String[]>> testCases = new ArrayList<>();
 
-		testCases.add(new Tupel<EClass, String[]>(
+		testCases.add(new Tupel<>(
 				ExtendedPackage.eINSTANCE.getExtendedLane(), new String[] {
 						"lane", "Lane", "LANE" }));
 
-		testCases.add(new Tupel<EClass, String[]>(
+		testCases.add(new Tupel<>(
 				ExtendedPackage.eINSTANCE.getExtendedTask(), new String[] {
 						"task", "Task", "TASK" }));
 
-		testCases.add(new Tupel<EClass, String[]>(
+		testCases.add(new Tupel<>(
 				ExtendedPackage.eINSTANCE.getExtendedProcess(),
 				new String[] { "process", "Process", "PROCESS" }));
 
-		testCases.add(new Tupel<EClass, String[]>(
+		testCases.add(new Tupel<>(
 				ExtensionPackage.eINSTANCE.getSelection(),
 				new String[] { "selection", "Selection", "SELECTION" }));
 
-		testCases.add(new Tupel<EClass, String[]>(
+		testCases.add(new Tupel<>(
 				ExtensionPackage.eINSTANCE.getTaskSet(), new String[] {
 						"taskset", "taskSet", "TaskSet", "TASKSET" }));
 
@@ -86,6 +87,7 @@ public class OclHelperTest {
 	/**
 	 * Test will try to resolve each content class of every bpmn2 element.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
 	public final void contextClass() {
 		OclHelper oclHelper = new OclHelper();
@@ -110,13 +112,12 @@ public class OclHelperTest {
 	@Test 
 	public final void loadOclLibrary() {
 		String testmodelfilename = "testLibrary.col";
-		File testmodelfile = new File(filepath + File.separator + testmodelfilename);
+		File testmodelfile = new File(this.filepath + File.separator + testmodelfilename);
 		assertTrue(testmodelfile.exists());
 		
-		OclHelper oclHelper =  new OclHelper();
 		OclLibrary testLib = null;
 		try {
-			testLib = oclHelper.getOclLibrary(testmodelfile);
+			testLib = OclHelper.getOclLibrary(testmodelfile);
 		} catch (IOException e) {
 			fail(e.getMessage());
 		}

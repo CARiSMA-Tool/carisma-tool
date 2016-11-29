@@ -111,7 +111,7 @@ public class ModelExporter {
 	 * @return returns true if everything worked out.
 	 */
 	private static List<ExportDelta> generateXMLOutput(final List<Delta> deltasToExport, final Resource resource) { 
-		List<ExportDelta> deltas = new ArrayList<ExportDelta>();
+		List<ExportDelta> deltas = new ArrayList<>();
 		for (Delta delta : deltasToExport) {
 			deltas.add(generateXMLOutput(delta, resource));
 		}

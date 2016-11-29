@@ -14,18 +14,18 @@ package carisma.check.oclcheck;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Test;
 
 import carisma.check.oclcheck.util.DebugHost;
 import carisma.check.oclcheck.util.DummyOclChecker;
-import carisma.check.oclcheck.util.UniversalModelLoader;
-import carisma.core.models.ModelLoader;
 
 
 /**
@@ -53,39 +53,37 @@ public class AbstrOclCheckerTest {
 	/**
 	 * Universal resource loader.
 	 */
-	private UniversalModelLoader modelLoader;
+	private ResourceSet rs = new ResourceSetImpl();
 	
 	/**
 	 * Method to load a model.
 	 * @param testmodelname The model name
 	 * @param modelLoader The model loader
+	 * @return 
 	 * @return If successful the model as resource otherwise null
 	 * 
 	 */
-	public final Resource loadModel(final ModelLoader modelLoader, final String testmodelname) {
-		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
-		assertTrue(testmodelfile.exists());
-		try {
-			return modelLoader.load(testmodelfile);
-		} catch (IOException e) {
-			fail(e.getMessage());
-			return null;
-		}
+	 private Resource loadModel(final String testmodelname) throws IOException {
+	     File testmodelfile = new File(this.filepath + File.separator + testmodelname);
+	     assertTrue(testmodelfile.exists());
+	     Resource modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));      
+	     modelres.load(Collections.EMPTY_MAP);
+	     return modelres;
 	}
 	
-	/**
+	 /**
 	 * Test queries a bpmn2 model.
+	 * @throws IOException 
 	 */
 	@Test
-	public final void oclQueryBpmn2ModelTest() {
+	public final void oclQueryBpmn2ModelTest() throws IOException {
 		this.oclChecker = new DummyOclChecker();
 		this.host = new DebugHost();
-		this.modelLoader = new UniversalModelLoader();
 		
 		boolean successful;
 
 		Resource model;
-		model = loadModel(this.modelLoader, "bpmn2model.bpmn2");
+		model = loadModel("bpmn2model.bpmn2");
 		assertNotNull(model);
 		this.host.setAnalyzedModel(model);
 		
@@ -101,17 +99,17 @@ public class AbstrOclCheckerTest {
 	
 	/**
 	 * Test queries a uml2 model.
+	 * @throws IOException 
 	 */
 	@Test
-	public final void oclQueryUml2ModelTest() {
+	public final void oclQueryUml2ModelTest() throws IOException {
 		this.oclChecker = new DummyOclChecker();
 		this.host = new DebugHost();
-		this.modelLoader = new UniversalModelLoader();
 		
 		boolean successful;
 
 		Resource model;
-		model = loadModel(this.modelLoader, "activitydiagram.uml");
+		model = loadModel("activitydiagram.uml");
 		assertNotNull(model);
 		this.host.setAnalyzedModel(model);
 		

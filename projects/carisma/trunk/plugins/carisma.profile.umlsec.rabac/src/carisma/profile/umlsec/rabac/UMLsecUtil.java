@@ -59,7 +59,7 @@ public final class UMLsecUtil {
 	 * @return - a list of elements with applied UMLsec stereotypes.
 	 */
 	public static List<Element> getStereotypedElements(final Package pkg, final UMLsec stereo) {
-		List<Element> extendedElements = new ArrayList<Element>();		
+		List<Element> extendedElements = new ArrayList<>();		
 		if (UMLHelper.isProfileApplied(pkg, UMLsec.DESCRIPTOR)) {
 			if (hasStereotype(pkg, stereo)) {
 				extendedElements.add(pkg);
@@ -70,7 +70,7 @@ public final class UMLsecUtil {
 	}
 	
 	public static List<Element> getStereotypedElements(final List<Element> elements, final UMLsec stereo) {
-		List<Element> extendedElements = new ArrayList<Element>();		
+		List<Element> extendedElements = new ArrayList<>();		
 		for (Element element : elements) {
 			if (hasStereotype(element, stereo)) {
 				extendedElements.add(element);
@@ -111,7 +111,7 @@ public final class UMLsecUtil {
 	 * @return - list of UMLsec applications in package of given type
 	 */
 	public static List<StereotypeApplication> getStereotypeApplications(final Package pkg, final UMLsec stereotype) {
-		List<StereotypeApplication> applications = new ArrayList<StereotypeApplication>();
+		List<StereotypeApplication> applications = new ArrayList<>();
 		for (Element extendedElement : getStereotypedElements(pkg, stereotype)) {
 			applications.add(getStereotypeApplication(extendedElement, stereotype));
 		}
@@ -125,7 +125,7 @@ public final class UMLsecUtil {
 	 * @return - list of UMLsec stereotype applications
 	 */
 	public static List<StereotypeApplication> getStereotypeApplications(final Element element, final UMLsec stereotype) {
-		List<StereotypeApplication> result = new ArrayList<StereotypeApplication>();
+		List<StereotypeApplication> result = new ArrayList<>();
 		for (Stereotype stereo : element.getAppliedStereotypes()) {
 			if (UMLsec.contains(stereo)) {
 				result.add(new StereotypeApplication(stereo, element));
@@ -160,7 +160,7 @@ public final class UMLsecUtil {
 	 * @return - a list of string tag values; empty if the stereotype doesn't have the tag
 	 */
 	public static List<String> getStringValues(final String tagName, final UMLsec stereo, final Element stereoParent) {
-		List<String> tagValues = new ArrayList<String>();
+		List<String> tagValues = new ArrayList<>();
 		List<Object> tmp = getTaggedValues(tagName, stereo, stereoParent);
 		for (Object obj : tmp) {
 			if (obj instanceof String) {
@@ -178,7 +178,7 @@ public final class UMLsecUtil {
 	 */
 	@SuppressWarnings("unchecked")
 	public static List<Object> getTaggedValues(final String tagName, final UMLsec stereo, final Element stereoParent) {
-		List<Object> tagValues = new ArrayList<Object>();
+		List<Object> tagValues = new ArrayList<>();
 		if (stereoParent == null) {
 			return tagValues;
 		}

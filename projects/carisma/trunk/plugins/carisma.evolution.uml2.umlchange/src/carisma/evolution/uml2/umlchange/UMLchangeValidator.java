@@ -90,7 +90,7 @@ public class UMLchangeValidator implements CarismaCheckWithID {
 			this.analysisHost = new DummyHost(true);
 		}
 		if (this.complexNamespaces == null) {
-			this.complexNamespaces = new ArrayList<String>();
+			this.complexNamespaces = new ArrayList<>();
 		} else {
 			this.complexNamespaces.clear();
 		}
@@ -226,7 +226,7 @@ public class UMLchangeValidator implements CarismaCheckWithID {
 	 * @return
 	 */
 	public static boolean hasDuplicateChangeIds(final List<StereotypeApplication> changeApps) {
-		List<String> changeIds = new ArrayList<String>();
+		List<String> changeIds = new ArrayList<>();
 		for (StereotypeApplication umlChangeApp : changeApps) {
 			if (umlChangeApp.hasTagValue(REF)) {
 				for (String ref : umlChangeApp.getTaggedValue(REF).getStringValues()) {
@@ -241,7 +241,7 @@ public class UMLchangeValidator implements CarismaCheckWithID {
 	}
 	
 	public static List<String> collectChangeIds(final Model forModel) {
-		List<String> changeIds = new ArrayList<String>();
+		List<String> changeIds = new ArrayList<>();
 		for (StereotypeApplication umlChangeApp : UMLchangeUtil.getStereotypeApplications(forModel)) {
 			if (umlChangeApp.hasTagValue(REF)) {
 				for (String ref : umlChangeApp.getTaggedValue(REF).getStringValues()) {

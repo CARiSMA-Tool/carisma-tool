@@ -84,7 +84,7 @@ public abstract class AbstractOclChecker implements CarismaCheckWithID {
 		}
 
 		OclQueryResult tmpResult = null;
-		ArrayList<OclQueryResult> result = new ArrayList<OclQueryResult>();
+		ArrayList<OclQueryResult> result = new ArrayList<>();
 		try {
 			for (EObject content : host.getAnalyzedModel().getContents()) {
 				tmpResult = OclEvaluator.query(content, contextClass, statement);
@@ -162,7 +162,7 @@ public abstract class AbstractOclChecker implements CarismaCheckWithID {
 	 */
 	protected final static List<CheckParameter> resolveParameters(final Map<String, CheckParameter> parameters, 
 			final List<CheckParameter> desiredParameters) {
-		List<CheckParameter> result = new ArrayList<CheckParameter>();
+		List<CheckParameter> result = new ArrayList<>();
 		for (int i = 0; i < desiredParameters.size(); i++) {
 			CheckParameter foundParameter = parameters.get(desiredParameters.get(i).getDescriptor().getID());
 			if (foundParameter != null) {

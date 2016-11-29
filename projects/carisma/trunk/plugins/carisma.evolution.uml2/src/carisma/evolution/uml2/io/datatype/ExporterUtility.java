@@ -22,7 +22,7 @@ public final class ExporterUtility {
      * @return a newMap with replaced null values.
      */
     public static Map<String, Object> getValuesWithStringNull(final Map<String, Object> origValues) {
-        Map<String, Object> values = new HashMap<String, Object>();
+        Map<String, Object> values = new HashMap<>();
         if (origValues != null) {
            for (Entry<String, Object> x : origValues.entrySet()) {
                if (x.getValue() == null) {
@@ -41,7 +41,7 @@ public final class ExporterUtility {
      * @return a newMap with replaced '@null' values.
      */
     public static Map<String, Object> getValuesWithNull(final Map<String, Object> origValues) {
-        Map<String, Object> values = new HashMap<String, Object>();
+        Map<String, Object> values = new HashMap<>();
         if (origValues != null) {
             for (Entry<String, Object> entry : origValues.entrySet()) {
                 if ("@null".equals(entry.getValue())) {

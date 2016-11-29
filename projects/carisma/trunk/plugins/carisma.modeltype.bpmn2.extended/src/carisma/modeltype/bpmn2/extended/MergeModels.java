@@ -99,13 +99,13 @@ public class MergeModels {
 		
 		// Store replaced elements
 		ArrayList<Tupel<Task, ExtendedTask>> extendedTasks =  
-			new ArrayList<Tupel<Task, ExtendedTask>>();
+			new ArrayList<>();
 		ArrayList<Tupel<Lane, ExtendedLane>> extendedLanes = 
-			new ArrayList<Tupel<Lane, ExtendedLane>>();
+			new ArrayList<>();
 		
 		// Need to update conversationLinks manually
 		ArrayList<ConversationLink> conversationLinks =
-				new ArrayList<ConversationLink>();
+				new ArrayList<>();
 		
 		TreeIterator<EObject> iterator = extendedRoot.eAllContents();
 		while (iterator.hasNext()) {
@@ -114,10 +114,10 @@ public class MergeModels {
 			// Search for elements, which should be extended
 			if (obj instanceof Task) {
 				ExtendedTask extTask = extendedFactory.createExtendedTask();
-				extendedTasks.add(new Tupel<Task, ExtendedTask>((Task) obj, extTask));
+				extendedTasks.add(new Tupel<>((Task) obj, extTask));
 			} else if (obj instanceof Lane) {
 				ExtendedLane extLane = extendedFactory.createExtendedLane();
-				extendedLanes.add(new Tupel<Lane, ExtendedLane>((Lane) obj, extLane));
+				extendedLanes.add(new Tupel<>((Lane) obj, extLane));
 			} else if (obj instanceof ConversationLink) {
 				conversationLinks.add((ConversationLink) obj);
 			}
@@ -231,7 +231,7 @@ public class MergeModels {
 	 * @return Map of the Objects
 	 */
 	private static <T> Map<String, T> createHashMap(final EList<T> list) {
-		Map<String, T> map = new HashMap<String, T>();
+		Map<String, T> map = new HashMap<>();
 		for (T elem : list) {
 			if (elem instanceof carisma.modeltype.bpmn2.extension.Task) {
 				map.put(((carisma.modeltype.bpmn2.extension.Task) elem).getName().toLowerCase(Locale.ENGLISH), elem);

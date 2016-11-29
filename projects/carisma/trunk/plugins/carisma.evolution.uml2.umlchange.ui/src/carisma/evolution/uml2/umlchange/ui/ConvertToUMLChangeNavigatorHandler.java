@@ -14,13 +14,11 @@ package carisma.evolution.uml2.umlchange.ui;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.IHandler;
 
 /**
  * A handler class, needed when a resource was selected in Navigator.   
  */
-public class ConvertToUMLChangeNavigatorHandler extends AbstractHandler implements
-		IHandler {
+public class ConvertToUMLChangeNavigatorHandler extends AbstractHandler {
 	/**
 	 * 
 	 */

@@ -77,7 +77,7 @@ public class AdfEditorController {
 	public AdfEditorController(final AdfEditor editor, final Analysis analysis) {
 		this.editor = editor;
 		this.analysis = analysis;
-		this.problemList = new HashMap<Object, Object>();
+		this.problemList = new HashMap<>();
 	}
 
 	/**
@@ -543,7 +543,7 @@ public class AdfEditorController {
 			HashMap<CheckParameter, String> valueMap = (HashMap<CheckParameter, String>) valueObject;
 			valueMap.put(checkParameter, text);
 		} else {
-			Map<CheckParameter, String> valueMap = new HashMap<CheckParameter, String>();
+			Map<CheckParameter, String> valueMap = new HashMap<>();
 			valueMap.put(checkParameter, text);
 			this.problemList.put(checkReference, valueMap);
 		}
@@ -613,7 +613,7 @@ public class AdfEditorController {
 	 * @return A list of strings which describe the problems.
 	 */
 	protected final List<String> getProblems() {
-		List<String> returnProblemList = new ArrayList<String>();
+		List<String> returnProblemList = new ArrayList<>();
 		for (Entry<Object, Object> problemEntry : this.problemList.entrySet()) {
 			if (problemEntry.getKey() instanceof String) {
 				returnProblemList.add(problemEntry.getKey().toString() + ": "

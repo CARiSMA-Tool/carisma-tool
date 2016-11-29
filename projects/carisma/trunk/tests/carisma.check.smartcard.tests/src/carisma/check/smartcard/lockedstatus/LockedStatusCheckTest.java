@@ -22,14 +22,14 @@ public class LockedStatusCheckTest {
 	
 	private static final String filepath = "resources/models/";
 	
-	/*private UML2ModelLoader ml = null;
+	/*private ResourceSet rs = new ResourceSetImpl();
 	
 	private Resource modelres = null;
 
 	public final void loadModel(final String testmodelname) {
 		File testmodelfile = new File(filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
+		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
 			ml = new UML2ModelLoader();
 		}
 		try {
@@ -40,8 +40,9 @@ public class LockedStatusCheckTest {
 		}
 	}*/
 
+	@SuppressWarnings("static-method")
 	@Test
-	public static void testLockedStatus() {
+	public void testLockedStatus() {
 		Model model = TestHelper.loadModel(filepath, "testLockedStatus.uml");
 		LockedStatus check = new LockedStatus();
 		assertEquals(1, check.startCheck(model));

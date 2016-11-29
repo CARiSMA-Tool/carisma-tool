@@ -62,7 +62,7 @@ public final class UMLchangeUtil {
 	 * @return - a list of elements with applied UMLchange stereotypes.
 	 */
 	public static List<Element> getStereotypedElements(final UMLchange stereo, final Package pkg) {
-		List<Element> extendedElements = new ArrayList<Element>();		
+		List<Element> extendedElements = new ArrayList<>();		
 		if (UMLHelper.isProfileApplied(pkg, UMLchange.DESCRIPTOR)) {
 			if (hasStereotype(stereo, pkg)) {
 				extendedElements.add(pkg);
@@ -73,7 +73,7 @@ public final class UMLchangeUtil {
 	}
 
 	public static List<Element> getStereotypedElements(final UMLchange stereo, final Namespace ns) {
-		List<Element> extendedElements = new ArrayList<Element>();		
+		List<Element> extendedElements = new ArrayList<>();		
 		if (UMLHelper.isProfileApplied(ns.getModel(), UMLchange.DESCRIPTOR)) {
 			if (hasStereotype(stereo, ns)) {
 				extendedElements.add(ns);
@@ -84,7 +84,7 @@ public final class UMLchangeUtil {
 	}
 	
 	public static List<Element> getStereotypedElements(final UMLchange stereo, final NamedElement ne) {
-		List<Element> extendedElements = new ArrayList<Element>();		
+		List<Element> extendedElements = new ArrayList<>();		
 		if (UMLHelper.isProfileApplied(ne.getModel(), UMLchange.DESCRIPTOR)) {
 			if (hasStereotype(stereo, ne)) {
 				extendedElements.add(ne);
@@ -101,7 +101,7 @@ public final class UMLchangeUtil {
 	 * @param elements - list of elements to inspect
 	 * @return - list of elements with UMLchange applications of stereotype
 	 */
-	public static List<Element> getStereotypedElements(final UMLchange stereo, final List<Element> elements) {		List<Element> extendedElements = new ArrayList<Element>();
+	public static List<Element> getStereotypedElements(final UMLchange stereo, final List<Element> elements) {		List<Element> extendedElements = new ArrayList<>();
 		for (Element element : elements) {
 			if (hasStereotype(stereo, element)) {
 				extendedElements.add(element);
@@ -115,7 +115,7 @@ public final class UMLchangeUtil {
 	 * @return - list of UMLchange stereotypes
 	 */
 	public static List<Stereotype> getAppliedStereotypes(final Element element) {
-		List<Stereotype> result = new ArrayList<Stereotype>();
+		List<Stereotype> result = new ArrayList<>();
 		for (Stereotype stereo : element.getAppliedStereotypes()) {
 			if (UMLchange.contains(stereo)) {
 				result.add(stereo);
@@ -147,7 +147,7 @@ public final class UMLchangeUtil {
 	 * @return - list of UMLchange stereotype applications
 	 */
 	public static List<StereotypeApplication> getStereotypeApplications(final Element element) {
-		List<StereotypeApplication> result = new ArrayList<StereotypeApplication>();
+		List<StereotypeApplication> result = new ArrayList<>();
 		for (Stereotype stereo : element.getAppliedStereotypes()) {
 			if (UMLchange.contains(stereo)) {
 				result.add(new StereotypeApplication(stereo, element));
@@ -162,7 +162,7 @@ public final class UMLchangeUtil {
 	 * @return - list of UMLchange applications in package
 	 */
 	public static List<StereotypeApplication> getStereotypeApplications(final Package pkg) {
-		List<StereotypeApplication> applications = new ArrayList<StereotypeApplication>();
+		List<StereotypeApplication> applications = new ArrayList<>();
 		for (Element extendedElement : getStereotypedElements(pkg)) {
 			applications.addAll(getStereotypeApplications(extendedElement));
 		}

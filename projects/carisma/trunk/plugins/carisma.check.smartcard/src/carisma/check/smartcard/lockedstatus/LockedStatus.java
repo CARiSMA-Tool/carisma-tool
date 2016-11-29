@@ -39,7 +39,7 @@ public class LockedStatus {
 	 * constructor.
 	 */
 	public LockedStatus() {
-		this.errorMessages = new ArrayList<AnalysisMessage>();
+		this.errorMessages = new ArrayList<>();
 	}
 	
 	public List<AnalysisMessage> getErrorMessages() {
@@ -63,7 +63,7 @@ public class LockedStatus {
 	 * @param model the given Model
 	 */
 	public final static List<AnalysisMessage> checkAllLockedStates(final Package model) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
+		List<AnalysisMessage> errors = new ArrayList<>();
 		for (State s : UMLHelper.getAllElementsOfType(model, State.class)) {
 			errors.addAll(checkLockedStatus(s));
 		}
@@ -71,7 +71,7 @@ public class LockedStatus {
 	}
 	
 	public static List<AnalysisMessage> checkLockedStatus(final State s) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
+		List<AnalysisMessage> errors = new ArrayList<>();
 		if (UMLsecUtil.hasStereotype(s, UMLsec.LOCKED_STATUS)) {
 			for (Transition t : s.getOutgoings()) {
 				if (t.getTarget() != s) {
@@ -83,7 +83,7 @@ public class LockedStatus {
 	}
 	
 	public static List<AnalysisMessage> checkTransition(final Transition outgoingTransition) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
+		List<AnalysisMessage> errors = new ArrayList<>();
 		if (outgoingTransition.getSource() instanceof State) {
 			State sourceState = (State) outgoingTransition.getSource();
 			if ((UMLsecUtil.hasStereotype(sourceState, UMLsec.LOCKED_STATUS)) 

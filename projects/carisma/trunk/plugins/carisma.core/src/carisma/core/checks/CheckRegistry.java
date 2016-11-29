@@ -53,7 +53,7 @@ public class CheckRegistry {
 	private static final int INITIAL_BUFFER_SIZE = 8192;
 	
 	public CheckRegistry() {
-		this.registeredChecks = new ArrayList<CheckDescriptor>();
+		this.registeredChecks = new ArrayList<>();
 	}
 	
 	/**
@@ -126,7 +126,7 @@ public class CheckRegistry {
 	 * @return
 	 */
 	public List<CheckDescriptor> findChecks(String modelType) {
-		ArrayList<CheckDescriptor> result = new ArrayList<CheckDescriptor>();
+		ArrayList<CheckDescriptor> result = new ArrayList<>();
 		for (CheckDescriptor cd : this.registeredChecks) {
 			String[] modelTypes = cd.getTargetModelType().split(",");
 			for (String mt : modelTypes) {
@@ -272,7 +272,7 @@ public class CheckRegistry {
 		} catch (CoreException e) {
 			Logger.log(LogLevel.ERROR, "Cannot find or read file" ,	e);
 		}
-		List<CheckDescriptor> recChecks = new ArrayList<CheckDescriptor>();
+		List<CheckDescriptor> recChecks = new ArrayList<>();
 		
 		List<CheckDescriptor> regchecks = getRegisteredChecks();
 		for (CheckDescriptor check : regchecks) {

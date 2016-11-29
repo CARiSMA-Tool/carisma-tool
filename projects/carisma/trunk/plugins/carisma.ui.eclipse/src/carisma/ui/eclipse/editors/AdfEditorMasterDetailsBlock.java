@@ -856,7 +856,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 * Check for invalid CheckReferences.
 	 */
 	private void initInvalidChecks() {
-		List<CheckReference> uninputs = new ArrayList<CheckReference>();
+		List<CheckReference> uninputs = new ArrayList<>();
 		List<CheckReference> checks = this.controller.getSelectedChecksList();
 		for (CheckReference checkReference : checks) {
 			CheckDescriptor checkDescriptor = CarismaGUI
@@ -1119,10 +1119,10 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	}
 
 	@Override
-	protected final void registerPages(final DetailsPart detailsPart) {
+	protected final void registerPages(final DetailsPart newDetailsPart) {
 		AdfEditorCheckDetailsPage detailsPage = new AdfEditorCheckDetailsPage(
 				this.controller, this.masterListener);
-		detailsPart.registerPage(CheckReference.class, detailsPage);
+		newDetailsPart.registerPage(CheckReference.class, detailsPage);
 	}
 
 	@Override

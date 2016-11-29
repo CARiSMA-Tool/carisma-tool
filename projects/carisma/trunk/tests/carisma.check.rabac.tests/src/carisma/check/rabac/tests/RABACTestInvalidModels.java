@@ -37,7 +37,7 @@ public class RABACTestInvalidModels implements RABACTest {
 	private Resource model = null;
 	private StringBuilder report;
 
-	private HashMap<String, CheckParameter> config = new HashMap<String, CheckParameter>();
+	private HashMap<String, CheckParameter> config = new HashMap<>();
 
 	public RABACTestInvalidModels(Resource testModel) {
 		this.model = testModel;
@@ -57,7 +57,7 @@ public class RABACTestInvalidModels implements RABACTest {
 	public static Collection<Resource> collectParameters(){
 		ResourceSet rs = new ResourceSetImpl();
 		
-		List<Resource> resources = new ArrayList<Resource>();
+		List<Resource> resources = new ArrayList<>();
 		
 		File folder = new File(RABACTestInvalidModels.filepath);
 		String[] list = folder.list(new FilenameFilter() {

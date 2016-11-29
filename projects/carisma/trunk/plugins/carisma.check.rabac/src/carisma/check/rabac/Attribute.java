@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Attribute {
 	private String name;
 	private String type;
-	private HashMap<String, String> values = new HashMap<String, String>();
+	private HashMap<String, String> values = new HashMap<>();
 
 	public String getName() {
 		return this.name;

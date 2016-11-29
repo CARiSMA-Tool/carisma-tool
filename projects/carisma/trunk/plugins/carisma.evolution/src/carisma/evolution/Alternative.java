@@ -31,7 +31,7 @@ public class Alternative {
 	 * Constructor for an alternative.
 	 */
 	public Alternative() {
-		this.deltaElements = new ArrayList<DeltaElement>();
+		this.deltaElements = new ArrayList<>();
 	}
 	/**
 	 * Returns the non-modifiable list of delta elements.  

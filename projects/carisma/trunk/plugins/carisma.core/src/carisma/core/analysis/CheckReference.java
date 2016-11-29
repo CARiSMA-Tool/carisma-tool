@@ -49,7 +49,7 @@ public class CheckReference {
 		super();
 		this.checkID = checkID;
 		this.enabled = enabled;
-		this.parameters = new ArrayList<CheckParameter>();
+		this.parameters = new ArrayList<>();
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class CheckReference {
 	 * @return List<CheckParameter> of required parameter, that are not set or are invalid.
 	 */
 	public final List<CheckParameter> getUnsetRequiredParameters() {
-		List<CheckParameter> unsetParameters = new ArrayList<CheckParameter>();
+		List<CheckParameter> unsetParameters = new ArrayList<>();
 
 		for (final CheckParameter param : this.getParameters()) {	
 			if (!param.getDescriptor().isOptional() 

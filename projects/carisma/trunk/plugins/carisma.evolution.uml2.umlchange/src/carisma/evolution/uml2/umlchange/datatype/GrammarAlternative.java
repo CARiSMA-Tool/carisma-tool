@@ -36,7 +36,7 @@ public class GrammarAlternative {
 	 */
 	public GrammarAlternative(final String grammar) {
 		this.grammarString = grammar.trim();
-		this.descriptions = new ArrayList<ElementDescription>();
+		this.descriptions = new ArrayList<>();
 		List<String> extractedDescriptions =
 			ParserUtils.extract(
 					this.grammarString.substring(1, this.grammarString.length() - 1), ',');

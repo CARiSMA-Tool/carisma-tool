@@ -68,7 +68,7 @@ public class Analysis {
 		this.name = name;
 		this.modelType = modelType;
 		this.modelFile = modelFile.getFullPath().toFile();
-		this.checks = new ArrayList<CheckReference>();
+		this.checks = new ArrayList<>();
 		this.selectedEditor = "";
 		
 
@@ -157,7 +157,7 @@ public class Analysis {
 	 * @return List<CheckReference> List of Checks with invalid parameters
 	 */
 	public final List<CheckReference> getChecksWithInvalidParameters() {
-		List<CheckReference> checksWithInvalidParameters = new ArrayList<CheckReference>();
+		List<CheckReference> checksWithInvalidParameters = new ArrayList<>();
 		
 		for (CheckReference check : this.checks) {
 			if (!check.getUnsetRequiredParameters().isEmpty()) { 

@@ -55,7 +55,7 @@ public class SimpleElementDescription extends ElementDescription {
 		super(grammar);
 		this.metaclassName = ParserUtils.findMetaclassName(grammar);
 		this.keyValuePairs = ParserUtils.findKeyValuePairs(grammar.replaceFirst(this.metaclassName, ""));
-		this.contents = new ArrayList<SimpleElementDescription>();
+		this.contents = new ArrayList<>();
 		String contentsValue = this.keyValuePairs.get("contents");
 		if (contentsValue != null) {
 			List<String> extractedDescriptions = ParserUtils.extract(contentsValue.substring(1, contentsValue.length() - 1), ',');

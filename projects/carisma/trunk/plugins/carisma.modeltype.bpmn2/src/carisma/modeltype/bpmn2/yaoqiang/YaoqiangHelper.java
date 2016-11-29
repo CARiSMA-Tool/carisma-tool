@@ -350,7 +350,7 @@ public final class YaoqiangHelper {
 	public static void clearAllWarningAndInfoFlags(final EObject root) {
 		TreeIterator<EObject> iterator = root.eAllContents();
 		
-		List<EObject> toBeRemoved = new ArrayList<EObject>();
+		List<EObject> toBeRemoved = new ArrayList<>();
 		
 		while (iterator.hasNext()) {
 			EObject obj = iterator.next();

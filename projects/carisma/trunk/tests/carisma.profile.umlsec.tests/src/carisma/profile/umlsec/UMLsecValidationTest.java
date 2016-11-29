@@ -100,7 +100,7 @@ public class UMLsecValidationTest {
 		File testmodelfile = new File(testmodelname);
 		assertTrue(testmodelfile.exists());
 		try (FileInputStream in = new FileInputStream(testmodelfile)){
-			this.modelres = this.rs.createResource(URI.createURI(testmodelname));
+			this.modelres = this.rs.createResource(URI.createFileURI(testmodelname));
 			this.modelres.load(in, Collections.EMPTY_MAP);
 		} catch (IOException e) {
 			Logger.log(LogLevel.ERROR, e.getMessage(), e);

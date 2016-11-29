@@ -138,7 +138,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	 * @return  true if every UMLsec Stereotype is filled correctly, false otherwise
 	 */
 	public static List<String> validateModel(final Model model) throws IllegalArgumentException {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (model == null) {
 			throw new IllegalArgumentException("The model is not allowed to be null!");
 		}
@@ -201,63 +201,63 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 		}
 		if (stereoName.equals("UMLsec::call")) {
 			//call muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::secrecy")) {
 			//secrecy muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::privacy")) {
 			//privacy muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::LAN")) {
 			//Lan muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::high")) {
 			//high  muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::Internet")) {
 			//Internet  muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::send")) {
 			//send  muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::integrity")) {
 			//integrity  muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::identifiable")) {
 			//identifiable  muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::encrypted")) {
 			//encrypted  muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::wire")) {
 			//wire  muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::POS device")) {
 			//POS device  muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::issuer node")) {
 			//issuer node  muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 		if (stereoName.equals("UMLsec::smart card")) {
 			//smart card  muss nicht validiert werden
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 //		TODO KR: Es sind noch nicht alle Stereotypen drin, die nicht überprüft werden müssen
 //		Stereotyp nicht gefunden, was tuen?
-		List<String> noStereotype = new ArrayList<String>();
+		List<String> noStereotype = new ArrayList<>();
 		noStereotype.add("Stereotype " + stApp.getQualifiedStereotypeName() + " is no valid UMLsec Stereotype!");
 		return noStereotype;
 	}
@@ -272,7 +272,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	//check if the stereotype is applied to a org.uml2.uml.Package.
 	@SuppressWarnings("unchecked")
 	public static List<String> validateFairExchange(final StereotypeApplication stereoApp) {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		String fairName = "UMLsec::fair exchange";
 		Element fairExchangeElement = stereoApp.getExtendedElement();
 		Stereotype stereotype = fairExchangeElement.getApplicableStereotype(fairName);
@@ -309,7 +309,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	//check if tag permission got content
 	//check if stereotype <<authorized status>> is applied to a State, not a FinalState
 	public static List<String> validateAuthorizedStatus(final StereotypeApplication stereoApp) {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.AUTHORIZED_STATUS)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<authorized status>> expected, but was <<"
@@ -337,7 +337,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	//check if the tag 'guard' of the stereotype &lt;&lt;guarded&gt;&gt; is not empty.
 	@SuppressWarnings("unchecked")
 	public static List<String> validateGuarded(final StereotypeApplication stereoApp) {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.GUARDED)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <guarded>> expected, but was <<"
@@ -358,7 +358,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	 */
 	//check if sterotype <<locked status>> is applied to a State, not a FinalState
 	public static List<String> validateLockedStatus(final StereotypeApplication stereoApp) {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.LOCKED_STATUS)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<lockes status>> expected, but was <<"
@@ -381,7 +381,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	//check if the tag 'adversary' of the sterotype <<secure links>> is not empty.
 	//check if the stereotype is applied to a org.uml2.uml.Package.
 	public static List<String> validateSecureLinks(final StereotypeApplication stereoApp) {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.SECURE_LINKS)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<secure links>> expected, but was <<"
@@ -408,7 +408,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	//check if one of the tags of critical got content
 	@SuppressWarnings("unchecked")
 	public static List<String> validateCritical(final StereotypeApplication stereoApp) {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.CRITICAL)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<critical>> expected, but was <<"
@@ -516,7 +516,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	//check if the tag 'actions' got content
 	public static List<String> validateRequires(final StereotypeApplication stereoApp) {
 //		TODO KR: Darf requires an etwas anderem als an einer OpaqueAction sein?
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.REQUIRES)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<requires>> expected, but was <<"
@@ -544,7 +544,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	//check if stereotype 'provable' is applied to a package but not to a model
 	public static List<String> validateProvable(final StereotypeApplication stereoApp) {
 //		TODO KR: an welchen Diagrammtypen darf provable dran?
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.PROVABLE)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<provable>> expected, but was <<"
@@ -581,7 +581,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	 */
 	//check if stereotype 'no down flow' is applied to a package but not to a model
 	public static List<String> validateNoDownFlow(final StereotypeApplication stereoApp) {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.NO_DOWN_FLOW)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<no down flow>> expected, but was <<"
@@ -603,7 +603,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	 */
 	//check if stereotype 'secure dependency' is applied to a package but not to a model
 	public static List<String> validateSecureDependency(final StereotypeApplication stereoApp) {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.SECURE_DEPENDENCY)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<secure dependency>> expected, but was <<"
@@ -625,7 +625,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	 */
 	//check if stereotype 'secure dependency' is applied to a package but not to a model
 	public static List<String> validateGuardedAccess(final StereotypeApplication stereoApp) {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.GUARDED_ACCESS)) {
 			// wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<guarded access>> expected, but was <<"
@@ -647,7 +647,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	 */
 	//check if stereotype 'no up flow' is applied to a package but not to a model
 	public static List<String> validateNoUpFlow(final StereotypeApplication stereoApp) {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.NO_UP_FLOW)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<no up flow>> expected, but was <<"
@@ -672,7 +672,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	//check if tag 'authenticity' got content
 	//check if tag 'integrity' got content
 	public static List<String> validateDataSecurity(final StereotypeApplication stereoApp) {
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.DATA_SECURITY)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<data security>> expected, but was <<"
@@ -713,7 +713,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	public static List<String> validateRBAC(final StereotypeApplication stereoApp) {
 //		TODO KR: die Rollen extrahieren und gucken ob alle Rollen die etwas betreten dürfen auch eine zugewiesene Person haben
 //		TODO KR: müssen bei RBAC die TaggeddValues Inhalt haben?
-		List<String> validations = new ArrayList<String>();
+		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.RBAC)) {
 //			wrong StereotypeApplication for this check
 			validations.add("Wrong stereotype. <<rbac>> expected, but was <<"
@@ -738,7 +738,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 			validations.add("Empty role tag of Stereotype <<rbc>> at Element " + stereoApp.getExtendedElementName() + "!");
 		} else  {
 //			TODO KR: testen ob das zweite Tuppelelemente ein existierendes Element im Model ist.
-			List<String> contentList = new ArrayList<String>();
+			List<String> contentList = new ArrayList<>();
 			contentList.addAll((Collection<? extends String>) roleTag.getValue());
 			for (String content : contentList) {
 				if (!checkTuple(content)) {
@@ -751,7 +751,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 		if ((rightTag.getValue() == null) || (((List<String>) rightTag.getValue()).size() == 0)) {
 			validations.add("Empty right tag of Stereotype <<rbc>> at Element " + stereoApp.getExtendedElementName() + "!");
 		} else {
-			List<String> contentList = new ArrayList<String>();
+			List<String> contentList = new ArrayList<>();
 			contentList.addAll((Collection<? extends String>) rightTag.getValue());
 			for (String content : contentList) {
 				if (!checkTuple(content)) {

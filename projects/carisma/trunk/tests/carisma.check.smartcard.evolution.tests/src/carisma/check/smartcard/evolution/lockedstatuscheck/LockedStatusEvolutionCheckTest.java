@@ -17,7 +17,7 @@ package carisma.check.smartcard.evolution.lockedstatuscheck;
 //	
 //	private File testmodelfile = null;
 //	
-//	private UML2ModelLoader ml = null;
+//	private ResourceSet rs = new ResourceSetImpl();
 //	
 //	private Resource modelres = null;
 //	
@@ -25,7 +25,7 @@ package carisma.check.smartcard.evolution.lockedstatuscheck;
 //		testmodelfilename = testmodelname;
 //		testmodelfile = new File(filepath + File.separator + testmodelfilename);
 //		assertTrue(testmodelfile.exists());
-//		if (ml == null) {
+//		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
 //			ml = new UML2ModelLoader();
 //		}
 //		try {

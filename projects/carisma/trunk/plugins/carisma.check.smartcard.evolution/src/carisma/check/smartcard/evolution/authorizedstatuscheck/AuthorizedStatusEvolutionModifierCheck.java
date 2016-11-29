@@ -80,9 +80,9 @@ public class AuthorizedStatusEvolutionModifierCheck implements CarismaCheckWithI
 	 */
 	private static final String PERMISSION = "permission";
 	public AuthorizedStatusEvolutionModifierCheck() {
-		this.processedDeltaElements = new ArrayList<DeltaElement>();
-		this.processedTransitions = new HashMap<Transition, DeltaElement>();
-		this.errorMessages = new ArrayList<AnalysisMessage>();		
+		this.processedDeltaElements = new ArrayList<>();
+		this.processedTransitions = new HashMap<>();
+		this.errorMessages = new ArrayList<>();		
 	}
 	
 	@Override
@@ -136,7 +136,7 @@ public class AuthorizedStatusEvolutionModifierCheck implements CarismaCheckWithI
 	private boolean checkDeltas() {
 		boolean hasMaxSuccessfulDelta = false;
 		int deltaCounter = 1;
-		List<Delta> violatingEvolutions = new ArrayList<Delta>();
+		List<Delta> violatingEvolutions = new ArrayList<>();
 		for (Delta d : this.deltaList.getRemainingDeltas()) {
 			boolean deltaSuccessful = true;
 			checkDelta(d);
@@ -172,15 +172,15 @@ public class AuthorizedStatusEvolutionModifierCheck implements CarismaCheckWithI
 	private void init(final Delta d) {
 		this.deltaModifier = this.deltaModifiers.get(d);
 		if (this.errorMessages == null) {
-			this.errorMessages = new ArrayList<AnalysisMessage>();
+			this.errorMessages = new ArrayList<>();
 		}
 		this.errorMessages.clear();
 		if (this.processedDeltaElements == null) {
-			this.processedDeltaElements = new ArrayList<DeltaElement>();
+			this.processedDeltaElements = new ArrayList<>();
 		}
 		this.processedDeltaElements.clear();
 		if (this.processedTransitions == null) {
-			this.processedTransitions = new HashMap<Transition, DeltaElement>();
+			this.processedTransitions = new HashMap<>();
 		}
 		this.processedTransitions.clear();
 	}

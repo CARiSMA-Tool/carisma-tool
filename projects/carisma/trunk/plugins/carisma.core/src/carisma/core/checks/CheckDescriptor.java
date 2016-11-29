@@ -44,9 +44,9 @@ public class CheckDescriptor {
 		this.implementingClass = implementingClass;
 		this.description = description;
 		this.magicKeys = magicKeys;
-		this.parameters = new ArrayList<CheckParameterDescriptor>();
-		this.preconditions = new ArrayList<String>();
-		this.postconditions = new ArrayList<String>();
+		this.parameters = new ArrayList<>();
+		this.preconditions = new ArrayList<>();
+		this.postconditions = new ArrayList<>();
 	}
 
 	public String getCheckDescriptorId() {

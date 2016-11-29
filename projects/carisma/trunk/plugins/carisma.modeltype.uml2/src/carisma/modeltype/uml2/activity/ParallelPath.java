@@ -38,12 +38,12 @@ public class ParallelPath {
 	/**
 	 * list with the parallel paths.
 	 */
-	private List<List<Element>> results = new ArrayList<List<Element>>();
+	private List<List<Element>> results = new ArrayList<>();
 	
 	/**
 	 * list with paths that have to be merged.
 	 */
-	private List<List<Element>> mergeList = new ArrayList<List<Element>>();
+	private List<List<Element>> mergeList = new ArrayList<>();
 		
 	/**
 	 * the JoinNode where the parallelization ends.
@@ -69,7 +69,7 @@ public class ParallelPath {
 		}
 		for (Element start : forkNode.getOutgoings()) {
 			try {
-				List<Element> startList = new ArrayList<Element>();
+				List<Element> startList = new ArrayList<>();
 				startList.add(((ActivityEdge) start).getTarget());
 				getPaths(startList);
 			} catch (NullPointerException exception) {
@@ -108,7 +108,7 @@ public class ParallelPath {
 			ParallelPath parallelPath = new ParallelPath();
 			List<List<Element>> parallelList = parallelPath.getParallelPaths((ForkNode) last, this.analysisHost);
 			for (List<Element> path : parallelList) {
-				List<Element> newList = new ArrayList<Element>();
+				List<Element> newList = new ArrayList<>();
 				newList.addAll(list);
 				newList.remove(newList.size() - 1);
 				newList.addAll(path);
@@ -122,12 +122,12 @@ public class ParallelPath {
 					if (((ActivityNode) last).getOutgoings().size() > 0) {
 						for (Element follower : ((ActivityNode) last).getOutgoings()) {
 							if (!(contains(list, ((ActivityEdge) follower).getTarget()))) {
-								List<Element> newPath = new ArrayList<Element>();
+								List<Element> newPath = new ArrayList<>();
 								newPath.addAll(list);
 								newPath.add(((ActivityEdge) follower).getTarget());
 								getPaths(newPath);
 							} else {
-								List<Element> cutted = new ArrayList<Element>();
+								List<Element> cutted = new ArrayList<>();
 								Element newAcc = list.get(list.size() - 1);
 								cutted.addAll(list);
 								cutted.remove(cutted.size() - 1);
@@ -163,8 +163,8 @@ public class ParallelPath {
 		}
 		while (this.mergeList.size() > 0) {
 			acc = this.mergeList.get(this.mergeList.size() - 1).get(0);
-			List<List<Element>> newMerge1 = new ArrayList<List<Element>>();
-			List<List<Element>> newMerge2 = new ArrayList<List<Element>>();
+			List<List<Element>> newMerge1 = new ArrayList<>();
+			List<List<Element>> newMerge2 = new ArrayList<>();
 			for (int i = this.mergeList.size() - 1; i >= 0; i--) {
 				if (this.mergeList.get(i).get(0) == acc) {
 					newMerge1.add(this.mergeList.get(i));
@@ -175,7 +175,7 @@ public class ParallelPath {
 			this.results.clear();
 			for (int i = 0; i < newMerge1.size(); i++) {
 				for (int j = 0; j < newMerge2.size(); j++) {
-					ArrayList<Element> r = new ArrayList<Element>();
+					ArrayList<Element> r = new ArrayList<>();
 					startMerge(newMerge1.get(i), newMerge2.get(j), r);
 				}
 			}
@@ -198,22 +198,22 @@ public class ParallelPath {
 			this.results.add(r);
 		}
 		if ((l1.size() != 0) && (l2.size() == 0)) {
-			List<Element> res = new ArrayList<Element>();
+			List<Element> res = new ArrayList<>();
 			res.addAll(r);
 			res.addAll(l1);
 			this.results.add(res);
 		}
 		if ((l1.size() == 0) && (l2.size() != 0)) {
-			ArrayList<Element> res = new ArrayList<Element>();
+			ArrayList<Element> res = new ArrayList<>();
 			res.addAll(r);
 			res.addAll(l2);
 			this.results.add(res);
 		}
 		if ((l1.size() != 0) && (l2.size() != 0)) {
-			List<Element> newR1 = new ArrayList<Element>();
-			List<Element> newR2 = new ArrayList<Element>();
-			List<Element> newL1 = new ArrayList<Element>();
-			List<Element> newL2 = new ArrayList<Element>();
+			List<Element> newR1 = new ArrayList<>();
+			List<Element> newR2 = new ArrayList<>();
+			List<Element> newL1 = new ArrayList<>();
+			List<Element> newL2 = new ArrayList<>();
 			newR1.addAll(r);
 			newR2.addAll(r);
 			newL1.addAll(l1);
@@ -262,7 +262,7 @@ public class ParallelPath {
 	 * @return list without loop at the end
 	 */
 	private static List<Element> cutList(final List<Element> list, final Element element) {
-		List<Element> returnList = new ArrayList<Element>();
+		List<Element> returnList = new ArrayList<>();
 		int count;
 		
 		returnList.addAll(list);

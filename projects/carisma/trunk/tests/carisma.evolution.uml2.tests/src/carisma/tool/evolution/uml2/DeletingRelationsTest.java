@@ -4,53 +4,50 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Model;
+import org.junit.After;
 import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 
 
 public class DeletingRelationsTest {
 	
-	private UML2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 	
 	private Resource modelres = null;
 	
 	/**
 	 * loads the given model.
 	 * @param testmodelname - the model to load
+	 * @throws IOException 
 	 */
-	private void loadModel(final String testmodelname) {
+	private void loadModel(final String testmodelname) throws IOException {
 		String testmodeldir = "resources/models/modifier";
 		File testmodelfile = new File(testmodeldir + File.separator + testmodelname);
-		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new UML2ModelLoader();
-		}
-		try {
-			modelres = ml.load(testmodelfile);
-		} catch (IOException e) {
-			Logger.log(LogLevel.ERROR, "Couldn't load model.", e);
-			fail("Couldn't load model");
-		}
+		assertTrue(testmodelfile.exists());this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		this.modelres.load(Collections.EMPTY_MAP);
 	}
 
 	@Test
-	public void testDeleteRelationsByDestroying() {
+	public void testDeleteRelationsByDestroying() throws IOException {
 		loadModel("nary.uml");
 		try {
-			assertNotNull(modelres);
-			Model theModel = (Model) modelres.getContents().get(0);
+			assertNotNull(this.modelres);
+			Model theModel = (Model) this.modelres.getContents().get(0);
 			assertNotNull(theModel);
 			Class class0 = (Class) UMLHelper.getElementByName(theModel, "Class0");
 			assertNotNull(class0);
@@ -85,4 +82,10 @@ public class DeletingRelationsTest {
 		}
 	}
 	
+	@After
+	public void unloadModel(){
+		for(Resource r : this.rs.getResources()){
+			r.unload();
+		}
+	}
 }

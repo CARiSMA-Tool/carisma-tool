@@ -87,7 +87,7 @@ public class MariskHelperTest {
 		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
 		try (FileInputStream in = new FileInputStream(testmodelfile)){
-			this.modelres = this.rs.createResource(URI.createURI(testmodelfile.getPath()));
+			this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getPath()));
 			this.modelres.load(in, Collections.EMPTY_MAP);
 		} catch (IOException e) {
 			fail(e.getMessage());
@@ -122,26 +122,26 @@ public class MariskHelperTest {
 	@SuppressWarnings("static-method")
 	@Test
 	public final void extractActivitiesTest() {
-		List<Tupel<String, String[]>> testList = new ArrayList<Tupel<String,String[]>>();
-		testList.add(new Tupel<String, String[]>(
+		List<Tupel<String, String[]>> testList = new ArrayList<>();
+		testList.add(new Tupel<>(
 				"Activity1,Activity2",
 				new String[] {"Activity1", "Activity2"}));
-		testList.add(new Tupel<String, String[]>(
+		testList.add(new Tupel<>(
 				"Activity1, Activity2",
 				new String[] {"Activity1", "Activity2"}));
-		testList.add(new Tupel<String, String[]>(
+		testList.add(new Tupel<>(
 				"Activity1 ,Activity2",
 				new String[] {"Activity1", "Activity2"}));
-		testList.add(new Tupel<String, String[]>(
+		testList.add(new Tupel<>(
 				"Activity1 , Activity2",
 				new String[] {"Activity1", "Activity2"}));
-		testList.add(new Tupel<String, String[]>(
+		testList.add(new Tupel<>(
 				"Activity 1 , Activity 2",
 				new String[] {"Activity 1", "Activity 2"}));
-		testList.add(new Tupel<String, String[]>(
+		testList.add(new Tupel<>(
 				"Activity1",
 				new String[] {"Activity1"}));
-		testList.add(new Tupel<String, String[]>(
+		testList.add(new Tupel<>(
 				"Activity1 , Activity2 , Activity3",
 				new String[] {"Activity1", "Activity2", "Activity3",}));
 		
@@ -162,22 +162,22 @@ public class MariskHelperTest {
 	@SuppressWarnings("static-method")
 	@Test
 	public final void parseActivitiesTest() {
-		List<Tupel<String, Boolean>> testList = new ArrayList<Tupel<String, Boolean>>();
-		testList.add(new Tupel<String, Boolean> (
+		List<Tupel<String, Boolean>> testList = new ArrayList<>();
+		testList.add(new Tupel<> (
 				"Activity1,Activity2", Boolean.TRUE));
-		testList.add(new Tupel<String, Boolean> (
+		testList.add(new Tupel<> (
 				"Activity 1 , Activity 2", Boolean.TRUE));
-		testList.add(new Tupel<String, Boolean> (
+		testList.add(new Tupel<> (
 				"Activity1", Boolean.TRUE));
-		testList.add(new Tupel<String, Boolean> (
+		testList.add(new Tupel<> (
 				"Activity 1", Boolean.TRUE));
-		testList.add(new Tupel<String, Boolean> (
+		testList.add(new Tupel<> (
 				"Activity1,Activity2,", Boolean.FALSE));
-		testList.add(new Tupel<String, Boolean> (
+		testList.add(new Tupel<> (
 				",Activity1,Activity2", Boolean.FALSE));
-		testList.add(new Tupel<String, Boolean> (
+		testList.add(new Tupel<> (
 				"", Boolean.FALSE));
-		testList.add(new Tupel<String, Boolean> (
+		testList.add(new Tupel<> (
 				",", Boolean.FALSE));
 		
 		for (Tupel<String, Boolean> testEntry : testList) {
@@ -198,7 +198,7 @@ public class MariskHelperTest {
 		Activity act3 = this.factory.createTask();
 		act3.setName("act3");
 		
-		List<Activity> testList = new ArrayList<Activity>();
+		List<Activity> testList = new ArrayList<>();
 		testList.add(act1);
 		testList.add(act2);
 		testList.add(act3);
@@ -253,9 +253,10 @@ public class MariskHelperTest {
 	
 	/**
 	 * Tests the mapActivities method.
+	 * @throws IncompleteMappingExeption 
 	 */
 	@Test
-	public final void mapActivitiesTest() {
+	public final void mapActivitiesTest() throws IncompleteMappingExeption {
 		loadModel("MapActivitiesContainer.bpmn2");
 		assertNotNull(this.modelres);
 		
@@ -404,7 +405,7 @@ public class MariskHelperTest {
 			loadModel(testModel);
 			assertNotNull("model is null", this.modelres);
 			
-			ArrayList<Activity> activityList = new ArrayList<Activity>();
+			ArrayList<Activity> activityList = new ArrayList<>();
 			Process process = null;
 			TreeIterator<EObject> iterator = this.modelres.getAllContents();
 			while (iterator.hasNext()) {

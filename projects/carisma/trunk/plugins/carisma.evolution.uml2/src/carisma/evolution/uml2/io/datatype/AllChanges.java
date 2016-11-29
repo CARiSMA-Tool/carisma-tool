@@ -8,12 +8,13 @@ import java.util.List;
  * @author bberghoff
  *
  */
+@Deprecated
 public class AllChanges {
 	
 	private List<ExportChange> changes;
 	
 	public AllChanges(){
-		this.changes = new ArrayList<ExportChange>();
+		this.changes = new ArrayList<>();
 	}
 	
 	

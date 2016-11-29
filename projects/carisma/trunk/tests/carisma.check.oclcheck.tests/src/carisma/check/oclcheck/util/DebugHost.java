@@ -58,8 +58,8 @@ public class DebugHost implements AnalysisHost {
 	 * Constructor.
 	 */
 	public DebugHost() {
-		this.reportMessages = new ArrayList<String>();
-		this.resultMessages = new ArrayList<AnalysisResultMessage>();
+		this.reportMessages = new ArrayList<>();
+		this.resultMessages = new ArrayList<>();
 		this.enableSystemOutput = false;
 	}
 	
@@ -68,8 +68,8 @@ public class DebugHost implements AnalysisHost {
 	 * @param enableSystemOutput Enables the system output by using System.out.println 
 	 */
 	public DebugHost(final boolean enableSystemOutput) {
-		this.reportMessages = new ArrayList<String>();
-		this.resultMessages = new ArrayList<AnalysisResultMessage>();
+		this.reportMessages = new ArrayList<>();
+		this.resultMessages = new ArrayList<>();
 		this.enableSystemOutput = enableSystemOutput;
 	}
 	
