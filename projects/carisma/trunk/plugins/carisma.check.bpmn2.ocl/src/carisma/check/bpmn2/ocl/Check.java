@@ -249,7 +249,7 @@ public class Check implements CarismaCheckWithID {
 	private List<OclExpression> getOclExpression(
 			final EList<OclExpression> oclExpressions, final String selection) {
 		
-		ArrayList<OclExpression> result = new ArrayList<OclExpression>();
+		ArrayList<OclExpression> result = new ArrayList<>();
 		
 		if (selection.equals("*") || selection.equals("all")) {
 			for (OclExpression o : oclExpressions) {
@@ -259,7 +259,7 @@ public class Check implements CarismaCheckWithID {
 			String[] arrSel = selection.split(",");
 			
 			Map<String, OclExpression> constraintMap = 
-					new HashMap<String, OclExpression>();
+					new HashMap<>();
 			for (OclExpression expression : oclExpressions) {
 				constraintMap.put(expression.getName().toLowerCase(Locale.ENGLISH), expression);
 			}

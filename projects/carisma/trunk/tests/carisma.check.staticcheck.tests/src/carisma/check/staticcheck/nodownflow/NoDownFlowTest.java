@@ -3,19 +3,19 @@ package carisma.check.staticcheck.nodownflow;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Package;
+import org.junit.After;
 import org.junit.Test;
 
 import carisma.check.staticcheck.nodownflow.NoDownFlow;
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
-import carisma.modeltype.uml2.UML2ModelLoader;
 
 
 /**
@@ -33,7 +33,7 @@ public class NoDownFlowTest {
 	/**
 	 * UML2ModelLoader.
 	 */
-	private UML2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 	
 	/**
 	 * the model-resource.
@@ -44,23 +44,17 @@ public class NoDownFlowTest {
 	 * loads a model, represented by the filename.
 	 * @param testmodelname - name of the model-file
 	 */
-	public final void loadModel(final String testmodelname) {
+	public final void loadModel(final String testmodelname) throws IOException {
 		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (this.ml == null) {
-			this.ml = new UML2ModelLoader();
-		}
-		try {
-			this.modelres = this.ml.load(testmodelfile);
-		} catch (IOException e) {
-			Logger.log(LogLevel.ERROR, e.getMessage(), e);
-			fail(e.getMessage());
-		}
+		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		this.modelres.load(Collections.EMPTY_MAP);
 	}
 	
 	/**
 	 * tests if the class throws a NullPointerException if the model is null.
 	 */
+	@SuppressWarnings("static-method")
 	@Test (expected = IllegalArgumentException.class)
 	public final void testNull() {
 		NoDownFlow ndf = new NoDownFlow();
@@ -69,9 +63,10 @@ public class NoDownFlowTest {
 	
 	/**
 	 * tests if the class returns true if no profile is applied.
+	 * @throws IOException 
 	 */
 	@Test
-	public final void testNoProfile() {
+	public final void testNoProfile() throws IOException {
 		loadModel("testNoDownFlowNoProfile.uml");
 		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
@@ -81,9 +76,10 @@ public class NoDownFlowTest {
 	
 	/**
 	 * tests if the class returns true if no stereotype is applied.
+	 * @throws IOException 
 	 */
 	@Test
-	public final void testNoStereotype() {
+	public final void testNoStereotype() throws IOException {
 		loadModel("testNoDownFlowNoStereotype.uml");
 		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
@@ -93,9 +89,10 @@ public class NoDownFlowTest {
 	
 	/**
 	 * test with the example model of the umlsec book.
+	 * @throws IOException 
 	 */
 	@Test
-	public final void test() {
+	public final void test() throws IOException {
 		loadModel("testNoDownFlow.uml");
 		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
@@ -105,9 +102,10 @@ public class NoDownFlowTest {
 	
 	/**
 	 * test with a correct example.
+	 * @throws IOException 
 	 */
 	@Test
-	public final void testCorrect() {
+	public final void testCorrect() throws IOException {
 		loadModel("testNoDownFlowCorrect.uml");
 		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
@@ -117,9 +115,10 @@ public class NoDownFlowTest {
 	
 	/**
 	 * test with an example where the algorithm should say correct, but isn't.
+	 * @throws IOException 
 	 */
 	@Test
-	public final void test4Algo() {
+	public final void test4Algo() throws IOException {
 		loadModel("testNoDownFlowFalseAlgoExample.uml");
 		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
@@ -130,9 +129,10 @@ public class NoDownFlowTest {
 	/**
 	 * model example of the book.
 	 * should fail
+	 * @throws IOException 
 	 */
 	@Test
-	public final void testBookExample() {
+	public final void testBookExample() throws IOException {
 		loadModel("testNoDownFlowBookExample.uml");
 		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
@@ -143,13 +143,21 @@ public class NoDownFlowTest {
 	/**
 	 * model for a contains() check.
 	 * should succeed
+	 * @throws IOException 
 	 */
 	@Test
-	public final void testContains() {
+	public final void testContains() throws IOException {
 		loadModel("testNoDownFlowContains.uml");
 		assertNotNull(this.modelres);
 		NoDownFlow ndf = new NoDownFlow();
 		assertTrue(ndf.startCheck((Package) this.modelres.getContents().get(0), null));
 		this.modelres.unload();
+	}
+	
+	@After
+	public void unloadModel(){
+		for(Resource r : this.rs.getResources()){
+			r.unload();
+		}
 	}
 }

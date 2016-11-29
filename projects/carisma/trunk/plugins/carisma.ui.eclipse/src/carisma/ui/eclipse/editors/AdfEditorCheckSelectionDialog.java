@@ -292,7 +292,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 
         // Build a list of selected children.
         if (children != null) {
-            ArrayList<CheckDescriptor> list = new ArrayList<CheckDescriptor>();
+            ArrayList<CheckDescriptor> list = new ArrayList<>();
             for (int i = 0; i < children.length; ++i) {
                 Object element = children[i];
                 if (this.listViewer.getChecked(element)) {
@@ -432,7 +432,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 		if (this.recommendedChecks != null) {
 			this.recommendedChecks.clear();
 		} else {
-			this.recommendedChecks = new ArrayList<CheckDescriptor>();
+			this.recommendedChecks = new ArrayList<>();
 		}
 		this.recommendedChecks.addAll(newRecommendedChecks);
 	}

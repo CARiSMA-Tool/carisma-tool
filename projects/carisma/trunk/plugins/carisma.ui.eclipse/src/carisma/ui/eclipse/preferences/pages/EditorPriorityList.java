@@ -209,7 +209,7 @@ public class EditorPriorityList extends FieldEditor {
 					if (list != null) {
 						list.add(result);
 					} else {
-						ArrayList<String> editor = new ArrayList<String>();
+						ArrayList<String> editor = new ArrayList<>();
 						editor.add(result);
 						EditorPriorityList.this.selectedEditors.put(EditorPriorityList.this.modelTypeCombo.getText(), editor);
 					}
@@ -325,7 +325,7 @@ public class EditorPriorityList extends FieldEditor {
 
 	@Override
 	protected final void doStore() {
-		java.util.List<String> toBeSaved = new java.util.ArrayList<String>(); 
+		java.util.List<String> toBeSaved = new java.util.ArrayList<>(); 
 		Set<Map.Entry<String, java.util.ArrayList<String>>> set = this.selectedEditors.entrySet();
 		for (Map.Entry<String, java.util.ArrayList<String>> entry : set) {
 			for (String editor : entry.getValue()) {
@@ -369,7 +369,7 @@ public class EditorPriorityList extends FieldEditor {
 			this.modelTypeCombo.add(type.getName());
 		}
 		
-		this.selectedEditors = new HashMap<String, java.util.ArrayList<String>>();
+		this.selectedEditors = new HashMap<>();
 		this.guiList.removeAll();
 		for (ModelType mt : this.listModelTypes) {
 			java.util.List<String> editors = getSavedEditorsByModelType(propertyString, mt.getName());
@@ -377,7 +377,7 @@ public class EditorPriorityList extends FieldEditor {
 				this.selectedEditors.put(mt.getName(), (ArrayList<String>) editors);
 			} else {
 				this.selectedEditors.put(mt.getName(),
-						new ArrayList<String>(Arrays.asList(new String[] {TextEditorDescriptor.NAME})));
+						new ArrayList<>(Arrays.asList(new String[] {TextEditorDescriptor.NAME})));
 			}
 		}
 
@@ -453,7 +453,7 @@ public class EditorPriorityList extends FieldEditor {
 		java.util.List<String> choosenEditors = Arrays.asList(this.guiList.getItems());
 		
 		// Info: availableItems must be a copy of list. Otherwise, when removing items in list, they are no more there
-		java.util.ArrayList<String> availableItems  = new ArrayList<String>();
+		java.util.ArrayList<String> availableItems  = new ArrayList<>();
 		
 		java.util.List<EditorDescriptor> edDescriptors = CarismaGUI.INSTANCE.getEditorRegistry().getRegisteredEditors();
 		for (EditorDescriptor edDesc : edDescriptors) {
@@ -541,7 +541,7 @@ public class EditorPriorityList extends FieldEditor {
 	 */
 	private static java.util.List<String> getSavedEditorsByModelType(final String savedString, final String modelType) {
 		String[] tmp = getProperty(savedString, LIST_ITEMS).split(SEPARATOR_LIST);
-		ArrayList<String> result =  new ArrayList<String>();
+		ArrayList<String> result =  new ArrayList<>();
 		if (tmp.length != 0) {
 			for (String str : tmp) {
 				if (str.length() > modelType.length() + 1

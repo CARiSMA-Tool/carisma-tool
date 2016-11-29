@@ -41,8 +41,14 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="carisma.ui.vision.eclipse.preferences.initializer.VisiOnInitializer">
+            class="carisma.ui.vision.eclipse.preferences.initializer.VisionInitializer">
       </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="carisma.ui.vision.eclipse.preferences.initializer.VisionStartup">
+      </startup>
    </extension>
 
 </plugin>

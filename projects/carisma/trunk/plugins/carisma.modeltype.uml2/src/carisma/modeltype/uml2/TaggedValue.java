@@ -103,7 +103,7 @@ public class TaggedValue extends EObjectImpl {
 	 * @return - list of found String values
 	 */	
 	public List<String> getStringValues() {
-		List<String> valueList = new ArrayList<String>();
+		List<String> valueList = new ArrayList<>();
 		Object tagValueObject = getValue();
 		if (tagValueObject instanceof EList<?>) {
 			for (Object entry : (EList<?>) tagValueObject) {

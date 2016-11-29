@@ -17,7 +17,7 @@ public class CopyElement extends AdditiveElement {
 	
 	public CopyElement(final EObject changeTarget, final EObject newReceiver) {
 		super(changeTarget);
-		this.changedValues = new HashMap<String, Object>();
+		this.changedValues = new HashMap<>();
 		this.receivingElement = newReceiver;
 	}
 	

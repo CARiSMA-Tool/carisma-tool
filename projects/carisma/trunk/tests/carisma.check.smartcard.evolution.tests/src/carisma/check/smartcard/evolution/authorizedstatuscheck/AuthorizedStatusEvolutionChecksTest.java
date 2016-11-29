@@ -173,7 +173,7 @@ public class AuthorizedStatusEvolutionChecksTest {
 		
 	public final void init(final String modelfilename) {
 		this.testHost = new TestHost();
-		this.deltas = new ArrayList<Delta>();
+		this.deltas = new ArrayList<>();
 		this.model = TestHelper.loadModel(this.filepath, modelfilename);
 		this.modifierMap = new ModifierMap(this.model.eResource());
 		assertNotNull(this.modifierMap);
@@ -198,7 +198,7 @@ public class AuthorizedStatusEvolutionChecksTest {
 			Element guard = el.getGuard();
 			assertNotNull(guard);
 			DelElement delGuard = new DelElement(guard);
-			List<DeltaElement> content = new ArrayList<DeltaElement>();
+			List<DeltaElement> content = new ArrayList<>();
 			content.add(delGuard);
 			this.deltas.add(new Delta(new ArrayList<String>(), content));
 			assertFalse(theCheck.perform(null, this.testHost));
@@ -237,7 +237,7 @@ public class AuthorizedStatusEvolutionChecksTest {
 			addTransition.addKeyValuePair(NAME, "newTransition");
 			addTransition.addKeyValuePair("source", "State2");
 			addTransition.addKeyValuePair("target", "Region::State1");
-			List<DeltaElement> content = new ArrayList<DeltaElement>();
+			List<DeltaElement> content = new ArrayList<>();
 			content.add(addTransition);
 			this.deltas.add(new Delta(new ArrayList<String>(), content));
 			assertFalse(theCheck.perform(null, this.testHost));
@@ -274,11 +274,11 @@ public class AuthorizedStatusEvolutionChecksTest {
 			AddElement addPermission = new AddElement(authorizedApp, UMLHelper.getMetaClass("Property"), null);
 			addPermission.addKeyValuePair(NAME, PERMISSION);
 			addPermission.addKeyValuePair("value", "anders");		
-			ArrayList<AddElement> substitutes = new ArrayList<AddElement>();
+			ArrayList<AddElement> substitutes = new ArrayList<>();
 			substitutes.add(addPermission);
 			SubstElement substPermission = new SubstElement(permissionTag, substitutes);
 			
-			List<DeltaElement> deltaContent = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaContent = new ArrayList<>();
 			deltaContent.add(substPermission);
 			this.deltas.add(new Delta(new ArrayList<String>(), deltaContent));
 			
@@ -318,11 +318,11 @@ public class AuthorizedStatusEvolutionChecksTest {
 			addGuard.addKeyValuePair("specification", "anders");
 			addGuard.addKeyValuePair("language", "Analysis");
 			
-			ArrayList<AddElement> substitutes = new ArrayList<AddElement>();
+			ArrayList<AddElement> substitutes = new ArrayList<>();
 			substitutes.add(addGuard);
 			SubstElement substGuard = new SubstElement(guard, substitutes);
 			
-			List<DeltaElement> deltaContent = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaContent = new ArrayList<>();
 			deltaContent.add(substGuard);
 			
 			this.deltas.add(new Delta(new ArrayList<String>(), deltaContent));

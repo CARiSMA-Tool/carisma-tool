@@ -47,10 +47,10 @@ public class Activity2petrinetTest {
 		PetriNet petriNet = new Convert(this.model).convert();
 		assertNotNull(petriNet);
 		List<Place> places = petriNet.getPlaces();
-		List<String> placeNames = new  ArrayList<String>();
+		List<String> placeNames = new  ArrayList<>();
 		List<Arc> arcs = petriNet.getArcs();
 		List<Transition> transitions = petriNet.getTransitions();
-		List<String> transitionNames = new ArrayList<String>();
+		List<String> transitionNames = new ArrayList<>();
 		for (Place place : places) {
 			placeNames.add(place.getName());
 		}

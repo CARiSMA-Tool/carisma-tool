@@ -167,7 +167,7 @@ public class LockedStatusEvolutionDeltaOnlyCheckTest {
 		 * Constructor.
 		 */
 		public TestHost() {
-			this.register = new HashMap<String, Object>();
+			this.register = new HashMap<>();
 		}
 		
 		@Override

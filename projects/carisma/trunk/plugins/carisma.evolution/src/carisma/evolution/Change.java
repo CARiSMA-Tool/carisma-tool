@@ -74,15 +74,15 @@ public class Change {
 	
 	private void init() {
 		if (this.constraints == null) {
-			this.constraints = new ArrayList<ChangeConstraint>();
+			this.constraints = new ArrayList<>();
 		}
 		this.constraints.clear();
 		if (this.alternatives == null) {
-			this.alternatives = new ArrayList<Alternative>();
+			this.alternatives = new ArrayList<>();
 		}
 		this.alternatives.clear();
 		if (this.constraintsInvolvedIn == null) {
-			this.constraintsInvolvedIn = new ArrayList<ChangeConstraint>();
+			this.constraintsInvolvedIn = new ArrayList<>();
 		}
 		this.constraintsInvolvedIn.clear();
 	}

@@ -1,10 +1,17 @@
 package carisma.check.umlchange.efficiency;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.BooleanParameter;
 import carisma.core.analysis.FloatParameter;
@@ -17,7 +24,6 @@ import carisma.evolution.DeltaFactoryCheck;
 import carisma.evolution.uml2.UMLModifierCheck;
 import carisma.evolution.uml2.io.ModelExporterCheck;
 import carisma.evolution.uml2.umlchange.UMLchangeParserCheck;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.check.smartcard.lockedstatus.LockedStatusCheck;
 
 
@@ -63,6 +69,8 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 	 * variable to save additional outputs.
 	 */
 	private String messages = "";
+
+	private ResourceSet rs = new ResourceSetImpl();
 	
 	@Override
 	public final boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost host) {
@@ -121,6 +129,7 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 	 * this checks loads all the UML files in the "tmp" directory and performs a locked-status check for each,
 	 * also counting the time needed for the checks
 	 * @return the time needed for the checks in millisecs
+	 * @throws IOException 
 	 */
 	private long nonEvolutionCheck() {
 		long completeTime = 0;
@@ -129,7 +138,14 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 				long time;
 				this.modelAmount++;
 				LockedStatusCheck lockedStatusCheck  = new LockedStatusCheck();  //locked-status check
-				Resource res = loadModel(f.getAbsolutePath());
+				Resource res;
+				try {
+					res = loadModel(f.getAbsolutePath());
+					this.messages += "Could not load model " + f.getAbsolutePath() + "\n!"; //kann eigentlich nicht passieren
+				} catch (IOException e1) {
+					e1.printStackTrace();
+					continue;
+				}
 				TestingHost h = new TestingHost(false);
 				h.setAnalyzedModel(res);
 				time = System.currentTimeMillis();
@@ -175,25 +191,20 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 		BooleanParameter  bp = new BooleanParameter(null, maxDelta);
 		parameters.put(folder, fp);
 		parameters.put(notAll, bp);
-	}
-	
-	
+	}	
 	
 	/**
 	 * method to load a model from an UML file.
 	 * @param filePath the path to the UML file
+	 * @return 
 	 * @return {@link Resource} object of the model
 	 */
-	public final Resource loadModel(final String filePath) {
-		UML2ModelLoader ml = new UML2ModelLoader();
-		File file = new File(filePath);
-		Resource returnValue = null;
-		try {
-			returnValue = ml.load(file);
-		} catch (IOException e) {
-			this.analysisHost.appendLineToReport("Fail to open " + file.getAbsolutePath());
-		}
-		return returnValue;
+	private Resource loadModel(final String filepath) throws IOException {
+		File testmodelfile = new File(filepath);
+		assertTrue(testmodelfile.exists());
+		Resource modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		modelres.load(Collections.EMPTY_MAP);
+		return modelres;
 	}
 	
 	/**
@@ -207,7 +218,7 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 		CheckParameter pathsParameter = parameters.get(this.paths);
 		float percentValue = 10;
 		int pathValue = 100;
-		Resource rs = null;
+		Resource resource = null;
 		if (percentageParameter != null) {
 			if (percentageParameter instanceof FloatParameter) {
 				percentValue = ((FloatParameter) percentageParameter).getValue();
@@ -228,10 +239,10 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 		}
 		LockedStatusModelCreater lsmc = new LockedStatusModelCreater();
 		long  time = System.currentTimeMillis();
-		rs = lsmc.getNewModel("TestModel", pathValue, percentValue);
+		resource = lsmc.getNewModel("TestModel", pathValue, percentValue);
 		time = System.currentTimeMillis() - time;
 		this.analysisHost.appendLineToReport("Modelcreation last " + time + " millisecs");
-		h.setAnalyzedModel(rs);
+		h.setAnalyzedModel(resource);
 	}
 
 	

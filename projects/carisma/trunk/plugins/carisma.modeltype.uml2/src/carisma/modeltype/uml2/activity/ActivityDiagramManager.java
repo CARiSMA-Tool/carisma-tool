@@ -38,7 +38,7 @@ public class ActivityDiagramManager {
 	/**
 	 * list with all possible paths in it.
 	 */
-	private List<List<Element>> resultList = new ArrayList<List<Element>>();
+	private List<List<Element>> resultList = new ArrayList<>();
 	
 	/**
 	 * the given model.
@@ -83,7 +83,7 @@ public class ActivityDiagramManager {
 	 */
 	public final List<List<Element>> getAllPaths() {
 		for (Element element : getInitalNodes()) {
-			List<Element> l = new ArrayList<Element>();
+			List<Element> l = new ArrayList<>();
 			l.add(element);
 			getPaths(l);
 		}
@@ -98,7 +98,7 @@ public class ActivityDiagramManager {
 	 * @return the InitialNodes
 	 */
 	private List<Element> getInitalNodes() {
-		List<Element> returnList = new ArrayList<Element>();
+		List<Element> returnList = new ArrayList<>();
 		for (Element element : UMLHelper.getAllElementsOfType(this.model, InitialNode.class)) {
 			if ((element.getOwner().getOwner() == this.model) || (element.getOwner().getOwner().getOwner() == this.model)) {
 				returnList.add(element);
@@ -117,7 +117,7 @@ public class ActivityDiagramManager {
 			ParallelPath parallelPath = new ParallelPath();
 			List<List<Element>> parallelList = parallelPath.getParallelPaths((ForkNode) last, this.host);
 			for (List<Element> path : parallelList) {
-				List<Element> newList = new ArrayList<Element>();
+				List<Element> newList = new ArrayList<>();
 				newList.addAll(list);
 				newList.remove(newList.size() - 1);
 				newList.addAll(path);
@@ -128,12 +128,12 @@ public class ActivityDiagramManager {
     			if (((ActivityNode) last).getOutgoings().size() > 0) {
     				for (Element follower : ((ActivityNode) last).getOutgoings()) {
     						if (!(contains(list, ((ActivityEdge) follower).getTarget()))) {
-    							List<Element> newPath = new ArrayList<Element>();
+    							List<Element> newPath = new ArrayList<>();
     							newPath.addAll(list);
     							newPath.add(((ActivityEdge) follower).getTarget());
     							getPaths(newPath);
     						} else {
-    							List<Element> cutted = new ArrayList<Element>();
+    							List<Element> cutted = new ArrayList<>();
     							Element newAcc = list.get(list.size() - 1);
     							cutted.addAll(list);
     							cutted.remove(cutted.size() - 1);
@@ -186,7 +186,7 @@ public class ActivityDiagramManager {
 	 * @return list without loop at the end
 	 */
 	private static List<Element> cutList(final List<Element> list, final Element element) {
-		List<Element> returnList = new ArrayList<Element>();
+		List<Element> returnList = new ArrayList<>();
 		int count;
 		
 		returnList.addAll(list);

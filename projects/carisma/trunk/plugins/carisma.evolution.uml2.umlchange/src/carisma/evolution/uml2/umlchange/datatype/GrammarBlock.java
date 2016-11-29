@@ -34,7 +34,7 @@ public class GrammarBlock {
 
 	public GrammarBlock(final String grammar) {
 		this.grammarString = grammar.trim();
-		this.alternatives = new ArrayList<GrammarAlternative>();
+		this.alternatives = new ArrayList<>();
 		List<String> extractedAlternatives =
 			ParserUtils.extract(
 					this.grammarString, ',');

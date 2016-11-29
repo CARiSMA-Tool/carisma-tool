@@ -11,7 +11,7 @@ public class ExportAlternative {
 	private ExportExtTag exportExtTagValue;
 	
 	public ExportAlternative(){
-		this.elementDescriptions = new ArrayList<ExportDeltaElement>();
+		this.elementDescriptions = new ArrayList<>();
 		this.exportExtTagValue = null;
 	}
 	

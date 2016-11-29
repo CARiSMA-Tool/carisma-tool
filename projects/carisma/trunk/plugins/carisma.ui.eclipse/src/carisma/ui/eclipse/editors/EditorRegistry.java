@@ -40,7 +40,7 @@ public class EditorRegistry {
 	 * Constructor.
 	 */
 	public EditorRegistry() {
-		this.registeredEditors = new ArrayList<EditorDescriptor>();
+		this.registeredEditors = new ArrayList<>();
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class EditorRegistry {
 					EditorDescriptor editorDescrtipion = (EditorDescriptor) checkElement.createExecutableExtension("implementingClass");
 					editorDescrtipion.setID(checkElement.getAttribute("id"));
 					editorDescrtipion.setName(checkElement.getAttribute("name"));
-					List<String> types = new ArrayList<String>();
+					List<String> types = new ArrayList<>();
 					for (IConfigurationElement parameterElement : checkElement.getChildren("EditorType")) {
 						types.add(parameterElement.getAttribute("Name")); 
 					}

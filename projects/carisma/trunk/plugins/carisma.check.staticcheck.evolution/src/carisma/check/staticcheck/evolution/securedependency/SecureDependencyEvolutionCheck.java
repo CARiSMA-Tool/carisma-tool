@@ -142,8 +142,8 @@ public class SecureDependencyEvolutionCheck implements CarismaCheckWithID {
      * Private constructor. UMLsec will never be initialized.
      */
     public SecureDependencyEvolutionCheck() {
-        this.secureDependencyViolations = new ArrayList<SecureDependencyViolation>();
-        this.processedUsageDependencies = new HashMap<UsageDescription, DeltaElement>();
+        this.secureDependencyViolations = new ArrayList<>();
+        this.processedUsageDependencies = new HashMap<>();
     }
 
     public List<SecureDependencyViolation> getViolations() {
@@ -203,7 +203,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheckWithID {
 
     private boolean checkDeltas() {
         boolean hasMaxSuccessfulDelta = false;
-        List<Delta> violatingEvolutions = new ArrayList<Delta>();
+        List<Delta> violatingEvolutions = new ArrayList<>();
         for (Delta d : this.deltaList.getRemainingDeltas()) {
             boolean deltaSuccessful = true;
             checkDelta(d);
@@ -239,11 +239,11 @@ public class SecureDependencyEvolutionCheck implements CarismaCheckWithID {
     private void init(final Delta d) {
         this.deltaModifier = this.deltaModifiers.get(d);
         if (this.secureDependencyViolations == null) {
-            this.secureDependencyViolations = new ArrayList<SecureDependencyViolation>();
+            this.secureDependencyViolations = new ArrayList<>();
         }
         this.secureDependencyViolations.clear();
         if (this.processedUsageDependencies == null) {
-            this.processedUsageDependencies = new HashMap<UsageDescription, DeltaElement>();
+            this.processedUsageDependencies = new HashMap<>();
         }
         this.processedUsageDependencies.clear();
     }
@@ -404,7 +404,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheckWithID {
     }
 
     private List<UsageDescription> translateIfPossible(List<UsageDescription> oldDependencies) {
-        ArrayList<UsageDescription> newDependencies = new ArrayList<SecureDependencyEvolutionCheck.UsageDescription>();
+        ArrayList<UsageDescription> newDependencies = new ArrayList<>();
         for (UsageDescription oldDependency : oldDependencies) {
             Classifier oldClient = oldDependency.client;
             Classifier oldSupplier = oldDependency.supplier;
@@ -468,7 +468,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheckWithID {
     }
 
     private List<UsageDescription> getTuples(Usage dependency) {
-        ArrayList<UsageDescription> tuples = new ArrayList<UsageDescription>();
+        ArrayList<UsageDescription> tuples = new ArrayList<>();
         List<NamedElement> clients = dependency.getClients();
         List<NamedElement> suppliers = dependency.getSuppliers();
         for (NamedElement c : clients) {
@@ -482,7 +482,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheckWithID {
     }
 
     private List<UsageDescription> getTuplesOfOutgoingDependencies(Classifier classifier) {
-        ArrayList<UsageDescription> opposites = new ArrayList<UsageDescription>();
+        ArrayList<UsageDescription> opposites = new ArrayList<>();
         for (DirectedRelationship rel : classifier.getSourceDirectedRelationships(UMLPackage.eINSTANCE.getUsage())) {
             Usage dep = (Usage) rel;
             if (SecureDependencyChecks.isRelevantDependency(dep)) {
@@ -497,7 +497,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheckWithID {
     }
 
     private List<UsageDescription> getTuplesOfIncomingDependencies(Classifier classifier) {
-        ArrayList<UsageDescription> opposites = new ArrayList<UsageDescription>();
+        ArrayList<UsageDescription> opposites = new ArrayList<>();
         List<Classifier> supers = SecureDependencyChecks.getSuperClassifiers(classifier);
         for (Classifier s : supers) {
             for (DirectedRelationship rel : s.getTargetDirectedRelationships(UMLPackage.eINSTANCE.getUsage())) {

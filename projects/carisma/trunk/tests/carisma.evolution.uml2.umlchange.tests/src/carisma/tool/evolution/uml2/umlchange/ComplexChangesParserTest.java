@@ -195,7 +195,7 @@ public class ComplexChangesParserTest {
 			assertTrue(add.getValues().containsKey(NAME));
 			assertEquals("secrecy", add.getValues().get(NAME));
 			assertTrue(add.getValues().containsKey("value"));
-			List<String> valueList = new ArrayList<String>();
+			List<String> valueList = new ArrayList<>();
 			valueList.add("bla");
 			assertEquals(valueList, add.getValues().get("value"));
 		} catch (ModelElementNotFoundException e) {

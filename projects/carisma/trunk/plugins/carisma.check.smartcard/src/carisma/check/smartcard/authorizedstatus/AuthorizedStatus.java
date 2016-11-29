@@ -42,7 +42,7 @@ public class AuthorizedStatus {
 	 * the constructor.
 	 */
 	public AuthorizedStatus() {
-		this.errorMessages = new ArrayList<AnalysisMessage>();
+		this.errorMessages = new ArrayList<>();
 	}
 	
 	public List<AnalysisMessage> getErrorMessages() {
@@ -70,7 +70,7 @@ public class AuthorizedStatus {
 	}
 	
 	public static List<AnalysisMessage> checkAuthorizedState(final State s, final String permissionString) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
+		List<AnalysisMessage> errors = new ArrayList<>();
 		if (s != null && permissionString != null && (!permissionString.isEmpty())) {
 			for (Transition incomingTransition : s.getIncomings()) {
 				errors.addAll(checkIncomingTransition(incomingTransition, permissionString));
@@ -80,7 +80,7 @@ public class AuthorizedStatus {
 	}
 	
 	public static List<AnalysisMessage> checkIncomingTransition(final Transition incomingTransition) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
+		List<AnalysisMessage> errors = new ArrayList<>();
 		State targetState = (State) incomingTransition.getTarget();
 		StereotypeApplication authApp = UMLsecUtil.getStereotypeApplication(targetState, UMLsec.AUTHORIZED_STATUS);
 		if (authApp != null) {
@@ -90,7 +90,7 @@ public class AuthorizedStatus {
 		return errors;
 	}
 	public static List<AnalysisMessage> checkIncomingTransition(final Transition incomingTransition, final String permissionString) {
-		List<AnalysisMessage> errors = new ArrayList<AnalysisMessage>();
+		List<AnalysisMessage> errors = new ArrayList<>();
 		if (incomingTransition != null && permissionString != null && (!permissionString.isEmpty())) {
 			State targetState = (State) incomingTransition.getTarget();
 			Constraint transitionConstraint = incomingTransition.getGuard();

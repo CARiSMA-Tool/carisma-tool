@@ -20,11 +20,15 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Class;
@@ -40,6 +44,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.junit.After;
 import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
@@ -52,7 +57,6 @@ import carisma.evolution.uml2.UMLModifier;
 import carisma.evolution.uml2.UMLModifierElementFactory;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.TaggedValue;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLDeploymentHelper;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.InvalidMetaclassException;
@@ -62,9 +66,11 @@ import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 public class UMLModifierTest {
 
 	
-	private UML2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 	
 	private Resource modelres = null;
+
+	private String 	filepath = "resources/models/modifier";
 	
 	/**
 	 * Constant name of the Model for simple deletion deployments.
@@ -106,32 +112,24 @@ public class UMLModifierTest {
 	private static final String TEST_CREATION_PACKAGE = "testCreationPackage";
 	
 	
-	public final void loadModel(final String testmodelname) {
-		String testmodeldir = "resources/models/modifier";
-		File testmodelfile = new File(testmodeldir + File.separator + testmodelname);
+	public final void loadModel(final String testmodelname) throws IOException {
+		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new UML2ModelLoader();
-		}
-		try {
-			modelres = ml.load(testmodelfile);
-		} catch (IOException e) {
-			Logger.log(LogLevel.ERROR, "Couldn't load model.", e);
-			fail("Couldn't load model");
-		}
+		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		this.modelres.load(Collections.EMPTY_MAP);
 	}
 		
 	@Test
-	public final void testDeleteOneElement() {
+	public final void testDeleteOneElement() throws IOException {
 		loadModel("testSimpleDeletionOneElement.uml");
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
 		Package pkg = (Package) model.getMember("testSimpleDeletionOneElementPackage");
 		assertNotNull(pkg);
 		NamedElement delNode = pkg.getMember(NODE1);
 		assertNotNull(delNode);
 		DelElement del = new DelElement(delNode); 
-		UMLModifier mod = new UMLModifier(modelres);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		mod.deleteElement(del);
 		assertNotNull(delNode);
 		delNode = pkg.getMember(NODE1);
@@ -139,10 +137,10 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testDeleteConnectedElementNode() {
+	public final void testDeleteConnectedElementNode() throws IOException {
 		loadModel("testSimpleDeletionConnectedElement.uml");
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
 		Package pkg = (Package) model.getMember("testSimpleDeletionConnectedElementPackage");
 		assertNotNull(pkg);
 		NamedElement delNode = pkg.getMember(NODE1);
@@ -150,10 +148,10 @@ public class UMLModifierTest {
 		NamedElement removedLink = pkg.getMember(AB_LINK);
 		assertNotNull(removedLink);
 		DelElement del = new DelElement(delNode);
-		List<EObject> alsoDeleted = new ArrayList<EObject>();
+		List<EObject> alsoDeleted = new ArrayList<>();
 		alsoDeleted.add(removedLink);
 		del.replaceAccompanyingDeletions(alsoDeleted);
-		UMLModifier mod = new UMLModifier(modelres);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		mod.deleteElement(del);
 		assertNotNull(delNode);
 		assertNotNull(removedLink);
@@ -168,16 +166,16 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testDeleteConnection() {
+	public final void testDeleteConnection() throws IOException {
 		loadModel("testSimpleDeletionConnectedElement.uml");
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
 		Package pkg = (Package) model.getMember("testSimpleDeletionConnectedElementPackage");
 		assertNotNull(pkg);
 		NamedElement removedLink = pkg.getMember(AB_LINK);
 		assertNotNull(removedLink);
 		DelElement del = new DelElement(removedLink);
-		UMLModifier mod = new UMLModifier(modelres);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		mod.deleteElement(del);
 		assertNotNull(removedLink);
 		removedLink = pkg.getMember(AB_LINK);
@@ -191,10 +189,10 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testDeleteDeploymentsDeployment() {
+	public final void testDeleteDeploymentsDeployment() throws IOException {
 		loadModel(SIMPLE_DELETION_DEPLOYMENTS_MODEL);
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
 		Package pkg = (Package) model.getMember(SIMPLE_DELETION_DEPLOYMENTS_PACKAGE_MODEL);
 		assertNotNull(pkg);
 		Artifact arti1 = (Artifact) pkg.getMember(ARTIFACT1);
@@ -206,7 +204,7 @@ public class UMLModifierTest {
 		}
 		assertNotNull(deploy);
 		DelElement delDeployment = new DelElement(deploy);
-		UMLModifier mod = new UMLModifier(modelres);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		mod.deleteElement(delDeployment);
 		assertNotNull(deploy);
 		assertEquals(0, UMLDeploymentHelper.getDeployments(arti1).size());
@@ -219,10 +217,10 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testDeleteDeploymentsNode() {
+	public final void testDeleteDeploymentsNode() throws IOException {
 		loadModel(SIMPLE_DELETION_DEPLOYMENTS_MODEL);
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
 		Package pkg = (Package) model.getMember(SIMPLE_DELETION_DEPLOYMENTS_PACKAGE_MODEL);
 		assertNotNull(pkg);
 		Artifact arti1 = (Artifact) pkg.getMember(ARTIFACT1);
@@ -236,7 +234,7 @@ public class UMLModifierTest {
 		}
 		assertNotNull(deploy);
 		DelElement delLocation = new DelElement(location);
-		UMLModifier mod = new UMLModifier(modelres);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		mod.deleteElement(delLocation);
 		assertNotNull(deploy);
 		assertNotNull(location.getDeployment("arti1Deploy"));
@@ -247,11 +245,11 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testDeleteDeploymentsArtifact() {
+	public final void testDeleteDeploymentsArtifact() throws IOException {
 		loadModel(SIMPLE_DELETION_DEPLOYMENTS_MODEL);
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
-		UMLModifier mod = new UMLModifier(modelres);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		Package pkg = (Package) model.getMember(SIMPLE_DELETION_DEPLOYMENTS_PACKAGE_MODEL);
 		assertNotNull(pkg);
 		Artifact arti1 = (Artifact) pkg.getMember(ARTIFACT1);
@@ -275,10 +273,10 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testDeleteDeploymentsDependency() {
+	public final void testDeleteDeploymentsDependency() throws IOException {
 		loadModel(SIMPLE_DELETION_DEPLOYMENTS_MODEL);
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
 		Package pkg = (Package) model.getMember(SIMPLE_DELETION_DEPLOYMENTS_PACKAGE_MODEL);
 		assertNotNull(pkg);
 		Artifact arti1 = (Artifact) pkg.getMember(ARTIFACT1);
@@ -288,7 +286,7 @@ public class UMLModifierTest {
 		Dependency dep = (Dependency) pkg.getMember(DEPENDENCY);
 		assertNotNull(dep);
 		DelElement delDep = new DelElement(dep);
-		UMLModifier mod = new UMLModifier(modelres);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		mod.deleteElement(delDep);
 		assertNotNull(arti1);
 		assertNotNull(arti2);
@@ -299,11 +297,11 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testDeleteSuperPackage() {
+	public final void testDeleteSuperPackage() throws IOException {
 		loadModel("testDeleteNested.uml");
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
-		UMLModifier mod = new UMLModifier(modelres);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		Package pkg1 = (Package) model.getMember(PACKAGE1);
 		assertNotNull(pkg1);
 		Class class1 = (Class) pkg1.getOwnedMember(CLASS1);
@@ -328,11 +326,11 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testDeleteSubPackage() {
+	public final void testDeleteSubPackage() throws IOException {
 		loadModel("testDeleteNested.uml");
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
-		UMLModifier mod = new UMLModifier(modelres);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		Package pkg1 = (Package) model.getMember(PACKAGE1);
 		assertNotNull(pkg1);
 		Class class1 = (Class) pkg1.getOwnedMember(CLASS1);
@@ -350,11 +348,11 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testDeleteTaggedValue() {
+	public final void testDeleteTaggedValue() throws IOException {
 		loadModel("testDeleteStereotype.uml");
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
-		UMLModifier mod = new UMLModifier(modelres);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		Stereotype stereo = model.getAppliedStereotypes().get(0);
 		assertNotNull(stereo);
 		StereotypeApplication stapp = new StereotypeApplication(stereo, model);
@@ -369,11 +367,11 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testDeleteStereotype() {
+	public final void testDeleteStereotype() throws IOException {
 		loadModel("testDeleteStereotype.uml");
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
-		UMLModifier mod = new UMLModifier(modelres);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		Package pkg = (Package) model.getMember("testDeleteStereotypePackage");
 		assertNotNull(pkg);
 		Dependency dep = (Dependency) pkg.getMember(DEPENDENCY);
@@ -389,16 +387,15 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testCreateNode() {
+	public final void testCreateNode() throws IOException {
 		loadModel(CREATION_MODEL);
 		try {
-			assertNotNull(modelres);
-			Model model = (Model) modelres.getContents().get(0);
-			UMLModifierElementFactory modifierElementFactory = new UMLModifierElementFactory();
+			assertNotNull(this.modelres);
+			Model model = (Model) this.modelres.getContents().get(0);
 			AddElement add = new AddElement(model, UMLHelper.getMetaClass("Node"), null);
 			add.addKeyValuePair(NAME, "newNode");
 			assertEquals(3, UMLHelper.getAllElementsOfType(model, Node.class).size());
-			Node newElement = (Node) modifierElementFactory.createElement(add);
+			Node newElement = (Node) UMLModifierElementFactory.createElement(add);
 			assertEquals(4, UMLHelper.getAllElementsOfType(model, Node.class).size());
 			assertEquals(model, newElement.getOwner());
 		} catch (InvalidMetaclassException e) {
@@ -408,12 +405,11 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testCreateDependency() {
+	public final void testCreateDependency() throws IOException {
 		loadModel(CREATION_MODEL);
 		try {
-			assertNotNull(modelres);
-			Model model = (Model) modelres.getContents().get(0);
-            UMLModifierElementFactory modifierElementFactory = new UMLModifierElementFactory();
+			assertNotNull(this.modelres);
+			Model model = (Model) this.modelres.getContents().get(0);
 			Package pkg = (Package) model.getMember(TEST_CREATION_PACKAGE);
 			assertNotNull(pkg);
 			AddElement add = new AddElement(model, UMLHelper.getMetaClass("Dependency"), null);
@@ -426,7 +422,7 @@ public class UMLModifierTest {
 			add.addKeyValuePair("supplier", arti3);
 			assertEquals(1, UMLDeploymentHelper.getAllDependencies(model).size());
 			assertEquals(0, arti2.getClientDependencies().size());
-			Dependency newDep = (Dependency) modifierElementFactory.createElement(add);
+			Dependency newDep = (Dependency) UMLModifierElementFactory.createElement(add);
 			assertEquals(1, arti2.getClientDependencies().size());
 			assertEquals(1, newDep.getClients().size());
 			assertEquals(1, newDep.getSuppliers().size());
@@ -443,19 +439,18 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testCreateLink() {
+	public final void testCreateLink() throws IOException {
 		loadModel(CREATION_MODEL);
 		try {
-			assertNotNull(modelres);
-			Model model = (Model) modelres.getContents().get(0);
-            UMLModifierElementFactory modifierElementFactory = new UMLModifierElementFactory();
+			assertNotNull(this.modelres);
+			Model model = (Model) this.modelres.getContents().get(0);
 			AddElement add = new AddElement(model, UMLHelper.getMetaClass("CommunicationPath"), null);
 			Logger.log(LogLevel.DEBUG, add.getMetaClass().toString());
 			add.addKeyValuePair(NAME, "newLink");
 			add.addKeyValuePair("source", NODE2);
 			add.addKeyValuePair("target", NODE3);
 			assertEquals(1, UMLHelper.getAllElementsOfType(model, CommunicationPath.class).size());
-			CommunicationPath newLink = (CommunicationPath) modifierElementFactory.createElement(add);
+			CommunicationPath newLink = (CommunicationPath) UMLModifierElementFactory.createElement(add);
 			assertEquals(2, UMLDeploymentHelper.getNodes(newLink).size());
 			assertEquals(model, newLink.getOwner().getOwner());	
 		} catch (InvalidMetaclassException e) {
@@ -465,12 +460,11 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testCreateDeployment() {
+	public final void testCreateDeployment() throws IOException {
 		loadModel(CREATION_MODEL);
 		try {
-			assertNotNull(modelres);
-			Model model = (Model) modelres.getContents().get(0);
-            UMLModifierElementFactory modifierElementFactory = new UMLModifierElementFactory();
+			assertNotNull(this.modelres);
+			Model model = (Model) this.modelres.getContents().get(0);
 			Package pkg = (Package) model.getMember(TEST_CREATION_PACKAGE);
 			assertNotNull(pkg);
 			AddElement add = new AddElement(model, UMLHelper.getMetaClass("Deployment"), null);
@@ -482,7 +476,7 @@ public class UMLModifierTest {
 			add.addKeyValuePair("deployedArtifact", ARTIFACT2);
 			add.addKeyValuePair("location", NODE2);
 			assertEquals(1, UMLHelper.getAllElementsOfType(model, Deployment.class).size());
-			Deployment newDeploy = (Deployment) modifierElementFactory.createElement(add);
+			Deployment newDeploy = (Deployment) UMLModifierElementFactory.createElement(add);
 			assertEquals(2, UMLHelper.getAllElementsOfType(model, Deployment.class).size());
 			assertNotNull(newDeploy);
 			assertEquals(1, node2.getDeployments().size());
@@ -494,20 +488,19 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testCreateStereotypeApplicaton() {
+	public final void testCreateStereotypeApplicaton() throws IOException {
 		loadModel(CREATION_MODEL);
 		try {
-			assertNotNull(modelres);
-			Model model = (Model) modelres.getContents().get(0);
+			assertNotNull(this.modelres);
+			Model model = (Model) this.modelres.getContents().get(0);
 			assertNotNull(model);
-            UMLModifierElementFactory modifierElementFactory = new UMLModifierElementFactory();
 			Package pkg = (Package) model.getMember(TEST_CREATION_PACKAGE);
 			assertNotNull(pkg);
 			CommunicationPath commPath = (CommunicationPath) pkg.getMember(AB_LINK);
 			assertNotNull(commPath);
 			AddElement add = new AddElement(commPath, UMLHelper.getMetaClass("Stereotype"), null);
 			add.addKeyValuePair(NAME, "encrypted");
-			StereotypeApplication stapp = (StereotypeApplication) modifierElementFactory.createElement(add);
+			StereotypeApplication stapp = (StereotypeApplication) UMLModifierElementFactory.createElement(add);
 			assertNotNull(stapp);
 			assertNotNull(stapp.getExtendedElement());
 			assertNotNull(stapp.getAppliedStereotype());
@@ -519,12 +512,12 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testAddElementsWithContentElementPlusStereotype() {
+	public final void testAddElementsWithContentElementPlusStereotype() throws IOException {
 		loadModel(CREATION_MODEL);
 		try {
-			assertNotNull(modelres);
-			Model model = (Model) modelres.getContents().get(0);
-			UMLModifier mod = new UMLModifier(modelres);
+			assertNotNull(this.modelres);
+			Model model = (Model) this.modelres.getContents().get(0);
+			UMLModifier mod = new UMLModifier(this.modelres);
 			Package pkg = (Package) model.getMember(TEST_CREATION_PACKAGE);
 			assertNotNull(pkg);
 			AddElement add = new AddElement(model, UMLHelper.getMetaClass("CommunicationPath"), null);
@@ -555,12 +548,12 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testAddElementsWithContentClassWithContent() {
+	public final void testAddElementsWithContentClassWithContent() throws IOException {
 		loadModel("testAddElementsWithContent.uml");
 		try {
-			assertNotNull(modelres);
-			Model model = (Model) modelres.getContents().get(0);
-			UMLModifier mod = new UMLModifier(modelres);
+			assertNotNull(this.modelres);
+			Model model = (Model) this.modelres.getContents().get(0);
+			UMLModifier mod = new UMLModifier(this.modelres);
 			AddElement addClass = new AddElement(model, UMLHelper.getMetaClass("Class"), null);
 			AddElement addOperation = new AddElement(null, UMLHelper.getMetaClass("Operation"), null);
 			AddElement addParameter = new AddElement(null, UMLHelper.getMetaClass("Parameter"), null);
@@ -580,12 +573,12 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testAddElementsWithContentOperationReturnTypeIsClass() {
+	public final void testAddElementsWithContentOperationReturnTypeIsClass() throws IOException {
 		loadModel("testAddElementsWithContent.uml");
 		try {
-			assertNotNull(modelres);
-			Model model = (Model) modelres.getContents().get(0);
-			UMLModifier mod = new UMLModifier(modelres);
+			assertNotNull(this.modelres);
+			Model model = (Model) this.modelres.getContents().get(0);
+			UMLModifier mod = new UMLModifier(this.modelres);
 			Package mainPackage = (Package) model.getMember("testAddElementsWithContent");
 			assertNotNull(mainPackage);
 			Package pkg = (Package) mainPackage.getMember(PACKAGE1);
@@ -612,11 +605,11 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testCopyDeltaDelElements() {
+	public final void testCopyDeltaDelElements() throws IOException {
 		loadModel("testCopyDelta.uml");
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
-		UMLModifier mod = new UMLModifier(modelres);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
+		UMLModifier mod = new UMLModifier(this.modelres);
 		Package pkg = (Package) model.getMember("testCopyDeltaPackage");
 		assertNotNull(pkg);
 		Node node1 = (Node) pkg.getMember(NODE1);
@@ -648,7 +641,7 @@ public class UMLModifierTest {
 		DelElement delArti = new DelElement(arti2);
 		DelElement delLan = new DelElement(lanApp);
 		DelElement delAdversary = new DelElement(adversaryTagValue);
-		List<DeltaElement> content = new ArrayList<DeltaElement>();
+		List<DeltaElement> content = new ArrayList<>();
 		content.add(delNode1);
 		content.add(delComm);
 		content.add(delDeploy);
@@ -679,12 +672,12 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testCopyDeltaAddElements() {
+	public final void testCopyDeltaAddElements() throws IOException {
 		loadModel("testCopyDelta.uml");
 		try {
-			assertNotNull(modelres);
-			Model model = (Model) modelres.getContents().get(0);
-			UMLModifier mod = new UMLModifier(modelres);
+			assertNotNull(this.modelres);
+			Model model = (Model) this.modelres.getContents().get(0);
+			UMLModifier mod = new UMLModifier(this.modelres);
 			Package pkg = (Package) model.getMember("testCopyDeltaPackage");
 			assertNotNull(pkg);
 			Dependency dep = (Dependency) pkg.getMember(DEPENDENCY);
@@ -693,7 +686,7 @@ public class UMLModifierTest {
 			AddElement addRequirement = new AddElement(dep, UMLHelper.getMetaClass("Stereotype"), null);
 			addNode3.addKeyValuePair(NAME, NODE3);
 			addRequirement.addKeyValuePair(NAME, "secrecy");
-			List<DeltaElement> content = new ArrayList<DeltaElement>();
+			List<DeltaElement> content = new ArrayList<>();
 			content.add(addNode3);
 			content.add(addRequirement);
 			Delta delta = new Delta(content);
@@ -782,14 +775,21 @@ public class UMLModifierTest {
 	}
 	
 	@Test
-	public final void testProfileApplication() {
+	public final void testProfileApplication() throws IOException {
 		loadModel("testProfileApplication.uml");
-		assertNotNull(modelres);
-		Model model = (Model) modelres.getContents().get(0);
+		assertNotNull(this.modelres);
+		Model model = (Model) this.modelres.getContents().get(0);
 		assertNotNull(model);
 		assertEquals(3, model.getAllAppliedProfiles().size());
 		for (Profile p : model.getAllAppliedProfiles()) {
 			assertNotNull(p.getName());
+		}
+	}
+	
+	@After
+	public void unloadModels(){
+		for(Resource r : this.rs.getResources()){
+			r.unload();
 		}
 	}
 }

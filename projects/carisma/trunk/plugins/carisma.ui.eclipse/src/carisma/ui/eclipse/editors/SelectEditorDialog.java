@@ -80,7 +80,7 @@ public class SelectEditorDialog extends ListDialog {
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(this.shell, CarismaGUI.PLUGIN_ID + ".AdfEditor");
 		setHelpAvailable(true); 
 		
-		List<String> input = new ArrayList<String>();
+		List<String> input = new ArrayList<>();
 
 		// insert editors from registry
 		List<EditorDescriptor> eds = CarismaGUI.INSTANCE.getEditorRegistry().getRegisteredEditors();

@@ -45,7 +45,7 @@ public class NoDownFlow {
 	/**
 	 * list that saves all the high values.
 	 */
-	private List<String> highValues = new ArrayList<String>();
+	private List<String> highValues = new ArrayList<>();
 	
 	
 	/**
@@ -54,7 +54,7 @@ public class NoDownFlow {
 	 * @param host AnalysisHost for report, should be null if you have none. A new host will be created than.
 	 * @return true if the diagram is correct with respect to nodownflow, false otherwise
 	 */
-	protected final boolean startCheck(final Package noDownFlowModel, final AnalysisHost host) {
+	public final boolean startCheck(final Package noDownFlowModel, final AnalysisHost host) {
 		if (noDownFlowModel == null) {
 			throw new IllegalArgumentException("The UML model is not allowed be 'null'.");
 		}
@@ -135,7 +135,7 @@ public class NoDownFlow {
 		if (transition.getTarget() == transition.getSource()) {
 			return;
 		}
-		Map<String, String> nonHighTriggerEffects = new HashMap<String, String>();
+		Map<String, String> nonHighTriggerEffects = new HashMap<>();
 		for (Transition trans : transition.getSource().getOutgoings()) {
 			List<Trigger> triggerList = trans.getTriggers();
 			boolean highTrigger = false;

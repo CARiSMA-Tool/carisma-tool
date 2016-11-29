@@ -47,7 +47,7 @@ public class AutomatedAnalysis {
 
 	List<CheckDescriptor> checkDescriptors = Carisma.getInstance().getCheckRegistry().getRegisteredChecks();
 
-	List<CheckReference> checks = new ArrayList<CheckReference>();
+	List<CheckReference> checks = new ArrayList<>();
 	Path path = null;
 	String pathstring = "";
 	CheckRegistry cr = new CheckRegistry();
@@ -66,10 +66,10 @@ public class AutomatedAnalysis {
 		CheckDescriptor secureLinks = this.cr.getCheckDescriptor(SecureLinksCheck.CHECK_ID);
 		CheckDescriptor secureDependency = this.cr.getCheckDescriptor(SecureDependenciesCheck.CHECK_ID);
 
-		Set<String> keywords = new HashSet<String>();
+		Set<String> keywords = new HashSet<>();
 		String reportDump = "";
 
-		Set<String> checkIds = new HashSet<String>();
+		Set<String> checkIds = new HashSet<>();
 		checkIds.add("CHECK_ID");
 		checkIds.add("SecureLinks");
 		checkIds.add("SecureDependency");

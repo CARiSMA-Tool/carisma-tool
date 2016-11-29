@@ -46,7 +46,7 @@ public class TestingHost implements AnalysisHost {
 	/**
 	 * register to store comprehensive check informations.
 	 */
-	private Map<String, Object> register = new HashMap<String, Object>();
+	private Map<String, Object> register = new HashMap<>();
 	
 	/**
 	 * key for the modifier entry in the register.

@@ -35,7 +35,7 @@ public class EditElement extends DeltaElement {
 	 */
 	public EditElement(final EObject newTarget) {
 		super(newTarget);
-		this.values = new HashMap<String, Object>();
+		this.values = new HashMap<>();
 	}
 	
 	/**

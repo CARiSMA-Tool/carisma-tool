@@ -1,15 +1,9 @@
 package carisma.ui.vision.questions;
 
 
-import static carisma.ui.vision.eclipse.preferences.pages.VisiOn.KEY_QUESTION_COLLECTION;
-import static carisma.ui.vision.eclipse.preferences.pages.VisiOn.KEY_QUESTION_DOCUMENT;
-import static carisma.ui.vision.eclipse.preferences.pages.VisiOn.KEY_QUESTION_FIELD;
-import static carisma.ui.vision.eclipse.preferences.pages.VisiOn.KEY_SECRET;
-import static carisma.ui.vision.eclipse.preferences.pages.VisiOn.KEY_URL;
-import static carisma.ui.vision.eclipse.preferences.pages.VisiOn.KEY_USER;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -19,12 +13,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.w3c.dom.Document;
 
 import carisma.core.analysis.result.AnalysisResult;
 import carisma.core.io.content.XML_DOM;
-import carisma.ui.eclipse.CarismaGUI;
+import carisma.ui.vision.VisionActivator;
+import carisma.ui.vision.eclipse.preferences.PreferencesConstants;
+import carisma.ui.vision.eclipse.preferences.PreferencesObject;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI.MongoDBDestination;
 
@@ -43,9 +38,9 @@ public class QuestionGenerationAction extends Action {
 		super.run();
 		
 		//A Question list for all Questions from all checks
-		List<Question> questionsList = new ArrayList<Question>();
+		List<Question> questionsList = new ArrayList<>();
 		//A builder list for all Builder for all checks 
-		List<Builder> b = new ArrayList<Builder>();
+		List<Builder> b = new ArrayList<>();
 		//A BuilderFactory for getting all the builders
 		b = BuilderFactory.getBuilder(this.analyisResult);
 		//tests if there is no builder and throws an exception
@@ -97,17 +92,18 @@ public class QuestionGenerationAction extends Action {
 	}
 	
 	private static void writeDB(XML_DOM questionsXmlDom){
-		IPreferenceStore preferencesStore = CarismaGUI.INSTANCE.getPreferenceStore();
-
-		String user = preferencesStore.getString(KEY_USER);
-		String secret = preferencesStore.getString(KEY_SECRET);
-		String url = preferencesStore.getString(KEY_URL);
+		PreferencesObject preferencesStore = VisionActivator.INSTANCE.getVisionPreferences();
+		Map<String, Object> map = preferencesStore.getObject();
+		
+		String user = (String) map.get(PreferencesConstants.dbuser);
+		String secret = (String) map.get(PreferencesConstants.dbpasswd);
+		String url = (String) map.get(PreferencesConstants.dbaddress);
 
 		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
 
-		String questionCollection = preferencesStore.getString(KEY_QUESTION_COLLECTION);
-		String questionDocument = preferencesStore.getString(KEY_QUESTION_DOCUMENT);
-		String questionField = preferencesStore.getString(KEY_QUESTION_FIELD);
+		String questionCollection = (String) map.get(PreferencesConstants.question_collection);
+		String questionDocument = (String) map.get(PreferencesConstants.question_document);
+		String questionField = (String) map.get(PreferencesConstants.question_field);
 		MongoDBDestination carismaConfiguration = new MongoDBDestination(questionCollection, questionDocument, questionField);
 		boolean success = db.write(carismaConfiguration, questionsXmlDom);
 		StringBuilder errorMessageBuilder = new StringBuilder();

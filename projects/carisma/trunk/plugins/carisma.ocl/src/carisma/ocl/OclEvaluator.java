@@ -45,7 +45,7 @@ public final class OclEvaluator {
 			final String oclStatement) throws ParserException {
 		OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
 
-		EObjectCondition condition = new BooleanOCLCondition<EClassifier, EClass, EObject>(
+		EObjectCondition condition = new BooleanOCLCondition<>(
                 ocl.getEnvironment(),
                 "not(" + oclStatement + ")",
                 oclContext);

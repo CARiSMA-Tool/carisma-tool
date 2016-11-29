@@ -85,8 +85,9 @@ public class StateMachinePathsTest {
 	/**
 	 * this test tests if the plugin throws a NullpointerException if the given StateMachien is null.
 	 */
+	@SuppressWarnings("static-method")
 	@Test (expected = NullPointerException.class)
-	public final static void testNull() {
+	public final void testNull() {
 		StateMachinePaths smp = new StateMachinePaths();
 		smp.getPaths(null, null, false);
 	}

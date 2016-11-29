@@ -3,7 +3,6 @@ package carisma.ui.eclipse.rcp;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.IHandler;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.WorkbenchException;
@@ -13,7 +12,7 @@ import org.eclipse.ui.WorkbenchException;
  * @author jkowald
  *
  */
-public class OpenCarismaPerspectiveHandler extends AbstractHandler implements IHandler {
+public class OpenCarismaPerspectiveHandler extends AbstractHandler {
 
 	@Override
 	public final Object execute(final ExecutionEvent event) throws ExecutionException {

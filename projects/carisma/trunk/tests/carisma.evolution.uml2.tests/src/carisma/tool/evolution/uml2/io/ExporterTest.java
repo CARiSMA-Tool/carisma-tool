@@ -5,16 +5,21 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.Pseudostate;
+import org.junit.After;
 import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
@@ -38,7 +43,6 @@ import carisma.evolution.uml2.io.datatype.ExportExtTagTaggedValue;
 import carisma.evolution.uml2.io.datatype.ExportSubstElement;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.TaggedValue;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.InvalidMetaclassException;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
@@ -77,17 +81,17 @@ public class ExporterTest {
 	 * Initializing standard Element each time a new model has been loaded.
 	 */
 	private void init() {
-		model = (Model) modelres.getContents().get(0);
-		targetNamedElement = getMember(model, PSEUDOSTATE1, Pseudostate.class);
+		this.model = (Model) this.modelres.getContents().get(0);
+		this.targetNamedElement = getMember(this.model, PSEUDOSTATE1, Pseudostate.class);
 		
-		State extendedEle = getMember(model, SECURED, State.class); 
-		targetStereoApp = UMLHelper.getStereotypeApplication(extendedEle, "identifiable"); 
-		targetTaggedValue = targetStereoApp.getTaggedValue("id");
+		State extendedEle = getMember(this.model, SECURED, State.class); 
+		this.targetStereoApp = UMLHelper.getStereotypeApplication(extendedEle, "identifiable"); 
+		this.targetTaggedValue = this.targetStereoApp.getTaggedValue("id");
 	}
 
 	/** ModelLoader.
 	 */
-	private UML2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 
 	/**
 	 * Model Resource.
@@ -103,28 +107,20 @@ public class ExporterTest {
 	
 	private StereotypeApplication targetStereoApp; 
 	private TaggedValue targetTaggedValue;
+	private String fipath = "resources/models";
 	
 	
 	/**
 	 * loads the given model.
 	 * @param testmodelname - the model to load
 	 */
-	private void loadModel(final String testmodelname) {
-		String testmodeldir = "resources/models/io";
-		File testmodelfile = new File(testmodeldir + File.separator + testmodelname);
+	public final void loadModel(final String folder, final String testmodelname) throws IOException {
+		File testmodelfile = new File(this.fipath + File.separator + folder + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new UML2ModelLoader();
-		}
-		try {
-			modelres = ml.load(testmodelfile);
-		} catch (IOException e) {
-			Logger.log(LogLevel.ERROR, "Couldn't load model.", e);
-			fail("Couldn't load model");
-		}
+		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		this.modelres.load(Collections.EMPTY_MAP);
 		init();
 	}
-	
 	
 	/** get a Named Element from a model by name and type.
 	 * 
@@ -133,7 +129,7 @@ public class ExporterTest {
 	 * @param clazz The Class of the Element.
 	 * @return T The 
 	 */
-	public final <T extends NamedElement> T getMember(Package model, String name, Class<T> clazz) {
+	public final static <T extends NamedElement> T getMember(Package model, String name, Class<T> clazz) {
 		T member = null;
 		try {
 			member = UMLHelper.getElementOfNameAndType(model, name, clazz);
@@ -145,6 +141,7 @@ public class ExporterTest {
 		return member;
 	}
 	
+	@SuppressWarnings("static-method")
 	private void testAddElement(ExportDelta expDelta) {
 		assertEquals(1, expDelta.getContent().size());
 		assertTrue(expDelta.getContent().get(0) instanceof ExportAddElement);
@@ -159,6 +156,7 @@ public class ExporterTest {
 		}
 	}
 	
+	@SuppressWarnings("static-method")
 	private void testSubstEle(ExportDelta expDelta) {
 		assertEquals("Number of DeltaElements", 1, expDelta.getContent().size());
 		assertTrue(expDelta.getContent().get(0) instanceof ExportSubstElement);
@@ -175,6 +173,7 @@ public class ExporterTest {
 		}
 	}
 	
+	@SuppressWarnings("static-method")
 	private void testEditEle(ExportDelta expDelta) {
 		assertEquals(1, expDelta.getContent().size());
 		assertTrue(expDelta.getContent().get(0) instanceof ExportEditElement);
@@ -186,6 +185,7 @@ public class ExporterTest {
 		}
 	}
 	
+	@SuppressWarnings("static-method")
 	private void testNamedEleTarget(ExportDelta expDelta) {
 		for (ExportDeltaElement expDeltaEle : expDelta.getContent()) {
 			
@@ -197,25 +197,24 @@ public class ExporterTest {
 	
 	
 	@Test
-	public void generateXMLOutputNamedEleAddTest() {
+	public void generateXMLOutputNamedEleAddTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		try {
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 	
-			AddElement addEle = new AddElement(targetNamedElement, UMLHelper.getMetaClass(STATE), null);
+			AddElement addEle = new AddElement(this.targetNamedElement, UMLHelper.getMetaClass(STATE), null);
 			
-			Map<String, Object> newValues = new HashMap<String, Object>();
+			Map<String, Object> newValues = new HashMap<>();
 			newValues.put(NAME, NAME_VALUE);
 		 	addEle.replaceValues(newValues);
 		 	deltaElements.add(addEle);
 			
-		 	List<String> usedChanges = new ArrayList<String>();
+		 	List<String> usedChanges = new ArrayList<>();
 		 	usedChanges.add(USED_CHANGES);
 			
 			Delta delta = new Delta(usedChanges, deltaElements);
-			ModelExporter exporter = new ModelExporter();
-			ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+			ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 			testAddElement(expDelta);
 			testNamedEleTarget(expDelta);
 		} catch (InvalidMetaclassException e) {
@@ -226,21 +225,21 @@ public class ExporterTest {
 	}
 	
     /** Test whether the null value of an entry in 'values' is processed correctly.
+     * @throws IOException 
      * 
      */
     @Test
-    public final void generateXMLOutputAddEleNullValueInValues() {
+    public final void generateXMLOutputAddEleNullValueInValues() throws IOException {
         try {
-            loadModel(TEST_MODEL);
-            AddElement addElement = new AddElement(targetNamedElement, UMLHelper.getMetaClass(STATE), null);
-            Map<String, Object> values = new HashMap<String, Object>();
+            loadModel("io", TEST_MODEL);
+            AddElement addElement = new AddElement(this.targetNamedElement, UMLHelper.getMetaClass(STATE), null);
+            Map<String, Object> values = new HashMap<>();
             values.put(NAME, null);
             addElement.replaceValues(values);
-            ModelExporter exporter = new ModelExporter();
-            List<DeltaElement> content = new ArrayList<DeltaElement>();
+            List<DeltaElement> content = new ArrayList<>();
             content.add(addElement);
             Delta delta = new Delta(content);
-            ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+            ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
             assertEquals("@null", ((ExportAddElement) expDelta.getContent().get(0)).getValues().get(NAME)); 
         } catch (InvalidMetaclassException e) {
             Logger.log(LogLevel.ERROR, e.getMessage(), e);
@@ -248,42 +247,41 @@ public class ExporterTest {
         }
     }   
     /** Test whether the null value of an entry in 'values' is processed correctly.
+     * @throws IOException 
      * 
      */
     @Test
-    public final void generateXMLOutputEditEleNullValueInValues() {
-        loadModel(TEST_MODEL);
-        EditElement editElement = new EditElement(targetNamedElement);
-        Map<String, Object> values = new HashMap<String, Object>();
+    public final void generateXMLOutputEditEleNullValueInValues() throws IOException {
+        loadModel("io", TEST_MODEL);
+        EditElement editElement = new EditElement(this.targetNamedElement);
+        Map<String, Object> values = new HashMap<>();
         values.put(NAME, null);
         editElement.replaceValues(values);
-        ModelExporter exporter = new ModelExporter();
-        List<DeltaElement> content = new ArrayList<DeltaElement>();
+        List<DeltaElement> content = new ArrayList<>();
         content.add(editElement);
         Delta delta = new Delta(content);
-        ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+        ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
         assertEquals("@null", ((ExportEditElement) expDelta.getContent().get(0)).getValues().get(NAME));
     }
 	
 	@Test
-	public void generateXMLOutputNamedEleDelTest() {
+	public void generateXMLOutputNamedEleDelTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		
-		List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+		List<DeltaElement> deltaElements = new ArrayList<>();
 		
 
-		DelElement delEle = new DelElement(targetNamedElement);
+		DelElement delEle = new DelElement(this.targetNamedElement);
 	 	
 	 	deltaElements.add(delEle);
 		
 		
-	 	List<String> usedChanges = new ArrayList<String>();
+	 	List<String> usedChanges = new ArrayList<>();
 	 	usedChanges.add(USED_CHANGES);
 		
 		Delta delta = new Delta(usedChanges, deltaElements);
-		ModelExporter exporter = new ModelExporter();
-		ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+		ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 		
 		assertEquals(1, expDelta.getContent().size());
 		assertTrue(expDelta.getContent().get(0) instanceof ExportDelElement);
@@ -302,19 +300,20 @@ public class ExporterTest {
 	 *  The Target is the NamedElement, Pseudostate1
 	 *  The SubstElement has a List of size one with components.
 	 *  This one AddElement has NO Target and Two Values.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void generateXMLOutputNamedEleSubstTest() {
+	public void generateXMLOutputNamedEleSubstTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		try {
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 			
-			List<AddElement> components = new ArrayList<AddElement>();
+			List<AddElement> components = new ArrayList<>();
 			AddElement one = new AddElement(null, UMLHelper.getMetaClass(PROPERTY), null);
 			
-			Map<String, Object> newValues = new HashMap<String, Object>();
+			Map<String, Object> newValues = new HashMap<>();
 			newValues.put(NAME, "id");
 			newValues.put(VALUE, VALUE_VALUE);
 			one.replaceValues(newValues);
@@ -322,16 +321,15 @@ public class ExporterTest {
 			components.add(one);
 			
 			
-			SubstElement substEle = new SubstElement(targetNamedElement, components);
+			SubstElement substEle = new SubstElement(this.targetNamedElement, components);
 		 	deltaElements.add(substEle);
 			
 			
-		 	List<String> usedChanges = new ArrayList<String>();
+		 	List<String> usedChanges = new ArrayList<>();
 		 	usedChanges.add(USED_CHANGES);
 			
 			Delta delta = new Delta(usedChanges, deltaElements);
-			ModelExporter exporter = new ModelExporter();
-			ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+			ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 			
 			assertEquals(1, expDelta.getContent().size());
 			assertTrue(expDelta.getContent().get(0) instanceof ExportSubstElement);
@@ -358,24 +356,21 @@ public class ExporterTest {
 	}
 	
 	@Test
-	public void generateXMLOutputNamedEleCopyTest() {
+	public void generateXMLOutputNamedEleCopyTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		
-		List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+		List<DeltaElement> deltaElements = new ArrayList<>();
 		
-		CopyElement cp = new CopyElement(targetNamedElement, getMember(model, SECURED, State.class));
-		deltaElements.add(cp);
+		CopyElement cp = new CopyElement(this.targetNamedElement, getMember(this.model, SECURED, State.class));
+		deltaElements.add(cp);		
 		
-		ModelExporter exporter = new ModelExporter();		
-		
-		
-	 	List<String> usedChanges = new ArrayList<String>();
+	 	List<String> usedChanges = new ArrayList<>();
 	 	usedChanges.add(USED_CHANGES);
 		
 		Delta delta = new Delta(usedChanges, deltaElements);
 		
-		ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+		ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 		
 		for (ExportDeltaElement expDeltaEle : expDelta.getContent()) {
 			
@@ -389,32 +384,32 @@ public class ExporterTest {
 	
 	
 	@Test
-	public void generateXMLOutputNamedEleEditTest() {
+	public void generateXMLOutputNamedEleEditTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		
-		List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+		List<DeltaElement> deltaElements = new ArrayList<>();
 		
-	 	EditElement editEle = new EditElement(targetNamedElement);
-	 	Map<String, Object> newValues = new HashMap<String, Object>();
+	 	EditElement editEle = new EditElement(this.targetNamedElement);
+	 	Map<String, Object> newValues = new HashMap<>();
 	 	newValues.put(NAME, NEW_NAME);
 	 	editEle.replaceValues(newValues);
 	 	deltaElements.add(editEle);
 		
 		
-	 	List<String> usedChanges = new ArrayList<String>();
+	 	List<String> usedChanges = new ArrayList<>();
 	 	usedChanges.add(USED_CHANGES);
 		
 		Delta delta = new Delta(usedChanges, deltaElements);
 		
-		ModelExporter exporter = new ModelExporter();
-		ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+		ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 				
 		testEditEle(expDelta);
 		testNamedEleTarget(expDelta);
 	}
 	
 	
+	@SuppressWarnings("static-method")
 	private void testStereoAppTarget(ExportDelta expDelta) {
 		for (ExportDeltaElement expDeltaEle : expDelta.getContent()) {
 			ExportExtTagStereotype target = (ExportExtTagStereotype) expDeltaEle.getTarget();
@@ -429,27 +424,26 @@ public class ExporterTest {
 	}
 	
 	@Test
-	public void generateXMLOutputStereoAppAddTest() {
+	public void generateXMLOutputStereoAppAddTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		try {
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 			
 	
-			AddElement addEle = new AddElement(targetStereoApp, UMLHelper.getMetaClass(STATE), null);
-			Map<String, Object> newValues = new HashMap<String, Object>();
+			AddElement addEle = new AddElement(this.targetStereoApp, UMLHelper.getMetaClass(STATE), null);
+			Map<String, Object> newValues = new HashMap<>();
 			newValues.put(NAME, NAME_VALUE);
 		 	addEle.replaceValues(newValues);
 		 	deltaElements.add(addEle);
 			
 			
-		 	List<String> usedChanges = new ArrayList<String>();
+		 	List<String> usedChanges = new ArrayList<>();
 		 	usedChanges.add(USED_CHANGES);
 			
 			Delta delta = new Delta(usedChanges, deltaElements);
 			
-			ModelExporter exporter = new ModelExporter();
-			ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+			ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 			
 			testAddElement(expDelta);
 			testStereoAppTarget(expDelta);
@@ -460,26 +454,25 @@ public class ExporterTest {
 	}
 	
 	@Test
-	public void generateXMLOutputStereoAppDelTest() {
+	public void generateXMLOutputStereoAppDelTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		
-		List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+		List<DeltaElement> deltaElements = new ArrayList<>();
 		
 
-		DelElement delEle = new DelElement(targetStereoApp);
+		DelElement delEle = new DelElement(this.targetStereoApp);
 	 	
 	 	deltaElements.add(delEle);
 		
 
 		
-	 	List<String> usedChanges = new ArrayList<String>();
+	 	List<String> usedChanges = new ArrayList<>();
 	 	usedChanges.add(USED_CHANGES);
 		
 		Delta delta = new Delta(usedChanges, deltaElements);
 		
-		ModelExporter exporter = new ModelExporter();
-		ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+		ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 		
 		assertEquals(1, expDelta.getContent().size());
 		assertTrue(expDelta.getContent().get(0) instanceof ExportDelElement);
@@ -494,36 +487,36 @@ public class ExporterTest {
 	 *  The Target is the NamedElement, Pseudostate1
 	 *  The SubstElement has a List of size one with components.
 	 *  This one AddElement has NO Target and Two Values.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void generateXMLOutputStereoAppSubstTest() {
+	public void generateXMLOutputStereoAppSubstTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		try {
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 			
-			List<AddElement> components = new ArrayList<AddElement>();
+			List<AddElement> components = new ArrayList<>();
 			AddElement one = new AddElement(null, UMLHelper.getMetaClass(PROPERTY), null);
 			
-			Map<String, Object> newValues = new HashMap<String, Object>();
+			Map<String, Object> newValues = new HashMap<>();
 			newValues.put(NAME, "id");
 			newValues.put(VALUE, VALUE_VALUE);
 			one.replaceValues(newValues);
 			
 			components.add(one);
 			
-			SubstElement substEle = new SubstElement(targetStereoApp, components);
+			SubstElement substEle = new SubstElement(this.targetStereoApp, components);
 		 	deltaElements.add(substEle);
 			
 	
-		 	List<String> usedChanges = new ArrayList<String>();
+		 	List<String> usedChanges = new ArrayList<>();
 		 	usedChanges.add(USED_CHANGES);
 			
 			Delta delta = new Delta(usedChanges, deltaElements);
 			
-			ModelExporter exporter = new ModelExporter();
-			ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+			ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 			
 			testSubstEle(expDelta);
 			testStereoAppTarget(expDelta);
@@ -535,24 +528,22 @@ public class ExporterTest {
 	
 	
 	@Test
-	public void generateXMLOutputStereoAppCopyTest() {
+	public void generateXMLOutputStereoAppCopyTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		
-		List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+		List<DeltaElement> deltaElements = new ArrayList<>();
 		
-		CopyElement cp = new CopyElement(targetStereoApp, getMember(model, SECURED, State.class));
+		CopyElement cp = new CopyElement(this.targetStereoApp, getMember(this.model, SECURED, State.class));
 		deltaElements.add(cp);
-		
-		ModelExporter exporter = new ModelExporter();
 
-	 	List<String> usedChanges = new ArrayList<String>();
+	 	List<String> usedChanges = new ArrayList<>();
 	 	usedChanges.add(USED_CHANGES);
 		
 		Delta delta = new Delta(usedChanges, deltaElements);
 		
 		
-		ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+		ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 		
 		for (ExportDeltaElement expDeltaEle : expDelta.getContent()) {
 			
@@ -566,34 +557,34 @@ public class ExporterTest {
 	
 	
 	@Test
-	public void generateXMLOutputStereoAppEditTest() {
+	public void generateXMLOutputStereoAppEditTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		
-		List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+		List<DeltaElement> deltaElements = new ArrayList<>();
 		
-	 	EditElement editEle = new EditElement(targetStereoApp);
+	 	EditElement editEle = new EditElement(this.targetStereoApp);
 	 	
-	 	Map<String, Object> newValues = new HashMap<String, Object>();
+	 	Map<String, Object> newValues = new HashMap<>();
 	 	newValues.put(NAME, NEW_NAME);
 	 	
 	 	editEle.replaceValues(newValues);
 	 	deltaElements.add(editEle);
 		
 
-	 	List<String> usedChanges = new ArrayList<String>();
+	 	List<String> usedChanges = new ArrayList<>();
 	 	usedChanges.add(USED_CHANGES);
 		
 		Delta delta = new Delta(usedChanges, deltaElements);
 		
-		ModelExporter exporter = new ModelExporter();
-		ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+		ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 		
 		testEditEle(expDelta);
 		testStereoAppTarget(expDelta);
 	}
 	
 	
+	@SuppressWarnings("static-method")
 	private void testTaggedValueTarget(ExportDelta expDelta) {
 		for (ExportDeltaElement expDeltaEle : expDelta.getContent()) {
 		ExportExtTagTaggedValue target = (ExportExtTagTaggedValue) expDeltaEle.getTarget();
@@ -609,27 +600,25 @@ public class ExporterTest {
 	}
 	
 	@Test
-	public void generateXMLOutputTaggedValueAddTest() {
+	public void generateXMLOutputTaggedValueAddTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		try {
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 	
 	
-			AddElement addEle = new AddElement(targetTaggedValue, UMLHelper.getMetaClass(STATE), null);
-			Map<String, Object> newValues = new HashMap<String, Object>();
+			AddElement addEle = new AddElement(this.targetTaggedValue, UMLHelper.getMetaClass(STATE), null);
+			Map<String, Object> newValues = new HashMap<>();
 			newValues.put(NAME, NAME_VALUE);
 		 	addEle.replaceValues(newValues);
 		 	deltaElements.add(addEle);
 			
 	
-		 	List<String> usedChanges = new ArrayList<String>();
+		 	List<String> usedChanges = new ArrayList<>();
 		 	usedChanges.add(USED_CHANGES);
 			
 			Delta delta = new Delta(usedChanges, deltaElements);
-			
-			ModelExporter exporter = new ModelExporter();
-			ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+			ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 			
 			testAddElement(expDelta);
 			testTaggedValueTarget(expDelta);
@@ -642,23 +631,21 @@ public class ExporterTest {
 	
 	
 	@Test
-	public void generateXMLOutputTaggedValueCopyTest() {
+	public void generateXMLOutputTaggedValueCopyTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		
-		List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+		List<DeltaElement> deltaElements = new ArrayList<>();
 		
-		CopyElement cp = new CopyElement(targetTaggedValue, getMember(model, SECURED, State.class));
+		CopyElement cp = new CopyElement(this.targetTaggedValue, getMember(this.model, SECURED, State.class));
 		deltaElements.add(cp);
-		
-		ModelExporter exporter = new ModelExporter();
 
-	 	List<String> usedChanges = new ArrayList<String>();
+	 	List<String> usedChanges = new ArrayList<>();
 	 	usedChanges.add(USED_CHANGES);
 		
 		Delta delta = new Delta(usedChanges, deltaElements);
 		
-		ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+		ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 		
 		for (ExportDeltaElement expDeltaEle : expDelta.getContent()) {
 			
@@ -673,25 +660,24 @@ public class ExporterTest {
 	
 	
 	@Test
-	public void generateXMLOutputTaggedValueDelTest() {
+	public void generateXMLOutputTaggedValueDelTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		
-		List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+		List<DeltaElement> deltaElements = new ArrayList<>();
 		
 
-		DelElement delEle = new DelElement(targetTaggedValue);
+		DelElement delEle = new DelElement(this.targetTaggedValue);
 	 	
 	 	deltaElements.add(delEle);
 		
 
-	 	List<String> usedChanges = new ArrayList<String>();
+	 	List<String> usedChanges = new ArrayList<>();
 	 	usedChanges.add(USED_CHANGES);
 		
 		Delta delta = new Delta(usedChanges, deltaElements);
 		
-		ModelExporter exporter = new ModelExporter();
-		ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+		ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 		
 		assertEquals(1, expDelta.getContent().size());
 		assertTrue(expDelta.getContent().get(0) instanceof ExportDelElement);
@@ -705,36 +691,36 @@ public class ExporterTest {
 	 *  The Target is the NamedElement, Pseudostate1
 	 *  The SubstElement has a List of size one with components.
 	 *  This one AddElement has NO Target and Two Values.
+	 * @throws IOException 
 	 */
 	
 	@Test
-	public void generateXMLOutputTaggedValueSubstTest() {
+	public void generateXMLOutputTaggedValueSubstTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
+		loadModel("io", TEST_MODEL);
 		try {
-			List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			List<DeltaElement> deltaElements = new ArrayList<>();
 			
-			List<AddElement> components = new ArrayList<AddElement>();
+			List<AddElement> components = new ArrayList<>();
 			AddElement one = new AddElement(null, UMLHelper.getMetaClass(PROPERTY), null);
 			
-			Map<String, Object> newValues = new HashMap<String, Object>();
+			Map<String, Object> newValues = new HashMap<>();
 			newValues.put(NAME, "id");
 			newValues.put(VALUE, VALUE_VALUE);
 			one.replaceValues(newValues);
 			
 			components.add(one);
 			
-			SubstElement substEle = new SubstElement(targetTaggedValue, components);
+			SubstElement substEle = new SubstElement(this.targetTaggedValue, components);
 		 	deltaElements.add(substEle);
 			
 	
-		 	List<String> usedChanges = new ArrayList<String>();
+		 	List<String> usedChanges = new ArrayList<>();
 		 	usedChanges.add(USED_CHANGES);
 			
 			Delta delta = new Delta(usedChanges, deltaElements);
 			
-			ModelExporter exporter = new ModelExporter();
-			ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+			ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 			
 			testSubstEle(expDelta);
 			testTaggedValueTarget(expDelta);
@@ -746,29 +732,35 @@ public class ExporterTest {
 	
 	
 	@Test
-	public void generateXMLOutputTaggedValueEditTest() {
+	public void generateXMLOutputTaggedValueEditTest() throws IOException {
 		
-		loadModel(TEST_MODEL);
-		List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+		loadModel("io", TEST_MODEL);
+		List<DeltaElement> deltaElements = new ArrayList<>();
 		
 
-	 	EditElement editEle = new EditElement(targetTaggedValue);
-	 	Map<String, Object> newValues = new HashMap<String, Object>();
+	 	EditElement editEle = new EditElement(this.targetTaggedValue);
+	 	Map<String, Object> newValues = new HashMap<>();
 	 	newValues.put(NAME, NEW_NAME);
 	 	
 	 	editEle.replaceValues(newValues);
 	 	deltaElements.add(editEle);
 		
 
-	 	List<String> usedChanges = new ArrayList<String>();
+	 	List<String> usedChanges = new ArrayList<>();
 	 	usedChanges.add(USED_CHANGES);
 		
 		Delta delta = new Delta(usedChanges, deltaElements);
 		
-		ModelExporter exporter = new ModelExporter();
-		ExportDelta expDelta = exporter.generateXMLOutput(delta, modelres);
+		ExportDelta expDelta = ModelExporter.generateXMLOutput(delta, this.modelres);
 		
 		testEditEle(expDelta);
 		testTaggedValueTarget(expDelta);
+	}
+	
+	@After
+	public void unloadModel(){
+		for(Resource r : this.rs.getResources()){
+			r.unload();
+		}
 	}
 }

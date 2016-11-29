@@ -20,6 +20,7 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -27,12 +28,15 @@ import java.util.Locale;
 import org.eclipse.bpmn2.Bpmn2Factory;
 import org.eclipse.bpmn2.DocumentRoot;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.junit.After;
 import org.junit.Test;
 
-import carisma.modeltype.bpmn2.BPMN2ModelLoader;
 import carisma.modeltype.bpmn2.extension.ExtensionRoot;
 import carisma.modeltype.bpmn2.extension.Lane;
 import carisma.modeltype.bpmn2.extension.Task;
@@ -49,7 +53,7 @@ public class MergeModelsTest {
 	/**
 	 * The bpmn2 model loader.
 	 */
-	private BPMN2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 	
 	/**
 	 * The path to the model directory. 
@@ -66,18 +70,12 @@ public class MergeModelsTest {
 	 * @param testmodelname The model name
 	 * @return If successful the model otherwise null
 	 */
-	public final Resource loadModel(final String testmodelname) {
+	public final Resource loadModel(final String testmodelname) throws IOException {
 		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (this.ml == null) {
-			this.ml = new BPMN2ModelLoader();
-		}
-		try {
-			return this.ml.load(testmodelfile);
-		} catch (IOException e) {
-			fail(e.getMessage());
-			return null;
-		}
+		Resource modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		modelres.load(Collections.EMPTY_MAP);
+		return modelres;
 	}
 	
 	/**
@@ -123,8 +121,9 @@ public class MergeModelsTest {
 	/**
 	 * Tests the merge method with null permutations.
 	 */
+	@SuppressWarnings("static-method")
 	@Test
-	public final static void testMergeModelsNull() {
+	public final void testMergeModelsNull() {
 		Bpmn2Factory factory = Bpmn2Factory.eINSTANCE;
 		Resource bpmn2res = factory.createDefinitions().eResource();
 		
@@ -136,9 +135,10 @@ public class MergeModelsTest {
 	/**
 	 * Tests if the extended model contains the complete bpmn2 instance. 
 	 * Subset Relationship
+	 * @throws IOException 
 	 */
 	@Test
-	public final void testMergeModels1() {
+	public final void testMergeModels1() throws IOException {
 		Resource modelres = loadModel("trade.bpmn2");
 		assertNotNull(modelres);
 		
@@ -146,6 +146,7 @@ public class MergeModelsTest {
 		try {
 			root = (DocumentRoot) modelres.getContents().get(0);
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail("Could not load document root");
 		}
 		assertNotNull(root);
@@ -159,13 +160,14 @@ public class MergeModelsTest {
 		try {
 			extendedRoot = (ExtendedDocumentRoot) extendedModel.getContents().get(0);
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail(ROOT_DOCUMENT_ERROR);
 		}
 		assertNotNull(extendedRoot);
 		
 		TreeIterator<EObject> iterator = null;
 		
-		HashMap<String, EObject> bpmn2elements = new HashMap<String, EObject>();
+		HashMap<String, EObject> bpmn2elements = new HashMap<>();
 		iterator = root.eAllContents();
 		while (iterator.hasNext()) {
 			EObject obj = iterator.next();
@@ -192,9 +194,10 @@ public class MergeModelsTest {
 	 * Tests the correct replacement of the Task and Lane Element.
 	 * These elements should be extended to the ExtendedTask and 
 	 * ExtendedLane objects.
+	 * @throws IOException 
 	 */
 	@Test
-	public final void testMergeModels2() {
+	public final void testMergeModels2() throws IOException {
 		Resource modelres = loadModel("trade.bpmn2");
 		assertNotNull(modelres);
 		
@@ -207,6 +210,7 @@ public class MergeModelsTest {
 		try {
 			extendedRoot = (ExtendedDocumentRoot) extendedModel.getContents().get(0);
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail(ROOT_DOCUMENT_ERROR);
 		}
 		assertNotNull(extendedRoot);
@@ -235,9 +239,10 @@ public class MergeModelsTest {
 	/**
 	 * Tests if the extended model contains the complete extension instance. 
 	 * Subset Relationship
+	 * @throws IOException 
 	 */
 	@Test
-	public final void testMergeModels3() {
+	public final void testMergeModels3() throws IOException {
 		Resource modelres = loadModel("trade.bpmn2");
 		assertNotNull(modelres);
 		
@@ -248,6 +253,7 @@ public class MergeModelsTest {
 		try {
 			extensionRoot = (ExtensionRoot) extensionModel.getContents().get(0);
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail(ROOT_DOCUMENT_ERROR);
 		}
 		assertNotNull(extensionRoot);
@@ -258,13 +264,14 @@ public class MergeModelsTest {
 		try {
 			extendedRoot = (ExtendedDocumentRoot) extendedModel.getContents().get(0);
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail(ROOT_DOCUMENT_ERROR);
 		}
 		assertNotNull(extendedRoot);
 		
 		TreeIterator<EObject> iterator = null;
 		
-		HashMap<String, EObject> extensionElements = new HashMap<String, EObject>();
+		HashMap<String, EObject> extensionElements = new HashMap<>();
 		iterator = extensionRoot.eAllContents();
 		while (iterator.hasNext()) {
 			EObject obj = iterator.next();
@@ -273,7 +280,7 @@ public class MergeModelsTest {
 			}
 		}
 
-		List<String> toBeRemoved = new ArrayList<String>();
+		List<String> toBeRemoved = new ArrayList<>();
 		iterator = extendedRoot.eAllContents();
 		while (iterator.hasNext()) {
 			EObject obj = iterator.next();
@@ -287,5 +294,12 @@ public class MergeModelsTest {
 			extensionElements.remove(id);
 		}
 		assertEquals(0, extensionElements.size());
+	}
+	
+	@After
+	public void unloadModel(){
+		for(Resource r : this.rs.getResources()){
+			r.unload();
+		}
 	}
 }

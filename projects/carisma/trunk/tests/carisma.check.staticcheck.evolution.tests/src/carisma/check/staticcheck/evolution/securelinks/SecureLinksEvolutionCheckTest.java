@@ -20,12 +20,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Dependency;
@@ -33,6 +36,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.After;
 import org.junit.Test;
 
 import carisma.check.staticcheck.evolution.securelinks.SecureLinksEvolutionCheck;
@@ -52,7 +56,6 @@ import carisma.evolution.DeltaList;
 import carisma.evolution.uml2.ModifierMap;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.TaggedValue;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 import carisma.profile.umlsec.UMLsec;
@@ -105,7 +108,7 @@ public class SecureLinksEvolutionCheckTest {
 	
 	private String filepath = "resources/models/securelinks";
 	
-	private UML2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 	
 	Resource modelres = null;
 	
@@ -113,25 +116,16 @@ public class SecureLinksEvolutionCheckTest {
 	
 	ModifierMap modifierMap = null;
 	
-	public final void loadModel(final String testmodelname) {
+	public final void loadModel(final String testmodelname) throws IOException {
 		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
-		assertTrue("File does not exist? (" + testmodelfile.getAbsolutePath() + ")", testmodelfile.exists());
-		if (this.ml == null) {
-			this.ml = new UML2ModelLoader();
-		}
-		try {
-			this.modelres = this.ml.load(testmodelfile);
-		} catch (IOException e) {
-			Logger.log(LogLevel.ERROR, e.getMessage(), e);
-			fail(e.getMessage());
-		}
-		assertNotNull(this.modelres);
-		this.modifierMap = new ModifierMap(this.modelres);
+		assertTrue(testmodelfile.exists());
+		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		this.modelres.load(Collections.EMPTY_MAP);
 	}
 	
 	@Test
-	public final void testDeleteLink() {
-		this.deltas = new ArrayList<Delta>();
+	public final void testDeleteLink() throws IOException {
+		this.deltas = new ArrayList<>();
 		loadModel("testSLDeleteLink.uml");
 		Model model = (Model) this.modelres.getContents().get(0);
 		Logger.log(LogLevel.DEBUG, model.toString());
@@ -144,7 +138,7 @@ public class SecureLinksEvolutionCheckTest {
 		assertNotNull(package1);
 		CommunicationPath commPath = (CommunicationPath) package1.getOwnedMember(AB_LINK);
 		assertNotNull(commPath);
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(new DelElement(commPath));
 		this.deltas.add(new Delta(elements));
 		assertEquals(2, model.getAllAppliedProfiles().size());
@@ -171,8 +165,8 @@ public class SecureLinksEvolutionCheckTest {
 	}
 	
 	@Test
-	public final void testDeleteLinktype() {
-		this.deltas = new ArrayList<Delta>();
+	public final void testDeleteLinktype() throws IOException {
+		this.deltas = new ArrayList<>();
 		loadModel("testSLDeleteLinktype.uml");
 		Model model = (Model) this.modelres.getContents().get(0);
 		assertNotNull(model);
@@ -187,7 +181,7 @@ public class SecureLinksEvolutionCheckTest {
 		assertNotNull(lan);
 		assertEquals(2, model.getAllAppliedProfiles().size());
 		assertEquals(2, commPath.getAppliedStereotypes().size());
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(new DelElement(lan));
 		this.deltas.add(new Delta(elements));
 		SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
@@ -212,8 +206,8 @@ public class SecureLinksEvolutionCheckTest {
 	}
 	
 	@Test
-	public final void testDeleteSecureLinks() {
-		this.deltas = new ArrayList<Delta>();
+	public final void testDeleteSecureLinks() throws IOException {
+		this.deltas = new ArrayList<>();
 		loadModel("testSLDeleteSecureLinks.uml");
 		Model model = (Model) this.modelres.getContents().get(0);
 		assertNotNull(model);
@@ -226,7 +220,7 @@ public class SecureLinksEvolutionCheckTest {
 		assertNotNull(commPath);
 		assertEquals(2, model.getAllAppliedProfiles().size());
 		assertEquals(1, commPath.getAppliedStereotypes().size());
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		StereotypeApplication secureLinks = UMLHelper.getStereotypeApplication(model, "secure links");
 		assertNotNull(secureLinks);
 		elements.add(new DelElement(secureLinks));
@@ -236,8 +230,8 @@ public class SecureLinksEvolutionCheckTest {
 	}
 	
 	@Test
-	public final void testDeleteAdversary() {
-		this.deltas = new ArrayList<Delta>();
+	public final void testDeleteAdversary() throws IOException {
+		this.deltas = new ArrayList<>();
 		loadModel("testSLDeleteAdversary.uml");
 		Model model = (Model) this.modelres.getContents().get(0);
 		assertNotNull(model);
@@ -249,7 +243,7 @@ public class SecureLinksEvolutionCheckTest {
 		CommunicationPath commPath = (CommunicationPath) package1.getMember(AB_LINK);
 		assertNotNull(commPath);
 		assertEquals(2, model.getAllAppliedProfiles().size());
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		StereotypeApplication secureLinks = UMLHelper.getStereotypeApplication(model, "secure links");
 		assertNotNull(secureLinks);
 		TaggedValue adversary = secureLinks.getTaggedValue("adversary");
@@ -261,8 +255,8 @@ public class SecureLinksEvolutionCheckTest {
 	}
 	
 	@Test
-	public final void testAddRequirement() {
-		this.deltas = new ArrayList<Delta>();
+	public final void testAddRequirement() throws IOException {
+		this.deltas = new ArrayList<>();
 		loadModel("testSLAddRequirement.uml");
 		try {
 			Model model = (Model) this.modelres.getContents().get(0);
@@ -270,7 +264,7 @@ public class SecureLinksEvolutionCheckTest {
 			assertNotNull(model.getAppliedProfile(UML_CHANGE));
 			assertNotNull(model.getAppliedProfile(UML_SEC));
 			assertTrue(UMLsecUtil.hasStereotype(model, UMLsec.SECURE_LINKS));		
-			List<DeltaElement> elements = new ArrayList<DeltaElement>();
+			List<DeltaElement> elements = new ArrayList<>();
 			Dependency dep = UMLHelper.getElementOfNameAndType(model, DEP, Dependency.class);
 			SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
 			AddElement newRequirement = new AddElement(dep, UMLPackage.eINSTANCE.getStereotype(), null);
@@ -295,8 +289,8 @@ public class SecureLinksEvolutionCheckTest {
 	}
 	
 	@Test
-	public final void testAddLinktype() {
-		this.deltas = new ArrayList<Delta>();		
+	public final void testAddLinktype() throws IOException {
+		this.deltas = new ArrayList<>();		
 		loadModel("testSLAddLinkType.uml");
 		try {
 			Model model = (Model) this.modelres.getContents().get(0);
@@ -308,7 +302,7 @@ public class SecureLinksEvolutionCheckTest {
 			assertNotNull(commPath);
 			AddElement newLinktype = new AddElement(commPath, UMLPackage.eINSTANCE.getStereotype(), null);
 			newLinktype.addKeyValuePair(NAME, UML_SEC_LAN);
-			List<DeltaElement> elements = new ArrayList<DeltaElement>();
+			List<DeltaElement> elements = new ArrayList<>();
 			elements.add(newLinktype);
 			this.deltas.add(new Delta(elements));
 			SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
@@ -329,8 +323,8 @@ public class SecureLinksEvolutionCheckTest {
 	}
 	
 	@Test
-	public final void testAddDeployment() {
-		this.deltas = new ArrayList<Delta>();		
+	public final void testAddDeployment() throws IOException {
+		this.deltas = new ArrayList<>();		
 		loadModel("testSLAddDeployment.uml");
 		try {
 			Model model = (Model) this.modelres.getContents().get(0);
@@ -345,7 +339,7 @@ public class SecureLinksEvolutionCheckTest {
 			newDeployment.addKeyValuePair(NAME, "NewDeployment");		
 			newDeployment.addKeyValuePair("location", "Node1");		
 			newDeployment.addKeyValuePair("deployedArtifact", "Artifact1");		
-			List<DeltaElement> elements = new ArrayList<DeltaElement>();
+			List<DeltaElement> elements = new ArrayList<>();
 			elements.add(newDeployment);
 			this.deltas.add(new Delta(elements));
 			SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
@@ -380,8 +374,8 @@ public class SecureLinksEvolutionCheckTest {
 	}
 	
 	@Test
-	public final void testSLAddNodeWithDeployment() {
-		this.deltas = new ArrayList<Delta>();		
+	public final void testSLAddNodeWithDeployment() throws IOException {
+		this.deltas = new ArrayList<>();		
 		loadModel("testSLAddNodeWithDeploymentNoLink.uml");
 		Model model = (Model) this.modelres.getContents().get(0);
 		assertNotNull(model);
@@ -396,7 +390,7 @@ public class SecureLinksEvolutionCheckTest {
 		newDeployment.addKeyValuePair("location", "newNode");		
 		newDeployment.addKeyValuePair("deployedArtifact", "Artifact2");
 		newNode.addContainedElement(newDeployment);
-		List<DeltaElement> elements = new ArrayList<DeltaElement>();
+		List<DeltaElement> elements = new ArrayList<>();
 		elements.add(newNode);
 		this.deltas.add(new Delta(elements));
 		SecureLinksEvolutionCheck evoCheck = new SecureLinksEvolutionCheck();
@@ -428,7 +422,7 @@ public class SecureLinksEvolutionCheckTest {
 	}
 	
 	@Test
-	public final void testCopyModel() {
+	public final void testCopyModel() throws IOException {
 		loadModel("testSLAddRequirement.uml");
 		Model model = (Model) this.modelres.getContents().get(0);
 		assertNotNull(model);
@@ -444,6 +438,13 @@ public class SecureLinksEvolutionCheckTest {
 		assertNotNull(modelCopy);
 		assertTrue(UMLsecUtil.hasStereotype(model));
 		assertTrue(UMLsecUtil.hasStereotype(modelCopy));
+	}
+
+	@After
+	public void unloadModel(){
+		for(Resource r : this.rs.getResources()){
+			r.unload();
+		}
 	}
 
 	private class TestHost implements AnalysisHost {

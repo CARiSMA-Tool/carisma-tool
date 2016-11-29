@@ -21,8 +21,8 @@ public class PreferenceManager {
 	private HashMap<String, PreferenceValue> defaults;
 	
 	public PreferenceManager() {
-		this.values = new HashMap<String, PreferenceValue>();
-		this.defaults = new HashMap<String, PreferenceValue>();
+		this.values = new HashMap<>();
+		this.defaults = new HashMap<>();
 	}
 	
 	public Object getPreferenceValue(String name) {
@@ -81,7 +81,7 @@ public class PreferenceManager {
 	public void storePreferences(String filename, boolean includeDefaults) {
 		XStream xStream = createXStream();
 		try (FileOutputStream fos = new FileOutputStream(filename)){
-			ArrayList<PreferenceValue> vals = new ArrayList<PreferenceValue>();
+			ArrayList<PreferenceValue> vals = new ArrayList<>();
 			vals.addAll(this.values.values());
 			if (includeDefaults) {
 				for (PreferenceValue pv : this.defaults.values()) {

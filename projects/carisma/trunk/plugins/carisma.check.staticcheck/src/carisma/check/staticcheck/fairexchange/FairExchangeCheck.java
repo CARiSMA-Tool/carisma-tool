@@ -55,7 +55,7 @@ public class FairExchangeCheck implements CarismaCheckWithID {
 	/**
 	 * ArrayList with lists that represents the paths through the given ActivityDiagram.
 	 */
-	private List<List<Element>> pathsList = new ArrayList<List<Element>>();
+	private List<List<Element>> pathsList = new ArrayList<>();
 	
 	/**
 	 * The given Stereotype fair-exchange.
@@ -166,7 +166,7 @@ public class FairExchangeCheck implements CarismaCheckWithID {
 					if (startList.contains(path.get(j)) && !(found)) { /*hier muss mit Inidzes gearbeitet werden, da die Liste von hinten
 																		nach vorne durchlaufen wird*/
 						found = true;
-						ArrayList<Element> resultList = new ArrayList<Element>();
+						ArrayList<Element> resultList = new ArrayList<>();
 						resultList.addAll(path);
 						if (!this.hasError) { /*hier wird auf Fehler geprüft. Ist "hasError" noch auf false, 
 							heisst dies, dass vorher noch kein Fehler gefunden wurde. Für eine strukturierte 

@@ -106,7 +106,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 */
 	private static final String ASTERISK = "\\*";
 	
-	private Map<UMLchange,List<Element>> stereotypeMapping = new HashMap<UMLchange, List<Element>>();
+	private Map<UMLchange,List<Element>> stereotypeMapping = new HashMap<>();
 	
 	/**
 	 * A mapping of elements marked <<old>> to the corresponding elements in the original model. 
@@ -178,17 +178,17 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 */
 	private void init() {
 		if (this.oldMarkedOriginalElementMapping == null) {
-			this.oldMarkedOriginalElementMapping = new HashMap<NamedElement, NamedElement>();
+			this.oldMarkedOriginalElementMapping = new HashMap<>();
 		} else {
 			this.oldMarkedOriginalElementMapping.clear();
 		}
 		if (this.changeRefChangeMapping == null) {
-			this.changeRefChangeMapping = new HashMap<String, Change>();
+			this.changeRefChangeMapping = new HashMap<>();
 		} else {
 			this.changeRefChangeMapping.clear();
 		}
 		if (this.changeConstraintMapping == null) {
-			this.changeConstraintMapping = new HashMap<Change, String>();
+			this.changeConstraintMapping = new HashMap<>();
 		} else {
 			this.changeConstraintMapping.clear();
 		}
@@ -217,7 +217,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 */
 	@Override
 	public final List<Change> generateDeltaDescriptions() {
-		List<Change> changes = new ArrayList<Change>();
+		List<Change> changes = new ArrayList<>();
 		if (UMLHelper.isProfileApplied(this.theModel, UMLchange.DESCRIPTOR)) {
 			init();
 			storeStereotypeMapping();
@@ -244,7 +244,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	}
 	
 	private List<ChangeConstraint> createChangeConstraints(final Change change, final String constraintString) {
-		List<ChangeConstraint> changeConstraints = new ArrayList<ChangeConstraint>();
+		List<ChangeConstraint> changeConstraints = new ArrayList<>();
 		if (constraintString != null) {
 			List<String> constraints = Arrays.asList(constraintString.split(","));
 			for (String constraint : constraints) {
@@ -314,7 +314,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * @return - the list of changes at this element
 	 */
 	private List<Change> processUMLchangeApplications(final Element extendedElement) {
-		List<Change> changes = new ArrayList<Change>();
+		List<Change> changes = new ArrayList<>();
 		for (StereotypeApplication changeApplication : UMLchangeUtil.getStereotypeApplications(extendedElement)) {
 			UMLchange type = UMLchange.getValue(changeApplication.getAppliedStereotype().getName());
 			
@@ -375,7 +375,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 				}
 				
 				String patternValue = null;
-				List<EObject> realMatchingElements = new ArrayList<EObject>();
+				List<EObject> realMatchingElements = new ArrayList<>();
 				if (UMLchangeUtil.hasPattern(type)) {
 					patternValue = ParserUtils.getMatchingValues(refValue, patternValues);
 					if (patternValue.isEmpty()) {
@@ -432,7 +432,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 						continue;												
 					}
 				}
-				List<Alternative> alternatives = new ArrayList<Alternative>();
+				List<Alternative> alternatives = new ArrayList<>();
 				if (!UMLchangeUtil.hasPattern(type)) {
 					EObject changedElement = null;
 					try {
@@ -518,9 +518,9 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			final EObject changedElement, 
 			final Element extendedElement, 
 			final GrammarBlock newBlock) {
-		List<Alternative> newAlternatives = new ArrayList<Alternative>();
+		List<Alternative> newAlternatives = new ArrayList<>();
 		for (GrammarAlternative newAlt : newBlock.getAlternatives()) {
-			List<DeltaElement> altContent = new ArrayList<DeltaElement>();
+			List<DeltaElement> altContent = new ArrayList<>();
 			for (ElementDescription desc : newAlt.getDescriptions()) {
 				if (desc instanceof SimpleElementDescription) {
 					altContent.addAll(parseSimpleElementDescriptions(
@@ -565,14 +565,14 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			final Element extendedElement, 
 			final GrammarBlock newBlock,
 			final String refValue) {
-		List<Alternative> newAlternatives = new ArrayList<Alternative>();
+		List<Alternative> newAlternatives = new ArrayList<>();
 		EObject substituteOwner = determineSubstituteOwner(changedElement);
 		int subAlternativeCount = 0;
 		int subAlternativeSize = newBlock.getAlternatives().size();
 		for (GrammarAlternative newAlt : newBlock.getAlternatives()) {
 			subAlternativeCount++;
 			Alternative alt = new Alternative();
-			List<AddElement> substitutes = new ArrayList<AddElement>();
+			List<AddElement> substitutes = new ArrayList<>();
 			for (ElementDescription desc : newAlt.getDescriptions()) {
 				if (desc instanceof SimpleElementDescription) {
 					substitutes.addAll(parseSimpleElementDescriptions(
@@ -620,7 +620,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 */
 	private List<EditElement> generateEditsOfKeep(final NamedElement changedElement,
 			final int subAlternativeCount, final String refValue, final int maxAlternatives, final String targetNameSpace) {
-		List<EditElement> editList = new ArrayList<EditElement>();
+		List<EditElement> editList = new ArrayList<>();
 		for (Element keepElement : UMLchangeUtil.getStereotypedElements(UMLchange.KEEP, changedElement)) {
 				if (keepElement instanceof Association) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Associations " + ((NamedElement) keepElement).getName()
@@ -663,13 +663,13 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	}
 		
 	private List<Alternative> parseEditChange(final EObject editedElement, final GrammarBlock editBlock) {
-		List<Alternative> editAlternatives = new ArrayList<Alternative>();
+		List<Alternative> editAlternatives = new ArrayList<>();
 		if (editedElement instanceof StereotypeApplication) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "<<edit>> can't edit StereotypeApplications!"));
 			return editAlternatives;
 		}
 		for (GrammarAlternative editAlt : editBlock.getAlternatives()) {
-			List<DeltaElement> altContent = new ArrayList<DeltaElement>();
+			List<DeltaElement> altContent = new ArrayList<>();
 			for (ElementDescription desc : editAlt.getDescriptions()) {
 				if (desc instanceof SimpleElementDescription) {
 	 				SimpleElementDescription sed = (SimpleElementDescription) desc;
@@ -694,7 +694,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	}
 
 	private List<Alternative> parseMoveChange(final EObject movedElement, final GrammarBlock toBlock) {
-		List<Alternative> toAlternatives = new ArrayList<Alternative>();
+		List<Alternative> toAlternatives = new ArrayList<>();
 		if (movedElement instanceof Association) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Associations cannot be moved!"));
 			return toAlternatives;
@@ -733,7 +733,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * @return - alternatives
 	 */
 	private List<Alternative> parseCopyChange(final EObject copiedElement, final GrammarBlock toBlock) {
-		List<Alternative> toAlternatives = new ArrayList<Alternative>();
+		List<Alternative> toAlternatives = new ArrayList<>();
 		if (copiedElement instanceof Association) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Associations cannot be copied!"));
 			return toAlternatives;
@@ -746,7 +746,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 		}
 		String oldName = UMLHelper.getName(copiedElement);
 		for (GrammarAlternative grammarAlt : toBlock.getAlternatives()) {
-			List<DeltaElement> altContent = new ArrayList<DeltaElement>();
+			List<DeltaElement> altContent = new ArrayList<>();
 			for (ElementDescription desc : grammarAlt.getDescriptions()) {
 				if (desc instanceof SimpleElementDescription) {
 					SimpleElementDescription copyDesc = (SimpleElementDescription) desc;
@@ -801,9 +801,9 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	}
 	
 	private List<Alternative> parseAddAllChange(final List<EObject> realMatchingElements, final GrammarBlock newBlock) {
-		List<Alternative> newAlternatives = new ArrayList<Alternative>();
+		List<Alternative> newAlternatives = new ArrayList<>();
 		for (GrammarAlternative newAlt : newBlock.getAlternatives()) {
-			List<DeltaElement> altContent = new ArrayList<DeltaElement>();
+			List<DeltaElement> altContent = new ArrayList<>();
 			for (EObject realMatch : realMatchingElements) {
 				for (ElementDescription desc : newAlt.getDescriptions()) {
 					if (desc instanceof SimpleElementDescription) {
@@ -838,15 +838,15 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 
 	private List<Alternative> parseSubstAllChange(final List<EObject> realMatchingElements,
 			final GrammarBlock newBlock, final String refValue) {
-		List<Alternative> newAlternatives = new ArrayList<Alternative>();
+		List<Alternative> newAlternatives = new ArrayList<>();
 		int subAlternativeCount = 0;
 		int subAlternativeSize = newBlock.getAlternatives().size();
 		for (GrammarAlternative newAlt : newBlock.getAlternatives()) {
 			subAlternativeCount++;
-			List<DeltaElement> altContent = new ArrayList<DeltaElement>();
+			List<DeltaElement> altContent = new ArrayList<>();
 			for (EObject realMatch : realMatchingElements) {
 				EObject substituteOwner = determineSubstituteOwner(realMatch);
-				List<AddElement> substitutes = new ArrayList<AddElement>();
+				List<AddElement> substitutes = new ArrayList<>();
 				for (ElementDescription desc : newAlt.getDescriptions()) {
 					if (desc instanceof SimpleElementDescription) {
 						substitutes.addAll(parseSimpleElementDescriptions(
@@ -899,7 +899,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * @return - all the objects that fits
 	 */
 	private List<Element> getPatternMatches(final Element scope, final SimpleElementDescription patternDescription) {
-		List<Element> matchingElements = new ArrayList<Element>();
+		List<Element> matchingElements = new ArrayList<>();
 		try {
 
 			if (patternDescription.getMetaclassName().equals("Stereotype")) {
@@ -1134,18 +1134,18 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 * @return - all deleted elements
 	 */
 	private static Set<EObject> collectDeletedElements(final EObject deletedElement, final UMLchange type) {
-		Set<EObject> deletedElements = new HashSet<EObject>();
+		Set<EObject> deletedElements = new HashSet<>();
 		if (deletedElement instanceof StereotypeApplication) {
 			StereotypeApplication deletedApp = (StereotypeApplication) deletedElement;
 			deletedElements.addAll(deletedApp.getTaggedValues());
 		} else if (deletedElement instanceof Element) {
 			Element topElement = (Element) deletedElement;
 // all directly and indirectly contained elements
-			List<Element> topOwnedElements = new ArrayList<Element>(topElement.allOwnedElements());
+			List<Element> topOwnedElements = new ArrayList<>(topElement.allOwnedElements());
 			
 			if (type == UMLchange.SUBST) {
 // SUBST: except all owned Elements of an Element which has the <<keep>> stereotype applied to.
-				List<Element> keptElements = new ArrayList<Element>();
+				List<Element> keptElements = new ArrayList<>();
 				for (Element ele : topOwnedElements) {
 					if (UMLchangeUtil.hasStereotype(UMLchange.KEEP, ele)) {
 						keptElements.add(ele);
@@ -1191,7 +1191,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 			}
 // all StereotypeApplications and their TaggedValues
 			Set<EObject> deletedExtensions =
-				new HashSet<EObject>();
+				new HashSet<>();
 			for (EObject deletedElem : deletedElements) {
 				if (deletedElem instanceof Element) {
 					Element delElem = (Element) deletedElem;
@@ -1232,7 +1232,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	private List<AddElement> parseSimpleElementDescriptions(
 			final SimpleElementDescription description,
 			final EObject targetElement) {
-		List<AddElement> addElements = new ArrayList<AddElement>();
+		List<AddElement> addElements = new ArrayList<>();
 		if (targetElement != null && description != null) {
 			String metaclassname = description.getMetaclassName();
 			try {
@@ -1255,7 +1255,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	private List<DeltaElement> parseNamespace(
 			final Namespace complexNamespace,
 			final EObject ownerOfNewElements) {
-		List<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+		List<DeltaElement> deltaElements = new ArrayList<>();
 // NS muss immer das Mutter-Paket enthalten (geht das immer?)
 		if (complexNamespace != null) {
 			Set<EObject> outermostNewElements = getOutermostNewElements(complexNamespace);
@@ -1304,7 +1304,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	private List<AddElement> createExtensionAdds(
 			final StereotypeApplication newApplication,
 			final NamedElement targetElement) {
-		List<AddElement> extensionAdds = new ArrayList<AddElement>();
+		List<AddElement> extensionAdds = new ArrayList<>();
 		if (newApplication.getExtendedElement() instanceof NamedElement) {
 			NamedElement namedOldElement = (NamedElement) newApplication.getExtendedElement();
 			NamedElement originalElement = null;
@@ -1348,8 +1348,8 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 		return extensionAdds;
 	}
 	private Set<EObject> getOutermostNewElements(final Namespace ns) {
-		Set<EObject> outermostNewElements = new HashSet<EObject>();
-		List<Element> processedConnections = new ArrayList<Element>();
+		Set<EObject> outermostNewElements = new HashSet<>();
+		List<Element> processedConnections = new ArrayList<>();
 		for (Element nsElem : ns.getOwnedElements()) {
 			if (!UMLHelper.isConnection(nsElem)) {
 				if (UMLchangeUtil.hasStereotype(UMLchange.OLD, nsElem)) {
@@ -1384,7 +1384,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	 */
 	private static List<StereotypeApplication> getNewApplications(final Element oldElement) {
 // FIXME: What about old applications with new tag values? (getExtensionAdds does something like it)
-		List<StereotypeApplication> newApplications = new ArrayList<StereotypeApplication>();
+		List<StereotypeApplication> newApplications = new ArrayList<>();
 		for (Stereotype appliedStereo : oldElement.getAppliedStereotypes()) {
 			if (!UMLchange.contains(appliedStereo)) {
 				StereotypeApplication newApplication = new StereotypeApplication(appliedStereo, oldElement);
@@ -1520,7 +1520,7 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 	private List<AddElement> createAddContent(
 			final SimpleElementDescription containerSimpleDesc,
 			final AdditiveElement containerAdditiveElement) {
-		List<AddElement> content = new ArrayList<AddElement>();
+		List<AddElement> content = new ArrayList<>();
 			for (SimpleElementDescription contentDesc : containerSimpleDesc.getContainedElements()) {
 				try {
 					String metaclassname = contentDesc.getMetaclassName();

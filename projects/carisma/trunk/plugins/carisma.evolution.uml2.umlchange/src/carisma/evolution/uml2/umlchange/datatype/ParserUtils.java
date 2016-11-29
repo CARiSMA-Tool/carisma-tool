@@ -40,7 +40,7 @@ public final class ParserUtils {
 	private static List<Integer> findSeparatorIndices(
 			final String grammar, final char separator) {
 		int bracketLevelCount = 0;
-		ArrayList<Integer> separatorIndices = new ArrayList<Integer>(); 
+		ArrayList<Integer> separatorIndices = new ArrayList<>(); 
 		for (int index = 0;
 		index < grammar.length(); index++) {
 			char ch = grammar.charAt(index);
@@ -83,7 +83,7 @@ public final class ParserUtils {
 		String grammar = grammarString;
 		List<Integer> separatorIndices =
 			findSeparatorIndices(grammar, separator);
-		ArrayList<String> extractedStrings = new ArrayList<String>();
+		ArrayList<String> extractedStrings = new ArrayList<>();
 		int indexBegin = 0;
 		for (int sepIndex : separatorIndices) {
 			extractedStrings.add(grammar.substring(indexBegin, sepIndex));
@@ -131,10 +131,10 @@ public final class ParserUtils {
 	 * @return - map of key/value-pairs
 	 */
 	public static Map<String, String> findKeyValuePairs(final String grammar) {
-		Map<String, String> keyValuePairs = new HashMap<String, String>();
+		Map<String, String> keyValuePairs = new HashMap<>();
 		String rest = grammar.replaceFirst("^\\(", "");
 		rest = rest.replaceFirst("\\)$", "");
-		List<String> keyValueStrings = new ArrayList<String>();
+		List<String> keyValueStrings = new ArrayList<>();
 		keyValueStrings.addAll(extract(rest, ','));
 		for (String keyValuePair : keyValueStrings) {
 			if (keyValuePair.contains("=")) {

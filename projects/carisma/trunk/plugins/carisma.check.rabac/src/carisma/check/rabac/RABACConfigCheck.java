@@ -54,7 +54,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 	private Set<String> users, objects;
 
 	private JComboBox<String> user, role, object, attribute;
-	private JComboBox<String> type = new JComboBox<String>(new String[] { "User", "Object" });
+	private JComboBox<String> type = new JComboBox<>(new String[] { "User", "Object" });
 	private JCheckBox active = new JCheckBox("Active");
 	private JTextField value = new JTextField("", 6);
 	private JButton save = new JButton("Save");
@@ -106,7 +106,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 			}
 
 			List<Element> abacRequire = UMLsecUtil.getStereotypedElements(content, UMLsec.ABACREQUIRE);
-			this.objects = new HashSet<String>();
+			this.objects = new HashSet<>();
 			for (Element e : abacRequire) {
 				this.objects.add(e instanceof Transition ? ((Transition) e).containingStateMachine().getName()
 						: ((Operation) e).getClass_().getName());
@@ -149,10 +149,10 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 		JPanel session = new JPanel();
 		((FlowLayout) session.getLayout()).setAlignment(0);
 		session.add(new JLabel("User:"));
-		this.user = new JComboBox<String>(this.users.toArray(new String[0]));
+		this.user = new JComboBox<>(this.users.toArray(new String[0]));
 		session.add(this.user);
 		session.add(new JLabel("Role:"));
-		this.role = new JComboBox<String>();
+		this.role = new JComboBox<>();
 		session.add(this.role);
 		this.active.setEnabled(false);
 		session.add(this.active);
@@ -160,7 +160,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 		JPanel filter = new JPanel();
 		((FlowLayout) filter.getLayout()).setAlignment(0);
 		filter.add(new JLabel("Attribute:"));
-		this.attribute = new JComboBox<String>();
+		this.attribute = new JComboBox<>();
 		for (Attribute a : this.config.getAttributes()) {
 			this.attribute.addItem(a.getName());
 		}
@@ -168,7 +168,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 		filter.add(new JLabel("Type:"));
 		filter.add(this.type);
 		filter.add(new JLabel("Object:"));
-		this.object = new JComboBox<String>(this.objects.toArray(new String[0]));
+		this.object = new JComboBox<>(this.objects.toArray(new String[0]));
 		this.object.setEnabled(false);
 		filter.add(this.object);
 		filter.add(new JLabel("Value:"));
@@ -201,7 +201,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == this.user) {
 			this.role.removeAllItems();
-			this.role.setModel(new DefaultComboBoxModel<String>(RABACCheck.parseTag(this.usersTag.get(0),
+			this.role.setModel(new DefaultComboBoxModel<>(RABACCheck.parseTag(this.usersTag.get(0),
 					(String) this.user.getSelectedItem(), 0).toArray(new String[0])));
 			this.role.setSelectedIndex(-1);
 			this.active.setEnabled(false);

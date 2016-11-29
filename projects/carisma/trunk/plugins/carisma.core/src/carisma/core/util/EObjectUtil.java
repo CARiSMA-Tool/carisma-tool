@@ -112,7 +112,7 @@ public final class EObjectUtil {
 	 * @return the values of the given feature of the given object
 	 */
 	public static <T> List<T> getAllSingleFeatures(final Collection<EObject> objects, final String featureName, final Class<T> type) {
-		List<T> result = new ArrayList<T>();
+		List<T> result = new ArrayList<>();
 		for (EObject obj : objects) {
 			result.add(getSingleFeature(obj, featureName, type));
 		}

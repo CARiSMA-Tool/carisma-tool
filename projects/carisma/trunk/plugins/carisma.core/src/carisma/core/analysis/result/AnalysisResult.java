@@ -73,7 +73,7 @@ public class AnalysisResult {
 		this.analysis = analysis;
 		this.timestamp = "";
 		this.status = AnalysisResultStatus.FAIL;
-		this.checkResults = new ArrayList<CheckResult>();
+		this.checkResults = new ArrayList<>();
 		this.report = new StringBuffer();
 		this.modelPath = analysis.getModelFile().toString();//das
 	}

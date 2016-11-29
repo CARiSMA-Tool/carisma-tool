@@ -10,13 +10,18 @@ import static org.junit.Assert.assertNull;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.ControlFlow;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueAction;
+import org.junit.After;
 import org.junit.Test;
 
 
@@ -28,7 +33,6 @@ import carisma.evolution.Delta;
 import carisma.evolution.DeltaElement;
 import carisma.evolution.EditElement;
 import carisma.evolution.uml2.UMLModifier;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 
@@ -42,7 +46,7 @@ public class EditModelTest {
     /**
      * a UML2ModelLoader.
      */
-    private UML2ModelLoader ml = null;
+    private ResourceSet rs = new ResourceSetImpl();
     
     /**
      * the model-resource.
@@ -66,32 +70,26 @@ public class EditModelTest {
     /**
      * loads the given model.
      * @param testmodelname - the model to load
+     * @throws IOException 
      */
-    private void loadModel(final String testmodelname) {
+    private void loadModel(final String testmodelname) throws IOException {
         String testmodeldir = "resources/models/modifier";
         File testmodelfile = new File(testmodeldir + File.separator + testmodelname);
         assertTrue(testmodelfile.exists());
-        if (ml == null) {
-            ml = new UML2ModelLoader();
-        }
-        try {
-            modelres = ml.load(testmodelfile);
-        } catch (IOException e) {
-            Logger.log(LogLevel.ERROR, "Couldn't load model.", e);
-            fail("Couldn't load model");
-        }
+        this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+        this.modelres.load(Collections.EMPTY_MAP);
     }
-    
     
     /**
      * this test generates editElements and tests if a model will be edited correctly.
+     * @throws IOException 
      */
     @Test
-    public final void testEditsForModel() {
+    public final void testEditsForModel() throws IOException {
         loadModel("testCreateEditsForModel.uml");
         String controlFlow = "ControlFlow2";
         try {
-            Model theOldModel = (Model) modelres.getContents().get(0);
+            Model theOldModel = (Model) this.modelres.getContents().get(0);
             UMLModifier um;
             Model theNewModel;
             
@@ -101,7 +99,7 @@ public class EditModelTest {
             EditElement editControlFlow2 = new EditElement(oldControlFlow2);
             editControlFlow2.addKeyValuePair("target", "Target2");
             editControlFlow2.addKeyValuePair("visibility", "private");
-            List<DeltaElement> deltaContent = new ArrayList<DeltaElement>();
+            List<DeltaElement> deltaContent = new ArrayList<>();
             deltaContent.add(editControlFlow2);
             OpaqueAction target1InOldModel = 
                     UMLHelper.getElementOfNameAndType(theOldModel, "Target1", OpaqueAction.class);
@@ -109,7 +107,7 @@ public class EditModelTest {
             editTarget1.addKeyValuePair("name", NEW_NAME);
             deltaContent.add(editTarget1);
             Delta d = new Delta(deltaContent);
-            um = new UMLModifier(modelres, d);
+            um = new UMLModifier(this.modelres, d);
             theNewModel = um.getModifiedModel();
             ControlFlow newControlFlow2 =
                     UMLHelper.getElementOfNameAndType(theNewModel, "ControlFlow2", ControlFlow.class);
@@ -134,7 +132,6 @@ public class EditModelTest {
             Logger.log(LogLevel.ERROR, "", e);
             fail(e.getMessage());       
         }
-        modelres.unload();
     }
     
     /** Little helper Method which catches the original Exception and returns null instead.
@@ -146,7 +143,7 @@ public class EditModelTest {
      * @param <T> generic return Type.
      * @return the found Object or null.
      */
-    private <T extends NamedElement> T wrappGetElementOfNameAndType(final Package pkg, final String name, final Class<T> type) {
+    private static <T extends NamedElement> T wrappGetElementOfNameAndType(final Package pkg, final String name, final Class<T> type) {
         try {
            return UMLHelper.getElementOfNameAndType(pkg, name, type);
         } catch (ModelElementNotFoundException e) {
@@ -157,13 +154,14 @@ public class EditModelTest {
     
     /**
      * tests what happens with wrong edits.
+     * @throws IOException 
      */
     @Test
-    public final void testIncorrectEdits() {
+    public final void testIncorrectEdits() throws IOException {
         loadModel("testCreateEditsForModel.uml");
         String controlFlow = "ControlFlow2";
         try {
-            Model theOldModel = (Model) modelres.getContents().get(0);
+            Model theOldModel = (Model) this.modelres.getContents().get(0);
             UMLModifier um;
             Model theNewModel;
             ControlFlow target = (ControlFlow) UMLHelper.getElementByName(theOldModel, controlFlow);
@@ -179,10 +177,10 @@ public class EditModelTest {
             EditElement editElement1 = new EditElement(target);
             editElement1.addKeyValuePair("name", "newCF");
             editElement1.addKeyValuePair("visibility", "private");
-            List<DeltaElement> delList = new ArrayList<DeltaElement>();
+            List<DeltaElement> delList = new ArrayList<>();
             delList.add(editElement1);
             Delta d = new Delta(delList);
-            um = new UMLModifier(modelres, d);
+            um = new UMLModifier(this.modelres, d);
             theNewModel = um.getModifiedModel();
             target = null;
             try {
@@ -198,7 +196,12 @@ public class EditModelTest {
             Logger.log(LogLevel.ERROR, "", e);
             fail(e.getMessage());       
         }
-        
-        modelres.unload();
     }
+	
+	@After
+	public void unloadModel(){
+		for(Resource r : this.rs.getResources()){
+			r.unload();
+		}
+	}
 }

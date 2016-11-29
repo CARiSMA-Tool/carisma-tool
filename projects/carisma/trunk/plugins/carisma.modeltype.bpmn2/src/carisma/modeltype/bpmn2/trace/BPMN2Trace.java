@@ -48,7 +48,7 @@ public class BPMN2Trace {
 	 * @return If successful true, otherwise false
 	 */
 	public final boolean calculateTraces(final FlowElementsContainer flowElementsContainer) {
-		this.allTraces = new LinkedList<List<FlowNode>>();
+		this.allTraces = new LinkedList<>();
 		
 		for (FlowElement elem : flowElementsContainer.getFlowElements()) {
 			if (elem instanceof StartEvent) {
@@ -124,7 +124,7 @@ public class BPMN2Trace {
 			throw new NoTracesCalculatedException(this.NO_TRACES_CALCULATED_ERROR);
 		}
 		
-		List<List<FlowNode>> tmpList = new LinkedList<List<FlowNode>>();
+		List<List<FlowNode>> tmpList = new LinkedList<>();
 
 		if (startEventType == null) {
 			tmpList = this.allTraces;
@@ -166,7 +166,7 @@ public class BPMN2Trace {
 	 * @return A list containing all possible traces from the start, loops are traversed only once.
 	 */
 	private List<List<FlowNode>> getTraces(final FlowNode start, final List<FlowNode> trace) {
-		List<List<FlowNode>> ret = new LinkedList<List<FlowNode>>();
+		List<List<FlowNode>> ret = new LinkedList<>();
 
 		trace.add(start);
 
@@ -183,7 +183,7 @@ public class BPMN2Trace {
 			}
 			outgoing++;
 			for (List<FlowNode> lfn : getTraces(sf.getTargetRef(), trace)) {
-				List<FlowNode> curList = new LinkedList<FlowNode>();
+				List<FlowNode> curList = new LinkedList<>();
 				curList.add(start);
 				curList.addAll(lfn);
 				ret.add(curList);
@@ -198,7 +198,7 @@ public class BPMN2Trace {
 				}
 				outgoing++;
 				for (List<FlowNode> lfn : getTraces(event, trace)) {
-					List<FlowNode> curList = new LinkedList<FlowNode>();
+					List<FlowNode> curList = new LinkedList<>();
 					curList.add(start);
 					curList.addAll(lfn);
 					ret.add(curList);
@@ -207,7 +207,7 @@ public class BPMN2Trace {
 		}
 
 		if (outgoing == 0) {
-			List<FlowNode> curList = new LinkedList<FlowNode>();
+			List<FlowNode> curList = new LinkedList<>();
 			curList.add(start);
 			ret.add(curList);
 		}
@@ -226,7 +226,7 @@ public class BPMN2Trace {
 			return false;
 		}
 
-		ArrayList<FlowNode> tmpList = new ArrayList<FlowNode>(trace.size() / 2);
+		ArrayList<FlowNode> tmpList = new ArrayList<>(trace.size() / 2);
 
 		mark:
 		for (int i = 1; i <= trace.size() / 2; i++) {

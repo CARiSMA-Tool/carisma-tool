@@ -26,7 +26,8 @@ public class ExporterUtilityTest {
     /** getValuesWithStringNull(null) should return an empty List.
      * 
      */
-    @Test
+    @SuppressWarnings("static-method")
+	@Test
     public final void getValuesWithStringNullParameterIsNullTest() {
         assertTrue(ExporterUtility.getValuesWithStringNull(null).isEmpty());
     }
@@ -34,9 +35,10 @@ public class ExporterUtilityTest {
     /** getValuesWithStringNull(Map&lt;String, Object&gt;) called which has one entry where the value is null.
      * 
      */
-    @Test 
+    @SuppressWarnings("static-method")
+	@Test 
     public final void getValuesWithStringNull() {
-        Map<String, Object> origValues = new HashMap<String, Object>();
+        Map<String, Object> origValues = new HashMap<>();
         origValues.put(NAME, null);
         assertEquals("@null", ExporterUtility.getValuesWithStringNull(origValues).get(NAME));
     }  
@@ -44,9 +46,10 @@ public class ExporterUtilityTest {
     /** getValuesWithStringNull(Map&lt;String, Object&gt;) called which has one entry where the value is NotNull.
      * 
      */
-    @Test 
+    @SuppressWarnings("static-method")
+	@Test 
     public final void getValuesWithStringNullNotNullParameter() {
-        Map<String, Object> origValues = new HashMap<String, Object>();
+        Map<String, Object> origValues = new HashMap<>();
         Integer i = Integer.valueOf(4);
         origValues.put(NAME, i);
         assertEquals(i, ExporterUtility.getValuesWithStringNull(origValues).get(NAME));
@@ -56,7 +59,8 @@ public class ExporterUtilityTest {
     /** getValuesWithNull(null) should return an empty List.
      * 
      */
-    @Test
+    @SuppressWarnings("static-method")
+	@Test
     public final void getValuesWithNullParameterIsNullTest() {
         assertTrue(ExporterUtility.getValuesWithNull(null).isEmpty());
     }
@@ -64,9 +68,10 @@ public class ExporterUtilityTest {
     /** getValuesWithStringNull(Map&lt;String, Object&gt;) called which has one entry where the value is null.
      * 
      */
-    @Test 
+    @SuppressWarnings("static-method")
+	@Test 
     public final void getValuesWithNull() {
-        Map<String, Object> origValues = new HashMap<String, Object>();
+        Map<String, Object> origValues = new HashMap<>();
         origValues.put(NAME, "@null");
         assertEquals(null, ExporterUtility.getValuesWithNull(origValues).get(NAME));
     }  
@@ -74,9 +79,10 @@ public class ExporterUtilityTest {
     /** getValuesWithStringNull(Map&lt;String, Object&gt;) called which has one entry where the value is NotNull.
      * 
      */
-    @Test 
+    @SuppressWarnings("static-method")
+	@Test 
     public final void getValuesWithNullNotStringNullParameter() {
-        Map<String, Object> origValues = new HashMap<String, Object>();
+        Map<String, Object> origValues = new HashMap<>();
         Integer i = Integer.valueOf(4);
         origValues.put(NAME, i);
         assertEquals(i, ExporterUtility.getValuesWithNull(origValues).get(NAME));

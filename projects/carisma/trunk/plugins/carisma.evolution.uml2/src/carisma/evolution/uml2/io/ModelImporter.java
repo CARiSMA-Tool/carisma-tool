@@ -84,7 +84,7 @@ public class ModelImporter {
 		try (FileReader fileReader = new FileReader(inputXML)){
 			expDelta = (ExportDelta) stream.fromXML(fileReader);
 		
-			ArrayList<DeltaElement> deltaElements = new ArrayList<DeltaElement>();
+			ArrayList<DeltaElement> deltaElements = new ArrayList<>();
 			for (ExportDeltaElement expDeltaEle : expDelta.getContent()) {
 				
 				EObject target = getTarget(expDeltaEle.getTarget());
@@ -146,7 +146,7 @@ public class ModelImporter {
 	 */
 	private CopyElement getCopyElement(final ExportCopyElement cpEle, final EObject target) {
 		CopyElement cp = new CopyElement(target, getTarget(cpEle.getTargetOwner()));
-		cp.replaceChangedValues(new HashMap<String, Object>(cpEle.getChangedValues()));
+		cp.replaceChangedValues(new HashMap<>(cpEle.getChangedValues()));
 		
 		return cp;
 	}
@@ -180,7 +180,7 @@ public class ModelImporter {
 	 * @return a SubstElement.
 	 */
 	private SubstElement getSubstElement(final ExportSubstElement ed, final EObject target) {
-		ArrayList<AddElement> components = new ArrayList<AddElement>();
+		ArrayList<AddElement> components = new ArrayList<>();
 		SubstElement subEle = new SubstElement(target, components);
 		for (ExportAddElement component : ed.getComponents()) {
 			components.add(getAddElement(component, target, subEle));
@@ -205,7 +205,7 @@ public class ModelImporter {
 		AddElement delta = null;
 		try {
 			delta = new AddElement(target, UMLHelper.getMetaClass(newAddEle.getType()), parent);
-			ArrayList<AddElement> content = new ArrayList<AddElement>();
+			ArrayList<AddElement> content = new ArrayList<>();
 			for (ExportAddElement addEle : newAddEle.getContent()) {
 				content.add(getAddElement(addEle, target, delta));
 			}
@@ -224,7 +224,7 @@ public class ModelImporter {
 	 * @return a EObject specified in target.
 	 */
 	private EObject getTargetByNameAndType(final ExportExtTagNamedElement target) {
-		List<NamedElement> allElements = new ArrayList<NamedElement>();
+		List<NamedElement> allElements = new ArrayList<>();
 
 		TreeIterator<EObject> allContent = this.modelres.getAllContents();
 

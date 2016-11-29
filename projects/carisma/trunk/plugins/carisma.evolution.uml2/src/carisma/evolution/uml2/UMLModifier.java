@@ -98,7 +98,7 @@ public class UMLModifier implements IModifier {
 	 * Contains a mapping from the delta elements adding new UML model elements
 	 * to the created model elements in the modified model.
 	 */
-	private Map<AddElement, EObject> addedElements = new HashMap<AddElement, EObject>();
+	private Map<AddElement, EObject> addedElements = new HashMap<>();
 	
 	/**
 	 * Returns the model element in the resource representing the original UML model.
@@ -123,7 +123,7 @@ public class UMLModifier implements IModifier {
 	 * @param delta - the delta to use to modify the model
 	 */
 	public UMLModifier(final Resource newModel, final Delta delta) {
-		this.oldNewDeltaElementsMap = new HashMap<DeltaElement, DeltaElement>();
+		this.oldNewDeltaElementsMap = new HashMap<>();
 		this.usedDelta = delta;
 		this.originalModel = newModel;
 		this.copier = new Copier();
@@ -234,7 +234,7 @@ public class UMLModifier implements IModifier {
 	}
 
 	private void updateOldNewMapping() {
-		List<EObject> deletedElements = new ArrayList<EObject>();
+		List<EObject> deletedElements = new ArrayList<>();
 		for (EObject oldElem : this.copier.keySet()) {
 			EObject elemCopy = this.copier.get(oldElem);
 			if (elemCopy == null || elemCopy.eContainer() == null) {
@@ -302,7 +302,7 @@ public class UMLModifier implements IModifier {
 	 */
 	@Override
 	public final Delta copyDelta(final Delta oldDelta) {
-		List<DeltaElement> newDeltaContent = new ArrayList<DeltaElement>();
+		List<DeltaElement> newDeltaContent = new ArrayList<>();
 		for (DeltaElement oldDe : oldDelta.getContent()) {
 			if (oldDe instanceof AddElement) {
 				AddElement newAddElem = copyAddElement((AddElement) oldDe, this.oldNewDeltaElementsMap);
@@ -391,7 +391,7 @@ public class UMLModifier implements IModifier {
 	 * @return - the copy of the SubstElement
 	 */
 	private SubstElement copySubstElement(final SubstElement oldSubstElem, final Map<DeltaElement, DeltaElement> oldNewDeltaElems) {
-		List<AddElement> components = new ArrayList<AddElement>();
+		List<AddElement> components = new ArrayList<>();
 		EObject newTarget = findOrCreateNewTarget(oldSubstElem.getTarget());
 		SubstElement newSubstElem = new SubstElement(newTarget, components);
 		oldNewDeltaElems.put(oldSubstElem, newSubstElem);
@@ -493,7 +493,7 @@ public class UMLModifier implements IModifier {
 	 * @return - elements that are still in the modified model
 	 */
 	public final List<Element> getRemainingElements(final List<Element> oldElements) {
-		List<Element> remainingElements = new ArrayList<Element>();
+		List<Element> remainingElements = new ArrayList<>();
 		for (Element oldElement : oldElements) {
 			Model newModel = (Model) this.copier.get(oldElement.getModel());
 			Element copiedElement = (Element) this.copier.get(oldElement);

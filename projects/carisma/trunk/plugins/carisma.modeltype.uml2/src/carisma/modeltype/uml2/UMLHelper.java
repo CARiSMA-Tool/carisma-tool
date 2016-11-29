@@ -166,7 +166,7 @@ public final class UMLHelper {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> List<T> getAllElementsOfType(Element inThisElement, Class<T> type) {
-		List<T> result = new ArrayList<T>();
+		List<T> result = new ArrayList<>();
 		TreeIterator<EObject> iterator = inThisElement.eAllContents();
 		while (iterator.hasNext()) {
 			EObject element = iterator.next();
@@ -178,7 +178,7 @@ public final class UMLHelper {
 	}
 	
 	public static List<Element> getAllElementsOfType(Element inThisElement, EClass mc) {
-		List<Element> result = new ArrayList<Element>();
+		List<Element> result = new ArrayList<>();
 		TreeIterator<EObject> iterator = inThisElement.eAllContents();
 		while (iterator.hasNext()) {
 			EObject element = iterator.next();
@@ -190,7 +190,7 @@ public final class UMLHelper {
 	}
 	
 	public static List<NamedElement> getAllSameNameElements(final Package pkg, final String unqualifiedName) {
-		List<NamedElement> sameNameElements = new ArrayList<NamedElement>();
+		List<NamedElement> sameNameElements = new ArrayList<>();
 		for (Element elem : pkg.allOwnedElements()) {
 			if (elem instanceof NamedElement) {
 				NamedElement ne = (NamedElement) elem;
@@ -204,7 +204,7 @@ public final class UMLHelper {
 	
 	
 	public static List<Element> getAllElements(final Package pkg){
-		List<Element> allElements = new ArrayList<Element>();
+		List<Element> allElements = new ArrayList<>();
 		for(Element elem: pkg.allOwnedElements()){
 			allElements.add(elem);
 		}
@@ -227,7 +227,7 @@ public final class UMLHelper {
 	 */
 	public static <T extends NamedElement> T getElementOfNameAndType(final Package pkg, final String adequatelyQualifiedName, final Class<T> type)
 	throws ModelElementNotFoundException {
-		List<T> matchingElements = new ArrayList<T>();
+		List<T> matchingElements = new ArrayList<>();
 		for (T namedElem : getAllElementsOfType(pkg, type)) {
 			String qualName = namedElem.getQualifiedName();
 			if ((qualName != null && !qualName.isEmpty()) 
@@ -325,12 +325,12 @@ public final class UMLHelper {
 			if (firstResult instanceof Collection<?>) {
 				Collection<?> firstCollection = ((Collection<?>) firstResult);
 				if (firstCollection.isEmpty()) {
-					result = new ArrayList<T>();
+					result = new ArrayList<>();
 				} else {
 					Object firstElement = firstCollection.iterator().next();
 					if (type.isInstance(firstElement)) {
 						Collection<T> firstCollectionT = (Collection<T>) firstCollection;
-						result = new ArrayList<T>(firstCollectionT);
+						result = new ArrayList<>(firstCollectionT);
 					} else {
 						throw new IllegalArgumentException(
 								"Tag '" + tagName + OPENING + unqualifiedStereotypeName + CLOSING + type.getName() + APOSTROPHE);
@@ -365,7 +365,7 @@ public final class UMLHelper {
 	}
 	
 	public static List<StereotypeApplication> getStereotypeApplications(final Element element) {
-		List<StereotypeApplication> applications = new ArrayList<StereotypeApplication>();
+		List<StereotypeApplication> applications = new ArrayList<>();
 		for (Stereotype stereo : element.getAppliedStereotypes()) {
 			applications.add(new StereotypeApplication(stereo, element));
 		}
@@ -404,13 +404,13 @@ public final class UMLHelper {
 	 * @return - map of stereotype applications
 	 */
 	public static Map<Stereotype, List<Element>> getExtendedElements(final Package pkg) {
-		HashMap<Stereotype, List<Element>> extendedElemsMap = new HashMap<Stereotype, List<Element>>();
+		HashMap<Stereotype, List<Element>> extendedElemsMap = new HashMap<>();
 		for (Element elem : pkg.allOwnedElements()) {
 			for (Stereotype appliedStereo : elem.getAppliedStereotypes()) {
 				if (extendedElemsMap.containsKey(appliedStereo)) {
 					extendedElemsMap.get(appliedStereo).add(elem);
 				} else {
-					List<Element> extendedElems = new ArrayList<Element>();
+					List<Element> extendedElems = new ArrayList<>();
 					extendedElems.add(elem);
 					extendedElemsMap.put(appliedStereo, extendedElems);
 				}
@@ -427,7 +427,7 @@ public final class UMLHelper {
 	 * @return - list of extended elements
 	 */
 	public static List<Element> getExtendedElements(final Package pkg, final Stereotype stereo) {
-		List<Element> extendedElems = new ArrayList<Element>();
+		List<Element> extendedElems = new ArrayList<>();
 		for (Element elem : pkg.allOwnedElements()) {
 			if (elem.isStereotypeApplied(stereo)) {
 				extendedElems.add(elem);
@@ -437,7 +437,7 @@ public final class UMLHelper {
 	}
 	
 	public static <T extends Element> List<T> getExtendedElements(final Package pkg, final Stereotype stereo, final Class<T> type) {
-		List<T> extendedElems = new ArrayList<T>();
+		List<T> extendedElems = new ArrayList<>();
 		for (Element elem : pkg.allOwnedElements()) {
 			if (type.isInstance(elem)) {
 				@SuppressWarnings("unchecked")
@@ -535,7 +535,7 @@ public final class UMLHelper {
 		return null;
 	}
 	
-	private static Map<String, Profile> appliedProfiles = new HashMap<String, Profile>();
+	private static Map<String, Profile> appliedProfiles = new HashMap<>();
 	
 	public static String createStereotypeString(Element element) {
 		StringBuffer string = new StringBuffer();
@@ -602,7 +602,7 @@ public final class UMLHelper {
 	}
 	
 	public static List<Element> getAllConnections(final Element element) {
-		List<Element> connections = new ArrayList<Element>();
+		List<Element> connections = new ArrayList<>();
 		for (Relationship relation : element.getRelationships()) {
 			if (!connections.contains(relation)) {
 				connections.add(relation);

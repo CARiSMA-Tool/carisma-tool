@@ -36,7 +36,7 @@ public class ModelTypeRegistry {
 	private List<ModelType> registeredTypes;
 	
 	public ModelTypeRegistry() {
-		this.registeredTypes = new ArrayList<ModelType>();
+		this.registeredTypes = new ArrayList<>();
 	}
 
 	/**

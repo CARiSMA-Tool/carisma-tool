@@ -8,12 +8,16 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
+import org.junit.After;
 import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
@@ -27,7 +31,6 @@ import carisma.evolution.SubstElement;
 import carisma.evolution.uml2.io.ModelImporter;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.TaggedValue;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 
@@ -46,11 +49,11 @@ public class ImporterTest {
 	/**
 	 * Name of the valid model.
 	 */
-	private static final String VALID_MODEL = "ImporterDeltaTest.uml";
+	private static final String VALID_MODEL = "resources/models/io/ImporterDeltaTest.uml";
 	
 	/** ModelLoder for UML models.
 	 */
-	private UML2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 	/** 
 	 * Resource of the uml model.
 	 */
@@ -64,43 +67,36 @@ public class ImporterTest {
 	 * loads the given model.
 	 * @param testmodelname - the model to load
 	 */
-	private void loadModel(final String testmodelname) {
-		String testmodeldir = "resources/models/io";
-		File testmodelfile = new File(testmodeldir + File.separator + testmodelname);
+	public final void loadModel(final String path) throws IOException {
+		File testmodelfile = new File(path);
 		assertTrue(testmodelfile.exists());
-		if (ml == null) {
-			ml = new UML2ModelLoader();
-		}
-		try {
-			modelres = ml.load(testmodelfile);
-		} catch (IOException e) {
-			Logger.log(LogLevel.ERROR, "Couldn't load model.", e);
-			fail("Couldn't load model");
-		}
+		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		this.modelres.load(Collections.EMPTY_MAP);
 	}
 	
 	/** Test if an AddElement which has a '@null' value in 'values' is correctly transformed to an Entry<String, null>.
+	 * @throws IOException 
 	 * 
 	 */
 	@Test
-    public final void getSingleAddNullValueInValues() {
+    public final void getSingleAddNullValueInValues() throws IOException {
 	    loadModel(VALID_MODEL);
         ModelImporter importer = new ModelImporter();
-        File inputXML = new File(xmldir + File.separator + "SingleAddDeltaNullValueInValues.xml");
+        File inputXML = new File(this.xmldir + File.separator + "SingleAddDeltaNullValueInValues.xml");
         assertTrue(inputXML.exists());
-        Delta delta = importer.getDelta(inputXML, modelres);
+        Delta delta = importer.getDelta(inputXML, this.modelres);
         assertNotNull(delta);
         assertFalse(delta.getContent().isEmpty());
 	    assertTrue(delta.getAllAdditions().get(0).getValues().get("name") == null);
 	}
 	
 	@Test
-	public void getDeltaSingleAddRegularTest() {
+	public void getDeltaSingleAddRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "regNamedEleSingleAddDeltaWrite.xml");
+		File inputXML = new File(this.xmldir + File.separator + "regNamedEleSingleAddDeltaWrite.xml");
 		assertTrue(inputXML.exists());
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertNotNull(delta);
 		assertFalse(delta.getContent().isEmpty());
 	
@@ -111,12 +107,12 @@ public class ImporterTest {
 	}
 	
 	@Test
-	public void getDeltaSingleDelRegularTest() {
+	public void getDeltaSingleDelRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "regNamedEleSingleDelDeltaWrite.xml");
+		File inputXML = new File(this.xmldir + File.separator + "regNamedEleSingleDelDeltaWrite.xml");
 		assertTrue(inputXML.exists());
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertNotNull(delta);
 		assertFalse(delta.getContent().isEmpty());
 	
@@ -127,12 +123,12 @@ public class ImporterTest {
 	}
 	
 	@Test
-	public void getDeltaSingleEditRegularTest() {
+	public void getDeltaSingleEditRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "regNamedEleSingleEditDeltaWrite.xml");
+		File inputXML = new File(this.xmldir + File.separator + "regNamedEleSingleEditDeltaWrite.xml");
 		assertTrue(inputXML.exists());
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertNotNull(delta);
 		assertFalse(delta.getContent().isEmpty());
 	
@@ -143,12 +139,12 @@ public class ImporterTest {
 	}	
 	
 	@Test
-	public void getDeltaSingleSubstRegularTest() {
+	public void getDeltaSingleSubstRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "regNamedEleSingleSubstDeltaWrite.xml");
+		File inputXML = new File(this.xmldir + File.separator + "regNamedEleSingleSubstDeltaWrite.xml");
 		assertTrue(inputXML.exists());
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertNotNull(delta);
 		assertFalse(delta.getContent().isEmpty());
 	
@@ -159,12 +155,12 @@ public class ImporterTest {
 	}
 	
 	@Test
-	public void getDeltaSingleStereoAddRegularTest() {
+	public void getDeltaSingleStereoAddRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "StereotypeSingleAddDeltaWrite.xml");
+		File inputXML = new File(this.xmldir + File.separator + "StereotypeSingleAddDeltaWrite.xml");
 		assertTrue(inputXML.exists());
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertNotNull(delta);
 		assertFalse(delta.getContent().isEmpty());
 	
@@ -175,14 +171,14 @@ public class ImporterTest {
 	}
 	
 	@Test
-	public void getDeltaSingleStereoDelRegularTest() {
+	public void getDeltaSingleStereoDelRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		try {
-			assertNotNull("Initialized gibts gar nicht!", UMLHelper.getElementByName((Model) modelres.getContents().get(0), "INITIALIZED"));
+			assertNotNull("Initialized gibts gar nicht!", UMLHelper.getElementByName((Model) this.modelres.getContents().get(0), "INITIALIZED"));
 			ModelImporter importer = new ModelImporter();
-			File inputXML = new File(xmldir + File.separator + "StereotypeSingleDelDeltaWrite.xml");
+			File inputXML = new File(this.xmldir + File.separator + "StereotypeSingleDelDeltaWrite.xml");
 			assertTrue(inputXML.exists());
-			Delta delta = importer.getDelta(inputXML, modelres);
+			Delta delta = importer.getDelta(inputXML, this.modelres);
 			assertNotNull(delta);
 			assertFalse(delta.getContent().isEmpty());
 		
@@ -197,12 +193,12 @@ public class ImporterTest {
 	}
 	
 	@Test
-	public void getDeltaSingleStereoEditRegularTest() {
+	public void getDeltaSingleStereoEditRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "StereotypeSingleEditDeltaWrite.xml");
+		File inputXML = new File(this.xmldir + File.separator + "StereotypeSingleEditDeltaWrite.xml");
 		assertTrue(inputXML.exists());
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertNotNull(delta);
 		assertFalse(delta.getContent().isEmpty());
 	
@@ -213,12 +209,12 @@ public class ImporterTest {
 	}	
 	
 	@Test
-	public void getDeltaSingleStereoSubstRegularTest() {
+	public void getDeltaSingleStereoSubstRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "StereotypeSingleSubstDeltaWrite.xml");
+		File inputXML = new File(this.xmldir + File.separator + "StereotypeSingleSubstDeltaWrite.xml");
 		assertTrue(inputXML.exists());
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertNotNull(delta);
 		assertFalse(delta.getContent().isEmpty());
 	
@@ -230,12 +226,12 @@ public class ImporterTest {
 	
 	
 	@Test
-	public void getDeltaTwoStereoAddRegularTest() {
+	public void getDeltaTwoStereoAddRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "NamedEleTwoAddDelta.xml");
+		File inputXML = new File(this.xmldir + File.separator + "NamedEleTwoAddDelta.xml");
 		assertTrue(inputXML.exists());
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertNotNull(delta);
 		assertFalse(delta.getContent().isEmpty());
 	
@@ -247,12 +243,12 @@ public class ImporterTest {
 	}
 	
 	@Test
-	public void getDeltaThreeStereoAddRegularTest() {
+	public void getDeltaThreeStereoAddRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "NamedEleThreeAddDelta.xml");
+		File inputXML = new File(this.xmldir + File.separator + "NamedEleThreeAddDelta.xml");
 		assertTrue(inputXML.exists());
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertNotNull(delta);
 		assertFalse(delta.getContent().isEmpty());
 	
@@ -264,12 +260,12 @@ public class ImporterTest {
 	}
 	
 	@Test
-	public void getDeltaFourStereoAddRegularTest() {
+	public void getDeltaFourStereoAddRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "NamedEleFourAddDelta.xml");
+		File inputXML = new File(this.xmldir + File.separator + "NamedEleFourAddDelta.xml");
 		assertTrue(inputXML.exists());
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertNotNull(delta);
 		assertFalse(delta.getContent().isEmpty());
 	
@@ -283,12 +279,12 @@ public class ImporterTest {
 	
 	
 	@Test
-	public void getDeltaRegularTest() {
+	public void getDeltaRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "regDeltaWrite.xml");
+		File inputXML = new File(this.xmldir + File.separator + "regDeltaWrite.xml");
 		assertTrue(inputXML.exists());
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertNotNull(delta);
 		assertFalse(delta.getContent().isEmpty());
 	
@@ -300,7 +296,7 @@ public class ImporterTest {
 		
 		
 
-		XMLResource xmlRes = (XMLResource) modelres;
+		XMLResource xmlRes = (XMLResource) this.modelres;
 		boolean hasEdit = false;
 		boolean[] allTrue = {false, false, false};
 		for (DeltaElement dEle : delta.getContent()) {
@@ -318,14 +314,14 @@ public class ImporterTest {
 				assertEquals("authorized-status", ((StereotypeApplication) dEle.getTarget()).getAppliedStereotype().getName());
 				allTrue[1] = true;
 			} else if (dEle instanceof AddElement) {
-				assertEquals("_oSsTsGIMEeGeQ6PWdg4u1A", xmlRes.getID(((NamedElement) dEle.getTarget())));
+				assertEquals("_oSsTsGIMEeGeQ6PWdg4u1A", xmlRes.getID((dEle.getTarget())));
 				
 				AddElement content = (AddElement) dEle;
 				assertEquals("State", content.getMetaClass().getName());
 				assertEquals("someThing", content.getValues().get("name"));
 				allTrue[2] = true;
 			} else if (dEle instanceof EditElement) { 
-				assertEquals("_7DbZYGINEeGeQ6PWdg4u1A", xmlRes.getID(((NamedElement) dEle.getTarget())));
+				assertEquals("_7DbZYGINEeGeQ6PWdg4u1A", xmlRes.getID((dEle.getTarget())));
 				hasEdit = true;
 			}
 		}
@@ -340,6 +336,7 @@ public class ImporterTest {
 		assertEquals("oneMoreChange", delta.getChangeIDs().get(2));
 	}
 	
+	@SuppressWarnings("static-method")
 	@Test
 	public void getDeltaNullTest() { 
 		ModelImporter importer = new ModelImporter();
@@ -347,37 +344,38 @@ public class ImporterTest {
 	}
 	
 	/** XML file and UML Model do not match at all.
+	 * @throws IOException 
 	 * 
 	 */
 	@Test
-	public final void getDeltaWrongModel() {
-		loadModel("ImporterDeltaWrongModel.uml");
+	public final void getDeltaWrongModel() throws IOException {
+		loadModel("resources/models/io/ImporterDeltaWrongModel.uml");
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "regDeltaWrite.xml");
-		assertEquals(0, importer.getDelta(inputXML, modelres).getContent().size());
+		File inputXML = new File(this.xmldir + File.separator + "regDeltaWrite.xml");
+		assertEquals(0, importer.getDelta(inputXML, this.modelres).getContent().size());
 		
 	}
 	
 	
 	@Test
-	public void getDeltaMalformedXML() { 
+	public void getDeltaMalformedXML() throws IOException { 
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "MalformedDelta.xml");
-		assertEquals(null, importer.getDelta(inputXML, modelres));
+		File inputXML = new File(this.xmldir + File.separator + "MalformedDelta.xml");
+		assertEquals(null, importer.getDelta(inputXML, this.modelres));
 	}
 	
 	@Test
-	public void getDeltaMalformedXML2() { 
+	public void getDeltaMalformedXML2() throws IOException { 
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
-		File inputXML = new File(xmldir + File.separator + "MalformedDelta2.xml");
+		File inputXML = new File(this.xmldir + File.separator + "MalformedDelta2.xml");
 		assertNotNull(inputXML);
 		
-		Delta delta = importer.getDelta(inputXML, modelres);
+		Delta delta = importer.getDelta(inputXML, this.modelres);
 		assertFalse(delta.getContent().isEmpty());
 		
-		XMLResource xmlRes = (XMLResource) modelres;
+		XMLResource xmlRes = (XMLResource) this.modelres;
 		boolean[] allTrue = {false, false};
 		for (DeltaElement dEle : delta.getContent()) {
 			if (dEle instanceof SubstElement) { 
@@ -389,7 +387,7 @@ public class ImporterTest {
 				allTrue[0] = true;
 			} else if (dEle instanceof AddElement) { 
 				assertTrue(
-						xmlRes.getID(((NamedElement) dEle.getTarget()))
+						xmlRes.getID((dEle.getTarget()))
 						.equals("_5VssQGINEeGeQ6PWdg4u1A"));
 				
 				AddElement content = (AddElement) dEle;
@@ -402,5 +400,12 @@ public class ImporterTest {
 			}
 		}
 		assertTrue(allTrue[0] && allTrue[1]);
+	}
+	
+	@After
+	public void unloadModel(){
+		for(Resource r : this.rs.getResources()){
+			r.unload();
+		}
 	}
 }

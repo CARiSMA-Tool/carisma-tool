@@ -26,7 +26,7 @@ public class ParserUtilsTest {
 
 	@Test
 	public static void testExtract() {
-		ArrayList<String> parts = new ArrayList<String>();
+		ArrayList<String> parts = new ArrayList<>();
 		parts.add("name=Klasse");
 		assertEquals(parts,ParserUtils.extract("name=Klasse", ','));
 		parts.add("contents=<Bla(name=Blubb)>");
@@ -56,7 +56,7 @@ public class ParserUtilsTest {
 
 	@Test
 	public static void testFindKeyValuePairs() {
-		HashMap<String, String> keyValuePairs = new HashMap<String, String>();
+		HashMap<String, String> keyValuePairs = new HashMap<>();
 		keyValuePairs.put("name", "Klasse");
 		keyValuePairs.put("visibility", "public");
 		assertEquals(keyValuePairs,ParserUtils.findKeyValuePairs("(name=Klasse,visibility=public,free)"));
@@ -69,7 +69,7 @@ public class ParserUtilsTest {
 
 	@Test
 	public static void testReferenceValues() {
-		List<String> testValues = new ArrayList<String>();
+		List<String> testValues = new ArrayList<>();
 		String ref = "someRef";
 		testValues.add("someRef={Alt1},{Alt2}");
 		testValues.add("notTheRef={Alt3},{Alt4}");
@@ -77,7 +77,7 @@ public class ParserUtilsTest {
 		testValues.add("someRef{Wrong}");
 		assertEquals("{Alt1},{Alt2},{Alt5}",ParserUtils.getMatchingValues(ref, testValues));
 		
-		testValues = new ArrayList<String>();
+		testValues = new ArrayList<>();
 		ref = "someRef";
 		testValues.add("someRef={Alt1},{Alt2}");
 		testValues.add("notTheRef={Alt3},{Alt2}");

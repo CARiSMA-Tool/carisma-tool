@@ -332,7 +332,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 
 		// If there are no parameters, the parameter section will be empty
 		if (checkReference.getParameters().size() > 0) {
-			this.qodButtonMap = new HashMap<CheckParameter, Button>();
+			this.qodButtonMap = new HashMap<>();
 
 			this.parameterSection.marginWidth = 10;
 			this.parameterSection.setText("Parameters");

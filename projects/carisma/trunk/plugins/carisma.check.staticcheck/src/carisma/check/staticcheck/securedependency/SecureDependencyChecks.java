@@ -56,7 +56,7 @@ public final class SecureDependencyChecks {
 			this.analysisHost = new DummyHost(true);
 		}
 		
-		this.secureDependencyViolations = new ArrayList<SecureDependencyViolation>();
+		this.secureDependencyViolations = new ArrayList<>();
 	}
 	
 	public List<SecureDependencyViolation> getViolations() {
@@ -69,7 +69,7 @@ public final class SecureDependencyChecks {
 	 * @return
 	 */
 	public int checkSecureDependency(final Package model, final boolean onlyCheckUsages) {
-		List<Dependency> dependenciesToCheck = new ArrayList<Dependency>();
+		List<Dependency> dependenciesToCheck = new ArrayList<>();
 		if (onlyCheckUsages) {
 			dependenciesToCheck.addAll(UMLHelper.getAllElementsOfType(model, Usage.class));
 		} else {
@@ -119,11 +119,11 @@ public final class SecureDependencyChecks {
 				getAllDistinctTagValuesOfClassifierAndSubclasses(supplier, UMLsec.TAG_CRITICAL_HIGH);
 		List<String> allPrivacyTagValuesOfSupplierAndChildren = 
 				getAllDistinctTagValuesOfClassifierAndSubclasses(supplier, UMLsec.TAG_CRITICAL_PRIVACY);
-		List<String> relevantSignaturesForSecrecy = new ArrayList<String>();
-		List<String> relevantSignaturesForPrivacy = new ArrayList<String>();
-		List<String> relevantSignaturesForIntegrity = new ArrayList<String>();
-		List<String> relevantSignaturesForHigh = new ArrayList<String>();
-		List<String> irrelevantSignatures = new ArrayList<String>();
+		List<String> relevantSignaturesForSecrecy = new ArrayList<>();
+		List<String> relevantSignaturesForPrivacy = new ArrayList<>();
+		List<String> relevantSignaturesForIntegrity = new ArrayList<>();
+		List<String> relevantSignaturesForHigh = new ArrayList<>();
+		List<String> irrelevantSignatures = new ArrayList<>();
 		for (String sig : operationSignatures) {
 			if (allSecrecyTagValuesOfSupplierAndChildren.contains(sig)) {
 				relevantSignaturesForSecrecy.add(sig);
@@ -138,16 +138,16 @@ public final class SecureDependencyChecks {
 				irrelevantSignatures.add(sig);
 			}
 		}
-		List<String> secrecyTagValuesOfClient = new ArrayList<String>();
+		List<String> secrecyTagValuesOfClient = new ArrayList<>();
 		getDistinctTagValues(secrecyTagValuesOfClient, client, UMLsec.TAG_CRITICAL_SECRECY);
-		List<String> privacyTagValuesOfClient = new ArrayList<String>();
+		List<String> privacyTagValuesOfClient = new ArrayList<>();
 		getDistinctTagValues(privacyTagValuesOfClient, client, UMLsec.TAG_CRITICAL_PRIVACY);
-		List<String> integrityTagValuesOfClient = new ArrayList<String>();
+		List<String> integrityTagValuesOfClient = new ArrayList<>();
 		getDistinctTagValues(integrityTagValuesOfClient, client, UMLsec.TAG_CRITICAL_INTEGRITY);
-		List<String> highTagValuesOfClient = new ArrayList<String>();
+		List<String> highTagValuesOfClient = new ArrayList<>();
 		getDistinctTagValues(highTagValuesOfClient, client, UMLsec.TAG_CRITICAL_HIGH);
 		
-		List<SecureDependencyViolation> errors = new ArrayList<SecureDependencyViolation>();
+		List<SecureDependencyViolation> errors = new ArrayList<>();
 
 		if (!secrecyTagValuesOfClient.isEmpty() || !relevantSignaturesForSecrecy.isEmpty()) {
 			this.analysisHost.appendLineToReport("  - analyzing secrecy tag values ...");
@@ -205,8 +205,8 @@ public final class SecureDependencyChecks {
 			final List<String> allSecrecyTagsOfSupplierAndChildren, 
 			final List<String> secrecyTagsOfClient, 
 			final List<String> irrelevantSignatures) {
-		List<String> clientSecrecyTagsNotInSupplier = new ArrayList<String>();
-		List<String> secrecyTagsNotInClient = new ArrayList<String>();
+		List<String> clientSecrecyTagsNotInSupplier = new ArrayList<>();
+		List<String> secrecyTagsNotInClient = new ArrayList<>();
 		for (String s : allSecrecyTagsOfSupplierAndChildren) {
 			if (!secrecyTagsOfClient.contains(s)) {
 				secrecyTagsNotInClient.add(s);
@@ -241,8 +241,8 @@ public final class SecureDependencyChecks {
 			final List<String> allPrivacyTagsOfSupplierAndChildren, 
 			final List<String> PrivacyTagsOfClient, 
 			final List<String> irrelevantSignatures) {
-		List<String> clientPrivacyTagsNotInSupplier = new ArrayList<String>();
-		List<String> privacyTagsNotInClient = new ArrayList<String>();
+		List<String> clientPrivacyTagsNotInSupplier = new ArrayList<>();
+		List<String> privacyTagsNotInClient = new ArrayList<>();
 		for (String s : allPrivacyTagsOfSupplierAndChildren) {
 			if (!PrivacyTagsOfClient.contains(s)) {
 				privacyTagsNotInClient.add(s);
@@ -276,7 +276,7 @@ public final class SecureDependencyChecks {
 	 * @return
 	 */
 	public static List<String> getAllDistinctTagValuesOfClassifierAndSubclasses(final Classifier classifier,final String tagName) {
-		List<String> distinctTagValues = new ArrayList<String>();
+		List<String> distinctTagValues = new ArrayList<>();
 		for (Classifier subClassifier : getSubClassifiers(classifier)) {
 			getDistinctTagValues(distinctTagValues, subClassifier, tagName);
 		}
@@ -310,7 +310,7 @@ public final class SecureDependencyChecks {
 	 * @return - a list of operation signature strings
 	 */
 	public static List<String> getOperationSignatures(final Classifier classifier) {
-		List<String> signatures = new ArrayList<String>();
+		List<String> signatures = new ArrayList<>();
 		for (Operation operation : classifier.getAllOperations()) {
 			String signature = operation.getName() + "(";
 			StringBuffer parameters = new StringBuffer();
@@ -369,7 +369,7 @@ public final class SecureDependencyChecks {
 	 * @return - the list of subclassifiers
 	 */
 	public static List<Classifier> getSubClassifiers(Classifier classifier) {
-		List<Classifier> subclassifiers = new ArrayList<Classifier>();
+		List<Classifier> subclassifiers = new ArrayList<>();
 		getSubClassifiers(subclassifiers, classifier);
 		return subclassifiers;
 	}
@@ -399,7 +399,7 @@ public final class SecureDependencyChecks {
 	}
 	
 	public static List<Classifier> getSuperClassifiers(Classifier classifier) {
-		ArrayList<Classifier> superclassifiers = new ArrayList<Classifier>();
+		ArrayList<Classifier> superclassifiers = new ArrayList<>();
 		getSuperClassifiers(superclassifiers, classifier);
 		return superclassifiers;
 	}

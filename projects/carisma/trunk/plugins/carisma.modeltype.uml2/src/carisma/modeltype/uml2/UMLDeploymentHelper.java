@@ -54,7 +54,7 @@ public final class UMLDeploymentHelper {
 	 * @return - set of "normal" dependencies
 	 */
 	public static Set<Dependency> getAllDependencies(final Package pkg) {
-		Set<Dependency> allDependencies = new HashSet<Dependency>();
+		Set<Dependency> allDependencies = new HashSet<>();
 		for (Dependency d : UMLHelper.getAllElementsOfType(pkg, Dependency.class)) {
 			if (!(d instanceof Deployment || d instanceof Usage || d instanceof Manifestation)) {
 				allDependencies.add(d);
@@ -68,7 +68,7 @@ public final class UMLDeploymentHelper {
 	 * @return - list of dependencies
 	 */
 	public static List<Dependency> getAllDependencies(final Artifact artifact) {
-		List<Dependency> allDependencies = new ArrayList<Dependency>();
+		List<Dependency> allDependencies = new ArrayList<>();
 		for (Dependency dep : getAllDependencies(artifact.getModel())) {
 			if (dep.getClients().contains(artifact) || dep.getSuppliers().contains(artifact)) {
 				allDependencies.add(dep);
@@ -78,7 +78,7 @@ public final class UMLDeploymentHelper {
 	}
 	
 	public static Set<Artifact> getAllArtifacts(final Collection<Dependency> dependencies) {
-		Set<Artifact> allArtifacts = new HashSet<Artifact>();
+		Set<Artifact> allArtifacts = new HashSet<>();
 		for (Dependency dep : dependencies) {
 			allArtifacts.addAll(getAllArtifacts(dep));
 		}
@@ -92,7 +92,7 @@ public final class UMLDeploymentHelper {
 	 * @return - the set of artifacts
 	 */
 	public static Set<Artifact> getAllArtifacts(final Dependency dep) {
-		Set<Artifact> allArtifacts = new HashSet<Artifact>();
+		Set<Artifact> allArtifacts = new HashSet<>();
 		for (NamedElement ne : dep.getClients()) {
 			if (ne instanceof Artifact) {
 				allArtifacts.add((Artifact) ne);
@@ -112,9 +112,9 @@ public final class UMLDeploymentHelper {
 	 * @return - the map of nodes with no communication path between them
 	 */
 	public static Map<Node, Node> getUnconnectedNodes(final Dependency dep) {
-		Map<Node, Node> unconnectedNodes = new HashMap<Node, Node>();
-		Set<Artifact> clientArtifacts = new HashSet<Artifact>();
-		Set<Artifact> supplierArtifacts = new HashSet<Artifact>();
+		Map<Node, Node> unconnectedNodes = new HashMap<>();
+		Set<Artifact> clientArtifacts = new HashSet<>();
+		Set<Artifact> supplierArtifacts = new HashSet<>();
 		for (NamedElement ne : dep.getClients()) {
 			if (ne instanceof Artifact) {
 				clientArtifacts.add((Artifact) ne);
@@ -156,7 +156,7 @@ public final class UMLDeploymentHelper {
 	 * @return - the set of corresponding communication paths
 	 */
 	public static Set<CommunicationPath> getCommunicationPaths(final Artifact client, final Artifact supplier) {
-		Set<CommunicationPath> communicationPaths = new HashSet<CommunicationPath>();
+		Set<CommunicationPath> communicationPaths = new HashSet<>();
 		Set<Node> sourceNodes = getDeploymentLocations(client);
 		Set<Node> targetNodes = getDeploymentLocations(supplier);
 		for (Node sourceNode : sourceNodes) {
@@ -201,7 +201,7 @@ public final class UMLDeploymentHelper {
 	 * @return - the set of communication paths, if present
 	 */
 	public static Set<CommunicationPath> getCommunicationPaths(final Dependency dep) {
-		Set<CommunicationPath> communicationPaths = new HashSet<CommunicationPath>();
+		Set<CommunicationPath> communicationPaths = new HashSet<>();
 		for (NamedElement aClient : dep.getClients()) {
 			if (aClient instanceof Artifact) {
 				for (NamedElement aSupplier : dep.getSuppliers()) {
@@ -221,7 +221,7 @@ public final class UMLDeploymentHelper {
 	 * @return - the set of nodes
 	 */
 	public static List<Node> getNodes(final CommunicationPath commPath) {
-		List<Node> nodes = new ArrayList<Node>();
+		List<Node> nodes = new ArrayList<>();
 		if (commPath.getMemberEnds().size() > 2) {
 			Logger.log(LogLevel.WARNING, "Warning! Only 1:1 associations are supported.");
 		}
@@ -245,7 +245,7 @@ public final class UMLDeploymentHelper {
 	 */
 	public static Set<Dependency> getAllDependencies(
 			final Node node1, final Node node2) {
-		Set<Dependency> allDependencies = new HashSet<Dependency>();
+		Set<Dependency> allDependencies = new HashSet<>();
 		allDependencies.addAll(getClientDependencies(node1, node2));
 		allDependencies.addAll(getClientDependencies(node2, node1));
 		return allDependencies;
@@ -258,7 +258,7 @@ public final class UMLDeploymentHelper {
 	 */
 	public static Set<Dependency> getAllDependencies(
 			final CommunicationPath commPath) {
-		Set<Dependency> allDependencies = new HashSet<Dependency>();
+		Set<Dependency> allDependencies = new HashSet<>();
 		List<Node> nodes = getNodes(commPath);
 		if (nodes.size() == 2) {
 			allDependencies.addAll(
@@ -275,7 +275,7 @@ public final class UMLDeploymentHelper {
 	 */
 	public static Set<Dependency> getClientDependencies(
 			final Node sourceNode, final Node targetNode) {
-		Set<Dependency> clientDependencies = new HashSet<Dependency>();
+		Set<Dependency> clientDependencies = new HashSet<>();
 		Set<DeployedArtifact> sourceArtifacts = getDeployedArtifacts(sourceNode);
 		Set<DeployedArtifact> targetArtifacts = getDeployedArtifacts(targetNode);
 		for (DeployedArtifact sourceArtifact : sourceArtifacts) {
@@ -298,7 +298,7 @@ public final class UMLDeploymentHelper {
 	 * @return - list of deployed artifacts
 	 */
 	public static Set<DeployedArtifact> getDeployedArtifacts(final Node deploymentLocation) {
-		Set<DeployedArtifact> deployedArtifacts = new HashSet<DeployedArtifact>();
+		Set<DeployedArtifact> deployedArtifacts = new HashSet<>();
 		for (Deployment deploy : deploymentLocation.getDeployments()) {
 			for (DeployedArtifact deplArti : deploy.getDeployedArtifacts()) {
 				deployedArtifacts.add(deplArti);
@@ -308,7 +308,7 @@ public final class UMLDeploymentHelper {
 	}
 	
 	public static Set<Node> getDeploymentLocations(final Collection<Artifact> artifacts) {
-		Set<Node> deploymentLocations = new HashSet<Node>();
+		Set<Node> deploymentLocations = new HashSet<>();
 		for (Artifact arti : artifacts) {
 			deploymentLocations.addAll(getDeploymentLocations(arti));
 		}
@@ -321,7 +321,7 @@ public final class UMLDeploymentHelper {
 	 * @return - the deployment locations
 	 */
 	public static Set<Node> getDeploymentLocations(final Artifact deployedArtifact) {
-		Set<Node> deploymentLocations = new HashSet<Node>();
+		Set<Node> deploymentLocations = new HashSet<>();
 		for (Deployment deploy : getDeployments(deployedArtifact)) {
 			DeploymentTarget target = deploy.getLocation();
 			if (target instanceof Node) {
@@ -336,7 +336,7 @@ public final class UMLDeploymentHelper {
 	 * @return - set of deployment relations
 	 */
 	public static Set<Deployment> getDeployments(final Artifact deployedArtifact) {
-		Set<Deployment> deployments = new HashSet<Deployment>();
+		Set<Deployment> deployments = new HashSet<>();
 		for (Relationship relation : deployedArtifact.getRelationships()) {
 			if (relation instanceof Deployment) {
 				deployments.add((Deployment) relation);

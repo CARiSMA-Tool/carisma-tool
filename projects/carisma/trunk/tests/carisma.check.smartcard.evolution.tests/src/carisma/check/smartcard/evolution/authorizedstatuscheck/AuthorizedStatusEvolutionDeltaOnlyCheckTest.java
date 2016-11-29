@@ -187,7 +187,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheckTest {
 		 * Constructor.
 		 */
 		public TestHost() {
-			this.register = new HashMap<String, Object>();
+			this.register = new HashMap<>();
 		}
 		
 		@Override

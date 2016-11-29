@@ -79,7 +79,7 @@ public class ModelExporterCheck implements CarismaCheckWithID {
 		if (deltaList == null || deltaModifiers == null) {
 			return false;
 		}
-		List<Delta> deltasToExport = new ArrayList<Delta>();
+		List<Delta> deltasToExport = new ArrayList<>();
 		if (onlyMaxSuccessfulDeltas) {
 			for (Delta d : deltaList.getRemainingDeltas()) {
 				if (d.getNumberOfUsedChanges() == deltaList.getHighestChangeCountNow()) {

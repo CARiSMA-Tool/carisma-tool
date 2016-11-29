@@ -87,11 +87,11 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 	private static final String PERMISSION = "permission";
 
 	public AuthorizedStatusEvolutionDeltaOnlyCheck() {
-		this.processedDeltaElements = new ArrayList<DeltaElement>();
-		this.processedTransitions = new HashMap<Transition, DeltaElement>();
-		this.processedStates = new HashMap<State, DeltaElement>();
-		this.processedIncomings = new HashMap<Transition, State>();
-		this.errorMessages = new ArrayList<AnalysisMessage>();		
+		this.processedDeltaElements = new ArrayList<>();
+		this.processedTransitions = new HashMap<>();
+		this.processedStates = new HashMap<>();
+		this.processedIncomings = new HashMap<>();
+		this.errorMessages = new ArrayList<>();		
 	}
 	
 	@Override
@@ -145,7 +145,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 	private boolean checkDeltas() {
 		boolean hasMaxSuccessfulDelta = false;
 		int deltaCounter = 1;
-		List<Delta> violatingEvolutions = new ArrayList<Delta>();
+		List<Delta> violatingEvolutions = new ArrayList<>();
 		for (Delta d : this.deltaList.getRemainingDeltas()) {
 			this.activeDelta = d;
 			boolean deltaSuccessful = true;
@@ -181,23 +181,23 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 		
 	private void init(final Delta d) {
 		if (this.errorMessages == null) {
-			this.errorMessages = new ArrayList<AnalysisMessage>();
+			this.errorMessages = new ArrayList<>();
 		}
 		this.errorMessages.clear();
 		if (this.processedDeltaElements == null) {
-			this.processedDeltaElements = new ArrayList<DeltaElement>();
+			this.processedDeltaElements = new ArrayList<>();
 		}
 		this.processedDeltaElements.clear();
 		if (this.processedTransitions == null) {
-			this.processedTransitions = new HashMap<Transition, DeltaElement>();
+			this.processedTransitions = new HashMap<>();
 		}
 		this.processedTransitions.clear();
 		if (this.processedStates == null) {
-			this.processedStates = new HashMap<State, DeltaElement>();
+			this.processedStates = new HashMap<>();
 		}
 		this.processedTransitions.clear();
 		if (this.processedIncomings == null) {
-			this.processedIncomings = new HashMap<Transition, State>();
+			this.processedIncomings = new HashMap<>();
 		}
 		this.processedIncomings.clear();
 	}

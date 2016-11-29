@@ -120,7 +120,7 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 	private List<CheckReference> getChecksWithRequiredParameters() {
 
 		List<CheckReference> checks = this.analysis.getChecks();
-		List<CheckReference> checksWithRequiredParameters = new ArrayList<CheckReference>();
+		List<CheckReference> checksWithRequiredParameters = new ArrayList<>();
 
 		for (CheckReference check : checks) {
 			if (!check.getUnsetRequiredParameters().isEmpty()) {

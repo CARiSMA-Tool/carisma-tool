@@ -30,7 +30,7 @@ public class ExportSubstElement extends ExportAdditiveElement {
      * @param subE Element which is transformed.
      */
 	public ExportSubstElement(final SubstElement subE) {
-		this.components = new ArrayList<ExportAddElement>();
+		this.components = new ArrayList<>();
 		if (subE.getAllAddedElements() != null) {
     		for (AddElement e : subE.getAllAddedElements()) {
     			this.components.add(new ExportAddElement(e));

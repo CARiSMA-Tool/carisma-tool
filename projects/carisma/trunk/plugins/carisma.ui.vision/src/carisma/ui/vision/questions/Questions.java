@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "questions")
 public class Questions {
 
-	private List<Question> question = new ArrayList<Question>();
+	private List<Question> question = new ArrayList<>();
 
 	@XmlElement(name = "question")
 	public List<Question> getQuestions() {

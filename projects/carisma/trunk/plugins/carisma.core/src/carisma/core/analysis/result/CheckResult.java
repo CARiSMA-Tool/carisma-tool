@@ -48,7 +48,7 @@ public class CheckResult{
 	public CheckResult(){
 		this.successful=false;
 		this.name="";
-		this.results=new ArrayList<AnalysisResultMessage>();
+		this.results=new ArrayList<>();
 	}
 	
 	@XmlElement(name = "sucessful")

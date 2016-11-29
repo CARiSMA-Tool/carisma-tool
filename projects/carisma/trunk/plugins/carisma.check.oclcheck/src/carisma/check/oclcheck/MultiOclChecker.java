@@ -75,7 +75,7 @@ public class MultiOclChecker extends AbstractOclChecker {
 	public final boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost host) {
 		
 		//check parameter
-		List<CheckParameter> desiredParameters = new ArrayList<CheckParameter>();
+		List<CheckParameter> desiredParameters = new ArrayList<>();
 		desiredParameters.add(new InputFileParameter(
 				new CheckParameterDescriptor(PARAM_QUERY_FILE, "", "", ParameterType.INPUTFILE, true, "")));
 		desiredParameters = resolveParameters(parameters, desiredParameters);
@@ -184,12 +184,12 @@ public class MultiOclChecker extends AbstractOclChecker {
 			return;
 		}
 				
-		Map<String, EClass> contextMapTemp = new HashMap<String, EClass>();
+		Map<String, EClass> contextMapTemp = new HashMap<>();
 		
 		//list packages of model
 		EObject tmpObject = null;
 		TreeIterator<EObject> modelIterator = model.getAllContents();
-		Set<EPackage> pacSet = new HashSet<EPackage>();
+		Set<EPackage> pacSet = new HashSet<>();
 		
 		while (modelIterator.hasNext()) {
 			tmpObject = modelIterator.next();

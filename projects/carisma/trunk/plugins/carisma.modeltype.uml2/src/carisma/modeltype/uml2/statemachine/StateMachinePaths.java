@@ -52,7 +52,7 @@ public class StateMachinePaths {
 	/**
 	 * list that will be filled with all the possible paths of the state machine.
 	 */
-	private List<List<Element>> allPaths = new ArrayList<List<Element>>();
+	private List<List<Element>> allPaths = new ArrayList<>();
 	
 	/**
 	 * the given StateMachine.
@@ -83,7 +83,7 @@ public class StateMachinePaths {
 		if (stateMachine == null) {
 			throw new NullPointerException();
 		}
-		List<Element> startList = new ArrayList<Element>();
+		List<Element> startList = new ArrayList<>();
 		AnalysisHost host;
 		if (analysisHost != null) {
 			host = analysisHost;
@@ -96,7 +96,7 @@ public class StateMachinePaths {
 		this.sm = stateMachine;
 		first = getInitialState(stateMachine.getOwnedElements().get(0));
 		if (first != null) {
-			Map<Element, Element> lastStateMapping = new HashMap<Element, Element>();
+			Map<Element, Element> lastStateMapping = new HashMap<>();
 			startList.add(first);
 			findPaths(startList, lastStateMapping);
 			List<Pseudostate> entryPoints = getEntryPoints(stateMachine);
@@ -121,7 +121,7 @@ public class StateMachinePaths {
 	private void findPaths(final List<Element> pathPrefix, final Map<Element, Element> history) {
 		Vertex current = (Vertex) pathPrefix.get(pathPrefix.size() - 1); Element parentState = current.getOwner().getOwner();
 		boolean foundSuccessor = false;
-		Map<Element, Element> newHash = new HashMap<Element, Element>(history);
+		Map<Element, Element> newHash = new HashMap<>(history);
 		if (current instanceof FinalState) {
 			newHash.remove(parentState);
 		}
@@ -129,8 +129,8 @@ public class StateMachinePaths {
 			if (!(current instanceof FinalState)) {
 				newHash.put(parentState, current);
 			}
-			List<Element> pathClone = new ArrayList<Element>(pathPrefix);
-			Map<Element, Element> historyClone = new HashMap<Element, Element>();
+			List<Element> pathClone = new ArrayList<>(pathPrefix);
+			Map<Element, Element> historyClone = new HashMap<>();
 			historyClone.putAll(newHash);
 				findParentSuccessor(pathClone, historyClone);
 			foundSuccessor = true;
@@ -143,14 +143,14 @@ public class StateMachinePaths {
 				ParallelPath pPath = new ParallelPath();
 				List<List<Element>> parallelPaths = pPath.getParallelPath((Pseudostate) current , this.withTransitions);
 				for (int i = 0; i < parallelPaths.size(); i++) {
-					List<Element> pathPrefixClone = new ArrayList<Element>(pathPrefix);
+					List<Element> pathPrefixClone = new ArrayList<>(pathPrefix);
 					pathPrefixClone.addAll(parallelPaths.get(i));
 					findPaths(pathPrefixClone, newHash);
 				}
 			} else {
 				if (((Pseudostate) current).getKind().equals(PseudostateKind.SHALLOW_HISTORY_LITERAL)) {
 					if (newHash.containsKey(parentState)) {
-						List<Element> shallowHistoryPath = new ArrayList<Element>(pathPrefix);
+						List<Element> shallowHistoryPath = new ArrayList<>(pathPrefix);
 						Element acc1 = newHash.get(parentState);
 						if (!hasLoopAtEnd(shallowHistoryPath, acc1)) {
 							shallowHistoryPath.add(acc1);
@@ -162,7 +162,7 @@ public class StateMachinePaths {
 						if (current.getOwnedElements().size() < 1) {
 							Element first = getInitialState(parentState);
 							if (first != null) {
-								List<Element> newList = new ArrayList<Element>(pathPrefix);
+								List<Element> newList = new ArrayList<>(pathPrefix);
 								if (!hasLoopAtEnd(newList, first)) {
 									newList.add(first);
 									findPaths(newList, newHash);
@@ -176,7 +176,7 @@ public class StateMachinePaths {
 					if (((Pseudostate) current).getKind().equals(PseudostateKind.DEEP_HISTORY_LITERAL)) {
 						if (newHash.containsKey(parentState)) {
 							Element historyParent = parentState;
-							List<Element> deepHistoryPath = new ArrayList<Element>(pathPrefix);
+							List<Element> deepHistoryPath = new ArrayList<>(pathPrefix);
 							Element historizedState = newHash.get(historyParent);
 							while (newHash.containsKey(historizedState)) {
 								historyParent = historizedState;
@@ -194,7 +194,7 @@ public class StateMachinePaths {
 //								FIXME KR : findet keine Elemente, geht  einfach wieder einen hoch, warum?
 								Element first = getInitialState(parentState);
 								if (first != null) {
-									List<Element> newList = new ArrayList<Element>(pathPrefix);
+									List<Element> newList = new ArrayList<>(pathPrefix);
 									if (!hasLoopAtEnd(newList, first)) {
 										newList.add(first);
 										findPaths(newList, newHash);
@@ -211,14 +211,14 @@ public class StateMachinePaths {
 			if (current.getOwnedElements().size() > 0) {
 				Element first = getInitialState(current.getOwnedElements().get(0));
 				if (first != null) {
-					List<Element> newList = new ArrayList<Element>(pathPrefix);
+					List<Element> newList = new ArrayList<>(pathPrefix);
 					newList.add(first);
 					findPaths(newList, newHash);
 				}
 			}
 			if (current.getOutgoings().size() > 0) {
 				for (int i = 0; i < current.getOutgoings().size(); i++) {
-					List<Element> normalSuccessorPath = new ArrayList<Element>(pathPrefix);
+					List<Element> normalSuccessorPath = new ArrayList<>(pathPrefix);
 					if (this.withTransitions) {
 						normalSuccessorPath.add(current.getOutgoings().get(i));
 					}
@@ -230,7 +230,7 @@ public class StateMachinePaths {
 					}
 				}
 				if (!foundSuccessor) {
-					List<Element> cutted = new ArrayList<Element>(pathPrefix);
+					List<Element> cutted = new ArrayList<>(pathPrefix);
 					Element newAcc = pathPrefix.get(pathPrefix.size() - 1);
 					cutted.remove(cutted.size() - 1);
 					cutted = cutListAfterLast(cutted, newAcc);
@@ -241,7 +241,7 @@ public class StateMachinePaths {
 					Element owner = pathPrefix.get(pathPrefix.size() - 1).getOwner().getOwner();
 					if (((Vertex) owner).getOutgoings().size() > 0) {
 						for (int i = 0; i < ((Vertex) owner).getOutgoings().size(); i++) {
-							List<Element> list1 = new ArrayList<Element>(pathPrefix);
+							List<Element> list1 = new ArrayList<>(pathPrefix);
 							if (this.withTransitions) {
 								list1.add(((Vertex) owner).getOutgoings().get(i));
 							}
@@ -254,7 +254,7 @@ public class StateMachinePaths {
 						}
 					}
 					if (!foundSuccessor) {
-						List<Element> possibleCirclePath = new ArrayList<Element>(pathPrefix);
+						List<Element> possibleCirclePath = new ArrayList<>(pathPrefix);
 						Element newAcc = pathPrefix.get(pathPrefix.size() - 1);
 						possibleCirclePath.remove(possibleCirclePath.size() - 1);
 						possibleCirclePath = cutListAfterLast(possibleCirclePath, newAcc);
@@ -290,8 +290,8 @@ public class StateMachinePaths {
 	 * @return the InitialState
 	 */
 	public final static Pseudostate getInitialState(final Element element) {
-		LinkedList<Pair<Element,Boolean>> q=new LinkedList<Pair<Element,Boolean>>();//boolean visited 
-		q.add(new Pair<Element, Boolean>(element,new Boolean(true)));
+		LinkedList<Pair<Element,Boolean>> q=new LinkedList<>();//boolean visited 
+		q.add(new Pair<>(element,new Boolean(true)));
 		Element e=null;
 		while (!q.isEmpty()){
 			q.peek().setSecond(Boolean.TRUE);
@@ -299,9 +299,9 @@ public class StateMachinePaths {
 			if (e instanceof Pseudostate && ((Pseudostate) e).getKind().equals(PseudostateKind.INITIAL_LITERAL)) {
 				return (Pseudostate) e;
 				}
-			LinkedList<Pair<Element,Boolean>> list=new LinkedList<Pair<Element,Boolean>>();//boolean visited 
+			LinkedList<Pair<Element,Boolean>> list=new LinkedList<>();//boolean visited 
 			for (Element e2 : e.getOwnedElements()){
-				list.add(new Pair<Element, Boolean>(e2,Boolean.FALSE));
+				list.add(new Pair<>(e2,Boolean.FALSE));
 			}
 				for (Pair<Element,Boolean> le : list){
 					if (!le.getSecond().booleanValue()) {
@@ -319,7 +319,7 @@ public class StateMachinePaths {
 	 * @return list with all the EntryPoints in stateMachine
 	 */
 	private static List<Pseudostate> getEntryPoints(final StateMachine stateMachine) {
-		List<Pseudostate> entryList = new ArrayList<Pseudostate>();
+		List<Pseudostate> entryList = new ArrayList<>();
 		for (Pseudostate pseudo : UMLHelper.getAllElementsOfType(stateMachine, Pseudostate.class)) {
 			if (pseudo.getKind().equals(PseudostateKind.ENTRY_POINT_LITERAL)) {
 				entryList.add(pseudo);
@@ -362,7 +362,7 @@ public class StateMachinePaths {
 	 * @return list without loop at the end
 	 */
 	private static List<Element> cutListAfterLast(final List<Element> list, final Element element) {
-		List<Element> returnList = new ArrayList<Element>(list);
+		List<Element> returnList = new ArrayList<>(list);
 		int count;
 		
 		count = returnList.size() - 1;
@@ -379,7 +379,7 @@ public class StateMachinePaths {
 	 *
 	 */
 	private void deleteDoubles() {
-		List<List<Element>> paths = new ArrayList<List<Element>>();
+		List<List<Element>> paths = new ArrayList<>();
 		boolean isDouble = false;
 		for (int i = 0; i < this.allPaths.size(); i++) {
 			for (int j = 0; j < paths.size(); j++) {
@@ -403,7 +403,7 @@ public class StateMachinePaths {
 	 * @param history HashMap with elements for HistoryNodes
 	 */
 	private void findParentSuccessor(final List<Element> currentPath, final Map<Element, Element> history) {
-		Map<Element, Element> historyClone = new HashMap<Element, Element>(history);
+		Map<Element, Element> historyClone = new HashMap<>(history);
 		Vertex current = (Vertex) currentPath.get(currentPath.size() - 1);
 		Element parent = current.getOwner().getOwner();
 		boolean foundSuccessor = false;
@@ -418,7 +418,7 @@ public class StateMachinePaths {
 			Element nextParent = parent;
 			while (nextParent != null) {
 			for (int i = 0; i < ((Vertex) nextParent).getOutgoings().size(); i++) {
-				List<Element> newList = new ArrayList<Element>(currentPath);
+				List<Element> newList = new ArrayList<>(currentPath);
 				Element acc1 = ((Vertex) nextParent).getOutgoings().get(i).getTarget();
 				if (this.withTransitions) {
 					newList.add(((Vertex) nextParent).getOutgoings().get(i));

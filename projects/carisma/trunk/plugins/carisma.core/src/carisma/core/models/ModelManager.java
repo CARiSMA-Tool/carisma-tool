@@ -32,7 +32,7 @@ public class ModelManager {
 	/**
 	 * HashMap where the correct profile-paths should be mapped.
 	 */
-	private HashMap<String, String> profileMapping = new HashMap<String, String>();
+	private HashMap<String, String> profileMapping = new HashMap<>();
 
 	private File workdir = null;
 	

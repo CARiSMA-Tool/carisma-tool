@@ -7,8 +7,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "rabac")
 public class RABACConfig {
-	private HashMap<String, SetWrapper> sessions = new HashMap<String, SetWrapper>();
-	private HashSet<Attribute> attributes = new HashSet<Attribute>();
+	private HashMap<String, SetWrapper> sessions = new HashMap<>();
+	private HashSet<Attribute> attributes = new HashSet<>();
 
 	public HashMap<String, SetWrapper> getSessions() {
 		return this.sessions;

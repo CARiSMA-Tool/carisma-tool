@@ -10,7 +10,7 @@ import carisma.core.analysis.result.AnalysisResult;
 public class BuilderFactory {
 	
 	public static List<Builder> getBuilder(AnalysisResult analysisResult){
-		List<Builder> b = new ArrayList<Builder>();
+		List<Builder> b = new ArrayList<>();
 		//a list for the checks
 		List<CheckReference> checks =  analysisResult.getAnalysis().getChecks();
 		for( int i = 0;  i < checks.size(); i++ ){

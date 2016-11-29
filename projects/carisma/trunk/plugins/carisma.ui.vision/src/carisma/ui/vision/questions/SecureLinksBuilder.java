@@ -22,8 +22,8 @@ public class SecureLinksBuilder implements Builder {
 
 	@Override
 	public List<Question> generateQuestion() {
-		List<Question> questions = new ArrayList<Question>();
-		List<String> messages = new ArrayList<String>() ;
+		List<Question> questions = new ArrayList<>();
+		List<String> messages = new ArrayList<>() ;
 		//a list for the checks
 		List<CheckResult> checks = this.analysisResult.getCheckResults();
 		for( int i = 0;  i < checks.size(); i++ ){

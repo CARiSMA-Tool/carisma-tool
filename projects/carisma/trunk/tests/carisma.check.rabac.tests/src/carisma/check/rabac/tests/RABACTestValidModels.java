@@ -28,7 +28,7 @@ public class RABACTestValidModels implements RABACTest {
 	public Resource model = null;
 	public StringBuilder report;
 
-	HashMap<String, CheckParameter> config = new HashMap<String, CheckParameter>();
+	HashMap<String, CheckParameter> config = new HashMap<>();
 	private String filepath = "resources" + File.separator + "models";
 
 	@Before

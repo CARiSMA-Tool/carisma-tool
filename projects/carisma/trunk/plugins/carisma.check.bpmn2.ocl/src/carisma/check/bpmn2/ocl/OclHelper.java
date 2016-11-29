@@ -43,7 +43,7 @@ public class OclHelper {
 	 */
 	private Map<String, EClass> mapContext;
     {
-        Map<String, EClass> bpmnMap = new HashMap<String, EClass>();
+        Map<String, EClass> bpmnMap = new HashMap<>();
         for (EObject obj : Bpmn2Package.eINSTANCE.eContents()) {
         	if (obj instanceof EClass) {
         		bpmnMap.put(((EClass) obj).getName().toLowerCase(Locale.ENGLISH), (EClass) obj);
@@ -58,7 +58,7 @@ public class OclHelper {
 	 */
 	private final Map<String, EClass> mapExtendedContext;
     {
-        Map<String, EClass> bpmnMap = new HashMap<String, EClass>();
+        Map<String, EClass> bpmnMap = new HashMap<>();
         bpmnMap.put("lane", ExtendedPackage.eINSTANCE.getExtendedLane());
         bpmnMap.put("task", ExtendedPackage.eINSTANCE.getExtendedTask());
         bpmnMap.put("process", ExtendedPackage.eINSTANCE.getExtendedProcess());

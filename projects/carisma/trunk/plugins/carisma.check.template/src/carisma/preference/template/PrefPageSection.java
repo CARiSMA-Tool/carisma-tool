@@ -245,7 +245,7 @@ public class PrefPageSection extends OptionTemplateSection {
 
 	@Override
 	public IPluginReference[] getDependencies(String schemaVersion) {
-		ArrayList<IPluginReference> result = new ArrayList<IPluginReference>();
+		ArrayList<IPluginReference> result = new ArrayList<>();
 
 		result.add(new PluginReference("org.eclipse.core.runtime", null, 0));
 		result.add(new PluginReference("org.eclipse.ui", null, 0));
@@ -281,7 +281,7 @@ public class PrefPageSection extends OptionTemplateSection {
 
 	private String[] getDirectoryCandidates() {
 		double version = getTargetVersion();
-		ArrayList<String> result = new ArrayList<String>();
+		ArrayList<String> result = new ArrayList<>();
 		if (version >= 3.6) {
 			result.add("templates_3.6" + "/" + getSectionId() + "/"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}

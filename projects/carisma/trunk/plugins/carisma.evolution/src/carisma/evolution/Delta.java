@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class Delta {
 	
-	private List<String> changeIDs = new ArrayList<String>();
+	private List<String> changeIDs = new ArrayList<>();
 	
 	private List<DeltaElement> deltaContent = null;
 	
@@ -39,7 +39,7 @@ public class Delta {
 			throw new IllegalArgumentException("Parameter 'chaneIDList' is null");
 		}
 		this.changeIDs.addAll(changeIDList);
-		this.deltaContent = new ArrayList<DeltaElement>();
+		this.deltaContent = new ArrayList<>();
 		this.deltaContent.addAll(content);
 	}
 	
@@ -149,7 +149,7 @@ public class Delta {
 	}
 	
 	public final List<EditElement> getEdits(final EObject target) {
-		List<EditElement> edits = new ArrayList<EditElement>();
+		List<EditElement> edits = new ArrayList<>();
 		for (EditElement edit : getAllEdits()) {
 			if (target.equals(edit.getTarget())) {
 				edits.add(edit);
@@ -164,7 +164,7 @@ public class Delta {
 	 * @return - the AddElements matching the pattern
 	 */
 	public final List<AddElement> getMatchingAdditions(final AddElement pattern) {
-		List<AddElement> matchingAdditions = new ArrayList<AddElement>();
+		List<AddElement> matchingAdditions = new ArrayList<>();
 		for (AddElement addShallow : getAllAdditions()) {
 			for (AddElement addDeep : addShallow.getAllAddedElements()) {
 				if (matchesAddedElement(addDeep, pattern)) {
@@ -225,7 +225,7 @@ public class Delta {
 	 * @return - the set of DeltaElements of the given type in the delta
 	 */
 	private <T extends DeltaElement> List<T> getAllOfType(final Class<T> type) {
-		List<T> allOfType = new ArrayList<T>();
+		List<T> allOfType = new ArrayList<>();
 		for (DeltaElement de : this.deltaContent) {
 			if (type.isInstance(de)) {
 				allOfType.add(type.cast(de));

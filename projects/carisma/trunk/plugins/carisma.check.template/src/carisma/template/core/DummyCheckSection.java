@@ -286,7 +286,7 @@ public class DummyCheckSection extends OptionTemplateSection {
 	
 	private List<String> getDirectoryCandidates() {
 		double version = getTargetVersion();
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		if (version >= 3.6) { 
 			result.add("templates_3.6" + "/" + getSectionId() + "/"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}

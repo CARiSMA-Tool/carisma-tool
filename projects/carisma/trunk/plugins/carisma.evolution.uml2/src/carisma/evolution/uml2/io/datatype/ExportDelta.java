@@ -9,8 +9,8 @@ public class ExportDelta {
 	private List<String> usedChanges;
 	
 	public ExportDelta(List<String> newusedChanges, List<ExportDeltaElement> newContent) {
-		this.usedChanges = new ArrayList<String>();
-		this.deltaElements = new ArrayList<ExportDeltaElement>();
+		this.usedChanges = new ArrayList<>();
+		this.deltaElements = new ArrayList<>();
 		if (newusedChanges != null) {
 			this.usedChanges.addAll(newusedChanges);
 		}

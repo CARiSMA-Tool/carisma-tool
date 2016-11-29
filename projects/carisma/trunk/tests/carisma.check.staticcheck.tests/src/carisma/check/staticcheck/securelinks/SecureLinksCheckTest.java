@@ -14,24 +14,23 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 
-
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.junit.After;
 import org.junit.Test;
 
 import carisma.check.staticcheck.securelinks.SecureLinksHelper;
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
 import carisma.modeltype.uml2.StereotypeApplication;
-import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 
@@ -44,31 +43,21 @@ import carisma.profile.umlsec.UMLsecUtil;
 public class SecureLinksCheckTest {
 	private String filepath = "resources/models/secure_links";
 		
-	private UML2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 	
 	private Resource modelres = null;
 	
 	private Model model = null;
 	
-	public final void loadModel(final String testmodelname) {
+	public final void loadModel(final String testmodelname) throws IOException {
 		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (this.ml == null) {
-			this.ml = new UML2ModelLoader();
-		}
-		try {
-			this.modelres = this.ml.load(testmodelfile);
-		} catch (IOException e) {
-			Logger.log(LogLevel.ERROR, e.getMessage(), e);
-			fail(e.getMessage());
-		}
-		assertNotNull(this.modelres);
-		this.model = (Model) this.modelres.getContents().get(0);
-		assertNotNull(this.model);
+		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		this.modelres.load(Collections.EMPTY_MAP);
 	}
 	
 	@Test
-	public final void testRequirements() {
+	public final void testRequirements() throws IOException {
 		loadModel("testRequirements.uml");
 		NamedElement ne = this.model.getMember("pkg");
 		assertNotNull(ne);
@@ -92,7 +81,7 @@ public class SecureLinksCheckTest {
 	}
 	
 	@Test
-	public final void testCheckAttacker() {
+	public final void testCheckAttacker() throws IOException {
 		loadModel("testRequirements.uml");
 		assertEquals("insider",SecureLinks.getAttacker(this.model));
 		NamedElement ne = this.model.getMember("pkg");
@@ -107,31 +96,38 @@ public class SecureLinksCheckTest {
 	}
 	
 	@Test
-	public final void testCheckWrongLinktype() {
+	public final void testCheckWrongLinktype() throws IOException {
 		loadModel("testDeploymentWrongLinktype.uml");
 		SecureLinks theCheck = new SecureLinks();
 		assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
 	
 	@Test
-	public final void testCheckRightLinktype() {
+	public final void testCheckRightLinktype() throws IOException {
 		loadModel("testDeploymentRightLinktype.uml");
 		SecureLinks theCheck = new SecureLinks();
 		assertEquals(0, theCheck.checkSecureLinks(this.model));
 	}
 	
 	@Test
-	public final void testCheckWrongCustomMultipleRequirements() {
+	public final void testCheckWrongCustomMultipleRequirements() throws IOException {
 		loadModel("testDeploymentWrongCustomMultipleRequirements.uml");
 		SecureLinks theCheck = new SecureLinks();
 		assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
 	
 	@Test
-	public final void testCheckNonUMLsecStereotypes() {
+	public final void testCheckNonUMLsecStereotypes() throws IOException {
 		loadModel("testDeploymentNonUMLsecStereotype.uml");
 		SecureLinks theCheck = new SecureLinks();
 		assertEquals(0, theCheck.checkSecureLinks(this.model));
+	}
+	
+	@After
+	public void unloadModel(){
+		for(Resource r : this.rs.getResources()){
+			r.unload();
+		}
 	}
 	
 }

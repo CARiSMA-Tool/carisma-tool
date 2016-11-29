@@ -1,8 +1,8 @@
 package carisma.vision.dbAccess;
 
 import java.io.File;
+import java.util.Map;
 
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -11,25 +11,27 @@ import org.w3c.dom.Document;
 import carisma.core.io.content.Content;
 import carisma.core.io.content.ContentFactory;
 import carisma.core.io.implementations.FileIO;
-import carisma.ui.eclipse.CarismaGUI;
+import carisma.ui.vision.VisionActivator;
+import carisma.ui.vision.eclipse.preferences.PreferencesConstants;
+import carisma.ui.vision.eclipse.preferences.PreferencesObject;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI.MongoDBDestination;
 
-import static carisma.ui.vision.eclipse.preferences.pages.VisiOn.*;
-
 public class dbAccess {
 	public  static Document loadSTSInputFromDB() {
-		IPreferenceStore preferencesStore = CarismaGUI.INSTANCE.getPreferenceStore();
+		PreferencesObject preferencesStore = VisionActivator.INSTANCE.getVisionPreferences();
+		Map<String, Object> map = preferencesStore.getObject();
+		
+		String user = (String) map.get(PreferencesConstants.dbuser);
+		String secret = (String) map.get(PreferencesConstants.dbpasswd);
+		String url = (String) map.get(PreferencesConstants.dbaddress);
 
-		String user = preferencesStore.getString(KEY_USER);
-		String secret = preferencesStore.getString(KEY_SECRET);
-		String url = preferencesStore.getString(KEY_URL);
-
+		
 		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
 
-		String stsCollection = preferencesStore.getString(KEY_STS_COLLECTION);
-		String stsDocument = preferencesStore.getString(KEY_STS_DOCUMENT);
-		String stsField = preferencesStore.getString(KEY_STS_FIELD);
+		String stsCollection = (String) map.get(PreferencesConstants.sts_collection);
+		String stsDocument = (String) map.get(PreferencesConstants.sts_document);
+		String stsField = (String) map.get(PreferencesConstants.sts_field);
 
 		MongoDBDestination config = new MongoDBDestination(stsCollection, stsDocument, stsField);
 		Content content = db.read(config);

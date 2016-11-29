@@ -21,16 +21,20 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 
 import org.eclipse.bpmn2.Activity;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.junit.After;
 import org.junit.Test;
 
-import carisma.modeltype.bpmn2.BPMN2ModelLoader;
 import carisma.modeltype.bpmn2.util.Tupel;
 
 
@@ -50,7 +54,7 @@ public class BPMN2TraceTest {
 	/**
 	 * The bpmn2 model loader.
 	 */
-	private BPMN2ModelLoader ml = null;
+	private ResourceSet rs = new ResourceSetImpl();
 
 	/**
 	 * The model resource.
@@ -78,22 +82,15 @@ public class BPMN2TraceTest {
 	 * 
 	 * @param testmodelname
 	 *            The model name
+	 * @throws IOException 
 	 */
-	private void loadModel(final String testmodelname) {
+	private void loadModel(final String testmodelname) throws IOException {
 		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
-		if (this.ml == null) {
-			this.ml = new BPMN2ModelLoader();
-		}
-		try {
-			this.modelres = this.ml.load(testmodelfile);
-		} catch (IOException e) {
-			fail(e.getMessage());
-		}
+		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
+		this.modelres.load(Collections.EMPTY_MAP);
 	}
 	
-	
-
 	/**
 	 * Tests the allTracesBefore method.
 	 * Test will load some model resources and will compare the defined result
@@ -103,18 +100,19 @@ public class BPMN2TraceTest {
 	 * -TracesAfterBad1: Similar to TracesAfterOk1 but the tasks are executed in the wrong order: false
 	 * -TracesAfterBad2: More complex example, the execution is in the wrong order: false
 	 * -TracesAfterBad3: Another complex example with a wrong order: false
+	 * @throws IOException 
 	 */
 	@Test
-	public final void allTracesBeforeTest() {
+	public final void allTracesBeforeTest() throws IOException {
 		String activityBeforeName = "before";
 		String activtyAfterName = "after";
 		String containerName = CONTAINER;
-		ArrayList<Tupel<String, Boolean>> testModels = new ArrayList<Tupel<String, Boolean>>();
-		testModels.add(new Tupel<String, Boolean>("TracesAfterOk1.bpmn2", Boolean.TRUE));
-		testModels.add(new Tupel<String, Boolean>("TracesAfterOk2.bpmn2", Boolean.TRUE));
-		testModels.add(new Tupel<String, Boolean>("TracesAfterBad1.bpmn2", Boolean.FALSE));
-		testModels.add(new Tupel<String, Boolean>("TracesAfterBad2.bpmn2", Boolean.FALSE));
-		testModels.add(new Tupel<String, Boolean>("TracesAfterBad3.bpmn2", Boolean.FALSE));
+		ArrayList<Tupel<String, Boolean>> testModels = new ArrayList<>();
+		testModels.add(new Tupel<>("TracesAfterOk1.bpmn2", Boolean.TRUE));
+		testModels.add(new Tupel<>("TracesAfterOk2.bpmn2", Boolean.TRUE));
+		testModels.add(new Tupel<>("TracesAfterBad1.bpmn2", Boolean.FALSE));
+		testModels.add(new Tupel<>("TracesAfterBad2.bpmn2", Boolean.FALSE));
+		testModels.add(new Tupel<>("TracesAfterBad3.bpmn2", Boolean.FALSE));
 
 		for (Tupel<String, Boolean> testModel : testModels) {
 			loadModel(testModel.getO1());
@@ -161,16 +159,17 @@ public class BPMN2TraceTest {
 	 * -TracesIncludeOk2: Complex worklflow with the markedActivity: true
 	 * -TracesInlcudeBad1: Complex workflow with some traces that does not contain the markedActivity: false
 	 * -TracesInlcudeBad2: Complex workflow with some traces that does not contain the markedActivity: false
+	 * @throws IOException 
 	 */
 	@Test
-	public final void allTracesIncludeTest() {
+	public final void allTracesIncludeTest() throws IOException {
 		String activityName = "markedActivity";
 		String containerName = CONTAINER;
-		ArrayList<Tupel<String, Boolean>> testModels = new ArrayList<Tupel<String, Boolean>>();
-		testModels.add(new Tupel<String, Boolean>("TracesIncludeOk1.bpmn2", Boolean.TRUE));
-		testModels.add(new Tupel<String, Boolean>("TracesIncludeOk2.bpmn2", Boolean.TRUE));
-		testModels.add(new Tupel<String, Boolean>("TracesIncludeBad1.bpmn2", Boolean.FALSE));
-		testModels.add(new Tupel<String, Boolean>("TracesIncludeBad2.bpmn2", Boolean.FALSE));
+		ArrayList<Tupel<String, Boolean>> testModels = new ArrayList<>();
+		testModels.add(new Tupel<>("TracesIncludeOk1.bpmn2", Boolean.TRUE));
+		testModels.add(new Tupel<>("TracesIncludeOk2.bpmn2", Boolean.TRUE));
+		testModels.add(new Tupel<>("TracesIncludeBad1.bpmn2", Boolean.FALSE));
+		testModels.add(new Tupel<>("TracesIncludeBad2.bpmn2", Boolean.FALSE));
 
 		for (Tupel<String, Boolean> testModel : testModels) {
 			loadModel(testModel.getO1());
@@ -214,9 +213,10 @@ public class BPMN2TraceTest {
 	 * Testcases:
 	 * -The imported trace exists in the workkflow: true
 	 * -Some elements in the imported trace are swapped: false 
+	 * @throws IOException 
 	 */
 	@Test
-	public final void hasTraceTest1() {
+	public final void hasTraceTest1() throws IOException {
 		String regExActivityName = "activityintrace\\d+";
 		String containerName = CONTAINER;
 		String[] testModels = new String[] { "HasTrace1.bpmn2" };
@@ -225,7 +225,7 @@ public class BPMN2TraceTest {
 			loadModel(testModel);
 			assertNotNull("model is null", this.modelres);
 
-			ArrayList<Activity> activityList = new ArrayList<Activity>();
+			ArrayList<Activity> activityList = new ArrayList<>();
 			Process process = null;
 			TreeIterator<EObject> iterator = this.modelres.getAllContents();
 			while (iterator.hasNext()) {
@@ -289,9 +289,10 @@ public class BPMN2TraceTest {
 	 * --Last Element: true
 	 * --First Element: true
 	 * --Element between the first and the last element: true
+	 * @throws IOException 
 	 */
 	@Test
-	public final void hasTraceTest2() {
+	public final void hasTraceTest2() throws IOException {
 		String containerName = CONTAINER;
 		String[] activityNames = { "Decide if normal post or special shipment",
 				"Request quotes from carriers",
@@ -303,7 +304,7 @@ public class BPMN2TraceTest {
 			loadModel(testModel);
 			assertNotNull("model is null", this.modelres);
 
-			ArrayList<Activity> activityList = new ArrayList<Activity>();
+			ArrayList<Activity> activityList = new ArrayList<>();
 			Process process = null;
 			TreeIterator<EObject> iterator = this.modelres.getAllContents();
 			while (iterator.hasNext()) {
@@ -360,6 +361,13 @@ public class BPMN2TraceTest {
 				fail(ERROR_MSG);
 			}
 			activityList.add(0, removedElement);
+		}
+	}
+	
+	@After
+	public void unloadModels(){
+		for(Resource r : rs.getResources()){
+			r.unload();
 		}
 	}
 }

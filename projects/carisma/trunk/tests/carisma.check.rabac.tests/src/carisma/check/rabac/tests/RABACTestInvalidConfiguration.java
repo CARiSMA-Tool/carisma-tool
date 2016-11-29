@@ -32,7 +32,7 @@ public class RABACTestInvalidConfiguration implements RABACTest {
 	private StringBuilder report;
 
 	TestHost host = new TestHost(this);
-	HashMap<String, CheckParameter> config = new HashMap<String, CheckParameter>();
+	HashMap<String, CheckParameter> config = new HashMap<>();
 	
 	@Before
 	public void setUp() throws FileNotFoundException, IOException {
