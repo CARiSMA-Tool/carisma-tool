@@ -25,7 +25,9 @@ import carisma.core.analysis.CheckReference;
 import carisma.core.checks.CheckRegistry;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
+import carisma.evolution.DeltaFactoryCheck;
 import carisma.evolution.EvolutionUtility;
+import carisma.evolution.uml2.umlchange.UMLchangeParserCheck;
 
 /**
  * 
@@ -60,12 +62,12 @@ public class ConvertToUMLChangeAnalysis implements IObjectActionDelegate {
 	/**
 	 * Check-ID of the check which has to move to the first position.
 	 */
-	private final String firstString = "carisma.evolution.uml2.umlchange.UMLchangeParserCheck";
+	private final String firstString = UMLchangeParserCheck.CHECK_ID;
 	
 	/**
 	 * Check-ID of the check which has to move to the second position.
 	 */
-	private final String secondString = "carisma.evolution.DeltaFactoryCheck";
+	private final String secondString = DeltaFactoryCheck.CHECK_ID;
 	
 	/**
 	 * Check-ID of the check which has to move to the third position.
