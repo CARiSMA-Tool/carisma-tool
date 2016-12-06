@@ -20,9 +20,7 @@ Export-Package: carisma.ui.eclipse,
  carisma.ui.eclipse.popup.actions,
  carisma.ui.eclipse.preferences.pages,
  carisma.ui.eclipse.views,
- carisma.ui.popup.actions,
- org.json
+ carisma.ui.popup.actions
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
-Bundle-ClassPath: lib/java-json.jar,
- .,
+Bundle-ClassPath: .,
  xslt/

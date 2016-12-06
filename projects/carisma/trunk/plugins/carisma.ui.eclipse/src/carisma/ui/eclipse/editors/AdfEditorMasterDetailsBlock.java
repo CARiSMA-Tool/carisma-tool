@@ -321,7 +321,8 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 		gridData.horizontalIndent = 6;
 		modelFileName.setLayoutData(gridData);
 		modelFileName.setEditable(false);
-		final String modelfile = this.controller.getModelFile().toString();
+		IFile iModelFile = this.controller.getModelIFile();
+		final String modelfile = iModelFile.getLocation().toString();
 		modelFileName.setText(modelfile);
 
 		// Red cross if model does not exist
@@ -369,8 +370,8 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 				fileDialog.setFilterExtensions(extensionArray);
 
 				// Determine initial path of file dialog
-				String initialPath = AdfEditorMasterDetailsBlock.this.controller.getModelIFile()
-						.getRawLocation().toOSString();
+				IFile iModelFile = AdfEditorMasterDetailsBlock.this.controller.getModelIFile();
+				String initialPath = iModelFile.getRawLocation().toOSString();
 				// Cut off file name from path
 				if (initialPath.contains("\\")) {
 					initialPath = initialPath.substring(0,

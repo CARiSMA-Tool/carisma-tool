@@ -194,15 +194,6 @@ public class AdfEditorController {
 	}
 
 	/**
-	 * Provides the model file of the {@link Analysis}.
-	 * 
-	 * @return the model file of the {@link Analysis} as a {@link File}
-	 */
-	protected final File getModelFile() {
-		return this.analysis.getModelFile();
-	}
-
-	/**
 	 * Indicates if the {@link Analysis}' model file is valid.
 	 * 
 	 * @return true if the {@link Analysis}' model file is valid
