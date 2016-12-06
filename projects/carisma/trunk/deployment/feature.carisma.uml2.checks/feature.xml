@@ -237,16 +237,6 @@ litigation.
          id="feature.carisma.uml2"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.uml2"
-         version="0.0.0"
-         search-location="self"/>
-
-   <includes
-         id="org.eclipse.emf.ecore"
-         version="0.0.0"
-         search-location="self"/>
-
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>

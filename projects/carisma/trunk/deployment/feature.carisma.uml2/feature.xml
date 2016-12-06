@@ -235,17 +235,8 @@ litigation.
          id="feature.carisma.core"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.uml2"
-         version="0.0.0"
-         search-location="self"/>
-
-   <includes
-         id="org.eclipse.papyrus.sdk.feature"
-         version="0.0.0"/>
-
    <requires>
-      <import plugin="carisma.modeltype.uml2" version="1.1.2" match="greaterOrEqual"/>
+      <import plugin="carisma.modeltype.uml2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.uml2.uml"/>
       <import plugin="carisma.core"/>
       <import plugin="org.eclipse.uml2.uml.resources"/>
@@ -255,6 +246,7 @@ litigation.
       <import plugin="org.eclipse.pde.ui"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.papyrus.editor"/>
+      <import feature="org.eclipse.papyrus.sdk.feature" version="1.1.2.201509161440" match="greaterOrEqual"/>
    </requires>
 
    <plugin
