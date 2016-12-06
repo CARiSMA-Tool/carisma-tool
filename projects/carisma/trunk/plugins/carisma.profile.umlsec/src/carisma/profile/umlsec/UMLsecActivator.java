@@ -20,6 +20,8 @@ import carisma.core.logging.Logger;
 
 public class UMLsecActivator extends Plugin {
 	
+	public static final String PLUGIN_ID = "carisma.profile.umlsec";
+	
 	public static final String EMF_URI = "http://www.umlsec.de/profiles/UMLsec";
 	public static final String EMF_FILE = "platform:/plugin/carisma.profile.umlsec/profile/UMLsec.ecore";
 	

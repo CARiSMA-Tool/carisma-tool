@@ -4,23 +4,23 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated UMLsec -->
       <package
-            uri="http://www.umlsec.de/profiles/UMLsec/RABAC"
+            uri="http://www.umlsec.de/profiles/UMLsec/RABAC/emf"
             class="RABAC.RABACPackage"
             genModel="profile/RABAC.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://UMLsec/RABAC.uml"
+            target="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml">
+      </mapping>
    </extension>
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
             iconpath="icons/Logo16x16.png"
-            name="carisma.profile.UMLsec.RABAC"
-            path="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml">
-      </profile>
-   </extension>
-   <extension
-         point="org.eclipse.uml2.uml.dynamic_package">
-      <profile
-            location="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml"
-            uri="http://www.umlsec.de/profiles/UMLsec/RABAC">
+            name="UMLsec.RABAC"
+            path="pathmap://UMLsec/RABAC.uml">
       </profile>
    </extension>
 
