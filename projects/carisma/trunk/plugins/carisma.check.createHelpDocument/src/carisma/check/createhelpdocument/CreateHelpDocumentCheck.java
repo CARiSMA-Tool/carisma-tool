@@ -14,6 +14,7 @@ import org.eclipse.uml2.uml.Package;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -226,7 +227,12 @@ public class CreateHelpDocumentCheck implements CarismaCheckWithID {
 							String attribute = null;
 
 							try {
-								Attr attr = (Attr) nodePost.getAttributes().item(0);
+								NamedNodeMap attributes = nodePost.getAttributes();
+								if(attributes == null){ //TODO: Check if this case is a bug in our implementation and has to be handled proper 
+									System.err.println("Skipped attributes of node \""+nodePost.getNodeName()+"\" as they are null.\nCheck if this is a bug!");
+									continue;
+								}
+								Attr attr = (Attr) attributes.item(0);
 								if (attr != null) {
 									attribute = attr.getNodeValue();
 
