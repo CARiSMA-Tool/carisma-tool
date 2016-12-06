@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.json.JSONException;
 import org.json.XML;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -52,7 +53,11 @@ public final class ContentFactory {
 				content = new PLAIN(serialized);
 			}
 		} else if (isJsonEncoded(serialized)) {
-			content = new JSON(serialized);
+			try {
+				content = new JSON(serialized);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 		}  else {
 			content = new PLAIN(serialized);
 		}
@@ -93,7 +98,12 @@ public final class ContentFactory {
 		builder.append("\":\"");
 		builder.append(escaped);
 		builder.append("\"}");
-		return new JSON(builder.toString());
+		try {
+			return new JSON(builder.toString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	/**
@@ -128,7 +138,12 @@ public final class ContentFactory {
 			String contentString = content.asString();
 			return convertToXmlDom(createContent(contentString));
 		case F_JSON:
-			String string = XML.toString(content);
+			String string = "";
+			try {
+				string = XML.toString(content);
+			} catch (JSONException e1) {
+				e1.printStackTrace();
+			}
 			
 			Document document = null;
 			try {
@@ -187,8 +202,12 @@ public final class ContentFactory {
 			String escapedContent = StringEscapeUtils.escapeJson(realContent.toString());
 			return convertToJson(createContent("{" + escapedContent +"}"));
 		case F_XML_DOM:
-			String string = XML.toJSONObject(contentString).toString();
-			return new JSON(string);
+			try {
+				String string = XML.toJSONObject(contentString).toString();
+				return new JSON(string);
+			} catch (JSONException e) {
+				throw new RuntimeException(e);
+			}
 		default:
 			String contentFormat = content.getFormat();
 			String message = "Unsupported input format: " + contentFormat;
