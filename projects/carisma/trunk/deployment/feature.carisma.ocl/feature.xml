@@ -232,34 +232,19 @@ litigation.
          id="feature.carisma.core"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.emf.ecore"
-         version="0.0.0"
-         search-location="self"/>
-
-   <includes
-         id="org.eclipse.ocl"
-         version="0.0.0"
-         search-location="self"/>
-
-   <includes
-         id="org.eclipse.emf.edit"
-         version="0.0.0"
-         search-location="self"/>
-
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf.query.ocl" version="2.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.ocl.ecore" version="3.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.query.ocl"/>
+      <import plugin="org.eclipse.ocl.ecore"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="carisma.core" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="carisma.ocl" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="carisma.ocl.library" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="carisma.core"/>
+      <import plugin="carisma.ocl"/>
+      <import plugin="carisma.ocl.library"/>
       <import plugin="org.eclipse.jface"/>
       <import plugin="org.eclipse.ui.workbench"/>
    </requires>
