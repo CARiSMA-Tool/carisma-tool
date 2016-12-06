@@ -14,26 +14,26 @@ import carisma.core.io.implementations.FileIO;
 import carisma.ui.vision.VisionActivator;
 import carisma.ui.vision.eclipse.preferences.PreferencesConstants;
 import carisma.ui.vision.eclipse.preferences.PreferencesObject;
+import carisma.ui.vision.exceptions.VisionLauncherException;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI.MongoDBDestination;
 
 public class dbAccess {
-	public  static Document loadSTSInputFromDB() {
-		PreferencesObject preferencesStore = VisionActivator.INSTANCE.getVisionPreferences();
+	public  static Document loadSTSInputFromDB() throws VisionLauncherException {
+		PreferencesObject preferencesStore = VisionActivator.getINSTANCE().getVisionPreferences();
 		Map<String, Object> map = preferencesStore.getObject();
 		
-		String user = (String) map.get(PreferencesConstants.dbuser);
-		String secret = (String) map.get(PreferencesConstants.dbpasswd);
-		String url = (String) map.get(PreferencesConstants.dbaddress);
-
+		String user = (String) map.get(PreferencesConstants.dbuser.toString());
+		String secret = (String) map.get(PreferencesConstants.dbpasswd.toString());
+		String url = (String) map.get(PreferencesConstants.dbaddress.toString());
 		
 		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
 
-		String stsCollection = (String) map.get(PreferencesConstants.sts_collection);
-		String stsDocument = (String) map.get(PreferencesConstants.sts_document);
-		String stsField = (String) map.get(PreferencesConstants.sts_field);
+		String stsCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
+		String stsDocument = (String) map.get(PreferencesConstants.sts_document.toString());
+		String stsField = (String) map.get(PreferencesConstants.sts_field.toString());
 
-		MongoDBDestination config = new MongoDBDestination(stsCollection, stsDocument, stsField);
+		MongoDBDestination config = new MongoDBDestination(stsCollection, stsDocument, "srs"); //TODO: replace as soon as field is in launcher config
 		Content content = db.read(config);
 		return ContentFactory.convertToXmlDom(content).getDocument();
 	}

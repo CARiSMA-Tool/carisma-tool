@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -20,6 +21,7 @@ import carisma.core.io.content.XML_DOM;
 import carisma.ui.vision.VisionActivator;
 import carisma.ui.vision.eclipse.preferences.PreferencesConstants;
 import carisma.ui.vision.eclipse.preferences.PreferencesObject;
+import carisma.ui.vision.exceptions.VisionLauncherException;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI.MongoDBDestination;
 
@@ -69,6 +71,8 @@ public class QuestionGenerationAction extends Action {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
+		} catch (VisionLauncherException e) {
+			JOptionPane.showMessageDialog(null, "Export to DB failed, no configuration data has been received from the VisionLauncher.");
 		}
 	}
 
@@ -91,19 +95,20 @@ public class QuestionGenerationAction extends Action {
 		return xml;
 	}
 	
-	private static void writeDB(XML_DOM questionsXmlDom){
-		PreferencesObject preferencesStore = VisionActivator.INSTANCE.getVisionPreferences();
+	private static void writeDB(XML_DOM questionsXmlDom) throws VisionLauncherException{
+		PreferencesObject preferencesStore = VisionActivator.getINSTANCE().getVisionPreferences();
 		Map<String, Object> map = preferencesStore.getObject();
 		
 		String user = (String) map.get(PreferencesConstants.dbuser);
 		String secret = (String) map.get(PreferencesConstants.dbpasswd);
 		String url = (String) map.get(PreferencesConstants.dbaddress);
-
+		
 		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
 
-		String questionCollection = (String) map.get(PreferencesConstants.question_collection);
+		String questionCollection = (String) map.get(PreferencesConstants.vision_collection);
 		String questionDocument = (String) map.get(PreferencesConstants.question_document);
 		String questionField = (String) map.get(PreferencesConstants.question_field);
+
 		MongoDBDestination carismaConfiguration = new MongoDBDestination(questionCollection, questionDocument, questionField);
 		boolean success = db.write(carismaConfiguration, questionsXmlDom);
 		StringBuilder errorMessageBuilder = new StringBuilder();
@@ -113,6 +118,7 @@ public class QuestionGenerationAction extends Action {
 			errorMessageBuilder.append("Export of the questions failed for the following reason:");
 			errorMessageBuilder.append(response);
 			errorMessageBuilder.append("\n");
+			JOptionPane.showMessageDialog(null, errorMessageBuilder.toString());
 		}
 	}
 	

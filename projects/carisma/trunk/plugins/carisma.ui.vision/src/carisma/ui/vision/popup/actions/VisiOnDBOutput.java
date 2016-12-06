@@ -131,7 +131,7 @@ public class VisiOnDBOutput implements PopUpAction {
 							xmlTransformer.transform(streamSourceXml, streamResultXml);
 							htmlTransformer.transform(streamSourceHtml, streamResultHtml);
 	
-							PreferencesObject preferencesStore = VisionActivator.INSTANCE.getVisionPreferences();
+							PreferencesObject preferencesStore = VisionActivator.getINSTANCE().getVisionPreferences();
 							Map<String, Object> map = preferencesStore.getObject();
 							
 							String user = (String) map.get(PreferencesConstants.dbuser);
@@ -160,7 +160,7 @@ public class VisiOnDBOutput implements PopUpAction {
 							}
 							db = new carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI(user, secret, url);
 	
-							String plaCollection = (String) map.get(PreferencesConstants.pla_collection);
+							String plaCollection = (String) map.get(PreferencesConstants.vision_collection);
 							String plaDocument = (String) map.get(PreferencesConstants.pla_document);
 							String plaField = (String) map.get(PreferencesConstants.pla_field);
 							
@@ -223,7 +223,7 @@ public class VisiOnDBOutput implements PopUpAction {
 				forbidden++;
 			}
 		}
-		if (forbidden == analysisResult.getCheckResults().size()) {
+		if (forbidden == analysisResult.getCheckResults().size() || !VisionActivator.getINSTANCE().isDBAccessible()) {
 			action3.setEnabled(false);
 		}
 		

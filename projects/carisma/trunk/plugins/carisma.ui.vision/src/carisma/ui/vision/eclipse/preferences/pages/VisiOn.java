@@ -10,7 +10,7 @@ import carisma.ui.eclipse.CarismaGUI;
 
 public class VisiOn extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
-	public static final String	LAUNCHER_PORT 		= "LAUNCHER_PORT" ;
+	public static final String LAUNCHER_PORT 		= "LAUNCHER_PORT" ;
 	public static final String LAUNCHER_CARISMA_ID 	= "LAUNCHER_CARISMA_ID";
 	public static final String LAUNCHER_PASSWD 		= "LAUNCHER_PASSWD";
 

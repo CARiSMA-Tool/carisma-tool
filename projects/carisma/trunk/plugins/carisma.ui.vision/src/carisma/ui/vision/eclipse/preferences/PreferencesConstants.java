@@ -5,20 +5,18 @@ public enum PreferencesConstants {
 	dbaddress("dbaddress"),
 	dbport("dbport"),
 	dbApiPath("dbApiPath"),
-	dbuser("user"),
-	dbpasswd("password"),
-	sts_collection("stsCollection"),
+	dbuser("dbuser"),
+	dbpasswd("dbpassword"),
+	vision_collection("dbCollection"),
 	sts_document("stsDocument"),
 	sts_field("stsField"),
-	pla_collection("plaCollection"),
 	pla_document("plaDocument"),
-	pla_field("plaField"),
-	carisma_collection("CARISMAcollection"),
-	carisma_document("CARISMAdocument"),
-	carisma_field("CARISMAfield"), 
-	question_collection(""), 
-	question_document(""), 
-	question_field("");
+	pla_field("plaCarismaField"),
+	carisma_collection("carismaCollection"),
+	carisma_document("carismaDocument"),
+	carisma_field("carismaField"), 
+	question_document("questionDocument"), 
+	question_field("questionField");
 	
 	private final String string;
 

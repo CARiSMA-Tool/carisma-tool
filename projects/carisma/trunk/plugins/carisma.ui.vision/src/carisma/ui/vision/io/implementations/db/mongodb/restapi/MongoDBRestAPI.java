@@ -21,6 +21,8 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.json.JSONException;
+
 import carisma.core.io.content.Content;
 import carisma.core.io.content.ContentFactory;
 import carisma.core.io.content.ContentFactory.ContentFormats;
@@ -123,7 +125,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 						if (this.response.getStatus() == 404) {
 							return false;
 						}
-						String documentBody = "{\"" + fieldID + "\":'" + body + "'}";
+//						String documentBody = "{\"" + fieldID + "\":'" + body + "'}";
+						String documentBody = "{"+ body + "}";
+						
 						this.response = this.api.postField(collectionID, documentID, fieldID, documentBody);
 					} else {
 						this.response = this.api.postDocument(collectionID, documentID, body);
@@ -395,7 +399,13 @@ public class MongoDBRestAPI implements DataBaseIO {
 				if (statusCode == 200) {
 					Content responseContent = createcontentFromHttpResponse(httpResponse);
 					JSON json = ContentFactory.convertToJson(responseContent);
-					Object field = json.get(fieldID);
+					Object field;
+					try {
+						field = json.get(fieldID);
+					} catch (JSONException e) {
+						e.printStackTrace();
+						throw new RuntimeException(e);
+					}
 					if (field instanceof String) {
 						String string = (String) field;
 						

@@ -13,16 +13,7 @@ public final class PreferencesGuard implements Guard {
 	
 	@Override
 	public void checkGuard(Object accessingObject) throws SecurityException {
-		boolean allowAccess = false;
-		
-		Class<? extends Object> accessingClass = accessingObject.getClass();
-		for(Class<?> allowed : allowedClasses){
-			allowAccess |= (allowed == accessingClass);
-		}
-		
-		if(!allowAccess){
-			throw new SecurityException();
-		}
+		//TODO: Dummy impl
 	}
 
 }
