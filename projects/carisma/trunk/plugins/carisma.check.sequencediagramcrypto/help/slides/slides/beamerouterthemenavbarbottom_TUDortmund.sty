@@ -1,0 +1,139 @@
+\ProvidesPackageRCS $Header: beamerouterthemenavbarbottom_TUDortmund.sty,v 1.0 2005/07/02 19:30:00 cbecker Exp $
+
+% Copyright 2003 by Till Tantau <tantau@users.sourceforge.net>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+
+% Adaptations done to serve the needs of 
+% Chair of Mathematics III, Technische Universitaet Dortmund
+% by Christian Becker <christian.becker@math.tu-dortmund.de>
+%    Sven Buijssen <sven.buijssen@math.tu-dortmund.de>
+%    Dominik Goeddeke <dominik.goeddeke@math.tu-dortmund.de>
+%
+% v0.2, 2008/Oct/02
+
+
+\newif\ifbeamer@sb@subsection
+
+\DeclareOptionBeamer{subsection}[true]{\csname beamer@sb@subsection#1\endcsname}
+\ExecuteOptionsBeamer{subsection=true}
+\ProcessOptionsBeamer
+
+
+
+\mode<presentation>
+
+\setbeamercolor{frametitle}{parent=palette primary}
+\setbeamercolor{subsection in head/foot}{parent=palette secondary}
+\setbeamercolor{section in head/foot}{parent=palette quaternary}
+
+% dark part top line
+\definecolor{grad1}{rgb}{0.51,0.72,0.09}
+
+% title box background color
+\definecolor{grad2}{rgb}{0.9,1.0,0.71}
+
+% buttons
+\definecolor{grad3}{rgb}{0.51,0.72,0.09}
+
+% ???
+\definecolor{grad4}{rgb}{0.1,0.1,0.1}
+
+% navbar unten: apfelgruen
+\definecolor{grad5}{rgb}{0.51,0.72,0.09}
+%\definecolor{grad5}{rgb}{0.9,1.0,0.71}
+
+% bright part top line
+\definecolor{grad6}{rgb}{1.0,1.0,1.0}
+
+%132  184  24
+%\definecolor{grad1}{rgb}{0.06,0.4,0.67}
+%\definecolor{grad2}{rgb}{0.82,0.88,0.93}
+%\definecolor{grad3}{rgb}{0.29,0.66,0.91}
+%\definecolor{grad4}{rgb}{0.70,0.77,0.83}
+%\definecolor{grad5}{rgb}{0.61,0.75,0.86}
+
+\beamer@compresstrue
+
+\AtBeginDocument{
+  {
+    \usebeamerfont*{headline}
+    \colorlet{global.bg}{bg}
+    \usebeamercolor{subsection in head/foot}
+    \usebeamercolor{section in head/foot}
+    \usebeamercolor{frametitle}
+
+     \pgfdeclarehorizontalshading{beamer@aboveframetitle}{16ex}{%
+         color(0ex)=(grad1);%
+         color(.7\paperwidth)=(grad6);%
+         color(\the\paperwidth)=(grad6)
+       }
+     \pgfdeclarehorizontalshading{beamer@aboveframetitle1}{8ex}{%
+         color(0ex)=(grad5);%
+         color(\the\paperwidth)=(grad5)
+       }
+
+  }
+}
+
+                                % Head
+\defbeamertemplate*{footline}{smoothbars theme}
+{%
+  \pgfuseshading{beamer@aboveframetitle1}%
+  \ifbeamer@sb@subsection%
+    \vskip-9.75ex%
+  \else%
+    \vskip-7ex%
+  \fi%
+  \begin{beamercolorbox}[ht=2.25ex,dp=3.75ex]{empty}
+    \insertnavigation{\paperwidth}
+  \end{beamercolorbox}%
+
+}%
+
+
+
+\defbeamertemplate*{headline}{smoothbars theme}
+{%
+
+   \begin{beamercolorbox}[wd=\paperwidth,ht=0.8cm,dp=0ex]{frametitle}
+    \pgfuseshading{beamer@aboveframetitle}%
+  \end{beamercolorbox}%
+   
+%    \vskip-10ex% 14
+    \vskip-10ex%
+    \usebeamercolor[bg]{logo}
+    \hfill\includegraphics[height=0.7cm]{logo_TUDortmund}\hspace{0.25cm}
+  
+    \vskip-14ex%
+%    \vskip-10ex%
+  
+
+}%
+
+\defbeamertemplate*{frametitle}{smoothbars theme}
+{%
+  \nointerlineskip%
+  \usebeamerfont{headline}%
+  \vskip5ex%
+  \nointerlineskip%
+  \begin{beamercolorbox}[wd=.8\paperwidth,leftskip=.3cm,rightskip=.3cm plus1fil,vmode]{empty}
+    \usebeamerfont*{frametitle}\insertframetitle%
+      \ifx\insertframesubtitle\@empty%
+        \strut\par%
+      \else
+        \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
+      \fi%%
+    \usebeamerfont{headline}%
+    \vskip1ex  
+  \end{beamercolorbox}%
+  \nointerlineskip
+}
+  
+\setbeamercolor{logo}{fg=black,bg=white}
+\logo{\includegraphics[height=1cm]{logo_ls3_opaque100}}
+
+  
+\mode
+<all>

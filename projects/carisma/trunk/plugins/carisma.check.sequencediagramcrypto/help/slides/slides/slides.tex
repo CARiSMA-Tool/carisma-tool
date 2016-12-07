@@ -1,0 +1,84 @@
+%
+% Slide template for LSIII presentations
+%
+
+%\documentclass[10pt,landscape,handout]{beamer}
+%\documentclass[9pt,landscape,draft]{beamer}
+\documentclass[9pt,landscape]{beamer}
+
+
+% Be able to directly input German Umlauts etc.
+%\usepackage[latin1]{inputenc}
+
+% Font encoding:
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{ragged2e}
+\usepackage{epstopdf}
+
+% We recommend toying around with these settings,
+% No overridden font encoding looks best,
+% unless you are using \textsc (which will default to CMF).
+
+
+% the usual imports
+\usepackage{graphicx}
+
+
+% setup beamer style to use TUDo Theme
+\mode<presentation>
+{
+  \usetheme{TUDortmund}
+}
+
+
+\setbeamertemplate{navigation symbols}{}
+
+\newcommand{\lc}[1]{\texttt{\textbackslash#1}}
+\newcommand{\lcp}[2]{\texttt{\textbackslash#1\{#2\}}}
+\newcommand{\lco}[2]{\texttt{\textbackslash#1[#2]}}
+\newcommand{\lcop}[3]{\texttt{\textbackslash#1[#2]\{#3\}}}
+\newcommand{\lcpp}[3]{\texttt{\textbackslash#1\{{#2}\}\{{#3}\}}}
+\newcommand{\lcppp}[4]{\texttt{\textbackslash#1\{#2\}\{#3\}\{#4\}}}
+\newcommand{\lcopp}[4]{\texttt{\textbackslash#1[#2]\{#3\}\{#4\}}}
+\newcommand{\lenv}[2]{\texttt{\textbackslash{}begin\{#1\}\linebreak[0]#2\linebreak[0]\textbackslash{}end\{#1\}}}
+
+\newcommand{\todo}[2]{\colorbox{orange}{\textbf{#1:} {#2}}}
+\newcommand{\ds}{\ensuremath\displaystyle}
+\newenvironment{determinante}[1]{%
+\ensuremath\left|\begin{array}{#1}}{%
+\end{array}\right|}
+
+
+
+\title{Sequence Diagram Crypto Analyzer}
+\subtitle{A CARiSMA Plugin}
+
+%\author{Korner, Daniel} 
+
+\institute[Fakultät für Informatik LS 14 - Software Engineering, TU Dortmund]{Fakultät für Informatik LS 14 - Software Engineering \\ Technische Universit\"at Dortmund}
+\date{\today}
+
+\begin{document}
+\setlength{\parskip}{1mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Title
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% turn off logo for remaining slides (just draws away focus from content)
+\logo{}
+
+% use logo for title slide
+%\logo{\includegraphics[height=1.25cm]{}\hspace*{1em}}
+
+% slide options are: alignment: c(enter) or t(op), label
+\begin{frame}[c,label=titlepage]
+  \titlepage
+\end{frame}
+
+\include{topics/scenario}
+
+\end{document}

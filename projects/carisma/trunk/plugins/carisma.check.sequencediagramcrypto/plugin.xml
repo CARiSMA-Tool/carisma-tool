@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="carisma.carismacheck">
+      <check
+            name="Sequence Diagram Crypto Analyzer"
+            implementingClass="carisma.check.sequencediagramcrypto.Check"
+            publisher="Korner, Daniel"
+            description="Sequence Diagram Crypto Analyzer"
+            targetModelType="UML2"
+            id="carisma.check.sequencediagramcrypto">
+         <parameter
+         	   defaultValue="false"
+               name="Report whole MITM knowledge"
+               optional="true"
+               type="boolean"
+               description="On True also reports whole Knowledge (this can be a lot!)"
+               id="carisma.check.sequencediagramcrypto.reportkbase">
+         </parameter>
+         <parameter
+               name="Initial knowledge"
+               optional="true"
+               type="String"
+               description="Initial knowledge of MITMA (e.g. 'b,c'). If empty an Attacker knows nothing beforehand"
+               id="carisma.check.sequencediagramcrypto.initialknowledge">
+         </parameter>
+         <parameter
+               name="Knowledge to check"
+               optional="true"
+               type="String"
+               description="Knowledge which is to check that a MITMA could not get at this knowledge"
+               id="carisma.check.sequencediagramcrypto.possibletoknow">
+         </parameter>
+      </check>
+   </extension>
+
+</plugin>

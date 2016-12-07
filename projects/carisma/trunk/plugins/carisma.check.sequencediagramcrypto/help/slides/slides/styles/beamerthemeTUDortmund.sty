@@ -1,0 +1,82 @@
+\ProvidesPackageRCS $Header: beamerthemeTUDortmund.sty,v 1.0 2008/02/21 10:30:00 cbecker Exp $
+
+% Copyright 2003 by Till Tantau <tantau@users.sourceforge.net>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+
+% Adaptations done to serve the needs of 
+% Chair of Mathematics III, University of Dortmund
+% by Christian Becker <christian.becker@math.uni-dortmund.de>
+%    and Sven Buijssen <sven.buijssen@math.uni-dortmund.de>
+
+\typeout{ }
+\typeout{ }
+\typeout{------ TU Dortmund style for beamer package v0.1 ------}
+\typeout{presentation style for Institute of Applied Mathematics (Turek)}
+\typeout{written 2008 by Christian Becker & Sven H.M. Buijssen}
+\typeout{Faculty of Mathematics, Dortmund University of Technology}
+\typeout{ }
+\typeout{ }
+
+\usepackage{tudo}
+
+\mode<presentation>
+
+\useoutertheme[subsection=false]{navbarbottom_TUDortmund}
+\usefonttheme{default}
+
+%\definecolor{mycol}{rgb}{0.72,0.85,0.27}
+%\definecolor{logogreen}{rgb}{0.8,0.79,0.74}
+
+\useinnertheme[shadow=true]{rounded}
+\usecolortheme{orchid}
+\usecolortheme{whale}
+
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{frametitle}{bg=lightgreen}
+
+\setbeamercolor{navbar}{bg=lightgreen}
+
+\setbeamercolor{item}{fg=darkgreen}
+\setbeamercolor{subitem}{fg=darkgreen}
+\setbeamercolor{subsubitem}{fg=darkgreen}
+
+\setbeamercolor{navbar}{fg=black}
+\setbeamercolor{titlelike}{fg=black,bg=lightgreen}
+
+\setbeamercolor{block title}{fg=black}
+\setbeamercolor{block title}{bg=lightgreen}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!30!bg}
+
+\setbeamercolor{palette primary}{fg=lightyellow,bg=darkgreen!70}
+\setbeamercolor{palette secondary}{fg=lightyellow,bg=darkgreen!80}
+\setbeamercolor{palette tertiary}{fg=lightyellow,bg=darkgreen!90}
+\setbeamercolor{palette quaternary}{fg=lightyellow,bg=darkgreen}
+
+\setbeamercolor{text}{fg=black!80!darkgreen}
+\setbeamercolor{section in toc}{fg=black!80!darkgreen}
+\setbeamercolor{subsection in toc}{fg=black!80!darkgreen}
+
+\setbeamercolor{author in head/foot}{fg=black,parent=section in head/foot}
+\setbeamercolor{section in head/foot}{fg=black,parent=palette quaternary}
+\setbeamercolor{subsection in head/foot}{fg=black,parent=palette primary}
+\setbeamercolor{title in head/foot}{fg=black}
+
+% Options for navigation symbols
+%\setbeamertemplate{navigation symbols}{}    % Suppress them
+\setbeamertemplate{navigation symbols}{
+  \insertbackfindforwardnavigationsymbol
+  \hspace{0.5em}
+  \insertslidenavigationsymbol
+%  \insertframenavigationsymbol
+%  \insertsubsectionnavigationsymbol
+%  \insertsectionnavigationsymbol
+%  \insertdocnavigationsymbol
+  \hspace*{\textwidth}\hspace*{0.2cm}
+}
+
+\setbeamercovered{transparent}
+
+\mode
+<all>
