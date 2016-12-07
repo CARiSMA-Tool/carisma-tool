@@ -64,7 +64,7 @@ public class RABACTestInvalidModels implements RABACTest {
 			
 			@Override
 			public boolean accept(File dir, String name) {
-				return name.endsWith(".uml");
+				return name.endsWith(".uml") && name.contains("invalid");
 			}
 		});
 		for(String file : list){

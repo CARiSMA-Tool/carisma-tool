@@ -1,5 +1,6 @@
 package carisma.core.io.content;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,6 +20,10 @@ public class JSON extends JSONObject implements Content {
 	@Override
 	public final String asString() {
 		return super.toString();
+	}
+
+	public static String escapeJson(String contentAsString) {
+		return StringEscapeUtils.escapeJson(contentAsString);
 	}
 	
 }

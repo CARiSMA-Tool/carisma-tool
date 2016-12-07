@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:RABAC="http://www.umlsec.de/profiles/UMLsec/RABAC" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RABAC="http://www.umlsec.de/profiles/UMLsec/RABAC" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.umlsec.de/profiles/UMLsec/RABAC pathmap://UMLsec/RABAC.uml#_oxuTkE9FEea83O7zKqfOGw">
   <uml:Model xmi:id="_cSvSoPdxEeS6oPxpDvB_Rg" name="model">
     <packagedElement xmi:type="uml:Class" xmi:id="_euY1sPdxEeS6oPxpDvB_Rg" name="Class1">
       <ownedOperation xmi:type="uml:Operation" xmi:id="_gmUnsPdxEeS6oPxpDvB_Rg" name="Operation"/>
@@ -13,9 +13,9 @@
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_JxxigAa_EeW0jawe0UFx3w">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Jxz-wAa_EeW0jawe0UFx3w" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml#_7YaQQAa-EeWwtKn7NAM2pQ"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLsec/RABAC.uml#_oxuTkE9FEea83O7zKqfOGw"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml#_DhVN4LhMEeSB1MgAxQm9IQ"/>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/RABAC.uml#_DhVN4LhMEeSB1MgAxQm9IQ"/>
     </profileApplication>
   </uml:Model>
   <RABAC:abac xmi:id="_JxwUYAa_EeW0jawe0UFx3w" roles="(A,r1),(A,r2),(B,r2)" rights="(r1,p1)" rh="(r1,r2)" base_Class="_euY1sPdxEeS6oPxpDvB_Rg" dsd="({r1,r2},1)" attributeFilters="true"/>
