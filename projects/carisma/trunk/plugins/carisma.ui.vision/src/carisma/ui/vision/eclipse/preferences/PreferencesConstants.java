@@ -11,10 +11,9 @@ public enum PreferencesConstants {
 	sts_document("stsDocument"),
 	sts_field("stsField"),
 	pla_document("plaDocument"),
-	pla_field("plaCarismaField"),
-	carisma_collection("carismaCollection"),
-	carisma_document("carismaDocument"),
-	carisma_field("carismaField"), 
+	pla_field("plaField"),
+	carisma_document("CARISMAdocument"),
+	carisma_field("CARISMAfield"), 
 	question_document("questionDocument"), 
 	question_field("questionField");
 	

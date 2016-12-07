@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.codec.binary.Base64;
 import org.json.JSONException;
 import org.json.XML;
 import org.w3c.dom.Document;
@@ -58,7 +59,9 @@ public final class ContentFactory {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-		}  else {
+		} else if (isBase64Encoded(serialized)) {
+			content = new BASE64(serialized.getBytes());
+		} else  {
 			content = new PLAIN(serialized);
 		}
 		
@@ -199,7 +202,7 @@ public final class ContentFactory {
 			if (format != ContentFormats.F_PLAIN) {
 				return convertToJson(realContent);
 			}
-			String escapedContent = StringEscapeUtils.escapeJson(realContent.toString());
+			String escapedContent = StringEscapeUtils.escapeJson(realContent.asString());
 			return convertToJson(createContent("{" + escapedContent +"}"));
 		case F_XML_DOM:
 			try {
@@ -222,12 +225,13 @@ public final class ContentFactory {
 	 * @return {true} if the String is Base64 encoded, otherwise {false}
 	 */
 	private static boolean isBase64Encoded(final String serialized) {
+		return Base64.isBase64(serialized);
 		//is base64 encoded?
-		String regex = "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(serialized);
-		boolean isBase64 = matcher.find();
-		return isBase64;
+//		String regex = "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$";
+//		Pattern pattern = Pattern.compile(regex);
+//		Matcher matcher = pattern.matcher(serialized);
+//		boolean isBase64 = matcher.find();
+//		return isBase64;
 	}
 	
 	/**

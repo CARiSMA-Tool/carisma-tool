@@ -63,7 +63,7 @@ public class VisionStartup implements IStartup {
 			e.printStackTrace();
 			error = true;
 		}
-		return error;
+		return !error;
 	}
 
 }

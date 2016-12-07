@@ -1,4 +1,4 @@
-package carisma.ui.vision.test.popup.actions;
+package carisma.ui.vision.test.questiongeneration;
 
 
 import java.io.File;

@@ -10,11 +10,14 @@ Export-Package: carisma.core.io,
  carisma.core.io.implementations;uses:="org.w3c.dom",
  carisma.core.io.implementations.db,
  carisma.core.io.util,
+ org.apache.commons.lang3,
  org.json
 Bundle-ClassPath: .,
  lib/commons-lang3-3.4.jar,
  lib/json-1.5-20090211.jar
 Require-Bundle: org.apache.httpcomponents.httpcore,
  org.apache.httpcomponents.httpclient,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.apache.commons.codec
 Bundle-Activator: carisma.core.io.IOActivator
+Bundle-ActivationPolicy: lazy

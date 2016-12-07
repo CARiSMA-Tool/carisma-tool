@@ -5,15 +5,16 @@ Bundle-SymbolicName: carisma.ui.vision;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: carisma.ui.vision.eclipse.preferences.pages,
+ carisma.ui.vision.io.implementations.db.mongodb.restapi,
  carisma.ui.vision.popup.actions,
  carisma.ui.vision.questions,
  carisma.vision.dbAccess
-Require-Bundle: org.eclipse.ui.workbench,
+Require-Bundle: carisma.core.io,
+ org.eclipse.ui.workbench,
  carisma.ui.eclipse,
  org.eclipse.jface,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
- carisma.core.io,
  org.apache.httpcomponents.httpclient,
  org.apache.httpcomponents.httpcore,
  carisma.check.rabac,

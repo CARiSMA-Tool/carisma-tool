@@ -80,124 +80,109 @@ public class VisiOnDBOutput implements PopUpAction {
 					Logger.log(LogLevel.ERROR, "Analyzed file is not part of a project.");
 					return;
 				}
-				if (!(file.exists())) {
-					/*
-					 * TODO: is this if clause necessary?
-					 * 
-					 * What is if the file has been deleted in the DB but not local?
-					 */
+				try {
+					ByteArrayOutputStream out = new ByteArrayOutputStream();
+					JAXBContext context = JAXBContext.newInstance(carisma.core.analysis.result.AnalysisResult.class);
+					Marshaller m = context.createMarshaller();
+					m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+					m.marshal(analysisResult, out);
+					String platform = "platform:/plugin/";
+					String xmlXsl = "/xslt/carisma_results_to_xml.xsl";
+					URL urlXmlToXml = new URL(platform + CarismaGUI.PLUGIN_ID + xmlXsl);
+					String htmlXsl = "/xslt/carisma_results_to_html.xsl";
+					URL urlXmlToHtml = new URL(platform + CarismaGUI.PLUGIN_ID + htmlXsl);
+					InputStream inputStream = urlXmlToXml.openStream();
+					InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+					try(BufferedReader reader = new BufferedReader(inputStreamReader)){
+						StringBuilder contentXmltoXml = new StringBuilder();
+						String line;
+						while ((line = reader.readLine()) != null) {
+							String path = FileLocator.toFileURL(urlXmlToHtml).getPath();
+							String key = "carisma_results_to_html.xsl";
+							String replaced = line.replaceAll(key, path);
+							contentXmltoXml.append(replaced);
+						}
+						TransformerFactory transformerFactory = TransformerFactory.newInstance();
 
-					try {
+						StringReader xmlStringReader = new StringReader(contentXmltoXml.toString());
+						StreamSource xmlStreamSource = new StreamSource(xmlStringReader);
+						Transformer xmlTransformer = transformerFactory.newTransformer(xmlStreamSource);
+						StreamSource htmlStreamSource = new StreamSource(urlXmlToHtml.openStream());
+						Transformer htmlTransformer = transformerFactory.newTransformer(htmlStreamSource);
 
-						ByteArrayOutputStream out = new ByteArrayOutputStream();
+						StringWriter writerXml = new StringWriter();
+						StringWriter writerHtml = new StringWriter();
+						StreamResult streamResultXml = new StreamResult(writerXml);
+						StreamResult streamResultHtml = new StreamResult(writerHtml);
+						StreamSource streamSourceXml = new StreamSource(new ByteArrayInputStream(out.toByteArray()));
+						StreamSource streamSourceHtml = new StreamSource(new ByteArrayInputStream(out.toByteArray()));
+						xmlTransformer.transform(streamSourceXml, streamResultXml);
+						htmlTransformer.transform(streamSourceHtml, streamResultHtml);
 
-						JAXBContext context = JAXBContext.newInstance(carisma.core.analysis.result.AnalysisResult.class);
-						Marshaller m = context.createMarshaller();
-						m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+						PreferencesObject preferencesStore = VisionActivator.getINSTANCE().getVisionPreferences();
+						Map<String, Object> map = preferencesStore.getObject();
+						
+						String user = (String) map.get(PreferencesConstants.dbuser.toString());
+						String secret = (String) map.get(PreferencesConstants.dbpasswd.toString());
+						String url = (String) map.get(PreferencesConstants.dbaddress.toString());
 
-						m.marshal(analysisResult, out);
+						MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
 
-						String platform = "platform:/plugin/";
-						String xmlXsl = "/xslt/carisma_results_to_xml.xsl";
-						URL urlXmlToXml = new URL(platform + CarismaGUI.PLUGIN_ID + xmlXsl);
-						String htmlXsl = "/xslt/carisma_results_to_html.xsl";
-						URL urlXmlToHtml = new URL(platform + CarismaGUI.PLUGIN_ID + htmlXsl);
+						XML_DOM contentXml = (XML_DOM) ContentFactory.createContent(writerXml.toString(),
+								ContentFormats.F_XML_DOM);
+						PLAIN contentHtml = (PLAIN) ContentFactory.createContent(writerHtml.toString(), ContentFormats.F_PLAIN);
 
-						InputStream inputStream = urlXmlToXml.openStream();
-						InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-						try(BufferedReader reader = new BufferedReader(inputStreamReader)){
-							StringBuilder contentXmltoXml = new StringBuilder();
-							String line;
-							while ((line = reader.readLine()) != null) {
-								String path = FileLocator.toFileURL(urlXmlToHtml).getPath();
-								String key = "carisma_results_to_html.xsl";
-								String replaced = line.replaceAll(key, path);
-								contentXmltoXml.append(replaced);
-							}
-							TransformerFactory transformerFactory = TransformerFactory.newInstance();
-	
-							StringReader xmlStringReader = new StringReader(contentXmltoXml.toString());
-							StreamSource xmlStreamSource = new StreamSource(xmlStringReader);
-							Transformer xmlTransformer = transformerFactory.newTransformer(xmlStreamSource);
-							StreamSource htmlStreamSource = new StreamSource(urlXmlToHtml.openStream());
-							Transformer htmlTransformer = transformerFactory.newTransformer(htmlStreamSource);
-	
-							StringWriter writerXml = new StringWriter();
-							StringWriter writerHtml = new StringWriter();
-							StreamResult streamResultXml = new StreamResult(writerXml);
-							StreamResult streamResultHtml = new StreamResult(writerHtml);
-							StreamSource streamSourceXml = new StreamSource(new ByteArrayInputStream(out.toByteArray()));
-							StreamSource streamSourceHtml = new StreamSource(new ByteArrayInputStream(out.toByteArray()));
-							xmlTransformer.transform(streamSourceXml, streamResultXml);
-							htmlTransformer.transform(streamSourceHtml, streamResultHtml);
-	
-							PreferencesObject preferencesStore = VisionActivator.getINSTANCE().getVisionPreferences();
-							Map<String, Object> map = preferencesStore.getObject();
-							
-							String user = (String) map.get(PreferencesConstants.dbuser);
-							String secret = (String) map.get(PreferencesConstants.dbpasswd);
-							String url = (String) map.get(PreferencesConstants.dbaddress);
-	
-							MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
-	
-							XML_DOM contentXml = (XML_DOM) ContentFactory.createContent(writerXml.toString(),
-									ContentFormats.F_XML_DOM);
-							PLAIN contentHtml = (PLAIN) ContentFactory.createContent(writerHtml.toString(), ContentFormats.F_PLAIN);
-	
-							String carismaCollection = (String) map.get(PreferencesConstants.carisma_collection);
-							String carismaDocument = (String) map.get(PreferencesConstants.carisma_document);
-							String carismaField = (String) map.get(PreferencesConstants.carisma_field);
-							
-							MongoDBDestination carismaConfiguration = new MongoDBDestination(carismaCollection, carismaDocument, carismaField);
-							boolean success = db.write(carismaConfiguration, contentXml);
-							StringBuilder errorMessageBuilder = new StringBuilder();
-							if (!success) {
-								String response = db.getResponseMessage().toString();
-	
-								errorMessageBuilder.append("Export of the XMI failed for the following reason:");
-								errorMessageBuilder.append(response);
-								errorMessageBuilder.append("\n");
-							}
-							db = new carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI(user, secret, url);
-	
-							String plaCollection = (String) map.get(PreferencesConstants.vision_collection);
-							String plaDocument = (String) map.get(PreferencesConstants.pla_document);
-							String plaField = (String) map.get(PreferencesConstants.pla_field);
-							
-							MongoDBDestination plaConfiguration = new MongoDBDestination(plaCollection,
-									plaDocument, plaField);
-							success &= db.write(plaConfiguration, contentHtml);
-	
-							Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-							String dialogTitle = "Vision Database Export";
-							if (!success) {
-								String response = db.getResponseMessage().toString();
-	
-								errorMessageBuilder.append("Export of the html report failed for the following reason:");
-								errorMessageBuilder.append(response);
-								String responseMessage = errorMessageBuilder.toString();
-	
-								Status status = new Status(IStatus.ERROR, "carisma.core.io", responseMessage);
-								ErrorDialog.openError(activeShell, dialogTitle, "Export to VisiOn Database failed", status);
-							} else {
-								MessageDialog.openConfirm(activeShell, dialogTitle, "Success");
-							}
-	
-							file.create(StringInputStream.createInputStreamFromString(analysisResult.getReport()), true, null);
-	
-							IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
-	
-							try {
-								page.openEditor(new FileEditorInput(file), desc.getId());
-							} catch (PartInitException e) {
-								Logger.log(LogLevel.ERROR, "Could not start editor, \"" + desc.getId() + "\".", e);
-							}
+						String carismaCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
+						String carismaDocument = (String) map.get(PreferencesConstants.carisma_document.toString());
+						
+						MongoDBDestination carismaConfiguration = new MongoDBDestination(carismaCollection, carismaDocument, null);
+						boolean success = db.write(carismaConfiguration, contentXml);
+						StringBuilder errorMessageBuilder = new StringBuilder();
+						if (!success) {
+							String response = db.getResponseMessage().toString();
 
+							errorMessageBuilder.append("Export of the XMI failed for the following reason:");
+							errorMessageBuilder.append(response);
+							errorMessageBuilder.append("\n");
+						}
+						db = new carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI(user, secret, url);
+
+						String plaCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
+						String plaDocument = (String) map.get(PreferencesConstants.pla_document.toString());
+						String plaField = (String) map.get(PreferencesConstants.pla_field.toString());
+						
+						MongoDBDestination plaConfiguration = new MongoDBDestination(plaCollection,
+								plaDocument, plaField);
+						success &= db.write(plaConfiguration, contentHtml);
+
+						Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+						String dialogTitle = "Vision Database Export";
+						if (!success) {
+							String response = db.getResponseMessage().toString();
+
+							errorMessageBuilder.append("Export of the html report failed for the following reason:");
+							errorMessageBuilder.append(response);
+							String responseMessage = errorMessageBuilder.toString();
+
+							Status status = new Status(IStatus.ERROR, "carisma.core.io", responseMessage);
+							ErrorDialog.openError(activeShell, dialogTitle, "Export to VisiOn Database failed", status);
+						} else {
+							MessageDialog.openConfirm(activeShell, dialogTitle, "Success");
+						}
+
+						file.create(StringInputStream.createInputStreamFromString(analysisResult.getReport()), true, null);
+
+						IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
+
+						try {
+							page.openEditor(new FileEditorInput(file), desc.getId());
+						} catch (PartInitException e) {
+							Logger.log(LogLevel.ERROR, "Could not start editor, \"" + desc.getId() + "\".", e);
 						}
 					}
-					catch (Exception e) {
-						System.out.println(e.getMessage());
-					}
+				}
+				catch (Exception e) {
+					System.out.println(e.getMessage());
 				}
 			}
 		};
@@ -223,9 +208,8 @@ public class VisiOnDBOutput implements PopUpAction {
 				forbidden++;
 			}
 		}
-		if (forbidden == analysisResult.getCheckResults().size() || !VisionActivator.getINSTANCE().isDBAccessible()) {
-			action3.setEnabled(false);
-		}
+		boolean enable = forbidden != analysisResult.getCheckResults().size() && VisionActivator.getINSTANCE().isDBAccessible();
+		action3.setEnabled(enable);
 		
 		return true;
 	}

@@ -1,7 +1,13 @@
 package carisma.ui.vision.io.implementations.db.mongodb.restapi;
 
-import static carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBConstants.*;
-import static carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBResponseMessage.Operation.*;
+import static carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBConstants.APPLICATION_JSON;
+import static carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBConstants.KEYWORD_ACCEPT;
+import static carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBConstants.KEYWORD_AUTHORIZATION;
+import static carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBConstants.KEYWORD_CONTENT_TYPE;
+import static carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBResponseMessage.Operation.delete;
+import static carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBResponseMessage.Operation.get;
+import static carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBResponseMessage.Operation.post;
+import static carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBResponseMessage.Operation.put;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,11 +33,12 @@ import carisma.core.io.content.Content;
 import carisma.core.io.content.ContentFactory;
 import carisma.core.io.content.ContentFactory.ContentFormats;
 import carisma.core.io.content.JSON;
+import carisma.core.io.content.XML_DOM;
 import carisma.core.io.implementations.db.DataBaseIO;
 import carisma.core.io.implementations.db.ResponseMessage;
-import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBConfiguration.WriteAction;
-import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBConfiguration.ReadAction;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBConfiguration.DeleteAction;
+import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBConfiguration.ReadAction;
+import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBConfiguration.WriteAction;
 
 public class MongoDBRestAPI implements DataBaseIO {
 	
@@ -75,11 +82,13 @@ public class MongoDBRestAPI implements DataBaseIO {
 			
 			String body;
 			String contentAsString = content.asString();
-			if (content.getFormat().compareTo(JSON.ID) == 0) {
+			if (content.getFormat().compareTo(JSON.ID) == 0 ){
 				body = contentAsString;
-			} else {
+			} else if( content.getFormat().equals(XML_DOM.ID)) {
 				JSON json = ContentFactory.convertToJson(content);
 				body = json.asString();
+			} else {
+				body =  JSON.escapeJson(contentAsString);
 			}
 			
 			
