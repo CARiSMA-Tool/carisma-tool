@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Sequence-Diagram Crypto FOL-Analyzer</title>
+<style type="text/css">
+.content {
+	margin-left: 20px;
+}
+
+.bnf_box {
+	display: inline-block;
+	background-color: #000000;
+	color: #FFFFFF;
+	margin: 0px;
+	padding: 5px;
+}
+
+.image {
+	display: inline-block;
+	background-color: #000000;
+	border: 1px solid #FAFAFA;
+	margin: 0px;
+	padding: 4px;
+}
+</style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+
+	<h1>Sequence-Diagram Crypto FOL-Analyzer</h1>
+	<div class="content">
+
+		<h2 id="toc-toc">TOC</h2>
+		<div class="content">
+			<ul>
+				<li>Sequence-Diagram Crypto FOL-Analyzer
+					<ul>
+						<li><a href="#toc-toc">TOC</a></li>
+						<li><a href="#toc-overview">Overview</a>
+							<ul>
+								<li><a href="#toc-overview-description">Description</a></li>
+								<li><a href="#toc-overview-gui-explanation">GUI explanation</a>
+									<ul>
+										<li><a href="#toc-overview-gui-explanation-report-whole-mitm-knowledge">Report whole MITM knowledge</a></li>
+										<li><a href="#toc-overview-gui-explanation-initial-knowledge">Initial knowledge</a></li>
+										<li><a href="#toc-overview-gui-explanation-knowledge-to-check">Knowledge to check</a></li>
+									</ul>
+								</li>
+								<li><a href="#toc-overview-output-explanation">Output explanation</a>
+									<ul>
+										<li><a href="#toc-overview-output-explanation-example">Example</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li><a href="#toc-message-syntax">Message syntax</a>
+							<ul>
+								<li><a href="#toc-message-syntax-example">Example</a></li>
+							</ul>
+						</li>
+						<li><a href="#toc-guard-syntax">Guard syntax</a>
+							<ul>
+								<li><a href="#toc-guard-syntax-example">Example</a></li>
+							</ul>
+						</li>
+						<li><a href="#toc-references">References</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<h2 id="toc-overview">Overview</h2>
+		<div class="content">
+
+			<h3 id="toc-overview-description">Description</h3>
+			<div class="content">
+
+				<p>
+					The Sequence-Diagram Crypto FOL-Analyzer has <strong>two phases</strong> 
+					of evaluating a given sequence diagram.
+				</p>
+				<p>
+					In the <strong>first</strong> phase the Plugin checks whether a man in the
+					middle attacker (further called MITMA) is able to impersonate an
+					object in the given sequence diagram or not, with the given initial knowledge.
+				</p>
+				<p>
+					Then the <strong>second</strong> phase checks whether a MITMA
+					is able to learn specific knowledge, with the given initial knowledge.
+				</p>
+			</div>
+
+			<h3 id="toc-overview-gui-explanation">GUI explanation</h3>
+			<div class="content">
+				<img src="./img/sdf_gui.png" class="image" />
+				<h4 id="toc-overview-gui-explanation-report-whole-mitm-knowledge">Report whole MITM knowledge</h4>
+				<div class="content">
+					<p>
+						If set to true, the whole MITMA's knowledge will be printed in the report.
+						But be caution, the MITMA's knowledge grows exponential with the
+						numbers of messages and size of initial knowledge!
+					</p>
+				</div>
+				<h4 id="toc-overview-gui-explanation-initial-knowledge">Initial
+					knowledge</h4>
+				<div class="content">
+					<p>
+						The initial MITMA's knowledge. In this example the "Initial Knowledge" is 
+						set to "a, b, c", which means the MITMA already knows a, b and c.
+					</p>
+				</div>
+				<h4 id="toc-overview-gui-explanation-knowledge-to-check">Knowledge
+					to check</h4>
+				<div class="content">
+					<p>
+						The Plugin checks whether or not the MITMA is able to acquire the 
+						given knowledge to check. In this example "Knowledge to check" is set 
+						to "d, e, f".
+					</p>
+				</div>
+			</div>
+
+			<h3 id="toc-overview-output-explanation">Output Explanation</h3>
+			<div class="content">
+
+				<p>
+					For each object a first order logic formula is generated. This formula
+					represents the knowledge an object has or gains in the diagram. 
+					This formula is then evaluated with the MITMA's knowledge, 
+					to check whether or not a MITMA could be able to impersonate the
+					object. The formula and the evaluation are both reported by the
+					Plugin.
+				</p>
+
+				<p>
+					After that, the Plugin checks for each knowledge to check, whether or not 
+					a MITMA is able to acquire the knowledge. 
+				</p>
+
+				<h4 id="toc-overview-output-explanation-example">Example</h4>
+				<div class="content">
+					<h5>Sequence Diagram</h5>
+					<img src="./img/diagram.png" class="image" />
+					<p>
+						This sequence diagram can be found <a href="./seqdia_test.uml" >here</a>.
+					</p>
+					<h5>Analysis Output</h5>
+					<img src="./img/example_analysis.png" class="image" />
+				</div>
+			</div>
+
+		</div>
+
+		<h2 id="toc-message-syntax">Message Syntax</h2>
+		<div class="content">
+			<!--//
+				BNF:
+				
+				<MESSAGE>		::= <MESSAGE_NAME>(<PARAMTERS>)
+				<PARAMETERS>	::= <PARAMETERS>,<PARAMETER> | <PARAMETER>
+				<PARAMETER>	    ::= <VAR> | <OP>(<PARAMETER>,<PARAMETER>)
+				<OP>			::= enc | dec | sign | ext | conc | symenc | symdec
+				<VAR>			::= <string>
+			
+			 //-->
+
+			<p>The message syntax in BNF:</p>
+			<div class="bnf_box">
+				<table>
+					<tr>
+						<td>&lt;MESSAGE&gt;</td>
+						<td>::=</td>
+						<td>&lt;MESSAGE_NAME&gt;(&lt;PARAMTERS&gt;)</td>
+					</tr>
+					<tr>
+						<td>&lt;PARAMETERS&gt;</td>
+						<td>::=</td>
+						<td>&lt;PARAMETERS&gt;,&lt;PARAMETER&gt; | &lt;PARAMETER&gt;</td>
+					</tr>
+					<tr>
+						<td>&lt;PARAMETER&gt;</td>
+						<td>::=</td>
+						<td>&lt;VAR&gt; |
+							&lt;OP&gt;(&lt;PARAMETER&gt;,&lt;PARAMETER&gt;)</td>
+					</tr>
+					<tr>
+						<td>&lt;OP&gt;</td>
+						<td>::=</td>
+						<td>enc | dec | sign | ext | conc | symenc | symdec</td>
+					</tr>
+					<tr>
+						<td>&lt;VAR&gt;</td>
+						<td>::=</td>
+						<td>&lt;string&gt;</td>
+					</tr>
+				</table>
+			</div>
+
+			<h3 id="toc-message-syntax-example">Example</h3>
+
+			<span style="padding: 5px; background-color: #000000;"> 
+				<span style="color: #00AFA0;font-size:1.25em;"> 
+				Message1( 
+					<span style="color: #FF0AFA;font-size:0.90em;"> 
+					enc(
+						<span style="color: #A00AFA;font-size:0.90em;"> 
+						information
+						</span>
+						,
+						<span style="color: #A0FF0A;font-size:0.90em;"> 
+						public_key
+						</span>
+					) 
+					</span> 
+					, 
+					<span style="color: #AFA000;font-size:0.90em;"> 
+					sign( 
+						<span style="color: #FF0AFA;font-size:0.90em;"> 
+						enc(
+							<span style="color: #A00AFA;font-size:0.90em;"> 
+							information
+							</span>
+							,
+							<span style="color: #A0FF0A;font-size:0.90em;"> 
+							public_key
+							</span>
+						) 
+						</span> 
+						,
+						<span style="color: #FFAAF0;font-size:0.90em;"> 
+						private_key 
+						</span>
+					)
+					</span> 
+				)
+				</span>
+			</span>
+
+		</div>
+		<h2 id="toc-guard-syntax">Guard Syntax</h2>
+		<div class="content">
+			<!--//
+				BNF:
+				
+				<GUARD>				::= [ <CONSTRAINS> ] | [ ]
+				<CONSTRAINS>   	 	::= <CONSTRAINS>,<CONSTRAIN> | <CONSTRAIN>
+				<CONSTRAIN>			::= <PARAMETER> == <PARAMETER> | <PARAMETER> != <PARAMETER>
+				<PARAMETER>	    	::= <VAR> | <OP>(<PARAMETER>,<PARAMETER>) | <UNKNOWN_PARAMTER>
+				<UNKNOWN_PARAMTER>  ::= <MESSAGE_NAME>_<PARAMETER_NUMBER>
+				<OP>				::= enc | dec | sign | ext | conc | symenc | symdec
+				<VAR>				::= <string>
+				<MESSAGE_NAME> 		::= <string>
+				<PARAMETER_NUMBER>  ::= <int>
+			
+			 //-->
+
+			<p>The guard syntax in BNF:</p>
+			<div class="bnf_box">
+				<table>
+					<tr>
+						<td>&lt;GUARD&gt;</td>
+						<td>::=</td>
+						<td>[ &lt;CONSTRAINS&gt; ] | [ ]</td>
+					</tr>
+					<tr>
+						<td>&lt;CONSTRAINS&gt;</td>
+						<td>::=</td>
+						<td>&lt;CONSTRAINS&gt;,&lt;CONSTRAIN&gt; | &lt;CONSTRAIN&gt;</td>
+					</tr>
+					<tr>
+						<td>&lt;CONSTRAIN&gt;</td>
+						<td>::=</td>
+						<td>&lt;PARAMETER&gt; == &lt;PARAMETER&gt; |
+							&lt;PARAMETER&gt; != &lt;PARAMETER&gt;</td>
+					</tr>
+					<tr>
+						<td>&lt;PARAMETER&gt;</td>
+						<td>::=</td>
+						<td>&lt;VAR&gt; |
+							&lt;OP&gt;(&lt;PARAMETER&gt;,&lt;PARAMETER&gt;)</td>
+					</tr>
+					<tr>
+						<td>&lt;UNKNOWN_PARAMTER&gt;</td>
+						<td>::=</td>
+						<td>&lt;MESSAGE_NAME&gt; &lt;PARAMETER_NUMBER&gt;</td>
+					</tr>
+					<tr>
+						<td>&lt;OP&gt;</td>
+						<td>::=</td>
+						<td>enc | dec | sign | ext | conc | symenc | symdec</td>
+					</tr>
+					<tr>
+						<td>&lt;VAR&gt;</td>
+						<td>::=</td>
+						<td>&lt;string&gt;</td>
+					</tr>
+					<tr>
+						<td>&lt;MESSAGE_NAME&gt;</td>
+						<td>::=</td>
+						<td>&lt;string&gt;</td>
+					</tr>
+					<tr>
+						<td>&lt;PARAMETER_NUMBER&gt;</td>
+						<td>::=</td>
+						<td>&lt;int&gt;</td>
+					</tr>
+				</table>
+			</div>
+
+			<h3 id="toc-guard-syntax-example">Example</h3>
+
+			<span style="padding: 5px; background-color: #000000;"> 
+				<span style="color: #00AFA0;"> 
+				[ 
+					<span style="color: #FF0AFA;"> 
+					enc(a,b) 		== Message_1
+					</span>
+					, 
+					<span style="color: #A0FF0A;"> 
+					a 				== dec(Message_1,b)
+					</span>
+					, 
+					<span style="color: #AFA000;"> 
+					c 				== Message_2
+					</span>
+					, 
+					<span style="color: #A00AFA;"> 
+					Message_3 		!= Message_4
+					</span>
+					,
+					<span style="color: #FFAAF0;"> 
+					enc(enc(a,c),b)	== Message_5
+					</span>
+				] 
+				</span>
+			</span>
+
+		</div>
+		<h2 id="toc-references">References</h2>
+		<div class="content">
+			This Plugin is based on the work <a href="./DA_AndreasGilg_final.pdf">Werkzeugunterstützte Sicherheits-Analyse von kryptographischen Protokollen mit automatischen Theorem-Beweisern</a> 
+			by Andreas Gilg.
+		</div>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+
+	\frametitle{Auswertung}
+
+\begin{block}{Ausgabe des Plugins}
+\tiny{
+\begin{verbatim}
+INFO: %----------PHASE 1----------%
+[..]
+WARNING: MITMA might be able to impersonate Object model::Interaction1::Client
+[..]
+WARNING: MITMA might be able to impersonate Object model::Interaction1::Server
+INFO: %----------PHASE 2----------%
+WARNING: MITMA knows data_uri
+WARNING: MITMA knows data
+[..]
+WARNING: MITMA knows session_key
+\end{verbatim}
+}
+\end{block}
+
+	Während die erste Phase deutliche Warnungen ausgibt, dass ein potenzieller MITMA in der Lage ist
+	sich sowohl als Client als auch als Server auszugeben, gibt die zweite Phase sogar bekannt, dass
+	ein MITMA Kenntnisse über data\_uri, data und session\_key erlangen kann!
+
+	Die Probleme:
+		\begin{enumerate}
+			\item Der Session-Schlüssel wurde nicht sicher genug übertragen!
+			\item Es wurde keine Vorkehrung (wie etwa das Nutzen von nonce) gegen Replay-Attacken vorgenommen!
+		\end{enumerate}

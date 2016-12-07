@@ -1,0 +1,9 @@
+\ProvidesFile{T1tudo.fd}[AkkuratOffice]
+\DeclareFontFamily{T1}{tudo}{}
+\DeclareFontShape{T1}{tudo}{m}{n}{ <-> tudor8a.pfb}{}
+\DeclareFontShape{T1}{tudo}{m}{it}{ <-> tudori8a.pfb}{}
+\DeclareFontShape{T1}{tudo}{m}{sl}{ <-> ssub * tudo/m/it }{}
+\DeclareFontShape{T1}{tudo}{bx}{n}{ <-> tudob8a.pfb}{}
+\DeclareFontShape{T1}{tudo}{bx}{it}{ <-> tudobi8a.pfb}{}
+\DeclareFontShape{T1}{tudo}{l}{n}{ <-> tudol8a.pfb}{}
+\DeclareFontShape{T1}{tudo}{l}{it}{ <-> tudoli8a.pfb}{}
