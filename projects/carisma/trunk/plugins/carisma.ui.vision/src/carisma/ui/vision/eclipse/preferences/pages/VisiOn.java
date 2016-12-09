@@ -28,7 +28,7 @@ public class VisiOn extends FieldEditorPreferencePage implements IWorkbenchPrefe
 		/*
 		 * General configuration
 		 */
-		StringFieldEditor id = new StringFieldEditor(LAUNCHER_CARISMA_ID, "Launcher IDr:\t\t\t\t",
+		StringFieldEditor id = new StringFieldEditor(LAUNCHER_CARISMA_ID, "Launcher ID:\t\t\t\t",
 		        getFieldEditorParent());
 		addField(id);
 		
