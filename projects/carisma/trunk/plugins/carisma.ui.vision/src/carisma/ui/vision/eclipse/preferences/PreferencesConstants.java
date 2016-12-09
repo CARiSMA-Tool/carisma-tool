@@ -14,8 +14,8 @@ public enum PreferencesConstants {
 	pla_field("plaField"),
 	carisma_document("CARISMAdocument"),
 	carisma_field("CARISMAfield"), 
-	question_document("questionDocument"), 
-	question_field("questionField");
+	question_document("CarismaQuestionsdocument"), 
+	question_field("CarismaQuestionsfield");
 	
 	private final String string;
 

@@ -31,7 +31,7 @@ public class QuestionGenerationPopUpAction implements PopUpAction {
 		
 		//enable the generate question button if there is a builder
 		List<Builder> builder = BuilderFactory.getBuilder(analysisResult);
-		if (builder.size() >= 1 && !VisionActivator.getINSTANCE().isDBAccessible()){
+		if (builder.size() >= 1 && VisionActivator.getINSTANCE().isDBAccessible()){
 			questionGenerationAction.setEnabled(true);
 		}
 		

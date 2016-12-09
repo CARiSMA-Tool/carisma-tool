@@ -88,7 +88,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 				JSON json = ContentFactory.convertToJson(content);
 				body = json.asString();
 			} else {
-				body =  JSON.escapeJson(contentAsString);
+				body =  "\""+JSON.escapeJson(contentAsString)+"\"";
 			}
 			
 			
@@ -120,7 +120,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 			if (this.response != null && this.response.getStatus() == 200) {
 				if (hasDocumentID) {
 					if (hasFieldID) {
-						String documentBody = "{\"" + fieldID + "\":'" + body + "'}";
+						String documentBody = "{\"" + fieldID + "\":[" + body + "]}";
 						this.response = this.api.putField(collectionID, documentID, fieldID, documentBody);
 					} else {
 						this.api.deleteDocument(collectionID, documentID);
@@ -134,8 +134,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 						if (this.response.getStatus() == 404) {
 							return false;
 						}
-//						String documentBody = "{\"" + fieldID + "\":'" + body + "'}";
-						String documentBody = "{"+ body + "}";
+						String documentBody = "{\"" + fieldID + "\":[" + body + "]}";
 						
 						this.response = this.api.postField(collectionID, documentID, fieldID, documentBody);
 					} else {

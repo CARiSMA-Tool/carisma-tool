@@ -99,15 +99,15 @@ public class QuestionGenerationAction extends Action {
 		PreferencesObject preferencesStore = VisionActivator.getINSTANCE().getVisionPreferences();
 		Map<String, Object> map = preferencesStore.getObject();
 		
-		String user = (String) map.get(PreferencesConstants.dbuser);
-		String secret = (String) map.get(PreferencesConstants.dbpasswd);
-		String url = (String) map.get(PreferencesConstants.dbaddress);
+		String user = (String) map.get(PreferencesConstants.dbuser.toString());
+		String secret = (String) map.get(PreferencesConstants.dbpasswd.toString());
+		String url = (String) map.get(PreferencesConstants.dbaddress.toString());
 		
 		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
 
-		String questionCollection = (String) map.get(PreferencesConstants.vision_collection);
-		String questionDocument = (String) map.get(PreferencesConstants.question_document);
-		String questionField = (String) map.get(PreferencesConstants.question_field);
+		String questionCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
+		String questionDocument = (String) map.get(PreferencesConstants.question_document.toString());
+		String questionField = (String) map.get(PreferencesConstants.question_field.toString());
 
 		MongoDBDestination carismaConfiguration = new MongoDBDestination(questionCollection, questionDocument, questionField);
 		boolean success = db.write(carismaConfiguration, questionsXmlDom);

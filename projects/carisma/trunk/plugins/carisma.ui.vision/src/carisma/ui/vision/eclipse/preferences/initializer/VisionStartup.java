@@ -33,7 +33,7 @@ public class VisionStartup implements IStartup {
 		}
 	}
 
-	private boolean getDataFromVisionLauncher() {
+	public static boolean getDataFromVisionLauncher() {
 		boolean error = false;
 		
 		IPreferenceStore preferencesStore = CarismaGUI.INSTANCE.getPreferenceStore();
@@ -50,10 +50,13 @@ public class VisionStartup implements IStartup {
 		try {
 			try(VisonPreferencesClient client = new VisonPreferencesClient(id, LOCAL_HOST, port, passwd)){
 				client.connect();
+				System.out.println("VISION: Conencted");
 				Map<String, Object> preferences = client.getPreferencesMap();
+				System.out.println("VISION: Got Map");
 				PreferencesObject preferencesObject = new PreferencesObject(preferences, new PreferencesGuard());
-				
+				System.out.println("VISION: Created Preferences Object");
 				VisionActivator.getINSTANCE().setVisionPreferences(preferencesObject);
+				System.out.println("VISION: Set preferences in Activator");
 			}
 			
 		} catch (UnknownHostException e) {

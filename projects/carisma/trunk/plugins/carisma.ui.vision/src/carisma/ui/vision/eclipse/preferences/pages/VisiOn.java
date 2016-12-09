@@ -3,10 +3,18 @@ package carisma.ui.vision.eclipse.preferences.pages;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IntegerFieldEditor;
 import org.eclipse.jface.preference.StringFieldEditor;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import carisma.ui.eclipse.CarismaGUI;
+import carisma.ui.vision.VisionActivator;
+import carisma.ui.vision.eclipse.preferences.initializer.VisionStartup;
 
 public class VisiOn extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
