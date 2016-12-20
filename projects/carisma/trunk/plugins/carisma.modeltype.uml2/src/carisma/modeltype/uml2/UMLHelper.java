@@ -659,7 +659,7 @@ public final class UMLHelper {
 			if(appliedProfile.eIsProxy()){
 				URI uri = ((BasicEObjectImpl) appliedProfile).eProxyURI();
 				URI trimmed = uri.trimFragment();
-				if(trimmed.toString().equals(profileDescriptor.getProfileURI())){
+				if(trimmed.toString().contains(profileDescriptor.getProfileName())){
 					return true;
 				}
 			}

@@ -330,13 +330,13 @@ public final class SecureDependencyChecks {
 			if (!"".equals(parameters.toString())) {
 				signature += parameters.substring(0, parameters.lastIndexOf(", "));
 			}
-			signature += ")";
-//			
-//			if (operation.getType() != null) {
-//				signature += "):" + operation.getType().getName();
-//			} else {
-//				signature += ")";
-//			}
+//			signature += ")";
+			
+			if (operation.getType() != null) {
+				signature += "):" + operation.getType().getName();
+			} else {
+				signature += ")";
+			}
 			signatures.add(signature);
 		}
 		return signatures;
