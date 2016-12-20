@@ -74,7 +74,7 @@ public class SecureDependencyChecksTest {
 		assertTrue(UMLHelper.isStereotypeApplied(dependency1, "call"));
 		assertEquals(class1, dependency1.getClients().get(0));
 		assertEquals(interface1, dependency1.getSuppliers().get(0));
-		assertTrue(UMLsecUtil.hasStereotype(this.model, UMLsec.SECURE_DEPENDENCY));
+		assertNotNull(UMLsecUtil.getStereotypeApplication(this.model, UMLsec.SECURE_DEPENDENCY));
 		assertNotNull(UMLsecUtil.getStereotypeApplication(class2, UMLsec.CRITICAL));
 		assertEquals(interface1, realization1.getSuppliers().get(0));
 		assertEquals(class2, realization1.getClients().get(0));
@@ -180,6 +180,8 @@ public class SecureDependencyChecksTest {
 		sdc.checkSecureDependency(this.model, true);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
 		assertEquals(2, secureDependencyViolations.size());
+		
+		sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model, false);
 		secureDependencyViolations = sdc.getViolations();
 		assertEquals(2, secureDependencyViolations.size());
