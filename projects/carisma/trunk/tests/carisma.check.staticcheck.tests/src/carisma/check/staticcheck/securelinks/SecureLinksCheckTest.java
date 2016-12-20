@@ -54,6 +54,7 @@ public class SecureLinksCheckTest {
 		assertTrue(testmodelfile.exists());
 		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
 		this.modelres.load(Collections.EMPTY_MAP);
+		this.model = (Model) this.modelres.getContents().get(0);
 	}
 	
 	@Test

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.BasicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -229,12 +230,12 @@ public final class UMLHelper {
 	throws ModelElementNotFoundException {
 		List<T> matchingElements = new ArrayList<>();
 		for (T namedElem : getAllElementsOfType(pkg, type)) {
-			String qualName = namedElem.getQualifiedName();
-			if ((qualName != null && !qualName.isEmpty()) 
-					&& (qualName.endsWith(adequatelyQualifiedName) 
+			String name = namedElem.getName();
+			if ((name != null && !name.isEmpty()) 
+					&& (name.endsWith(adequatelyQualifiedName) 
 					&& !matchingElements.contains(namedElem))) {
 				Pattern qualifiedPattern = Pattern.compile("(?<=(^|::))" + adequatelyQualifiedName);
-				Matcher qualifiedMatcher = qualifiedPattern.matcher(qualName);
+				Matcher qualifiedMatcher = qualifiedPattern.matcher(name);
 				if (qualifiedMatcher.find()) {
 					matchingElements.add(namedElem);
 				}
@@ -506,7 +507,7 @@ public final class UMLHelper {
 	/**
 	 * Applies a profile to a package.
 	 * @param pkg
-	 * @param profileURI e.g. "platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml"
+	 * @param profileURI e.g. "pathmap://UMLsec/UMLsec.uml"
 	 * @return
 	 */
 	public static Profile applyProfile(Package pkg, String profileURI) {
@@ -655,6 +656,13 @@ public final class UMLHelper {
 			return false;
 		}
 		for (Profile appliedProfile : pkg.getAllAppliedProfiles()) {
+			if(appliedProfile.eIsProxy()){
+				URI uri = ((BasicEObjectImpl) appliedProfile).eProxyURI();
+				URI trimmed = uri.trimFragment();
+				if(trimmed.toString().equals(profileDescriptor.getProfileURI())){
+					return true;
+				}
+			}
 			if ((appliedProfile.getDefinition() != null)
 					&& appliedProfile.getDefinition().getNsURI().contains(profileDescriptor.getProfileName())) {
 				return true;
