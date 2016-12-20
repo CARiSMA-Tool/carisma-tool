@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.umlsec.de/profiles/UMLsec pathmap://UMLsec/UMLsec.uml#_MQjs4FPqEea7isDEsq0j4g">
   <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
     <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="inherit1">
       <packagedElement xmi:type="uml:Class" xmi:id="_Z_R80LCjEeKQAdWOfcgz-g" name="Class1">
@@ -26,9 +26,9 @@
     </packagedElement>
     <profileApplication xmi:id="_GimFMLCkEeKQAdWOfcgz-g">
       <eAnnotations xmi:id="_GivPILCkEeKQAdWOfcgz-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLsec/UMLsec.uml#_MQjs4FPqEea7isDEsq0j4g"/>
       </eAnnotations>
-      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+      <appliedProfile href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
     </profileApplication>
     <profileApplication xmi:id="_GvKhkLCkEeKQAdWOfcgz-g">
       <eAnnotations xmi:id="_GvLIoLCkEeKQAdWOfcgz-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -44,7 +44,7 @@
   <UMLsec:critical xmi:id="_KasYILCkEeKQAdWOfcgz-g">
     <high>random()</high>
   </UMLsec:critical>
-  <Standard:Call xmi:id="_CAEDQLCmEeKQAdWOfcgz-g"/>
-  <Standard:Call xmi:id="_P5aYsLCmEeKQAdWOfcgz-g"/>
-  <Standard:Call xmi:id="_8Di7ULDCEeKWb5G-_sskwA" base_Usage="_10PgcLDCEeKWb5G-_sskwA"/>
+  <UMLsec:call xmi:id="_CAEDQLCmEeKQAdWOfcgz-g"/>
+  <UMLsec:call xmi:id="_P5aYsLCmEeKQAdWOfcgz-g"/>
+  <UMLsec:call xmi:id="_8Di7ULDCEeKWb5G-_sskwA" base_Dependency="_10PgcLDCEeKWb5G-_sskwA"/>
 </xmi:XMI>

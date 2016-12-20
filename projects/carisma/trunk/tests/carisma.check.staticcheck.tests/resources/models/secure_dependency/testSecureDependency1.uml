@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
-  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.umlsec.de/profiles/UMLsec pathmap://UMLsec/UMLsec.uml#_MQjs4FPqEea7isDEsq0j4g">
+  <uml:Model xmi:id="_Adz10LxcEealKfJQQ99G-w" name="RootElement">
     <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testSecureDependency1">
       <ownedComment xmi:id="_m-On0I7SEeGPZ_qPBhd3dA" annotatedElement="_mcD2QI7PEeG2N76zYdDyeg">
         <body>{secrecy=Operation1()}</body>
@@ -20,21 +20,22 @@ Kein /critical/{secrecy=Operation1()} an Class1</body>
       </packagedElement>
       <packagedElement xmi:type="uml:Usage" xmi:id="_8szCgI7REeGPZ_qPBhd3dA" name="Dep1" supplier="_mt9ekI7PEeG2N76zYdDyeg" client="_mQFPwI7PEeG2N76zYdDyeg"/>
     </packagedElement>
-    <profileApplication xmi:id="_sjWIII7QEeG2N76zYdDyeg">
-      <eAnnotations xmi:id="_sjYkYI7QEeG2N76zYdDyeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_AoTOkLxcEealKfJQQ99G-w">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AobxcLxcEealKfJQQ99G-w" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AocYgLxcEealKfJQQ99G-w" key="Version" value="0.0.4"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AocYgbxcEealKfJQQ99G-w" key="Comment" value="added privacy&#xD;&#xA;"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AocYgrxcEealKfJQQ99G-w" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AocYg7xcEealKfJQQ99G-w" key="Date" value="2016-07-27"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AocYhLxcEealKfJQQ99G-w" key="Author" value=""/>
       </eAnnotations>
-      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
-    </profileApplication>
-    <profileApplication xmi:id="_UrhsgI7SEeGPZ_qPBhd3dA">
-      <eAnnotations xmi:id="_UrjhsI7SEeGPZ_qPBhd3dA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AoVq0LxcEealKfJQQ99G-w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLsec/UMLsec.uml#_MQjs4FPqEea7isDEsq0j4g"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_0"/>
     </profileApplication>
   </uml:Model>
-  <UMLsec:securedependency xmi:id="_75ytsI7QEeGPZ_qPBhd3dA" base_Package="_qb8akM37EdqwVrslYOdUDA"/>
-  <Standard:Call xmi:id="_WfHxEI7SEeGPZ_qPBhd3dA" base_Usage="_8szCgI7REeGPZ_qPBhd3dA"/>
+  <UMLsec:securedependency xmi:id="_75ytsI7QEeGPZ_qPBhd3dA" base_Package="_w8IxIM37EdqwVrslYOdUDA"/>
+  <UMLsec:call xmi:id="_WfHxEI7SEeGPZ_qPBhd3dA" base_Dependency="_8szCgI7REeGPZ_qPBhd3dA"/>
   <UMLsec:critical xmi:id="_a01NEI7SEeGPZ_qPBhd3dA" base_Class="_mcD2QI7PEeG2N76zYdDyeg" base_Classifier="_mcD2QI7PEeG2N76zYdDyeg">
     <secrecy>Operation1()</secrecy>
   </UMLsec:critical>

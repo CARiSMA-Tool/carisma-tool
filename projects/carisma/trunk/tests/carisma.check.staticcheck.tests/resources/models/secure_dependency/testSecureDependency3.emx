@@ -2,7 +2,7 @@
 <!--xtools2_universal_type_manager-->
 <?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.uml.msl.model" version="7.0.0"><feature description="" name="com.ibm.xtools.ruml.feature" url="" version="7.0.0"/></signature>?>
 <?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLsec="http:///schemas/UMLsec/__wcg0LFCEeCXHfYhNhPYCw/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.3/Umlnotation" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w http:///schemas/UMLsec/__wcg0LFCEeCXHfYhNhPYCw/0 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#__wdu8LFCEeCXHfYhNhPYCw">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLsec="http:///schemas/UMLsec/__wcg0LFCEeCXHfYhNhPYCw/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.3/Umlnotation" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w http:///schemas/UMLsec/__wcg0LFCEeCXHfYhNhPYCw/0 pathmap://UMLsec/UMLsec.uml#__wdu8LFCEeCXHfYhNhPYCw">
   <uml:Model xmi:id="_bqFfSrRpEeCqcpw41fK2IA" name="testSecureDependency3">
     <eAnnotations xmi:id="_bqFfS7RpEeCqcpw41fK2IA" source="uml2.diagrams" references="_bqFfTLRpEeCqcpw41fK2IA">
       <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_bqFfTLRpEeCqcpw41fK2IA" type="Class" name="tSD3">
@@ -145,12 +145,12 @@
     </profileApplication>
     <profileApplication xmi:id="_bqFfnrRpEeCqcpw41fK2IA">
       <eAnnotations xmi:id="_bqFfn7RpEeCqcpw41fK2IA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#__wdu8LFCEeCXHfYhNhPYCw"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLsec/UMLsec.uml#__wdu8LFCEeCXHfYhNhPYCw"/>
       </eAnnotations>
-      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+      <appliedProfile href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
     </profileApplication>
   </uml:Model>
-  <Standard:Call xmi:id="_bqFfoLRpEeCqcpw41fK2IA" base_Usage="_bqFfl7RpEeCqcpw41fK2IA"/>
+  <UMLsec:call xmi:id="_bqFfoLRpEeCqcpw41fK2IA" base_Dependency="_bqFfl7RpEeCqcpw41fK2IA"/>
   <UMLsec:critical xmi:id="_bqFfobRpEeCqcpw41fK2IA" base_Class="_bqFfkrRpEeCqcpw41fK2IA" base_Classifier="_bqFfkrRpEeCqcpw41fK2IA">
     <secrecy>Operation1()</secrecy>
   </UMLsec:critical>

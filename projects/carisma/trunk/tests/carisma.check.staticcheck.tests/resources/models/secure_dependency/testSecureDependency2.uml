@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.umlsec.de/profiles/UMLsec pathmap://UMLsec/UMLsec.uml#_MQjs4FPqEea7isDEsq0j4g">
   <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
     <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="testSecureDependency2">
       <ownedComment xmi:id="_YLm2II7UEeGPZ_qPBhd3dA">
@@ -27,13 +27,13 @@ Kein /critical/{secrecy=Operation1()} an Class1</body>
     </profileApplication>
     <profileApplication xmi:id="_vm_X8I7TEeGPZ_qPBhd3dA">
       <eAnnotations xmi:id="_vm_X8Y7TEeGPZ_qPBhd3dA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLsec/UMLsec.uml#_MQjs4FPqEea7isDEsq0j4g"/>
       </eAnnotations>
-      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+      <appliedProfile href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
     </profileApplication>
   </uml:Model>
   <UMLsec:securedependency xmi:id="_ByNyQI7UEeGPZ_qPBhd3dA" base_Package="_qb8akM37EdqwVrslYOdUDA"/>
-  <Standard:Call xmi:id="_EiN0sI7UEeGPZ_qPBhd3dA" base_Usage="_AKwsQI7UEeGPZ_qPBhd3dA"/>
+  <UMLsec:call xmi:id="_EiN0sI7UEeGPZ_qPBhd3dA" base_Dependency="_AKwsQI7UEeGPZ_qPBhd3dA"/>
   <UMLsec:secrecy xmi:id="_JaVaMI7UEeGPZ_qPBhd3dA" base_Dependency="_AKwsQI7UEeGPZ_qPBhd3dA"/>
   <UMLsec:critical xmi:id="_NoyXoI7UEeGPZ_qPBhd3dA" base_Class="_rPX3cI7TEeGPZ_qPBhd3dA" base_Classifier="_rPX3cI7TEeGPZ_qPBhd3dA">
     <secrecy>Operation1()</secrecy>

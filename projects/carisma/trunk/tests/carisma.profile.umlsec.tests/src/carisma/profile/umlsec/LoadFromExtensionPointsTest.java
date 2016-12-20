@@ -16,7 +16,7 @@ import org.junit.Test;
 
 public class LoadFromExtensionPointsTest {
 
-	private final static String PROFILE_PLUGIN_URI = "platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml";
+	private final static String PROFILE_PLUGIN_URI = UMLsecActivator.UML_URI;
 	
 	@Test
 	public void plugin() throws IOException{

@@ -12,22 +12,32 @@ package carisma.check.staticcheck.securedependency;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Usage;
 import org.junit.After;
 import org.junit.Test;
 
 import carisma.modeltype.uml2.UMLHelper;
+import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
-import carisma.tests.modelutils.uml.TestHelper;
 
 
 /**
@@ -43,7 +53,7 @@ public class SecureDependencyChecksTest {
 	
 	@After
 	public final void cleanup() {
-		TestHelper.unloadModel(this.model);
+		this.model.eResource().unload();
 		this.model = null;
 	}
 	
@@ -52,13 +62,13 @@ public class SecureDependencyChecksTest {
 	 */
 	@Test
 	public final void testSecureDependency1() {
-		this.model = TestHelper.loadModel(this.filepath, "testSecureDependency1.uml");
-		Package pkg = TestHelper.checkedGetElement(this.model, "testSecureDependency1", Package.class);
-		Class class1 = TestHelper.checkedGetElement(pkg, "Class1", Class.class);
-		Class class2 = TestHelper.checkedGetElement(pkg, "Class2", Class.class);
-		Interface interface1 = TestHelper.checkedGetElement(pkg, "Interface1", Interface.class);
-		Dependency dependency1 = TestHelper.checkedGetElement(pkg, "Dep1", Dependency.class);
-		InterfaceRealization realization1 = TestHelper.checkedGetElement(pkg, "InterfaceRealization1", InterfaceRealization.class);
+		this.model = loadModel(this.filepath, "testSecureDependency1.uml");
+		Package pkg = checkedGetElement(this.model, "testSecureDependency1", Package.class);
+		Class class1 = checkedGetElement(pkg, "Class1", Class.class);
+		Class class2 = checkedGetElement(pkg, "Class2", Class.class);
+		Interface interface1 = checkedGetElement(pkg, "Interface1", Interface.class);
+		Dependency dependency1 = checkedGetElement(pkg, "Dep1", Dependency.class);
+		InterfaceRealization realization1 = checkedGetElement(pkg, "InterfaceRealization1", InterfaceRealization.class);
 		
 		assertEquals(UMLHelper.getStereotypeApplications(dependency1).toString(),1, UMLHelper.getStereotypeApplications(dependency1).size());
 		assertTrue(UMLHelper.isStereotypeApplied(dependency1, "call"));
@@ -76,12 +86,12 @@ public class SecureDependencyChecksTest {
 	
 	@Test
 	public final void testSecureDependency2() {
-		this.model = TestHelper.loadModel(this.filepath, "testSecureDependency2.uml");
-		Package pkg = TestHelper.checkedGetElement(this.model, "testSecureDependency2", Package.class);
-		Class class1 = TestHelper.checkedGetElement(pkg, "Class1", Class.class);
-		Class class2 = TestHelper.checkedGetElement(pkg, "Class2", Class.class);
-		Interface interface1 = TestHelper.checkedGetElement(pkg, "Interface1", Interface.class);
-		Dependency dependency1 = TestHelper.checkedGetElement(pkg, "Dep1", Dependency.class);
+		this.model = loadModel(this.filepath, "testSecureDependency2.uml");
+		Package pkg = checkedGetElement(this.model, "testSecureDependency2", Package.class);
+		Class class1 = checkedGetElement(pkg, "Class1", Class.class);
+		Class class2 = checkedGetElement(pkg, "Class2", Class.class);
+		Interface interface1 = checkedGetElement(pkg, "Interface1", Interface.class);
+		Dependency dependency1 = checkedGetElement(pkg, "Dep1", Dependency.class);
 		
 		assertEquals(UMLHelper.getStereotypeApplications(dependency1).toString(), 2, UMLHelper.getStereotypeApplications(dependency1).size());
 		assertTrue(UMLHelper.isStereotypeApplied(dependency1, "call"));
@@ -101,7 +111,7 @@ public class SecureDependencyChecksTest {
 	
 	@Test
 	public final void testSecureDependency3() {
-		this.model = TestHelper.loadModel(this.filepath, "testSecureDependency3.uml");
+		this.model = loadModel(this.filepath, "testSecureDependency3.uml");
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model, true);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
@@ -110,7 +120,7 @@ public class SecureDependencyChecksTest {
 	
 	@Test
 	public final void testSecureDependency4() {
-		this.model = TestHelper.loadModel(this.filepath, "testSecureDependency4.uml");
+		this.model = loadModel(this.filepath, "testSecureDependency4.uml");
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model, true);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
@@ -119,11 +129,11 @@ public class SecureDependencyChecksTest {
 
 	@Test
 	public final void testSecureDependency5() {
-		this.model = TestHelper.loadModel(this.filepath, "testSecureDependency5.uml");
-		Package pkg = TestHelper.checkedGetElement(this.model, "testSecureDependency5", Package.class);
-		Class class1 = TestHelper.checkedGetElement(pkg, "Class1", Class.class);
-		Interface interface1 = TestHelper.checkedGetElement(pkg, "Interface1", Interface.class);
-		Dependency dependency1 = TestHelper.checkedGetElement(pkg, "Dep1", Dependency.class);
+		this.model = loadModel(this.filepath, "testSecureDependency5.uml");
+		Package pkg = checkedGetElement(this.model, "testSecureDependency5", Package.class);
+		Class class1 = checkedGetElement(pkg, "Class1", Class.class);
+		Interface interface1 = checkedGetElement(pkg, "Interface1", Interface.class);
+		Dependency dependency1 = checkedGetElement(pkg, "Dep1", Dependency.class);
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model, true);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
@@ -136,7 +146,7 @@ public class SecureDependencyChecksTest {
 
 	@Test
 	public final void testSecureDependency6() {
-		this.model = TestHelper.loadModel(this.filepath, "testSecureDependency6.uml");
+		this.model = loadModel(this.filepath, "testSecureDependency6.uml");
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model, true);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
@@ -145,9 +155,9 @@ public class SecureDependencyChecksTest {
 
 	@Test
 	public final void testDepOnlyBspBuch() {
-		this.model = TestHelper.loadModel(this.filepath, "SecureDependencyDependencyOnlyBspBuch.uml");
+		this.model = loadModel(this.filepath, "SecureDependencyDependencyOnlyBspBuch.uml");
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
-		Dependency callDep = TestHelper.checkedGetElement(this.model, "Dependency2", Dependency.class);
+		Dependency callDep = checkedGetElement(this.model, "Dependency2", Dependency.class);
 		assertTrue(UMLsecUtil.hasStereotype(callDep, UMLsec.CALL));
 		assertFalse(UMLsecUtil.hasStereotype(callDep, UMLsec.HIGH));
 		
@@ -161,9 +171,9 @@ public class SecureDependencyChecksTest {
 
 	@Test
 	public final void testUsageOnlyBspBuch() {
-		this.model = TestHelper.loadModel(this.filepath, "SecureDependencyUsageOnlyBspBuch.uml");
+		this.model = loadModel(this.filepath, "SecureDependencyUsageOnlyBspBuch.uml");
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
-		Usage callDep = TestHelper.checkedGetElement(this.model, "Usage1", Usage.class);
+		Usage callDep = checkedGetElement(this.model, "Usage1", Usage.class);
 		assertTrue(UMLHelper.isStereotypeApplied(callDep, "call"));
 		assertFalse(UMLsecUtil.hasStereotype(callDep, UMLsec.HIGH));
 		
@@ -177,9 +187,9 @@ public class SecureDependencyChecksTest {
 	
 	@Test
 	public final void testGeneralizedCritical() {
-		this.model = TestHelper.loadModel(this.filepath, "generalizedCritical.uml");
+		this.model = loadModel(this.filepath, "generalizedCritical.uml");
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
-		Usage callDep = TestHelper.checkedGetElement(this.model, "Usage1", Usage.class);
+		Usage callDep = checkedGetElement(this.model, "Usage1", Usage.class);
 		assertTrue(UMLHelper.isStereotypeApplied(callDep, "call"));
 		assertFalse(UMLsecUtil.hasStereotype(callDep, UMLsec.HIGH));
 		
@@ -190,9 +200,9 @@ public class SecureDependencyChecksTest {
 
 	@Test
 	public final void testSpecializedCritical() {
-		this.model = TestHelper.loadModel(this.filepath, "spezializedCritical.uml");
+		this.model = loadModel(this.filepath, "spezializedCritical.uml");
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
-		Usage callDep = TestHelper.checkedGetElement(this.model, "Usage1", Usage.class);
+		Usage callDep = checkedGetElement(this.model, "Usage1", Usage.class);
 		assertTrue(UMLHelper.isStereotypeApplied(callDep, "call"));
 		assertFalse(UMLsecUtil.hasStereotype(callDep, UMLsec.HIGH));
 		
@@ -203,9 +213,9 @@ public class SecureDependencyChecksTest {
 
 	@Test
 	public final void test2InterfacesDifferentMethods() {
-		this.model = TestHelper.loadModel(this.filepath, "2InterfacesDifferentMethods.uml");
+		this.model = loadModel(this.filepath, "2InterfacesDifferentMethods.uml");
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
-		Usage callDep = TestHelper.checkedGetElement(this.model, "Usage1", Usage.class);
+		Usage callDep = checkedGetElement(this.model, "Usage1", Usage.class);
 		assertTrue(UMLHelper.isStereotypeApplied(callDep, "call"));
 		assertFalse(UMLsecUtil.hasStereotype(callDep, UMLsec.HIGH));
 		
@@ -216,15 +226,54 @@ public class SecureDependencyChecksTest {
 
 	@Test
 	public final void test2InterfacesSameMethods() {
-		this.model = TestHelper.loadModel(this.filepath, "2InterfacesSameMethod.uml");
+		this.model = loadModel(this.filepath, "2InterfacesSameMethod.uml");
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
-		Usage callDep = TestHelper.checkedGetElement(this.model, "Usage1", Usage.class);
+		Usage callDep = checkedGetElement(this.model, "Usage1", Usage.class);
 		assertTrue(UMLHelper.isStereotypeApplied(callDep, "call"));
 		assertFalse(UMLsecUtil.hasStereotype(callDep, UMLsec.HIGH));
 		
 		sdc.checkSecureDependency(this.model, true);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
 		assertEquals(4, secureDependencyViolations.size());
+	}
+
+	private Model loadModel(String filepath, String name) {
+		File file = new File(new File(filepath), name);
+		if(file.exists()){
+			Resource r = new ResourceSetImpl().createResource(URI.createURI(file.getAbsolutePath()));
+			try(FileInputStream in = new FileInputStream(file)){
+				r.load(in, Collections.EMPTY_MAP);
+				EList<EObject> contents = r.getContents();
+				assertTrue(1 <= contents.size());
+				EObject obj = contents.get(0);
+				assertTrue(obj instanceof Model);
+				return (Model) obj;
+			} catch (IOException e) {
+				e.printStackTrace();
+				fail();
+			}
+		}
+		fail();
+		return null;
+	}
+	
+	/**
+	 * Returns an adequately qualified element of a given type.
+	 * Unit testing fails if element not found
+	 * @param pkg
+	 * @param adequatelyQualifiedName
+	 * @param type
+	 * @return - the element you asked for
+	 */
+	public static <T extends NamedElement> T checkedGetElement(final Package pkg, final String adequatelyQualifiedName, final java.lang.Class<T> type) {
+		T targetElement = null;
+		try {
+			targetElement = UMLHelper.getElementOfNameAndType(pkg, adequatelyQualifiedName, type);
+		} catch (ModelElementNotFoundException e) {
+			fail(e.getMessage());
+		}
+		assertNotNull(targetElement);
+		return targetElement;
 	}
 
 }
