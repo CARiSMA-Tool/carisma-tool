@@ -9,7 +9,6 @@ public enum PreferencesConstants {
 	dbpasswd("dbpassword"),
 	vision_collection("dbCollection"),
 	sts_document("stsDocument"),
-	sts_field("stsField"),
 	pla_document("plaDocument"),
 	pla_field("plaField"),
 	carisma_document("CARISMAdocument"),

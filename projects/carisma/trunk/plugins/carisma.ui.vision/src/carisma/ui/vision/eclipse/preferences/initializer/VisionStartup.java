@@ -26,9 +26,9 @@ public class VisionStartup implements IStartup {
 
 	@Override
 	public void earlyStartup() {
-		boolean error = getDataFromVisionLauncher();
+		boolean success = getDataFromVisionLauncher();
 		
-		if(error){
+		if(!success){
 			JOptionPane.showMessageDialog(null,"Error CARiSMA couldn't connect to VisiOn launcher","CARiSMA VisiOn Error", JOptionPane.OK_OPTION);
 		}
 	}
@@ -60,7 +60,7 @@ public class VisionStartup implements IStartup {
 			}
 			
 		} catch (UnknownHostException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			error = true;
 		} catch (Exception e) {
 			e.printStackTrace();

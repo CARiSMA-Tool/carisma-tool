@@ -20,7 +20,7 @@ Require-Bundle: carisma.core.io,
  carisma.check.rabac,
  carisma.check.staticcheck,
  org.eclipse.ui.ide
-Bundle-ClassPath: lib/VisionPreferencesClient.jar,
- .
+Bundle-ClassPath: .,
+ lib/VisionPreferencesClient.jar
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: carisma.ui.vision.VisionActivator

@@ -31,9 +31,8 @@ public class dbAccess {
 
 		String stsCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
 		String stsDocument = (String) map.get(PreferencesConstants.sts_document.toString());
-		String stsField = (String) map.get(PreferencesConstants.sts_field.toString());
 
-		MongoDBDestination config = new MongoDBDestination(stsCollection, stsDocument, "srs"); //TODO: replace as soon as field is in launcher config
+		MongoDBDestination config = new MongoDBDestination(stsCollection, stsDocument, "srs");
 		Content content = db.read(config);
 		return ContentFactory.convertToXmlDom(content).getDocument();
 	}
