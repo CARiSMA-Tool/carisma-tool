@@ -3,14 +3,15 @@
    <description name="CARiSMA Update Site" url="https://rgse.uni-koblenz.de/carisma/updatesite">
       Update site for CARiSMA
    </description>
-   <feature url="features/feature.carisma.bpmn2.checks_1.0.0.201612021431.jar" id="feature.carisma.bpmn2.checks" version="1.0.0.201612021431">
+   <feature url="features/feature.carisma.bpmn2.checks_1.0.0.qualifier.jar" id="feature.carisma.bpmn2.checks" version="1.0.0.qualifier">
       <category name="carisma"/>
    </feature>
-   <feature url="features/feature.carisma.uml2.checks_1.0.7.201612021431.jar" id="feature.carisma.uml2.checks" version="1.0.7.201612021431">
+   <feature url="features/feature.carisma.uml2.checks_1.0.9.qualifier.jar" id="feature.carisma.uml2.checks" version="1.0.9.qualifier">
       <category name="carisma"/>
    </feature>
-   <feature url="features/feature.carisma.vision_1.0.0.201612021431.jar" id="feature.carisma.vision" version="1.0.0.201612021431">
-      <category name="carisma"/>
+   <feature url="features/feature.carisma.vision_1.0.0.qualifier.jar" id="feature.carisma.vision" version="1.0.0.qualifier">
+      <category name="carisma.projects"/>
    </feature>
-   <category-def name="carisma" label="CARiSMA"/>
+   <category-def name="carisma" label="CARiSMA Main Features"/>
+   <category-def name="carisma.projects" label="CARiSMA Project Specific Features"/>
 </site>
