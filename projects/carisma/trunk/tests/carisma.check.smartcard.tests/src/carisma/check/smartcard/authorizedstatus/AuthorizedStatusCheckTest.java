@@ -24,6 +24,7 @@ import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
 import org.junit.Test;
 
+import carisma.check.smartcard.TestHelper;
 import carisma.check.smartcard.authorizedstatus.AuthorizedStatus;
 import carisma.check.smartcard.utils.AnalysisMessage;
 import carisma.core.logging.LogLevel;
@@ -34,7 +35,6 @@ import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.UMLStateMachineHelper;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
-import carisma.tests.modelutils.uml.TestHelper;
 
 
 public class AuthorizedStatusCheckTest {

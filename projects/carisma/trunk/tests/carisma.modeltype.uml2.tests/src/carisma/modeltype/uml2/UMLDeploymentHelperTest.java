@@ -20,8 +20,6 @@ import org.eclipse.uml2.uml.Package;
 import org.junit.After;
 import org.junit.Test;
 
-import carisma.tests.modelutils.uml.TestHelper;
-
 public class UMLDeploymentHelperTest {
 	
 	private String filepath = "resources/models/";

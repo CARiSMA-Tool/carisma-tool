@@ -17,7 +17,6 @@ import carisma.check.activity2petrinet.petriNet.PetriNet;
 import carisma.check.activity2petrinet.petriNet.Place;
 import carisma.check.activity2petrinet.petriNet.Transition;
 import carisma.modeltype.uml2.UMLHelper;
-import carisma.tests.modelutils.uml.TestHelper;
 
 
 /**

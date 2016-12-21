@@ -19,7 +19,6 @@ import org.junit.Test;
 
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
-import carisma.tests.modelutils.uml.TestHelper;
 
 
 public class ActivitypathsTest {

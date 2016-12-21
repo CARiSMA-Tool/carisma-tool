@@ -20,7 +20,6 @@ import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
-import carisma.tests.modelutils.uml.TestHelper;
 
 public class UML2ModelLoaderTest {
 
