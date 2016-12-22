@@ -5,14 +5,14 @@ public enum PreferencesConstants {
 	dbaddress("dbaddress"),
 	dbport("dbport"),
 	dbApiPath("dbApiPath"),
+	dbTimeout("dbTimeout"),
 	dbuser("dbuser"),
 	dbpasswd("dbpassword"),
 	vision_collection("dbCollection"),
 	sts_document("stsDocument"),
 	pla_document("plaDocument"),
-	pla_field("plaField"),
+	pla_field("plaCarismaField"), 
 	carisma_document("CARISMAdocument"),
-	carisma_field("CARISMAfield"), 
 	question_document("CarismaQuestionsdocument"), 
 	question_field("CarismaQuestionsfield");
 	

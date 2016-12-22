@@ -6,6 +6,10 @@ import java.util.Map;
 
 import javax.swing.JOptionPane;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.IStartup;
 
@@ -26,11 +30,20 @@ public class VisionStartup implements IStartup {
 
 	@Override
 	public void earlyStartup() {
-		boolean success = getDataFromVisionLauncher();
-		
-		if(!success){
-			JOptionPane.showMessageDialog(null,"Error CARiSMA couldn't connect to VisiOn launcher","CARiSMA VisiOn Error", JOptionPane.OK_OPTION);
-		}
+		 Job job = new Job("Connect to VisiOn Launcher") {
+			
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				boolean success = getDataFromVisionLauncher();
+				
+				if(!success){
+					JOptionPane.showMessageDialog(null,"Error CARiSMA couldn't connect to VisiOn launcher","CARiSMA VisiOn Error", JOptionPane.OK_OPTION);
+				}
+				
+				return Status.OK_STATUS;
+			}
+		};
+		job.schedule();
 	}
 
 	public static boolean getDataFromVisionLauncher() {
@@ -49,20 +62,18 @@ public class VisionStartup implements IStartup {
 		
 		try {
 			try(VisonPreferencesClient client = new VisonPreferencesClient(id, LOCAL_HOST, port, passwd)){
+				System.out.println("VISION: Try to connect");
 				client.connect();
-				System.out.println("VISION: Conencted");
+				System.out.println("VISION: Connected");
 				Map<String, Object> preferences = client.getPreferencesMap();
-				System.out.println("VISION: Got Map");
+				System.out.println("VISION: Got Map");	
 				PreferencesObject preferencesObject = new PreferencesObject(preferences, new PreferencesGuard());
 				System.out.println("VISION: Created Preferences Object");
 				VisionActivator.getINSTANCE().setVisionPreferences(preferencesObject);
 				System.out.println("VISION: Set preferences in Activator");
-			}
-			
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-			error = true;
-		} catch (Exception e) {
+			}	
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 			error = true;
 		}
