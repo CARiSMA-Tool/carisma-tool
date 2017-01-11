@@ -25,7 +25,6 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.Usage;
 
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.DummyHost;
@@ -68,13 +67,9 @@ public final class SecureDependencyChecks {
 	 * @param model
 	 * @return
 	 */
-	public int checkSecureDependency(final Package model, final boolean onlyCheckUsages) {
+	public int checkSecureDependency(final Package model) {
 		List<Dependency> dependenciesToCheck = new ArrayList<>();
-		if (onlyCheckUsages) {
-			dependenciesToCheck.addAll(UMLHelper.getAllElementsOfType(model, Usage.class));
-		} else {
-			dependenciesToCheck.addAll(UMLHelper.getAllElementsOfType(model, Dependency.class));
-		}
+		dependenciesToCheck.addAll(UMLHelper.getAllElementsOfType(model, Dependency.class));
 		for (Dependency dep : dependenciesToCheck) {
 			analyzeDependency(dep);
 		}
