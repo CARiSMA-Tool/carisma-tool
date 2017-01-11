@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Package;
 
 import carisma.core.analysis.AnalysisHost;
-import carisma.core.analysis.BooleanParameter;
 import carisma.core.analysis.DummyHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
@@ -27,14 +26,9 @@ import carisma.core.checks.CheckParameter;
 public class SecureDependenciesCheck implements CarismaCheckWithID {
 
 	public static final String CHECK_ID = "carisma.check.staticcheck.securedependency";
-	public static final String PARAM_ONLYCHECKUSAGES = "carisma.check.staticcheck.securedependency.onlycheckusages";
 	public static final String CHECK_NAME = "UMLsec secure dependency Check";
 	
-	/**
-	 * If true, only Usages having Standard::call or Standard::send will be considered for the check.
-	 * If dependencies with UMLsec::call or UMLsec::send are then found, the check will warn the user about it.
-	 */
-	private boolean onlyCheckUsages = true;
+	
 	
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost newHost) {
@@ -52,8 +46,7 @@ public class SecureDependenciesCheck implements CarismaCheckWithID {
 		if (currentModel.getContents().get(0) instanceof Package) {
 			Package model = (Package) currentModel.getContents().get(0);
 			SecureDependencyChecks sdc = new SecureDependencyChecks(host);
-			extractParameters(parameters);
-			int violations = sdc.checkSecureDependency(model, this.onlyCheckUsages);
+			int violations = sdc.checkSecureDependency(model);
 			for (SecureDependencyViolation v : sdc.getViolations()) {
 				String s = computeMessage(v);
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, s));
@@ -64,9 +57,6 @@ public class SecureDependenciesCheck implements CarismaCheckWithID {
 		return false;
 	}	
 	
-	private void extractParameters(final Map<String, CheckParameter> parameters) {
-		this.onlyCheckUsages = ((BooleanParameter) parameters.get(PARAM_ONLYCHECKUSAGES)).getValue();		
-	}
 	
 	private static String computeMessage(SecureDependencyViolation v) {
 		if (v.getDescription() != null) {
