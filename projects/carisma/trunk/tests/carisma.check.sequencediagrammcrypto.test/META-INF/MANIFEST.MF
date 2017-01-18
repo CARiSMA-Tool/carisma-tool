@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SequencediagrammTest
+Bundle-SymbolicName: carisma.check.sequencediagrammcrypto.test;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.junit,
+ org.eclipse.uml2.uml,
+ carisma.tests.modelutils.uml,
+ carisma.core,
+ carisma.check.sequencediagramcrypto;bundle-version="0.1.0",
+ carisma.modeltype.uml2
