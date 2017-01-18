@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RABAC="http:///schemas/RABAC/_7YYbEAa-EeWwtKn7NAM2pQ/0" xmlns:UMLsec="http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/RABAC/_7YYbEAa-EeWwtKn7NAM2pQ/0 platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml#_7YaQQAa-EeWwtKn7NAM2pQ http:///schemas/UMLsec/_dFlnUB9LEeGV0ppwGGevHA/2 platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA">
+  <uml:Model xmi:id="_Ei2nMA4WEeaQz42vE6v6cg" name="RootElement">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_CARLMA_CEea61MVUiTU6ug" annotatedElement="_v1Qn0A8HEeaIysTrWdlZVQ">
+      <body>&lt;&lt;abac>>&#xD;
+role={(citizen,registeredCitizen),(employee,citizensRegistry)}&#xD;
+right={(citizensRegistry,read),(citizensRegistry,modify),(citizensRegistry,produce),(citizensRegistry,transmit),(registeredCitizen,read),(registeredCitizen,transmit)}&#xD;
+rh=(CitizensRegistry,Assitance)&#xD;
+</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_ebuiYA_GEea61MVUiTU6ug" annotatedElement="_sQTTUA8HEeaIysTrWdlZVQ">
+      <body>&lt;&lt;abacRequired>> updateAppStatus()&#xD;
+{right=modify,  filter=(status='SUPMITTED')}&#xD;
+&lt;&lt;abacRequired>> getApp()&#xD;
+{right=read}&#xD;
+&lt;&lt;abacRequired>> issueBirthCertificate()&#xD;
+{right=produce}&#xD;
+&lt;&lt;abacRequired>>updateProfile()&#xD;
+{right=modify}</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_pVyRoA_FEea61MVUiTU6ug" annotatedElement="_kcr18A8bEeaIysTrWdlZVQ">
+      <body>&lt;&lt;abacAttribute>> getAppStatus&#xD;
+name=status</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_aiuvAA-vEeab9otWcMq9YQ" annotatedElement="_Ei2nMA4WEeaQz42vE6v6cg">
+      <body>&lt;&lt;secure links>>&#xD;
+adversary=default</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_J5u6YA4YEeaQz42vE6v6cg" name="CitizensRegistry"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_LZD_IA4YEeaQz42vE6v6cg" name="RegisteredCitizen"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_SX6noA4YEeaQz42vE6v6cg" name="MunicibilityOfAthenSystem">
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_v7y8QA4YEeaQz42vE6v6cg" name="IssueBirthCerificate">
+        <include xmi:type="uml:Include" xmi:id="_JTjZQA4aEeaQz42vE6v6cg" addition="_GDIm0A4ZEeaQz42vE6v6cg"/>
+        <include xmi:type="uml:Include" xmi:id="_PQuLMA4uEeaH1Kc938AtgQ" addition="_Hc1YIA4uEeaH1Kc938AtgQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_GDIm0A4ZEeaQz42vE6v6cg" name="AnalyzeSubmittedApplication"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_T4CEoA4aEeaQz42vE6v6cg" name="SubmitBirthAppForm">
+        <include xmi:type="uml:Include" xmi:id="_kw454BEUEeaiwMKYBmCQPQ" addition="_v7y8QA4YEeaQz42vE6v6cg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_hidNQA4aEeaQz42vE6v6cg" name="FollowUpAppStatus"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_Hc1YIA4uEeaH1Kc938AtgQ" name="UpdateFiles"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_07W7oA4aEeaQz42vE6v6cg" memberEnd="_07dpUA4aEeaQz42vE6v6cg _07fegA4aEeaQz42vE6v6cg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_07amAA4aEeaQz42vE6v6cg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_07bNEA4aEeaQz42vE6v6cg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_07dpUA4aEeaQz42vE6v6cg" name="issuebirthcerificate" type="_v7y8QA4YEeaQz42vE6v6cg" association="_07W7oA4aEeaQz42vE6v6cg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_07fegA4aEeaQz42vE6v6cg" name="citizenregistry" type="_J5u6YA4YEeaQz42vE6v6cg" association="_07W7oA4aEeaQz42vE6v6cg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_3P_3wA4aEeaQz42vE6v6cg" memberEnd="_3QAe0g4aEeaQz42vE6v6cg _3QBF4A4aEeaQz42vE6v6cg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3QAe0A4aEeaQz42vE6v6cg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3QAe0Q4aEeaQz42vE6v6cg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_3QAe0g4aEeaQz42vE6v6cg" name="submittbirthappform" type="_T4CEoA4aEeaQz42vE6v6cg" association="_3P_3wA4aEeaQz42vE6v6cg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_3QBF4A4aEeaQz42vE6v6cg" name="registeredcitizen" type="_LZD_IA4YEeaQz42vE6v6cg" association="_3P_3wA4aEeaQz42vE6v6cg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_6AsdwA4aEeaQz42vE6v6cg" memberEnd="_6Atr4Q4aEeaQz42vE6v6cg _6AuS8A4aEeaQz42vE6v6cg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6AtE0A4aEeaQz42vE6v6cg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6Atr4A4aEeaQz42vE6v6cg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_6Atr4Q4aEeaQz42vE6v6cg" name="followupappstatus" type="_hidNQA4aEeaQz42vE6v6cg" association="_6AsdwA4aEeaQz42vE6v6cg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_6AuS8A4aEeaQz42vE6v6cg" name="registeredcitizen" type="_LZD_IA4YEeaQz42vE6v6cg" association="_6AsdwA4aEeaQz42vE6v6cg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_EEMjAA4bEeaQz42vE6v6cg" memberEnd="_EEOYMA4bEeaQz42vE6v6cg _EEOYMQ4bEeaQz42vE6v6cg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EENxIA4bEeaQz42vE6v6cg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_EENxIQ4bEeaQz42vE6v6cg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_EEOYMA4bEeaQz42vE6v6cg" name="analyze submittedapplication" type="_GDIm0A4ZEeaQz42vE6v6cg" association="_EEMjAA4bEeaQz42vE6v6cg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_EEOYMQ4bEeaQz42vE6v6cg" name="citizensregistry" type="_J5u6YA4YEeaQz42vE6v6cg" association="_EEMjAA4bEeaQz42vE6v6cg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_UYFGkA4uEeaH1Kc938AtgQ" memberEnd="_UYG7wA4uEeaH1Kc938AtgQ _UYHi0A4uEeaH1Kc938AtgQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_UYGUsA4uEeaH1Kc938AtgQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_UYGUsQ4uEeaH1Kc938AtgQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_UYG7wA4uEeaH1Kc938AtgQ" name="updatefile" type="_Hc1YIA4uEeaH1Kc938AtgQ" association="_UYFGkA4uEeaH1Kc938AtgQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_UYHi0A4uEeaH1Kc938AtgQ" name="citizensregistry" type="_J5u6YA4YEeaQz42vE6v6cg" association="_UYFGkA4uEeaH1Kc938AtgQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_0qxkcA83EeaIysTrWdlZVQ" name="submit" memberEnd="_0rG7oA83EeaIysTrWdlZVQ _0rHisA83EeaIysTrWdlZVQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0rFtgA83EeaIysTrWdlZVQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0rFtgQ83EeaIysTrWdlZVQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_0rHisA83EeaIysTrWdlZVQ" name="registeredcitizen" type="_p-FZEA8HEeaIysTrWdlZVQ" association="_0qxkcA83EeaIysTrWdlZVQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_0rG7oA83EeaIysTrWdlZVQ" name="electronicapplicationform" type="_kcr18A8bEeaIysTrWdlZVQ" association="_0qxkcA83EeaIysTrWdlZVQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VNL6UBA2Eea3PNBoWBWttg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VNNvgBA2Eea3PNBoWBWttg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_7zEc0A83EeaIysTrWdlZVQ" name="issue" memberEnd="_7zFq8Q83EeaIysTrWdlZVQ _7zGSAA83EeaIysTrWdlZVQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7zFD4A83EeaIysTrWdlZVQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7zFq8A83EeaIysTrWdlZVQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_7zGSAA83EeaIysTrWdlZVQ" name="issuer" type="_sQTTUA8HEeaIysTrWdlZVQ" association="_7zEc0A83EeaIysTrWdlZVQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_7zFq8Q83EeaIysTrWdlZVQ" name="birthcertificate" type="_br_CEA8rEeaIysTrWdlZVQ" association="_7zEc0A83EeaIysTrWdlZVQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uQyk4BA6Eea3PNBoWBWttg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uQ1oMBA6Eea3PNBoWBWttg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Hw-ZQA84EeaIysTrWdlZVQ" name="analyze" memberEnd="_Hw_nYA84EeaIysTrWdlZVQ _HxAOcA84EeaIysTrWdlZVQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Hw_AUA84EeaIysTrWdlZVQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Hw_AUQ84EeaIysTrWdlZVQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_HxAOcA84EeaIysTrWdlZVQ" name="analyzer" type="_sQTTUA8HEeaIysTrWdlZVQ" association="_Hw-ZQA84EeaIysTrWdlZVQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_Hw_nYA84EeaIysTrWdlZVQ" name="electronicapplicationform" type="_kcr18A8bEeaIysTrWdlZVQ" association="_Hw-ZQA84EeaIysTrWdlZVQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CscJsBA7Eea3PNBoWBWttg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CsfNABA7Eea3PNBoWBWttg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_mjICYA85EeaIysTrWdlZVQ" memberEnd="_mjLFsA85EeaIysTrWdlZVQ _mjLswA85EeaIysTrWdlZVQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mjJ3kA85EeaIysTrWdlZVQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mjKeoA85EeaIysTrWdlZVQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_mjLswA85EeaIysTrWdlZVQ" name="birthappform" type="_adU2kA8rEeaIysTrWdlZVQ" association="_mjICYA85EeaIysTrWdlZVQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_mjLFsA85EeaIysTrWdlZVQ" name="birthinformation" type="_zsJPcA8rEeaIysTrWdlZVQ" association="_mjICYA85EeaIysTrWdlZVQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_6OTXoA-pEeab9otWcMq9YQ" name="MunicibilityOfAthenSystem">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_YNP3oA-qEeab9otWcMq9YQ" annotatedElement="_0IgeEA-pEeab9otWcMq9YQ">
+        <body>Registered Citizen</body>
+      </ownedComment>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_jJaDMA-qEeab9otWcMq9YQ" annotatedElement="_i0CFkA-pEeab9otWcMq9YQ">
+        <body>Municipality  of Athens web server</body>
+      </ownedComment>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_qR8zMA-qEeab9otWcMq9YQ" annotatedElement="_2MWlIA-pEeab9otWcMq9YQ">
+        <body>Citizens Registry </body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_A_Fu8A-qEeab9otWcMq9YQ" name="link1" memberEnd="_A_L1kA-qEeab9otWcMq9YQ _A_NDsA-qEeab9otWcMq9YQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_A_JZUA-qEeab9otWcMq9YQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_A_KAYA-qEeab9otWcMq9YQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_A_NDsA-qEeab9otWcMq9YQ" name="webuser1" type="_0IgeEA-pEeab9otWcMq9YQ" association="_A_Fu8A-qEeab9otWcMq9YQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_Bz3a0A-qEeab9otWcMq9YQ" name="link2" memberEnd="_Bz5QAQ-qEeab9otWcMq9YQ _Bz53EA-qEeab9otWcMq9YQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Bz4o8A-qEeab9otWcMq9YQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Bz5QAA-qEeab9otWcMq9YQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_Bz53EA-qEeab9otWcMq9YQ" name="webserver" type="_i0CFkA-pEeab9otWcMq9YQ" association="_Bz3a0A-qEeab9otWcMq9YQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Node" xmi:id="_i0CFkA-pEeab9otWcMq9YQ" name="WebServer">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_Bz5QAQ-qEeab9otWcMq9YQ" name="webuser2" type="_2MWlIA-pEeab9otWcMq9YQ" association="_Bz3a0A-qEeab9otWcMq9YQ"/>
+        <deployment xmi:type="uml:Deployment" xmi:id="_D1spABXnEeaQ9O13j28wEA" client="_i0CFkA-pEeab9otWcMq9YQ" supplier="_Z582wA-6Eea61MVUiTU6ug" deployedArtifact="_Z582wA-6Eea61MVUiTU6ug"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Node" xmi:id="_2MWlIA-pEeab9otWcMq9YQ" name="WebUser2">
+        <deployment xmi:type="uml:Deployment" xmi:id="_Cl5OABXnEeaQ9O13j28wEA" client="_2MWlIA-pEeab9otWcMq9YQ" supplier="_NBBLkA-xEea61MVUiTU6ug" deployedArtifact="_NBBLkA-xEea61MVUiTU6ug"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Node" xmi:id="_0IgeEA-pEeab9otWcMq9YQ" name="WebUser1">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_A_L1kA-qEeab9otWcMq9YQ" name="webserver" type="_i0CFkA-pEeab9otWcMq9YQ" association="_A_Fu8A-qEeab9otWcMq9YQ"/>
+        <deployment xmi:type="uml:Deployment" xmi:id="_FgXbEBXnEeaQ9O13j28wEA" client="_0IgeEA-pEeab9otWcMq9YQ" supplier="_GVAmkA-xEea61MVUiTU6ug" deployedArtifact="_GVAmkA-xEea61MVUiTU6ug"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_GVAmkA-xEea61MVUiTU6ug" name="BirthAppInformation" fileName=""/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_NBBLkA-xEea61MVUiTU6ug" name="BirthAppInformation"/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_Z582wA-6Eea61MVUiTU6ug" name="Database" fileName=""/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_7vvOgBXmEeaQ9O13j28wEA" client="_GVAmkA-xEea61MVUiTU6ug" supplier="_Z582wA-6Eea61MVUiTU6ug"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_-_knkBXmEeaQ9O13j28wEA" client="_NBBLkA-xEea61MVUiTU6ug" supplier="_Z582wA-6Eea61MVUiTU6ug"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_MUwl4A_aEea61MVUiTU6ug" memberEnd="_MUx0AQ_aEea61MVUiTU6ug _MUybEA_aEea61MVUiTU6ug">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MUxM8A_aEea61MVUiTU6ug" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_MUx0AA_aEea61MVUiTU6ug" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_MUybEA_aEea61MVUiTU6ug" name="role" type="_v1Qn0A8HEeaIysTrWdlZVQ" association="_MUwl4A_aEea61MVUiTU6ug">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dbxKIA_aEea61MVUiTU6ug"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dbzmYA_aEea61MVUiTU6ug" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_MUx0AQ_aEea61MVUiTU6ug" name="person" type="_8Q_3EA_IEea61MVUiTU6ug" association="_MUwl4A_aEea61MVUiTU6ug"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_ddeAYBA0Eea3PNBoWBWttg" memberEnd="_ddmjQBA0Eea3PNBoWBWttg _ddmjQRA0Eea3PNBoWBWttg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ddiR0BA0Eea3PNBoWBWttg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ddi44BA0Eea3PNBoWBWttg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_ddmjQRA0Eea3PNBoWBWttg" name="attachment" type="_KwyloA_CEea61MVUiTU6ug" aggregation="shared" association="_ddeAYBA0Eea3PNBoWBWttg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jVMBsBA0Eea3PNBoWBWttg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jVQ6MBA0Eea3PNBoWBWttg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_ddmjQBA0Eea3PNBoWBWttg" name="electronicapplicationform" type="_kcr18A8bEeaIysTrWdlZVQ" association="_ddeAYBA0Eea3PNBoWBWttg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_aFXksBBLEea3PNBoWBWttg" name="Activity1"/>
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="_genlwBBLEea3PNBoWBWttg" name="IssuingBirthCertificate">
+      <region xmi:type="uml:Region" xmi:id="_g-jqEBBLEea3PNBoWBWttg" name="Region1">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_XXWF8BBQEea3PNBoWBWttg" annotatedElement="_g-jqEBBLEea3PNBoWBWttg">
+          <body>{permission=modificationAllowed}</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_fFWTcBBQEea3PNBoWBWttg" annotatedElement="_z52PYBBLEea3PNBoWBWttg">
+          <body>{permission=produceDataAllowed}</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_lGn5YBBQEea3PNBoWBWttg" annotatedElement="_uHEYcBBLEea3PNBoWBWttg">
+          <body>{permission=modificationAllowed}</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_E94l4BBREea3PNBoWBWttg" annotatedElement="_nZ1EYBBLEea3PNBoWBWttg">
+          <body>{permission=readAllowed}</body>
+        </ownedComment>
+        <transition xmi:type="uml:Transition" xmi:id="_6U7ccBBLEea3PNBoWBWttg" source="_4rojYBBLEea3PNBoWBWttg" target="_nEGE8BBLEea3PNBoWBWttg"/>
+        <transition xmi:type="uml:Transition" xmi:id="_ANd9IBBMEea3PNBoWBWttg" guard="_QNGCkBBMEea3PNBoWBWttg" source="_nEGE8BBLEea3PNBoWBWttg" target="_nZ1EYBBLEea3PNBoWBWttg">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_QNGCkBBMEea3PNBoWBWttg" name="analyzeAppForm">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_QNGCkRBMEea3PNBoWBWttg" name="readAllowed">
+              <language>Natural language</language>
+              <body>readAllowed</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:Interaction" xmi:id="_6ecIUBBMEea3PNBoWBWttg" name="getApp()" specification="_XnSl8A8dEeaIysTrWdlZVQ"/>
+          <trigger xmi:type="uml:Trigger" xmi:id="_GuL4IBBMEea3PNBoWBWttg" name="analyzeAppForm" event="_GkzSoBBMEea3PNBoWBWttg"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_M_6fcBBNEea3PNBoWBWttg" source="_nZ1EYBBLEea3PNBoWBWttg" target="_nEGE8BBLEea3PNBoWBWttg">
+          <effect xmi:type="uml:Interaction" xmi:id="_a_c8cBBNEea3PNBoWBWttg" name="close()"/>
+          <trigger xmi:type="uml:Trigger" xmi:id="_eUoIgBBNEea3PNBoWBWttg" name="cancel" event="_eMuwwBBNEea3PNBoWBWttg"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_DRKswBBOEea3PNBoWBWttg" source="_nZ1EYBBLEea3PNBoWBWttg" target="_AGI7MBBOEea3PNBoWBWttg">
+          <trigger xmi:type="uml:Trigger" xmi:id="_46_RMBBPEea3PNBoWBWttg" name="updateStatus" event="_3yVnEBBPEea3PNBoWBWttg"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_FcfU0BBOEea3PNBoWBWttg" guard="_0jwVwBBQEea3PNBoWBWttg" source="_AGI7MBBOEea3PNBoWBWttg" target="_uHEYcBBLEea3PNBoWBWttg">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_0jwVwBBQEea3PNBoWBWttg" name="AppRejected">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_0jwVwRBQEea3PNBoWBWttg" name="AppRejected">
+              <language>Natural language</language>
+              <body>modificationAllowed</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:Interaction" xmi:id="_55ENkBBQEea3PNBoWBWttg" name="updateAppStatus()" specification="_6rIYoA8cEeaIysTrWdlZVQ"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_O5mvgBBOEea3PNBoWBWttg" guard="_OrRtsBBQEea3PNBoWBWttg" source="_AGI7MBBOEea3PNBoWBWttg" target="_nZ1EYBBLEea3PNBoWBWttg">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_OrRtsBBQEea3PNBoWBWttg" name="else">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_OrRtsRBQEea3PNBoWBWttg" name="else">
+              <language>Natural language</language>
+              <body>readAllowed</body>
+            </specification>
+          </ownedRule>
+          <trigger xmi:type="uml:Trigger" xmi:id="_HeJYoBBQEea3PNBoWBWttg" name="else" event="_HWq3oBBQEea3PNBoWBWttg"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_UfKp0BBOEea3PNBoWBWttg" guard="_fLaxIBBOEea3PNBoWBWttg" source="_AGI7MBBOEea3PNBoWBWttg" target="_w17ycBBLEea3PNBoWBWttg">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_fLaxIBBOEea3PNBoWBWttg" name="AppApproved">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_fLaxIRBOEea3PNBoWBWttg" name="AppApproved">
+              <language>Natural language</language>
+              <body>modificationAllowed</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:Interaction" xmi:id="_jGwlUBBOEea3PNBoWBWttg" name="updateAppStatus()" isActive="true" specification="_6rIYoA8cEeaIysTrWdlZVQ"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_xCs7wBBOEea3PNBoWBWttg" guard="__QWGMBBOEea3PNBoWBWttg" source="_w17ycBBLEea3PNBoWBWttg" target="_z52PYBBLEea3PNBoWBWttg">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="__QWGMBBOEea3PNBoWBWttg" name="issueBirthCertificate">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="__QWGMRBOEea3PNBoWBWttg" name="issueBirthCertificate">
+              <language>Natural language</language>
+              <body>produceDataAllowed</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:Interaction" xmi:id="_CYgxABBPEea3PNBoWBWttg" name="issueBirthCertificate()"/>
+          <trigger xmi:type="uml:Trigger" xmi:id="_0QY_wBBOEea3PNBoWBWttg" name="issueBirthCertificate" event="_3yhCsBBOEea3PNBoWBWttg"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_d3o_oBBPEea3PNBoWBWttg" source="_uHEYcBBLEea3PNBoWBWttg" target="_ZshDABBPEea3PNBoWBWttg">
+          <effect xmi:type="uml:Interaction" xmi:id="_iOjVgBBPEea3PNBoWBWttg" name="saveAndClose()"/>
+        </transition>
+        <transition xmi:type="uml:Transition" xmi:id="_lqiUMBBPEea3PNBoWBWttg" source="_z52PYBBLEea3PNBoWBWttg" target="_ZshDABBPEea3PNBoWBWttg">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_eSGuABOEEea90JM-0wmLvA" name="share">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_eSGuAROEEea90JM-0wmLvA" name="shareBirthCertificate">
+              <language>Natural language</language>
+              <body>sharedAllowed</body>
+            </specification>
+          </ownedRule>
+          <effect xmi:type="uml:Interaction" xmi:id="_uql_cBBPEea3PNBoWBWttg" name="saveAndClose()"/>
+        </transition>
+        <subvertex xmi:type="uml:State" xmi:id="_nEGE8BBLEea3PNBoWBWttg" name="AppSubmitted"/>
+        <subvertex xmi:type="uml:State" xmi:id="_nZ1EYBBLEea3PNBoWBWttg" name="AppAnalyzed"/>
+        <subvertex xmi:type="uml:State" xmi:id="_uHEYcBBLEea3PNBoWBWttg" name="AppRejected"/>
+        <subvertex xmi:type="uml:State" xmi:id="_w17ycBBLEea3PNBoWBWttg" name="AppApproved"/>
+        <subvertex xmi:type="uml:State" xmi:id="_z52PYBBLEea3PNBoWBWttg" name="BirthCertificateIssued"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_4rojYBBLEea3PNBoWBWttg" name=""/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_AGI7MBBOEea3PNBoWBWttg" kind="choice"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_ZshDABBPEea3PNBoWBWttg"/>
+      </region>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_GkzSoBBMEea3PNBoWBWttg" name="analyzeAppForm"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_eMuwwBBNEea3PNBoWBWttg" name="cancel"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_3yhCsBBOEea3PNBoWBWttg" name="issueBirthCertificate"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_3yVnEBBPEea3PNBoWBWttg" name="updateStatus"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_HWq3oBBQEea3PNBoWBWttg" name="else"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_NYHSEBOEEea90JM-0wmLvA" name="sendBirthCertificate()"/>
+    <packagedElement xmi:type="uml:Activity" xmi:id="__F8b8BVPEeaE9sE_Hdgp7w" name="BirthCertificateIssuance" group="_H1PHUBVQEeaE9sE_Hdgp7w _LrUBABVQEeaE9sE_Hdgp7w">
+      <group xmi:type="uml:ActivityPartition" xmi:id="_H1PHUBVQEeaE9sE_Hdgp7w" name="RegisteredCitizen"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_LrUBABVQEeaE9sE_Hdgp7w" name="CitizensRegistry"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_8Q_3EA_IEea61MVUiTU6ug" name="Person" isAbstract="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9SaoEA_ZEea61MVUiTU6ug" name="userName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_96TugA_ZEea61MVUiTU6ug" name="password">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_WrLnIA_aEea61MVUiTU6ug" name="login">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_RB1jkA_bEea61MVUiTU6ug" name="userName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_UMLYoA_bEea61MVUiTU6ug" name="password">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_X4E4EA_aEea61MVUiTU6ug" name="register">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_25oPIA_bEea61MVUiTU6ug" name="userName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_4950AA_bEea61MVUiTU6ug" name="password">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_77UAUA_bEea61MVUiTU6ug" name="email">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_v1Qn0A8HEeaIysTrWdlZVQ" name="Role">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Ad_7sA8IEeaIysTrWdlZVQ" name="roleID">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_p-FZEA8HEeaIysTrWdlZVQ" name="RegisteredCitizen">
+      <generalization xmi:type="uml:Generalization" xmi:id="_12nGQA8HEeaIysTrWdlZVQ" general="_v1Qn0A8HEeaIysTrWdlZVQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_HFs1IA_cEea61MVUiTU6ug" name="registrationDate">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Hbh7MA_cEea61MVUiTU6ug" name="citizenRegisterNumber">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_HwHrIA_cEea61MVUiTU6ug" name="phoneNumber">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_IFtgoA_cEea61MVUiTU6ug" name="address">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_UnBIUA8cEeaIysTrWdlZVQ" name="submitApp">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_wEEIEBA0Eea3PNBoWBWttg" name="applicationID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_zaPZsBA0Eea3PNBoWBWttg" name="submissionDate">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_7VUZ4BA0Eea3PNBoWBWttg" name="status" type="_bV7ZoA_HEea61MVUiTU6ug"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_ndOj4A8dEeaIysTrWdlZVQ" name="getBirthCertificate">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_dz5G4BA1Eea3PNBoWBWttg" name="certificateID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_f7d3YBA1Eea3PNBoWBWttg" name="issuanceDate">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_x7s4cA8eEeaIysTrWdlZVQ" name="updateProfile">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_5tE3cBA5Eea3PNBoWBWttg" name="address">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_7an-YBA5Eea3PNBoWBWttg" name="phoneNumber">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_sQTTUA8HEeaIysTrWdlZVQ" name="CitizensRegistry">
+      <generalization xmi:type="uml:Generalization" xmi:id="_2z0VYA8HEeaIysTrWdlZVQ" general="_v1Qn0A8HEeaIysTrWdlZVQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_qwV5wBA2Eea3PNBoWBWttg" name="idNumber">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_sLNVQBA2Eea3PNBoWBWttg" name="employmentDate">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_XnSl8A8dEeaIysTrWdlZVQ" name="getApp" method="_6ecIUBBMEea3PNBoWBWttg">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Hc_EYBA3Eea3PNBoWBWttg" name="applicationID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_aTpegA8dEeaIysTrWdlZVQ" name="issueBirthCertificate">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_NU4E0BA3Eea3PNBoWBWttg" name="certificateID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_PCVsMBA3Eea3PNBoWBWttg" name="issuanceDate">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_dBqj8A8dEeaIysTrWdlZVQ" name="saveAndClose"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_bV7ZoA_HEea61MVUiTU6ug" name="ApplicationStatus">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_fTSnEA_HEea61MVUiTU6ug" name="SUBMITTED"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_grg-QA_HEea61MVUiTU6ug" name="APPROVED"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_h00vsA_HEea61MVUiTU6ug" name="REJECTED"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_O00pgA_HEea61MVUiTU6ug" name="Gender">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_VsJGoA_HEea61MVUiTU6ug" name="MALE"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_W4lroA_HEea61MVUiTU6ug" name="FEMALE"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_TOJ5IA82EeaIysTrWdlZVQ" name="DateAndPlaceOfBirth">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Wk7nsA82EeaIysTrWdlZVQ" name="date">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ZtWKIA82EeaIysTrWdlZVQ" name="country">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_bcgaoA82EeaIysTrWdlZVQ" name="city">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_d1edIA82EeaIysTrWdlZVQ" name="municipality">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_adU2kA8rEeaIysTrWdlZVQ" name="BirthApplicationForm">
+      <generalization xmi:type="uml:Generalization" xmi:id="_wr-MkA83EeaIysTrWdlZVQ" general="_kcr18A8bEeaIysTrWdlZVQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zsJPcA8rEeaIysTrWdlZVQ" name="BirthInformation">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_1NM2ABA9Eea3PNBoWBWttg" name="fatherName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_1kxogBA9Eea3PNBoWBWttg" name="motherName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_15-ccBA9Eea3PNBoWBWttg" name="height">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_2RZd8BA9Eea3PNBoWBWttg" name="signatureOfIP">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_3ZMzgBA9Eea3PNBoWBWttg" name="idIssuanceDate">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_AAVocBA-Eea3PNBoWBWttg" name="idIssuanceAuthority">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_B-_GcBA-Eea3PNBoWBWttg" name="idNumber">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_3yT1gA_ZEea61MVUiTU6ug" name="firstName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8FNOEA_ZEea61MVUiTU6ug" name="familyName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_JPGxoA_cEea61MVUiTU6ug" name="dateAndPlaceOfBirth" type="_TOJ5IA82EeaIysTrWdlZVQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_IcmWoA_cEea61MVUiTU6ug" name="gender" type="_O00pgA_HEea61MVUiTU6ug"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_IyfuIA_cEea61MVUiTU6ug" name="nationality">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_KwyloA_CEea61MVUiTU6ug" name="Attachment" isAbstract="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_SjCTIBA0Eea3PNBoWBWttg" name="attachmentID">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZFObMA8rEeaIysTrWdlZVQ" name="IDCopy">
+      <generalization xmi:type="uml:Generalization" xmi:id="_ODskkBA1Eea3PNBoWBWttg" general="_KwyloA_CEea61MVUiTU6ug"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kcr18A8bEeaIysTrWdlZVQ" name="ElectronicApplicationForm">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_vUugYBA1Eea3PNBoWBWttg" name="applicationID">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_vlW9YBA1Eea3PNBoWBWttg" name="submissionDate">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_v0FV4BA1Eea3PNBoWBWttg" name="status" type="_bV7ZoA_HEea61MVUiTU6ug"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_O1J3YA8cEeaIysTrWdlZVQ" name="getAppStatus">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_BU4TIBA2Eea3PNBoWBWttg" name="applicationID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_WgMQcA8cEeaIysTrWdlZVQ" name="attacheDocument">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_S7Kp0BA1Eea3PNBoWBWttg" name="attachmentID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_6rIYoA8cEeaIysTrWdlZVQ" name="updateAppStatus" method="_jGwlUBBOEea3PNBoWBWttg _55ENkBBQEea3PNBoWBWttg">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="__bM_QBA2Eea3PNBoWBWttg" name="applicationID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_DMyagBA3Eea3PNBoWBWttg" name="status" type="_bV7ZoA_HEea61MVUiTU6ug"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_br_CEA8rEeaIysTrWdlZVQ" name="BirthCertificate">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_XawoUBA6Eea3PNBoWBWttg" name="certificateID">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Xyo80BA6Eea3PNBoWBWttg" name="issuanceDate">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_7_RgUBXbEeaQ9O13j28wEA" memberEnd="_7_W_4BXbEeaQ9O13j28wEA _7_Xm8BXbEeaQ9O13j28wEA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7_UjoBXbEeaQ9O13j28wEA" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7_VKsBXbEeaQ9O13j28wEA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_7_Xm8BXbEeaQ9O13j28wEA" name="birthcertificate" type="_br_CEA8rEeaIysTrWdlZVQ" association="_7_RgUBXbEeaQ9O13j28wEA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CLRIgBXcEeaQ9O13j28wEA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CLUL0BXcEeaQ9O13j28wEA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_7_W_4BXbEeaQ9O13j28wEA" name="birthapplicationform" type="_adU2kA8rEeaIysTrWdlZVQ" association="_7_RgUBXbEeaQ9O13j28wEA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_pTjnEBXmEeaQ9O13j28wEA" client="_sQTTUA8HEeaIysTrWdlZVQ" supplier="_kcr18A8bEeaIysTrWdlZVQ"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_bAQEEBXnEeaQ9O13j28wEA" client="_kcr18A8bEeaIysTrWdlZVQ" supplier="_p-FZEA8HEeaIysTrWdlZVQ"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_4tkBgBXnEeaQ9O13j28wEA" client="_br_CEA8rEeaIysTrWdlZVQ" supplier="_sQTTUA8HEeaIysTrWdlZVQ"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_64cu4A5LEeaH1Kc938AtgQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_64gZQA5LEeaH1Kc938AtgQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/UML2.profile.uml#_On7PcOmLEeC7Uf0JLQQJUg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/UML2.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_64kDoA5LEeaH1Kc938AtgQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_64kDoQ5LEeaH1Kc938AtgQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_dFvYUB9LEeGV0ppwGGevHA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_64kqsA5LEeaH1Kc938AtgQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_64kqsQ5LEeaH1Kc938AtgQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml#_7YaQQAa-EeWwtKn7NAM2pQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml#_DhVN4LhMEeSB1MgAxQm9IQ"/>
+    </profileApplication>
+  </uml:Model>
+  <RABAC:abacRequire xmi:id="_WYAykA8hEeaIysTrWdlZVQ" right="modify" filters="status='SUBMITTED'" base_Operation="_6rIYoA8cEeaIysTrWdlZVQ"/>
+  <RABAC:abacRequire xmi:id="_XjV9QA8hEeaIysTrWdlZVQ" right="read" base_Operation="_XnSl8A8dEeaIysTrWdlZVQ"/>
+  <RABAC:abacRequire xmi:id="_YltZMA8hEeaIysTrWdlZVQ" right="produce" filters="status='APPROVED'" base_Operation="_aTpegA8dEeaIysTrWdlZVQ"/>
+  <RABAC:abacRequire xmi:id="_ZgSLEA8hEeaIysTrWdlZVQ" right="modify" base_Operation="_x7s4cA8eEeaIysTrWdlZVQ"/>
+  <UMLsec:critical xmi:id="_kYJg8A8rEeaIysTrWdlZVQ" base_Class="_br_CEA8rEeaIysTrWdlZVQ" base_Classifier="_br_CEA8rEeaIysTrWdlZVQ">
+    <secrecy>issueBirthCertificate(certificateID:EInt, issuanceDate:EDate)</secrecy>
+    <integrity>issueBirthCertificate(certificateID:EInt, issuanceDate:EDate)</integrity>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_lzh50A8rEeaIysTrWdlZVQ" base_Class="_kcr18A8bEeaIysTrWdlZVQ" base_Classifier="_kcr18A8bEeaIysTrWdlZVQ">
+    <secrecy>getAppStatus(applicationID:EInt)</secrecy>
+    <secrecy>submitApp(applicationID:EInt, submissionDate:EDate, status:ApplicationStatus)</secrecy>
+    <integrity>getAppStatus(applicationID:EInt)</integrity>
+    <integrity>submitApp(applicationID:EInt, submissionDate:EDate, status:ApplicationStatus)</integrity>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_ViDmsA88EeaIysTrWdlZVQ" base_Class="_sQTTUA8HEeaIysTrWdlZVQ" base_Classifier="_sQTTUA8HEeaIysTrWdlZVQ">
+    <secrecy>getAppStatus(applicationID:EInt)</secrecy>
+    <secrecy>issueBirthCertificate(certificateID:EInt, issuanceDate:EDate)</secrecy>
+    <integrity>getAppStatus(applicationID:EInt)</integrity>
+    <integrity>issueBirthCertificate(certificateID:EInt, issuanceDate:EDate)</integrity>
+  </UMLsec:critical>
+  <UMLsec:encrypted xmi:id="_DgjM0A-vEeab9otWcMq9YQ" base_CommunicationPath="_A_Fu8A-qEeab9otWcMq9YQ"/>
+  <UMLsec:encrypted xmi:id="_Ed3wsA-vEeab9otWcMq9YQ" base_CommunicationPath="_Bz3a0A-qEeab9otWcMq9YQ"/>
+  <RABAC:abac xmi:id="_HEl2IA_BEea61MVUiTU6ug" roles="{(citizen,registeredCitizen),(employee,citizensRegistry),(employee,asistance)}" rights="{(citizensRegistry,read),(citizensRegistry,modify),(citizensRegistry,produce),(citizensRegistry,transmit),(registeredCitizen,read),(registeredCitizen,transmit)}" rh="(CitizensRegisry,Assistance)" base_Class="_v1Qn0A8HEeaIysTrWdlZVQ"/>
+  <RABAC:abacAttribute xmi:id="_iLnt0A_BEea61MVUiTU6ug" name="status" base_Operation="_O1J3YA8cEeaIysTrWdlZVQ"/>
+  <UMLsec:authorizedstatus xmi:id="_8mq1kBBLEea3PNBoWBWttg" permission="readAllowed" base_State="_nZ1EYBBLEea3PNBoWBWttg"/>
+  <UMLsec:authorizedstatus xmi:id="_qNNgEBBNEea3PNBoWBWttg" permission="modificationAllowed" base_State="_uHEYcBBLEea3PNBoWBWttg"/>
+  <UMLsec:authorizedstatus xmi:id="_xYRYkBBNEea3PNBoWBWttg" permission="modificationAllowed" base_State="_w17ycBBLEea3PNBoWBWttg"/>
+  <UMLsec:authorizedstatus xmi:id="_8WpxsBBNEea3PNBoWBWttg" permission="produceDataAllowed" base_State="_z52PYBBLEea3PNBoWBWttg"/>
+  <UMLsec:critical xmi:id="_VMU0MBHiEeak8ItxqU6mww" base_Class="_p-FZEA8HEeaIysTrWdlZVQ" base_Classifier="_p-FZEA8HEeaIysTrWdlZVQ">
+    <secrecy>submitApp(applicationID:EInt, submissionDate:EDate, status:ApplicationStatus)</secrecy>
+    <integrity>submitApp(applicationID:EInt, submissionDate:EDate, status:ApplicationStatus)</integrity>
+  </UMLsec:critical>
+  <UMLsec:fairexchange xmi:id="_5Xk10BVNEeaE9sE_Hdgp7w" base_Package="_SX6noA4YEeaQz42vE6v6cg"/>
+  <UMLsec:securedependency xmi:id="_sRR5QBXiEeaQ9O13j28wEA" base_Package="_Ei2nMA4WEeaQz42vE6v6cg"/>
+  <UMLsec:securelinks xmi:id="_NT1CQBXlEeaQ9O13j28wEA" adversary="default" base_Package="_6OTXoA-pEeab9otWcMq9YQ"/>
+  <UMLsec:call xmi:id="_qs9qABXmEeaQ9O13j28wEA" base_Dependency="_pTjnEBXmEeaQ9O13j28wEA"/>
+  <UMLsec:secrecy xmi:id="_qtU2YBXmEeaQ9O13j28wEA" base_Dependency="_pTjnEBXmEeaQ9O13j28wEA"/>
+  <UMLsec:call xmi:id="_9xlxgBXmEeaQ9O13j28wEA" base_Dependency="_7vvOgBXmEeaQ9O13j28wEA"/>
+  <UMLsec:integrity xmi:id="_9x8W0BXmEeaQ9O13j28wEA" base_Dependency="_7vvOgBXmEeaQ9O13j28wEA"/>
+  <UMLsec:secrecy xmi:id="_9yRG8BXmEeaQ9O13j28wEA" base_Dependency="_7vvOgBXmEeaQ9O13j28wEA"/>
+  <UMLsec:call xmi:id="_AZuRYBXnEeaQ9O13j28wEA" base_Dependency="_-_knkBXmEeaQ9O13j28wEA"/>
+  <UMLsec:integrity xmi:id="_AaFdwBXnEeaQ9O13j28wEA" base_Dependency="_-_knkBXmEeaQ9O13j28wEA"/>
+  <UMLsec:secrecy xmi:id="_AadRMBXnEeaQ9O13j28wEA" base_Dependency="_-_knkBXmEeaQ9O13j28wEA"/>
+  <UMLsec:call xmi:id="_cByZkBXnEeaQ9O13j28wEA" base_Dependency="_bAQEEBXnEeaQ9O13j28wEA"/>
+  <UMLsec:secrecy xmi:id="_cCK0EBXnEeaQ9O13j28wEA" base_Dependency="_bAQEEBXnEeaQ9O13j28wEA"/>
+  <UMLsec:integrity xmi:id="_c8pfUBXnEeaQ9O13j28wEA" base_Dependency="_pTjnEBXmEeaQ9O13j28wEA"/>
+  <UMLsec:integrity xmi:id="_m_5s8BXnEeaQ9O13j28wEA" base_Dependency="_bAQEEBXnEeaQ9O13j28wEA"/>
+  <UMLsec:call xmi:id="_6_MF4BXnEeaQ9O13j28wEA" base_Dependency="_4tkBgBXnEeaQ9O13j28wEA"/>
+  <UMLsec:secrecy xmi:id="_6_irMBXnEeaQ9O13j28wEA" base_Dependency="_4tkBgBXnEeaQ9O13j28wEA"/>
+  <UMLsec:integrity xmi:id="_7AEPoBXnEeaQ9O13j28wEA" base_Dependency="_4tkBgBXnEeaQ9O13j28wEA"/>
+</xmi:XMI>

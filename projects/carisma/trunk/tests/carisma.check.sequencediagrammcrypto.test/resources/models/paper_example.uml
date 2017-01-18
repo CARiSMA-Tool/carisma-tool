@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_6uaHMOeUEeS4PLEVv-ocGA" name="model">
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_6xfQYOeUEeS4PLEVv-ocGA" name="Interaction1">
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_AWkpkOeVEeS4PLEVv-ocGA" name="A" coveredBy="_De7hoOeVEeS4PLEVv-ocGA _De_zEOeVEeS4PLEVv-ocGA _De994OeVEeS4PLEVv-ocGA _GWYP4OeVEeS4PLEVv-ocGA _TguKQOeVEeS4PLEVv-ocGA _VkhOAOeVEeS4PLEVv-ocGA"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_BRpxwOeVEeS4PLEVv-ocGA" name="B" coveredBy="_CnIW8OeVEeS4PLEVv-ocGA _CnKMIeeVEeS4PLEVv-ocGA _CnKMIOeVEeS4PLEVv-ocGA _GWasIOeVEeS4PLEVv-ocGA _Tgs8IOeVEeS4PLEVv-ocGA _VkicIOeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_De7hoOeVEeS4PLEVv-ocGA" name="ActionExecSpec0Start" covered="_AWkpkOeVEeS4PLEVv-ocGA" execution="_De994OeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_De994OeVEeS4PLEVv-ocGA" name="ActionExecSpec0" covered="_AWkpkOeVEeS4PLEVv-ocGA" finish="_De_zEOeVEeS4PLEVv-ocGA" start="_De7hoOeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_CnIW8OeVEeS4PLEVv-ocGA" name="ActionExecSpecStart" covered="_BRpxwOeVEeS4PLEVv-ocGA" execution="_CnKMIOeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_CnKMIOeVEeS4PLEVv-ocGA" name="ActionExecSpec" covered="_BRpxwOeVEeS4PLEVv-ocGA" finish="_CnKMIeeVEeS4PLEVv-ocGA" start="_CnIW8OeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_GWYP4OeVEeS4PLEVv-ocGA" name="MessageSend" covered="_AWkpkOeVEeS4PLEVv-ocGA" message="_GWT-cOeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_GWasIOeVEeS4PLEVv-ocGA" name="MessageRecv" covered="_BRpxwOeVEeS4PLEVv-ocGA" message="_GWT-cOeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Tgs8IOeVEeS4PLEVv-ocGA" name="Message2Send" covered="_BRpxwOeVEeS4PLEVv-ocGA" message="_TgrG8OeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_TguKQOeVEeS4PLEVv-ocGA" name="Message2Recv" covered="_AWkpkOeVEeS4PLEVv-ocGA" message="_TgrG8OeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_VkhOAOeVEeS4PLEVv-ocGA" name="Message3Send" covered="_AWkpkOeVEeS4PLEVv-ocGA" message="_Vkf_4OeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_VkicIOeVEeS4PLEVv-ocGA" name="Message3Recv" covered="_BRpxwOeVEeS4PLEVv-ocGA" message="_Vkf_4OeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_De_zEOeVEeS4PLEVv-ocGA" name="ActionExecSpec0Finish" covered="_AWkpkOeVEeS4PLEVv-ocGA" execution="_De994OeVEeS4PLEVv-ocGA"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_CnKMIeeVEeS4PLEVv-ocGA" name="ActionExecSpecFinish" covered="_BRpxwOeVEeS4PLEVv-ocGA" execution="_CnKMIOeVEeS4PLEVv-ocGA"/>
+    <message xmi:type="uml:Message" xmi:id="_GWT-cOeVEeS4PLEVv-ocGA" name="Message1" messageSort="asynchCall" receiveEvent="_GWasIOeVEeS4PLEVv-ocGA" sendEvent="_GWYP4OeVEeS4PLEVv-ocGA">
+      <argument xmi:type="uml:LiteralString" xmi:id="_fWr2MOeWEeS4PLEVv-ocGA" name="a"/>
+      <argument xmi:type="uml:LiteralString" xmi:id="_hIRIkOeWEeS4PLEVv-ocGA" name="a"/>
+    </message>
+    <message xmi:type="uml:Message" xmi:id="_TgrG8OeVEeS4PLEVv-ocGA" name="Message2" messageSort="asynchCall" receiveEvent="_TguKQOeVEeS4PLEVv-ocGA" sendEvent="_Tgs8IOeVEeS4PLEVv-ocGA">
+      <argument xmi:type="uml:LiteralString" xmi:id="_rFdKcOeWEeS4PLEVv-ocGA" name="b"/>
+      <argument xmi:type="uml:LiteralString" xmi:id="_rmVC4OeWEeS4PLEVv-ocGA" name="c"/>
+    </message>
+    <message xmi:type="uml:Message" xmi:id="_Vkf_4OeVEeS4PLEVv-ocGA" name="Message3" messageSort="asynchCall" receiveEvent="_VkicIOeVEeS4PLEVv-ocGA" sendEvent="_VkhOAOeVEeS4PLEVv-ocGA">
+      <argument xmi:type="uml:LiteralString" xmi:id="_uWAVMOeWEeS4PLEVv-ocGA" name="d"/>
+    </message>
+  </packagedElement>
+</uml:Model>
