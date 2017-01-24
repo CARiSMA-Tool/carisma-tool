@@ -132,7 +132,7 @@ public class Analyzer implements AnalysisHost {
 			this.currentCheckResult.setName("ERROR");
 			this.result.addCheckResult(this.currentCheckResult);
 			addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
-					"Model file not found. Please check your analysis configuration."));
+					"An error occured while loading the model: "+e.getMessage()));
 			this.result.setStatus(AnalysisResultStatus.FAIL);
 			this.uiConnector.updateView();
 			Logger.log(LogLevel.ERROR, "Unable to load model '" + file.getAbsolutePath() + "'", e);
