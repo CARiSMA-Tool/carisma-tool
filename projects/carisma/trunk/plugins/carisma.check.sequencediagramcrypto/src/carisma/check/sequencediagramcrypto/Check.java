@@ -73,9 +73,9 @@ public class Check implements CarismaCheckWithID {
 	public static final String CHECK_ID = "carisma.check.sequencediagramcrypto";
 	public static final String CHECK_NAME = "Sequence Diagram Crypto Analyzer";
 	
-	private static String	PARAMETER_INITIAL_KNOWLEDGE			= "carisma.check.sequencediagramcrypto.initialknowledge";
-	private static String	PARAMETER_REPORT_MITMA_KNOWLEDGE	= "carisma.check.sequencediagramcrypto.reportkbase";
-	private static String	PARAMETER_KNOWLEDGE_TO_CHECK		= "carisma.check.sequencediagramcrypto.possibletoknow";
+	public static String	PARAMETER_INITIAL_KNOWLEDGE			= "carisma.check.sequencediagramcrypto.initialknowledge";
+	public static String	PARAMETER_REPORT_MITMA_KNOWLEDGE	= "carisma.check.sequencediagramcrypto.reportkbase";
+	public static String	PARAMETER_KNOWLEDGE_TO_CHECK		= "carisma.check.sequencediagramcrypto.possibletoknow";
 	
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
