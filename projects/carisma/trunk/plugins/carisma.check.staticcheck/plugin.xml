@@ -26,14 +26,6 @@
             implementingClass="carisma.check.staticcheck.securedependency.SecureDependenciesCheck"
             publisher="Sven Wenzel"
             targetModelType="UML2">
-         <parameter
-               defaultValue="true"
-               description="Set false if you want to allow the check to also check for dependencies using UMLsec::call"
-               id="carisma.check.staticcheck.securedependency.onlycheckusages"
-               name="Only Check Usages"
-               optional="false"
-               type="boolean">
-         </parameter>
       </check>
       <check
             description="Performs a nodownflow Check"
