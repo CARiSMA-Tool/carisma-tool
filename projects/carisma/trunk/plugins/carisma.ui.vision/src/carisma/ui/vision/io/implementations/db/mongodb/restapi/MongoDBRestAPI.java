@@ -88,7 +88,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 				JSON json = ContentFactory.convertToJson(content);
 				body = json.asString();
 			} else {
-				body =  "\""+JSON.escapeJson(contentAsString)+"\"";
+				body =  "{\""+((MongoDBDestination) config).getDocumentID()+"\":\""+JSON.escapeJson(contentAsString)+"\"}";
 			}
 			
 			
