@@ -16,12 +16,19 @@
             target="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml">
       </mapping>
    </extension>
-   <extension
-         point="org.eclipse.emf.ecore.generated_package">
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated UMLsec -->
       <package
-            class="UMLsec.UMLsecPackage"
-            genModel="profile/UMLsec.genmodel"
-            uri="http://www.umlsec.de/profiles/UMLsec/emf">
-      </package>
+            uri="http://www.umlsec.de/profiles/UMLsec"
+            class="carisma.profile.umlsec.UmlsecPackage"
+            genModel="profile/UMLsec.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"
+            uri="http://www.umlsec.de/profiles/UMLsec">
+      </profile>
+   </extension>
+
 </plugin>

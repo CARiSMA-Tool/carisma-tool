@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
-    modelDirectory="/carisma.profile.umlsec/src" modelPluginID="carisma.profile.umlsec"
+    modelDirectory="/carisma.profile.umlsec/gen-src" modelPluginID="carisma.profile.umlsec"
     modelName="UMLsec" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="7.0" copyrightFields="false"
     usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
@@ -31,32 +31,8 @@
     <details key="VALIDATION_DELEGATES" value="IGNORE"/>
   </genAnnotations>
   <foreignModel>UMLsec.profile.uml</foreignModel>
-  <genPackages xsi:type="genmodel:GenPackage" prefix="UMLsec" disposableProviderFactory="true"
-      ecorePackage="UMLsec.ecore#/">
-    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="UMLsec.ecore#//ContentKind">
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//ContentKind/Unspecified"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//ContentKind/Empty"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//ContentKind/Simple"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//ContentKind/Mixed"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//ContentKind/ElementOnly"/>
-    </genEnums>
-    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="UMLsec.ecore#//VisibilityKind">
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//VisibilityKind/Unspecified"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//VisibilityKind/None"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//VisibilityKind/ReadOnly"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//VisibilityKind/ReadWrite"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//VisibilityKind/ReadOnlyUnsettable"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//VisibilityKind/ReadWriteUnsettable"/>
-    </genEnums>
-    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="UMLsec.ecore#//FeatureKind">
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//FeatureKind/Unspecified"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//FeatureKind/Simple"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//FeatureKind/Attribute"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//FeatureKind/AttributeWildcard"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//FeatureKind/Element"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//FeatureKind/ElementWildcard"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="UMLsec.ecore#//FeatureKind/Group"/>
-    </genEnums>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="Umlsec" basePackage="carisma.profile"
+      disposableProviderFactory="true" ecorePackage="UMLsec.ecore#/">
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//protectedaction">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//protectedaction/permission"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -243,104 +219,6 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//privacy/base_Dependency"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//privacy/base_Connector"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//EPackage">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EPackage/base_Package"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EPackage/packageName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EPackage/nsPrefix"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EPackage/nsURI"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EPackage/basePackage"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EPackage/prefix"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EPackage/annotations"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="UMLsec.ecore#//ENamedElement">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//ENamedElement/xmlName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//ENamedElement/annotations"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="UMLsec.ecore#//EClassifier">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EClassifier/instanceClassName"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//EClass">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EClass/base_Class"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EClass/base_Interface"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EClass/base_DataType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EClass/base_Association"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EClass/className"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EClass/xmlContentKind"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//EDataType">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EDataType/base_PrimitiveType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EDataType/dataTypeName"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//EEnum">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EEnum/base_Enumeration"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EEnum/enumName"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//EEnumLiteral">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EEnumLiteral/base_EnumerationLiteral"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EEnumLiteral/enumLiteralName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EEnumLiteral/literal"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//EOperation">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EOperation/base_Operation"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EOperation/operationName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EOperation/annotations"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EOperation/visibility"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//EParameter">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EParameter/base_Parameter"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EParameter/parameterName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EParameter/annotations"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="UMLsec.ecore#//EStructuralFeature">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EStructuralFeature/isTransient"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EStructuralFeature/isVolatile"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EStructuralFeature/isUnsettable"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EStructuralFeature/xmlNamespace"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EStructuralFeature/xmlFeatureKind"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EStructuralFeature/visibility"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//EAttribute">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EAttribute/base_Property"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EAttribute/attributeName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EAttribute/isID"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//EReference">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EReference/base_Property"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EReference/referenceName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsec.ecore#//EReference/isResolveProxies"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EReference/keys"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//ETypeParameter">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//ETypeParameter/base_TemplateParameter"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//ETypeParameter/bounds"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsec.ecore#//EGenericType">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EGenericType/base_Class"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EGenericType/base_Interface"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EGenericType/base_DataType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EGenericType/upperBound"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsec.ecore#//EGenericType/lowerBound"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
