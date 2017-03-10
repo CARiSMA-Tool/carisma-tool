@@ -14,4 +14,5 @@ Bundle-ClassPath: .,
  lib/log4j.jar
 Export-Package: carisma.modeltype.owl2.model.owl,
  carisma.modeltype.owl2.model.owl.impl,
- carisma.modeltype.owl2.model.owl.util
+ carisma.modeltype.owl2.model.owl.util,
+ org.semanticweb.owlapi.model
