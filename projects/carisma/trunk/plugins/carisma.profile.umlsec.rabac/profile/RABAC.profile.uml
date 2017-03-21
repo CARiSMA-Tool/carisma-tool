@@ -1,72 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
-  <uml:Profile xmi:id="_DhVN4LhMEeSB1MgAxQm9IQ" name="RABAC" URI="http://www.umlsec.de/profiles/UMLsec/RABAC" metaclassReference="_5eZhAL_5EeS3teXZA1xMkQ _rMwLMMN5EeSUufr90wd36A _vUg8QMPxEeSZfpZ4TyhHaA _tNkgsA2bEeed0u8vh6theQ">
+  <uml:Profile xmi:id="_DhVN4LhMEeSB1MgAxQm9IQ" name="RABAC" URI="http://www.umlsec.de/profiles/UMLsec/RABAC" metaclassReference="_5eZhAL_5EeS3teXZA1xMkQ _rMwLMMN5EeSUufr90wd36A _vUg8QMPxEeSZfpZ4TyhHaA">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xn_tcLhOEeSB1MgAxQm9IQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <contents xmi:type="ecore:EPackage" xmi:id="_RI-GIA2eEeed0u8vh6theQ" name="rabac" nsURI="http://www.umlsec.de/profiles/UMLsec/RABAC" nsPrefix="RABAC">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RI-GIQ2eEeed0u8vh6theQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RI-GIg2eEeed0u8vh6theQ" key="originalName" value="RABAC"/>
-        </eAnnotations>
-        <eClassifiers xmi:type="ecore:EClass" xmi:id="_RI-GIw2eEeed0u8vh6theQ" name="rabac">
-          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RI-GJA2eEeed0u8vh6theQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ULw3wLqlEeSq3fsbiir88A"/>
-          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RI-GJQ2eEeed0u8vh6theQ" name="roles" ordered="false" unique="false" lowerBound="1">
-            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
-          </eStructuralFeatures>
-          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RI-GJw2eEeed0u8vh6theQ" name="rights" ordered="false" unique="false" lowerBound="1">
-            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
-          </eStructuralFeatures>
-          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RI-GKQ2eEeed0u8vh6theQ" name="rh" ordered="false" unique="false">
-            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
-          </eStructuralFeatures>
-          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RI-GKw2eEeed0u8vh6theQ" name="ssd" ordered="false" unique="false">
-            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
-          </eStructuralFeatures>
-          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_RI-GLQ2eEeed0u8vh6theQ" name="base_Class" ordered="false" lowerBound="1">
-            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-          </eStructuralFeatures>
-          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RI-GLw2eEeed0u8vh6theQ" name="dsd" ordered="false" unique="false">
-            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
-          </eStructuralFeatures>
-          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RI-GMQ2eEeed0u8vh6theQ" name="attributeFilters" ordered="false" unique="false">
-            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
-          </eStructuralFeatures>
-          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_RI-GMw2eEeed0u8vh6theQ" name="base_Package" ordered="false" lowerBound="1">
-            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
-          </eStructuralFeatures>
-        </eClassifiers>
-        <eClassifiers xmi:type="ecore:EClass" xmi:id="_RI-GNQ2eEeed0u8vh6theQ" name="rabacAttribute">
-          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RI-GNg2eEeed0u8vh6theQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0luNEMN2EeSGe-1tuZGDoA"/>
-          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RI-GNw2eEeed0u8vh6theQ" source="http://www.eclipse.org/emf/2002/GenModel">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RI-GOA2eEeed0u8vh6theQ" key="documentation" value="name = null implies name = base_Operation.name"/>
-          </eAnnotations>
-          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RI-GOQ2eEeed0u8vh6theQ" name="name" ordered="false" unique="false">
-            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
-          </eStructuralFeatures>
-          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_RI-GOw2eEeed0u8vh6theQ" name="base_Operation" ordered="false" lowerBound="1">
-            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
-          </eStructuralFeatures>
-        </eClassifiers>
-        <eClassifiers xmi:type="ecore:EClass" xmi:id="_RI-GPQ2eEeed0u8vh6theQ" name="rabacRequire">
-          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RI-GPg2eEeed0u8vh6theQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_fr1-QMPxEeSZfpZ4TyhHaA"/>
-          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RI-GPw2eEeed0u8vh6theQ" source="duplicates">
-            <contents xmi:type="ecore:EReference" xmi:id="_RI-GQA2eEeed0u8vh6theQ" name="base_Operation" ordered="false" lowerBound="1">
-              <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RI-GQQ2eEeed0u8vh6theQ" source="redefines" references="_RI-GSQ2eEeed0u8vh6theQ"/>
-              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
-            </contents>
-          </eAnnotations>
-          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RI-GQw2eEeed0u8vh6theQ" name="right" ordered="false" unique="false" lowerBound="1">
-            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
-          </eStructuralFeatures>
-          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RI-GRQ2eEeed0u8vh6theQ" name="filters" ordered="false" unique="false">
-            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
-          </eStructuralFeatures>
-          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_RI-GRw2eEeed0u8vh6theQ" name="base_Transition" ordered="false" lowerBound="1">
-            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Transition"/>
-          </eStructuralFeatures>
-          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_RI-GSQ2eEeed0u8vh6theQ" name="base_Operation" ordered="false" lowerBound="1">
-            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
-          </eStructuralFeatures>
-        </eClassifiers>
-      </contents>
       <contents xmi:type="ecore:EPackage" xmi:id="_oxuTkE9FEea83O7zKqfOGw" name="RABAC" nsURI="http://www.umlsec.de/profiles/UMLsec/RABAC" nsPrefix="RABAC">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_oxwv009FEea83O7zKqfOGw" source="PapyrusVersion">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_oxwv1E9FEea83O7zKqfOGw" key="Version" value="0.0.2"/>
@@ -197,10 +132,7 @@
     <elementImport xmi:type="uml:ElementImport" xmi:id="_vUg8QMPxEeSZfpZ4TyhHaA" alias="Transition">
       <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Transition"/>
     </elementImport>
-    <elementImport xmi:type="uml:ElementImport" xmi:id="_tNkgsA2bEeed0u8vh6theQ" alias="Package">
-      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
-    </elementImport>
-    <packagedElement xmi:type="uml:Stereotype" xmi:id="_ULw3wLqlEeSq3fsbiir88A" name="rabac">
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_ULw3wLqlEeSq3fsbiir88A" name="abac">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_Z5pnoLqlEeSq3fsbiir88A" name="roles" isUnique="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
@@ -230,11 +162,8 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yVTRAAa-EeWwtKn7NAM2pQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yVT4EAa-EeWwtKn7NAM2pQ" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_t9WX0A2bEeed0u8vh6theQ" name="base_Package" association="_t9VwwA2bEeed0u8vh6theQ">
-        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
-      </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Stereotype" xmi:id="_0luNEMN2EeSGe-1tuZGDoA" name="rabacAttribute">
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_0luNEMN2EeSGe-1tuZGDoA" name="abacAttribute">
       <ownedRule xmi:type="uml:Constraint" xmi:id="_GaD78MN4EeSUufr90wd36A" constrainedElement="_0luNEMN2EeSGe-1tuZGDoA">
         <specification xmi:type="uml:OpaqueExpression" xmi:id="_LsMj8MN4EeSUufr90wd36A">
           <language>OCL</language>
@@ -250,7 +179,7 @@
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Stereotype" xmi:id="_fr1-QMPxEeSZfpZ4TyhHaA" name="rabacRequire">
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_fr1-QMPxEeSZfpZ4TyhHaA" name="abacRequire">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_iJ2RwMPxEeSZfpZ4TyhHaA" name="right" isUnique="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ObDhAMPzEeSrMKzw4wodZQ" value="1"/>
@@ -267,27 +196,18 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="_T4AoMMQPEeSdjd9COzlPLA" name="base_Operation" association="_T4BPQMQPEeSdjd9COzlPLA">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_jzRwgA2bEeed0u8vh6theQ" name="base_Operation" association="_jzQiYA2bEeed0u8vh6theQ">
-        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
-      </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Extension" xmi:id="_S0y3sMQPEeSdjd9COzlPLA" name="E_rabacRequire_Transition1" memberEnd="_S0y3scQPEeSdjd9COzlPLA _S0yQoMQPEeSdjd9COzlPLA">
-      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_S0y3scQPEeSdjd9COzlPLA" name="extension_rabacRequire" type="_fr1-QMPxEeSZfpZ4TyhHaA" aggregation="composite" association="_S0y3sMQPEeSdjd9COzlPLA"/>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_S0y3sMQPEeSdjd9COzlPLA" name="E_abacRequire_Transition1" memberEnd="_S0y3scQPEeSdjd9COzlPLA _S0yQoMQPEeSdjd9COzlPLA">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_S0y3scQPEeSdjd9COzlPLA" name="extension_abacRequire" type="_fr1-QMPxEeSZfpZ4TyhHaA" aggregation="composite" association="_S0y3sMQPEeSdjd9COzlPLA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_T4BPQMQPEeSdjd9COzlPLA" name="E_abacRequire_Operation1" memberEnd="_T4BPQcQPEeSdjd9COzlPLA _T4AoMMQPEeSdjd9COzlPLA">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_T4BPQcQPEeSdjd9COzlPLA" name="extension_abacRequire" type="_fr1-QMPxEeSZfpZ4TyhHaA" aggregation="composite" association="_T4BPQMQPEeSdjd9COzlPLA"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Extension" xmi:id="_VosisMQPEeSdjd9COzlPLA" name="E_rabacAttribute_Operation1" memberEnd="_VosiscQPEeSdjd9COzlPLA _Vor7oMQPEeSdjd9COzlPLA">
-      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_VosiscQPEeSdjd9COzlPLA" name="extension_rabacAttribute" type="_0luNEMN2EeSGe-1tuZGDoA" aggregation="composite" association="_VosisMQPEeSdjd9COzlPLA"/>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_VosisMQPEeSdjd9COzlPLA" name="E_abacAttribute_Operation1" memberEnd="_VosiscQPEeSdjd9COzlPLA _Vor7oMQPEeSdjd9COzlPLA">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_VosiscQPEeSdjd9COzlPLA" name="extension_abacAttribute" type="_0luNEMN2EeSGe-1tuZGDoA" aggregation="composite" association="_VosisMQPEeSdjd9COzlPLA"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Extension" xmi:id="_WGJ6wMQPEeSdjd9COzlPLA" name="E_rabac_Class1" memberEnd="_WGJ6wcQPEeSdjd9COzlPLA _WGJTsMQPEeSdjd9COzlPLA">
-      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WGJ6wcQPEeSdjd9COzlPLA" name="extension_rabac" type="_ULw3wLqlEeSq3fsbiir88A" aggregation="composite" association="_WGJ6wMQPEeSdjd9COzlPLA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Extension" xmi:id="_jzQiYA2bEeed0u8vh6theQ" name="E_rabacRequire_Operation1" memberEnd="_jzRJcA2bEeed0u8vh6theQ _jzRwgA2bEeed0u8vh6theQ">
-      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_jzRJcA2bEeed0u8vh6theQ" name="extension_rabacRequire" type="_fr1-QMPxEeSZfpZ4TyhHaA" aggregation="composite" association="_jzQiYA2bEeed0u8vh6theQ"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Extension" xmi:id="_t9VwwA2bEeed0u8vh6theQ" name="E_rabac_Package1" memberEnd="_t9VwwQ2bEeed0u8vh6theQ _t9WX0A2bEeed0u8vh6theQ">
-      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_t9VwwQ2bEeed0u8vh6theQ" name="extension_rabac" type="_ULw3wLqlEeSq3fsbiir88A" aggregation="composite" association="_t9VwwA2bEeed0u8vh6theQ"/>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_WGJ6wMQPEeSdjd9COzlPLA" name="E_abac_Class1" memberEnd="_WGJ6wcQPEeSdjd9COzlPLA _WGJTsMQPEeSdjd9COzlPLA">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WGJ6wcQPEeSdjd9COzlPLA" name="extension_abac" type="_ULw3wLqlEeSq3fsbiir88A" aggregation="composite" association="_WGJ6wMQPEeSdjd9COzlPLA"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_A_xaUPdrEeasqLxsbpvgbA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_A_8ZcPdrEeasqLxsbpvgbA" source="http://www.eclipse.org/uml2/2.0.0/UML">
