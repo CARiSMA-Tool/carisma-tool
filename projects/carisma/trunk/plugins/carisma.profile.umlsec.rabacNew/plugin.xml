@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            iconpath="icons/Logo16x16.png"
+            name="UMLsec.RABAC"
+            path="pathmap://UMLsec/RABAC.uml">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://UMLsec/RABAC.uml"
+            target="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml">
+      </mapping>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RABAC.profile -->
+      <package
+            uri="http://www.umlsec.de/profiles/UMLsec/RABAC"
+            class="carisma.profile.umlsec.rabac.RabacPackage"
+            genModel="profile/RABAC.profile.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml#_DhVN4LhMEeSB1MgAxQm9IQ"
+            uri="http://www.umlsec.de/profiles/UMLsec/RABAC">
+      </profile>
+   </extension>
+
+</plugin>
