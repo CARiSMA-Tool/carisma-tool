@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="platform:/plugin/carisma.profile.umlsec.enc/profile/UMLsecenc.profile.uml#_O-KAkHoREeSmdNy69sdLYA"
+            uri="http://www.umlsec.de/profiles/UMLsec/enc">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.dynamic_package">
+      <profile
+            location="platform:/plugin/carisma.profile.umlsec.enc/profile/UMLsecenc.profile.uml#_O-KAkHoREeSmdNy69sdLYA"
+            uri="http://www.umlsec.de/profiles/UMLsec/enc">
+      </profile>
+   </extension> 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated UMLsecenc.profile -->
+      <package
+            uri="http://www.umlsec.de/profiles/UMLsec/enc"
+            class="UMLsecenc.UMLsecencPackage"
+            genModel="profile/UMLsecenc.profile.genmodel"/>
+   </extension>
+
+</plugin>
