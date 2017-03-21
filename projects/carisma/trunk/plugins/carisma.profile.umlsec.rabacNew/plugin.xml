@@ -9,13 +9,23 @@
             genModel="profile/RABAC.profile.genmodel"/>
    </extension>
    <extension
-         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+         point="org.eclipse.uml2.uml.generated_package">
       <profile
+            location="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml#_DhVN4LhMEeSB1MgAxQm9IQ"
+            uri="http://www.umlsec.de/profiles/UMLsec/RABAC">
+      </profile>
+   </extension>
+
+
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile 
             iconpath="icons/Logo16x16.png"
             name="UMLsec.RABAC"
             path="pathmap://UMLsec/RABAC.uml">
       </profile>
    </extension>
+   
    <extension
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
@@ -23,13 +33,4 @@
             target="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml">
       </mapping>
    </extension>
-
-   <extension
-         point="org.eclipse.uml2.uml.generated_package">
-      <profile 
-            location="platform:/plugin/carisma.profile.umlsec.rabac/profile/RABAC.profile.uml#_DhVN4LhMEeSB1MgAxQm9IQ"
-            uri="http://www.umlsec.de/profiles/UMLsec/RABAC">
-      </profile>
-   </extension>
-
 </plugin>
