@@ -4,9 +4,9 @@ package carisma.profile.umlsec.rabac.impl;
 
 import carisma.profile.umlsec.rabac.RabacFactory;
 import carisma.profile.umlsec.rabac.RabacPackage;
-import carisma.profile.umlsec.rabac.abac;
-import carisma.profile.umlsec.rabac.abacAttribute;
-import carisma.profile.umlsec.rabac.abacRequire;
+import carisma.profile.umlsec.rabac.rabac;
+import carisma.profile.umlsec.rabac.rabacAttribute;
+import carisma.profile.umlsec.rabac.rabacRequire;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -31,21 +31,21 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass abacEClass = null;
+	private EClass rabacEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass abacAttributeEClass = null;
+	private EClass rabacAttributeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass abacRequireEClass = null;
+	private EClass rabacRequireEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -116,8 +116,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getabac() {
-		return abacEClass;
+	public EClass getrabac() {
+		return rabacEClass;
 	}
 
 	/**
@@ -125,8 +125,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getabac_Roles() {
-		return (EAttribute)abacEClass.getEStructuralFeatures().get(0);
+	public EAttribute getrabac_Roles() {
+		return (EAttribute)rabacEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -134,8 +134,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getabac_Rights() {
-		return (EAttribute)abacEClass.getEStructuralFeatures().get(1);
+	public EAttribute getrabac_Rights() {
+		return (EAttribute)rabacEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -143,8 +143,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getabac_Rh() {
-		return (EAttribute)abacEClass.getEStructuralFeatures().get(2);
+	public EAttribute getrabac_Rh() {
+		return (EAttribute)rabacEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -152,8 +152,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getabac_Ssd() {
-		return (EAttribute)abacEClass.getEStructuralFeatures().get(3);
+	public EAttribute getrabac_Ssd() {
+		return (EAttribute)rabacEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -161,8 +161,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getabac_Base_Class() {
-		return (EReference)abacEClass.getEStructuralFeatures().get(4);
+	public EReference getrabac_Base_Class() {
+		return (EReference)rabacEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -170,8 +170,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getabac_Dsd() {
-		return (EAttribute)abacEClass.getEStructuralFeatures().get(5);
+	public EAttribute getrabac_Dsd() {
+		return (EAttribute)rabacEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -179,8 +179,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getabac_AttributeFilters() {
-		return (EAttribute)abacEClass.getEStructuralFeatures().get(6);
+	public EAttribute getrabac_AttributeFilters() {
+		return (EAttribute)rabacEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -188,8 +188,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getabacAttribute() {
-		return abacAttributeEClass;
+	public EReference getrabac_Base_Package() {
+		return (EReference)rabacEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -197,8 +197,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getabacAttribute_Name() {
-		return (EAttribute)abacAttributeEClass.getEStructuralFeatures().get(0);
+	public EClass getrabacAttribute() {
+		return rabacAttributeEClass;
 	}
 
 	/**
@@ -206,8 +206,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getabacAttribute_Base_Operation() {
-		return (EReference)abacAttributeEClass.getEStructuralFeatures().get(1);
+	public EAttribute getrabacAttribute_Name() {
+		return (EAttribute)rabacAttributeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -215,8 +215,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getabacRequire() {
-		return abacRequireEClass;
+	public EReference getrabacAttribute_Base_Operation() {
+		return (EReference)rabacAttributeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -224,8 +224,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getabacRequire_Right() {
-		return (EAttribute)abacRequireEClass.getEStructuralFeatures().get(0);
+	public EClass getrabacRequire() {
+		return rabacRequireEClass;
 	}
 
 	/**
@@ -233,8 +233,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getabacRequire_Filters() {
-		return (EAttribute)abacRequireEClass.getEStructuralFeatures().get(1);
+	public EAttribute getrabacRequire_Right() {
+		return (EAttribute)rabacRequireEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -242,8 +242,8 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getabacRequire_Base_Transition() {
-		return (EReference)abacRequireEClass.getEStructuralFeatures().get(2);
+	public EAttribute getrabacRequire_Filters() {
+		return (EAttribute)rabacRequireEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -251,8 +251,17 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getabacRequire_Base_Operation() {
-		return (EReference)abacRequireEClass.getEStructuralFeatures().get(3);
+	public EReference getrabacRequire_Base_Transition() {
+		return (EReference)rabacRequireEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getrabacRequire_Base_Operation() {
+		return (EReference)rabacRequireEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -283,24 +292,25 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		abacEClass = createEClass(ABAC);
-		createEAttribute(abacEClass, ABAC__ROLES);
-		createEAttribute(abacEClass, ABAC__RIGHTS);
-		createEAttribute(abacEClass, ABAC__RH);
-		createEAttribute(abacEClass, ABAC__SSD);
-		createEReference(abacEClass, ABAC__BASE_CLASS);
-		createEAttribute(abacEClass, ABAC__DSD);
-		createEAttribute(abacEClass, ABAC__ATTRIBUTE_FILTERS);
+		rabacEClass = createEClass(RABAC);
+		createEAttribute(rabacEClass, RABAC__ROLES);
+		createEAttribute(rabacEClass, RABAC__RIGHTS);
+		createEAttribute(rabacEClass, RABAC__RH);
+		createEAttribute(rabacEClass, RABAC__SSD);
+		createEReference(rabacEClass, RABAC__BASE_CLASS);
+		createEAttribute(rabacEClass, RABAC__DSD);
+		createEAttribute(rabacEClass, RABAC__ATTRIBUTE_FILTERS);
+		createEReference(rabacEClass, RABAC__BASE_PACKAGE);
 
-		abacAttributeEClass = createEClass(ABAC_ATTRIBUTE);
-		createEAttribute(abacAttributeEClass, ABAC_ATTRIBUTE__NAME);
-		createEReference(abacAttributeEClass, ABAC_ATTRIBUTE__BASE_OPERATION);
+		rabacAttributeEClass = createEClass(RABAC_ATTRIBUTE);
+		createEAttribute(rabacAttributeEClass, RABAC_ATTRIBUTE__NAME);
+		createEReference(rabacAttributeEClass, RABAC_ATTRIBUTE__BASE_OPERATION);
 
-		abacRequireEClass = createEClass(ABAC_REQUIRE);
-		createEAttribute(abacRequireEClass, ABAC_REQUIRE__RIGHT);
-		createEAttribute(abacRequireEClass, ABAC_REQUIRE__FILTERS);
-		createEReference(abacRequireEClass, ABAC_REQUIRE__BASE_TRANSITION);
-		createEReference(abacRequireEClass, ABAC_REQUIRE__BASE_OPERATION);
+		rabacRequireEClass = createEClass(RABAC_REQUIRE);
+		createEAttribute(rabacRequireEClass, RABAC_REQUIRE__RIGHT);
+		createEAttribute(rabacRequireEClass, RABAC_REQUIRE__FILTERS);
+		createEReference(rabacRequireEClass, RABAC_REQUIRE__BASE_TRANSITION);
+		createEReference(rabacRequireEClass, RABAC_REQUIRE__BASE_OPERATION);
 	}
 
 	/**
@@ -337,24 +347,25 @@ public class RabacPackageImpl extends EPackageImpl implements RabacPackage {
 		// Add supertypes to classes
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(abacEClass, abac.class, "abac", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getabac_Roles(), theTypesPackage.getString(), "roles", null, 1, 1, abac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getabac_Rights(), theTypesPackage.getString(), "rights", null, 1, 1, abac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getabac_Rh(), theTypesPackage.getString(), "rh", null, 0, 1, abac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getabac_Ssd(), theTypesPackage.getString(), "ssd", null, 0, 1, abac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getabac_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, abac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getabac_Dsd(), theTypesPackage.getString(), "dsd", null, 0, 1, abac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getabac_AttributeFilters(), theTypesPackage.getString(), "attributeFilters", null, 0, 1, abac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(rabacEClass, rabac.class, "rabac", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getrabac_Roles(), theTypesPackage.getString(), "roles", null, 1, 1, rabac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getrabac_Rights(), theTypesPackage.getString(), "rights", null, 1, 1, rabac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getrabac_Rh(), theTypesPackage.getString(), "rh", null, 0, 1, rabac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getrabac_Ssd(), theTypesPackage.getString(), "ssd", null, 0, 1, rabac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getrabac_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, rabac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getrabac_Dsd(), theTypesPackage.getString(), "dsd", null, 0, 1, rabac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getrabac_AttributeFilters(), theTypesPackage.getString(), "attributeFilters", null, 0, 1, rabac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getrabac_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 1, 1, rabac.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(abacAttributeEClass, abacAttribute.class, "abacAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getabacAttribute_Name(), theTypesPackage.getString(), "name", null, 0, 1, abacAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getabacAttribute_Base_Operation(), theUMLPackage.getOperation(), null, "base_Operation", null, 1, 1, abacAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(rabacAttributeEClass, rabacAttribute.class, "rabacAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getrabacAttribute_Name(), theTypesPackage.getString(), "name", null, 0, 1, rabacAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getrabacAttribute_Base_Operation(), theUMLPackage.getOperation(), null, "base_Operation", null, 1, 1, rabacAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(abacRequireEClass, abacRequire.class, "abacRequire", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getabacRequire_Right(), theTypesPackage.getString(), "right", null, 1, 1, abacRequire.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getabacRequire_Filters(), theTypesPackage.getString(), "filters", null, 0, 1, abacRequire.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getabacRequire_Base_Transition(), theUMLPackage.getTransition(), null, "base_Transition", null, 1, 1, abacRequire.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getabacRequire_Base_Operation(), theUMLPackage.getOperation(), null, "base_Operation", null, 1, 1, abacRequire.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(rabacRequireEClass, rabacRequire.class, "rabacRequire", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getrabacRequire_Right(), theTypesPackage.getString(), "right", null, 1, 1, rabacRequire.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getrabacRequire_Filters(), theTypesPackage.getString(), "filters", null, 0, 1, rabacRequire.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getrabacRequire_Base_Transition(), theUMLPackage.getTransition(), null, "base_Transition", null, 1, 1, rabacRequire.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getrabacRequire_Base_Operation(), theUMLPackage.getOperation(), null, "base_Operation", null, 1, 1, rabacRequire.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

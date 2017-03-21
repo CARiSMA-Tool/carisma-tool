@@ -68,16 +68,16 @@ public class RabacAdapterFactory extends AdapterFactoryImpl {
 	protected RabacSwitch<Adapter> modelSwitch =
 		new RabacSwitch<Adapter>() {
 			@Override
-			public Adapter caseabac(abac object) {
-				return createabacAdapter();
+			public Adapter caserabac(rabac object) {
+				return createrabacAdapter();
 			}
 			@Override
-			public Adapter caseabacAttribute(abacAttribute object) {
-				return createabacAttributeAdapter();
+			public Adapter caserabacAttribute(rabacAttribute object) {
+				return createrabacAttributeAdapter();
 			}
 			@Override
-			public Adapter caseabacRequire(abacRequire object) {
-				return createabacRequireAdapter();
+			public Adapter caserabacRequire(rabacRequire object) {
+				return createrabacRequireAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -100,44 +100,44 @@ public class RabacAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.rabac.abac <em>abac</em>}'.
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.rabac.rabac <em>rabac</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see carisma.profile.umlsec.rabac.abac
+	 * @see carisma.profile.umlsec.rabac.rabac
 	 * @generated
 	 */
-	public Adapter createabacAdapter() {
+	public Adapter createrabacAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.rabac.abacAttribute <em>abac Attribute</em>}'.
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.rabac.rabacAttribute <em>rabac Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see carisma.profile.umlsec.rabac.abacAttribute
+	 * @see carisma.profile.umlsec.rabac.rabacAttribute
 	 * @generated
 	 */
-	public Adapter createabacAttributeAdapter() {
+	public Adapter createrabacAttributeAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.rabac.abacRequire <em>abac Require</em>}'.
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.rabac.rabacRequire <em>rabac Require</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see carisma.profile.umlsec.rabac.abacRequire
+	 * @see carisma.profile.umlsec.rabac.rabacRequire
 	 * @generated
 	 */
-	public Adapter createabacRequireAdapter() {
+	public Adapter createrabacRequireAdapter() {
 		return null;
 	}
 
