@@ -58,14 +58,14 @@ public interface RabacPackage extends EPackage {
 	RabacPackage eINSTANCE = carisma.profile.umlsec.rabac.impl.RabacPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link carisma.profile.umlsec.rabac.impl.abacImpl <em>abac</em>}' class.
+	 * The meta object id for the '{@link carisma.profile.umlsec.rabac.impl.rabacImpl <em>rabac</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see carisma.profile.umlsec.rabac.impl.abacImpl
-	 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getabac()
+	 * @see carisma.profile.umlsec.rabac.impl.rabacImpl
+	 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getrabac()
 	 * @generated
 	 */
-	int ABAC = 0;
+	int RABAC = 0;
 
 	/**
 	 * The feature id for the '<em><b>Roles</b></em>' attribute.
@@ -74,7 +74,7 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC__ROLES = 0;
+	int RABAC__ROLES = 0;
 
 	/**
 	 * The feature id for the '<em><b>Rights</b></em>' attribute.
@@ -83,7 +83,7 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC__RIGHTS = 1;
+	int RABAC__RIGHTS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Rh</b></em>' attribute.
@@ -92,7 +92,7 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC__RH = 2;
+	int RABAC__RH = 2;
 
 	/**
 	 * The feature id for the '<em><b>Ssd</b></em>' attribute.
@@ -101,7 +101,7 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC__SSD = 3;
+	int RABAC__SSD = 3;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -110,7 +110,7 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC__BASE_CLASS = 4;
+	int RABAC__BASE_CLASS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Dsd</b></em>' attribute.
@@ -119,7 +119,7 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC__DSD = 5;
+	int RABAC__DSD = 5;
 
 	/**
 	 * The feature id for the '<em><b>Attribute Filters</b></em>' attribute.
@@ -128,35 +128,44 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC__ATTRIBUTE_FILTERS = 6;
+	int RABAC__ATTRIBUTE_FILTERS = 6;
 
 	/**
-	 * The number of structural features of the '<em>abac</em>' class.
+	 * The feature id for the '<em><b>Base Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_FEATURE_COUNT = 7;
+	int RABAC__BASE_PACKAGE = 7;
 
 	/**
-	 * The number of operations of the '<em>abac</em>' class.
+	 * The number of structural features of the '<em>rabac</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_OPERATION_COUNT = 0;
+	int RABAC_FEATURE_COUNT = 8;
 
 	/**
-	 * The meta object id for the '{@link carisma.profile.umlsec.rabac.impl.abacAttributeImpl <em>abac Attribute</em>}' class.
+	 * The number of operations of the '<em>rabac</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see carisma.profile.umlsec.rabac.impl.abacAttributeImpl
-	 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getabacAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	int RABAC_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.rabac.impl.rabacAttributeImpl <em>rabac Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.rabac.impl.rabacAttributeImpl
+	 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getrabacAttribute()
 	 * @generated
 	 */
-	int ABAC_ATTRIBUTE = 1;
+	int RABAC_ATTRIBUTE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -165,7 +174,7 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_ATTRIBUTE__NAME = 0;
+	int RABAC_ATTRIBUTE__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Operation</b></em>' reference.
@@ -174,35 +183,35 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_ATTRIBUTE__BASE_OPERATION = 1;
+	int RABAC_ATTRIBUTE__BASE_OPERATION = 1;
 
 	/**
-	 * The number of structural features of the '<em>abac Attribute</em>' class.
+	 * The number of structural features of the '<em>rabac Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_ATTRIBUTE_FEATURE_COUNT = 2;
+	int RABAC_ATTRIBUTE_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>abac Attribute</em>' class.
+	 * The number of operations of the '<em>rabac Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_ATTRIBUTE_OPERATION_COUNT = 0;
+	int RABAC_ATTRIBUTE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link carisma.profile.umlsec.rabac.impl.abacRequireImpl <em>abac Require</em>}' class.
+	 * The meta object id for the '{@link carisma.profile.umlsec.rabac.impl.rabacRequireImpl <em>rabac Require</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see carisma.profile.umlsec.rabac.impl.abacRequireImpl
-	 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getabacRequire()
+	 * @see carisma.profile.umlsec.rabac.impl.rabacRequireImpl
+	 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getrabacRequire()
 	 * @generated
 	 */
-	int ABAC_REQUIRE = 2;
+	int RABAC_REQUIRE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' attribute.
@@ -211,7 +220,7 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_REQUIRE__RIGHT = 0;
+	int RABAC_REQUIRE__RIGHT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Filters</b></em>' attribute.
@@ -220,7 +229,7 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_REQUIRE__FILTERS = 1;
+	int RABAC_REQUIRE__FILTERS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Base Transition</b></em>' reference.
@@ -229,7 +238,7 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_REQUIRE__BASE_TRANSITION = 2;
+	int RABAC_REQUIRE__BASE_TRANSITION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Base Operation</b></em>' reference.
@@ -238,199 +247,210 @@ public interface RabacPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_REQUIRE__BASE_OPERATION = 3;
+	int RABAC_REQUIRE__BASE_OPERATION = 3;
 
 	/**
-	 * The number of structural features of the '<em>abac Require</em>' class.
+	 * The number of structural features of the '<em>rabac Require</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_REQUIRE_FEATURE_COUNT = 4;
+	int RABAC_REQUIRE_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of operations of the '<em>abac Require</em>' class.
+	 * The number of operations of the '<em>rabac Require</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABAC_REQUIRE_OPERATION_COUNT = 0;
+	int RABAC_REQUIRE_OPERATION_COUNT = 0;
 
 
 	/**
-	 * Returns the meta object for class '{@link carisma.profile.umlsec.rabac.abac <em>abac</em>}'.
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.rabac.rabac <em>rabac</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>abac</em>'.
-	 * @see carisma.profile.umlsec.rabac.abac
+	 * @return the meta object for class '<em>rabac</em>'.
+	 * @see carisma.profile.umlsec.rabac.rabac
 	 * @generated
 	 */
-	EClass getabac();
+	EClass getrabac();
 
 	/**
-	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.abac#getRoles <em>Roles</em>}'.
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.rabac#getRoles <em>Roles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Roles</em>'.
-	 * @see carisma.profile.umlsec.rabac.abac#getRoles()
-	 * @see #getabac()
+	 * @see carisma.profile.umlsec.rabac.rabac#getRoles()
+	 * @see #getrabac()
 	 * @generated
 	 */
-	EAttribute getabac_Roles();
+	EAttribute getrabac_Roles();
 
 	/**
-	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.abac#getRights <em>Rights</em>}'.
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.rabac#getRights <em>Rights</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Rights</em>'.
-	 * @see carisma.profile.umlsec.rabac.abac#getRights()
-	 * @see #getabac()
+	 * @see carisma.profile.umlsec.rabac.rabac#getRights()
+	 * @see #getrabac()
 	 * @generated
 	 */
-	EAttribute getabac_Rights();
+	EAttribute getrabac_Rights();
 
 	/**
-	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.abac#getRh <em>Rh</em>}'.
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.rabac#getRh <em>Rh</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Rh</em>'.
-	 * @see carisma.profile.umlsec.rabac.abac#getRh()
-	 * @see #getabac()
+	 * @see carisma.profile.umlsec.rabac.rabac#getRh()
+	 * @see #getrabac()
 	 * @generated
 	 */
-	EAttribute getabac_Rh();
+	EAttribute getrabac_Rh();
 
 	/**
-	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.abac#getSsd <em>Ssd</em>}'.
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.rabac#getSsd <em>Ssd</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Ssd</em>'.
-	 * @see carisma.profile.umlsec.rabac.abac#getSsd()
-	 * @see #getabac()
+	 * @see carisma.profile.umlsec.rabac.rabac#getSsd()
+	 * @see #getrabac()
 	 * @generated
 	 */
-	EAttribute getabac_Ssd();
+	EAttribute getrabac_Ssd();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.rabac.abac#getBase_Class <em>Base Class</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.rabac.rabac#getBase_Class <em>Base Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Class</em>'.
-	 * @see carisma.profile.umlsec.rabac.abac#getBase_Class()
-	 * @see #getabac()
+	 * @see carisma.profile.umlsec.rabac.rabac#getBase_Class()
+	 * @see #getrabac()
 	 * @generated
 	 */
-	EReference getabac_Base_Class();
+	EReference getrabac_Base_Class();
 
 	/**
-	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.abac#getDsd <em>Dsd</em>}'.
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.rabac#getDsd <em>Dsd</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Dsd</em>'.
-	 * @see carisma.profile.umlsec.rabac.abac#getDsd()
-	 * @see #getabac()
+	 * @see carisma.profile.umlsec.rabac.rabac#getDsd()
+	 * @see #getrabac()
 	 * @generated
 	 */
-	EAttribute getabac_Dsd();
+	EAttribute getrabac_Dsd();
 
 	/**
-	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.abac#getAttributeFilters <em>Attribute Filters</em>}'.
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.rabac#getAttributeFilters <em>Attribute Filters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Attribute Filters</em>'.
-	 * @see carisma.profile.umlsec.rabac.abac#getAttributeFilters()
-	 * @see #getabac()
+	 * @see carisma.profile.umlsec.rabac.rabac#getAttributeFilters()
+	 * @see #getrabac()
 	 * @generated
 	 */
-	EAttribute getabac_AttributeFilters();
+	EAttribute getrabac_AttributeFilters();
 
 	/**
-	 * Returns the meta object for class '{@link carisma.profile.umlsec.rabac.abacAttribute <em>abac Attribute</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.rabac.rabac#getBase_Package <em>Base Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>abac Attribute</em>'.
-	 * @see carisma.profile.umlsec.rabac.abacAttribute
+	 * @return the meta object for the reference '<em>Base Package</em>'.
+	 * @see carisma.profile.umlsec.rabac.rabac#getBase_Package()
+	 * @see #getrabac()
 	 * @generated
 	 */
-	EClass getabacAttribute();
+	EReference getrabac_Base_Package();
 
 	/**
-	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.abacAttribute#getName <em>Name</em>}'.
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.rabac.rabacAttribute <em>rabac Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>rabac Attribute</em>'.
+	 * @see carisma.profile.umlsec.rabac.rabacAttribute
+	 * @generated
+	 */
+	EClass getrabacAttribute();
+
+	/**
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.rabacAttribute#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see carisma.profile.umlsec.rabac.abacAttribute#getName()
-	 * @see #getabacAttribute()
+	 * @see carisma.profile.umlsec.rabac.rabacAttribute#getName()
+	 * @see #getrabacAttribute()
 	 * @generated
 	 */
-	EAttribute getabacAttribute_Name();
+	EAttribute getrabacAttribute_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.rabac.abacAttribute#getBase_Operation <em>Base Operation</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.rabac.rabacAttribute#getBase_Operation <em>Base Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Operation</em>'.
-	 * @see carisma.profile.umlsec.rabac.abacAttribute#getBase_Operation()
-	 * @see #getabacAttribute()
+	 * @see carisma.profile.umlsec.rabac.rabacAttribute#getBase_Operation()
+	 * @see #getrabacAttribute()
 	 * @generated
 	 */
-	EReference getabacAttribute_Base_Operation();
+	EReference getrabacAttribute_Base_Operation();
 
 	/**
-	 * Returns the meta object for class '{@link carisma.profile.umlsec.rabac.abacRequire <em>abac Require</em>}'.
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.rabac.rabacRequire <em>rabac Require</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>abac Require</em>'.
-	 * @see carisma.profile.umlsec.rabac.abacRequire
+	 * @return the meta object for class '<em>rabac Require</em>'.
+	 * @see carisma.profile.umlsec.rabac.rabacRequire
 	 * @generated
 	 */
-	EClass getabacRequire();
+	EClass getrabacRequire();
 
 	/**
-	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.abacRequire#getRight <em>Right</em>}'.
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.rabacRequire#getRight <em>Right</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Right</em>'.
-	 * @see carisma.profile.umlsec.rabac.abacRequire#getRight()
-	 * @see #getabacRequire()
+	 * @see carisma.profile.umlsec.rabac.rabacRequire#getRight()
+	 * @see #getrabacRequire()
 	 * @generated
 	 */
-	EAttribute getabacRequire_Right();
+	EAttribute getrabacRequire_Right();
 
 	/**
-	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.abacRequire#getFilters <em>Filters</em>}'.
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.rabac.rabacRequire#getFilters <em>Filters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Filters</em>'.
-	 * @see carisma.profile.umlsec.rabac.abacRequire#getFilters()
-	 * @see #getabacRequire()
+	 * @see carisma.profile.umlsec.rabac.rabacRequire#getFilters()
+	 * @see #getrabacRequire()
 	 * @generated
 	 */
-	EAttribute getabacRequire_Filters();
+	EAttribute getrabacRequire_Filters();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.rabac.abacRequire#getBase_Transition <em>Base Transition</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.rabac.rabacRequire#getBase_Transition <em>Base Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Transition</em>'.
-	 * @see carisma.profile.umlsec.rabac.abacRequire#getBase_Transition()
-	 * @see #getabacRequire()
+	 * @see carisma.profile.umlsec.rabac.rabacRequire#getBase_Transition()
+	 * @see #getrabacRequire()
 	 * @generated
 	 */
-	EReference getabacRequire_Base_Transition();
+	EReference getrabacRequire_Base_Transition();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.rabac.abacRequire#getBase_Operation <em>Base Operation</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.rabac.rabacRequire#getBase_Operation <em>Base Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Operation</em>'.
-	 * @see carisma.profile.umlsec.rabac.abacRequire#getBase_Operation()
-	 * @see #getabacRequire()
+	 * @see carisma.profile.umlsec.rabac.rabacRequire#getBase_Operation()
+	 * @see #getrabacRequire()
 	 * @generated
 	 */
-	EReference getabacRequire_Base_Operation();
+	EReference getrabacRequire_Base_Operation();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -456,14 +476,14 @@ public interface RabacPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link carisma.profile.umlsec.rabac.impl.abacImpl <em>abac</em>}' class.
+		 * The meta object literal for the '{@link carisma.profile.umlsec.rabac.impl.rabacImpl <em>rabac</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see carisma.profile.umlsec.rabac.impl.abacImpl
-		 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getabac()
+		 * @see carisma.profile.umlsec.rabac.impl.rabacImpl
+		 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getrabac()
 		 * @generated
 		 */
-		EClass ABAC = eINSTANCE.getabac();
+		EClass RABAC = eINSTANCE.getrabac();
 
 		/**
 		 * The meta object literal for the '<em><b>Roles</b></em>' attribute feature.
@@ -471,7 +491,7 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABAC__ROLES = eINSTANCE.getabac_Roles();
+		EAttribute RABAC__ROLES = eINSTANCE.getrabac_Roles();
 
 		/**
 		 * The meta object literal for the '<em><b>Rights</b></em>' attribute feature.
@@ -479,7 +499,7 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABAC__RIGHTS = eINSTANCE.getabac_Rights();
+		EAttribute RABAC__RIGHTS = eINSTANCE.getrabac_Rights();
 
 		/**
 		 * The meta object literal for the '<em><b>Rh</b></em>' attribute feature.
@@ -487,7 +507,7 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABAC__RH = eINSTANCE.getabac_Rh();
+		EAttribute RABAC__RH = eINSTANCE.getrabac_Rh();
 
 		/**
 		 * The meta object literal for the '<em><b>Ssd</b></em>' attribute feature.
@@ -495,7 +515,7 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABAC__SSD = eINSTANCE.getabac_Ssd();
+		EAttribute RABAC__SSD = eINSTANCE.getrabac_Ssd();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
@@ -503,7 +523,7 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABAC__BASE_CLASS = eINSTANCE.getabac_Base_Class();
+		EReference RABAC__BASE_CLASS = eINSTANCE.getrabac_Base_Class();
 
 		/**
 		 * The meta object literal for the '<em><b>Dsd</b></em>' attribute feature.
@@ -511,7 +531,7 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABAC__DSD = eINSTANCE.getabac_Dsd();
+		EAttribute RABAC__DSD = eINSTANCE.getrabac_Dsd();
 
 		/**
 		 * The meta object literal for the '<em><b>Attribute Filters</b></em>' attribute feature.
@@ -519,17 +539,25 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABAC__ATTRIBUTE_FILTERS = eINSTANCE.getabac_AttributeFilters();
+		EAttribute RABAC__ATTRIBUTE_FILTERS = eINSTANCE.getrabac_AttributeFilters();
 
 		/**
-		 * The meta object literal for the '{@link carisma.profile.umlsec.rabac.impl.abacAttributeImpl <em>abac Attribute</em>}' class.
+		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see carisma.profile.umlsec.rabac.impl.abacAttributeImpl
-		 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getabacAttribute()
 		 * @generated
 		 */
-		EClass ABAC_ATTRIBUTE = eINSTANCE.getabacAttribute();
+		EReference RABAC__BASE_PACKAGE = eINSTANCE.getrabac_Base_Package();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.rabac.impl.rabacAttributeImpl <em>rabac Attribute</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.rabac.impl.rabacAttributeImpl
+		 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getrabacAttribute()
+		 * @generated
+		 */
+		EClass RABAC_ATTRIBUTE = eINSTANCE.getrabacAttribute();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -537,7 +565,7 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABAC_ATTRIBUTE__NAME = eINSTANCE.getabacAttribute_Name();
+		EAttribute RABAC_ATTRIBUTE__NAME = eINSTANCE.getrabacAttribute_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Operation</b></em>' reference feature.
@@ -545,17 +573,17 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABAC_ATTRIBUTE__BASE_OPERATION = eINSTANCE.getabacAttribute_Base_Operation();
+		EReference RABAC_ATTRIBUTE__BASE_OPERATION = eINSTANCE.getrabacAttribute_Base_Operation();
 
 		/**
-		 * The meta object literal for the '{@link carisma.profile.umlsec.rabac.impl.abacRequireImpl <em>abac Require</em>}' class.
+		 * The meta object literal for the '{@link carisma.profile.umlsec.rabac.impl.rabacRequireImpl <em>rabac Require</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see carisma.profile.umlsec.rabac.impl.abacRequireImpl
-		 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getabacRequire()
+		 * @see carisma.profile.umlsec.rabac.impl.rabacRequireImpl
+		 * @see carisma.profile.umlsec.rabac.impl.RabacPackageImpl#getrabacRequire()
 		 * @generated
 		 */
-		EClass ABAC_REQUIRE = eINSTANCE.getabacRequire();
+		EClass RABAC_REQUIRE = eINSTANCE.getrabacRequire();
 
 		/**
 		 * The meta object literal for the '<em><b>Right</b></em>' attribute feature.
@@ -563,7 +591,7 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABAC_REQUIRE__RIGHT = eINSTANCE.getabacRequire_Right();
+		EAttribute RABAC_REQUIRE__RIGHT = eINSTANCE.getrabacRequire_Right();
 
 		/**
 		 * The meta object literal for the '<em><b>Filters</b></em>' attribute feature.
@@ -571,7 +599,7 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABAC_REQUIRE__FILTERS = eINSTANCE.getabacRequire_Filters();
+		EAttribute RABAC_REQUIRE__FILTERS = eINSTANCE.getrabacRequire_Filters();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Transition</b></em>' reference feature.
@@ -579,7 +607,7 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABAC_REQUIRE__BASE_TRANSITION = eINSTANCE.getabacRequire_Base_Transition();
+		EReference RABAC_REQUIRE__BASE_TRANSITION = eINSTANCE.getrabacRequire_Base_Transition();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Operation</b></em>' reference feature.
@@ -587,7 +615,7 @@ public interface RabacPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABAC_REQUIRE__BASE_OPERATION = eINSTANCE.getabacRequire_Base_Operation();
+		EReference RABAC_REQUIRE__BASE_OPERATION = eINSTANCE.getrabacRequire_Base_Operation();
 
 	}
 
