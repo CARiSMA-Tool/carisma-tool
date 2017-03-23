@@ -1,44 +1,33 @@
 /**
  */
-package UMLsecenc.impl;
+package carisma.profile.umlsec.enc.impl;
 
-import UMLsecenc.UMLsecencPackage;
-import UMLsecenc.encryptedpersistence;
+import carisma.profile.umlsec.enc.EncPackage;
+import carisma.profile.umlsec.enc.encryptedenc;
+
+import carisma.profile.umlsec.impl.encryptedImpl;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>encryptedpersistence</b></em>'.
+ * An implementation of the model object '<em><b>encryptedenc</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link UMLsecenc.impl.encryptedpersistenceImpl#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link UMLsecenc.impl.encryptedpersistenceImpl#getAlg <em>Alg</em>}</li>
- *   <li>{@link UMLsecenc.impl.encryptedpersistenceImpl#getKeylength <em>Keylength</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.enc.impl.encryptedencImpl#getAlg <em>Alg</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.enc.impl.encryptedencImpl#getKeylength <em>Keylength</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class encryptedpersistenceImpl extends MinimalEObjectImpl.Container implements encryptedpersistence {
-	/**
-	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBase_Class()
-	 * @generated
-	 * @ordered
-	 */
-	protected org.eclipse.uml2.uml.Class base_Class;
-
+public class encryptedencImpl extends encryptedImpl implements encryptedenc {
 	/**
 	 * The default value of the '{@link #getAlg() <em>Alg</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -84,7 +73,7 @@ public class encryptedpersistenceImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected encryptedpersistenceImpl() {
+	protected encryptedencImpl() {
 		super();
 	}
 
@@ -95,45 +84,7 @@ public class encryptedpersistenceImpl extends MinimalEObjectImpl.Container imple
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UMLsecencPackage.Literals.ENCRYPTEDPERSISTENCE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
-			InternalEObject oldBase_Class = (InternalEObject)base_Class;
-			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLsecencPackage.ENCRYPTEDPERSISTENCE__BASE_CLASS, oldBase_Class, base_Class));
-			}
-		}
-		return base_Class;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.eclipse.uml2.uml.Class basicGetBase_Class() {
-		return base_Class;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
-		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
-		base_Class = newBase_Class;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLsecencPackage.ENCRYPTEDPERSISTENCE__BASE_CLASS, oldBase_Class, base_Class));
+		return EncPackage.Literals.ENCRYPTEDENC;
 	}
 
 	/**
@@ -154,7 +105,7 @@ public class encryptedpersistenceImpl extends MinimalEObjectImpl.Container imple
 		String oldAlg = alg;
 		alg = newAlg;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLsecencPackage.ENCRYPTEDPERSISTENCE__ALG, oldAlg, alg));
+			eNotify(new ENotificationImpl(this, Notification.SET, EncPackage.ENCRYPTEDENC__ALG, oldAlg, alg));
 	}
 
 	/**
@@ -175,7 +126,7 @@ public class encryptedpersistenceImpl extends MinimalEObjectImpl.Container imple
 		String oldKeylength = keylength;
 		keylength = newKeylength;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLsecencPackage.ENCRYPTEDPERSISTENCE__KEYLENGTH, oldKeylength, keylength));
+			eNotify(new ENotificationImpl(this, Notification.SET, EncPackage.ENCRYPTEDENC__KEYLENGTH, oldKeylength, keylength));
 	}
 
 	/**
@@ -186,12 +137,9 @@ public class encryptedpersistenceImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__BASE_CLASS:
-				if (resolve) return getBase_Class();
-				return basicGetBase_Class();
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__ALG:
+			case EncPackage.ENCRYPTEDENC__ALG:
 				return getAlg();
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__KEYLENGTH:
+			case EncPackage.ENCRYPTEDENC__KEYLENGTH:
 				return getKeylength();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -205,13 +153,10 @@ public class encryptedpersistenceImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
-				return;
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__ALG:
+			case EncPackage.ENCRYPTEDENC__ALG:
 				setAlg((String)newValue);
 				return;
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__KEYLENGTH:
+			case EncPackage.ENCRYPTEDENC__KEYLENGTH:
 				setKeylength((String)newValue);
 				return;
 		}
@@ -226,13 +171,10 @@ public class encryptedpersistenceImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)null);
-				return;
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__ALG:
+			case EncPackage.ENCRYPTEDENC__ALG:
 				setAlg(ALG_EDEFAULT);
 				return;
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__KEYLENGTH:
+			case EncPackage.ENCRYPTEDENC__KEYLENGTH:
 				setKeylength(KEYLENGTH_EDEFAULT);
 				return;
 		}
@@ -247,11 +189,9 @@ public class encryptedpersistenceImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__BASE_CLASS:
-				return base_Class != null;
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__ALG:
+			case EncPackage.ENCRYPTEDENC__ALG:
 				return ALG_EDEFAULT == null ? alg != null : !ALG_EDEFAULT.equals(alg);
-			case UMLsecencPackage.ENCRYPTEDPERSISTENCE__KEYLENGTH:
+			case EncPackage.ENCRYPTEDENC__KEYLENGTH:
 				return KEYLENGTH_EDEFAULT == null ? keylength != null : !KEYLENGTH_EDEFAULT.equals(keylength);
 		}
 		return super.eIsSet(featureID);
@@ -275,4 +215,4 @@ public class encryptedpersistenceImpl extends MinimalEObjectImpl.Container imple
 		return result.toString();
 	}
 
-} //encryptedpersistenceImpl
+} //encryptedencImpl

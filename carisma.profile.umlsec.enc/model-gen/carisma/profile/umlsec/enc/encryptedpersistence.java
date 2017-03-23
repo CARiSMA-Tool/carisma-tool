@@ -1,6 +1,6 @@
 /**
  */
-package UMLsecenc;
+package carisma.profile.umlsec.enc;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link UMLsecenc.encryptedpersistence#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link UMLsecenc.encryptedpersistence#getAlg <em>Alg</em>}</li>
- *   <li>{@link UMLsecenc.encryptedpersistence#getKeylength <em>Keylength</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.enc.encryptedpersistence#getBase_Class <em>Base Class</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.enc.encryptedpersistence#getAlg <em>Alg</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.enc.encryptedpersistence#getKeylength <em>Keylength</em>}</li>
  * </ul>
  *
- * @see UMLsecenc.UMLsecencPackage#getencryptedpersistence()
+ * @see carisma.profile.umlsec.enc.EncPackage#getencryptedpersistence()
  * @model annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='encrypted persistence'"
  * @generated
  */
@@ -33,14 +33,14 @@ public interface encryptedpersistence extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
-	 * @see UMLsecenc.UMLsecencPackage#getencryptedpersistence_Base_Class()
+	 * @see carisma.profile.umlsec.enc.EncPackage#getencryptedpersistence_Base_Class()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	org.eclipse.uml2.uml.Class getBase_Class();
 
 	/**
-	 * Sets the value of the '{@link UMLsecenc.encryptedpersistence#getBase_Class <em>Base Class</em>}' reference.
+	 * Sets the value of the '{@link carisma.profile.umlsec.enc.encryptedpersistence#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Base Class</em>' reference.
@@ -59,14 +59,14 @@ public interface encryptedpersistence extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Alg</em>' attribute.
 	 * @see #setAlg(String)
-	 * @see UMLsecenc.UMLsecencPackage#getencryptedpersistence_Alg()
+	 * @see carisma.profile.umlsec.enc.EncPackage#getencryptedpersistence_Alg()
 	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getAlg();
 
 	/**
-	 * Sets the value of the '{@link UMLsecenc.encryptedpersistence#getAlg <em>Alg</em>}' attribute.
+	 * Sets the value of the '{@link carisma.profile.umlsec.enc.encryptedpersistence#getAlg <em>Alg</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Alg</em>' attribute.
@@ -85,14 +85,14 @@ public interface encryptedpersistence extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Keylength</em>' attribute.
 	 * @see #setKeylength(String)
-	 * @see UMLsecenc.UMLsecencPackage#getencryptedpersistence_Keylength()
+	 * @see carisma.profile.umlsec.enc.EncPackage#getencryptedpersistence_Keylength()
 	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getKeylength();
 
 	/**
-	 * Sets the value of the '{@link UMLsecenc.encryptedpersistence#getKeylength <em>Keylength</em>}' attribute.
+	 * Sets the value of the '{@link carisma.profile.umlsec.enc.encryptedpersistence#getKeylength <em>Keylength</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Keylength</em>' attribute.

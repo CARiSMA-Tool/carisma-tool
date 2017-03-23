@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
-    modelDirectory="/carisma.profile.umlsec.enc/src" modelPluginID="carisma.profile.umlsec.enc"
+    modelDirectory="/carisma.profile.umlsec.enc/model-gen" modelPluginID="carisma.profile.umlsec.enc"
     modelName="UMLsecenc" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="6.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml ../../carisma.profile.umlsec/profile/UMLsec.genmodel#//umlsec"
     operationReflection="true" importOrganizing="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
@@ -31,31 +31,24 @@
     <details key="VALIDATION_DELEGATES" value="IGNORE"/>
   </genAnnotations>
   <foreignModel>UMLsecenc.profile.uml</foreignModel>
-  <genPackages xsi:type="genmodel:GenPackage" prefix="UMLsecenc" disposableProviderFactory="true"
-      ecorePackage="UMLsecenc.ecore#/">
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsecenc.ecore#//securelinksenc">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.ecore#//securelinksenc/adversary"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.ecore#//securelinksenc/encAdversary"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.ecore#//securelinksenc/encModel"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsecenc.ecore#//securelinksenc/base_Package"/>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="Enc" basePackage="carisma.profile.umlsec"
+      disposableProviderFactory="true" ecorePackage="UMLsecenc.profile.ecore#/">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsecenc.profile.ecore#//securelinksenc">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.profile.ecore#//securelinksenc/encAdversary"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.profile.ecore#//securelinksenc/encModel"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsecenc.ecore#//secrecyenc">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.ecore#//secrecyenc/time"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsecenc.ecore#//secrecyenc/base_Dependency"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsecenc.profile.ecore#//secrecyenc">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.profile.ecore#//secrecyenc/time"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsecenc.ecore#//encryptedenc">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.ecore#//encryptedenc/alg"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.ecore#//encryptedenc/keylength"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsecenc.ecore#//encryptedenc/base_CommunicationPath"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsecenc.profile.ecore#//encryptedenc">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.profile.ecore#//encryptedenc/alg"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.profile.ecore#//encryptedenc/keylength"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsecenc.ecore#//encryptedpersistence">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLsecenc.profile.ecore#//encryptedpersistence">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsecenc.ecore#//encryptedpersistence/base_Class"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.ecore#//encryptedpersistence/alg"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.ecore#//encryptedpersistence/keylength"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference UMLsecenc.profile.ecore#//encryptedpersistence/base_Class"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.profile.ecore#//encryptedpersistence/alg"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLsecenc.profile.ecore#//encryptedpersistence/keylength"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
