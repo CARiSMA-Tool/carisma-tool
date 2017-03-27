@@ -161,7 +161,10 @@ public final class UMLDeploymentHelper {
 		Set<Node> targetNodes = getDeploymentLocations(supplier);
 		for (Node sourceNode : sourceNodes) {
 			for (Node targetNode : targetNodes) {
-				communicationPaths.add(getCommunicationPath(sourceNode, targetNode));
+				CommunicationPath path = getCommunicationPath(sourceNode, targetNode);
+				if(path!=null){
+					communicationPaths.add(path);
+				}
 			}
 		}
 		return communicationPaths;
