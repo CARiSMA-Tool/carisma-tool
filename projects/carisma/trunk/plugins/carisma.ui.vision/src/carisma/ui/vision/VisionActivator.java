@@ -25,6 +25,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.internal.wizards.datatransfer.ArchiveFileExportOperation;
 import org.osgi.framework.BundleContext;
 import org.w3c.dom.Document;
@@ -81,72 +85,85 @@ public class VisionActivator extends Plugin {
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
-				
+
 		String name = CarismaGUI.INSTANCE.getPreferenceStore().getString(VisiOn.PROJECT_NAME);
-		
-		if(name == null  || "".equals(name)){
+
+		if (name == null || "".equals(name)) {
 			JOptionPane.showMessageDialog(null, "Error CARiSMA couldn't export the current project to the DB",
 					"CARiSMA VisiOn Error", JOptionPane.OK_OPTION);
-		}
-		else {	
+		} else {
 			IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			final IProject project = workspace.getRoot().getProject(name);
 			if (!project.exists()) {
-				throw new RuntimeException("project with this projectname is not existing!");
+				super.stop(context);
+			} else {
+				Display display = new Display();
+				Shell shell = new Shell(display);
+
+
+				MessageBox dialog = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+				dialog.setText("Info");
+				dialog.setMessage("Do you really want to load the project with the name: " + name + " into the DB and delete it locally?");
+
+				// open dialog and await user selection
+				int returnCode = dialog.open();
+
+				if (returnCode == SWT.YES) {
+
+					String prefix = name;
+					String suffix = ".zip";
+
+					final File tempFile = File.createTempFile(prefix, suffix);
+
+					IProgressMonitor IProgressMonitor = new NullProgressMonitor();
+					try {
+						List<IResource> list = new ArrayList<IResource>();
+						list.add(project);
+						list.addAll(Arrays.asList(project.members()));
+						ArchiveFileExportOperation export = new ArchiveFileExportOperation(project, tempFile.getPath());
+						export.run(IProgressMonitor);
+						System.out.println("Status: " + export.getStatus());
+
+					} catch (InvocationTargetException | InterruptedException e) {
+						e.printStackTrace();
+					} catch (CoreException e) {
+						e.printStackTrace();
+					}
+					byte[] bytes = Files.readAllBytes(tempFile.toPath());
+					String base64String = Base64.encodeBase64String(bytes);
+
+					Content content = ContentFactory.createContent("{\"carisma\":\"" + base64String + "\"}");
+
+					PreferencesObject preferencesStore = null;
+					try {
+						preferencesStore = VisionActivator.getINSTANCE().getVisionPreferences();
+					} catch (VisionLauncherException e) {
+						e.printStackTrace();
+					}
+					Map<String, Object> map = preferencesStore.getObject();
+
+					String user = (String) map.get(PreferencesConstants.dbuser.toString());
+					String secret = (String) map.get(PreferencesConstants.dbpasswd.toString());
+					String url = (String) map.get(PreferencesConstants.dbaddress.toString());
+
+					MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
+
+					String visionCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
+					String carismaDocument = (String) map.get(PreferencesConstants.carisma_document.toString());
+					// String carismaField = (String)
+					// map.get(PreferencesConstants.carisma_field.toString());
+
+					MongoDBDestination config = new MongoDBDestination(visionCollection, carismaDocument, null); // TODO:
+																													// config
+
+					if (db.write(config, content)) {
+						project.delete(true, null);
+					}
+				}
 			}
-	
-			String prefix = name;
-			String suffix = ".zip";
-	
-			final File tempFile = File.createTempFile(prefix, suffix);
-	
-			IProgressMonitor IProgressMonitor = new NullProgressMonitor();
-			try {
-				List<IResource> list = new ArrayList<IResource>();
-				list.add(project);
-				list.addAll(Arrays.asList(project.members()));
-				ArchiveFileExportOperation export = new ArchiveFileExportOperation(project, tempFile.getPath());
-				export.run(IProgressMonitor);
-				System.out.println("Status: " + export.getStatus());
-	
-			} catch (InvocationTargetException | InterruptedException e) {
-				e.printStackTrace();
-			} catch (CoreException e) {
-				e.printStackTrace();
-			}
-			byte[] bytes = Files.readAllBytes(tempFile.toPath());
-			String base64String = Base64.encodeBase64String(bytes);
-	
-			Content content = ContentFactory.createContent("{\"carisma\":\"" + base64String + "\"}");
-	
-			PreferencesObject preferencesStore = null;
-			try {
-				preferencesStore = VisionActivator.getINSTANCE().getVisionPreferences();
-			} catch (VisionLauncherException e) {
-				e.printStackTrace();
-			}
-			Map<String, Object> map = preferencesStore.getObject();
-	
-			String user = (String) map.get(PreferencesConstants.dbuser.toString());
-			String secret = (String) map.get(PreferencesConstants.dbpasswd.toString());
-			String url = (String) map.get(PreferencesConstants.dbaddress.toString());
-	
-			MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
-	
-			String visionCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
-			String carismaDocument = (String) map.get(PreferencesConstants.carisma_document.toString());
-			// String carismaField = (String)
-			// map.get(PreferencesConstants.carisma_field.toString());
-	
-			MongoDBDestination config = new MongoDBDestination(visionCollection, carismaDocument, null); // TODO:
-																											// config
-	
-			if (db.write(config, content)) {
-				project.delete(true, null);
-			}
+
+			super.stop(context);
 		}
-		
-		super.stop(context);
 	}
 
 	public static VisionActivator getINSTANCE() {

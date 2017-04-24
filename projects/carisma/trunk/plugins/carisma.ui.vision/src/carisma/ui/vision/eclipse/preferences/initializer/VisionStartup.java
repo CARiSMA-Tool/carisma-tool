@@ -30,6 +30,10 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.dialogs.IOverwriteQuery;
 import org.eclipse.ui.internal.wizards.datatransfer.ZipLeveledStructureProvider;
@@ -48,6 +52,8 @@ import carisma.ui.vision.exceptions.VisionLauncherException;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI.MongoDBDestination;
 import it.unitn.disi.ststool.vision.integration.preferences.VisonPreferencesClient;
+
+
 
 public class VisionStartup implements IStartup {
 
@@ -124,15 +130,28 @@ public class VisionStartup implements IStartup {
 			e1.printStackTrace();
 			return false;
 		}
-		//search project
+		//search/create project
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IProject newProject = workspace.getRoot().getProject(name);
 		ZipFile zipFile = null;
 
 		//tests if project already exists
 		if (newProject.exists()) {
-			throw new RuntimeException("project with this projectname is already existing!");
-		} else {
+			
+			Display display = new Display();
+			Shell shell = new Shell(display);
+			
+			MessageBox dialog = new MessageBox(shell, SWT.ICON_INFORMATION);
+			dialog.setText("Information");
+			dialog.setMessage("Your workspace already contains a project with the name " + name + " and a new project from the VisiOn database has been imported as " + name + "_DB. At closing of Eclipse the project with the name " + name + " will be uploaded into the VisiOn database. Please ensure that you edit the right project and rename it accordingly to " + name + " or change the VisiOn properties to avoid loss of data.");
+			
+			// open dialog and await user selection
+			int returnCode = dialog.open();
+			
+			name = name + "_DB";
+			newProject = workspace.getRoot().getProject(name);
+			
+		} 
 			//tests if a real content has been read from DB
 			if (content == null) {
 				//read a zipFile in the tempFile
@@ -160,7 +179,7 @@ public class VisionStartup implements IStartup {
 					return false;
 				}
 			}
-		}
+		
 
 		IOverwriteQuery overwriteQuery = new IOverwriteQuery() {
 			public String queryOverwrite(String file) {
