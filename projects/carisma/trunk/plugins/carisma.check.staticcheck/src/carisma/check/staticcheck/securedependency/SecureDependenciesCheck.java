@@ -59,7 +59,7 @@ public class SecureDependenciesCheck implements CarismaCheckWithID {
 	
 	
 	private static String computeMessage(SecureDependencyViolation v) {
-		if (v.getDescription() != null) {
+		if (v.getDescription() != null) {	//TODO: What is the purpose of this stuff???
 			if (v.getDescription().startsWith("Dependency")) {
 				String ns = v.getDependency().getName();
 				if (ns == null || "".equals(ns)) {
@@ -89,7 +89,7 @@ public class SecureDependenciesCheck implements CarismaCheckWithID {
 				return v.getDescription().replace("And client", "And client '" + ns + "'");
 			}
 		}
-		return "<unknown error>";
+		return v.getDescription();
 	}
 
 	@Override
