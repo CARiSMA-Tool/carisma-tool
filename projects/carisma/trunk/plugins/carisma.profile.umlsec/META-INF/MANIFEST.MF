@@ -7,10 +7,10 @@ Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.papyrus.editor,
- carisma.modeltype.uml2,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.uml2.types;visibility:=reexport,
+ carisma.modeltype.uml2,
  carisma.core
 Bundle-ActivationPolicy: lazy
 Export-Package: carisma.profile.umlsec,

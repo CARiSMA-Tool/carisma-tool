@@ -144,7 +144,7 @@ public final class UMLsecUtil {
 				if (UMLsec.contains(appliedStereo)) {
 					return true;
 				}
-			} else if (stereo.isEqual(appliedStereo)) {
+			} else if (stereo.isApplicable(appliedStereo)) {
 				return true;
 			}
 		}
