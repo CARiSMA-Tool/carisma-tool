@@ -10,6 +10,7 @@
  *******************************************************************************/
 package carisma.profile.umlsec;
 
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Stereotype;
 
 import carisma.modeltype.uml2.CarismaProfileDescriptor;
@@ -90,6 +91,26 @@ public enum UMLsec {
 	 */
 	public boolean isEqual(Stereotype stereotype) {
 		return contains(stereotype) && stereotype.getName().equalsIgnoreCase(this.readableName);
+	}/**
+	 * Checks whether the given stereotype corresponds to the one represented by this enum literal.
+	 * @param stereotype
+	 * @return
+	 */
+	
+	public boolean isApplicable(Stereotype stereotype) {
+		if(isEqual(stereotype)){
+			return true;
+		}
+		for(Classifier general : stereotype.getGenerals()){
+			if (general instanceof Stereotype) {
+				Stereotype generalStereotype = (Stereotype) general;
+				if(isApplicable(generalStereotype)){
+					return true;
+				}
+			}
+			
+		}
+		return false;
 	}
 	
 	/**
