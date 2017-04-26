@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -53,8 +55,6 @@ import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI;
 import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI.MongoDBDestination;
 import it.unitn.disi.ststool.vision.integration.preferences.VisonPreferencesClient;
 
-
-
 public class VisionStartup implements IStartup {
 
 	private static InetAddress LOCAL_HOST;
@@ -71,14 +71,39 @@ public class VisionStartup implements IStartup {
 			protected IStatus run(IProgressMonitor monitor) {
 				boolean success = getDataFromVisionLauncher();
 
+				final Display display = Display.getDefault();
+
 				if (!success) {
-					JOptionPane.showMessageDialog(null, "Error CARiSMA couldn't connect to VisiOn launcher",
-							"CARiSMA VisiOn Error", JOptionPane.OK_OPTION);
-				}
-				else {
-					if(!getProjectFromDB()){
-						JOptionPane.showMessageDialog(null, "Error CARiSMA couldn't restore project from DB",
-								"CARiSMA VisiOn Error", JOptionPane.OK_OPTION);
+					display.asyncExec(new Runnable() {
+
+						@Override
+						public void run() {
+							Shell shell = new Shell(display);
+
+							MessageBox dialog = new MessageBox(shell, SWT.ICON_ERROR);
+							dialog.setText("Error");
+							dialog.setMessage("Error CARiSMA couldn't connect to VisiOn launcher");
+						}
+					});
+
+					return new Status(Status.ERROR, VisionActivator.PLUGIN_ID,
+							"Error CARiSMA couldn't connect to VisiOn launcher");
+				} else {
+					if (!restoreVisiOnProject()) {
+						display.asyncExec(new Runnable() {
+
+							@Override
+							public void run() {
+								Shell shell = new Shell(display);
+
+								MessageBox dialog = new MessageBox(shell, SWT.ICON_ERROR);
+								dialog.setText("Error");
+								dialog.setMessage("CARiSMA couldn't restore project from DB");
+							}
+						});
+
+						return new Status(Status.ERROR, VisionActivator.PLUGIN_ID,
+								"CARiSMA couldn't restore project from DB");
 					}
 				}
 
@@ -87,122 +112,145 @@ public class VisionStartup implements IStartup {
 		};
 		job.schedule();
 	}
-	
-	protected static boolean getProjectFromDB() {
-		// read file from DB
-		PreferencesObject preferencesStore = null;
+
+	protected static boolean restoreVisiOnProject() {
+		Content content;
 		try {
-			preferencesStore = VisionActivator.getINSTANCE().getVisionPreferences();
-		} catch (VisionLauncherException e) {
-			e.printStackTrace();
+			content = getProjectFromDB();
+		} catch (VisionLauncherException e3) {
+			e3.printStackTrace();
 			return false;
 		}
-		Map<String, Object> map = preferencesStore.getObject();
 
-		String user = (String) map.get(PreferencesConstants.dbuser.toString());
-		String secret = (String) map.get(PreferencesConstants.dbpasswd.toString());
-		String url = (String) map.get(PreferencesConstants.dbaddress.toString());
-
-		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
-
-		String visionCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
-		String carismaDocument = (String) map.get(PreferencesConstants.carisma_document.toString());
-		
-		MongoDBDestination config = new MongoDBDestination(visionCollection, carismaDocument, null); // TODO:
-			
-		Content content = db.read(config);
-
-		//tempfile for the project
 		String name = CarismaGUI.INSTANCE.getPreferenceStore().getString(VisiOn.PROJECT_NAME);
 
-		if(name == null || name == ""){
+		if (name == null || name == "") {
 			new VisionInitializer().initializeDefaultPreferences();
 			name = CarismaGUI.INSTANCE.getPreferenceStore().getString(VisiOn.PROJECT_NAME);
+			System.err.println("Initilized VisiOn default preferences.");
 		}
-			
-		String prefix = name;
-		String suffix = ".zip";
-		
-		File tempFile = null;
-		try {
-			tempFile = File.createTempFile(prefix, suffix);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-			return false;
-		}
-		//search/create project
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		IProject newProject = workspace.getRoot().getProject(name);
+
 		ZipFile zipFile = null;
 
-		//tests if project already exists
+		// search/create project
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IProject newProject = workspace.getRoot().getProject(name);
 		if (newProject.exists()) {
-			
-			Display display = new Display();
-			Shell shell = new Shell(display);
-			
-			MessageBox dialog = new MessageBox(shell, SWT.ICON_INFORMATION);
-			dialog.setText("Information");
-			dialog.setMessage("Your workspace already contains a project with the name " + name + " and a new project from the VisiOn database has been imported as " + name + "_DB. At closing of Eclipse the project with the name " + name + " will be uploaded into the VisiOn database. Please ensure that you edit the right project and rename it accordingly to " + name + " or change the VisiOn properties to avoid loss of data.");
-			
-			// open dialog and await user selection
-			int returnCode = dialog.open();
-			
-			name = name + "_DB";
-			newProject = workspace.getRoot().getProject(name);
-			
-		} 
-			//tests if a real content has been read from DB
 			if (content == null) {
-				//read a zipFile in the tempFile
+				// There is no project in the DB but there is a local project
+				// with the VisiOn project name => do nothing
+				return true;
+			} else {
+				// There is a project in the DB and a local project => import DB
+				// project with unused name and inform user
+
 				try {
-					InputStream s = Platform.getBundle(VisionActivator.PLUGIN_ID).getResource("emptyModel/VisiOnDummy.zip").openConnection().getInputStream();
+					
+					// Search for unused Name
+					newProject = workspace.getRoot().getProject(name + "_DB");
+					int i = 1;
+					while (newProject.exists()) {
+						newProject = workspace.getRoot().getProject(name + "_DB_"+i);
+					}
+					zipFile = createTemporaryZip(content);
+
+					final String message = "Your workspace already contains a project with the name \"" + name
+					+ "\". A new project from the VisiOn database has been imported as \"" + newProject.getName()
+					+ "\".\n\n At closing of Eclipse the project with the name \"" + name
+					+ "\" will be uploaded into the VisiOn database.\n\n"
+					+ "Please work on the project \""+name+"\", "
+					+ "rename the edited projects to \""+ name + "\""
+					+ " or change the VisiOn properties to avoid loss of data.";
+					
+					asyncShowMessage(message);
+				} catch (IOException | JSONException e) {
+					e.printStackTrace();
+					return false;
+				}
+
+			}
+
+		} else {
+			if (content == null) {
+				// There is no project in the DB and no project in the workspace
+				// => import DummyProjectfrom plugin and inform the user
+				try {
+					InputStream s = Platform.getBundle(VisionActivator.PLUGIN_ID)
+							.getResource("emptyModel/VisiOnDummy.zip").openConnection().getInputStream();
+					File tempFile = File.createTempFile("carisma_vision_project", ".zip");
 					Files.copy(s, Paths.get(tempFile.toURI()), StandardCopyOption.REPLACE_EXISTING);
+					zipFile = new ZipFile(tempFile);
+					
+
+					asyncShowMessage("A new VisiOn project with the name \"" + newProject.getName() + "\"has been created."
+							+ " At closing of Eclipse this project will be uploaded to the VisiOn database.");
 				} catch (IOException e) {
 					e.printStackTrace();
 					return false;
 				}
 			} else {
-				//write the content in the tempFile
-				if(content.getFormat() != "JSON"){
-					throw new RuntimeException("No JSON-File!");
-				}
-				JSON json = (JSON) content;
 				try {
-					Object carisma = json.get("carisma");
-					Files.write(tempFile.toPath(), Base64.decodeBase64((String) carisma));
-				} catch (JSONException e2) {
-					e2.printStackTrace();
-					return false;
-				} catch (IOException e) {
+					zipFile = createTemporaryZip(content);
+				} catch (IOException | JSONException e) {
 					e.printStackTrace();
 					return false;
 				}
 			}
-		
+		}
 
+		return importProjectFromZIP(newProject, zipFile);
+	}
+
+	private static void asyncShowMessage(final String message) {
+		final Display display = Display.getDefault();
+		display.syncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				Shell shell = new Shell(display);
+				MessageBox dialog = new MessageBox(shell, SWT.ICON_INFORMATION);
+				dialog.setText("Information");
+				dialog.setMessage(message);
+				dialog.open();
+			}
+		});
+	}
+
+	private static ZipFile createTemporaryZip(Content content) throws IOException, JSONException {
+		ZipFile zipFile;
+		File tempFile = File.createTempFile("carisma_vision_project", ".zip");
+
+		// There is no Project in the workspace but a project in the DB =>
+		// import the DB project
+		if (content.getFormat() != "JSON") {
+			throw new RuntimeException("No JSON-File!");
+		}
+		JSON json = (JSON) content;
+		Object carisma = json.get("carisma");
+		Files.write(tempFile.toPath(), Base64.decodeBase64((String) carisma));
+
+		// create a zipFile from the tempFile
+
+		zipFile = new ZipFile(tempFile);
+		return zipFile;
+	}
+
+	private static boolean importProjectFromZIP(IProject newProject, ZipFile zipFile) {
 		IOverwriteQuery overwriteQuery = new IOverwriteQuery() {
 			public String queryOverwrite(String file) {
 				return ALL;
 			}
 		};
-			
-		//create a zipFile from the tempFile
-		try {
-			zipFile = new ZipFile(tempFile);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-			return false;
-		}
 
-		//import the zipFile as a new project
+		// import the zipFile as a new project
 		ZipLeveledStructureProvider provider = new ZipLeveledStructureProvider(zipFile);
 		Enumeration<? extends ZipEntry> entries = zipFile.entries();
 		List<Object> fileSystemObjects = new ArrayList<Object>();
 		while (entries.hasMoreElements()) {
 			fileSystemObjects.add((Object) entries.nextElement());
 		}
-		IProjectDescription newProjectDescription = workspace.newProjectDescription(name);
+		IProjectDescription newProjectDescription = newProject.getWorkspace()
+				.newProjectDescription(newProject.getName());
 
 		try {
 			newProject.create(newProjectDescription, null);
@@ -213,8 +261,8 @@ public class VisionStartup implements IStartup {
 		}
 
 		ImportOperation importOperation = new ImportOperation(newProject.getFullPath(),
-			new ZipEntry(name), provider, overwriteQuery, fileSystemObjects);
-			importOperation.setCreateContainerStructure(false);
+				new ZipEntry(newProject.getName()), provider, overwriteQuery, fileSystemObjects);
+		importOperation.setCreateContainerStructure(false);
 		try {
 			importOperation.run(new NullProgressMonitor());
 		} catch (InvocationTargetException | InterruptedException e) {
@@ -223,7 +271,28 @@ public class VisionStartup implements IStartup {
 		}
 		return true;
 	}
-	
+
+	private static Content getProjectFromDB() throws VisionLauncherException {
+		// read file from DB
+		PreferencesObject preferencesStore = null;
+		preferencesStore = VisionActivator.getINSTANCE().getVisionPreferences();
+		Map<String, Object> map = preferencesStore.getObject();
+
+		String user = (String) map.get(PreferencesConstants.dbuser.toString());
+		String secret = (String) map.get(PreferencesConstants.dbpasswd.toString());
+		String url = (String) map.get(PreferencesConstants.dbaddress.toString());
+
+		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
+
+		String visionCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
+		String carismaDocument = (String) map.get(PreferencesConstants.carisma_document.toString());
+
+		MongoDBDestination config = new MongoDBDestination(visionCollection, carismaDocument, null); // TODO:
+
+		Content content = db.read(config);
+		return content;
+	}
+
 	protected static boolean getDataFromVisionLauncher() {
 		boolean error = false;
 
@@ -234,8 +303,7 @@ public class VisionStartup implements IStartup {
 		String passwd = preferencesStore.getString(VisiOn.LAUNCHER_PASSWD);
 
 		if (id == null || id.length() == 0 || port < 1 || passwd == null || passwd.length() == 0) {
-			JOptionPane.showMessageDialog(null, "Error CARiSMA VisiOn launcher is not configured.",
-					"CARiSMA VisiOn Error", JOptionPane.OK_OPTION);
+			asyncShowMessage("Error CARiSMA VisiOn launcher is not configured.");
 			return false;
 		}
 

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JOptionPane;
 import javax.xml.transform.Transformer;
@@ -86,29 +88,30 @@ public class VisionActivator extends Plugin {
 	@Override
 	public void stop(BundleContext context) throws Exception {
 
-		String name = CarismaGUI.INSTANCE.getPreferenceStore().getString(VisiOn.PROJECT_NAME);
+		final Display display = Display.getDefault();
+		
+		final String name = CarismaGUI.INSTANCE.getPreferenceStore().getString(VisiOn.PROJECT_NAME);
 
-		if (name == null || "".equals(name)) {
-			JOptionPane.showMessageDialog(null, "Error CARiSMA couldn't export the current project to the DB",
-					"CARiSMA VisiOn Error", JOptionPane.OK_OPTION);
-		} else {
+		if (name != null && !"".equals(name)) {
 			IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			final IProject project = workspace.getRoot().getProject(name);
-			if (!project.exists()) {
-				super.stop(context);
-			} else {
-				Display display = new Display();
-				Shell shell = new Shell(display);
+			if (project.exists()) {
+				final AtomicBoolean returnCode = new AtomicBoolean();
+				display.syncExec(new Runnable() {
+					
+					@Override
+					public void run() {
+						Shell shell = new Shell(display);
+						MessageBox dialog = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+						dialog.setText("Info");
+						dialog.setMessage("Do you really want to upload the project \"" + name + "\" into the VisiOn database and to delete it locally?");
+						returnCode.set(dialog.open() == SWT.YES);
 
 
-				MessageBox dialog = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
-				dialog.setText("Info");
-				dialog.setMessage("Do you really want to load the project with the name: " + name + " into the DB and delete it locally?");
-
+					}
+				});
 				// open dialog and await user selection
-				int returnCode = dialog.open();
-
-				if (returnCode == SWT.YES) {
+				if (returnCode.get()) {
 
 					String prefix = name;
 					String suffix = ".zip";
@@ -160,8 +163,21 @@ public class VisionActivator extends Plugin {
 						project.delete(true, null);
 					}
 				}
+				super.stop(context);
+				return;
 			}
 
+			final AtomicInteger returnCode = new AtomicInteger();
+			display.syncExec(new Runnable() {
+				
+				@Override
+				public void run() {Shell shell = new Shell(display);
+					MessageBox dialog = new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK);
+					dialog.setText("Error");
+					dialog.setMessage("Error CARiSMA couldn't export a project with the name \""+name+"\" to the VisiOn database.");
+					returnCode.set(dialog.open());
+				}
+			});
 			super.stop(context);
 		}
 	}
