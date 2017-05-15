@@ -23,7 +23,6 @@ public class VisionDBTest {
 	public void writeField(){
 		MongoDBRestAPI db = new MongoDBRestAPI(dbuser, dbpassword, dbaddress);
 		MongoDBDestination carismaConfiguration = new MongoDBDestination(carismaCollection, carismaDocument, carismaField);
-		db.write(carismaConfiguration, ContentFactory.createContent("Test", ContentFormats.F_PLAIN));
-		
+		db.write(carismaConfiguration, ContentFactory.createContent("Test", ContentFormats.F_PLAIN));		
 	}
 }
