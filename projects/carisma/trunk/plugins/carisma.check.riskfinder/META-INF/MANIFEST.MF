@@ -11,7 +11,9 @@ Require-Bundle: org.eclipse.ui,
  carisma.check.processanalysis.texttools.wortschatz;bundle-version="1.0.0",
  carisma.regulatory;bundle-version="1.0.1",
  carisma.externals.wortschatz;bundle-version="1.0.0",
- carisma.xutils.regulatory.importer.libs
+ carisma.xutils.regulatory.importer.libs,
+ org.eclipse.uml2.uml,
+ carisma.core
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Export-Package: carisma.check.riskfinder
