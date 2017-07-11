@@ -12,6 +12,10 @@
    <feature url="features/feature.carisma.vision_1.0.0.qualifier.jar" id="feature.carisma.vision" version="1.0.0.qualifier">
       <category name="carisma.projects"/>
    </feature>
+   <feature url="features/feature.carisma.profile.umlsec.enc_1.0.0.qualifier.jar" id="feature.carisma.profile.umlsec.enc" version="1.0.0.qualifier">
+      <category name="carisma.research"/>
+   </feature>
    <category-def name="carisma" label="CARiSMA Main Features"/>
    <category-def name="carisma.projects" label="CARiSMA Project Specific Features"/>
+   <category-def name="carisma.research" label="CARiSMA Experimental Features"/>
 </site>
