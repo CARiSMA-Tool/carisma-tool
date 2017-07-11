@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.eclipse.emf.ecore.EObject;
+
 import carisma.processanalysis.textmodel.ProcessDescription;
 import carisma.processanalysis.textmodel.ProcessEntity;
 
@@ -41,7 +43,8 @@ public class TextFileImporter extends FileImporter {
 				//TODO: Type, id und object noch sinnvoll ergaenzen
 				if(curLine.startsWith("#"))
 					continue;
-				processDescription.addEntity(new ProcessEntity("", "", null, curLine));
+				EObject eObj = null;
+				processDescription.addEntity(new ProcessEntity("", "", eObj, curLine));
 			}
 			
 			br.close();

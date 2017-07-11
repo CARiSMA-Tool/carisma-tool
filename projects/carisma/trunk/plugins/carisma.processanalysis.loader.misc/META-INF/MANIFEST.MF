@@ -6,7 +6,9 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: carisma.processanalysis.loader.misc.Activator
 Require-Bundle: org.eclipse.core.runtime,
  carisma.processanalysis;bundle-version="1.0.0",
- carisma.modeltype.uml2;bundle-version="1.1.2"
+ carisma.modeltype.uml2;bundle-version="1.1.2",
+ org.eclipse.emf.ecore,
+ org.eclipse.uml2.uml
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: carisma.processanalysis.loader.misc,
