@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.fieldassist.ControlDecoration;
@@ -322,7 +323,14 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 		modelFileName.setLayoutData(gridData);
 		modelFileName.setEditable(false);
 		IFile iModelFile = this.controller.getModelIFile();
-		final String modelfile = iModelFile.getLocation().toString();
+		IPath location = iModelFile.getLocation();
+		final String modelfile;
+		if(location != null) {
+			modelfile = location.toString();
+		}
+		else {
+			modelfile = iModelFile.toString();
+		}
 		modelFileName.setText(modelfile);
 
 		// Red cross if model does not exist
@@ -756,7 +764,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 			final Composite composite) {
 		this.run = toolkit.createButton(composite, "RUN", SWT.PUSH);
 		this.run.setEnabled(this.controller.isModelFileValid());
-		//Bug #1518: Wie kann man die Position des Tooltips verändern?
+		//Bug #1518: Wie kann man die Position des Tooltips verï¿½ndern?
 		//http://stackoverflow.com/questions/11375250/set-tooltip-text-at-a-particular-location
 		this.run.setToolTipText("Runs the analysis");
 

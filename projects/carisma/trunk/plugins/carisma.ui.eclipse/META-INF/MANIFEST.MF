@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide,
  carisma.core;visibility:=reexport,
  carisma.core.io,
- org.eclipse.emf.edit.ui
+ org.eclipse.emf.edit.ui,
+ org.apache.commons.lang3
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: carisma.ui.eclipse,

@@ -23,6 +23,7 @@ import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -353,8 +354,9 @@ public class CarismaGUI extends AbstractUIPlugin {
 		// new...
 		String htmlOpen = "<!DOCTYPE html><html lang=\"de\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>CARiSMA Report</title></head><body>";
 		String htmlClose="</body></html>";
-		String htmlBody = analysisResult.getReport();
-		String html = (htmlOpen + htmlBody + htmlClose).replace("\n", "<br />");
+		String htmlBody = StringEscapeUtils.escapeHtml4(analysisResult.getReport());
+		String html = (htmlOpen + htmlBody + htmlClose).replace(System.lineSeparator(), "<br />").replace("\t", "&emsp;");
+		
 		try {
 			if (!(file.exists())) {
 				//file.create(Utils.createInputStreamFromString(analysisResult.getReport()), true, null);

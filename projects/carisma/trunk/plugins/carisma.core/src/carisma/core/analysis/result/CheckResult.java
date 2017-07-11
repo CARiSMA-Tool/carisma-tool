@@ -51,7 +51,7 @@ public class CheckResult{
 		this.results=new ArrayList<>();
 	}
 	
-	@XmlElement(name = "sucessful")
+	@XmlElement(name = "successful")
 	public boolean isSuccessful() {
 		return this.successful;
 	}
