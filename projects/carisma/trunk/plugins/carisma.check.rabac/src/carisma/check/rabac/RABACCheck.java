@@ -74,6 +74,8 @@ public class RABACCheck implements CarismaCheckWithID {
 
 		if (model.getContents().isEmpty()) {
 			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Empty model"));
+			this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+			this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 			return false;
 		}
 
@@ -85,11 +87,15 @@ public class RABACCheck implements CarismaCheckWithID {
 			if (abacNum == 0) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
 						"Could not find the main CHECK_ID stereotype!"));
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 				return false;
 			}
 			if (abacNum > 1) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Found " + abacNum
 						+ " main CHECK_ID stereotypes, model must only contain one!"));
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 				return false;
 			}
 			Element abacClass = abac.get(0);
@@ -97,17 +103,23 @@ public class RABACCheck implements CarismaCheckWithID {
 			List<String> usersTag = UMLsecUtil.getStringValues("roles", UMLsec.ABAC, abacClass);
 			if (usersTag.size() == 0) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Roles missing!"));
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 				return false;
 			}
 			Set<String> users = parseTag(usersTag.get(0), null, 0);
 			if (users.size() == 0) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Roles missing!"));
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 				return false;
 			}
 
 			List<String> rightsTag = UMLsecUtil.getStringValues("rights", UMLsec.ABAC, abacClass);
 			if (rightsTag.size() == 0) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Rights missing!"));
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 				return false;
 			}
 
@@ -122,6 +134,8 @@ public class RABACCheck implements CarismaCheckWithID {
 				this.attributes = config.getAttributes();
 			} catch (Exception e) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Error reading configuration file!"));
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 				return false;
 			}
 
@@ -130,6 +144,8 @@ public class RABACCheck implements CarismaCheckWithID {
 					if (!users.contains(u)) {
 						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Loaded sessions, but user "
 								+ u + " is not valid for this model!"));
+						this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+						this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 						return false;
 					}
 				}
@@ -146,6 +162,8 @@ public class RABACCheck implements CarismaCheckWithID {
 						} catch (NumberFormatException e) {
 							host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
 									"Dynamic seperation of duty contains invalid syntax!"));
+							this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+							this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 							return false;
 						}
 						for (String u : this.sessions.keySet()) {
@@ -172,6 +190,10 @@ public class RABACCheck implements CarismaCheckWithID {
 				List<Element> abacRequire = UMLsecUtil.getStereotypedElements(content, UMLsec.ABACREQUIRE);
 				if (abacRequire.isEmpty()) {
 					host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "No CHECK_ID constraints found!"));
+					this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+					this.analysisHost.appendLineToReport("No errors have been detected.");
+					this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+					this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 					return true;
 				}
 
@@ -186,7 +208,12 @@ public class RABACCheck implements CarismaCheckWithID {
 				List<String> attributeFiltersTag = UMLsecUtil.getStringValues("attributeFilters", UMLsec.ABAC,
 						abacClass);
 				if (attributeFiltersTag.size() > 0) {
-					globalFilter = attributeFiltersTag.get(0);
+					if("".equals(globalFilter) || "null".equals(globalFilter)){
+						attributeFiltersTag.remove(0);
+					}
+					else{
+						globalFilter = attributeFiltersTag.get(0);
+					}
 				}
 
 				for (String u : this.sessions.keySet()) {
@@ -200,6 +227,8 @@ public class RABACCheck implements CarismaCheckWithID {
 						if (right.isEmpty()) {
 							host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, ((NamedElement) e)
 									.getName() + " has no right!"));
+							this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+							this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 							return false;
 						}
 
@@ -292,10 +321,16 @@ public class RABACCheck implements CarismaCheckWithID {
 
 			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO,
 					"Verified CHECK_ID constraints, view report for details"));
+			this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+			this.analysisHost.appendLineToReport("No errors have been detected.");
+			this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+			this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 			return true;
 		}
 
 		host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Content is not a model!"));
+		this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
+		this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
 		return false;
 	}
 

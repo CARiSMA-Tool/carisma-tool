@@ -54,7 +54,7 @@ public class SecureLinksCheck implements CarismaCheckWithID {
 		}
 		boolean noErrors = true;
 		Package model = (Package) currentModel.getContents().get(0);
-		SecureLinks check = new SecureLinks();
+		SecureLinks check = new SecureLinks(host);
 		if (check.checkSecureLinks(model) > 0) {
 			for (AnalysisMessage errorMessage : check.getErrorMessages()) {
 				if (errorMessage.getType() == StatusType.ERROR) {
