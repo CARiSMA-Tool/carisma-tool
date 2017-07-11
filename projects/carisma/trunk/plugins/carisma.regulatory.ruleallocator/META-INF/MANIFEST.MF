@@ -21,15 +21,12 @@ Export-Package: carisma.regulatory.ruleallocator;
    org.eclipse.jface.viewers,
    org.osgi.framework,
    org.eclipse.swt.widgets"
-Import-Package: carisma.core.util,
- carisma.modeltype.bpmn2,
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.common,
  carisma.regulatory.ruleallocator.datamodel,
- org.eclipse.bpmn2;version="0.7.0",
- org.eclipse.core.runtime;version="3.4.0",
- org.eclipse.equinox.app;version="1.1.0",
- org.eclipse.swt.graphics,
- org.eclipse.ui,
- org.eclipse.ui.forms.widgets,
- org.osgi.framework;version="1.6.0"
-Require-Bundle: org.eclipse.ui;bundle-version="3.7.0",
- org.eclipse.emf.ecore.xmi;bundle-version="2.7.0"
+ org.eclipse.bpmn2,
+ carisma.modeltype.bpmn2,
+ carisma.core,
+ org.eclipse.ui.forms
