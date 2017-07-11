@@ -69,11 +69,6 @@ public class AutomatedAnalysis {
 		Set<String> keywords = new HashSet<>();
 		String reportDump = "";
 
-		Set<String> checkIds = new HashSet<>();
-		checkIds.add("CHECK_ID");
-		checkIds.add("SecureLinks");
-		checkIds.add("SecureDependency");
-
 		/*
 		 * parse XML file
 		 * 
@@ -126,14 +121,14 @@ public class AutomatedAnalysis {
 
 			for (String s : keywords) {
 
-				if (s.equalsIgnoreCase("SecureDependency")) {
+				if (SecureDependenciesCheck.CHECK_ID.toLowerCase().endsWith(s.toLowerCase())) {
 
 					CheckReference sd = CheckRegistry.createReference(secureDependency);
 					sd.setEnabled(false);
 					this.checks.add(sd);
 				}
 
-				if (s.equalsIgnoreCase("SecureLinks")) {
+				else if (SecureLinksCheck.CHECK_ID.toLowerCase().endsWith(s.toLowerCase())) {
 
 					CheckReference sl = CheckRegistry.createReference(secureLinks);
 					sl.setEnabled(false);
@@ -141,7 +136,7 @@ public class AutomatedAnalysis {
 
 				}
 
-				if (s.equalsIgnoreCase("CHECK_ID")) {
+				else if (RABACCheck.CHECK_ID.toLowerCase().endsWith(s.toLowerCase())) {
 
 					CheckReference r1 = CheckRegistry.createReference(rabacconf);
 					r1.setEnabled(false);

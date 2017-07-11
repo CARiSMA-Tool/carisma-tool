@@ -125,8 +125,9 @@ public class VisiOnDBOutput implements PopUpAction {
 						String user = (String) map.get(PreferencesConstants.dbuser.toString());
 						String secret = (String) map.get(PreferencesConstants.dbpasswd.toString());
 						String url = (String) map.get(PreferencesConstants.dbaddress.toString());
+						int port = Integer.valueOf((String) map.get(PreferencesConstants.dbport.toString())).intValue();
 
-						MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
+						MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url, port);
 
 						XML_DOM contentXml = (XML_DOM) ContentFactory.createContent(writerXml.toString(),
 								ContentFormats.F_XML_DOM);
@@ -145,7 +146,7 @@ public class VisiOnDBOutput implements PopUpAction {
 							errorMessageBuilder.append(response);
 							errorMessageBuilder.append("\n");
 						}
-						db = new carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI(user, secret, url);
+						db = new carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI(user, secret, url, port);
 
 						String plaCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
 						String plaDocument = (String) map.get(PreferencesConstants.pla_document.toString());

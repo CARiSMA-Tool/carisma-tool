@@ -148,8 +148,9 @@ public class VisionActivator extends Plugin {
 					String user = (String) map.get(PreferencesConstants.dbuser.toString());
 					String secret = (String) map.get(PreferencesConstants.dbpasswd.toString());
 					String url = (String) map.get(PreferencesConstants.dbaddress.toString());
+					int port = Integer.valueOf((String) map.get(PreferencesConstants.dbport.toString())).intValue();
 
-					MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
+					MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url, port);
 
 					String visionCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
 					String carismaDocument = (String) map.get(PreferencesConstants.carisma_document.toString());

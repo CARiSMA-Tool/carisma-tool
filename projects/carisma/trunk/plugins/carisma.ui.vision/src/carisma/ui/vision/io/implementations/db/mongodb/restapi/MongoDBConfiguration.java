@@ -17,13 +17,6 @@ public class MongoDBConfiguration implements Configuration {
 	private final int PORT;
 	private final String PATH = "/VppDatabaseRestApi/database/";
 	
-	public MongoDBConfiguration(String user, String secret, String url) {
-		this.USER = user;
-		this.SECRET = secret;
-		this.URL = url;
-		this.PORT = 8080;
-	}
-	
 	public MongoDBConfiguration(String user, String secret, String url, int port) {
 		this.USER = user;
 		this.SECRET = secret;

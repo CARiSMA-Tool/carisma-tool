@@ -26,8 +26,9 @@ public class dbAccess {
 		String user = (String) map.get(PreferencesConstants.dbuser.toString());
 		String secret = (String) map.get(PreferencesConstants.dbpasswd.toString());
 		String url = (String) map.get(PreferencesConstants.dbaddress.toString());
+		int port = Integer.valueOf((String) map.get(PreferencesConstants.dbport.toString())).intValue();
 		
-		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
+		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url, port);
 
 		String stsCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
 		String stsDocument = (String) map.get(PreferencesConstants.sts_document.toString());

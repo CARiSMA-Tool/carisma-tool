@@ -51,7 +51,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 	private RestAPI api;
 	
 	
-	public MongoDBRestAPI(final String user, final String secret, final String url) {
+	public MongoDBRestAPI(final String user, final String secret, final String url, int port) {
 		if (user == null || user.trim() == "") {
 			throw new RuntimeException("The value of the parameter \"user\" is null or empty.");
 		}
@@ -65,7 +65,7 @@ public class MongoDBRestAPI implements DataBaseIO {
 		HttpClientBuilder create = HttpClientBuilder.create();
 		this.httpClient =  create.build();
 		
-		this.api  = new RestAPI(user, secret, url);
+		this.api  = new RestAPI(user, secret, url, port);
 	}
 	
 	/*
@@ -281,8 +281,8 @@ public class MongoDBRestAPI implements DataBaseIO {
 		 */
 		private MongoDBConfiguration config;
 
-		public RestAPI(String user, String secret, String url) {
-			this.config = new MongoDBConfiguration(user, secret, url);
+		public RestAPI(String user, String secret, String url, int port) {
+			this.config = new MongoDBConfiguration(user, secret, url, port);
 		}
 
 		ResponseMessage deleteDocument(final String collectionID, final String documentID) {
@@ -298,7 +298,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 				int statusCode = httpResponse.getStatusLine().getStatusCode();
 				return MongoDBResponseMessage.createFromHttpStatus(statusCode, delete);
 			}
-			throw new RuntimeException("HttpRespone is null");
+			throw new RuntimeException("Couldn't delete document("
+					+ collectionID+"/"+documentID
+					+ "): HttpResponse is null");
 		}
 		
 		ResponseMessage getDocument(final String collectionID, final String documentID) {
@@ -318,7 +320,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 				
 				return MongoDBResponseMessage.createFromHttpStatus(statusCode, get);
 			}
-			throw new RuntimeException("HttpRespone is null");
+			throw new RuntimeException("Couldn't get document ("
+					+ collectionID+"/"+documentID
+					+ "): HttpRespone is null");
 		}
 		
 		ResponseMessage postDocument(final String collectionID, final String documentID, final String documentBody) {
@@ -345,7 +349,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 				int statusCode = httpResponse.getStatusLine().getStatusCode();
 				return MongoDBResponseMessage.createFromHttpStatus(statusCode, post);
 			}
-			throw new RuntimeException("HttpRespone is null");	
+			throw new RuntimeException("Couldn't post document ("
+					+ collectionID+"/"+documentID
+					+ ")HttpResponse is null");	
 		}
 		
 		@SuppressWarnings("unused")
@@ -373,7 +379,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 				int statusCode = httpResponse.getStatusLine().getStatusCode();
 				return MongoDBResponseMessage.createFromHttpStatus(statusCode, put);
 			}
-			throw new RuntimeException("HttpRespone is null");
+			throw new RuntimeException("Couldn't put document("
+					+ collectionID+"/"+documentID
+					+ "): HttpResponse is null");
 		}
 		
 		@SuppressWarnings("unused")
@@ -390,7 +398,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 				int statusCode = httpResponse.getStatusLine().getStatusCode();
 				return MongoDBResponseMessage.createFromHttpStatus(statusCode, delete);
 			}
-			throw new RuntimeException("HttpRespone is null");
+			throw new RuntimeException("Couldn't delete field("
+					+ collectionID+"/"+documentID+"/"+fieldID
+					+ "): HttpResponse is null");
 		}
 		
 		ResponseMessage getField(final String collectionID, final String documentID, final String fieldID) {
@@ -422,7 +432,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 				}
 				return MongoDBResponseMessage.createFromHttpStatus(statusCode, get);
 			}
-			throw new RuntimeException("HttpRespone is null");
+			throw new RuntimeException("Couldn't get field ("
+					+ collectionID+"/"+documentID+"/"+fieldID
+					+ "): HttpRespone is null");
 		}
 
 		ResponseMessage postField(final String collectionID, final String documentID, final String fieldID, final String documentBody) {
@@ -447,7 +459,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 				int statusCode = httpResponse.getStatusLine().getStatusCode();
 				return MongoDBResponseMessage.createFromHttpStatus(statusCode, post);
 			}
-			throw new RuntimeException("HttpRespone is null");
+			throw new RuntimeException("Couldn't post fieled ("
+					+ collectionID+"/"+documentID+"/"+fieldID
+					+"): HttpRespone is null");
 		}
 		
 		ResponseMessage putField(final String collectionID, final String documentID, final String fieldID, final String documentBody) {
@@ -473,7 +487,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 				int statusCode = httpResponse.getStatusLine().getStatusCode();
 				return MongoDBResponseMessage.createFromHttpStatus(statusCode, put);
 			}
-			throw new RuntimeException("HttpRespone is null");
+			throw new RuntimeException("Couldn't put field ("
+					+ collectionID+"/"+documentID+"/"+fieldID
+					+ "): HttpRespone is null");
 		}
 		
 		@SuppressWarnings("unused")
@@ -491,7 +507,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 				int statusCode = httpResponse.getStatusLine().getStatusCode();
 				return MongoDBResponseMessage.createFromHttpStatus(statusCode, get);
 			}
-			throw new RuntimeException("HttpRespone is null");
+			throw new RuntimeException("Couldn't get documents ("
+					+ collectionID
+					+ "): HttpRespone is null");
 		}
 		
 		@SuppressWarnings("unused")
@@ -509,7 +527,9 @@ public class MongoDBRestAPI implements DataBaseIO {
 				int statusCode = httpResponse.getStatusLine().getStatusCode();
 				return MongoDBResponseMessage.createFromHttpStatus(statusCode, get);
 			}
-			throw new RuntimeException("HttpRespone is null");
+			throw new RuntimeException("Couldn't ger fields ("
+					+ collectionID+"/*/"+fieldID
+					+ "): HttpRespone is null");
 		}
 	}
 }

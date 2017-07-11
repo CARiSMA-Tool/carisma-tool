@@ -65,7 +65,7 @@ public class VisionStartup implements IStartup {
 
 	@Override
 	public void earlyStartup() {
-		Job job = new Job("Connect to VisiOn Launcher") {
+		final Job job = new Job("Connect to VisiOn Launcher") {
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
@@ -88,29 +88,46 @@ public class VisionStartup implements IStartup {
 
 					return new Status(Status.ERROR, VisionActivator.PLUGIN_ID,
 							"Error CARiSMA couldn't connect to VisiOn launcher");
-				} else {
-					if (!restoreVisiOnProject()) {
-						display.asyncExec(new Runnable() {
-
-							@Override
-							public void run() {
-								Shell shell = new Shell(display);
-
-								MessageBox dialog = new MessageBox(shell, SWT.ICON_ERROR);
-								dialog.setText("Error");
-								dialog.setMessage("CARiSMA couldn't restore project from DB");
-							}
-						});
-
-						return new Status(Status.ERROR, VisionActivator.PLUGIN_ID,
-								"CARiSMA couldn't restore project from DB");
-					}
-				}
+				} 
 
 				return Status.OK_STATUS;
 			}
 		};
 		job.schedule();
+		
+		Job getProjectJob = new Job("Get VisiOn project from VisiOn DB"){
+
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				final Display display = Display.getDefault();
+				try{
+					job.join();
+				}
+				catch(Exception e){
+					return Status.CANCEL_STATUS;
+				}
+				if(job.getResult() == Status.OK_STATUS){
+					
+					if (!restoreVisiOnProject()) {
+						display.asyncExec(new Runnable() {
+							
+							@Override
+							public void run() {
+								Shell shell = new Shell(display);
+								MessageBox dialog = new MessageBox(shell, SWT.ICON_ERROR);
+								dialog.setText("Error");
+								dialog.setMessage("CARiSMA couldn't restore project from DB");
+							}
+						});
+						return new Status(Status.ERROR, VisionActivator.PLUGIN_ID,
+								"CARiSMA couldn't restore project from DB");
+					}
+					return Status.OK_STATUS;
+				}
+				return Status.CANCEL_STATUS;
+			}
+		};
+		getProjectJob.schedule();
 	}
 
 	protected static boolean restoreVisiOnProject() {
@@ -150,7 +167,7 @@ public class VisionStartup implements IStartup {
 					newProject = workspace.getRoot().getProject(name + "_DB");
 					int i = 1;
 					while (newProject.exists()) {
-						newProject = workspace.getRoot().getProject(name + "_DB_"+i);
+						newProject = workspace.getRoot().getProject(name + "_DB_"+i++);
 					}
 					zipFile = createTemporaryZip(content);
 
@@ -281,8 +298,9 @@ public class VisionStartup implements IStartup {
 		String user = (String) map.get(PreferencesConstants.dbuser.toString());
 		String secret = (String) map.get(PreferencesConstants.dbpasswd.toString());
 		String url = (String) map.get(PreferencesConstants.dbaddress.toString());
+		int port = Integer.valueOf((String) map.get(PreferencesConstants.dbport.toString())).intValue();
 
-		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url);
+		MongoDBRestAPI db = new MongoDBRestAPI(user, secret, url, port);
 
 		String visionCollection = (String) map.get(PreferencesConstants.vision_collection.toString());
 		String carismaDocument = (String) map.get(PreferencesConstants.carisma_document.toString());
