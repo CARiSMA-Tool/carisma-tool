@@ -352,10 +352,21 @@ public class CarismaGUI extends AbstractUIPlugin {
 		}
 
 		// new...
-		String htmlOpen = "<!DOCTYPE html><html lang=\"de\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>CARiSMA Report</title></head><body>";
-		String htmlClose="</body></html>";
+		String htmlOpen = "<!DOCTYPE html>\n"
+				+ "<html lang=\"de\">\n"
+				+ "<head>\n"
+				+ "\t<meta charset=\"utf-8\">\n"
+				+ "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+				+ "\t<title>CARiSMA Report</title>\n"
+				+ "</head>\n"
+				+ "<body>\n"
+				+ "\t<p>\n\t";
+		String htmlClose="</p>\n"
+				+ "</body>\n"
+				+ "</html>";
 		String htmlBody = StringEscapeUtils.escapeHtml4(analysisResult.getReport());
-		String html = (htmlOpen + htmlBody + htmlClose).replace(System.lineSeparator(), "<br />").replace("\t", "&emsp;");
+		htmlBody = htmlBody.replace("\t", "&emsp;").replaceAll("\\r|\\n", "<br/>"+System.lineSeparator()+"\t");
+		String html = (htmlOpen + htmlBody + htmlClose);
 		
 		try {
 			if (!(file.exists())) {
