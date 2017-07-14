@@ -13,11 +13,14 @@ package carisma.check.staticcheck.securedependency;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.Deployment;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
@@ -84,11 +87,14 @@ public final class SecureDependencyChecks {
 		for (Dependency dep : dependenciesToCheck) {
 			analyzeDependency(dep);
 		}
-		this.analysisHost.appendLineToReport("\n------------------------------------------------------------------------------------");
+		this.analysisHost.appendLineToReport(
+				"\n------------------------------------------------------------------------------------");
 		this.analysisHost
 				.appendLineToReport("The analysis detected " + this.secureDependencyViolations.size() + " errors.");
-		this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
-		this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
+		this.analysisHost.appendLineToReport(
+				"------------------------------------------------------------------------------------");
+		this.analysisHost.appendLineToReport(
+				"------------------------------------------------------------------------------------\n");
 		return this.secureDependencyViolations.size();
 	}
 
@@ -98,6 +104,9 @@ public final class SecureDependencyChecks {
 	 * @param dep
 	 */
 	public void analyzeDependency(Dependency dep) {
+		if (dep instanceof Deployment) {
+			return;
+		}
 		List<NamedElement> clients = dep.getClients();
 		List<NamedElement> suppliers = dep.getSuppliers();
 		for (NamedElement c : clients) {
@@ -389,13 +398,45 @@ public final class SecureDependencyChecks {
 			boolean requiredSubsetOfProvided = providedSupplier.containsAll(relevantRequired);
 			if (relevantRequired.size() != providedSupplier.size() || !requiredSubsetOfProvided) {
 				if (requiredSubsetOfProvided) {
-					String description = supplier.getName() + " provides {" + criticalTag.getSimpleName()
-							+ "} for operations for which " + client.getName() + " does not!";
+					List<String> set = new ArrayList<String>(providedSupplier);
+					(set).removeAll(relevantRequired);
+					String description = supplier.getName() + " provides {" + criticalTag.getSimpleName() + "}";
+					if (set.size() == 1) {
+						description += " for the operation \"" + set.get(0) + "\"";
+					} else {
+						description += " for the operations ";
+						if (set.size() == 2) {
+							description += "\"" + set.get(0) + "\" and \"" + set.get(1) + "\" ";
+						} else {
+							int i = 0;
+							for (; i < set.size() - 1; i++) {
+								description += "\"" + set.get(i) + "\", ";
+							}
+							description += "\"" + set.get(i) + "\" ";
+						}
+					}
+					description += "for which " + client.getName() + " does not!";
 					errors.add(new SecureDependencyViolation(description, dependency, client, supplier));
 					this.analysisHost.appendLineToReport("    " + description);
 				} else {
-					String description = client.getName() + " requires {" + criticalTag.getSimpleName()
-							+ "} for operations for which " + supplier.getName() + " does not provide {"
+					List<String> set = new ArrayList<String>(relevantRequired);
+					(set).removeAll(providedSupplier);
+					String description = supplier.getName() + " requires {" + criticalTag.getSimpleName() + "}";
+					if (set.size() == 1) {
+						description += " for the operation \"" + set.get(0) + "\"";
+					} else {
+						description += " for the operations ";
+						if (set.size() == 2) {
+							description += "\"" + set.get(0) + "\" and \"" + set.get(1) + "\" ";
+						} else {
+							int i = 0;
+							for (; i < set.size() - 1; i++) {
+								description += "\"" + set.get(i) + "\", ";
+							}
+							description += "\"" + set.get(i) + "\" ";
+						}
+					}
+					description += "for which " + client.getName() + " does not does not provide {"
 							+ criticalTag.getSimpleName() + "}!";
 					errors.add(new SecureDependencyViolation(description, dependency, client, supplier));
 					this.analysisHost.appendLineToReport("    " + description);
