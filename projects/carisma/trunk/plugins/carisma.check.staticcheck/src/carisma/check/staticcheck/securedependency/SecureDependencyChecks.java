@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Dependency;
@@ -31,12 +32,14 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.Relationship;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.DummyHost;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.UMLHelper;
+import carisma.profile.umlsec.SignatureHelper;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 import carisma.profile.umlsec.call;
@@ -592,31 +595,7 @@ public final class SecureDependencyChecks {
 	public static List<String> getOperationSignatures(final Classifier classifier) {
 		List<String> signatures = new ArrayList<>();
 		for (Operation operation : classifier.getAllOperations()) {
-			String signature = operation.getName() + "(";
-			StringBuffer parameters = new StringBuffer();
-			for (Parameter p : operation.getOwnedParameters()) {
-				if (p.equals(operation.getReturnResult())) {
-					continue;
-				}
-				String type = "void";
-				if (p.getType() != null) {
-					type = p.getType().getName();
-				}
-				parameters.append(p.getName());
-				parameters.append(":");
-				parameters.append(type);
-				parameters.append(",");
-			}
-			if (!"".equals(parameters.toString())) {
-				signature += parameters.substring(0, parameters.lastIndexOf(","));
-			}
-			// signature += ")";
-
-			if (operation.getType() != null) {
-				signature += "):" + operation.getType().getName();
-			} else {
-				signature += ")";
-			}
+			String signature = SignatureHelper.getSignature(operation);
 			signatures.add(signature);
 		}
 		return signatures;

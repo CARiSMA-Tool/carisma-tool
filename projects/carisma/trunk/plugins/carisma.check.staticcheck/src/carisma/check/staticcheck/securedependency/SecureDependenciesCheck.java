@@ -22,22 +22,19 @@ import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 
-
 public class SecureDependenciesCheck implements CarismaCheckWithID {
 
 	public static final String CHECK_ID = "carisma.check.staticcheck.securedependency";
 	public static final String CHECK_NAME = "UMLsec secure dependency Check";
-	
-	
-	
+
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost newHost) {
-	    AnalysisHost host;
-	    if (newHost != null) {
-	        host = newHost;
-	    } else {
-	        host = new DummyHost(true);
-	    }
+		AnalysisHost host;
+		if (newHost != null) {
+			host = newHost;
+		} else {
+			host = new DummyHost(true);
+		}
 		Resource currentModel = host.getAnalyzedModel();
 		if (currentModel.getContents().isEmpty()) {
 			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
@@ -55,11 +52,10 @@ public class SecureDependenciesCheck implements CarismaCheckWithID {
 		}
 		host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
 		return false;
-	}	
-	
-	
+	}
+
 	private static String computeMessage(SecureDependencyViolation v) {
-		if (v.getDescription() != null) {	//TODO: What is the purpose of this stuff???
+		if (v.getDescription() != null) { // TODO: What is the purpose of this stuff???
 			if (v.getDescription().startsWith("Dependency")) {
 				String ns = v.getDependency().getName();
 				if (ns == null || "".equals(ns)) {
