@@ -10,25 +10,23 @@ import org.eclipse.uml2.uml.Type;
 
 public class SignatureHelper {
 
-
 	public static String getSignature(Operation operation) {
 		StringBuffer signature = new StringBuffer(operation.getName());
 		signature.append('(');
 		EList<Parameter> ownedParameters = operation.getOwnedParameters();
-		if(ownedParameters.size() > 0) {
+		if (ownedParameters.size() > 0) {
 			ArrayList<String> params = new ArrayList<String>(ownedParameters.size());
 			for (Parameter p : ownedParameters) {
 				if (p.equals(operation.getReturnResult())) {
 					continue;
 				}
 				StringBuilder paramBuilder = new StringBuilder();
-				paramBuilder.append(p.getName());
-				paramBuilder.append(":");
+//				paramBuilder.append(p.getName());
+//				paramBuilder.append(":");
 				Type type = p.getType();
 				if (type != null) {
 					paramBuilder.append(p.getType().getName());
-				}
-				else {
+				} else {
 					paramBuilder.append("void");
 				}
 				params.add(paramBuilder.toString());
@@ -43,11 +41,14 @@ public class SignatureHelper {
 		}
 		return signature.toString();
 	}
-	
+
 	public static String getSignature(Property property) {
 		StringBuilder propertyBuilder = new StringBuilder(property.getName());
 		propertyBuilder.append(':');
-		propertyBuilder.append(property.getType().getName());
+		Type type = property.getType();
+		if (type != null) {
+			propertyBuilder.append(type.getName());
+		}
 		return propertyBuilder.toString();
 	}
 }
