@@ -9,8 +9,8 @@ import carisma.ui.vision.io.implementations.db.mongodb.restapi.MongoDBRestAPI.Mo
 
 public class VisionDBTest {
 
+	private final static int dbport = 9898;
 	private final static String dbaddress = "212.34.151.216";
-	private final static String dbport = "9898";
 	private final static String dbuser = "vppapp";
 	private final static String dbpassword = "vppapptomcatpassword";
 	private final static String dbApiPath = "VppDatabaseRestApi/database";
@@ -21,7 +21,7 @@ public class VisionDBTest {
 	
 	@Test
 	public void writeField(){
-		MongoDBRestAPI db = new MongoDBRestAPI(dbuser, dbpassword, dbaddress);
+		MongoDBRestAPI db = new MongoDBRestAPI(dbuser, dbpassword, dbaddress, dbport);
 		MongoDBDestination carismaConfiguration = new MongoDBDestination(carismaCollection, carismaDocument, carismaField);
 		db.write(carismaConfiguration, ContentFactory.createContent("Test", ContentFormats.F_PLAIN));		
 	}

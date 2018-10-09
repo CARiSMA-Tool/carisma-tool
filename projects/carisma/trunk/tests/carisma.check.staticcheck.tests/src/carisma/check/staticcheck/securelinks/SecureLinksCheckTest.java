@@ -99,28 +99,28 @@ public class SecureLinksCheckTest {
 	@Test
 	public final void testCheckWrongLinktype() throws IOException {
 		loadModel("testDeploymentWrongLinktype.uml");
-		SecureLinks theCheck = new SecureLinks();
+		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
 	
 	@Test
 	public final void testCheckRightLinktype() throws IOException {
 		loadModel("testDeploymentRightLinktype.uml");
-		SecureLinks theCheck = new SecureLinks();
+		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(0, theCheck.checkSecureLinks(this.model));
 	}
 	
 	@Test
 	public final void testCheckWrongCustomMultipleRequirements() throws IOException {
 		loadModel("testDeploymentWrongCustomMultipleRequirements.uml");
-		SecureLinks theCheck = new SecureLinks();
+		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
 	
 	@Test
 	public final void testCheckNonUMLsecStereotypes() throws IOException {
 		loadModel("testDeploymentNonUMLsecStereotype.uml");
-		SecureLinks theCheck = new SecureLinks();
+		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(0, theCheck.checkSecureLinks(this.model));
 	}
 	
