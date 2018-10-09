@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -154,7 +155,7 @@ public final class SecureDependencyChecks {
 			if (subSupplier instanceof Interface) {
 				continue;
 			}
-			List<String> signaturesSupplier = getOperationSignatures(subSupplier);
+			List<String> signaturesSupplier = getMemberSignatures(subSupplier);
 
 			List<String> freshSupplier = new ArrayList<>();
 			List<String> highSupplier = new ArrayList<>();
@@ -178,143 +179,6 @@ public final class SecureDependencyChecks {
 					signaturesSupplier, secrecy.class));
 		}
 
-		// get messages of supplier
-		// get critical lists of supplier and all subclasses/implementations
-		// for each message
-		// - if in critical lists it has to be in clients critical list
-		// - if not in critical lists is must not be in clients critical list
-		// FIXME: "in C if and only if it appears in D" -> both directions must
-		// be checked
-		// List<String> allSecrecyTagValuesOfSupplierAndChildren =
-		// getAllDistinctTagValuesOfClassifierAndSubclasses(
-		// supplier, UMLsec.TAG_CRITICAL_SECRECY);
-		// List<String> allIntegrityTagValuesOfSupplierAndChildren =
-		// getAllDistinctTagValuesOfClassifierAndSubclasses(
-		// supplier, UMLsec.TAG_CRITICAL_INTEGRITY);
-		// List<String> allHighTagValuesOfSupplierAndChildren =
-		// getAllDistinctTagValuesOfClassifierAndSubclasses(supplier,
-		// UMLsec.TAG_CRITICAL_HIGH);
-		// List<String> allPrivacyTagValuesOfSupplierAndChildren =
-		// getAllDistinctTagValuesOfClassifierAndSubclasses(
-		// supplier, UMLsec.TAG_CRITICAL_PRIVACY);
-		//
-		// List<String> relevantSignaturesForSecrecy = new ArrayList<>();
-		// List<String> relevantSignaturesForPrivacy = new ArrayList<>();
-		// List<String> relevantSignaturesForIntegrity = new ArrayList<>();
-		// List<String> relevantSignaturesForHigh = new ArrayList<>();
-		//
-		// List<String> irrelevantSupplierSignatures = new ArrayList<>();
-		//
-		// List<String> operationSignaturesOfSupplier =
-		// getOperationSignatures(supplier);
-		// for (String sig : operationSignaturesOfSupplier) {
-		// if (allSecrecyTagValuesOfSupplierAndChildren.contains(sig)) {
-		// relevantSignaturesForSecrecy.add(sig);
-		// } else if (allIntegrityTagValuesOfSupplierAndChildren.contains(sig))
-		// {
-		// relevantSignaturesForIntegrity.add(sig);
-		// } else if (allHighTagValuesOfSupplierAndChildren.contains(sig)) {
-		// relevantSignaturesForHigh.add(sig);
-		// } else if (allPrivacyTagValuesOfSupplierAndChildren.contains(sig)) {
-		// relevantSignaturesForPrivacy.add(sig);
-		// } else {
-		// irrelevantSupplierSignatures.add(sig);
-		// }
-		// }
-		// List<String> secrecyTagValuesOfClient = new ArrayList<>();
-		// getDistinctTagValues(secrecyTagValuesOfClient, client,
-		// UMLsec.TAG_CRITICAL_SECRECY);
-		// List<String> privacyTagValuesOfClient = new ArrayList<>();
-		// getDistinctTagValues(privacyTagValuesOfClient, client,
-		// UMLsec.TAG_CRITICAL_PRIVACY);
-		// List<String> integrityTagValuesOfClient = new ArrayList<>();
-		// getDistinctTagValues(integrityTagValuesOfClient, client,
-		// UMLsec.TAG_CRITICAL_INTEGRITY);
-		// List<String> highTagValuesOfClient = new ArrayList<>();
-		// getDistinctTagValues(highTagValuesOfClient, client,
-		// UMLsec.TAG_CRITICAL_HIGH);
-		//
-		// List<SecureDependencyViolation> errors = new ArrayList<>();
-		//
-		// if (!secrecyTagValuesOfClient.isEmpty() ||
-		// !relevantSignaturesForSecrecy.isEmpty()) {
-		// this.analysisHost.appendLineToReport(" - analyzing secrecy tag values
-		// ...");
-		// String error = checkLists("secrecy", relevantSignaturesForSecrecy,
-		// secrecyTagValuesOfClient,
-		// irrelevantSupplierSignatures);
-		// if (error != null) {
-		// errors.add(new SecureDependencyViolation(error, dependency, client,
-		// supplier));
-		// this.analysisHost.appendLineToReport(" " + error);
-		// }
-		// if (!UMLsecUtil.hasStereotype(dependency, UMLsec.SECRECY)) {
-		// errors.add(new SecureDependencyViolation("Dependency misses
-		// stereotype <<secrecy>>!", dependency,
-		// client, supplier));
-		// this.analysisHost.appendLineToReport(" Dependency misses stereotype
-		// <<secrecy>>!");
-		// }
-		// }
-		// if (!privacyTagValuesOfClient.isEmpty() ||
-		// !relevantSignaturesForPrivacy.isEmpty()) {
-		// this.analysisHost.appendLineToReport(" - analyzing privacy tag values
-		// ...");
-		// String error = privacyCheckLists("privacy",
-		// relevantSignaturesForPrivacy, privacyTagValuesOfClient,
-		// irrelevantSupplierSignatures);
-		// if (error != null) {
-		// errors.add(new SecureDependencyViolation(error, dependency, client,
-		// supplier));
-		// this.analysisHost.appendLineToReport(" " + error);
-		// }
-		// if (!UMLsecUtil.hasStereotype(dependency, UMLsec.PRIVACY)) {
-		// errors.add(new SecureDependencyViolation("Dependency misses
-		// stereotype <<privacy>>!", dependency,
-		// client, supplier));
-		// this.analysisHost.appendLineToReport(" Dependency misses stereotype
-		// <<privacy>>!");
-		// }
-		// }
-		// if (!integrityTagValuesOfClient.isEmpty() ||
-		// !relevantSignaturesForIntegrity.isEmpty()) {
-		// this.analysisHost.appendLineToReport(" - analyzing integrity tags
-		// ...");
-		// String error = checkLists("integrity",
-		// relevantSignaturesForIntegrity, integrityTagValuesOfClient,
-		// irrelevantSupplierSignatures);
-		// if (error != null) {
-		// errors.add(new SecureDependencyViolation(error, dependency, client,
-		// supplier));
-		// this.analysisHost.appendLineToReport(" " + error);
-		// }
-		// if (!UMLsecUtil.hasStereotype(dependency, UMLsec.INTEGRITY)) {
-		// errors.add(new SecureDependencyViolation("Dependency misses
-		// stereotype <<integrity>>!", dependency,
-		// client, supplier));
-		// this.analysisHost.appendLineToReport(" Dependency misses stereotype
-		// <<integrity>>!");
-		// }
-		// }
-		// if (!highTagValuesOfClient.isEmpty() ||
-		// !relevantSignaturesForHigh.isEmpty()) {
-		// this.analysisHost.appendLineToReport(" - analyzing high tags ...");
-		// String error = checkLists("high", relevantSignaturesForHigh,
-		// highTagValuesOfClient,
-		// irrelevantSupplierSignatures);
-		// if (error != null) {
-		// errors.add(new SecureDependencyViolation(error, dependency, client,
-		// supplier));
-		// this.analysisHost.appendLineToReport(" " + error);
-		// }
-		// if (!UMLsecUtil.hasStereotype(dependency, UMLsec.HIGH)) {
-		// errors.add(new SecureDependencyViolation("Dependency misses
-		// stereotype <<high>>!", dependency, client,
-		// supplier));
-		// this.analysisHost.appendLineToReport(" Dependency misses stereotype
-		// <<high>>!");
-		// }
-		// }
 		return errors;
 	}
 
@@ -334,7 +198,7 @@ public final class SecureDependencyChecks {
 
 	private List<String> getRequired(Classifier classifier, Collection<String> criticalTags,
 			Collection<String> provided, Collection<String> required) {
-		List<String> sigantures = getOperationSignatures(classifier);
+		List<String> sigantures = getMemberSignatures(classifier);
 
 		for (String tag : criticalTags) {
 			String[] names = tag.split("\\.");
@@ -397,7 +261,7 @@ public final class SecureDependencyChecks {
 				if (requiredSubsetOfProvided) {
 					List<String> set = new ArrayList<String>(providedSupplier);
 					(set).removeAll(relevantRequired);
-					String description = supplier.getName() + " provides {" + criticalTag.getSimpleName() + "}";
+					String description = '\"'+supplier.getName() + "\" provides {" + criticalTag.getSimpleName() + "}";
 					if (set.size() == 1) {
 						description += " for the operation \"" + set.get(0) + "\"";
 					} else {
@@ -412,13 +276,13 @@ public final class SecureDependencyChecks {
 							description += "\"" + set.get(i) + "\" ";
 						}
 					}
-					description += "for which " + client.getName() + " does not!";
+					description += " for which \"" + client.getName() + "\" does not!";
 					errors.add(new SecureDependencyViolation(description, dependency, client, supplier));
 					this.analysisHost.appendLineToReport("    " + description);
 				} else {
 					List<String> set = new ArrayList<String>(relevantRequired);
 					(set).removeAll(providedSupplier);
-					String description = supplier.getName() + " requires {" + criticalTag.getSimpleName() + "}";
+					String description = '\"' + client.getName() + "\" requires {" + criticalTag.getSimpleName() + "}";
 					if (set.size() == 1) {
 						description += " for the operation \"" + set.get(0) + "\"";
 					} else {
@@ -433,7 +297,7 @@ public final class SecureDependencyChecks {
 							description += "\"" + set.get(i) + "\" ";
 						}
 					}
-					description += "for which " + client.getName() + " does not does not provide {"
+					description += " for which \"" + supplier.getName() + "\" does not does not provide {"
 							+ criticalTag.getSimpleName() + "}!";
 					errors.add(new SecureDependencyViolation(description, dependency, client, supplier));
 					this.analysisHost.appendLineToReport("    " + description);
@@ -465,71 +329,6 @@ public final class SecureDependencyChecks {
 			}
 		}
 		return intersection;
-	}
-
-	private static String checkLists(final String tagName, final List<String> allTagsOfSupplierAndChildren,
-			final List<String> tagsOfClient, final List<String> irrelevantSignatures) {
-		List<String> tagsNotInSupplier = new ArrayList<>();
-		List<String> tagsNotInClient = new ArrayList<>();
-		for (String s : allTagsOfSupplierAndChildren) {
-			if (!tagsOfClient.contains(s)) {
-				tagsNotInClient.add(s);
-			}
-		}
-		for (String s : tagsOfClient) {
-			if (!allTagsOfSupplierAndChildren.contains(s) && irrelevantSignatures.contains(s)) {
-				tagsNotInSupplier.add(s);
-			}
-		}
-		String error = null;
-		if (!tagsNotInClient.isEmpty()) {
-			error = "Supplier or one of its subelements defines {" + tagName + "=" + toString(tagsNotInClient)
-					+ "}, but client does not!";
-		}
-		String tocnis = null;
-		if (!tagsNotInSupplier.isEmpty()) {
-			tocnis = "Client defines {" + tagName + "=" + toString(tagsNotInSupplier)
-					+ "}, but neither supplier nor subelement of supplier does!";
-		}
-		if (error == null && tocnis != null) {
-			error = tocnis;
-		} else if (error != null && tocnis != null) {
-			error = error + " And c" + tocnis.substring(1);
-		}
-		return error;
-	}
-
-	private static String privacyCheckLists(final String tagName,
-			final List<String> allPrivacyTagsOfSupplierAndChildren, final List<String> PrivacyTagsOfClient,
-			final List<String> irrelevantSignatures) {
-		List<String> clientPrivacyTagsNotInSupplier = new ArrayList<>();
-		List<String> privacyTagsNotInClient = new ArrayList<>();
-		for (String s : allPrivacyTagsOfSupplierAndChildren) {
-			if (!PrivacyTagsOfClient.contains(s)) {
-				privacyTagsNotInClient.add(s);
-			}
-		}
-		for (String s : PrivacyTagsOfClient) {
-			if (!allPrivacyTagsOfSupplierAndChildren.contains(s) && irrelevantSignatures.contains(s)) {
-				clientPrivacyTagsNotInSupplier.add(s);
-			}
-		}
-		String error = null;
-		if (!privacyTagsNotInClient.isEmpty()) {
-			error = "Supplier or one of its subelements defines {" + tagName + "=" + toString(privacyTagsNotInClient)
-					+ "}, but client does not!";
-		}
-		String tocnis = null;
-		if (!clientPrivacyTagsNotInSupplier.isEmpty()) {
-			tocnis = "Client defines {" + tagName + "=" + toString(clientPrivacyTagsNotInSupplier)
-					+ "}, but neither supplier nor subelement of supplier does!";
-		}
-		if (error == null && tocnis != null) {
-			error = tocnis;
-		} else if (error != null && tocnis != null) {
-			error = error + " And c" + tocnis.substring(1);
-		}
-		return error;
 	}
 
 	/**
@@ -586,27 +385,17 @@ public final class SecureDependencyChecks {
 	 *            collected
 	 * @return - a list of operation signature strings
 	 */
-	public static List<String> getOperationSignatures(final Classifier classifier) {
+	public static List<String> getMemberSignatures(final Classifier classifier) {
 		List<String> signatures = new ArrayList<>();
 		for (Operation operation : classifier.getAllOperations()) {
 			String signature = SignatureHelper.getSignature(operation);
 			signatures.add(signature);
 		}
-		return signatures;
-	}
-
-	/**
-	 * Converts a list of strings to a single string.
-	 * 
-	 * @param list
-	 * @return
-	 */
-	private static String toString(List<String> list) {
-		StringBuffer result = new StringBuffer(", ");
-		for (String s : list) {
-			result.append(s);
+		for (Property property : classifier.getAllAttributes()) {
+			String signature = SignatureHelper.getSignature(property);
+			signatures.add(signature);
 		}
-		return result.substring(2);
+		return signatures;
 	}
 
 	public static boolean isRelevantDependency(Dependency dependency) {

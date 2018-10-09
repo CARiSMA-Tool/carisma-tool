@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>carisma</groupId>
+		<artifactId>CARiSMA</artifactId>
+		<version>2.0</version>
+		<relativePath>../carisma_pom.xml</relativePath>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>carisma</groupId>
+	<artifactId>carisma.productive</artifactId>
+	<version>2.0</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>carisma.core</module>
+		<module>carisma.ui.console</module>
+		<module>carisma.ui.eclipse</module>
+		<module>carisma.evolution</module>
+		<module>carisma.modeltype.uml2</module>
+		<module>carisma.profile.umlsec</module>
+		<module>carisma.profile.umlchange</module>
+		<module>carisma.check.staticcheck</module>
+		<module>carisma.ocl</module>
+		<module>carisma.ocl.library</module>
+		<module>carisma.ocl.library.edit</module>
+		<module>carisma.ocl.library.editor</module>
+		<module>carisma.evolution.uml2.umlchange</module>
+		<module>carisma.evolution.uml2.umlchange.ui</module>
+		<module>carisma.evolution.uml2</module>
+<!-- 2014-03-19 DP: Not working right now because of EMF Compare Non-BC
+		<module>carisma.evolution.emfdelta</module>
+		<module>carisma.evolution.emfdelta.ui</module>
+		<module>carisma.check.emfdelta</module>
+-->
+		<module>carisma.clean</module>
+		<module>carisma.modeltype.bpmn2</module>
+		<module>carisma.modeltype.bpmn2.extension</module>
+		<module>carisma.modeltype.bpmn2.extension.edit</module>
+		<module>carisma.modeltype.bpmn2.extended</module>
+		<module>carisma.modeltype.bpmn2.extension.editor</module>
+		<module>carisma.check.bpmn2.dummy</module>
+		<module>carisma.check.bpmn2.ocl</module>
+		<module>carisma.check.bpmn2.marisk</module>
+		<module>carisma.check.template</module>
+		<module>carisma.check.requirescheck</module>
+		<module>carisma.check.staticcheck.evolution</module>
+		<module>carisma.check.statemachinepaths</module>
+		<module>carisma.check.smartcard</module>
+		<module>carisma.check.smartcard.evolution</module>
+		<module>carisma.check.oclcheck</module>
+		<module>carisma.externals.wortschatz</module>
+		<module>carisma.check.riskfinder</module>
+		<module>carisma.check.dummy</module>
+		<module>carisma.check.activitypaths</module>
+		<module>carisma.check.activity2petrinet</module>		
+		<module>carisma.regulatory</module>
+		<module>carisma.xutils.regulatory.extractor</module>
+		<module>carisma.xutils.regulatory.importer.bsi</module>
+		<module>carisma.xutils.regulatory.importer.csv</module>
+		<module>carisma.xutils.regulatory.importer.libs</module>
+		<module>carisma.xutils.regulatory.importer.juris</module>
+		<module>carisma.xutils.regulatory.importer.marisk</module>
+		<module>carisma.xutils.regulatory.importer.superior</module>
+		<module>carisma.xutils.regulatory.importer.superior.ui</module>
+		<module>carisma.xutils.regulatory.importer.superior.ui.log</module>
+		<module>carisma.processanalysis</module>
+		<module>carisma.processanalysis.loader.misc</module>
+		<module>carisma.check.processanalysis.loader.bpmn</module>
+		<module>carisma.check.processanalysis.texttools.hunspell</module>
+		<module>carisma.check.processanalysis.texttools.wortschatz</module>
+		<module>carisma.check.OntoExporter</module>
+		
+		
+	</modules>
+	<build>
+		<plugins>
+			<plugin>
+			  	<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco-maven-version}</version>
+			  	<configuration>
+			    	<destFile>${project.basedir}/../../target/jacoco.exec</destFile>
+				</configuration>
+				<executions>
+					<execution>
+						<id>post-test</id>
+						<configuration>
+							<dataFile>${project.basedir}/../../target/jacoco.exec</dataFile>
+							<excludes>
+								<exclude>**/uni_leipzig/**</exclude>
+								<exclude>**/riskfinder/texttools/BaseformServiceStub.*</exclude>
+								<exclude>org/eclipse/uml2/uml/util/UMLSwitch</exclude>
+								<exclude>**/gensrc/**</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
