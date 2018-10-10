@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Log
+Bundle-SymbolicName: carisma.xutils.regulatory.importer.superior.ui.log; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: carisma.xutils.regulatory.importer.superior.ui.log
+Import-Package: org.eclipse.jface.viewers,
+ org.eclipse.swt.widgets

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Marisk2Ontology Importer
+Bundle-SymbolicName: carisma.xutils.regulatory.importer.marisk
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: carisma.xutils.regulatory.importer.marisk.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ carisma.xutils.regulatory.importer.libs;bundle-version="1.0.0",
+ carisma.regulatory;bundle-version="1.0.1",
+ carisma.xutils.regulatory.importer.superior.ui.log;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: carisma.xutils.regulatory.importer.marisk

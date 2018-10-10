@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CARiSMA Process Analysis Extension
+Bundle-SymbolicName: carisma.processanalysis
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.7.0"
+Export-Package: carisma.processanalysis.textmodel,
+ carisma.processanalysis.texttools
+Bundle-ClassPath: .,
+ lib/javacsv.jar

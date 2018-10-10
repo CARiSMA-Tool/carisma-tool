@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Prints the content of a OWL 2 model to the console"
+            id="carisma.check.owl2dummy"
+            implementingClass="carisma.check.owl2.dummy.Check"
+            magicKeys="owl"
+            name="OWL2 Dummy Check"
+            publisher="Marcel Michel"
+            targetModelType="OWL2">
+         <parameter
+               defaultValue="false"
+               id="carisma.check.owl2.dummy.hiding"
+               name="Apply Hidings"
+               optional="false"
+               type="boolean">
+         </parameter>
+         <parameter
+               defaultValue="false"
+               id="carisma.check.owl2.dummy.change"
+               name="Apply Changes"
+               optional="false"
+               type="boolean">
+         </parameter>
+      </check>
+   </extension>
+   <extension
+         id="carisma.check.bpmn2.dummy.help"
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="true">
+      </toc>
+   </extension>
+
+</plugin>

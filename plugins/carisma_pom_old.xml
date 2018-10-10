@@ -1,0 +1,140 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>carisma</groupId>
+	<artifactId>CARiSMA</artifactId>
+	<version>2.0</version>
+	<packaging>pom</packaging>
+
+	<name>CARiSMA</name>
+	<url>http://carisma.umlsec.de</url>
+	
+	<properties>
+		<tycho-version>0.13.0</tycho-version>
+		<junit-version>4.8.2</junit-version>
+		<project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
+		<jacoco-maven-version>0.5.6.201201232323</jacoco-maven-version>
+		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+	    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+	    <sonar.jacoco.reportPath>${project.basedir}/../../target/jacoco.exec</sonar.jacoco.reportPath>
+	    <sonar.jacoco.itReportPath>${project.basedir}/../../target/jacoco-it.exec</sonar.jacoco.itReportPath>
+<!--    <sonar.surefire.reportsPath>../${project.artifactId}.tests/target/surefire-reports/</sonar.surefire.reportsPath> -->
+	</properties>
+	<repositories>
+<!-- The Nexus P2 repository group
+		<repository>
+			<id>nexus_p2</id>
+			<layout>p2</layout>
+			<url>http://129.217.47.157:8082/nexus/content/groups/p2_repos/</url>
+		</repository>
+-->
+		<repository>
+			<id>nexus_bpmn2_p2</id>
+			<layout>p2</layout>
+			<url>http://129.217.47.157:8082/nexus/content/repositories/BPMN2/</url>
+		</repository>
+		<repository>
+			<id>nexus_mdt_p2</id>
+			<layout>p2</layout>
+			<url>http://129.217.47.157:8082/nexus/content/repositories/MDT/</url>
+		</repository>
+<!-- Jenkins/Maven/Nexus has problems with the big content.xml on indigo
+		<repository>
+			<id>nexus_indigo_p2</id>
+			<layout>p2</layout>
+			<url>http://129.217.47.157:8082/nexus/content/repositories/indigo/</url>
+		</repository>
+-->
+		<repository>
+			<id>indigo</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/indigo/</url>
+		</repository>
+	</repositories>
+	
+	<modules>
+		<module>prod_pom.xml</module>
+<!--
+		<module>../tests/tests_pom.xml</module>
+-->
+	</modules>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+			  	<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco-maven-version}</version>
+			  	<configuration>
+					<excludes>
+						<exclude>**/uni_leipzig/**</exclude>
+						<exclude>**/riskfinder/texttools/BaseformServiceStub.*</exclude>
+						<exclude>org/eclipse/uml2/uml/util/UMLSwitch</exclude>
+					</excludes>
+				</configuration>
+			  <executions>
+			    <execution>
+				  <id>pre-test</id>
+			      <goals>
+			        <goal>prepare-agent</goal>
+			      </goals>
+			    </execution>
+				<execution>
+				  <id>post-test</id>
+				  <phase>
+					test
+				  </phase>
+				  <goals>
+				    <goal>report</goal>
+				  </goals>
+				</execution>
+			  </executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<dependency-resolution>
+						<optionalDependencies>ignore</optionalDependencies>
+					</dependency-resolution>					
+					<resolver>p2</resolver>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

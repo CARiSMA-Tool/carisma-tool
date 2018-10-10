@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CARiSMA Riskfinder Check
+Bundle-SymbolicName: carisma.check.riskfinder;singleton:=true
+Bundle-Version: 1.1.2.qualifier
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ carisma.modeltype.uml2;bundle-version="1.0.0",
+ carisma.modeltype.bpmn2,
+ carisma.processanalysis;bundle-version="1.0.0";visibility:=reexport,
+ carisma.check.processanalysis.texttools.wortschatz;bundle-version="1.0.0",
+ carisma.regulatory;bundle-version="1.0.1",
+ carisma.externals.wortschatz;bundle-version="1.0.0",
+ carisma.xutils.regulatory.importer.libs,
+ org.eclipse.uml2.uml,
+ carisma.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Software Engineering Institute, TU Dortmund
+Export-Package: carisma.check.riskfinder
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: carisma.check.riskfinder.Activator
+Bundle-ClassPath: lib/newRisk.jar,
+ .

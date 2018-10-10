@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Dumps the EMF-Compare Diffmodel and the corresponding informations in the CARiSMA Deltamodel"
+            id="carisma.check.emfdelta"
+            name="EMF Delta Dump"
+            implementingClass="carisma.check.emfdelta.EMFDeltaDumpCheck"
+            publisher="Johannes Kowald"
+            targetModelType="UML2,BPMN2">
+         <parameter
+               id="carisma.check.emfdelta.referenceModel"
+               name="Reference Model"
+               optional="false"
+               type="InputFile">
+         </parameter>
+      </check>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/toc.xml"
+            primary="false">
+      </toc>
+   </extension>
+</plugin>

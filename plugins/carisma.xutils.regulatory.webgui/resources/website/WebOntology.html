@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Web Ontology Viewer</title>
+<link rel="stylesheet" href="content.css" type="text/css" media="screen" charset="utf-8"/>
+<script src="scripting.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body onload="javascript:treeMenu_init(document.getElementById('menu'), '', false), getWindowSize(), loadConstraints();">
+<div id="main_div">
+	<div id="upperContent">
+		<div id="navigationList">
+			<ul id="menu">
+			  <li><span>BSIRule</span>
+			    <ul>
+			      <li id="bsiElem" onmouseover="getChilds('BSIElement', 'bsiElemUl', 'bsiElem')">BSIElement<ul id="bsiElemUl"> </ul>		      
+			      </li>
+			      <li id="bsiMea" onmouseover="getChilds('BSIMeasure', 'bsiMeaUl', 'bsiMea')">BSIMeasure<ul id="bsiMeaUl"> </ul>
+			      </li>
+			      <li id="bsiTh" onmouseover="getChilds('BSIThread', 'bsiThUl', 'bsiTh')">BSIThread<ul id="bsiThUl"> </ul>
+			      </li>
+			    </ul>
+			  </li>
+			  <li><span>LAWRule</span>
+			    <ul>
+			      <li id="law" onmouseover="getChilds('Law', 'lawUl', 'law')">Law<ul id="lawUl"> </ul>
+			      </li>
+			      <li id="sec" onmouseover="getChilds('Section', 'secUl', 'sec')">Section<ul id="secUl"> </ul>
+			      </li>
+			    </ul>
+			  </li>
+			  <li><span>MariskRule</span>
+			  	<ul>
+			  		<li><span>ContentEntry</span>
+			  			<ul>
+			  				<li id="binding" onmouseover="getChilds('MARiskBinding', 'bindingUl', 'binding')">MARiskBinding<ul id="bindingUl"> 
+			  					</ul>	
+			  				</li>
+			  				<li id="comment" onmouseover="getChilds('MARiskComment', 'commentUl', 'comment')">MARiskComment<ul id="commentUl"> </ul>	
+			  				</li>
+			  			</ul>
+			  		</li>
+			  		<li id="clause" style="visibility:hidden" onmouseover="getChilds('MariskClause', 'clauseUl', 'clause')">MariskClause<ul id="clauseUl"> </ul>
+			  		</li>		  		
+			 	</ul>
+			  </li>
+			</ul>	 
+		</div>
+		<pre id='ruleName'> </pre>
+		<img src="bilder/Tulogo14.png" alt="logo LS14" id="logo">		
+		<pre id="textOfTheRule" width="40">
+		</pre>
+		<div id="buttonContainer">
+			<input type="button" name="declineButton" value="Regelelement entfernen" id="declineButton" onclick='deleteRuleElement()'/>
+			<input type="button" name="submitButton" value="Regelelement erstellen" id="submitButton" onclick="prepareRuleElementCreation()"/>
+			<div id="image"> </div>		
+		</div>
+		<div id='titles'>
+			<pre id='titleRuleElementTypes'>Regelelement-Typen</pre>
+			<pre id='titleRuleElements'>Regelelemente</pre>
+		</div>
+		<div id="ruleelementTypes" align="left">
+			<div id="relInline">
+				<div name="checkboxDiv">
+				  	<input type="radio" name="RuleElement" value="Activity" id="Activity"/>
+				  	<span name="act">Activity</span> <br>
+			  	</div>
+			  	<div name="checkboxDiv">
+				  	<input type="radio" name="RuleElement" value="Artifact" id="Artifact"/>
+					<span name="art">Artifact</span> <br>
+				</div>
+			   	<div name="checkboxDiv">
+				  	<input type="radio" name="RuleElement" value="Process" id="Process"/>
+					<span name="pro">Process</span> <br>
+				</div>
+			    <div name="checkboxDiv">
+				  	<input type="radio" name="RuleElement" value="Property" id="Property"/>
+					<span name="ppy">Property</span> <br>
+				</div>
+			    <div name="checkboxDiv">
+				  	<input type="radio" name="RuleElement" value="Role" id="Role"/>
+					<span name="rol">Role</span> <br>
+				</div>
+			</div>  
+		</div>
+		
+			<div id="selectRuleelements" >
+				<form name="ruleElementForm" action="select_optgroup.htm" onMouseOver="changeOnContextMenu();" onMouseOut="document.oncontextmenu=null;">
+				  <p>
+				    <select id="selectField" name="selection" size="7" multiple="multiple" >
+				      <optgroup id="ActivityOPT" label="Activity">
+				      </optgroup>
+				      <optgroup id="ArtifactOPT" label="Artifact">
+				      </optgroup>
+				      <optgroup id="ProcessOPT" label="Process">
+				      </optgroup>
+				      <optgroup id="PropertyOPT" label="Property">
+				      </optgroup>
+				      <optgroup id="RoleOPT" label="Role">
+				      </optgroup>
+				    </select>
+				  </p>
+				</form> 
+			</div>
+		
+	</div>
+	<div id="lowerContent">
+		<div id="titleContainer">
+			<pre id='titleConstraints'>Constraint-Klassen</pre>
+			<pre id='titleRefereces'>Referenzen</pre>	
+			<pre id='titleSituations'>Sachverhalte</pre>	
+		</div>
+		<div id="fieldContainer">
+			<div id="constraints"> </div>
+			<div id="references"> </div>
+			<div id="situations"> </div>
+		</div>
+		<div id="buttonContainer2">
+			<div id="situationButtonDiv">
+				<input class="lowerButtons" type="button" name="situationButton" value="Sachverhalt erstellen" id="situationButton" onclick="prepareNewSituation();"/>
+			</div>
+			<div id="constraintButtonDiv">
+				<input class="lowerButtons" type="button" name="constraintButton" value="Constraint-Klasse erstellen" id="constraintButton" onclick="prepareNewConstraint();"/>
+			</div>
+			<div id="relatedRuleElementButtonDiv">
+				<input class="lowerButtons" type="button" name="relatedRuleElementButton" value="Regelelemente verbinden" id="relatedRuleElementButton" onclick="prepareRuleElementsRelation();">
+			</div>
+			
+		</div>
+		
+	</div>
+	
+</div>
+</body>
+</html>

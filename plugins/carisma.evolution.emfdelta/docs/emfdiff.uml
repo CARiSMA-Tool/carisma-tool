@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_J4TtwASqEeGedYQM0rwzGg" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_fTZ9YASqEeGedYQM0rwzGg" name="EMFDiff"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_6n0JwASqEeGedYQM0rwzGg" name="AnalyzeAddedObject"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_FHHaMASrEeGedYQM0rwzGg" name="eMFDiff_analyzeAddedObject_0" memberEnd="_FHHaMQSrEeGedYQM0rwzGg _FHFlAASrEeGedYQM0rwzGg" navigableOwnedEnd="_FHFlAASrEeGedYQM0rwzGg">
+    <ownedEnd xmi:id="_FHHaMQSrEeGedYQM0rwzGg" name="eMFDiff" type="_fTZ9YASqEeGedYQM0rwzGg" association="_FHHaMASrEeGedYQM0rwzGg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FHHaMgSrEeGedYQM0rwzGg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FHHaMwSrEeGedYQM0rwzGg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_FHFlAASrEeGedYQM0rwzGg" name="addAnalysis" type="_6n0JwASqEeGedYQM0rwzGg" association="_FHHaMASrEeGedYQM0rwzGg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FHFlAQSrEeGedYQM0rwzGg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FHFlAgSrEeGedYQM0rwzGg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_pUaS0ASrEeGedYQM0rwzGg" name="AnalyzeDeletedObject"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_sWmRcASrEeGedYQM0rwzGg" name="eMFDiff_analyzeDeletedObject_0" memberEnd="_sWmRcQSrEeGedYQM0rwzGg _sWlDUASrEeGedYQM0rwzGg" navigableOwnedEnd="_sWlDUASrEeGedYQM0rwzGg">
+    <ownedEnd xmi:id="_sWmRcQSrEeGedYQM0rwzGg" name="eMFDiff" type="_fTZ9YASqEeGedYQM0rwzGg" association="_sWmRcASrEeGedYQM0rwzGg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sWmRcgSrEeGedYQM0rwzGg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sWmRcwSrEeGedYQM0rwzGg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_sWlDUASrEeGedYQM0rwzGg" name="delAnalysis" type="_pUaS0ASrEeGedYQM0rwzGg" association="_sWmRcASrEeGedYQM0rwzGg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sWlDUQSrEeGedYQM0rwzGg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sWlDUgSrEeGedYQM0rwzGg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8soEsASrEeGedYQM0rwzGg" name="AnalyzeEditObject"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_AjVQgASsEeGedYQM0rwzGg" name="eMFDiff_analyzeEditObject_0" memberEnd="_AjVQgQSsEeGedYQM0rwzGg _AjUpcASsEeGedYQM0rwzGg" navigableOwnedEnd="_AjUpcASsEeGedYQM0rwzGg">
+    <ownedEnd xmi:id="_AjVQgQSsEeGedYQM0rwzGg" name="eMFDiff" type="_fTZ9YASqEeGedYQM0rwzGg" association="_AjVQgASsEeGedYQM0rwzGg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AjVQggSsEeGedYQM0rwzGg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AjVQgwSsEeGedYQM0rwzGg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AjUpcASsEeGedYQM0rwzGg" name="editAnalysis" type="_8soEsASrEeGedYQM0rwzGg" association="_AjVQgASsEeGedYQM0rwzGg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AjUpcQSsEeGedYQM0rwzGg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AjUpcgSsEeGedYQM0rwzGg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_O3ItUASsEeGedYQM0rwzGg" name="PossibleSubstitute"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_dgDegASsEeGedYQM0rwzGg" name="eMFDiff_possibleSubstitute_0" memberEnd="_dgDegQSsEeGedYQM0rwzGg _dgCQYASsEeGedYQM0rwzGg" navigableOwnedEnd="_dgCQYASsEeGedYQM0rwzGg">
+    <ownedEnd xmi:id="_dgDegQSsEeGedYQM0rwzGg" name="eMFDiff" type="_fTZ9YASqEeGedYQM0rwzGg" association="_dgDegASsEeGedYQM0rwzGg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dgDeggSsEeGedYQM0rwzGg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dgDegwSsEeGedYQM0rwzGg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_dgCQYASsEeGedYQM0rwzGg" name="possSubstList" type="_O3ItUASsEeGedYQM0rwzGg" aggregation="composite" association="_dgDegASsEeGedYQM0rwzGg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dgCQYQSsEeGedYQM0rwzGg" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dgCQYgSsEeGedYQM0rwzGg"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_2RpI0ASsEeGedYQM0rwzGg" name="AnalyzeSubstituteObject" clientDependency="_fW4AwAStEeGedYQM0rwzGg"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_71KbwASsEeGedYQM0rwzGg" name="eMFDiff_analyzeSubstituteObject_0" memberEnd="_71KbwQSsEeGedYQM0rwzGg _71JNoASsEeGedYQM0rwzGg" navigableOwnedEnd="_71JNoASsEeGedYQM0rwzGg">
+    <ownedEnd xmi:id="_71KbwQSsEeGedYQM0rwzGg" name="eMFDiff" type="_fTZ9YASqEeGedYQM0rwzGg" association="_71KbwASsEeGedYQM0rwzGg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_71KbwgSsEeGedYQM0rwzGg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_71KbwwSsEeGedYQM0rwzGg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_71JNoASsEeGedYQM0rwzGg" name="substAnalysisList" type="_2RpI0ASsEeGedYQM0rwzGg" aggregation="composite" association="_71KbwASsEeGedYQM0rwzGg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_71JNoQSsEeGedYQM0rwzGg" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_71JNogSsEeGedYQM0rwzGg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LfqlwAStEeGedYQM0rwzGg" name="CheckEditLinks" clientDependency="_P9_yQAStEeGedYQM0rwzGg"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_P9_yQAStEeGedYQM0rwzGg" name="Realization0" supplier="_2RpI0ASsEeGedYQM0rwzGg" client="_LfqlwAStEeGedYQM0rwzGg"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_RvvcsAStEeGedYQM0rwzGg" name="..." clientDependency="_ZV_cYAStEeGedYQM0rwzGg"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_ZV_cYAStEeGedYQM0rwzGg" name="Realization1" supplier="_2RpI0ASsEeGedYQM0rwzGg" client="_RvvcsAStEeGedYQM0rwzGg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_fW4AwAStEeGedYQM0rwzGg" name="analyses" supplier="_O3ItUASsEeGedYQM0rwzGg" client="_2RpI0ASsEeGedYQM0rwzGg"/>
+</uml:Model>

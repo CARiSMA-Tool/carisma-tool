@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Datamodel2/src"
+    modelPluginID="Datamodel2" modelName="Model2" importerID="org.eclipse.emf.importer.ecore"
+    copyrightFields="false" runtimePlatform="RCP">
+  <foreignModel>model2.ecore</foreignModel>
+  <genPackages prefix="Model2" disposableProviderFactory="true" ecorePackage="model2.ecore#/">
+    <genClasses ecoreClass="model2.ecore#//RuleElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model2.ecore#//RuleElement/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//RuleElement/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//RuleElement/belongsToSituation"/>
+    </genClasses>
+    <genClasses ecoreClass="model2.ecore#//RuleElementType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model2.ecore#//RuleElementType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="model2.ecore#//Situation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model2.ecore#//Situation/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//Situation/has"/>
+    </genClasses>
+    <genClasses ecoreClass="model2.ecore#//Allocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//Allocation/ruleElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//Allocation/bpmnElement"/>
+    </genClasses>
+    <genClasses ecoreClass="model2.ecore#//BPMNElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model2.ecore#//BPMNElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model2.ecore#//BPMNElement/ID"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//BPMNElement/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model2.ecore#//BPMNElement/incoming"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model2.ecore#//BPMNElement/outgoing"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model2.ecore#//BPMNElement/processId"/>
+    </genClasses>
+    <genClasses ecoreClass="model2.ecore#//RuleElementAssosiationType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//RuleElementAssosiationType/src"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//RuleElementAssosiationType/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model2.ecore#//RuleElementAssosiationType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="model2.ecore#//RuleElementAssosation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//RuleElementAssosation/src1"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//RuleElementAssosation/target1"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//RuleElementAssosation/type1"/>
+    </genClasses>
+    <genClasses ecoreClass="model2.ecore#//Container">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model2.ecore#//Container/containsAllocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model2.ecore#//Container/containsSituation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model2.ecore#//Container/containsBPMNElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model2.ecore#//Container/containsRuleElementAssociation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model2.ecore#//Container/containsRuleElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model2.ecore#//Container/containsRuleElemntType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model2.ecore#//Container/containsRuleElementAssociationType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model2.ecore#//Container/containsModelType"/>
+    </genClasses>
+    <genClasses ecoreClass="model2.ecore#//ModelElementType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model2.ecore#//ModelElementType/associatsWith"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model2.ecore#//ModelElementType/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

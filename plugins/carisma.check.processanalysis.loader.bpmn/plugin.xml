@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Imports a BPMN2 model for process analysis"
+            id="carisma.check.processanalysis.importer.bpmn"
+            implementingClass="carisma.check.processanalysis.loader.bpmn.BPMN2ImportCheck"
+            name="BPMN2 Import for Process Analysis"
+            publisher="SECSE Group, TU Dortmund"
+            targetModelType="BPMN2">
+         <postcondition
+               providedKey="carisma.data.processanalysis.process">
+         </postcondition>
+      </check>
+   </extension>
+
+</plugin>

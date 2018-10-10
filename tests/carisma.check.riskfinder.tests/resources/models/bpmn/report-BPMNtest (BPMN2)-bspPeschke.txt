@@ -1,0 +1,323 @@
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Running check : Riskfinder Check
+Parameters:
+Append : false
+Stopwords : D:\Arbeit\Topcased-5.0.0\Workspace\de.umlsec.check.riskfinder.tests\resources\stopwords.ger
+Synonyms : true
+Ontology : D:\Arbeit\Topcased-5.0.0\Workspace\de.umlsec.check.riskfinder.tests\resources\ontology1.owl
+------------------------------------------------------------------------------------
+INFO: Finished checking of 16 entities. See report for details.
+
+[Kunde benötigt Cloud-Service]
+3 Relevante Worte: [Information(200.0), Meldung(200.0), Nachricht(200.0)]
+7 relevante Pattern:
+    BSIGrundschutz_B_5.10  : Internet Information Server (200.0)
+    BSIGrundschutz_G_4.32  : Nichtzustellung einer Nachricht (200.0)
+    BSIGrundschutz_G_5.27  : Nichtanerkennung einer Nachricht (200.0)
+    BSIGrundschutz_M_2.158 : Meldung von Schadprogramm-Infektionen (200.0)
+    BSIGrundschutz_M_2.391 : Frühzeitige Information des Brandschutzbeauftragten (200.0)
+    BSIGrundschutz_M_3.12  : Information aller Mitarbeiter über mögliche TK-Warnanzeigen, -symbole und -töne (200.0)
+    BSIGrundschutz_M_6.125 : Einrichtung einer zentralen Kontaktstelle für die Meldung von Sicherheitsvorfällen (200.0)
+
+[Dienstleister erhält Serciveanfrage]
+1 Relevante Worte: [Dienstleister(500.0)]
+2 relevante Pattern:
+    BSIGrundschutz_G_2.84  : Unzulängliche vertragliche Regelungen mit einem externen Dienstleister (500.0)
+    BSIGrundschutz_M_2.436 : Vernichtung von Datenträgern durch externe Dienstleister (500.0)
+
+[Eingabe personenbezogener Daten]
+4 Relevante Worte: [Daten(500.0), personenbezogener(500.0), Dateien(200.0), Unterlagen(200.0)]
+36 relevante Pattern:
+    BSIGrundschutz_G_2.61  : Unberechtigte Sammlung personenbezogener Daten (1000.0)
+    BSIGrundschutz_M_2.205 : Übertragung und Abruf personenbezogener Daten (1000.0)
+    BSIGrundschutz_B_1.15  : Löschen und Vernichten von Daten (500.0)
+    BSIGrundschutz_G_2.116 : Datenverlust beim Kopieren oder Verschieben von Daten unter Windows Server 2003 (500.0)
+    BSIGrundschutz_G_2.143 : Informationsverlust beim Kopieren oder Verschieben von Daten auf Samba-Freigaben (500.0)
+    BSIGrundschutz_G_2.15  : Vertraulichkeitsverlust schutzbedürftiger Daten im Unix-System (500.0)
+    BSIGrundschutz_G_2.24  : Vertraulichkeitsverlust schutzbedürftiger Daten des zu schützenden Netzes (500.0)
+    BSIGrundschutz_G_3.1   : Vertraulichkeits- oder Integritätsverlust von Daten durch Fehlverhalten (500.0)
+    BSIGrundschutz_G_3.2   : Fahrlässige Zerstörung von Gerät oder Daten (500.0)
+    BSIGrundschutz_G_3.98  : Verlust von BitLocker-verschlüsselten Daten (500.0)
+    BSIGrundschutz_G_4.13  : Verlust gespeicherter Daten (500.0)
+    BSIGrundschutz_G_4.28  : Verlust von Daten einer Datenbank (500.0)
+    BSIGrundschutz_G_4.36  : Fehler in verschlüsselten Daten (500.0)
+    BSIGrundschutz_G_5.107 : Weitergabe von Daten an Dritte durch den Outsourcing-Dienstleister (500.0)
+    BSIGrundschutz_G_5.11  : Vertraulichkeitsverlust in TK-Anlagen gespeicherter Daten (500.0)
+    BSIGrundschutz_G_5.128 : Unberechtigter Zugriff auf Daten durch Einbringen von Code in ein SAP System (500.0)
+    BSIGrundschutz_G_5.129 : Manipulation von Daten über das Speichersystem (500.0)
+    BSIGrundschutz_G_5.145 : Manipulation von Daten und Werkzeugen beim Patch- und Änderungsmanagement (500.0)
+    BSIGrundschutz_G_5.64  : Manipulation an Daten oder Software bei Datenbanksystemen (500.0)
+    BSIGrundschutz_M_2.167 : Auswahl geeigneter Verfahren zur Löschung oder Vernichtung von Daten (500.0)
+    BSIGrundschutz_M_2.264 : Regelmäßige Aufbereitung von verschlüsselten Daten bei der Archivierung (500.0)
+    BSIGrundschutz_M_2.411 : Trennung der Verwaltung von Diensten und Daten eines Active Directory (500.0)
+    BSIGrundschutz_M_2.433 : Überblick über Methoden zur Löschung und Vernichtung von Daten (500.0)
+    BSIGrundschutz_M_2.434 : Beschaffung geeigneter Geräte zur Löschung oder Vernichtung von Daten (500.0)
+    BSIGrundschutz_M_3.67  : Einweisung aller Mitarbeiter über Methoden zur Löschung oder Vernichtung von Daten (500.0)
+    BSIGrundschutz_M_4.22  : Verhinderung des Vertraulichkeitsverlusts schutzbedürftiger Daten im Unix-System (500.0)
+    BSIGrundschutz_M_4.35  : Verifizieren der zu übertragenden Daten vor Versand (500.0)
+    BSIGrundschutz_M_4.64  : Verifizieren der zu übertragenden Daten vor Weitergabe / Beseitigung von Restinformationen (500.0)
+    BSIGrundschutz_M_6.38  : Sicherungskopie der übermittelten Daten (500.0)
+    BSIGrundschutz_G_2.145 : Unzureichende Sicherung von Trivial Database Dateien unter Samba (200.0)
+    BSIGrundschutz_G_2.56  : Mangelhafte Beschreibung von Dateien (200.0)
+    BSIGrundschutz_M_1.45  : Geeignete Aufbewahrung dienstlicher Unterlagen und Datenträger (200.0)
+    BSIGrundschutz_M_4.179 : Schutz von sicherheitskritischen Dateien beim IIS-Einsatz (200.0)
+    BSIGrundschutz_M_4.23  : Sicherer Aufruf ausführbarer Dateien (200.0)
+    BSIGrundschutz_M_4.44  : Prüfung eingehender Dateien auf Makro-Viren (200.0)
+    BSIGrundschutz_M_4.53  : Restriktive Vergabe von Zugriffsrechten auf Dateien und Verzeichnisse unter Windows NT (200.0)
+
+[Verschlüsselung und Authentifikation]
+1 Relevante Worte: [Verschlüsselung(500.0)]
+5 relevante Pattern:
+    BSIGrundschutz_G_2.19  : Unzureichendes Schlüsselmanagement bei Verschlüsselung (500.0)
+    BSIGrundschutz_M_2.374 : Umfang der Verschlüsselung von VoIP (500.0)
+    BSIGrundschutz_M_4.101 : Sicherheitsgateways und Verschlüsselung (500.0)
+    BSIGrundschutz_M_4.131 : Verschlüsselung von Lotus Notes Datenbanken (500.0)
+    BSIGrundschutz_M_5.36  : Verschlüsselung unter Unix und Windows NT (500.0)
+
+[Prüfung der Daten]
+10 Relevante Worte: [Daten(500.0), Prüfung(500.0), Abnahme(200.0), Analyse(200.0), Dateien(200.0), Inspektion(200.0), Revision(200.0), Test(200.0), Unterlagen(200.0), Überprüfung(200.0)]
+55 relevante Pattern:
+    BSIGrundschutz_M_4.44  : Prüfung eingehender Dateien auf Makro-Viren (700.0)
+    BSIGrundschutz_B_1.15  : Löschen und Vernichten von Daten (500.0)
+    BSIGrundschutz_G_2.116 : Datenverlust beim Kopieren oder Verschieben von Daten unter Windows Server 2003 (500.0)
+    BSIGrundschutz_G_2.143 : Informationsverlust beim Kopieren oder Verschieben von Daten auf Samba-Freigaben (500.0)
+    BSIGrundschutz_G_2.15  : Vertraulichkeitsverlust schutzbedürftiger Daten im Unix-System (500.0)
+    BSIGrundschutz_G_2.24  : Vertraulichkeitsverlust schutzbedürftiger Daten des zu schützenden Netzes (500.0)
+    BSIGrundschutz_G_2.61  : Unberechtigte Sammlung personenbezogener Daten (500.0)
+    BSIGrundschutz_G_3.1   : Vertraulichkeits- oder Integritätsverlust von Daten durch Fehlverhalten (500.0)
+    BSIGrundschutz_G_3.2   : Fahrlässige Zerstörung von Gerät oder Daten (500.0)
+    BSIGrundschutz_G_3.98  : Verlust von BitLocker-verschlüsselten Daten (500.0)
+    BSIGrundschutz_G_4.13  : Verlust gespeicherter Daten (500.0)
+    BSIGrundschutz_G_4.28  : Verlust von Daten einer Datenbank (500.0)
+    BSIGrundschutz_G_4.36  : Fehler in verschlüsselten Daten (500.0)
+    BSIGrundschutz_G_5.107 : Weitergabe von Daten an Dritte durch den Outsourcing-Dienstleister (500.0)
+    BSIGrundschutz_G_5.11  : Vertraulichkeitsverlust in TK-Anlagen gespeicherter Daten (500.0)
+    BSIGrundschutz_G_5.128 : Unberechtigter Zugriff auf Daten durch Einbringen von Code in ein SAP System (500.0)
+    BSIGrundschutz_G_5.129 : Manipulation von Daten über das Speichersystem (500.0)
+    BSIGrundschutz_G_5.145 : Manipulation von Daten und Werkzeugen beim Patch- und Änderungsmanagement (500.0)
+    BSIGrundschutz_G_5.64  : Manipulation an Daten oder Software bei Datenbanksystemen (500.0)
+    BSIGrundschutz_M_2.167 : Auswahl geeigneter Verfahren zur Löschung oder Vernichtung von Daten (500.0)
+    BSIGrundschutz_M_2.205 : Übertragung und Abruf personenbezogener Daten (500.0)
+    BSIGrundschutz_M_2.264 : Regelmäßige Aufbereitung von verschlüsselten Daten bei der Archivierung (500.0)
+    BSIGrundschutz_M_2.330 : Regelmäßige Prüfung der Windows XP und Windows Vista Sicherheitsrichtlinien und ihrer Umsetzung (500.0)
+    BSIGrundschutz_M_2.394 : Prüfung elektrischer Anlagen (500.0)
+    BSIGrundschutz_M_2.411 : Trennung der Verwaltung von Diensten und Daten eines Active Directory (500.0)
+    BSIGrundschutz_M_2.433 : Überblick über Methoden zur Löschung und Vernichtung von Daten (500.0)
+    BSIGrundschutz_M_2.434 : Beschaffung geeigneter Geräte zur Löschung oder Vernichtung von Daten (500.0)
+    BSIGrundschutz_M_3.67  : Einweisung aller Mitarbeiter über Methoden zur Löschung oder Vernichtung von Daten (500.0)
+    BSIGrundschutz_M_4.22  : Verhinderung des Vertraulichkeitsverlusts schutzbedürftiger Daten im Unix-System (500.0)
+    BSIGrundschutz_M_4.35  : Verifizieren der zu übertragenden Daten vor Versand (500.0)
+    BSIGrundschutz_M_4.64  : Verifizieren der zu übertragenden Daten vor Weitergabe / Beseitigung von Restinformationen (500.0)
+    BSIGrundschutz_M_6.38  : Sicherungskopie der übermittelten Daten (500.0)
+    BSIGrundschutz_G_2.145 : Unzureichende Sicherung von Trivial Database Dateien unter Samba (200.0)
+    BSIGrundschutz_G_2.56  : Mangelhafte Beschreibung von Dateien (200.0)
+    BSIGrundschutz_G_5.26  : Analyse des Nachrichtenflusses (200.0)
+    BSIGrundschutz_M_1.45  : Geeignete Aufbewahrung dienstlicher Unterlagen und Datenträger (200.0)
+    BSIGrundschutz_M_2.10  : Überprüfung des Hard- und Software-Bestandes (200.0)
+    BSIGrundschutz_M_2.101 : Revision von Novell Netware Servern (200.0)
+    BSIGrundschutz_M_2.140 : Analyse der aktuellen Netzsituation (200.0)
+    BSIGrundschutz_M_2.150 : Revision von Novell Netware 4.x Netzen (200.0)
+    BSIGrundschutz_M_2.213 : Inspektion und Wartung der technischen Infrastruktur (200.0)
+    BSIGrundschutz_M_2.260 : Regelmäßige Revision des Archivierungsprozesses (200.0)
+    BSIGrundschutz_M_2.90  : Überprüfung der Lieferung (200.0)
+    BSIGrundschutz_M_4.179 : Schutz von sicherheitskritischen Dateien beim IIS-Einsatz (200.0)
+    BSIGrundschutz_M_4.191 : Überprüfung der Integrität und Authentizität der Apache-Pakete (200.0)
+    BSIGrundschutz_M_4.23  : Sicherer Aufruf ausführbarer Dateien (200.0)
+    BSIGrundschutz_M_4.327 : Überprüfung der Integrität und Authentizität der Samba-Pakete und -Quellen (200.0)
+    BSIGrundschutz_M_4.53  : Restriktive Vergabe von Zugriffsrechten auf Dateien und Verzeichnisse unter Windows NT (200.0)
+    BSIGrundschutz_M_4.6   : Revision der TK-Anlagenkonfiguration (200.0)
+    BSIGrundschutz_M_4.65  : Test neuer Hard- und Software (200.0)
+    BSIGrundschutz_M_5.142 : Abnahme der IT-Verkabelung (200.0)
+    BSIGrundschutz_M_5.143 : Laufende Fortschreibung und Revision der Netzdokumentation (200.0)
+    BSIGrundschutz_M_6.118 : Überprüfung und Aufrechterhaltung der Notfallmaßnahmen (200.0)
+    BSIGrundschutz_M_6.120 : Überprüfung und Steuerung des Notfallmanagement-Systems (200.0)
+    BSIGrundschutz_M_6.22  : Sporadische Überprüfung auf Wiederherstellbarkeit von Datensicherungen (200.0)
+
+[nicht in Ordnung]
+5 Relevante Worte: [Anordnung(200.0), Entscheidung(200.0), Regelung(200.0), Zuordnung(200.0), aktuell(200.0)]
+17 relevante Pattern:
+    BSIGrundschutz_G_3.79  : Fehlerhafte Zuordnung von Ressourcen des SAN (200.0)
+    BSIGrundschutz_M_1.13  : Anordnung schützenswerter Gebäudeteile (200.0)
+    BSIGrundschutz_M_2.11  : Regelung des Passwortgebrauchs (200.0)
+    BSIGrundschutz_M_2.112 : Regelung des Akten- und Datenträgertransports zwischen häuslichem Arbeitsplatz und Institution (200.0)
+    BSIGrundschutz_M_2.119 : Regelung für den Einsatz von E-Mail (200.0)
+    BSIGrundschutz_M_2.132 : Regelung für die Einrichtung von Datenbankbenutzern/-benutzergruppen (200.0)
+    BSIGrundschutz_M_2.166 : Regelung des Einsatzes von Kryptomodulen (200.0)
+    BSIGrundschutz_M_2.218 : Regelung der Mitnahme von Datenträgern und IT-Komponenten (200.0)
+    BSIGrundschutz_M_2.262 : Regelung der Nutzung von Archivsystemen (200.0)
+    BSIGrundschutz_M_2.30  : Regelung für die Einrichtung von Benutzern / Benutzergruppen (200.0)
+    BSIGrundschutz_M_2.393 : Regelung des Informationsaustausches (200.0)
+    BSIGrundschutz_M_2.431 : Regelung der Vorgehensweise für die Löschung oder Vernichtung von Informationen (200.0)
+    BSIGrundschutz_M_2.45  : Regelung des Datenträgeraustausches (200.0)
+    BSIGrundschutz_M_2.61  : Regelung des Modem-Einsatzes (200.0)
+    BSIGrundschutz_M_2.84  : Entscheidung und Entwicklung der Installationsanweisung für Standardsoftware (200.0)
+    BSIGrundschutz_M_4.249 : Windows Client-Systeme aktuell halten (200.0)
+    BSIGrundschutz_M_6.7   : Regelung der Verantwortung im Notfall (200.0)
+
+[Cloud verweigert Dienstleistung]
+2 Relevante Worte: [Dienst(200.0), Hilfe(200.0)]
+3 relevante Pattern:
+    BSIGrundschutz_G_5.41 : Mißbräuchliche Nutzung eines Unix-Systems mit Hilfe von uucp (200.0)
+    BSIGrundschutz_M_3.63 : Schulung der Benutzer zur Authentisierung mit Hilfe von Verzeichnisdiensten (200.0)
+    BSIGrundschutz_M_4.97 : Ein Dienst pro Server (200.0)
+
+[in Ordnung]
+5 Relevante Worte: [Anordnung(200.0), Entscheidung(200.0), Regelung(200.0), Zuordnung(200.0), aktuell(200.0)]
+17 relevante Pattern:
+    BSIGrundschutz_G_3.79  : Fehlerhafte Zuordnung von Ressourcen des SAN (200.0)
+    BSIGrundschutz_M_1.13  : Anordnung schützenswerter Gebäudeteile (200.0)
+    BSIGrundschutz_M_2.11  : Regelung des Passwortgebrauchs (200.0)
+    BSIGrundschutz_M_2.112 : Regelung des Akten- und Datenträgertransports zwischen häuslichem Arbeitsplatz und Institution (200.0)
+    BSIGrundschutz_M_2.119 : Regelung für den Einsatz von E-Mail (200.0)
+    BSIGrundschutz_M_2.132 : Regelung für die Einrichtung von Datenbankbenutzern/-benutzergruppen (200.0)
+    BSIGrundschutz_M_2.166 : Regelung des Einsatzes von Kryptomodulen (200.0)
+    BSIGrundschutz_M_2.218 : Regelung der Mitnahme von Datenträgern und IT-Komponenten (200.0)
+    BSIGrundschutz_M_2.262 : Regelung der Nutzung von Archivsystemen (200.0)
+    BSIGrundschutz_M_2.30  : Regelung für die Einrichtung von Benutzern / Benutzergruppen (200.0)
+    BSIGrundschutz_M_2.393 : Regelung des Informationsaustausches (200.0)
+    BSIGrundschutz_M_2.431 : Regelung der Vorgehensweise für die Löschung oder Vernichtung von Informationen (200.0)
+    BSIGrundschutz_M_2.45  : Regelung des Datenträgeraustausches (200.0)
+    BSIGrundschutz_M_2.61  : Regelung des Modem-Einsatzes (200.0)
+    BSIGrundschutz_M_2.84  : Entscheidung und Entwicklung der Installationsanweisung für Standardsoftware (200.0)
+    BSIGrundschutz_M_4.249 : Windows Client-Systeme aktuell halten (200.0)
+    BSIGrundschutz_M_6.7   : Regelung der Verantwortung im Notfall (200.0)
+
+[Cloud erbringt Dienstleistung]
+2 Relevante Worte: [Dienst(200.0), Hilfe(200.0)]
+3 relevante Pattern:
+    BSIGrundschutz_G_5.41 : Mißbräuchliche Nutzung eines Unix-Systems mit Hilfe von uucp (200.0)
+    BSIGrundschutz_M_3.63 : Schulung der Benutzer zur Authentisierung mit Hilfe von Verzeichnisdiensten (200.0)
+    BSIGrundschutz_M_4.97 : Ein Dienst pro Server (200.0)
+
+[Antwort per Mail]
+3 Relevante Worte: [Information(200.0), Reaktion(200.0), mittels(200.0)]
+7 relevante Pattern:
+    BSIGrundschutz_B_5.10  : Internet Information Server (200.0)
+    BSIGrundschutz_G_5.40  : Abhören von Räumen mittels Rechner mit Mikrofon (200.0)
+    BSIGrundschutz_M_2.39  : Reaktion auf Verletzungen der Sicherheitsvorgaben (200.0)
+    BSIGrundschutz_M_2.391 : Frühzeitige Information des Brandschutzbeauftragten (200.0)
+    BSIGrundschutz_M_3.12  : Information aller Mitarbeiter über mögliche TK-Warnanzeigen, -symbole und -töne (200.0)
+    BSIGrundschutz_M_5.48  : Authentisierung mittels CLIP/COLP (200.0)
+    BSIGrundschutz_M_5.50  : Authentisierung mittels PAP/CHAP (200.0)
+
+[Kontrolle]
+10 Relevante Worte: [Kontrolle(500.0), Abnahme(200.0), Beaufsichtigung(200.0), Inspektion(200.0), Revision(200.0), Test(200.0), Untersuchung(200.0), Überprüfung(200.0), Übersicht(200.0), Überwachung(200.0)]
+42 relevante Pattern:
+    BSIGrundschutz_G_2.121 : Unzureichende Kontrolle von WLANs (500.0)
+    BSIGrundschutz_G_2.131 : Unzureichende Kontrolle von VPNs (500.0)
+    BSIGrundschutz_G_2.4   : Unzureichende Kontrolle der Sicherheitsmaßnahmen (500.0)
+    BSIGrundschutz_G_3.75  : Mangelhafte Kontrolle der Batch-Jobs bei z/OS (500.0)
+    BSIGrundschutz_M_2.133 : Kontrolle der Protokolldateien eines Datenbanksystems (500.0)
+    BSIGrundschutz_M_2.20  : Kontrolle bestehender Verbindungen (500.0)
+    BSIGrundschutz_M_2.282 : Regelmäßige Kontrolle von Routern und Switches (500.0)
+    BSIGrundschutz_M_2.52  : Versorgung und Kontrolle der Verbrauchsgüter (500.0)
+    BSIGrundschutz_M_2.64  : Kontrolle der Protokolldateien (500.0)
+    BSIGrundschutz_M_2.65  : Kontrolle der Wirksamkeit der Benutzer-Trennung am IT-System (500.0)
+    BSIGrundschutz_M_5.29  : Gelegentliche Kontrolle programmierter Zieladressen und Protokolle (500.0)
+    BSIGrundschutz_M_5.55  : Kontrolle von Alias-Dateien und Verteilerlisten (500.0)
+    BSIGrundschutz_G_2.136 : Fehlende Übersicht über den Informationsverbund (200.0)
+    BSIGrundschutz_M_2.10  : Überprüfung des Hard- und Software-Bestandes (200.0)
+    BSIGrundschutz_M_2.101 : Revision von Novell Netware Servern (200.0)
+    BSIGrundschutz_M_2.150 : Revision von Novell Netware 4.x Netzen (200.0)
+    BSIGrundschutz_M_2.16  : Beaufsichtigung oder Begleitung von Fremdpersonen (200.0)
+    BSIGrundschutz_M_2.194 : Erstellung einer Übersicht über vorhandene IT-Systeme (200.0)
+    BSIGrundschutz_M_2.213 : Inspektion und Wartung der technischen Infrastruktur (200.0)
+    BSIGrundschutz_M_2.257 : Überwachung der Speicherressourcen von Archivmedien (200.0)
+    BSIGrundschutz_M_2.260 : Regelmäßige Revision des Archivierungsprozesses (200.0)
+    BSIGrundschutz_M_2.292 : Überwachung von z/OS-Systemen (200.0)
+    BSIGrundschutz_M_2.359 : Überwachung und Verwaltung von Speichersystemen (200.0)
+    BSIGrundschutz_M_2.90  : Überprüfung der Lieferung (200.0)
+    BSIGrundschutz_M_4.148 : Überwachung eines Windows 2000/XP Systems (200.0)
+    BSIGrundschutz_M_4.167 : Überwachung und Protokollierung von Exchange 2000 Systemen (200.0)
+    BSIGrundschutz_M_4.191 : Überprüfung der Integrität und Authentizität der Apache-Pakete (200.0)
+    BSIGrundschutz_M_4.312 : Überwachung von Verzeichnisdiensten (200.0)
+    BSIGrundschutz_M_4.316 : Überwachung der Active Directory Infrastruktur (200.0)
+    BSIGrundschutz_M_4.327 : Überprüfung der Integrität und Authentizität der Samba-Pakete und -Quellen (200.0)
+    BSIGrundschutz_M_4.344 : Überwachung eines Windows Vista Systems (200.0)
+    BSIGrundschutz_M_4.6   : Revision der TK-Anlagenkonfiguration (200.0)
+    BSIGrundschutz_M_4.65  : Test neuer Hard- und Software (200.0)
+    BSIGrundschutz_M_5.142 : Abnahme der IT-Verkabelung (200.0)
+    BSIGrundschutz_M_5.143 : Laufende Fortschreibung und Revision der Netzdokumentation (200.0)
+    BSIGrundschutz_M_5.16  : Übersicht über Netzdienste (200.0)
+    BSIGrundschutz_M_6.1   : Erstellung einer Übersicht über Verfügbarkeitsanforderungen (200.0)
+    BSIGrundschutz_M_6.118 : Überprüfung und Aufrechterhaltung der Notfallmaßnahmen (200.0)
+    BSIGrundschutz_M_6.120 : Überprüfung und Steuerung des Notfallmanagement-Systems (200.0)
+    BSIGrundschutz_M_6.22  : Sporadische Überprüfung auf Wiederherstellbarkeit von Datensicherungen (200.0)
+    BSIGrundschutz_M_6.6   : Untersuchung interner und externer Ausweichmöglichkeiten (200.0)
+    BSIGrundschutz_M_6.63  : Untersuchung und Bewertung eines Sicherheitsvorfalls (200.0)
+
+[Berechtigung]
+0 Relevante Worte: []
+0 relevante Pattern:
+
+[Kontrolle von Einstellungen]
+11 Relevante Worte: [Einstellungen(500.0), Kontrolle(500.0), Abnahme(200.0), Beaufsichtigung(200.0), Inspektion(200.0), Revision(200.0), Test(200.0), Untersuchung(200.0), Überprüfung(200.0), Übersicht(200.0), Überwachung(200.0)]
+43 relevante Pattern:
+    BSIGrundschutz_G_2.121 : Unzureichende Kontrolle von WLANs (500.0)
+    BSIGrundschutz_G_2.131 : Unzureichende Kontrolle von VPNs (500.0)
+    BSIGrundschutz_G_2.4   : Unzureichende Kontrolle der Sicherheitsmaßnahmen (500.0)
+    BSIGrundschutz_G_3.75  : Mangelhafte Kontrolle der Batch-Jobs bei z/OS (500.0)
+    BSIGrundschutz_M_2.133 : Kontrolle der Protokolldateien eines Datenbanksystems (500.0)
+    BSIGrundschutz_M_2.20  : Kontrolle bestehender Verbindungen (500.0)
+    BSIGrundschutz_M_2.282 : Regelmäßige Kontrolle von Routern und Switches (500.0)
+    BSIGrundschutz_M_2.52  : Versorgung und Kontrolle der Verbrauchsgüter (500.0)
+    BSIGrundschutz_M_2.64  : Kontrolle der Protokolldateien (500.0)
+    BSIGrundschutz_M_2.65  : Kontrolle der Wirksamkeit der Benutzer-Trennung am IT-System (500.0)
+    BSIGrundschutz_M_4.222 : Festlegung geeigneter Einstellungen von Sicherheitsproxies (500.0)
+    BSIGrundschutz_M_5.29  : Gelegentliche Kontrolle programmierter Zieladressen und Protokolle (500.0)
+    BSIGrundschutz_M_5.55  : Kontrolle von Alias-Dateien und Verteilerlisten (500.0)
+    BSIGrundschutz_G_2.136 : Fehlende Übersicht über den Informationsverbund (200.0)
+    BSIGrundschutz_M_2.10  : Überprüfung des Hard- und Software-Bestandes (200.0)
+    BSIGrundschutz_M_2.101 : Revision von Novell Netware Servern (200.0)
+    BSIGrundschutz_M_2.150 : Revision von Novell Netware 4.x Netzen (200.0)
+    BSIGrundschutz_M_2.16  : Beaufsichtigung oder Begleitung von Fremdpersonen (200.0)
+    BSIGrundschutz_M_2.194 : Erstellung einer Übersicht über vorhandene IT-Systeme (200.0)
+    BSIGrundschutz_M_2.213 : Inspektion und Wartung der technischen Infrastruktur (200.0)
+    BSIGrundschutz_M_2.257 : Überwachung der Speicherressourcen von Archivmedien (200.0)
+    BSIGrundschutz_M_2.260 : Regelmäßige Revision des Archivierungsprozesses (200.0)
+    BSIGrundschutz_M_2.292 : Überwachung von z/OS-Systemen (200.0)
+    BSIGrundschutz_M_2.359 : Überwachung und Verwaltung von Speichersystemen (200.0)
+    BSIGrundschutz_M_2.90  : Überprüfung der Lieferung (200.0)
+    BSIGrundschutz_M_4.148 : Überwachung eines Windows 2000/XP Systems (200.0)
+    BSIGrundschutz_M_4.167 : Überwachung und Protokollierung von Exchange 2000 Systemen (200.0)
+    BSIGrundschutz_M_4.191 : Überprüfung der Integrität und Authentizität der Apache-Pakete (200.0)
+    BSIGrundschutz_M_4.312 : Überwachung von Verzeichnisdiensten (200.0)
+    BSIGrundschutz_M_4.316 : Überwachung der Active Directory Infrastruktur (200.0)
+    BSIGrundschutz_M_4.327 : Überprüfung der Integrität und Authentizität der Samba-Pakete und -Quellen (200.0)
+    BSIGrundschutz_M_4.344 : Überwachung eines Windows Vista Systems (200.0)
+    BSIGrundschutz_M_4.6   : Revision der TK-Anlagenkonfiguration (200.0)
+    BSIGrundschutz_M_4.65  : Test neuer Hard- und Software (200.0)
+    BSIGrundschutz_M_5.142 : Abnahme der IT-Verkabelung (200.0)
+    BSIGrundschutz_M_5.143 : Laufende Fortschreibung und Revision der Netzdokumentation (200.0)
+    BSIGrundschutz_M_5.16  : Übersicht über Netzdienste (200.0)
+    BSIGrundschutz_M_6.1   : Erstellung einer Übersicht über Verfügbarkeitsanforderungen (200.0)
+    BSIGrundschutz_M_6.118 : Überprüfung und Aufrechterhaltung der Notfallmaßnahmen (200.0)
+    BSIGrundschutz_M_6.120 : Überprüfung und Steuerung des Notfallmanagement-Systems (200.0)
+    BSIGrundschutz_M_6.22  : Sporadische Überprüfung auf Wiederherstellbarkeit von Datensicherungen (200.0)
+    BSIGrundschutz_M_6.6   : Untersuchung interner und externer Ausweichmöglichkeiten (200.0)
+    BSIGrundschutz_M_6.63  : Untersuchung und Bewertung eines Sicherheitsvorfalls (200.0)
+
+[Brieffach]
+0 Relevante Worte: []
+0 relevante Pattern:
+
+[Zugriff auf Lan]
+2 Relevante Worte: [LAN(500.0), Zugriff(500.0)]
+6 relevante Pattern:
+    BSIGrundschutz_G_5.100 : Missbrauch aktiver Inhalte beim Zugriff auf Lotus Notes (500.0)
+    BSIGrundschutz_G_5.128 : Unberechtigter Zugriff auf Daten durch Einbringen von Code in ein SAP System (500.0)
+    BSIGrundschutz_G_5.144 : Kompromittierung von Verzeichnisdiensten durch unbefugten Zugriff (500.0)
+    BSIGrundschutz_M_4.127 : Sichere Browser-Konfiguration für den Zugriff auf Lotus Notes (500.0)
+    BSIGrundschutz_M_4.180 : Konfiguration der Authentisierungsmechanismen für den Zugriff auf den IIS (500.0)
+    BSIGrundschutz_M_5.139 : Sichere Anbindung eines WLANs an ein LAN (500.0)
+
+[Zutritt auf Lan]
+3 Relevante Worte: [LAN(500.0), Zutritt(500.0), Zugang(200.0)]
+5 relevante Pattern:
+    BSIGrundschutz_G_2.6   : Unbefugter Zutritt zu schutzbedürftigen Räumen (500.0)
+    BSIGrundschutz_M_1.2   : Regelungen für Zutritt zu Verteilern (500.0)
+    BSIGrundschutz_M_1.73  : Schutz eines Rechenzentrums gegen unbefugten Zutritt (500.0)
+    BSIGrundschutz_M_5.139 : Sichere Anbindung eines WLANs an ein LAN (500.0)
+    BSIGrundschutz_G_5.68  : Unberechtigter Zugang zu den aktiven Netzkomponenten (200.0)
+

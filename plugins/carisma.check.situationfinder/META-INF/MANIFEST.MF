@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Situationfinder
+Bundle-SymbolicName: carisma.check.situationfinder;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: carisma.check.situationfinder.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ carisma.core;bundle-version="1.4.0",
+ carisma.regulatory;bundle-version="1.0.1",
+ carisma.modeltype.bpmn2;bundle-version="1.0.0",
+ org.eclipse.bpmn2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

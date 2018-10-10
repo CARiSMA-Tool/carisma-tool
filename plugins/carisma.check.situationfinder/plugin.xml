@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Looks for certain situations in models leading to constraints to check."
+            id="carisma.check.situationfinder"
+            implementingClass="carisma.check.situationfinder.SituationFinderCheck"
+            name="BPMN Situation Finder"
+            publisher="DW"
+            targetModelType="BPMN2">
+         <parameter
+               id="carisma.check.situationfinder.ontologyFile"
+               name="Regulatory Ontology File"
+               optional="false"
+               type="InputFile">
+         </parameter>
+      </check>
+   </extension>
+
+</plugin>

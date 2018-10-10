@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.umlsec.carisma</groupId>
+	<artifactId>de.umlsec.carisma.core</artifactId>
+	<version>2.0</version>
+	<packaging>pom</packaging>
+
+	<name>CARiSMA Core Feature</name>
+	<url>http://carisma.umlsec.de</url>
+	
+	<properties>
+		<tycho-version>0.13.0</tycho-version>
+		<junit-version>4.8.2</junit-version>
+		<project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
+		<jacoco-maven-version>0.5.6.201201232323</jacoco-maven-version>
+		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+	    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+	    <sonar.jacoco.reportPath>${project.basedir}/../../target/jacoco.exec</sonar.jacoco.reportPath>
+<!--    <sonar.surefire.reportsPath>../${project.artifactId}.tests/target/surefire-reports/</sonar.surefire.reportsPath> -->
+	</properties>
+	<repositories>
+		<repository>
+			<id>nexus_indigo_p2</id>
+			<layout>p2</layout>
+			<url>http://129.217.47.157:8082/nexus/content/repositories/indigo/</url>
+		</repository>
+	</repositories>
+	<modules>
+<!-- The productive code modules -->
+		<module>de.umlsec.tool.core</module>
+		<module>de.umlsec.tool.ocl</module>
+		<module>de.umlsec.tool.ocl.library</module>
+		<module>de.umlsec.tool.ocl.library.edit</module>
+		<module>de.umlsec.tool.ocl.library.editor</module>
+		<module>de.umlsec.check.oclcheck</module>
+	</modules>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+			  	<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco-maven-version}</version>
+			  	<configuration>
+			    	<destFile>${project.basedir}/../../target/jacoco.exec</destFile>
+					<excludes>
+						<exclude>**/*Test.*</exclude>
+						<exclude>org/eclipse/uml2/uml/util/UMLSwitch</exclude>
+					</excludes>
+			  </configuration>
+			  <executions>
+			    <execution>
+			      <goals>
+			        <goal>prepare-agent</goal>
+			      </goals>
+			    </execution>
+			  </executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit-version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+</project>

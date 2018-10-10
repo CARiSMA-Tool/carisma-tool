@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMF Delta Evolution Support
+Bundle-SymbolicName: carisma.evolution.emfdelta;singleton:=true
+Bundle-Version: 1.0.1.qualifier
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.emf.compare;bundle-version="1.1.1",
+ org.eclipse.emf.compare.diff;bundle-version="1.1.1",
+ org.eclipse.emf.compare.match;bundle-version="1.1.1",
+ carisma.core,
+ carisma.evolution,
+ org.eclipse.uml2.uml;resolution:=optional,
+ carisma.modeltype.bpmn2;resolution:=optional,
+ carisma.modeltype.uml2;resolution:=optional
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: carisma.evolution.emfdelta
+Bundle-Vendor: Software Engineering Institute, TU Dortmund

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<carisma.xutils.regulatory.importer.superior.XMLClasses_-Entry>
+  <list>
+    <carisma.xutils.regulatory.importer.superior.XMLClasses_-Activity>
+      <list>
+        <string-array>
+          <string>Administration</string>
+          <string>Administration</string>
+        </string-array>
+        <string-array>
+          <string>Archivierung</string>
+          <string>Archivierung</string>
+        </string-array>
+      </list>
+      <name>Activity</name>
+      <outer-class>
+        <fileName>resources\ElementEntry.xml</fileName>
+      </outer-class>
+    </carisma.xutils.regulatory.importer.superior.XMLClasses_-Activity>
+    <carisma.xutils.regulatory.importer.superior.XMLClasses_-Artifact>
+      <list>
+        <string-array>
+          <string>Anwendung</string>
+          <string>Anwendung</string>
+        </string-array>
+        <string-array>
+          <string>Netz</string>
+          <string>Netz</string>
+        </string-array>
+        <string-array>
+          <string>VPN</string>
+          <string>VPN</string>
+        </string-array>
+        <string-array>
+          <string>Software</string>
+          <string>Software</string>
+        </string-array>
+        <string-array>
+          <string>Gebäude</string>
+          <string>Gebäude</string>
+        </string-array>
+        <string-array>
+          <string>Kabelverbindung</string>
+          <string>Kabelverbindung</string>
+        </string-array>
+      </list>
+      <name>Artifact</name>
+      <outer-class reference="../../carisma.xutils.regulatory.importer.superior.XMLClasses_-Activity/outer-class"/>
+    </carisma.xutils.regulatory.importer.superior.XMLClasses_-Artifact>
+    <carisma.xutils.regulatory.importer.superior.XMLClasses_-Process>
+      <list>
+        <string-array>
+          <string>Notfallmanagment</string>
+          <string>Notfallmanagment</string>
+        </string-array>
+        <string-array>
+          <string>Risikomanagment</string>
+          <string>Risikomanagment</string>
+        </string-array>
+      </list>
+      <name>Process</name>
+      <outer-class reference="../../carisma.xutils.regulatory.importer.superior.XMLClasses_-Activity/outer-class"/>
+    </carisma.xutils.regulatory.importer.superior.XMLClasses_-Process>
+    <carisma.xutils.regulatory.importer.superior.XMLClasses_-Property>
+      <list>
+        <string-array>
+          <string>Funktionstrennung</string>
+          <string>Funktionstrennung</string>
+        </string-array>
+        <string-array>
+          <string>Vertraulichkeit</string>
+          <string>Vertraulichkeit</string>
+        </string-array>
+      </list>
+      <name>Property</name>
+      <outer-class reference="../../carisma.xutils.regulatory.importer.superior.XMLClasses_-Activity/outer-class"/>
+    </carisma.xutils.regulatory.importer.superior.XMLClasses_-Property>
+    <carisma.xutils.regulatory.importer.superior.XMLClasses_-Role>
+      <list>
+        <string-array>
+          <string>Wartungspersonal</string>
+          <string>Wartungspersonal</string>
+        </string-array>
+        <string-array>
+          <string>Telearbeiter</string>
+          <string>Telearbeiter</string>
+        </string-array>
+      </list>
+      <name>Role</name>
+      <outer-class reference="../../carisma.xutils.regulatory.importer.superior.XMLClasses_-Activity/outer-class"/>
+    </carisma.xutils.regulatory.importer.superior.XMLClasses_-Role>
+  </list>
+  <outer-class reference="../list/carisma.xutils.regulatory.importer.superior.XMLClasses_-Activity/outer-class"/>
+</carisma.xutils.regulatory.importer.superior.XMLClasses_-Entry>

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Text tools based on Hunspell
+Bundle-SymbolicName: carisma.check.processanalysis.texttools.hunspell
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: carisma.check.processanalysis.texttools.hunspell.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ carisma.processanalysis;bundle-version="1.0.0",
+ carisma.core;bundle-version="1.4.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/hunspell.jar,
+ .

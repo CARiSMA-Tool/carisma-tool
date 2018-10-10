@@ -1,0 +1,90 @@
+Ausgestattet mit Informations- und Kommunika- tionstechnik und angebunden an
+den Cyberspace mit seinen mächtigen Diensten erhalten alltägliche Gegenstände
+eine neue Qualität: Diese können über Sensoren ihren Kontext wahrnehmen, sich
+mitein- ander vernetzen, auf Internetservices zugreifen und mit dem Menschen
+interagieren. Eine derartige, idealerweise nicht sichtbare digitale Aufrüstung
+klassischer Gegenstände ergänzt deren physische Funktion um die flexiblen
+Fähigkeiten digitaler Objekte und schafft damit einen substanziellen Mehrwert.
+Vorboten dieser Entwicklung kündigen sich bereits an: Immer mehr Geräte wie
+Nähma- schinen, Heimtrainer, elektrische Zahnbürsten, Waschmaschinen,
+Stromzähler oder Fotokopierer werden informatisiert und mit einer Netzschnittstelle
+ausgestattet. Drahtlos mit dem Laptop oder direkt mit dem Internet
+verbunden, erhalten sie so eine erweiterte Funktionalität. Durch eine
+Internetanbindung lässt sich auch der Zustand von Geräten und Dingen aus der
+Ferne einfach ermitteln, und Informationssysteme können aktuelle Daten über
+physische Objekte und Vor- gänge sammeln. Insbesondere können damit viele
+Realweltaspekte in bisher unerreichter Granularität und zu fast verschwindenden
+Kosten gemessen werden, was sie oft erst im Detail verständlich macht und einer
+rationalen Lenkung und Bewirtschaftung zuführt [10]. Indem so automatisch,
+schnell und in informierter Weise auf Ereignisse der Realität reagiert werden
+kann, eröffnen sich nicht nur neue Möglichkeiten im Umgang mit komplexen oder
+kri- tischen Situationen, sondern dies erlaubt auch die Optimierung
+vielfältiger Wirtschaftsprozesse sowie die Bereitstellung ganz neuer Dienste,
+welche durch die zeitnahe Interpretation von Daten aus der phy- sischen Welt
+ökonomischen und gesellschaftlichen Nutzen stiften. Für die oben skizzierte
+Vision hat sich der ein- gängige Begriff „Internet der Dinge“ herausgebildet,
+der allerdings interpretationsbedürftig ist. Denn das Wort Internet kann dabei
+entweder nur als Metapher verstanden werden – analog dazu, wie wir Menschen das
+Web benutzen, kommunizieren bald auch Dinge auf irgendeine Art miteinander,
+verwenden Dienste, stellen Daten bereit und generieren dadurch einen Mehrwert –
+oder es kann im technischen Sinne enger aufgefasst werden, indem ein
+Protokoll-Stack für den IP-Standard auf smarten Dingen (bzw. auf Proxies als
+deren Stellvertreter im Netz) postuliert wird. Eine weitere Interpretation
+erfährt das Internet der Dinge im Logistikbereich [3]: Dort versteht man
+darunter ein selbstorganisierendes Logistiknetz, das RFID (Radio Frequency
+Identification) als Technologie zur berührungslosen automatischen
+Identifikation von Transporteinheiten nutzt, sodass diese sich in Eigenregie
+durch Netzwerke von Warenumschlag- plätzen bewegen können – sinnbildlich analog
+zu den Datenpaketen im gleichermaßen dezentral strukturierten Internet der
+Computer. Populär wurde der Begriff vom Internet der Dinge durch das Wirken des
+Auto-ID-Center am Massachusetts Institute of Technology (MIT), das ab 1999 eine
+firmenübergreifende RFID-Infrastruktur entwarf und propagierte.1 Dessen
+Mitgründer und damaliger Leiter Kevin Ashton wird 2002 im For- bes Magazine mit
+“we need an internet for things, a standardized way for computers to understand
+the real world” [26] zitiert. Der Beitrag trägt den Titel ,,The internet of
+things“ und stellt damit die erste dokumentierte Verwendung des Terminus im
+wörtlichen Sinne dar;2 auf Deutsch taucht ,,Internet der Dinge“ im gleichen
+Jahr auf [23]. In sinngemä- ßer Weise wird der Begriff aber bereits 1999 von
+Neil Gershenfeld vom MIT Media Lab in seinem populärwissenschaftlichen Buch
+,,Wenn die Dinge denken lernen“ [14] gebraucht: ,,Es kommt mir so vor, als sei
+das rasante Wachstum des WWW nur der Zündfunke einer viel gewaltigeren
+Explosion gewesen. Sie wird losbrechen, sobald die Dinge das Internet nutzen“.
+In den vergangenen Jahren hat sich der Begriff „Internet der Dinge“ dann
+schnell verbreitet: 2005 fand er sich bereits in Buchtiteln [8, 19], und 2008
+wurde die erste wissenschaftliche Konferenz dazu veranstaltet [12]. Von der
+europäischen Politik wurde der Terminus zunächst zwar nur im Zusammenhang mit
+RFID verwendet, die Namen der von der EU- Kommission veranstalteten
+RFID-Konferenzen waren jedoch durchaus programmatisch: ,,From RFID to the
+Internet of Things“ (2006) und ,,RFID: Towards the Internet of Things“ (2007).
+Ein spe- zifischer Aktionsplan der EU-Kommission zum Internet der Dinge aus dem
+Jahr 2009 versteht dann schließlich das Internet der Dinge im Sinne des
+allgemeinen Wandels des Internets ,,von ei- nem Computernetz zu einem Netz
+untereinander verbundener Gegenstände“ [6]. Kommunikation und Kooperation:
+Objekte ver- fügen über die Möglichkeit zur Vernetzung mit Ressourcen im Netz
+oder sogar untereinander, um Daten und Dienste gegenseitig zu nutzen und ihren
+Zustand zu aktualisieren. Relevant sind hier vor allem funkbasierte
+Technologien wie GSM oder UMTS, Wi-Fi, Bluetooth, ZigBee und diverse absehbare
+Weiterentwicklungen, insbesondere im Bereich der Wireless Personal Area
+Networks (WPAN). – Adressierbarkeit: Objekte im Internet der Dinge können über
+einen Discovery-, Look-up- oder Na- mensdienst gefunden und angesprochen und
+damit aus der Ferne abgefragt oder beeinflusst werden. – Identifikation:
+Objekte sind eindeutig identifi- zierbar. RFID, NFC (Near Field Communication)
+oder optisch erkennbare Strichcodes stellen bei- spielsweise Technologien dar,
+mit denen – unter Zuhilfenahme eines Mediators, wie etwa eines RFID-Lesers oder
+eines Mobiltelefons – sogar passive Dinge identifiziert werden können. Die
+Identifikation ermöglicht die Verknüpfung des Objekts mit zugehörigen
+Informationen, die auch von einem Server geholt werden können, sofern der
+Mediator mit dem Netz verbunden ist (vgl. Abb. 1). – Sensorik: Objekte sammeln
+Informationen über ihre Umgebung, zeichnen diese auf, melden sie weiter oder
+reagieren direkt darauf. – Effektorik: Objekte besitzen Effektoren zur Einwirkung
+auf die Umwelt (wie etwa Aktuatoren, die elektrische Signale in
+mechanische Arbeit um- wandeln), womit ferngesteuert über das Internet Prozesse
+der Realität beeinflusst werden können. – Eingebettete
+Informationsverarbeitung: Smarte Objekte besitzen einen Prozessor oder Mikrocontroller
+sowie Speicherkapazität. Damit kann beispielsweise sensorische
+Information verar- beitet und interpretiert werden, oder Produkte können ein
+Gedächtnis hinsichtlich ihrer Nutzung bekommen. – Lokalisierung: Dinge kennen
+ihren physischen Aufenthaltsort oder sind für andere lokalisier- bar. Hierfür
+kann GPS oder das Mobilfunknetz verwendet werden, aber auch Ultraschallzeitmessungen,
+UWB (Ultra-Wide Band), Funkbaken (z. B. benachbarte WLAN-Basisstationen
+oder

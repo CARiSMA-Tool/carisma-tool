@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="idModel" name="activityModelModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="activityModelPackage">
+    <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="activityModelActivity">
+      <ownedComment xmi:id="_qRvfABA2EeGOxfo6anrdwQ" annotatedElement="_eYxF4BA2EeGOxfo6anrdwQ">
+        <body>EinKommentarOderSo&#xD;
+</body>
+      </ownedComment>
+      <node xmi:type="uml:InitialNode" xmi:id="_5ChoMBA1EeGOxfo6anrdwQ" name="InitialNode1" outgoing="_giPT2BA2EeGOxfo6anrdwQ"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_6xC_gBA1EeGOxfo6anrdwQ" name="ActivityFinalNode1" incoming="_g3qKMBA2EeGOxfo6anrdwQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_eYxF4BA2EeGOxfo6anrdwQ" name="eineAktion" outgoing="_g3qKMBA2EeGOxfo6anrdwQ" incoming="_giPT2BA2EeGOxfo6anrdwQ">
+        <ownedComment xmi:id="_gpNXIBA5EeGOxfo6anrdwQ"/>
+      </node>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_giPT2BA2EeGOxfo6anrdwQ" name="Rein" source="_5ChoMBA1EeGOxfo6anrdwQ" target="_eYxF4BA2EeGOxfo6anrdwQ">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_giPT2RA2EeGOxfo6anrdwQ" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_giPT2hA2EeGOxfo6anrdwQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_g3qKMBA2EeGOxfo6anrdwQ" name="Raus" source="_eYxF4BA2EeGOxfo6anrdwQ" target="_6xC_gBA1EeGOxfo6anrdwQ">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_g3qKMRA2EeGOxfo6anrdwQ" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_g3qKMhA2EeGOxfo6anrdwQ" value="1"/>
+      </edge>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

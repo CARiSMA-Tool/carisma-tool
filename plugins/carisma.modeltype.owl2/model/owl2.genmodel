@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2011 Software Engineering Institute, TU Dortmund.&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;    {SecSE group} - initial API and implementation and/or initial documentation"
+    modelDirectory="/carisma.modeltype.owl2/gensrc" editDirectory="/carisma.modeltype.owl2.edit/gensrc"
+    editorDirectory="/carisma.modeltype.owl2.editor/gensrc" modelPluginID="carisma.modeltype.owl2"
+    modelName="Owl2" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false" language="">
+  <foreignModel>owl2.ecore</foreignModel>
+  <genPackages prefix="Owl" basePackage="carisma.modeltype.owl2.model" disposableProviderFactory="true"
+      ecorePackage="owl2.ecore#/">
+    <genClasses image="false" ecoreClass="owl2.ecore#//Assertion"/>
+    <genClasses image="false" ecoreClass="owl2.ecore#//Axiom">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//Axiom/axiomAnnotations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//Axiom/axiomId"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//Annotation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//Annotation/annotationProperty"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//AnnotationProperty"/>
+    <genClasses image="false" ecoreClass="owl2.ecore#//Entity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//Entity/entityURI"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//URI">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//URI/value"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//Constant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//Constant/lexicalValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//Constant/datatype"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//Datatype"/>
+    <genClasses image="false" ecoreClass="owl2.ecore#//DataRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//DataRange/arity"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="owl2.ecore#//DataPropertyAxiom"/>
+    <genClasses image="false" ecoreClass="owl2.ecore#//ObjectPropertyAxiom"/>
+    <genClasses image="false" ecoreClass="owl2.ecore#//ClassExpression"/>
+    <genClasses image="false" ecoreClass="owl2.ecore#//ClassAxiom"/>
+    <genClasses image="false" ecoreClass="owl2.ecore#//DataPropertyExpression"/>
+    <genClasses image="false" ecoreClass="owl2.ecore#//ObjectPropertyExpression"/>
+    <genClasses ecoreClass="owl2.ecore#//AsymmetricObjectProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//AsymmetricObjectProperty/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectProperty"/>
+    <genClasses ecoreClass="owl2.ecore#//InverseObjectProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//InverseObjectProperty/objectProperty"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//Class"/>
+    <genClasses ecoreClass="owl2.ecore#//ObjectIntersectionOf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectIntersectionOf/classExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectUnionOf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectUnionOf/classExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectOneOf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectOneOf/individuals"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="owl2.ecore#//Individual"/>
+    <genClasses ecoreClass="owl2.ecore#//NamedIndividual"/>
+    <genClasses ecoreClass="owl2.ecore#//ObjectSomeValuesFrom">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectSomeValuesFrom/classExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectSomeValuesFrom/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectAllValuesFrom">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectAllValuesFrom/classExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectAllValuesFrom/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectExistsSelf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectExistsSelf/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectHasValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectHasValue/objectPropertyExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectHasValue/individual"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectMinCardinality">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//ObjectMinCardinality/cardinality"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectMinCardinality/classExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectMinCardinality/objectPropertyExpression"/>
+      <genOperations ecoreOperation="owl2.ecore#//ObjectMinCardinality/Thecardinalitymustbenonnegative">
+        <genParameters ecoreParameter="owl2.ecore#//ObjectMinCardinality/Thecardinalitymustbenonnegative/diagnostics"/>
+        <genParameters ecoreParameter="owl2.ecore#//ObjectMinCardinality/Thecardinalitymustbenonnegative/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectMaxCardinality">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//ObjectMaxCardinality/cardinality"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectMaxCardinality/classExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectMaxCardinality/objectPropertyExpression"/>
+      <genOperations ecoreOperation="owl2.ecore#//ObjectMaxCardinality/Thecardinalitymustbenonnegative">
+        <genParameters ecoreParameter="owl2.ecore#//ObjectMaxCardinality/Thecardinalitymustbenonnegative/diagnostics"/>
+        <genParameters ecoreParameter="owl2.ecore#//ObjectMaxCardinality/Thecardinalitymustbenonnegative/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DataSomeValuesFrom">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataSomeValuesFrom/dataRange"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataSomeValuesFrom/dataPropertyExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DataProperty"/>
+    <genClasses ecoreClass="owl2.ecore#//DataOneOf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataOneOf/constants"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DatatypeRestriction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DatatypeRestriction/datatype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DatatypeRestriction/restrictions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//FacetConstantPair">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//FacetConstantPair/constant"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//FacetConstantPair/facet"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DataAllValuesFrom">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataAllValuesFrom/dataRange"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataAllValuesFrom/dataPropertyExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DataHasValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataHasValue/constant"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataHasValue/dataPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DataMinCardinality">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//DataMinCardinality/cardinality"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataMinCardinality/dataRange"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataMinCardinality/dataPropertyExpression"/>
+      <genOperations ecoreOperation="owl2.ecore#//DataMinCardinality/Thecardinalitymustbenonnegative">
+        <genParameters ecoreParameter="owl2.ecore#//DataMinCardinality/Thecardinalitymustbenonnegative/diagnostics"/>
+        <genParameters ecoreParameter="owl2.ecore#//DataMinCardinality/Thecardinalitymustbenonnegative/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DataMaxCardinality">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//DataMaxCardinality/cardinality"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataMaxCardinality/dataRange"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataMaxCardinality/dataPropertyExpression"/>
+      <genOperations ecoreOperation="owl2.ecore#//DataMaxCardinality/Thecardinalitymustbenonnegative">
+        <genParameters ecoreParameter="owl2.ecore#//DataMaxCardinality/Thecardinalitymustbenonnegative/diagnostics"/>
+        <genParameters ecoreParameter="owl2.ecore#//DataMaxCardinality/Thecardinalitymustbenonnegative/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DataExactCardinality">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//DataExactCardinality/cardinality"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataExactCardinality/dataRange"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataExactCardinality/dataPropertyExpression"/>
+      <genOperations ecoreOperation="owl2.ecore#//DataExactCardinality/Thecardinalitymustbenonnegative">
+        <genParameters ecoreParameter="owl2.ecore#//DataExactCardinality/Thecardinalitymustbenonnegative/diagnostics"/>
+        <genParameters ecoreParameter="owl2.ecore#//DataExactCardinality/Thecardinalitymustbenonnegative/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//NegativeDataPropertyAssertion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//NegativeDataPropertyAssertion/dataPropertyExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//NegativeDataPropertyAssertion/targetValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//NegativeDataPropertyAssertion/sourceIndividual"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DataPropertyDomain">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataPropertyDomain/domain"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataPropertyDomain/dataPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DataPropertyRange">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataPropertyRange/range"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataPropertyRange/dataPropertyExpression"/>
+      <genOperations ecoreOperation="owl2.ecore#//DataPropertyRange/Thedatarangemustbeofarityone">
+        <genParameters ecoreParameter="owl2.ecore#//DataPropertyRange/Thedatarangemustbeofarityone/diagnostics"/>
+        <genParameters ecoreParameter="owl2.ecore#//DataPropertyRange/Thedatarangemustbeofarityone/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DifferentIndividuals">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DifferentIndividuals/differentIndividuals"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DisjointClasses">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DisjointClasses/disjointClassExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DisjointDataProperties">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DisjointDataProperties/dataPropertyExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DisjointObjectProperties">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DisjointObjectProperties/objectPropertyExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DisjointUnion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DisjointUnion/unionClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DisjointUnion/disjointClassExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//EquivalentClasses">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//EquivalentClasses/equivalentClassExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//EquivalentDataProperties">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//EquivalentDataProperties/dataPropertyExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//FunctionalDataProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//FunctionalDataProperty/dataPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//EquivalentObjectProperties">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//EquivalentObjectProperties/objectPropertyExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//FunctionalObjectProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//FunctionalObjectProperty/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//InverseFunctionalObjectProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//InverseFunctionalObjectProperty/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectPropertyAssertion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectPropertyAssertion/objectPropertyExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectPropertyAssertion/sourceIndividual"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectPropertyAssertion/targetIndividual"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//NegativeObjectPropertyAssertion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//NegativeObjectPropertyAssertion/objectPropertyExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//NegativeObjectPropertyAssertion/sourceIndividual"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//NegativeObjectPropertyAssertion/targetIndividual"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectPropertyDomain">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectPropertyDomain/domain"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectPropertyDomain/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//SymmetricObjectProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//SymmetricObjectProperty/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ReflexiveObjectProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ReflexiveObjectProperty/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//SubDataPropertyOf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//SubDataPropertyOf/superDataPropertyExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//SubDataPropertyOf/subDataPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//SameIndividual">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//SameIndividual/sameIndividuals"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//SubObjectPropertyOf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//SubObjectPropertyOf/superObjectPropertyExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//SubObjectPropertyOf/subObjectPropertyExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectComplementOf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectComplementOf/classExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//Ontology">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//Ontology/ontologyAnnotations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//Ontology/axioms"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//Ontology/importedOntologies"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//Ontology/ontologyURI"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//Ontology/versionURI"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference owl2.ecore#//Ontology/container"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//Ontology/ontologyId"/>
+      <genOperations ecoreOperation="owl2.ecore#//Ontology/versionURIrequiresontologyURItobespecified">
+        <genParameters ecoreParameter="owl2.ecore#//Ontology/versionURIrequiresontologyURItobespecified/diagnostics"/>
+        <genParameters ecoreParameter="owl2.ecore#//Ontology/versionURIrequiresontologyURItobespecified/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectPropertyRange">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectPropertyRange/range"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectPropertyRange/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DataPropertyAssertion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataPropertyAssertion/dataPropertyExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataPropertyAssertion/targetValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataPropertyAssertion/sourceIndividual"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ClassAssertion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ClassAssertion/individual"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ClassAssertion/classExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//IrreflexiveObjectProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//IrreflexiveObjectProperty/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//ObjectExactCardinality">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//ObjectExactCardinality/cardinality"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectExactCardinality/classExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//ObjectExactCardinality/objectPropertyExpression"/>
+      <genOperations ecoreOperation="owl2.ecore#//ObjectExactCardinality/Thecardinalitymustbenonnegative">
+        <genParameters ecoreParameter="owl2.ecore#//ObjectExactCardinality/Thecardinalitymustbenonnegative/diagnostics"/>
+        <genParameters ecoreParameter="owl2.ecore#//ObjectExactCardinality/Thecardinalitymustbenonnegative/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//DataComplementOf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//DataComplementOf/dataRange"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//SubClassOf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//SubClassOf/subClassExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//SubClassOf/superClassExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//SubObjectProperty"/>
+    <genClasses ecoreClass="owl2.ecore#//TransitiveObjectProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//TransitiveObjectProperty/objectPropertyExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//EntityAnnotation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//EntityAnnotation/entity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//EntityAnnotation/entityAnnotations"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//FullURI">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//FullURI/iri"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//AbbreviatedURI">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//AbbreviatedURI/localName"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//InverseObjectProperties">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//InverseObjectProperties/inverseObjectProperties"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//AnnotationByConstant">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//AnnotationByConstant/annotationValue"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//AnnotationByEntity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//AnnotationByEntity/annotationValue"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//AnnotationByAnonymousIndividual">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//AnnotationByAnonymousIndividual/annotationValue"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//AnonymousIndividual">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute owl2.ecore#//AnonymousIndividual/nodeID"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//Declaration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//Declaration/entity"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="owl2.ecore#//ObjectAndDataPropertyAxiom"/>
+    <genClasses ecoreClass="owl2.ecore#//KeyFor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//KeyFor/classExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//KeyFor/dataPropertyExpressions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//KeyFor/objectPropertyExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="owl2.ecore#//AnonymousIndividualAnnotation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//AnonymousIndividualAnnotation/anonymousIndividual"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference owl2.ecore#//AnonymousIndividualAnnotation/anonymousIndiviudalAnnotations"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

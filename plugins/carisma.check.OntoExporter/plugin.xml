@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="carisma.carismacheck">
+      <check
+            name="Onto Exporter"
+            implementingClass="carisma.check.onto.exporter.Check"
+            publisher="Benjamin Berghoff"
+            description="Exorts the whole &quot;Entire Law Ontologie&quot; into the DOT format."
+            targetModelType="UML2"
+            id="carisma.check.onto.exporter">
+         <parameter
+               description="The used ontologie"
+               id="carisma.check.OntoExporter.inputOntologie"
+               name="input Ontologie"
+               optional="true"
+               type="InputFile">
+         </parameter>
+         <parameter
+               defaultValue="true"
+               description="Select whether a spezial individual is searched for (true)  or you want to search for a keyword (false)"
+               id="carisma.check.OntoExporter.optionpara"
+               name="option para"
+               optional="true"
+               type="boolean">
+         </parameter>
+         <parameter
+               name="Search Pattern"
+               optional="false"
+               type="String"
+               description="e.g. your name"
+               id="carisma.check.OntoExporter.searchPattern">
+         </parameter>
+         <parameter
+               name="output"
+               optional="false"
+               type="OutputFile"
+               description="Select output File."
+               id="carisma.check.OntoExporter..outputfile">
+         </parameter>
+      </check>
+   </extension>
+
+</plugin>

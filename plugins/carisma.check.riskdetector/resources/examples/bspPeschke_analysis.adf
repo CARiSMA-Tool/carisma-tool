@@ -1,0 +1,29 @@
+<Analysis>
+  <name>bspPeschke_analysis</name>
+  <modelFile>\dummy\resources\examples\RiskDetector\bspPeschke.bpmn2</modelFile>
+  <modelType>BPMN2</modelType>
+  <checks>
+    <Check>
+      <checkID>carisma.check.processanalysis.importer.bpmn</checkID>
+      <enabled>true</enabled>
+      <parameters/>
+    </Check>
+    <Check>
+      <checkID>carisma.check.riskdetector</checkID>
+      <enabled>true</enabled>
+      <parameters>
+        <InputFileParameter>
+          <descriptor>
+            <id>carisma.check.riskdetector.ontologyFile</id>
+            <name>Ontology</name>
+            <description>File which contains the Ontology to use</description>
+            <type>INPUTFILE</type>
+            <optional>false</optional>
+          </descriptor>
+          <queryOnDemand>true</queryOnDemand>
+        </InputFileParameter>
+      </parameters>
+    </Check>
+  </checks>
+  <selectedEditor></selectedEditor>
+</Analysis>
