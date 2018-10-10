@@ -66,21 +66,21 @@ public class RabacSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case RabacPackage.ABAC: {
-				abac abac = (abac)theEObject;
-				T result = caseabac(abac);
+			case RabacPackage.RABAC: {
+				rabac rabac = (rabac)theEObject;
+				T result = caserabac(rabac);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RabacPackage.ABAC_ATTRIBUTE: {
-				abacAttribute abacAttribute = (abacAttribute)theEObject;
-				T result = caseabacAttribute(abacAttribute);
+			case RabacPackage.RABAC_ATTRIBUTE: {
+				rabacAttribute rabacAttribute = (rabacAttribute)theEObject;
+				T result = caserabacAttribute(rabacAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RabacPackage.ABAC_REQUIRE: {
-				abacRequire abacRequire = (abacRequire)theEObject;
-				T result = caseabacRequire(abacRequire);
+			case RabacPackage.RABAC_REQUIRE: {
+				rabacRequire rabacRequire = (rabacRequire)theEObject;
+				T result = caserabacRequire(rabacRequire);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -89,47 +89,47 @@ public class RabacSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>abac</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>rabac</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>abac</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>rabac</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseabac(abac object) {
+	public T caserabac(rabac object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>abac Attribute</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>rabac Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>abac Attribute</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>rabac Attribute</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseabacAttribute(abacAttribute object) {
+	public T caserabacAttribute(rabacAttribute object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>abac Require</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>rabac Require</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>abac Require</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>rabac Require</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseabacRequire(abacRequire object) {
+	public T caserabacRequire(rabacRequire object) {
 		return null;
 	}
 

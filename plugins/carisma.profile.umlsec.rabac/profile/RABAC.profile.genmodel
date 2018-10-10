@@ -4,7 +4,7 @@
     modelDirectory="/carisma.profile.umlsec.rabac/gen-src" modelPluginID="carisma.profile.umlsec.rabac"
     modelName="RABAC" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="7.0" copyrightFields="false"
-    language="" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
     operationReflection="true" importOrganizing="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
@@ -32,29 +32,31 @@
   </genAnnotations>
   <foreignModel>RABAC.profile.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Rabac" basePackage="carisma.profile.umlsec"
-      disposableProviderFactory="true" ecorePackage="RABAC.ecore#/">
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="RABAC.ecore#//abac">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute RABAC.ecore#//abac/roles"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute RABAC.ecore#//abac/rights"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute RABAC.ecore#//abac/rh"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute RABAC.ecore#//abac/ssd"/>
+      disposableProviderFactory="true" ecorePackage="rabac.ecore#/">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="rabac.ecore#//rabac">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rabac.ecore#//rabac/roles"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rabac.ecore#//rabac/rights"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rabac.ecore#//rabac/rh"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rabac.ecore#//rabac/ssd"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference RABAC.ecore#//abac/base_Class"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute RABAC.ecore#//abac/dsd"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute RABAC.ecore#//abac/attributeFilters"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference rabac.ecore#//rabac/base_Class"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rabac.ecore#//rabac/dsd"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rabac.ecore#//rabac/attributeFilters"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference rabac.ecore#//rabac/base_Package"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="RABAC.ecore#//abacAttribute">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute RABAC.ecore#//abacAttribute/name"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="rabac.ecore#//rabacAttribute">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rabac.ecore#//rabacAttribute/name"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference RABAC.ecore#//abacAttribute/base_Operation"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference rabac.ecore#//rabacAttribute/base_Operation"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="RABAC.ecore#//abacRequire">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute RABAC.ecore#//abacRequire/right"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute RABAC.ecore#//abacRequire/filters"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="rabac.ecore#//rabacRequire">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rabac.ecore#//rabacRequire/right"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rabac.ecore#//rabacRequire/filters"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference RABAC.ecore#//abacRequire/base_Transition"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference rabac.ecore#//rabacRequire/base_Transition"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference RABAC.ecore#//abacRequire/base_Operation"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference rabac.ecore#//rabacRequire/base_Operation"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

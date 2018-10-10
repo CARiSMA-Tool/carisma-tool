@@ -56,9 +56,9 @@ public class RabacFactoryImpl extends EFactoryImpl implements RabacFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case RabacPackage.ABAC: return createabac();
-			case RabacPackage.ABAC_ATTRIBUTE: return createabacAttribute();
-			case RabacPackage.ABAC_REQUIRE: return createabacRequire();
+			case RabacPackage.RABAC: return createrabac();
+			case RabacPackage.RABAC_ATTRIBUTE: return createrabacAttribute();
+			case RabacPackage.RABAC_REQUIRE: return createrabacRequire();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -69,9 +69,9 @@ public class RabacFactoryImpl extends EFactoryImpl implements RabacFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public abac createabac() {
-		abacImpl abac = new abacImpl();
-		return abac;
+	public rabac createrabac() {
+		rabacImpl rabac = new rabacImpl();
+		return rabac;
 	}
 
 	/**
@@ -79,9 +79,9 @@ public class RabacFactoryImpl extends EFactoryImpl implements RabacFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public abacAttribute createabacAttribute() {
-		abacAttributeImpl abacAttribute = new abacAttributeImpl();
-		return abacAttribute;
+	public rabacAttribute createrabacAttribute() {
+		rabacAttributeImpl rabacAttribute = new rabacAttributeImpl();
+		return rabacAttribute;
 	}
 
 	/**
@@ -89,9 +89,9 @@ public class RabacFactoryImpl extends EFactoryImpl implements RabacFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public abacRequire createabacRequire() {
-		abacRequireImpl abacRequire = new abacRequireImpl();
-		return abacRequire;
+	public rabacRequire createrabacRequire() {
+		rabacRequireImpl rabacRequire = new rabacRequireImpl();
+		return rabacRequire;
 	}
 
 	/**

@@ -22,31 +22,31 @@ public interface RabacFactory extends EFactory {
 	RabacFactory eINSTANCE = carisma.profile.umlsec.rabac.impl.RabacFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>abac</em>'.
+	 * Returns a new object of class '<em>rabac</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>abac</em>'.
+	 * @return a new object of class '<em>rabac</em>'.
 	 * @generated
 	 */
-	abac createabac();
+	rabac createrabac();
 
 	/**
-	 * Returns a new object of class '<em>abac Attribute</em>'.
+	 * Returns a new object of class '<em>rabac Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>abac Attribute</em>'.
+	 * @return a new object of class '<em>rabac Attribute</em>'.
 	 * @generated
 	 */
-	abacAttribute createabacAttribute();
+	rabacAttribute createrabacAttribute();
 
 	/**
-	 * Returns a new object of class '<em>abac Require</em>'.
+	 * Returns a new object of class '<em>rabac Require</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>abac Require</em>'.
+	 * @return a new object of class '<em>rabac Require</em>'.
 	 * @generated
 	 */
-	abacRequire createabacRequire();
+	rabacRequire createrabacRequire();
 
 	/**
 	 * Returns the package supported by this factory.
