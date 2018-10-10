@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            id="carisma.ui.vision.contribution1">
+         <menu
+               label="New Submenu"
+               path="additions"
+               id="carisma.ui.vision.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="carisma.ui.eclipse.index"
+            class="carisma.ui.vision.eclipse.preferences.pages.VisiOn"
+            id="carisma.ui.eclipse.vision"
+            name="VisiOn">
+      </page>
+   </extension>
+   <extension
+         point="carisma.ui.eclipse.analysis.popup.menu">
+      <popupmenu
+            class="carisma.ui.vision.popup.actions.HelpDocumentOutput">
+      </popupmenu>
+      <popupmenu
+            class="carisma.ui.vision.popup.actions.VisiOnDBOutput">
+      </popupmenu>
+      <popupmenu
+            class="carisma.ui.vision.popup.actions.QuestionGenerationPopUpAction">
+      </popupmenu>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="carisma.ui.vision.eclipse.preferences.initializer.VisionInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="carisma.ui.vision.eclipse.preferences.initializer.VisionStartup">
+      </startup>
+   </extension>
+
+</plugin>
