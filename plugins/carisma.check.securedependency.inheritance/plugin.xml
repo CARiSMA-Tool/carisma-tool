@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+         point="carisma.carismacheck">
+      <check
+            description="Checks Secure Dependency"
+            id="carisma.check.securedependency.inheritance"
+            name="Secure Dependency Inheritance"
+            implementingClass="carisma.check.SecureDependencyInheritance"
+            publisher="Volkan Topcu"
+            targetModelType="UML2">
+      </check>
+</extension>
+</plugin>

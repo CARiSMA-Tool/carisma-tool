@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Secure Dependency with Inheritance
+Bundle-SymbolicName: carisma.check.securedependency.inheritance;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: carisma.modeltype.uml2,
+ carisma.core,
+ org.eclipse.uml2.uml
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: University of Koblenz-Landau
+Automatic-Module-Name: carisma.check.securedependency.inheritance
