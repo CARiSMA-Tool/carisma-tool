@@ -8,7 +8,7 @@
  * Contributors:
  *    {SecSE group} - initial API and implementation and/or initial documentation
  *******************************************************************************/
-package carisma.check.staticcheck.securedependency;
+package carisma.check;
 
 import java.util.Map;
 

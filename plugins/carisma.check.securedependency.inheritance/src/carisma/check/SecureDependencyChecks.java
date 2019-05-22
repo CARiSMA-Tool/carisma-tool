@@ -8,7 +8,7 @@
  * Contributors:
  *    {SecSE group} - initial API and implementation and/or initial documentation
  *******************************************************************************/
-package carisma.check.staticcheck.securedependency;
+package carisma.check;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -187,7 +187,8 @@ public final class SecureDependencyChecks {
 
 	private void getCriticalTags(Classifier classifier, List<String> fresh, List<String> high, List<String> integrity,
 			List<String> privacy, List<String> secrecy) {
-		
+
+		//get stereotypes inside the class 
 		for (EObject stereotype : classifier.getStereotypeApplications()) {
 			if (stereotype instanceof critical) {
 				critical critical = (critical) stereotype;
@@ -197,6 +198,38 @@ public final class SecureDependencyChecks {
 				privacy.addAll(critical.getPrivacy());
 				secrecy.addAll(critical.getSecrecy());
 			}
+		}
+
+		Classifier g = new Classifier(); 
+		List<Generalization> generalizations = new ArrayList<>();
+		List<Classifier> parents = new ArrayList<>();
+		generalizations.addAll(classifier.getGeneralizations());
+
+		//get stereotypes from direct ancestors 
+		for (Generalization gen : generalizations) {
+
+			g = gen.getGeneral();
+			
+			for (EObject stereotype : g.getStereotypeApplications()) {
+				if (stereotype instanceof critical) {
+					critical critical = (critical) stereotype;
+					integrity.addAll(critical.getIntegrity());
+					secrecy.addAll(critical.getSecrecy());
+				}
+			}
+			
+			parents.addAll(g.allParents());
+			
+			//get stereotypes from all ancestors of direct ancestors
+			for (Classifier par : parents) {
+				for (EObject stereotype : par.getStereotypeApplications()) {
+					if (stereotype instanceof critical) {
+						critical critical = (critical) stereotype;
+						integrity.addAll(critical.getIntegrity());
+						secrecy.addAll(critical.getSecrecy());
+					}
+				}	
+			}	
 		}
 		
 	}
