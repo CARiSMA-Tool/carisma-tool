@@ -55,8 +55,6 @@ public final class SecureDependencyChecks {
 
 	private List<SecureDependencyViolation> secureDependencyViolations;
 	private AnalysisHost analysisHost;
-	
-	Classifier classifier = new Class(); 
 
 	/**
 	 * Private constructor. UMLsec will never be initialized.
@@ -200,7 +198,6 @@ public final class SecureDependencyChecks {
 			}
 		}
 
-		Classifier g = new Classifier(); 
 		List<Generalization> generalizations = new ArrayList<>();
 		List<Classifier> parents = new ArrayList<>();
 		generalizations.addAll(classifier.getGeneralizations());
@@ -208,7 +205,7 @@ public final class SecureDependencyChecks {
 		//get stereotypes from direct ancestors 
 		for (Generalization gen : generalizations) {
 
-			g = gen.getGeneral();
+			Classifier g = gen.getGeneral();
 			
 			for (EObject stereotype : g.getStereotypeApplications()) {
 				if (stereotype instanceof critical) {
