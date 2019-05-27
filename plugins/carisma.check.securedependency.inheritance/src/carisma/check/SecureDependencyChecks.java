@@ -190,14 +190,21 @@ public final class SecureDependencyChecks {
 		for (EObject stereotype : classifier.getStereotypeApplications()) {
 			if (stereotype instanceof critical) {
 				critical critical = (critical) stereotype;
-				fresh.addAll(critical.getFresh());
-				high.addAll(critical.getHigh());
 				integrity.addAll(critical.getIntegrity());
-				privacy.addAll(critical.getPrivacy());
 				secrecy.addAll(critical.getSecrecy());
 			}
 		}
 
+		
+		// get a list containing only not overwritten fields
+		List <Property> attributes = classifier.getAllAttributes();
+		List <Operation> operations = classifier.getAllOperations();
+		List <NamedElement> inheritedMembers = classifier.getInheritedMembers();
+		inheritedMembers.removeAll(attributes);
+		inheritedMembers.removeAll(operations);
+		
+		
+		
 		List<Generalization> generalizations = new ArrayList<>();
 		List<Classifier> parents = new ArrayList<>();
 		generalizations.addAll(classifier.getGeneralizations());
@@ -206,17 +213,22 @@ public final class SecureDependencyChecks {
 		for (Generalization gen : generalizations) {
 
 			Classifier g = gen.getGeneral();
-			
+			//get a list containing only not overwritten fields
 			for (EObject stereotype : g.getStereotypeApplications()) {
 				if (stereotype instanceof critical) {
-					critical critical = (critical) stereotype;
-					integrity.addAll(critical.getIntegrity());
-					secrecy.addAll(critical.getSecrecy());
+					// add stereotypes only if they do not belong to an overwritten field
+					//for (EObject stereotypeOfSubclass : classifier.getStereotypeApplications()) {
+					//	if (stereotype.toString()  != stereotypeOfSubclass.toString() ) {
+							critical critical = (critical) stereotype;
+							integrity.addAll(critical.getIntegrity());
+							secrecy.addAll(critical.getSecrecy());
+					//	}
+					//}
 				}
+				
 			}
 			
 			parents.addAll(g.allParents());
-			
 			//get stereotypes from all ancestors of direct ancestors
 			for (Classifier par : parents) {
 				for (EObject stereotype : par.getStereotypeApplications()) {
@@ -228,7 +240,6 @@ public final class SecureDependencyChecks {
 				}	
 			}	
 		}
-		
 	}
 
 	private List<String> getRequired(Classifier classifier, Collection<String> criticalTags,
