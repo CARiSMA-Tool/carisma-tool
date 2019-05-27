@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_g7OLAEGiEemJzaQSMBDEpQ" name="model">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_hBH-sEGiEemJzaQSMBDEpQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_o775IEGiEemJzaQSMBDEpQ" name="C">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_rIU4MEGiEemJzaQSMBDEpQ" name="m"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_pPV9UEGiEemJzaQSMBDEpQ" name="B">
+      <generalization xmi:type="uml:Generalization" xmi:id="_vSZr8EGiEemJzaQSMBDEpQ" general="_o775IEGiEemJzaQSMBDEpQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_pvgrIEGiEemJzaQSMBDEpQ" name="A"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_urwisEGiEemJzaQSMBDEpQ" client="_pvgrIEGiEemJzaQSMBDEpQ" supplier="_pPV9UEGiEemJzaQSMBDEpQ"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_1iaRcEGiEemJzaQSMBDEpQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1ia4gEGiEemJzaQSMBDEpQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:critical xmi:id="_3FfNwEGiEemJzaQSMBDEpQ" base_Class="_o775IEGiEemJzaQSMBDEpQ" base_Classifier="_o775IEGiEemJzaQSMBDEpQ">
+    <secrecy>m</secrecy>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_4XMtQEGiEemJzaQSMBDEpQ" base_Class="_pPV9UEGiEemJzaQSMBDEpQ" base_Classifier="_pPV9UEGiEemJzaQSMBDEpQ">
+    <secrecy>m</secrecy>
+    <integrity>m</integrity>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_5XklIEGiEemJzaQSMBDEpQ" base_Class="_pvgrIEGiEemJzaQSMBDEpQ" base_Classifier="_pvgrIEGiEemJzaQSMBDEpQ">
+    <secrecy>m</secrecy>
+    <integrity>m</integrity>
+  </UMLsec:critical>
+  <UMLsec:call xmi:id="_AIEokEGjEemJzaQSMBDEpQ" base_Dependency="_urwisEGiEemJzaQSMBDEpQ"/>
+</xmi:XMI>

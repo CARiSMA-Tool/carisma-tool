@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_rCOMQEEKEemV7-Zv224ApA" name="InheritanceCases">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_rP4NwEEKEemV7-Zv224ApA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_T1f2cEGYEemJzaQSMBDEpQ" name="A"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UEmCYEGYEemJzaQSMBDEpQ" name="B">
+      <generalization xmi:type="uml:Generalization" xmi:id="_aGkL4EGYEemJzaQSMBDEpQ" general="_UkRoAEGYEemJzaQSMBDEpQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UkRoAEGYEemJzaQSMBDEpQ" name="C">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_hmTT4EGYEemJzaQSMBDEpQ" name="m"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_WSxxMEGYEemJzaQSMBDEpQ" client="_T1f2cEGYEemJzaQSMBDEpQ" supplier="_UEmCYEGYEemJzaQSMBDEpQ"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_znGKYEGZEemJzaQSMBDEpQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_znGxcEGZEemJzaQSMBDEpQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:critical xmi:id="_0swK4EGZEemJzaQSMBDEpQ" base_Class="_UkRoAEGYEemJzaQSMBDEpQ" base_Classifier="_UkRoAEGYEemJzaQSMBDEpQ">
+    <secrecy>m</secrecy>
+  </UMLsec:critical>
+  <UMLsec:call xmi:id="_8aD00EGZEemJzaQSMBDEpQ" base_Dependency="_WSxxMEGYEemJzaQSMBDEpQ"/>
+</xmi:XMI>
