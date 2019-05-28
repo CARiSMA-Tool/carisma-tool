@@ -13,23 +13,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Dependency;
-import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Usage;
 import org.junit.After;
 import org.junit.Test;
 
-import carisma.check.staticcheck.securedependency.SecureDependencyChecks;
-import carisma.check.staticcheck.securedependency.SecureDependencyViolation;
-import carisma.modeltype.uml2.UMLHelper;
-import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
-import carisma.profile.umlsec.UMLsec;
-import carisma.profile.umlsec.UMLsecUtil;
+import carisma.check.SecureDependencyChecks;
+import carisma.check.SecureDependencyViolation;
 
 
 public class SecureDependencyInheritanceChecksTest {

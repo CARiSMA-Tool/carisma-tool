@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test
+Bundle-SymbolicName: carisma.check.securedependency.inheritance.test
+Bundle-Version: 1.0.0.qualifier
+Export-Package: carisma.check.securedependency.inheritance.test
+Require-Bundle: org.eclipse.uml2.uml,
+ carisma.check.securedependency.inheritance,
+ carisma.modeltype.uml2,
+ carisma.profile.umlsec,
+ carisma.core,
+ org.junit
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: carisma.check.securedependency.inheritance.test
