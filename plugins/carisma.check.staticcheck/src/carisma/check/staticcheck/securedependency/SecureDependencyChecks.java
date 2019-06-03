@@ -55,8 +55,6 @@ public final class SecureDependencyChecks {
 
 	private List<SecureDependencyViolation> secureDependencyViolations;
 	private AnalysisHost analysisHost;
-	
-	Classifier classifier = new Class(); 
 
 	/**
 	 * Private constructor. UMLsec will never be initialized.
@@ -108,7 +106,6 @@ public final class SecureDependencyChecks {
 			return;
 		}
 		List<NamedElement> clients = dep.getClients();
-		//List<NamedElement> clients2 = dep.getClients().getGeneralizations();
 		List<NamedElement> suppliers = dep.getSuppliers();
 		for (NamedElement c : clients) {
 			for (NamedElement s : suppliers) {
@@ -187,7 +184,6 @@ public final class SecureDependencyChecks {
 
 	private void getCriticalTags(Classifier classifier, List<String> fresh, List<String> high, List<String> integrity,
 			List<String> privacy, List<String> secrecy) {
-		
 		for (EObject stereotype : classifier.getStereotypeApplications()) {
 			if (stereotype instanceof critical) {
 				critical critical = (critical) stereotype;
@@ -198,7 +194,6 @@ public final class SecureDependencyChecks {
 				secrecy.addAll(critical.getSecrecy());
 			}
 		}
-		
 	}
 
 	private List<String> getRequired(Classifier classifier, Collection<String> criticalTags,

@@ -26,8 +26,6 @@ public class SecureDependenciesCheck implements CarismaCheckWithID {
 
 	public static final String CHECK_ID = "carisma.check.staticcheck.securedependency";
 	public static final String CHECK_NAME = "UMLsec secure dependency Check";
-	
-	
 
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost newHost) {
@@ -38,7 +36,6 @@ public class SecureDependenciesCheck implements CarismaCheckWithID {
 			host = new DummyHost(true);
 		}
 		Resource currentModel = host.getAnalyzedModel();
-		
 		if (currentModel.getContents().isEmpty()) {
 			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
 			return false;
