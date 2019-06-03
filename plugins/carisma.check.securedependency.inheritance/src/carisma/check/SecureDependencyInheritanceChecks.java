@@ -105,6 +105,8 @@ public final class SecureDependencyInheritanceChecks {
 	
 	public void analyzeClassifier(Classifier clas) {
 		
+		ArrayList<SecureDependencyInheritanceViolation> errors = new ArrayList<SecureDependencyInheritanceViolation>();
+		
 		List<Property> direct_attributes = new ArrayList<>();
 		List<Operation> direct_operations = new ArrayList<>(); 
 		List<Property> inherited_attributes = new ArrayList<>();
@@ -132,7 +134,7 @@ public final class SecureDependencyInheritanceChecks {
 						if (stereotype instanceof critical) {
 							critical critical = (critical) stereotype; 
 							if (critical.getIntegrity().size() > 0 || critical.getSecrecy().size() > 0) {
-								// throw secure dependency error 
+								errors.add(new SecureDependencyInheritanceViolation("Adding security properties to a overridden attribute", null, clas, null));
 							}
 						}
 					}
@@ -149,7 +151,7 @@ public final class SecureDependencyInheritanceChecks {
 						if (stereotype instanceof critical) {
 							critical critical = (critical) stereotype; 
 							if (critical.getIntegrity().size() > 0 || critical.getSecrecy().size() > 0) {
-								// throw secure dependency error 
+								errors.add(new SecureDependencyInheritanceViolation("Adding security properties to a overridden method", null, clas, null));
 							}
 						}
 					}
