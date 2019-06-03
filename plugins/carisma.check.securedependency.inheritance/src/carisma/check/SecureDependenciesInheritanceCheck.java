@@ -22,7 +22,7 @@ import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 
-public class SecureDependenciesCheck implements CarismaCheckWithID {
+public class SecureDependenciesInheritanceCheck implements CarismaCheckWithID {
 
 	public static final String CHECK_ID = "carisma.check.staticcheck.securedependency";
 	public static final String CHECK_NAME = "UMLsec secure dependency Check";
@@ -45,9 +45,9 @@ public class SecureDependenciesCheck implements CarismaCheckWithID {
 		}
 		if (currentModel.getContents().get(0) instanceof Package) {
 			Package model = (Package) currentModel.getContents().get(0);
-			SecureDependencyChecks sdc = new SecureDependencyChecks(host);
+			SecureDependencyInheritanceChecks sdc = new SecureDependencyInheritanceChecks(host);
 			int violations = sdc.checkSecureDependency(model);
-			for (SecureDependencyViolation v : sdc.getViolations()) {
+			for (SecureDependencyInheritanceViolation v : sdc.getViolations()) {
 				String s = computeMessage(v);
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, s));
 			}
@@ -57,7 +57,7 @@ public class SecureDependenciesCheck implements CarismaCheckWithID {
 		return false;
 	}
 
-	private static String computeMessage(SecureDependencyViolation v) {
+	private static String computeMessage(SecureDependencyInheritanceViolation v) {
 		if (v.getDescription() != null) { // TODO: What is the purpose of this stuff???
 			if (v.getDescription().startsWith("Dependency")) {
 				String ns = v.getDependency().getName();

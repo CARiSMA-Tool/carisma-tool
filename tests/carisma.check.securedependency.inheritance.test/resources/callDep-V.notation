@@ -156,6 +156,14 @@
       <element xsi:nil="true"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tfOmgkGUEemJzaQSMBDEpQ" x="620" y="80" width="141" height="41"/>
     </children>
+    <children xmi:type="notation:Shape" xmi:id="_98BDEIPBEemK2J12Pzw7Xw" type="StereotypeComment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_98BDEYPBEemK2J12Pzw7Xw"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_98BDE4PBEemK2J12Pzw7Xw" name="BASE_ELEMENT">
+        <eObjectValue xmi:type="uml:Dependency" href="callDep-V.uml#_ym3-kEEMEemJzaQSMBDEpQ"/>
+      </styles>
+      <element xsi:nil="true"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_98BDEoPBEemK2J12Pzw7Xw" x="320" y="20"/>
+    </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_uvyYQUEMEemJzaQSMBDEpQ" name="diagram_compatibility_version" stringValue="1.4.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_uvyYQkEMEemJzaQSMBDEpQ"/>
     <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_uvyYQ0EMEemJzaQSMBDEpQ" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
@@ -169,7 +177,7 @@
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_ym7B5UEMEemJzaQSMBDEpQ" type="Dependency_StereotypeLabel">
         <styles xmi:type="notation:BooleanValueStyle" xmi:id="_zUwYQEEMEemJzaQSMBDEpQ" name="IS_UPDATED_POSITION" booleanValue="true"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_ym7B5kEMEemJzaQSMBDEpQ" y="60"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_ym7B5kEMEemJzaQSMBDEpQ" x="-3" y="27"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_ym7B4UEMEemJzaQSMBDEpQ"/>
       <element xmi:type="uml:Dependency" href="callDep-V.uml#_ym3-kEEMEemJzaQSMBDEpQ"/>
@@ -186,6 +194,16 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_tfOmhkGUEemJzaQSMBDEpQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tfOmh0GUEemJzaQSMBDEpQ" id="(1.0,0.19801980198019803)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tfOmiEGUEemJzaQSMBDEpQ" id="(0.0,0.7804878048780488)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_98BDFIPBEemK2J12Pzw7Xw" type="StereotypeCommentLink" source="_ym7B4EEMEemJzaQSMBDEpQ" target="_98BDEIPBEemK2J12Pzw7Xw">
+      <styles xmi:type="notation:FontStyle" xmi:id="_98BDFYPBEemK2J12Pzw7Xw"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_98BqIIPBEemK2J12Pzw7Xw" name="BASE_ELEMENT">
+        <eObjectValue xmi:type="uml:Dependency" href="callDep-V.uml#_ym3-kEEMEemJzaQSMBDEpQ"/>
+      </styles>
+      <element xsi:nil="true"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_98BDFoPBEemK2J12Pzw7Xw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_98BDF4PBEemK2J12Pzw7Xw"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_98BDGIPBEemK2J12Pzw7Xw"/>
     </edges>
   </notation:Diagram>
   <notation:Diagram xmi:id="_Y42GcEGWEemJzaQSMBDEpQ" type="PapyrusUMLClassDiagram" name="Case2" measurementUnit="Pixel">

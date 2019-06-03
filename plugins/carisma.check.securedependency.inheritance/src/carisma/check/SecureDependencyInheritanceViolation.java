@@ -13,7 +13,7 @@ package carisma.check;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Dependency;
 
-public class SecureDependencyViolation {
+public class SecureDependencyInheritanceViolation {
     
 	public Dependency getDependency() {
         return this.dependency;
@@ -36,7 +36,7 @@ public class SecureDependencyViolation {
 	private Classifier supplier;
 	private String description;
 	
-	public SecureDependencyViolation(String description, Dependency dependency, Classifier client, Classifier supplier) {
+	public SecureDependencyInheritanceViolation(String description, Dependency dependency, Classifier client, Classifier supplier) {
 		super();
 		this.dependency = dependency;
 		this.client = client;

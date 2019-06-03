@@ -8,19 +8,27 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_zqkxUE8wEemDtvLNcLMZ_w" name="B">
       <ownedOperation xmi:type="uml:Operation" xmi:id="_02E7IE8wEemDtvLNcLMZ_w" name="m"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Dependency" xmi:id="_3Rqz0E8wEemDtvLNcLMZ_w" client="_zboWYE8wEemDtvLNcLMZ_w" supplier="_v8sKUE8wEemDtvLNcLMZ_w"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_3Rqz0E8wEemDtvLNcLMZ_w" name="" client="_zboWYE8wEemDtvLNcLMZ_w" supplier="_zqkxUE8wEemDtvLNcLMZ_w"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_8M8bAE8wEemDtvLNcLMZ_w">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8M9CEE8wEemDtvLNcLMZ_w" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
     </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Oyh-IIPLEemK2J12Pzw7Xw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Oym2oIPLEemK2J12Pzw7Xw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../../carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
   </uml:Model>
   <UMLsec:critical xmi:id="_9fox8E8wEemDtvLNcLMZ_w" base_Class="_zqkxUE8wEemDtvLNcLMZ_w" base_Classifier="_zqkxUE8wEemDtvLNcLMZ_w">
-    <integrity>m</integrity>
+    <integrity>m()</integrity>
   </UMLsec:critical>
   <UMLsec:call xmi:id="_-tly0E8wEemDtvLNcLMZ_w" base_Dependency="_3Rqz0E8wEemDtvLNcLMZ_w"/>
   <UMLsec:critical xmi:id="__93u8E8wEemDtvLNcLMZ_w" base_Class="_zboWYE8wEemDtvLNcLMZ_w" base_Classifier="_zboWYE8wEemDtvLNcLMZ_w">
-    <secrecy>m</secrecy>
+    <secrecy>m()</secrecy>
   </UMLsec:critical>
+  <UMLsec:securedependency xmi:id="_APc5wIPMEemK2J12Pzw7Xw" base_Package="_v8sKUE8wEemDtvLNcLMZ_w"/>
+  <UMLsec:securedependency xmi:id="_AQUccIPMEemK2J12Pzw7Xw" base_Package="_v8sKUE8wEemDtvLNcLMZ_w"/>
 </xmi:XMI>

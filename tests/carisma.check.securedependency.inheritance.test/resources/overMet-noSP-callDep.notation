@@ -133,6 +133,14 @@
     <element xsi:nil="true"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wQwB8kmiEem0WuPicGMlpg" x="580" y="40"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_S5-_44PEEemK2J12Pzw7Xw" type="StereotypeComment">
+    <styles xmi:type="notation:TitleStyle" xmi:id="_S5-_5IPEEemK2J12Pzw7Xw"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_S5-_5oPEEemK2J12Pzw7Xw" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:Dependency" href="overMet-noSP-callDep.uml#_W6Y2oEmiEem0WuPicGMlpg"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_S5-_5YPEEemK2J12Pzw7Xw" x="360" y="120"/>
+  </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_ACw-oUmiEem0WuPicGMlpg" name="diagram_compatibility_version" stringValue="1.4.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_ACw-okmiEem0WuPicGMlpg"/>
   <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_ACw-o0miEem0WuPicGMlpg" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
@@ -172,5 +180,15 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wQwB9kmiEem0WuPicGMlpg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_wQwB90miEem0WuPicGMlpg"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_wQwB-EmiEem0WuPicGMlpg"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_S5_m8IPEEemK2J12Pzw7Xw" type="StereotypeCommentLink" source="_W6ar0EmiEem0WuPicGMlpg" target="_S5-_44PEEemK2J12Pzw7Xw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_S5_m8YPEEemK2J12Pzw7Xw"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_S5_m9YPEEemK2J12Pzw7Xw" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:Dependency" href="overMet-noSP-callDep.uml#_W6Y2oEmiEem0WuPicGMlpg"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_S5_m8oPEEemK2J12Pzw7Xw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_S5_m84PEEemK2J12Pzw7Xw"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_S5_m9IPEEemK2J12Pzw7Xw"/>
   </edges>
 </notation:Diagram>

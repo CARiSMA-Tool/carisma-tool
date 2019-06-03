@@ -167,6 +167,14 @@
     <element xsi:nil="true"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5PcJVEmkEem0WuPicGMlpg" x="140" y="140"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_ffOpI4PEEemK2J12Pzw7Xw" type="StereotypeComment">
+    <styles xmi:type="notation:TitleStyle" xmi:id="_ffOpJIPEEemK2J12Pzw7Xw"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_ffOpJoPEEemK2J12Pzw7Xw" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:Dependency" href="overMet-noSP-callDP-SP.uml#_q9o3oEmkEem0WuPicGMlpg"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ffOpJYPEEemK2J12Pzw7Xw" x="360" y="140"/>
+  </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_VV7IUUmkEem0WuPicGMlpg" name="diagram_compatibility_version" stringValue="1.4.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_VV7IUkmkEem0WuPicGMlpg"/>
   <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_VV7IU0mkEem0WuPicGMlpg" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
@@ -217,5 +225,15 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5PcJWEmkEem0WuPicGMlpg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5PcJWUmkEem0WuPicGMlpg" id="(0.41,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5PcJWkmkEem0WuPicGMlpg" id="(0.5445544554455446,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_ffPQMIPEEemK2J12Pzw7Xw" type="StereotypeCommentLink" source="_q9qs0EmkEem0WuPicGMlpg" target="_ffOpI4PEEemK2J12Pzw7Xw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_ffPQMYPEEemK2J12Pzw7Xw"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_ffPQNYPEEemK2J12Pzw7Xw" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:Dependency" href="overMet-noSP-callDP-SP.uml#_q9o3oEmkEem0WuPicGMlpg"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ffPQMoPEEemK2J12Pzw7Xw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ffPQM4PEEemK2J12Pzw7Xw"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ffPQNIPEEemK2J12Pzw7Xw"/>
   </edges>
 </notation:Diagram>

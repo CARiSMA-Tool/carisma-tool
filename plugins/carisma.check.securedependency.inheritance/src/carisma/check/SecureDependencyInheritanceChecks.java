@@ -51,15 +51,15 @@ import carisma.profile.umlsec.send;
  * @author Sven Wenzel
  *
  */
-public final class SecureDependencyChecks {
+public final class SecureDependencyInheritanceChecks {
 
-	private List<SecureDependencyViolation> secureDependencyViolations;
+	private List<SecureDependencyInheritanceViolation> secureDependencyViolations;
 	private AnalysisHost analysisHost;
 
 	/**
 	 * Private constructor. UMLsec will never be initialized.
 	 */
-	public SecureDependencyChecks(AnalysisHost host) {
+	public SecureDependencyInheritanceChecks(AnalysisHost host) {
 		if (host != null) {
 			this.analysisHost = host;
 		} else {
@@ -69,7 +69,7 @@ public final class SecureDependencyChecks {
 		this.secureDependencyViolations = new ArrayList<>();
 	}
 
-	public List<SecureDependencyViolation> getViolations() {
+	public List<SecureDependencyInheritanceViolation> getViolations() {
 		return Collections.unmodifiableList(this.secureDependencyViolations);
 	}
 
@@ -80,6 +80,13 @@ public final class SecureDependencyChecks {
 	 * @return
 	 */
 	public int checkSecureDependency(final Package model) {
+		
+		List<Classifier> classifiersToCheck = new ArrayList<>();
+		classifiersToCheck.addAll(UMLHelper.getAllElementsOfType(model, Classifier.class));
+		for (Classifier clas : classifiersToCheck) {
+			analyzeClassifier(clas);
+		}
+		
 		List<Dependency> dependenciesToCheck = new ArrayList<>();
 		dependenciesToCheck.addAll(UMLHelper.getAllElementsOfType(model, Dependency.class));
 		for (Dependency dep : dependenciesToCheck) {
@@ -95,6 +102,61 @@ public final class SecureDependencyChecks {
 				"------------------------------------------------------------------------------------\n");
 		return this.secureDependencyViolations.size();
 	}
+	
+	public void analyzeClassifier(Classifier clas) {
+		
+		List<Property> direct_attributes = new ArrayList<>();
+		List<Operation> direct_operations = new ArrayList<>(); 
+		List<Property> inherited_attributes = new ArrayList<>();
+		List<Operation> inherited_operations = new ArrayList<>(); 
+		List<NamedElement> inherited_members = new ArrayList<>();
+
+		direct_attributes.addAll(clas.getAttributes());
+		direct_operations.addAll(clas.getOperations());
+		inherited_members.addAll(clas.getInheritedMembers());
+		
+		for (NamedElement im : inherited_members) {
+			if (im instanceof Property) {
+				inherited_attributes.add((Property) im);
+			} else if (im instanceof Operation) {
+				inherited_operations.add((Operation) im);
+			}
+		}
+		
+		// check if attribute is overridden 
+		for (Property direct_attribute : direct_attributes) {
+			for (Property inherited_attribute : inherited_attributes) {
+				if (direct_attribute.getNameExpression() == inherited_attribute.getNameExpression() 
+						&& direct_attribute.isCompatibleWith(inherited_attribute) ) { 
+					for (EObject stereotype : clas.getStereotypeApplications()) {
+						if (stereotype instanceof critical) {
+							critical critical = (critical) stereotype; 
+							if (critical.getIntegrity().size() > 0 || critical.getSecrecy().size() > 0) {
+								// throw secure dependency error 
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		// check if operation is overridden 
+		for (Operation direct_operation : direct_operations) {
+			for (Operation inherited_operation : inherited_operations) {
+				if (direct_operation.toString() == inherited_operations.toString() 
+						&& direct_operation.isCompatibleWith(inherited_operation)) {
+					for (EObject stereotype : clas.getStereotypeApplications()) {
+						if (stereotype instanceof critical) {
+							critical critical = (critical) stereotype; 
+							if (critical.getIntegrity().size() > 0 || critical.getSecrecy().size() > 0) {
+								// throw secure dependency error 
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 
 	/**
 	 * Checks the dependency.
@@ -106,7 +168,6 @@ public final class SecureDependencyChecks {
 			return;
 		}
 		List<NamedElement> clients = dep.getClients();
-		//List<NamedElement> clients2 = dep.getClients().getGeneralizations();
 		List<NamedElement> suppliers = dep.getSuppliers();
 		for (NamedElement c : clients) {
 			for (NamedElement s : suppliers) {
@@ -117,7 +178,7 @@ public final class SecureDependencyChecks {
 		}
 	}
 
-	public List<SecureDependencyViolation> checkDependency(Dependency dependency, Classifier client,
+	public List<SecureDependencyInheritanceViolation> checkDependency(Dependency dependency, Classifier client,
 			Classifier supplier) {
 		this.analysisHost.appendLineToReport("\nProcessing dependency '" + dependency.getQualifiedName() + "' between '"
 				+ client.getQualifiedName() + "' and '" + supplier.getQualifiedName() + "'");
@@ -126,7 +187,7 @@ public final class SecureDependencyChecks {
 			return Collections.emptyList();
 		}
 
-		List<SecureDependencyViolation> errors = new ArrayList<>();
+		List<SecureDependencyInheritanceViolation> errors = new ArrayList<>();
 
 		List<String> freshClient = new ArrayList<>();
 		List<String> highClient = new ArrayList<>();
@@ -193,53 +254,20 @@ public final class SecureDependencyChecks {
 				integrity.addAll(critical.getIntegrity());
 				secrecy.addAll(critical.getSecrecy());
 			}
-		}
-
+		}	
 		
-		// get a list containing only not overwritten fields
-		List <Property> attributes = classifier.getAllAttributes();
-		List <Operation> operations = classifier.getAllOperations();
-		List <NamedElement> inheritedMembers = classifier.getInheritedMembers();
-		inheritedMembers.removeAll(attributes);
-		inheritedMembers.removeAll(operations);
-		
-		
-		
-		List<Generalization> generalizations = new ArrayList<>();
-		List<Classifier> parents = new ArrayList<>();
-		generalizations.addAll(classifier.getGeneralizations());
-
-		//get stereotypes from direct ancestors 
-		for (Generalization gen : generalizations) {
-
-			Classifier g = gen.getGeneral();
-			//get a list containing only not overwritten fields
-			for (EObject stereotype : g.getStereotypeApplications()) {
+		//get stereotypes inside of all ancestors
+		for (Classifier par : classifier.allParents()) {
+			for (EObject stereotype : par.getStereotypeApplications()) {
 				if (stereotype instanceof critical) {
-					// add stereotypes only if they do not belong to an overwritten field
-					//for (EObject stereotypeOfSubclass : classifier.getStereotypeApplications()) {
-					//	if (stereotype.toString()  != stereotypeOfSubclass.toString() ) {
-							critical critical = (critical) stereotype;
-							integrity.addAll(critical.getIntegrity());
-							secrecy.addAll(critical.getSecrecy());
-					//	}
-					//}
+					critical critical = (critical) stereotype;
+					secrecy.addAll(critical.getSecrecy());
+					integrity.addAll(critical.getIntegrity());
 				}
-				
 			}
-			
-			parents.addAll(g.allParents());
-			//get stereotypes from all ancestors of direct ancestors
-			for (Classifier par : parents) {
-				for (EObject stereotype : par.getStereotypeApplications()) {
-					if (stereotype instanceof critical) {
-						critical critical = (critical) stereotype;
-						integrity.addAll(critical.getIntegrity());
-						secrecy.addAll(critical.getSecrecy());
-					}
-				}	
-			}	
 		}
+		
+		
 	}
 
 	private List<String> getRequired(Classifier classifier, Collection<String> criticalTags,
@@ -292,10 +320,10 @@ public final class SecureDependencyChecks {
 		return null;
 	}
 
-	public Collection<SecureDependencyViolation> analyze(Classifier supplier, Classifier client, Dependency dependency,
+	public Collection<SecureDependencyInheritanceViolation> analyze(Classifier supplier, Classifier client, Dependency dependency,
 			Collection<String> taggedValueSupplier, Collection<String> requiredClient,
 			Collection<String> signaturesSupplier, Class<? extends EObject> criticalTag) {
-		ArrayList<SecureDependencyViolation> errors = new ArrayList<SecureDependencyViolation>();
+		ArrayList<SecureDependencyInheritanceViolation> errors = new ArrayList<SecureDependencyInheritanceViolation>();
 
 		ArrayList<String> providedSupplier = new ArrayList<String>();
 		ArrayList<String> requiredSupplier = new ArrayList<String>();
@@ -323,7 +351,7 @@ public final class SecureDependencyChecks {
 						}
 					}
 					description += " for which \"" + client.getName() + "\" does not!";
-					errors.add(new SecureDependencyViolation(description, dependency, client, supplier));
+					errors.add(new SecureDependencyInheritanceViolation(description, dependency, client, supplier));
 					this.analysisHost.appendLineToReport("    " + description);
 				} else {
 					List<String> set = new ArrayList<String>(relevantRequired);
@@ -345,7 +373,7 @@ public final class SecureDependencyChecks {
 					}
 					description += " for which \"" + supplier.getName() + "\" does not does not provide {"
 							+ criticalTag.getSimpleName() + "}!";
-					errors.add(new SecureDependencyViolation(description, dependency, client, supplier));
+					errors.add(new SecureDependencyInheritanceViolation(description, dependency, client, supplier));
 					this.analysisHost.appendLineToReport("    " + description);
 				}
 			}
@@ -354,7 +382,7 @@ public final class SecureDependencyChecks {
 				hasStereotype |= criticalTag.isAssignableFrom(stereotype.getClass());
 			}
 			if (!hasStereotype) {
-				errors.add(new SecureDependencyViolation(
+				errors.add(new SecureDependencyInheritanceViolation(
 						"Dependency misses stereotype <<" + criticalTag.getSimpleName() + ">>!", dependency, client,
 						supplier));
 				this.analysisHost.appendLineToReport(

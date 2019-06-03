@@ -8,7 +8,7 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_eYja8EGXEemJzaQSMBDEpQ" name="B">
       <ownedOperation xmi:type="uml:Operation" xmi:id="_kH6KcEGXEemJzaQSMBDEpQ" name="m"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Dependency" xmi:id="_oith0EGXEemJzaQSMBDEpQ" client="_TYyhwEGXEemJzaQSMBDEpQ" supplier="_eYja8EGXEemJzaQSMBDEpQ"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_oith0EGXEemJzaQSMBDEpQ" client="_eHBmEEGXEemJzaQSMBDEpQ" supplier="_eYja8EGXEemJzaQSMBDEpQ"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_2DJA8EGXEemJzaQSMBDEpQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2DJA8UGXEemJzaQSMBDEpQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
@@ -17,9 +17,10 @@
     </profileApplication>
   </uml:Model>
   <UMLsec:critical xmi:id="_4QPKoEGXEemJzaQSMBDEpQ" base_Class="_eYja8EGXEemJzaQSMBDEpQ" base_Classifier="_eYja8EGXEemJzaQSMBDEpQ">
-    <secrecy>m</secrecy>
+    <secrecy>m()</secrecy>
   </UMLsec:critical>
   <UMLsec:critical xmi:id="_5ZbAQEGXEemJzaQSMBDEpQ" base_Class="_eHBmEEGXEemJzaQSMBDEpQ" base_Classifier="_eHBmEEGXEemJzaQSMBDEpQ">
-    <secrecy>m</secrecy>
+    <secrecy>m()</secrecy>
   </UMLsec:critical>
+  <UMLsec:call xmi:id="_j977AIPCEemK2J12Pzw7Xw" base_Dependency="_oith0EGXEemJzaQSMBDEpQ"/>
 </xmi:XMI>
