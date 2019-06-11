@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
 
-import carisma.check.staticcheck.securedependency.SecureDependencyChecks;
+import carisma.check.staticcheck.securedependency.SecureDependencyInheritanceChecks;
 import carisma.check.staticcheck.securedependency.SecureDependencyViolation;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.DummyHost;
@@ -452,7 +452,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheckWithID {
         }
         for (UsageDescription dd : deps) {
             if (isNotYetProcessed(dd, deltaElement)) {
-                SecureDependencyChecks sdc = new SecureDependencyChecks(this.host);
+                SecureDependencyInheritanceChecks sdc = new SecureDependencyInheritanceChecks(this.host);
                 List<SecureDependencyViolation> violations = sdc.checkDependency(dd.usageDependency, dd.client, dd.supplier);
                 if (!violations.isEmpty()) {
                     this.secureDependencyViolations.addAll(violations);
@@ -485,7 +485,7 @@ public class SecureDependencyEvolutionCheck implements CarismaCheckWithID {
         ArrayList<UsageDescription> opposites = new ArrayList<>();
         for (DirectedRelationship rel : classifier.getSourceDirectedRelationships(UMLPackage.eINSTANCE.getUsage())) {
             Usage dep = (Usage) rel;
-            if (SecureDependencyChecks.isRelevantDependency(dep)) {
+            if (SecureDependencyInheritanceChecks.isRelevantDependency(dep)) {
                 for (NamedElement sup : dep.getSuppliers()) {
                     if (sup instanceof Classifier) {
                         opposites.add(new UsageDescription(dep, classifier, (Classifier) sup));
@@ -498,11 +498,11 @@ public class SecureDependencyEvolutionCheck implements CarismaCheckWithID {
 
     private List<UsageDescription> getTuplesOfIncomingDependencies(Classifier classifier) {
         ArrayList<UsageDescription> opposites = new ArrayList<>();
-        List<Classifier> supers = SecureDependencyChecks.getSuperClassifiers(classifier);
+        List<Classifier> supers = SecureDependencyInheritanceChecks.getSuperClassifiers(classifier);
         for (Classifier s : supers) {
             for (DirectedRelationship rel : s.getTargetDirectedRelationships(UMLPackage.eINSTANCE.getUsage())) {
                 Usage dep = (Usage) rel;
-                if (SecureDependencyChecks.isRelevantDependency(dep)) {
+                if (SecureDependencyInheritanceChecks.isRelevantDependency(dep)) {
                     for (NamedElement client : dep.getClients()) {
                         if (client instanceof Classifier) {
                             opposites.add(new UsageDescription(dep, (Classifier) client, s));

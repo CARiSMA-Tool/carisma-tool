@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="__NHFsIqfEembJ8tSUSFKKw" name="model6">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="__TW3oIqfEembJ8tSUSFKKw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_CNcDIIqgEembJ8tSUSFKKw" name="U">
+      <generalization xmi:type="uml:Generalization" xmi:id="_G2bAcIqgEembJ8tSUSFKKw" general="_ClIKYIqgEembJ8tSUSFKKw"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_I3_PkIqgEembJ8tSUSFKKw" name="Operation1" redefinedOperation="_IKvvEIqgEembJ8tSUSFKKw">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_GuFMsIq0EembJ8tSUSFKKw" name="Parameter">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_5ITq0IrEEembJ8tSUSFKKw" name="Parameter2">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_17VVgIrlEemJ37mYLuLtlQ" name="Parameter3" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_JDx1kIqwEembJ8tSUSFKKw" name="Operation2"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ClIKYIqgEembJ8tSUSFKKw" name="O">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_IKvvEIqgEembJ8tSUSFKKw" name="Operation1">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_NX-44Iq0EembJ8tSUSFKKw" name="Parameter">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_-vD38IrEEembJ8tSUSFKKw" name="Parameter2">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_b3CzkIrtEemJ37mYLuLtlQ" name="Parameter3" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_N_J9sIqgEembJ8tSUSFKKw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_N_J9sYqgEembJ8tSUSFKKw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_PZnwkIqgEembJ8tSUSFKKw" base_Package="__NHFsIqfEembJ8tSUSFKKw"/>
+  <UMLsec:critical xmi:id="_QvTxIIqgEembJ8tSUSFKKw" base_Class="_ClIKYIqgEembJ8tSUSFKKw" base_Classifier="_ClIKYIqgEembJ8tSUSFKKw">
+    <secrecy>Operation1( in Parameter: Boolean, in Parameter2: Integer): String</secrecy>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_enqoEIqgEembJ8tSUSFKKw" base_Class="_CNcDIIqgEembJ8tSUSFKKw" base_Classifier="_CNcDIIqgEembJ8tSUSFKKw">
+    <secrecy>Operation2()</secrecy>
+    <integrity>Operation1( in Parameter: Boolean, in Parameter2: Integer): String</integrity>
+  </UMLsec:critical>
+</xmi:XMI>

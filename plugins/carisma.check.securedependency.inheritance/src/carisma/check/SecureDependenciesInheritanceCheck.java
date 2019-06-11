@@ -24,11 +24,9 @@ import carisma.core.checks.CheckParameter;
 
 public class SecureDependenciesInheritanceCheck implements CarismaCheckWithID {
 
-	public static final String CHECK_ID = "carisma.check.staticcheck.securedependency";
+	public static final String CHECK_ID = "carisma.check.securedependency.inheritance";
 	public static final String CHECK_NAME = "UMLsec secure dependency Check";
 	
-	
-
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost newHost) {
 		AnalysisHost host;

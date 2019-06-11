@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_YGNCEInjEembJ8tSUSFKKw" name="model4">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_YMURIInjEembJ8tSUSFKKw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_cJ79QInjEembJ8tSUSFKKw" name="C"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_cf0tsInjEembJ8tSUSFKKw" name="S">
+      <generalization xmi:type="uml:Generalization" xmi:id="_3qZooInjEembJ8tSUSFKKw" general="_dFNSsInjEembJ8tSUSFKKw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dFNSsInjEembJ8tSUSFKKw" name="O">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_5-t0oInjEembJ8tSUSFKKw" name="Operation1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_x7Q7kInjEembJ8tSUSFKKw" client="_cJ79QInjEembJ8tSUSFKKw" supplier="_cf0tsInjEembJ8tSUSFKKw"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_8eXG4InjEembJ8tSUSFKKw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eXG4YnjEembJ8tSUSFKKw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_-HnjsInjEembJ8tSUSFKKw" base_Package="_YGNCEInjEembJ8tSUSFKKw"/>
+  <UMLsec:call xmi:id="__f1T0InjEembJ8tSUSFKKw" base_Dependency="_x7Q7kInjEembJ8tSUSFKKw"/>
+  <UMLsec:critical xmi:id="_AWq1MInkEembJ8tSUSFKKw" base_Class="_dFNSsInjEembJ8tSUSFKKw" base_Classifier="_dFNSsInjEembJ8tSUSFKKw">
+    <secrecy>Operation1()</secrecy>
+    <integrity>Operation1()</integrity>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_EuAB0InkEembJ8tSUSFKKw" base_Class="_cJ79QInjEembJ8tSUSFKKw" base_Classifier="_cJ79QInjEembJ8tSUSFKKw">
+    <secrecy>Operation1()</secrecy>
+    <integrity>Operation1()</integrity>
+  </UMLsec:critical>
+</xmi:XMI>

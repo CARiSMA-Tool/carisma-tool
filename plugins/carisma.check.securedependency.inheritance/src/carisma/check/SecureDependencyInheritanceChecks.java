@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Dependency;
@@ -25,6 +28,7 @@ import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.Relationship;
@@ -47,6 +51,7 @@ import carisma.profile.umlsec.send;
 
 /**
  * Functions to process UMLsec properties.
+ * 
  * 
  * @author Sven Wenzel
  *
@@ -80,7 +85,7 @@ public final class SecureDependencyInheritanceChecks {
 	 * @return
 	 */
 	public int checkSecureDependency(final Package model) {
-		
+				
 		List<Classifier> classifiersToCheck = new ArrayList<>();
 		classifiersToCheck.addAll(UMLHelper.getAllElementsOfType(model, Classifier.class));
 		for (Classifier clas : classifiersToCheck) {
@@ -105,66 +110,119 @@ public final class SecureDependencyInheritanceChecks {
 	
 	public void analyzeClassifier(Classifier clas) {
 		
-		ArrayList<SecureDependencyInheritanceViolation> errors = new ArrayList<SecureDependencyInheritanceViolation>();
-		
+		String description ; 
+				
 		List<Property> direct_attributes = new ArrayList<>();
 		List<Operation> direct_operations = new ArrayList<>(); 
-		List<Property> inherited_attributes = new ArrayList<>();
-		List<Operation> inherited_operations = new ArrayList<>(); 
 		List<NamedElement> inherited_members = new ArrayList<>();
 
+		List<String> secrecy = new ArrayList<>();
+		List<String> integrity = new ArrayList<>(); 
+		
 		direct_attributes.addAll(clas.getAttributes());
 		direct_operations.addAll(clas.getOperations());
 		inherited_members.addAll(clas.getInheritedMembers());
-		
-		for (NamedElement im : inherited_members) {
-			if (im instanceof Property) {
-				inherited_attributes.add((Property) im);
-			} else if (im instanceof Operation) {
-				inherited_operations.add((Operation) im);
-			}
-		}
-		
-		// check if attribute is overridden 
-		for (Property direct_attribute : direct_attributes) {
-			for (Property inherited_attribute : inherited_attributes) {
-				if (direct_attribute.getNameExpression() == inherited_attribute.getNameExpression() 
-						&& direct_attribute.isCompatibleWith(inherited_attribute) ) { 
-					for (EObject stereotype : clas.getStereotypeApplications()) {
-						if (stereotype instanceof critical) {
-							critical critical = (critical) stereotype; 
-							if (critical.getIntegrity().size() > 0 || critical.getSecrecy().size() > 0) {
-								errors.add(new SecureDependencyInheritanceViolation("Adding security properties to a overridden attribute", null, clas, null));
+				
+		for (Operation op : clas.getOperations()) {
+			for (Operation rop : op.getRedefinedOperations()) {
+				for (EObject stereotype : clas.getStereotypeApplications()) {
+					if (stereotype instanceof critical) {
+						critical critical = (critical) stereotype;
+						secrecy.addAll(critical.getSecrecy());
+						integrity.addAll(critical.getIntegrity());
+						for (String sec : secrecy) {
+							if (compareParameterAndTypes(rop.getOwnedParameters(), sec)) {
+								description =  "Class \"" + clas.getName() + "\" overrides the method \"" + rop.getName() + "()\" and adds the security property {secrecy}!"; 
+								this.secureDependencyViolations.add(new SecureDependencyInheritanceViolation(description, clas, rop));
+								this.analysisHost.appendLineToReport(description);
+							}	
+						}
+						
+						for (String inte : integrity) {
+							if (compareParameterAndTypes(rop.getOwnedParameters(), inte)) {
+								description =  "Class \"" + clas.getName() + "\" overrides the method \"" + rop.getName() + "()\" and adds the security property {integrity}!"; 
+								this.secureDependencyViolations.add(new SecureDependencyInheritanceViolation(description, clas, rop));
+								this.analysisHost.appendLineToReport(description);
 							}
 						}
+						secrecy.clear();
+						integrity.clear();
 					}
 				}
 			}
 		}
 		
-		// check if operation is overridden 
-		for (Operation direct_operation : direct_operations) {
-			for (Operation inherited_operation : inherited_operations) {
-				if (direct_operation.toString() == inherited_operations.toString() 
-						&& direct_operation.isCompatibleWith(inherited_operation)) {
-					for (EObject stereotype : clas.getStereotypeApplications()) {
-						if (stereotype instanceof critical) {
-							critical critical = (critical) stereotype; 
-							if (critical.getIntegrity().size() > 0 || critical.getSecrecy().size() > 0) {
-								errors.add(new SecureDependencyInheritanceViolation("Adding security properties to a overridden method", null, clas, null));
-							}
+		for (Property attribute : clas.getAttributes()) {
+			for (Property red_attribute : attribute.getRedefinedProperties()) {
+				for (EObject stereotype : clas.getStereotypeApplications()) {
+					if (stereotype instanceof critical) {
+						critical critical = (critical) stereotype;
+						secrecy.addAll(critical.getSecrecy());
+						integrity.addAll(critical.getIntegrity());
+					}					
+					
+					for (String inte : integrity) {
+						if (inte.equals(red_attribute.getName() + ": " + red_attribute.getType().toString().substring((red_attribute.getType().toString().indexOf("name:") + 6), red_attribute.getType().toString().indexOf(",")))) {
+							description =  "Class \"" + clas.getName() + "\" overrides the attribute \"" + red_attribute.getName() + "\" and adds the security property {integrity}!"; 
+							this.secureDependencyViolations.add(new SecureDependencyInheritanceViolation(description, clas, red_attribute));
+							this.analysisHost.appendLineToReport(description);
 						}
 					}
+
+					for (String sec : secrecy) {
+						if (sec.equals(red_attribute.getName() + ": " + red_attribute.getType().toString().substring((red_attribute.getType().toString().indexOf("name:") + 6), red_attribute.getType().toString().indexOf(",")))) {
+							description =  "Class \"" + clas.getName() + "\" overrides the attribute \"" + red_attribute.getName() + "\" and adds the security property {secrecy}!"; 
+							this.secureDependencyViolations.add(new SecureDependencyInheritanceViolation(description, clas, red_attribute));
+							this.analysisHost.appendLineToReport(description);
+						}
+					}
+					secrecy.clear();
+					integrity.clear();
 				}
 			}
 		}
+			
 	}
+		
 
 	/**
 	 * Checks the dependency.
 	 * 
 	 * @param dep
 	 */
+	public boolean compareParameterAndTypes(List<Parameter> parameters, String signature) {
+		
+		String type ; 
+		List<String> names = new ArrayList<>();
+		List<String> types = new ArrayList<>();
+		List<String> s_names = new ArrayList<>();
+		List<String> s_types = new ArrayList<>();
+		
+		for (Parameter par : parameters) {
+			names.add(par.getName());
+			type = par.getType().toString();
+			types.add(par.getType().toString().substring( (type.indexOf("name:") + 6), type.indexOf(",")));
+		}
+		names.remove(names.size()-1);
+		
+		Pattern pattern = Pattern.compile("in\\s(.*?):");
+		Pattern pattern2 = Pattern.compile(":\\s(.*?)(,|\\))");
+		Matcher matcher = pattern.matcher(signature);
+		Matcher matcher2 = pattern2.matcher(signature);
+		Pattern pattern3 = Pattern.compile("\\):\\s(.*?)$");
+		Matcher matcher3 = pattern3.matcher(signature);
+		while (matcher.find()) {
+			s_names.add(matcher.group(1));
+		}
+		while (matcher2.find()) {
+			s_types.add(matcher2.group(1));
+		}
+		if (matcher3.find()) {
+			s_types.add(matcher3.group(1));
+		}
+		return (names.equals(s_names) && types.equals(s_types));
+	}
+	
 	public void analyzeDependency(Dependency dep) {
 		if (dep instanceof Deployment) {
 			return;
@@ -230,9 +288,7 @@ public final class SecureDependencyInheritanceChecks {
 			getCriticalTags(subSupplier, freshSupplier, highSupplier, integritySupplier, privacySupplier,
 					secrecySupplier);
 
-			// errors.addAll(analyze(subSupplier, client, dependency,
-			// freshSupplier, freshRequiredClient, signaturesSupplier,
-			// fresh.class));
+			//errors.addAll(analyze(subSupplier, client, dependency, freshSupplier, freshRequiredClient, signaturesSupplier, fresh.class));
 			errors.addAll(analyze(subSupplier, client, dependency, highSupplier, highRequiredClient, signaturesSupplier,
 					high.class));
 			errors.addAll(analyze(subSupplier, client, dependency, integritySupplier, integrityRequiredClient,
@@ -253,10 +309,13 @@ public final class SecureDependencyInheritanceChecks {
 		for (EObject stereotype : classifier.getStereotypeApplications()) {
 			if (stereotype instanceof critical) {
 				critical critical = (critical) stereotype;
+				fresh.addAll(critical.getFresh());
+				high.addAll(critical.getHigh());
 				integrity.addAll(critical.getIntegrity());
+				privacy.addAll(critical.getPrivacy());
 				secrecy.addAll(critical.getSecrecy());
 			}
-		}	
+		}
 		
 		//get stereotypes inside of all ancestors
 		for (Classifier par : classifier.allParents()) {
@@ -379,19 +438,8 @@ public final class SecureDependencyInheritanceChecks {
 					this.analysisHost.appendLineToReport("    " + description);
 				}
 			}
-			boolean hasStereotype = false;
-			for (EObject stereotype : dependency.getStereotypeApplications()) {
-				hasStereotype |= criticalTag.isAssignableFrom(stereotype.getClass());
-			}
-			if (!hasStereotype) {
-				errors.add(new SecureDependencyInheritanceViolation(
-						"Dependency misses stereotype <<" + criticalTag.getSimpleName() + ">>!", dependency, client,
-						supplier));
-				this.analysisHost.appendLineToReport(
-						"    Dependency misses stereotype <<" + criticalTag.getSimpleName() + ">>!");
-			}
+			
 		}
-
 		return errors;
 	}
 
@@ -476,9 +524,9 @@ public final class SecureDependencyInheritanceChecks {
 
 	public static boolean isRelevantDependency(Dependency dependency) {
 		boolean isRelevant = !UMLsecUtil.isInScopeOfStereotype(dependency, UMLsec.SECURE_DEPENDENCY);
-		if (isRelevant) {
+/*		if (isRelevant) {
 			return false;
-		}
+		} */
 		for (EObject stereotype : dependency.getStereotypeApplications()) {
 			isRelevant |= stereotype instanceof call;
 			isRelevant |= stereotype instanceof send;

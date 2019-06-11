@@ -54,7 +54,80 @@ public class SecureDependencyInheritanceChecksTest {
 
 	@Test
 	public final void SecureDependencyInheritanceTest1() {
-		this.model = loadModel(this.filepath, "callDep-i-but-S-V.uml");
+		this.model = loadModel(this.filepath, "resources.uml");
+		// callDep-i-but-S-V.di
+		SecureDependencyInheritanceChecks sdc = new SecureDependencyInheritanceChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyInheritanceViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(1, secureDependencyViolations.size());
+	}
+	@Test
+	public final void SecureDependencyInheritanceTest2() {
+		this.model = loadModel(this.filepath, "model.uml");
+		// callDep-i-but-S-V.di
+		SecureDependencyInheritanceChecks sdc = new SecureDependencyInheritanceChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyInheritanceViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(1, secureDependencyViolations.size());
+	}
+	@Test
+	public final void SecureDependencyInheritanceTest3() {
+		this.model = loadModel(this.filepath, "model2.uml");
+		// callDep-i-but-S-V.di
+		SecureDependencyInheritanceChecks sdc = new SecureDependencyInheritanceChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyInheritanceViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(2, secureDependencyViolations.size());
+	}
+	@Test
+	public final void SecureDependencyInheritanceTest4() {
+		this.model = loadModel(this.filepath, "model3.uml");
+		// callDep-i-but-S-V.di
+		SecureDependencyInheritanceChecks sdc = new SecureDependencyInheritanceChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyInheritanceViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(0, secureDependencyViolations.size());
+	}
+	@Test
+	public final void SecureDependencyInheritanceTest5() {
+		this.model = loadModel(this.filepath, "model4.uml");
+		// callDep-i-but-S-V.di
+		SecureDependencyInheritanceChecks sdc = new SecureDependencyInheritanceChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyInheritanceViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(0, secureDependencyViolations.size());
+	}	
+	@Test
+	public final void SecureDependencyInheritanceTest6() {
+		this.model = loadModel(this.filepath, "model5.uml");
+		// callDep-i-but-S-V.di
+		SecureDependencyInheritanceChecks sdc = new SecureDependencyInheritanceChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyInheritanceViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(1, secureDependencyViolations.size());
+	}	
+
+	@Test
+	public final void SecureDependencyInheritanceTest7() {
+		this.model = loadModel(this.filepath, "model6.uml");
+		// callDep-i-but-S-V.di
+		SecureDependencyInheritanceChecks sdc = new SecureDependencyInheritanceChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyInheritanceViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(1, secureDependencyViolations.size());
+	}	
+	@Test
+	public final void SecureDependencyInheritanceTest8() {
+		this.model = loadModel(this.filepath, "model7.uml");
+		// callDep-i-but-S-V.di
+		SecureDependencyInheritanceChecks sdc = new SecureDependencyInheritanceChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyInheritanceViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(2, secureDependencyViolations.size());
+	}	
+	@Test
+	public final void SecureDependencyInheritanceTest9() {
+		this.model = loadModel(this.filepath, "model8.uml");
 		// callDep-i-but-S-V.di
 		SecureDependencyInheritanceChecks sdc = new SecureDependencyInheritanceChecks(null);
 		sdc.checkSecureDependency(this.model);
@@ -62,7 +135,8 @@ public class SecureDependencyInheritanceChecksTest {
 		assertEquals(1, secureDependencyViolations.size());
 	}
 
-	@Test
+	
+/*	@Test
 	public final void SecureDependencyInheritanceTest2() {
 		this.model = loadModel(this.filepath, "callDep-i.uml");
 		// callDep-i.di
@@ -215,6 +289,8 @@ public class SecureDependencyInheritanceChecksTest {
 		List<SecureDependencyInheritanceViolation> secureDependencyViolations = sdc.getViolations();
 		assertEquals(1, secureDependencyViolations.size());
 	}
+	
+*/
 
 	private Model loadModel(String filepath, String name) {
 		File file = new File(new File(filepath), name);

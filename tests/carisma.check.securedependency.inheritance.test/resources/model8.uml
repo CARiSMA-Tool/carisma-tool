@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_rCUjgIu0EemNXfh0jevTEA" name="model8">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_rLsh8Iu0EemNXfh0jevTEA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_uRToAIu0EemNXfh0jevTEA" name="O">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_77KI4Iu0EemNXfh0jevTEA" name="Property1">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ukXt8Iu0EemNXfh0jevTEA" name="U">
+      <generalization xmi:type="uml:Generalization" xmi:id="_yuRikIu0EemNXfh0jevTEA" general="_uRToAIu0EemNXfh0jevTEA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8fZeYIu0EemNXfh0jevTEA" name="Property1" redefinedProperty="_77KI4Iu0EemNXfh0jevTEA">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_7VVCgIu1EemNXfh0jevTEA" name="Property2" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_BUFVYIu1EemNXfh0jevTEA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BUF8cIu1EemNXfh0jevTEA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_CJUUQIu1EemNXfh0jevTEA" base_Package="_rCUjgIu0EemNXfh0jevTEA"/>
+  <UMLsec:critical xmi:id="_DNREkIu1EemNXfh0jevTEA" base_Class="_uRToAIu0EemNXfh0jevTEA" base_Classifier="_uRToAIu0EemNXfh0jevTEA">
+    <integrity>Property1: Boolean</integrity>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_IhYCgIu1EemNXfh0jevTEA" base_Class="_ukXt8Iu0EemNXfh0jevTEA" base_Classifier="_ukXt8Iu0EemNXfh0jevTEA">
+    <secrecy>Property1: Boolean</secrecy>
+    <secrecy>Property2: Boolean</secrecy>
+  </UMLsec:critical>
+</xmi:XMI>
