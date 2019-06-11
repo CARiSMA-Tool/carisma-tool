@@ -10,7 +10,16 @@
  *******************************************************************************/
 package carisma.profile.umlsec;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Collections;
+
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.uml2.uml.Profile;
 import org.osgi.framework.BundleContext;
 
 import carisma.core.Carisma;
@@ -35,6 +44,24 @@ public class UMLsecActivator extends Plugin {
 		} catch (Exception e) {
 			Logger.log(LogLevel.ERROR, "Error while putting profile path to map", e);
 		}
+	}
+
+	/**
+	 * Loads the UMLsec profile as resource in the given resource set
+	 * 
+	 * @param rs the resource set
+	 * @throws IOException If the profile cannot be loaded
+	 */
+	public static Profile loadUMLsecProfile(ResourceSet rs) throws IOException {
+		Resource umlSecPackage = rs.createResource(URI.createURI(UML_URI));
+		URL resource = UMLsecActivator.class.getResource("/profile/UMLsec.profile.uml");
+		if(resource == null) {
+			resource = UMLsecActivator.class.getResource("/UMLsec.profile.uml");
+		}
+		try(InputStream stream = resource.openStream()){
+			umlSecPackage.load(stream, Collections.EMPTY_MAP);
+		}
+		return (Profile) umlSecPackage.getContents().get(0);
 	}
 
 }

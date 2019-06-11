@@ -6,27 +6,37 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
 import carisma.check.SecureDependencyInheritanceViolation;
 
-
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.mapping.ecore2xml.Ecore2XMLPackage;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import carisma.check.SecureDependencyInheritanceChecks;
 import carisma.check.SecureDependencyInheritanceViolation;
+import carisma.profile.umlsec.UMLsecActivator;
 import carisma.profile.umlsec.UmlsecPackage;
 
 public class SecureDependencyInheritanceChecksTest {
@@ -41,15 +51,24 @@ public class SecureDependencyInheritanceChecksTest {
 		this.model.eResource().unload();
 		this.model = null;
 	}
-	
+
 	@Before
-	public final void init() {
-		this.rs = new ResourceSetImpl();
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+	public final void init() throws FileNotFoundException, IOException {
+		UMLResourcesUtil.initGlobalRegistries();
 		
-		this.rs.getPackageRegistry().put(UmlsecPackage.eNS_URI, UmlsecPackage.eINSTANCE);
-		this.rs.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+		this.rs = new ResourceSetImpl();
+		UMLResourcesUtil.initLocalRegistries(rs);
+		
+		Map<String, Object> extensionToFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
+		extensionToFactoryMap.put(UMLResource.FILE_EXTENSION,
+				UMLResource.Factory.INSTANCE);
+		extensionToFactoryMap.put("*",
+				UMLResource.Factory.INSTANCE);
+
+		Registry packageRegistry = this.rs.getPackageRegistry();
+		packageRegistry.put(UmlsecPackage.eNS_URI, UmlsecPackage.eINSTANCE);
+		UMLsecActivator.loadUMLsecProfile(this.rs);	
+		EcoreUtil.resolveAll(this.rs);
 	}
 
 	@Test
@@ -295,7 +314,8 @@ public class SecureDependencyInheritanceChecksTest {
 	private Model loadModel(String filepath, String name) {
 		File file = new File(new File(filepath), name);
 		if (file.exists()) {
-			Resource r = new ResourceSetImpl().createResource(URI.createURI(file.getAbsolutePath()));
+			URI umlResourcePluginURI = URI.createURI(file.getAbsolutePath());
+			Resource r = rs.createResource(umlResourcePluginURI);
 			try (FileInputStream in = new FileInputStream(file)) {
 				r.load(in, Collections.EMPTY_MAP);
 				EList<EObject> contents = r.getContents();
@@ -307,11 +327,20 @@ public class SecureDependencyInheritanceChecksTest {
 				e.printStackTrace();
 				fail();
 			}
-		}
-		else {
-			fail("File \""+new File(new File(filepath), name)+"\" doesn't exist!");
+		} else {
+			fail("File \"" + new File(new File(filepath), name) + "\" doesn't exist!");
 		}
 		return null;
+	}
+
+	protected static void registerPathmaps(URI umlResourcePluginURI) {
+		URIConverter.URI_MAP.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP),
+				umlResourcePluginURI.appendSegment("libraries").appendSegment(""));
+		URIConverter.URI_MAP.put(URI.createURI(UMLResource.METAMODELS_PATHMAP),
+				umlResourcePluginURI.appendSegment("metamodels").appendSegment(""));
+		URIConverter.URI_MAP.put(URI.createURI(UMLResource.PROFILES_PATHMAP),
+				umlResourcePluginURI.appendSegment("profiles").appendSegment(""));
+
 	}
 
 }
