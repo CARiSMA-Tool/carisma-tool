@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_rRsD4I7jEem_mc_zsc6H5Q" name="OverridingCases-V-7">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_rbp4MI7jEem_mc_zsc6H5Q">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3J4Z4I7jEem_mc_zsc6H5Q" name="O">
+      <generalization xmi:type="uml:Generalization" xmi:id="_FIN9AI7kEem_mc_zsc6H5Q" general="_4Q-k0I7jEem_mc_zsc6H5Q"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8ZWvcI7jEem_mc_zsc6H5Q" name="y">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3fxKUI7jEem_mc_zsc6H5Q" name="U">
+      <generalization xmi:type="uml:Generalization" xmi:id="_GKsGoI7kEem_mc_zsc6H5Q" general="_3J4Z4I7jEem_mc_zsc6H5Q"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9GN1cI7jEem_mc_zsc6H5Q" name="x" type="_JVrb8I7kEem_mc_zsc6H5Q" redefinedProperty="_70PQMI7jEem_mc_zsc6H5Q"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_-DO3UI7jEem_mc_zsc6H5Q" name="y">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_-k0hcI7jEem_mc_zsc6H5Q" name="z">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_4Q-k0I7jEem_mc_zsc6H5Q" name="OO">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_70PQMI7jEem_mc_zsc6H5Q" name="x" type="_I3qqQI7kEem_mc_zsc6H5Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_I3qqQI7kEem_mc_zsc6H5Q" name="O2"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_JVrb8I7kEem_mc_zsc6H5Q" name="U2">
+      <generalization xmi:type="uml:Generalization" xmi:id="_dnVXQI7kEem_mc_zsc6H5Q" general="_I3qqQI7kEem_mc_zsc6H5Q"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_nRa28I7kEem_mc_zsc6H5Q">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nRbeAI7kEem_mc_zsc6H5Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_os1FAI7kEem_mc_zsc6H5Q" base_Package="_rRsD4I7jEem_mc_zsc6H5Q"/>
+  <UMLsec:critical xmi:id="_qtbDwI7kEem_mc_zsc6H5Q" base_Class="_3fxKUI7jEem_mc_zsc6H5Q" base_Classifier="_3fxKUI7jEem_mc_zsc6H5Q">
+    <secrecy>x: U2</secrecy>
+    <secrecy>z: Boolean</secrecy>
+    <integrity>y: Integer</integrity>
+  </UMLsec:critical>
+</xmi:XMI>

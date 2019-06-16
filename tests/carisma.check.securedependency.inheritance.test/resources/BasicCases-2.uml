@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_R2fiEI7GEem_mc_zsc6H5Q" name="BasicCases-2">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_SAHYII7GEem_mc_zsc6H5Q">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VokskI7GEem_mc_zsc6H5Q" name="C"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_V6sXUI7GEem_mc_zsc6H5Q" name="S">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_han-UI7GEem_mc_zsc6H5Q" name="m"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_eiSfQI7GEem_mc_zsc6H5Q" client="_VokskI7GEem_mc_zsc6H5Q" supplier="_V6sXUI7GEem_mc_zsc6H5Q"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_lBmsEI7GEem_mc_zsc6H5Q">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lBmsEY7GEem_mc_zsc6H5Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_mdPjoI7GEem_mc_zsc6H5Q" base_Package="_R2fiEI7GEem_mc_zsc6H5Q"/>
+  <UMLsec:critical xmi:id="_nkeRcI7GEem_mc_zsc6H5Q" base_Class="_V6sXUI7GEem_mc_zsc6H5Q" base_Classifier="_V6sXUI7GEem_mc_zsc6H5Q">
+    <secrecy>m()</secrecy>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_smKpsI7GEem_mc_zsc6H5Q" base_Class="_VokskI7GEem_mc_zsc6H5Q" base_Classifier="_VokskI7GEem_mc_zsc6H5Q">
+    <secrecy>m()</secrecy>
+  </UMLsec:critical>
+  <UMLsec:call xmi:id="_565PII7GEem_mc_zsc6H5Q" base_Dependency="_eiSfQI7GEem_mc_zsc6H5Q"/>
+</xmi:XMI>

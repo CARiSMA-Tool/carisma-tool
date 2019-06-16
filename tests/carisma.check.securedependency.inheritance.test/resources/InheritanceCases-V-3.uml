@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_xumpgI7OEem_mc_zsc6H5Q" name="InheritanceCases-3-V">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_x07T8I7OEem_mc_zsc6H5Q">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5T4Y0I7OEem_mc_zsc6H5Q" name="C"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_51Av8I7OEem_mc_zsc6H5Q" name="S">
+      <generalization xmi:type="uml:Generalization" xmi:id="_BgJPoI7PEem_mc_zsc6H5Q" general="_6kd28I7OEem_mc_zsc6H5Q"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_8CLyII7OEem_mc_zsc6H5Q" name="m"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_6kd28I7OEem_mc_zsc6H5Q" name="O"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_CNk9YI7PEem_mc_zsc6H5Q" client="_5T4Y0I7OEem_mc_zsc6H5Q" supplier="_51Av8I7OEem_mc_zsc6H5Q"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_EF04cI7PEem_mc_zsc6H5Q">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EF1fgI7PEem_mc_zsc6H5Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_FOABcI7PEem_mc_zsc6H5Q" base_Package="_xumpgI7OEem_mc_zsc6H5Q"/>
+  <UMLsec:critical xmi:id="_I9qxII7PEem_mc_zsc6H5Q" base_Class="_6kd28I7OEem_mc_zsc6H5Q" base_Classifier="_6kd28I7OEem_mc_zsc6H5Q">
+    <secrecy>m()</secrecy>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_LHCRYI7PEem_mc_zsc6H5Q" base_Class="_51Av8I7OEem_mc_zsc6H5Q" base_Classifier="_51Av8I7OEem_mc_zsc6H5Q">
+    <integrity>m()</integrity>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_NLSBEI7PEem_mc_zsc6H5Q" base_Class="_5T4Y0I7OEem_mc_zsc6H5Q" base_Classifier="_5T4Y0I7OEem_mc_zsc6H5Q">
+    <integrity>m()</integrity>
+  </UMLsec:critical>
+  <UMLsec:call xmi:id="_3lBN0I7PEem_mc_zsc6H5Q" base_Dependency="_CNk9YI7PEem_mc_zsc6H5Q"/>
+</xmi:XMI>

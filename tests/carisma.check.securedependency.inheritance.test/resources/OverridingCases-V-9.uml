@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_S99mwI-SEemPpLoYga2R9A" name="OverridingCases-V-9">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_TJxOII-SEemPpLoYga2R9A">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VkMpMI-SEemPpLoYga2R9A" name="U">
+      <generalization xmi:type="uml:Generalization" xmi:id="_kh4JcI-SEemPpLoYga2R9A" general="_WG-mII-SEemPpLoYga2R9A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_yJkuMI-SEemPpLoYga2R9A" name="p" type="_f_PEsI-SEemPpLoYga2R9A" redefinedProperty="_xhxuYI-SEemPpLoYga2R9A"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_xJpiQI-SEemPpLoYga2R9A" name="m" redefinedOperation="_wQwycI-SEemPpLoYga2R9A">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_LYUOkI-TEemPpLoYga2R9A" name="x" type="_f_PEsI-SEemPpLoYga2R9A"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_mxe3wI-WEemPpLoYga2R9A" name="y" type="_f_PEsI-SEemPpLoYga2R9A" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_WG-mII-SEemPpLoYga2R9A" name="O">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_xhxuYI-SEemPpLoYga2R9A" name="p" type="_gXmhYI-SEemPpLoYga2R9A"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_wQwycI-SEemPpLoYga2R9A" name="m">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_FKezUI-TEemPpLoYga2R9A" name="x" type="_gXmhYI-SEemPpLoYga2R9A"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_qzGTEI-WEemPpLoYga2R9A" name="y" type="_gXmhYI-SEemPpLoYga2R9A" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_f_PEsI-SEemPpLoYga2R9A" name="U2">
+      <generalization xmi:type="uml:Generalization" xmi:id="_jLlE4I-SEemPpLoYga2R9A" general="_gXmhYI-SEemPpLoYga2R9A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_gXmhYI-SEemPpLoYga2R9A" name="O2"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_cU6SkI-TEemPpLoYga2R9A">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cU8HwI-TEemPpLoYga2R9A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_d3_18I-TEemPpLoYga2R9A" base_Package="_S99mwI-SEemPpLoYga2R9A"/>
+  <UMLsec:critical xmi:id="_zoXyAI-TEemPpLoYga2R9A" base_Class="_VkMpMI-SEemPpLoYga2R9A" base_Classifier="_VkMpMI-SEemPpLoYga2R9A">
+    <secrecy>p: U2</secrecy>
+    <integrity>m( in x: U2): U2</integrity>
+  </UMLsec:critical>
+</xmi:XMI>
