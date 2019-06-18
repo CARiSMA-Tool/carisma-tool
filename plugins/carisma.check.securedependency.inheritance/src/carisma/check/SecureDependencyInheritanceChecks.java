@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 Software Engineering Institute, TU Dortmund.
+ * Copyright (c) 2019 Software Engineering Institute, Universität Koblenz-Landau.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,24 @@
  * Contributors:
  *    {SecSE group} - initial API and implementation and/or initial documentation
  *******************************************************************************/
+
+
 package carisma.check;
+
+import carisma.core.analysis.AnalysisHost;
+import carisma.core.analysis.DummyHost;
+import carisma.modeltype.uml2.StereotypeApplication;
+import carisma.modeltype.uml2.UMLHelper;
+import carisma.profile.umlsec.SignatureHelper;
+import carisma.profile.umlsec.UMLsec;
+import carisma.profile.umlsec.UMLsecUtil;
+import carisma.profile.umlsec.call;
+import carisma.profile.umlsec.critical;
+import carisma.profile.umlsec.high;
+import carisma.profile.umlsec.integrity;
+import carisma.profile.umlsec.privacy;
+import carisma.profile.umlsec.secrecy;
+import carisma.profile.umlsec.send;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,26 +52,12 @@ import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
-import carisma.core.analysis.AnalysisHost;
-import carisma.core.analysis.DummyHost;
-import carisma.modeltype.uml2.StereotypeApplication;
-import carisma.modeltype.uml2.UMLHelper;
-import carisma.profile.umlsec.SignatureHelper;
-import carisma.profile.umlsec.UMLsec;
-import carisma.profile.umlsec.UMLsecUtil;
-import carisma.profile.umlsec.call;
-import carisma.profile.umlsec.critical;
-import carisma.profile.umlsec.high;
-import carisma.profile.umlsec.integrity;
-import carisma.profile.umlsec.privacy;
-import carisma.profile.umlsec.secrecy;
-import carisma.profile.umlsec.send;
 
 /**
  * Functions to process UMLsec properties.
  * 
  * 
- * @author Sven Wenzel
+ * @author Volkan Topcu
  *
  */
 public final class SecureDependencyInheritanceChecks {
@@ -71,7 +74,6 @@ public final class SecureDependencyInheritanceChecks {
 		} else {
 			this.analysisHost = new DummyHost(true);
 		}
-
 		this.secureDependencyViolations = new ArrayList<>();
 	}
 
@@ -118,19 +120,11 @@ public final class SecureDependencyInheritanceChecks {
 	 */
 	public void analyzeClassifier(Classifier clas, List<Classifier> classifiersToCheck) {
 		
-		String description ; 
-
-		List<Property> direct_attributes = new ArrayList<>();
-		List<Operation> direct_operations = new ArrayList<>(); 
-		List<NamedElement> inherited_members = new ArrayList<>();
+		String description;
 
 		List<String> secrecy = new ArrayList<>();
 		List<String> integrity = new ArrayList<>(); 
 		
-		direct_attributes.addAll(clas.getAttributes());
-		direct_operations.addAll(clas.getOperations());
-		inherited_members.addAll(clas.getInheritedMembers());
-				
 		for (Operation operation : clas.getOperations()) {
 			for (Operation redefined_operation : operation.getRedefinedOperations()) {
 				for (EObject stereotype : clas.getStereotypeApplications()) {
@@ -140,14 +134,14 @@ public final class SecureDependencyInheritanceChecks {
 						integrity.addAll(critical.getIntegrity());
 
 						for (String sec : secrecy) {
-							if (compareParameterAndTypes(redefined_operation.getOwnedParameters(), sec, classifiersToCheck)) {
+							if (haveSameParameterAndTypes(redefined_operation.getOwnedParameters(), sec, classifiersToCheck)) {
 								description =  "Class \"" + clas.getName() + "\" overrides the method \"" + redefined_operation.getName() + "()\" and adds the security property {secrecy}!"; 
 								this.secureDependencyViolations.add(new SecureDependencyInheritanceViolation(description, clas, redefined_operation));
 								this.analysisHost.appendLineToReport(description);
 							}	
 						}
 						for (String inte : integrity) {
-							if (compareParameterAndTypes(redefined_operation.getOwnedParameters(), inte, classifiersToCheck)) {
+							if (haveSameParameterAndTypes(redefined_operation.getOwnedParameters(), inte, classifiersToCheck)) {
 								description =  "Class \"" + clas.getName() + "\" overrides the method \"" + redefined_operation.getName() + "()\" and adds the security property {integrity}!"; 
 								this.secureDependencyViolations.add(new SecureDependencyInheritanceViolation(description, clas, redefined_operation));
 								this.analysisHost.appendLineToReport(description);
@@ -169,7 +163,7 @@ public final class SecureDependencyInheritanceChecks {
 						integrity.addAll(critical.getIntegrity());
 					}										
 					for (String inte : integrity) {
-						if (compareType(red_attribute.getType(), inte, classifiersToCheck)) {
+						if (haveSameType(red_attribute.getType(), inte, classifiersToCheck)) {
 							description =  "Class \"" + clas.getName() + "\" overrides the attribute \"" + red_attribute.getName() + "\" and adds the security property {integrity}!"; 
 							this.secureDependencyViolations.add(new SecureDependencyInheritanceViolation(description, clas, red_attribute));
 							this.analysisHost.appendLineToReport(description);
@@ -177,7 +171,7 @@ public final class SecureDependencyInheritanceChecks {
 					}
 					
 					for (String sec : secrecy) {
-						if (compareType(red_attribute.getType(), sec, classifiersToCheck)) {
+						if (haveSameType(red_attribute.getType(), sec, classifiersToCheck)) {
 							description =  "Class \"" + clas.getName() + "\" overrides the attribute \"" + red_attribute.getName() + "\" and adds the security property {secrecy}!"; 
 							this.secureDependencyViolations.add(new SecureDependencyInheritanceViolation(description, clas, red_attribute));
 							this.analysisHost.appendLineToReport(description);
@@ -189,9 +183,7 @@ public final class SecureDependencyInheritanceChecks {
 	}
 
 	/**
-	 * 
 	 * Checks if parameters and their types match with the parameters and types of the stereotype signature.
-	 * 
 	 * 
 	 * @param parameters  List of parameters (with types) of the method. 
 	 * @param signature  Signature of the stereotype.
@@ -199,9 +191,9 @@ public final class SecureDependencyInheritanceChecks {
 	 * @return true or false 
 	 */
 	
-	public boolean compareParameterAndTypes(List<Parameter> parameters, String signature, List<Classifier> classifiersToCheck) {
+	public boolean haveSameParameterAndTypes(List<Parameter> parameters, String signature, List<Classifier> classifiersToCheck) {
 		
-		String type ; 
+		String type; 
 		List<String> names = new ArrayList<>();
 		List<String> types = new ArrayList<>();
 		List<String> s_names = new ArrayList<>();
@@ -222,7 +214,6 @@ public final class SecureDependencyInheritanceChecks {
 		if (matcher3.find()) {
 			s_types.add(matcher3.group(1));
 		}
-		
 		int i = 0;
 		for (String st : s_types) {
 			for (Classifier ctc : classifiersToCheck) {
@@ -235,7 +226,6 @@ public final class SecureDependencyInheritanceChecks {
 			}
 			i++;
 		}
-		
 		for (Parameter par : parameters) {
 			names.add(par.getName());
 			type = par.getType().toString();
@@ -247,7 +237,6 @@ public final class SecureDependencyInheritanceChecks {
 		return (types.equals(s_types));
 	}
 	/**
-	 * 
 	 * Checks whether the type of the parameter matches with type given by the stereotype signature. 
 	 * 
 	 * @param type Type of property.
@@ -256,7 +245,7 @@ public final class SecureDependencyInheritanceChecks {
 	 * @return true or false 
 	 */
 	
-	public boolean compareType(Type type, String signature, List<Classifier> classifiersToCheck) {
+	public boolean haveSameType(Type type, String signature, List<Classifier> classifiersToCheck) {
 		
 		String s_type = "";
 		String p_type = "";
@@ -441,13 +430,12 @@ public final class SecureDependencyInheritanceChecks {
 				required.add(signature);
 			}
 		}
-
 		return null;
 	}
 
-	public Collection<SecureDependencyInheritanceViolation> analyze(Classifier supplier, Classifier client, Dependency dependency,
+	public Collection<SecureDependencyInheritanceViolation> analyze(Classifier supplier,Classifier client, Dependency dependency,
 			Collection<String> taggedValueSupplier, Collection<String> requiredClient,
-			Collection<String> signaturesSupplier, Class<? extends EObject> criticalTag) {
+			Collection<String> signaturesSupplier, Class<? extends EObject> criticalTag){
 		ArrayList<SecureDependencyInheritanceViolation> errors = new ArrayList<SecureDependencyInheritanceViolation>();
 
 		ArrayList<String> providedSupplier = new ArrayList<String>();
@@ -502,7 +490,6 @@ public final class SecureDependencyInheritanceChecks {
 					this.analysisHost.appendLineToReport("    " + description);
 				}
 			}
-			
 		}
 		return errors;
 	}
@@ -665,5 +652,4 @@ public final class SecureDependencyInheritanceChecks {
 			getSubClassifiers(superclassifiers, generalization.getGeneral());
 		}
 	}
-
 }
