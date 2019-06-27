@@ -359,6 +359,8 @@ public final class SecureDependencyInheritanceChecks {
 
 	private void getCriticalTags(Classifier classifier, List<String> fresh, List<String> high, List<String> integrity,
 			List<String> privacy, List<String> secrecy) {
+		
+		char bracket = '(', colon = ':';
 
 		//get stereotypes inside the class 
 		for (EObject stereotype : classifier.getStereotypeApplications()) {
@@ -372,13 +374,60 @@ public final class SecureDependencyInheritanceChecks {
 			}
 		}
 		
-		//get stereotypes inside of all parents
+		//get stereotypes inside of all parents, if the parent also has the corresponding member
 		for (Classifier par : classifier.allParents()) {
 			for (EObject stereotype : par.getStereotypeApplications()) {
 				if (stereotype instanceof critical) {
 					critical critical = (critical) stereotype;
-					secrecy.addAll(critical.getSecrecy());
-					integrity.addAll(critical.getIntegrity());
+					for (Property property : par.getAllAttributes()) {
+						for (String sec : critical.getSecrecy()){
+							System.out.println(sec);
+							System.out.println(property.getName());
+							//System.out.println("Property name:" + property.getName());
+							if (sec.indexOf(colon) != -1) {
+								if (property.getName().equals(sec.substring(0, sec.indexOf(colon)))) {
+									secrecy.add(sec);
+									break;
+								}
+							}
+						}
+
+						for (String inte : critical.getIntegrity()) {
+							System.out.println(inte);
+							System.out.println(property.getName());
+							if (inte.indexOf(colon) != -1) {
+								if (property.getName().equals(inte.substring(0, inte.indexOf(colon)))) {
+									integrity.add(inte);
+									break;
+								}
+							}
+						}
+					}
+					for (Operation operation : par.getAllOperations()) {
+						for (String sec : critical.getSecrecy()){
+							//System.out.println("Property name:" + property.getName());
+							System.out.println(sec);
+							System.out.println(operation.getName());
+							if (sec.indexOf(bracket) != -1) {
+								if (operation.getName().equals(sec.substring(0, sec.indexOf(bracket)))) {
+									secrecy.add(sec);
+									break;
+								}
+							}
+						}
+						for (String inte : critical.getIntegrity()) {
+							System.out.println(inte);
+							System.out.println(operation.getName());
+							if (inte.indexOf(bracket) != -1) {
+								if (operation.getName().equals(inte.substring(0, inte.indexOf(bracket)))) {
+									integrity.add(inte);
+									break;
+								}
+							}
+						}
+					}
+					//secrecy.addAll(critical.getSecrecy());
+					//integrity.addAll(critical.getIntegrity());
 				}
 			}
 		}
