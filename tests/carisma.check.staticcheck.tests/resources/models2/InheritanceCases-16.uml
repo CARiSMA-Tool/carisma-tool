@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_XIXgYJkDEems8cgEJRzKjQ" name="InheritanceCases-16">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_XQ5xUJkDEems8cgEJRzKjQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_aOinIJkDEems8cgEJRzKjQ" name="C"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_apsSEJkDEems8cgEJRzKjQ" name="S">
+      <generalization xmi:type="uml:Generalization" xmi:id="_jcVzcJkDEems8cgEJRzKjQ" general="_bkz2gJkDEems8cgEJRzKjQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_bkz2gJkDEems8cgEJRzKjQ" name="O">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_doY30JkDEems8cgEJRzKjQ" name="x">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_iMNBQJkDEems8cgEJRzKjQ" client="_aOinIJkDEems8cgEJRzKjQ" supplier="_apsSEJkDEems8cgEJRzKjQ"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_l6OLIJkDEems8cgEJRzKjQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l6OyMJkDEems8cgEJRzKjQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_mxWncJkDEems8cgEJRzKjQ" base_Package="_XIXgYJkDEems8cgEJRzKjQ"/>
+  <UMLsec:call xmi:id="_n7SD8JkDEems8cgEJRzKjQ" base_Dependency="_iMNBQJkDEems8cgEJRzKjQ"/>
+  <UMLsec:critical xmi:id="_qK1EsJkDEems8cgEJRzKjQ" base_Class="_aOinIJkDEems8cgEJRzKjQ" base_Classifier="_aOinIJkDEems8cgEJRzKjQ">
+    <secrecy>x: String</secrecy>
+  </UMLsec:critical>
+  <UMLsec:critical xmi:id="_sXKZYJkDEems8cgEJRzKjQ" base_Class="_bkz2gJkDEems8cgEJRzKjQ" base_Classifier="_bkz2gJkDEems8cgEJRzKjQ">
+    <secrecy>x: String</secrecy>
+  </UMLsec:critical>
+</xmi:XMI>

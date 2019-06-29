@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_t9eh0JkBEems8cgEJRzKjQ" name="InheritanceCases-V-14">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_uD4EwJkBEems8cgEJRzKjQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_284s0JkBEems8cgEJRzKjQ" name="C"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3LgXoJkBEems8cgEJRzKjQ" name="S">
+      <generalization xmi:type="uml:Generalization" xmi:id="_Ib-Z4JkCEems8cgEJRzKjQ" general="_3jARoJkBEems8cgEJRzKjQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3jARoJkBEems8cgEJRzKjQ" name="O">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_EErCcJkCEems8cgEJRzKjQ" name="x">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_JyncsJkCEems8cgEJRzKjQ" client="_284s0JkBEems8cgEJRzKjQ" supplier="_3LgXoJkBEems8cgEJRzKjQ"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_LbGdcJkCEems8cgEJRzKjQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_LbHrkJkCEems8cgEJRzKjQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_MktJ0JkCEems8cgEJRzKjQ" base_Package="_t9eh0JkBEems8cgEJRzKjQ"/>
+  <UMLsec:call xmi:id="_QmHw0JkCEems8cgEJRzKjQ" base_Dependency="_JyncsJkCEems8cgEJRzKjQ"/>
+  <UMLsec:critical xmi:id="_baKiMJkCEems8cgEJRzKjQ" base_Class="_3jARoJkBEems8cgEJRzKjQ" base_Classifier="_3jARoJkBEems8cgEJRzKjQ">
+    <secrecy>x: Integer</secrecy>
+  </UMLsec:critical>
+</xmi:XMI>

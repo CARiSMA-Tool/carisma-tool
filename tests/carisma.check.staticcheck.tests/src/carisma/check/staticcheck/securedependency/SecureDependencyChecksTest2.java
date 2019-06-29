@@ -21,25 +21,14 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Dependency;
-import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import carisma.modeltype.uml2.UMLHelper;
-import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
-import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecActivator;
-import carisma.profile.umlsec.UMLsecUtil;
 import carisma.profile.umlsec.UmlsecPackage;
 
 
@@ -130,7 +119,7 @@ public class SecureDependencyChecksTest2 {
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
-		assertEquals(1, secureDependencyViolations.size());
+		assertEquals(0, secureDependencyViolations.size());
 	}	
 	@Test
 	public final void InheritanceCasesTest02() {
@@ -138,7 +127,7 @@ public class SecureDependencyChecksTest2 {
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
-		assertEquals(0, secureDependencyViolations.size());
+		assertEquals(1, secureDependencyViolations.size());
 	}
 	@Test
 	public final void InheritanceCasesTest03() {
@@ -146,7 +135,7 @@ public class SecureDependencyChecksTest2 {
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
-		assertEquals(1, secureDependencyViolations.size());
+		assertEquals(0, secureDependencyViolations.size());
 	}
 	@Test
 	public final void InheritanceCasesTest04() {
@@ -154,7 +143,7 @@ public class SecureDependencyChecksTest2 {
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
-		assertEquals(0, secureDependencyViolations.size());
+		assertEquals(2, secureDependencyViolations.size());
 	}
 	@Test
 	public final void InheritanceCasesTest05() {
@@ -162,7 +151,7 @@ public class SecureDependencyChecksTest2 {
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
-		assertEquals(1, secureDependencyViolations.size());
+		assertEquals(0, secureDependencyViolations.size());
 	}
 	@Test
 	public final void InheritanceCasesTest06() {
@@ -170,7 +159,7 @@ public class SecureDependencyChecksTest2 {
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
-		assertEquals(0, secureDependencyViolations.size());
+		assertEquals(1, secureDependencyViolations.size());
 	}
 	@Test
 	public final void InheritanceCasesTest07() {
@@ -178,7 +167,7 @@ public class SecureDependencyChecksTest2 {
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
-		assertEquals(1, secureDependencyViolations.size());
+		assertEquals(0, secureDependencyViolations.size());
 	}
 	@Test
 	public final void InheritanceCasesTest08() {
@@ -194,7 +183,7 @@ public class SecureDependencyChecksTest2 {
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		sdc.checkSecureDependency(this.model);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
-		assertEquals(1, secureDependencyViolations.size());
+		assertEquals(0, secureDependencyViolations.size());
 	}
 	@Test
 	public final void OverridingCasesTest01() {
@@ -259,6 +248,63 @@ public class SecureDependencyChecksTest2 {
 		sdc.checkSecureDependency(this.model);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
 		assertEquals(2, secureDependencyViolations.size());
+	}
+	
+	@Test
+	public final void InheritanceCasesTest10() {
+		this.model = loadModel(this.filepath, "InheritanceCases-V-10.uml");
+		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(1, secureDependencyViolations.size());
+	}	
+	@Test
+	public final void InheritanceCasesTest11() {
+		this.model = loadModel(this.filepath, "InheritanceCases-11.uml");
+		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(0, secureDependencyViolations.size());
+	}
+	@Test
+	public final void InheritanceCasesTest12() {
+		this.model = loadModel(this.filepath, "InheritanceCases-V-12.uml");
+		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(1, secureDependencyViolations.size());
+	}
+	@Test
+	public final void InheritanceCasesTest13() {
+		this.model = loadModel(this.filepath, "InheritanceCases-V-13.uml");
+		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(2, secureDependencyViolations.size());
+	}
+	@Test
+	public final void InheritanceCasesTest14() {
+		this.model = loadModel(this.filepath, "InheritanceCases-V-14.uml");
+		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(1, secureDependencyViolations.size());
+	}
+	@Test
+	public final void InheritanceCasesTest15() {
+		this.model = loadModel(this.filepath, "InheritanceCases-V-15.uml");
+		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(2, secureDependencyViolations.size());
+	}
+	@Test
+	public final void InheritanceCasesTest16() {
+		this.model = loadModel(this.filepath, "InheritanceCases-16.uml");
+		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
+		sdc.checkSecureDependency(this.model);
+		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
+		assertEquals(0, secureDependencyViolations.size());
 	}
 	
 	private Model loadModel(String filepath, String name) {

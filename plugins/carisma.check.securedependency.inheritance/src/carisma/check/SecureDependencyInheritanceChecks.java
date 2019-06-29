@@ -52,7 +52,6 @@ import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * Functions to process UMLsec properties.
  * 
@@ -115,7 +114,7 @@ public final class SecureDependencyInheritanceChecks {
 	 * Checks whether the class has overriding fields that add new security properties (secrecy, integrity). 
 	 * Adds secure dependency violation if it does.
 	 * 
-	 * @param clas The classifier to analyze. 
+	 * @param clas The classifier to analyze.
 	 * @param classifiersToCheck All classifiers in the model. 
 	 */
 	public void analyzeClassifier(Classifier clas, List<Classifier> classifiersToCheck) {
@@ -231,11 +230,12 @@ public final class SecureDependencyInheritanceChecks {
 			type = par.getType().toString();
 			types.add(par.getType().toString().substring( (type.indexOf("name:") + 6), type.indexOf(",")));
 		}
-		if ( (!names.isEmpty()) && s_names.size() != s_types.size()){
+		if ((!names.isEmpty()) && s_names.size() != s_types.size()){
 			names.remove(names.size()-1);
 		}
 		return (types.equals(s_types));
 	}
+	
 	/**
 	 * Checks whether the type of the parameter matches with type given by the stereotype signature. 
 	 * 
@@ -244,7 +244,6 @@ public final class SecureDependencyInheritanceChecks {
 	 * @param classifiersToCheck All classifiers in the model. 
 	 * @return true or false 
 	 */
-	
 	public boolean haveSameType(Type type, String signature, List<Classifier> classifiersToCheck) {
 		
 		String s_type = "";
@@ -254,7 +253,6 @@ public final class SecureDependencyInheritanceChecks {
 		if (matcher.find()) {
 			s_type = matcher.group(1);
 		}
-		
 		for (Classifier ctc : classifiersToCheck) {
 			if (ctc.getName().equals(s_type)) {
 				for (Classifier p : ctc.allParents()) {
@@ -262,13 +260,11 @@ public final class SecureDependencyInheritanceChecks {
 				}
 			}
 		}
-		
 		Pattern pattern2 = Pattern.compile("name:\\s(.*?),");
 		Matcher matcher2 = pattern2.matcher(type.toString());
 		if (matcher2.find()) {
 			p_type = matcher2.group(1);
 		}
-		
 		return s_type.equals(p_type); 
 	}
 
@@ -277,7 +273,6 @@ public final class SecureDependencyInheritanceChecks {
 	 * 
 	 * @param dep
 	 */
-	
 	public void analyzeDependency(Dependency dep) {
 		if (dep instanceof Deployment) {
 			return;
@@ -292,6 +287,14 @@ public final class SecureDependencyInheritanceChecks {
 			}
 		}
 	}
+	/**
+	 * Checks dependency between a client and a supplier. 
+	 * 
+	 * @param dependency
+	 * @param client
+	 * @param supplier
+	 * @return List of Secure Dependency Violations 
+	 */
 
 	public List<SecureDependencyInheritanceViolation> checkDependency(Dependency dependency, Classifier client,
 			Classifier supplier) {
@@ -356,6 +359,17 @@ public final class SecureDependencyInheritanceChecks {
 
 		return errors;
 	}
+	/**
+	 * 
+	 * Gets the critical tags inside the class and its parents. 
+	 * 
+	 * @param classifier
+	 * @param fresh
+	 * @param high
+	 * @param integrity
+	 * @param privacy
+	 * @param secrecy
+	 */
 
 	private void getCriticalTags(Classifier classifier, List<String> fresh, List<String> high, List<String> integrity,
 			List<String> privacy, List<String> secrecy) {
@@ -375,15 +389,12 @@ public final class SecureDependencyInheritanceChecks {
 		}
 		
 		//get stereotypes inside of all parents, if the parent also has the corresponding member
-		for (Classifier par : classifier.allParents()) {
-			for (EObject stereotype : par.getStereotypeApplications()) {
-				if (stereotype instanceof critical) {
+		for (Classifier par : classifier.allParents()){
+			for (EObject stereotype : par.getStereotypeApplications()){
+				if (stereotype instanceof critical){
 					critical critical = (critical) stereotype;
-					for (Property property : par.getAllAttributes()) {
+					for (Property property : par.getAllAttributes()){
 						for (String sec : critical.getSecrecy()){
-							System.out.println(sec);
-							System.out.println(property.getName());
-							//System.out.println("Property name:" + property.getName());
 							if (sec.indexOf(colon) != -1) {
 								if (property.getName().equals(sec.substring(0, sec.indexOf(colon)))) {
 									secrecy.add(sec);
@@ -391,10 +402,7 @@ public final class SecureDependencyInheritanceChecks {
 								}
 							}
 						}
-
 						for (String inte : critical.getIntegrity()) {
-							System.out.println(inte);
-							System.out.println(property.getName());
 							if (inte.indexOf(colon) != -1) {
 								if (property.getName().equals(inte.substring(0, inte.indexOf(colon)))) {
 									integrity.add(inte);
@@ -405,9 +413,6 @@ public final class SecureDependencyInheritanceChecks {
 					}
 					for (Operation operation : par.getAllOperations()) {
 						for (String sec : critical.getSecrecy()){
-							//System.out.println("Property name:" + property.getName());
-							System.out.println(sec);
-							System.out.println(operation.getName());
 							if (sec.indexOf(bracket) != -1) {
 								if (operation.getName().equals(sec.substring(0, sec.indexOf(bracket)))) {
 									secrecy.add(sec);
@@ -416,8 +421,6 @@ public final class SecureDependencyInheritanceChecks {
 							}
 						}
 						for (String inte : critical.getIntegrity()) {
-							System.out.println(inte);
-							System.out.println(operation.getName());
 							if (inte.indexOf(bracket) != -1) {
 								if (operation.getName().equals(inte.substring(0, inte.indexOf(bracket)))) {
 									integrity.add(inte);
@@ -426,12 +429,20 @@ public final class SecureDependencyInheritanceChecks {
 							}
 						}
 					}
-					//secrecy.addAll(critical.getSecrecy());
-					//integrity.addAll(critical.getIntegrity());
 				}
 			}
 		}
 	}
+	
+	/**
+	 * Gets required tags of a classifier. 
+	 * 
+	 * @param classifier
+	 * @param criticalTags
+	 * @param provided
+	 * @param required
+	 * @return
+	 */
 
 	private List<String> getRequired(Classifier classifier, Collection<String> criticalTags,
 			Collection<String> provided, Collection<String> required) {
@@ -481,6 +492,20 @@ public final class SecureDependencyInheritanceChecks {
 		}
 		return null;
 	}
+	
+	/**
+	 * 
+	 * Analyses secure dependency violations and prints report. 
+	 * 
+	 * @param supplier
+	 * @param client
+	 * @param dependency
+	 * @param taggedValueSupplier
+	 * @param requiredClient
+	 * @param signaturesSupplier
+	 * @param criticalTag
+	 * @return
+	 */
 
 	public Collection<SecureDependencyInheritanceViolation> analyze(Classifier supplier,Classifier client, Dependency dependency,
 			Collection<String> taggedValueSupplier, Collection<String> requiredClient,
@@ -542,7 +567,13 @@ public final class SecureDependencyInheritanceChecks {
 		}
 		return errors;
 	}
-
+	
+	/**
+	 * 
+	 * @param collectionA
+	 * @param collectionB
+	 * @return
+	 */
 	private Collection<String> intersection(Collection<String> collectionA, Collection<String> collectionB) {
 		ArrayList<String> intersection = new ArrayList<String>();
 		for (String a : collectionA) {
@@ -676,13 +707,23 @@ public final class SecureDependencyInheritanceChecks {
 			getSubClassifiers(subclassifiers, generalization.getSpecific());
 		}
 	}
-
+	
+	/**
+	 * Gets superclassifiers of a given classifier
+	 * 
+	 * @param classifier
+	 * @return
+	 */
 	public static List<Classifier> getSuperClassifiers(Classifier classifier) {
 		ArrayList<Classifier> superclassifiers = new ArrayList<>();
 		getSuperClassifiers(superclassifiers, classifier);
 		return superclassifiers;
 	}
-
+	
+	/**
+	 * @param superclassifiers
+	 * @param classifier
+	 */
 	private static void getSuperClassifiers(List<Classifier> superclassifiers, Classifier classifier) {
 		superclassifiers.add(classifier);
 		List<DirectedRelationship> rels = classifier
