@@ -58,6 +58,18 @@ public class Analysis {
 	private String selectedEditor = "";
 	
 	/**
+	 * Creates a uninitialized analysis.
+	 * 
+	 * You should never use this constructor. It is only required for XML
+	 * serialization/deserialization.
+	 */
+	@Deprecated
+	@SuppressWarnings("unused")
+	private Analysis() {
+		// intentionally left blank
+	}
+
+	/**
 	 * Creates a new analysis.
 	 * @param name Name of the analysis
 	 * @param modelFile model file of analysis
