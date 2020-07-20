@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
@@ -88,16 +89,15 @@ public final class AnalysisUtil {
 	public static Analysis readAnalysis(String filename) {
 		XStream xStream = createXStream();
 		try (FileInputStream fis = new FileInputStream(filename);
-			InputStreamReader isr = new InputStreamReader(fis, "ISO-8859-1");){
-			Analysis readAnalysis = (Analysis) xStream.fromXML(isr);
+			InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.ISO_8859_1);){
+			Object object = xStream.fromXML(isr);
+			Analysis readAnalysis = (Analysis) object;
 			if (readAnalysis.getSelectedEditorId() == null) {
 				readAnalysis.setSelectedEditorId("");
 			}
 			return readAnalysis;
 		} catch (FileNotFoundException e) {
 			AnalysisUtil.logFileNotFoundException(filename, e);
-		} catch (UnsupportedEncodingException e) {
-			Logger.log(LogLevel.ERROR, "", e);
 		} catch (IOException e) {
 			Logger.log(LogLevel.ERROR, "", e);
 		}
