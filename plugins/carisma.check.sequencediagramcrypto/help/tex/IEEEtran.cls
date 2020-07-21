@@ -146,7 +146,7 @@
 % romanappendices
 %    Use the "Appendix I" convention when numbering appendices. IEEEtran.cls
 %    now defaults to Alpha "Appendix A" convention - the opposite of what
-%    v1.6b and earlier did.
+%    v1.8b and earlier did.
 %
 % captionsoff
 %    disables the display of the figure/table captions. Some IEEE journals
@@ -245,7 +245,7 @@
 \newif\ifCLASSINFOpdf               \CLASSINFOpdffalse
 
 
-% V1.6b internal flag to show if using a4paper
+% V1.8b internal flag to show if using a4paper
 \newif\if@IEEEusingAfourpaper       \@IEEEusingAfourpaperfalse
 
 
@@ -360,7 +360,7 @@
 
 \@IEEEcompsoconly{\typeout{-- Using IEEE Computer Society mode.}}
 
-% V1.7 compsoc nonconference papers, use Palatino/Palladio as the main text font,
+% V1.8 compsoc nonconference papers, use Palatino/Palladio as the main text font,
 % not Times Roman.
 \@IEEEcompsocnotconfonly{\renewcommand{\rmdefault}{ppl}}
 
@@ -371,7 +371,7 @@
 
 
 
-% V1.7 conference notice message hook
+% V1.8 conference notice message hook
 \def\@IEEEconsolenoticeconference{\typeout{}%
 \typeout{** Conference Paper **}%
 \typeout{Before submitting the final camera ready copy, remember to:}%
@@ -397,7 +397,7 @@
 \fi
 
 
-% V1.7 improved paper size setting code.
+% V1.8 improved paper size setting code.
 % Set pdfpage and dvips paper sizes. Conditional tests are similar to that
 % of ifpdf.sty. Retain within {} to ensure tested macros are never altered,
 % even if only effect is to set them to \relax.
@@ -449,7 +449,7 @@
 
 
 % FONT DEFINITIONS (No sizexx.clo file needed) 
-% V1.6 revised font sizes, displayskip values and
+% V1.8 revised font sizes, displayskip values and
 %      revised normalsize baselineskip to reduce underfull vbox problems
 %      on the 58pc = 696pt = 9.5in text height we want
 %      normalsize     #lines/column  baselineskip (aka leading)
@@ -560,7 +560,7 @@
 \fi
 
 
-% V1.6 The Computer Modern Fonts will issue a substitution warning for
+% V1.8 The Computer Modern Fonts will issue a substitution warning for
 % 24pt titles (24.88pt is used instead) increase the substitution
 % tolerance to turn off this warning
 \def\fontsubfuzz{.9pt}
@@ -576,7 +576,7 @@
 \fi
 
 
-% V1.7
+% V1.8
 % Improved \textunderscore to provide a much better fake _ when used with
 % OT1 encoding. Under OT1, detect use of pcr or cmtt \ttfamily and use
 % available true _ glyph for those two typewriter fonts.
@@ -635,7 +635,7 @@
 
 
 
-% V1.6, we are now going to fine tune the interword spacing
+% V1.8, we are now going to fine tune the interword spacing
 % The default interword glue for Times under TeX appears to use a
 % nominal interword spacing of 25% (relative to the font size, i.e., 1em)
 % a maximum of 40% and a minimum of 19%.
@@ -731,7 +731,7 @@
 
 
 
-% V1.6 
+% V1.8 
 % LaTeX is a little to quick to use hyphenations
 % So, we increase the penalty for their use and raise
 % the badness level that triggers an underfull hbox
@@ -746,7 +746,7 @@
 % IEEE does not use extra spacing after punctuation
 \frenchspacing
 
-% V1.7 increase this a tad to discourage equation breaks
+% V1.8 increase this a tad to discourage equation breaks
 \binoppenalty=1000 % default 700
 \relpenalty=800     % default 500
 
@@ -1226,7 +1226,7 @@
 % this allows us to set all the list parameters within
 % the list_decl and prevent \list (and its \@list) 
 % from overriding any of our parameters
-% V1.6 use \edefs instead of dimen's to conserve dimen registers
+% V1.8 use \edefs instead of dimen's to conserve dimen registers
 % Note controlled spacing here, shield end of lines with %
 \def\@IEEEsavelistparams{\edef\@IEEEiedtopsep{\the\topsep}%
 \edef\@IEEEiedlabelwidth{\the\labelwidth}%
@@ -1252,7 +1252,7 @@
 \itemindent\@IEEEieditemindent\relax}
 
 
-% v1.6b provide original LaTeX IED list environments
+% v1.8b provide original LaTeX IED list environments
 % note that latex.ltx defines \itemize and \enumerate, but not \description
 % which must be created by the base classes
 % save original LaTeX itemize and enumerate
@@ -1288,7 +1288,7 @@
 \def\endIEEEdescription{\@endIEEEdescription}
 
 
-% V1.6 we want to keep the IEEEtran IED list definitions as our own internal
+% V1.8 we want to keep the IEEEtran IED list definitions as our own internal
 % commands so they are protected against redefinition
 \def\@IEEEitemize{\@ifnextchar[{\@@IEEEitemize}{\@@IEEEitemize[\relax]}}
 \def\@IEEEenumerate{\@ifnextchar[{\@@IEEEenumerate}{\@@IEEEenumerate[\relax]}}
@@ -1332,7 +1332,7 @@
                 \list{\csname\@itemitem\endcsname}{%
                 \@IEEErestorelistparams% override any list{} changes
                                        % to our globals
-                \let\makelabel\@IEEEiedmakelabel% v1.6b setup \makelabel
+                \let\makelabel\@IEEEiedmakelabel% v1.8b setup \makelabel
                 \IEEEiedlistdecl% let user alter parameters
                 #1\relax%
                 % If the user has requested not to use the
@@ -1384,7 +1384,7 @@
                 \list{\csname label\@enumctr\endcsname}{\usecounter{\@enumctr}%
                 \@IEEErestorelistparams% override any list{} changes
                                        % to our globals
-                \let\makelabel\@IEEEiedmakelabel% v1.6b setup \makelabel
+                \let\makelabel\@IEEEiedmakelabel% v1.8b setup \makelabel
                 \IEEEiedlistdecl% let user alter parameters 
                 #1\relax%
                 % If the user has requested not to use the
@@ -1436,7 +1436,7 @@
                 \@IEEEsavelistparams% save our list parameters
                 \list{}{\@IEEErestorelistparams% override any list{} changes
                                                % to our globals
-                \let\makelabel\@IEEEiedmakelabel% v1.6b setup \makelabel
+                \let\makelabel\@IEEEiedmakelabel% v1.8b setup \makelabel
                 \IEEEiedlistdecl% let user alter parameters 
                 #1\relax%
                 % If the user has requested not to use the
@@ -1452,7 +1452,7 @@
                 \else\IEEEcalcleftmargin{\IEEElabelindent}\relax%
                 \fi}\fi}
 
-% v1.6b we use one makelabel that does justification as needed.
+% v1.8b we use one makelabel that does justification as needed.
 \def\@IEEEiedmakelabel#1{\relax\if\@IEEEiedjustify 0\relax
 \makebox[\labelwidth][l]{\normalfont #1}\else
 \if\@IEEEiedjustify 1\relax
@@ -1461,7 +1461,7 @@
 
 
 % VERSE and QUOTE
-% V1.7 define environments with newenvironment
+% V1.8 define environments with newenvironment
 \newenvironment{verse}{\let\\=\@centercr
     \list{}{\itemsep\z@ \itemindent -1.5em \listparindent \itemindent
     \rightmargin\leftmargin\advance\leftmargin 1.5em}\item\relax}
@@ -1493,11 +1493,11 @@
 %% FOOTNOTES
 %
 %\skip\footins 10pt plus 4pt minus 2pt
-% V1.6 respond to changes in font size
+% V1.8 respond to changes in font size
 % space added above the footnotes (if present)
 \skip\footins 0.9\baselineskip  plus 0.4\baselineskip  minus 0.2\baselineskip
 
-% V1.6, we need to make \footnotesep responsive to changes
+% V1.8, we need to make \footnotesep responsive to changes
 % in \baselineskip or strange spacings will result when in
 % draft mode. Here is a little LaTeX secret - \footnotesep
 % determines the height of an invisible strut that is placed
@@ -1516,11 +1516,11 @@
 \skip\@mpfootins = \skip\footins
 \fboxsep = 3pt
 \fboxrule = .4pt
-% V1.6 use 1em, then use LaTeX2e's \@makefnmark
+% V1.8 use 1em, then use LaTeX2e's \@makefnmark
 % Note that IEEE normally *left* aligns the footnote marks, so we don't need
 % box resizing tricks here.
-\long\def\@makefntext#1{\parindent 1em\indent\hbox{\@makefnmark}#1}% V1.6 use 1em
-% V1.7 compsoc does not use superscipts for footnote marks
+\long\def\@makefntext#1{\parindent 1em\indent\hbox{\@makefnmark}#1}% V1.8 use 1em
+% V1.8 compsoc does not use superscipts for footnote marks
 \ifCLASSOPTIONcompsoc
 \def\@IEEEcompsocmakefnmark{\hbox{\normalfont\@thefnmark.\ }}
 \long\def\@makefntext#1{\parindent 1em\indent\hbox{\@IEEEcompsocmakefnmark}#1}
@@ -1529,7 +1529,7 @@
 % IEEE does not use footnote rules
 \def\footnoterule{}
 
-% V1.7 for compsoc, IEEE uses a footnote rule only for \thanks. We devise a "one-shot"
+% V1.8 for compsoc, IEEE uses a footnote rule only for \thanks. We devise a "one-shot"
 % system to implement this.
 \newif\if@IEEEenableoneshotfootnoterule
 \@IEEEenableoneshotfootnoterulefalse
@@ -1544,10 +1544,10 @@
 \fi}
 \fi
 
-% V1.6 do not allow LaTeX to break a footnote across multiple pages
+% V1.8 do not allow LaTeX to break a footnote across multiple pages
 \interfootnotelinepenalty=10000
 
-% V1.6 discourage breaks within equations
+% V1.8 discourage breaks within equations
 % Note that amsmath normally sets this to 10000,
 % but LaTeX2e normally uses 100.
 \interdisplaylinepenalty=2500
@@ -1583,9 +1583,9 @@
 \def\theparagraph{\thesubsubsection.\arabic{paragraph}}
 \else
 \def\thesection{\Roman{section}}                             % I
-% V1.7, \mbox prevents breaks around - 
+% V1.8, \mbox prevents breaks around - 
 \def\thesubsection{\mbox{\thesection-\Alph{subsection}}}     % I-A
-% V1.7 use I-A1 format used by IEEE rather than I-A.1
+% V1.8 use I-A1 format used by IEEE rather than I-A.1
 \def\thesubsubsection{\thesubsection\arabic{subsubsection}}  % I-A1
 \def\theparagraph{\thesubsubsection\alph{paragraph}}         % I-A1a
 \fi
@@ -1599,7 +1599,7 @@
 
 
 % Main text forms (how shown in main text headings)
-% V1.6, using \thesection in \thesectiondis allows changes
+% V1.8, using \thesection in \thesectiondis allows changes
 % in the former to automatically appear in the latter
 \ifCLASSOPTIONcompsoc
   \ifCLASSOPTIONconference% compsoc conference
@@ -1630,7 +1630,7 @@
 
 
 
-% V1.7 provide string macros as article.cls does
+% V1.8 provide string macros as article.cls does
 \def\contentsname{Contents}
 \def\listfigurename{List of Figures}
 \def\listtablename{List of Tables}
@@ -1690,7 +1690,7 @@
 \def\topfraction{0.9}
 \def\bottomfraction{0.4}
 \def\floatpagefraction{0.8}
-% V1.7, let top floats approach 90% of page
+% V1.8, let top floats approach 90% of page
 \def\textfraction{0.1}
 
 % Double Column Floats
@@ -1704,7 +1704,7 @@
 % do result in an non-integer number of lines in the main text columns with
 % underfull vbox errors as a consequence. A post to comp.text.tex
 % by Donald Arseneau confirms that this had not yet been fixed in 1998.
-% IEEEtran V1.6 will fix this problem for you in the titles, but it doesn't
+% IEEEtran V1.8 will fix this problem for you in the titles, but it doesn't
 % protect you from other double floats. Happy vspace'ing.
 
 \@dblfptop 0pt plus 1fil
@@ -1728,13 +1728,13 @@
 % captions
 \setlength\abovecaptionskip{0.5\baselineskip}
 \setlength\belowcaptionskip{0pt}
-% V1.6 create hooks in case the caption spacing ever needs to be
+% V1.8 create hooks in case the caption spacing ever needs to be
 % overridden by a user
 \def\@IEEEfigurecaptionsepspace{\vskip\abovecaptionskip\relax}%
 \def\@IEEEtablecaptionsepspace{\vskip\abovecaptionskip\relax}%
 
 
-% 1.6b revise caption system so that \@makecaption uses two arguments
+% 1.8b revise caption system so that \@makecaption uses two arguments
 % as with LaTeX2e. Otherwise, there will be problems when using hyperref.
 \def\@IEEEtablestring{table}
 
@@ -1756,7 +1756,7 @@
 
 
 \ifCLASSOPTIONcompsoc
-% V1.7 compsoc \@makecaption
+% V1.8 compsoc \@makecaption
 \ifCLASSOPTIONconference% compsoc conference
 \long\def\@makecaption#1#2{%
 % test if is a for a figure or table
@@ -1823,7 +1823,7 @@
 
 
 
-% V1.7 disable captions class option, do so in a way that retains operation of \label
+% V1.8 disable captions class option, do so in a way that retains operation of \label
 % within \caption
 \ifCLASSOPTIONcaptionsoff
 \long\def\@makecaption#1#2{\vspace*{2em}\footnotesize\bgroup\par\addvspace{0.5\baselineskip}\centering{\footnotesize #1}\par\addvspace{0.5\baselineskip}\egroup%
@@ -1836,7 +1836,7 @@
 \fi
 
 
-% V1.7 define end environments with \def not \let so as to work OK with
+% V1.8 define end environments with \def not \let so as to work OK with
 % preview-latex
 \newcounter{figure}
 \def\thefigure{\@arabic\c@figure}
@@ -1861,11 +1861,11 @@
 \def\ftype@table{2}
 \def\ext@table{lot}
 \def\fnum@table{\tablename\nobreakspace\thetable}
-% V1.6 IEEE uses 8pt text for tables
+% V1.8 IEEE uses 8pt text for tables
 % within tables alter LaTeX2e's \@floatboxreset to use \footnotesize
 \def\table{\def\@floatboxreset{\reset@font\footnotesize\@setminipage}\@float{table}}
 \def\endtable{\end@float}
-% v1.6b double column tables need to default to footnotesize as well.
+% v1.8b double column tables need to default to footnotesize as well.
 \@namedef{table*}{\def\@floatboxreset{\reset@font\footnotesize\@setminipage}\@dblfloat{table}}
 \@namedef{endtable*}{\end@dblfloat}
 
@@ -3206,7 +3206,7 @@ between column types.}%
 %% that needs to be in lower case, for instance et. al., then either manually
 %% set \leftmark and \rightmark or use \MakeLowercase{et. al.} within the
 %% arguments to \markboth.
-%% V1.7b add \protect to work with Babel
+%% V1.8b add \protect to work with Babel
 \def\markboth#1#2{\def\leftmark{\@IEEEcompsoconly{\sffamily}\MakeUppercase{\protect#1}}%
 \def\rightmark{\@IEEEcompsoconly{\sffamily}\MakeUppercase{\protect#2}}}
 \def\footernote#1{\markboth{#1}{#1}}
@@ -3221,7 +3221,7 @@ between column types.}%
 
 %% CITATION AND BIBLIOGRAPHY COMMANDS
 %% 
-%% V1.6 no longer supports the older, nonstandard \shortcite and \citename setup stuff
+%% V1.8 no longer supports the older, nonstandard \shortcite and \citename setup stuff
 % 
 % 
 % Modify Latex2e \@citex to separate citations with "], ["
@@ -3237,7 +3237,7 @@ between column types.}%
          {Citation `\@citeb' on page \thepage \space undefined}}%
        {\hbox{\csname b@\@citeb\endcsname}}}}{#1}}
 
-% V1.6 we create hooks for the optional use of Donald Arseneau's
+% V1.8 we create hooks for the optional use of Donald Arseneau's
 % cite.sty package. cite.sty is "smart" and will notice that the
 % following format controls are already defined and will not
 % redefine them. The result will be the proper sorting of the
@@ -3253,16 +3253,16 @@ between column types.}%
 \def\citepunct{], [}
 \def\citedash{]--[}
 
-% V1.7 default to using same font for urls made by url.sty
+% V1.8 default to using same font for urls made by url.sty
 \AtBeginDocument{\csname url@samestyle\endcsname}
 
-% V1.6 class files should always provide these
+% V1.8 class files should always provide these
 \def\newblock{\hskip .11em\@plus.33em\@minus.07em}
 \let\@openbib@code\@empty
 
 
 % Provide support for the control entries of IEEEtran.bst V1.00 and later.
-% V1.7 optional argument allows for a different aux file to be specified in
+% V1.8 optional argument allows for a different aux file to be specified in
 % order to handle multiple bibliographies. For example, with multibib.sty:
 % \newcites{sec}{Secondary Literature}
 % \bstctlcite[@auxoutsec]{BSTcontrolhak}
@@ -3273,7 +3273,7 @@ between column types.}%
     \if@filesw\immediate\write\csname #1\endcsname{\string\citation{\@citeb}}\fi}%
   \@esphack}
 
-% V1.6 provide a way for a user to execute a command just before 
+% V1.8 provide a way for a user to execute a command just before 
 % a given reference number - used to insert a \newpage to balance
 % the columns on the last page
 \edef\@IEEEtriggerrefnum{0}   % the default of zero means that
@@ -3307,7 +3307,7 @@ between column types.}%
 
 \def\thebibliography#1{\section*{\refname}%
     \addcontentsline{toc}{section}{\refname}%
-    % V1.6 add some rubber space here and provide a command trigger
+    % V1.8 add some rubber space here and provide a command trigger
     \footnotesize\@IEEEcompsocconfonly{\small}\vskip 0.3\baselineskip plus 0.1\baselineskip minus 0.1\baselineskip%
     \list{\@biblabel{\@arabic\c@enumiv}}%
     {\settowidth\labelwidth{\@biblabel{#1}}%
@@ -3354,7 +3354,7 @@ between column types.}%
 % height - this allows for a more compact line packing, but the user must ensure that
 % the interline spacing is large enough to prevent \IEEEauthorrefmark{} from colliding
 % with the text above.
-% V1.7 make this a robust command
+% V1.8 make this a robust command
 % V1.8 transmag uses an arabic author affiliation symbol
 \ifCLASSOPTIONtransmag
 \DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
@@ -3570,10 +3570,10 @@ between column types.}%
   \normalfont%
   \def\thefootnote{}%  the \thanks{} mark type is empty
   \def\footnotemark{}% and kill space from \thanks within author
-  \let\@makefnmark\relax% V1.7, must *really* kill footnotemark to remove all \textsuperscript spacing as well.
+  \let\@makefnmark\relax% V1.8, must *really* kill footnotemark to remove all \textsuperscript spacing as well.
   \footnotesize%       equal spacing between thanks lines
   \footnotesep 0.7\baselineskip%see global setting of \footnotesep for more info
-  % V1.7 disable \thanks note indention for compsoc
+  % V1.8 disable \thanks note indention for compsoc
   \@IEEEcompsoconly{\long\def\@makefntext##1{\parindent 1em\noindent\hbox{\@makefnmark}##1}}%
   \normalsize%
   \ifCLASSOPTIONpeerreview
@@ -3598,7 +3598,7 @@ between column types.}%
   \endgroup
   \setcounter{footnote}{0}\let\maketitle\relax\let\@maketitle\relax
   \gdef\@thanks{}%
-  % v1.6b do not clear these as we will need the title again for peer review papers
+  % v1.8b do not clear these as we will need the title again for peer review papers
   % \gdef\@author{}\gdef\@title{}%
   \let\thanks\relax}
 
@@ -3624,7 +3624,7 @@ between column types.}%
 \else% not a technote
    \vskip0.2em{\Huge\ifCLASSOPTIONtransmag\bfseries\LARGE\fi\@IEEEcompsoconly{\sffamily}\@IEEEcompsocconfonly{\normalfont\normalsize\vskip 2\@IEEEnormalsizeunitybaselineskip
    \bfseries\Large}\@title\par}\vskip1.0em\par%
-   % V1.6 handle \author differently if in conference mode
+   % V1.8 handle \author differently if in conference mode
    \ifCLASSOPTIONconference%
       {\@IEEEspecialpapernotice\mbox{}\vskip\@IEEEauthorblockconfadjspace%
        \mbox{}\hfill\begin{@IEEEauthorhalign}\@author\end{@IEEEauthorhalign}\hfill\mbox{}\par}\relax
@@ -3656,12 +3656,12 @@ between column types.}%
 
 
 
-% V1.7 Computer Society "diamond line" which follows index terms for nonconference papers
+% V1.8 Computer Society "diamond line" which follows index terms for nonconference papers
 \def\@IEEEcompsocdiamondline{\vrule depth 0pt height 0.5pt width 4cm\hspace{7.5pt}%
 \raisebox{-3.5pt}{\fontfamily{pzd}\fontencoding{U}\fontseries{m}\fontshape{n}\fontsize{11}{12}\selectfont\char70}%
 \hspace{7.5pt}\vrule depth 0pt height 0.5pt width 4cm\relax}
 
-% V1.7 standard LateX2e \thanks, but with \itshape under compsoc. Also make it a \long\def
+% V1.8 standard LateX2e \thanks, but with \itshape under compsoc. Also make it a \long\def
 % We also need to trigger the one-shot footnote rule
 \def\@IEEEtriggeroneshotfootnoterule{\global\@IEEEenableoneshotfootnoteruletrue}
 
@@ -3672,7 +3672,7 @@ between column types.}%
         \protect\@IEEEtriggeroneshotfootnoterule\relax}\ignorespaces#1}}}
 \let\@thanks\@empty
 
-% V1.7 allow \author to contain \par's. This is needed to allow \thanks to contain \par.
+% V1.8 allow \author to contain \par's. This is needed to allow \thanks to contain \par.
 \long\def\author#1{\gdef\@author{#1}}
 
 
@@ -3687,7 +3687,7 @@ between column types.}%
 \newif\if@IEEEbreakcompsocthanksitem \@IEEEbreakcompsocthanksitemfalse
 
 \ifCLASSOPTIONcompsoc
-% V1.7 compsoc bullet item \thanks
+% V1.8 compsoc bullet item \thanks
 % also, we need to redefine this to destroy the argument in \@IEEEdynamictitlevspace
 \long\def\IEEEcompsocitemizethanks#1{\relax\@IEEEbreakcompsocthanksitemfalse\footnotemark
     \protected@xdef\@thanks{\@thanks
@@ -3707,7 +3707,7 @@ between column types.}%
 \fi
 
 
-% V1.6b define the \IEEEpeerreviewmaketitle as needed
+% V1.8b define the \IEEEpeerreviewmaketitle as needed
 \ifCLASSOPTIONpeerreview
 \def\IEEEpeerreviewmaketitle{\@IEEEcleardoublepage{empty}%
 \ifCLASSOPTIONtwocolumn
@@ -3728,13 +3728,13 @@ between column types.}%
 
 
 
-% V1.6 
+% V1.8 
 % this is a static rubber spacer between the title/authors and the main text
 % used for single column text, or when the title appears in the first column
 % of two column text (technotes). 
 \def\@IEEEstatictitlevskip{{\normalfont\normalsize
 % adjust spacing to next text
-% v1.6b handle peer review papers
+% v1.8b handle peer review papers
 \ifCLASSOPTIONpeerreview
 % for peer review papers, the same value is used for both title pages
 % regardless of the other paper modes
@@ -3752,7 +3752,7 @@ between column types.}%
 \fi}}
 
 
-% V1.6
+% V1.8
 % This is a dynamically determined rigid spacer between the title/authors 
 % and the main text. This is used only for single column titles over two 
 % column text (most common)
@@ -3844,7 +3844,7 @@ between column types.}%
 
 
 
-% V1.6
+% V1.8
 % we allow the user access to the last part of the title area
 % useful in emergencies such as when a different spacing is needed
 % This text is NOT compensated for in the dynamic sizer.
@@ -3852,12 +3852,12 @@ between column types.}%
 \long\def\IEEEaftertitletext#1{\def\@IEEEaftertitletext{#1}}
 
 
-% V1.7 provide a way for users to enter abstract and keywords
+% V1.8 provide a way for users to enter abstract and keywords
 % into the onecolumn title are. This text is compensated for
 % in the dynamic sizer.
 \let\@IEEEtitleabstractindextext=\relax
 \long\def\IEEEtitleabstractindextext#1{\def\@IEEEtitleabstractindextext{#1}}
-% V1.7 provide a way for users to get the \@IEEEtitleabstractindextext if
+% V1.8 provide a way for users to get the \@IEEEtitleabstractindextext if
 % not in compsoc or transmag journal mode - this way abstract and keywords
 % can still be placed in their conventional position if not in those modes.
 \def\IEEEdisplaynontitleabstractindextext{%
@@ -3897,15 +3897,15 @@ between column types.}%
 
 
 
-% V1.6 have abstract and keywords strip leading spaces, pars and newlines
+% V1.8 have abstract and keywords strip leading spaces, pars and newlines
 % so that spacing is more tightly controlled.
 \def\abstract{\normalfont
     \if@twocolumn
       \@IEEEabskeysecsize\bfseries\textit{\abstractname}---\relax
     \else
-      \bgroup\par\addvspace{0.5\baselineskip}\centering\vspace{-1.78ex}\@IEEEabskeysecsize\textbf{\abstractname}\par\addvspace{0.5\baselineskip}\egroup\quotation\@IEEEabskeysecsize
+      \bgroup\par\addvspace{0.5\baselineskip}\centering\vspace{-1.88ex}\@IEEEabskeysecsize\textbf{\abstractname}\par\addvspace{0.5\baselineskip}\egroup\quotation\@IEEEabskeysecsize
     \fi\@IEEEgobbleleadPARNLSP}
-% V1.6 IEEE wants only 1 pica from end of abstract to introduction heading when in 
+% V1.8 IEEE wants only 1 pica from end of abstract to introduction heading when in 
 % conference mode (the heading already has this much above it)
 \def\endabstract{\relax\ifCLASSOPTIONconference\vspace{0ex}\else\vspace{1.34ex}\fi\par\if@twocolumn\else\endquotation\fi
     \normalfont\normalsize}
@@ -3920,7 +3920,7 @@ between column types.}%
     \par\if@twocolumn\else\endquotation\fi%
     \normalfont\normalsize}
 
-% V1.7 compsoc keywords index terms
+% V1.8 compsoc keywords index terms
 \ifCLASSOPTIONcompsoc
   \ifCLASSOPTIONconference% compsoc conference
 \def\abstract{\normalfont
@@ -3936,7 +3936,7 @@ between column types.}%
     \if@twocolumn
       \@IEEEabskeysecsize\noindent\textbf{\abstractname}---\relax
     \else
-      \bgroup\par\addvspace{0.5\baselineskip}\centering\vspace{-1.78ex}\@IEEEabskeysecsize\textbf{\abstractname}\par\addvspace{0.5\baselineskip}\egroup\quotation\@IEEEabskeysecsize%
+      \bgroup\par\addvspace{0.5\baselineskip}\centering\vspace{-1.88ex}\@IEEEabskeysecsize\textbf{\abstractname}\par\addvspace{0.5\baselineskip}\egroup\quotation\@IEEEabskeysecsize%
     \fi\@IEEEgobbleleadPARNLSP}
 \def\IEEEkeywords{\normalfont\@IEEEtweakunitybaselinestretch{1.15}\sffamily
     \if@twocolumn
@@ -3955,7 +3955,7 @@ between column types.}%
     \if@twocolumn
       \@IEEEabskeysecsize\bfseries\indent
     \else
-      \bgroup\par\addvspace{0.5\baselineskip}\centering\vspace{-1.78ex}\@IEEEabskeysecsize
+      \bgroup\par\addvspace{0.5\baselineskip}\centering\vspace{-1.88ex}\@IEEEabskeysecsize
       \textbf{\abstractname}\par\addvspace{0.5\baselineskip}\egroup\quotation\@IEEEabskeysecsize
     \fi\@IEEEgobbleleadPARNLSP}
 
@@ -4024,7 +4024,7 @@ between column types.}%
 \def\@seccntformat#1{\csname the#1dis\endcsname\hskip 1em\relax}
 \fi\fi
 
-%v1.7 put {} after #6 to allow for some types of user font control
+%v1.8 put {} after #6 to allow for some types of user font control
 %and use \@@par rather than \par
 \def\@sect#1#2#3#4#5#6[#7]#8{%
   \ifnum #2>\c@secnumdepth
@@ -4055,7 +4055,7 @@ between column types.}%
 
 
 % section* handler
-%v1.7 put {} after #4 to allow for some types of user font control
+%v1.8 put {} after #4 to allow for some types of user font control
 %and use \@@par rather than \par
 \def\@ssect#1#2#3#4#5{\@tempskipa #3\relax
   \ifdim \@tempskipa>\z@
@@ -4091,7 +4091,7 @@ between column types.}%
 \def\subsection{\@startsection{subsection}{2}{\z@}{1.5ex plus 1.5ex minus 0.5ex}%
 {0.7ex plus .5ex minus 0ex}{\normalfont\normalsize\itshape}}%
 \else % for journals
-\def\section{\@startsection{section}{1}{\z@}{3.0ex plus 1.5ex minus 1.5ex}% V1.6 3.0ex from 3.5ex
+\def\section{\@startsection{section}{1}{\z@}{3.0ex plus 1.5ex minus 1.5ex}% V1.8 3.0ex from 3.5ex
 {0.7ex plus 1ex minus 0ex}{\normalfont\normalsize\centering\scshape}}%
 \def\subsection{\@startsection{subsection}{2}{\z@}{3.5ex plus 1.5ex minus 1.5ex}%
 {0.7ex plus .5ex minus 0ex}{\normalfont\normalsize\itshape}}%
@@ -4143,7 +4143,7 @@ between column types.}%
 %% ENVIRONMENTS
 % "box" symbols at end of proofs
 \def\IEEEQEDclosed{\mbox{\rule[0pt]{1.3ex}{1.3ex}}} % for a filled box
-% V1.6 some journals use an open box instead that will just fit around a closed one
+% V1.8 some journals use an open box instead that will just fit around a closed one
 \def\IEEEQEDopen{{\setlength{\fboxsep}{0pt}\setlength{\fboxrule}{0.2pt}\fbox{\rule[0pt]{0pt}{1.3ex}\rule[0pt]{1.3ex}{0pt}}}}
 \ifCLASSOPTIONcompsoc
 \def\IEEEQED{\IEEEQEDopen}   % default to open for compsoc
@@ -4154,7 +4154,7 @@ between column types.}%
 %V1.8 flag to indicate if QED symbol is to be shown
 \newif\if@IEEEQEDshow  \@IEEEQEDshowtrue
 \def\IEEEproofindentspace{2\parindent}% V1.8 allow user to change indentation amount if desired
-% v1.7 name change to avoid namespace collision with amsthm. Also add support
+% v1.8 name change to avoid namespace collision with amsthm. Also add support
 % for an optional argument.
 \def\IEEEproof{\@ifnextchar[{\@IEEEproof}{\@IEEEproof[\IEEEproofname]}}
 \def\@IEEEproof[#1]{\@IEEEQEDshowtrue\par\noindent\hspace{\IEEEproofindentspace}{\itshape #1: }}
@@ -4176,19 +4176,19 @@ between column types.}%
 \def\@begintheorem#1#2{\@IEEEtmpitemindent\itemindent\relax\topsep 0pt\rmfamily\trivlist%
     \item[]\textit{\indent #1\ #2:} \itemindent\@IEEEtmpitemindent\relax}
 \def\@opargbegintheorem#1#2#3{\@IEEEtmpitemindent\itemindent\relax\topsep 0pt\rmfamily \trivlist%
-% V1.6 IEEE is back to using () around theorem names which are also in italics
+% V1.8 IEEE is back to using () around theorem names which are also in italics
 % Thanks to Christian Peel for reporting this.
     \item[]\textit{\indent #1\ #2\ (#3):} \itemindent\@IEEEtmpitemindent\relax}
-% V1.7 remove bogus \unskip that caused equations in theorems to collide with
+% V1.8 remove bogus \unskip that caused equations in theorems to collide with
 % lines below.
 \def\@endtheorem{\endtrivlist}
 
-% V1.6
+% V1.8
 % display command for the section the theorem is in - so that \thesection
 % is not used as this will be in Roman numerals when we want arabic.
 % LaTeX2e uses \def\@thmcounter#1{\noexpand\arabic{#1}} for the theorem number
 % (second part) display and \def\@thmcountersep{.} as a separator.
-% V1.7 intercept calls to the section counter and reroute to \@IEEEthmcounterinsection
+% V1.8 intercept calls to the section counter and reroute to \@IEEEthmcounterinsection
 % to allow \appendix(ices} to override as needed.
 %
 % special handler for sections, allows appendix(ices) to override
@@ -4275,7 +4275,7 @@ between column types.}%
 % end of \@ifmtarg defs
 
 
-% V1.7
+% V1.8
 % command that allows the one time saving of the original definition
 % of section to \@IEEEappendixsavesection for \appendix or \appendices 
 % we don't save \section here as it may be redefined later by other
@@ -4311,9 +4311,9 @@ between column types.}%
 % \appendix[Optional Heading]
 \def\appendix{\relax}
 \renewcommand{\appendix}[1][]{\@IEEEsaveoriginalsectiononce\par
-    % v1.6 keep hyperref's identifiers unique
+    % v1.8 keep hyperref's identifiers unique
     \gdef\theHsection{Appendix.A}%
-    % v1.6 adjust hyperref's string name for the section
+    % v1.8 adjust hyperref's string name for the section
     \xdef\Hy@chapapp{appendix}%
     \setcounter{section}{0}%
     \setcounter{subsection}{0}%
@@ -4341,9 +4341,9 @@ between column types.}%
 % user then calls \section with an argument (possibly empty) to
 % declare the individual appendices
 \def\appendices{\@IEEEsaveoriginalsectiononce\par
-    % v1.6 keep hyperref's identifiers unique
+    % v1.8 keep hyperref's identifiers unique
     \gdef\theHsection{Appendix.\Alph{section}}%
-    % v1.6 adjust hyperref's string name for the section
+    % v1.8 adjust hyperref's string name for the section
     \xdef\Hy@chapapp{appendix}%
     \setcounter{section}{-1}% we want \refstepcounter to use section 0
     \setcounter{subsection}{0}%
@@ -4377,7 +4377,7 @@ between column types.}%
 % first paragraph of journal papers. The first argument is the first letter
 % of the first word, the second argument is the remaining letters of the
 % first word which will be rendered in upper case.
-% In V1.6 this has been completely rewritten to:
+% In V1.8 this has been completely rewritten to:
 % 
 % 1. no longer have problems when the user begins an environment
 %    within the paragraph that uses \IEEEPARstart.
@@ -4388,7 +4388,7 @@ between column types.}%
 % 
 % We generalize things via control macros - playing with these is fun too.
 % 
-% V1.7 added more control macros to make it easy for IEEEtrantools.sty users
+% V1.8 added more control macros to make it easy for IEEEtrantools.sty users
 % to change the font style.
 % 
 % the number of lines that are indented to clear it
@@ -4398,7 +4398,7 @@ between column types.}%
 % Does not take into consideration rubber shrink, so it tends to
 % be overly cautious
 \def\@IEEEPARstartMINPAGELINES{2}
-% V1.7 the height of the drop cap is adjusted to match the height of this text
+% V1.8 the height of the drop cap is adjusted to match the height of this text
 % in the current font (when \IEEEPARstart is called).
 \def\@IEEEPARstartHEIGHTTEXT{T}
 % the depth the letter is lowered below the baseline
@@ -4407,28 +4407,28 @@ between column types.}%
 % font. It is a good idea to set this value in terms of the baselineskip
 % so that it can respond to changes therein.
 \def\@IEEEPARstartDROPDEPTH{1.1\baselineskip}
-% V1.7 the font the drop cap will be rendered in,
+% V1.8 the font the drop cap will be rendered in,
 % can take zero or one argument.
 \def\@IEEEPARstartFONTSTYLE{\bfseries}
-% V1.7 any additional, non-font related commands needed to modify
+% V1.8 any additional, non-font related commands needed to modify
 % the drop cap letter, can take zero or one argument.
 \def\@IEEEPARstartCAPSTYLE{\MakeUppercase}
-% V1.7 the font that will be used to render the rest of the word,
+% V1.8 the font that will be used to render the rest of the word,
 % can take zero or one argument.
 \def\@IEEEPARstartWORDFONTSTYLE{\relax}
-% V1.7 any additional, non-font related commands needed to modify
+% V1.8 any additional, non-font related commands needed to modify
 % the rest of the word, can take zero or one argument.
 \def\@IEEEPARstartWORDCAPSTYLE{\MakeUppercase}
 % This is the horizontal separation distance from the drop letter to the main text.
 % Lengths that depend on the font (e.g., ex, em, etc.) will be referenced
 % to the font that is active when \IEEEPARstart is called. 
 \def\@IEEEPARstartSEP{0.15em}
-% V1.7 horizontal offset applied to the left of the drop cap.
+% V1.8 horizontal offset applied to the left of the drop cap.
 \def\@IEEEPARstartHOFFSET{0em}
-% V1.7 Italic correction command applied at the end of the drop cap.
+% V1.8 Italic correction command applied at the end of the drop cap.
 \def\@IEEEPARstartITLCORRECT{\/}
 
-% V1.7 compoc uses nonbold drop cap and small caps word style
+% V1.8 compoc uses nonbold drop cap and small caps word style
 \ifCLASSOPTIONcompsoc
 \def\@IEEEPARstartFONTSTYLE{\mdseries}
 \def\@IEEEPARstartWORDFONTSTYLE{\scshape}
@@ -4446,7 +4446,7 @@ between column types.}%
 % if this page does not have enough space, break it and lets start
 % on a new one
 \@IEEEtranneedspace{\@IEEEPARstartMINPAGELINES\baselineskip}{\relax}%
-% V1.7 move this up here in case user uses \textbf for \@IEEEPARstartFONTSTYLE
+% V1.8 move this up here in case user uses \textbf for \@IEEEPARstartFONTSTYLE
 % which uses command \leavevmode which causes an unwanted \indent to be issued
 \noindent
 % calculate the desired height of the big letter
@@ -4504,7 +4504,7 @@ between column types.}%
 \advance\@IEEEtrantmpdimenA by \@IEEEPARstartSEP\relax%
 % add in the optional offset
 \advance\@IEEEtrantmpdimenA by \@IEEEPARstartHOFFSET\relax%
-% V1.7 don't allow negative offsets to produce negative hanging indents
+% V1.8 don't allow negative offsets to produce negative hanging indents
 \@IEEEtrantmpdimenB\@IEEEtrantmpdimenA
 \ifnum\@IEEEtrantmpdimenB < 0 \@IEEEtrantmpdimenB 0pt\fi
 % \@IEEEtrantmpdimenA has the width of the big letter plus the
@@ -4552,7 +4552,7 @@ between column types.}%
 % V1.5 and later also fixes the "colliding biographies" which could happen when a 
 % biography's text was shorter than the space for the photo.
 % MDS 7/2001
-% V1.6 prevent multiple biographies from making multiple TOC entries
+% V1.8 prevent multiple biographies from making multiple TOC entries
 \newif\if@IEEEbiographyTOCentrynotmade
 \global\@IEEEbiographyTOCentrynotmadetrue
 
@@ -4608,7 +4608,7 @@ between column types.}%
 \refstepcounter{IEEEbiography}%
 % Make an entry for this name into the table of contents 
 \addcontentsline{toc}{subsection}{#2}%
-% V1.6 properly handle if a new paragraph should occur while the
+% V1.8 properly handle if a new paragraph should occur while the
 % hanging indent is still active. Do this by redefining \par so
 % that it will not start a new paragraph. (But it will appear to the
 % user as if it did.) Also, strip any leading pars, newlines, or spaces.
@@ -4643,7 +4643,7 @@ between column types.}%
 
 
 
-% V1.6
+% V1.8
 % added biography without a photo environment
 \newenvironment{IEEEbiographynophoto}[1]{%
 % Make an entry into the table of contents only if we have not done so before
@@ -4696,7 +4696,7 @@ between column types.}%
 
 % PUBLISHER ID COMMANDS
 % to insert a publisher's ID footer
-% V1.6 \IEEEpubid has been changed so that the change in page size and style
+% V1.8 \IEEEpubid has been changed so that the change in page size and style
 % occurs in \maketitle. \IEEEpubid must now be issued prior to \maketitle
 % use \IEEEpubidadjcol as before - in the second column of the title page
 % These changes allow \maketitle to take the reduced page height into
@@ -4720,7 +4720,7 @@ between column types.}%
 \def\@IEEEpubidpullup{2\baselineskip}
 \fi
 
-% V1.7 compsoc does not use a pullup
+% V1.8 compsoc does not use a pullup
 \ifCLASSOPTIONcompsoc
 \def\@IEEEpubidpullup{0pt}
 \fi
@@ -4732,7 +4732,7 @@ between column types.}%
 \newif\if@IEEEusingpubid
 \global\@IEEEusingpubidfalse
 % issue this command in the page to have the ID at the bottom
-% V1.6 use before \maketitle
+% V1.8 use before \maketitle
 \def\IEEEpubid#1{\def\@IEEEpubid{#1}\global\@IEEEusingpubidtrue}
 
 
@@ -4744,9 +4744,9 @@ between column types.}%
 % currently needed in for the second column of a page with the
 % publisher ID. If not needed in future releases, please provide this
 % command and define it as \relax for backward compatibility
-% v1.6b do not allow command to operate if the peer review option has been 
+% v1.8b do not allow command to operate if the peer review option has been 
 % selected because \IEEEpubidadjcol will not be on the cover page.
-% V1.7 do nothing if compsoc
+% V1.8 do nothing if compsoc
 \def\IEEEpubidadjcol{\ifCLASSOPTIONcompsoc\else\ifCLASSOPTIONpeerreview\else
 \if@twocolumn\if@IEEEusingpubid\enlargethispage{-\@IEEEpubidpullup}\fi\fi\fi\fi}
 
@@ -4797,7 +4797,7 @@ between column types.}%
 
 
 % disable \IEEEPARstart when in draft mode
-% This may have originally been done because the pre-V1.6 drop letter
+% This may have originally been done because the pre-V1.8 drop letter
 % algorithm had problems with a non-unity baselinestretch
 % At any rate, it seems too formal to have a drop letter in a draft
 % paper.
@@ -4917,7 +4917,7 @@ Use \@IEEEbackslash #2 instead.}}
 %\def\biographynophoto{\@IEEElegacywarn{biographynophoto}{IEEEbiographynophoto}\IEEEbiographynophoto}
 %\def\endbiography{\endIEEEbiography}
 %\def\endbiographynophoto{\endIEEEbiographynophoto}
-% V1.7 and later no longer supports \overrideIEEEmargins
+% V1.8 and later no longer supports \overrideIEEEmargins
 %\def\overrideIEEEmargins{%
 %\typeout{** WARNING: \string\overrideIEEEmargins \space no longer supported (line \the\inputlineno).}%
 %\typeout{** Use the \string\CLASSINPUTinnersidemargin, \string\CLASSINPUToutersidemargin \space controls instead.}}

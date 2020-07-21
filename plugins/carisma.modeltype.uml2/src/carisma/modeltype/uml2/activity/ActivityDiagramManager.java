@@ -125,7 +125,7 @@ public class ActivityDiagramManager {
 			}
 		} else {
 			try {
-    			if (((ActivityNode) last).getOutgoings().size() > 0) {
+    			if (!((ActivityNode) last).getOutgoings().isEmpty()) {
     				for (Element follower : ((ActivityNode) last).getOutgoings()) {
     						if (!(contains(list, ((ActivityEdge) follower).getTarget()))) {
     							List<Element> newPath = new ArrayList<>();

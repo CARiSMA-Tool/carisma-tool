@@ -91,7 +91,6 @@ import org.eclipse.ui.PartInitException;
 
 import carisma.ocl.library.LibraryFactory;
 import carisma.ocl.library.LibraryPackage;
-import carisma.ocl.library.presentation.OclEditorPlugin;
 import carisma.ocl.library.provider.OclEditPlugin;
 
 

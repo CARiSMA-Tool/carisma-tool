@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Evolution Support for CARiSMA
 Bundle-SymbolicName: carisma.evolution;singleton:=true
 Bundle-Version: 1.1.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.emf.ecore,
  carisma.core,
  org.eclipse.core.runtime
@@ -11,3 +11,4 @@ Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Export-Package: carisma.evolution
 Import-Package: org.eclipse.core.runtime
 Bundle-Activator: carisma.evolution.EvolutionActivator
+Automatic-Module-Name: carisma.evolution

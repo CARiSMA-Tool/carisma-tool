@@ -699,12 +699,12 @@ public final class UMLsecValidation {
 			return validations;
 		}
 		TaggedValue protectedTag = stereoApp.getTaggedValue("protected");
-		if ((protectedTag.getValue() == null) || (((List<String>) protectedTag.getValue()).size() == 0)) {
+		if ((protectedTag.getValue() == null) || (((List<String>) protectedTag.getValue()).isEmpty())) {
 			validations.add("Empty protected tag of Stereotype <<rbc>> at Element " + stereoApp.getExtendedElementName() + "!");
 		}
 		
 		TaggedValue roleTag = stereoApp.getTaggedValue("role");
-		if ((roleTag.getValue() == null) || (((List<String>) roleTag.getValue()).size() == 0)) {
+		if ((roleTag.getValue() == null) || (((List<String>) roleTag.getValue()).isEmpty())) {
 			validations.add("Empty role tag of Stereotype <<rbc>> at Element " + stereoApp.getExtendedElementName() + "!");
 		} else  {
 //			TODO KR: testen ob das zweite Tuppelelemente ein existierendes Element im Model ist.
@@ -718,7 +718,7 @@ public final class UMLsecValidation {
 			}
 		}
 		TaggedValue rightTag = stereoApp.getTaggedValue("right");
-		if ((rightTag.getValue() == null) || (((List<String>) rightTag.getValue()).size() == 0)) {
+		if ((rightTag.getValue() == null) || (((List<String>) rightTag.getValue()).isEmpty())) {
 			validations.add("Empty right tag of Stereotype <<rbc>> at Element " + stereoApp.getExtendedElementName() + "!");
 		} else {
 			List<String> contentList = new ArrayList<String>();

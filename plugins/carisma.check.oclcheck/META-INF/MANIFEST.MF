@@ -10,7 +10,8 @@ Require-Bundle:
  carisma.ocl;bundle-version="1.0.0",
  carisma.ocl.library;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.eclipse.jface.resource,
  org.eclipse.ui.plugin
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
+Automatic-Module-Name: carisma.check.oclcheck

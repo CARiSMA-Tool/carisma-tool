@@ -105,7 +105,7 @@ public class FairExchangeCheck implements CarismaCheckWithID {
 			}
 				ActivityDiagramManager adm = new ActivityDiagramManager(givenModel, this.dummyHost);
 				this.pathsList = adm.getAllPaths();
-				if (this.pathsList.size() < 1) {
+				if (this.pathsList.isEmpty()) {
 					this.dummyHost.appendLineToReport("No possible way through this ActivityDiagramm.");
 					AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.INFO,
 							"No possible way through this ActivityDiagramm.");
@@ -129,7 +129,7 @@ public class FairExchangeCheck implements CarismaCheckWithID {
 	 */
 	@SuppressWarnings("unchecked")
 	private boolean checkStereotype() {
-		if (((List<List<Element>>) this.elementWithFairExchange.getValue(this.stereotype, "start")).size() < 1) {
+		if (((List<List<Element>>) this.elementWithFairExchange.getValue(this.stereotype, "start")).isEmpty()) {
 			this.dummyHost.appendLineToReport("No start-Elements are defined.");
 			this.dummyHost.appendLineToReport("NoDownFlowCheck failed with respect to fair exchange.");
 			AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.WARNING,
@@ -137,7 +137,7 @@ public class FairExchangeCheck implements CarismaCheckWithID {
 			this.dummyHost.addResultMessage(analysisResultMessage);
 			return false;
 		}
-		if (((List<List<Element>>) this.elementWithFairExchange.getValue(this.stereotype, "stop")).size() < 1) {
+		if (((List<List<Element>>) this.elementWithFairExchange.getValue(this.stereotype, "stop")).isEmpty()) {
 			this.dummyHost.appendLineToReport("No stop-Elements are defined.");
 			this.dummyHost.appendLineToReport("NoDownFlowCheck failed with respect to fair exchange.");
 			AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.ERROR,
@@ -168,8 +168,8 @@ public class FairExchangeCheck implements CarismaCheckWithID {
 						found = true;
 						ArrayList<Element> resultList = new ArrayList<>();
 						resultList.addAll(path);
-						if (!this.hasError) { /*hier wird auf Fehler geprüft. Ist "hasError" noch auf false, 
-							heisst dies, dass vorher noch kein Fehler gefunden wurde. Für eine strukturierte 
+						if (!this.hasError) { /*hier wird auf Fehler geprï¿½ft. Ist "hasError" noch auf false, 
+							heisst dies, dass vorher noch kein Fehler gefunden wurde. Fï¿½r eine strukturierte 
 							Ausgabe wird dann als erstes in den Report geschrieben, dass der Test fehl schlug.*/
 							host.appendLineToReport("Test failed with respect to <<fair-exchange>>.");
 							AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.ERROR,

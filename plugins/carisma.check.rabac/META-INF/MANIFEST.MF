@@ -11,8 +11,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml,
  carisma.ocl,
  carisma.core
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: carisma.check.rabac
 Import-Package: javax.xml.bind;version="2.2.0",
  javax.xml.bind.annotation;version="2.2.0"
+Bundle-ClassPath: .
+Automatic-Module-Name: carisma.check.rabac

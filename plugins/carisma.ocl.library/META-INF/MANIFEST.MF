@@ -6,10 +6,11 @@ Bundle-Version: 1.0.3.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: carisma.ocl.library,
  carisma.ocl.library.impl,
  carisma.ocl.library.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: carisma.ocl.library

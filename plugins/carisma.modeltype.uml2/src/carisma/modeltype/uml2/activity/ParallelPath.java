@@ -83,13 +83,13 @@ public class ParallelPath {
 			this.analysisHost.appendLineToReport("No correct diagram");
 		}
 		for (int i = this.mergeList.size() - 1; i >= 0; i--) {
-			if (this.mergeList.get(i).size() < 1) {
+			if (this.mergeList.get(i).isEmpty()) {
 				this.mergeList.remove(i);
 			}
 		}
 		mergePaths();
 		for (int i = this.results.size() - 1; i >= 0; i--) {
-			if (this.results.get(i).size() < 1) {
+			if (this.results.get(i).isEmpty()) {
 				this.results.remove(i);
 			}
 		}
@@ -119,7 +119,7 @@ public class ParallelPath {
 				this.mergeList.add(list);
 			} else {
 				try {
-					if (((ActivityNode) last).getOutgoings().size() > 0) {
+					if (!((ActivityNode) last).getOutgoings().isEmpty()) {
 						for (Element follower : ((ActivityNode) last).getOutgoings()) {
 							if (!(contains(list, ((ActivityEdge) follower).getTarget()))) {
 								List<Element> newPath = new ArrayList<>();
@@ -161,7 +161,7 @@ public class ParallelPath {
 				this.mergeList.remove(i);
 			}
 		}
-		while (this.mergeList.size() > 0) {
+		while (!this.mergeList.isEmpty()) {
 			acc = this.mergeList.get(this.mergeList.size() - 1).get(0);
 			List<List<Element>> newMerge1 = new ArrayList<>();
 			List<List<Element>> newMerge2 = new ArrayList<>();

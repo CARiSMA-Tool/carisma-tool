@@ -13,9 +13,10 @@ Require-Bundle: carisma.modeltype.uml2,
  org.eclipse.uml2.types;visibility:=reexport,
  carisma.core
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: carisma.profile.umlsec.rabac,
  carisma.profile.umlsec.rabac.impl,
  carisma.profile.umlsec.rabac.util
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Automatic-Module-Name: carisma.profile.umlsec.rabac

@@ -60,11 +60,11 @@
     commands and the legacy biography and biographynophoto environments.
     IEEEtran no longer defines or references \labelindent so as to
     avoid namespace problems with list packages that define it.
-    Thanks to Sven Köhler for reporting the problem with enumitem.sty.
+    Thanks to Sven Kï¿½hler for reporting the problem with enumitem.sty.
 
 
 *******
- 3/2007 V1.7a (MDS) changes:
+ 3/2007 V1.8a (MDS) changes:
 
  1) Corrected problem of unwanted two column peer review title page format.
     Thanks to Virgilio Rodriguez for reporting this bug.
@@ -75,7 +75,7 @@
 
 
 *******
- 1/2007 V1.7 (MDS) changes:
+ 1/2007 V1.8 (MDS) changes:
 
  1) New class option compsoc to support the IEEE Computer Society format.
 
@@ -98,7 +98,7 @@
     \newcommand{\CLASSINPUToutersidemargin}{0.585in}
     % A4 paper:
     \newcommand{\CLASSINPUTinnersidemargin}{17mm}
-    \newcommand{\CLASSINPUToutersidemargin}{11.647mm}
+    \newcommand{\CLASSINPUToutersidemargin}{11.847mm}
 
  6) Several commands and environments have been deprecated in favor of
     replacements with IEEE prefixes to better avoid potential future name
@@ -199,7 +199,7 @@
 
 
 *******
- 09/2005 V1.6c (MDS) changes:
+ 09/2005 V1.8c (MDS) changes:
 
  1) Changed endfigure/endfloat definitions so as not to cause problems with
     preview-LaTeX and other packages. Thanks to Stephan Heuel and David
@@ -208,7 +208,7 @@
 
 
 *******
- 11/2002 V1.6b (MDS) changes:
+ 11/2002 V1.8b (MDS) changes:
 
  1) Fixed problem with figure captions when using hyperref. Thanks to 
     Leandro Barajas and Michael Bassetti for reporting this bug.
@@ -256,7 +256,7 @@
 
 
 *******
- 7/2002 V1.6 (MDS) changes:
+ 7/2002 V1.8 (MDS) changes:
  
  1) Added conference mode via conference option. Defaults to the
     traditional journal mode. e.g., \documentclass[conference]{IEEEtran}
@@ -296,7 +296,7 @@
     \citename.
     
     The base IEEEtran.cls does not sort citation numbers or produce ranges
-    for three or more consecutive numbers. However, V1.6 of IEEEtran.cls 
+    for three or more consecutive numbers. However, V1.8 of IEEEtran.cls 
     now pre-defines the following format control macros to facilitate easy
     use with Donald Arseneau's cite.sty package (tested with cite.sty V3.9):  
 
@@ -324,7 +324,7 @@
     The title text is now exactly 24pt. (On a related note, \fontsubfuzz has
     been increased to 0.9pt to prevent annoying font substitution warnings
     when using the Computer Modern fonts that use the 24.88pt size.)
-    In V1.6, \small is now 8.5pt in 9pt docs because \footnotesize is 8pt.
+    In V1.8, \small is now 8.5pt in 9pt docs because \footnotesize is 8pt.
     For 9pt docs, you should probably go ahead and use \footnotesize when
     you need text a little smaller than \normalsize.
     The interword spacing has been adjusted to be extremely close to that
@@ -414,7 +414,7 @@
     cause it with the popular font sizes. Rubber lengths after the author
     names would not fix this problem.
        Auto-calculating a "good" spacing after the title is a tad difficult
-    to do in LaTeX. However, I am pleased to report that V1.6 has this new
+    to do in LaTeX. However, I am pleased to report that V1.8 has this new
     capability - "dynamically determined title spacing". IEEEtran will now
     measure the height of all the title and author text in \maketitle
     and then calculate a rigid (non-rubber) spacer to follow that meets
@@ -436,7 +436,7 @@
     
     If you can't find a value that fixes both columns, you are going to
     have to put a rubber spacer somewhere in one or both of the columns.
-15) Because of change #14 above, those of you using \pubid will, as of V1.6,
+15) Because of change #14 above, those of you using \pubid will, as of V1.8,
     have to place it *before* \maketitle in order for it have the intended 
     affect. The dynamic spacer algorithm must see if you are using \pubid
     when \maketitle is called. \pubidadjcol works as before except that it
@@ -520,7 +520,7 @@
     \IEEEvisiblestrutsfalse and \IEEEstrut.
     These are documented in the user's guide.
     
-24) V1.6 changed back to using () around theorem names (which are also now
+24) V1.8 changed back to using () around theorem names (which are also now
     in italics) as this is what IEEE is using now. Thanks to Christian Peel
     for reporting this. Also, when section numbers are used as the first
     part of theorem numbers, display them in arabic, not Roman.
@@ -608,7 +608,7 @@
     \centerfigcaptionstrue
     in the preamble. Short (less than one line long) figure captions
     will then be centered. Multi-line figure captions will always be 
-    properly left justified. V1.6: This is already done for you when
+    properly left justified. V1.8: This is already done for you when
     using the conference mode.
 
 
@@ -657,7 +657,7 @@
  6) No longer "blows up" when you use \paragraph and have a table
     of contents.
  
- 7) Theorem environment changed, (but for V1.6, back to the old way, sigh).
+ 7) Theorem environment changed, (but for V1.8, back to the old way, sigh).
  
  8) Figure captions adjusted: IEEE left (not center) justifies
     figure captions (for journals) and does not indent figure caption text.

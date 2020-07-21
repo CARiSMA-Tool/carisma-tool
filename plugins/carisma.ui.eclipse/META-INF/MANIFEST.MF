@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit.ui,
  org.apache.commons.lang3
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: carisma.ui.eclipse,
  carisma.ui.eclipse.dialogs.parameters,
  carisma.ui.eclipse.editors,
@@ -22,7 +22,8 @@ Export-Package: carisma.ui.eclipse,
  carisma.ui.eclipse.preferences.pages,
  carisma.ui.eclipse.views,
  carisma.ui.popup.actions
+Import-Package: javax.xml.bind;version="2.2.0"
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Bundle-ClassPath: .,
  xslt/
-Import-Package: javax.xml.bind;version="2.2.0"
+Automatic-Module-Name: carisma.ui.eclipse
