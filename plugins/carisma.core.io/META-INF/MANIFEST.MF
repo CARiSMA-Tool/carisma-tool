@@ -21,3 +21,4 @@ Require-Bundle: org.apache.httpcomponents.httpcore,
  org.apache.commons.codec
 Bundle-Activator: carisma.core.io.IOActivator
 Bundle-ActivationPolicy: lazy
+Import-Package: javax.xml.bind;version="2.2.0"

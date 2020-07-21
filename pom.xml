@@ -90,6 +90,11 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/releases/photon</url>
 		</repository>
+		<repository>
+			<id>Eclilpse Photon Orbit</id>
+			<layout>p2</layout>
+			<url>https://download.eclipse.org/tools/orbit/downloads/drops/R20180606145124/repository</url>
+		</repository>
 	</repositories>
   <build>
     <plugins>
