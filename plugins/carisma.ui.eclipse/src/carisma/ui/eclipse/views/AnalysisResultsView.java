@@ -171,7 +171,11 @@ public class AnalysisResultsView extends ViewPart {
 			@Override
 			public void menuAboutToShow(final IMenuManager manager) {
 				Object firstElement = ((IStructuredSelection) AnalysisResultsView.this.viewer.getSelection()).getFirstElement();
-
+				if(firstElement == null) {
+					// If there is not selection nothing is to do
+					return;
+				}
+				
 				AnalysisResult tmpAnalysisResult;
 				if (firstElement instanceof carisma.core.analysis.result.AnalysisResult) {
 					tmpAnalysisResult = (AnalysisResult) firstElement;
