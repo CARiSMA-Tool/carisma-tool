@@ -18,11 +18,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
-
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.security.AnyTypePermission;
+
+import carisma.core.logging.LogLevel;
+import carisma.core.logging.Logger;
 
 
 /**
@@ -48,6 +49,7 @@ public final class AnalysisUtil {
 		xStream.alias("BooleanParameter", BooleanParameter.class);
 		xStream.alias("InputFileParameter", InputFileParameter.class);
 		xStream.alias("OutputFileParameter", OutputFileParameter.class);
+		xStream.addPermission(AnyTypePermission.ANY);
 		return xStream;
 	}
 
