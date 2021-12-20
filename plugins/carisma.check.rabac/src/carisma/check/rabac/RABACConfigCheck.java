@@ -1,45 +1,44 @@
 package carisma.check.rabac;
 
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-import javax.swing.JButton;
-import javax.swing.DefaultComboBoxModel;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Transition;
 
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.OutputFileParameter;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CarismaCheckWithID;
+import carisma.core.checks.CheckParameter;
 import carisma.profile.umlsec.rabac.UMLsec;
 import carisma.profile.umlsec.rabac.UMLsecUtil;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Marshaller;
 
 public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
-	
+
 	// Check IDs
 	public static final String CHECK_ID = "carisma.check.rabac.configuration"; //$NON-NLS-1$
 	public static final String PARAM_CONFIGURATION = "carisma.check.rabac.configuration"; //$NON-NLS-1$
@@ -54,14 +53,14 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 	private Set<String> users, objects;
 
 	private JComboBox<String> user, role, object, attribute;
-	private JComboBox<String> type = new JComboBox<>(new String[] { "User", "Object" });
-	private JCheckBox active = new JCheckBox("Active");
-	private JTextField value = new JTextField("", 6);
-	private JButton save = new JButton("Save");
+	private final JComboBox<String> type = new JComboBox<>(new String[] { "User", "Object" });
+	private final JCheckBox active = new JCheckBox("Active");
+	private final JTextField value = new JTextField("", 6);
+	private final JButton save = new JButton("Save");
 
 	/**
 	 * Run the check
-	 * 
+	 *
 	 * @param parameters
 	 *            parameters for this check
 	 * @param host
@@ -69,10 +68,10 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 	 * @return success of the check
 	 */
 	@Override
-	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
+	public boolean perform(final Map<String, CheckParameter> parameters, final AnalysisHost host) {
 		this.analysisHost = host;
 		this.checkParameters = parameters;
-		Resource model = host.getAnalyzedModel();
+		final var model = host.getAnalyzedModel();
 
 		if (model.getContents().isEmpty()) {
 			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Empty model"));
@@ -80,9 +79,9 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 		}
 
 		if (model.getContents().get(0) instanceof Package) {
-			Package content = (Package) model.getContents().get(0);
-			List<Element> abac = UMLsecUtil.getStereotypedElements(content, UMLsec.ABAC);
-			int abacNum = abac.size();
+			final var content = (Package) model.getContents().get(0);
+			final var abac = UMLsecUtil.getStereotypedElements(content, UMLsec.ABAC);
+			final var abacNum = abac.size();
 			if (abacNum == 0) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Could not find a abac stereotype"));
 				return false;
@@ -92,7 +91,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 						+ " abac stereotypes, model should only contain one"));
 				return false;
 			}
-			Element abacClass = abac.get(0);
+			final var abacClass = abac.get(0);
 
 			this.usersTag = UMLsecUtil.getStringValues("roles", UMLsec.ABAC, abacClass);
 			if (this.usersTag.size() == 0) {
@@ -105,20 +104,20 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 				return false;
 			}
 
-			List<Element> abacRequire = UMLsecUtil.getStereotypedElements(content, UMLsec.ABACREQUIRE);
+			final var abacRequire = UMLsecUtil.getStereotypedElements(content, UMLsec.ABACREQUIRE);
 			this.objects = new HashSet<>();
-			for (Element e : abacRequire) {
+			for (final Element e : abacRequire) {
 				this.objects.add(e instanceof Transition ? ((Transition) e).containingStateMachine().getName()
 						: ((Operation) e).getClass_().getName());
 			}
 
-			List<Element> abacAttribute = UMLsecUtil.getStereotypedElements(content, UMLsec.ABACATTRIBUTE);
-			for (Element e : abacAttribute) {
-				List<String> nameTag = UMLsecUtil.getStringValues("name", UMLsec.ABACATTRIBUTE, e);
+			final var abacAttribute = UMLsecUtil.getStereotypedElements(content, UMLsec.ABACATTRIBUTE);
+			for (final Element e : abacAttribute) {
+				final var nameTag = UMLsecUtil.getStringValues("name", UMLsec.ABACATTRIBUTE, e);
 				// use name of operation when no explicit one is given
-				String name = nameTag.size() == 0 ? ((NamedElement) e).getName() : nameTag.get(0);
+				final var name = nameTag.size() == 0 ? ((NamedElement) e).getName() : nameTag.get(0);
 
-				for (Attribute a : this.config.getAttributes()) {
+				for (final Attribute a : this.config.getAttributes()) {
 					if (a.getName().equals(name)) {
 						host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Duplicate attribute " + name
 								+ " !"));
@@ -126,7 +125,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 					}
 				}
 
-				Attribute a = new Attribute();
+				final var a = new Attribute();
 				a.setName(name);
 				this.config.getAttributes().add(a);
 			}
@@ -142,11 +141,11 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 
 	private void configGUI() {
 		// build data structure to store session roles
-		for (String u : this.users) {
+		for (final String u : this.users) {
 			this.config.getSessions().put(u, new SetWrapper());
 		}
 
-		JPanel session = new JPanel();
+		final var session = new JPanel();
 		((FlowLayout) session.getLayout()).setAlignment(0);
 		session.add(new JLabel("User:"));
 		this.user = new JComboBox<>(this.users.toArray(new String[0]));
@@ -157,11 +156,11 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 		this.active.setEnabled(false);
 		session.add(this.active);
 
-		JPanel filter = new JPanel();
+		final var filter = new JPanel();
 		((FlowLayout) filter.getLayout()).setAlignment(0);
 		filter.add(new JLabel("Attribute:"));
 		this.attribute = new JComboBox<>();
-		for (Attribute a : this.config.getAttributes()) {
+		for (final Attribute a : this.config.getAttributes()) {
 			this.attribute.addItem(a.getName());
 		}
 		filter.add(this.attribute);
@@ -185,7 +184,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 		this.value.addActionListener(this);
 		this.save.addActionListener(this);
 
-		JFrame configGUI = new JFrame();
+		final var configGUI = new JFrame();
 		configGUI.setLayout(new BoxLayout(configGUI.getContentPane(), BoxLayout.Y_AXIS));
 		configGUI.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		configGUI.setTitle("RABACsec transformation input");
@@ -198,7 +197,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public void actionPerformed(final ActionEvent event) {
 		if (event.getSource() == this.user) {
 			this.role.removeAllItems();
 			this.role.setModel(new DefaultComboBoxModel<>(RABACCheck.parseTag(this.usersTag.get(0),
@@ -214,7 +213,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 		}
 
 		if (event.getSource() == this.active) {
-			Set<String> roles = this.config.getSessions().get(this.user.getSelectedItem()).getSet();
+			final Set<String> roles = this.config.getSessions().get(this.user.getSelectedItem()).getSet();
 			if (this.active.isSelected()) {
 				roles.add((String) this.role.getSelectedItem());
 			} else {
@@ -223,7 +222,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 		}
 
 		if (event.getSource() == this.attribute) {
-			for (Attribute a : this.config.getAttributes()) {
+			for (final Attribute a : this.config.getAttributes()) {
 				if (a.getName().equals(this.attribute.getSelectedItem())) {
 					this.type.setSelectedItem(a.getName());
 					this.value.setText(a.getValues().get(
@@ -239,7 +238,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 		}
 
 		if (event.getSource() == this.object) {
-			for (Attribute a : this.config.getAttributes()) {
+			for (final Attribute a : this.config.getAttributes()) {
 				if (a.getName().equals(this.attribute.getSelectedItem())) {
 					this.value.setText(a.getValues().get(this.object.getSelectedItem()));
 					break;
@@ -253,18 +252,18 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 
 		if (event.getSource() == this.save) {
 			// reduce file size
-			for (String u : this.users) {
-				if (this.config.getSessions().get(u) != null && this.config.getSessions().get(u).getSet().isEmpty()) {
+			for (final String u : this.users) {
+				if ((this.config.getSessions().get(u) != null) && this.config.getSessions().get(u).getSet().isEmpty()) {
 					this.config.getSessions().remove(u);
 				}
 			}
 
 			try {
-				Marshaller m = JAXBContext.newInstance(RABACConfig.class).createMarshaller();
+				final var m = JAXBContext.newInstance(RABACConfig.class).createMarshaller();
 				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 				m.marshal(this.config,
 						((OutputFileParameter) this.checkParameters.get(PARAM_CONFIGURATION)).getValue());
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Error writing configuration file!"));
 			}
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Saved configuration file"));
@@ -272,7 +271,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 	}
 
 	private void updateAttributes() {
-		for (Attribute a : this.config.getAttributes()) {
+		for (final Attribute a : this.config.getAttributes()) {
 			if (a.getName().equals(this.attribute.getSelectedItem())) {
 				a.setType((String) this.type.getSelectedItem());
 				a.getValues().put(

@@ -30,7 +30,7 @@ import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CheckParameterDescriptor;
 
 @RunWith(Parameterized.class)
-public class RABACTestInvalidModels implements RABACTest {
+public class RABACInvalidModelsTest implements RABACTest {
 	
 	private final static String filepath = "resources" + File.separator + "models";
 
@@ -39,7 +39,7 @@ public class RABACTestInvalidModels implements RABACTest {
 
 	private HashMap<String, CheckParameter> config = new HashMap<>();
 
-	public RABACTestInvalidModels(Resource testModel) {
+	public RABACInvalidModelsTest(Resource testModel) {
 		this.model = testModel;
 	}
 	
@@ -59,7 +59,7 @@ public class RABACTestInvalidModels implements RABACTest {
 		
 		List<Resource> resources = new ArrayList<>();
 		
-		File folder = new File(RABACTestInvalidModels.filepath);
+		File folder = new File(RABACInvalidModelsTest.filepath);
 		String[] list = folder.list(new FilenameFilter() {
 			
 			@Override

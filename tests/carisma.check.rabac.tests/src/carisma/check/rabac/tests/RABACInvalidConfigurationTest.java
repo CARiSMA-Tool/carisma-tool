@@ -24,7 +24,7 @@ import carisma.core.analysis.InputFileParameter;
 import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CheckParameterDescriptor;
 
-public class RABACTestInvalidConfiguration implements RABACTest {
+public class RABACInvalidConfigurationTest implements RABACTest {
 
 	private final static String filepath = "resources" + File.separator + "models";
 
@@ -44,7 +44,7 @@ public class RABACTestInvalidConfiguration implements RABACTest {
 		this.report = new StringBuilder();
 		
 		ResourceSet rs = new ResourceSetImpl();
-		File file = new File(new File(RABACTestInvalidConfiguration.filepath), "valid.uml");
+		File file = new File(new File(RABACInvalidConfigurationTest.filepath), "valid.uml");
 		this.model = rs.createResource(URI.createFileURI(file.toString()));
 		try(FileInputStream inputStream = new FileInputStream(file)){
 			this.model.load(inputStream, Collections.EMPTY_MAP);

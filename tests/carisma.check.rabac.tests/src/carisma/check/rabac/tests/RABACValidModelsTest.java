@@ -23,13 +23,13 @@ import carisma.core.analysis.InputFileParameter;
 import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CheckParameterDescriptor;
 
-public class RABACTestValidModels implements RABACTest {
+public class RABACValidModelsTest implements RABACTest {
 
 	public Resource model = null;
 	public StringBuilder report;
 
 	HashMap<String, CheckParameter> config = new HashMap<>();
-	private String filepath = "resources" + File.separator + "models";
+	private final String filepath = "resources" + File.separator + "models";
 
 	@Before
 	public void setUp() {
@@ -43,17 +43,17 @@ public class RABACTestValidModels implements RABACTest {
 
 	@Test
 	public void testValidRABACModel() throws IOException {
-		File file = new File(new File(this.filepath), "valid.uml");
+		final File file = new File(new File(this.filepath), "valid.uml");
 		this.model = new ResourceSetImpl().createResource(URI.createFileURI(file.toString()));
 		try(FileInputStream stream = new FileInputStream(file)){
-			this.model.load(stream, Collections.EMPTY_MAP);
+			this.model.load(stream, Collections.emptyMap());
 			this.config.put(RABACCheck.PARAM_CONFIGURATION, new InputFileParameter(new CheckParameterDescriptor(null, null,
 					null, null, false, null), new File("resources" + File.separator + "rabac_configuration-valid.xml")));
-	
-			RABACCheck rabacCheck = new RABACCheck();
-			TestHost host = new TestHost(this);
+
+			final RABACCheck rabacCheck = new RABACCheck();
+			final TestHost host = new TestHost(this);
 			assertTrue(rabacCheck.perform(this.config, host));
-			assertTrue(this.report.toString().contains("Operation"));
+			assertTrue(this.report.toString().contains("No errors have been detected."));
 		}
 	}
 

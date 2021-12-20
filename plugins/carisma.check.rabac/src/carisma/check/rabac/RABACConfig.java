@@ -2,28 +2,33 @@ package carisma.check.rabac;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "rabac")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RABACConfig {
-	private HashMap<String, SetWrapper> sessions = new HashMap<>();
-	private HashSet<Attribute> attributes = new HashSet<>();
+	private Map<String, SetWrapper> sessions = new HashMap<>();
+	private Set<Attribute> attributes = new HashSet<>();
 
-	public HashMap<String, SetWrapper> getSessions() {
+	public Map<String, SetWrapper> getSessions() {
 		return this.sessions;
 	}
 
 	// without a setter marshalling fails
-	public void setSessions(HashMap<String, SetWrapper> sessions) {
+	public void setSessions(final Map<String, SetWrapper> sessions) {
 		this.sessions = sessions;
 	}
 
-	public HashSet<Attribute> getAttributes() {
+	public Set<Attribute> getAttributes() {
 		return this.attributes;
 	}
 
-	public void setAttributes(HashSet<Attribute> attributes) {
+	public void setAttributes(final Set<Attribute> attributes) {
 		this.attributes = attributes;
 	}
 

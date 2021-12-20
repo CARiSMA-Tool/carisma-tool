@@ -3,21 +3,24 @@ Bundle-ManifestVersion: 2
 Bundle-Name: CARiSAMA Input and Output Operations
 Bundle-SymbolicName: carisma.core.io
 Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: carisma.core.io,
  carisma.core.io.configuration,
  carisma.core.io.content;uses:="org.w3c.dom",
  carisma.core.io.implementations;uses:="org.w3c.dom",
  carisma.core.io.implementations.db,
  carisma.core.io.util,
- javax.xml.bind,
+ jakarta.xml.bind,
+ jakarta.xml.bind.annotation,
  org.apache.commons.lang3,
  org.json
-Import-Package: javax.xml.bind;version="2.2.0"
 Bundle-ClassPath: .,
  lib/commons-lang3-3.4.jar,
  lib/json-1.5-20090211.jar,
- lib/jakarta.xml.bind-api-2.3.3.jar
+ lib/jakarta.xml.bind/jakarta.activation.jar,
+ lib/jakarta.xml.bind/jakarta.xml.bind-api.jar,
+ lib/jakarta.xml.bind/jaxb-core.jar,
+ lib/jakarta.xml.bind/jaxb-impl.jar
 Require-Bundle: org.apache.httpcomponents.httpcore,
  org.apache.httpcomponents.httpclient,
  org.eclipse.core.runtime,
