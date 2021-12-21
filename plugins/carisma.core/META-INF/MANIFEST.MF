@@ -5,7 +5,7 @@ Bundle-SymbolicName: carisma.core;singleton:=true
 Bundle-Version: 1.4.3.qualifier
 Bundle-Activator: carisma.core.Carisma
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: carisma.core,
  carisma.core.analysis,
  carisma.core.analysis.result,
@@ -35,12 +35,11 @@ Export-Package: carisma.core,
  com.thoughtworks.xstream.io.xml.xppdom,
  com.thoughtworks.xstream.mapper,
  com.thoughtworks.xstream.persistence
-Import-Package: javax.xml.bind;version="2.2.0",
- javax.xml.bind.annotation;version="2.2.0"
 Bundle-ClassPath: .,
  lib/xstream-1.4.18.jar
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Require-Bundle: org.eclipse.core.resources,
  org.eclipse.core.runtime,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore,
+ carisma.core.io
 Automatic-Module-Name: carisma.core

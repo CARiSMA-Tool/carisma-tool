@@ -10,9 +10,9 @@
  *******************************************************************************/
 package carisma.core.analysis.result;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 /**
  * @author buerger
@@ -27,51 +27,50 @@ public class AnalysisResultMessage{
 	private String additionalInformation;
 	private CheckResult parent;
 
-	public AnalysisResultMessage(String text, StatusType status,
-			String modelElement, String additionalInformation) {
-		super();
+	public AnalysisResultMessage(final String text, final StatusType status,
+			final String modelElement, final String additionalInformation) {
 		this.text = text;
 		this.status = status;
 		this.modelElement = modelElement;
 		this.additionalInformation = additionalInformation;
 	}
 
-	public AnalysisResultMessage(StatusType status, String text) {
+	public AnalysisResultMessage(final StatusType status, final String text) {
 		this(text, status, null, null);
 	}
-	
+
 	public AnalysisResultMessage(){
-		
+
 	}
-	
+
 
 	@XmlElement(name = "text")
 	public String getText() {
 		return this.text;
 	}
-	public void setText(String text) {
+	public void setText(final String text) {
 		this.text = text;
 	}
 	@XmlElement(name = "status")
 	public StatusType getStatus() {
 		return this.status;
 	}
-	public void setStatus(StatusType status) {
+	public void setStatus(final StatusType status) {
 		this.status = status;
 	}
 	public String getModelElement() {
 		return this.modelElement;
 	}
-	public void setModelElement(String modelElement) {
+	public void setModelElement(final String modelElement) {
 		this.modelElement = modelElement;
 	}
 	public String getAdditionalInformation() {
 		return this.additionalInformation;
 	}
-	public void setAdditionalInformation(String additionalInformation) {
+	public void setAdditionalInformation(final String additionalInformation) {
 		this.additionalInformation = additionalInformation;
 	}
-	void setParent(CheckResult parent) {
+	void setParent(final CheckResult parent) {
 		this.parent = parent;
 	}
 	public CheckResult getParent() {

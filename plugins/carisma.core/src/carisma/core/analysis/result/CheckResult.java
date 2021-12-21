@@ -11,12 +11,11 @@
 package carisma.core.analysis.result;
 
 import java.util.ArrayList;
-//import java.util.Collections;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 /**
  * @author buerger
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
 public class CheckResult{
 
 	/**
-	 * Expresses whether the check has reported success. 
+	 * Expresses whether the check has reported success.
 	 */
 	private boolean successful;
 
@@ -35,14 +34,14 @@ public class CheckResult{
 	 * The name of the check whose result is represented.
 	 */
 	private String name;
-	
+
 	private StatusType status = StatusType.INFO;
 
 	/**
 	 * List of result messages inside the check result.
 	 */
-	private ArrayList<AnalysisResultMessage> results;
-	
+	private final ArrayList<AnalysisResultMessage> results;
+
 	private AnalysisResult parent;
 
 	public CheckResult(){
@@ -50,47 +49,47 @@ public class CheckResult{
 		this.name="";
 		this.results=new ArrayList<>();
 	}
-	
+
 	@XmlElement(name = "successful")
 	public boolean isSuccessful() {
 		return this.successful;
 	}
 
-	public void setSuccessful(boolean successful) {
+	public void setSuccessful(final boolean successful) {
 		this.successful = successful;
 	}
-	
-	
+
+
 	@XmlElement(name = "name")
 	public String getName() {
 		return this.name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
-	
-	
+
+
 	//return Collections.unmodifiableList(results);
 	@XmlElement(name = "results")
 	public List<AnalysisResultMessage> getResults() {
 		return this.results;
 	}
-	
-	public void addResult(AnalysisResultMessage result) {
+
+	public void addResult(final AnalysisResultMessage result) {
 		this.results.add(result);
 		result.setParent(this);
 		this.status = StatusType.max(this.status, result.getStatus());
 	}
 
-	void setParent(AnalysisResult parent) {
+	void setParent(final AnalysisResult parent) {
 		this.parent = parent;
 	}
 
 	public AnalysisResult getParent() {
 		return this.parent;
 	}
-	
+
 	public StatusType getStatus() {
 		return this.status;
 	}

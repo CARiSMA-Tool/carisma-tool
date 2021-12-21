@@ -10,8 +10,8 @@
  *******************************************************************************/
 package carisma.core.analysis.result;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
+import jakarta.xml.bind.annotation.XmlEnum;
+import jakarta.xml.bind.annotation.XmlEnumValue;
 
 /**
  * @author buerger
@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlEnumValue;
  */
 @XmlEnum
 public enum StatusType {
-	
+
 	/**
 	 * Errors indicate that something went wrong, e.g. a check failed.
 	 */
@@ -36,20 +36,20 @@ public enum StatusType {
 	 */
 	@XmlEnumValue("INFO")
 	INFO("INFO");
-	
+
 	/**
 	 * The name of the status type.
 	 */
 	private String name;
-	
+
 	/**
 	 * Constructor.
 	 * @param name name of the status type
 	 */
-	private StatusType(final String name) {
+	StatusType(final String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * Returns the maximum of two status types.
 	 * @param s1 a status type
@@ -57,18 +57,18 @@ public enum StatusType {
 	 * @return the maximum of both given status types
 	 */
 	public static StatusType max(final StatusType s1, final StatusType s2) {
-		if (s1 == ERROR || s2 == ERROR) {
+		if ((s1 == ERROR) || (s2 == ERROR)) {
 			return ERROR;
 		}
-		if (s1 == WARNING || s2 == WARNING) {
+		if ((s1 == WARNING) || (s2 == WARNING)) {
 			return WARNING;
 		}
 		return INFO;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.name;
 	}
-	
+
 }

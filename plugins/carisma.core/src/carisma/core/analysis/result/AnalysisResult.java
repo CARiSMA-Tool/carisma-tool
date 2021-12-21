@@ -14,10 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import carisma.core.analysis.Analysis;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
@@ -29,14 +28,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(propOrder = { "name","modelPath", "status", "timestamp", "checkResults", "report"})
 public class AnalysisResult {
 	/**
-	 * 
+	 *
 	 */
 	private Analysis analysis;
 	/**
-	 * 
+	 *
 	 */
 	private String name;
-	
+
 	/**
 	 * String identifying a timestamp when the analysis has been started.
 	 */
@@ -46,15 +45,15 @@ public class AnalysisResult {
 	 */
 	private AnalysisResultStatus status;
 	/**
-	 * 
+	 *
 	 */
-	private ArrayList<CheckResult> checkResults;
-	
+	private final ArrayList<CheckResult> checkResults;
+
 	/**
-	 * 
+	 *
 	 */
 	private StringBuffer report;
-	
+
 	private String modelPath;
 
 	/*
@@ -62,10 +61,10 @@ public class AnalysisResult {
 	 */
 	@SuppressWarnings("unused")
 	private AnalysisResult() {
-		this.checkResults = new ArrayList<CheckResult>();
-	    //throw new UnsupportedOperationException("No-arg constructor is just to keep JAXB from complaining");
+		this.checkResults = new ArrayList<>();
+		//throw new UnsupportedOperationException("No-arg constructor is just to keep JAXB from complaining");
 	}
-	
+
 	/**
 	 * @param analysis Analysis
 	 */
@@ -86,7 +85,7 @@ public class AnalysisResult {
 		return this.name;
 	}
 
-	
+
 	@XmlElement(name = "Filepath")
 	public final String getModelPath(){
 		return this.modelPath;
@@ -105,21 +104,21 @@ public class AnalysisResult {
 	public final String getTimestamp() {
 		return this.timestamp;
 	}
-	
+
 	/**
 	 * @param timestamp timestamp
 	 */
 	public final void setTimestamp(final String timestamp) {
 		this.timestamp = timestamp;
 	}
-	
+
 	/**
-	 * @param status 
+	 * @param status
 	 */
 	public final void setStatus(final AnalysisResultStatus status) {
 		this.status = status;
 	}
-	
+
 	/**
 	 * @return status
 	 */
@@ -127,7 +126,7 @@ public class AnalysisResult {
 	public final AnalysisResultStatus getStatus(){
 		return this.status;
 	}
-	
+
 
 	/**
 	 * @return a list of CheckResults
@@ -137,15 +136,15 @@ public class AnalysisResult {
 	public final List<CheckResult> getCheckResults() {
 		return this.checkResults;
 	}
-	
-	
+
+
 	/**
 	 * @param text the message
 	 */
 	public final void appendToReport(final String text) {
 		this.report.append(text);
 	}
-	
+
 	/**
 	 * @return String report
 	 */
@@ -153,7 +152,7 @@ public class AnalysisResult {
 	public final String getReport() {
 		return this.report.toString();
 	}
-	
+
 	/**
 	 * @return analysis
 	 */
@@ -161,13 +160,12 @@ public class AnalysisResult {
 		return this.analysis;
 	}
 	/**
-	 * 
+	 *
 	 * @param result the CheckReuslt
 	 */
 	public final void addCheckResult(final CheckResult result) {
 		this.checkResults.add(result);
 		result.setParent(this);
 	}
-	
+
 }
-	
