@@ -5,8 +5,9 @@ Bundle-SymbolicName: carisma.check.requirescheck;singleton:=true
 Bundle-Version: 1.0.1.qualifier
 Require-Bundle: carisma.core,
  carisma.modeltype.uml2,
- carisma.profile.umlsec;bundle-version="1.0.3"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+ carisma.profile.umlsec
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Export-Package: carisma.check.requirescheck
 Automatic-Module-Name: carisma.check.requirescheck
+Bundle-ClassPath: .

@@ -12,7 +12,6 @@ package carisma.check.staticcheck.securedependency;
 
 import java.util.Collection;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
@@ -55,7 +54,7 @@ public class SecureDependencyViolation {
 	}
 
 
-	public EObject getViolatingElement() {
+	public Element getViolatingElement() {
 		return this.violating;
 	}
 

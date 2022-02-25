@@ -248,6 +248,10 @@ litigation.
       <import plugin="org.eclipse.ui.workbench"/>
       <import plugin="carisma.profile.umlsec.rabac"/>
       <import plugin="carisma.ocl"/>
+      <import plugin="jakarta.xml.bind"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.uml2.types"/>
+      <import plugin="org.eclipse.papyrus.uml.extensionpoints"/>
    </requires>
 
    <plugin
@@ -294,6 +298,13 @@ litigation.
 
    <plugin
          id="carisma.check.sequencediagramcrypto"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="carisma.profile.umlsec.enc"
          download-size="0"
          install-size="0"
          version="0.0.0"

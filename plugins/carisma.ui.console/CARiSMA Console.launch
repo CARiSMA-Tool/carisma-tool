@@ -1,26 +1,241 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.pde.ui.EquinoxLauncher">
-<booleanAttribute key="append.args" value="true"/>
-<booleanAttribute key="automaticAdd" value="true"/>
-<booleanAttribute key="automaticValidate" value="true"/>
-<stringAttribute key="bootstrap" value=""/>
-<stringAttribute key="checked" value="[NONE]"/>
-<booleanAttribute key="clearConfig" value="true"/>
-<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/CARiSMA Console"/>
-<booleanAttribute key="default" value="true"/>
-<booleanAttribute key="default_auto_start" value="true"/>
-<intAttribute key="default_start_level" value="4"/>
-<stringAttribute key="deselected_workspace_plugins" value="carisma.ui.eclipse,carisma.check.activity2petrinet,carisma.check.activitypaths,carisma.check.activitypaths.tests,carisma.check.bpmn2.marisk,carisma.check.bpmn2.marisk.tests,carisma.check.bpmn2.ocl,carisma.check.bpmn2.ocl.tests,carisma.check.bpmn2dummy,carisma.check.dummy.tests,carisma.check.emfdelta,carisma.check.oclcheck,carisma.check.oclcheck.tests,carisma.check.processanalysis.importer.bpmn,carisma.check.processanalysis.texttools.hunspell,carisma.check.processanalysis.texttools.wortschatz,carisma.check.requirescheck,carisma.check.requirescheck.tests,carisma.check.riskfinder,carisma.check.riskfinder.tests,carisma.check.smartcard,carisma.check.smartcard.evolution,carisma.check.smartcard.evolution.tests,carisma.check.smartcard.tests,carisma.check.statemachinepaths,carisma.check.staticcheck,carisma.check.staticcheck.evolution,carisma.check.staticcheck.evolution.tests,carisma.check.staticcheck.tests,carisma.check.template,carisma.modeltype.bpmn2,carisma.modeltype.bpmn2.extended,carisma.modeltype.bpmn2.extended.tests,carisma.modeltype.bpmn2.extension,carisma.modeltype.bpmn2.extension.edit,carisma.modeltype.bpmn2.extension.editor,carisma.modeltype.bpmn2.tests,carisma.modeltype.uml2.tests,carisma.profile.umlchange,carisma.profile.umlchange.tests,carisma.profile.umlsec,carisma.profile.umlsec.tests,carisma.clean,carisma.core.tests,carisma.evolution,carisma.evolution.emfdelta,carisma.evolution.emfdelta.tests,carisma.evolution.emfdelta.ui,carisma.evolution.tests,carisma.evolution.uml2,carisma.evolution.uml2.tests,carisma.evolution.uml2.umlchange,carisma.evolution.uml2.umlchange.tests,carisma.evolution.uml2.umlchange.ui,carisma.ocl,carisma.ocl.library,carisma.ocl.library.edit,carisma.ocl.library.editor,carisma.processanalysis,carisma.regulatory"/>
-<booleanAttribute key="includeOptional" value="false"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog -console -application de.carisma.ui.console --analysis Test/Models/SimpleModel.adf  --workdir /home/wenzel/workspaces/runtime-CARiSMA"/>
-<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dosgi.requiredJavaVersion=1.5 -Xms40m -Xmx512m -Declipse.ignoreApp=false -Dosgi.noShutdown=true"/>
-<booleanAttribute key="pde.generated.config" value="true"/>
-<stringAttribute key="pde.version" value="3.3"/>
-<booleanAttribute key="show_selected_only" value="true"/>
-<stringAttribute key="target_bundles" value="com.ibm.icu@default:default,org.eclipse.ant.core@default:default,org.eclipse.core.contenttype@default:default,org.eclipse.core.expressions@default:default,org.eclipse.core.filesystem.linux.x86@default:false,org.eclipse.core.filesystem@default:default,org.eclipse.core.jobs@default:default,org.eclipse.core.resources@default:default,org.eclipse.core.runtime.compatibility.registry@default:false,org.eclipse.core.runtime@default:true,org.eclipse.core.variables@default:default,org.eclipse.emf.common@default:default,org.eclipse.emf.ecore.xmi@default:default,org.eclipse.emf.ecore@default:default,org.eclipse.emf.mapping.ecore2xml@default:default,org.eclipse.equinox.app@default:default,org.eclipse.equinox.common@2:true,org.eclipse.equinox.preferences@default:default,org.eclipse.equinox.registry@default:default,org.eclipse.osgi@-1:true,org.eclipse.team.core@default:default,org.eclipse.uml2.common*1.8.0.v201105021727@default:default,org.eclipse.uml2.uml*3.2.100.v201108110105@default:default,org.eclipse.uml2.uml.resources*3.1.100.v201008191510@default:default,org.hamcrest.core@default:default,org.junit*4.8.2.v4_8_2_v20110321-1705@default:default,org.junit4@default:default"/>
-<booleanAttribute key="tracing" value="false"/>
-<booleanAttribute key="useCustomFeatures" value="false"/>
-<booleanAttribute key="useDefaultConfigArea" value="true"/>
-<stringAttribute key="workspace_bundles" value="carisma.ui.console@default:default,carisma.check.dummy@default:default,carisma.modeltype.uml2@default:default,carisma.core@default:default"/>
+    <booleanAttribute key="append.args" value="true"/>
+    <booleanAttribute key="automaticAdd" value="true"/>
+    <booleanAttribute key="automaticValidate" value="true"/>
+    <stringAttribute key="bootstrap" value=""/>
+    <stringAttribute key="checked" value="[NONE]"/>
+    <booleanAttribute key="clearConfig" value="true"/>
+    <stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/CARiSMA Console"/>
+    <booleanAttribute key="default" value="true"/>
+    <booleanAttribute key="default_auto_start" value="true"/>
+    <intAttribute key="default_start_level" value="4"/>
+    <setAttribute key="deselected_workspace_bundles">
+        <setEntry value="carisma.check.activity2petrinet"/>
+        <setEntry value="carisma.check.activitypaths"/>
+        <setEntry value="carisma.check.activitypaths.tests"/>
+        <setEntry value="carisma.check.bpmn2.marisk"/>
+        <setEntry value="carisma.check.bpmn2.marisk.tests"/>
+        <setEntry value="carisma.check.bpmn2.ocl"/>
+        <setEntry value="carisma.check.bpmn2.ocl.tests"/>
+        <setEntry value="carisma.check.dummy.tests"/>
+        <setEntry value="carisma.check.oclcheck"/>
+        <setEntry value="carisma.check.oclcheck.tests"/>
+        <setEntry value="carisma.check.requirescheck"/>
+        <setEntry value="carisma.check.requirescheck.tests"/>
+        <setEntry value="carisma.check.smartcard"/>
+        <setEntry value="carisma.check.smartcard.evolution"/>
+        <setEntry value="carisma.check.smartcard.evolution.tests"/>
+        <setEntry value="carisma.check.smartcard.tests"/>
+        <setEntry value="carisma.check.statemachinepaths"/>
+        <setEntry value="carisma.check.staticcheck"/>
+        <setEntry value="carisma.check.staticcheck.evolution"/>
+        <setEntry value="carisma.check.staticcheck.evolution.tests"/>
+        <setEntry value="carisma.check.staticcheck.tests"/>
+        <setEntry value="carisma.check.template"/>
+        <setEntry value="carisma.core.tests"/>
+        <setEntry value="carisma.evolution"/>
+        <setEntry value="carisma.evolution.tests"/>
+        <setEntry value="carisma.evolution.uml2"/>
+        <setEntry value="carisma.evolution.uml2.tests"/>
+        <setEntry value="carisma.evolution.uml2.umlchange"/>
+        <setEntry value="carisma.evolution.uml2.umlchange.tests"/>
+        <setEntry value="carisma.evolution.uml2.umlchange.ui"/>
+        <setEntry value="carisma.modeltype.bpmn2"/>
+        <setEntry value="carisma.modeltype.bpmn2.extended"/>
+        <setEntry value="carisma.modeltype.bpmn2.extended.tests"/>
+        <setEntry value="carisma.modeltype.bpmn2.extension"/>
+        <setEntry value="carisma.modeltype.bpmn2.extension.edit"/>
+        <setEntry value="carisma.modeltype.bpmn2.extension.editor"/>
+        <setEntry value="carisma.modeltype.bpmn2.tests"/>
+        <setEntry value="carisma.modeltype.uml2.tests"/>
+        <setEntry value="carisma.ocl"/>
+        <setEntry value="carisma.ocl.library"/>
+        <setEntry value="carisma.ocl.library.edit"/>
+        <setEntry value="carisma.ocl.library.editor"/>
+        <setEntry value="carisma.profile.umlchange"/>
+        <setEntry value="carisma.profile.umlchange.tests"/>
+        <setEntry value="carisma.profile.umlsec"/>
+        <setEntry value="carisma.profile.umlsec.tests"/>
+        <setEntry value="carisma.ui.eclipse"/>
+    </setAttribute>
+    <booleanAttribute key="includeOptional" value="false"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_ATTR_USE_ARGFILE" value="false"/>
+    <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog -console -application de.carisma.ui.console --analysis Test/Models/SimpleModel.adf  --workdir /home/wenzel/workspaces/runtime-CARiSMA"/>
+    <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dosgi.requiredJavaVersion=1.5 -Xms40m -Xmx512m -Declipse.ignoreApp=false -Dosgi.noShutdown=true"/>
+    <booleanAttribute key="pde.generated.config" value="true"/>
+    <stringAttribute key="pde.version" value="3.3"/>
+    <setAttribute key="selected_target_bundles">
+        <setEntry value="com.ibm.icu@default:default"/>
+        <setEntry value="org.eclipse.ant.core@default:default"/>
+        <setEntry value="org.eclipse.core.contenttype@default:default"/>
+        <setEntry value="org.eclipse.core.expressions@default:default"/>
+        <setEntry value="org.eclipse.core.filesystem@default:default"/>
+        <setEntry value="org.eclipse.core.jobs@default:default"/>
+        <setEntry value="org.eclipse.core.resources@default:default"/>
+        <setEntry value="org.eclipse.core.runtime@default:true"/>
+        <setEntry value="org.eclipse.core.variables@default:default"/>
+        <setEntry value="org.eclipse.emf.common@default:default"/>
+        <setEntry value="org.eclipse.emf.ecore.xmi@default:default"/>
+        <setEntry value="org.eclipse.emf.ecore@default:default"/>
+        <setEntry value="org.eclipse.emf.mapping.ecore2xml@default:default"/>
+        <setEntry value="org.eclipse.equinox.app@default:default"/>
+        <setEntry value="org.eclipse.equinox.common@2:true"/>
+        <setEntry value="org.eclipse.equinox.preferences@default:default"/>
+        <setEntry value="org.eclipse.equinox.registry@default:default"/>
+        <setEntry value="org.eclipse.osgi@-1:true"/>
+        <setEntry value="org.eclipse.team.core@default:default"/>
+        <setEntry value="org.eclipse.uml2.common@default:default"/>
+        <setEntry value="org.eclipse.uml2.uml.resources@default:default"/>
+        <setEntry value="org.eclipse.uml2.uml@default:default"/>
+        <setEntry value="org.hamcrest.core@default:default"/>
+        <setEntry value="org.junit@default:default"/>
+    </setAttribute>
+    <setAttribute key="selected_workspace_bundles">
+        <setEntry value="ARTESources@default:default"/>
+        <setEntry value="EclipsePluginsToSPL@default:default"/>
+        <setEntry value="GraphConstraint@default:default"/>
+        <setEntry value="Symmetric@default:default"/>
+        <setEntry value="TestInterface@default:default"/>
+        <setEntry value="at.ac.tuwien.big.moea@default:default"/>
+        <setEntry value="at.ac.tuwien.big.momot.core@default:default"/>
+        <setEntry value="at.ac.tuwien.big.momot.examples.wizards@default:default"/>
+        <setEntry value="at.ac.tuwien.big.momot.lang.ui@default:default"/>
+        <setEntry value="at.ac.tuwien.big.momot.lang@default:default"/>
+        <setEntry value="at.ac.tuwien.big.momot.ui.popup@default:default"/>
+        <setEntry value="carisma.check.activity2petrinet.tests@default:false"/>
+        <setEntry value="carisma.check.bpmn2.dummy@default:default"/>
+        <setEntry value="carisma.check.dummy@default:default"/>
+        <setEntry value="carisma.check.parametertest@default:default"/>
+        <setEntry value="carisma.check.rabac.tests@default:false"/>
+        <setEntry value="carisma.check.rabac@default:default"/>
+        <setEntry value="carisma.check.sequencediagramcrypto@default:default"/>
+        <setEntry value="carisma.check.sequencediagrammcrypto.test@default:default"/>
+        <setEntry value="carisma.check.variability.tests@default:default"/>
+        <setEntry value="carisma.check.variability@default:default"/>
+        <setEntry value="carisma.core.io@default:default"/>
+        <setEntry value="carisma.core@default:default"/>
+        <setEntry value="carisma.modeltype.uml2@default:default"/>
+        <setEntry value="carisma.profile.umlsec.enc@default:default"/>
+        <setEntry value="carisma.profile.umlsec.rabac@default:default"/>
+        <setEntry value="carisma.profile.umlsec.variability.henshin@default:default"/>
+        <setEntry value="carisma.profile.umlsec.variability@default:default"/>
+        <setEntry value="carisma.rt.eval.security@default:default"/>
+        <setEntry value="carisma.tests.modelutils.uml@default:default"/>
+        <setEntry value="carisma.ui.console@default:default"/>
+        <setEntry value="carisma.ui.eclipse.descriptor@default:false"/>
+        <setEntry value="carisma.umlchange.efficiency@default:default"/>
+        <setEntry value="carisma.variability.editor@default:default"/>
+        <setEntry value="dsldesign.expr@default:default"/>
+        <setEntry value="metric.correlation.analysis.dependencies@default:default"/>
+        <setEntry value="metric.correlation.analysis.tests@default:default"/>
+        <setEntry value="metric.correlation.analysis@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.adapters.xtext@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.diagram@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.edit@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.editor@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.examples@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.giraph@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.interpreter.ui@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.interpreter@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.model@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.multicda.cda@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.multicda.cpa.ui@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.multicda.cpa@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.rulegen.tests@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.rulegen.ui@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.rulegen@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.statespace.explorer@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.statespace.external@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.statespace@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.tests@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.text.ide@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.text.tests@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.text.transformation@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.text.ui@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.text@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.trace@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.configuration.ui@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.configuration@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.eval@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.mergein.evaluation@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.mergein.refactoring@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.mergein.ui@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.mergein@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.multi.eval.refactorings@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.multi.eval@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.multi.tests@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.multi@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.test@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.validation.tests@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability.validation@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.variability@default:default"/>
+        <setEntry value="org.eclipse.emf.henshin.wrap@default:default"/>
+        <setEntry value="org.gravity.arte@default:default"/>
+        <setEntry value="org.gravity.cdt@default:default"/>
+        <setEntry value="org.gravity.eclipse.java.spl@default:default"/>
+        <setEntry value="org.gravity.eclipse.tests@default:default"/>
+        <setEntry value="org.gravity.eclipse.ui@default:default"/>
+        <setEntry value="org.gravity.eclipse@default:default"/>
+        <setEntry value="org.gravity.eval.runtime.tgg.modisco@default:default"/>
+        <setEntry value="org.gravity.goblin.tests@default:default"/>
+        <setEntry value="org.gravity.goblin@default:default"/>
+        <setEntry value="org.gravity.headless*1.0.0.qualifier"/>
+        <setEntry value="org.gravity.hulk.annotations@default:default"/>
+        <setEntry value="org.gravity.hulk.antipatterngraph@default:default"/>
+        <setEntry value="org.gravity.hulk.refactoringgraph@default:default"/>
+        <setEntry value="org.gravity.hulk.resolve@default:default"/>
+        <setEntry value="org.gravity.hulk.tests@default:default"/>
+        <setEntry value="org.gravity.hulk.ui.visualization@default:default"/>
+        <setEntry value="org.gravity.hulk.ui@default:default"/>
+        <setEntry value="org.gravity.hulk@default:default"/>
+        <setEntry value="org.gravity.mapping.secdfd.eval@default:default"/>
+        <setEntry value="org.gravity.mapping.secdfd.tests@default:default"/>
+        <setEntry value="org.gravity.mapping.secdfd@default:default"/>
+        <setEntry value="org.gravity.modisco@default:default"/>
+        <setEntry value="org.gravity.refactorings.tests@default:default"/>
+        <setEntry value="org.gravity.refactorings.ui@default:default"/>
+        <setEntry value="org.gravity.refactorings@default:default"/>
+        <setEntry value="org.gravity.requirements@default:default"/>
+        <setEntry value="org.gravity.security.annotations@default:default"/>
+        <setEntry value="org.gravity.security.metrics@default:default"/>
+        <setEntry value="org.gravity.security.violation.patterns.eval@default:default"/>
+        <setEntry value="org.gravity.security.violation.patterns@default:default"/>
+        <setEntry value="org.gravity.tgg.modisco.pm@default:default"/>
+        <setEntry value="org.gravity.tgg.modisco.ui@default:default"/>
+        <setEntry value="org.gravity.tgg.modisco.uml.tests@default:default"/>
+        <setEntry value="org.gravity.tgg.modisco.uml@default:default"/>
+        <setEntry value="org.gravity.tgg.pm.uml@default:default"/>
+        <setEntry value="org.gravity.tgg.sync.eval@default:default"/>
+        <setEntry value="org.gravity.tgg.tests@default:default"/>
+        <setEntry value="org.gravity.typegraph.basic.tests@default:default"/>
+        <setEntry value="org.gravity.typegraph.basic.ui@default:default"/>
+        <setEntry value="org.gravity.typegraph.basic@default:default"/>
+        <setEntry value="org.gravity.typegraph.delta.tests@default:default"/>
+        <setEntry value="org.gravity.typegraph.sonarlint@default:default"/>
+        <setEntry value="org.gravity.typegraph.spl@default:default"/>
+        <setEntry value="org.gravity.uml.extraction@default:default"/>
+        <setEntry value="org.gravity.uml.mapping@default:default"/>
+        <setEntry value="org.gravity.uml.papyrus@default:default"/>
+        <setEntry value="org.gravity.umlsecrt.adapt@default:default"/>
+        <setEntry value="org.gravity.umlsecrt.editor@default:default"/>
+        <setEntry value="org.secdfd.dsl.ide@default:default"/>
+        <setEntry value="org.secdfd.dsl.tests@default:default"/>
+        <setEntry value="org.secdfd.dsl.ui.tests@default:default"/>
+        <setEntry value="org.secdfd.dsl.ui@default:default"/>
+        <setEntry value="org.secdfd.dsl@default:default"/>
+        <setEntry value="org.secdfd.model.edit@default:default"/>
+        <setEntry value="org.secdfd.model.editor@default:default"/>
+        <setEntry value="org.secdfd.model.tests@default:default"/>
+        <setEntry value="org.secdfd.model@default:default"/>
+        <setEntry value="org.tracesec.prioritization@default:default"/>
+        <setEntry value="org.tracesec.qualitymodel@default:default"/>
+        <setEntry value="ttc.testdsl@default:default"/>
+    </setAttribute>
+    <booleanAttribute key="show_selected_only" value="true"/>
+    <booleanAttribute key="tracing" value="false"/>
+    <booleanAttribute key="useCustomFeatures" value="false"/>
+    <booleanAttribute key="useDefaultConfigArea" value="true"/>
 </launchConfiguration>

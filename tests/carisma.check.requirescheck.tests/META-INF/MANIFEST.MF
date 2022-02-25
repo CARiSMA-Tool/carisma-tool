@@ -3,7 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Tests
 Bundle-SymbolicName: carisma.check.requirescheck.tests;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Fragment-Host: carisma.check.requirescheck;bundle-version="1.0.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: carisma.tests.modelutils.uml;bundle-version="1.0.0",
- org.junit;bundle-version="4.11.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: carisma.tests.modelutils.uml,
+ org.junit;bundle-version="4.11.0",
+ carisma.core,
+ org.eclipse.uml2.uml,
+ carisma.check.requirescheck
+Bundle-ClassPath: .
+Automatic-Module-Name: carisma.check.requirescheck.tests

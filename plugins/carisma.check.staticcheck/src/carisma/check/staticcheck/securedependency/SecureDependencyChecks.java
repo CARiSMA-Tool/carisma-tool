@@ -199,17 +199,16 @@ public final class SecureDependencyChecks {
 
 	private List<String> getRequired(final Classifier classifier, final Collection<String> criticalTags,
 			final Collection<String> provided, final Collection<String> required) {
-		final List<String> sigantures = getMemberSignatures(classifier);
+		final List<String> signatures = getMemberSignatures(classifier);
 
 		for (final String tag : criticalTags) {
 			final String[] names = tag.split("\\.");
 			final int length = names.length;
-			String signature = names[length - 1].replaceAll(" ", "");
-			final String v = ":void";
-			if (signature.toLowerCase().endsWith(v)) {
-				signature = signature.substring(0, signature.length() - v.length());
+			String signature = names[length - 1].replace(" ", "");
+			if (!signature.contains(":")) {
+				signature+=":void";
 			}
-			if (sigantures.contains(signature)) {
+			if (signatures.contains(signature)) {
 				if (length == 1) {
 					provided.add(signature);
 				} else if (names[length - 2].equals(classifier.getName())) {
@@ -279,7 +278,7 @@ public final class SecureDependencyChecks {
 					}
 					description += " for which \"" + client.getName() + "\" does not!";
 					errors.add(new SecureDependencyViolation(description, dependency, client, supplier, set,
-							criticalTag.getSimpleName(), supplier));
+							criticalTag.getSimpleName(), client));
 					this.analysisHost.appendLineToReport("    " + description);
 				} else {
 					final List<String> set = new ArrayList<>(relevantRequired);

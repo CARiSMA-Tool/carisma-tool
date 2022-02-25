@@ -8,5 +8,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: carisma.modeltype.uml2;bundle-version="1.1.2",
  org.junit;bundle-version="4.11.0",
  org.eclipse.uml2.uml,
- carisma.core
+ carisma.core,
+ carisma.profile.umlsec
 Export-Package: carisma.tests.modelutils.uml

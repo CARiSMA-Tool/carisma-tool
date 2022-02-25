@@ -88,7 +88,7 @@ public class FairExchangeCheck implements CarismaCheckWithID {
 		this.stereotype = this.elementWithFairExchange.getAppliedStereotype(fairName);
 		if (this.stereotype == null) {
 			List<Element> stereotypeList = UMLsecUtil.getStereotypedElements(givenModel, UMLsec.FAIR_EXCHANGE);
-			if ((stereotypeList == null) || (stereotypeList.size() < 1)) {
+			if ((stereotypeList == null) || (stereotypeList.isEmpty())) {
 				this.dummyHost.appendLineToReport("No stereotype <<fair-exchange>> applied.");
 				AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.INFO,
 						"No stereotype <<fair-exchange>> applied.");

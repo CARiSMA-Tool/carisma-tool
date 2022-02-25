@@ -247,7 +247,7 @@ litigation.
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.papyrus.editor"/>
       <import feature="org.eclipse.papyrus.sdk.feature" version="1.1.2.201509161440" match="greaterOrEqual"/>
-      <import feature="org.eclipse.papyrus.editor.feature" version="1.1.2.201509161440"/>
+      <import feature="org.eclipse.papyrus.editor.feature" version="1.1.2.201509161440" match="greaterOrEqual"/>
    </requires>
 
    <plugin

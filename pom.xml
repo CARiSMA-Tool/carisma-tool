@@ -81,71 +81,58 @@
     <module>tests/carisma.tests.modelutils.uml</module>
     <module>tests/carisma.umlchange.efficiency.tests</module>
   </modules>
-<properties>
-		<tycho-version>1.2.0</tycho-version>
-	</properties>
-	<repositories>
-		<repository>
-			<id>Eclipse Photon</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/photon</url>
-		</repository>
-		<repository>
-			<id>Eclilpse Photon Orbit</id>
-			<layout>p2</layout>
-			<url>https://download.eclipse.org/tools/orbit/downloads/drops/R20180606145124/repository</url>
-		</repository>
-	</repositories>
+  <properties>
+	<tycho-version>2.5.0</tycho-version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+  <repositories>
+	<repository>
+		<id>Eclipse Latest</id>
+		<layout>p2</layout>
+		<url>http://download.eclipse.org/releases/latest</url>
+	</repository>
+  </repositories>
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-maven-plugin</artifactId>
-        <extensions>true</extensions>
-	<version>${tycho-version}</version>
-      </plugin>
-      <plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>target-platform-configuration</artifactId>
-				<version>${tycho-version}</version>
-          <configuration>
-					<environments>
-						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>x86</arch>
-						</environment>
-						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86</arch>
-						</environment>
-						<environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>macosx</os>
-							<ws>cocoa</ws>
-							<arch>x86_64</arch>
-						</environment>
-					</environments>
-				</configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-surefire-plugin</artifactId>
-        <version>${tycho-version}</version>
-        <configuration>
-          <!--<skipTests>true</skipTests>-->
-        </configuration>
-      </plugin>
+	<plugin>
+		<groupId>org.eclipse.tycho</groupId>
+		<artifactId>tycho-maven-plugin</artifactId>
+		<extensions>true</extensions>
+		<version>${tycho-version}</version>
+	</plugin>
+	<plugin>
+		<groupId>org.eclipse.tycho</groupId>
+		<artifactId>target-platform-configuration</artifactId>
+		<version>${tycho-version}</version>
+	        <configuration>
+			<environments>
+				<environment>
+					<os>linux</os>
+					<ws>gtk</ws>
+					<arch>x86_64</arch>
+				</environment>
+				<environment>
+					<os>win32</os>
+					<ws>win32</ws>
+					<arch>x86_64</arch>
+				</environment>
+				<environment>
+					<os>macosx</os>
+					<ws>cocoa</ws>
+					<arch>x86_64</arch>
+				</environment>
+			</environments>
+		</configuration>
+	</plugin>
+	<plugin>
+		<groupId>org.eclipse.tycho</groupId>
+		<artifactId>tycho-surefire-plugin</artifactId>
+		<version>${tycho-version}</version>
+		<configuration>
+	        	<!--<skipTests>true</skipTests>-->
+		</configuration>
+	</plugin>
     </plugins>
   </build>
 </project>

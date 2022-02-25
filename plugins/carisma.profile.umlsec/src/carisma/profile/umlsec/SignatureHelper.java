@@ -16,12 +16,12 @@ import org.eclipse.uml2.uml.Type;
 
 public class SignatureHelper {
 
-	public static String getQualifiedSignature(Classifier classifier) {
+	public static String getQualifiedSignature(final Classifier classifier) {
 		EObject container = classifier.eContainer();
 		if (container instanceof Model) {
 			return classifier.getName();
 		}
-		Stack<String> names = new Stack<>();
+		final Stack<String> names = new Stack<>();
 		do {
 			if (container instanceof Package) {
 				names.add(".");
@@ -35,7 +35,7 @@ public class SignatureHelper {
 			container = container.eContainer();
 		} while (!(container instanceof Model));
 
-		StringBuilder builder = new StringBuilder();
+		final StringBuilder builder = new StringBuilder();
 		while (!names.isEmpty()) {
 			builder.append(names.pop());
 		}
@@ -43,40 +43,40 @@ public class SignatureHelper {
 		return builder.toString();
 	}
 
-	public static String getQualifiedSignature(Operation operation) {
-		Element owner = operation.getOwner();
+	public static String getQualifiedSignature(final Operation operation) {
+		final Element owner = operation.getOwner();
 		if (owner instanceof Classifier) {
-			Classifier classifier = (Classifier) owner;
-			return getQualifiedSignature(classifier).concat(getSignature(operation));
+			final Classifier classifier = (Classifier) owner;
+			return getQualifiedSignature(classifier).concat(".").concat(getSignature(operation));
 		} else {
 			throw new RuntimeException("unsupported owner: " + owner);
 		}
 	}
-	
-	public static String getQualifiedSignature(Property property) {
-		Element owner = property.getOwner();
+
+	public static String getQualifiedSignature(final Property property) {
+		final Element owner = property.getOwner();
 		if (owner instanceof Classifier) {
-			Classifier classifier = (Classifier) owner;
+			final Classifier classifier = (Classifier) owner;
 			return getQualifiedSignature(classifier).concat(getSignature(property));
 		} else {
 			throw new RuntimeException("unsupported owner: " + owner);
 		}
 	}
 
-	public static String getSignature(Operation operation) {
-		StringBuffer signature = new StringBuffer(operation.getName());
+	public static String getSignature(final Operation operation) {
+		final StringBuffer signature = new StringBuffer(operation.getName());
 		signature.append('(');
-		EList<Parameter> ownedParameters = operation.getOwnedParameters();
+		final EList<Parameter> ownedParameters = operation.getOwnedParameters();
 		if (ownedParameters.size() > 0) {
-			ArrayList<String> params = new ArrayList<String>(ownedParameters.size());
-			for (Parameter p : ownedParameters) {
+			final ArrayList<String> params = new ArrayList<>(ownedParameters.size());
+			for (final Parameter p : ownedParameters) {
 				if (p.equals(operation.getReturnResult())) {
 					continue;
 				}
-				StringBuilder paramBuilder = new StringBuilder();
-//				paramBuilder.append(p.getName());
-//				paramBuilder.append(":");
-				Type type = p.getType();
+				final StringBuilder paramBuilder = new StringBuilder();
+				//				paramBuilder.append(p.getName());
+				//				paramBuilder.append(":");
+				final Type type = p.getType();
 				if (type != null) {
 					paramBuilder.append(p.getType().getName());
 				} else {
@@ -95,11 +95,11 @@ public class SignatureHelper {
 		return signature.toString();
 	}
 
-	public static String getSignature(Property property) {
-		StringBuilder propertyBuilder = new StringBuilder(property.getName());
-		propertyBuilder.append(':');
-		Type type = property.getType();
+	public static String getSignature(final Property property) {
+		final StringBuilder propertyBuilder = new StringBuilder(property.getName());
+		final Type type = property.getType();
 		if (type != null) {
+			propertyBuilder.append(':');
 			propertyBuilder.append(type.getName());
 		}
 		return propertyBuilder.toString();

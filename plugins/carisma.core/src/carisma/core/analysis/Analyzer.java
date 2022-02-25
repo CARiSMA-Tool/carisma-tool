@@ -30,7 +30,6 @@ import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.AnalysisResultStatus;
 import carisma.core.analysis.result.CheckResult;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckDescriptor;
 import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CheckParameterDescriptor;
@@ -44,40 +43,40 @@ import carisma.core.util.Utils;
  */
 public class Analyzer implements AnalysisHost {
 	/**
-	 * 
+	 *
 	 */
 	private AnalysisResult result = null;
 	/**
-	 * 
+	 *
 	 */
 	private CheckResult currentCheckResult = null;
 	/**
-	 * 
+	 *
 	 */
 	private Resource currentModel = null;
 	/**
-	 * 
+	 *
 	 */
 	private String currentModelFilename = "";
 	/**
-	 * 
+	 *
 	 */
 	private Map<String, Object> register = null;
 	/**
-	 * 
+	 *
 	 */
 	private Map<CheckReference, CheckDescriptor> checkDescriptorMapping = null;
 	/**
-	 * 
+	 *
 	 */
 	private CheckDescriptor currentCheckDescriptor = null;
 	/**
-	 * 
+	 *
 	 */
 	private int lastReportSource = 0; //0 = ?,  1 = message,  2 = append
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private UIConnector uiConnector = null;
 
@@ -89,12 +88,12 @@ public class Analyzer implements AnalysisHost {
 	public final String getCurrentModelFilename() {
 		return this.currentModelFilename;
 	}
-	
+
 	/**
 	 * Performs the given analysis.
 	 * @param analysis analysis
 	 */
-	public final void runAnalysis(final Analysis analysis, UIConnector connector) {
+	public final void runAnalysis(final Analysis analysis, final UIConnector connector) {
 		// initialize
 		this.register = new HashMap<>();
 		this.result = new AnalysisResult(analysis);
@@ -102,32 +101,38 @@ public class Analyzer implements AnalysisHost {
 		this.result.setTimestamp(Utils.getISOTimestamp());
 		this.uiConnector = connector;
 		Carisma.getInstance().getAnalysisResults().add(this.result);
-		this.uiConnector.updateView();
-		
-		AnalysisResultStatus status = AnalysisResultStatus.RUNNING;
+		if(this.uiConnector != null) {
+			// If in headless mode, there is no UI
+			this.uiConnector.updateView();
+		}
+
+		var status = AnalysisResultStatus.RUNNING;
 		this.result.setStatus(AnalysisResultStatus.RUNNING);
-		
-		Map<CheckDescriptor, List<String>> failedCheckConditions = checkConditions(analysis);
+
+		final var failedCheckConditions = checkConditions(analysis);
 		if (!failedCheckConditions.isEmpty()) {
 			this.result.setStatus(AnalysisResultStatus.FAIL);
-			this.uiConnector.updateView();
+			if(this.uiConnector != null) {
+				// If in headless mode, there is no UI
+				this.uiConnector.updateView();
+			}
 			Logger.log(LogLevel.ERROR, "Analysis not executed due to missing requirements!");
-			for (Entry<CheckDescriptor, List<String>> entry : failedCheckConditions.entrySet()) {
+			for (final Entry<CheckDescriptor, List<String>> entry : failedCheckConditions.entrySet()) {
 				Logger.log(LogLevel.ERROR, "Check '" + entry.getKey().getName() + "' misses:");
-				for (String preconditionName : entry.getValue()) {
+				for (final String preconditionName : entry.getValue()) {
 					Logger.log(LogLevel.ERROR, "  " + preconditionName);
 				}
 			}
 			//TODO error dialog
 			return;
 		}
-		
+
 		// load model
-		File file = Carisma.getInstance().getModelManager().getFile(analysis.getIFile());
-		try (FileInputStream in = new FileInputStream(file)) {
+		final var file = Carisma.getInstance().getModelManager().getFile(analysis.getIFile());
+		try (var in = new FileInputStream(file)) {
 			this.currentModel = new ResourceSetImpl().createResource(URI.createURI(file.getPath()));
 			this.currentModel.load(in, Collections.EMPTY_MAP);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			this.currentCheckResult = new CheckResult();
 			this.currentCheckResult.setName("ERROR");
 			this.result.addCheckResult(this.currentCheckResult);
@@ -136,44 +141,44 @@ public class Analyzer implements AnalysisHost {
 			this.result.setStatus(AnalysisResultStatus.FAIL);
 			this.uiConnector.updateView();
 			Logger.log(LogLevel.ERROR, "Unable to load model '" + file.getAbsolutePath() + "'", e);
-			String answer[] = {"Ok"};
+			final String answer[] = {"Ok"};
 			this.uiConnector.sendMessage("Error", "Unable to load model '" + file.getAbsolutePath() + "'", StatusType.ERROR, answer, 0);
 			return;
 		}
-		
+
 		this.currentModelFilename = analysis.getIFile().getName();
-		
+
 		// run analysis
-		for (CheckReference checkReference : analysis.getChecks()) {
+		for (final CheckReference checkReference : analysis.getChecks()) {
 			if (!checkReference.isEnabled()) {
 				continue;
 			}
-			CheckDescriptor checkDescriptor = this.checkDescriptorMapping.get(checkReference);
+			final var checkDescriptor = this.checkDescriptorMapping.get(checkReference);
 			if (checkDescriptor == null) {
 				this.result.setStatus(AnalysisResultStatus.FAIL);
 				this.uiConnector.updateView();
 				Logger.log(LogLevel.ERROR, "Descriptor of check '" + checkReference.getCheckID() + "' not found!");
 				return;
 			}
-			
+
 			this.currentCheckDescriptor = checkDescriptor;
-			
+
 			this.currentCheckResult = new CheckResult();
 			this.currentCheckResult.setName(checkDescriptor.getName());
 			this.result.addCheckResult(this.currentCheckResult);
 			this.uiConnector.updateView();
 			this.lastReportSource = 0;
-			this.internalAppendLineToReport("------------------------------------------------------------------------------------");
-			this.internalAppendLineToReport("------------------------------------------------------------------------------------");
-			this.internalAppendLineToReport("Running check : " + this.currentCheckResult.getName());
+			internalAppendLineToReport("------------------------------------------------------------------------------------");
+			internalAppendLineToReport("------------------------------------------------------------------------------------");
+			internalAppendLineToReport("Running check : " + this.currentCheckResult.getName());
 
 			// check preconditions
 			{
-				List<String> missingPreconditions = checkPreconditions(checkDescriptor);
+				final var missingPreconditions = checkPreconditions(checkDescriptor);
 				if (!missingPreconditions.isEmpty()) {
 					internalAppendLineToReport("");
 					internalAppendLineToReport("Preconditions violated! Registry content missing:");
-					for (String f : missingPreconditions) {
+					for (final String f : missingPreconditions) {
 						internalAppendLineToReport("  " + f);
 					}
 					addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
@@ -184,10 +189,10 @@ public class Analyzer implements AnalysisHost {
 				}
 			}
 			// check parameters and create copy for performing the check
-			List<CheckParameterDescriptor> paramDescriptors = new ArrayList<>(checkDescriptor.getParameters());
-			Map<String, CheckParameter> checkParameters = new HashMap<>(checkReference.getParameters().size());
-			
-			for (CheckParameter param : checkReference.getParameters()) {
+			final List<CheckParameterDescriptor> paramDescriptors = new ArrayList<>(checkDescriptor.getParameters());
+			final Map<String, CheckParameter> checkParameters = new HashMap<>(checkReference.getParameters().size());
+
+			for (final CheckParameter param : checkReference.getParameters()) {
 				CheckParameter tmpPara = null;
 				if (param instanceof BooleanParameter) {
 					tmpPara = new BooleanParameter(param.getDescriptor(), ((BooleanParameter) param).getValue());
@@ -206,28 +211,26 @@ public class Analyzer implements AnalysisHost {
 				} else {
 					Logger.log(LogLevel.ERROR, "Unknown parameter type: " + param.getClass().getName());
 				}
-//FIXME: DW-Aufraeumen
+				//FIXME: DW-Aufraeumen
 				if (tmpPara != null) {
 					if (param.isQueryOnDemand()) {
 						tmpPara = this.uiConnector.askParameter(checkDescriptor, tmpPara);
-					} else {
-						if (param instanceof OutputFileParameter) {
-							try { 
-								File newFile = getFileToBeWritten(((OutputFileParameter) param).getValue());
-								tmpPara = new OutputFileParameter(param.getDescriptor(), newFile);
-								this.uiConnector.updateView();
-							} catch (UserAbortedAnalysisException e) {
-								Logger.log(LogLevel.ERROR, "Abort due to user: " + checkReference.getCheckID() 
-										+ " at parameter of type " + param.getDescriptor().getType()
-										+ " (" + ((OutputFileParameter) param).getValue() + ")");
-								this.result.setStatus(AnalysisResultStatus.FAIL);
-								this.uiConnector.updateView();
-								return;
-							}
+					} else if (param instanceof OutputFileParameter) {
+						try {
+							final var newFile = getFileToBeWritten(((OutputFileParameter) param).getValue());
+							tmpPara = new OutputFileParameter(param.getDescriptor(), newFile);
+							this.uiConnector.updateView();
+						} catch (final UserAbortedAnalysisException e) {
+							Logger.log(LogLevel.ERROR, "Abort due to user: " + checkReference.getCheckID()
+							+ " at parameter of type " + param.getDescriptor().getType()
+							+ " (" + ((OutputFileParameter) param).getValue() + ")");
+							this.result.setStatus(AnalysisResultStatus.FAIL);
+							this.uiConnector.updateView();
+							return;
 						}
 					}
 					if (tmpPara instanceof FolderParameter) {
-						File checkFolder = ((FolderParameter) tmpPara).getValue();
+						final var checkFolder = ((FolderParameter) tmpPara).getValue();
 						if (!checkFolder.canRead()) {
 							addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
 									"Folder referenced by parameter '" + param.getDescriptor().getName() + "' does not exist!"));
@@ -241,7 +244,7 @@ public class Analyzer implements AnalysisHost {
 					tmpPara = null;
 				}
 
-				CheckParameterDescriptor pd = param.getDescriptor();
+				final var pd = param.getDescriptor();
 				if (!paramDescriptors.contains(pd)) {
 					Logger.log(LogLevel.ERROR, "Unknown parameter: " + pd.getName() + " (" + pd.getID() + ")");
 				} else {
@@ -249,55 +252,55 @@ public class Analyzer implements AnalysisHost {
 				}
 			}
 			if (!paramDescriptors.isEmpty()) {
-				StringBuffer errorString = new StringBuffer();
-				for (CheckParameterDescriptor pd : paramDescriptors) {
+				final var errorString = new StringBuffer();
+				for (final CheckParameterDescriptor pd : paramDescriptors) {
 					errorString.append(", " + pd.getName() + " (" + pd.getID() + ")");
 				}
 				Logger.log(LogLevel.ERROR, "Parameters undefined: " + errorString.toString());
 			}
-			
-			CarismaCheckWithID check = CheckRegistry.getCheck(checkDescriptor);
 
-			if (!(checkParameters.size() < 1)) {
-				this.internalAppendLineToReport("Parameters:");
+			final var check = CheckRegistry.getCheck(checkDescriptor);
+
+			if ((checkParameters.size() >= 1)) {
+				internalAppendLineToReport("Parameters:");
 			}
-				for (CheckParameter param : checkParameters.values()) {
-						if (param instanceof BooleanParameter) {
-							BooleanParameter para = (BooleanParameter) param;
-							this.internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
-						} else if (param instanceof StringParameter) {
-							StringParameter para = (StringParameter) param;
-							this.internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
-						} else if (param instanceof IntegerParameter) {
-							IntegerParameter para = (IntegerParameter) param;
-							this.internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
-						} else if (param instanceof InputFileParameter) {
-							InputFileParameter para = (InputFileParameter) param;
-							this.internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
-						} else if (param instanceof FolderParameter) {
-							FolderParameter para = (FolderParameter) param;
-							this.internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
-						} else if (param instanceof OutputFileParameter) {
-							OutputFileParameter para = (OutputFileParameter) param;
-							this.internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
-						} else {
-							Logger.log(LogLevel.ERROR, "Unknown parameter type: " + param.getClass().getName());
-						}
+			for (final CheckParameter param : checkParameters.values()) {
+				if (param instanceof BooleanParameter) {
+					final var para = (BooleanParameter) param;
+					internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
+				} else if (param instanceof StringParameter) {
+					final var para = (StringParameter) param;
+					internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
+				} else if (param instanceof IntegerParameter) {
+					final var para = (IntegerParameter) param;
+					internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
+				} else if (param instanceof InputFileParameter) {
+					final var para = (InputFileParameter) param;
+					internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
+				} else if (param instanceof FolderParameter) {
+					final var para = (FolderParameter) param;
+					internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
+				} else if (param instanceof OutputFileParameter) {
+					final var para = (OutputFileParameter) param;
+					internalAppendLineToReport(para.getDescriptor().getName() + " : " + para.getValue());
+				} else {
+					Logger.log(LogLevel.ERROR, "Unknown parameter type: " + param.getClass().getName());
+				}
 			}
-			this.internalAppendLineToReport("------------------------------------------------------------------------------------");
+			internalAppendLineToReport("------------------------------------------------------------------------------------");
 			this.lastReportSource = 0;
 			boolean checkSuccess;
-	
+
 			try {
 				checkSuccess = check.perform(checkParameters, this);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				internalAppendLineToReport("");
 				internalAppendLineToReport("A java error occurred while performing check.");
 				internalAppendLineToReport("Exception: " + e.getClass().getSimpleName() + " - " + e.getMessage());
-				
+
 				internalAppendLineToReport("");
 				internalAppendLineToReport("Stacktrace:");
-				for (StackTraceElement traceElement : e.getStackTrace()) {	
+				for (final StackTraceElement traceElement : e.getStackTrace()) {
 					internalAppendLineToReport(traceElement.toString());
 				}
 				Logger.log(LogLevel.ERROR, e.getMessage(), e);
@@ -306,14 +309,14 @@ public class Analyzer implements AnalysisHost {
 						"A java error occurred while performing check - view report for more information."));
 				checkSuccess = false;
 			}
-			
+
 			// check post conditions
 			if (checkSuccess) {
-				List<String> failed = checkPostconditions(checkDescriptor);
+				final var failed = checkPostconditions(checkDescriptor);
 				if (!failed.isEmpty()) {
 					internalAppendLineToReport("");
 					internalAppendLineToReport("Postconditions violated! Check does not provide registry content:");
-					for (String f : failed) {
+					for (final String f : failed) {
 						internalAppendLineToReport("  " + f);
 					}
 					addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
@@ -330,54 +333,57 @@ public class Analyzer implements AnalysisHost {
 			status = AnalysisResultStatus.SUCCESS;
 		}
 		this.result.setStatus(status);
-		this.uiConnector.updateView();
+		if(this.uiConnector != null) {
+			// If in headless mode, there is no UI
+			this.uiConnector.updateView();
+		}
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param checkDescriptor the Check descriptor
 	 * @return ListString failed
 	 */
 	private List<String> checkPreconditions(final CheckDescriptor checkDescriptor) {
-		ArrayList<String> failed = new ArrayList<>();
-		for (String requiredKey : checkDescriptor.getRequiredKeys()) {
+		final var failed = new ArrayList<String>();
+		for (final String requiredKey : checkDescriptor.getRequiredKeys()) {
 			if (!isRegisterInUse(requiredKey)) {
 				failed.add(requiredKey);
 			}
 		}
 		return failed;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param checkDescriptor the Check descriptor
 	 * @return List<String> failed
 	 */
 	private List<String> checkPostconditions(final CheckDescriptor checkDescriptor) {
-		ArrayList<String> failed = new ArrayList<>();
-		for (String providedKey : checkDescriptor.getProvidedKeys()) {
+		final var failed = new ArrayList<String>();
+		for (final String providedKey : checkDescriptor.getProvidedKeys()) {
 			if (!isRegisterInUse(providedKey)) {
 				failed.add(providedKey);
 			}
 		}
 		return failed;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param analysis the Analysis
 	 * @return Map<CheckDescrpitor, List<String> failed
 	 */
 	private Map<CheckDescriptor, List<String>> checkConditions(final Analysis analysis) {
-		Map<CheckDescriptor, List<String>> failedChecks = new HashMap<>();
+		final Map<CheckDescriptor, List<String>> failedChecks = new HashMap<>();
 		this.checkDescriptorMapping = new HashMap<>();
-		List<String> simulatedRegistry = new ArrayList<>();
-		for (CheckReference check : analysis.getChecks()) {
+		final List<String> simulatedRegistry = new ArrayList<>();
+		for (final CheckReference check : analysis.getChecks()) {
 			if(check.isEnabled()){
-				List<String> missingConditions = new ArrayList<>();
-				CheckDescriptor checkDescriptor = Carisma.getInstance().getCheckRegistry().getCheckDescriptor(check.getCheckID());
+				final List<String> missingConditions = new ArrayList<>();
+				final var checkDescriptor = Carisma.getInstance().getCheckRegistry().getCheckDescriptor(check.getCheckID());
 				this.checkDescriptorMapping.put(check, checkDescriptor);
-				for (String precondition : checkDescriptor.getRequiredKeys()) {
+				for (final String precondition : checkDescriptor.getRequiredKeys()) {
 					if (!simulatedRegistry.contains(precondition) && !missingConditions.contains(precondition)) {
 						missingConditions.add(precondition);
 					}
@@ -385,7 +391,7 @@ public class Analyzer implements AnalysisHost {
 				if (!missingConditions.isEmpty()) {
 					failedChecks.put(checkDescriptor, missingConditions);
 				}
-				for (String providedKey : checkDescriptor.getProvidedKeys()) {
+				for (final String providedKey : checkDescriptor.getProvidedKeys()) {
 					if (!simulatedRegistry.contains(providedKey)) {
 						simulatedRegistry.add(providedKey);
 					}
@@ -394,7 +400,7 @@ public class Analyzer implements AnalysisHost {
 		}
 		return failedChecks;
 	}
-	
+
 
 	@Override
 	public final void addResultMessage(final AnalysisResultMessage detail) {
@@ -413,9 +419,9 @@ public class Analyzer implements AnalysisHost {
 		this.uiConnector.updateView();
 		this.lastReportSource = 1;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param text the message text
 	 */
 	private void internalAppendToReport(final String text) {
@@ -424,7 +430,7 @@ public class Analyzer implements AnalysisHost {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param text the message text
 	 */
 	public final void internalAppendLineToReport(final String text) {
@@ -480,7 +486,7 @@ public class Analyzer implements AnalysisHost {
 
 	/**
 	 * @param registerName the register name7
-	 * @return boolean 
+	 * @return boolean
 	 */
 	@Override
 	public final boolean isRegisterInUse(final String registerName) {
@@ -515,7 +521,7 @@ public class Analyzer implements AnalysisHost {
 
 	@Override
 	public final void displayError(final String message) {
-		this.uiConnector.sendMessage("Error", 
+		this.uiConnector.sendMessage("Error",
 				this.currentCheckDescriptor.getName() + ": " + message,
 				StatusType.ERROR,
 				new String[]{"OK"}, 0);
@@ -523,45 +529,45 @@ public class Analyzer implements AnalysisHost {
 
 	/**
 	 * @param file the file to be checked
-	 * @return if it doesn't exist return the same file back, otherwise 
+	 * @return if it doesn't exist return the same file back, otherwise
 	 * 			ask to overwrite or create new file
-	 * @throws UserAbortedAnalysisException 
+	 * @throws UserAbortedAnalysisException
 	 */
 	@Override
 	public final File getFileToBeWritten(final File file) throws UserAbortedAnalysisException {
-		if (file == null || !file.exists()) {
+		if ((file == null) || !file.exists()) {
 			return file;
 		}
-				
-		int answer = this.uiConnector.sendMessage("", 
-				"File " + file + " already exists. Do you want to overwrite it?", 
-				StatusType.INFO, 
-				new String[]{"OK", "New File", "Cancel"}, 
+
+		final var answer = this.uiConnector.sendMessage("",
+				"File " + file + " already exists. Do you want to overwrite it?",
+				StatusType.INFO,
+				new String[]{"OK", "New File", "Cancel"},
 				0);
 		switch (answer) {
-		case 0: 
+		case 0:
 			return file;
 		case 1:
-			String filepath = Utils.incrementFileNameIfNecessary(file.getAbsolutePath());
-			File tmp = new File(filepath);
+			final var filepath = Utils.incrementFileNameIfNecessary(file.getAbsolutePath());
+			final var tmp = new File(filepath);
 			if (!tmp.getName().equals(file.getName())) {
-				this.uiConnector.sendMessage("File Name", 
+				this.uiConnector.sendMessage("File Name",
 						"Using file '" + tmp.getAbsolutePath() + "' for output.",
 						StatusType.INFO,
 						new String[] {"OK"}, 0);
 			}
-			return new File(filepath);			
+			return new File(filepath);
 			/*FileDialog fDialog = new FileDialog(shell, SWT.SAVE);
 			fDialog.setFileName(file.getPath());
 			fDialog.setOverwrite(true);
 			String selection = fDialog.open();
-			if (selection != null && !selection.isEmpty()) { 
+			if (selection != null && !selection.isEmpty()) {
 				return new File(selection);
-			}*/				
+			}*/
 		default:
 			break;
 		}
-		
+
 		throw new UserAbortedAnalysisException();
 	}
 }
