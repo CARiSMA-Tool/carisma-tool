@@ -7,7 +7,7 @@ Require-Bundle: carisma.evolution,
  carisma.modeltype.uml2,
  carisma.profile.umlchange,
  org.eclipse.emf.ecore,
- org.eclipse.uml2.uml,
+ org.eclipse.uml2.uml;visibility:=reexport,
  carisma.core
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
