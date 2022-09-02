@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Umlsec4ids
+Bundle-SymbolicName: carisma.profile.umlse.umlsec4ids
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: carisma.profile.umlse.umlsec4ids.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: carisma.profile.umlse.umlsec4ids
+Bundle-ActivationPolicy: lazy
