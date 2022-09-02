@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/carisma.profile.umlsec.umlsec4ids/model-gen" modelPluginID="carisma.profile.umlsec.umlsec4ids"
+    modelName="Umlsec4ids" editPluginClass="carisma.profile.umlsec.umlsec4ids.provider.Umlsec4idsEditPlugin"
+    editorPluginClass="carisma.profile.umlsec.umlsec4ids.presentation.Umlsec4idsEditorPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testSuiteClass="carisma.profile.umlsec.umlsec4ids.tests.Umlsec4idsAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true" pluginKey="umlsec4ids.profile">
+  <foreignModel>umlsec4ids.ecore</foreignModel>
+  <genPackages prefix="Umlsec4ids" disposableProviderFactory="true" ecorePackage="umlsec4ids.ecore#/">
+    <genClasses ecoreClass="umlsec4ids.ecore#//basefree">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.ecore#//basefree/base_Node"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

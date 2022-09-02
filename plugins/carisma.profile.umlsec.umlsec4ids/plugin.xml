@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated umlsec4ids.profile -->
+      <package
+            uri="http://www.umlsec.de/profiles/UMLsec/umlsec4ids"
+            class="umlsec4ids.Umlsec4idsPackage"
+            genModel="profile/umlsec4ids.genmodel"/>
+   </extension>
+
+</plugin>
