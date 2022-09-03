@@ -1,44 +1,29 @@
 package carisma.profile.umlsec.umlsec4ids;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
+import carisma.core.Carisma;
+import carisma.core.logging.LogLevel;
+import carisma.core.logging.Logger;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
-
-	// The plug-in ID
-	public static final String PLUGIN_ID = "carisma.profile.umlsec.umlsec4ids"; //$NON-NLS-1$
-
-	// The shared instance
-	private static Activator plugin;
-	
-	/**
-	 * The constructor
-	 */
-	public Activator() {
-	}
+public class Activator implements BundleActivator {
 
 	@Override
 	public void start(BundleContext context) throws Exception {
-		super.start(context);
-		plugin = this;
+		try {
+			Carisma.getInstance().getModelManager().addMapping("umlsec4ids.profile.uml", "platform:/plugin/carisma.profile.umlsec.umlsec4ids/profile/umlsec4ids.profile.uml");
+		} catch (Exception e) {
+			Logger.log(LogLevel.ERROR, "Error while putting profile path to map", e);
+		}
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
-		plugin = null;
-		super.stop(context);
-	}
+		// TODO Auto-generated method stub
 
-	/**
-	 * Returns the shared instance
-	 *
-	 * @return the shared instance
-	 */
-	public static Activator getDefault() {
-		return plugin;
 	}
 
 }
