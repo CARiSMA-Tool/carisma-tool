@@ -46,7 +46,7 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "UMLsecumlsec4ids";
+	String eNS_PREFIX = "umlsec4ids";
 
 	/**
 	 * The singleton instance of the package.
