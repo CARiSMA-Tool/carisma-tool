@@ -48,7 +48,9 @@ public enum UMLsec {
 	IDENTIFIABLE ("identifiable"),
 	GUARDED ("guarded"),
 	CALL ("call"),
-	REQUIRES ("requires");
+	REQUIRES ("requires"),
+	
+	BASEFREE ("basefree");
 	
 	public static final String TAG_CRITICAL_HIGH = "high";
 	public static final String TAG_CRITICAL_SECRECY = "secrecy";
