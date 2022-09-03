@@ -206,7 +206,7 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		  (this,
 		   source,
 		   new String[] {
-			   "originalName", "UMLsecumlsec4ids"
+			   "originalName", "umlsec4ids"
 		   });
 	}
 
