@@ -48,10 +48,7 @@ public enum UMLsec {
 	IDENTIFIABLE ("identifiable"),
 	GUARDED ("guarded"),
 	CALL ("call"),
-	REQUIRES ("requires"),
-	
-	// UMLsec4IDS Stereotypes
-	BASEFREE ("basefree");
+	REQUIRES ("requires");
 	
 	public static final String TAG_CRITICAL_HIGH = "high";
 	public static final String TAG_CRITICAL_SECRECY = "secrecy";
