@@ -1,66 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_8Kno0CrOEe2IEZY6UiCIqg" name="umlsec4ids" URI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" metaclassReference="_zPcvoCu1Ee2kWutoXeotsA">
-  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6M1YgCu1Ee2kWutoXeotsA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YdproCu2Ee2kWutoXeotsA" source="PapyrusVersion">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YdqSsCu2Ee2kWutoXeotsA" key="Version" value="0.0.0"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YdqSsSu2Ee2kWutoXeotsA" key="Comment" value="&lt;undefined>"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YdqSsiu2Ee2kWutoXeotsA" key="Copyright" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YdqSsyu2Ee2kWutoXeotsA" key="Date" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YdqStCu2Ee2kWutoXeotsA" key="Author" value="&lt;undefined>"/>
-    </eAnnotations>
-    <contents xmi:type="ecore:EPackage" xmi:id="_cnf14Cu2Ee2kWutoXeotsA" name="umlsec4ids" nsURI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" nsPrefix="umlsec4ids">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cnzX4Cu2Ee2kWutoXeotsA" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cnzX4Su2Ee2kWutoXeotsA" key="Version" value="0.0.2"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cnz-8Cu2Ee2kWutoXeotsA" key="Comment" value="URI updated"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cnz-8Su2Ee2kWutoXeotsA" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cnz-8iu2Ee2kWutoXeotsA" key="Date" value="2022-09-03"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cnz-8yu2Ee2kWutoXeotsA" key="Author" value="Alexander Peikert"/>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Profile xmi:id="_8Kno0CrOEe2IEZY6UiCIqg" name="umlsec4ids" URI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" metaclassReference="_zPcvoCu1Ee2kWutoXeotsA">
+    <eAnnotations xmi:id="_6M1YgCu1Ee2kWutoXeotsA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <eAnnotations xmi:id="_YdproCu2Ee2kWutoXeotsA" source="PapyrusVersion">
+        <details xmi:id="_YdqSsCu2Ee2kWutoXeotsA" key="Version" value="0.0.0"/>
+        <details xmi:id="_YdqSsSu2Ee2kWutoXeotsA" key="Comment" value="&lt;undefined>"/>
+        <details xmi:id="_YdqSsiu2Ee2kWutoXeotsA" key="Copyright" value=""/>
+        <details xmi:id="_YdqSsyu2Ee2kWutoXeotsA" key="Date" value=""/>
+        <details xmi:id="_YdqStCu2Ee2kWutoXeotsA" key="Author" value="&lt;undefined>"/>
       </eAnnotations>
-      <eClassifiers xmi:type="ecore:EClass" xmi:id="_cnf14Su2Ee2kWutoXeotsA" name="basefree">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cnf14iu2Ee2kWutoXeotsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0K65YCu1Ee2kWutoXeotsA"/>
-        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_cnf14yu2Ee2kWutoXeotsA" name="base_Node" ordered="false">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Node"/>
-        </eStructuralFeatures>
-      </eClassifiers>
-    </contents>
-    <contents xmi:type="ecore:EPackage" xmi:id="_6M2moCu1Ee2kWutoXeotsA" name="umlsec4ids" nsURI="http:///schemas/umlsec4ids/_6MyVMCu1Ee2kWutoXeotsA/0" nsPrefix="umlsec4ids">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6M5C4Cu1Ee2kWutoXeotsA" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6M5C4Su1Ee2kWutoXeotsA" key="Version" value="0.0.1"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6M5C4iu1Ee2kWutoXeotsA" key="Comment" value="&quot;basefree&quot; stereotype added to profile"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6M5C4yu1Ee2kWutoXeotsA" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6M5C5Cu1Ee2kWutoXeotsA" key="Date" value="2022-09-03"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6M5C5Su1Ee2kWutoXeotsA" key="Author" value="Alexander Peikert"/>
-      </eAnnotations>
-      <eClassifiers xmi:type="ecore:EClass" xmi:id="_6M3NsCu1Ee2kWutoXeotsA" name="basefree">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6M3NsSu1Ee2kWutoXeotsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0K65YCu1Ee2kWutoXeotsA"/>
-        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_6M3Nsiu1Ee2kWutoXeotsA" name="base_Node" ordered="false">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Node"/>
-        </eStructuralFeatures>
-      </eClassifiers>
-    </contents>
-  </eAnnotations>
-  <elementImport xmi:type="uml:ElementImport" xmi:id="_zPcvoCu1Ee2kWutoXeotsA" alias="Node">
-    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Node"/>
-  </elementImport>
-  <packageImport xmi:type="uml:PackageImport" xmi:id="_8YUtoCrOEe2IEZY6UiCIqg">
-    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
-  </packageImport>
-  <packageImport xmi:type="uml:PackageImport" xmi:id="_8YXJ4CrOEe2IEZY6UiCIqg">
-    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
-  </packageImport>
-  <packagedElement xmi:type="uml:Stereotype" xmi:id="_0K65YCu1Ee2kWutoXeotsA" name="basefree">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_2VZz8Cu1Ee2kWutoXeotsA" name="base_Node" association="_2VONwCu1Ee2kWutoXeotsA">
-      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Node"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2VZz8Su1Ee2kWutoXeotsA"/>
-    </ownedAttribute>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Extension" xmi:id="_2VONwCu1Ee2kWutoXeotsA" name="E_basefree_Node6" memberEnd="_2VWwoCu1Ee2kWutoXeotsA _2VZz8Cu1Ee2kWutoXeotsA">
-    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_2VWwoCu1Ee2kWutoXeotsA" name="extension_basefree" type="_0K65YCu1Ee2kWutoXeotsA" aggregation="composite" association="_2VONwCu1Ee2kWutoXeotsA"/>
-  </packagedElement>
-  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_8Qkf0CrOEe2IEZY6UiCIqg">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8Qr0kCrOEe2IEZY6UiCIqg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      <contents xmi:type="ecore:EPackage" xmi:id="_ZHa6ACu5Ee2kWutoXeotsA" name="umlsec4ids" nsURI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" nsPrefix="umlsec4ids">
+        <eAnnotations xmi:id="_ZHlSECu5Ee2kWutoXeotsA" source="PapyrusVersion">
+          <details xmi:id="_ZHlSESu5Ee2kWutoXeotsA" key="Version" value="0.0.3"/>
+          <details xmi:id="_ZHlSEiu5Ee2kWutoXeotsA" key="Comment" value="EPackage added"/>
+          <details xmi:id="_ZHlSEyu5Ee2kWutoXeotsA" key="Copyright" value=""/>
+          <details xmi:id="_ZHlSFCu5Ee2kWutoXeotsA" key="Date" value="2022-09-03"/>
+          <details xmi:id="_ZHlSFSu5Ee2kWutoXeotsA" key="Author" value="Alexander Peikert"/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_ZHa6ASu5Ee2kWutoXeotsA" name="basefree">
+          <eAnnotations xmi:id="_ZHa6Aiu5Ee2kWutoXeotsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0K65YCu1Ee2kWutoXeotsA"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ZHa6Ayu5Ee2kWutoXeotsA" name="base_Node" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Node"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_cnf14Cu2Ee2kWutoXeotsA" name="umlsec4ids" nsURI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" nsPrefix="umlsec4ids">
+        <eAnnotations xmi:id="_cnzX4Cu2Ee2kWutoXeotsA" source="PapyrusVersion">
+          <details xmi:id="_cnzX4Su2Ee2kWutoXeotsA" key="Version" value="0.0.2"/>
+          <details xmi:id="_cnz-8Cu2Ee2kWutoXeotsA" key="Comment" value="URI updated"/>
+          <details xmi:id="_cnz-8Su2Ee2kWutoXeotsA" key="Copyright" value=""/>
+          <details xmi:id="_cnz-8iu2Ee2kWutoXeotsA" key="Date" value="2022-09-03"/>
+          <details xmi:id="_cnz-8yu2Ee2kWutoXeotsA" key="Author" value="Alexander Peikert"/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_cnf14Su2Ee2kWutoXeotsA" name="basefree">
+          <eAnnotations xmi:id="_cnf14iu2Ee2kWutoXeotsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0K65YCu1Ee2kWutoXeotsA"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_cnf14yu2Ee2kWutoXeotsA" name="base_Node" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Node"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_6M2moCu1Ee2kWutoXeotsA" name="umlsec4ids" nsURI="http:///schemas/umlsec4ids/_6MyVMCu1Ee2kWutoXeotsA/0" nsPrefix="umlsec4ids">
+        <eAnnotations xmi:id="_6M5C4Cu1Ee2kWutoXeotsA" source="PapyrusVersion">
+          <details xmi:id="_6M5C4Su1Ee2kWutoXeotsA" key="Version" value="0.0.1"/>
+          <details xmi:id="_6M5C4iu1Ee2kWutoXeotsA" key="Comment" value="&quot;basefree&quot; stereotype added to profile"/>
+          <details xmi:id="_6M5C4yu1Ee2kWutoXeotsA" key="Copyright" value=""/>
+          <details xmi:id="_6M5C5Cu1Ee2kWutoXeotsA" key="Date" value="2022-09-03"/>
+          <details xmi:id="_6M5C5Su1Ee2kWutoXeotsA" key="Author" value="Alexander Peikert"/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_6M3NsCu1Ee2kWutoXeotsA" name="basefree">
+          <eAnnotations xmi:id="_6M3NsSu1Ee2kWutoXeotsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0K65YCu1Ee2kWutoXeotsA"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_6M3Nsiu1Ee2kWutoXeotsA" name="base_Node" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Node"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
-  </profileApplication>
-</uml:Profile>
+    <elementImport xmi:id="_zPcvoCu1Ee2kWutoXeotsA" alias="Node">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Node"/>
+    </elementImport>
+    <packageImport xmi:id="_8YUtoCrOEe2IEZY6UiCIqg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_8YXJ4CrOEe2IEZY6UiCIqg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_0K65YCu1Ee2kWutoXeotsA" name="basefree">
+      <ownedAttribute xmi:id="_2VZz8Cu1Ee2kWutoXeotsA" name="base_Node" association="_2VONwCu1Ee2kWutoXeotsA">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Node"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2VZz8Su1Ee2kWutoXeotsA"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_2VONwCu1Ee2kWutoXeotsA" name="E_basefree_Node6" memberEnd="_2VWwoCu1Ee2kWutoXeotsA _2VZz8Cu1Ee2kWutoXeotsA">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_2VWwoCu1Ee2kWutoXeotsA" name="extension_basefree" type="_0K65YCu1Ee2kWutoXeotsA" aggregation="composite" association="_2VONwCu1Ee2kWutoXeotsA"/>
+    </packagedElement>
+    <profileApplication xmi:id="_8Qkf0CrOEe2IEZY6UiCIqg">
+      <eAnnotations xmi:id="_8Qr0kCrOEe2IEZY6UiCIqg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Profile>
+  <Ecore:EPackage xmi:id="_Vhq7UCu5Ee2kWutoXeotsA" base_Package="_8Kno0CrOEe2IEZY6UiCIqg" packageName="umlsec4ids" nsURI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" basePackage="carisma.profile.umlsec"/>
+</xmi:XMI>
