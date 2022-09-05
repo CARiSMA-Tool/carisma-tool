@@ -8,6 +8,9 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-Activator: carisma.profile.umlsec.umlsec4ids.Activator
 Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.uml2.types;visibility:=reexport,
+ org.eclipse.uml2.uml;visibility:=reexport,
  carisma.profile.umlsec;visibility:=reexport,
  carisma.modeltype.uml2,
  carisma.core
