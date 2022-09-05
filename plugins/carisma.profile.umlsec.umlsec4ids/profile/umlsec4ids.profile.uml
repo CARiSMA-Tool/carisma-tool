@@ -9,6 +9,21 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YdqSsyu2Ee2kWutoXeotsA" key="Date" value=""/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YdqStCu2Ee2kWutoXeotsA" key="Author" value="&lt;undefined>"/>
       </eAnnotations>
+      <contents xmi:type="ecore:EPackage" xmi:id="_aBFroC0nEe2kWutoXeotsA" name="umlsec4ids" nsURI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" nsPrefix="umlsec4ids">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aBIu8C0nEe2kWutoXeotsA" source="PapyrusVersion">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aBIu8S0nEe2kWutoXeotsA" key="Version" value="0.0.7"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aBIu8i0nEe2kWutoXeotsA" key="Comment" value="minor changes"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aBIu8y0nEe2kWutoXeotsA" key="Copyright" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aBIu9C0nEe2kWutoXeotsA" key="Date" value="2022-09-05"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aBIu9S0nEe2kWutoXeotsA" key="Author" value="AP"/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_aBFroS0nEe2kWutoXeotsA" name="basefree">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aBFroi0nEe2kWutoXeotsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0K65YCu1Ee2kWutoXeotsA"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_aBFroy0nEe2kWutoXeotsA" name="base_Node" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Node"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
       <contents xmi:type="ecore:EPackage" xmi:id="_QtsZMC0dEe2kWutoXeotsA" name="umlsec4ids" nsURI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" nsPrefix="umlsec4ids">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QtwqoC0dEe2kWutoXeotsA" source="PapyrusVersion">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QtwqoS0dEe2kWutoXeotsA" key="Version" value="0.0.6"/>
