@@ -9,6 +9,36 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YdqSsyu2Ee2kWutoXeotsA" key="Date" value=""/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YdqStCu2Ee2kWutoXeotsA" key="Author" value="&lt;undefined>"/>
       </eAnnotations>
+      <contents xmi:type="ecore:EPackage" xmi:id="_QtsZMC0dEe2kWutoXeotsA" name="umlsec4ids" nsURI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" nsPrefix="umlsec4ids">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QtwqoC0dEe2kWutoXeotsA" source="PapyrusVersion">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QtwqoS0dEe2kWutoXeotsA" key="Version" value="0.0.6"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Qtwqoi0dEe2kWutoXeotsA" key="Comment" value="minor changes"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Qtwqoy0dEe2kWutoXeotsA" key="Copyright" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QtwqpC0dEe2kWutoXeotsA" key="Date" value="2022-09-05"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QtwqpS0dEe2kWutoXeotsA" key="Author" value="Alexander Peikert"/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_QtsZMS0dEe2kWutoXeotsA" name="basefree">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QtsZMi0dEe2kWutoXeotsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0K65YCu1Ee2kWutoXeotsA"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_QtsZMy0dEe2kWutoXeotsA" name="base_Node" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Node"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_eJxZQC0cEe2kWutoXeotsA" name="umlsec4ids" nsURI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" nsPrefix="umlsec4ids">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_eJ4uAC0cEe2kWutoXeotsA" source="PapyrusVersion">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_eJ4uAS0cEe2kWutoXeotsA" key="Version" value="0.0.5"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_eJ4uAi0cEe2kWutoXeotsA" key="Comment" value="minor changes"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_eJ4uAy0cEe2kWutoXeotsA" key="Copyright" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_eJ4uBC0cEe2kWutoXeotsA" key="Date" value="2022-09-05"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_eJ4uBS0cEe2kWutoXeotsA" key="Author" value="Alexander Peikert"/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_eJxZQS0cEe2kWutoXeotsA" name="basefree">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_eJyAUC0cEe2kWutoXeotsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0K65YCu1Ee2kWutoXeotsA"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_eJyAUS0cEe2kWutoXeotsA" name="base_Node" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Node"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
       <contents xmi:type="ecore:EPackage" xmi:id="_i-CH4Cu7Ee2kWutoXeotsA" name="umlsec4ids" nsURI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" nsPrefix="umlsec4ids">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_i-FLMSu7Ee2kWutoXeotsA" source="PapyrusVersion">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_i-FLMiu7Ee2kWutoXeotsA" key="Version" value="0.0.4"/>
@@ -82,7 +112,6 @@
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_0K65YCu1Ee2kWutoXeotsA" name="basefree">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_2VZz8Cu1Ee2kWutoXeotsA" name="base_Node" association="_2VONwCu1Ee2kWutoXeotsA">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Node"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2VZz8Su1Ee2kWutoXeotsA"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_2VONwCu1Ee2kWutoXeotsA" name="E_basefree_Node6" memberEnd="_2VWwoCu1Ee2kWutoXeotsA _2VZz8Cu1Ee2kWutoXeotsA">
@@ -93,12 +122,6 @@
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_e_VdsCu7Ee2kWutoXeotsA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_e_ZIECu7Ee2kWutoXeotsA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="../../carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
     </profileApplication>
   </uml:Profile>
   <Ecore:EPackage xmi:id="_Vhq7UCu5Ee2kWutoXeotsA" base_Package="_8Kno0CrOEe2IEZY6UiCIqg" packageName="umlsec4ids" nsURI="http://www.umlsec.de/profiles/UMLsec/umlsec4ids" basePackage="carisma.profile.umlsec"/>

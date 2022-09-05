@@ -7,11 +7,11 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
     usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
     operationReflection="true" importOrganizing="true" pluginKey="umlsec4ids.profile">
-  <foreignModel>umlsec4ids.ecore</foreignModel>
+  <foreignModel>umlsec4ids.profile.ecore</foreignModel>
   <genPackages prefix="Umlsec4ids" basePackage="carisma.profile.umlsec" disposableProviderFactory="true"
-      ecorePackage="umlsec4ids.ecore#/">
-    <genClasses ecoreClass="umlsec4ids.ecore#//basefree">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.ecore#//basefree/base_Node"/>
+      ecorePackage="umlsec4ids.profile.ecore#/">
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//basefree">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//basefree/base_Node"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
