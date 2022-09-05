@@ -63,6 +63,7 @@ public class lockedstatusImpl extends MinimalEObjectImpl.Container implements lo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public State getBase_State() {
 		if (base_State != null && base_State.eIsProxy()) {
 			InternalEObject oldBase_State = (InternalEObject)base_State;
@@ -89,6 +90,7 @@ public class lockedstatusImpl extends MinimalEObjectImpl.Container implements lo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_State(State newBase_State) {
 		State oldBase_State = base_State;
 		base_State = newBase_State;

@@ -50,7 +50,8 @@ public enum UMLsec {
 	CALL ("call"),
 	REQUIRES ("requires"),
 	
-	BASEFREE ("basefree");
+	BASEFREE ("basefree"),
+	BASE ("base");
 	
 	public static final String TAG_CRITICAL_HIGH = "high";
 	public static final String TAG_CRITICAL_SECRECY = "secrecy";

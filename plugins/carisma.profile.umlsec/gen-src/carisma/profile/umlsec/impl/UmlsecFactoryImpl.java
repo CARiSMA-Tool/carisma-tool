@@ -99,6 +99,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public protectedaction createprotectedaction() {
 		protectedactionImpl protectedaction = new protectedactionImpl();
 		return protectedaction;
@@ -109,6 +110,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public rbac createrbac() {
 		rbacImpl rbac = new rbacImpl();
 		return rbac;
@@ -119,6 +121,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SAPTransaction createSAPTransaction() {
 		SAPTransactionImpl sapTransaction = new SAPTransactionImpl();
 		return sapTransaction;
@@ -129,6 +132,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public allowedusers createallowedusers() {
 		allowedusersImpl allowedusers = new allowedusersImpl();
 		return allowedusers;
@@ -139,6 +143,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public seperationofduty createseperationofduty() {
 		seperationofdutyImpl seperationofduty = new seperationofdutyImpl();
 		return seperationofduty;
@@ -149,6 +154,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public usedby createusedby() {
 		usedbyImpl usedby = new usedbyImpl();
 		return usedby;
@@ -159,6 +165,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public identifiable createidentifiable() {
 		identifiableImpl identifiable = new identifiableImpl();
 		return identifiable;
@@ -169,6 +176,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public securedependency createsecuredependency() {
 		securedependencyImpl securedependency = new securedependencyImpl();
 		return securedependency;
@@ -179,6 +187,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public call createcall() {
 		callImpl call = new callImpl();
 		return call;
@@ -189,6 +198,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public send createsend() {
 		sendImpl send = new sendImpl();
 		return send;
@@ -199,6 +209,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public secrecy createsecrecy() {
 		secrecyImpl secrecy = new secrecyImpl();
 		return secrecy;
@@ -209,6 +220,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public integrity createintegrity() {
 		integrityImpl integrity = new integrityImpl();
 		return integrity;
@@ -219,6 +231,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public high createhigh() {
 		highImpl high = new highImpl();
 		return high;
@@ -229,6 +242,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public encrypted createencrypted() {
 		encryptedImpl encrypted = new encryptedImpl();
 		return encrypted;
@@ -239,6 +253,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public wire createwire() {
 		wireImpl wire = new wireImpl();
 		return wire;
@@ -249,6 +264,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Internet createInternet() {
 		InternetImpl internet = new InternetImpl();
 		return internet;
@@ -259,6 +275,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LAN createLAN() {
 		LANImpl lan = new LANImpl();
 		return lan;
@@ -269,6 +286,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public smartcard createsmartcard() {
 		smartcardImpl smartcard = new smartcardImpl();
 		return smartcard;
@@ -279,6 +297,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public POSdevice createPOSdevice() {
 		POSdeviceImpl poSdevice = new POSdeviceImpl();
 		return poSdevice;
@@ -289,6 +308,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public issuernode createissuernode() {
 		issuernodeImpl issuernode = new issuernodeImpl();
 		return issuernode;
@@ -299,6 +319,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public critical createcritical() {
 		criticalImpl critical = new criticalImpl();
 		return critical;
@@ -309,6 +330,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public datasecurity createdatasecurity() {
 		datasecurityImpl datasecurity = new datasecurityImpl();
 		return datasecurity;
@@ -319,6 +341,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public securelinks createsecurelinks() {
 		securelinksImpl securelinks = new securelinksImpl();
 		return securelinks;
@@ -329,6 +352,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public fairexchange createfairexchange() {
 		fairexchangeImpl fairexchange = new fairexchangeImpl();
 		return fairexchange;
@@ -339,6 +363,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public provable createprovable() {
 		provableImpl provable = new provableImpl();
 		return provable;
@@ -349,6 +374,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public nodownflow createnodownflow() {
 		nodownflowImpl nodownflow = new nodownflowImpl();
 		return nodownflow;
@@ -359,6 +385,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public noupflow createnoupflow() {
 		noupflowImpl noupflow = new noupflowImpl();
 		return noupflow;
@@ -369,6 +396,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public guardedaccess createguardedaccess() {
 		guardedaccessImpl guardedaccess = new guardedaccessImpl();
 		return guardedaccess;
@@ -379,6 +407,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public guarded createguarded() {
 		guardedImpl guarded = new guardedImpl();
 		return guarded;
@@ -389,6 +418,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public authorizedstatus createauthorizedstatus() {
 		authorizedstatusImpl authorizedstatus = new authorizedstatusImpl();
 		return authorizedstatus;
@@ -399,6 +429,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public lockedstatus createlockedstatus() {
 		lockedstatusImpl lockedstatus = new lockedstatusImpl();
 		return lockedstatus;
@@ -409,6 +440,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public requires createrequires() {
 		requiresImpl requires = new requiresImpl();
 		return requires;
@@ -419,6 +451,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public privacy createprivacy() {
 		privacyImpl privacy = new privacyImpl();
 		return privacy;
@@ -429,6 +462,7 @@ public class UmlsecFactoryImpl extends EFactoryImpl implements UmlsecFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UmlsecPackage getUmlsecPackage() {
 		return (UmlsecPackage)getEPackage();
 	}

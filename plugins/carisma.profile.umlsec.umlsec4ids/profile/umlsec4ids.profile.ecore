@@ -9,4 +9,37 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="base">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="trust">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="trustplus">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="dataprovenancetracking">
+    <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details key="originalName" value="Data Provenance Tracking"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="start_action" ordered="false"
+        unique="false" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stop_action" ordered="false"
+        unique="false" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="protected" ordered="false"
+        unique="false" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" ordered="false"
+        unique="false" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clearing_house" ordered="false"
+        unique="false" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="Clearing House"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
 </ecore:EPackage>

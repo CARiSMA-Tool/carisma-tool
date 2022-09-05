@@ -4,8 +4,11 @@ package carisma.profile.umlsec.umlsec4ids.impl;
 
 import carisma.profile.umlsec.umlsec4ids.Umlsec4idsFactory;
 import carisma.profile.umlsec.umlsec4ids.Umlsec4idsPackage;
+import carisma.profile.umlsec.umlsec4ids.base;
 import carisma.profile.umlsec.umlsec4ids.basefree;
 
+import carisma.profile.umlsec.umlsec4ids.trust;
+import carisma.profile.umlsec.umlsec4ids.trustplus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -30,6 +33,27 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	private EClass basefreeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass baseEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass trustEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass trustplusEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -123,6 +147,66 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	@Override
+	public EClass getbase() {
+		return baseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getbase_Base_Node() {
+		return (EReference)baseEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass gettrust() {
+		return trustEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference gettrust_Base_Node() {
+		return (EReference)trustEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass gettrustplus() {
+		return trustplusEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference gettrustplus_Base_Node() {
+		return (EReference)trustplusEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Umlsec4idsFactory getUmlsec4idsFactory() {
 		return (Umlsec4idsFactory)getEFactoryInstance();
 	}
@@ -148,6 +232,15 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		// Create classes and their features
 		basefreeEClass = createEClass(BASEFREE);
 		createEReference(basefreeEClass, BASEFREE__BASE_NODE);
+
+		baseEClass = createEClass(BASE);
+		createEReference(baseEClass, BASE__BASE_NODE);
+
+		trustEClass = createEClass(TRUST);
+		createEReference(trustEClass, TRUST__BASE_NODE);
+
+		trustplusEClass = createEClass(TRUSTPLUS);
+		createEReference(trustplusEClass, TRUSTPLUS__BASE_NODE);
 	}
 
 	/**
@@ -185,6 +278,15 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		// Initialize classes, features, and operations; add parameters
 		initEClass(basefreeEClass, basefree.class, "basefree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getbasefree_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, basefree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(baseEClass, base.class, "base", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getbase_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, base.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(trustEClass, trust.class, "trust", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(gettrust_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, trust.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(trustplusEClass, trustplus.class, "trustplus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(gettrustplus_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, trustplus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

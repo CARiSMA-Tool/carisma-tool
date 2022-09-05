@@ -92,6 +92,7 @@ public class usedbyImpl extends MinimalEObjectImpl.Container implements usedby {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getUser() {
 		if (user == null) {
 			user = new EDataTypeEList<String>(String.class, this, UmlsecPackage.USEDBY__USER);
@@ -104,6 +105,7 @@ public class usedbyImpl extends MinimalEObjectImpl.Container implements usedby {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Action getBase_Action() {
 		if (base_Action != null && base_Action.eIsProxy()) {
 			InternalEObject oldBase_Action = (InternalEObject)base_Action;
@@ -130,6 +132,7 @@ public class usedbyImpl extends MinimalEObjectImpl.Container implements usedby {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Action(Action newBase_Action) {
 		Action oldBase_Action = base_Action;
 		base_Action = newBase_Action;
@@ -142,6 +145,7 @@ public class usedbyImpl extends MinimalEObjectImpl.Container implements usedby {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public State getBase_State() {
 		if (base_State != null && base_State.eIsProxy()) {
 			InternalEObject oldBase_State = (InternalEObject)base_State;
@@ -168,6 +172,7 @@ public class usedbyImpl extends MinimalEObjectImpl.Container implements usedby {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_State(State newBase_State) {
 		State oldBase_State = base_State;
 		base_State = newBase_State;
@@ -266,7 +271,7 @@ public class usedbyImpl extends MinimalEObjectImpl.Container implements usedby {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (user: ");
 		result.append(user);
 		result.append(')');

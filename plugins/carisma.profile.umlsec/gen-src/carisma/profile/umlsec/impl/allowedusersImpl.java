@@ -80,6 +80,7 @@ public class allowedusersImpl extends MinimalEObjectImpl.Container implements al
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Action getBase_Action() {
 		if (base_Action != null && base_Action.eIsProxy()) {
 			InternalEObject oldBase_Action = (InternalEObject)base_Action;
@@ -106,6 +107,7 @@ public class allowedusersImpl extends MinimalEObjectImpl.Container implements al
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Action(Action newBase_Action) {
 		Action oldBase_Action = base_Action;
 		base_Action = newBase_Action;
@@ -118,6 +120,7 @@ public class allowedusersImpl extends MinimalEObjectImpl.Container implements al
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getUsers() {
 		if (users == null) {
 			users = new EDataTypeEList<String>(String.class, this, UmlsecPackage.ALLOWEDUSERS__USERS);
@@ -205,7 +208,7 @@ public class allowedusersImpl extends MinimalEObjectImpl.Container implements al
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (users: ");
 		result.append(users);
 		result.append(')');

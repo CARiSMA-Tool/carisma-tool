@@ -72,6 +72,24 @@ public class Umlsec4idsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case Umlsec4idsPackage.BASE: {
+				base base = (base)theEObject;
+				T result = casebase(base);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Umlsec4idsPackage.TRUST: {
+				trust trust = (trust)theEObject;
+				T result = casetrust(trust);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Umlsec4idsPackage.TRUSTPLUS: {
+				trustplus trustplus = (trustplus)theEObject;
+				T result = casetrustplus(trustplus);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -88,6 +106,51 @@ public class Umlsec4idsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casebasefree(basefree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>base</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>base</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casebase(base object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>trust</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>trust</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casetrust(trust object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>trustplus</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>trustplus</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casetrustplus(trustplus object) {
 		return null;
 	}
 

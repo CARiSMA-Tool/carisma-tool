@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.uml2.types.TypesPackage;
@@ -314,7 +315,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link UmlsecPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -328,11 +329,14 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 		if (isInited) return (UmlsecPackage)EPackage.Registry.INSTANCE.getEPackage(UmlsecPackage.eNS_URI);
 
 		// Obtain or create and register package
-		UmlsecPackageImpl theUmlsecPackage = (UmlsecPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UmlsecPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new UmlsecPackageImpl());
+		Object registeredUmlsecPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		UmlsecPackageImpl theUmlsecPackage = registeredUmlsecPackage instanceof UmlsecPackageImpl ? (UmlsecPackageImpl)registeredUmlsecPackage : new UmlsecPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -344,7 +348,6 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 		// Mark meta-data to indicate it can't be changed
 		theUmlsecPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(UmlsecPackage.eNS_URI, theUmlsecPackage);
 		return theUmlsecPackage;
@@ -355,6 +358,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getprotectedaction() {
 		return protectedactionEClass;
 	}
@@ -364,6 +368,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getprotectedaction_Permission() {
 		return (EAttribute)protectedactionEClass.getEStructuralFeatures().get(0);
 	}
@@ -373,6 +378,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getprotectedaction_Base_Action() {
 		return (EReference)protectedactionEClass.getEStructuralFeatures().get(1);
 	}
@@ -382,6 +388,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getprotectedaction_Base_State() {
 		return (EReference)protectedactionEClass.getEStructuralFeatures().get(2);
 	}
@@ -391,6 +398,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getrbac() {
 		return rbacEClass;
 	}
@@ -400,6 +408,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getrbac_Protectedactions() {
 		return (EReference)rbacEClass.getEStructuralFeatures().get(0);
 	}
@@ -409,6 +418,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getrbac_Role() {
 		return (EAttribute)rbacEClass.getEStructuralFeatures().get(1);
 	}
@@ -418,6 +428,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getrbac_Right() {
 		return (EAttribute)rbacEClass.getEStructuralFeatures().get(2);
 	}
@@ -427,6 +438,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getrbac_Base_Package() {
 		return (EReference)rbacEClass.getEStructuralFeatures().get(3);
 	}
@@ -436,6 +448,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSAPTransaction() {
 		return sapTransactionEClass;
 	}
@@ -445,6 +458,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSAPTransaction_Id() {
 		return (EAttribute)sapTransactionEClass.getEStructuralFeatures().get(0);
 	}
@@ -454,6 +468,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSAPTransaction_Base_Action() {
 		return (EReference)sapTransactionEClass.getEStructuralFeatures().get(1);
 	}
@@ -463,6 +478,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getallowedusers() {
 		return allowedusersEClass;
 	}
@@ -472,6 +488,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getallowedusers_Base_Action() {
 		return (EReference)allowedusersEClass.getEStructuralFeatures().get(0);
 	}
@@ -481,6 +498,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getallowedusers_Users() {
 		return (EAttribute)allowedusersEClass.getEStructuralFeatures().get(1);
 	}
@@ -490,6 +508,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getseperationofduty() {
 		return seperationofdutyEClass;
 	}
@@ -499,6 +518,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getseperationofduty_Base_Action() {
 		return (EReference)seperationofdutyEClass.getEStructuralFeatures().get(0);
 	}
@@ -508,6 +528,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getseperationofduty_Activity() {
 		return (EReference)seperationofdutyEClass.getEStructuralFeatures().get(1);
 	}
@@ -517,6 +538,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getusedby() {
 		return usedbyEClass;
 	}
@@ -526,6 +548,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getusedby_User() {
 		return (EAttribute)usedbyEClass.getEStructuralFeatures().get(0);
 	}
@@ -535,6 +558,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getusedby_Base_Action() {
 		return (EReference)usedbyEClass.getEStructuralFeatures().get(1);
 	}
@@ -544,6 +568,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getusedby_Base_State() {
 		return (EReference)usedbyEClass.getEStructuralFeatures().get(2);
 	}
@@ -553,6 +578,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getidentifiable() {
 		return identifiableEClass;
 	}
@@ -562,6 +588,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getidentifiable_Id() {
 		return (EAttribute)identifiableEClass.getEStructuralFeatures().get(0);
 	}
@@ -571,6 +598,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getidentifiable_Base_Element() {
 		return (EReference)identifiableEClass.getEStructuralFeatures().get(1);
 	}
@@ -580,6 +608,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getsecuredependency() {
 		return securedependencyEClass;
 	}
@@ -589,6 +618,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getsecuredependency_Base_Package() {
 		return (EReference)securedependencyEClass.getEStructuralFeatures().get(0);
 	}
@@ -598,6 +628,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getcall() {
 		return callEClass;
 	}
@@ -607,6 +638,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getcall_Base_Dependency() {
 		return (EReference)callEClass.getEStructuralFeatures().get(0);
 	}
@@ -616,6 +648,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getsend() {
 		return sendEClass;
 	}
@@ -625,6 +658,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getsend_Base_Dependency() {
 		return (EReference)sendEClass.getEStructuralFeatures().get(0);
 	}
@@ -634,6 +668,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getsecrecy() {
 		return secrecyEClass;
 	}
@@ -643,6 +678,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getsecrecy_Base_Dependency() {
 		return (EReference)secrecyEClass.getEStructuralFeatures().get(0);
 	}
@@ -652,6 +688,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getsecrecy_Base_Connector() {
 		return (EReference)secrecyEClass.getEStructuralFeatures().get(1);
 	}
@@ -661,6 +698,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getintegrity() {
 		return integrityEClass;
 	}
@@ -670,6 +708,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getintegrity_Base_Dependency() {
 		return (EReference)integrityEClass.getEStructuralFeatures().get(0);
 	}
@@ -679,6 +718,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getintegrity_Base_Connector() {
 		return (EReference)integrityEClass.getEStructuralFeatures().get(1);
 	}
@@ -688,6 +728,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass gethigh() {
 		return highEClass;
 	}
@@ -697,6 +738,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference gethigh_Base_Dependency() {
 		return (EReference)highEClass.getEStructuralFeatures().get(0);
 	}
@@ -706,6 +748,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference gethigh_Base_Connector() {
 		return (EReference)highEClass.getEStructuralFeatures().get(1);
 	}
@@ -715,6 +758,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getencrypted() {
 		return encryptedEClass;
 	}
@@ -724,6 +768,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getencrypted_Base_CommunicationPath() {
 		return (EReference)encryptedEClass.getEStructuralFeatures().get(0);
 	}
@@ -733,6 +778,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getwire() {
 		return wireEClass;
 	}
@@ -742,6 +788,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getwire_Base_CommunicationPath() {
 		return (EReference)wireEClass.getEStructuralFeatures().get(0);
 	}
@@ -751,6 +798,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInternet() {
 		return internetEClass;
 	}
@@ -760,6 +808,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInternet_Base_CommunicationPath() {
 		return (EReference)internetEClass.getEStructuralFeatures().get(0);
 	}
@@ -769,6 +818,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLAN() {
 		return lanEClass;
 	}
@@ -778,6 +828,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLAN_Base_CommunicationPath() {
 		return (EReference)lanEClass.getEStructuralFeatures().get(0);
 	}
@@ -787,6 +838,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLAN_Base_Node() {
 		return (EReference)lanEClass.getEStructuralFeatures().get(1);
 	}
@@ -796,6 +848,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getsmartcard() {
 		return smartcardEClass;
 	}
@@ -805,6 +858,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getsmartcard_Base_Node() {
 		return (EReference)smartcardEClass.getEStructuralFeatures().get(0);
 	}
@@ -814,6 +868,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPOSdevice() {
 		return poSdeviceEClass;
 	}
@@ -823,6 +878,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPOSdevice_Base_Node() {
 		return (EReference)poSdeviceEClass.getEStructuralFeatures().get(0);
 	}
@@ -832,6 +888,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getissuernode() {
 		return issuernodeEClass;
 	}
@@ -841,6 +898,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getissuernode_Base_Node() {
 		return (EReference)issuernodeEClass.getEStructuralFeatures().get(0);
 	}
@@ -850,6 +908,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getcritical() {
 		return criticalEClass;
 	}
@@ -859,6 +918,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getcritical_Secrecy() {
 		return (EAttribute)criticalEClass.getEStructuralFeatures().get(0);
 	}
@@ -868,6 +928,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getcritical_Integrity() {
 		return (EAttribute)criticalEClass.getEStructuralFeatures().get(1);
 	}
@@ -877,6 +938,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getcritical_High() {
 		return (EAttribute)criticalEClass.getEStructuralFeatures().get(2);
 	}
@@ -886,6 +948,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getcritical_Base_Class() {
 		return (EReference)criticalEClass.getEStructuralFeatures().get(3);
 	}
@@ -895,6 +958,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getcritical_Base_Component() {
 		return (EReference)criticalEClass.getEStructuralFeatures().get(4);
 	}
@@ -904,6 +968,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getcritical_Fresh() {
 		return (EAttribute)criticalEClass.getEStructuralFeatures().get(5);
 	}
@@ -913,6 +978,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getcritical_Authenticity() {
 		return (EAttribute)criticalEClass.getEStructuralFeatures().get(6);
 	}
@@ -922,6 +988,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getcritical_Base_InstanceSpecification() {
 		return (EReference)criticalEClass.getEStructuralFeatures().get(7);
 	}
@@ -931,6 +998,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getcritical_Base_Classifier() {
 		return (EReference)criticalEClass.getEStructuralFeatures().get(8);
 	}
@@ -940,6 +1008,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getcritical_Privacy() {
 		return (EAttribute)criticalEClass.getEStructuralFeatures().get(9);
 	}
@@ -949,6 +1018,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getdatasecurity() {
 		return datasecurityEClass;
 	}
@@ -958,6 +1028,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getdatasecurity_Adversary() {
 		return (EAttribute)datasecurityEClass.getEStructuralFeatures().get(0);
 	}
@@ -967,6 +1038,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getdatasecurity_Base_Package() {
 		return (EReference)datasecurityEClass.getEStructuralFeatures().get(1);
 	}
@@ -976,6 +1048,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getdatasecurity_Authenticity() {
 		return (EAttribute)datasecurityEClass.getEStructuralFeatures().get(2);
 	}
@@ -985,6 +1058,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getdatasecurity_Integrity() {
 		return (EAttribute)datasecurityEClass.getEStructuralFeatures().get(3);
 	}
@@ -994,6 +1068,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getsecurelinks() {
 		return securelinksEClass;
 	}
@@ -1003,6 +1078,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getsecurelinks_Adversary() {
 		return (EAttribute)securelinksEClass.getEStructuralFeatures().get(0);
 	}
@@ -1012,6 +1088,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getsecurelinks_Base_Package() {
 		return (EReference)securelinksEClass.getEStructuralFeatures().get(1);
 	}
@@ -1021,6 +1098,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getfairexchange() {
 		return fairexchangeEClass;
 	}
@@ -1030,6 +1108,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getfairexchange_Start() {
 		return (EReference)fairexchangeEClass.getEStructuralFeatures().get(0);
 	}
@@ -1039,6 +1118,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getfairexchange_Stop() {
 		return (EReference)fairexchangeEClass.getEStructuralFeatures().get(1);
 	}
@@ -1048,6 +1128,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getfairexchange_Adversary() {
 		return (EAttribute)fairexchangeEClass.getEStructuralFeatures().get(2);
 	}
@@ -1057,6 +1138,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getfairexchange_Base_Package() {
 		return (EReference)fairexchangeEClass.getEStructuralFeatures().get(3);
 	}
@@ -1066,6 +1148,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getprovable() {
 		return provableEClass;
 	}
@@ -1075,6 +1158,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getprovable_Action() {
 		return (EAttribute)provableEClass.getEStructuralFeatures().get(0);
 	}
@@ -1084,6 +1168,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getprovable_Adversary() {
 		return (EAttribute)provableEClass.getEStructuralFeatures().get(1);
 	}
@@ -1093,6 +1178,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getprovable_Cert() {
 		return (EAttribute)provableEClass.getEStructuralFeatures().get(2);
 	}
@@ -1102,6 +1188,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getprovable_Base_Package() {
 		return (EReference)provableEClass.getEStructuralFeatures().get(3);
 	}
@@ -1111,6 +1198,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getnodownflow() {
 		return nodownflowEClass;
 	}
@@ -1120,6 +1208,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getnodownflow_Base_Package() {
 		return (EReference)nodownflowEClass.getEStructuralFeatures().get(0);
 	}
@@ -1129,6 +1218,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getnoupflow() {
 		return noupflowEClass;
 	}
@@ -1138,6 +1228,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getnoupflow_Base_Package() {
 		return (EReference)noupflowEClass.getEStructuralFeatures().get(0);
 	}
@@ -1147,6 +1238,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getguardedaccess() {
 		return guardedaccessEClass;
 	}
@@ -1156,6 +1248,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getguardedaccess_Base_Package() {
 		return (EReference)guardedaccessEClass.getEStructuralFeatures().get(0);
 	}
@@ -1165,6 +1258,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getguarded() {
 		return guardedEClass;
 	}
@@ -1174,6 +1268,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getguarded_Base_Classifier() {
 		return (EReference)guardedEClass.getEStructuralFeatures().get(0);
 	}
@@ -1183,6 +1278,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getguarded_Base_InstanceSpecification() {
 		return (EReference)guardedEClass.getEStructuralFeatures().get(1);
 	}
@@ -1192,6 +1288,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getguarded_Guard() {
 		return (EAttribute)guardedEClass.getEStructuralFeatures().get(2);
 	}
@@ -1201,6 +1298,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getauthorizedstatus() {
 		return authorizedstatusEClass;
 	}
@@ -1210,6 +1308,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getauthorizedstatus_Permission() {
 		return (EAttribute)authorizedstatusEClass.getEStructuralFeatures().get(0);
 	}
@@ -1219,6 +1318,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getauthorizedstatus_Base_State() {
 		return (EReference)authorizedstatusEClass.getEStructuralFeatures().get(1);
 	}
@@ -1228,6 +1328,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getlockedstatus() {
 		return lockedstatusEClass;
 	}
@@ -1237,6 +1338,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getlockedstatus_Base_State() {
 		return (EReference)lockedstatusEClass.getEStructuralFeatures().get(0);
 	}
@@ -1246,6 +1348,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getrequires() {
 		return requiresEClass;
 	}
@@ -1255,6 +1358,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getrequires_Base_Action() {
 		return (EReference)requiresEClass.getEStructuralFeatures().get(0);
 	}
@@ -1264,6 +1368,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getrequires_Actions() {
 		return (EReference)requiresEClass.getEStructuralFeatures().get(1);
 	}
@@ -1273,6 +1378,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getprivacy() {
 		return privacyEClass;
 	}
@@ -1282,6 +1388,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getprivacy_Base_Dependency() {
 		return (EReference)privacyEClass.getEStructuralFeatures().get(0);
 	}
@@ -1291,6 +1398,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getprivacy_Base_Connector() {
 		return (EReference)privacyEClass.getEStructuralFeatures().get(1);
 	}
@@ -1300,6 +1408,7 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UmlsecFactory getUmlsecFactory() {
 		return (UmlsecFactory)getEFactoryInstance();
 	}
@@ -1649,120 +1758,120 @@ public class UmlsecPackageImpl extends EPackageImpl implements UmlsecPackage {
 	 * @generated
 	 */
 	protected void createUMLAnnotations() {
-		String source = "http://www.eclipse.org/uml2/2.0.0/UML";	
+		String source = "http://www.eclipse.org/uml2/2.0.0/UML";
 		addAnnotation
-		  (this, 
-		   source, 
+		  (this,
+		   source,
 		   new String[] {
-			 "originalName", "UMLsec"
-		   });	
+			   "originalName", "UMLsec"
+		   });
 		addAnnotation
-		  (protectedactionEClass, 
-		   source, 
+		  (protectedactionEClass,
+		   source,
 		   new String[] {
-			 "originalName", "protected action"
-		   });	
+			   "originalName", "protected action"
+		   });
 		addAnnotation
-		  (getrbac_Protectedactions(), 
-		   source, 
+		  (getrbac_Protectedactions(),
+		   source,
 		   new String[] {
-			 "originalName", "protected actions"
-		   });	
+			   "originalName", "protected actions"
+		   });
 		addAnnotation
-		  (sapTransactionEClass, 
-		   source, 
+		  (sapTransactionEClass,
+		   source,
 		   new String[] {
-			 "originalName", "SAP Transaction"
-		   });	
+			   "originalName", "SAP Transaction"
+		   });
 		addAnnotation
-		  (allowedusersEClass, 
-		   source, 
+		  (allowedusersEClass,
+		   source,
 		   new String[] {
-			 "originalName", "allowed users"
-		   });	
+			   "originalName", "allowed users"
+		   });
 		addAnnotation
-		  (seperationofdutyEClass, 
-		   source, 
+		  (seperationofdutyEClass,
+		   source,
 		   new String[] {
-			 "originalName", "seperation of duty"
-		   });	
+			   "originalName", "seperation of duty"
+		   });
 		addAnnotation
-		  (usedbyEClass, 
-		   source, 
+		  (usedbyEClass,
+		   source,
 		   new String[] {
-			 "originalName", "used-by"
-		   });	
+			   "originalName", "used-by"
+		   });
 		addAnnotation
-		  (securedependencyEClass, 
-		   source, 
+		  (securedependencyEClass,
+		   source,
 		   new String[] {
-			 "originalName", "secure dependency"
-		   });	
+			   "originalName", "secure dependency"
+		   });
 		addAnnotation
-		  (smartcardEClass, 
-		   source, 
+		  (smartcardEClass,
+		   source,
 		   new String[] {
-			 "originalName", "smart card"
-		   });	
+			   "originalName", "smart card"
+		   });
 		addAnnotation
-		  (poSdeviceEClass, 
-		   source, 
+		  (poSdeviceEClass,
+		   source,
 		   new String[] {
-			 "originalName", "POS device"
-		   });	
+			   "originalName", "POS device"
+		   });
 		addAnnotation
-		  (issuernodeEClass, 
-		   source, 
+		  (issuernodeEClass,
+		   source,
 		   new String[] {
-			 "originalName", "issuer node"
-		   });	
+			   "originalName", "issuer node"
+		   });
 		addAnnotation
-		  (datasecurityEClass, 
-		   source, 
+		  (datasecurityEClass,
+		   source,
 		   new String[] {
-			 "originalName", "data security"
-		   });	
+			   "originalName", "data security"
+		   });
 		addAnnotation
-		  (securelinksEClass, 
-		   source, 
+		  (securelinksEClass,
+		   source,
 		   new String[] {
-			 "originalName", "secure links"
-		   });	
+			   "originalName", "secure links"
+		   });
 		addAnnotation
-		  (fairexchangeEClass, 
-		   source, 
+		  (fairexchangeEClass,
+		   source,
 		   new String[] {
-			 "originalName", "fair exchange"
-		   });	
+			   "originalName", "fair exchange"
+		   });
 		addAnnotation
-		  (nodownflowEClass, 
-		   source, 
+		  (nodownflowEClass,
+		   source,
 		   new String[] {
-			 "originalName", "no down-flow"
-		   });	
+			   "originalName", "no down-flow"
+		   });
 		addAnnotation
-		  (noupflowEClass, 
-		   source, 
+		  (noupflowEClass,
+		   source,
 		   new String[] {
-			 "originalName", "no up-flow"
-		   });	
+			   "originalName", "no up-flow"
+		   });
 		addAnnotation
-		  (guardedaccessEClass, 
-		   source, 
+		  (guardedaccessEClass,
+		   source,
 		   new String[] {
-			 "originalName", "guarded access"
-		   });	
+			   "originalName", "guarded access"
+		   });
 		addAnnotation
-		  (authorizedstatusEClass, 
-		   source, 
+		  (authorizedstatusEClass,
+		   source,
 		   new String[] {
-			 "originalName", "authorized-status"
-		   });	
+			   "originalName", "authorized-status"
+		   });
 		addAnnotation
-		  (lockedstatusEClass, 
-		   source, 
+		  (lockedstatusEClass,
+		   source,
 		   new String[] {
-			 "originalName", "locked-status"
+			   "originalName", "locked-status"
 		   });
 	}
 

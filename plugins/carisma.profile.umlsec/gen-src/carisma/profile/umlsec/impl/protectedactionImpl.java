@@ -96,6 +96,7 @@ public class protectedactionImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPermission() {
 		return permission;
 	}
@@ -105,6 +106,7 @@ public class protectedactionImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPermission(String newPermission) {
 		String oldPermission = permission;
 		permission = newPermission;
@@ -117,6 +119,7 @@ public class protectedactionImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Action getBase_Action() {
 		if (base_Action != null && base_Action.eIsProxy()) {
 			InternalEObject oldBase_Action = (InternalEObject)base_Action;
@@ -143,6 +146,7 @@ public class protectedactionImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Action(Action newBase_Action) {
 		Action oldBase_Action = base_Action;
 		base_Action = newBase_Action;
@@ -155,6 +159,7 @@ public class protectedactionImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public State getBase_State() {
 		if (base_State != null && base_State.eIsProxy()) {
 			InternalEObject oldBase_State = (InternalEObject)base_State;
@@ -181,6 +186,7 @@ public class protectedactionImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_State(State newBase_State) {
 		State oldBase_State = base_State;
 		base_State = newBase_State;
@@ -277,7 +283,7 @@ public class protectedactionImpl extends MinimalEObjectImpl.Container implements
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (permission: ");
 		result.append(permission);
 		result.append(')');

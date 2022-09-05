@@ -72,6 +72,18 @@ public class Umlsec4idsAdapterFactory extends AdapterFactoryImpl {
 				return createbasefreeAdapter();
 			}
 			@Override
+			public Adapter casebase(base object) {
+				return createbaseAdapter();
+			}
+			@Override
+			public Adapter casetrust(trust object) {
+				return createtrustAdapter();
+			}
+			@Override
+			public Adapter casetrustplus(trustplus object) {
+				return createtrustplusAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -102,6 +114,48 @@ public class Umlsec4idsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createbasefreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.base <em>base</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.base
+	 * @generated
+	 */
+	public Adapter createbaseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.trust <em>trust</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.trust
+	 * @generated
+	 */
+	public Adapter createtrustAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.trustplus <em>trustplus</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.trustplus
+	 * @generated
+	 */
+	public Adapter createtrustplusAdapter() {
 		return null;
 	}
 
