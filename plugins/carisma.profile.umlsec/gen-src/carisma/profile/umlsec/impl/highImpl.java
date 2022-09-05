@@ -75,6 +75,7 @@ public class highImpl extends MinimalEObjectImpl.Container implements high {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Dependency getBase_Dependency() {
 		if (base_Dependency != null && base_Dependency.eIsProxy()) {
 			InternalEObject oldBase_Dependency = (InternalEObject)base_Dependency;
@@ -101,6 +102,7 @@ public class highImpl extends MinimalEObjectImpl.Container implements high {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Dependency(Dependency newBase_Dependency) {
 		Dependency oldBase_Dependency = base_Dependency;
 		base_Dependency = newBase_Dependency;
@@ -113,6 +115,7 @@ public class highImpl extends MinimalEObjectImpl.Container implements high {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Connector getBase_Connector() {
 		if (base_Connector != null && base_Connector.eIsProxy()) {
 			InternalEObject oldBase_Connector = (InternalEObject)base_Connector;
@@ -139,6 +142,7 @@ public class highImpl extends MinimalEObjectImpl.Container implements high {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Connector(Connector newBase_Connector) {
 		Connector oldBase_Connector = base_Connector;
 		base_Connector = newBase_Connector;

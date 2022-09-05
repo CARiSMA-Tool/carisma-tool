@@ -12,7 +12,7 @@ import org.eclipse.uml2.uml.Action;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * erm?glicht die Zuordnung von Actions zu SAP (siehe trans_id-Tag in DA Milen Ivanov)
+ * erm�glicht die Zuordnung von Actions zu SAP (siehe trans_id-Tag in DA Milen Ivanov)
  * <!-- end-model-doc -->
  *
  * <p>

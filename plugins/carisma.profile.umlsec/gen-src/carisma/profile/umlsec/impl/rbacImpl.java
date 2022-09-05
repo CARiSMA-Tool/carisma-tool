@@ -103,6 +103,7 @@ public class rbacImpl extends MinimalEObjectImpl.Container implements rbac {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Action> getProtectedactions() {
 		if (protectedactions == null) {
 			protectedactions = new EObjectResolvingEList<Action>(Action.class, this, UmlsecPackage.RBAC__PROTECTEDACTIONS);
@@ -140,6 +141,7 @@ public class rbacImpl extends MinimalEObjectImpl.Container implements rbac {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getRole() {
 		if (role == null) {
 			role = new EDataTypeEList<String>(String.class, this, UmlsecPackage.RBAC__ROLE);
@@ -152,6 +154,7 @@ public class rbacImpl extends MinimalEObjectImpl.Container implements rbac {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getRight() {
 		if (right == null) {
 			right = new EDataTypeEList<String>(String.class, this, UmlsecPackage.RBAC__RIGHT);
@@ -164,6 +167,7 @@ public class rbacImpl extends MinimalEObjectImpl.Container implements rbac {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.uml2.uml.Package getBase_Package() {
 		if (base_Package != null && base_Package.eIsProxy()) {
 			InternalEObject oldBase_Package = (InternalEObject)base_Package;
@@ -190,6 +194,7 @@ public class rbacImpl extends MinimalEObjectImpl.Container implements rbac {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Package(org.eclipse.uml2.uml.Package newBase_Package) {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
@@ -299,7 +304,7 @@ public class rbacImpl extends MinimalEObjectImpl.Container implements rbac {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (role: ");
 		result.append(role);
 		result.append(", right: ");

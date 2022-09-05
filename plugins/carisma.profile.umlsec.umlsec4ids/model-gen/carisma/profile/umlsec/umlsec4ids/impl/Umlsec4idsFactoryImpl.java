@@ -57,6 +57,9 @@ public class Umlsec4idsFactoryImpl extends EFactoryImpl implements Umlsec4idsFac
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case Umlsec4idsPackage.BASEFREE: return createbasefree();
+			case Umlsec4idsPackage.BASE: return createbase();
+			case Umlsec4idsPackage.TRUST: return createtrust();
+			case Umlsec4idsPackage.TRUSTPLUS: return createtrustplus();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -71,6 +74,39 @@ public class Umlsec4idsFactoryImpl extends EFactoryImpl implements Umlsec4idsFac
 	public basefree createbasefree() {
 		basefreeImpl basefree = new basefreeImpl();
 		return basefree;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public base createbase() {
+		baseImpl base = new baseImpl();
+		return base;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public trust createtrust() {
+		trustImpl trust = new trustImpl();
+		return trust;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public trustplus createtrustplus() {
+		trustplusImpl trustplus = new trustplusImpl();
+		return trustplus;
 	}
 
 	/**

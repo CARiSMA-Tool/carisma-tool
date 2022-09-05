@@ -82,6 +82,7 @@ public class securelinksImpl extends MinimalEObjectImpl.Container implements sec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAdversary() {
 		return adversary;
 	}
@@ -91,6 +92,7 @@ public class securelinksImpl extends MinimalEObjectImpl.Container implements sec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAdversary(String newAdversary) {
 		String oldAdversary = adversary;
 		adversary = newAdversary;
@@ -103,6 +105,7 @@ public class securelinksImpl extends MinimalEObjectImpl.Container implements sec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.uml2.uml.Package getBase_Package() {
 		if (base_Package != null && base_Package.eIsProxy()) {
 			InternalEObject oldBase_Package = (InternalEObject)base_Package;
@@ -129,6 +132,7 @@ public class securelinksImpl extends MinimalEObjectImpl.Container implements sec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Package(org.eclipse.uml2.uml.Package newBase_Package) {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
@@ -214,7 +218,7 @@ public class securelinksImpl extends MinimalEObjectImpl.Container implements sec
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (adversary: ");
 		result.append(adversary);
 		result.append(')');

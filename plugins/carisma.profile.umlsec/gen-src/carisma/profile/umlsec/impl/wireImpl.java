@@ -63,6 +63,7 @@ public class wireImpl extends MinimalEObjectImpl.Container implements wire {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CommunicationPath getBase_CommunicationPath() {
 		if (base_CommunicationPath != null && base_CommunicationPath.eIsProxy()) {
 			InternalEObject oldBase_CommunicationPath = (InternalEObject)base_CommunicationPath;
@@ -89,6 +90,7 @@ public class wireImpl extends MinimalEObjectImpl.Container implements wire {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_CommunicationPath(CommunicationPath newBase_CommunicationPath) {
 		CommunicationPath oldBase_CommunicationPath = base_CommunicationPath;
 		base_CommunicationPath = newBase_CommunicationPath;

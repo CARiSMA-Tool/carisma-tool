@@ -61,6 +61,7 @@ public class guardedaccessImpl extends MinimalEObjectImpl.Container implements g
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.uml2.uml.Package getBase_Package() {
 		if (base_Package != null && base_Package.eIsProxy()) {
 			InternalEObject oldBase_Package = (InternalEObject)base_Package;
@@ -87,6 +88,7 @@ public class guardedaccessImpl extends MinimalEObjectImpl.Container implements g
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Package(org.eclipse.uml2.uml.Package newBase_Package) {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;

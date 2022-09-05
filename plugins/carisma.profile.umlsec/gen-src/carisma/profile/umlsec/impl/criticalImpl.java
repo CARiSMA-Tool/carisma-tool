@@ -170,6 +170,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getSecrecy() {
 		if (secrecy == null) {
 			secrecy = new EDataTypeEList<String>(String.class, this, UmlsecPackage.CRITICAL__SECRECY);
@@ -182,6 +183,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getIntegrity() {
 		if (integrity == null) {
 			integrity = new EDataTypeEList<String>(String.class, this, UmlsecPackage.CRITICAL__INTEGRITY);
@@ -194,6 +196,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getHigh() {
 		if (high == null) {
 			high = new EDataTypeEList<String>(String.class, this, UmlsecPackage.CRITICAL__HIGH);
@@ -206,6 +209,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.uml2.uml.Class getBase_Class() {
 		if (base_Class != null && base_Class.eIsProxy()) {
 			InternalEObject oldBase_Class = (InternalEObject)base_Class;
@@ -232,6 +236,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
@@ -244,6 +249,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Component getBase_Component() {
 		if (base_Component != null && base_Component.eIsProxy()) {
 			InternalEObject oldBase_Component = (InternalEObject)base_Component;
@@ -270,6 +276,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Component(Component newBase_Component) {
 		Component oldBase_Component = base_Component;
 		base_Component = newBase_Component;
@@ -282,6 +289,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getFresh() {
 		if (fresh == null) {
 			fresh = new EDataTypeEList<String>(String.class, this, UmlsecPackage.CRITICAL__FRESH);
@@ -294,6 +302,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getAuthenticity() {
 		if (authenticity == null) {
 			authenticity = new EDataTypeEList<String>(String.class, this, UmlsecPackage.CRITICAL__AUTHENTICITY);
@@ -306,6 +315,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InstanceSpecification getBase_InstanceSpecification() {
 		if (base_InstanceSpecification != null && base_InstanceSpecification.eIsProxy()) {
 			InternalEObject oldBase_InstanceSpecification = (InternalEObject)base_InstanceSpecification;
@@ -332,6 +342,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_InstanceSpecification(InstanceSpecification newBase_InstanceSpecification) {
 		InstanceSpecification oldBase_InstanceSpecification = base_InstanceSpecification;
 		base_InstanceSpecification = newBase_InstanceSpecification;
@@ -344,6 +355,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Classifier getBase_Classifier() {
 		if (base_Classifier != null && base_Classifier.eIsProxy()) {
 			InternalEObject oldBase_Classifier = (InternalEObject)base_Classifier;
@@ -370,6 +382,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Classifier(Classifier newBase_Classifier) {
 		Classifier oldBase_Classifier = base_Classifier;
 		base_Classifier = newBase_Classifier;
@@ -382,6 +395,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getPrivacy() {
 		if (privacy == null) {
 			privacy = new EDataTypeEList<String>(String.class, this, UmlsecPackage.CRITICAL__PRIVACY);
@@ -557,7 +571,7 @@ public class criticalImpl extends MinimalEObjectImpl.Container implements critic
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (secrecy: ");
 		result.append(secrecy);
 		result.append(", integrity: ");

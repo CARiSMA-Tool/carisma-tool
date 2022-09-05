@@ -31,6 +31,33 @@ public interface Umlsec4idsFactory extends EFactory {
 	basefree createbasefree();
 
 	/**
+	 * Returns a new object of class '<em>base</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>base</em>'.
+	 * @generated
+	 */
+	base createbase();
+
+	/**
+	 * Returns a new object of class '<em>trust</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>trust</em>'.
+	 * @generated
+	 */
+	trust createtrust();
+
+	/**
+	 * Returns a new object of class '<em>trustplus</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>trustplus</em>'.
+	 * @generated
+	 */
+	trustplus createtrustplus();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

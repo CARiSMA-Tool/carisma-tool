@@ -80,6 +80,7 @@ public class seperationofdutyImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Action getBase_Action() {
 		if (base_Action != null && base_Action.eIsProxy()) {
 			InternalEObject oldBase_Action = (InternalEObject)base_Action;
@@ -106,6 +107,7 @@ public class seperationofdutyImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Action(Action newBase_Action) {
 		Action oldBase_Action = base_Action;
 		base_Action = newBase_Action;
@@ -118,6 +120,7 @@ public class seperationofdutyImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Action> getActivity() {
 		if (activity == null) {
 			activity = new EObjectResolvingEList<Action>(Action.class, this, UmlsecPackage.SEPERATIONOFDUTY__ACTIVITY);
