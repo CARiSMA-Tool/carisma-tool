@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-
-<!--
--->
-
 <plugin>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated umlsec4ids.profile -->
       <package
             uri="http://www.umlsec.de/profiles/UMLsec/umlsec4ids"
             class="carisma.profile.umlsec.umlsec4ids.Umlsec4idsPackage"
-            genModel="profile/umlsec4ids.genmodel"/>
+            genModel="profile/umlsec4ids.profile.genmodel"/>
    </extension>
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
@@ -31,7 +26,7 @@
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
-            location="platform:/plugin/carisma.profile.umlsec.umlsec4ids/profile/umlsec4ids.profile.uml#_O-KAkHoREeSmdNy69sdLYA"
+            location="platform:/plugin/carisma.profile.umlsec.umlsec4ids/profile/umlsec4ids.profile.uml#_O-KAkHoREeSmdNy69sdLYAabc"
             uri="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
       </profile>
    </extension>

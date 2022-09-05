@@ -8,14 +8,10 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-Activator: carisma.profile.umlsec.umlsec4ids.Activator
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.uml2.types;visibility:=reexport,
- org.eclipse.uml2.uml;visibility:=reexport,
  carisma.profile.umlsec;visibility:=reexport,
  carisma.modeltype.uml2,
- carisma.core,
- org.eclipse.papyrus.uml.extensionpoints
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+ carisma.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: carisma.profile.umlsec.umlsec4ids,
  carisma.profile.umlsec.umlsec4ids.impl,
  carisma.profile.umlsec.umlsec4ids.util
