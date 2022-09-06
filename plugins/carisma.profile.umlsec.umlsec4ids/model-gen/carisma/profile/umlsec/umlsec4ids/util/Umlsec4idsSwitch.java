@@ -90,6 +90,48 @@ public class Umlsec4idsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case Umlsec4idsPackage.DATAPROVENANCETRACKING: {
+				dataprovenancetracking dataprovenancetracking = (dataprovenancetracking)theEObject;
+				T result = casedataprovenancetracking(dataprovenancetracking);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Umlsec4idsPackage.OWNER: {
+				Owner owner = (Owner)theEObject;
+				T result = caseOwner(owner);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Umlsec4idsPackage.CONSUMER: {
+				Consumer consumer = (Consumer)theEObject;
+				T result = caseConsumer(consumer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Umlsec4idsPackage.X509: {
+				X509 x509 = (X509)theEObject;
+				T result = caseX509(x509);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Umlsec4idsPackage.X509TLS: {
+				X509TLS x509TLS = (X509TLS)theEObject;
+				T result = caseX509TLS(x509TLS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Umlsec4idsPackage.IDSCP: {
+				IDSCP idscp = (IDSCP)theEObject;
+				T result = caseIDSCP(idscp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Umlsec4idsPackage.DATAUSAGECONTROL: {
+				datausagecontrol datausagecontrol = (datausagecontrol)theEObject;
+				T result = casedatausagecontrol(datausagecontrol);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -151,6 +193,111 @@ public class Umlsec4idsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casetrustplus(trustplus object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>dataprovenancetracking</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>dataprovenancetracking</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casedataprovenancetracking(dataprovenancetracking object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Owner</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Owner</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOwner(Owner object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Consumer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Consumer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConsumer(Consumer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>X509</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>X509</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseX509(X509 object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>X509TLS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>X509TLS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseX509TLS(X509TLS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IDSCP</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IDSCP</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIDSCP(IDSCP object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>datausagecontrol</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>datausagecontrol</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casedatausagecontrol(datausagecontrol object) {
 		return null;
 	}
 

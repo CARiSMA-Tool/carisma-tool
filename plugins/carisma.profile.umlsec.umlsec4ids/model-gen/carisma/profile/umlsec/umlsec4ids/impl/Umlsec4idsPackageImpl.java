@@ -2,13 +2,18 @@
  */
 package carisma.profile.umlsec.umlsec4ids.impl;
 
+import carisma.profile.umlsec.umlsec4ids.Consumer;
+import carisma.profile.umlsec.umlsec4ids.Owner;
 import carisma.profile.umlsec.umlsec4ids.Umlsec4idsFactory;
 import carisma.profile.umlsec.umlsec4ids.Umlsec4idsPackage;
 import carisma.profile.umlsec.umlsec4ids.base;
 import carisma.profile.umlsec.umlsec4ids.basefree;
 
+import carisma.profile.umlsec.umlsec4ids.dataprovenancetracking;
+import carisma.profile.umlsec.umlsec4ids.datausagecontrol;
 import carisma.profile.umlsec.umlsec4ids.trust;
 import carisma.profile.umlsec.umlsec4ids.trustplus;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -54,6 +59,55 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	private EClass trustplusEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dataprovenancetrackingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass ownerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass consumerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass x509EClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass x509TLSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass idscpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass datausagecontrolEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -207,6 +261,266 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	@Override
+	public EClass getdataprovenancetracking() {
+		return dataprovenancetrackingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getdataprovenancetracking_Base_Package() {
+		return (EReference)dataprovenancetrackingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getdataprovenancetracking_Start_action() {
+		return (EReference)dataprovenancetrackingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getdataprovenancetracking_Stop_action() {
+		return (EReference)dataprovenancetrackingEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getdataprovenancetracking_Protected() {
+		return (EReference)dataprovenancetrackingEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getdataprovenancetracking_Right() {
+		return (EReference)dataprovenancetrackingEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getdataprovenancetracking_Clearing_house() {
+		return (EReference)dataprovenancetrackingEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getOwner() {
+		return ownerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getOwner_Base_ActivityPartition() {
+		return (EReference)ownerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getOwner_Protected() {
+		return (EReference)ownerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getOwner_Requested_attributes_and_actions() {
+		return (EAttribute)ownerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getConsumer() {
+		return consumerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getConsumer_Base_ActivityPartition() {
+		return (EReference)consumerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getConsumer_Attributes_and_actions() {
+		return (EAttribute)consumerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getX509() {
+		return x509EClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getX509_Base_Node() {
+		return (EReference)x509EClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getX509TLS() {
+		return x509TLSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getX509TLS_Base_Node() {
+		return (EReference)x509TLSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIDSCP() {
+		return idscpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIDSCP_Base_CommunicationPath() {
+		return (EReference)idscpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getdatausagecontrol() {
+		return datausagecontrolEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getdatausagecontrol_Base_ActivityPartition() {
+		return (EReference)datausagecontrolEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getdatausagecontrol_Permission() {
+		return (EReference)datausagecontrolEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getdatausagecontrol_Obligation_start() {
+		return (EReference)datausagecontrolEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getdatausagecontrol_Obligation_stop() {
+		return (EReference)datausagecontrolEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getdatausagecontrol_Prohibition() {
+		return (EReference)datausagecontrolEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Umlsec4idsFactory getUmlsec4idsFactory() {
 		return (Umlsec4idsFactory)getEFactoryInstance();
 	}
@@ -241,6 +555,39 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 
 		trustplusEClass = createEClass(TRUSTPLUS);
 		createEReference(trustplusEClass, TRUSTPLUS__BASE_NODE);
+
+		dataprovenancetrackingEClass = createEClass(DATAPROVENANCETRACKING);
+		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__BASE_PACKAGE);
+		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__START_ACTION);
+		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__STOP_ACTION);
+		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__PROTECTED);
+		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__RIGHT);
+		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__CLEARING_HOUSE);
+
+		ownerEClass = createEClass(OWNER);
+		createEReference(ownerEClass, OWNER__BASE_ACTIVITY_PARTITION);
+		createEReference(ownerEClass, OWNER__PROTECTED);
+		createEAttribute(ownerEClass, OWNER__REQUESTED_ATTRIBUTES_AND_ACTIONS);
+
+		consumerEClass = createEClass(CONSUMER);
+		createEReference(consumerEClass, CONSUMER__BASE_ACTIVITY_PARTITION);
+		createEAttribute(consumerEClass, CONSUMER__ATTRIBUTES_AND_ACTIONS);
+
+		x509EClass = createEClass(X509);
+		createEReference(x509EClass, X509__BASE_NODE);
+
+		x509TLSEClass = createEClass(X509TLS);
+		createEReference(x509TLSEClass, X509TLS__BASE_NODE);
+
+		idscpEClass = createEClass(IDSCP);
+		createEReference(idscpEClass, IDSCP__BASE_COMMUNICATION_PATH);
+
+		datausagecontrolEClass = createEClass(DATAUSAGECONTROL);
+		createEReference(datausagecontrolEClass, DATAUSAGECONTROL__BASE_ACTIVITY_PARTITION);
+		createEReference(datausagecontrolEClass, DATAUSAGECONTROL__PERMISSION);
+		createEReference(datausagecontrolEClass, DATAUSAGECONTROL__OBLIGATION_START);
+		createEReference(datausagecontrolEClass, DATAUSAGECONTROL__OBLIGATION_STOP);
+		createEReference(datausagecontrolEClass, DATAUSAGECONTROL__PROHIBITION);
 	}
 
 	/**
@@ -268,6 +615,7 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 
 		// Obtain other dependent packages
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -287,6 +635,39 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 
 		initEClass(trustplusEClass, trustplus.class, "trustplus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(gettrustplus_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, trustplus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(dataprovenancetrackingEClass, dataprovenancetracking.class, "dataprovenancetracking", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getdataprovenancetracking_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 1, 1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getdataprovenancetracking_Start_action(), theUMLPackage.getAction(), null, "start_action", null, 1, -1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getdataprovenancetracking_Stop_action(), theUMLPackage.getAction(), null, "stop_action", null, 1, -1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getdataprovenancetracking_Protected(), theUMLPackage.getAction(), null, "protected", null, 1, -1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getdataprovenancetracking_Right(), theUMLPackage.getAction(), null, "right", null, 1, -1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getdataprovenancetracking_Clearing_house(), theUMLPackage.getActivityPartition(), null, "clearing_house", null, 1, -1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(ownerEClass, Owner.class, "Owner", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOwner_Base_ActivityPartition(), theUMLPackage.getActivityPartition(), null, "base_ActivityPartition", null, 1, 1, Owner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getOwner_Protected(), theUMLPackage.getAction(), null, "protected", null, 1, -1, Owner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getOwner_Requested_attributes_and_actions(), theTypesPackage.getString(), "requested_attributes_and_actions", null, 1, -1, Owner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(consumerEClass, Consumer.class, "Consumer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConsumer_Base_ActivityPartition(), theUMLPackage.getActivityPartition(), null, "base_ActivityPartition", null, 1, 1, Consumer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getConsumer_Attributes_and_actions(), theTypesPackage.getString(), "attributes_and_actions", null, 1, -1, Consumer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(x509EClass, carisma.profile.umlsec.umlsec4ids.X509.class, "X509", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getX509_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, carisma.profile.umlsec.umlsec4ids.X509.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(x509TLSEClass, carisma.profile.umlsec.umlsec4ids.X509TLS.class, "X509TLS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getX509TLS_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, carisma.profile.umlsec.umlsec4ids.X509TLS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(idscpEClass, carisma.profile.umlsec.umlsec4ids.IDSCP.class, "IDSCP", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIDSCP_Base_CommunicationPath(), theUMLPackage.getCommunicationPath(), null, "base_CommunicationPath", null, 1, 1, carisma.profile.umlsec.umlsec4ids.IDSCP.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(datausagecontrolEClass, datausagecontrol.class, "datausagecontrol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getdatausagecontrol_Base_ActivityPartition(), theUMLPackage.getActivityPartition(), null, "base_ActivityPartition", null, 1, 1, datausagecontrol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getdatausagecontrol_Permission(), theUMLPackage.getAction(), null, "permission", null, 1, -1, datausagecontrol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getdatausagecontrol_Obligation_start(), theUMLPackage.getAction(), null, "obligation_start", null, 1, -1, datausagecontrol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getdatausagecontrol_Obligation_stop(), theUMLPackage.getAction(), null, "obligation_stop", null, 1, -1, datausagecontrol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getdatausagecontrol_Prohibition(), theUMLPackage.getAction(), null, "prohibition", null, 1, -1, datausagecontrol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -309,6 +690,24 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		   source,
 		   new String[] {
 			   "originalName", "umlsec4ids"
+		   });
+		addAnnotation
+		  (dataprovenancetrackingEClass,
+		   source,
+		   new String[] {
+			   "originalName", "Data Provenance Tracking"
+		   });
+		addAnnotation
+		  (getdataprovenancetracking_Clearing_house(),
+		   source,
+		   new String[] {
+			   "originalName", "Clearing House"
+		   });
+		addAnnotation
+		  (datausagecontrolEClass,
+		   source,
+		   new String[] {
+			   "originalName", "Data Usage Control"
 		   });
 	}
 
