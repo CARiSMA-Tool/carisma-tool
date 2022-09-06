@@ -132,6 +132,30 @@ public class Umlsec4idsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case Umlsec4idsPackage.VERIFIED: {
+				verified verified = (verified)theEObject;
+				T result = caseverified(verified);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Umlsec4idsPackage.ISOLATED: {
+				isolated isolated = (isolated)theEObject;
+				T result = caseisolated(isolated);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Umlsec4idsPackage.ENCRYPTION: {
+				encryption encryption = (encryption)theEObject;
+				T result = caseencryption(encryption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Umlsec4idsPackage.CERTIFIED: {
+				certified certified = (certified)theEObject;
+				T result = casecertified(certified);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -298,6 +322,66 @@ public class Umlsec4idsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casedatausagecontrol(datausagecontrol object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>verified</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>verified</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseverified(verified object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>isolated</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>isolated</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseisolated(isolated object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>encryption</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>encryption</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseencryption(encryption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>certified</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>certified</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casecertified(certified object) {
 		return null;
 	}
 

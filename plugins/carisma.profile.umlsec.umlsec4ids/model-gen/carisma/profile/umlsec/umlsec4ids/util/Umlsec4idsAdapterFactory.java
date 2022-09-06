@@ -112,6 +112,22 @@ public class Umlsec4idsAdapterFactory extends AdapterFactoryImpl {
 				return createdatausagecontrolAdapter();
 			}
 			@Override
+			public Adapter caseverified(verified object) {
+				return createverifiedAdapter();
+			}
+			@Override
+			public Adapter caseisolated(isolated object) {
+				return createisolatedAdapter();
+			}
+			@Override
+			public Adapter caseencryption(encryption object) {
+				return createencryptionAdapter();
+			}
+			@Override
+			public Adapter casecertified(certified object) {
+				return createcertifiedAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -282,6 +298,62 @@ public class Umlsec4idsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createdatausagecontrolAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.verified <em>verified</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.verified
+	 * @generated
+	 */
+	public Adapter createverifiedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.isolated <em>isolated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.isolated
+	 * @generated
+	 */
+	public Adapter createisolatedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.encryption <em>encryption</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.encryption
+	 * @generated
+	 */
+	public Adapter createencryptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.certified <em>certified</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.certified
+	 * @generated
+	 */
+	public Adapter createcertifiedAdapter() {
 		return null;
 	}
 

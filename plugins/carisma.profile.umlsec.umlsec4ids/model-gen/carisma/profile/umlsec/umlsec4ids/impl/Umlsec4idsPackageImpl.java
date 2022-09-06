@@ -9,10 +9,14 @@ import carisma.profile.umlsec.umlsec4ids.Umlsec4idsPackage;
 import carisma.profile.umlsec.umlsec4ids.base;
 import carisma.profile.umlsec.umlsec4ids.basefree;
 
+import carisma.profile.umlsec.umlsec4ids.certified;
 import carisma.profile.umlsec.umlsec4ids.dataprovenancetracking;
 import carisma.profile.umlsec.umlsec4ids.datausagecontrol;
+import carisma.profile.umlsec.umlsec4ids.encryption;
+import carisma.profile.umlsec.umlsec4ids.isolated;
 import carisma.profile.umlsec.umlsec4ids.trust;
 import carisma.profile.umlsec.umlsec4ids.trustplus;
+import carisma.profile.umlsec.umlsec4ids.verified;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -108,6 +112,34 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	private EClass datausagecontrolEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass verifiedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass isolatedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass encryptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass certifiedEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -521,6 +553,86 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	@Override
+	public EClass getverified() {
+		return verifiedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getverified_Base_Node() {
+		return (EReference)verifiedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getisolated() {
+		return isolatedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getisolated_Base_Node() {
+		return (EReference)isolatedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getencryption() {
+		return encryptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getencryption_Base_Node() {
+		return (EReference)encryptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getcertified() {
+		return certifiedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getcertified_Base_Node() {
+		return (EReference)certifiedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Umlsec4idsFactory getUmlsec4idsFactory() {
 		return (Umlsec4idsFactory)getEFactoryInstance();
 	}
@@ -588,6 +700,18 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		createEReference(datausagecontrolEClass, DATAUSAGECONTROL__OBLIGATION_START);
 		createEReference(datausagecontrolEClass, DATAUSAGECONTROL__OBLIGATION_STOP);
 		createEReference(datausagecontrolEClass, DATAUSAGECONTROL__PROHIBITION);
+
+		verifiedEClass = createEClass(VERIFIED);
+		createEReference(verifiedEClass, VERIFIED__BASE_NODE);
+
+		isolatedEClass = createEClass(ISOLATED);
+		createEReference(isolatedEClass, ISOLATED__BASE_NODE);
+
+		encryptionEClass = createEClass(ENCRYPTION);
+		createEReference(encryptionEClass, ENCRYPTION__BASE_NODE);
+
+		certifiedEClass = createEClass(CERTIFIED);
+		createEReference(certifiedEClass, CERTIFIED__BASE_NODE);
 	}
 
 	/**
@@ -668,6 +792,18 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		initEReference(getdatausagecontrol_Obligation_start(), theUMLPackage.getAction(), null, "obligation_start", null, 1, -1, datausagecontrol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getdatausagecontrol_Obligation_stop(), theUMLPackage.getAction(), null, "obligation_stop", null, 1, -1, datausagecontrol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getdatausagecontrol_Prohibition(), theUMLPackage.getAction(), null, "prohibition", null, 1, -1, datausagecontrol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(verifiedEClass, verified.class, "verified", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getverified_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, verified.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(isolatedEClass, isolated.class, "isolated", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getisolated_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, isolated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(encryptionEClass, encryption.class, "encryption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getencryption_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, encryption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(certifiedEClass, certified.class, "certified", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getcertified_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, certified.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

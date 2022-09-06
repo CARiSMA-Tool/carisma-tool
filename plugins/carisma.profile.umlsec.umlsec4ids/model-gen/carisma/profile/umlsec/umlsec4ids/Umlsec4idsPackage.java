@@ -577,6 +577,155 @@ public interface Umlsec4idsPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.verifiedImpl <em>verified</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.verifiedImpl
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getverified()
+	 * @generated
+	 */
+	int VERIFIED = 11;
+
+	/**
+	 * The feature id for the '<em><b>Base Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERIFIED__BASE_NODE = 0;
+
+	/**
+	 * The number of structural features of the '<em>verified</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERIFIED_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>verified</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERIFIED_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.isolatedImpl <em>isolated</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.isolatedImpl
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getisolated()
+	 * @generated
+	 */
+	int ISOLATED = 12;
+
+	/**
+	 * The feature id for the '<em><b>Base Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISOLATED__BASE_NODE = 0;
+
+	/**
+	 * The number of structural features of the '<em>isolated</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISOLATED_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>isolated</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISOLATED_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.encryptionImpl <em>encryption</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.encryptionImpl
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getencryption()
+	 * @generated
+	 */
+	int ENCRYPTION = 13;
+
+	/**
+	 * The feature id for the '<em><b>Base Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENCRYPTION__BASE_NODE = 0;
+
+	/**
+	 * The number of structural features of the '<em>encryption</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENCRYPTION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>encryption</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENCRYPTION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.certifiedImpl <em>certified</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.certifiedImpl
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getcertified()
+	 * @generated
+	 */
+	int CERTIFIED = 14;
+
+	/**
+	 * The feature id for the '<em><b>Base Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CERTIFIED__BASE_NODE = 0;
+
+	/**
+	 * The number of structural features of the '<em>certified</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CERTIFIED_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>certified</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CERTIFIED_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.basefree <em>basefree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -940,6 +1089,90 @@ public interface Umlsec4idsPackage extends EPackage {
 	EReference getdatausagecontrol_Prohibition();
 
 	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.verified <em>verified</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>verified</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.verified
+	 * @generated
+	 */
+	EClass getverified();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.verified#getBase_Node <em>Base Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Node</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.verified#getBase_Node()
+	 * @see #getverified()
+	 * @generated
+	 */
+	EReference getverified_Base_Node();
+
+	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.isolated <em>isolated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>isolated</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.isolated
+	 * @generated
+	 */
+	EClass getisolated();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.isolated#getBase_Node <em>Base Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Node</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.isolated#getBase_Node()
+	 * @see #getisolated()
+	 * @generated
+	 */
+	EReference getisolated_Base_Node();
+
+	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.encryption <em>encryption</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>encryption</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.encryption
+	 * @generated
+	 */
+	EClass getencryption();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.encryption#getBase_Node <em>Base Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Node</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.encryption#getBase_Node()
+	 * @see #getencryption()
+	 * @generated
+	 */
+	EReference getencryption_Base_Node();
+
+	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.certified <em>certified</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>certified</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.certified
+	 * @generated
+	 */
+	EClass getcertified();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.certified#getBase_Node <em>Base Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Node</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.certified#getBase_Node()
+	 * @see #getcertified()
+	 * @generated
+	 */
+	EReference getcertified_Base_Node();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1255,6 +1488,78 @@ public interface Umlsec4idsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DATAUSAGECONTROL__PROHIBITION = eINSTANCE.getdatausagecontrol_Prohibition();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.verifiedImpl <em>verified</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.verifiedImpl
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getverified()
+		 * @generated
+		 */
+		EClass VERIFIED = eINSTANCE.getverified();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VERIFIED__BASE_NODE = eINSTANCE.getverified_Base_Node();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.isolatedImpl <em>isolated</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.isolatedImpl
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getisolated()
+		 * @generated
+		 */
+		EClass ISOLATED = eINSTANCE.getisolated();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ISOLATED__BASE_NODE = eINSTANCE.getisolated_Base_Node();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.encryptionImpl <em>encryption</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.encryptionImpl
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getencryption()
+		 * @generated
+		 */
+		EClass ENCRYPTION = eINSTANCE.getencryption();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENCRYPTION__BASE_NODE = eINSTANCE.getencryption_Base_Node();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.certifiedImpl <em>certified</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.certifiedImpl
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getcertified()
+		 * @generated
+		 */
+		EClass CERTIFIED = eINSTANCE.getcertified();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CERTIFIED__BASE_NODE = eINSTANCE.getcertified_Base_Node();
 
 	}
 

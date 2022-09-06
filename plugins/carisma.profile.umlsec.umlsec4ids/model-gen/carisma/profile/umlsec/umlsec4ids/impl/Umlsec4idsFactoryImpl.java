@@ -67,6 +67,10 @@ public class Umlsec4idsFactoryImpl extends EFactoryImpl implements Umlsec4idsFac
 			case Umlsec4idsPackage.X509TLS: return createX509TLS();
 			case Umlsec4idsPackage.IDSCP: return createIDSCP();
 			case Umlsec4idsPackage.DATAUSAGECONTROL: return createdatausagecontrol();
+			case Umlsec4idsPackage.VERIFIED: return createverified();
+			case Umlsec4idsPackage.ISOLATED: return createisolated();
+			case Umlsec4idsPackage.ENCRYPTION: return createencryption();
+			case Umlsec4idsPackage.CERTIFIED: return createcertified();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -191,6 +195,50 @@ public class Umlsec4idsFactoryImpl extends EFactoryImpl implements Umlsec4idsFac
 	public datausagecontrol createdatausagecontrol() {
 		datausagecontrolImpl datausagecontrol = new datausagecontrolImpl();
 		return datausagecontrol;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public verified createverified() {
+		verifiedImpl verified = new verifiedImpl();
+		return verified;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public isolated createisolated() {
+		isolatedImpl isolated = new isolatedImpl();
+		return isolated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public encryption createencryption() {
+		encryptionImpl encryption = new encryptionImpl();
+		return encryption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public certified createcertified() {
+		certifiedImpl certified = new certifiedImpl();
+		return certified;
 	}
 
 	/**

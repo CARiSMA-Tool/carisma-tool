@@ -121,6 +121,42 @@ public interface Umlsec4idsFactory extends EFactory {
 	datausagecontrol createdatausagecontrol();
 
 	/**
+	 * Returns a new object of class '<em>verified</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>verified</em>'.
+	 * @generated
+	 */
+	verified createverified();
+
+	/**
+	 * Returns a new object of class '<em>isolated</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>isolated</em>'.
+	 * @generated
+	 */
+	isolated createisolated();
+
+	/**
+	 * Returns a new object of class '<em>encryption</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>encryption</em>'.
+	 * @generated
+	 */
+	encryption createencryption();
+
+	/**
+	 * Returns a new object of class '<em>certified</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>certified</em>'.
+	 * @generated
+	 */
+	certified createcertified();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
