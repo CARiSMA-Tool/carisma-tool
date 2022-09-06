@@ -55,5 +55,17 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//datausagecontrol/obligation_stop"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//datausagecontrol/prohibition"/>
     </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//verified">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//verified/base_Node"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//isolated">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//isolated/base_Node"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//encryption">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//encryption/base_Node"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//certified">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//certified/base_Node"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

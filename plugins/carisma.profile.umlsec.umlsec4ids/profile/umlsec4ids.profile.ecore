@@ -83,4 +83,20 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="prohibition" ordered="false"
         lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="verified">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="isolated">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="encryption">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="certified">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+  </eClassifiers>
 </ecore:EPackage>
