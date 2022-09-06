@@ -51,7 +51,13 @@ public enum UMLsec {
 	REQUIRES ("requires"),
 	
 	BASEFREE ("basefree"),
-	BASE ("base");
+	BASE ("base"),
+	TRUST ("trust"),
+	TRUSTPLUS ("trustplus"),
+	X509 ("X509"),
+	X509TLS ("X509TLS"),
+	OWNER ("Owner"),
+	CONSUMER ("Consumer");
 	
 	public static final String TAG_CRITICAL_HIGH = "high";
 	public static final String TAG_CRITICAL_SECRECY = "secrecy";

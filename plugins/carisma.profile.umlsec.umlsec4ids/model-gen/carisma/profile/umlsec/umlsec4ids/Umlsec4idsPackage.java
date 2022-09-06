@@ -2,6 +2,7 @@
  */
 package carisma.profile.umlsec.umlsec4ids;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -208,6 +209,374 @@ public interface Umlsec4idsPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.dataprovenancetrackingImpl <em>dataprovenancetracking</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.dataprovenancetrackingImpl
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getdataprovenancetracking()
+	 * @generated
+	 */
+	int DATAPROVENANCETRACKING = 4;
+
+	/**
+	 * The feature id for the '<em><b>Base Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAPROVENANCETRACKING__BASE_PACKAGE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Start action</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAPROVENANCETRACKING__START_ACTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Stop action</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAPROVENANCETRACKING__STOP_ACTION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Protected</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAPROVENANCETRACKING__PROTECTED = 3;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAPROVENANCETRACKING__RIGHT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Clearing house</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAPROVENANCETRACKING__CLEARING_HOUSE = 5;
+
+	/**
+	 * The number of structural features of the '<em>dataprovenancetracking</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAPROVENANCETRACKING_FEATURE_COUNT = 6;
+
+	/**
+	 * The number of operations of the '<em>dataprovenancetracking</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAPROVENANCETRACKING_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.OwnerImpl <em>Owner</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.OwnerImpl
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getOwner()
+	 * @generated
+	 */
+	int OWNER = 5;
+
+	/**
+	 * The feature id for the '<em><b>Base Activity Partition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNER__BASE_ACTIVITY_PARTITION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Protected</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNER__PROTECTED = 1;
+
+	/**
+	 * The feature id for the '<em><b>Requested attributes and actions</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNER__REQUESTED_ATTRIBUTES_AND_ACTIONS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Owner</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNER_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Owner</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNER_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.ConsumerImpl <em>Consumer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.ConsumerImpl
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getConsumer()
+	 * @generated
+	 */
+	int CONSUMER = 6;
+
+	/**
+	 * The feature id for the '<em><b>Base Activity Partition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSUMER__BASE_ACTIVITY_PARTITION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Attributes and actions</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSUMER__ATTRIBUTES_AND_ACTIONS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Consumer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSUMER_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Consumer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSUMER_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.X509Impl <em>X509</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.X509Impl
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getX509()
+	 * @generated
+	 */
+	int X509 = 7;
+
+	/**
+	 * The feature id for the '<em><b>Base Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int X509__BASE_NODE = 0;
+
+	/**
+	 * The number of structural features of the '<em>X509</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int X509_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>X509</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int X509_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.X509TLSImpl <em>X509TLS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.X509TLSImpl
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getX509TLS()
+	 * @generated
+	 */
+	int X509TLS = 8;
+
+	/**
+	 * The feature id for the '<em><b>Base Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int X509TLS__BASE_NODE = 0;
+
+	/**
+	 * The number of structural features of the '<em>X509TLS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int X509TLS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>X509TLS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int X509TLS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.IDSCPImpl <em>IDSCP</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.IDSCPImpl
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getIDSCP()
+	 * @generated
+	 */
+	int IDSCP = 9;
+
+	/**
+	 * The feature id for the '<em><b>Base Communication Path</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDSCP__BASE_COMMUNICATION_PATH = 0;
+
+	/**
+	 * The number of structural features of the '<em>IDSCP</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDSCP_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>IDSCP</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDSCP_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.datausagecontrolImpl <em>datausagecontrol</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.datausagecontrolImpl
+	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getdatausagecontrol()
+	 * @generated
+	 */
+	int DATAUSAGECONTROL = 10;
+
+	/**
+	 * The feature id for the '<em><b>Base Activity Partition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAUSAGECONTROL__BASE_ACTIVITY_PARTITION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Permission</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAUSAGECONTROL__PERMISSION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Obligation start</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAUSAGECONTROL__OBLIGATION_START = 2;
+
+	/**
+	 * The feature id for the '<em><b>Obligation stop</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAUSAGECONTROL__OBLIGATION_STOP = 3;
+
+	/**
+	 * The feature id for the '<em><b>Prohibition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAUSAGECONTROL__PROHIBITION = 4;
+
+	/**
+	 * The number of structural features of the '<em>datausagecontrol</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAUSAGECONTROL_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>datausagecontrol</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAUSAGECONTROL_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.basefree <em>basefree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -290,6 +659,285 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference gettrustplus_Base_Node();
+
+	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking <em>dataprovenancetracking</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>dataprovenancetracking</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking
+	 * @generated
+	 */
+	EClass getdataprovenancetracking();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getBase_Package <em>Base Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Package</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getBase_Package()
+	 * @see #getdataprovenancetracking()
+	 * @generated
+	 */
+	EReference getdataprovenancetracking_Base_Package();
+
+	/**
+	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getStart_action <em>Start action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Start action</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getStart_action()
+	 * @see #getdataprovenancetracking()
+	 * @generated
+	 */
+	EReference getdataprovenancetracking_Start_action();
+
+	/**
+	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getStop_action <em>Stop action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Stop action</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getStop_action()
+	 * @see #getdataprovenancetracking()
+	 * @generated
+	 */
+	EReference getdataprovenancetracking_Stop_action();
+
+	/**
+	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getProtected <em>Protected</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Protected</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getProtected()
+	 * @see #getdataprovenancetracking()
+	 * @generated
+	 */
+	EReference getdataprovenancetracking_Protected();
+
+	/**
+	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Right</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getRight()
+	 * @see #getdataprovenancetracking()
+	 * @generated
+	 */
+	EReference getdataprovenancetracking_Right();
+
+	/**
+	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getClearing_house <em>Clearing house</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Clearing house</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getClearing_house()
+	 * @see #getdataprovenancetracking()
+	 * @generated
+	 */
+	EReference getdataprovenancetracking_Clearing_house();
+
+	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.Owner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Owner</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.Owner
+	 * @generated
+	 */
+	EClass getOwner();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.Owner#getBase_ActivityPartition <em>Base Activity Partition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Activity Partition</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.Owner#getBase_ActivityPartition()
+	 * @see #getOwner()
+	 * @generated
+	 */
+	EReference getOwner_Base_ActivityPartition();
+
+	/**
+	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.Owner#getProtected <em>Protected</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Protected</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.Owner#getProtected()
+	 * @see #getOwner()
+	 * @generated
+	 */
+	EReference getOwner_Protected();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link carisma.profile.umlsec.umlsec4ids.Owner#getRequested_attributes_and_actions <em>Requested attributes and actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Requested attributes and actions</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.Owner#getRequested_attributes_and_actions()
+	 * @see #getOwner()
+	 * @generated
+	 */
+	EAttribute getOwner_Requested_attributes_and_actions();
+
+	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.Consumer <em>Consumer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Consumer</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.Consumer
+	 * @generated
+	 */
+	EClass getConsumer();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.Consumer#getBase_ActivityPartition <em>Base Activity Partition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Activity Partition</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.Consumer#getBase_ActivityPartition()
+	 * @see #getConsumer()
+	 * @generated
+	 */
+	EReference getConsumer_Base_ActivityPartition();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link carisma.profile.umlsec.umlsec4ids.Consumer#getAttributes_and_actions <em>Attributes and actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Attributes and actions</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.Consumer#getAttributes_and_actions()
+	 * @see #getConsumer()
+	 * @generated
+	 */
+	EAttribute getConsumer_Attributes_and_actions();
+
+	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.X509 <em>X509</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>X509</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.X509
+	 * @generated
+	 */
+	EClass getX509();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.X509#getBase_Node <em>Base Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Node</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.X509#getBase_Node()
+	 * @see #getX509()
+	 * @generated
+	 */
+	EReference getX509_Base_Node();
+
+	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.X509TLS <em>X509TLS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>X509TLS</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.X509TLS
+	 * @generated
+	 */
+	EClass getX509TLS();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.X509TLS#getBase_Node <em>Base Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Node</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.X509TLS#getBase_Node()
+	 * @see #getX509TLS()
+	 * @generated
+	 */
+	EReference getX509TLS_Base_Node();
+
+	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.IDSCP <em>IDSCP</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IDSCP</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.IDSCP
+	 * @generated
+	 */
+	EClass getIDSCP();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.IDSCP#getBase_CommunicationPath <em>Base Communication Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Communication Path</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.IDSCP#getBase_CommunicationPath()
+	 * @see #getIDSCP()
+	 * @generated
+	 */
+	EReference getIDSCP_Base_CommunicationPath();
+
+	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.datausagecontrol <em>datausagecontrol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>datausagecontrol</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.datausagecontrol
+	 * @generated
+	 */
+	EClass getdatausagecontrol();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.datausagecontrol#getBase_ActivityPartition <em>Base Activity Partition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Activity Partition</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.datausagecontrol#getBase_ActivityPartition()
+	 * @see #getdatausagecontrol()
+	 * @generated
+	 */
+	EReference getdatausagecontrol_Base_ActivityPartition();
+
+	/**
+	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.datausagecontrol#getPermission <em>Permission</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Permission</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.datausagecontrol#getPermission()
+	 * @see #getdatausagecontrol()
+	 * @generated
+	 */
+	EReference getdatausagecontrol_Permission();
+
+	/**
+	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.datausagecontrol#getObligation_start <em>Obligation start</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Obligation start</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.datausagecontrol#getObligation_start()
+	 * @see #getdatausagecontrol()
+	 * @generated
+	 */
+	EReference getdatausagecontrol_Obligation_start();
+
+	/**
+	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.datausagecontrol#getObligation_stop <em>Obligation stop</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Obligation stop</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.datausagecontrol#getObligation_stop()
+	 * @see #getdatausagecontrol()
+	 * @generated
+	 */
+	EReference getdatausagecontrol_Obligation_stop();
+
+	/**
+	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.datausagecontrol#getProhibition <em>Prohibition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Prohibition</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.datausagecontrol#getProhibition()
+	 * @see #getdatausagecontrol()
+	 * @generated
+	 */
+	EReference getdatausagecontrol_Prohibition();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -385,6 +1033,228 @@ public interface Umlsec4idsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRUSTPLUS__BASE_NODE = eINSTANCE.gettrustplus_Base_Node();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.dataprovenancetrackingImpl <em>dataprovenancetracking</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.dataprovenancetrackingImpl
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getdataprovenancetracking()
+		 * @generated
+		 */
+		EClass DATAPROVENANCETRACKING = eINSTANCE.getdataprovenancetracking();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAPROVENANCETRACKING__BASE_PACKAGE = eINSTANCE.getdataprovenancetracking_Base_Package();
+
+		/**
+		 * The meta object literal for the '<em><b>Start action</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAPROVENANCETRACKING__START_ACTION = eINSTANCE.getdataprovenancetracking_Start_action();
+
+		/**
+		 * The meta object literal for the '<em><b>Stop action</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAPROVENANCETRACKING__STOP_ACTION = eINSTANCE.getdataprovenancetracking_Stop_action();
+
+		/**
+		 * The meta object literal for the '<em><b>Protected</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAPROVENANCETRACKING__PROTECTED = eINSTANCE.getdataprovenancetracking_Protected();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAPROVENANCETRACKING__RIGHT = eINSTANCE.getdataprovenancetracking_Right();
+
+		/**
+		 * The meta object literal for the '<em><b>Clearing house</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAPROVENANCETRACKING__CLEARING_HOUSE = eINSTANCE.getdataprovenancetracking_Clearing_house();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.OwnerImpl <em>Owner</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.OwnerImpl
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getOwner()
+		 * @generated
+		 */
+		EClass OWNER = eINSTANCE.getOwner();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Activity Partition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OWNER__BASE_ACTIVITY_PARTITION = eINSTANCE.getOwner_Base_ActivityPartition();
+
+		/**
+		 * The meta object literal for the '<em><b>Protected</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OWNER__PROTECTED = eINSTANCE.getOwner_Protected();
+
+		/**
+		 * The meta object literal for the '<em><b>Requested attributes and actions</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OWNER__REQUESTED_ATTRIBUTES_AND_ACTIONS = eINSTANCE.getOwner_Requested_attributes_and_actions();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.ConsumerImpl <em>Consumer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.ConsumerImpl
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getConsumer()
+		 * @generated
+		 */
+		EClass CONSUMER = eINSTANCE.getConsumer();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Activity Partition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSUMER__BASE_ACTIVITY_PARTITION = eINSTANCE.getConsumer_Base_ActivityPartition();
+
+		/**
+		 * The meta object literal for the '<em><b>Attributes and actions</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSUMER__ATTRIBUTES_AND_ACTIONS = eINSTANCE.getConsumer_Attributes_and_actions();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.X509Impl <em>X509</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.X509Impl
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getX509()
+		 * @generated
+		 */
+		EClass X509 = eINSTANCE.getX509();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference X509__BASE_NODE = eINSTANCE.getX509_Base_Node();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.X509TLSImpl <em>X509TLS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.X509TLSImpl
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getX509TLS()
+		 * @generated
+		 */
+		EClass X509TLS = eINSTANCE.getX509TLS();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference X509TLS__BASE_NODE = eINSTANCE.getX509TLS_Base_Node();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.IDSCPImpl <em>IDSCP</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.IDSCPImpl
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getIDSCP()
+		 * @generated
+		 */
+		EClass IDSCP = eINSTANCE.getIDSCP();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Communication Path</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IDSCP__BASE_COMMUNICATION_PATH = eINSTANCE.getIDSCP_Base_CommunicationPath();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.datausagecontrolImpl <em>datausagecontrol</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.datausagecontrolImpl
+		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getdatausagecontrol()
+		 * @generated
+		 */
+		EClass DATAUSAGECONTROL = eINSTANCE.getdatausagecontrol();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Activity Partition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAUSAGECONTROL__BASE_ACTIVITY_PARTITION = eINSTANCE.getdatausagecontrol_Base_ActivityPartition();
+
+		/**
+		 * The meta object literal for the '<em><b>Permission</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAUSAGECONTROL__PERMISSION = eINSTANCE.getdatausagecontrol_Permission();
+
+		/**
+		 * The meta object literal for the '<em><b>Obligation start</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAUSAGECONTROL__OBLIGATION_START = eINSTANCE.getdatausagecontrol_Obligation_start();
+
+		/**
+		 * The meta object literal for the '<em><b>Obligation stop</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAUSAGECONTROL__OBLIGATION_STOP = eINSTANCE.getdatausagecontrol_Obligation_stop();
+
+		/**
+		 * The meta object literal for the '<em><b>Prohibition</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAUSAGECONTROL__PROHIBITION = eINSTANCE.getdatausagecontrol_Prohibition();
 
 	}
 

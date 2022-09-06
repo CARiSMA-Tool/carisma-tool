@@ -58,6 +58,69 @@ public interface Umlsec4idsFactory extends EFactory {
 	trustplus createtrustplus();
 
 	/**
+	 * Returns a new object of class '<em>dataprovenancetracking</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>dataprovenancetracking</em>'.
+	 * @generated
+	 */
+	dataprovenancetracking createdataprovenancetracking();
+
+	/**
+	 * Returns a new object of class '<em>Owner</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Owner</em>'.
+	 * @generated
+	 */
+	Owner createOwner();
+
+	/**
+	 * Returns a new object of class '<em>Consumer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Consumer</em>'.
+	 * @generated
+	 */
+	Consumer createConsumer();
+
+	/**
+	 * Returns a new object of class '<em>X509</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>X509</em>'.
+	 * @generated
+	 */
+	X509 createX509();
+
+	/**
+	 * Returns a new object of class '<em>X509TLS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>X509TLS</em>'.
+	 * @generated
+	 */
+	X509TLS createX509TLS();
+
+	/**
+	 * Returns a new object of class '<em>IDSCP</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>IDSCP</em>'.
+	 * @generated
+	 */
+	IDSCP createIDSCP();
+
+	/**
+	 * Returns a new object of class '<em>datausagecontrol</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>datausagecontrol</em>'.
+	 * @generated
+	 */
+	datausagecontrol createdatausagecontrol();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

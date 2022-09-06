@@ -84,6 +84,34 @@ public class Umlsec4idsAdapterFactory extends AdapterFactoryImpl {
 				return createtrustplusAdapter();
 			}
 			@Override
+			public Adapter casedataprovenancetracking(dataprovenancetracking object) {
+				return createdataprovenancetrackingAdapter();
+			}
+			@Override
+			public Adapter caseOwner(Owner object) {
+				return createOwnerAdapter();
+			}
+			@Override
+			public Adapter caseConsumer(Consumer object) {
+				return createConsumerAdapter();
+			}
+			@Override
+			public Adapter caseX509(X509 object) {
+				return createX509Adapter();
+			}
+			@Override
+			public Adapter caseX509TLS(X509TLS object) {
+				return createX509TLSAdapter();
+			}
+			@Override
+			public Adapter caseIDSCP(IDSCP object) {
+				return createIDSCPAdapter();
+			}
+			@Override
+			public Adapter casedatausagecontrol(datausagecontrol object) {
+				return createdatausagecontrolAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -156,6 +184,104 @@ public class Umlsec4idsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createtrustplusAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking <em>dataprovenancetracking</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking
+	 * @generated
+	 */
+	public Adapter createdataprovenancetrackingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.Owner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.Owner
+	 * @generated
+	 */
+	public Adapter createOwnerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.Consumer <em>Consumer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.Consumer
+	 * @generated
+	 */
+	public Adapter createConsumerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.X509 <em>X509</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.X509
+	 * @generated
+	 */
+	public Adapter createX509Adapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.X509TLS <em>X509TLS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.X509TLS
+	 * @generated
+	 */
+	public Adapter createX509TLSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.IDSCP <em>IDSCP</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.IDSCP
+	 * @generated
+	 */
+	public Adapter createIDSCPAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.datausagecontrol <em>datausagecontrol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see carisma.profile.umlsec.umlsec4ids.datausagecontrol
+	 * @generated
+	 */
+	public Adapter createdatausagecontrolAdapter() {
 		return null;
 	}
 
