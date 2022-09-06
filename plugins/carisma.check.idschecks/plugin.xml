@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="carisma.carismacheck">
+      <check
+            id="carisma.check.idscheck.dataaccesscheck"
+            name="UMLsec4ids Data Access Control Check"
+            description="Performs a data access control check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2"
+            implementingClass="carisma.check.idscheck.dataaccesscheck.DataAccessCheck">
+      </check>
+      <check
+            description="Performs a data usage control check"
+            id="carisma.check.idscheck.datausagecheck"
+            implementingClass="carisma.check.idscheck.datausagecheck.DataUsageCheck"
+            name="UMLsec4ids Data Usage Control Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs a identity management check"
+            id="carisma.check.idscheck.identitymanagementcheck"
+            implementingClass="carisma.check.idscheck.identitymanagementcheck.IdentityManagementCheck"
+            name="UMLsec4ids Identity Management Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs a secure communcation check"
+            id="carisma.check.idscheck.securecommunicationcheck"
+            implementingClass="carisma.check.idscheck.securecommunicationcheck.SecureCommunicationCheck"
+            name="UMLsec4ids Secure Communication Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs a trusted platform check"
+            id="carisma.check.idscheck.trustedplatformcheck"
+            implementingClass="carisma.check.idscheck.trustedplatformcheck.TrustedPlatformCheck"
+            name="UMLsec4ids Trusted Platform Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs a data provenance check"
+            id="carisma.check.idscheck.dataprovenancecheck"
+            implementingClass="carisma.check.idschecks.dataprovenancecheck.DataProvenanceCheck"
+            name="UMLsec4ids Data Provenance Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs a trust management check"
+            id="carisma.check.idscheck.trustmanagementcheck"
+            implementingClass="carisma.check.idschecks.trustmanagementcheck.TrustManagementCheck"
+            name="UMLsec4ids Trust Management Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+   </extension>
+  
+</plugin>
