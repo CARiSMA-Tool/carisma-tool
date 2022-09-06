@@ -56,8 +56,11 @@ public enum UMLsec {
 	TRUSTPLUS ("trustplus"),
 	X509 ("X509"),
 	X509TLS ("X509TLS"),
+	IDSCP ("IDSCP"),
 	OWNER ("Owner"),
-	CONSUMER ("Consumer");
+	CONSUMER ("Consumer"),
+	DATAUSAGECONTROL ("Data Usage Control"),
+	DATAPROVENANCETRACKING ("Data Provenance Tracking");
 	
 	public static final String TAG_CRITICAL_HIGH = "high";
 	public static final String TAG_CRITICAL_SECRECY = "secrecy";
