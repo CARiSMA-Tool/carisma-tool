@@ -70,9 +70,11 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
 		ArrayList<Element> x509List = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.X509);
 		ArrayList<Element> x509TLSList = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.X509TLS);
+		//-----------------------------------------------------------------
+		//PrintsOnly
 		System.out.println("-----------x509-----------" + x509List.size());
-		System.out.println("-----------x509TLS--------" + x509List.size());
-		System.out.println("-----------Node-----------" + x509List.size());
+		System.out.println("-----------x509TLS--------" + x509TLSList.size());
+		System.out.println("-----------Node-----------" + nodeList.size());
 		ListIterator<Element>
         iterator = x509List.listIterator();
 		int elemX509 = 0;
@@ -88,6 +90,7 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 	      { 		      
 	          System.out.println("----------------------" + nodeList.get(i)); 		
 	      } 
+		//--------------------------------------------------------------------------
 		if ((x509List.size() < nodeList.size()) && x509TLSList.size() == nodeList.size()) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes miss the <<X509>> Stereotype"));
 			this.analysisHost.appendLineToReport("Nodes miss the <<X509>> Stereotype");
@@ -97,6 +100,12 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 		if ((x509List.size() == nodeList.size()) && x509TLSList.size() < nodeList.size()) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes miss the <<X509TLS>> Stereotype"));
 			this.analysisHost.appendLineToReport("Nodes miss the <<X509TLS>> Stereotype");
+			return false;
+		}
+		
+		if ((x509List.size() < nodeList.size()) && x509TLSList.size() < nodeList.size()) {
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes miss the <<X509TLS>> and <<X509>> Stereotype"));
+			this.analysisHost.appendLineToReport("Nodes miss the <<X509TLS>> and <<X509>> Stereotype");
 			return false;
 		}
 		
