@@ -3,9 +3,12 @@ package carisma.check.idschecks.trustmanagementcheck;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Node;
+import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Package;
 
 import carisma.core.analysis.AnalysisHost;
@@ -62,12 +65,10 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 	
 	private boolean startCheck() {
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
-		ArrayList<Element> basefreeList = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.BASEFREE);
-		ArrayList<Element> baseList = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.BASE);
-		ArrayList<Element> trustList = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.TRUST);
-		ArrayList<Element> trustplusList = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.TRUSTPLUS);
+		ArrayList<CommunicationPath> commPathList = (ArrayList<CommunicationPath>) UMLHelper.getAllElementsOfType(model, CommunicationPath.class);
 		
 		boolean hasOneSecurityProfile = true;
+		boolean noBaseFreeCommunication = true;
 		//Test if Nodes have one Security Profile
 		for (int i = 0; i < nodeList.size(); i++) {			
 			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASEFREE) && (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS))) {
@@ -84,6 +85,7 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<BaseFree>> and <<Trustplus>>");
 				}
 				hasOneSecurityProfile = false;
+				System.out.println("Am 3er Vergleich wird es false");
 			}
 			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE) && (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS))) {
 				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST)) {
@@ -95,23 +97,54 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<Base>> and <<Trustplus>>");
 				}
 				hasOneSecurityProfile = false;
+				System.out.println("Am 3er Vergleich wird es false");
 			}
 			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) && UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<Trust>> and <<Trustplus>>");
 				}
 				hasOneSecurityProfile = false;
+				System.out.println("Am 3er Vergleich wird es false");
 			
 			if ((UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASEFREE) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes have a missing Security Profile"));
 				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " has no Security Profile");
 				}
 	}
-	if (hasOneSecurityProfile == false) {
-		return false;
-	}
+	
 	//------------------------------------------------------------------------------
-	return true;
+	//Checks if there are Rules broken regarding Communication
+	for (int i = 0; i < commPathList.size(); i++) {
+		EList<NamedElement> members = commPathList.get(i).getMembers();
+		String member1 = members.get(0).getName();
+		String member2 = members.get(1).getName();
+		for (int z = 0; z < nodeList.size(); z++) {
+			String member3 = nodeList.get(z).getName().toLowerCase();
+			if (member1.equals(member3)) {
+				if (UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.BASEFREE)) {
+					noBaseFreeCommunication = false;
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Node communicates with Base Free Security Profile"));
+					this.analysisHost.appendLineToReport(member2 + " tries to communicate with a Base Free Security Profile.");
+				}
+			}
+			if (member2.equals(member3)) {System.out.println("Ich vergleiche Member 2 "+member2+" mit Member3 "+member3);
+				if (UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.BASEFREE)) {
+					noBaseFreeCommunication = false;
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Node communicates with Base Free Security Profile"));
+					this.analysisHost.appendLineToReport(member1 + " tries to communicate with a Base Free Security Profile.");
+				}
+			}
+		}
+	}
+	//------------------------------------------------------------
+	System.out.println("Bin an stelle1 hasOneSecurityProfile = "+hasOneSecurityProfile+" und noBaseFreeCommunication = "+noBaseFreeCommunication);
+	if (hasOneSecurityProfile == false || noBaseFreeCommunication == false) {
+		System.out.println("Bin an stelle2");
+		return false;
+	}	else {
+		System.out.println("Bin an stelle3");
+		return true;
+	}
 	
 	}
 	
