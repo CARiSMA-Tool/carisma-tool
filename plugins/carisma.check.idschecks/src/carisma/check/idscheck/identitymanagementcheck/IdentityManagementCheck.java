@@ -1,7 +1,6 @@
 package carisma.check.idscheck.identitymanagementcheck;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
@@ -9,8 +8,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLPackage;
-
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.DummyHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
