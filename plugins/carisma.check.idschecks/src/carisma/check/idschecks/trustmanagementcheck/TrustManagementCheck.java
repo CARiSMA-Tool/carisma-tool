@@ -66,34 +66,51 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 		ArrayList<Element> baseList = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.BASE);
 		ArrayList<Element> trustList = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.TRUST);
 		ArrayList<Element> trustplusList = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.TRUSTPLUS);
-		boolean onlyOneProfile = true;
-		for (int i = 0; i < nodeList.size(); i++) {
-			int profile = 0 ;
-			boolean hasBaseFree = false;
-			boolean hasBase = false;
-			boolean hasTrust = false;
-			boolean hasTrustPlus = false;
-			System.out.println("-------Iteriertes Objekt---------" + nodeList.get(i));
+		
+		boolean hasOneSecurityProfile = true;
+		//Test if Nodes have one Security Profile
+		for (int i = 0; i < nodeList.size(); i++) {			
+			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASEFREE) && (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS))) {
+				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE)) {
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
+					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<BaseFree>> and <<Base>>");
+				}
+				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST)) {
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
+					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<BaseFree>> and <<Trust>>");
+				}
+				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) {
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
+					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<BaseFree>> and <<Trustplus>>");
+				}
+				hasOneSecurityProfile = false;
+			}
+			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE) && (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS))) {
+				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST)) {
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
+					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<Base>> and <<Trust>>");
+				}
+				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) {
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
+					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<Base>> and <<Trustplus>>");
+				}
+				hasOneSecurityProfile = false;
+			}
+			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) && UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) {
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
+					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<Trust>> and <<Trustplus>>");
+				}
+				hasOneSecurityProfile = false;
 			
-			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASEFREE) == true) {
-				hasBaseFree = true;
-			}
-			/*
-			if (hasStereotype(nodeList[i], UMLsec.BASE) == true) {
-				hasBase = true;
-			}
-			
-			if (hasStereotype(nodeList[i], UMLsec.TRUST) == true) {
-				hasTrust = true;
-			}
-			
-			if (hasStereotype(nodeList[i], UMLsec.TRUSTPLUS) == true) {
-				hasTrustPlus = true;
-			}
-		}
-			 */
-			System.out.println("--------------Iteriertes Objekt hat BASEFREE Stereotype-----------" + hasBaseFree);
-		}
+			if ((UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASEFREE) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) == false) {
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes have a missing Security Profile"));
+				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " has no Security Profile");
+				}
+	}
+	if (hasOneSecurityProfile == false) {
+		return false;
+	}
+	//------------------------------------------------------------------------------
 	return true;
 	
 	}
