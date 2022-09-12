@@ -115,13 +115,12 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 		EList<NamedElement> communicationMembers = commPathList.get(i).getMembers();
 		String communicationMember1 = communicationMembers.get(0).getName();
 		String communicationMember2 = communicationMembers.get(1).getName();
-		//String currentNode2 = null;
 		System.out.println(communicationMember1 + "----comMember1  " + communicationMember2 + "-----comMember2");
 		for (int z = 0; z < nodeList.size(); z++) {
 			String currentNode1 = nodeList.get(z).getName().toLowerCase();
+			String currentNode2 = null;
 			
 			
-			/*
 			if (z+1 < nodeList.size()) {
 				currentNode2 = nodeList.get(z+1).getName().toLowerCase();
 				}
@@ -144,10 +143,10 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 					this.analysisHost.appendLineToReport(nodeList.get(z+1).getName() + " has Trust+ Profile and tries to communicate with a Base Free Security Profile.");
 				}
 			}
-			*/
 			
 			
 			
+			/*
 			if (communicationMember1.equals(currentNode1)) {
 				if (UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.BASEFREE)) {
 					noBaseFreeCommunication = false;
@@ -162,6 +161,7 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 					this.analysisHost.appendLineToReport(communicationMember1 + " tries to communicate with a Base Free Security Profile.");
 				}
 			}
+			*/
 		}
 	}
 	//------------------------------------------------------------
