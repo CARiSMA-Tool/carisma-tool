@@ -142,6 +142,28 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Trust Plus Security Profile communicates with Base Free Security Profile"));
 					this.analysisHost.appendLineToReport(nodeList.get(z+1).getName() + " has Trust+ Profile and tries to communicate with a Base Free Security Profile.");
 				}
+				if ((UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.TRUSTPLUS) || UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.TRUST)) && UMLsecUtil.hasStereotype(nodeList.get(z+1), UMLsec.BASE)) {
+					System.out.println("BASE TRUST(PLUS) comm");
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Trust Plus and Trust Security Profiles can reject communication with Base Security Profile"));
+					this.analysisHost.appendLineToReport("Trust Plus and Trust Security Profiles can reject communication with Base Security Profile");
+				}
+				if (UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.BASE) && (UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(z+1), UMLsec.TRUSTPLUS))) {
+					System.out.println("BASE TRUST(PLUS) comm");
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Trust Plus and Trust Security Profiles can reject communication with Base Security Profile"));
+					this.analysisHost.appendLineToReport("Trust Plus and Trust Security Profiles can reject communication with Base Security Profile");
+				}
+				if (UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.BASEFREE) && (UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(z+1), UMLsec.BASE))) {
+					System.out.println("BASEFREE TRUST BASE comm");
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Basefree Security Profiles cannot communicate with Trust or Base Security Profile"));
+					this.analysisHost.appendLineToReport("Basefree Security Profiles cannot communicate with Trust or Base Security Profile");
+					noBaseFreeCommunication = false;
+				}
+				if ((UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.BASE) || UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.TRUST)) && UMLsecUtil.hasStereotype(nodeList.get(z+1), UMLsec.BASEFREE)) {
+					System.out.println("BASEFREE TRUST BASE comm");
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Basefree Security Profiles cannot communicate with Trust or Base Security Profile"));
+					this.analysisHost.appendLineToReport("Basefree Security Profiles cannot communicate with Trust or Base Security Profile");
+					noBaseFreeCommunication = false;
+				}
 			}
 			
 			
