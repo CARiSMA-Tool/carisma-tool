@@ -60,7 +60,11 @@ public enum UMLsec {
 	OWNER ("Owner"),
 	CONSUMER ("Consumer"),
 	DATAUSAGECONTROL ("Data Usage Control"),
-	DATAPROVENANCETRACKING ("Data Provenance Tracking");
+	DATAPROVENANCETRACKING ("Data Provenance Tracking"),
+	VERIFIED ("verified"),
+	ISOLATED ("isolated"),
+	ENCRYPTION ("encryption"),
+	CERTIFIED ("certified");
 	
 	public static final String TAG_CRITICAL_HIGH = "high";
 	public static final String TAG_CRITICAL_SECRECY = "secrecy";
