@@ -7,11 +7,13 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.uml2.uml.Action;
+import org.eclipse.uml2.uml.ActivityFinalNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.NamedElement;
 
 
 
@@ -78,17 +80,51 @@ public class DataAccessCheck implements CarismaCheckWithID {
 	private boolean startCheck() {
 		//Check if  User is Consumer and Owner
 		//System.out.println(ActivityDiagramManager().getAllPaths());
-		ActivityDiagramManager adm = new ActivityDiagramManager(model, analysisHost);
-		this.pathsList = adm.getAllPaths();
-		System.out.println("PathsLIST -------------- " + pathsList);
+		/*
+		List<List<Element>> pathsWithFinal = null;
+		for (int x = 0; x < pathsList.size(); x++) {
+			boolean hasFinalActivity = pathsList.get(x).contains(ActivityFinalNode.class);
+			if (hasFinalActivity) {
+				pathsWithFinal.add(pathsList.get(x));
+			}
+
+		}
+		for (int z = 0; z < pathsWithFinal.size(); z++) {
+			System.out.println("pathwithfinal --------- " + pathsWithFinal.get(z));
+		}
+		*/
 		ArrayList<Action> actionList = (ArrayList<Action>) UMLHelper.getAllElementsOfType(model, Action.class);
-		//System.out.println("Actions ---------- " + actionList);
+		System.out.println("Actions ---------- " + actionList);
 		ArrayList<ActivityPartition> partitionList = (ArrayList<ActivityPartition>) UMLHelper.getAllElementsOfType(model, ActivityPartition.class);
 		//System.out.println("Partitions ---------- " + partitionList);
+		//List<ActivityPartition> partitionList2 = (List<ActivityPartition>) UMLHelper.getAllElementsOfType(model, ActivityPartition.class);
+		//System.out.println("partitionList -------------- " + partitionList2);
 		boolean ownerOrConsumer = true;
 		boolean exactOneConsumerAndOwner = true;
+		boolean existingPath = true;
 		int numberOwner = 0;
 		int numberConsumer = 0;
+		List<Object> taggedValuesProtectedOwner = null;
+		
+		
+		/*
+		List <Element> elementsOwner = UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
+		System.out.println("Element Owner ----------------" + elementsOwner);
+		List <Element> elementsConsumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		System.out.println("Element Consumer ----------------" + elementsConsumer);
+
+		for (int x = 0; x < elementsOwner.size(); x++) {
+			List<String> stringValuesOwner = UMLsecUtil.getStringValues("requested_attributes_and_actions", UMLsec.OWNER, elementsOwner.get(x));
+			System.out.println("stringValuesOwner------------ " + stringValuesOwner);
+			
+			List<Object> stringValuesProtectedOwner = UMLsecUtil.getTaggedValues("protected", UMLsec.OWNER, elementsOwner.get(x));
+			System.out.println("stringValuesProtectedOwner------------ " + stringValuesProtectedOwner);
+			
+			List<String> stringValuesConsumer = UMLsecUtil.getStringValues("attributes_and_actions", UMLsec.CONSUMER, elementsConsumer.get(x));
+			System.out.println("stringValuesConsumer--------- " + stringValuesConsumer);
+		}
+		*/
+		
 
 		for (int i = 0; i < partitionList.size(); i++) {
 			if(UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.CONSUMER) && UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.OWNER)) {
@@ -101,7 +137,7 @@ public class DataAccessCheck implements CarismaCheckWithID {
 			}
 			if (UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.OWNER)) {
 				numberOwner ++;
-				partitionList.get(i).getValue(UMLsec.OWNER);
+				//partitionList.get(i).getValue(UMLsec.OWNER);
 			}
 		}
 		if (numberOwner != 1) {
@@ -114,7 +150,51 @@ public class DataAccessCheck implements CarismaCheckWithID {
 			this.analysisHost.appendLineToReport("Only one Consumer should be modeled in this Interaction");
 			exactOneConsumerAndOwner = false;
 		}
+
+		ActivityDiagramManager adm = new ActivityDiagramManager(model, analysisHost);
+		this.pathsList = adm.getAllPaths();
+		if (pathsList.size() < 1) {
+			existingPath = false;
+		}
+		//List<List<Element>> differentPaths;
+		//list list string impl mit null
+		ArrayList<ArrayList<String>> listOfDifferentPaths= new ArrayList<ArrayList<String>>();
+		for (int i = 0; i < pathsList.size(); i++) {
+			List<Element> currentPath = pathsList.get(i);
+			//System.out.println("current path -------" + pathsList.get(i));
+			//list string impl mit null
+			ArrayList<String> listOfSinglePath = new ArrayList<>();
+			for (int z = 0; z < currentPath.size(); z++) {
+				String path = ((NamedElement) currentPath.get(z)).getName();
+				//System.out.println("current action ---- " + path);
+				//list string append path
+				listOfSinglePath.add(path);
+			}
+			listOfDifferentPaths.add(listOfSinglePath);
+			//list string append list list string
+		}
+		System.out.println("list of different paths ------ " + listOfDifferentPaths);
+
+		List<Element> elementOwner = (List<Element>) UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
+		for(int x = 0; x < elementOwner.size(); x++) {
+			taggedValuesProtectedOwner = UMLsecUtil.getTaggedValues("protected", UMLsec.OWNER, elementOwner.get(x));
+			System.out.println("taggsowner ------------ " + taggedValuesProtectedOwner);
+			for (int y = 0; y < taggedValuesProtectedOwner.size(); y++) {
+				String currentTag = ((NamedElement) taggedValuesProtectedOwner.get(y)).getName();
+				System.out.println("current tag ----------- " + currentTag);
+			}
+
+		}
+		
+		
+		
+		
+		
+		
+		
 		return true;
+		
+		
 	}
 	
 	@Override
