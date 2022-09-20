@@ -110,64 +110,99 @@ public class DataUsageCheck implements CarismaCheckWithID {
 		ArrayList<String> validNodesForPath = new ArrayList<String>();
 		ArrayList<ActivityPartition> partitionList = (ArrayList<ActivityPartition>) UMLHelper.getAllElementsOfType(model, ActivityPartition.class);
 		for (int z = 0; z < partitionList.size(); z++) {
-			namesProhibs.clear();
-			namesObligStart.clear();
-			namesObligStop.clear();
-			namesPerm.clear();
-
-			taggedValuesProhibitions = UMLsecUtil.getTaggedValues("prohibition", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
-			taggedValuesObligationStart = UMLsecUtil.getTaggedValues("obligation_start", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
-			taggedValuesObligationStop = UMLsecUtil.getTaggedValues("obligation_stop", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
-			taggedValuesPermissions = UMLsecUtil.getTaggedValues("permission", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
-			//get names of all Nodes within a single AcitityPartition
-			EList<ActivityNode> nodesOfSinglePartition = partitionList.get(z).getNodes();
-			//System.out.println("nodes of single partition --- " + nodesOfSinglePartition);
-			ArrayList<String> nameNodesSinglePartition = new ArrayList<String>();
-			for (int c = 0; c < nodesOfSinglePartition.size(); c++) {
-				nameNodesSinglePartition.add(nodesOfSinglePartition.get(c).getName());
-			}
-			System.out.println("Nodes: " + nameNodesSinglePartition);
-			//-------------------------------------------------------------------------------
-			//for each valid path check which part of the path is in the current ActivityPartition + remove start and final node
-			for(int t = 0; t < listOfDifferentPaths.size(); t++) {
-				for(int h = 0; h < nameNodesSinglePartition.size(); h++) {
-					if(listOfDifferentPaths.get(t).contains(nameNodesSinglePartition.get(h)) && nameNodesSinglePartition.get(h) != null) {
-						validNodesForPath.add(nameNodesSinglePartition.get(h));
+			if(UMLsecUtil.hasStereotype(partitionList.get(z), UMLsec.DATAUSAGECONTROL)) {
+				namesProhibs.clear();
+				namesObligStart.clear();
+				namesObligStop.clear();
+				namesPerm.clear();
+				validNodesForPath.clear();
+				taggedValuesProhibitions = UMLsecUtil.getTaggedValues("prohibition", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
+				taggedValuesObligationStart = UMLsecUtil.getTaggedValues("obligation_start", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
+				taggedValuesObligationStop = UMLsecUtil.getTaggedValues("obligation_stop", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
+				taggedValuesPermissions = UMLsecUtil.getTaggedValues("permission", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
+				//get names of all Nodes within a single AcitityPartition
+				EList<ActivityNode> nodesOfSinglePartition = partitionList.get(z).getNodes();
+				ArrayList<String> nameNodesSinglePartition = new ArrayList<String>();
+				for (int c = 0; c < nodesOfSinglePartition.size(); c++) {
+					nameNodesSinglePartition.add(nodesOfSinglePartition.get(c).getName());
+				}
+				System.out.println("Nodes: " + nameNodesSinglePartition);
+				//-------------------------------------------------------------------------------
+				//for each valid path check which part of the path is in the current ActivityPartition + remove start and final node
+				for(int t = 0; t < listOfDifferentPaths.size(); t++) {
+					for(int h = 0; h < nameNodesSinglePartition.size(); h++) {
+						if(listOfDifferentPaths.get(t).contains(nameNodesSinglePartition.get(h)) && nameNodesSinglePartition.get(h) != null) {
+							validNodesForPath.add(nameNodesSinglePartition.get(h));
+						}
+					}
+					System.out.println("valid nodes ---- " + validNodesForPath);
+				}
+				//---------------------------------------------------------------------------------
+				//check if prohibition is executed
+				for(int q = 0; q < taggedValuesProhibitions.size(); q++) {
+					String currentProhib = ((NamedElement) taggedValuesProhibitions.get(q)).getName();
+					namesProhibs.add(currentProhib);
+				}
+				for(int g = 0; g < validNodesForPath.size(); g++) {
+					if(namesProhibs.contains(validNodesForPath.get(g))){
+						System.out.println("prohibition wird ausgeführt");
 					}
 				}
-				System.out.println("valid nodes ---- " + validNodesForPath);
-			}
-			//---------------------------------------------------------------------------------
-			//check if prohibition is executed
-			for(int q = 0; q < taggedValuesProhibitions.size(); q++) {
-				String currentProhib = ((NamedElement) taggedValuesProhibitions.get(q)).getName();
-				namesProhibs.add(currentProhib);
-			}
-			for(int g = 0; g < validNodesForPath.size(); g++) {
-				if(namesProhibs.contains(validNodesForPath.get(g))){
-					System.out.println("prohibition wird ausgeführt");
+				//---------------------------------------------------------------
+				//check for a matching number of obligation starts and stops
+				for(int o = 0; o < taggedValuesObligationStart.size(); o++) {
+					String currentObligStart = ((NamedElement) taggedValuesObligationStart.get(o)).getName();
+					namesObligStart.add(currentObligStart);
 				}
+				for(int p = 0; p < taggedValuesObligationStop.size(); p++) {
+					String currentObligStop = ((NamedElement) taggedValuesObligationStop.get(p)).getName();
+					namesObligStop.add(currentObligStop);
+				}
+				if(namesObligStart.size() != namesObligStop.size()) {
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is not an equal amount of Obligation Starts and Obligation Stops"));
+					this.analysisHost.appendLineToReport(partitionList.get(z).getName() + "has not an equal amount of Obligation Starts and Obligation Stops");
+				}
+				int obligationStartPathNumber = -1;
+				int obligationStartPlaceNumber = -1;
+				int obligationStopPathNumber = -1;
+				int obligationStopPlaceNumber = -1;
+				for(int a = 0; a < namesObligStart.size(); a++) {
+					String currentObligStart = namesObligStart.get(a);
+					String currentObligStop = namesObligStop.get(a);
+					for(int s = 0; s < listOfDifferentPaths.size(); s++) {
+						System.out.println("current path checked " + listOfDifferentPaths.get(s));
+						System.out.println("current start checked " + currentObligStart);
+						System.out.println("current stop checked " + currentObligStop);
+						if(listOfDifferentPaths.get(s).contains(currentObligStop) && listOfDifferentPaths.get(s).contains(currentObligStart) == false) {
+							System.out.println("start nicht im pfad stop jedoch");
+						}
+						if(listOfDifferentPaths.get(s).contains(currentObligStop) == false && listOfDifferentPaths.get(s).contains(currentObligStart)) {
+							System.out.println("start im pfad stop jedoch nicht");
+						}
+						if(listOfDifferentPaths.get(s).contains(currentObligStop) == false && listOfDifferentPaths.get(s).contains(currentObligStart) == false) {
+							System.out.println("weder start noch stop im Pfad");
+						}
+						if(listOfDifferentPaths.get(s).contains(currentObligStop) && listOfDifferentPaths.get(s).contains(currentObligStart)) {
+							System.out.println("start und stop im Pfad");
+						}
+						
+					}
+				}
+				if(nameNodesSinglePartition.containsAll(namesObligStop) == false) {
+					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Obligation Stops not reachable"));
+					this.analysisHost.appendLineToReport(partitionList.get(z).getName() + "has Obligation Stops that are not reachable");
+				}
+				
+				//check if all executed action are permitted
+				for(int r = 0; r < taggedValuesPermissions.size(); r++) {
+					String currentPerm = ((NamedElement) taggedValuesPermissions.get(r)).getName();
+					namesPerm.add(currentPerm);
+				}
+				if(namesPerm.containsAll(validNodesForPath) == false) {
+					System.out.println("permission hat nicht alle aktionen aus nem legit pfad");
+				}
+				//--------------------------------------------------------------------------
 			}
-			//---------------------------------------------------------------
-			for(int o = 0; o < taggedValuesObligationStart.size(); o++) {
-				String currentObligStart = ((NamedElement) taggedValuesObligationStart.get(o)).getName();
-				namesObligStart.add(currentObligStart);
-			}
-			for(int p = 0; p < taggedValuesObligationStop.size(); p++) {
-				String currentObligStop = ((NamedElement) taggedValuesObligationStop.get(p)).getName();
-				namesObligStop.add(currentObligStop);
-			}
-			
-			//check if all executed action are permitted
-			for(int r = 0; r < taggedValuesPermissions.size(); r++) {
-				String currentPerm = ((NamedElement) taggedValuesPermissions.get(r)).getName();
-				namesPerm.add(currentPerm);
-			}
-			if(namesPerm.containsAll(validNodesForPath) == false) {
-				System.out.println("permission hat nicht alle aktionen aus nem legit pfad");
-			}
-			//--------------------------------------------------------------------------
-			
 			/*
 			System.out.println("prohib: " + namesProhibs);
 			System.out.println("oblig start: " + namesObligStart);
