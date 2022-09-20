@@ -59,7 +59,7 @@ public enum UMLsec {
 	IDSCP ("IDSCP"),
 	OWNER ("Owner"),
 	CONSUMER ("Consumer"),
-	DATAUSAGECONTROL ("Data Usage Control"),
+	DATAUSAGECONTROL ("datausagecontrol"),
 	DATAPROVENANCETRACKING ("Data Provenance Tracking"),
 	VERIFIED ("verified"),
 	ISOLATED ("isolated"),

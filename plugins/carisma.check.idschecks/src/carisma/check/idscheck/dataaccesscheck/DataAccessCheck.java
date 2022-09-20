@@ -174,20 +174,30 @@ public class DataAccessCheck implements CarismaCheckWithID {
 			//list string append list list string
 		}
 		System.out.println("list of different paths ------ " + listOfDifferentPaths);
-
+		
+		
+		//list erstellen mit allen verschiedenen protected actions
+		ArrayList<String> protectedActions = new ArrayList<String>();
 		List<Element> elementOwner = (List<Element>) UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
 		for(int x = 0; x < elementOwner.size(); x++) {
 			taggedValuesProtectedOwner = UMLsecUtil.getTaggedValues("protected", UMLsec.OWNER, elementOwner.get(x));
-			System.out.println("taggsowner ------------ " + taggedValuesProtectedOwner);
+			System.out.println("taggedvalues ---------------" + taggedValuesProtectedOwner);
 			for (int y = 0; y < taggedValuesProtectedOwner.size(); y++) {
 				String currentTag = ((NamedElement) taggedValuesProtectedOwner.get(y)).getName();
-				System.out.println("current tag ----------- " + currentTag);
+				protectedActions.add(currentTag);
 			}
 
 		}
+		System.out.println("protectedactions ---------------" + protectedActions);
+		// über pfade iterieren und schauen, ob ein element von protected actions drinnen liegt
+		// wenn ja dann attribute und aktionen vergleichen und schauen ob req erfüllt ist
 		
-		
-		
+		for (int i = 0; i < listOfDifferentPaths.size(); i++) {
+			ArrayList<String> checkPath = listOfDifferentPaths.get(i);
+			for (int x = 0; x < checkPath.size(); x++) {
+				
+			}
+		}
 		
 		
 		
