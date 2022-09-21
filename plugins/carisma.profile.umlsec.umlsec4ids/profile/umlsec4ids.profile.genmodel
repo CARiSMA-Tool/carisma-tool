@@ -41,9 +41,11 @@
     </genClasses>
     <genClasses ecoreClass="umlsec4ids.profile.ecore#//X509">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//X509/base_Node"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//X509/expiration_date_yyyy_mm_dd"/>
     </genClasses>
     <genClasses ecoreClass="umlsec4ids.profile.ecore#//X509TLS">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//X509TLS/base_Node"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//X509TLS/expiration_date_yyyy_mm_dd"/>
     </genClasses>
     <genClasses ecoreClass="umlsec4ids.profile.ecore#//IDSCP">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//IDSCP/base_CommunicationPath"/>

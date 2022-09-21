@@ -411,13 +411,22 @@ public interface Umlsec4idsPackage extends EPackage {
 	int X509__BASE_NODE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Expiration date yyyy mm dd</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int X509__EXPIRATION_DATE_YYYY_MM_DD = 1;
+
+	/**
 	 * The number of structural features of the '<em>X509</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int X509_FEATURE_COUNT = 1;
+	int X509_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>X509</em>' class.
@@ -448,13 +457,22 @@ public interface Umlsec4idsPackage extends EPackage {
 	int X509TLS__BASE_NODE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Expiration date yyyy mm dd</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int X509TLS__EXPIRATION_DATE_YYYY_MM_DD = 1;
+
+	/**
 	 * The number of structural features of the '<em>X509TLS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int X509TLS_FEATURE_COUNT = 1;
+	int X509TLS_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>X509TLS</em>' class.
@@ -982,6 +1000,17 @@ public interface Umlsec4idsPackage extends EPackage {
 	EReference getX509_Base_Node();
 
 	/**
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.umlsec4ids.X509#getExpiration_date_yyyy_mm_dd <em>Expiration date yyyy mm dd</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expiration date yyyy mm dd</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.X509#getExpiration_date_yyyy_mm_dd()
+	 * @see #getX509()
+	 * @generated
+	 */
+	EAttribute getX509_Expiration_date_yyyy_mm_dd();
+
+	/**
 	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.X509TLS <em>X509TLS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1001,6 +1030,17 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getX509TLS_Base_Node();
+
+	/**
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.umlsec4ids.X509TLS#getExpiration_date_yyyy_mm_dd <em>Expiration date yyyy mm dd</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expiration date yyyy mm dd</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.X509TLS#getExpiration_date_yyyy_mm_dd()
+	 * @see #getX509TLS()
+	 * @generated
+	 */
+	EAttribute getX509TLS_Expiration_date_yyyy_mm_dd();
 
 	/**
 	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.IDSCP <em>IDSCP</em>}'.
@@ -1404,6 +1444,14 @@ public interface Umlsec4idsPackage extends EPackage {
 		EReference X509__BASE_NODE = eINSTANCE.getX509_Base_Node();
 
 		/**
+		 * The meta object literal for the '<em><b>Expiration date yyyy mm dd</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute X509__EXPIRATION_DATE_YYYY_MM_DD = eINSTANCE.getX509_Expiration_date_yyyy_mm_dd();
+
+		/**
 		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.X509TLSImpl <em>X509TLS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1420,6 +1468,14 @@ public interface Umlsec4idsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference X509TLS__BASE_NODE = eINSTANCE.getX509TLS_Base_Node();
+
+		/**
+		 * The meta object literal for the '<em><b>Expiration date yyyy mm dd</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute X509TLS__EXPIRATION_DATE_YYYY_MM_DD = eINSTANCE.getX509TLS_Expiration_date_yyyy_mm_dd();
 
 		/**
 		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.IDSCPImpl <em>IDSCP</em>}' class.

@@ -59,10 +59,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="X509">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expiration_date_yyyy_mm_dd"
+        ordered="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Integer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="X509TLS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expiration_date_yyyy_mm_dd"
+        ordered="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Integer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IDSCP">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_CommunicationPath"
