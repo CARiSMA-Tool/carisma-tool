@@ -1,9 +1,14 @@
 package carisma.check.idscheck.identitymanagementcheck;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime; 
+import java.time.format.DateTimeFormatter;  
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Node;
@@ -105,7 +110,60 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 			this.analysisHost.appendLineToReport("Nodes miss the <<X509TLS>> and <<X509>> Stereotype");
 			return false;
 		}
+		//hier den date vergleich, iterieren über alle zertifikate und vgl date mit date.now
 		
+		LocalDate today = LocalDate.now();
+
+		String formattedDate = today.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+
+		System.out.println("formatted day " + formattedDate);
+		
+
+		
+		int intDay = 0;
+        try{
+        	intDay = Integer.parseInt(formattedDate);
+            System.out.println("number date " + intDay); // output = 25
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }
+        boolean dateNotExpired = true;
+        int intX509 = 0;
+        for(int i = 0; i < nodeList.size(); i++) {
+			List<Object> dayX509 = UMLsecUtil.getTaggedValues("expiration_date_yyyy_mm_dd", UMLsec.X509, nodeList.get(i));
+				for(int z = 0; z < dayX509.size(); z++) {
+					 try{
+				        	intX509 = Integer.parseInt(dayX509.get(z).toString());
+				            System.out.println("number date " + intX509); // output = 25
+				        }
+				        catch (NumberFormatException ex){
+				            ex.printStackTrace();
+				        }
+					 if(intX509 < intDay) {
+						 System.out.println("X.509 certificate expired in " + nodeList.get(i).getName());
+						 dateNotExpired = false;
+					}
+				}
+		}
+        int intX509TLS = 0;
+        for(int i = 0; i < nodeList.size(); i++) {
+			List<Object> dayX509TLS = UMLsecUtil.getTaggedValues("expiration_date_yyyy_mm_dd", UMLsec.X509TLS, nodeList.get(i));
+				for(int z = 0; z < dayX509TLS.size(); z++) {
+					 try{
+				        	intX509TLS = Integer.parseInt(dayX509TLS.get(z).toString());
+				            System.out.println("number date " + intX509TLS); // output = 25
+				        }
+				        catch (NumberFormatException ex){
+				            ex.printStackTrace();
+				        }
+					 if(intX509TLS < intDay) {
+						 System.out.println("X.509TLS certificate expired in " + nodeList.get(i).getName());
+						 dateNotExpired = false;
+					}
+				}
+		}
+        
 		return true;
 	}
 		
