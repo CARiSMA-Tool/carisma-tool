@@ -74,6 +74,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 	}	
 	
 	private boolean startCheck() {
+		boolean checkSuccessful = true;
 		// check if there are existing valid paths within the diagram
 		boolean existingPath = true;
 		ActivityDiagramManager adm = new ActivityDiagramManager(model, analysisHost);
@@ -82,6 +83,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 			existingPath = false;
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is no existing path through the diagram"));
 			this.analysisHost.appendLineToReport("There is no existing path through the diagram");
+			checkSuccessful = false;
 		}
 		//--------------------------------------------------------------------------------
 		
@@ -126,28 +128,70 @@ public class DataUsageCheck implements CarismaCheckWithID {
 				for (int c = 0; c < nodesOfSinglePartition.size(); c++) {
 					nameNodesSinglePartition.add(nodesOfSinglePartition.get(c).getName());
 				}
-				System.out.println("Nodes: " + nameNodesSinglePartition);
+				//System.out.println("Nodes: " + nameNodesSinglePartition);
 				//-------------------------------------------------------------------------------
-				//for each valid path check which part of the path is in the current ActivityPartition + remove start and final node
+				//for each valid path check which part of the path is in the current ActivityPartition + remove start and final node				
 				for(int t = 0; t < listOfDifferentPaths.size(); t++) {
 					for(int h = 0; h < nameNodesSinglePartition.size(); h++) {
 						if(listOfDifferentPaths.get(t).contains(nameNodesSinglePartition.get(h)) && nameNodesSinglePartition.get(h) != null) {
 							validNodesForPath.add(nameNodesSinglePartition.get(h));
 						}
 					}
-					System.out.println("valid nodes ---- " + validNodesForPath);
+					//System.out.println("valid nodes ---- " + validNodesForPath);
 				}
 				//---------------------------------------------------------------------------------
+				// gibt die verschiedenden validen pfade in reihenfolge und anteil an der partition wieder
+				//idee für oblig --> erst test gleiche länge
+				// wenn ja dann über beide gleichzeitig drüberiterieren und bei beiden das element an selber stelle in eine list len2
+				// danach die liste in eine neue liste von listen
+				// jetzt checken, ob inhalt liste sowohl in currentpath als auch in valid nodes ist
+				// wenn ja dann über path iterieren und checken ob start vor stop kommt
+				ArrayList<ArrayList<String>> testList = new ArrayList<ArrayList<String>>();
+				for(int h = 0; h < listOfDifferentPaths.size(); h++) {
+					ArrayList<String> testValidNodes = new ArrayList<String>();
+					for(int d = 0; d < listOfDifferentPaths.get(h).size(); d++) {
+						for(int c = 0; c < nameNodesSinglePartition.size(); c++) {
+							if(nameNodesSinglePartition.get(c) != null && listOfDifferentPaths.get(h).get(d) != null){
+								if(listOfDifferentPaths.get(h).get(d).equals(nameNodesSinglePartition.get(c).toString())) {
+									testValidNodes.add(nameNodesSinglePartition.get(c));
+
+								}
+							}
+						}		
+					}
+					//System.out.println("valid nodes test " + testValidNodes);
+					testList.add(testValidNodes);
+				}
+				//System.out.println("valid nodes paths vor schleife" + testList);
+				int x = 0;
+				int counter = testList.size();
+				for(int h = 0; h < counter; h++) {
+					//System.out.println("size test lst " + testList.size());
+					//System.out.println("current path " + testList.get(x));
+					if(testList.get(x).isEmpty()) {
+						testList.remove(x);
+						x--;
+					}
+					x++;
+				}
+				//System.out.println("valid nodes paths nach schleife " + testList);
+				//---------------------------------------------------------------------------
 				//check if prohibition is executed
 				for(int q = 0; q < taggedValuesProhibitions.size(); q++) {
 					String currentProhib = ((NamedElement) taggedValuesProhibitions.get(q)).getName();
 					namesProhibs.add(currentProhib);
 				}
-				for(int g = 0; g < validNodesForPath.size(); g++) {
-					if(namesProhibs.contains(validNodesForPath.get(g))){
-						System.out.println("prohibition wird ausgeführt");
+				
+				for(int u = 0; u < validNodesForPath.size(); u++) {
+					if(namesProhibs.contains(validNodesForPath.get(u))){
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Actor tries to execute a Prohibition!"));
+						this.analysisHost.appendLineToReport(partitionList.get(z).getName()  + " tries to execute the prohibited action : " + validNodesForPath.get(u) +  " in Partition : " + partitionList.get(z).getName());
+						checkSuccessful = false;
+
 					}
 				}
+					
+				
 				//---------------------------------------------------------------
 				//check for a matching number of obligation starts and stops
 				for(int o = 0; o < taggedValuesObligationStart.size(); o++) {
@@ -160,46 +204,111 @@ public class DataUsageCheck implements CarismaCheckWithID {
 				}
 				if(namesObligStart.size() != namesObligStop.size()) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is not an equal amount of Obligation Starts and Obligation Stops"));
-					this.analysisHost.appendLineToReport(partitionList.get(z).getName() + "has not an equal amount of Obligation Starts and Obligation Stops");
+					this.analysisHost.appendLineToReport(partitionList.get(z).getName() + " has not an equal amount of Obligation Starts and Obligation Stops");
+					checkSuccessful = false;
 				}
-				int obligationStartPathNumber = -1;
-				int obligationStartPlaceNumber = -1;
-				int obligationStopPathNumber = -1;
-				int obligationStopPlaceNumber = -1;
-				for(int a = 0; a < namesObligStart.size(); a++) {
-					String currentObligStart = namesObligStart.get(a);
-					String currentObligStop = namesObligStop.get(a);
-					for(int s = 0; s < listOfDifferentPaths.size(); s++) {
-						System.out.println("current path checked " + listOfDifferentPaths.get(s));
+				//jeweiligen obligation start dem obligation stop zuordnen,, wenn beide gleich lang
+				ArrayList<ArrayList<String>> grosseListe = new ArrayList<ArrayList<String>>();
+				if(namesObligStart.size() == namesObligStop.size()) {
+					for(int w = 0; w < namesObligStart.size(); w++) {
+						ArrayList<String> kleineListe = new ArrayList<String>();
+						kleineListe.add(namesObligStart.get(w));
+						kleineListe.add(namesObligStop.get(w));
+						grosseListe.add(kleineListe);
+
+					}
+				}
+				//--------------------------------------------------------------------------
+				//checken ob auf die start bedingung auch die stop bedingung ausgeführt wird
+				for(int q = 0; q < grosseListe.size(); q++) {
+					for(int g = 0; g < testList.size(); g++) {
+						if(testList.get(g).contains(grosseListe.get(q).get(0)) && testList.get(g).contains(grosseListe.get(q).get(1))) {
+							//test ob stop vor start kommt
+							int platzStart = -1;
+							int platzStop = -1;
+							for(int l = 0; l < testList.get(g).size(); l++) {
+								if(testList.get(g).get(l) == grosseListe.get(q).get(0)) {
+									platzStart = l;
+								}
+								if(testList.get(g).get(l) == grosseListe.get(q).get(1)) {
+									platzStop = l;
+								}
+							}
+							if(platzStart > platzStop) {
+								this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Obligation Stop follows the Obligation Start"));
+								this.analysisHost.appendLineToReport(testList.get(g)  + " executes the Obligation Stop before the Obligation Start for Obligation : " + grosseListe.get(q) + " in Partition : " + partitionList.get(z).getName());
+								checkSuccessful = false;
+								//System.out.println("In dem Pfad " + testList.get(g)+ " wird Stop vor Start ausgeführt");
+							}
+							
+						}
+						if(testList.get(g).contains(grosseListe.get(q).get(0)) && testList.get(g).contains(grosseListe.get(q).get(1)) == false) {
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Obligation Stop does not follow after the Obligation Start"));
+							this.analysisHost.appendLineToReport(testList.get(g)  + " executes the Obligation Start but does not executes the Obligation Stop for Obligation : " + grosseListe.get(q) + " in Partition : " + partitionList.get(z).getName());
+							checkSuccessful = false;
+							//System.out.println("In dem Pfad " + testList.get(g) + "start bedingung wird ausgeführt stop aber nicht");
+						}
+						/*
+						if(testList.get(g).contains(grosseListe.get(q).get(0)) == false && testList.get(g).contains(grosseListe.get(q).get(1))) {
+							System.out.println("start nicht enthalten");
+						}
+						if(testList.get(g).contains(grosseListe.get(q).get(0)) && testList.get(g).contains(grosseListe.get(q).get(1)) == false) {
+							System.out.println("stop nicht enthalten");
+						}
+						if(testList.get(g).contains(grosseListe.get(q).get(0)) == false && testList.get(g).contains(grosseListe.get(q).get(1)) == false) {
+							System.out.println("start und stop nicht enthalten");
+						}
+						*/
+					}
+				}
+				/*
+				for(int a = 0; a < grosseListe.size(); a++) {
+					String currentObligStart = grosseListe.get(a).get(0);
+					String currentObligStop = grosseListe.get(a).get(1);
+					int q = 0;
+					for(int s = 0; s < testList.size(); s++) {
+						System.out.println("current path checked " + testList.get(s));
 						System.out.println("current start checked " + currentObligStart);
 						System.out.println("current stop checked " + currentObligStop);
-						if(listOfDifferentPaths.get(s).contains(currentObligStop) && listOfDifferentPaths.get(s).contains(currentObligStart) == false) {
+						if(testList.get(s).contains(currentObligStop) && testList.get(s).contains(currentObligStart) == false) {
 							System.out.println("start nicht im pfad stop jedoch");
 						}
-						if(listOfDifferentPaths.get(s).contains(currentObligStop) == false && listOfDifferentPaths.get(s).contains(currentObligStart)) {
+						if(testList.get(s).contains(currentObligStop) == false && testList.get(s).contains(currentObligStart)) {
 							System.out.println("start im pfad stop jedoch nicht");
 						}
-						if(listOfDifferentPaths.get(s).contains(currentObligStop) == false && listOfDifferentPaths.get(s).contains(currentObligStart) == false) {
+						if(testList.get(s).contains(currentObligStop) == false && testList.get(s).contains(currentObligStart) == false) {
 							System.out.println("weder start noch stop im Pfad");
 						}
-						if(listOfDifferentPaths.get(s).contains(currentObligStop) && listOfDifferentPaths.get(s).contains(currentObligStart)) {
+						if(testList.get(s).contains(currentObligStop) && testList.get(s).contains(currentObligStart)) {
 							System.out.println("start und stop im Pfad");
-						}
+							q++;
+
+						}		
+					}
+					if(q > 0) {
 						
 					}
 				}
+				*/
 				if(nameNodesSinglePartition.containsAll(namesObligStop) == false) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Obligation Stops not reachable"));
 					this.analysisHost.appendLineToReport(partitionList.get(z).getName() + "has Obligation Stops that are not reachable");
+					checkSuccessful = false;
 				}
-				
+				//-----------------------------------------------------------------------------------
 				//check if all executed action are permitted
 				for(int r = 0; r < taggedValuesPermissions.size(); r++) {
 					String currentPerm = ((NamedElement) taggedValuesPermissions.get(r)).getName();
 					namesPerm.add(currentPerm);
 				}
 				if(namesPerm.containsAll(validNodesForPath) == false) {
-					System.out.println("permission hat nicht alle aktionen aus nem legit pfad");
+					for(int u = 0; u < validNodesForPath.size(); u++) {
+						if(namesPerm.contains(validNodesForPath.get(u)) == false) {
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Actor tries to execute an Action that is not permitted!"));
+							this.analysisHost.appendLineToReport(partitionList.get(z).getName() + " tries to execute an Action that is not permitted! " + validNodesForPath.get(u));
+							checkSuccessful = false;
+						}
+					}
 				}
 				//--------------------------------------------------------------------------
 			}
@@ -241,7 +350,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 		*/
 		
 		
-		return true;
+		return checkSuccessful;
 	}
 
 
