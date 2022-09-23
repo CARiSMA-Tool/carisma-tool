@@ -128,11 +128,37 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
         catch (NumberFormatException ex){
             ex.printStackTrace();
         }
+        /*
+         
+			String str = "1234 56 78";
+			int fullInt = Integer.parseInt(str);
+			String first4char = str.substring(0,4);
+			int intForFirst4Char = Integer.parseInt(first4char);
+         */
         boolean dateNotExpired = true;
         int intX509 = 0;
         for(int i = 0; i < nodeList.size(); i++) {
 			List<Object> dayX509 = UMLsecUtil.getTaggedValues("expiration_date_yyyy_mm_dd", UMLsec.X509, nodeList.get(i));
 				for(int z = 0; z < dayX509.size(); z++) {
+					String strX509 = dayX509.get(z).toString();
+					if(strX509.length() != 8) {
+						 System.out.println("ungültiges datum des X.509 Zertifikates in " + nodeList.get(i).getName());
+					 }
+					if(strX509.length() == 8) {
+						String monthChar = strX509.substring(5, 6);
+						String dayChar = strX509.substring(7, 8);
+						int intMonthChar = Integer.parseInt(monthChar);
+						int intDayChar = Integer.parseInt(dayChar);
+						if( (intMonthChar < 1 || intMonthChar > 12) || (intDayChar < 1 || intDayChar > 31) ) {
+							 System.out.println("ungültiges datum des X.509 Zertifikates in " + nodeList.get(i).getName());
+						}
+						if((intMonthChar == 4 || intMonthChar == 6 || intMonthChar == 9 || intMonthChar == 11) && intDayChar > 30) {
+							 System.out.println("ungültiges datum des X.509 Zertifikates in " + nodeList.get(i).getName());
+						}
+						if(intMonthChar == 2 && intDayChar > 29) {
+							 System.out.println("ungültiges datum des X.509 Zertifikates in " + nodeList.get(i).getName());
+						}
+					}
 					 try{
 				        	intX509 = Integer.parseInt(dayX509.get(z).toString());
 				            System.out.println("number date " + intX509); // output = 25
@@ -150,6 +176,25 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
         for(int i = 0; i < nodeList.size(); i++) {
 			List<Object> dayX509TLS = UMLsecUtil.getTaggedValues("expiration_date_yyyy_mm_dd", UMLsec.X509TLS, nodeList.get(i));
 				for(int z = 0; z < dayX509TLS.size(); z++) {
+					String strX509TLS = dayX509TLS.get(z).toString();
+					if(strX509TLS.length() != 8) {
+						 System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+					 }
+					if(strX509TLS.length() == 8) {
+						String monthCharTLS = strX509TLS.substring(5, 6);
+						String dayCharTLS = strX509TLS.substring(7, 8);
+						int intMonthCharTLS = Integer.parseInt(monthCharTLS);
+						int intDayCharTLS = Integer.parseInt(dayCharTLS);
+						if( (intMonthCharTLS < 1 || intMonthCharTLS > 12) || (intDayCharTLS < 1 || intDayCharTLS > 31) ) {
+							 System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+						}
+						if((intMonthCharTLS == 4 || intMonthCharTLS == 6 || intMonthCharTLS == 9 || intMonthCharTLS == 11) && intDayCharTLS > 30) {
+							 System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+						}
+						if(intMonthCharTLS == 2 && intDayCharTLS > 29) {
+							 System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+						}
+					}
 					 try{
 				        	intX509TLS = Integer.parseInt(dayX509TLS.get(z).toString());
 				            System.out.println("number date " + intX509TLS); // output = 25
@@ -164,7 +209,7 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 				}
 		}
         
-		return true;
+		return dateNotExpired;
 	}
 		
 	
