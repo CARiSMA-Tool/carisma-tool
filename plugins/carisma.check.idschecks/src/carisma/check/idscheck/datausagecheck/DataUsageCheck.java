@@ -71,7 +71,18 @@ public class DataUsageCheck implements CarismaCheckWithID {
 		this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
 		this.analysisHost.appendLineToReport("Content is not a model!");
 		return false;
-	}	
+	}
+	
+	public ArrayList<ActivityPartition> getAllSubpartitions (ActivityPartition mainPartition, ArrayList<ActivityPartition> allPartitions) {
+		allPartitions.add(mainPartition);
+		EList<ActivityPartition> allSubpartitions = mainPartition.getSubpartitions();
+		for (int x = 0; x < allSubpartitions.size(); x++) {
+			getAllSubpartitions (allSubpartitions.get(x), allPartitions);
+		}
+		return allPartitions;
+	}
+	
+
 	
 	private boolean startCheck() {
 		boolean checkSuccessful = true;
@@ -122,22 +133,56 @@ public class DataUsageCheck implements CarismaCheckWithID {
 				taggedValuesObligationStart = UMLsecUtil.getTaggedValues("obligation_start", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
 				taggedValuesObligationStop = UMLsecUtil.getTaggedValues("obligation_stop", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
 				taggedValuesPermissions = UMLsecUtil.getTaggedValues("permission", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
+				
+				// test auf subpartitions and nodes of subpartitions
+			
+				ArrayList<ActivityPartition> allPartitions = new ArrayList<ActivityPartition>();
+				allPartitions = getAllSubpartitions(partitionList.get(z) , allPartitions);
+				ArrayList<String> allPartitionNames = new ArrayList<String>();
+				//System.out.println("names of all subpartition nodes mit neuer methode " + allPartitions);
+				for(int i = 0; i < allPartitions.size(); i++) {
+					String currentPartitionName = allPartitions.get(i).getName();
+					allPartitionNames.add(currentPartitionName);
+				}
+				//System.out.println("iterated partition " + partitionList.get(z));
+				//System.out.println("current partitions " + allPartitionNames);
+				
 				//get names of all Nodes within a single AcitityPartition
+				ArrayList<EList<ActivityNode>> anodesOfSinglePartition = new ArrayList<EList<ActivityNode>>() ;
+				for(int i = 0; i < allPartitions.size(); i++) {
+					anodesOfSinglePartition.add(allPartitions.get(i).getNodes());
+				}
+				//System.out.println("alle nodes der DUC partition " + anodesOfSinglePartition);
+				ArrayList<String> allNodeNamesSubpartitions = new ArrayList<String>();
+				for(int i = 0; i < anodesOfSinglePartition.size(); i++) {
+					//System.out.println("iterieren anodesOfSinglePartition " + anodesOfSinglePartition.get(i));
+					for(int c = 0; c < anodesOfSinglePartition.get(i).size(); c++) {
+						//System.out.println("iterieren anodesOfSinglePartition.get(i) " + anodesOfSinglePartition.get(i).get(c));
+						allNodeNamesSubpartitions.add(anodesOfSinglePartition.get(i).get(c).getName());
+						//System.out.println("current name " + anodesOfSinglePartition.get(i).get(c).getName());
+					}
+				}
+				System.out.println("Namen alles Nodes der Subpartitons " + allNodeNamesSubpartitions);
+				
+				//-------------------------------------------------------------------------
 				EList<ActivityNode> nodesOfSinglePartition = partitionList.get(z).getNodes();
 				ArrayList<String> nameNodesSinglePartition = new ArrayList<String>();
 				for (int c = 0; c < nodesOfSinglePartition.size(); c++) {
 					nameNodesSinglePartition.add(nodesOfSinglePartition.get(c).getName());
 				}
 				//System.out.println("Nodes: " + nameNodesSinglePartition);
+				
 				//-------------------------------------------------------------------------------
 				//for each valid path check which part of the path is in the current ActivityPartition + remove start and final node				
 				for(int t = 0; t < listOfDifferentPaths.size(); t++) {
-					for(int h = 0; h < nameNodesSinglePartition.size(); h++) {
-						if(listOfDifferentPaths.get(t).contains(nameNodesSinglePartition.get(h)) && nameNodesSinglePartition.get(h) != null) {
-							validNodesForPath.add(nameNodesSinglePartition.get(h));
+					//System.out.println("current path " + listOfDifferentPaths.get(t));
+					for(int h = 0; h < allNodeNamesSubpartitions.size(); h++) {
+						//System.out.println("current node " + allNodeNamesSubpartitions.get(h));
+						if(listOfDifferentPaths.get(t).contains(allNodeNamesSubpartitions.get(h)) && allNodeNamesSubpartitions.get(h) != null) {
+							validNodesForPath.add(allNodeNamesSubpartitions.get(h));
 						}
 					}
-					//System.out.println("valid nodes ---- " + validNodesForPath);
+					System.out.println("valid nodes ---- " + validNodesForPath);
 				}
 				//---------------------------------------------------------------------------------
 				// gibt die verschiedenden validen pfade in reihenfolge und anteil an der partition wieder
@@ -146,23 +191,27 @@ public class DataUsageCheck implements CarismaCheckWithID {
 				// danach die liste in eine neue liste von listen
 				// jetzt checken, ob inhalt liste sowohl in currentpath als auch in valid nodes ist
 				// wenn ja dann über path iterieren und checken ob start vor stop kommt
+				// schleifen testen
+				// abzweigungen testen
+				// partition in partition testen
 				ArrayList<ArrayList<String>> testList = new ArrayList<ArrayList<String>>();
 				for(int h = 0; h < listOfDifferentPaths.size(); h++) {
 					ArrayList<String> testValidNodes = new ArrayList<String>();
 					for(int d = 0; d < listOfDifferentPaths.get(h).size(); d++) {
-						for(int c = 0; c < nameNodesSinglePartition.size(); c++) {
-							if(nameNodesSinglePartition.get(c) != null && listOfDifferentPaths.get(h).get(d) != null){
-								if(listOfDifferentPaths.get(h).get(d).equals(nameNodesSinglePartition.get(c).toString())) {
-									testValidNodes.add(nameNodesSinglePartition.get(c));
+						for(int c = 0; c < allNodeNamesSubpartitions.size(); c++) {
+							if(allNodeNamesSubpartitions.get(c) != null && listOfDifferentPaths.get(h).get(d) != null){
+								if(listOfDifferentPaths.get(h).get(d).equals(allNodeNamesSubpartitions.get(c).toString())) {
+									testValidNodes.add(allNodeNamesSubpartitions.get(c));
 
 								}
 							}
 						}		
 					}
+					// ersetzt nameNodesSinglePartition durch allNodeNamesSubpartitions
 					//System.out.println("valid nodes test " + testValidNodes);
 					testList.add(testValidNodes);
 				}
-				//System.out.println("valid nodes paths vor schleife" + testList);
+				System.out.println("valid nodes paths vor schleife" + testList);
 				int x = 0;
 				int counter = testList.size();
 				for(int h = 0; h < counter; h++) {
@@ -174,7 +223,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 					}
 					x++;
 				}
-				//System.out.println("valid nodes paths nach schleife " + testList);
+				System.out.println("valid nodes paths nach schleife " + testList);
 				//---------------------------------------------------------------------------
 				//check if prohibition is executed
 				for(int q = 0; q < taggedValuesProhibitions.size(); q++) {
@@ -289,12 +338,14 @@ public class DataUsageCheck implements CarismaCheckWithID {
 						
 					}
 				}
-				*/
+				
+				
 				if(nameNodesSinglePartition.containsAll(namesObligStop) == false) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Obligation Stops not reachable"));
 					this.analysisHost.appendLineToReport(partitionList.get(z).getName() + "has Obligation Stops that are not reachable");
 					checkSuccessful = false;
 				}
+				*/
 				//-----------------------------------------------------------------------------------
 				//check if all executed action are permitted
 				for(int r = 0; r < taggedValuesPermissions.size(); r++) {
