@@ -1,14 +1,17 @@
 package carisma.check.idscheck.datausagecheck;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
@@ -20,6 +23,7 @@ import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
+import carisma.modeltype.uml2.activity.ParallelPath;
 import carisma.profile.umlsec.umlsec4ids.UMLsec;
 import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
 
@@ -96,6 +100,21 @@ public class DataUsageCheck implements CarismaCheckWithID {
 			this.analysisHost.appendLineToReport("There is no existing path through the diagram");
 			checkSuccessful = false;
 		}
+		//test for parallel paths contains all remove all
+		int counter1 = pathsList.size();
+		int x1 = 1;
+		System.out.println("paths List " + pathsList);
+		for(int i = 0; i < pathsList.size(); i++) {
+			for(int j = x1; j < pathsList.size(); j++) {
+				if(pathsList.get(x1).containsAll(pathsList.get(j))) {
+					System.out.println("i = " + i + " ; j = " + j);
+				}
+			}
+			x1++;
+			for(int j = 0; j < pathsList.get(i).size(); j++) {
+				//System.out.println("current paths list" + ((NamedElement) pathsList.get(i).get(j)).getName());
+			}
+		}
 		//--------------------------------------------------------------------------------
 		
 		//get all valid paths within the diagram
@@ -111,7 +130,9 @@ public class DataUsageCheck implements CarismaCheckWithID {
 		}
 		System.out.println("different paths --------------- " + listOfDifferentPaths);
 		//-------------------------------------------------------------------------------
+	
 		
+		//------------------------------------------------------------------------
 		ArrayList<String> namesProhibs = new ArrayList<String>();
 		ArrayList<String> namesObligStart = new ArrayList<String>();
 		ArrayList<String> namesObligStop = new ArrayList<String>();
@@ -152,7 +173,29 @@ public class DataUsageCheck implements CarismaCheckWithID {
 				for(int i = 0; i < allPartitions.size(); i++) {
 					anodesOfSinglePartition.add(allPartitions.get(i).getNodes());
 				}
-				//System.out.println("alle nodes der DUC partition " + anodesOfSinglePartition);
+				System.out.println("alle nodes der DUC partition " + anodesOfSinglePartition);
+				
+				//test get all parallel paths
+				ParallelPath pp = new ParallelPath();
+				for(int v = 0; v < anodesOfSinglePartition.size(); v++) {
+					for(int j = 0; j < anodesOfSinglePartition.get(v).size(); j++) {
+						if(ActivityDiagramManager.isForkNode(anodesOfSinglePartition.get(v).get(j)) == true){
+							List<List<Element>> parallelList = pp.getParallelPaths((ForkNode) anodesOfSinglePartition.get(v).get(j), analysisHost);
+							System.out.println("parallel paths " + parallelList);
+							for(int g = 0; g < parallelList.size(); g++) {
+								for(int i = 0; i < parallelList.get(g).size(); i++) {
+									//System.out.println(((NamedElement) parallelList.get(g).get(i)).getName());
+								}						
+							}
+						}
+					}
+					
+				}
+			
+				
+				
+				//----------------------------------------
+				
 				ArrayList<String> allNodeNamesSubpartitions = new ArrayList<String>();
 				for(int i = 0; i < anodesOfSinglePartition.size(); i++) {
 					//System.out.println("iterieren anodesOfSinglePartition " + anodesOfSinglePartition.get(i));
@@ -182,8 +225,11 @@ public class DataUsageCheck implements CarismaCheckWithID {
 							validNodesForPath.add(allNodeNamesSubpartitions.get(h));
 						}
 					}
-					System.out.println("valid nodes ---- " + validNodesForPath);
+					//System.out.println("valid nodes ---- " + validNodesForPath);
+					//validNodesForPath.removeAll(nameNodesSinglePartition) hier list<string> also hier die doppelten removen
 				}
+				System.out.println("valid nodes ---- " + validNodesForPath);
+
 				//---------------------------------------------------------------------------------
 				// gibt die verschiedenden validen pfade in reihenfolge und anteil an der partition wieder
 				//idee für oblig --> erst test gleiche länge
@@ -211,7 +257,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 					//System.out.println("valid nodes test " + testValidNodes);
 					testList.add(testValidNodes);
 				}
-				System.out.println("valid nodes paths vor schleife" + testList);
+				//System.out.println("valid nodes paths vor schleife" + testList);
 				int x = 0;
 				int counter = testList.size();
 				for(int h = 0; h < counter; h++) {
@@ -224,8 +270,28 @@ public class DataUsageCheck implements CarismaCheckWithID {
 					x++;
 				}
 				System.out.println("valid nodes paths nach schleife " + testList);
+				
+				//-------------------------------------------------------------------------
+				// testList remove duplicates 
+				for(int i = 0; i < testList.size(); i++) {
+					int g = i + 1;
+					System.out.println("Liste i : " + testList.get(i) + " i " + i);
+					while(g < testList.size()) {
+						System.out.println("Liste g : " + testList.get(g) + " g " + g);
+						if(testList.get(i).containsAll(testList.get(g))) {
+							System.out.println("Liste i : " + testList.get(i) + " Vergleich mit Liste g : " + testList.get(g));
+							testList.remove(testList.get(g));
+							g --;
+						}
+					g++;
+					}
+					System.out.println("valid nodes paths nach while schleife " + testList);
+				}
+				System.out.println("valid nodes paths nach remove duplicates " + testList);
+
 				//---------------------------------------------------------------------------
 				//check if prohibition is executed
+				// validNodesForPath ersetzen durch testList + testen
 				for(int q = 0; q < taggedValuesProhibitions.size(); q++) {
 					String currentProhib = ((NamedElement) taggedValuesProhibitions.get(q)).getName();
 					namesProhibs.add(currentProhib);
