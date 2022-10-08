@@ -303,7 +303,7 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	@Override
-	public EReference getdataprovenancetracking_Base_Package() {
+	public EReference getdataprovenancetracking_Base_Activity() {
 		return (EReference)dataprovenancetrackingEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -333,7 +333,7 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	@Override
-	public EReference getdataprovenancetracking_Protected() {
+	public EReference getdataprovenancetracking_Clearing_house() {
 		return (EReference)dataprovenancetrackingEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -343,18 +343,8 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	@Override
-	public EReference getdataprovenancetracking_Right() {
+	public EReference getdataprovenancetracking_Protected() {
 		return (EReference)dataprovenancetrackingEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getdataprovenancetracking_Clearing_house() {
-		return (EReference)dataprovenancetrackingEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -689,12 +679,11 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		createEReference(trustplusEClass, TRUSTPLUS__BASE_NODE);
 
 		dataprovenancetrackingEClass = createEClass(DATAPROVENANCETRACKING);
-		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__BASE_PACKAGE);
+		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__BASE_ACTIVITY);
 		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__START_ACTION);
 		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__STOP_ACTION);
-		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__PROTECTED);
-		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__RIGHT);
 		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__CLEARING_HOUSE);
+		createEReference(dataprovenancetrackingEClass, DATAPROVENANCETRACKING__PROTECTED);
 
 		ownerEClass = createEClass(OWNER);
 		createEReference(ownerEClass, OWNER__BASE_ACTIVITY_PARTITION);
@@ -783,12 +772,11 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		initEReference(gettrustplus_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, trustplus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(dataprovenancetrackingEClass, dataprovenancetracking.class, "dataprovenancetracking", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getdataprovenancetracking_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 1, 1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getdataprovenancetracking_Base_Activity(), theUMLPackage.getActivity(), null, "base_Activity", null, 1, 1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getdataprovenancetracking_Start_action(), theUMLPackage.getAction(), null, "start_action", null, 1, -1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getdataprovenancetracking_Stop_action(), theUMLPackage.getAction(), null, "stop_action", null, 1, -1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getdataprovenancetracking_Protected(), theUMLPackage.getAction(), null, "protected", null, 1, -1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getdataprovenancetracking_Right(), theUMLPackage.getAction(), null, "right", null, 1, -1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getdataprovenancetracking_Clearing_house(), theUMLPackage.getActivityPartition(), null, "clearing_house", null, 1, -1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getdataprovenancetracking_Protected(), theUMLPackage.getAction(), null, "protected", null, 1, -1, dataprovenancetracking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(ownerEClass, Owner.class, "Owner", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOwner_Base_ActivityPartition(), theUMLPackage.getActivityPartition(), null, "base_ActivityPartition", null, 1, 1, Owner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -856,12 +844,6 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		   source,
 		   new String[] {
 			   "originalName", "Data Provenance Tracking"
-		   });
-		addAnnotation
-		  (getdataprovenancetracking_Clearing_house(),
-		   source,
-		   new String[] {
-			   "originalName", "Clearing House"
 		   });
 		addAnnotation
 		  (datausagecontrolEClass,

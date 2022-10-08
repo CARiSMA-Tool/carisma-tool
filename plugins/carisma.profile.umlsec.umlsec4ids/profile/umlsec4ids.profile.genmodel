@@ -23,12 +23,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//trustplus/base_Node"/>
     </genClasses>
     <genClasses ecoreClass="umlsec4ids.profile.ecore#//dataprovenancetracking">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/base_Package"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/base_Activity"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/start_action"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/stop_action"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/protected"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/right"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/clearing_house"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/protected"/>
     </genClasses>
     <genClasses ecoreClass="umlsec4ids.profile.ecore#//Owner">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//Owner/base_ActivityPartition"/>

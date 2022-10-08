@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.uml2.uml.Action;
+import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
@@ -16,6 +19,7 @@ import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.StereotypeApplication;
+import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
 import carisma.profile.umlsec.umlsec4ids.UMLsec;
 import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
@@ -74,40 +78,132 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 	 */
 	private boolean startCheck() {
 
-		boolean existingPath = true;
+		boolean checkSuccessful = true;
 		ActivityDiagramManager adm = new ActivityDiagramManager(model, analysisHost);
 		this.pathsList = adm.getAllPaths();
 		if (pathsList.size() < 1) {
-			existingPath = false;
+			checkSuccessful = false;
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is no existing path through the diagram"));
 			this.analysisHost.appendLineToReport("There is no existing path through the diagram");
 		}
-		//alle pfade bekommen
-		ArrayList<ArrayList<String>> listOfDifferentPaths= new ArrayList<ArrayList<String>>();
-		for (int i = 0; i < pathsList.size(); i++) {
-			List<Element> currentPath = pathsList.get(i);
-			ArrayList<String> listOfSinglePath = new ArrayList<>();
-			for (int z = 0; z < currentPath.size(); z++) {
-				String path = ((NamedElement) currentPath.get(z)).getName();
-				listOfSinglePath.add(path);
+		//get activity with stereotype
+		ArrayList<Activity> activityList = (ArrayList<Activity>) UMLHelper.getAllElementsOfType(model, Activity.class);
+		for(int i = 0; i < activityList.size(); i++) {
+			System.out.println("current activity : " + activityList.get(i));
+			String activityName = activityList.get(i).getName();
+			List<Object> taggedValuesClearingHouse = new ArrayList<Object>();
+			List<Object> taggedValuesStartAction = new ArrayList<Object>();
+			List<Object> taggedValuesStopAction = new ArrayList<Object>();
+			List<Object> taggedValuesProtected = new ArrayList<Object>();
+			System.out.println("has stereo : " + UMLsecUtil.hasStereotype(activityList.get(i), UMLsec.DATAPROVENANCETRACKING));
+			if(UMLsecUtil.hasStereotype(activityList.get(i), UMLsec.DATAPROVENANCETRACKING)){
+				System.out.println("hier");
+				taggedValuesClearingHouse = UMLsecUtil.getTaggedValues("clearing_house", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
+				taggedValuesStartAction = UMLsecUtil.getTaggedValues("start_action", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
+				taggedValuesStopAction = UMLsecUtil.getTaggedValues("stop_action", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
+				taggedValuesProtected = UMLsecUtil.getTaggedValues("protected", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
 			}
-			listOfDifferentPaths.add(listOfSinglePath);
+			// test for equal amounts of actions in tags
+			if(taggedValuesClearingHouse.size() < 1) {
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is no existing Clearing House"));
+				this.analysisHost.appendLineToReport("There is no existing Clearing House in " + activityName);
+				checkSuccessful = false;
+			}
+			if(taggedValuesStartAction.size() != taggedValuesStopAction.size()) {
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is not an equal amount of Start Actions and Stop Actions"));
+				this.analysisHost.appendLineToReport("There is not an equal amount of Start Actions and Stop Actions in " + activityName);
+				checkSuccessful = false;
+			}
+			if(taggedValuesProtected.size() != taggedValuesStopAction.size()) {
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is not an equal amount of Stop Actions and Protected Actions"));
+				this.analysisHost.appendLineToReport("There is not an equal amount of Stop Actions and Protected Actions in " + activityName);
+				checkSuccessful = false;
+			}
+			//--------------------------------------------------			
+			//check for equal names in protected and stop acitions
+			ArrayList<String> namesTagStartAction = new ArrayList<String>();
+			for(int x = 0; x < taggedValuesStartAction.size(); x++) {
+				namesTagStartAction.add(((NamedElement) taggedValuesStartAction.get(x)).getName());
+			}
+			System.out.println("names start " +namesTagStartAction);
+			ArrayList<String> namesTagStopAction = new ArrayList<String>();
+			for(int x = 0; x < taggedValuesStopAction.size(); x++) {
+				namesTagStopAction.add(((NamedElement) taggedValuesStopAction.get(x)).getName());
+			}
+			System.out.println("names stop " +namesTagStopAction);
+			
+			
+			ArrayList<String> namesTagProtected = new ArrayList<String>();
+			for(int x = 0; x < taggedValuesProtected.size(); x++) {
+				namesTagProtected.add(((NamedElement) taggedValuesProtected.get(x)).getName());
+			}
+			System.out.println("names protected " +namesTagProtected);
+			
+			if(namesTagProtected.containsAll(namesTagStopAction) == false || namesTagStopAction.containsAll(namesTagProtected) == false) {
+				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Stop Actions and Protected Actions are not equal"));
+				this.analysisHost.appendLineToReport("The Stop Actions and Protected Actions are not equal in " + activityName);
+				checkSuccessful = false;
+			}
+			//-------------------------------------------------------------------------------------
+			//create start_stop_action pairs
+			ArrayList<ArrayList<String>> startStopPairs = new ArrayList<ArrayList<String>>();
+			if(namesTagStopAction.size() == namesTagStartAction.size()) {
+				for(int w = 0; w < namesTagStartAction.size(); w++) {
+					ArrayList<String> startStopPair = new ArrayList<String>();
+					startStopPair.add(namesTagStartAction.get(w));
+					startStopPair.add(namesTagStopAction.get(w));
+					startStopPairs.add(startStopPair);
+
+				}
+			}
+			System.out.println("start stop pairs " + startStopPairs);
+			//-----------------------------------------------------------------------------------------
+			//über alle pfade testen ob wenn start erreicht wird auch stop erreicht wird
+			//alle pfade bekommen
+			ArrayList<ArrayList<String>> listOfDifferentPaths= new ArrayList<ArrayList<String>>();
+			for(int x = 0; x < pathsList.size(); x++) {
+				List<Element> currentPath = pathsList.get(x);
+				ArrayList<String> listOfSinglePath = new ArrayList<>();
+				for (int z = 0; z < currentPath.size(); z++) {
+					String path = ((NamedElement) currentPath.get(z)).getName();
+					listOfSinglePath.add(path);
+				}
+				listOfDifferentPaths.add(listOfSinglePath);
+			}
+			System.out.println("different paths --------------- " + listOfDifferentPaths);
+			// stop before start
+			for(int x = 0; x < startStopPairs.size(); x++) {
+				for(int z = 0; z < listOfDifferentPaths.size(); z++) {
+					if(listOfDifferentPaths.get(z).contains(startStopPairs.get(x).get(0)) && listOfDifferentPaths.get(z).contains(startStopPairs.get(x).get(1))) {
+						int platzStart = -1;
+						int platzStop = -1;
+						for(int l = 0; l < listOfDifferentPaths.get(z).size(); l++) {
+							if(listOfDifferentPaths.get(z).get(l) == startStopPairs.get(z).get(0)) {
+								platzStart = l;
+							}
+							if(listOfDifferentPaths.get(z).get(l) == startStopPairs.get(z).get(1)) {
+								platzStop = l;
+							}
+						}
+						if(platzStart > platzStop) {
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Obligation Start follows the Obligation Stop"));
+							this.analysisHost.appendLineToReport(listOfDifferentPaths.get(z)  + " executes the Obligation Stop before the Obligation Start for Obligation : " + startStopPairs.get(x) + " in Activity : " + activityName);
+							checkSuccessful = false;
+							//System.out.println("In dem Pfad " + testList.get(g)+ " wird Stop vor Start ausgeführt");
+						}
+					}
+					if(listOfDifferentPaths.get(z).contains(startStopPairs.get(x).get(0)) && listOfDifferentPaths.get(z).contains(startStopPairs.get(x).get(1)) == false) {
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Obligation Stop does not follow after the Obligation Start"));
+						this.analysisHost.appendLineToReport(listOfDifferentPaths.get(z)  + " executes the Obligation Start but does not executes the Obligation Stop for Obligation : " + startStopPairs.get(x) + " in Activity : " + activityName);
+						checkSuccessful = false;
+					}
+				}
+			}
 		}
-		System.out.println("different paths --------------- " + listOfDifferentPaths);
+		//-----------------------------------------------------------------------------------------
+		//alle pfade bekommen
 
-		
-		//alle start aktionen bekommen
-
-		ArrayList<String> startActions = new ArrayList<String>();
-		List<Object> taggedValuesStartActions = UMLsecUtil.getTaggedValues("Start action", UMLsec.DATAPROVENANCETRACKING, model);
-		for (int y = 0; y < taggedValuesStartActions.size(); y++) {
-			String currentTag = ((NamedElement) taggedValuesStartActions.get(y)).getName();
-			startActions.add(currentTag);
-		}
-
-		
-		System.out.println("start actions --------------- " + startActions);
-		//alle stop aktionen bekommen
+		//-------------------------------------------------------------------------------------
 		
 		
 		return true;
