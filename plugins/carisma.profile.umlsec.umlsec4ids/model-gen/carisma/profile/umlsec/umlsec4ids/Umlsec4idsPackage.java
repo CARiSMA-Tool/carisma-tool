@@ -219,13 +219,13 @@ public interface Umlsec4idsPackage extends EPackage {
 	int DATAPROVENANCETRACKING = 4;
 
 	/**
-	 * The feature id for the '<em><b>Base Package</b></em>' reference.
+	 * The feature id for the '<em><b>Base Activity</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATAPROVENANCETRACKING__BASE_PACKAGE = 0;
+	int DATAPROVENANCETRACKING__BASE_ACTIVITY = 0;
 
 	/**
 	 * The feature id for the '<em><b>Start action</b></em>' reference list.
@@ -246,31 +246,22 @@ public interface Umlsec4idsPackage extends EPackage {
 	int DATAPROVENANCETRACKING__STOP_ACTION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Protected</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATAPROVENANCETRACKING__PROTECTED = 3;
-
-	/**
-	 * The feature id for the '<em><b>Right</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATAPROVENANCETRACKING__RIGHT = 4;
-
-	/**
 	 * The feature id for the '<em><b>Clearing house</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATAPROVENANCETRACKING__CLEARING_HOUSE = 5;
+	int DATAPROVENANCETRACKING__CLEARING_HOUSE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Protected</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAPROVENANCETRACKING__PROTECTED = 4;
 
 	/**
 	 * The number of structural features of the '<em>dataprovenancetracking</em>' class.
@@ -279,7 +270,7 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATAPROVENANCETRACKING_FEATURE_COUNT = 6;
+	int DATAPROVENANCETRACKING_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>dataprovenancetracking</em>' class.
@@ -838,15 +829,15 @@ public interface Umlsec4idsPackage extends EPackage {
 	EClass getdataprovenancetracking();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getBase_Package <em>Base Package</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getBase_Activity <em>Base Activity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Package</em>'.
-	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getBase_Package()
+	 * @return the meta object for the reference '<em>Base Activity</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getBase_Activity()
 	 * @see #getdataprovenancetracking()
 	 * @generated
 	 */
-	EReference getdataprovenancetracking_Base_Package();
+	EReference getdataprovenancetracking_Base_Activity();
 
 	/**
 	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getStart_action <em>Start action</em>}'.
@@ -871,28 +862,6 @@ public interface Umlsec4idsPackage extends EPackage {
 	EReference getdataprovenancetracking_Stop_action();
 
 	/**
-	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getProtected <em>Protected</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Protected</em>'.
-	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getProtected()
-	 * @see #getdataprovenancetracking()
-	 * @generated
-	 */
-	EReference getdataprovenancetracking_Protected();
-
-	/**
-	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getRight <em>Right</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Right</em>'.
-	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getRight()
-	 * @see #getdataprovenancetracking()
-	 * @generated
-	 */
-	EReference getdataprovenancetracking_Right();
-
-	/**
 	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getClearing_house <em>Clearing house</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -902,6 +871,17 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getdataprovenancetracking_Clearing_house();
+
+	/**
+	 * Returns the meta object for the reference list '{@link carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getProtected <em>Protected</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Protected</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.dataprovenancetracking#getProtected()
+	 * @see #getdataprovenancetracking()
+	 * @generated
+	 */
+	EReference getdataprovenancetracking_Protected();
 
 	/**
 	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.Owner <em>Owner</em>}'.
@@ -1318,12 +1298,12 @@ public interface Umlsec4idsPackage extends EPackage {
 		EClass DATAPROVENANCETRACKING = eINSTANCE.getdataprovenancetracking();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Base Activity</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATAPROVENANCETRACKING__BASE_PACKAGE = eINSTANCE.getdataprovenancetracking_Base_Package();
+		EReference DATAPROVENANCETRACKING__BASE_ACTIVITY = eINSTANCE.getdataprovenancetracking_Base_Activity();
 
 		/**
 		 * The meta object literal for the '<em><b>Start action</b></em>' reference list feature.
@@ -1342,28 +1322,20 @@ public interface Umlsec4idsPackage extends EPackage {
 		EReference DATAPROVENANCETRACKING__STOP_ACTION = eINSTANCE.getdataprovenancetracking_Stop_action();
 
 		/**
-		 * The meta object literal for the '<em><b>Protected</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATAPROVENANCETRACKING__PROTECTED = eINSTANCE.getdataprovenancetracking_Protected();
-
-		/**
-		 * The meta object literal for the '<em><b>Right</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATAPROVENANCETRACKING__RIGHT = eINSTANCE.getdataprovenancetracking_Right();
-
-		/**
 		 * The meta object literal for the '<em><b>Clearing house</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DATAPROVENANCETRACKING__CLEARING_HOUSE = eINSTANCE.getdataprovenancetracking_Clearing_house();
+
+		/**
+		 * The meta object literal for the '<em><b>Protected</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATAPROVENANCETRACKING__PROTECTED = eINSTANCE.getdataprovenancetracking_Protected();
 
 		/**
 		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.OwnerImpl <em>Owner</em>}' class.

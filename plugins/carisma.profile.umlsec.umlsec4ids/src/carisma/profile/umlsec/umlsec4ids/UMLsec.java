@@ -60,7 +60,7 @@ public enum UMLsec {
 	OWNER ("Owner"),
 	CONSUMER ("Consumer"),
 	DATAUSAGECONTROL ("datausagecontrol"),
-	DATAPROVENANCETRACKING ("Data Provenance Tracking"),
+	DATAPROVENANCETRACKING ("dataprovenancetracking"),
 	VERIFIED ("verified"),
 	ISOLATED ("isolated"),
 	ENCRYPTION ("encryption"),
