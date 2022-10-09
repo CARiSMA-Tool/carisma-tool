@@ -110,8 +110,8 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 			List<Object> taggedValuesStopAction = new ArrayList<Object>();
 			List<Object> taggedValuesProtected = new ArrayList<Object>();
 			//System.out.println("has stereo : " + UMLsecUtil.hasStereotype(activityList.get(i), UMLsec.DATAPROVENANCETRACKING));
+			// hier muss möglicherweise eingeschoben werden, da sonst auch activities überprüft werden, die nicht den stereotypen haben
 			if(UMLsecUtil.hasStereotype(activityList.get(i), UMLsec.DATAPROVENANCETRACKING)){
-				System.out.println("hier");
 				taggedValuesClearingHouse = UMLsecUtil.getTaggedValues("clearing_house", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
 				taggedValuesStartAction = UMLsecUtil.getTaggedValues("start_action", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
 				taggedValuesStopAction = UMLsecUtil.getTaggedValues("stop_action", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
@@ -187,16 +187,22 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 			//System.out.println("different paths --------------- " + listOfDifferentPaths);
 			//check if stop comes before start and check if stop comes after start
 			boolean failStartStop = false;
+			System.out.println("size list different paths " + listOfDifferentPaths.size());
+			System.out.println("list different paths " + listOfDifferentPaths);
+
+			System.out.println("size start stop pairs " + startStopPairs.size());
+			System.out.println("start stop pairs " + startStopPairs);
 			for(int x = 0; x < startStopPairs.size(); x++) {
-				for(int z = 0; z < listOfDifferentPaths.size(); z++) {
+				for(int z = 0; z < listOfDifferentPaths.size(); z++) {					
 					if(listOfDifferentPaths.get(z).contains(startStopPairs.get(x).get(0)) && listOfDifferentPaths.get(z).contains(startStopPairs.get(x).get(1))) {
 						int platzStart = -1;
 						int platzStop = -1;
+						//wenn mehr pfade als start stop paare vorhanden sind dann indexfail
 						for(int l = 0; l < listOfDifferentPaths.get(z).size(); l++) {
-							if(listOfDifferentPaths.get(z).get(l) == startStopPairs.get(z).get(0)) {
+							if(listOfDifferentPaths.get(z).get(l) == startStopPairs.get(x).get(0)) {
 								platzStart = l;
 							}
-							if(listOfDifferentPaths.get(z).get(l) == startStopPairs.get(z).get(1)) {
+							if(listOfDifferentPaths.get(z).get(l) == startStopPairs.get(x).get(1)) {
 								platzStop = l;
 							}
 						}
