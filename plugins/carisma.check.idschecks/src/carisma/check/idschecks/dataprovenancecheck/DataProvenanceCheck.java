@@ -10,6 +10,7 @@ import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
+import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.NamedElement;
@@ -91,7 +92,40 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 	 * schauen ob clearing house right mit protected aktion hat
 	 */
 	private boolean startCheck() {
+		
+		this.analysisHost.appendLineToReport("IMPORTANT");
+		this.analysisHost.appendLineToReport("To run this check succcessfully you have to name every element!");
+		this.analysisHost.appendLineToReport("Therefore give names not only to actions but to forks, joins, merges and decisions as well.");
+		this.analysisHost.appendLineToReport("--------------------------------------------------------------");
 
+		ArrayList<ForkNode> forkList = (ArrayList<ForkNode>) UMLHelper.getAllElementsOfType(model, ForkNode.class);;
+		ArrayList<DecisionNode> decisionList = (ArrayList<DecisionNode>) UMLHelper.getAllElementsOfType(model, DecisionNode.class);
+		System.out.println("fork liste " + forkList);
+		System.out.println("decision liste " + decisionList);
+		if(decisionList.size() > 0) {
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is a decision node the diagram"));
+			this.analysisHost.appendLineToReport("There is a decision node within the diagram");
+			this.analysisHost.appendLineToReport("If the stop action follows the start action in the same branch, then the check goes through.");
+			this.analysisHost.appendLineToReport("If the start action is before the decision node and the stop action comes after the decision node, the check fails.");
+			this.analysisHost.appendLineToReport("This is because the stop action could be avoided.");
+			this.analysisHost.appendLineToReport("Remember to put the stop action in all branches in the diagram");
+			this.analysisHost.appendLineToReport("----------------------------------------");
+			this.analysisHost.appendLineToReport("If a prohibitted action is executed in any branch of the system, the Check fails as well.");
+			this.analysisHost.appendLineToReport("There must not exist any possibility that an prohibitted action is executed.");
+			this.analysisHost.appendLineToReport("----------------------------------------");
+			this.analysisHost.appendLineToReport("If any branch of the system contains an action that is not permitted, the Check fail.");
+			this.analysisHost.appendLineToReport("This is because there is a possibility that this action could be executed.");
+
+		}
+		if(forkList.size() > 0) {
+			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is a fork node the diagram"));
+			this.analysisHost.appendLineToReport("There is a fork node within the diagram");
+			this.analysisHost.appendLineToReport("The Check detects prohibitted actions that are executed.");
+			this.analysisHost.appendLineToReport("It also detects actions that are executed but are not permitted.");
+			this.analysisHost.appendLineToReport("If an obligation_start comes before the fork node and the obligation_stop comes after, the Check will not fail.");
+			this.analysisHost.appendLineToReport("However there is the possibility that the check fails, if the obligation_start and obligation_stop both occur in the same parallelization.");
+
+		}
 		boolean checkSuccessful = true;
 		ActivityDiagramManager adm = new ActivityDiagramManager(model, analysisHost);
 		this.pathsList = adm.getAllPaths();
@@ -104,6 +138,8 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 		ArrayList<Activity> activityList = (ArrayList<Activity>) UMLHelper.getAllElementsOfType(model, Activity.class);
 		for(int i = 0; i < activityList.size(); i++) {
 			//System.out.println("current activity : " + activityList.get(i));
+			//get fork and decision nodes to create a warning da nur warnung kreiert wird diese maybe ganz an den anfang
+
 			String activityName = activityList.get(i).getName();
 			List<Object> taggedValuesClearingHouse = new ArrayList<Object>();
 			List<Object> taggedValuesStartAction = new ArrayList<Object>();
@@ -202,10 +238,16 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 							if(listOfDifferentPaths.get(z).get(l) == startStopPairs.get(x).get(0)) {
 								platzStart = l;
 							}
-							if(listOfDifferentPaths.get(z).get(l) == startStopPairs.get(x).get(1)) {
+							System.out.println("string vgl : " + (listOfDifferentPaths.get(z).get(l) == startStopPairs.get(x).get(1))+ " " + (listOfDifferentPaths.get(z).get(l)) + " " + (startStopPairs.get(x).get(1)));
+							if(listOfDifferentPaths.get(z).get(l).equals(startStopPairs.get(x).get(1))) {
 								platzStop = l;
 							}
 						}
+						System.out.println("path : " + listOfDifferentPaths.get(z));
+						System.out.println("pair : " + startStopPairs.get(x));
+						System.out.println("platz start : " + platzStart);
+						System.out.println("platz stop : " + platzStop);
+						
 						if(platzStart > platzStop) {
 							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Obligation Start follows the Obligation Stop"));
 							this.analysisHost.appendLineToReport(listOfDifferentPaths.get(z)  + " executes the Obligation Stop before the Obligation Start for Obligation : " + startStopPairs.get(x) + " in Activity : " + activityName);
