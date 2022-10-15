@@ -229,7 +229,7 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		//-------------------------------------------------------------------------------
 		//----------------------------------------------------------------------------------------------		
 		//list erstellen mit allen verschiedenen protected actions
-		
+		List<String> taggedValuesReqAttAndActOwner = null;
 		List<Object> taggedValuesProtectedOwner = null;
 		ArrayList<String> protectedActions = new ArrayList<String>();
 		List<Element> elementOwner = (List<Element>) UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
@@ -240,7 +240,17 @@ public class DataAccessCheck implements CarismaCheckWithID {
 				String currentTag = ((NamedElement) taggedValuesProtectedOwner.get(y)).getName();
 				protectedActions.add(currentTag);
 			}
-
+			taggedValuesReqAttAndActOwner = UMLsecUtil.getStringValues("requested_attributes_and_actions", UMLsec.OWNER, elementOwner.get(x));
+			System.out.println("liste der req att and ac : " + taggedValuesReqAttAndActOwner);
+		}
+		List<Element> elementConsumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		List<String> taggedValuesAttAndActConsumer = null;
+		for(int x = 0; x < elementConsumer.size(); x++) {
+			taggedValuesAttAndActConsumer = UMLsecUtil.getStringValues("attributes_and_actions", UMLsec.CONSUMER, elementConsumer.get(x));
+		}
+		System.out.println("list attributes actions consumer : " + taggedValuesAttAndActConsumer);
+		if(taggedValuesAttAndActConsumer.containsAll(taggedValuesReqAttAndActOwner)) {
+			System.out.println("true");
 		}
 		//System.out.println("protectedactions ---------------" + protectedActions);
 		//System.out.println("protectedactions ---------------" + taggedValuesProtectedOwner);

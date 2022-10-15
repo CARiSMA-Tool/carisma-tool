@@ -67,6 +67,7 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
 		ArrayList<CommunicationPath> commPathList = (ArrayList<CommunicationPath>) UMLHelper.getAllElementsOfType(model, CommunicationPath.class);
 		
+		boolean checkSuccessful = true;
 		boolean hasOneSecurityProfile = true;
 		boolean noBaseFreeCommunication = true;
 		//Test if Nodes have one Security Profile
@@ -84,7 +85,7 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<BaseFree>> and <<Trustplus>>");
 				}
-				hasOneSecurityProfile = false;
+				checkSuccessful = false;
 			}
 			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE) && (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS))) {
 				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST)) {
@@ -95,22 +96,23 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<Base>> and <<Trustplus>>");
 				}
-				hasOneSecurityProfile = false;
+				checkSuccessful = false;
 			}
 			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) && UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<Trust>> and <<Trustplus>>");
-				hasOneSecurityProfile = false;
+					checkSuccessful = false;
 			}
 			if ((UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASEFREE) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes have a missing Security Profile"));
 				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " has no Security Profile");
-				hasOneSecurityProfile = false;
+				checkSuccessful = false;
 			}
 	}
 	
 	//------------------------------------------------------------------------------
 	//Checks if there are Rules broken regarding Communication
+	//names for all nodes when comm rules broken 
 	for (int i = 0; i < commPathList.size(); i++) {
 		EList<NamedElement> communicationMembers = commPathList.get(i).getMembers();
 		String communicationMember1 = communicationMembers.get(0).getName();
@@ -149,13 +151,13 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 						//System.out.println("BASEFREE TRUST BASE comm");
 						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Basefree Security Profiles cannot communicate with Trust or Base Security Profile"));
 						this.analysisHost.appendLineToReport("Basefree Security Profiles cannot communicate with Trust or Base Security Profile");
-						noBaseFreeCommunication = false;
+						checkSuccessful = false;
 					}
 					if ((UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.BASE) || UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.TRUST)) && UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.BASEFREE)) {
 						//System.out.println("BASEFREE TRUST BASE comm");
 						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Basefree Security Profiles cannot communicate with Trust or Base Security Profile"));
 						this.analysisHost.appendLineToReport("Basefree Security Profiles cannot communicate with Trust or Base Security Profile");
-						noBaseFreeCommunication = false;
+						checkSuccessful = false;
 					}
 				}
 			}
@@ -219,11 +221,7 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 		}
 	}
 	//------------------------------------------------------------
-	if (hasOneSecurityProfile == false || noBaseFreeCommunication == false) {
-		return false;
-	}	else {
-		return true;
-	}
+	return checkSuccessful;
 	
 	}
 	

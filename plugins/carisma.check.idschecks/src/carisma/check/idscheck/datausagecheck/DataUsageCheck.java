@@ -361,6 +361,11 @@ public class DataUsageCheck implements CarismaCheckWithID {
 				}
 				//--------------------------------------------------------------------------
 				//checken ob auf die start bedingung auch die stop bedingung ausgeführt wird
+				System.out.println("size list different paths " + listOfDifferentPaths.size());
+				System.out.println("list different paths " + listOfDifferentPaths);
+	
+				System.out.println("size start stop pairs " + grosseListe.size());
+				System.out.println("start stop pairs " + grosseListe);
 				for(int q = 0; q < grosseListe.size(); q++) {
 					for(int g = 0; g < testList.size(); g++) {
 						if(testList.get(g).contains(grosseListe.get(q).get(0)) && testList.get(g).contains(grosseListe.get(q).get(1))) {
@@ -371,10 +376,15 @@ public class DataUsageCheck implements CarismaCheckWithID {
 								if(testList.get(g).get(l) == grosseListe.get(q).get(0)) {
 									platzStart = l;
 								}
+								System.out.println("string vgl : " + (testList.get(g).get(l) == grosseListe.get(q).get(1))+ " " + (testList.get(g).get(l)) + " " + (grosseListe.get(q).get(1)));
 								if(testList.get(g).get(l) == grosseListe.get(q).get(1)) {
 									platzStop = l;
 								}
 							}
+							System.out.println("path : " + testList.get(g));
+							System.out.println("pair : " + grosseListe.get(q));
+							System.out.println("platz start : " + platzStart);
+							System.out.println("platz stop : " + platzStop);
 							if(platzStart > platzStop) {
 								this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Obligation Stop follows the Obligation Start"));
 								this.analysisHost.appendLineToReport(testList.get(g)  + " executes the Obligation Stop before the Obligation Start for Obligation : " + grosseListe.get(q) + " in Partition : " + partitionList.get(z).getName());
