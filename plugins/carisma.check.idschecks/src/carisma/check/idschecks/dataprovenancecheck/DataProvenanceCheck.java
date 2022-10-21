@@ -164,9 +164,9 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 					this.analysisHost.appendLineToReport("There is not an equal amount of Start Actions and Stop Actions in " + activityName);
 					checkSuccessful = false;
 				}
-				if(taggedValuesProtected.size() != taggedValuesStopAction.size()) {
+				if((taggedValuesProtected.size() == 0) && (taggedValuesStopAction.size() > 0)) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is not an equal amount of Stop Actions and Protected Actions"));
-					this.analysisHost.appendLineToReport("There is not an equal amount of Stop Actions and Protected Actions in " + activityName);
+					this.analysisHost.appendLineToReport("Stop Actions should be executed, but there are no Protected Actions in " + activityName);
 					checkSuccessful = false;
 				}
 				//--------------------------------------------------			
@@ -189,9 +189,12 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 				}
 				//System.out.println("names protected " +namesTagProtected);
 				
-				if(namesTagProtected.containsAll(namesTagStopAction) == false || namesTagStopAction.containsAll(namesTagProtected) == false) {
+				//if(namesTagProtected.containsAll(namesTagStopAction) == false || namesTagStopAction.containsAll(namesTagProtected) == false) {
+				if(namesTagProtected.containsAll(namesTagStopAction) == false ){
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Stop Actions and Protected Actions are not equal"));
-					this.analysisHost.appendLineToReport("The Stop Actions and Protected Actions are not equal in " + activityName);
+					//this.analysisHost.appendLineToReport("The Stop Actions and Protected Actions are not equal in " + activityName);
+					this.analysisHost.appendLineToReport("Not all Stop Actions are protected " + activityName);
+
 					checkSuccessful = false;
 				}
 				//-------------------------------------------------------------------------------------
@@ -291,10 +294,10 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 					//System.out.println("alle stop aktionen mit partitionen : " + taggedValuesStopAction);
 					System.out.println("namen der stop aktionen : " + namesTagStopAction);
 					System.out.println("namen der clearing aktionen : " + namesActionsClearingHouse);
-					for(int z = 0; z < namesTagStopAction.size(); z++) {
-						if(namesActionsClearingHouse.contains(namesTagStopAction.get(z)) == false) {
+					for(int z = 0; z < namesTagProtected.size(); z++) {
+						if(namesActionsClearingHouse.contains(namesTagProtected.get(z)) == false) {
 							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Protected Actions are not executed by a Clearing House."));
-							this.analysisHost.appendLineToReport("There is a protected Action " + namesTagStopAction.get(z) + " that is not executed by a Clearing House in " + activityName);					
+							this.analysisHost.appendLineToReport("There is a protected Action " + namesTagProtected.get(z) + " that is not executed by a Clearing House in " + activityName);					
 							checkSuccessful = false;
 						}
 	
