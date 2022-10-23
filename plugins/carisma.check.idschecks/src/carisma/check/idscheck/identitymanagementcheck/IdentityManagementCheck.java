@@ -69,6 +69,7 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 
 	
 	private boolean startCheck() {
+		boolean checkSuccessful = true;
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
 		ArrayList<Element> x509List = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.X509);
 		ArrayList<Element> x509TLSList = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.X509TLS);
@@ -96,19 +97,19 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 		if ((x509List.size() < nodeList.size()) && x509TLSList.size() == nodeList.size()) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes miss the <<X509>> Stereotype"));
 			this.analysisHost.appendLineToReport("Nodes miss the <<X509>> Stereotype");
-			return false;
+			checkSuccessful = false;
 		}
 		
 		if ((x509List.size() == nodeList.size()) && x509TLSList.size() < nodeList.size()) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes miss the <<X509TLS>> Stereotype"));
 			this.analysisHost.appendLineToReport("Nodes miss the <<X509TLS>> Stereotype");
-			return false;
+			checkSuccessful = false;
 		}
 		
 		if ((x509List.size() < nodeList.size()) && x509TLSList.size() < nodeList.size()) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes miss the <<X509TLS>> and <<X509>> Stereotype"));
 			this.analysisHost.appendLineToReport("Nodes miss the <<X509TLS>> and <<X509>> Stereotype");
-			return false;
+			checkSuccessful = false;
 		}
 		//hier den date vergleich, iterieren über alle zertifikate und vgl date mit date.now
 		
@@ -142,23 +143,36 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 				for(int z = 0; z < dayX509.size(); z++) {
 					String strX509 = dayX509.get(z).toString();
 					if(strX509.length() != 8) {
-						 System.out.println("ungültiges datum des X.509 Zertifikates in " + nodeList.get(i).getName());
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509TLS>> certificate has an invalid date"));
+						this.analysisHost.appendLineToReport("Invalid date in X.509TLS certificate of " + nodeList.get(i).getName() + " not of format YYYY/MM/DD");
+						checkSuccessful = false;	
+						System.out.println("ungültiges datum des X.509 Zertifikates in " + nodeList.get(i).getName());
 					 }
 					if(strX509.length() == 8) {
-						String monthChar = strX509.substring(5, 6);
-						String dayChar = strX509.substring(7, 8);
+						String monthChar = strX509.substring(4, 6);
+						String dayChar = strX509.substring(6, 8);
 						int intMonthChar = Integer.parseInt(monthChar);
 						int intDayChar = Integer.parseInt(dayChar);
 						if( (intMonthChar < 1 || intMonthChar > 12) || (intDayChar < 1 || intDayChar > 31) ) {
-							 System.out.println("ungültiges datum des X.509 Zertifikates in " + nodeList.get(i).getName());
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509>> certificate has an invalid date"));
+							this.analysisHost.appendLineToReport("Invalid date in X.509 certificate of " + nodeList.get(i).getName());
+							System.out.println("ungültiges datum des X.509 Zertifikates in " + nodeList.get(i).getName());
+							checkSuccessful = false;
 						}
 						if((intMonthChar == 4 || intMonthChar == 6 || intMonthChar == 9 || intMonthChar == 11) && intDayChar > 30) {
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509>> certificate has an invalid date"));
+							this.analysisHost.appendLineToReport("Invalid date in X.509 certificate of " + nodeList.get(i).getName());
 							 System.out.println("ungültiges datum des X.509 Zertifikates in " + nodeList.get(i).getName());
+							 checkSuccessful = false;
 						}
 						if(intMonthChar == 2 && intDayChar > 29) {
-							 System.out.println("ungültiges datum des X.509 Zertifikates in " + nodeList.get(i).getName());
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509>> certificate has an invalid date"));
+							this.analysisHost.appendLineToReport("Invalid date in X.509 certificate of " + nodeList.get(i).getName());
+							System.out.println("ungültiges datum des X.509 Zertifikates in " + nodeList.get(i).getName());
+							checkSuccessful = false;
 						}
 					}
+					// das hier in die klammer damit bei länge 7 nicht date expired angehangen wird
 					 try{
 				        	intX509 = Integer.parseInt(dayX509.get(z).toString());
 				            System.out.println("number date " + intX509); // output = 25
@@ -167,8 +181,10 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 				            ex.printStackTrace();
 				        }
 					 if(intX509 < intDay) {
+						 this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509>> certificate is expired"));
+						 this.analysisHost.appendLineToReport("X.509 certificate of " + nodeList.get(i).getName() + " is expired");
 						 System.out.println("X.509 certificate expired in " + nodeList.get(i).getName());
-						 dateNotExpired = false;
+						 checkSuccessful = false;
 					}
 				}
 		}
@@ -178,23 +194,42 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 				for(int z = 0; z < dayX509TLS.size(); z++) {
 					String strX509TLS = dayX509TLS.get(z).toString();
 					if(strX509TLS.length() != 8) {
-						 System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+					    this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509TLS>> certificate has an invalid date"));
+						this.analysisHost.appendLineToReport("Invalid date in X.509TLS certificate of " + nodeList.get(i).getName() + " not of format YYYY/MM/DD");
+						System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+						checkSuccessful = false;
+						System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
 					 }
 					if(strX509TLS.length() == 8) {
-						String monthCharTLS = strX509TLS.substring(5, 6);
-						String dayCharTLS = strX509TLS.substring(7, 8);
+						String monthCharTLS = strX509TLS.substring(4, 6);
+						String dayCharTLS = strX509TLS.substring(6, 8);
+						String dayCharTLS2 = strX509TLS.substring(6, 8);
+						System.out.println("day char tls " + dayCharTLS);
+						System.out.println("month char tls2 " + monthCharTLS);
+
 						int intMonthCharTLS = Integer.parseInt(monthCharTLS);
 						int intDayCharTLS = Integer.parseInt(dayCharTLS);
+						System.out.println("int day char " + intDayCharTLS);
 						if( (intMonthCharTLS < 1 || intMonthCharTLS > 12) || (intDayCharTLS < 1 || intDayCharTLS > 31) ) {
-							 System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509TLS>> certificate has an invalid date"));
+							this.analysisHost.appendLineToReport("Invalid date in X.509TLS certificate of " + nodeList.get(i).getName());
+							System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+							checkSuccessful = false;
 						}
 						if((intMonthCharTLS == 4 || intMonthCharTLS == 6 || intMonthCharTLS == 9 || intMonthCharTLS == 11) && intDayCharTLS > 30) {
-							 System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509TLS>> certificate has an invalid date"));
+							this.analysisHost.appendLineToReport("Invalid date in X.509TLS certificate of " + nodeList.get(i).getName());
+							System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+							checkSuccessful = false;
 						}
 						if(intMonthCharTLS == 2 && intDayCharTLS > 29) {
-							 System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509TLS>> certificate has an invalid date"));
+							this.analysisHost.appendLineToReport("Invalid date in X.509TLS certificate of " + nodeList.get(i).getName());
+							System.out.println("ungültiges datum des X.509TLS Zertifikates in " + nodeList.get(i).getName());
+							checkSuccessful = false;
 						}
 					}
+					// das hier einrücken und hinter klammer damit hier nicht nochmal die date expired angahngen wird bei date länge 7
 					 try{
 				        	intX509TLS = Integer.parseInt(dayX509TLS.get(z).toString());
 				            System.out.println("number date " + intX509TLS); // output = 25
@@ -203,13 +238,15 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 				            ex.printStackTrace();
 				        }
 					 if(intX509TLS < intDay) {
+					     this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509TLS>> certificate is expired"));
+						 this.analysisHost.appendLineToReport("X.509TLS certificate of " + nodeList.get(i).getName() + " is expired");
 						 System.out.println("X.509TLS certificate expired in " + nodeList.get(i).getName());
-						 dateNotExpired = false;
+						 checkSuccessful = false;
 					}
 				}
 		}
         
-		return dateNotExpired;
+		return checkSuccessful;
 	}
 		
 	
