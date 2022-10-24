@@ -117,7 +117,7 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		boolean hasProtectedAction = true;
 		int numberOwner = 0;
 		int numberConsumer = 0;
-		
+		boolean checkSuccessful = true;
 		
 		
 		/*
@@ -145,7 +145,7 @@ public class DataAccessCheck implements CarismaCheckWithID {
 			if(UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.CONSUMER) && UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.OWNER)) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "User is Owner and Consumer"));
 				this.analysisHost.appendLineToReport(partitionList.get(i).getName() + " has Owner and Consumer Stereotype");
-				ownerOrConsumer = false;
+				checkSuccessful = false;
 			}
 			if (UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.CONSUMER)) {
 				numberConsumer ++;
@@ -161,12 +161,12 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		if (numberOwner != 1) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Too much Owners for this interaction"));
 			this.analysisHost.appendLineToReport("Only one Owner should be modeled in this Interaction");
-			exactOneConsumerAndOwner = false;
+			checkSuccessful = false;
 		}
 		if (numberConsumer != 1) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Too much Consumers for this interaction"));
 			this.analysisHost.appendLineToReport("Only one Consumer should be modeled in this Interaction");
-			exactOneConsumerAndOwner = false;
+			checkSuccessful = false;
 		}
 		//----------------------------------------------------------------------------------------------
 		//Get all Subpartitions of the Owner and Consumer Stereotype
@@ -204,9 +204,9 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		ActivityDiagramManager adm = new ActivityDiagramManager(model, analysisHost);
 		this.pathsList = adm.getAllPaths();
 		if (pathsList.size() < 1) {
-			existingPath = false;
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is no existing path through the diagram"));
 			this.analysisHost.appendLineToReport("There is no existing path through the diagram");
+			checkSuccessful = false;
 		}
 		//----------------------------------------------------------------------------------------------
 		// Get all the names of the nodes within the different valid paths of the diagram
@@ -260,7 +260,7 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		if(protectedActions.size() == 0) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Owner is missing a protected Action"));
 			this.analysisHost.appendLineToReport("The Owner is missing a protected Action");
-			hasProtectedAction = false;
+			checkSuccessful = false;
 		}
 		//----------------------------------------------------------------------------------------------
 		//Check if the protected action of the Owner Stereotype is in the Owner Partition
@@ -270,9 +270,9 @@ public class DataAccessCheck implements CarismaCheckWithID {
 				if(actionList.get(i) == taggedValuesProtectedOwner.get(x)) {
 					for(int z = 0; z < actionList.get(i).getInPartitions().size(); z++) {
 						if(namesAllPartitionsOwner.contains(actionList.get(i).getInPartitions().get(z).getName()) == false) {
-							protectedActionInOwnerPartition = false;
 							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Owner protects an Action that someone else executes"));
 							this.analysisHost.appendLineToReport("The Owner protects an Action that someone else executes : " + actionList.get(i).getName());
+							checkSuccessful = false;
 						}
 					}
 				}
@@ -337,13 +337,8 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		}
 		//---------------------------------------------------------------------------------------
 		//Check if any of the rules of Data Access Control rules are broken
-		if(hasProtectedAction == false  || exactOneConsumerAndOwner == false || ownerOrConsumer == false || protectedActionInOwnerPartition == false) {
-			return false;
-		}
 		
-		
-		
-		return true;
+		return checkSuccessful;
 		
 		
 	}
