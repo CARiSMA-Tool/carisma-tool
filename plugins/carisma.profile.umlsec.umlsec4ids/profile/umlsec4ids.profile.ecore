@@ -41,14 +41,18 @@
         ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="protected" ordered="false"
         lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requested_attributes_and_actions"
-        ordered="false" lowerBound="1" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requested_attributes" ordered="false"
+        lowerBound="1" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requested_actions" ordered="false"
+        lowerBound="1" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Consumer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ActivityPartition"
         ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributes_and_actions"
-        ordered="false" lowerBound="1" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributes" ordered="false"
+        lowerBound="1" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actions" ordered="false"
+        lowerBound="1" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="X509">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"

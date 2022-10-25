@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.ActivityFinalNode;
+import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
@@ -111,10 +112,10 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		//System.out.println("Partitions ---------- " + partitionList);
 		//List<ActivityPartition> partitionList2 = (List<ActivityPartition>) UMLHelper.getAllElementsOfType(model, ActivityPartition.class);
 		//System.out.println("partitionList -------------- " + partitionList2);
-		boolean ownerOrConsumer = true;
-		boolean exactOneConsumerAndOwner = true;
-		boolean existingPath = true;
-		boolean hasProtectedAction = true;
+		//boolean ownerOrConsumer = true;
+		//boolean exactOneConsumerAndOwner = true;
+		//boolean existingPath = true;
+		//boolean hasProtectedAction = true;
 		int numberOwner = 0;
 		int numberConsumer = 0;
 		boolean checkSuccessful = true;
@@ -229,7 +230,8 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		//-------------------------------------------------------------------------------
 		//----------------------------------------------------------------------------------------------		
 		//list erstellen mit allen verschiedenen protected actions
-		List<String> taggedValuesReqAttAndActOwner = null;
+		List<String> taggedValuesReqActOwner = null;
+		List<String> taggedValuesReqAttOwner = null;
 		List<Object> taggedValuesProtectedOwner = null;
 		ArrayList<String> protectedActions = new ArrayList<String>();
 		List<Element> elementOwner = (List<Element>) UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
@@ -240,16 +242,23 @@ public class DataAccessCheck implements CarismaCheckWithID {
 				String currentTag = ((NamedElement) taggedValuesProtectedOwner.get(y)).getName();
 				protectedActions.add(currentTag);
 			}
-			taggedValuesReqAttAndActOwner = UMLsecUtil.getStringValues("requested_attributes_and_actions", UMLsec.OWNER, elementOwner.get(x));
-			System.out.println("liste der req att and ac : " + taggedValuesReqAttAndActOwner);
+			taggedValuesReqAttOwner = UMLsecUtil.getStringValues("requested_attributes", UMLsec.OWNER, elementOwner.get(x));
+			taggedValuesReqActOwner = UMLsecUtil.getStringValues("requested_actions", UMLsec.OWNER, elementOwner.get(x));
+
+			System.out.println("liste der req att and ac : " + taggedValuesReqAttOwner);
 		}
+		
+		List<String> taggedValuesActConsumer = null;
 		List<Element> elementConsumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
-		List<String> taggedValuesAttAndActConsumer = null;
+		List<String> taggedValuesAttConsumer = null;
 		for(int x = 0; x < elementConsumer.size(); x++) {
-			taggedValuesAttAndActConsumer = UMLsecUtil.getStringValues("attributes_and_actions", UMLsec.CONSUMER, elementConsumer.get(x));
+			taggedValuesAttConsumer = UMLsecUtil.getStringValues("attributes", UMLsec.CONSUMER, elementConsumer.get(x));
+			taggedValuesActConsumer = UMLsecUtil.getStringValues("actions", UMLsec.CONSUMER, elementConsumer.get(x));
+		
+
 		}
-		System.out.println("list attributes actions consumer : " + taggedValuesAttAndActConsumer);
-		if(taggedValuesAttAndActConsumer.containsAll(taggedValuesReqAttAndActOwner)) {
+		System.out.println("list attributes consumer : " + taggedValuesAttConsumer);
+		if(taggedValuesAttConsumer.equals(taggedValuesReqAttOwner)) {
 			System.out.println("true");
 		}
 		//System.out.println("protectedactions ---------------" + protectedActions);
@@ -264,7 +273,6 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		}
 		//----------------------------------------------------------------------------------------------
 		//Check if the protected action of the Owner Stereotype is in the Owner Partition
-		boolean protectedActionInOwnerPartition = true;
 		for(int i = 0; i < actionList.size(); i++) {
 			for(int x = 0; x < taggedValuesProtectedOwner.size(); x++) {
 				if(actionList.get(i) == taggedValuesProtectedOwner.get(x)) {
@@ -279,6 +287,93 @@ public class DataAccessCheck implements CarismaCheckWithID {
 			}
 		}
 		
+		for(int i = 0; i < listOfDifferentPaths.size(); i++) {
+			
+		
+		
+			//all actions for owner and his subpartitions for current path
+			ArrayList<String> namesActionsOwnerCurrentPath = new ArrayList<String>();
+			ArrayList<String> namesActionsOwner = new ArrayList<String>();
+			for(int x = 0; x < allPartitionsOwner.size(); x++) {
+				EList<ActivityNode> nodes = allPartitionsOwner.get(x).getNodes();
+				for(int z = 0; z < nodes.size(); z++) {
+					namesActionsOwner.add(nodes.get(z).getName());
+				}
+				for(int z = 0; z < listOfDifferentPaths.get(i).size(); z++) {
+					if(namesActionsOwner.contains(listOfDifferentPaths.get(i).get(z))){
+						namesActionsOwnerCurrentPath.add(listOfDifferentPaths.get(i).get(z));
+					}
+						
+				}
+			}
+			//System.out.println("all actions from owner " + namesActionsOwner);
+			//System.out.println("all actions from owner for current path " + namesActionsOwnerCurrentPath + listOfDifferentPaths.get(i));
+
+			//all actions consumer and his subpartitions for current path
+			
+			ArrayList<String> namesActionsConsumerCurrentPath = new ArrayList<String>();
+			ArrayList<String> namesActionsConsumer = new ArrayList<String>();
+			for(int x = 0; x < allPartitionsConsumer.size(); x++) {
+				EList<ActivityNode> nodes = allPartitionsConsumer.get(x).getNodes();
+				for(int z = 0; z < nodes.size(); z++) {
+					namesActionsConsumer.add(nodes.get(z).getName());
+				}
+				for(int z = 0; z < listOfDifferentPaths.get(i).size(); z++) {
+					if(namesActionsConsumer.contains(listOfDifferentPaths.get(i).get(z))){
+						namesActionsConsumerCurrentPath.add(listOfDifferentPaths.get(i).get(z));
+					}
+						
+				}
+			}
+			//System.out.println("all actions from consumer " + namesActionsConsumer);
+			//System.out.println("all actions from consumer for current path " + namesActionsConsumerCurrentPath + listOfDifferentPaths.get(i));
+			
+			for(int x = 0; x < listOfDifferentPaths.get(i).size(); x++) {
+				//System.out.println("momentaner pfad " + listOfDifferentPaths.get(i));
+				//System.out.println("protected actions " + protectedActions);
+				//System.out.println("alle aktionen für mom pfad für owner "+namesActionsOwnerCurrentPath);
+				System.out.println("momentanes element "+listOfDifferentPaths.get(i).get(x));
+				System.out.println("momentaner index " +x );
+				if((protectedActions.contains(listOfDifferentPaths.get(i).get(x))) && (namesActionsOwnerCurrentPath.contains(listOfDifferentPaths.get(i).get(x)))) {
+					//System.out.println("-----hier----");
+					List<String> pathBeforeProtectedAction = listOfDifferentPaths.get(i).subList(0, x);
+					System.out.println("path before protected action " + pathBeforeProtectedAction) ;
+					System.out.println("path before protected action size " + pathBeforeProtectedAction.size());
+					System.out.println("names actions consumer path" + namesActionsConsumerCurrentPath);
+					boolean fromConsumer = false;
+					for(int z = 0; z < pathBeforeProtectedAction.size(); z++) {
+						System.out.println("names actions consumer path" + namesActionsConsumerCurrentPath);
+						System.out.println("path before prot " + pathBeforeProtectedAction.get(z));
+						System.out.println("vgl : " +namesActionsConsumerCurrentPath.contains(pathBeforeProtectedAction.get(z)));
+						if(namesActionsConsumerCurrentPath.contains(pathBeforeProtectedAction.get(z))) {
+							fromConsumer = true;
+						}
+					}
+					if(fromConsumer == true) {
+						if((taggedValuesAttConsumer.containsAll(taggedValuesReqAttOwner) && taggedValuesReqAttOwner.containsAll(taggedValuesAttConsumer))== false) {
+							System.out.println("attribute stimmen nicht überein");
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Attributes of the Owner and Consumer do not match"));
+							this.analysisHost.appendLineToReport("The Attributes of the Owner and Consumer do not match for Owner Attributes : " + taggedValuesReqAttOwner + " and Consumer Attributes : " + taggedValuesAttConsumer);
+							checkSuccessful = false;
+						}
+						if(taggedValuesReqActOwner.containsAll(taggedValuesActConsumer) == false) {
+							System.out.println("mehr actions als zugelassen");
+							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Consumer wants to perform more Actions than allowed"));
+							this.analysisHost.appendLineToReport("The Consumer wants to perform the Actions : " + taggedValuesActConsumer + " but only these are allowed : " + taggedValuesReqActOwner);
+							checkSuccessful = false;
+						}
+						
+					}
+					if(fromConsumer == false) {
+						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Access Request not from Consumer"));
+						this.analysisHost.appendLineToReport("The Access Request does not come from a Consumer");
+						checkSuccessful = false;
+					}
+					
+				}
+			}
+			
+		}
 		//----------------------------------------------------------------------------------------------
 		//Check if predecessor action of the protected action is in from an Owner
 		/*

@@ -20,7 +20,8 @@ import org.eclipse.uml2.uml.ActivityPartition;
  * <ul>
  *   <li>{@link carisma.profile.umlsec.umlsec4ids.Owner#getBase_ActivityPartition <em>Base Activity Partition</em>}</li>
  *   <li>{@link carisma.profile.umlsec.umlsec4ids.Owner#getProtected <em>Protected</em>}</li>
- *   <li>{@link carisma.profile.umlsec.umlsec4ids.Owner#getRequested_attributes_and_actions <em>Requested attributes and actions</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.umlsec4ids.Owner#getRequested_attributes <em>Requested attributes</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.umlsec4ids.Owner#getRequested_actions <em>Requested actions</em>}</li>
  * </ul>
  *
  * @see carisma.profile.umlsec.umlsec4ids.Umlsec4idsPackage#getOwner()
@@ -63,15 +64,27 @@ public interface Owner extends EObject {
 	EList<Action> getProtected();
 
 	/**
-	 * Returns the value of the '<em><b>Requested attributes and actions</b></em>' attribute list.
+	 * Returns the value of the '<em><b>Requested attributes</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Requested attributes and actions</em>' attribute list.
-	 * @see carisma.profile.umlsec.umlsec4ids.Umlsec4idsPackage#getOwner_Requested_attributes_and_actions()
+	 * @return the value of the '<em>Requested attributes</em>' attribute list.
+	 * @see carisma.profile.umlsec.umlsec4ids.Umlsec4idsPackage#getOwner_Requested_attributes()
 	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
 	 * @generated
 	 */
-	EList<String> getRequested_attributes_and_actions();
+	EList<String> getRequested_attributes();
+
+	/**
+	 * Returns the value of the '<em><b>Requested actions</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Requested actions</em>' attribute list.
+	 * @see carisma.profile.umlsec.umlsec4ids.Umlsec4idsPackage#getOwner_Requested_actions()
+	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @generated
+	 */
+	EList<String> getRequested_actions();
 
 } // Owner

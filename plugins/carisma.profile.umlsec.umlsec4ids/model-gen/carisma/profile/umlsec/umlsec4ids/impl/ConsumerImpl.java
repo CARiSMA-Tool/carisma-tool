@@ -30,7 +30,8 @@ import org.eclipse.uml2.uml.ActivityPartition;
  * </p>
  * <ul>
  *   <li>{@link carisma.profile.umlsec.umlsec4ids.impl.ConsumerImpl#getBase_ActivityPartition <em>Base Activity Partition</em>}</li>
- *   <li>{@link carisma.profile.umlsec.umlsec4ids.impl.ConsumerImpl#getAttributes_and_actions <em>Attributes and actions</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.umlsec4ids.impl.ConsumerImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.umlsec4ids.impl.ConsumerImpl#getActions <em>Actions</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,14 +48,24 @@ public class ConsumerImpl extends MinimalEObjectImpl.Container implements Consum
 	protected ActivityPartition base_ActivityPartition;
 
 	/**
-	 * The cached value of the '{@link #getAttributes_and_actions() <em>Attributes and actions</em>}' attribute list.
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAttributes_and_actions()
+	 * @see #getAttributes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> attributes_and_actions;
+	protected EList<String> attributes;
+
+	/**
+	 * The cached value of the '{@link #getActions() <em>Actions</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> actions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,11 +132,24 @@ public class ConsumerImpl extends MinimalEObjectImpl.Container implements Consum
 	 * @generated
 	 */
 	@Override
-	public EList<String> getAttributes_and_actions() {
-		if (attributes_and_actions == null) {
-			attributes_and_actions = new EDataTypeUniqueEList<String>(String.class, this, Umlsec4idsPackage.CONSUMER__ATTRIBUTES_AND_ACTIONS);
+	public EList<String> getAttributes() {
+		if (attributes == null) {
+			attributes = new EDataTypeUniqueEList<String>(String.class, this, Umlsec4idsPackage.CONSUMER__ATTRIBUTES);
 		}
-		return attributes_and_actions;
+		return attributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<String> getActions() {
+		if (actions == null) {
+			actions = new EDataTypeUniqueEList<String>(String.class, this, Umlsec4idsPackage.CONSUMER__ACTIONS);
+		}
+		return actions;
 	}
 
 	/**
@@ -139,8 +163,10 @@ public class ConsumerImpl extends MinimalEObjectImpl.Container implements Consum
 			case Umlsec4idsPackage.CONSUMER__BASE_ACTIVITY_PARTITION:
 				if (resolve) return getBase_ActivityPartition();
 				return basicGetBase_ActivityPartition();
-			case Umlsec4idsPackage.CONSUMER__ATTRIBUTES_AND_ACTIONS:
-				return getAttributes_and_actions();
+			case Umlsec4idsPackage.CONSUMER__ATTRIBUTES:
+				return getAttributes();
+			case Umlsec4idsPackage.CONSUMER__ACTIONS:
+				return getActions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -157,9 +183,13 @@ public class ConsumerImpl extends MinimalEObjectImpl.Container implements Consum
 			case Umlsec4idsPackage.CONSUMER__BASE_ACTIVITY_PARTITION:
 				setBase_ActivityPartition((ActivityPartition)newValue);
 				return;
-			case Umlsec4idsPackage.CONSUMER__ATTRIBUTES_AND_ACTIONS:
-				getAttributes_and_actions().clear();
-				getAttributes_and_actions().addAll((Collection<? extends String>)newValue);
+			case Umlsec4idsPackage.CONSUMER__ATTRIBUTES:
+				getAttributes().clear();
+				getAttributes().addAll((Collection<? extends String>)newValue);
+				return;
+			case Umlsec4idsPackage.CONSUMER__ACTIONS:
+				getActions().clear();
+				getActions().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -176,8 +206,11 @@ public class ConsumerImpl extends MinimalEObjectImpl.Container implements Consum
 			case Umlsec4idsPackage.CONSUMER__BASE_ACTIVITY_PARTITION:
 				setBase_ActivityPartition((ActivityPartition)null);
 				return;
-			case Umlsec4idsPackage.CONSUMER__ATTRIBUTES_AND_ACTIONS:
-				getAttributes_and_actions().clear();
+			case Umlsec4idsPackage.CONSUMER__ATTRIBUTES:
+				getAttributes().clear();
+				return;
+			case Umlsec4idsPackage.CONSUMER__ACTIONS:
+				getActions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -193,8 +226,10 @@ public class ConsumerImpl extends MinimalEObjectImpl.Container implements Consum
 		switch (featureID) {
 			case Umlsec4idsPackage.CONSUMER__BASE_ACTIVITY_PARTITION:
 				return base_ActivityPartition != null;
-			case Umlsec4idsPackage.CONSUMER__ATTRIBUTES_AND_ACTIONS:
-				return attributes_and_actions != null && !attributes_and_actions.isEmpty();
+			case Umlsec4idsPackage.CONSUMER__ATTRIBUTES:
+				return attributes != null && !attributes.isEmpty();
+			case Umlsec4idsPackage.CONSUMER__ACTIONS:
+				return actions != null && !actions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -209,8 +244,10 @@ public class ConsumerImpl extends MinimalEObjectImpl.Container implements Consum
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (attributes_and_actions: ");
-		result.append(attributes_and_actions);
+		result.append(" (attributes: ");
+		result.append(attributes);
+		result.append(", actions: ");
+		result.append(actions);
 		result.append(')');
 		return result.toString();
 	}
