@@ -383,8 +383,18 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getOwner_Requested_attributes_and_actions() {
+	public EAttribute getOwner_Requested_attributes() {
 		return (EAttribute)ownerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getOwner_Requested_actions() {
+		return (EAttribute)ownerEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -413,8 +423,18 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getConsumer_Attributes_and_actions() {
+	public EAttribute getConsumer_Attributes() {
 		return (EAttribute)consumerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getConsumer_Actions() {
+		return (EAttribute)consumerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -688,11 +708,13 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		ownerEClass = createEClass(OWNER);
 		createEReference(ownerEClass, OWNER__BASE_ACTIVITY_PARTITION);
 		createEReference(ownerEClass, OWNER__PROTECTED);
-		createEAttribute(ownerEClass, OWNER__REQUESTED_ATTRIBUTES_AND_ACTIONS);
+		createEAttribute(ownerEClass, OWNER__REQUESTED_ATTRIBUTES);
+		createEAttribute(ownerEClass, OWNER__REQUESTED_ACTIONS);
 
 		consumerEClass = createEClass(CONSUMER);
 		createEReference(consumerEClass, CONSUMER__BASE_ACTIVITY_PARTITION);
-		createEAttribute(consumerEClass, CONSUMER__ATTRIBUTES_AND_ACTIONS);
+		createEAttribute(consumerEClass, CONSUMER__ATTRIBUTES);
+		createEAttribute(consumerEClass, CONSUMER__ACTIONS);
 
 		x509EClass = createEClass(X509);
 		createEReference(x509EClass, X509__BASE_NODE);
@@ -781,11 +803,13 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		initEClass(ownerEClass, Owner.class, "Owner", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOwner_Base_ActivityPartition(), theUMLPackage.getActivityPartition(), null, "base_ActivityPartition", null, 1, 1, Owner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getOwner_Protected(), theUMLPackage.getAction(), null, "protected", null, 1, -1, Owner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getOwner_Requested_attributes_and_actions(), theTypesPackage.getString(), "requested_attributes_and_actions", null, 1, -1, Owner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getOwner_Requested_attributes(), theTypesPackage.getString(), "requested_attributes", null, 1, -1, Owner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getOwner_Requested_actions(), theTypesPackage.getString(), "requested_actions", null, 1, -1, Owner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(consumerEClass, Consumer.class, "Consumer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConsumer_Base_ActivityPartition(), theUMLPackage.getActivityPartition(), null, "base_ActivityPartition", null, 1, 1, Consumer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getConsumer_Attributes_and_actions(), theTypesPackage.getString(), "attributes_and_actions", null, 1, -1, Consumer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getConsumer_Attributes(), theTypesPackage.getString(), "attributes", null, 1, -1, Consumer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getConsumer_Actions(), theTypesPackage.getString(), "actions", null, 1, -1, Consumer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(x509EClass, carisma.profile.umlsec.umlsec4ids.X509.class, "X509", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getX509_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, carisma.profile.umlsec.umlsec4ids.X509.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

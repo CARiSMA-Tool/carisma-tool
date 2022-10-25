@@ -310,13 +310,22 @@ public interface Umlsec4idsPackage extends EPackage {
 	int OWNER__PROTECTED = 1;
 
 	/**
-	 * The feature id for the '<em><b>Requested attributes and actions</b></em>' attribute list.
+	 * The feature id for the '<em><b>Requested attributes</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OWNER__REQUESTED_ATTRIBUTES_AND_ACTIONS = 2;
+	int OWNER__REQUESTED_ATTRIBUTES = 2;
+
+	/**
+	 * The feature id for the '<em><b>Requested actions</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNER__REQUESTED_ACTIONS = 3;
 
 	/**
 	 * The number of structural features of the '<em>Owner</em>' class.
@@ -325,7 +334,7 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OWNER_FEATURE_COUNT = 3;
+	int OWNER_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Owner</em>' class.
@@ -356,13 +365,22 @@ public interface Umlsec4idsPackage extends EPackage {
 	int CONSUMER__BASE_ACTIVITY_PARTITION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Attributes and actions</b></em>' attribute list.
+	 * The feature id for the '<em><b>Attributes</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSUMER__ATTRIBUTES_AND_ACTIONS = 1;
+	int CONSUMER__ATTRIBUTES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Actions</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSUMER__ACTIONS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Consumer</em>' class.
@@ -371,7 +389,7 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSUMER_FEATURE_COUNT = 2;
+	int CONSUMER_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Consumer</em>' class.
@@ -916,15 +934,26 @@ public interface Umlsec4idsPackage extends EPackage {
 	EReference getOwner_Protected();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link carisma.profile.umlsec.umlsec4ids.Owner#getRequested_attributes_and_actions <em>Requested attributes and actions</em>}'.
+	 * Returns the meta object for the attribute list '{@link carisma.profile.umlsec.umlsec4ids.Owner#getRequested_attributes <em>Requested attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Requested attributes and actions</em>'.
-	 * @see carisma.profile.umlsec.umlsec4ids.Owner#getRequested_attributes_and_actions()
+	 * @return the meta object for the attribute list '<em>Requested attributes</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.Owner#getRequested_attributes()
 	 * @see #getOwner()
 	 * @generated
 	 */
-	EAttribute getOwner_Requested_attributes_and_actions();
+	EAttribute getOwner_Requested_attributes();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link carisma.profile.umlsec.umlsec4ids.Owner#getRequested_actions <em>Requested actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Requested actions</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.Owner#getRequested_actions()
+	 * @see #getOwner()
+	 * @generated
+	 */
+	EAttribute getOwner_Requested_actions();
 
 	/**
 	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.Consumer <em>Consumer</em>}'.
@@ -948,15 +977,26 @@ public interface Umlsec4idsPackage extends EPackage {
 	EReference getConsumer_Base_ActivityPartition();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link carisma.profile.umlsec.umlsec4ids.Consumer#getAttributes_and_actions <em>Attributes and actions</em>}'.
+	 * Returns the meta object for the attribute list '{@link carisma.profile.umlsec.umlsec4ids.Consumer#getAttributes <em>Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Attributes and actions</em>'.
-	 * @see carisma.profile.umlsec.umlsec4ids.Consumer#getAttributes_and_actions()
+	 * @return the meta object for the attribute list '<em>Attributes</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.Consumer#getAttributes()
 	 * @see #getConsumer()
 	 * @generated
 	 */
-	EAttribute getConsumer_Attributes_and_actions();
+	EAttribute getConsumer_Attributes();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link carisma.profile.umlsec.umlsec4ids.Consumer#getActions <em>Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Actions</em>'.
+	 * @see carisma.profile.umlsec.umlsec4ids.Consumer#getActions()
+	 * @see #getConsumer()
+	 * @generated
+	 */
+	EAttribute getConsumer_Actions();
 
 	/**
 	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.X509 <em>X509</em>}'.
@@ -1364,12 +1404,20 @@ public interface Umlsec4idsPackage extends EPackage {
 		EReference OWNER__PROTECTED = eINSTANCE.getOwner_Protected();
 
 		/**
-		 * The meta object literal for the '<em><b>Requested attributes and actions</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Requested attributes</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OWNER__REQUESTED_ATTRIBUTES_AND_ACTIONS = eINSTANCE.getOwner_Requested_attributes_and_actions();
+		EAttribute OWNER__REQUESTED_ATTRIBUTES = eINSTANCE.getOwner_Requested_attributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Requested actions</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OWNER__REQUESTED_ACTIONS = eINSTANCE.getOwner_Requested_actions();
 
 		/**
 		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.ConsumerImpl <em>Consumer</em>}' class.
@@ -1390,12 +1438,20 @@ public interface Umlsec4idsPackage extends EPackage {
 		EReference CONSUMER__BASE_ACTIVITY_PARTITION = eINSTANCE.getConsumer_Base_ActivityPartition();
 
 		/**
-		 * The meta object literal for the '<em><b>Attributes and actions</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Attributes</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONSUMER__ATTRIBUTES_AND_ACTIONS = eINSTANCE.getConsumer_Attributes_and_actions();
+		EAttribute CONSUMER__ATTRIBUTES = eINSTANCE.getConsumer_Attributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Actions</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSUMER__ACTIONS = eINSTANCE.getConsumer_Actions();
 
 		/**
 		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.X509Impl <em>X509</em>}' class.

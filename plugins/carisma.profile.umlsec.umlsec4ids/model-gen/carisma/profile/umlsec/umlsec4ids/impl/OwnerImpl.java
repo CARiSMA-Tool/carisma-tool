@@ -33,7 +33,8 @@ import org.eclipse.uml2.uml.ActivityPartition;
  * <ul>
  *   <li>{@link carisma.profile.umlsec.umlsec4ids.impl.OwnerImpl#getBase_ActivityPartition <em>Base Activity Partition</em>}</li>
  *   <li>{@link carisma.profile.umlsec.umlsec4ids.impl.OwnerImpl#getProtected <em>Protected</em>}</li>
- *   <li>{@link carisma.profile.umlsec.umlsec4ids.impl.OwnerImpl#getRequested_attributes_and_actions <em>Requested attributes and actions</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.umlsec4ids.impl.OwnerImpl#getRequested_attributes <em>Requested attributes</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.umlsec4ids.impl.OwnerImpl#getRequested_actions <em>Requested actions</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,14 +61,24 @@ public class OwnerImpl extends MinimalEObjectImpl.Container implements Owner {
 	protected EList<Action> protected_;
 
 	/**
-	 * The cached value of the '{@link #getRequested_attributes_and_actions() <em>Requested attributes and actions</em>}' attribute list.
+	 * The cached value of the '{@link #getRequested_attributes() <em>Requested attributes</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequested_attributes_and_actions()
+	 * @see #getRequested_attributes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> requested_attributes_and_actions;
+	protected EList<String> requested_attributes;
+
+	/**
+	 * The cached value of the '{@link #getRequested_actions() <em>Requested actions</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequested_actions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> requested_actions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -147,11 +158,24 @@ public class OwnerImpl extends MinimalEObjectImpl.Container implements Owner {
 	 * @generated
 	 */
 	@Override
-	public EList<String> getRequested_attributes_and_actions() {
-		if (requested_attributes_and_actions == null) {
-			requested_attributes_and_actions = new EDataTypeUniqueEList<String>(String.class, this, Umlsec4idsPackage.OWNER__REQUESTED_ATTRIBUTES_AND_ACTIONS);
+	public EList<String> getRequested_attributes() {
+		if (requested_attributes == null) {
+			requested_attributes = new EDataTypeUniqueEList<String>(String.class, this, Umlsec4idsPackage.OWNER__REQUESTED_ATTRIBUTES);
 		}
-		return requested_attributes_and_actions;
+		return requested_attributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<String> getRequested_actions() {
+		if (requested_actions == null) {
+			requested_actions = new EDataTypeUniqueEList<String>(String.class, this, Umlsec4idsPackage.OWNER__REQUESTED_ACTIONS);
+		}
+		return requested_actions;
 	}
 
 	/**
@@ -167,8 +191,10 @@ public class OwnerImpl extends MinimalEObjectImpl.Container implements Owner {
 				return basicGetBase_ActivityPartition();
 			case Umlsec4idsPackage.OWNER__PROTECTED:
 				return getProtected();
-			case Umlsec4idsPackage.OWNER__REQUESTED_ATTRIBUTES_AND_ACTIONS:
-				return getRequested_attributes_and_actions();
+			case Umlsec4idsPackage.OWNER__REQUESTED_ATTRIBUTES:
+				return getRequested_attributes();
+			case Umlsec4idsPackage.OWNER__REQUESTED_ACTIONS:
+				return getRequested_actions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -189,9 +215,13 @@ public class OwnerImpl extends MinimalEObjectImpl.Container implements Owner {
 				getProtected().clear();
 				getProtected().addAll((Collection<? extends Action>)newValue);
 				return;
-			case Umlsec4idsPackage.OWNER__REQUESTED_ATTRIBUTES_AND_ACTIONS:
-				getRequested_attributes_and_actions().clear();
-				getRequested_attributes_and_actions().addAll((Collection<? extends String>)newValue);
+			case Umlsec4idsPackage.OWNER__REQUESTED_ATTRIBUTES:
+				getRequested_attributes().clear();
+				getRequested_attributes().addAll((Collection<? extends String>)newValue);
+				return;
+			case Umlsec4idsPackage.OWNER__REQUESTED_ACTIONS:
+				getRequested_actions().clear();
+				getRequested_actions().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -211,8 +241,11 @@ public class OwnerImpl extends MinimalEObjectImpl.Container implements Owner {
 			case Umlsec4idsPackage.OWNER__PROTECTED:
 				getProtected().clear();
 				return;
-			case Umlsec4idsPackage.OWNER__REQUESTED_ATTRIBUTES_AND_ACTIONS:
-				getRequested_attributes_and_actions().clear();
+			case Umlsec4idsPackage.OWNER__REQUESTED_ATTRIBUTES:
+				getRequested_attributes().clear();
+				return;
+			case Umlsec4idsPackage.OWNER__REQUESTED_ACTIONS:
+				getRequested_actions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -230,8 +263,10 @@ public class OwnerImpl extends MinimalEObjectImpl.Container implements Owner {
 				return base_ActivityPartition != null;
 			case Umlsec4idsPackage.OWNER__PROTECTED:
 				return protected_ != null && !protected_.isEmpty();
-			case Umlsec4idsPackage.OWNER__REQUESTED_ATTRIBUTES_AND_ACTIONS:
-				return requested_attributes_and_actions != null && !requested_attributes_and_actions.isEmpty();
+			case Umlsec4idsPackage.OWNER__REQUESTED_ATTRIBUTES:
+				return requested_attributes != null && !requested_attributes.isEmpty();
+			case Umlsec4idsPackage.OWNER__REQUESTED_ACTIONS:
+				return requested_actions != null && !requested_actions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -246,8 +281,10 @@ public class OwnerImpl extends MinimalEObjectImpl.Container implements Owner {
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (requested_attributes_and_actions: ");
-		result.append(requested_attributes_and_actions);
+		result.append(" (requested_attributes: ");
+		result.append(requested_attributes);
+		result.append(", requested_actions: ");
+		result.append(requested_actions);
 		result.append(')');
 		return result.toString();
 	}

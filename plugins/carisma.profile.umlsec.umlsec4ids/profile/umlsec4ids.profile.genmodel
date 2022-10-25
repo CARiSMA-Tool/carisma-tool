@@ -32,11 +32,13 @@
     <genClasses ecoreClass="umlsec4ids.profile.ecore#//Owner">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//Owner/base_ActivityPartition"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//Owner/protected"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//Owner/requested_attributes_and_actions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//Owner/requested_attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//Owner/requested_actions"/>
     </genClasses>
     <genClasses ecoreClass="umlsec4ids.profile.ecore#//Consumer">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//Consumer/base_ActivityPartition"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//Consumer/attributes_and_actions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//Consumer/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//Consumer/actions"/>
     </genClasses>
     <genClasses ecoreClass="umlsec4ids.profile.ecore#//X509">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//X509/base_Node"/>
