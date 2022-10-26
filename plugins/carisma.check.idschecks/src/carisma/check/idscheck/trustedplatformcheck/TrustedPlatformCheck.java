@@ -61,30 +61,30 @@ public class TrustedPlatformCheck implements CarismaCheckWithID {
 	
 	private boolean startCheck() {
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
-		boolean hasAllStereotypes = true;
+		boolean checkSuccessful = true;
 		for (int i = 0; i < nodeList.size(); i++) {
 			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.VERIFIED) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes are not verified"));
 				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " is missing the <<verified>> Stereotype");
-				hasAllStereotypes = false;
+				checkSuccessful = false;
 			}
 			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.ENCRYPTION) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes do not use encryption"));
 				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " is missing the <<encryption>> Stereotype");
-				hasAllStereotypes = false;
+				checkSuccessful = false;
 			}
 			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.ISOLATED) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes are not isolated"));
 				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " is missing the <<isolated>> Stereotype");
-				hasAllStereotypes = false;
+				checkSuccessful = false;
 			}
 			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.CERTIFIED) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes are not certified"));
 				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " is missing the <<certified>> Stereotype");
-				hasAllStereotypes = false;
+				checkSuccessful = false;
 			}
 		}
-		return hasAllStereotypes;
+		return checkSuccessful;
 	}
 
 	@Override
