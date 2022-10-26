@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
@@ -22,7 +21,6 @@ import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
-import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
 import carisma.profile.umlsec.umlsec4ids.UMLsec;
@@ -43,7 +41,6 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 	 */
     private AnalysisHost analysisHost;
 	private List<List<Element>> pathsList = new ArrayList<>();
-	private List<List<ActivityPartition>> allPartitionsStopElem;
 
 
 	
@@ -83,14 +80,7 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 		return allPartitions;
 	}
 	
-	/*
-	 * Plan
-	 * alle pfade bekommen
-	 * schauen ob start aktion im pfad
-	 * schauen ob stop aktion im pfad
-	 * schauen ob stop aktion in protected
-	 * schauen ob clearing house right mit protected aktion hat
-	 */
+	
 	private boolean startCheck() {
 		
 		this.analysisHost.appendLineToReport("IMPORTANT");
@@ -100,8 +90,6 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 
 		ArrayList<ForkNode> forkList = (ArrayList<ForkNode>) UMLHelper.getAllElementsOfType(model, ForkNode.class);;
 		ArrayList<DecisionNode> decisionList = (ArrayList<DecisionNode>) UMLHelper.getAllElementsOfType(model, DecisionNode.class);
-		System.out.println("fork liste " + forkList);
-		System.out.println("decision liste " + decisionList);
 		if(decisionList.size() > 0) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is a decision node the diagram"));
 			this.analysisHost.appendLineToReport("There is a decision node within the diagram");
@@ -137,7 +125,6 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 		//get activity with stereotype
 		ArrayList<Activity> activityList = (ArrayList<Activity>) UMLHelper.getAllElementsOfType(model, Activity.class);
 		for(int i = 0; i < activityList.size(); i++) {
-			//System.out.println("current activity : " + activityList.get(i));
 			//get fork and decision nodes to create a warning da nur warnung kreiert wird diese maybe ganz an den anfang
 
 			String activityName = activityList.get(i).getName();
@@ -145,7 +132,6 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 			List<Object> taggedValuesStartAction = new ArrayList<Object>();
 			List<Object> taggedValuesStopAction = new ArrayList<Object>();
 			List<Object> taggedValuesProtected = new ArrayList<Object>();
-			//System.out.println("has stereo : " + UMLsecUtil.hasStereotype(activityList.get(i), UMLsec.DATAPROVENANCETRACKING));
 			// hier muss möglicherweise eingeschoben werden, da sonst auch activities überprüft werden, die nicht den stereotypen haben
 			if(UMLsecUtil.hasStereotype(activityList.get(i), UMLsec.DATAPROVENANCETRACKING)){
 				taggedValuesClearingHouse = UMLsecUtil.getTaggedValues("clearing_house", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
@@ -175,26 +161,22 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 				for(int x = 0; x < taggedValuesStartAction.size(); x++) {
 					namesTagStartAction.add(((NamedElement) taggedValuesStartAction.get(x)).getName());
 				}
-				//System.out.println("names start " +namesTagStartAction);
 				ArrayList<String> namesTagStopAction = new ArrayList<String>();
 				for(int x = 0; x < taggedValuesStopAction.size(); x++) {
 					namesTagStopAction.add(((NamedElement) taggedValuesStopAction.get(x)).getName());
 				}
-				//System.out.println("names stop " +namesTagStopAction);
 				
 				
 				ArrayList<String> namesTagProtected = new ArrayList<String>();
 				for(int x = 0; x < taggedValuesProtected.size(); x++) {
 					namesTagProtected.add(((NamedElement) taggedValuesProtected.get(x)).getName());
 				}
-				//System.out.println("names protected " +namesTagProtected);
 				
 				//if(namesTagProtected.containsAll(namesTagStopAction) == false || namesTagStopAction.containsAll(namesTagProtected) == false) {
 				if(namesTagProtected.containsAll(namesTagStopAction) == false ){
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Stop Actions and Protected Actions are not equal"));
 					//this.analysisHost.appendLineToReport("The Stop Actions and Protected Actions are not equal in " + activityName);
 					this.analysisHost.appendLineToReport("Not all Stop Actions are protected " + activityName);
-
 					checkSuccessful = false;
 				}
 				//-------------------------------------------------------------------------------------
@@ -209,7 +191,6 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 	
 					}
 				}
-				//System.out.println("start stop pairs " + startStopPairs);
 				//-----------------------------------------------------------------------------------------
 				//über alle pfade testen ob wenn start erreicht wird auch stop erreicht wird
 				//alle pfade bekommen
@@ -223,14 +204,8 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 					}
 					listOfDifferentPaths.add(listOfSinglePath);
 				}
-				//System.out.println("different paths --------------- " + listOfDifferentPaths);
 				//check if stop comes before start and check if stop comes after start
 				boolean failStartStop = false;
-				System.out.println("size list different paths " + listOfDifferentPaths.size());
-				System.out.println("list different paths " + listOfDifferentPaths);
-	
-				System.out.println("size start stop pairs " + startStopPairs.size());
-				System.out.println("start stop pairs " + startStopPairs);
 				for(int x = 0; x < startStopPairs.size(); x++) {
 					for(int z = 0; z < listOfDifferentPaths.size(); z++) {					
 						if(listOfDifferentPaths.get(z).contains(startStopPairs.get(x).get(0)) && listOfDifferentPaths.get(z).contains(startStopPairs.get(x).get(1))) {
@@ -238,25 +213,19 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 							int platzStop = -1;
 							//wenn mehr pfade als start stop paare vorhanden sind dann indexfail
 							for(int l = 0; l < listOfDifferentPaths.get(z).size(); l++) {
-								if(listOfDifferentPaths.get(z).get(l) == startStopPairs.get(x).get(0)) {
+								if(listOfDifferentPaths.get(z).get(l).equals(startStopPairs.get(x).get(0))) {
 									platzStart = l;
 								}
-								System.out.println("string vgl : " + (listOfDifferentPaths.get(z).get(l) == startStopPairs.get(x).get(1))+ " " + (listOfDifferentPaths.get(z).get(l)) + " " + (startStopPairs.get(x).get(1)));
 								if(listOfDifferentPaths.get(z).get(l).equals(startStopPairs.get(x).get(1))) {
 									platzStop = l;
 								}
 							}
-							System.out.println("path : " + listOfDifferentPaths.get(z));
-							System.out.println("pair : " + startStopPairs.get(x));
-							System.out.println("platz start : " + platzStart);
-							System.out.println("platz stop : " + platzStop);
 							
 							if(platzStart > platzStop) {
 								this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Obligation Start follows the Obligation Stop"));
 								this.analysisHost.appendLineToReport(listOfDifferentPaths.get(z)  + " executes the Obligation Stop before the Obligation Start for Obligation : " + startStopPairs.get(x) + " in Activity : " + activityName);
 								checkSuccessful = false;
 								failStartStop = true;
-								//System.out.println("In dem Pfad " + testList.get(g)+ " wird Stop vor Start ausgeführt");
 							}
 						}
 						if(listOfDifferentPaths.get(z).contains(startStopPairs.get(x).get(0)) && listOfDifferentPaths.get(z).contains(startStopPairs.get(x).get(1)) == false) {
@@ -277,7 +246,6 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 				for(int x = 0; x < objectsToPartitions.size(); x++) {
 					actorSubPartitions = getAllSubpartitions(objectsToPartitions.get(x) , actorSubPartitions);
 				}
-				//System.out.println("all actors with all subpartitions " + actorSubPartitions);
 				
 				//get all actions from clearing house and its subpartitions
 				ArrayList<String> namesActionsClearingHouse = new ArrayList<String>();
@@ -287,13 +255,9 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 						namesActionsClearingHouse.add(nodes.get(z).getName());
 					}
 				}
-				//System.out.println("names of all actions of clearing house : " + namesActionsClearingHouse);
 				//get all actions that are stop actions
 				//ArrayList<Action> stopActions = new ArrayList<Action>();			
 				if(failStartStop == false) {
-					//System.out.println("alle stop aktionen mit partitionen : " + taggedValuesStopAction);
-					System.out.println("namen der stop aktionen : " + namesTagStopAction);
-					System.out.println("namen der clearing aktionen : " + namesActionsClearingHouse);
 					for(int z = 0; z < namesTagProtected.size(); z++) {
 						if(namesActionsClearingHouse.contains(namesTagProtected.get(z)) == false) {
 							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Protected Actions are not executed by a Clearing House."));
