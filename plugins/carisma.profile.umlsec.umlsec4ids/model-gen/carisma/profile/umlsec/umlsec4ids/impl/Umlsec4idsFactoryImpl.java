@@ -65,7 +65,6 @@ public class Umlsec4idsFactoryImpl extends EFactoryImpl implements Umlsec4idsFac
 			case Umlsec4idsPackage.CONSUMER: return createConsumer();
 			case Umlsec4idsPackage.X509: return createX509();
 			case Umlsec4idsPackage.X509TLS: return createX509TLS();
-			case Umlsec4idsPackage.IDSCP: return createIDSCP();
 			case Umlsec4idsPackage.DATAUSAGECONTROL: return createdatausagecontrol();
 			case Umlsec4idsPackage.VERIFIED: return createverified();
 			case Umlsec4idsPackage.ISOLATED: return createisolated();
@@ -173,17 +172,6 @@ public class Umlsec4idsFactoryImpl extends EFactoryImpl implements Umlsec4idsFac
 	public X509TLS createX509TLS() {
 		X509TLSImpl x509TLS = new X509TLSImpl();
 		return x509TLS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public IDSCP createIDSCP() {
-		IDSCPImpl idscp = new IDSCPImpl();
-		return idscp;
 	}
 
 	/**

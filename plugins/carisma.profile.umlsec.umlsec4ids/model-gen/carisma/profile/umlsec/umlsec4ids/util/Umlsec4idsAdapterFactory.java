@@ -104,10 +104,6 @@ public class Umlsec4idsAdapterFactory extends AdapterFactoryImpl {
 				return createX509TLSAdapter();
 			}
 			@Override
-			public Adapter caseIDSCP(IDSCP object) {
-				return createIDSCPAdapter();
-			}
-			@Override
 			public Adapter casedatausagecontrol(datausagecontrol object) {
 				return createdatausagecontrolAdapter();
 			}
@@ -270,20 +266,6 @@ public class Umlsec4idsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createX509TLSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.umlsec4ids.IDSCP <em>IDSCP</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see carisma.profile.umlsec.umlsec4ids.IDSCP
-	 * @generated
-	 */
-	public Adapter createIDSCPAdapter() {
 		return null;
 	}
 

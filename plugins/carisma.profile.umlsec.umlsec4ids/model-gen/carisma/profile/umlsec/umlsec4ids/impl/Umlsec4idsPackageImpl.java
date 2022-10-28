@@ -104,13 +104,6 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass idscpEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass datausagecontrolEClass = null;
 
 	/**
@@ -503,26 +496,6 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 	 * @generated
 	 */
 	@Override
-	public EClass getIDSCP() {
-		return idscpEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getIDSCP_Base_CommunicationPath() {
-		return (EReference)idscpEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getdatausagecontrol() {
 		return datausagecontrolEClass;
 	}
@@ -724,9 +697,6 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		createEReference(x509TLSEClass, X509TLS__BASE_NODE);
 		createEAttribute(x509TLSEClass, X509TLS__EXPIRATION_DATE_YYYY_MM_DD);
 
-		idscpEClass = createEClass(IDSCP);
-		createEReference(idscpEClass, IDSCP__BASE_COMMUNICATION_PATH);
-
 		datausagecontrolEClass = createEClass(DATAUSAGECONTROL);
 		createEReference(datausagecontrolEClass, DATAUSAGECONTROL__BASE_ACTIVITY_PARTITION);
 		createEReference(datausagecontrolEClass, DATAUSAGECONTROL__PERMISSION);
@@ -818,9 +788,6 @@ public class Umlsec4idsPackageImpl extends EPackageImpl implements Umlsec4idsPac
 		initEClass(x509TLSEClass, carisma.profile.umlsec.umlsec4ids.X509TLS.class, "X509TLS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getX509TLS_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 1, 1, carisma.profile.umlsec.umlsec4ids.X509TLS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getX509TLS_Expiration_date_yyyy_mm_dd(), theTypesPackage.getInteger(), "expiration_date_yyyy_mm_dd", null, 1, 1, carisma.profile.umlsec.umlsec4ids.X509TLS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(idscpEClass, carisma.profile.umlsec.umlsec4ids.IDSCP.class, "IDSCP", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIDSCP_Base_CommunicationPath(), theUMLPackage.getCommunicationPath(), null, "base_CommunicationPath", null, 1, 1, carisma.profile.umlsec.umlsec4ids.IDSCP.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(datausagecontrolEClass, datausagecontrol.class, "datausagecontrol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getdatausagecontrol_Base_ActivityPartition(), theUMLPackage.getActivityPartition(), null, "base_ActivityPartition", null, 1, 1, datausagecontrol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
