@@ -71,8 +71,10 @@ public class TrustedPlatformCheck implements CarismaCheckWithID {
 	 */
 	
 	private boolean startCheck() {
+		//Get all Nodes within the diagram
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
 		boolean checkSuccessful = true;
+		//For any node, check if he has all required stereotypes
 		for (int i = 0; i < nodeList.size(); i++) {
 			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.VERIFIED) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes are not verified"));
@@ -95,6 +97,7 @@ public class TrustedPlatformCheck implements CarismaCheckWithID {
 				checkSuccessful = false;
 			}
 		}
+		//Return if check is successful or not
 		return checkSuccessful;
 	}
 
