@@ -274,7 +274,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 				for(int u = 0; u < validNodesForPath.size(); u++) {
 					if(namesProhibs.contains(validNodesForPath.get(u))){
 						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Actor tries to execute a Prohibition!"));
-						this.analysisHost.appendLineToReport(partitionList.get(z).getName()  + " tries to execute the prohibited action : " + validNodesForPath.get(u) +  " in Partition : " + partitionList.get(z).getName());
+						this.analysisHost.appendLineToReport(partitionList.get(z).getName()  + " tries to execute the prohibited action : " + validNodesForPath.get(u));
 						checkSuccessful = false;
 
 					}

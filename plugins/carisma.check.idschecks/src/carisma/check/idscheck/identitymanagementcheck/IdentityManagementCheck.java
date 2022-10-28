@@ -96,7 +96,7 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 		
 		if ((x509List.size() < nodeList.size()) && x509TLSList.size() < nodeList.size()) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes miss the <<X509TLS>> and <<X509>> Stereotype"));
-			this.analysisHost.appendLineToReport("Nodes miss the <<X509TLS>> and <<X509>> Stereotype");
+			this.analysisHost.appendLineToReport("Nodes miss the <<X509TLS>> and <<X509>> Stereotypes");
 			checkSuccessful = false;
 		}
 		//get the current date
@@ -125,7 +125,7 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 					String strX509 = dayX509.get(z).toString();
 					if(strX509.length() != 8) {
 						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509>> certificate has an invalid date"));
-						this.analysisHost.appendLineToReport("Invalid date in X.509 certificate of " + nodeList.get(i).getName() + " not of format YYYY/MM/DD");
+						this.analysisHost.appendLineToReport("Invalid date in X.509 certificate of " + nodeList.get(i).getName() + ", not of format YYYY/MM/DD");
 						checkSuccessful = false;	
 					 }
 					if(strX509.length() == 8) {
@@ -173,7 +173,7 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 					String strX509TLS = dayX509TLS.get(z).toString();
 					if(strX509TLS.length() != 8) {
 					    this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509TLS>> certificate has an invalid date"));
-						this.analysisHost.appendLineToReport("Invalid date in X.509TLS certificate of " + nodeList.get(i).getName() + " not of format YYYY/MM/DD");
+						this.analysisHost.appendLineToReport("Invalid date in X.509TLS certificate of " + nodeList.get(i).getName() + ", not of format YYYY/MM/DD");
 						checkSuccessful = false;
 					 }
 					if(strX509TLS.length() == 8) {
