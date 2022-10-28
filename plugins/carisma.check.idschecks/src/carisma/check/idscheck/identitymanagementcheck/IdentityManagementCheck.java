@@ -19,6 +19,11 @@ import carisma.profile.umlsec.umlsec4ids.UMLsec;
 import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
 import carisma.modeltype.uml2.UMLHelper;
 
+/**
+ * analyzes a deployment diagram with respect to identity management rules.
+ * @author Alexander Peikert
+ *
+ */
 
 public class IdentityManagementCheck implements CarismaCheckWithID {
 

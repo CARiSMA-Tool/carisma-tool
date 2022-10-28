@@ -17,6 +17,12 @@ import carisma.modeltype.uml2.UMLHelper;
 import carisma.profile.umlsec.umlsec4ids.UMLsec;
 import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
 
+/**
+ * analyzes a deployment diagram with respect to trusted platform rules.
+ * @author Alexander Peikert
+ *
+ */
+
 public class TrustedPlatformCheck implements CarismaCheckWithID {
 
 	public static final String CHECK_ID = "carisma.check.idscheck.trustedplatformcheck";
