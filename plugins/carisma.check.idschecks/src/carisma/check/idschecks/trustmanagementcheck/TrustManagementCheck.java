@@ -68,6 +68,11 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 		return false;
 	}	
 	
+	/**
+	 * main function that starts the check.
+	 * @return true if the model is correct according to trust management rules, false otherwise
+	 */
+	
 	private boolean startCheck() {
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
 		ArrayList<CommunicationPath> commPathList = (ArrayList<CommunicationPath>) UMLHelper.getAllElementsOfType(model, CommunicationPath.class);

@@ -68,6 +68,10 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 		return false;
 	}	
 
+	/**
+	 * main function that starts the check.
+	 * @return true if the model is correct according to identity management rules, false otherwise
+	 */
 	
 	private boolean startCheck() {
 		boolean checkSuccessful = true;
