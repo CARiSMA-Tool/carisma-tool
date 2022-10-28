@@ -104,7 +104,10 @@ public class DataUsageCheck implements CarismaCheckWithID {
 	
 	private boolean startCheck() {
 		this.analysisHost.appendLineToReport("----IMPORTANT-------");
-		this.analysisHost.appendLineToReport("To execute this Check successfully, the Initial Node and Final Node must have an empty Name");
+		this.analysisHost.appendLineToReport("To execute this Check successfully, the Initial Node and Final Node must have an empty name");
+		this.analysisHost.appendLineToReport("Decision Nodes, Fork Nodes, Merge Nodes and Join Nodes must have an empty name");
+		this.analysisHost.appendLineToReport("This is because they cannot be added to the permission tag");
+
 
 		boolean checkSuccessful = true;
 		// check if there are existing valid paths within the diagram

@@ -75,12 +75,13 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 	
 	private boolean startCheck() {
 		boolean checkSuccessful = true;
+		//Get all nodes and nodes with stereotypes
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
 		ArrayList<Element> x509List = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.X509);
 		ArrayList<Element> x509TLSList = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.X509TLS);
 		//-----------------------------------------------------------------
 				
-		//--------------------------------------------------------------------------
+		//Check if any node has the required stereotypes
 		if ((x509List.size() < nodeList.size()) && x509TLSList.size() == nodeList.size()) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes miss the <<X509>> Stereotype"));
 			this.analysisHost.appendLineToReport("Nodes miss the <<X509>> Stereotype");
@@ -104,7 +105,6 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 
 		String formattedDate = today.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
-		System.out.println("formatted day " + formattedDate);
 		
 
 		
@@ -121,7 +121,6 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
         int intX509 = 0;
         for(int i = 0; i < nodeList.size(); i++) {
 			List<Object> dayX509 = UMLsecUtil.getTaggedValues("expiration_date_yyyy_mm_dd", UMLsec.X509, nodeList.get(i));
-			System.out.println("dayX509 " + dayX509);
 				for(int z = 0; z < dayX509.size(); z++) {
 					String strX509 = dayX509.get(z).toString();
 					if(strX509.length() != 8) {
