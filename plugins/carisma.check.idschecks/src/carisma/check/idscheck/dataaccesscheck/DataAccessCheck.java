@@ -176,7 +176,6 @@ public class DataAccessCheck implements CarismaCheckWithID {
 			checkSuccessful = false;
 		}
 		//----------------------------------------------------------------------------------------------
-		// Get all the names of the nodes within the different valid paths of the diagram
 		
 		//get all valid paths within the diagram
 		ArrayList<ArrayList<String>> listOfDifferentPaths= new ArrayList<ArrayList<String>>();
@@ -227,11 +226,9 @@ public class DataAccessCheck implements CarismaCheckWithID {
 			checkSuccessful = false;
 		}
 		//----------------------------------------------------------------------------------------------
-
+		//For each path, check if rules are broken
 		for(int i = 0; i < listOfDifferentPaths.size(); i++) {
-			
-		
-		
+				
 			//all actions for owner partition and his subpartitions for current path
 			ArrayList<String> namesActionsOwnerCurrentPath = new ArrayList<String>();
 			ArrayList<String> namesActionsOwner = new ArrayList<String>();
@@ -305,13 +302,6 @@ public class DataAccessCheck implements CarismaCheckWithID {
 			
 		}
 		//----------------------------------------------------------------------------------------------
-	
-		
-		//----------------------------------------------------------------------------------------------
-		
-		//----------------------------------------------------------------------------------------------
-		//
-		//---------------------------------------------------------------------------------------
 		//Return if any of the rules of Data Access Control rules are broken
 		
 		return checkSuccessful;
