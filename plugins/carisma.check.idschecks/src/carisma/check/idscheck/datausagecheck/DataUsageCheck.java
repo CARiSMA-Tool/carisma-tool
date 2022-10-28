@@ -81,6 +81,13 @@ public class DataUsageCheck implements CarismaCheckWithID {
 		return false;
 	}
 	
+	/**
+	 * Return all subpartitions for a given main partition.
+	 * @param mainPartition main partition for which all subpartitions should be returned
+	 * @param allPartitions list in which the partition and subpartitions should be added
+	 * @return a list that contains the main partition and all its subpartitions
+	 */
+	
 	public ArrayList<ActivityPartition> getAllSubpartitions (ActivityPartition mainPartition, ArrayList<ActivityPartition> allPartitions) {
 		allPartitions.add(mainPartition);
 		EList<ActivityPartition> allSubpartitions = mainPartition.getSubpartitions();

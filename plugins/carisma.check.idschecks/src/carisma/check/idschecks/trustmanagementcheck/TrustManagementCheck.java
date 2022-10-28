@@ -120,7 +120,6 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 	
 	//------------------------------------------------------------------------------
 	//Checks if there are Rules broken regarding Communication
-	//names for all nodes when comm rules broken 
 	for (int i = 0; i < commPathList.size(); i++) {
 		EList<NamedElement> communicationMembers = commPathList.get(i).getMembers();
 		String communicationMember1 = communicationMembers.get(0).getName();
