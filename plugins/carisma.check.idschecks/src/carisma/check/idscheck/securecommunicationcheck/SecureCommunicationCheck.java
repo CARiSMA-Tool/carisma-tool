@@ -61,21 +61,10 @@ public class SecureCommunicationCheck implements CarismaCheckWithID {
 	}	
 	
 	private boolean startCheck() {
-		ArrayList<CommunicationPath> commPathList = (ArrayList<CommunicationPath>) UMLHelper.getAllElementsOfType(model, CommunicationPath.class);
-		boolean hasIDSCPStereotype = true;
-		for(int i = 0; i < commPathList.size(); i++) {
-			System.out.println("current Path : ----------" + commPathList.get(i));
-			System.out.println("IDSCP ? : ---------------" + UMLsecUtil.hasStereotype(commPathList.get(i), UMLsec.IDSCP));
-			EList<NamedElement> communicationMembers = commPathList.get(i).getMembers();
-			if (UMLsecUtil.hasStereotype(commPathList.get(i), UMLsec.IDSCP) == false) {
-				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes do not communicate with IDSCP"));
-				this.analysisHost.appendLineToReport(communicationMembers.get(0).getName() + " and " + communicationMembers.get(1).getName() + " do not communicate with IDSCP");
-				hasIDSCPStereotype = false;
-			}
-		}
 		
 		
-		return hasIDSCPStereotype;
+		
+		return true;
 	}
 
 	@Override

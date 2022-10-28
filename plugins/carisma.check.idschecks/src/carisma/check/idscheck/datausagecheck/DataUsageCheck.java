@@ -25,6 +25,12 @@ import carisma.modeltype.uml2.activity.ActivityDiagramManager;
 import carisma.profile.umlsec.umlsec4ids.UMLsec;
 import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
 
+/**
+ * analyzes an activity diagram with respect to data usage control rules.
+ * @author Alexander Peikert
+ *
+ */
+
 public class DataUsageCheck implements CarismaCheckWithID {
 
 
@@ -285,7 +291,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 				for(int i = 0; i < testList.size(); i++) {
 					int g = i + 1;
 					while(g < testList.size()) {
-						if(testList.get(i).containsAll(testList.get(g))) {
+						if(testList.get(i).containsAll(testList.get(g)) && testList.get(g).containsAll(testList.get(i))) {
 							testList.remove(testList.get(g));
 							g --;
 						}

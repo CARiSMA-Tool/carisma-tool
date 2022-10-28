@@ -26,6 +26,12 @@ import carisma.modeltype.uml2.activity.ActivityDiagramManager;
 import carisma.profile.umlsec.umlsec4ids.UMLsec;
 import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
 
+/**
+ * analyzes an activity diagram with respect to data provenance tracking rules.
+ * @author Alexander Peikert
+ *
+ */
+
 public class DataProvenanceCheck implements CarismaCheckWithID {
 
 	public static final String CHECK_ID = "carisma.check.idscheck.dataprovenancecheck";

@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Element;
@@ -25,6 +24,12 @@ import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
 import carisma.profile.umlsec.umlsec4ids.UMLsec;
 import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
+
+/**
+ * analyzes an activity diagram with respect to data access rules.
+ * @author Alexander Peikert
+ *
+ */
 
 public class DataAccessCheck implements CarismaCheckWithID {
 
@@ -87,7 +92,6 @@ public class DataAccessCheck implements CarismaCheckWithID {
 
 		//Get all Partitions of the current model
 		
-		ArrayList<Action> actionList = (ArrayList<Action>) UMLHelper.getAllElementsOfType(model, Action.class);
 		ArrayList<ActivityPartition> partitionList = (ArrayList<ActivityPartition>) UMLHelper.getAllElementsOfType(model, ActivityPartition.class);
 		
 		int numberOwner = 0;
@@ -211,22 +215,7 @@ public class DataAccessCheck implements CarismaCheckWithID {
 			checkSuccessful = false;
 		}
 		//----------------------------------------------------------------------------------------------
-		//Check if the protected action of the Owner Stereotype is exected by someone else
-		/*
-		for(int i = 0; i < actionList.size(); i++) {
-			for(int x = 0; x < taggedValuesProtectedOwner.size(); x++) {
-				if(actionList.get(i) == taggedValuesProtectedOwner.get(x)) {
-					for(int z = 0; z < actionList.get(i).getInPartitions().size(); z++) {
-						if(namesAllPartitionsOwner.contains(actionList.get(i).getInPartitions().get(z).getName()) == false) {
-							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Owner protects an Action that someone else executes"));
-							this.analysisHost.appendLineToReport("The Owner protects an Action that someone else executes : " + actionList.get(i).getName());
-							checkSuccessful = false;
-						}
-					}
-				}
-			}
-		}
-		*/
+
 		for(int i = 0; i < listOfDifferentPaths.size(); i++) {
 			
 		
@@ -311,7 +300,7 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		//----------------------------------------------------------------------------------------------
 		//
 		//---------------------------------------------------------------------------------------
-		//Check if any of the rules of Data Access Control rules are broken
+		//Return if any of the rules of Data Access Control rules are broken
 		
 		return checkSuccessful;
 		

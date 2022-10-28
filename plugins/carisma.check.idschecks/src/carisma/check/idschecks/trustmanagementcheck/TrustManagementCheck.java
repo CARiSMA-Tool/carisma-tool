@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.CommunicationPath;
@@ -20,6 +19,12 @@ import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.profile.umlsec.umlsec4ids.UMLsec;
 import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
+
+/**
+ * analyzes a deployment diagram with respect to trust management rules.
+ * @author Alexander Peikert
+ *
+ */
 
 public class TrustManagementCheck implements CarismaCheckWithID {
 
