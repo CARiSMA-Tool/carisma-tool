@@ -493,43 +493,6 @@ public interface Umlsec4idsPackage extends EPackage {
 	int X509TLS_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.IDSCPImpl <em>IDSCP</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see carisma.profile.umlsec.umlsec4ids.impl.IDSCPImpl
-	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getIDSCP()
-	 * @generated
-	 */
-	int IDSCP = 9;
-
-	/**
-	 * The feature id for the '<em><b>Base Communication Path</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDSCP__BASE_COMMUNICATION_PATH = 0;
-
-	/**
-	 * The number of structural features of the '<em>IDSCP</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDSCP_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>IDSCP</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDSCP_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link carisma.profile.umlsec.umlsec4ids.impl.datausagecontrolImpl <em>datausagecontrol</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -537,7 +500,7 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getdatausagecontrol()
 	 * @generated
 	 */
-	int DATAUSAGECONTROL = 10;
+	int DATAUSAGECONTROL = 9;
 
 	/**
 	 * The feature id for the '<em><b>Base Activity Partition</b></em>' reference.
@@ -611,7 +574,7 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getverified()
 	 * @generated
 	 */
-	int VERIFIED = 11;
+	int VERIFIED = 10;
 
 	/**
 	 * The feature id for the '<em><b>Base Node</b></em>' reference.
@@ -648,7 +611,7 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getisolated()
 	 * @generated
 	 */
-	int ISOLATED = 12;
+	int ISOLATED = 11;
 
 	/**
 	 * The feature id for the '<em><b>Base Node</b></em>' reference.
@@ -685,7 +648,7 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getencryption()
 	 * @generated
 	 */
-	int ENCRYPTION = 13;
+	int ENCRYPTION = 12;
 
 	/**
 	 * The feature id for the '<em><b>Base Node</b></em>' reference.
@@ -722,7 +685,7 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getcertified()
 	 * @generated
 	 */
-	int CERTIFIED = 14;
+	int CERTIFIED = 13;
 
 	/**
 	 * The feature id for the '<em><b>Base Node</b></em>' reference.
@@ -1061,27 +1024,6 @@ public interface Umlsec4idsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getX509TLS_Expiration_date_yyyy_mm_dd();
-
-	/**
-	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.IDSCP <em>IDSCP</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IDSCP</em>'.
-	 * @see carisma.profile.umlsec.umlsec4ids.IDSCP
-	 * @generated
-	 */
-	EClass getIDSCP();
-
-	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.umlsec4ids.IDSCP#getBase_CommunicationPath <em>Base Communication Path</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Communication Path</em>'.
-	 * @see carisma.profile.umlsec.umlsec4ids.IDSCP#getBase_CommunicationPath()
-	 * @see #getIDSCP()
-	 * @generated
-	 */
-	EReference getIDSCP_Base_CommunicationPath();
 
 	/**
 	 * Returns the meta object for class '{@link carisma.profile.umlsec.umlsec4ids.datausagecontrol <em>datausagecontrol</em>}'.
@@ -1504,24 +1446,6 @@ public interface Umlsec4idsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute X509TLS__EXPIRATION_DATE_YYYY_MM_DD = eINSTANCE.getX509TLS_Expiration_date_yyyy_mm_dd();
-
-		/**
-		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.IDSCPImpl <em>IDSCP</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see carisma.profile.umlsec.umlsec4ids.impl.IDSCPImpl
-		 * @see carisma.profile.umlsec.umlsec4ids.impl.Umlsec4idsPackageImpl#getIDSCP()
-		 * @generated
-		 */
-		EClass IDSCP = eINSTANCE.getIDSCP();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Communication Path</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IDSCP__BASE_COMMUNICATION_PATH = eINSTANCE.getIDSCP_Base_CommunicationPath();
 
 		/**
 		 * The meta object literal for the '{@link carisma.profile.umlsec.umlsec4ids.impl.datausagecontrolImpl <em>datausagecontrol</em>}' class.

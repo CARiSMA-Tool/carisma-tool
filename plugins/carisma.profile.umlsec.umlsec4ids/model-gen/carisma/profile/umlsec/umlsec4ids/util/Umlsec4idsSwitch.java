@@ -120,12 +120,6 @@ public class Umlsec4idsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Umlsec4idsPackage.IDSCP: {
-				IDSCP idscp = (IDSCP)theEObject;
-				T result = caseIDSCP(idscp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case Umlsec4idsPackage.DATAUSAGECONTROL: {
 				datausagecontrol datausagecontrol = (datausagecontrol)theEObject;
 				T result = casedatausagecontrol(datausagecontrol);
@@ -292,21 +286,6 @@ public class Umlsec4idsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseX509TLS(X509TLS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IDSCP</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IDSCP</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIDSCP(IDSCP object) {
 		return null;
 	}
 

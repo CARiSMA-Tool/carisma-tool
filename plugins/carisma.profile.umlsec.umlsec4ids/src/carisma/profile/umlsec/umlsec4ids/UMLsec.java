@@ -56,7 +56,6 @@ public enum UMLsec {
 	TRUSTPLUS ("trustplus"),
 	X509 ("X.509"),
 	X509TLS ("X.509TLS"),
-	IDSCP ("IDSCP"),
 	OWNER ("Owner"),
 	CONSUMER ("Consumer"),
 	DATAUSAGECONTROL ("datausagecontrol"),

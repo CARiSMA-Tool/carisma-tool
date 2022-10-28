@@ -103,15 +103,6 @@ public interface Umlsec4idsFactory extends EFactory {
 	X509TLS createX509TLS();
 
 	/**
-	 * Returns a new object of class '<em>IDSCP</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>IDSCP</em>'.
-	 * @generated
-	 */
-	IDSCP createIDSCP();
-
-	/**
 	 * Returns a new object of class '<em>datausagecontrol</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
