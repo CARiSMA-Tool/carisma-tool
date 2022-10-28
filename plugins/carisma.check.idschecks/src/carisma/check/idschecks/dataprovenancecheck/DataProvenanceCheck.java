@@ -169,7 +169,7 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 				}
 				if((taggedValuesProtected.size() == 0) && (taggedValuesStopAction.size() > 0)) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is not an equal amount of Stop Actions and Protected Actions"));
-					this.analysisHost.appendLineToReport("Stop Actions should be executed, but there are no Protected Actions in " + activityName);
+					this.analysisHost.appendLineToReport("Stop Actions should be protected, but there are no Protected Actions in " + activityName);
 					checkSuccessful = false;
 				}
 				//--------------------------------------------------			
