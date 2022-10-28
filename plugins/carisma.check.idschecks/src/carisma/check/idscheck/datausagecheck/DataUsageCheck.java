@@ -115,19 +115,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 			this.analysisHost.appendLineToReport("There is no existing path through the diagram");
 			checkSuccessful = false;
 		}
-		//test for parallel paths contains all remove all
-		/*
-		int x1 = 1;
-		System.out.println("paths List " + pathsList);
-		for(int i = 0; i < pathsList.size(); i++) {
-			for(int j = x1; j < pathsList.size(); j++) {
-				if(pathsList.get(x1).containsAll(pathsList.get(j))) {
-					System.out.println("i = " + i + " ; j = " + j);
-				}
-			}
-			x1++;
-		}
-		*/
+		
 		//--------------------------------------------------------------------------------
 		
 		//get all valid paths within the diagram
@@ -141,7 +129,6 @@ public class DataUsageCheck implements CarismaCheckWithID {
 			}
 			listOfDifferentPaths.add(listOfSinglePath);
 		}
-		System.out.println("different paths --------------- " + listOfDifferentPaths);
 		//-------------------------------------------------------------------------------
 		//get fork and decision nodes to create a warning
 		ArrayList<ForkNode> forkList = (ArrayList<ForkNode>) UMLHelper.getAllElementsOfType(model, ForkNode.class);;
@@ -180,7 +167,9 @@ public class DataUsageCheck implements CarismaCheckWithID {
 		List<Object> taggedValuesObligationStop = null;
 		List<Object> taggedValuesPermissions = null;
 		ArrayList<String> validNodesForPath = new ArrayList<String>();
+		//Get all Partitions within the diagram
 		ArrayList<ActivityPartition> partitionList = (ArrayList<ActivityPartition>) UMLHelper.getAllElementsOfType(model, ActivityPartition.class);
+		//Iterate over every Partition, check for data usage control stereotype
 		for (int z = 0; z < partitionList.size(); z++) {
 			if(UMLsecUtil.hasStereotype(partitionList.get(z), UMLsec.DATAUSAGECONTROL)) {
 				namesProhibs.clear();
@@ -193,7 +182,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 				taggedValuesObligationStop = UMLsecUtil.getTaggedValues("obligation_stop", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
 				taggedValuesPermissions = UMLsecUtil.getTaggedValues("permission", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
 				
-				// test auf subpartitions and nodes of subpartitions
+				//Check for subpartitions and nodes of subpartitions
 			
 				ArrayList<ActivityPartition> allPartitions = new ArrayList<ActivityPartition>();
 				allPartitions = getAllSubpartitions(partitionList.get(z) , allPartitions);
@@ -203,44 +192,20 @@ public class DataUsageCheck implements CarismaCheckWithID {
 					allPartitionNames.add(currentPartitionName);
 				}
 				
-				//get names of all Nodes within a single AcitityPartition
+				//Get names of all Nodes within a single AcitityPartition
 				ArrayList<EList<ActivityNode>> anodesOfSinglePartition = new ArrayList<EList<ActivityNode>>() ;
 				for(int i = 0; i < allPartitions.size(); i++) {
 					anodesOfSinglePartition.add(allPartitions.get(i).getNodes());
-				}
-				System.out.println("alle nodes der DUC partition " + anodesOfSinglePartition);
-				
-				//test get all parallel paths
-				/*
-				ParallelPath pp = new ParallelPath();
-				for(int v = 0; v < anodesOfSinglePartition.size(); v++) {
-					for(int j = 0; j < anodesOfSinglePartition.get(v).size(); j++) {
-						if(ActivityDiagramManager.isForkNode(anodesOfSinglePartition.get(v).get(j)) == true){
-							List<List<Element>> parallelList = pp.getParallelPaths((ForkNode) anodesOfSinglePartition.get(v).get(j), analysisHost);
-							System.out.println("parallel paths " + parallelList);
-							for(int g = 0; g < parallelList.size(); g++) {
-								for(int i = 0; i < parallelList.get(g).size(); i++) {
-									//System.out.println(((NamedElement) parallelList.get(g).get(i)).getName());
-								}						
-							}
-						}
-					}
-					
-				}
-				*/
-				
-				
+				}			
 				//----------------------------------------
-				
+				//Get names of all actions in (sub-)partitions
 				ArrayList<String> allNodeNamesSubpartitions = new ArrayList<String>();
 				for(int i = 0; i < anodesOfSinglePartition.size(); i++) {
 					for(int c = 0; c < anodesOfSinglePartition.get(i).size(); c++) {
 						allNodeNamesSubpartitions.add(anodesOfSinglePartition.get(i).get(c).getName());
 					}
 				}
-				System.out.println("Namen alles Nodes der Subpartitons " + allNodeNamesSubpartitions);
 				
-				//-------------------------------------------------------------------------
 				EList<ActivityNode> nodesOfSinglePartition = partitionList.get(z).getNodes();
 				ArrayList<String> nameNodesSinglePartition = new ArrayList<String>();
 				for (int c = 0; c < nodesOfSinglePartition.size(); c++) {
@@ -248,27 +213,17 @@ public class DataUsageCheck implements CarismaCheckWithID {
 				}
 				
 				//-------------------------------------------------------------------------------
-				//for each valid path check which part of the path is in the current ActivityPartition + remove start and final node				
+				//For each valid path check which part of the path is in the current ActivityPartition + remove start and final node				
 				for(int t = 0; t < listOfDifferentPaths.size(); t++) {
 					for(int h = 0; h < allNodeNamesSubpartitions.size(); h++) {
 						if(listOfDifferentPaths.get(t).contains(allNodeNamesSubpartitions.get(h)) && allNodeNamesSubpartitions.get(h) != null) {
 							validNodesForPath.add(allNodeNamesSubpartitions.get(h));
 						}
 					}
-					//validNodesForPath.removeAll(nameNodesSinglePartition) hier list<string> also hier die doppelten removen
 				}
-				System.out.println("valid nodes ---- " + validNodesForPath);
 
 				//---------------------------------------------------------------------------------
-				// gibt die verschiedenden validen pfade in reihenfolge und anteil an der partition wieder
-				//idee für oblig --> erst test gleiche länge
-				// wenn ja dann über beide gleichzeitig drüberiterieren und bei beiden das element an selber stelle in eine list len2
-				// danach die liste in eine neue liste von listen
-				// jetzt checken, ob inhalt liste sowohl in currentpath als auch in valid nodes ist
-				// wenn ja dann über path iterieren und checken ob start vor stop kommt
-				// schleifen testen
-				// abzweigungen testen
-				// partition in partition testen
+				//Get a list of lists of paths, with the names of the actions executed, delete empty actions and remove duplicated paths
 				ArrayList<ArrayList<String>> testList = new ArrayList<ArrayList<String>>();
 				for(int h = 0; h < listOfDifferentPaths.size(); h++) {
 					ArrayList<String> testValidNodes = new ArrayList<String>();
@@ -282,7 +237,6 @@ public class DataUsageCheck implements CarismaCheckWithID {
 							}
 						}		
 					}
-					// ersetzt nameNodesSinglePartition durch allNodeNamesSubpartitions
 					testList.add(testValidNodes);
 				}
 				int x = 0;
@@ -294,9 +248,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 					}
 					x++;
 				}
-				System.out.println("valid nodes paths nach schleife " + testList);
 				
-				//-------------------------------------------------------------------------
 				// testList remove duplicates 
 				for(int i = 0; i < testList.size(); i++) {
 					int g = i + 1;
@@ -307,13 +259,10 @@ public class DataUsageCheck implements CarismaCheckWithID {
 						}
 					g++;
 					}
-					System.out.println("valid nodes paths nach while schleife " + testList);
 				}
-				System.out.println("valid nodes paths nach remove duplicates " + testList);
 
 				//---------------------------------------------------------------------------
 				//check if prohibition is executed
-				// validNodesForPath ersetzen durch testList + testen
 				for(int q = 0; q < taggedValuesProhibitions.size(); q++) {
 					String currentProhib = ((NamedElement) taggedValuesProhibitions.get(q)).getName();
 					namesProhibs.add(currentProhib);
@@ -343,23 +292,22 @@ public class DataUsageCheck implements CarismaCheckWithID {
 					this.analysisHost.appendLineToReport(partitionList.get(z).getName() + " has not an equal amount of Obligation Starts and Obligation Stops");
 					checkSuccessful = false;
 				}
-				//jeweiligen obligation start dem obligation stop zuordnen,, wenn beide gleich lang
+				//Match the obligation start action to the obligation stop action
 				ArrayList<ArrayList<String>> startStopPair = new ArrayList<ArrayList<String>>();
 				if(namesObligStart.size() == namesObligStop.size()) {
 					for(int w = 0; w < namesObligStart.size(); w++) {
-						ArrayList<String> kleineListe = new ArrayList<String>();
-						kleineListe.add(namesObligStart.get(w));
-						kleineListe.add(namesObligStop.get(w));
-						startStopPair.add(kleineListe);
+						ArrayList<String> startStop = new ArrayList<String>();
+						startStop.add(namesObligStart.get(w));
+						startStop.add(namesObligStop.get(w));
+						startStopPair.add(startStop);
 
 					}
 				}
 				//--------------------------------------------------------------------------
-				//checken ob auf die start bedingung auch die stop bedingung ausgeführt wird
+				//check if obligation start and stop are executed
 				for(int q = 0; q < startStopPair.size(); q++) {
 					for(int g = 0; g < testList.size(); g++) {
 						if(testList.get(g).contains(startStopPair.get(q).get(0)) && testList.get(g).contains(startStopPair.get(q).get(1))) {
-							//test ob stop vor start kommt
 							int platzStart = -1;
 							int platzStop = -1;
 							for(int l = 0; l < testList.get(g).size(); l++) {
@@ -371,7 +319,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 								}
 							}
 							
-							
+							//check if stop comes before start
 							if(platzStart > platzStop) {
 								this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Obligation Stop follows the Obligation Start"));
 								this.analysisHost.appendLineToReport(testList.get(g)  + " executes the Obligation Stop before the Obligation Start for Obligation : " + startStopPair.get(q) + " in Partition : " + partitionList.get(z).getName());
@@ -379,6 +327,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 							}
 							
 						}
+						//Check if obligation star is executed but stop not
 						if(testList.get(g).contains(startStopPair.get(q).get(0)) && testList.get(g).contains(startStopPair.get(q).get(1)) == false) {
 							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The Obligation Stop does not follow after the Obligation Start"));
 							this.analysisHost.appendLineToReport(testList.get(g)  + " executes the Obligation Start but does not executes the Obligation Stop for Obligation : " + startStopPair.get(q) + " in Partition : " + partitionList.get(z).getName());
@@ -410,9 +359,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 		}
 		
 		//------------------------------
-		
-		
-		
+		//Return if Check is successful or not
 		return checkSuccessful;
 	}
 
