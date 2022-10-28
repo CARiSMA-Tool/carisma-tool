@@ -86,6 +86,10 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 		return allPartitions;
 	}
 	
+	/**
+	 * main function that starts the check.
+	 * @return true if the model is correct according to data provenance tracking rules, false otherwise
+	 */
 	
 	private boolean startCheck() {
 		

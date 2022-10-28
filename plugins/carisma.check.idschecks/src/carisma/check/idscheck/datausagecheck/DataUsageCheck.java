@@ -90,7 +90,10 @@ public class DataUsageCheck implements CarismaCheckWithID {
 		return allPartitions;
 	}
 	
-
+	/**
+	 * main function that starts the check.
+	 * @return true if the model is correct according to data usage control rules, false otherwise
+	 */
 	
 	private boolean startCheck() {
 		this.analysisHost.appendLineToReport("----IMPORTANT-------");

@@ -63,7 +63,12 @@ public class TrustedPlatformCheck implements CarismaCheckWithID {
 		this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
 		this.analysisHost.appendLineToReport("Content is not a model!");
 		return false;
-	}	
+	}
+	
+	/**
+	 * main function that starts the check.
+	 * @return true if the model is correct according to trusted platform rules, false otherwise
+	 */
 	
 	private boolean startCheck() {
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
