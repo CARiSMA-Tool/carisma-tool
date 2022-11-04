@@ -398,15 +398,16 @@ public final class SecureDependencyChecks {
 	}
 
 	public static boolean isRelevantDependency(final Dependency dependency) {
-		boolean isRelevant = !UMLsecUtil.isInScopeOfStereotype(dependency, UMLsec.SECURE_DEPENDENCY);
-		if (isRelevant) {
+		boolean isRelevant = UMLsecUtil.isInScopeOfStereotype(dependency, UMLsec.SECURE_DEPENDENCY);
+		if (!isRelevant) {
 			return false;
 		}
 		for (final EObject stereotype : dependency.getStereotypeApplications()) {
-			isRelevant |= stereotype instanceof call;
-			isRelevant |= stereotype instanceof send;
+			if (stereotype instanceof call || stereotype instanceof send) {
+				return true;
+			}
 		}
-		return isRelevant;
+		return false;
 	}
 
 	/**
