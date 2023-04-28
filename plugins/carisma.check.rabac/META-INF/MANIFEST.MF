@@ -4,13 +4,13 @@ Bundle-Name: RABAC
 Bundle-SymbolicName: carisma.check.rabac;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: carisma.check.rabac.RABACActivator
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: carisma.core.io,
+ org.eclipse.ui,
  org.eclipse.core.runtime,
  carisma.modeltype.uml2,
  carisma.profile.umlsec.rabac,
  carisma.ocl,
- carisma.core,
- carisma.core.io
+ carisma.core
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Export-Package: carisma.check.rabac

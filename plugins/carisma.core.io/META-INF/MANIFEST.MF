@@ -17,10 +17,8 @@ Export-Package: carisma.core.io,
 Bundle-ClassPath: .,
  lib/commons-lang3-3.4.jar,
  lib/json-1.5-20090211.jar,
- lib/jakarta.xml.bind/jakarta.activation.jar,
- lib/jakarta.xml.bind/jakarta.xml.bind-api.jar,
- lib/jakarta.xml.bind/jaxb-core.jar,
- lib/jakarta.xml.bind/jaxb-impl.jar
+ target/dependency/jakarta.activation-api.jar,
+ target/dependency/jakarta.xml.bind-api.jar
 Require-Bundle: org.apache.httpcomponents.httpcore,
  org.apache.httpcomponents.httpclient,
  org.eclipse.core.runtime,
