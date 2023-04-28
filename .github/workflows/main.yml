@@ -10,18 +10,21 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        java: [ '11', '16', '17' ]
+        
     steps:
     - name: Clone repository with submodules
       uses: actions/checkout@v3
       with: 
         fetch-depth: 0
         submodules: 'recursive'
-    - name: Set up JDK
+    - name: Set up JDK version ${{ matrix.Java }}
       uses: actions/setup-java@v2
       with:
         distribution: 'temurin'
-        java-version: '17'
+        java-version: ${{ matrix.Java }}
         cache: 'maven'  
     - name: Build with Maven
       env:
