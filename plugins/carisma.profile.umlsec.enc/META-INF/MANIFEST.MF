@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.core.runtime,
  carisma.modeltype.uml2,
  carisma.core
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: carisma.profile.umlsec.enc,
  carisma.profile.umlsec.enc.impl,
  carisma.profile.umlsec.enc.util

@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.core.runtime,
  carisma.core.io,
  org.eclipse.emf.edit.ui
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: carisma.ui.eclipse,
  carisma.ui.eclipse.dialogs.parameters,
  carisma.ui.eclipse.editors,

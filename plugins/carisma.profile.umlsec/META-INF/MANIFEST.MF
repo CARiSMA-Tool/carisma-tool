@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: carisma.profile.umlsec;singleton:=true
 Bundle-Version: 1.0.6.qualifier
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.core.runtime,
  carisma.modeltype.uml2,

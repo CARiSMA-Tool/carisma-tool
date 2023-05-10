@@ -4,6 +4,6 @@ Bundle-Name: Tests
 Bundle-SymbolicName: carisma.modeltype.bpmn2.tests;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Fragment-Host: carisma.modeltype.bpmn2;bundle-version="1.0.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.junit;bundle-version="4.11.0",
  org.eclipse.emf.ecore

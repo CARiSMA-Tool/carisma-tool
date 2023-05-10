@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: CARiSAMA Input and Output Operations
 Bundle-SymbolicName: carisma.core.io
 Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: carisma.core.io,
  carisma.core.io.configuration,
  carisma.core.io.content;uses:="org.w3c.dom",

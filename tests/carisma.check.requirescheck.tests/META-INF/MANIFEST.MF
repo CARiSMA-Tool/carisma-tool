@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Tests
 Bundle-SymbolicName: carisma.check.requirescheck.tests;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: carisma.tests.modelutils.uml,
  org.junit;bundle-version="4.11.0",
  carisma.core,

@@ -9,7 +9,7 @@ Require-Bundle: carisma.core;bundle-version="1.0.0",
  carisma.modeltype.bpmn2;bundle-version="1.0.0",
  carisma.modeltype.bpmn2.extension
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Import-Package: carisma.modeltype.bpmn2.extension.util,
  carisma.ocl.library,
  org.eclipse.bpmn2

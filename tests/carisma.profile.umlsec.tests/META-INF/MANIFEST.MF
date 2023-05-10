@@ -4,7 +4,7 @@ Bundle-Name: Tests
 Bundle-SymbolicName: carisma.profile.umlsec.tests;singleton:=true
 Bundle-Version: 1.0.3.qualifier
 Fragment-Host: carisma.profile.umlsec;bundle-version="1.0.3"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.junit;bundle-version="4.11.0",
  org.eclipse.emf.ecore,
  org.eclipse.papyrus.infra.services.resourceloading,

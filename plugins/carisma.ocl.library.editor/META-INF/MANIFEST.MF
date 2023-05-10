@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: carisma.ocl.library.presentation.OclEditorPlugin$Implementation
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: carisma.ocl.library.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
