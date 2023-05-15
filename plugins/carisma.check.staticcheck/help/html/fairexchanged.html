@@ -18,7 +18,7 @@
   </p>
   
   <p>
-  Annotate a package containing a state machine with &laquo;fair exchange&raquo;. Apply the appropriate &laquo;start&raquo; and &laquo;stop&raquo; tags in the corresponding states.
+  Annotate a package containing a state machine or activity diagram with &laquo;fair exchange&raquo;. Apply the appropriate &laquo;start&raquo; and &laquo;stop&raquo; tags in the corresponding states.
   </p>
   
   <p>
@@ -28,13 +28,22 @@
   
   <h3>Example</h3>
   <p>
-  The model in figure 1 is consciously designed to contain a &laquo;fair exchange&raquo; violation. Therefore the activity "get money back" is not included by  the stop tag.
+  The model in Figure 1 is consciously designed to contain a &laquo;fair exchange&raquo; violation. Therefore the activity "Reclaim" is not included by the stop tag (Figure 2).
   </p>
 
-  <img src="images/Fair_Exchange_fail.png" style="margin:20px, 15px; 0px;;" alt="Activity diagram with stereotype fair exchange" name="Activity diagram with stereotype fair exchange" />
-  <h5>Figure 1: Incorrect model</h5>
+  <img alt="Acitvity diagram with stereotype fair exchange" src="images/fair-exchange-correct.png">
+ 
   
-  After correcting the model, the analysis reports the success of the check. </p>
+  <h5>Figure 1: Activity diagram with stereotype fair exchange</h5>
+  
+  <img alt="Incorrect properties for fair exchange diagram" src="images/fair-exchange-properties-incorrect.png">
+  <h5>Figure 2: Incorrect properties for Figure 1</h5>
+  
+  <img alt="Correct properties for fair exchange diagram" src="images/fair-exchange-properties-correct.png">
+  <h5>Figure 3: Correct properties for Figure 1</h5>
+  
+  
+  After correcting the model and adding "Reclaim" to the stop tag, the analysis reports the success of the check. </p>
 </body>
 
 </html>

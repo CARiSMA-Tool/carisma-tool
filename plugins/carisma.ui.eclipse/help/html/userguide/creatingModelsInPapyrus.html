@@ -14,47 +14,54 @@
 <h3><a name="requirements">Requirements</a></h3>
 <ul>
 <li>Install <a href="gettingStartedInstall.html#UMLsec">CARiSMA</a> for Eclipse.</li>
+<li>Install <a href="https://www.eclipse.org/papyrus/">Papyrus</a> for Eclipse.</li>
 </ul>
 <h3><a name="CreatingModel">Creating a model</a></h3>
 <ol>
 <li><a name="newpapyrusproject1">Create a new Papyrus project</a>. Alternatively use an existing project as container
 for your models and select <i>Papyrus Model</i> in the dialog (<i>File</i> &rarr; <i>New</i> &rarr; <i>Papyrus Model</i>).</li> <br /><br />
-<img src="../images/modelling_with_UMLsec_01.png" alt="Papyrus Project Wizard" name="Papyrus Project Wizard" />
+<img src="../images/papyrus_createnewmodel1.png" alt="Papyrus Project Wizard" name="Papyrus Project Wizard" />
 
 <br /><br />
 
-<li><a name="newpapyrusproject2">Enter</a> a name for your Papyrus project.</li> <br /><br />
-<img src="../images/modelling_with_UMLsec_02.png" alt="" name="" /> <br /><br />
-
 <li><a name="newpapyrusproject3">Select</a> <i>UML</i> as the model type.</li> <br /><br />
-<img src="../images/modelling_with_UMLsec_03.png" alt="initialization information" name="" /> <br /><br />
+<img src="../images/papyrus_selectmodeltype2.png" alt="" name="" /> <br /><br />
 
-<li><a name="newpapyrusproject4">Enter</a> the <i>Diagram Name</i> and select the diagram type you want to create.
+<li><a name="newpapyrusproject2">Enter</a> a name for your Papyrus project.</li> <br /><br />
+<img src="../images/papyrus_enternameforproject3.png" alt="initialization information" name="" /> <br /><br />
+
+<li>Enter the <i>Diagram Name</i> and select the diagram type you want to create.
 Check that you want to load an UML model with basic primitive types as a template - this
-will make modeling easier for you.</li> <br /><br />
-<img src="../images/modelling_with_UMLsec_04.png" alt="initialization information" name="" /> <br /><br />
+will make modeling easier for you. Optionally, you can directly  register the the UMLsec profile for your project, by clicking 
+"Browse Registered Profiles"</li> <br /><br />
+<img src="../images/papyrus_selectdiagramandregisterprofile4.png" alt="initialization information" name="" /> <br /><br />
 
-<li>Click <i>Finish</i> to open the new empty diagram.</li>
+<li>Choose the UMLsec profile and click <i>OK</i> and afterwards <i>Finish</i> to open the new empty diagram</li>
+<img src="../images/papyrus_chooseumlsecprofile5.png" alt="initialization information" name="" /> <br /><br />
+
+
+
 </ol>
 
-<h3><a name="UMLsec-profile">Importing the UMLsec profile</a></h3>
+<h3><a name="UMLsec-profile">Importing the UMLsec profile after model creation</a></h3>
 <ol>
 <li>If the model is open, close the <i>.di</i> file of your project.</li>
-<li>In the <i>Project Explorer</i> select the <i>.uml</i> file of your model.</li>
-<li><a name="modeleditor">Right click</a> the <i>.uml</i> file and select <i>Open with</i> &rarr; <i>UML Model Editor</i>.</li>
+<li>In the <i>Project Explorer</i> open the <i>.uml</i> file of your model.</li>
+
 <li>The following screen will appear:</li> <br/><br />
-<img src="../images/modelling_with_UMLsec_05.png" alt="" name="" /> <br /><br />
+<img src="../images/openuml.png" alt="" name="" /> <br /><br />
 
 <li>Select the <i>&lt;Model&gt; </i> element in the UML Model Editor.</li>
-<li>Select the menu item <i>UML Editor</i> &rarr; <i>Package</i> &rarr; <i>Apply Profile</i>.</li>
+<li>Select the menu item <i>UML Editor</i> &rarr; <i>Package</i> &rarr; <i>Apply Profile</i>.</li><br /><br />
+<img src="../images/reapplyprofile.png" alt="" name="" /> <br /><br />
 
 <li><a name="umlsecprofile">Select</a> the <i>UMLsec</i> profile in the appearing window.</li> <br /><br />
-<img src="../images/modelling_with_UMLsec_06.png" /> <br /><br />
+<img src="../images/chooseumlsecprofile.png" /> <br /><br />
 <li>Click <i>Add</i> to apply the profile and <i>OK</i> to confirm your decision.</li>
 <li>Save your project</i>.</li>
 
-<li><a name="reopen">If you re-open your model in Papyrus</a>, the UMLsec profile is applied and its stereotypes may be applied:</li> <br /><br />
-<img src="../images/modelling_with_UMLsec_08.png" /> <br /><br />
+<li><a name="reopen">If you re-open your model in Papyrus</a>, the UMLsec profile is applied and its stereotypes may be applied</li> <br /><br />
+
 
 </body>
 </html>
