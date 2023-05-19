@@ -11,5 +11,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-lang3-3.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/json-1.5-20090211.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/dependency/jaxb-core.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/dependency/angus-activation.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/dependency/istack-commons-runtime.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/dependency/jaxb-runtime.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/dependency/txw2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
