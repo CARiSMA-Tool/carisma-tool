@@ -18,7 +18,12 @@ Bundle-ClassPath: .,
  lib/commons-lang3-3.4.jar,
  lib/json-1.5-20090211.jar,
  target/dependency/jakarta.activation-api.jar,
- target/dependency/jakarta.xml.bind-api.jar
+ target/dependency/jakarta.xml.bind-api.jar,
+ target/dependency/jaxb-core.jar,
+ target/dependency/jaxb-runtime.jar,
+ target/dependency/txw2.jar,
+ target/dependency/angus-activation.jar,
+ target/dependency/istack-commons-runtime.jar
 Require-Bundle: org.apache.httpcomponents.httpcore,
  org.apache.httpcomponents.httpclient,
  org.eclipse.core.runtime,
