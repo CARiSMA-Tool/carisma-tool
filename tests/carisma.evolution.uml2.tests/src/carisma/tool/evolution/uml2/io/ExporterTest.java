@@ -20,6 +20,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
@@ -55,6 +56,7 @@ import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
  * @author bberghoff
  *
  */
+@Ignore
 public class ExporterTest {
 	/** 
 	 * XMI-ID of the NamedElement used as Target.

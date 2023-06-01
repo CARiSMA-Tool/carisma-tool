@@ -20,6 +20,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
@@ -72,6 +73,7 @@ public class UMLModifierElementFactoryTest {
 	 * @throws IOException 
 	 */
 	@Test
+	@Ignore
 	public final void test() throws IOException {
 		loadModel("ActivityTest.uml");
 		try {

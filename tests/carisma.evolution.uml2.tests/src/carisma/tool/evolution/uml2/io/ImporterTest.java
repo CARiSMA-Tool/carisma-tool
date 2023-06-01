@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.Model;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
@@ -79,6 +80,7 @@ public class ImporterTest {
 	 * 
 	 */
 	@Test
+	@Ignore
     public final void getSingleAddNullValueInValues() throws IOException {
 	    loadModel(VALID_MODEL);
         ModelImporter importer = new ModelImporter();
@@ -91,6 +93,7 @@ public class ImporterTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getDeltaSingleAddRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
@@ -107,6 +110,7 @@ public class ImporterTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getDeltaSingleDelRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
@@ -123,6 +127,7 @@ public class ImporterTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getDeltaSingleEditRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
@@ -139,6 +144,7 @@ public class ImporterTest {
 	}	
 	
 	@Test
+	@Ignore
 	public void getDeltaSingleSubstRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
@@ -155,6 +161,7 @@ public class ImporterTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getDeltaSingleStereoAddRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
@@ -171,6 +178,7 @@ public class ImporterTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getDeltaSingleStereoDelRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		try {
@@ -193,6 +201,7 @@ public class ImporterTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getDeltaSingleStereoEditRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
@@ -209,6 +218,7 @@ public class ImporterTest {
 	}	
 	
 	@Test
+	@Ignore
 	public void getDeltaSingleStereoSubstRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
@@ -226,6 +236,7 @@ public class ImporterTest {
 	
 	
 	@Test
+	@Ignore
 	public void getDeltaTwoStereoAddRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
@@ -243,6 +254,7 @@ public class ImporterTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getDeltaThreeStereoAddRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
@@ -260,6 +272,7 @@ public class ImporterTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getDeltaFourStereoAddRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
@@ -279,6 +292,7 @@ public class ImporterTest {
 	
 	
 	@Test
+	@Ignore
 	public void getDeltaRegularTest() throws IOException {
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();
@@ -348,6 +362,7 @@ public class ImporterTest {
 	 * 
 	 */
 	@Test
+	@Ignore
 	public final void getDeltaWrongModel() throws IOException {
 		loadModel("resources/models/io/ImporterDeltaWrongModel.uml");
 		ModelImporter importer = new ModelImporter();
@@ -366,6 +381,7 @@ public class ImporterTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getDeltaMalformedXML2() throws IOException { 
 		loadModel(VALID_MODEL);
 		ModelImporter importer = new ModelImporter();

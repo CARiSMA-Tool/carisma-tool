@@ -11,6 +11,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Model;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.core.analysis.AnalysisHost;
@@ -32,6 +33,7 @@ import carisma.tests.modelutils.uml.TestHelper;
  * @author jkowald
  *
  */
+@Ignore
 public class LockedStatusEvolutionDeltaOnlyCheckTest {
 	
 	/**

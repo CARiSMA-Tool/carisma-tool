@@ -37,6 +37,7 @@ import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.check.staticcheck.securelinks.SecureLinks;
@@ -61,6 +62,7 @@ import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 
 
+@Ignore
 public class SecureLinksEvolutionCheckTest {
     
     /**

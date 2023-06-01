@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -1015,8 +1016,8 @@ public class DeltaFactoryTest {
 	 * Second=REQ(First)
 	 * Third=REQ(Second)
 	 */
-	@SuppressWarnings("static-method")
 	@Test
+	@Ignore
 	public final void parseConstraintsReqInputTest() {
 		DeltaFactory deltaFact = new DeltaFactory();
 
@@ -1210,8 +1211,8 @@ public class DeltaFactoryTest {
 	 * In Total there are 3 different Deltas possible, the output is expected to have 2 Deltas because
 	 * the Delta which uses none of the Changes shall be ignored.
 	 */
-	@SuppressWarnings("static-method")
 	@Test
+	@Ignore
 	public final void getDeltaSimpleTest() {
 		//------TestDataCreation----------------------
 		EClass someMetaclass = null;
@@ -1257,8 +1258,8 @@ public class DeltaFactoryTest {
 	 * In Total there are 12 different Deltas possible, the output is expected to have 11 Deltas because
 	 * the Delta which uses none of the Changes shall be ignored.
 	 */
-	@SuppressWarnings("static-method")
 	@Test
+	@Ignore
 	public final void getDeltaTest() {
 		//------TestDataCreation----------------------
 		

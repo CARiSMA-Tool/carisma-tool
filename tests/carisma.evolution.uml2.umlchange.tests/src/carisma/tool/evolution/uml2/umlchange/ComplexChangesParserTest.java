@@ -243,7 +243,7 @@ public class ComplexChangesParserTest {
 	}
 	
 	@Test
-	public static void testWhatAreNamedElements() {
+	public void testWhatAreNamedElements() {
 		// ref: refID
 		// ext: refID=critical.high
 		// new: Property(name=high,value=newValue)
