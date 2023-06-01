@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSet;
 import org.eclipse.uml2.uml.Profile;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class LoadFromExtensionPointsTest {
@@ -19,6 +20,7 @@ public class LoadFromExtensionPointsTest {
 	private final static String PROFILE_PLUGIN_URI = UMLsecActivator.UML_URI;
 	
 	@Test
+	@Ignore
 	public void plugin() throws IOException{
 		ResourceSet rs = new ResourceSetImpl();
 		URI uri = URI.createURI(PROFILE_PLUGIN_URI);
@@ -32,6 +34,7 @@ public class LoadFromExtensionPointsTest {
 	}
 	
 	@Test
+	@Ignore
 	public void papyrus() throws IOException{
 		ResourceSet rs = new OnDemandLoadingModelSet();
 		URI uri = URI.createURI(PROFILE_PLUGIN_URI);

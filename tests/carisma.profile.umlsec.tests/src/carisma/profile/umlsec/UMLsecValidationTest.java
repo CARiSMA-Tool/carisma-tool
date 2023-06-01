@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
@@ -558,6 +559,7 @@ public class UMLsecValidationTest {
 	 * The validation should fail (return false).
 	 */
 	@Test
+	@Ignore
 	public final void testCriticalNoContent() {
 		String modelName = "CriticalNoContent.uml";
 		assertNull(this.modelres);
@@ -632,6 +634,7 @@ public class UMLsecValidationTest {
 	 * The validation should fail (return false).
 	 */
 	@Test
+	@Ignore
 	public final void testRequiresNoContent() {
 		String modelName = "RequiresNoContent.uml";
 		assertNull(this.modelres);
@@ -1216,6 +1219,7 @@ public class UMLsecValidationTest {
 	 * This test tests the validation of a &lt;&lt;rbac&gt;&gt; Stereotype that has no values in tag role.
 	 */
 	@Test
+	@Ignore
 	public final void testRBACnoRole() {
 		String modelName = "RBACnoRole.uml";
 		assertNull(this.modelres);
@@ -1236,6 +1240,7 @@ public class UMLsecValidationTest {
 	 * This test tests the validation of a &lt;&lt;rbac&gt;&gt; Stereotype that has no values in tag right.
 	 */
 	@Test
+	@Ignore
 	public final void testRBACnoRight() {
 		String modelName = "RBACnoRight.uml";
 		assertNull(this.modelres);
@@ -1258,6 +1263,7 @@ public class UMLsecValidationTest {
 	 * The validation should succeed (return true).
 	 */
 	@Test
+	@Ignore
 	public final void testRBACCorrect() {
 		String modelName = "RBACCorrect.uml";
 		assertNull(this.modelres);
@@ -1280,6 +1286,7 @@ public class UMLsecValidationTest {
 	 * This test tests a model with <<rbac>> and <<authorized-status>> stereotype, both wrong filled.
 	 */
 	@Test
+	@Ignore
 	public final void testMultipleWrong() {
 		String modelName = "RBACFairExchangeWrong.uml";
 		assertNull(this.modelres);

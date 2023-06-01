@@ -20,7 +20,7 @@ import carisma.evolution.uml2.umlchange.datatype.SimpleElementDescription;
 public class SimpleElementDescriptionTest {
 
 	@Test
-	public static void testSimpleElementDescription() {
+	public void testSimpleElementDescription() {
 		SimpleElementDescription testSimple =
 			new SimpleElementDescription("Attribute(name=Bla,type=Blubb)");
 		assertEquals("Attribute",testSimple.getMetaclassName());

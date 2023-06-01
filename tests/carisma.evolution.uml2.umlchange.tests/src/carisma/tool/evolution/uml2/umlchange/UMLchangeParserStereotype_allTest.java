@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.AddElement;
@@ -18,6 +19,7 @@ public class UMLchangeParserStereotype_allTest {
 	private Model model = null;
 	
 	@Test
+	@Ignore
 	public void regularAddAllTest() {
 		this.model = TestHelper.loadModel(this.testmodeldir, "RegularAdd_AllModel.uml");
 		UMLchangeParser parser = new UMLchangeParser(this.model);

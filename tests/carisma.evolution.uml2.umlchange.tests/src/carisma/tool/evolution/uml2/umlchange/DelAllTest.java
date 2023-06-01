@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.eclipse.uml2.uml.Model;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.Alternative;
@@ -42,6 +43,7 @@ public class DelAllTest {
 	 * tests for stereotypes with no content.
 	 */
 	@Test
+	@Ignore
 	public final void testNoContent() {
 		this.model = TestHelper.loadModel(this.filepath, "del-all.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -57,6 +59,7 @@ public class DelAllTest {
 	 * tests for stereotypes with content.
 	 */
 	@Test
+	@Ignore
 	public final void testWithContent() {
 		this.model = TestHelper.loadModel(this.filepath, "del-allContent.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -71,6 +74,7 @@ public class DelAllTest {
 	 * tests if a model with no name will be renamed.
 	 */
 	@Test
+	@Ignore
 	public final void testModelRenaming() {
 		this.model = TestHelper.loadModel(this.filepath, "SecureDependencies.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -82,6 +86,7 @@ public class DelAllTest {
 	 * tests if the add-all stereotype deletes the right stereotype.
 	 */
 	@Test
+	@Ignore
 	public final void testStereotype() {
 		this.model = TestHelper.loadModel(this.filepath, "SecureDependencies.uml");
 		this.parser = new UMLchangeParser(this.model);

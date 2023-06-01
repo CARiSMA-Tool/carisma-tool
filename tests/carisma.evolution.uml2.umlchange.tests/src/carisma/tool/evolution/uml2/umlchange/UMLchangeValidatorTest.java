@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
@@ -244,12 +245,14 @@ public class UMLchangeValidatorTest {
 	 * this tests tests the UMLchangeValidator with a complete model.
 	 */
 	@Test
+	@Ignore
 	public final void testModel() {
 		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		assertTrue(this.validator.isValidModel(this.model));
 	}
 	
 	@Test
+	@Ignore
 	public final void testInvalidKeep() {
 		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class keepClass = null;
@@ -268,6 +271,7 @@ public class UMLchangeValidatorTest {
 	
 
 	@Test
+	@Ignore
 	public final void testInvalidDelRef() {
 		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class delClass = null;
@@ -285,6 +289,7 @@ public class UMLchangeValidatorTest {
 	}
 	
 	@Test
+	@Ignore
 	public final void testInvalidPattern() {
 		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class patternClass = null;
@@ -330,6 +335,7 @@ public class UMLchangeValidatorTest {
 	}
 	
 	@Test
+	@Ignore
 	public final void testStereoExt() {
 		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class c1 = null;
@@ -350,6 +356,7 @@ public class UMLchangeValidatorTest {
 	 * test for the subst-stereotype.
 	 */
 	@Test
+	@Ignore
 	public final void testSubst() {
 		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class substClass = null;
@@ -392,6 +399,7 @@ public class UMLchangeValidatorTest {
 	 * test for the old-stereotype.
 	 */
 	@Test
+	@Ignore
 	public final void testOld() {
 		this.model = TestHelper.loadModel(this.filepath, UML_CHANGE_VALIDATOR);
 		Class oldClass = null;

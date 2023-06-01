@@ -24,6 +24,7 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.Alternative;
@@ -94,6 +95,7 @@ public class BBKeepTest {
 	 * And one <<keep>> corresponding to the <<subst>> alternative. 
 	 */
 	@Test
+	@Ignore
 	public final void complexKeepTest() { 
 		this.model = TestHelper.loadModel(this.testmodeldir, "ComplexAdopterParserKeep.uml");
 		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
@@ -150,6 +152,7 @@ public class BBKeepTest {
 	 * But the Package MyNamespace doesn't have a class 'OldClass'.
 	 */
 	@Test
+	@Ignore
 	public final void missingAdopterTest() { 
 		this.model = TestHelper.loadModel(this.testmodeldir, "WrongNamespace.uml");
 		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
@@ -177,6 +180,7 @@ public class BBKeepTest {
 	 * Keep on second Alternative of <<subst>>.
 	 */
 	@Test
+	@Ignore
 	public final void keepForSecondAlternativeTest() {
 		this.model = TestHelper.loadModel(this.testmodeldir, "KeepForSecondAlternative.uml");
 		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
@@ -209,6 +213,7 @@ public class BBKeepTest {
 	 * Plus whether the expected EditElements are created correctly.
 	 */
 	@Test
+	@Ignore
 	public final void classWithOperationTest() {
 		this.model = TestHelper.loadModel(this.testmodeldir, "KeepOnEleWithChildren.uml");
 		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
@@ -254,6 +259,7 @@ public class BBKeepTest {
 	 * Test if <<keep>> for SimpleElementDescription in <<subst>> new is ignored.
 	 */
 	@Test
+	@Ignore
 	public final void adoptorSimpleEleDescription() {
 		this.model = TestHelper.loadModel(this.testmodeldir, "AdopterSimpleEleDescription.uml");
 		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));

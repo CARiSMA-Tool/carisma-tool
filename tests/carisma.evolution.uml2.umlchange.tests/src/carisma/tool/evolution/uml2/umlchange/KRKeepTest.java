@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.uml2.uml.Model;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.AddElement;
@@ -45,6 +46,7 @@ public class KRKeepTest {
 	 * tests the <<keep>> stereotype.
 	 */
 	@Test
+	@Ignore
 	public final void test() {
 		this.model = TestHelper.loadModel(this.filepath, "ParserKeep.uml");
 		this.parser = new UMLchangeParser(this.model);

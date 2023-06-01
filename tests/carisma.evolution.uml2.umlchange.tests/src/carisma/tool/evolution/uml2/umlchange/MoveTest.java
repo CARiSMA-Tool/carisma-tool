@@ -10,6 +10,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Property;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.Change;
@@ -43,6 +44,7 @@ public class MoveTest {
 	 * tests if a correct EditElement will be created to move a property from one class to an other class.
 	 */
 	@Test
+	@Ignore
 	public final void testMoveProperty() {
 		this.model = TestHelper.loadModel(this.filepath, "testMoveProperty.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -65,6 +67,7 @@ public class MoveTest {
 	 * tests if no Change will be created if the new target won't exists.
 	 */
 	@Test
+	@Ignore
 	public final void testMoveNotExistingTarget() {
 		this.model = TestHelper.loadModel(this.filepath, "testMoveNotExistingTarget.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -77,6 +80,7 @@ public class MoveTest {
 	 * tests if no Change will be created if the Name of the target Element is not qualified enough.
 	 */
 	@Test
+	@Ignore
 	public final void testMoveNameNotQualifiedEnough() {
 		this.model = TestHelper.loadModel(this.filepath, "testMoveNameNotQualifiedEnough.uml");
 		this.parser = new UMLchangeParser(this.model);

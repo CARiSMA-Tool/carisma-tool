@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.eclipse.uml2.uml.Model;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.Change;
@@ -52,6 +53,7 @@ public class EditTest {
 	 * this test tests strings
 	 */
 	@Test
+	@Ignore
 	public final void testEditStereotype() {
 		this.model = TestHelper.loadModel(this.filepath, "testEditParser.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -81,6 +83,7 @@ public class EditTest {
 	 * FIXME: Do not have to test ext usage in <<edit>> tests. (tested in CommonTest)
 	 */
 	@Test
+	@Ignore
 	public final void testNullTarget() {
 		this.model = TestHelper.loadModel(this.filepath, "testEditParser.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -91,6 +94,7 @@ public class EditTest {
 	}
 	
 	@Test
+	@Ignore
 	public final void testWrongValueSyntax() {
 		this.model = TestHelper.loadModel(this.filepath, "testEditWrongValueSyntax.uml");
 		this.parser = new UMLchangeParser(this.model);

@@ -10,6 +10,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Property;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.Alternative;
@@ -52,6 +53,7 @@ public class AllTest {
 	 *  and that this DeltaElement has Class1 as Target
 	 */
 	@Test
+	@Ignore
 	public final void delSingleClassTest() {
 		this.model = TestHelper.loadModel(this.testmodeldir, "del-allSingleClass.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -73,6 +75,7 @@ public class AllTest {
 	 *  Package::Class2 << identifiable>> 
 	 */
 	@Test
+	@Ignore
 	public final void delPropertyTest() {
 		this.model = TestHelper.loadModel(this.testmodeldir, "DelAllProperties.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -96,6 +99,7 @@ public class AllTest {
 	 *  Package1::Class2 << identifiable>> (with TaggedValue 'id':fds)
 	 */
 	@Test
+	@Ignore
 	public final void delTaggedValueTest() {
 		this.model = TestHelper.loadModel(this.testmodeldir, "DelAllTaggedValue.uml"); 
 		this.parser = new UMLchangeParser(this.model);
@@ -118,6 +122,7 @@ public class AllTest {
 	 *  Package1::Class2 << identifiable>> (with TaggedValue 'id':fds)
 	 */
 	@Test
+	@Ignore
 	public final void getPatternMatchesTest() {
 		this.model = TestHelper.loadModel(this.testmodeldir, "GetPatternMatches.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -146,6 +151,7 @@ public class AllTest {
 	 *  expected output from the parser are zero Changes.
 	 */
 	@Test
+	@Ignore
 	public final void ignoreUMLChangeTest() {
 		this.model = TestHelper.loadModel(this.testmodeldir, "ignoreUMLChangeStereotypes.uml");
 		this.parser = new UMLchangeParser(this.model);

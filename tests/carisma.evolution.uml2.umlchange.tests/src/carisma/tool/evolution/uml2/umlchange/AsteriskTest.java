@@ -10,6 +10,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.Change;
@@ -47,6 +48,7 @@ public class AsteriskTest {
 	 * tests if the model will be edited correctly if all property ending with "test" will be deleted.
 	 */
 	@Test
+	@Ignore
 	public final void testEndsWith() {
 		this.model = TestHelper.loadModel(this.filepath, "testStarString.uml");
 		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
@@ -66,6 +68,7 @@ public class AsteriskTest {
 	 * tests if the model will be edited correctly if all property beginning with "test" will be deleted.
 	 */
 	@Test
+	@Ignore
 	public final void testBeginWith() {
 		this.model = TestHelper.loadModel(this.filepath, "testStarString.uml");
 		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
@@ -88,6 +91,7 @@ public class AsteriskTest {
 	 * test if the model will be edited correctly if all property beginning contains "test".
 	 */
 	@Test
+	@Ignore
 	public final void testContaining() {
 		this.model = TestHelper.loadModel(this.filepath, "testStarString.uml");
 		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));

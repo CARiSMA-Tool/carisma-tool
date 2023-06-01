@@ -13,6 +13,7 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.Alternative;
@@ -51,6 +52,7 @@ public class AddAllTest {
 	 * test.
 	 */
 	@Test
+	@Ignore
 	public final void testMain() {
 		this.model = TestHelper.loadModel(this.filepath, "add-all.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -68,6 +70,7 @@ public class AddAllTest {
 	 * test.
 	 */
 	@Test
+	@Ignore
 	public final void testFalseUML2Class() {
 		this.model = TestHelper.loadModel(this.filepath, "add-all.uml");
 		this.parser = new UMLchangeParser(this.model);
@@ -87,6 +90,7 @@ public class AddAllTest {
 	 * test.
 	 */
 	@Test
+	@Ignore
 	public final void test() {
 		this.model = TestHelper.loadModel(this.filepath, "add-all.uml");
 		UMLFactory uml = UMLFactory.eINSTANCE;

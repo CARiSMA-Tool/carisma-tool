@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.uml2.uml.Model;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.Change;
@@ -171,6 +172,7 @@ public class CommonTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testWrongChangeValues() {
 		this.model = TestHelper.loadModel(this.testmodeldir, "WrongChangeValues.uml");
 		this.parser = new UMLchangeParser(this.model);

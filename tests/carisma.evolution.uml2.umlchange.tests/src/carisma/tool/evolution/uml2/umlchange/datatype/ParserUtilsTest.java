@@ -25,7 +25,7 @@ import carisma.evolution.uml2.umlchange.datatype.ParserUtils;
 public class ParserUtilsTest {
 
 	@Test
-	public static void testExtract() {
+	public void testExtract() {
 		ArrayList<String> parts = new ArrayList<>();
 		parts.add("name=Klasse");
 		assertEquals(parts,ParserUtils.extract("name=Klasse", ','));
@@ -34,7 +34,7 @@ public class ParserUtilsTest {
 	}
 
 	@Test
-	public static void testFindMetaclassName() {
+	public void testFindMetaclassName() {
 		assertEquals("Class",ParserUtils.findMetaclassName("Class(Stuff,MoreStuff)"));
 		assertEquals("Test",ParserUtils.findMetaclassName("Test(Key=Value,OtherKey=Stuff)"));
 		assertEquals("",ParserUtils.findMetaclassName("ClassStuff,MoreStuff)"));
@@ -43,7 +43,7 @@ public class ParserUtilsTest {
 	}
 
 	@Test
-	public static void testFindNamespace() {
+	public void testFindNamespace() {
 		assertEquals("Here",ParserUtils.findNamespace("@Here"));
 		assertEquals("Here",ParserUtils.findNamespace("blabla,@Here"));
 		assertEquals("There",ParserUtils.findNamespace("blabla,@There,agasehga"));
@@ -51,11 +51,11 @@ public class ParserUtilsTest {
 		assertNotSame("WOHOO", ParserUtils.findNamespace("@wohoo"));
 		assertNotSame("WOHOO", ParserUtils.findNamespace(""));
 		assertEquals("mainPackage::SubPackage", ParserUtils.findNamespace("copySomething ={@mainPackage::SubPackage(name=NewName),@mainPackage::OtherPackage(name=OtherNewName)"));
-		//müsste das dann nicht "mainPackage::SubPackage, mainPackage::OtherPackage" sein?
+		//mï¿½sste das dann nicht "mainPackage::SubPackage, mainPackage::OtherPackage" sein?
 	}
 
 	@Test
-	public static void testFindKeyValuePairs() {
+	public void testFindKeyValuePairs() {
 		HashMap<String, String> keyValuePairs = new HashMap<>();
 		keyValuePairs.put("name", "Klasse");
 		keyValuePairs.put("visibility", "public");
@@ -68,7 +68,7 @@ public class ParserUtilsTest {
 	}
 
 	@Test
-	public static void testReferenceValues() {
+	public void testReferenceValues() {
 		List<String> testValues = new ArrayList<>();
 		String ref = "someRef";
 		testValues.add("someRef={Alt1},{Alt2}");

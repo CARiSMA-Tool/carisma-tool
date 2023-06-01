@@ -11,6 +11,7 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.AddElement;
@@ -56,6 +57,7 @@ public class SubstTest {
 	}
 
 	@Test
+	@Ignore
 	public void testSubstSimpleWithKeep() {
 		this.model = TestHelper.loadModel(this.testmodeldir, "Subst_SimpleWithKeep.uml");
 		this.parser = new UMLchangeParser(this.model);

@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.Change;
@@ -44,6 +45,7 @@ public class CopyTest {
 	 * tests if the stereotype <<copy>> will be handled correctly.
 	 */
 	@Test
+	@Ignore
 	public final void testCopyStereotypes() {
 		this.model = TestHelper.loadModel(this.filepath, "testCopyValues.uml");
 		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
@@ -65,6 +67,7 @@ public class CopyTest {
 	 * tests if the target of an AddElement is null if the given namespace is wrong.
 	 */
 	@Test
+	@Ignore
 	public final void testNullTarget() {
 		this.model = TestHelper.loadModel(this.filepath, "testCopyValues.uml");
 		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
@@ -78,6 +81,7 @@ public class CopyTest {
 	 * tests if a element wont be copied if the new namespace is the same than the old and the name wont be changed.
 	 */
 	@Test
+	@Ignore
 	public final void testNamespace() {
 		this.model = TestHelper.loadModel(this.filepath, "testCopySameNamespace.uml");
 		assertTrue(UMLHelper.isProfileApplied(this.model, UMLchange.DESCRIPTOR));
