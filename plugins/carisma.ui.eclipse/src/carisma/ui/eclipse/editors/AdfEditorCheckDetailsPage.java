@@ -383,7 +383,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				parameterName += ":";
 				final Label labelName = this.toolkit.createLabel(this.parameterComposite,
 						parameterName);
-				//Bug #1518: Wie kann man die Position des Tooltips verändern?
+				//Bug #1518: Wie kann man die Position des Tooltips verï¿½ndern?
 				//http://stackoverflow.com/questions/11375250/set-tooltip-text-at-a-particular-location
 				labelName.setToolTipText(checkParameter.getDescriptor()
 						.getDescription());
@@ -562,7 +562,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 					decoration.hide();
 				} catch (Exception exc) {
 					AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter,
-							new Integer(0));
+							Integer.valueOf(0));
 					decoration.show();
 					decoration.showHoverText(errorText);
 				}
@@ -652,7 +652,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 					decoration.hide();
 				} catch (Exception exc) { // e.g. field is empty
 					AdfEditorCheckDetailsPage.this.controller.setParameter(checkParameter,
-							new Float(0.0f));
+							Float.valueOf(0.0f));
 					if (!checkParameter.getDescriptor().isOptional()) {
 						AdfEditorCheckDetailsPage.this.controller.setParameterQod(checkParameter, true);
 					}

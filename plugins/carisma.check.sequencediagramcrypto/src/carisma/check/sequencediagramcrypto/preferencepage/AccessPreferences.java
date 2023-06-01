@@ -33,7 +33,7 @@ public class AccessPreferences {
 		
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		String[] pref = store.getString(PreferenceConstants.COLOR).split(",");
-		return new Color(new Integer(pref[0]), new Integer(pref[1]), new Integer(pref[2]));
+		return new Color(Integer.parseInt(pref[0]), Integer.parseInt(pref[1]), Integer.parseInt(pref[2]));
 	}
 	
 	/**
