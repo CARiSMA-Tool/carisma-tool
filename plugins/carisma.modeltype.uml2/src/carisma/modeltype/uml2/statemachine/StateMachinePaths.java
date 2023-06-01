@@ -291,7 +291,7 @@ public class StateMachinePaths {
 	 */
 	public final static Pseudostate getInitialState(final Element element) {
 		LinkedList<Pair<Element,Boolean>> q=new LinkedList<>();//boolean visited 
-		q.add(new Pair<>(element,new Boolean(true)));
+		q.add(new Pair<>(element, Boolean.TRUE));
 		Element e=null;
 		while (!q.isEmpty()){
 			q.peek().setSecond(Boolean.TRUE);
