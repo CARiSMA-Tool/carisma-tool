@@ -16,8 +16,6 @@ import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
-import carisma.profile.umlchange.UMLchange;
-
 
 public class ProfileEnumConformanceTest {
 

@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Test;
 
-import carisma.check.oclcheck.SingleOclChecker;
 import carisma.check.oclcheck.util.DebugHost;
 
 

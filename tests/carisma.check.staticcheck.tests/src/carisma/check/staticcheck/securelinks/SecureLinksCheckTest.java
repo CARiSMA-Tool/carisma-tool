@@ -29,7 +29,6 @@ import org.eclipse.uml2.uml.Package;
 import org.junit.After;
 import org.junit.Test;
 
-import carisma.check.staticcheck.securelinks.SecureLinksHelper;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;

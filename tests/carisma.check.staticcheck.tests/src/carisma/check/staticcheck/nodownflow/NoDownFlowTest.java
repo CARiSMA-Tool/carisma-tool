@@ -15,9 +15,6 @@ import org.eclipse.uml2.uml.Package;
 import org.junit.After;
 import org.junit.Test;
 
-import carisma.check.staticcheck.nodownflow.NoDownFlow;
-
-
 /**
  * JUnit test-case for NoDownFlow.
  * @author Klaus Rudack

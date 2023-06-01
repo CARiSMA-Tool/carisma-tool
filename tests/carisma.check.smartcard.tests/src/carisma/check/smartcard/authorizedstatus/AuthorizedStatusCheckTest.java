@@ -25,7 +25,6 @@ import org.eclipse.uml2.uml.Transition;
 import org.junit.Test;
 
 import carisma.check.smartcard.TestHelper;
-import carisma.check.smartcard.authorizedstatus.AuthorizedStatus;
 import carisma.check.smartcard.utils.AnalysisMessage;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;

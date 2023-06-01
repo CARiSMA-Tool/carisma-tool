@@ -15,7 +15,6 @@ import org.eclipse.uml2.uml.Model;
 import org.junit.Test;
 
 import carisma.check.smartcard.TestHelper;
-import carisma.check.smartcard.lockedstatus.LockedStatus;
 
 
 public class LockedStatusCheckTest {

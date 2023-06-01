@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 
-import carisma.check.bpmn2.ocl.OclHelper;
 import carisma.check.tests.tools.Tupel;
 import carisma.modeltype.bpmn2.extended.ExtendedPackage;
 import carisma.modeltype.bpmn2.extension.ExtensionPackage;

@@ -39,7 +39,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.After;
 import org.junit.Test;
 
-import carisma.check.staticcheck.evolution.securelinks.SecureLinksEvolutionCheck;
 import carisma.check.staticcheck.securelinks.SecureLinks;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.RegisterInUseException;

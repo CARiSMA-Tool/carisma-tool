@@ -33,8 +33,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.After;
 import org.junit.Test;
 
-import carisma.check.bpmn2.ocl.Check;
-import carisma.check.bpmn2.ocl.OclHelper;
 import carisma.check.tests.tools.DebugHost;
 import carisma.ocl.library.LibraryFactory;
 import carisma.ocl.library.OclExpression;

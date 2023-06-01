@@ -38,9 +38,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import carisma.check.oclcheck.MultiOclChecker;
-
-
 /**
  * Test class.
  * @author Marcel Michel

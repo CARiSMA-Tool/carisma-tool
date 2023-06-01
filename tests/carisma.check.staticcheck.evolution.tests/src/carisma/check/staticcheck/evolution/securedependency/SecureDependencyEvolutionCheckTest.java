@@ -37,7 +37,6 @@ import org.eclipse.uml2.uml.Usage;
 import org.junit.After;
 import org.junit.Test;
 
-import carisma.check.staticcheck.evolution.securedependency.SecureDependencyEvolutionCheck;
 import carisma.check.staticcheck.securedependency.SecureDependencyViolation;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.RegisterInUseException;

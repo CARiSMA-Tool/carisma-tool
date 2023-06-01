@@ -30,10 +30,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import carisma.modeltype.bpmn2.extended.ExtendedDocumentRoot;
-import carisma.modeltype.bpmn2.extended.ExtendedFactory;
-import carisma.modeltype.bpmn2.extended.ExtendedLane;
-import carisma.modeltype.bpmn2.extended.ExtendedTask;
 import carisma.modeltype.bpmn2.extended.impl.ExtendedTaskImpl;
 import carisma.modeltype.bpmn2.extended.util.ExtendedResourceFactoryImpl;
 import carisma.modeltype.bpmn2.extended.util.Tupel;
