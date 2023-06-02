@@ -75,7 +75,6 @@ public class LANImpl extends MinimalEObjectImpl.Container implements LAN {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public CommunicationPath getBase_CommunicationPath() {
 		if (base_CommunicationPath != null && base_CommunicationPath.eIsProxy()) {
 			InternalEObject oldBase_CommunicationPath = (InternalEObject)base_CommunicationPath;
@@ -102,7 +101,6 @@ public class LANImpl extends MinimalEObjectImpl.Container implements LAN {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_CommunicationPath(CommunicationPath newBase_CommunicationPath) {
 		CommunicationPath oldBase_CommunicationPath = base_CommunicationPath;
 		base_CommunicationPath = newBase_CommunicationPath;
@@ -115,7 +113,6 @@ public class LANImpl extends MinimalEObjectImpl.Container implements LAN {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Node getBase_Node() {
 		if (base_Node != null && base_Node.eIsProxy()) {
 			InternalEObject oldBase_Node = (InternalEObject)base_Node;
@@ -142,7 +139,6 @@ public class LANImpl extends MinimalEObjectImpl.Container implements LAN {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_Node(Node newBase_Node) {
 		Node oldBase_Node = base_Node;
 		base_Node = newBase_Node;

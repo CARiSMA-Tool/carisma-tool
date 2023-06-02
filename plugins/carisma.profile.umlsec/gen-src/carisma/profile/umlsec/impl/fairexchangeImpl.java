@@ -112,7 +112,6 @@ public class fairexchangeImpl extends MinimalEObjectImpl.Container implements fa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Action> getStart() {
 		if (start == null) {
 			start = new EObjectResolvingEList<Action>(Action.class, this, UmlsecPackage.FAIREXCHANGE__START);
@@ -150,7 +149,6 @@ public class fairexchangeImpl extends MinimalEObjectImpl.Container implements fa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Action> getStop() {
 		if (stop == null) {
 			stop = new EObjectResolvingEList<Action>(Action.class, this, UmlsecPackage.FAIREXCHANGE__STOP);
@@ -188,7 +186,6 @@ public class fairexchangeImpl extends MinimalEObjectImpl.Container implements fa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getAdversary() {
 		return adversary;
 	}
@@ -198,7 +195,6 @@ public class fairexchangeImpl extends MinimalEObjectImpl.Container implements fa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAdversary(String newAdversary) {
 		String oldAdversary = adversary;
 		adversary = newAdversary;
@@ -211,7 +207,6 @@ public class fairexchangeImpl extends MinimalEObjectImpl.Container implements fa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public org.eclipse.uml2.uml.Package getBase_Package() {
 		if (base_Package != null && base_Package.eIsProxy()) {
 			InternalEObject oldBase_Package = (InternalEObject)base_Package;
@@ -238,7 +233,6 @@ public class fairexchangeImpl extends MinimalEObjectImpl.Container implements fa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_Package(org.eclipse.uml2.uml.Package newBase_Package) {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
@@ -347,7 +341,7 @@ public class fairexchangeImpl extends MinimalEObjectImpl.Container implements fa
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (adversary: ");
 		result.append(adversary);
 		result.append(')');

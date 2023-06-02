@@ -124,7 +124,6 @@ public class provableImpl extends MinimalEObjectImpl.Container implements provab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getAction() {
 		return action;
 	}
@@ -134,7 +133,6 @@ public class provableImpl extends MinimalEObjectImpl.Container implements provab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAction(String newAction) {
 		String oldAction = action;
 		action = newAction;
@@ -147,7 +145,6 @@ public class provableImpl extends MinimalEObjectImpl.Container implements provab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getAdversary() {
 		return adversary;
 	}
@@ -157,7 +154,6 @@ public class provableImpl extends MinimalEObjectImpl.Container implements provab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAdversary(String newAdversary) {
 		String oldAdversary = adversary;
 		adversary = newAdversary;
@@ -170,7 +166,6 @@ public class provableImpl extends MinimalEObjectImpl.Container implements provab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getCert() {
 		return cert;
 	}
@@ -180,7 +175,6 @@ public class provableImpl extends MinimalEObjectImpl.Container implements provab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setCert(String newCert) {
 		String oldCert = cert;
 		cert = newCert;
@@ -193,7 +187,6 @@ public class provableImpl extends MinimalEObjectImpl.Container implements provab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public org.eclipse.uml2.uml.Package getBase_Package() {
 		if (base_Package != null && base_Package.eIsProxy()) {
 			InternalEObject oldBase_Package = (InternalEObject)base_Package;
@@ -220,7 +213,6 @@ public class provableImpl extends MinimalEObjectImpl.Container implements provab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_Package(org.eclipse.uml2.uml.Package newBase_Package) {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
@@ -326,7 +318,7 @@ public class provableImpl extends MinimalEObjectImpl.Container implements provab
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (action: ");
 		result.append(action);
 		result.append(", adversary: ");

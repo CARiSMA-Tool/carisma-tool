@@ -84,7 +84,6 @@ public class authorizedstatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getPermission() {
 		return permission;
 	}
@@ -94,7 +93,6 @@ public class authorizedstatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setPermission(String newPermission) {
 		String oldPermission = permission;
 		permission = newPermission;
@@ -107,7 +105,6 @@ public class authorizedstatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public State getBase_State() {
 		if (base_State != null && base_State.eIsProxy()) {
 			InternalEObject oldBase_State = (InternalEObject)base_State;
@@ -134,7 +131,6 @@ public class authorizedstatusImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_State(State newBase_State) {
 		State oldBase_State = base_State;
 		base_State = newBase_State;
@@ -220,7 +216,7 @@ public class authorizedstatusImpl extends MinimalEObjectImpl.Container implement
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (permission: ");
 		result.append(permission);
 		result.append(')');

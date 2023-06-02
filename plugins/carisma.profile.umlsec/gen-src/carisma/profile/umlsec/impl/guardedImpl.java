@@ -92,7 +92,6 @@ public class guardedImpl extends MinimalEObjectImpl.Container implements guarded
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Classifier getBase_Classifier() {
 		if (base_Classifier != null && base_Classifier.eIsProxy()) {
 			InternalEObject oldBase_Classifier = (InternalEObject)base_Classifier;
@@ -119,7 +118,6 @@ public class guardedImpl extends MinimalEObjectImpl.Container implements guarded
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_Classifier(Classifier newBase_Classifier) {
 		Classifier oldBase_Classifier = base_Classifier;
 		base_Classifier = newBase_Classifier;
@@ -132,7 +130,6 @@ public class guardedImpl extends MinimalEObjectImpl.Container implements guarded
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public InstanceSpecification getBase_InstanceSpecification() {
 		if (base_InstanceSpecification != null && base_InstanceSpecification.eIsProxy()) {
 			InternalEObject oldBase_InstanceSpecification = (InternalEObject)base_InstanceSpecification;
@@ -159,7 +156,6 @@ public class guardedImpl extends MinimalEObjectImpl.Container implements guarded
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_InstanceSpecification(InstanceSpecification newBase_InstanceSpecification) {
 		InstanceSpecification oldBase_InstanceSpecification = base_InstanceSpecification;
 		base_InstanceSpecification = newBase_InstanceSpecification;
@@ -172,7 +168,6 @@ public class guardedImpl extends MinimalEObjectImpl.Container implements guarded
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<String> getGuard() {
 		if (guard == null) {
 			guard = new EDataTypeUniqueEList<String>(String.class, this, UmlsecPackage.GUARDED__GUARD);
@@ -271,7 +266,7 @@ public class guardedImpl extends MinimalEObjectImpl.Container implements guarded
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (guard: ");
 		result.append(guard);
 		result.append(')');

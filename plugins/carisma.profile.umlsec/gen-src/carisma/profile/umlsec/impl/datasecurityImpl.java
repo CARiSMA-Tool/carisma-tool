@@ -124,7 +124,6 @@ public class datasecurityImpl extends MinimalEObjectImpl.Container implements da
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getAdversary() {
 		return adversary;
 	}
@@ -134,7 +133,6 @@ public class datasecurityImpl extends MinimalEObjectImpl.Container implements da
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAdversary(String newAdversary) {
 		String oldAdversary = adversary;
 		adversary = newAdversary;
@@ -147,7 +145,6 @@ public class datasecurityImpl extends MinimalEObjectImpl.Container implements da
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public org.eclipse.uml2.uml.Package getBase_Package() {
 		if (base_Package != null && base_Package.eIsProxy()) {
 			InternalEObject oldBase_Package = (InternalEObject)base_Package;
@@ -174,7 +171,6 @@ public class datasecurityImpl extends MinimalEObjectImpl.Container implements da
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_Package(org.eclipse.uml2.uml.Package newBase_Package) {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
@@ -187,7 +183,6 @@ public class datasecurityImpl extends MinimalEObjectImpl.Container implements da
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getAuthenticity() {
 		return authenticity;
 	}
@@ -197,7 +192,6 @@ public class datasecurityImpl extends MinimalEObjectImpl.Container implements da
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAuthenticity(String newAuthenticity) {
 		String oldAuthenticity = authenticity;
 		authenticity = newAuthenticity;
@@ -210,7 +204,6 @@ public class datasecurityImpl extends MinimalEObjectImpl.Container implements da
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getIntegrity() {
 		return integrity;
 	}
@@ -220,7 +213,6 @@ public class datasecurityImpl extends MinimalEObjectImpl.Container implements da
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setIntegrity(String newIntegrity) {
 		String oldIntegrity = integrity;
 		integrity = newIntegrity;
@@ -326,7 +318,7 @@ public class datasecurityImpl extends MinimalEObjectImpl.Container implements da
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (adversary: ");
 		result.append(adversary);
 		result.append(", authenticity: ");

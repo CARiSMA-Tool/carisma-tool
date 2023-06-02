@@ -80,7 +80,6 @@ public class requiresImpl extends MinimalEObjectImpl.Container implements requir
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Action getBase_Action() {
 		if (base_Action != null && base_Action.eIsProxy()) {
 			InternalEObject oldBase_Action = (InternalEObject)base_Action;
@@ -107,7 +106,6 @@ public class requiresImpl extends MinimalEObjectImpl.Container implements requir
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_Action(Action newBase_Action) {
 		Action oldBase_Action = base_Action;
 		base_Action = newBase_Action;
@@ -120,7 +118,6 @@ public class requiresImpl extends MinimalEObjectImpl.Container implements requir
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Action> getActions() {
 		if (actions == null) {
 			actions = new EObjectResolvingEList<Action>(Action.class, this, UmlsecPackage.REQUIRES__ACTIONS);

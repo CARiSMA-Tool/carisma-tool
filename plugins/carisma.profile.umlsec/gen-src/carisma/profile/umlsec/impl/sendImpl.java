@@ -63,7 +63,6 @@ public class sendImpl extends MinimalEObjectImpl.Container implements send {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Dependency getBase_Dependency() {
 		if (base_Dependency != null && base_Dependency.eIsProxy()) {
 			InternalEObject oldBase_Dependency = (InternalEObject)base_Dependency;
@@ -90,7 +89,6 @@ public class sendImpl extends MinimalEObjectImpl.Container implements send {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_Dependency(Dependency newBase_Dependency) {
 		Dependency oldBase_Dependency = base_Dependency;
 		base_Dependency = newBase_Dependency;

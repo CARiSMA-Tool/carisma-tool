@@ -2,19 +2,33 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.uml2.uml.generated_package">
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
-            location="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"
-            uri="http://www.umlsec.de/profiles/UMLsec">
+            iconpath="icons/Logo16x16.png"
+            name="UMLsec"
+            path="pathmap://UMLsec/UMLsec.uml">
       </profile>
    </extension>
-
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://UMLsec/UMLsec.uml"
+            target="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml">
+      </mapping>
+   </extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated UMLsec -->
       <package
             uri="http://www.umlsec.de/profiles/UMLsec"
             class="carisma.profile.umlsec.UmlsecPackage"
             genModel="profile/UMLsec.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"
+            uri="http://www.umlsec.de/profiles/UMLsec">
+      </profile>
    </extension>
 
 </plugin>

@@ -84,7 +84,6 @@ public class identifiableImpl extends MinimalEObjectImpl.Container implements id
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getId() {
 		return id;
 	}
@@ -94,7 +93,6 @@ public class identifiableImpl extends MinimalEObjectImpl.Container implements id
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
@@ -107,7 +105,6 @@ public class identifiableImpl extends MinimalEObjectImpl.Container implements id
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Element getBase_Element() {
 		if (base_Element != null && base_Element.eIsProxy()) {
 			InternalEObject oldBase_Element = (InternalEObject)base_Element;
@@ -134,7 +131,6 @@ public class identifiableImpl extends MinimalEObjectImpl.Container implements id
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBase_Element(Element newBase_Element) {
 		Element oldBase_Element = base_Element;
 		base_Element = newBase_Element;
@@ -220,7 +216,7 @@ public class identifiableImpl extends MinimalEObjectImpl.Container implements id
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");
 		result.append(id);
 		result.append(')');
