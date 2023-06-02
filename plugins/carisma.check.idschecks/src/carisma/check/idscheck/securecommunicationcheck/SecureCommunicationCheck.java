@@ -1,12 +1,8 @@
 package carisma.check.idscheck.securecommunicationcheck;
 
-import java.util.ArrayList;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.CommunicationPath;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
 import carisma.core.analysis.AnalysisHost;
@@ -15,9 +11,6 @@ import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
-import carisma.modeltype.uml2.UMLHelper;
-import carisma.profile.umlsec.umlsec4ids.UMLsec;
-import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
 
 public class SecureCommunicationCheck implements CarismaCheckWithID {
 
