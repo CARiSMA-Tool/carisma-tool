@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="feature.carisma.bpmn2.checks">
+      <category name="carisma"/>
+   </feature>
+   <feature id="feature.carisma.uml2.checks">
+      <category name="carisma"/>
+   </feature>
+   <feature id="feature.carisma.uml2.evolution.checks">
+      <category name="carisma.research"/>
+   </feature>
+   <feature id="feature.carisma.uml2.ids.checks">
+      <category name="carisma.research"/>
+   </feature>
+   <category-def name="carisma" label="CARiSMA Main Features"/>
+   <category-def name="carisma.projects" label="CARiSMA Project Specifc Features"/>
+   <category-def name="carisma.research" label="CARiSMA Experimental Features"/>
+</site>
