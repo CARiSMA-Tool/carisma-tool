@@ -16,12 +16,14 @@
     <module>deployment/feature.carisma.uml2.checks</module>
     <module>deployment/feature.carisma.uml2.evolution</module>
     <module>deployment/feature.carisma.uml2.evolution.checks</module>
+    <module>deployment/feature.carisma.uml2.ids.checks</module>
     <module>plugins/carisma.check.activity2petrinet</module>
     <module>plugins/carisma.check.activitypaths</module>
     <module>plugins/carisma.check.bpmn2.dummy</module>
     <module>plugins/carisma.check.bpmn2.marisk</module>
     <module>plugins/carisma.check.bpmn2.ocl</module>
     <module>plugins/carisma.check.dummy</module>
+    <module>plugins/carisma.check.idschecks</module>
     <module>plugins/carisma.check.oclcheck</module>
     <module>plugins/carisma.check.parametertest</module>
     <module>plugins/carisma.check.rabac</module>
@@ -53,6 +55,7 @@
     <module>plugins/carisma.profile.umlsec</module>
     <module>plugins/carisma.profile.umlsec.enc</module>
     <module>plugins/carisma.profile.umlsec.rabac</module>
+    <module>plugins/carisma.profile.umlsec.umlsec4ids</module>
     <module>plugins/carisma.ui.console</module>
     <module>plugins/carisma.ui.eclipse</module>
     <module>plugins/carisma.ui.eclipse.descriptor</module>

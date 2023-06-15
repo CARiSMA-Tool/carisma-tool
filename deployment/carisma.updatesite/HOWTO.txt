@@ -1,38 +1,11 @@
-
 -----------------------------------------------------
 Vorgehen zum Erstellen/Aktualisieren der Update-Site
 -----------------------------------------------------
 
-1. site.xml oeffnen
+1. category.xml oeffnen
 
 2. ggf. Features hinzufuegen/loeschen
 
-3. "Build" bzw. "Build All" klicken
+3. index.html (verändert sich nicht), artifacts.jar, content.jar, plugins/*, features/* aus target/repository/ auf Update Site verfügbar machen (aktuell (2023) via SVN)
 
-4. Upload.launch ausfuehren (external Tools)
-   (Achtung! Upload dauert lange und es gibt keine Rueckmeldung!)
-   
-5. Fertig! 
-
-
-Hinweise:
-
-artifacts.jar und content.jar enthalten alle Versionsinformationen
-Ueber die Update-Site, um alte Versionen verfuegbar zu halten, werden
-sie immer mit eingecheckt. Eclipse erweitert diese Informationen
-mit jedem Build der Update-Site.
-
-Die Ordner features/ und plugins/ werden nicht mit eingecheckt, weil
-ihr Inhalt (die exportierten Bundles) auf den Server kopiert wurde.
-Die Bundles aelterer Versionen bleiben auf dem Server.
-
-Sollte der Fall eintreten, dass wir alle alten Versionen von der 
-Update-Site loeschen wollen, ist das Skript cleanall.xml zu verwenden.
-
-
-----
-Sollten die ant-Skripte nicht funktioneren:
--> Run as -> Ant Build... -> JRE -> [X] Use same as workspace
-
-
- 
+TODO: Deployment via Maven Wagon automatisieren

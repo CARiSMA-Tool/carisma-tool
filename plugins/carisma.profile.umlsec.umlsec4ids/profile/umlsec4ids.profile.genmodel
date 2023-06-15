@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/carisma.profile.umlsec.umlsec4ids/model-gen" modelPluginID="carisma.profile.umlsec.umlsec4ids"
+    modelName="Umlsec4ids" editPluginClass="carisma.profile.umlsec.umlsec4ids.provider.Umlsec4idsEditPlugin"
+    editorPluginClass="carisma.profile.umlsec.umlsec4ids.presentation.Umlsec4idsEditorPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testSuiteClass="carisma.profile.umlsec.umlsec4ids.tests.Umlsec4idsAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true" pluginKey="umlsec4ids.profile">
+  <foreignModel>umlsec4ids.profile.ecore</foreignModel>
+  <genPackages prefix="Umlsec4ids" basePackage="carisma.profile.umlsec" disposableProviderFactory="true"
+      ecorePackage="umlsec4ids.profile.ecore#/">
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//basefree">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//basefree/base_Node"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//base">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//base/base_Node"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//trust">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//trust/base_Node"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//trustplus">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//trustplus/base_Node"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//dataprovenancetracking">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/base_Activity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/start_action"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/stop_action"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/clearing_house"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//dataprovenancetracking/protected"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//Owner">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//Owner/base_ActivityPartition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//Owner/protected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//Owner/requested_attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//Owner/requested_actions"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//Consumer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//Consumer/base_ActivityPartition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//Consumer/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//Consumer/actions"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//X509">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//X509/base_Node"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//X509/expiration_date_yyyy_mm_dd"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//X509TLS">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//X509TLS/base_Node"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlsec4ids.profile.ecore#//X509TLS/expiration_date_yyyy_mm_dd"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//datausagecontrol">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//datausagecontrol/base_ActivityPartition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//datausagecontrol/permission"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//datausagecontrol/obligation_start"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//datausagecontrol/obligation_stop"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//datausagecontrol/prohibition"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//verified">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//verified/base_Node"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//isolated">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//isolated/base_Node"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//encryption">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//encryption/base_Node"/>
+    </genClasses>
+    <genClasses ecoreClass="umlsec4ids.profile.ecore#//certified">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlsec4ids.profile.ecore#//certified/base_Node"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated umlsec4ids.profile -->
+      <package
+            uri="http://www.umlsec.de/profiles/UMLsec/umlsec4ids"
+            class="carisma.profile.umlsec.umlsec4ids.Umlsec4idsPackage"
+            genModel="profile/umlsec4ids.profile.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            iconpath="icons/Logo16x16.png"
+            name="UMLsec.umlsec4ids"
+            path="pathmap://UMLsec/umlsec4ids.uml">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://UMLsec/umlsec4ids.uml"
+            target="platform:/plugin/carisma.profile.umlsec.umlsec4ids/profile/umlsec4ids.profile.uml">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="platform:/plugin/carisma.profile.umlsec.umlsec4ids/profile/umlsec4ids.profile.uml#_8Kno0CrOEe2IEZY6UiCIqg"
+            uri="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+      </profile>
+   </extension>
+
+</plugin>

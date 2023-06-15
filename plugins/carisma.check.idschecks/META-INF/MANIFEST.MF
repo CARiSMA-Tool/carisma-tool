@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CARiSMA Checks for the IDS
+Bundle-SymbolicName: carisma.check.idschecks;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: carisma.modeltype.uml2,
+ carisma.profile.umlsec,
+ org.eclipse.uml2.uml,
+ carisma.core,
+ carisma.profile.umlsec.umlsec4ids
+Automatic-Module-Name: carisma.check.idschecks
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-Vendor: Alexander Peikert
+Export-Package: carisma.check.idscheck.dataaccesscheck,
+ carisma.check.idscheck.datausagecheck,
+ carisma.check.idscheck.identitymanagementcheck,
+ carisma.check.idscheck.securecommunicationcheck,
+ carisma.check.idscheck.trustedplatformcheck,
+ carisma.check.idschecks,
+ carisma.check.idschecks.dataprovenancecheck,
+ carisma.check.idschecks.trustmanagementcheck
