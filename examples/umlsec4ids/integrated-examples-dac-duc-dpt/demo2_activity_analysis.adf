@@ -1,0 +1,23 @@
+<Analysis>
+  <name>demo2_activity_analysis</name>
+  <modelFile>/carisma-examples/UMLsec4IDS-activityDiagram/demo2_activity.uml</modelFile>
+  <modelType>UML2</modelType>
+  <checks>
+    <Check>
+      <checkID>carisma.check.idscheck.dataaccesscheck</checkID>
+      <enabled>true</enabled>
+      <parameters/>
+    </Check>
+    <Check>
+      <checkID>carisma.check.idscheck.dataprovenancecheck</checkID>
+      <enabled>true</enabled>
+      <parameters/>
+    </Check>
+    <Check>
+      <checkID>carisma.check.idscheck.datausagecheck</checkID>
+      <enabled>true</enabled>
+      <parameters/>
+    </Check>
+  </checks>
+  <selectedEditor></selectedEditor>
+</Analysis>

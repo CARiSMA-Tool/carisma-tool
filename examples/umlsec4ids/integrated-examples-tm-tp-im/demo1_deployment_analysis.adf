@@ -1,0 +1,28 @@
+<Analysis>
+  <name>demo1_deployment_analysis</name>
+  <modelFile>/carisma-examples/UMLsec4IDS-deploymentDiagram/demo1_deployment.uml</modelFile>
+  <modelType>UML2</modelType>
+  <checks>
+    <Check>
+      <checkID>carisma.check.idscheck.identitymanagementcheck</checkID>
+      <enabled>true</enabled>
+      <parameters/>
+    </Check>
+    <Check>
+      <checkID>carisma.check.idscheck.trustmanagementcheck</checkID>
+      <enabled>true</enabled>
+      <parameters/>
+    </Check>
+    <Check>
+      <checkID>carisma.check.idscheck.trustedplatformcheck</checkID>
+      <enabled>true</enabled>
+      <parameters/>
+    </Check>
+    <Check>
+      <checkID>carisma.check.staticcheck.securelinks</checkID>
+      <enabled>true</enabled>
+      <parameters/>
+    </Check>
+  </checks>
+  <selectedEditor></selectedEditor>
+</Analysis>

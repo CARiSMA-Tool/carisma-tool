@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_YPQE4B96Ee6s_PKU9ilBEQ" name="trusted-platform-correct">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_YQurkB96Ee6s_PKU9ilBEQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Node" xmi:id="_aWUfEB96Ee6s_PKU9ilBEQ" name="Connector1"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_bMstcB96Ee6s_PKU9ilBEQ" name="Connector2"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_cVwnQB96Ee6s_PKU9ilBEQ" name="CommunicationPath1" memberEnd="_cV1fwB96Ee6s_PKU9ilBEQ _cV2t4B96Ee6s_PKU9ilBEQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cV0RoB96Ee6s_PKU9ilBEQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cV04sB96Ee6s_PKU9ilBEQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_cV1fwB96Ee6s_PKU9ilBEQ" name="connector2" type="_bMstcB96Ee6s_PKU9ilBEQ" association="_cVwnQB96Ee6s_PKU9ilBEQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_cV2t4B96Ee6s_PKU9ilBEQ" name="connector1" type="_aWUfEB96Ee6s_PKU9ilBEQ" association="_cVwnQB96Ee6s_PKU9ilBEQ"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_YQlhoB96Ee6s_PKU9ilBEQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YQmvwB96Ee6s_PKU9ilBEQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:certified xmi:id="_fW9HYB96Ee6s_PKU9ilBEQ" base_Node="_aWUfEB96Ee6s_PKU9ilBEQ"/>
+  <umlsec4ids:encryption xmi:id="_fXD1EB96Ee6s_PKU9ilBEQ" base_Node="_aWUfEB96Ee6s_PKU9ilBEQ"/>
+  <umlsec4ids:isolated xmi:id="_fXIGgB96Ee6s_PKU9ilBEQ" base_Node="_aWUfEB96Ee6s_PKU9ilBEQ"/>
+  <umlsec4ids:verified xmi:id="_fXM_AB96Ee6s_PKU9ilBEQ" base_Node="_aWUfEB96Ee6s_PKU9ilBEQ"/>
+  <umlsec4ids:certified xmi:id="_hr928B96Ee6s_PKU9ilBEQ" base_Node="_bMstcB96Ee6s_PKU9ilBEQ"/>
+  <umlsec4ids:isolated xmi:id="_hsGZ0B96Ee6s_PKU9ilBEQ" base_Node="_bMstcB96Ee6s_PKU9ilBEQ"/>
+  <umlsec4ids:verified xmi:id="_hsKEMB96Ee6s_PKU9ilBEQ" base_Node="_bMstcB96Ee6s_PKU9ilBEQ"/>
+  <umlsec4ids:encryption xmi:id="_hsOVoB96Ee6s_PKU9ilBEQ" base_Node="_bMstcB96Ee6s_PKU9ilBEQ"/>
+</xmi:XMI>

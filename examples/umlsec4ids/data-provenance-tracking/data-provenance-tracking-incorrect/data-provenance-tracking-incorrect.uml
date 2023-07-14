@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_vNx6sB-9Ee6s_PKU9ilBEQ" name="data-provenance-tracking-incorrect">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_vQTqQB-9Ee6s_PKU9ilBEQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_vN_9IB-9Ee6s_PKU9ilBEQ" name="Activity1" node="_zH8DIB-9Ee6s_PKU9ilBEQ _02Ow8B-9Ee6s_PKU9ilBEQ _3bs-YB-9Ee6s_PKU9ilBEQ _6pWmIB-9Ee6s_PKU9ilBEQ _OhywMB--Ee6s_PKU9ilBEQ" group="_v2rtwB-9Ee6s_PKU9ilBEQ _xGZCIB-9Ee6s_PKU9ilBEQ">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_RCd9MB--Ee6s_PKU9ilBEQ" inPartition="_v2rtwB-9Ee6s_PKU9ilBEQ" target="_02Ow8B-9Ee6s_PKU9ilBEQ" source="_zH8DIB-9Ee6s_PKU9ilBEQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_SAPNAB--Ee6s_PKU9ilBEQ" inPartition="_v2rtwB-9Ee6s_PKU9ilBEQ" target="_3bs-YB-9Ee6s_PKU9ilBEQ" source="_02Ow8B-9Ee6s_PKU9ilBEQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_S4Ez8B--Ee6s_PKU9ilBEQ" inPartition="_v2rtwB-9Ee6s_PKU9ilBEQ" target="_6pWmIB-9Ee6s_PKU9ilBEQ" source="_3bs-YB-9Ee6s_PKU9ilBEQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Tn9YwB--Ee6s_PKU9ilBEQ" target="_OhywMB--Ee6s_PKU9ilBEQ" source="_6pWmIB-9Ee6s_PKU9ilBEQ"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_v2rtwB-9Ee6s_PKU9ilBEQ" name="Actor" node="_zH8DIB-9Ee6s_PKU9ilBEQ _02Ow8B-9Ee6s_PKU9ilBEQ _3bs-YB-9Ee6s_PKU9ilBEQ _6pWmIB-9Ee6s_PKU9ilBEQ" edge="_RCd9MB--Ee6s_PKU9ilBEQ _SAPNAB--Ee6s_PKU9ilBEQ _S4Ez8B--Ee6s_PKU9ilBEQ"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_xGZCIB-9Ee6s_PKU9ilBEQ" name="Clearing House" node="_OhywMB--Ee6s_PKU9ilBEQ"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_zH8DIB-9Ee6s_PKU9ilBEQ" name="Start" outgoing="_RCd9MB--Ee6s_PKU9ilBEQ" inPartition="_v2rtwB-9Ee6s_PKU9ilBEQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_02Ow8B-9Ee6s_PKU9ilBEQ" name="Action1" incoming="_RCd9MB--Ee6s_PKU9ilBEQ" outgoing="_SAPNAB--Ee6s_PKU9ilBEQ" inPartition="_v2rtwB-9Ee6s_PKU9ilBEQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_3bs-YB-9Ee6s_PKU9ilBEQ" name="Transfer Data" incoming="_SAPNAB--Ee6s_PKU9ilBEQ" outgoing="_S4Ez8B--Ee6s_PKU9ilBEQ" inPartition="_v2rtwB-9Ee6s_PKU9ilBEQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_6pWmIB-9Ee6s_PKU9ilBEQ" name="Log Data Transfer" incoming="_S4Ez8B--Ee6s_PKU9ilBEQ" outgoing="_Tn9YwB--Ee6s_PKU9ilBEQ" inPartition="_v2rtwB-9Ee6s_PKU9ilBEQ"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_OhywMB--Ee6s_PKU9ilBEQ" name="stop" incoming="_Tn9YwB--Ee6s_PKU9ilBEQ" inPartition="_xGZCIB-9Ee6s_PKU9ilBEQ"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_vP_hMB-9Ee6s_PKU9ilBEQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_vQAvUB-9Ee6s_PKU9ilBEQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:dataprovenancetracking xmi:id="_WFkqsB--Ee6s_PKU9ilBEQ" base_Activity="_vN_9IB-9Ee6s_PKU9ilBEQ" start_action="_3bs-YB-9Ee6s_PKU9ilBEQ" stop_action="_6pWmIB-9Ee6s_PKU9ilBEQ" clearing_house="_xGZCIB-9Ee6s_PKU9ilBEQ" protected="_6pWmIB-9Ee6s_PKU9ilBEQ"/>
+</xmi:XMI>

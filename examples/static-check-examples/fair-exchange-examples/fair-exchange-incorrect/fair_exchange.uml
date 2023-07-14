@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_uktIIN_5Ee2uqIYsV8BzTQ" name="fair_exchange">
+    <packageImport xmi:id="_uuBcMN_5Ee2uqIYsV8BzTQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_umBWwN_5Ee2uqIYsV8BzTQ" name="FairExchange" node="_4Xi7MN_5Ee2uqIYsV8BzTQ _55RzsN_5Ee2uqIYsV8BzTQ _7qVhoN_5Ee2uqIYsV8BzTQ _-NSmkN_5Ee2uqIYsV8BzTQ _C6pGgN_6Ee2uqIYsV8BzTQ _D3S8AN_6Ee2uqIYsV8BzTQ _Fwq4cN_6Ee2uqIYsV8BzTQ _Tyje0N_6Ee2uqIYsV8BzTQ _V2yncN_6Ee2uqIYsV8BzTQ _XQGjwN_6Ee2uqIYsV8BzTQ _YfE4UN_6Ee2uqIYsV8BzTQ _ZyExQN_6Ee2uqIYsV8BzTQ" group="_xBhI0N_5Ee2uqIYsV8BzTQ _yUnIYN_5Ee2uqIYsV8BzTQ">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_qw3NoN_6Ee2uqIYsV8BzTQ" target="_55RzsN_5Ee2uqIYsV8BzTQ" source="_4Xi7MN_5Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_sBsjYN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ" target="_7qVhoN_5Ee2uqIYsV8BzTQ" source="_55RzsN_5Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_vGkCkN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ" target="_ZyExQN_6Ee2uqIYsV8BzTQ" source="_7qVhoN_5Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_w8xWQN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ" target="_-NSmkN_5Ee2uqIYsV8BzTQ" source="_ZyExQN_6Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_z8XT4N_6Ee2uqIYsV8BzTQ" target="_Fwq4cN_6Ee2uqIYsV8BzTQ" source="_ZyExQN_6Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_25-UgN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ" target="_V2yncN_6Ee2uqIYsV8BzTQ" source="_-NSmkN_5Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_4GYdQN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ" target="_C6pGgN_6Ee2uqIYsV8BzTQ" source="_V2yncN_6Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_5c7ZcN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ" target="_D3S8AN_6Ee2uqIYsV8BzTQ" source="_V2yncN_6Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_8QXxcN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ" target="_XQGjwN_6Ee2uqIYsV8BzTQ" source="_D3S8AN_6Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_-ZO7YN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ" target="_XQGjwN_6Ee2uqIYsV8BzTQ" source="_C6pGgN_6Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_OacVMN_7Ee2uqIYsV8BzTQ" target="_YfE4UN_6Ee2uqIYsV8BzTQ" source="_XQGjwN_6Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_SJKCoN_7Ee2uqIYsV8BzTQ" target="_Tyje0N_6Ee2uqIYsV8BzTQ" source="_YfE4UN_6Ee2uqIYsV8BzTQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_DpMZ8PDiEe2SG6dFpOOMpQ" inPartition="_yUnIYN_5Ee2uqIYsV8BzTQ" target="_YfE4UN_6Ee2uqIYsV8BzTQ" source="_Fwq4cN_6Ee2uqIYsV8BzTQ"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_xBhI0N_5Ee2uqIYsV8BzTQ" name="Customer" node="_55RzsN_5Ee2uqIYsV8BzTQ _7qVhoN_5Ee2uqIYsV8BzTQ _-NSmkN_5Ee2uqIYsV8BzTQ _C6pGgN_6Ee2uqIYsV8BzTQ _D3S8AN_6Ee2uqIYsV8BzTQ _V2yncN_6Ee2uqIYsV8BzTQ _XQGjwN_6Ee2uqIYsV8BzTQ _ZyExQN_6Ee2uqIYsV8BzTQ" edge="_sBsjYN_6Ee2uqIYsV8BzTQ _vGkCkN_6Ee2uqIYsV8BzTQ _w8xWQN_6Ee2uqIYsV8BzTQ _25-UgN_6Ee2uqIYsV8BzTQ _4GYdQN_6Ee2uqIYsV8BzTQ _5c7ZcN_6Ee2uqIYsV8BzTQ _8QXxcN_6Ee2uqIYsV8BzTQ _-ZO7YN_6Ee2uqIYsV8BzTQ"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_yUnIYN_5Ee2uqIYsV8BzTQ" name="Buisness" node="_Fwq4cN_6Ee2uqIYsV8BzTQ _YfE4UN_6Ee2uqIYsV8BzTQ" edge="_DpMZ8PDiEe2SG6dFpOOMpQ"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_4Xi7MN_5Ee2uqIYsV8BzTQ" name="" outgoing="_qw3NoN_6Ee2uqIYsV8BzTQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_55RzsN_5Ee2uqIYsV8BzTQ" name="Request good" incoming="_qw3NoN_6Ee2uqIYsV8BzTQ" outgoing="_sBsjYN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_7qVhoN_5Ee2uqIYsV8BzTQ" name="Pay" incoming="_sBsjYN_6Ee2uqIYsV8BzTQ" outgoing="_vGkCkN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_-NSmkN_5Ee2uqIYsV8BzTQ" name="Wait until delivery due" incoming="_w8xWQN_6Ee2uqIYsV8BzTQ" outgoing="_25-UgN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_C6pGgN_6Ee2uqIYsV8BzTQ" name="Reclaim" incoming="_4GYdQN_6Ee2uqIYsV8BzTQ" outgoing="_-ZO7YN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_D3S8AN_6Ee2uqIYsV8BzTQ" name="Pick up" incoming="_5c7ZcN_6Ee2uqIYsV8BzTQ" outgoing="_8QXxcN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_Fwq4cN_6Ee2uqIYsV8BzTQ" name="Deliver" incoming="_z8XT4N_6Ee2uqIYsV8BzTQ" outgoing="_DpMZ8PDiEe2SG6dFpOOMpQ" inPartition="_yUnIYN_5Ee2uqIYsV8BzTQ"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_Tyje0N_6Ee2uqIYsV8BzTQ" name="" incoming="_SJKCoN_7Ee2uqIYsV8BzTQ"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_V2yncN_6Ee2uqIYsV8BzTQ" name="" incoming="_25-UgN_6Ee2uqIYsV8BzTQ" outgoing="_4GYdQN_6Ee2uqIYsV8BzTQ _5c7ZcN_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ"/>
+      <node xmi:type="uml:MergeNode" xmi:id="_XQGjwN_6Ee2uqIYsV8BzTQ" name="" incoming="_8QXxcN_6Ee2uqIYsV8BzTQ _-ZO7YN_6Ee2uqIYsV8BzTQ" outgoing="_OacVMN_7Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ"/>
+      <node xmi:type="uml:JoinNode" xmi:id="_YfE4UN_6Ee2uqIYsV8BzTQ" name="" incoming="_OacVMN_7Ee2uqIYsV8BzTQ _DpMZ8PDiEe2SG6dFpOOMpQ" outgoing="_SJKCoN_7Ee2uqIYsV8BzTQ" inPartition="_yUnIYN_5Ee2uqIYsV8BzTQ"/>
+      <node xmi:type="uml:ForkNode" xmi:id="_ZyExQN_6Ee2uqIYsV8BzTQ" name="" incoming="_vGkCkN_6Ee2uqIYsV8BzTQ" outgoing="_w8xWQN_6Ee2uqIYsV8BzTQ _z8XT4N_6Ee2uqIYsV8BzTQ" inPartition="_xBhI0N_5Ee2uqIYsV8BzTQ"/>
+    </packagedElement>
+    <profileApplication xmi:id="_ust0oN_5Ee2uqIYsV8BzTQ">
+      <eAnnotations xmi:id="_usz7QN_5Ee2uqIYsV8BzTQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:fairexchange xmi:id="_PsyRYN_8Ee2uqIYsV8BzTQ" start="_7qVhoN_5Ee2uqIYsV8BzTQ" stop="_D3S8AN_6Ee2uqIYsV8BzTQ" base_Package="_uktIIN_5Ee2uqIYsV8BzTQ"/>
+</xmi:XMI>

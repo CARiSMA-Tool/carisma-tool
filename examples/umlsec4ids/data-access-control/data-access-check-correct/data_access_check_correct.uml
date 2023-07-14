@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_1nm94FRGEe26QIb69TGrGg" name="data_access_check_test">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_1rVAQFRGEe26QIb69TGrGg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_1oQeIFRGEe26QIb69TGrGg" name="Requesting access to data" node="_73wtUFRGEe26QIb69TGrGg _-GpmwFRGEe26QIb69TGrGg _-wvsoFRGEe26QIb69TGrGg __cszsFRGEe26QIb69TGrGg _AQluwFRHEe26QIb69TGrGg _BAwAYFRHEe26QIb69TGrGg _Bo7asFRHEe26QIb69TGrGg _HBcK8FRcEe2tuIL4N9CIEQ" group="_2W-lUFRGEe26QIb69TGrGg _4B2LsFRGEe26QIb69TGrGg">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_XRkKgFRcEe2tuIL4N9CIEQ" inPartition="_4B2LsFRGEe26QIb69TGrGg" target="_-GpmwFRGEe26QIb69TGrGg" source="_73wtUFRGEe26QIb69TGrGg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_YMPqEFRcEe2tuIL4N9CIEQ" inPartition="_4B2LsFRGEe26QIb69TGrGg" target="_-wvsoFRGEe26QIb69TGrGg" source="_-GpmwFRGEe26QIb69TGrGg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_ZmI1MFRcEe2tuIL4N9CIEQ" target="__cszsFRGEe26QIb69TGrGg" source="_-wvsoFRGEe26QIb69TGrGg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_akIHcFRcEe2tuIL4N9CIEQ" inPartition="_2W-lUFRGEe26QIb69TGrGg" target="_AQluwFRHEe26QIb69TGrGg" source="__cszsFRGEe26QIb69TGrGg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_bmvbAFRcEe2tuIL4N9CIEQ" inPartition="_2W-lUFRGEe26QIb69TGrGg" target="_BAwAYFRHEe26QIb69TGrGg" source="_AQluwFRHEe26QIb69TGrGg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_eV6XAFRcEe2tuIL4N9CIEQ" inPartition="_4B2LsFRGEe26QIb69TGrGg" target="_HBcK8FRcEe2tuIL4N9CIEQ" source="_Bo7asFRHEe26QIb69TGrGg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_gIjZUFRcEe2tuIL4N9CIEQ" target="_Bo7asFRHEe26QIb69TGrGg" source="_BAwAYFRHEe26QIb69TGrGg"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_2W-lUFRGEe26QIb69TGrGg" name="Data Owner" node="__cszsFRGEe26QIb69TGrGg _AQluwFRHEe26QIb69TGrGg _BAwAYFRHEe26QIb69TGrGg" edge="_akIHcFRcEe2tuIL4N9CIEQ _bmvbAFRcEe2tuIL4N9CIEQ"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_4B2LsFRGEe26QIb69TGrGg" name="Data Consumer" node="_73wtUFRGEe26QIb69TGrGg _-GpmwFRGEe26QIb69TGrGg _-wvsoFRGEe26QIb69TGrGg _Bo7asFRHEe26QIb69TGrGg _HBcK8FRcEe2tuIL4N9CIEQ" edge="_XRkKgFRcEe2tuIL4N9CIEQ _YMPqEFRcEe2tuIL4N9CIEQ _eV6XAFRcEe2tuIL4N9CIEQ"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_73wtUFRGEe26QIb69TGrGg" name="start" outgoing="_XRkKgFRcEe2tuIL4N9CIEQ" inPartition="_4B2LsFRGEe26QIb69TGrGg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_-GpmwFRGEe26QIb69TGrGg" name="Do Something" incoming="_XRkKgFRcEe2tuIL4N9CIEQ" outgoing="_YMPqEFRcEe2tuIL4N9CIEQ" inPartition="_4B2LsFRGEe26QIb69TGrGg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_-wvsoFRGEe26QIb69TGrGg" name="Request Access To Data Set" incoming="_YMPqEFRcEe2tuIL4N9CIEQ" outgoing="_ZmI1MFRcEe2tuIL4N9CIEQ" inPartition="_4B2LsFRGEe26QIb69TGrGg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="__cszsFRGEe26QIb69TGrGg" name="Process Request To Data Set" incoming="_ZmI1MFRcEe2tuIL4N9CIEQ" outgoing="_akIHcFRcEe2tuIL4N9CIEQ" inPartition="_2W-lUFRGEe26QIb69TGrGg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_AQluwFRHEe26QIb69TGrGg" name="Give Access To Data Set" incoming="_akIHcFRcEe2tuIL4N9CIEQ" outgoing="_bmvbAFRcEe2tuIL4N9CIEQ" inPartition="_2W-lUFRGEe26QIb69TGrGg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_BAwAYFRHEe26QIb69TGrGg" name="Do Something2" incoming="_bmvbAFRcEe2tuIL4N9CIEQ" outgoing="_gIjZUFRcEe2tuIL4N9CIEQ" inPartition="_2W-lUFRGEe26QIb69TGrGg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_Bo7asFRHEe26QIb69TGrGg" name="Perform Actions On Data Set" incoming="_gIjZUFRcEe2tuIL4N9CIEQ" outgoing="_eV6XAFRcEe2tuIL4N9CIEQ" inPartition="_4B2LsFRGEe26QIb69TGrGg"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_HBcK8FRcEe2tuIL4N9CIEQ" name="stop" incoming="_eV6XAFRcEe2tuIL4N9CIEQ" inPartition="_4B2LsFRGEe26QIb69TGrGg"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_1qwYgFRGEe26QIb69TGrGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1q0C4FRGEe26QIb69TGrGg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/carisma.profile.umlsec.umlsec4ids/profile/umlsec4ids.profile.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:Owner xmi:id="_IX9egFRHEe26QIb69TGrGg" base_ActivityPartition="_2W-lUFRGEe26QIb69TGrGg" protected="_AQluwFRHEe26QIb69TGrGg">
+    <requested_attributes>DE</requested_attributes>
+    <requested_attributes>Trust</requested_attributes>
+    <requested_actions>read</requested_actions>
+    <requested_actions>write</requested_actions>
+  </umlsec4ids:Owner>
+  <umlsec4ids:Consumer xmi:id="_NQsIAFRHEe26QIb69TGrGg" base_ActivityPartition="_4B2LsFRGEe26QIb69TGrGg">
+    <attributes>DE</attributes>
+    <attributes>Trust</attributes>
+    <actions>read</actions>
+    <actions>write</actions>
+  </umlsec4ids:Consumer>
+</xmi:XMI>

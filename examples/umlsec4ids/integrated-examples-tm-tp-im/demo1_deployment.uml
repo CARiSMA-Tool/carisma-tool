@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_by7sIGG-Ee2RsYUMufgEVw" name="demo1_deployment">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_b2sKwGG-Ee2RsYUMufgEVw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_DMryIGQOEe2PRY_9qO4LFQ" memberEnd="_DM7pwGQOEe2PRY_9qO4LFQ _DNAiQGQOEe2PRY_9qO4LFQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DM2KMGQOEe2PRY_9qO4LFQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_DM3YUGQOEe2PRY_9qO4LFQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_DM7pwGQOEe2PRY_9qO4LFQ" name="connector2" type="_YxvrgGQNEe2PRY_9qO4LFQ" association="_DMryIGQOEe2PRY_9qO4LFQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_DNAiQGQOEe2PRY_9qO4LFQ" name="connector3" type="_v3cbwGQNEe2PRY_9qO4LFQ" association="_DMryIGQOEe2PRY_9qO4LFQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_DxH78GQOEe2PRY_9qO4LFQ" memberEnd="_DxSUAGQOEe2PRY_9qO4LFQ _DxVXUGQOEe2PRY_9qO4LFQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DxPQsGQOEe2PRY_9qO4LFQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_DxQe0GQOEe2PRY_9qO4LFQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_DxSUAGQOEe2PRY_9qO4LFQ" name="connector2" type="_YxvrgGQNEe2PRY_9qO4LFQ" association="_DxH78GQOEe2PRY_9qO4LFQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_DxVXUGQOEe2PRY_9qO4LFQ" name="connector1" type="_XIMTwGQNEe2PRY_9qO4LFQ" association="_DxH78GQOEe2PRY_9qO4LFQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_tSUXIGQOEe2PRY_9qO4LFQ" client="_h3nOYGQOEe2PRY_9qO4LFQ" supplier="_lmYmMGQOEe2PRY_9qO4LFQ"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_xktZYGQOEe2PRY_9qO4LFQ" client="_ncyHIGQOEe2PRY_9qO4LFQ" supplier="_lmYmMGQOEe2PRY_9qO4LFQ"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_gIQBMGQcEe2Mo5rLWIqm9A" name="Package14">
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_lmYmMGQOEe2PRY_9qO4LFQ" name="Artifact2"/>
+      <packagedElement xmi:type="uml:Node" xmi:id="_YxvrgGQNEe2PRY_9qO4LFQ" name="Connector2">
+        <deployment xmi:type="uml:Deployment" xmi:id="_pX5wAGQOEe2PRY_9qO4LFQ" client="_YxvrgGQNEe2PRY_9qO4LFQ" supplier="_lmYmMGQOEe2PRY_9qO4LFQ" deployedArtifact="_lmYmMGQOEe2PRY_9qO4LFQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_h3nOYGQOEe2PRY_9qO4LFQ" name="Artifact3"/>
+      <packagedElement xmi:type="uml:Node" xmi:id="_XIMTwGQNEe2PRY_9qO4LFQ" name="Connector1">
+        <deployment xmi:type="uml:Deployment" xmi:id="_qXVMsGQOEe2PRY_9qO4LFQ" client="_XIMTwGQNEe2PRY_9qO4LFQ" supplier="_ncyHIGQOEe2PRY_9qO4LFQ" deployedArtifact="_ncyHIGQOEe2PRY_9qO4LFQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_ncyHIGQOEe2PRY_9qO4LFQ" name="Artifact1"/>
+      <packagedElement xmi:type="uml:Node" xmi:id="_v3cbwGQNEe2PRY_9qO4LFQ" name="Connector3">
+        <deployment xmi:type="uml:Deployment" xmi:id="_rOZ-oGQOEe2PRY_9qO4LFQ" client="_v3cbwGQNEe2PRY_9qO4LFQ" supplier="_h3nOYGQOEe2PRY_9qO4LFQ" deployedArtifact="_h3nOYGQOEe2PRY_9qO4LFQ"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_b1w9sGG-Ee2RsYUMufgEVw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_b12dQGG-Ee2RsYUMufgEVw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/carisma.profile.umlsec.umlsec4ids/profile/umlsec4ids.profile.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_RKWm4GQOEe2PRY_9qO4LFQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RKg-8GQOEe2PRY_9qO4LFQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:X509 xmi:id="_zpzTEGQNEe2PRY_9qO4LFQ" base_Node="_YxvrgGQNEe2PRY_9qO4LFQ" expiration_date_yyyy_mm_dd="20230131"/>
+  <umlsec4ids:X509TLS xmi:id="_zp6AwGQNEe2PRY_9qO4LFQ" base_Node="_YxvrgGQNEe2PRY_9qO4LFQ" expiration_date_yyyy_mm_dd="20240121"/>
+  <umlsec4ids:encryption xmi:id="_zqGOAGQNEe2PRY_9qO4LFQ" base_Node="_YxvrgGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:verified xmi:id="_zqTCUGQNEe2PRY_9qO4LFQ" base_Node="_YxvrgGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:basefree xmi:id="_2U-f4GQNEe2PRY_9qO4LFQ" base_Node="_v3cbwGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:X509 xmi:id="_2VMiUGQNEe2PRY_9qO4LFQ" base_Node="_v3cbwGQNEe2PRY_9qO4LFQ" expiration_date_yyyy_mm_dd="20240131"/>
+  <umlsec4ids:X509TLS xmi:id="_2VQzwGQNEe2PRY_9qO4LFQ" base_Node="_v3cbwGQNEe2PRY_9qO4LFQ" expiration_date_yyyy_mm_dd="20240131"/>
+  <umlsec4ids:certified xmi:id="_2VT3EGQNEe2PRY_9qO4LFQ" base_Node="_v3cbwGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:encryption xmi:id="_2VYvkGQNEe2PRY_9qO4LFQ" base_Node="_v3cbwGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:isolated xmi:id="_2VdoEGQNEe2PRY_9qO4LFQ" base_Node="_v3cbwGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:verified xmi:id="_2VhScGQNEe2PRY_9qO4LFQ" base_Node="_v3cbwGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:trust xmi:id="_5oWVIGQNEe2PRY_9qO4LFQ" base_Node="_XIMTwGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:X509 xmi:id="_5o5uwGQNEe2PRY_9qO4LFQ" base_Node="_XIMTwGQNEe2PRY_9qO4LFQ" expiration_date_yyyy_mm_dd="20240131"/>
+  <umlsec4ids:X509TLS xmi:id="_5pBDgGQNEe2PRY_9qO4LFQ" base_Node="_XIMTwGQNEe2PRY_9qO4LFQ" expiration_date_yyyy_mm_dd="20240131"/>
+  <umlsec4ids:certified xmi:id="_5pGjEGQNEe2PRY_9qO4LFQ" base_Node="_XIMTwGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:encryption xmi:id="_5pJmYGQNEe2PRY_9qO4LFQ" base_Node="_XIMTwGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:isolated xmi:id="_5pMpsGQNEe2PRY_9qO4LFQ" base_Node="_XIMTwGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:verified xmi:id="_5pRiMGQNEe2PRY_9qO4LFQ" base_Node="_XIMTwGQNEe2PRY_9qO4LFQ"/>
+  <UMLsec:integrity xmi:id="_wQnUQGQOEe2PRY_9qO4LFQ" base_Dependency="_tSUXIGQOEe2PRY_9qO4LFQ"/>
+  <UMLsec:secrecy xmi:id="_wRDZIGQOEe2PRY_9qO4LFQ" base_Dependency="_tSUXIGQOEe2PRY_9qO4LFQ"/>
+  <UMLsec:integrity xmi:id="_0YcsUGQOEe2PRY_9qO4LFQ" base_Dependency="_xktZYGQOEe2PRY_9qO4LFQ"/>
+  <UMLsec:secrecy xmi:id="_0Yl2QGQOEe2PRY_9qO4LFQ" base_Dependency="_xktZYGQOEe2PRY_9qO4LFQ"/>
+  <UMLsec:encrypted xmi:id="_P10ncGQPEe2PRY_9qO4LFQ" base_CommunicationPath="_DxH78GQOEe2PRY_9qO4LFQ"/>
+  <UMLsec:encrypted xmi:id="_RQzXsGQPEe2PRY_9qO4LFQ" base_CommunicationPath="_DMryIGQOEe2PRY_9qO4LFQ"/>
+  <UMLsec:securelinks xmi:id="_c72hMGQdEe2Mo5rLWIqm9A" base_Package="_gIQBMGQcEe2Mo5rLWIqm9A"/>
+  <umlsec4ids:certified xmi:id="_tfh0sG_rEe2IR-P1wpz6oQ" base_Node="_YxvrgGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:isolated xmi:id="_bPP9oHnjEe2sl554e7u8cA" base_Node="_YxvrgGQNEe2PRY_9qO4LFQ"/>
+  <umlsec4ids:trustplus xmi:id="_fgqIcHnjEe2sl554e7u8cA" base_Node="_YxvrgGQNEe2PRY_9qO4LFQ"/>
+</xmi:XMI>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_8wW3cPs1Ee2R6qg_PMhryw" name="testSecureDependency90">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_8zC_EPs1Ee2R6qg_PMhryw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_FHHuEPs2Ee2R6qg_PMhryw" name="testSecuredependency1">
+      <packagedElement xmi:type="uml:Class" xmi:id="_IT_SsPs2Ee2R6qg_PMhryw" name="Class1"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_I-foQPs2Ee2R6qg_PMhryw" name="Class2">
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_ZaXk0Ps2Ee2R6qg_PMhryw" name="InterfaceRealization1" client="_I-foQPs2Ee2R6qg_PMhryw" supplier="_Lu-L0Ps2Ee2R6qg_PMhryw" contract="_Lu-L0Ps2Ee2R6qg_PMhryw"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_V3J8wPs2Ee2R6qg_PMhryw" name="Operation1"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_Lu-L0Ps2Ee2R6qg_PMhryw" name="Interface1">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_bsibwPs2Ee2R6qg_PMhryw" name="Operation1"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_jeFsgPs2Ee2R6qg_PMhryw" name="Dep1" client="_IT_SsPs2Ee2R6qg_PMhryw" supplier="_Lu-L0Ps2Ee2R6qg_PMhryw"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_8yXpoPs1Ee2R6qg_PMhryw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8yas8Ps1Ee2R6qg_PMhryw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_7RlW4Ps2Ee2R6qg_PMhryw" base_Package="_FHHuEPs2Ee2R6qg_PMhryw"/>
+  <UMLsec:critical xmi:id="__j1PMPs2Ee2R6qg_PMhryw" base_Class="_I-foQPs2Ee2R6qg_PMhryw" base_Classifier="_I-foQPs2Ee2R6qg_PMhryw">
+    <secrecy>Operation1()</secrecy>
+  </UMLsec:critical>
+  <UMLsec:call xmi:id="_BZLAMPs3Ee2R6qg_PMhryw" base_Dependency="_jeFsgPs2Ee2R6qg_PMhryw"/>
+</xmi:XMI>

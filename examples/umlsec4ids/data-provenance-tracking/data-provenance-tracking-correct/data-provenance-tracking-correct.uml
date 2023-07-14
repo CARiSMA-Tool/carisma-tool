@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_WGHIIB-8Ee6s_PKU9ilBEQ" name="data-provenance-tracking-correct">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_WHPJgB-8Ee6s_PKU9ilBEQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_WGPD8B-8Ee6s_PKU9ilBEQ" name="Activity1" node="_ck_QEB-8Ee6s_PKU9ilBEQ _fdMzUB-8Ee6s_PKU9ilBEQ _hq3kwB-8Ee6s_PKU9ilBEQ _jBnVQB-8Ee6s_PKU9ilBEQ _mUR_4B-8Ee6s_PKU9ilBEQ _pjGsUB-8Ee6s_PKU9ilBEQ" group="_W8wcQB-8Ee6s_PKU9ilBEQ _ZXq_gB-8Ee6s_PKU9ilBEQ">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_BHHwQB-9Ee6s_PKU9ilBEQ" inPartition="_W8wcQB-8Ee6s_PKU9ilBEQ" target="_hq3kwB-8Ee6s_PKU9ilBEQ" source="_ck_QEB-8Ee6s_PKU9ilBEQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_C6WBYB-9Ee6s_PKU9ilBEQ" inPartition="_W8wcQB-8Ee6s_PKU9ilBEQ" target="_jBnVQB-8Ee6s_PKU9ilBEQ" source="_hq3kwB-8Ee6s_PKU9ilBEQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_D6TpkB-9Ee6s_PKU9ilBEQ" inPartition="_W8wcQB-8Ee6s_PKU9ilBEQ" target="_pjGsUB-8Ee6s_PKU9ilBEQ" source="_jBnVQB-8Ee6s_PKU9ilBEQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Eom6AB-9Ee6s_PKU9ilBEQ" target="_mUR_4B-8Ee6s_PKU9ilBEQ" source="_pjGsUB-8Ee6s_PKU9ilBEQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_FS7pYB-9Ee6s_PKU9ilBEQ" inPartition="_ZXq_gB-8Ee6s_PKU9ilBEQ" target="_fdMzUB-8Ee6s_PKU9ilBEQ" source="_mUR_4B-8Ee6s_PKU9ilBEQ"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_W8wcQB-8Ee6s_PKU9ilBEQ" name="Actor" node="_ck_QEB-8Ee6s_PKU9ilBEQ _hq3kwB-8Ee6s_PKU9ilBEQ _jBnVQB-8Ee6s_PKU9ilBEQ _pjGsUB-8Ee6s_PKU9ilBEQ" edge="_BHHwQB-9Ee6s_PKU9ilBEQ _C6WBYB-9Ee6s_PKU9ilBEQ _D6TpkB-9Ee6s_PKU9ilBEQ"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_ZXq_gB-8Ee6s_PKU9ilBEQ" name="Clearing House" node="_fdMzUB-8Ee6s_PKU9ilBEQ _mUR_4B-8Ee6s_PKU9ilBEQ" edge="_FS7pYB-9Ee6s_PKU9ilBEQ"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_ck_QEB-8Ee6s_PKU9ilBEQ" name="Start" outgoing="_BHHwQB-9Ee6s_PKU9ilBEQ" inPartition="_W8wcQB-8Ee6s_PKU9ilBEQ"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_fdMzUB-8Ee6s_PKU9ilBEQ" name="Stop" incoming="_FS7pYB-9Ee6s_PKU9ilBEQ" inPartition="_ZXq_gB-8Ee6s_PKU9ilBEQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_hq3kwB-8Ee6s_PKU9ilBEQ" name="Action1" incoming="_BHHwQB-9Ee6s_PKU9ilBEQ" outgoing="_C6WBYB-9Ee6s_PKU9ilBEQ" inPartition="_W8wcQB-8Ee6s_PKU9ilBEQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_jBnVQB-8Ee6s_PKU9ilBEQ" name="Transfer Data" incoming="_C6WBYB-9Ee6s_PKU9ilBEQ" outgoing="_D6TpkB-9Ee6s_PKU9ilBEQ" inPartition="_W8wcQB-8Ee6s_PKU9ilBEQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_mUR_4B-8Ee6s_PKU9ilBEQ" name="Log Data Transfer" incoming="_Eom6AB-9Ee6s_PKU9ilBEQ" outgoing="_FS7pYB-9Ee6s_PKU9ilBEQ" inPartition="_ZXq_gB-8Ee6s_PKU9ilBEQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_pjGsUB-8Ee6s_PKU9ilBEQ" name="Inform Clearing House About Data Transfer" incoming="_D6TpkB-9Ee6s_PKU9ilBEQ" outgoing="_Eom6AB-9Ee6s_PKU9ilBEQ" inPartition="_W8wcQB-8Ee6s_PKU9ilBEQ"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_WHJC4B-8Ee6s_PKU9ilBEQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WHJC4R-8Ee6s_PKU9ilBEQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:dataprovenancetracking xmi:id="_HFCgMB-9Ee6s_PKU9ilBEQ" base_Activity="_WGPD8B-8Ee6s_PKU9ilBEQ" start_action="_jBnVQB-8Ee6s_PKU9ilBEQ" stop_action="_mUR_4B-8Ee6s_PKU9ilBEQ" clearing_house="_ZXq_gB-8Ee6s_PKU9ilBEQ" protected="_mUR_4B-8Ee6s_PKU9ilBEQ"/>
+</xmi:XMI>

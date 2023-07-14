@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_rMjHQB94Ee6s_PKU9ilBEQ" name="identity-management-correct">
+    <packageImport xmi:id="_rPVVgB94Ee6s_PKU9ilBEQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Node" xmi:id="_uJYEwB94Ee6s_PKU9ilBEQ" name="Connector1"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_vPWOUB94Ee6s_PKU9ilBEQ" name="Connector2"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_0i3WYB94Ee6s_PKU9ilBEQ" name="CommunicationPath1" memberEnd="_0jFY0B94Ee6s_PKU9ilBEQ _0jJDMB94Ee6s_PKU9ilBEQ">
+      <eAnnotations xmi:id="_0jBHYB94Ee6s_PKU9ilBEQ" source="org.eclipse.papyrus">
+        <details xmi:id="_0jCVgB94Ee6s_PKU9ilBEQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_0jFY0B94Ee6s_PKU9ilBEQ" name="connector2" type="_vPWOUB94Ee6s_PKU9ilBEQ" association="_0i3WYB94Ee6s_PKU9ilBEQ"/>
+      <ownedEnd xmi:id="_0jJDMB94Ee6s_PKU9ilBEQ" name="connector1" type="_uJYEwB94Ee6s_PKU9ilBEQ" association="_0i3WYB94Ee6s_PKU9ilBEQ"/>
+    </packagedElement>
+    <profileApplication xmi:id="_rO7s4B94Ee6s_PKU9ilBEQ">
+      <eAnnotations xmi:id="_rPCakB94Ee6s_PKU9ilBEQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec.umlsec4ids/profile/umlsec4ids.profile.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:X509 xmi:id="_4pWDkB94Ee6s_PKU9ilBEQ" base_Node="_vPWOUB94Ee6s_PKU9ilBEQ" expiration_date_yyyy_mm_dd="99990101"/>
+  <umlsec4ids:X509TLS xmi:id="_4plUIB94Ee6s_PKU9ilBEQ" base_Node="_vPWOUB94Ee6s_PKU9ilBEQ" expiration_date_yyyy_mm_dd="99990101"/>
+  <umlsec4ids:X509 xmi:id="_5XGhcB94Ee6s_PKU9ilBEQ" base_Node="_uJYEwB94Ee6s_PKU9ilBEQ" expiration_date_yyyy_mm_dd="99990101"/>
+  <umlsec4ids:X509TLS xmi:id="_5XLZ8B94Ee6s_PKU9ilBEQ" base_Node="_uJYEwB94Ee6s_PKU9ilBEQ" expiration_date_yyyy_mm_dd="99990101"/>
+</xmi:XMI>
