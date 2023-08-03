@@ -16,5 +16,9 @@ A check will fail if there is a connection between Base and Basefree.
 In the incorrect example, there is a communication path between two nodes, one with the `Base` and the other one with the `Basefree` security profile.
 Therefore, the check will fail.
 
+![Trust Management](trust-management-incorrect/trust-management-incorrect.png)
+
 In the correct example, a node with `Base` communicates with a `Trust` node.
 So the check will succeed.
+
+![Trust Management](trust-management-correct/trust-management-correct.png)
