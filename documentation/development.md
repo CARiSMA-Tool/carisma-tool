@@ -1,43 +1,43 @@
-# Developer Guide for CARiSMA
-
-## Creating a Plugin Project containing CARiSMA Checks
-
-1. Create a new Plug-in Project (New → Other → Plug-in Development → Plug-in Project)
+# Creating a Plugin Project containing CARiSMA Checks
+1. Create a new Plug-in Project: New → Other → Plug-in Development → Plug-in Project
 2. Enter your plugin name. The convention is **"carisma.check.[pluginName]"**.
 3. Click *Next*.
 4. Enter the metadata for your plugin. Activator code is executed when the plugin is started.
 5. Click *Next*.
 6. Select the *CARiSMA UML2 Check Template*.
-7. Click *Next*.  
-**Note** : If you choose to use an Activator at a later time, you have to fix the imports of the Activator class manually. The default values in the following steps may mostly be altered at will, as they don't affect the look or behavior of the plugin. The exception of the rule are the Target Model Type and Page Name values.
-8. Fill out the missing fields:  
-*Check ID* is a unique ID for your Check. You may choose the package name as the Check ID.  
-*Package Name* is the name of your Package.  
-*Class Name* is the name of your Java class implementing the check.  
-*Plugin Name* is the name of the plugin as part of the CARiSMA project.  
-*Publisher* should be your name or the name of your company.  
-*Target Model Type* is the Model-Type your check will work with.
+7. Click *Next*.
+	* **Note**: If you choose to use an Activator at a later time, you have to fix the imports of the Activator class manually. The default values in the following steps may mostly be altered at will, as they don't affect the look or behavior of the plugin. The exception of the rule are the Target Model Type and Page Name values. 
+8. Fill out the missing fields.
+	* *Check ID* is a unique ID for your Check. You may choose the package name as the Check ID.	
+	* *Package Name* is the name of your Package.
+	* *Class Name* is the name of your Java class implementing the check.
+	* *Plugin Name* is the name of the plugin as part of the CARiSMA project.
+	* *Publisher* should be your name or the name of your company.
+	* *Target Model Type* is the Model-Type your check will work with.
 9. Click *Next*.
 10. If you want to create a preference page containing check-wide settings, check the corresponding option.
 11. Select a page name. *Class Name* and *Package Name* are the java Class Name/Package Name.
+12. Click *Finish* to create your first CARiSMA check!
 
-## The CARiSMA Tool Architecture
+# The CARiSMA Tool Architecture
+CARiSMA is implemented as an Eclipse-based plugin while itself has a plugin architecture to be easily extensible.
+An excerpt of the contents of the main plugin *carisma.core* can be seen in the figure below.
 
-CARiSMA is implemented as an Eclipse-based plugin while itself has a plugin architecture to be easily extensible. An excerpt of the contents of the main plugin carisma.core can be seen below.
-
-**Picture here**
+![CARiSMA Core](images/architecture-tool.png)
 
 The main class *Carisma* is registered as an Eclipse plugin and provides access to the various structures, serving as the controller for the different components of the tool.
- 
+
 An Analysis is executed on a Model of a certain ModelType registered within the ModelTypeRegistry. 
 The models themselves are provided by the ModelManager and the ModelLoader for the corresponding ModelType.
 
 CARiSMA executes analyses consisting of various CheckReferences to CheckDescriptors. 
 These descriptors define the CarismaChecks that have been registered with the CheckRegistry. 
 Each CarismaCheck may have any number of CheckParameters defined, which has a certain ParameterType. 
-Checks may define pre- and post-conditions to use in combination with a blackboard to exchange information between them.
+Checks may define pre- and post-conditions to use in combination with a blackboard (not pictured) to exchange information between them.
 
-The AnalysisHost interface provides access to this blackboard, as well as methods for displaying the results of an Analysis in the AnalysisResultsView. The Analyzer is the main CARiSMA implementation of the AnalysisHost interface.
+
+The AnalysisHost interface provides access to this blackboard, as well as methods for displaying the results of an Analysis in the AnalysisResultsView. 
+The Analyzer is the main CARiSMA implementation of the AnalysisHost interface.
 
 ## Getting started developing with CARiSMA
 
@@ -133,7 +133,7 @@ The CARiSMA tool provides a mechanism that allows you to implement multiple chec
 The CARiSMA tool itself is only a host for the checks and coordinates their execution.
 The mechanism is shown below.
 
-**Picture here*
+![Check Mechanism](images/check-mechanism.png)
 
 ## Implementing CarismaChecks
 
