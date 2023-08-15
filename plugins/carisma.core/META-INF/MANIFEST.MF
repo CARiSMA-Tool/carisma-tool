@@ -36,7 +36,7 @@ Export-Package: carisma.core,
  com.thoughtworks.xstream.mapper,
  com.thoughtworks.xstream.persistence
 Bundle-ClassPath: .,
- lib/xstream-1.4.18.jar
+ target/dependency/xstream.jar
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Require-Bundle: org.eclipse.core.resources,
  org.eclipse.core.runtime,
