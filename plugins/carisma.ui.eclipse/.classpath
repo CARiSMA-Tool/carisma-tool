@@ -8,6 +8,6 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="lib" path="xslt" sourcepath="xslt"/>
-	<classpathentry kind="lib" path="lib/commons-text-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/dependency/commons-text-1.10.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
