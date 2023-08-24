@@ -62,7 +62,6 @@ public class SecureDependencyChecksTest {
 	 * This tests whether 
 	 */
 	@Test
-	@Ignore
 	public final void testSecureDependency1() {
 		this.model = loadModel(this.filepath, "testSecureDependency1.uml");
 		Package pkg = checkedGetElement(this.model, "testSecureDependency1", Package.class);
@@ -86,7 +85,6 @@ public class SecureDependencyChecksTest {
 	}
 	
 	@Test
-	@Ignore
 	public final void testSecureDependency2() {
 		this.model = loadModel(this.filepath, "testSecureDependency2.uml");
 		Package pkg = checkedGetElement(this.model, "testSecureDependency2", Package.class);
@@ -130,7 +128,6 @@ public class SecureDependencyChecksTest {
 	}
 
 	@Test
-	@Ignore
 	public final void testSecureDependency5() {
 		this.model = loadModel(this.filepath, "testSecureDependency5.uml");
 		Package pkg = checkedGetElement(this.model, "testSecureDependency5", Package.class);
