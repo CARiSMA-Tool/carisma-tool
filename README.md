@@ -1,5 +1,7 @@
 # CARiSMA
 
+<img align="right" width="400" height="400" src="documentation/images/carisma-home.png">
+
 Modeling offers an unprecedented opportunity for high-quality critical systems development that is feasible in an industrial context. CARiSMA enables you to perform:
 
 * compliance analyses,
@@ -17,7 +19,7 @@ A flexible plugin architecture makes CARiSMA extensible for new languages and al
 See [Installation Guide](documentation/installation.md) for how to install CARiSMA and its extensions.
 
 ## General Usage
-See [Usage Guide](documentation/usage.md) for information on how to use CARiSMA
+See [Usage Guide](documentation/usage.md) for information on how to use CARiSMA.
 
 
 ## Specific checks
@@ -36,7 +38,7 @@ See [RABAC](examples/rabac/README.md) for the specific checks.
 
 
 ## Development
-If you want to extend CARiSMA, consult the [Development Guide](documentation/development.md)
+If you want to extend CARiSMA, consult the [Development Guide](documentation/development.md).
 
 ## Contact / Team
 
