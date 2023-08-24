@@ -1,3 +1,13 @@
+# Setting up CARiSMA for development
+1. If you already installed CARiSMA, delete the local installation.
+2. Import the CARiSMA Tool from the [git repository](https://github.com/CARiSMA-Tool/carisma-tool).
+3. Right click on the carisma-tool project and select *Run As* .
+4. Choose *Maven build...* .
+5. Enter "package" under goals.
+6. Click *Run*.
+7. Refresh the carisma-tool project.
+8. All errors should be resolved.
+
 # Creating a Plugin Project containing CARiSMA Checks
 1. Create a new Plug-in Project: New → Other → Plug-in Development → Plug-in Project
 2. Enter your plugin name. The convention is **"carisma.check.[pluginName]"**.
