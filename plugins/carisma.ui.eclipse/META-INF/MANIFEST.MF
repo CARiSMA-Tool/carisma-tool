@@ -23,5 +23,5 @@ Export-Package: carisma.ui.eclipse,
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Bundle-ClassPath: .,
  xslt/,
- lib/commons-text-1.9.jar
+ target/dependency/commons-text.jar
 Automatic-Module-Name: carisma.ui.eclipse
