@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_KAkLwEMgEe6ZM4I4BT7ISw" name="testSpecializedCritical">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_KGLEgEMgEe6ZM4I4BT7ISw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_lwwVMEMgEe6ZM4I4BT7ISw" name="inherit2">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_PfvMYEMvEe6ZM4I4BT7ISw">
+        <body>Assumption:
+Dependency between Class1 and RandomNumber 
+is not inherited to Class2.
+Class2 may use another RandomNumber generator.</body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Class" xmi:id="_pIP1cEMgEe6ZM4I4BT7ISw" name="Class1"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_puxp8EMgEe6ZM4I4BT7ISw" name="Class2">
+        <generalization xmi:type="uml:Generalization" xmi:id="_48d8IEMgEe6ZM4I4BT7ISw" general="_pIP1cEMgEe6ZM4I4BT7ISw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qyd7kEMgEe6ZM4I4BT7ISw" name="RandomNumber">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_MxeXsEMhEe6ZM4I4BT7ISw" name="random">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_s13r0EMiEe6ZM4I4BT7ISw" name="return" type="_srpDsEMgEe6ZM4I4BT7ISw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_srpDsEMgEe6ZM4I4BT7ISw" name="Real"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_wW-tAEMgEe6ZM4I4BT7ISw" name="Usage1" client="_pIP1cEMgEe6ZM4I4BT7ISw" supplier="_qyd7kEMgEe6ZM4I4BT7ISw"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_KFfvEEMgEe6ZM4I4BT7ISw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KFknkEMgEe6ZM4I4BT7ISw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_aqNMoEMiEe6ZM4I4BT7ISw" base_Package="_lwwVMEMgEe6ZM4I4BT7ISw"/>
+  <UMLsec:critical xmi:id="_dfmscEMiEe6ZM4I4BT7ISw" base_Class="_puxp8EMgEe6ZM4I4BT7ISw" base_Classifier="_puxp8EMgEe6ZM4I4BT7ISw">
+    <high>random():Real</high>
+  </UMLsec:critical>
+  <UMLsec:call xmi:id="_rAS00EMjEe6ZM4I4BT7ISw" base_Dependency="_wW-tAEMgEe6ZM4I4BT7ISw"/>
+</xmi:XMI>

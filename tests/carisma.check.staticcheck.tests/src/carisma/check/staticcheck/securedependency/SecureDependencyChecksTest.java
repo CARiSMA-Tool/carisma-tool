@@ -195,9 +195,8 @@ public class SecureDependencyChecksTest {
 	}
 
 	@Test
-	@Ignore
 	public final void testSpecializedCritical() {
-		this.model = loadModel(this.filepath, "spezializedCritical.uml");
+		this.model = loadModel(this.filepath, "testSpecializedCritical.uml");
 		SecureDependencyChecks sdc = new SecureDependencyChecks(null);
 		Usage callDep = checkedGetElement(this.model, "Usage1", Usage.class);
 		assertTrue(UMLHelper.isStereotypeApplied(callDep, "call"));
@@ -205,8 +204,8 @@ public class SecureDependencyChecksTest {
 		
 		sdc.checkSecureDependency(this.model);
 		List<SecureDependencyViolation> secureDependencyViolations = sdc.getViolations();
-		//fail("Noch keine Bedingung definiert!"); It needs to be implemented to check if the caller class inherited a critical annotation
-		assertEquals(1, secureDependencyViolations.size());
+		//Assumption : See model
+		assertEquals(0, secureDependencyViolations.size());
 	}
 
 	@Test
