@@ -8,6 +8,8 @@
 7. Refresh the carisma-tool project.
 8. All errors should be resolved.
 
+To start your working copy of CARiSMA, right click on a plugin project, select "Run As" -> "Eclipse Application".
+
 # Creating a Plugin Project containing CARiSMA Checks
 1. Create a new Plug-in Project: New → Other → Plug-in Development → Plug-in Project
 2. Enter your plugin name. The convention is **"carisma.check.[pluginName]"**.
