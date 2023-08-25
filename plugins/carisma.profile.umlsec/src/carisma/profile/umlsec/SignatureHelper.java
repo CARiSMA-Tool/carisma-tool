@@ -74,12 +74,11 @@ public class SignatureHelper {
 					continue;
 				}
 				final StringBuilder paramBuilder = new StringBuilder();
-				//				paramBuilder.append(p.getName());
-				//				paramBuilder.append(":");
 				final Type type = p.getType();
 				if (type != null) {
 					paramBuilder.append(p.getType().getName());
 				} else {
+					// TODO find meaningful fallback type for parameters without type (=broken specification in UML model)
 					paramBuilder.append("void");
 				}
 				params.add(paramBuilder.toString());
@@ -90,7 +89,7 @@ public class SignatureHelper {
 			signature.append("):");
 			signature.append(operation.getType().getName());
 		} else {
-			signature.append(')');
+			signature.append("):void");
 		}
 		return signature.toString();
 	}
