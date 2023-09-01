@@ -559,7 +559,6 @@ public class UMLsecValidationTest {
 	 * The validation should fail (return false).
 	 */
 	@Test
-	@Ignore
 	public final void testCriticalNoContent() {
 		String modelName = "CriticalNoContent.uml";
 		assertNull(this.modelres);
@@ -576,11 +575,11 @@ public class UMLsecValidationTest {
 		List<String> resultSingle = UMLsecValidation.validateCritical(criticalApp);
 		assertNotNull(resultSingle);
 		assertEquals(1, resultSingle.size());
-		assertEquals("One of the tags 'secrecy, integrity, high, fresh, authenticity' of Sterotype <<critical>> has to hold content!", resultSingle.get(0));
+		assertEquals("One of the tags 'secrecy, integrity, high, fresh, privacy, authenticity' of Sterotype <<critical>> has to hold content!", resultSingle.get(0));
 		List<String> resultModel = UMLsecValidation.validateModel(this.model);
 		assertNotNull(resultModel);
 		assertEquals(1, resultModel.size());
-		assertEquals("One of the tags 'secrecy, integrity, high, fresh, authenticity' of Sterotype <<critical>> has to hold content!", resultModel.get(0));
+		assertEquals("One of the tags 'secrecy, integrity, high, fresh, privacy, authenticity' of Sterotype <<critical>> has to hold content!", resultModel.get(0));
 		this.modelres.unload();
 	}
 	
@@ -634,7 +633,6 @@ public class UMLsecValidationTest {
 	 * The validation should fail (return false).
 	 */
 	@Test
-	@Ignore
 	public final void testRequiresNoContent() {
 		String modelName = "RequiresNoContent.uml";
 		assertNull(this.modelres);

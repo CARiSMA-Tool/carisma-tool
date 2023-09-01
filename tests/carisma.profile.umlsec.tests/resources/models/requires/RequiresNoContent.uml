@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.umlsec.de/profiles/UMLsec pathmap://UMLsec/UMLsec.uml#_MQjs4FPqEea7isDEsq0j4g">
-  <uml:Model xmi:id="idModel" name="RequiresNoContentModel">
-    <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="RequiresNoContentPackage">
-      <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="RequiresNoContentActivity">
-        <node xmi:type="uml:InitialNode" xmi:id="_o0bwUB-KEeOMIvl_knophg" name="InitialNode1" outgoing="_rhd-UB-KEeOMIvl_knophg"/>
-        <node xmi:type="uml:ActivityFinalNode" xmi:id="_o75qQB-KEeOMIvl_knophg" name="ActivityFinalNode1" incoming="_sCirEB-KEeOMIvl_knophg"/>
-        <node xmi:type="uml:OpaqueAction" xmi:id="_qFIjMB-KEeOMIvl_knophg" name="OpaqueAction1" outgoing="_rxHj4B-KEeOMIvl_knophg" incoming="_rhd-UB-KEeOMIvl_knophg"/>
-        <node xmi:type="uml:OpaqueAction" xmi:id="_qN6EsB-KEeOMIvl_knophg" name="OpaqueAction2" outgoing="_sCirEB-KEeOMIvl_knophg" incoming="_rxHj4B-KEeOMIvl_knophg"/>
-        <edge xmi:type="uml:ControlFlow" xmi:id="_rhd-UB-KEeOMIvl_knophg" name="ControlFlow1" source="_o0bwUB-KEeOMIvl_knophg" target="_qFIjMB-KEeOMIvl_knophg">
-          <guard xmi:type="uml:LiteralBoolean" xmi:id="_rhd-UR-KEeOMIvl_knophg" value="true"/>
-          <weight xmi:type="uml:LiteralInteger" xmi:id="_rhd-Uh-KEeOMIvl_knophg" value="1"/>
-        </edge>
-        <edge xmi:type="uml:ControlFlow" xmi:id="_rxHj4B-KEeOMIvl_knophg" name="ControlFlow2" source="_qFIjMB-KEeOMIvl_knophg" target="_qN6EsB-KEeOMIvl_knophg">
-          <guard xmi:type="uml:LiteralBoolean" xmi:id="_rxHj4R-KEeOMIvl_knophg" value="true"/>
-          <weight xmi:type="uml:LiteralInteger" xmi:id="_rxHj4h-KEeOMIvl_knophg" value="1"/>
-        </edge>
-        <edge xmi:type="uml:ControlFlow" xmi:id="_sCirEB-KEeOMIvl_knophg" name="ControlFlow3" source="_qN6EsB-KEeOMIvl_knophg" target="_o75qQB-KEeOMIvl_knophg">
-          <guard xmi:type="uml:LiteralBoolean" xmi:id="_sCirER-KEeOMIvl_knophg" value="true"/>
-          <weight xmi:type="uml:LiteralInteger" xmi:id="_sCirEh-KEeOMIvl_knophg" value="1"/>
-        </edge>
-      </packagedElement>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_6wF48EcdEe6Xqe1sOtWwNg" name="testRequiresStereotypeNoContent">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_62h4IEcdEe6Xqe1sOtWwNg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_6xEJUEcdEe6Xqe1sOtWwNg" name="RequiresNoContentActivity" node="_EDYCMEceEe6Xqe1sOtWwNg _EamPYEceEe6Xqe1sOtWwNg _E3RkUEceEe6Xqe1sOtWwNg _GJ30oEceEe6Xqe1sOtWwNg">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_KkXqAEceEe6Xqe1sOtWwNg" name="ControlFlow1" target="_EDYCMEceEe6Xqe1sOtWwNg" source="_E3RkUEceEe6Xqe1sOtWwNg">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_bcjvIEceEe6Xqe1sOtWwNg" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_c0hnoEceEe6Xqe1sOtWwNg" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_MSNE0EceEe6Xqe1sOtWwNg" name="ControlFlow2" target="_EamPYEceEe6Xqe1sOtWwNg" source="_EDYCMEceEe6Xqe1sOtWwNg">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_X5eLwEhDEe6Xqe1sOtWwNg" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_aM0ucEhDEe6Xqe1sOtWwNg" name="1" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_NwQXMEceEe6Xqe1sOtWwNg" name="ControlFlow3" target="_GJ30oEceEe6Xqe1sOtWwNg" source="_EamPYEceEe6Xqe1sOtWwNg">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_fvdQkEhDEe6Xqe1sOtWwNg" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_hA31IEhDEe6Xqe1sOtWwNg" name="1" value="1"/>
+      </edge>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_EDYCMEceEe6Xqe1sOtWwNg" name="OpaqueAction1" incoming="_KkXqAEceEe6Xqe1sOtWwNg" outgoing="_MSNE0EceEe6Xqe1sOtWwNg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_EamPYEceEe6Xqe1sOtWwNg" name="OpaqueAction2" incoming="_MSNE0EceEe6Xqe1sOtWwNg" outgoing="_NwQXMEceEe6Xqe1sOtWwNg"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_E3RkUEceEe6Xqe1sOtWwNg" name="InitialNode1" outgoing="_KkXqAEceEe6Xqe1sOtWwNg"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_GJ30oEceEe6Xqe1sOtWwNg" name="ActivityFinalNode1" incoming="_NwQXMEceEe6Xqe1sOtWwNg"/>
     </packagedElement>
-    <profileApplication xmi:id="_s_qaoB-KEeOMIvl_knophg">
-      <eAnnotations xmi:id="_s_qaoR-KEeOMIvl_knophg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://UMLsec/UMLsec.uml#_MQjs4FPqEea7isDEsq0j4g"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_61qVcEcdEe6Xqe1sOtWwNg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_61xDIEcdEe6Xqe1sOtWwNg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
     </profileApplication>
   </uml:Model>
-  <UMLsec:requires xmi:id="_t7LAoB-KEeOMIvl_knophg" base_Action="_qN6EsB-KEeOMIvl_knophg"/>
+  <UMLsec:requires xmi:id="_oyIK8EhDEe6Xqe1sOtWwNg" base_Action="_EamPYEceEe6Xqe1sOtWwNg"/>
 </xmi:XMI>
