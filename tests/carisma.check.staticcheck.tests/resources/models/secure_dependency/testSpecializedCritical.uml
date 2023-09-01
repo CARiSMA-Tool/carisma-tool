@@ -6,10 +6,15 @@
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_lwwVMEMgEe6ZM4I4BT7ISw" name="inherit2">
       <ownedComment xmi:type="uml:Comment" xmi:id="_PfvMYEMvEe6ZM4I4BT7ISw">
-        <body>Assumption:
+        <body>Possible assumption:
 Dependency between Class1 and RandomNumber 
 is not inherited to Class2.
 Class2 may use another RandomNumber generator.</body>
+      </ownedComment>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_DROigEidEe6Xqe1sOtWwNg">
+        <body>Problem : 
+Inheritence is not defined by the secure dependency
+check and therefore no violations are detected</body>
       </ownedComment>
       <packagedElement xmi:type="uml:Class" xmi:id="_pIP1cEMgEe6ZM4I4BT7ISw" name="Class1"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_puxp8EMgEe6ZM4I4BT7ISw" name="Class2">

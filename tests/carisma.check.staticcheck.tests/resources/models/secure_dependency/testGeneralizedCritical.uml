@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_Pg7pwEMwEe6ZM4I4BT7ISw" name="testGeneralizedCritical">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_PikBcEMwEe6ZM4I4BT7ISw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_1NmqIEcEEe6ZM4I4BT7ISw" name="inherit1">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_V462YEidEe6Xqe1sOtWwNg">
+        <body>Problem : 
+Inheritence is not defined by the secure dependency
+check and therefore no violations are detected</body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Class" xmi:id="_49BiMEcEEe6ZM4I4BT7ISw" name="Class1"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_5qIf0EcEEe6ZM4I4BT7ISw" name="Class2">
+        <generalization xmi:type="uml:Generalization" xmi:id="_gl7mEEcFEe6ZM4I4BT7ISw" general="_49BiMEcEEe6ZM4I4BT7ISw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_66LycEcEEe6ZM4I4BT7ISw" name="RandomNumber">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_m797EEcFEe6ZM4I4BT7ISw" name="random">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_bilLgEcGEe6ZM4I4BT7ISw" name="return" type="_9Ure8EcEEe6ZM4I4BT7ISw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_9Ure8EcEEe6ZM4I4BT7ISw" name="Real"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_vnUhoEcFEe6ZM4I4BT7ISw" name="Usage1" client="_5qIf0EcEEe6ZM4I4BT7ISw" supplier="_66LycEcEEe6ZM4I4BT7ISw"/>
+      <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_URgnEEcFEe6ZM4I4BT7ISw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_URq_IEcFEe6ZM4I4BT7ISw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+        </eAnnotations>
+        <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+      </profileApplication>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_PiRGgEMwEe6ZM4I4BT7ISw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PiSUoEMwEe6ZM4I4BT7ISw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securedependency xmi:id="_XfvdoEcFEe6ZM4I4BT7ISw" base_Package="_1NmqIEcEEe6ZM4I4BT7ISw"/>
+  <UMLsec:call xmi:id="_yXHvwEcFEe6ZM4I4BT7ISw" base_Dependency="_vnUhoEcFEe6ZM4I4BT7ISw"/>
+  <UMLsec:critical xmi:id="_syAY4EibEe6Xqe1sOtWwNg" base_Class="_49BiMEcEEe6ZM4I4BT7ISw" base_Classifier="_49BiMEcEEe6ZM4I4BT7ISw">
+    <high>random():Real</high>
+  </UMLsec:critical>
+</xmi:XMI>
