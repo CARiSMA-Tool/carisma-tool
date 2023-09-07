@@ -85,3 +85,11 @@ After creating an OCL Library File it is possible to add your individual ocl con
 Later on, these constraints can be deleted and modified as well. 
 To add a constraint open the model file and add a constraint by right clicking on the library root element.
 To modify an OCL constraint it is necessary to open the properties view (Select Menu "Window" then "Show View").
+
+# Online Help
+Additional help on the CARiSMA-Tool can be found in the online help, when CARiSMA is already installed.
+1. Open Eclipse
+2. Click *Help*.
+3. Choose *Help Contents*.
+4. A page will open with different contents for different installations.
+5. Select the *CARiSMA* help.
