@@ -1209,7 +1209,7 @@ public class UMLsecValidationTest {
 		List<String> result = UMLsecValidation.validateRBAC(rbacApp);
 		assertNotNull(result);
 		assertEquals(1, result.size());
-		assertEquals("No protected tag of Stereotype <<rbc>> at Element RBACnoProtectedPackage!", result.get(0));
+		assertEquals("Empty protected tag of Stereotype <<rbc>> at Element RBACnoProtectedPackage!", result.get(0));
 		this.modelres.unload();
 	}
 	
@@ -1217,9 +1217,8 @@ public class UMLsecValidationTest {
 	 * This test tests the validation of a &lt;&lt;rbac&gt;&gt; Stereotype that has no values in tag role.
 	 */
 	@Test
-	@Ignore
 	public final void testRBACnoRole() {
-		String modelName = "RBACnoRole.uml";
+		String modelName = "testRbacNoRole.uml";
 		assertNull(this.modelres);
 		loadModel(this.rbacFilePath + File.separator + modelName);
 		List<StereotypeApplication> stereoList  = UMLsecUtil.getStereotypeApplications(this.model, UMLsec.RBAC);
@@ -1238,7 +1237,6 @@ public class UMLsecValidationTest {
 	 * This test tests the validation of a &lt;&lt;rbac&gt;&gt; Stereotype that has no values in tag right.
 	 */
 	@Test
-	@Ignore
 	public final void testRBACnoRight() {
 		String modelName = "RBACnoRight.uml";
 		assertNull(this.modelres);
@@ -1261,7 +1259,6 @@ public class UMLsecValidationTest {
 	 * The validation should succeed (return true).
 	 */
 	@Test
-	@Ignore
 	public final void testRBACCorrect() {
 		String modelName = "RBACCorrect.uml";
 		assertNull(this.modelres);
@@ -1284,7 +1281,6 @@ public class UMLsecValidationTest {
 	 * This test tests a model with <<rbac>> and <<authorized-status>> stereotype, both wrong filled.
 	 */
 	@Test
-	@Ignore
 	public final void testMultipleWrong() {
 		String modelName = "RBACFairExchangeWrong.uml";
 		assertNull(this.modelres);

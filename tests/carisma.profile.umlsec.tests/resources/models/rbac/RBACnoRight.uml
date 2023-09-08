@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.umlsec.de/profiles/UMLsec pathmap://UMLsec/UMLsec.uml#_MQjs4FPqEea7isDEsq0j4g">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <uml:Model xmi:id="idModel" name="RBACnoRightModel">
     <packagedElement xmi:type="uml:Package" xmi:id="idPackage" name="RBACnoRightPackage">
       <packagedElement xmi:type="uml:Activity" xmi:id="idActivity" name="RBACnoRightActivity">
-        <node xmi:type="uml:InitialNode" xmi:id="_8sE9MExNEeOE5an0IOHHgg" name="InitialNode1" outgoing="_9mD5MExNEeOE5an0IOHHgg"/>
-        <node xmi:type="uml:ActivityFinalNode" xmi:id="_80lY8ExNEeOE5an0IOHHgg" name="ActivityFinalNode1" incoming="_90aeQExNEeOE5an0IOHHgg"/>
-        <node xmi:type="uml:OpaqueAction" xmi:id="_9LVFAExNEeOE5an0IOHHgg" name="OpaqueAction1" outgoing="_90aeQExNEeOE5an0IOHHgg" incoming="_9mD5MExNEeOE5an0IOHHgg"/>
-        <edge xmi:type="uml:ControlFlow" xmi:id="_9mD5MExNEeOE5an0IOHHgg" name="ControlFlow1" source="_8sE9MExNEeOE5an0IOHHgg" target="_9LVFAExNEeOE5an0IOHHgg">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_9mD5MExNEeOE5an0IOHHgg" name="ControlFlow1" target="_9LVFAExNEeOE5an0IOHHgg" source="_8sE9MExNEeOE5an0IOHHgg">
           <guard xmi:type="uml:LiteralBoolean" xmi:id="_9mD5MUxNEeOE5an0IOHHgg" value="true"/>
           <weight xmi:type="uml:LiteralInteger" xmi:id="_9mD5MkxNEeOE5an0IOHHgg" value="1"/>
         </edge>
-        <edge xmi:type="uml:ControlFlow" xmi:id="_90aeQExNEeOE5an0IOHHgg" name="ControlFlow2" source="_9LVFAExNEeOE5an0IOHHgg" target="_80lY8ExNEeOE5an0IOHHgg">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_90aeQExNEeOE5an0IOHHgg" name="ControlFlow2" target="_80lY8ExNEeOE5an0IOHHgg" source="_9LVFAExNEeOE5an0IOHHgg">
           <guard xmi:type="uml:LiteralBoolean" xmi:id="_90aeQUxNEeOE5an0IOHHgg" value="true"/>
           <weight xmi:type="uml:LiteralInteger" xmi:id="_90aeQkxNEeOE5an0IOHHgg" value="1"/>
         </edge>
+        <node xmi:type="uml:InitialNode" xmi:id="_8sE9MExNEeOE5an0IOHHgg" name="InitialNode1" outgoing="_9mD5MExNEeOE5an0IOHHgg"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_80lY8ExNEeOE5an0IOHHgg" name="ActivityFinalNode1" incoming="_90aeQExNEeOE5an0IOHHgg"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_9LVFAExNEeOE5an0IOHHgg" name="OpaqueAction1" incoming="_9mD5MExNEeOE5an0IOHHgg" outgoing="_90aeQExNEeOE5an0IOHHgg"/>
       </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_-itHoExNEeOE5an0IOHHgg">
       <eAnnotations xmi:id="_-itHoUxNEeOE5an0IOHHgg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://UMLsec/UMLsec.uml#_MQjs4FPqEea7isDEsq0j4g"/>
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_MQjs4FPqEea7isDEsq0j4g"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://UMLsec/UMLsec.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
     </profileApplication>
   </uml:Model>
-  <UMLsec:rbac xmi:id="__L09IExNEeOE5an0IOHHgg" protected="_9LVFAExNEeOE5an0IOHHgg" base_Package="idPackage">
+  <UMLsec:rbac xmi:id="__L09IExNEeOE5an0IOHHgg" protectedactions="_9LVFAExNEeOE5an0IOHHgg" base_Package="idPackage" protected="_9LVFAExNEeOE5an0IOHHgg">
     <role>(actor, role)</role>
   </UMLsec:rbac>
 </xmi:XMI>

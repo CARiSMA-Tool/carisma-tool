@@ -69,7 +69,7 @@ import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
  */
 public final class UMLsecValidation {
 	
-//	TODO KR: beim testen ob ein String leer ist vielleicht besser --> testen ob ein String etwas anderes als leere Zeichen enthält
+//	TODO KR: beim testen ob ein String leer ist vielleicht besser --> testen ob ein String etwas anderes als leere Zeichen enthï¿½lt
 //	TODO KR: Identifiable, wo darf das dran, findet sich im UMLsec Buch nicht
 //	TODO KR: Es fehlen laut UMLsec.profile.png vom 14.11.2013 folgende Stereotypen
 //				identifiable (als nicht zu checkender Stereotyp aufgenommen)
@@ -255,7 +255,7 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 			//smart card  muss nicht validiert werden
 			return new ArrayList<>();
 		}
-//		TODO KR: Es sind noch nicht alle Stereotypen drin, die nicht überprüft werden müssen
+//		TODO KR: Es sind noch nicht alle Stereotypen drin, die nicht ï¿½berprï¿½ft werden mï¿½ssen
 //		Stereotyp nicht gefunden, was tuen?
 		List<String> noStereotype = new ArrayList<>();
 		noStereotype.add("Stereotype " + stApp.getQualifiedStereotypeName() + " is no valid UMLsec Stereotype!");
@@ -711,8 +711,8 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 	//check if tag 'right' got content and is filled correct as tuples in braces
 	@SuppressWarnings("unchecked")
 	public static List<String> validateRBAC(final StereotypeApplication stereoApp) {
-//		TODO KR: die Rollen extrahieren und gucken ob alle Rollen die etwas betreten dürfen auch eine zugewiesene Person haben
-//		TODO KR: müssen bei RBAC die TaggeddValues Inhalt haben?
+//		TODO KR: die Rollen extrahieren und gucken ob alle Rollen die etwas betreten dï¿½rfen auch eine zugewiesene Person haben
+//		TODO KR: mï¿½ssen bei RBAC die TaggeddValues Inhalt haben?
 		List<String> validations = new ArrayList<>();
 		if (!(UMLsec.getValue(stereoApp.getAppliedStereotype().getName()) == UMLsec.RBAC)) {
 //			wrong StereotypeApplication for this check
@@ -725,7 +725,10 @@ public static List<String> validateModel(final String file) throws FileNotFoundE
 					+ ((NamedElement) stereoApp.getExtendedElement()).getName() + "!");
 			return validations;
 		}
-		TaggedValue protectedTag = stereoApp.getTaggedValue("protected");
+		// AP : Dieser Part (protectedTag == null) erschlieÃŸt sich mir nicht, protected actions wird immer mindestens eine leere liste sein.
+		// HÃ¤ngt vielleicht damit zusammen, dass es fÃ¤lschlicherweise "protected" vorher war ?
+		// TaggedValue protectedTag = stereoApp.getTaggedValue("protected");
+		TaggedValue protectedTag = stereoApp.getTaggedValue("protected actions");
 		if(protectedTag == null){
 			validations.add("No protected tag of Stereotype <<rbc>> at Element " + stereoApp.getExtendedElementName() + "!");
 		}
