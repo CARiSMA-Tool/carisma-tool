@@ -96,11 +96,12 @@ public class StateMachinePathsTest {
 	
 	/**
 	 * this test tests if the plugin determines the correct path in a state-machine with a sub state.
-	 */
+	*/
 	@Test
-	@Ignore
+	@Ignore("substates are not handled properly")
 	public final void testCorrectWithSubState() {
-		this.model = TestHelper.loadModel(this.filepath, "stateMachinePathsCorrectWithSubStates.uml");
+		//this.model = TestHelper.loadModel(this.filepath, "stateMachinePathsCorrectWithSubStates.uml");
+		this.model = TestHelper.loadModel(this.filepath, "testSubStates.uml");
 		StateMachinePaths smp = new StateMachinePaths();
 		List<StateMachine> smList = UMLHelper.getAllElementsOfType(this.model, StateMachine.class);
 		assertEquals(1, smList.size());
