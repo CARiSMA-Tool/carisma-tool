@@ -2,7 +2,7 @@ name: SonarCloud
 on:
   push:
     branches:
-      - sonarcube
+      - master
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
