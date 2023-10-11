@@ -33,3 +33,54 @@ worked as well.
 ## Evolution Support for UML2
 
 With respect to long living software systems, it is often necessary to analyze whether evolution has an impact on compliance, risk, or security requirements 1). The evolution feature provides the UMLchange profile that allows developers to define possible evolutions within a UML model. Evolution-aware checks can then analyze whether the evolution has an impact on the security.
+
+## List of Plugins
+
+
+| Plugin  | Core/Extension | Context | Author | Description |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| carisma.core  | Core  |   | Sven Wenzel, Lidiya Kaltchev  | The core tool (GUI, etc.)  |
+| carisma.core.io  | Core  |Content Cell  | SecSE group, TU Dortmund  |   |
+| carisma.ocl  | Extension  | Bachelor Thesis  | Marcel Michel  | Re-usable methods for the ocl support  |
+| carisma.ocl.library.*  | Extension  | Bachelor Thesis  |Marcel Michel  | Model to manage ocl expressions  |
+| carisma.check.oclcheck  | Extension  | Bachelor Thesis |Sebastian Haronski, Marcel Michel  | Queries emf models with a defined ocl constraint  |
+| carisma.check.dummy  | Core |   |Sven Wenzel  | Dummy plugin that prints the model content into the report  |
+| carisma.check.template  | Core  |   |Benjamin Berghoff  | Template for creating UMLsec plugins  |
+| carisma.modeltype.uml2  | Core  |   |Sven Wenzel, Daniel Warzecha  | UML2 meta model  |
+| carisma.profile.umlsec  | Core |  | Sven Wenzel, Daniel Warzecha  | UMLsec profile  |
+| carisma.check.activity2petrinet  | Extension  | Bachelor Thesis  | Kubi Mensah  | Check that converts an activity diagram to a petrinet for further processing in ProM  |
+| carisma.check.activitypaths  | Core  |   | Moussa Oumarou  | Check that prints out all possible paths in a activity diagram  |
+| carisma.check.smartcard  | Extension  |   | Klaus Rudack  | Checks for smartcard specific properties  |
+| carisma.check.statemachinepaths  | Extension  |   | Klaus Rudack  | Check that prints out all possible paths in a activity diagram |
+| carisma.check.staticcheck  | Core  |    | Daniel Warzecha/Sven Wenzel  | Checks for the static UMLsec stereotypes  |
+| carisma.profile.umlchange  | Extension  |    | Daniel Warzecha/Sven Wenzel  | UMLchange profile  |
+| carisma.evolution  | Extension  |    | carisma.evolution  | Evolution Support for CARiSMA  |
+| carisma.evolution.uml2  | Extension  |   | Daniel Warzecha/Sven Wenzel  | UML2 specific evolution support for CARiSMA  |
+| carisma.evolution.uml2.umlchange  | Extension  |   | Daniel Warzecha/Sven Wenzel  | UMLchange Parser Extension  |
+| carisma.evolution.uml2.umlchange.ui  | Extension  |   |    |    |
+| carisma.evolution.emfdelta  | Extension  |   | Johannes Kowald  | EMFcompare-based Delta Description Generator  |
+| carisma.check.smartcard.evolution  | Extension  |   | Daniel Warzecha  | Smartcard Evolution Check  |
+| carisma.check.staticcheck.evolution  | Extension  |   | Daniel Warzecha/Sven Wenzel  | Smartcard Evolution Check  |
+| carisma.check.emfdelta  | Extension  |    | Johannes Kowald  | Check that prints out the EMFcompate-based Delta Description  |
+| carisma.check.modelexporter  | Extension  |   | Benjamin Berghoff  | Exports Delta Models and Modified Models  |
+| carisma.modeltype.bpmn2  | Extension  | Bachelor Thesis  | Marcel Michel  | Bpmn 2.0 meta model  |
+| carisma.modeltype.bpmn2.extended.*  | Extension  | Bachelor Thesis  | Marcel Michel  | Bpmn 2.0 meta model with addiontional entity classes  |
+| carisma.modeltype.bpmn2.extension.*  | Extension  | Bachelor Thesis  | Marcel Michel  | Meta model which holds the additional informations for the extended model  |
+| carisma.check.bpmn2.ocl  | Extension  | Bachelor Thesis  | Marcel Michel  | Queries bpmn2 models with ocl expressions  |
+| carisma.check.bpmn2.marisk  | Extension  |   | Sebastian Haronski  | MaRisk support for bpmn2  |
+| carisma.check.bpmn2.dummy  | Extension  | Bachelor Thesis  | Marcel Michel  |    |
+| carisma.check.idschecks  | Extension  | Bachelor Thesis  | Alexander Peikert  |    |
+| carisma.check.parametertest | Core  |   | SecSE group, TU Dortmund  |   |
+| carisma.check.rabac  | Extension  | Bachelor Thesis  | Patrick Hoffmann  |     |
+| carisma.check.requirescheck  | Extension  |Content Cell  | Content Cell  |    |
+| carisma.check.sequencediagramcrypto  | Extension  |   |    |    |
+| carisma.profile.enc  | Extension  |   |    |    |
+| carisma.profile.rabac  | Extension  | Bachelor Thesis  | Patrick Hoffmann  |    |
+| carisma.profile.umlsec4ids  | Extension  | Bachelor Thesis | Alexander Peikert  |    |
+| carisma.ui.console  | Core  |   | SecSE group, TU Dortmund  |    |
+| carisma.ui.eclipse  | Core  |   | SecSE group, TU Dortmund  |    |
+| carisma.ui.eclipse.descriptor  | Core  |   |  SecSE group, TU Dortmund  |    |
+
+
+
+
