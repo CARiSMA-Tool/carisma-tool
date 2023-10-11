@@ -73,6 +73,8 @@ The first entry in the list has the highest priority. If opening the model with 
 ## The OCL Library
 
 ### Creating an OCL Library File
+The OCL-Library model provides the possibility to save OCL-Constraints. 
+Therefore the Library can be used to load necessary constraints during an analysis.
 First you need to create a model file. 
 Therefore open the Creation Wizard by right clicking on your Workspace, select "New" then "Other" or use Hotkey CTRL + N. 
 Following screen should appear. 
@@ -80,11 +82,84 @@ Select the OCL Model.
 To manage multiple ocl constraints it is necessary to declare the "Library" Object as root element. 
 In further releases this step might not be performed anymore.
 
+### Example : Creating an OCL-Library
+1. Create an OCL-Model
+2. (Chose the Library Object as root element)
+3. Insert an OCL-Expression, which must contain a context and a query string
+
+
+![OCL Lib Create Model](images/bpmn/ocllib_createmodel.png)
+![OCL Lib Select Root](images/bpmn/ocllib_selectroot.png)
+![OCL Lib Insert Expression](images/bpmn/ocllib_insertexpression.png)
+![OCL Lib](images/bpmn/ocllib.png)
+
+
+
 ### Using an OCL Library File
 After creating an OCL Library File it is possible to add your individual ocl constraints to the library. 
 Later on, these constraints can be deleted and modified as well. 
 To add a constraint open the model file and add a constraint by right clicking on the library root element.
 To modify an OCL constraint it is necessary to open the properties view (Select Menu "Window" then "Show View").
+
+
+### Extension Model
+The Extension Model offers the possibility to extend special BPMN 2.0 elements by additional entity objects. 
+The additional information provides the necessary context to perform an analysis, which validates for example authorization or resource allocation constraints.
+
+### Example: Creating Extension Model
+
+1. Create Bpmn2extension Model
+2.(Chose the Root object as root element)
+3. The Wizard should show all extensible elements otherwise create a clone of the element which should be extended (name must be equal)
+4. Insert additional information to an element by referencing additional entities to the clone
+
+![Create Model](images/bpmn/bpmnextension_createmodel.png)
+![Select Root](images/bpmn/bpmnextension_selectroot.png)
+![BPMN Extension](images/bpmn/bpmnextension.png)
+
+
+
+### Using the BPMN2 OCL Check
+With this Check it is possible to query bpmn2 models with OCL expressions. 
+The result will show the model elements, which does not fit to the defined constraint.
+
+### Example: Querying a Model
+1. Create an analysis description file
+2. Select the BPMN2 OCL Check
+3. Select an OCL-Library
+4. Define the OCL-Constraints which should be validated
+ 	* Create a documentation node with the text «pattern={X}» in the BPMN2 model (must be a child of the definition node). The Variable X stands for the wild-card parameter „*“, an index of the OCL-Library [0..n] or the name of the constraint.
+	* Samples: «pattern={*}» or «pattern={SoD}» or «pattern={1,SoD,BoD}»
+5. (Optional) Extend the BPMN 2.0 model by linking to the extension model
+	* Create a documentation node with the text «ext=filename.bpmn2extension» in the BPMN2 model (must be a child of the definition node). The extension model must be stored in the same folder.
+6. Run the Check
+
+![Create Analysis](images/bpmn/umlsec_createanalysis.png)
+![UMLsec BPMN2OCL](images/bpmn/umlsec_bpmn2ocl.png)
+![Linking BPMN2 to Model](images/bpmn/umlsec_linking_bpmn2model_.png)
+![UMLsec BPMN2OCL Bad](images/bpmn/umlsec_bpmn2ocl_bad.png)
+![Linking BPMN2OCL Ok](images/bpmn/umlsec_bpmn2ocl_ok.png)
+
+### Example: Applying the Separation of Duty (SoD) Constraint
+The Separation of Duty constraint describes the concept of having at least two people involved to complete a process.
+
+The following BPMN diagram illustrates a very simple trade workflow. 
+In regard to the Separation of Duty concept, it is necessary that the tasks „Enter Trade Request“ and „Check Trade Request“ or „Check Trade Request“ and „Process Decision“ are performed by different users.
+
+![BPMN SOD](images/bpmn/bpmn_sod.png)
+
+
+To model such a conflict, it is necessary to extend the standard BPMN 2.0 model with the extension model.
+The extension model owns an singleton element „ConflictSet“, which refers to conflicting Tasks.
+
+#### Validating the SoD Constraint
+
+* Create an extension model
+	* Create the tasks „Enter Trade Request“ and „Check Trade Request“
+	* Define a „Conflict Set“, which refers to the created tasks
+	* Add several workItems to the tasks and create roles, which must be assigned to the workItems
+* Create an OCL-Expression for the SoD pattern
+* Query the model
 
 # Online Help
 Additional help on the CARiSMA-Tool can be found in the online help, when CARiSMA is already installed.

@@ -16,3 +16,12 @@ In the correct model the action `Reclaim` was added into the stop tag.
 So now, in every path one of the stop actions is executed and the check will be successful.
 
 ![Fair Exchange Properties](fair-exchange-correct/fair-exchange-properties-correct.png)
+
+## Idea for improvement 
+* Start- and Stop-Conditions are too restrictive
+* it would be nice to have the possibility to express conditions more flexible, for example :
+  * A –> C or D	
+  * A –> C and D	
+  * A —> C or B —> D
+  * A —> C and B —> D
+* Requirements to the notation/syntax of the condition: not too complex, especially the simple cases must remain usable and as expressive as possible without a steep learning curve
