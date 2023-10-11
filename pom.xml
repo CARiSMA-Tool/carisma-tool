@@ -88,12 +88,19 @@
 	<tycho-version>3.0.4</tycho-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <sonar.organization>carisma-tool</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
   <repositories>
 	<repository>
 		<id>Eclipse Latest</id>
 		<layout>p2</layout>
 		<url>https://download.eclipse.org/releases/latest</url>
+	</repository>
+	<repository>
+		<id>Eclipse Papyrus Update Site</id>
+		<layout>p2</layout>
+		<url>https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/latest</url>
 	</repository>
   </repositories>
   <build>
