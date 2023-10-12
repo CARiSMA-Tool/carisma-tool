@@ -54,7 +54,7 @@ With respect to long living software systems, it is often necessary to analyze w
 | carisma.check.statemachinepaths  | Extension  |   | Klaus Rudack  | Check that prints out all possible paths in a activity diagram |
 | carisma.check.staticcheck  | Core  |    | Daniel Warzecha/Sven Wenzel  | Checks for the static UMLsec stereotypes  |
 | carisma.profile.umlchange  | Extension  |    | Daniel Warzecha/Sven Wenzel  | UMLchange profile  |
-| carisma.evolution  | Extension  |    | carisma.evolution  | Evolution Support for CARiSMA  |
+| carisma.evolution  | Extension  |    | Daniel Warzecha/Sven Wenzel  | Evolution Support for CARiSMA  |
 | carisma.evolution.uml2  | Extension  |   | Daniel Warzecha/Sven Wenzel  | UML2 specific evolution support for CARiSMA  |
 | carisma.evolution.uml2.umlchange  | Extension  |   | Daniel Warzecha/Sven Wenzel  | UMLchange Parser Extension  |
 | carisma.evolution.uml2.umlchange.ui  | Extension  |   |    |    |
@@ -72,7 +72,7 @@ With respect to long living software systems, it is often necessary to analyze w
 | carisma.check.idschecks  | Extension  | Bachelor Thesis  | Alexander Peikert  |    |
 | carisma.check.parametertest | Core  |   | SecSE group, TU Dortmund  |   |
 | carisma.check.rabac  | Extension  | Bachelor Thesis  | Patrick Hoffmann  |     |
-| carisma.check.requirescheck  | Extension  |Content Cell  | Content Cell  |    |
+| carisma.check.requirescheck  | Extension  |   |   |    |
 | carisma.check.sequencediagramcrypto  | Extension  |   |    |    |
 | carisma.profile.enc  | Extension  |   |    |    |
 | carisma.profile.rabac  | Extension  | Bachelor Thesis  | Patrick Hoffmann  |    |
