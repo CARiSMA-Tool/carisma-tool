@@ -1,6 +1,6 @@
 # CARiSMA
 
-<img align="right" width="400" height="400" src="documentation/images/carisma-home.png">
+<img align="right" width="450" height="347" src="documentation/images/carisma-home.png">
 
 Modeling offers an unprecedented opportunity for high-quality critical systems development that is feasible in an industrial context. CARiSMA enables you to perform:
 
