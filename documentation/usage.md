@@ -38,6 +38,14 @@
 11. Correct the model according to the check.
 12. Run the check again and observe if it is correct.
 
+## Create a PNG or JPEG from a model
+
+1. Open model
+2. Right click in free drawing area
+3. Choose File 
+4. Save Image As File...
+
+
 # Preference Settings
 
 ## CARiSMA Preference Settings

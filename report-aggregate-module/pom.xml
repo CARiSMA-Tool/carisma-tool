@@ -1,0 +1,70 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>carisma</groupId>
+  <artifactId>my-project-report-aggregate</artifactId>
+  <version>0.0.1-SNAPSHOT</version> <!-- Replace with your actual version -->
+  <name>CARiSMA Tool</name>
+  <description>Aggregate Coverage Report</description>
+  <dependencies>
+  	<!-- Plugins -->
+    <dependency>
+      <groupId>carisma</groupId>
+      <artifactId>carisma.check.activity2petrinet</artifactId>
+      <version>1.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>carisma</groupId>
+      <artifactId>carisma.check.activitypaths</artifactId>
+      <version>1.0.2-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>carisma</groupId>
+      <artifactId>carisma.check.bpmn2.dummy</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>carisma</groupId>
+      <artifactId>carisma.check.bpmn2.marisk</artifactId>
+      <version>1.0.1-SNAPSHOT</version>
+    </dependency>
+    
+    
+    
+    <!-- Tests -->
+    <dependency>
+      <groupId>carisma</groupId>
+      <artifactId>carisma.check.activity2petrinet.tests</artifactId>
+      <version>1.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>carisma</groupId>
+      <artifactId>carisma.check.activitypaths.tests</artifactId>
+      <version>1.0.1-SNAPSHOT</version>
+    </dependency>
+    
+    
+    <dependency>
+    	<groupId>org.jacoco</groupId>
+    	<artifactId>jacoco-maven-plugin</artifactId>
+    	<version>0.8.11</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.11</version>
+        <executions>
+          <execution>
+            <id>report-aggregate</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report-aggregate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
