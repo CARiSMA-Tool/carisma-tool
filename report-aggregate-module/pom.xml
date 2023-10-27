@@ -1,9 +1,12 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>carisma</groupId>
-  <artifactId>my-project-report-aggregate</artifactId>
-  <version>0.0.1-SNAPSHOT</version> 
-  <name>CARiSMA Tool</name>
+  <parent>
+	  <groupId>carisma</groupId>
+	  <artifactId>carisma-tool</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+  </parent> 
+  <artifactId>carisma-report</artifactId>
+  <name>CARiSMA Tool Aggregate Report</name>
   <description>Aggregate Coverage Report</description>
   <dependencies>
   	<!-- Plugins -->
@@ -335,18 +338,8 @@
       <artifactId>carisma.umlchange.efficiency</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
-    
-    
-    
-    
-    
-    
-    <dependency>
-    	<groupId>org.jacoco</groupId>
-    	<artifactId>jacoco-maven-plugin</artifactId>
-    	<version>0.8.11</version>
-    </dependency>
   </dependencies>
+  
   <build>
     <plugins>
       <plugin>
@@ -355,7 +348,7 @@
         <version>0.8.11</version>
         <executions>
           <execution>
-            <id>report-aggregate</id>
+            <id>jacococreport-aggregate</id>
             <phase>verify</phase>
             <goals>
               <goal>report-aggregate</goal>
