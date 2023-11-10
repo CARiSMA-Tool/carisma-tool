@@ -13,23 +13,24 @@ To start your working copy of CARiSMA, right click on a plugin project, select "
 # Creating a Plugin Project containing CARiSMA Checks
 1. Create a new Plug-in Project: New → Other → Plug-in Development → Plug-in Project
 2. Enter your plugin name. The convention is **"carisma.check.[pluginName]"**.
-3. Click *Next*.
-4. Enter the metadata for your plugin. Activator code is executed when the plugin is started.
+3. Set output folder to `target`.
 5. Click *Next*.
-6. Select the *CARiSMA UML2 Check Template*.
+6. Enter the metadata for your plugin.
 7. Click *Next*.
-	* **Note**: If you choose to use an Activator at a later time, you have to fix the imports of the Activator class manually. The default values in the following steps may mostly be altered at will, as they don't affect the look or behavior of the plugin. The exception of the rule are the Target Model Type and Page Name values. 
-8. Fill out the missing fields.
-	* *Check ID* is a unique ID for your Check. You may choose the package name as the Check ID.	
-	* *Package Name* is the name of your Package.
-	* *Class Name* is the name of your Java class implementing the check.
-	* *Plugin Name* is the name of the plugin as part of the CARiSMA project.
-	* *Publisher* should be your name or the name of your company.
-	* *Target Model Type* is the Model-Type your check will work with.
+8. Select the *CARiSMA UML2 Check Template*.
 9. Click *Next*.
-10. If you want to create a preference page containing check-wide settings, check the corresponding option.
-11. Select a page name. *Class Name* and *Package Name* are the java Class Name/Package Name.
-12. Click *Finish* to create your first CARiSMA check!
+10. Fill out the missing fields.
+    * *Check ID* is a unique ID for your Check. You may choose the package name as the Check ID.
+    * *Package Name* is the name of your Package.
+    * *Class Name* is the name of your Java class implementing the check.
+    * *Check Name* is the name of the check as part of the CARiSMA project.
+    * *Check Description* is the description of the CARiSMA check.
+    * *Publisher* should be your name or the name of your company.
+    * *Target Model Type* is the Model-Type your check will work with.
+11. Click *Next*.
+12. If you want to create a preference page containing check-wide settings, check the corresponding option *Create a Preference Page*.
+13. Select a *Page name*. *Class Name* and *Package Name* are the java Class Name/Package Name.
+14. Click *Finish* to create your first CARiSMA check!
 
 # The CARiSMA Tool Architecture
 CARiSMA is implemented as an Eclipse-based plugin while itself has a plugin architecture to be easily extensible.
