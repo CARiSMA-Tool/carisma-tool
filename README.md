@@ -7,7 +7,8 @@ Modeling offers an unprecedented opportunity for high-quality critical systems d
 * compliance analyses,
 * risk analyses, and
 * security analyses
-of software models
+
+of software models. CARiSMA is an acronym for **C**ompli**A**nce, **Ri**sk, and **S**ecurity **M**odel **A**nalyzer.
 
 Since CARiSMA is a reimplemented variant of the former UMLsec tool it natively supports UML models. Due to its EMF-based implementation CARiSMA can also support domain-specific modeling languages such as BPMN.
 

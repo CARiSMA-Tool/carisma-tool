@@ -141,7 +141,8 @@ public class DummyCheckSection extends OptionTemplateSection {
 		return new IPluginReference[] {new PluginReference("org.eclipse.ui",  //$NON-NLS-1$
 				null, 0), new PluginReference("org.eclipse.core.runtime", null, 0),
 				new PluginReference(ModeltypeUML2Activator.PLUGIN_ID, null, 0),
-				new PluginReference("org.eclipse.core.resources", null, 0)
+				new PluginReference("org.eclipse.core.resources", null, 0),
+				new PluginReference("org.eclipse.uml2.uml.resources", null, 0)
 				};
 	}
 
