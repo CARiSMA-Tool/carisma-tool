@@ -5,11 +5,12 @@
 	  <artifactId>carisma-tool</artifactId>
 	  <version>0.0.1-SNAPSHOT</version>
   </parent> 
-  <artifactId>carisma-report</artifactId>
+  <artifactId>carisma-aggregate-module</artifactId>
   <name>CARiSMA Tool Aggregate Report</name>
   <description>Aggregate Coverage Report</description>
   <dependencies>
   	<!-- Plugins -->
+  	
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.activity2petrinet</artifactId>
@@ -20,11 +21,13 @@
       <artifactId>carisma.check.activitypaths</artifactId>
       <version>1.0.2-SNAPSHOT</version>
     </dependency>
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.bpmn2.dummy</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.bpmn2.marisk</artifactId>
@@ -40,46 +43,56 @@
       <artifactId>carisma.check.dummy</artifactId>
       <version>1.1.1-SNAPSHOT</version>
     </dependency>
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.idschecks</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.oclcheck</artifactId>
       <version>1.0.3-SNAPSHOT</version>
     </dependency>
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.parametertest</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.requirescheck</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    <!-- tests do not work
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.sequencediagramcrypto</artifactId>
       <version>0.1.0-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.smartcard</artifactId>
       <version>1.0.3-SNAPSHOT</version>
     </dependency>
+    <!-- tests for module ignored
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.smartcard.evolution</artifactId>
       <version>1.1.2-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.statemachinepaths</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.staticcheck</artifactId>
@@ -120,11 +133,13 @@
       <artifactId>carisma.evolution.uml2.umlchange</artifactId>
       <version>1.2.0-SNAPSHOT</version>
     </dependency>
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.evolution.uml2.umlchange.ui</artifactId>
       <version>1.2.0-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.modeltype.bpmn2</artifactId>
@@ -140,16 +155,20 @@
       <artifactId>carisma.modeltype.bpmn2.extension</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.modeltype.bpmn2.extension.edit</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.modeltype.bpmn2.extension.editor</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.modeltype.uml2</artifactId>
@@ -165,16 +184,20 @@
       <artifactId>carisma.ocl.library</artifactId>
       <version>1.0.3-SNAPSHOT</version>
     </dependency>
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.ocl.library.edit</artifactId>
       <version>1.0.3-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.ocl.library.editor</artifactId>
       <version>1.0.3-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.profile.umlchange</artifactId>
@@ -185,39 +208,55 @@
       <artifactId>carisma.profile.umlsec</artifactId>
       <version>1.0.6-SNAPSHOT</version>
     </dependency>
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.profile.umlsec.enc</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.profile.umlsec.rabac</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.profile.umlsec.umlsec4ids</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.ui.console</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.ui.eclipse</artifactId>
       <version>1.4.6-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.ui.eclipse.descriptor</artifactId>
       <version>1.0.0-SNAPSHOT</version>
+    </dependency> 
+    -->
+    <!-- not tested
+    <dependency>
+      <groupId>carisma</groupId>
+      <artifactId>carisma.umlchange.efficiency</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
-    
-        
+    -->
     <!-- Tests -->
+    
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.activity2petrinet.tests</artifactId>
@@ -258,16 +297,20 @@
       <artifactId>carisma.check.requirescheck.tests</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    <!-- tests do not work
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.sequencediagrammcrypto.test</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- all tests ignored
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.smartcard.evolution.tests</artifactId>
       <version>1.1.0-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.smartcard.tests</artifactId>
@@ -327,17 +370,12 @@
       <groupId>carisma</groupId>
       <artifactId>carisma.profile.umlsec.tests</artifactId>
       <version>1.0.3-SNAPSHOT</version>
-    </dependency>
+    </dependency> 
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.tests.modelutils.uml</artifactId>
       <version>1.0.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>carisma</groupId>
-      <artifactId>carisma.umlchange.efficiency</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-    </dependency>
+    </dependency>    
   </dependencies>
   
   <build>
