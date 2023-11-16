@@ -10,17 +10,20 @@
   <description>Aggregate Coverage Report</description>
   <dependencies>
   	<!-- Plugins -->
-  	
+  	<!-- not core and tests not sufficient with 28%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.activity2petrinet</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not core and tests not sufficient with 22%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.activitypaths</artifactId>
       <version>1.0.2-SNAPSHOT</version>
     </dependency>
+    -->
     <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
@@ -38,11 +41,13 @@
       <artifactId>carisma.check.bpmn2.ocl</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    <!-- tests do not work
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.dummy</artifactId>
       <version>1.1.1-SNAPSHOT</version>
     </dependency>
+    -->
     <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
@@ -62,11 +67,13 @@
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
     -->
+    <!-- tests not sufficient with 32%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.requirescheck</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    -->
     <!-- tests do not work
     <dependency>
       <groupId>carisma</groupId>
@@ -74,11 +81,13 @@
       <version>0.1.0-SNAPSHOT</version>
     </dependency>
     -->
+    <!-- not core with 28%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.smartcard</artifactId>
       <version>1.0.3-SNAPSHOT</version>
     </dependency>
+    -->
     <!-- tests for module ignored
     <dependency>
       <groupId>carisma</groupId>
@@ -98,41 +107,53 @@
       <artifactId>carisma.check.staticcheck</artifactId>
       <version>1.0.4-SNAPSHOT</version>
     </dependency>
+    <!-- not core and tests not sufficient with 26%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.staticcheck.evolution</artifactId>
       <version>1.1.2-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.template</artifactId>
       <version>1.2.0-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.core</artifactId>
       <version>1.4.3-SNAPSHOT</version>
     </dependency>
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.core.io</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not core and tests not sufficient with 38%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.evolution</artifactId>
       <version>1.1.0-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not core and tests not sufficient with 19%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.evolution.uml2</artifactId>
       <version>1.2.0-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not core and tests not sufficient with 42%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.evolution.uml2.umlchange</artifactId>
       <version>1.2.0-SNAPSHOT</version>
     </dependency>
+    -->
     <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
@@ -198,11 +219,13 @@
       <version>1.0.3-SNAPSHOT</version>
     </dependency>
     -->
+    <!-- not core and tests not sufficient with 35%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.profile.umlchange</artifactId>
       <version>1.2.0-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.profile.umlsec</artifactId>
@@ -256,17 +279,20 @@
     </dependency>
     -->
     <!-- Tests -->
-    
+    <!-- not core with 90%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.activity2petrinet.tests</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not core with 88%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.activitypaths.tests</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.bpmn2.marisk.tests</artifactId>
@@ -292,11 +318,13 @@
       <artifactId>carisma.check.rabac.tests</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    <!-- tests not sufficient with 37%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.requirescheck.tests</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    -->
     <!-- tests do not work
     <dependency>
       <groupId>carisma</groupId>
@@ -311,41 +339,53 @@
       <version>1.1.0-SNAPSHOT</version>
     </dependency>
     -->
+    <!-- not core with 85%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.smartcard.tests</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not core and tests not sufficient with 26%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.staticcheck.evolution.tests</artifactId>
       <version>1.1.0-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.staticcheck.tests</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.core.tests</artifactId>
       <version>1.2.0-SNAPSHOT</version>
     </dependency>
+    -->
+   <!-- not core and with 76%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.evolution.tests</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not core and tests not sufficient with 34%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.evolution.uml2.tests</artifactId>
       <version>1.1.0-SNAPSHOT</version>
     </dependency>
+    -->
+    <!-- not core and tests not sufficient with 49%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.evolution.uml2.umlchange.tests</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.modeltype.bpmn2.extended.tests</artifactId>
@@ -361,21 +401,25 @@
       <artifactId>carisma.modeltype.uml2.tests</artifactId>
       <version>1.1.1-SNAPSHOT</version>
     </dependency>
+    <!-- not core with 74%
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.profile.umlchange.tests</artifactId>
       <version>1.2.0-SNAPSHOT</version>
     </dependency>
+    -->
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.profile.umlsec.tests</artifactId>
       <version>1.0.3-SNAPSHOT</version>
     </dependency> 
+    <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.tests.modelutils.uml</artifactId>
       <version>1.0.1-SNAPSHOT</version>
-    </dependency>    
+    </dependency> 
+    -->   
   </dependencies>
   
   <build>
