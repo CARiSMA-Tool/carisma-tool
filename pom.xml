@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>carisma</groupId>
   <artifactId>carisma-tool</artifactId>
@@ -86,94 +86,94 @@
     <module>report-aggregate-module</module>
   </modules>
   <properties>
-	<tycho-version>3.0.4</tycho-version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <sonar.organization>carisma-tool</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/report-aggregate-module/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <tycho-version>3.0.4</tycho-version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <sonar.organization>carisma-tool</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/report-aggregate-module/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
   </properties>
   <repositories>
-	<repository>
-		<id>Eclipse Latest</id>
-		<layout>p2</layout>
-		<url>https://download.eclipse.org/releases/latest</url>
-	</repository>
-	<repository>
-		<id>Eclipse Papyrus Update Site</id>
-		<layout>p2</layout>
-		<url>https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/latest</url>
-	</repository>
+    <repository>
+      <id>Eclipse Latest</id>
+      <layout>p2</layout>
+      <url>https://download.eclipse.org/releases/latest</url>
+    </repository>
+    <repository>
+      <id>2023-06 Update Site</id>
+      <layout>p2</layout>
+      <url>https://download.eclipse.org/releases/2023-06</url>
+    </repository>
   </repositories>
   <build>
     <plugins>
-	<plugin>
-		<groupId>org.eclipse.tycho</groupId>
-		<artifactId>tycho-maven-plugin</artifactId>
-		<extensions>true</extensions>
-		<version>${tycho-version}</version>
-	</plugin>
-	<plugin>
-		<groupId>org.eclipse.tycho</groupId>
-		<artifactId>target-platform-configuration</artifactId>
-		<version>${tycho-version}</version>
-	        <configuration>
-			<environments>
-				<environment>
-					<os>linux</os>
-					<ws>gtk</ws>
-					<arch>x86_64</arch>
-				</environment>
-				<environment>
-					<os>win32</os>
-					<ws>win32</ws>
-					<arch>x86_64</arch>
-				</environment>
-				<environment>
-					<os>macosx</os>
-					<ws>cocoa</ws>
-					<arch>x86_64</arch>
-				</environment>
-				<environment>
-					<os>macosx</os>
-					<ws>cocoa</ws>
-					<arch>aarch64</arch>
-				</environment>			
-			</environments>
-		</configuration>
-	</plugin>
-	<plugin>
-		<groupId>org.eclipse.tycho</groupId>
-		<artifactId>tycho-surefire-plugin</artifactId>
-		<version>${tycho-version}</version>
-		<configuration>
-	        	<!--<skipTests>true</skipTests>-->
-		</configuration>
-	</plugin>
-	<plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <version>${tycho-version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <environments>
+            <environment>
+              <os>linux</os>
+              <ws>gtk</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>win32</os>
+              <ws>win32</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>macosx</os>
+              <ws>cocoa</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>macosx</os>
+              <ws>cocoa</ws>
+              <arch>aarch64</arch>
+            </environment>          
+          </environments>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-surefire-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <!--<skipTests>true</skipTests>-->
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.11</version>
         <executions>
-            <execution>
-            	<id>prepare-agent</id>
-                <goals>
-                    <goal>prepare-agent</goal>
-                </goals>
-            </execution>
-            <execution>
-                <id>report</id>
-                <goals>
-                    <goal>report</goal>
-                </goals>
-				<configuration>
-            		<formats>
-              			<format>XML</format>
-            		</formats>
-          		</configuration>
-            </execution>
+          <execution>
+            <id>prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <formats>
+                <format>XML</format>
+              </formats>
+            </configuration>
+          </execution>
         </executions>
-    </plugin>
+      </plugin>
     </plugins>
   </build>
 </project>
