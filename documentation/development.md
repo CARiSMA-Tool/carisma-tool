@@ -1,12 +1,11 @@
 # Setting up CARiSMA for development
 1. If you already installed CARiSMA, delete the local installation.
 2. Import the CARiSMA Tool from the [git repository](https://github.com/CARiSMA-Tool/carisma-tool).
-3. Right click on the carisma-tool project and select *Run As* .
-4. Choose *Maven build...* .
-5. Enter "package" under goals.
-6. Click *Run*.
-7. Refresh the carisma-tool project.
-8. All errors should be resolved.
+3. Open a new Terminal 
+4. Move to the base directory of the carisma-tool
+5. Execute *mvnw.cmd clean install* on Windows or *./mvnw clean install* otherwise
+6. Refresh the carisma-tool project.
+7. All errors should be resolved.
 
 To start your working copy of CARiSMA, right click on a plugin project, select "Run As" -> "Eclipse Application".
 
