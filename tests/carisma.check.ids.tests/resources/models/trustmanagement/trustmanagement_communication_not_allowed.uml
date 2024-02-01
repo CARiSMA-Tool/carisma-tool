@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_UxrM0J2UEe6gHuKQjldnEQ" name="trustmanagement_communication_not_allowed">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_Uy1DYJ2UEe6gHuKQjldnEQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Node" xmi:id="_VgCusJ2UEe6gHuKQjldnEQ" name="Node3"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_V3PGsJ2UEe6gHuKQjldnEQ" name="Node4"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_YaOA0J2UEe6gHuKQjldnEQ" name="C1" memberEnd="_YaREIJ2UEe6gHuKQjldnEQ _YaUHcJ2UEe6gHuKQjldnEQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YaQdEJ2UEe6gHuKQjldnEQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YaQdEZ2UEe6gHuKQjldnEQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_YaREIJ2UEe6gHuKQjldnEQ" name="node4" type="_V3PGsJ2UEe6gHuKQjldnEQ" association="_YaOA0J2UEe6gHuKQjldnEQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_YaUHcJ2UEe6gHuKQjldnEQ" name="node3" type="_VgCusJ2UEe6gHuKQjldnEQ" association="_YaOA0J2UEe6gHuKQjldnEQ"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_UytHkJ2UEe6gHuKQjldnEQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_UytuoJ2UEe6gHuKQjldnEQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:base xmi:id="_XGWlMJ2UEe6gHuKQjldnEQ" base_Node="_V3PGsJ2UEe6gHuKQjldnEQ"/>
+  <umlsec4ids:basefree xmi:id="_XyX9sJ2UEe6gHuKQjldnEQ" base_Node="_VgCusJ2UEe6gHuKQjldnEQ"/>
+</xmi:XMI>

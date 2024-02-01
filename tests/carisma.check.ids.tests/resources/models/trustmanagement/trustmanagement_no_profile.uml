@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_dFEQsJqyEe6R7uu71iWAtw" name="trustmanagement_no_profile">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_dPc7wJqyEe6R7uu71iWAtw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Node" xmi:id="_fwc44JqyEe6R7uu71iWAtw" name="Node3"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_gXzz0JqyEe6R7uu71iWAtw" name="Node4"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_g0QfQJqyEe6R7uu71iWAtw" memberEnd="_g0cFcJqyEe6R7uu71iWAtw _g0fIwJqyEe6R7uu71iWAtw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g0XM8JqyEe6R7uu71iWAtw" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g0ZpMJqyEe6R7uu71iWAtw" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_g0cFcJqyEe6R7uu71iWAtw" name="node4" type="_gXzz0JqyEe6R7uu71iWAtw" association="_g0QfQJqyEe6R7uu71iWAtw"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_g0fIwJqyEe6R7uu71iWAtw" name="node3" type="_fwc44JqyEe6R7uu71iWAtw" association="_g0QfQJqyEe6R7uu71iWAtw"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_dNudcJqyEe6R7uu71iWAtw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dN3nYJqyEe6R7uu71iWAtw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:trust xmi:id="_kRVDEJqyEe6R7uu71iWAtw" base_Node="_fwc44JqyEe6R7uu71iWAtw"/>
+</xmi:XMI>

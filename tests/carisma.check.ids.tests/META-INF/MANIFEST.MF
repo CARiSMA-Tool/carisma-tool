@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: carisma.check.ids.tests
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: carisma.check.ids.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Require-Bundle: carisma.core;bundle-version="1.4.3",
+ org.eclipse.uml2.uml;bundle-version="5.5.0",
+ carisma.modeltype.uml2;bundle-version="1.1.4",
+ carisma.profile.umlsec.umlsec4ids;bundle-version="1.0.0",
+ carisma.check.idschecks;bundle-version="1.0.0",
+ org.junit;bundle-version="4.13.2",
+ org.eclipse.emf.ecore

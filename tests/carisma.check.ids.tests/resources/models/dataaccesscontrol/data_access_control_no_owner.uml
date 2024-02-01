@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_DPU0kJ2NEe6gHuKQjldnEQ" name="data_access_control_no_owner">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_DRBdsJ2NEe6gHuKQjldnEQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_DPl6UJ2NEe6gHuKQjldnEQ" name="Activity1" node="_Innu8J2NEe6gHuKQjldnEQ _Jn_m0J2NEe6gHuKQjldnEQ _K4zucJ2NEe6gHuKQjldnEQ _Mh_50J2NEe6gHuKQjldnEQ" group="_EAZFIJ2NEe6gHuKQjldnEQ _FyqUAJ2NEe6gHuKQjldnEQ">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_NtLTgJ2NEe6gHuKQjldnEQ" name="cf1" inPartition="_FyqUAJ2NEe6gHuKQjldnEQ" target="_Jn_m0J2NEe6gHuKQjldnEQ" source="_Innu8J2NEe6gHuKQjldnEQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PIPjUJ2NEe6gHuKQjldnEQ" name="cf2" target="_K4zucJ2NEe6gHuKQjldnEQ" source="_Jn_m0J2NEe6gHuKQjldnEQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_QEJK4J2NEe6gHuKQjldnEQ" name="cf3" inPartition="_EAZFIJ2NEe6gHuKQjldnEQ" target="_Mh_50J2NEe6gHuKQjldnEQ" source="_K4zucJ2NEe6gHuKQjldnEQ"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_EAZFIJ2NEe6gHuKQjldnEQ" name="Owner" node="_K4zucJ2NEe6gHuKQjldnEQ _Mh_50J2NEe6gHuKQjldnEQ" edge="_QEJK4J2NEe6gHuKQjldnEQ"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_FyqUAJ2NEe6gHuKQjldnEQ" name="Consumer" node="_Innu8J2NEe6gHuKQjldnEQ _Jn_m0J2NEe6gHuKQjldnEQ" edge="_NtLTgJ2NEe6gHuKQjldnEQ"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_Innu8J2NEe6gHuKQjldnEQ" name="InitialNode3" outgoing="_NtLTgJ2NEe6gHuKQjldnEQ" inPartition="_FyqUAJ2NEe6gHuKQjldnEQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_Jn_m0J2NEe6gHuKQjldnEQ" name="request data" incoming="_NtLTgJ2NEe6gHuKQjldnEQ" outgoing="_PIPjUJ2NEe6gHuKQjldnEQ" inPartition="_FyqUAJ2NEe6gHuKQjldnEQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_K4zucJ2NEe6gHuKQjldnEQ" name="give access to data" incoming="_PIPjUJ2NEe6gHuKQjldnEQ" outgoing="_QEJK4J2NEe6gHuKQjldnEQ" inPartition="_EAZFIJ2NEe6gHuKQjldnEQ"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_Mh_50J2NEe6gHuKQjldnEQ" name="ActivityFinalNode6" incoming="_QEJK4J2NEe6gHuKQjldnEQ" inPartition="_EAZFIJ2NEe6gHuKQjldnEQ"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_DQy0MJ2NEe6gHuKQjldnEQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DQ0CUJ2NEe6gHuKQjldnEQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:Consumer xmi:id="_SDmhMJ2NEe6gHuKQjldnEQ" base_ActivityPartition="_FyqUAJ2NEe6gHuKQjldnEQ">
+    <attributes>attribute1</attributes>
+    <actions>action1</actions>
+  </umlsec4ids:Consumer>
+</xmi:XMI>

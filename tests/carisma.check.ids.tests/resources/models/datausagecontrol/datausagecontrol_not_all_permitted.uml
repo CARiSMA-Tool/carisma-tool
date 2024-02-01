@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_nOlhIJ2hEe6vx_7io-WIZw" name="datausagecontrol_not_all_permitted">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_nQAdcJ2hEe6vx_7io-WIZw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_nOvSIJ2hEe6vx_7io-WIZw" name="Activity1" node="_oYtx8J2hEe6vx_7io-WIZw _pE0qAJ2hEe6vx_7io-WIZw _qSA14J2hEe6vx_7io-WIZw" group="_n1eiAJ2hEe6vx_7io-WIZw">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_rwK18J2hEe6vx_7io-WIZw" inPartition="_n1eiAJ2hEe6vx_7io-WIZw" target="_pE0qAJ2hEe6vx_7io-WIZw" source="_oYtx8J2hEe6vx_7io-WIZw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_soryUJ2hEe6vx_7io-WIZw" inPartition="_n1eiAJ2hEe6vx_7io-WIZw" target="_qSA14J2hEe6vx_7io-WIZw" source="_pE0qAJ2hEe6vx_7io-WIZw"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_n1eiAJ2hEe6vx_7io-WIZw" name="ActivityPartition1" node="_oYtx8J2hEe6vx_7io-WIZw _pE0qAJ2hEe6vx_7io-WIZw _qSA14J2hEe6vx_7io-WIZw" edge="_rwK18J2hEe6vx_7io-WIZw _soryUJ2hEe6vx_7io-WIZw"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_oYtx8J2hEe6vx_7io-WIZw" name="" outgoing="_rwK18J2hEe6vx_7io-WIZw" inPartition="_n1eiAJ2hEe6vx_7io-WIZw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_pE0qAJ2hEe6vx_7io-WIZw" name="action1" incoming="_rwK18J2hEe6vx_7io-WIZw" outgoing="_soryUJ2hEe6vx_7io-WIZw" inPartition="_n1eiAJ2hEe6vx_7io-WIZw"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_qSA14J2hEe6vx_7io-WIZw" name="" incoming="_soryUJ2hEe6vx_7io-WIZw" inPartition="_n1eiAJ2hEe6vx_7io-WIZw"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_nPxz8J2hEe6vx_7io-WIZw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nPybAJ2hEe6vx_7io-WIZw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:datausagecontrol xmi:id="_uJMi0J2hEe6vx_7io-WIZw" base_ActivityPartition="_n1eiAJ2hEe6vx_7io-WIZw"/>
+</xmi:XMI>

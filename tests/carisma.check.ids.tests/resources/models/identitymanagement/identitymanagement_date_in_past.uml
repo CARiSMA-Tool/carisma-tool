@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_YmsngJ2dEe6gHuKQjldnEQ" name="identitymanagement_date_in_past">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_Ynl_YJ2dEe6gHuKQjldnEQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Node" xmi:id="_Y_VxAJ2dEe6gHuKQjldnEQ" name="Node3"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Ynht8J2dEe6gHuKQjldnEQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ynht8Z2dEe6gHuKQjldnEQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:X509 xmi:id="_Z9v6AJ2dEe6gHuKQjldnEQ" base_Node="_Y_VxAJ2dEe6gHuKQjldnEQ" expiration_date_yyyy_mm_dd="22221212"/>
+  <umlsec4ids:X509TLS xmi:id="_Z9yWQJ2dEe6gHuKQjldnEQ" base_Node="_Y_VxAJ2dEe6gHuKQjldnEQ" expiration_date_yyyy_mm_dd="19970901"/>
+</xmi:XMI>

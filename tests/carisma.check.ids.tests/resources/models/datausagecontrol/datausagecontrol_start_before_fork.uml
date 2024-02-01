@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_NzlmEJ2kEe6vx_7io-WIZw" name="datausagecontrol_start_before_fork">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_N0wDsJ2kEe6vx_7io-WIZw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_NzxzUJ2kEe6vx_7io-WIZw" name="Activity1" node="_TgkXAJ2kEe6vx_7io-WIZw _UdD0cJ2kEe6vx_7io-WIZw _X2OvsJ2kEe6vx_7io-WIZw _Y3LPUJ2kEe6vx_7io-WIZw _ZuTroJ2kEe6vx_7io-WIZw _bLdmIJ2kEe6vx_7io-WIZw _cjeh8J2kEe6vx_7io-WIZw _eGHZYJ2kEe6vx_7io-WIZw" group="_TF2J4J2kEe6vx_7io-WIZw">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_fH5mgJ2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw" target="_UdD0cJ2kEe6vx_7io-WIZw" source="_TgkXAJ2kEe6vx_7io-WIZw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_gJp-cJ2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw" target="_X2OvsJ2kEe6vx_7io-WIZw" source="_UdD0cJ2kEe6vx_7io-WIZw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_g-J9gJ2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw" target="_Y3LPUJ2kEe6vx_7io-WIZw" source="_X2OvsJ2kEe6vx_7io-WIZw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_htXM4J2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw" target="_ZuTroJ2kEe6vx_7io-WIZw" source="_X2OvsJ2kEe6vx_7io-WIZw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_ih3zAJ2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw" target="_bLdmIJ2kEe6vx_7io-WIZw" source="_ZuTroJ2kEe6vx_7io-WIZw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_jKU6IJ2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw" target="_bLdmIJ2kEe6vx_7io-WIZw" source="_Y3LPUJ2kEe6vx_7io-WIZw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_j5aNsJ2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw" target="_cjeh8J2kEe6vx_7io-WIZw" source="_bLdmIJ2kEe6vx_7io-WIZw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_lPDK8J2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw" target="_eGHZYJ2kEe6vx_7io-WIZw" source="_cjeh8J2kEe6vx_7io-WIZw"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_TF2J4J2kEe6vx_7io-WIZw" name="ActivityPartition1" node="_TgkXAJ2kEe6vx_7io-WIZw _UdD0cJ2kEe6vx_7io-WIZw _X2OvsJ2kEe6vx_7io-WIZw _Y3LPUJ2kEe6vx_7io-WIZw _ZuTroJ2kEe6vx_7io-WIZw _bLdmIJ2kEe6vx_7io-WIZw _cjeh8J2kEe6vx_7io-WIZw _eGHZYJ2kEe6vx_7io-WIZw" edge="_fH5mgJ2kEe6vx_7io-WIZw _gJp-cJ2kEe6vx_7io-WIZw _g-J9gJ2kEe6vx_7io-WIZw _htXM4J2kEe6vx_7io-WIZw _ih3zAJ2kEe6vx_7io-WIZw _jKU6IJ2kEe6vx_7io-WIZw _j5aNsJ2kEe6vx_7io-WIZw _lPDK8J2kEe6vx_7io-WIZw"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_TgkXAJ2kEe6vx_7io-WIZw" name="" outgoing="_fH5mgJ2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_UdD0cJ2kEe6vx_7io-WIZw" name="action1" incoming="_fH5mgJ2kEe6vx_7io-WIZw" outgoing="_gJp-cJ2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw"/>
+      <node xmi:type="uml:ForkNode" xmi:id="_X2OvsJ2kEe6vx_7io-WIZw" name="" incoming="_gJp-cJ2kEe6vx_7io-WIZw" outgoing="_g-J9gJ2kEe6vx_7io-WIZw _htXM4J2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_Y3LPUJ2kEe6vx_7io-WIZw" name="action2" incoming="_g-J9gJ2kEe6vx_7io-WIZw" outgoing="_jKU6IJ2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_ZuTroJ2kEe6vx_7io-WIZw" name="action3" incoming="_htXM4J2kEe6vx_7io-WIZw" outgoing="_ih3zAJ2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw"/>
+      <node xmi:type="uml:JoinNode" xmi:id="_bLdmIJ2kEe6vx_7io-WIZw" name="" incoming="_ih3zAJ2kEe6vx_7io-WIZw _jKU6IJ2kEe6vx_7io-WIZw" outgoing="_j5aNsJ2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_cjeh8J2kEe6vx_7io-WIZw" name="action4" incoming="_j5aNsJ2kEe6vx_7io-WIZw" outgoing="_lPDK8J2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_eGHZYJ2kEe6vx_7io-WIZw" name="" incoming="_lPDK8J2kEe6vx_7io-WIZw" inPartition="_TF2J4J2kEe6vx_7io-WIZw"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_N0oH4J2kEe6vx_7io-WIZw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_N0ou8J2kEe6vx_7io-WIZw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:datausagecontrol xmi:id="_mTylcJ2kEe6vx_7io-WIZw" base_ActivityPartition="_TF2J4J2kEe6vx_7io-WIZw" permission="_UdD0cJ2kEe6vx_7io-WIZw _Y3LPUJ2kEe6vx_7io-WIZw _ZuTroJ2kEe6vx_7io-WIZw _cjeh8J2kEe6vx_7io-WIZw" obligation_start="_UdD0cJ2kEe6vx_7io-WIZw" obligation_stop="_Y3LPUJ2kEe6vx_7io-WIZw"/>
+</xmi:XMI>

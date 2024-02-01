@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_1Ls9QJ2WEe6gHuKQjldnEQ" name="trustedplatform_no_certification">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_1M1lsJ2WEe6gHuKQjldnEQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Node" xmi:id="_2JGZoJ2WEe6gHuKQjldnEQ" name="Node3"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_2VugYJ2WEe6gHuKQjldnEQ" name="Node4"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_20h8QJ2WEe6gHuKQjldnEQ" memberEnd="_20ijUp2WEe6gHuKQjldnEQ _20jKYJ2WEe6gHuKQjldnEQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_20ijUJ2WEe6gHuKQjldnEQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_20ijUZ2WEe6gHuKQjldnEQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_20ijUp2WEe6gHuKQjldnEQ" name="node4" type="_2VugYJ2WEe6gHuKQjldnEQ" association="_20h8QJ2WEe6gHuKQjldnEQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_20jKYJ2WEe6gHuKQjldnEQ" name="node3" type="_2JGZoJ2WEe6gHuKQjldnEQ" association="_20h8QJ2WEe6gHuKQjldnEQ"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_1Mu4AJ2WEe6gHuKQjldnEQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1MvfEJ2WEe6gHuKQjldnEQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:encryption xmi:id="_Grq0EJ2XEe6gHuKQjldnEQ" base_Node="_2JGZoJ2WEe6gHuKQjldnEQ"/>
+  <umlsec4ids:isolated xmi:id="_GruecJ2XEe6gHuKQjldnEQ" base_Node="_2JGZoJ2WEe6gHuKQjldnEQ"/>
+  <umlsec4ids:verified xmi:id="_GrxhwJ2XEe6gHuKQjldnEQ" base_Node="_2JGZoJ2WEe6gHuKQjldnEQ"/>
+  <umlsec4ids:certified xmi:id="_IADNEJ2XEe6gHuKQjldnEQ" base_Node="_2VugYJ2WEe6gHuKQjldnEQ"/>
+  <umlsec4ids:encryption xmi:id="_IATEsJ2XEe6gHuKQjldnEQ" base_Node="_2VugYJ2WEe6gHuKQjldnEQ"/>
+  <umlsec4ids:isolated xmi:id="_IAWIAJ2XEe6gHuKQjldnEQ" base_Node="_2VugYJ2WEe6gHuKQjldnEQ"/>
+  <umlsec4ids:verified xmi:id="_IAaZcJ2XEe6gHuKQjldnEQ" base_Node="_2VugYJ2WEe6gHuKQjldnEQ"/>
+</xmi:XMI>

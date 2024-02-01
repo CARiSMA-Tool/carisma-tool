@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_FvQ6YJ2QEe6gHuKQjldnEQ" name="data_access_control_owner_consumer_same_partition">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_FwnlQJ2QEe6gHuKQjldnEQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_FvXoEJ2QEe6gHuKQjldnEQ" name="Activity1" node="_HME2oJ2QEe6gHuKQjldnEQ _HudyAJ2QEe6gHuKQjldnEQ _JYhgEJ2QEe6gHuKQjldnEQ" group="_GREm8J2QEe6gHuKQjldnEQ">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_KhTGAJ2QEe6gHuKQjldnEQ" name="cf1" inPartition="_GREm8J2QEe6gHuKQjldnEQ" target="_HudyAJ2QEe6gHuKQjldnEQ" source="_HME2oJ2QEe6gHuKQjldnEQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_LfqywJ2QEe6gHuKQjldnEQ" name="cf2" inPartition="_GREm8J2QEe6gHuKQjldnEQ" target="_JYhgEJ2QEe6gHuKQjldnEQ" source="_HudyAJ2QEe6gHuKQjldnEQ"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_GREm8J2QEe6gHuKQjldnEQ" name="ActivityPartition1" node="_HME2oJ2QEe6gHuKQjldnEQ _HudyAJ2QEe6gHuKQjldnEQ _JYhgEJ2QEe6gHuKQjldnEQ" edge="_KhTGAJ2QEe6gHuKQjldnEQ _LfqywJ2QEe6gHuKQjldnEQ"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_HME2oJ2QEe6gHuKQjldnEQ" name="InitialNode2" outgoing="_KhTGAJ2QEe6gHuKQjldnEQ" inPartition="_GREm8J2QEe6gHuKQjldnEQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_HudyAJ2QEe6gHuKQjldnEQ" name="give access" incoming="_KhTGAJ2QEe6gHuKQjldnEQ" outgoing="_LfqywJ2QEe6gHuKQjldnEQ" inPartition="_GREm8J2QEe6gHuKQjldnEQ"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_JYhgEJ2QEe6gHuKQjldnEQ" name="ActivityFinalNode4" incoming="_LfqywJ2QEe6gHuKQjldnEQ" inPartition="_GREm8J2QEe6gHuKQjldnEQ"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_FwebUJ2QEe6gHuKQjldnEQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_FwfCYJ2QEe6gHuKQjldnEQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:Consumer xmi:id="_Nm_EkJ2QEe6gHuKQjldnEQ" base_ActivityPartition="_GREm8J2QEe6gHuKQjldnEQ">
+    <attributes>attribute1</attributes>
+    <actions>action1</actions>
+  </umlsec4ids:Consumer>
+  <umlsec4ids:Owner xmi:id="_NnPjQJ2QEe6gHuKQjldnEQ" base_ActivityPartition="_GREm8J2QEe6gHuKQjldnEQ" protected="_HudyAJ2QEe6gHuKQjldnEQ">
+    <requested_attributes>attribute1</requested_attributes>
+    <requested_actions>action1</requested_actions>
+  </umlsec4ids:Owner>
+</xmi:XMI>

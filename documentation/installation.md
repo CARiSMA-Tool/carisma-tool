@@ -30,7 +30,7 @@ After installing the Eclipse Modeling Tools, you need to install Papyrus via the
 
 
 ## CARiSMA
-Next, you are ready to install the CARiSMA tool. You can find the latest ver- sion here :
+Next, you are ready to install the CARiSMA tool. You can find the latest version here :
 https://github.com/CARiSMA-Tool/carisma-tool .
 Otherwise, you can also use the update site for the latest version: https://rgse.uni-koblenz.de/carisma/updatesite/ . To install CARiSMA, you need to follow the steps 1 - 4 from the Papyrus installation. Afterwards, you do the following:
 1. Paste the update site into the *Location* field and name it.

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_q7itUJ2cEe6gHuKQjldnEQ" type="PapyrusUMLDeploymentDiagram" name="Deployment Diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_rdPFIJ2cEe6gHuKQjldnEQ" type="Node_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_rdQ6UJ2cEe6gHuKQjldnEQ" type="Node_NameLabel"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_rdRhYJ2cEe6gHuKQjldnEQ" type="Node_NestedNodeCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_rdRhYZ2cEe6gHuKQjldnEQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rdRhYp2cEe6gHuKQjldnEQ"/>
+    </children>
+    <element xmi:type="uml:Node" href="identitymanagement_no_communication.uml#_rdKMoJ2cEe6gHuKQjldnEQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rdPFIZ2cEe6gHuKQjldnEQ" x="340" y="220"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_spdAoJ2cEe6gHuKQjldnEQ" type="StereotypeComment">
+    <styles xmi:type="notation:TitleStyle" xmi:id="_spdAoZ2cEe6gHuKQjldnEQ"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_spdAo52cEe6gHuKQjldnEQ" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:Node" href="identitymanagement_no_communication.uml#_rdKMoJ2cEe6gHuKQjldnEQ"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_spdAop2cEe6gHuKQjldnEQ" x="540" y="220"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_q7itUZ2cEe6gHuKQjldnEQ" name="diagram_compatibility_version" stringValue="1.4.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_q7itUp2cEe6gHuKQjldnEQ"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_q7itU52cEe6gHuKQjldnEQ" diagramKindId="org.eclipse.papyrus.uml.diagram.deployment">
+    <owner xmi:type="uml:Model" href="identitymanagement_no_communication.uml#_q7iGQJ2cEe6gHuKQjldnEQ"/>
+  </styles>
+  <element xmi:type="uml:Model" href="identitymanagement_no_communication.uml#_q7iGQJ2cEe6gHuKQjldnEQ"/>
+  <edges xmi:type="notation:Connector" xmi:id="_spdApJ2cEe6gHuKQjldnEQ" type="StereotypeCommentLink" source="_rdPFIJ2cEe6gHuKQjldnEQ" target="_spdAoJ2cEe6gHuKQjldnEQ">
+    <styles xmi:type="notation:FontStyle" xmi:id="_spdApZ2cEe6gHuKQjldnEQ"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_spdnsJ2cEe6gHuKQjldnEQ" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:Node" href="identitymanagement_no_communication.uml#_rdKMoJ2cEe6gHuKQjldnEQ"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_spdApp2cEe6gHuKQjldnEQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_spdAp52cEe6gHuKQjldnEQ"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_spdAqJ2cEe6gHuKQjldnEQ"/>
+  </edges>
+</notation:Diagram>
