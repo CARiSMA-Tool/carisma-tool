@@ -70,7 +70,7 @@ public class TrustedPlatformCheck implements CarismaCheckWithID {
 	 * @return true if the model is correct according to trusted platform rules, false otherwise
 	 */
 	
-	private boolean startCheck() {
+	public boolean startCheck() {
 		//Get all Nodes within the diagram
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
 		boolean checkSuccessful = true;

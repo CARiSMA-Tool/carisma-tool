@@ -73,7 +73,7 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 	 * @return true if the model is correct according to identity management rules, false otherwise
 	 */
 	
-	private boolean startCheck() {
+	public boolean startCheck() {
 		boolean checkSuccessful = true;
 		//Get all nodes and nodes with stereotypes
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);

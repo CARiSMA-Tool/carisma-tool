@@ -100,7 +100,7 @@ public class DataAccessCheck implements CarismaCheckWithID {
 	 * @return true if the model is correct according to data access control rules, false otherwise
 	 */
 	
-	private boolean startCheck() {
+	public boolean startCheck() {
 
 		//Get all Partitions of the current model
 		

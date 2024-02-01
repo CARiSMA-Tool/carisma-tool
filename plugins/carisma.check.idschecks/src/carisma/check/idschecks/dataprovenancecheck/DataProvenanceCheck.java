@@ -97,7 +97,7 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 	 * @return true if the model is correct according to data provenance tracking rules, false otherwise
 	 */
 	
-	private boolean startCheck() {
+	public boolean startCheck() {
 		
 		this.analysisHost.appendLineToReport("IMPORTANT");
 		this.analysisHost.appendLineToReport("To run this check succcessfully you have to name every element!");

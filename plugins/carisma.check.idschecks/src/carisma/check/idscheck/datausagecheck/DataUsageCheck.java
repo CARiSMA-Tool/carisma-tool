@@ -102,7 +102,7 @@ public class DataUsageCheck implements CarismaCheckWithID {
 	 * @return true if the model is correct according to data usage control rules, false otherwise
 	 */
 	
-	private boolean startCheck() {
+	public boolean startCheck() {
 		this.analysisHost.appendLineToReport("----IMPORTANT-------");
 		this.analysisHost.appendLineToReport("To execute this Check successfully, the Initial Node and Final Node must have an empty name");
 		this.analysisHost.appendLineToReport("Decision Nodes, Fork Nodes, Merge Nodes and Join Nodes must have an empty name");
