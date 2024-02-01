@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_U8QLYMFSEe6QqtXpOfnRpw" type="PapyrusUMLActivityDiagram" name="Activity Diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_U8QLYcFSEe6QqtXpOfnRpw" type="Activity_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_U8QLYsFSEe6QqtXpOfnRpw" type="Activity_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_U8QLY8FSEe6QqtXpOfnRpw" type="Activity_KeywordLabel"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_U8QLZMFSEe6QqtXpOfnRpw" type="Activity_ParameterCompartment">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_U8QLZcFSEe6QqtXpOfnRpw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_U8QLZsFSEe6QqtXpOfnRpw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_U8QLZ8FSEe6QqtXpOfnRpw"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_U8QLaMFSEe6QqtXpOfnRpw" type="Activity_PreconditionCompartment">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_U8QLacFSEe6QqtXpOfnRpw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_U8QLasFSEe6QqtXpOfnRpw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_U8QLa8FSEe6QqtXpOfnRpw"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_U8QLbMFSEe6QqtXpOfnRpw" type="Activity_PostconditionCompartment">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_U8QLbcFSEe6QqtXpOfnRpw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_U8QLbsFSEe6QqtXpOfnRpw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_U8QLb8FSEe6QqtXpOfnRpw"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_U8QLcMFSEe6QqtXpOfnRpw" type="Activity_ActivityNodeCompartment">
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_U8QLccFSEe6QqtXpOfnRpw"/>
+    </children>
+    <element xmi:type="uml:Activity" href="dataprovenancetracking.uml#_U70GgMFSEe6QqtXpOfnRpw"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_U8QLcsFSEe6QqtXpOfnRpw"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_U8QLc8FSEe6QqtXpOfnRpw" name="diagram_compatibility_version" stringValue="1.4.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_U8QLdMFSEe6QqtXpOfnRpw"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_U8QLdcFSEe6QqtXpOfnRpw" diagramKindId="org.eclipse.papyrus.uml.diagram.activity">
+    <owner xmi:type="uml:Model" href="dataprovenancetracking.uml#_U7QF0MFSEe6QqtXpOfnRpw"/>
+  </styles>
+  <element xmi:type="uml:Activity" href="dataprovenancetracking.uml#_U70GgMFSEe6QqtXpOfnRpw"/>
+</notation:Diagram>

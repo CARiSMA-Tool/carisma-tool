@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_Nsb5QMFTEe6QqtXpOfnRpw" name="dataprovenancetracking_no_clearing">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_Ns8PkMFTEe6QqtXpOfnRpw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_NsdHYMFTEe6QqtXpOfnRpw" name="Activity1" node="_X_9XgMFTEe6QqtXpOfnRpw _bSv98MFTEe6QqtXpOfnRpw _bp7H0MFTEe6QqtXpOfnRpw _dtBoAMFTEe6QqtXpOfnRpw" group="_UiP6gMFTEe6QqtXpOfnRpw">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_f28h4MFTEe6QqtXpOfnRpw" inPartition="_UiP6gMFTEe6QqtXpOfnRpw" target="_bSv98MFTEe6QqtXpOfnRpw" source="_X_9XgMFTEe6QqtXpOfnRpw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_gYUJkMFTEe6QqtXpOfnRpw" inPartition="_UiP6gMFTEe6QqtXpOfnRpw" target="_bp7H0MFTEe6QqtXpOfnRpw" source="_bSv98MFTEe6QqtXpOfnRpw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_g5aEcMFTEe6QqtXpOfnRpw" inPartition="_UiP6gMFTEe6QqtXpOfnRpw" target="_dtBoAMFTEe6QqtXpOfnRpw" source="_bp7H0MFTEe6QqtXpOfnRpw"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_UiP6gMFTEe6QqtXpOfnRpw" name="ActivityPartition1" node="_X_9XgMFTEe6QqtXpOfnRpw _bSv98MFTEe6QqtXpOfnRpw _bp7H0MFTEe6QqtXpOfnRpw _dtBoAMFTEe6QqtXpOfnRpw" edge="_f28h4MFTEe6QqtXpOfnRpw _gYUJkMFTEe6QqtXpOfnRpw _g5aEcMFTEe6QqtXpOfnRpw"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_X_9XgMFTEe6QqtXpOfnRpw" name="InitialNode2" outgoing="_f28h4MFTEe6QqtXpOfnRpw" inPartition="_UiP6gMFTEe6QqtXpOfnRpw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_bSv98MFTEe6QqtXpOfnRpw" name="OpaqueAction3" incoming="_f28h4MFTEe6QqtXpOfnRpw" outgoing="_gYUJkMFTEe6QqtXpOfnRpw" inPartition="_UiP6gMFTEe6QqtXpOfnRpw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_bp7H0MFTEe6QqtXpOfnRpw" name="OpaqueAction4" incoming="_gYUJkMFTEe6QqtXpOfnRpw" outgoing="_g5aEcMFTEe6QqtXpOfnRpw" inPartition="_UiP6gMFTEe6QqtXpOfnRpw"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_dtBoAMFTEe6QqtXpOfnRpw" name="ActivityFinalNode5" incoming="_g5aEcMFTEe6QqtXpOfnRpw" inPartition="_UiP6gMFTEe6QqtXpOfnRpw"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Ns3-IMFTEe6QqtXpOfnRpw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ns3-IcFTEe6QqtXpOfnRpw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:dataprovenancetracking xmi:id="_W_EiQMFTEe6QqtXpOfnRpw" base_Activity="_NsdHYMFTEe6QqtXpOfnRpw" start_action="_bSv98MFTEe6QqtXpOfnRpw" stop_action="_bp7H0MFTEe6QqtXpOfnRpw" protected="_bSv98MFTEe6QqtXpOfnRpw"/>
+</xmi:XMI>

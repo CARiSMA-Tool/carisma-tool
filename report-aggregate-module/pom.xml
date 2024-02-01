@@ -48,13 +48,21 @@
       <version>1.1.1-SNAPSHOT</version>
     </dependency>
     -->
-    <!-- not tested
+    
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.idschecks</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
-    -->
+    
+   
+    <dependency>
+      <groupId>carisma</groupId>
+      <artifactId>carisma.check.ids.tests</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+  
+
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.check.oclcheck</artifactId>
@@ -243,13 +251,13 @@
       <artifactId>carisma.profile.umlsec.rabac</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
-    <!-- not tested
+  
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.profile.umlsec.umlsec4ids</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
-    -->
+    
     <!-- not tested
     <dependency>
       <groupId>carisma</groupId>
