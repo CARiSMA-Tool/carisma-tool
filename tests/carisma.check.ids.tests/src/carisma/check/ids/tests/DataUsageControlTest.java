@@ -31,7 +31,7 @@ import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.profile.umlsec.umlsec4ids.*;
 
 /**
- * JUnit test-file for the IdentityManagement of the Umlsec4IDS plugin.
+ * JUnit test-file for the DataUsageControl of the Umlsec4IDS plugin.
  * @author Alexander Peikert
  *
  */
