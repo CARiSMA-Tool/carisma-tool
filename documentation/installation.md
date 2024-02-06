@@ -2,6 +2,7 @@
 
 ## Eclipse Modeling Tools
 - First, you need to install the Eclipse Modeling Tools. You can find it at : https://www.eclipse.org/downloads/packages/
+- The last Eclipse version CARiSMA was tested with is version 2023-12
 - If you have problems installing it, check out the installation guide at : https://wiki.eclipse.org/Eclipse/Installation
 
 ## BPMN2 Modeler
