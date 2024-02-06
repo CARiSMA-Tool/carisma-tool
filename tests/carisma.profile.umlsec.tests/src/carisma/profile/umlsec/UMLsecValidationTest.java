@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
