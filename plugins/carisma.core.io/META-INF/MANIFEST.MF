@@ -27,7 +27,7 @@ Bundle-ClassPath: .,
 Require-Bundle: org.apache.httpcomponents.httpcore,
  org.apache.httpcomponents.httpclient,
  org.eclipse.core.runtime,
- org.apache.commons.codec
+ org.apache.commons.commons-codec
 Bundle-Activator: carisma.core.io.IOActivator
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: carisma.core.io
