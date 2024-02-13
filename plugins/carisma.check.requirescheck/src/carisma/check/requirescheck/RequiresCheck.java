@@ -15,6 +15,7 @@ import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheck;
 import carisma.core.checks.CheckParameter;
+import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
@@ -68,6 +69,61 @@ public class RequiresCheck implements CarismaCheck {
 			this.host.appendLineToReport("The given model is null");
 			return false;
 		}
+		ArrayList<Package> packageList = (ArrayList<Package>) UMLHelper.getAllElementsOfType(model, Package.class);
+		if (packageList.size() > 0) {
+			final var adm = new ActivityDiagramManager((Package) model.getOwnedElements().get(0));
+			final var pathsList = adm.getAllPaths();
+			if (pathsList.isEmpty()) {
+				final var resultMessage = new AnalysisResultMessage(StatusType.INFO,
+						"No paths could be found in the model.");
+				this.host.addResultMessage(resultMessage);
+				this.host.appendLineToReport("No paths could be found in the model.");
+				return true;
+			}
+			final List<Action> requiringActions = new ArrayList<>();
+			for (final Element element : UMLsecUtil.getStereotypedElements(model, UMLsec.REQUIRES)) {
+				requiringActions.add((Action) element);
+			}
+			if (requiringActions.isEmpty()) {
+				final var resultMessage = new AnalysisResultMessage(StatusType.INFO,
+						"No actions with stereotype <<requires>> has been found.");
+				this.host.addResultMessage(resultMessage);
+				this.host.appendLineToReport("No actions with stereotype <<requires>> has been found.");
+				return true;
+			}
+			for (final Action requiringElement : requiringActions) {
+				for (final List<Element> path : pathsList) {
+					singleCheck(requiringElement, path);
+				}
+			}
+		} else {
+			final var adm = new ActivityDiagramManager(model, host); //gehen richtig rein
+			final var pathsList = adm.getAllPaths();
+			if (pathsList.isEmpty()) {
+				final var resultMessage = new AnalysisResultMessage(StatusType.INFO,
+						"No paths could be found in the model.");
+				this.host.addResultMessage(resultMessage);
+				this.host.appendLineToReport("No paths could be found in the model.");
+				return true;
+			}
+			final List<Action> requiringActions = new ArrayList<>();
+			for (final Element element : UMLsecUtil.getStereotypedElements(model, UMLsec.REQUIRES)) {
+				requiringActions.add((Action) element);
+			}
+			if (requiringActions.isEmpty()) {
+				final var resultMessage = new AnalysisResultMessage(StatusType.INFO,
+						"No actions with stereotype <<requires>> has been found.");
+				this.host.addResultMessage(resultMessage);
+				this.host.appendLineToReport("No actions with stereotype <<requires>> has been found.");
+				return true;
+			}
+			for (final Action requiringElement : requiringActions) {
+				for (final List<Element> path : pathsList) {
+					singleCheck(requiringElement, path);
+				}
+			}
+		}
+		/*
 		final var adm = new ActivityDiagramManager((Package) model.getOwnedElements().get(0));
 		final var pathsList = adm.getAllPaths();
 		if (pathsList.isEmpty()) {
@@ -77,6 +133,7 @@ public class RequiresCheck implements CarismaCheck {
 			this.host.appendLineToReport("No paths could be found in the model.");
 			return true;
 		}
+		
 		final List<Action> requiringActions = new ArrayList<>();
 		for (final Element element : UMLsecUtil.getStereotypedElements(model, UMLsec.REQUIRES)) {
 			requiringActions.add((Action) element);
@@ -93,6 +150,7 @@ public class RequiresCheck implements CarismaCheck {
 				singleCheck(requiringElement, path);
 			}
 		}
+		*/
 		if (!this.errors) {
 			final var resultMessage = new AnalysisResultMessage(StatusType.INFO,
 					"Check successful with respect to <<requires>>.");

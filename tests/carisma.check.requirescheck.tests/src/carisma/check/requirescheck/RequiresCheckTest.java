@@ -8,7 +8,6 @@ import java.io.File;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Model;
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.core.analysis.AnalysisHost;
@@ -137,12 +136,22 @@ public class RequiresCheckTest {
 	 * tests a violated model.
 	 */
 	@Test
-	@Ignore
 	public final void testViolated() {
-		model = TestHelper.loadModel(filepath, "testRequiresViolated.uml");
+		model = TestHelper.loadModel(filepath, "newTestRequiresViolated.uml");
 		TestHost analysisHost = new TestHost();
 		RequiresCheck rc = new RequiresCheck(null);
 		assertFalse(rc.perform(null, analysisHost));
+	}
+	
+	/**
+	 * tests a correct model.
+	 */
+	@Test
+	public final void testCorrect2() {
+		model = TestHelper.loadModel(filepath, "testRequiresViolated.uml");
+		TestHost analysisHost = new TestHost();
+		RequiresCheck rc = new RequiresCheck(null);
+		assertTrue(rc.perform(null, analysisHost));
 	}
 	
 	/**
