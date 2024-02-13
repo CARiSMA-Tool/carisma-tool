@@ -1,11 +1,14 @@
 # Setting up CARiSMA for development
-1. If you already installed CARiSMA, delete the local installation.
-2. Import the CARiSMA Tool from the [git repository](https://github.com/CARiSMA-Tool/carisma-tool).
-3. Open a new Terminal 
-4. Move to the base directory of the carisma-tool
-5. Execute *mvnw.cmd clean install* on Windows or *./mvnw clean install* otherwise
-6. Refresh the carisma-tool project.
-7. All errors should be resolved.
+1. Install [Eclipse](installation.md#eclipse-modeling-tools)
+2. Install [BPMN2 Modeler](installation.md#bpmn2-modeler)
+3. Install [Papyrus](installation.md#papyrus)
+4. If you already installed CARiSMA, delete the local installation.
+5. Import the CARiSMA Tool from the [git repository](https://github.com/CARiSMA-Tool/carisma-tool).
+6. Open a new Terminal 
+7. Move to the base directory of the carisma-tool
+8. Execute *mvnw.cmd clean install* on Windows or *./mvnw clean install* otherwise
+9. Refresh the carisma-tool project.
+10. All errors should be resolved.
 
 To start your working copy of CARiSMA, right click on a plugin project, select "Run As" -> "Eclipse Application".
 
