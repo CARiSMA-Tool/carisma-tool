@@ -14,6 +14,7 @@ package carisma.ui.eclipse.rcp;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.resources.IFile;
+
 import carisma.core.analysis.Analysis;
 import carisma.core.analysis.AnalysisUtil;
 import carisma.ui.eclipse.editors.EditorTranslator;

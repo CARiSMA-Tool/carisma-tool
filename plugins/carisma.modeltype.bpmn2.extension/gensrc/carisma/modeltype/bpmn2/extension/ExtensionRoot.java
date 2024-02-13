@@ -11,7 +11,6 @@
 package carisma.modeltype.bpmn2.extension;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

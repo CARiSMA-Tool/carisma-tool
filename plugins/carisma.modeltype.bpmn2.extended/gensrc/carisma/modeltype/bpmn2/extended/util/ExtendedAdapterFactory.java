@@ -21,15 +21,16 @@ import org.eclipse.bpmn2.InteractionNode;
 import org.eclipse.bpmn2.Lane;
 import org.eclipse.bpmn2.RootElement;
 import org.eclipse.bpmn2.Task;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
-import carisma.modeltype.bpmn2.extended.*;
+import carisma.modeltype.bpmn2.extended.ExtendedDocumentRoot;
+import carisma.modeltype.bpmn2.extended.ExtendedLane;
+import carisma.modeltype.bpmn2.extended.ExtendedPackage;
+import carisma.modeltype.bpmn2.extended.ExtendedProcess;
+import carisma.modeltype.bpmn2.extended.ExtendedTask;
 
 /**
  * <!-- begin-user-doc -->

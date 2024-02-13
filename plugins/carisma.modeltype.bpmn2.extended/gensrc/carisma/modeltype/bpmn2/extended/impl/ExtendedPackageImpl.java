@@ -13,17 +13,12 @@ package carisma.modeltype.bpmn2.extended.impl;
 
 
 import org.eclipse.bpmn2.Bpmn2Package;
-
 import org.eclipse.bpmn2.di.BpmnDiPackage;
-
 import org.eclipse.dd.dc.DcPackage;
-
 import org.eclipse.dd.di.DiPackage;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import carisma.modeltype.bpmn2.extended.ExtendedDocumentRoot;

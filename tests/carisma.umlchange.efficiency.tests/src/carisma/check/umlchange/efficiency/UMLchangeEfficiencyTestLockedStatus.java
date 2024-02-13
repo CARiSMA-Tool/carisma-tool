@@ -12,19 +12,19 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
+import carisma.check.smartcard.evolution.lockedstatuscheck.LockedStatusEvolutionDeltaOnlyCheck;
+import carisma.check.smartcard.lockedstatus.LockedStatusCheck;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.BooleanParameter;
 import carisma.core.analysis.FloatParameter;
 import carisma.core.analysis.FolderParameter;
 import carisma.core.analysis.IntegerParameter;
-import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CarismaCheck;
-import carisma.check.smartcard.evolution.lockedstatuscheck.LockedStatusEvolutionDeltaOnlyCheck;
+import carisma.core.checks.CheckParameter;
 import carisma.evolution.DeltaFactoryCheck;
 import carisma.evolution.uml2.UMLModifierCheck;
 import carisma.evolution.uml2.io.ModelExporterCheck;
 import carisma.evolution.uml2.umlchange.UMLchangeParserCheck;
-import carisma.check.smartcard.lockedstatus.LockedStatusCheck;
 
 
 

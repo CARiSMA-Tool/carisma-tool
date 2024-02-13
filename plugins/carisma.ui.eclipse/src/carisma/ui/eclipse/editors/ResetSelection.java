@@ -11,6 +11,7 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
+
 import carisma.core.analysis.Analysis;
 import carisma.core.analysis.AnalysisUtil;
 import carisma.core.logging.LogLevel;

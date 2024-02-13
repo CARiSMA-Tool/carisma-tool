@@ -13,12 +13,19 @@ package carisma.modeltype.bpmn2.extension.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
-import carisma.modeltype.bpmn2.extension.*;
+import carisma.modeltype.bpmn2.extension.BaseElement;
+import carisma.modeltype.bpmn2.extension.ExtensionPackage;
+import carisma.modeltype.bpmn2.extension.ExtensionRoot;
+import carisma.modeltype.bpmn2.extension.Lane;
+import carisma.modeltype.bpmn2.extension.Performer;
+import carisma.modeltype.bpmn2.extension.Role;
+import carisma.modeltype.bpmn2.extension.Selection;
+import carisma.modeltype.bpmn2.extension.Task;
+import carisma.modeltype.bpmn2.extension.TaskSet;
+import carisma.modeltype.bpmn2.extension.WorkItem;
 
 /**
  * <!-- begin-user-doc -->

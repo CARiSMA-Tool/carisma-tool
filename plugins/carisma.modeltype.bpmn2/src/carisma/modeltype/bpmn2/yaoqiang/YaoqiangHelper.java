@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
+
 import carisma.modeltype.bpmn2.BPMN2Helper;
 
 

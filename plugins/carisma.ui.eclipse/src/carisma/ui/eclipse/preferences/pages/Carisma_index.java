@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+
 import carisma.ui.eclipse.CarismaGUI;
 import carisma.ui.eclipse.preferences.Constants;
 

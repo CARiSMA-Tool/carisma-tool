@@ -12,7 +12,6 @@ package carisma.modeltype.bpmn2.extended.impl;
 
 
 import org.eclipse.bpmn2.impl.ProcessImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 import carisma.modeltype.bpmn2.extended.ExtendedPackage;

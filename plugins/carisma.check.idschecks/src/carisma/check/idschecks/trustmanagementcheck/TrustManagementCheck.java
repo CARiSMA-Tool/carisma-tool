@@ -5,9 +5,9 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Node;
-import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Package;
 
 import carisma.core.analysis.AnalysisHost;

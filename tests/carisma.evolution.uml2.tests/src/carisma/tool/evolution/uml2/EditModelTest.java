@@ -1,11 +1,11 @@
 package carisma.tool.evolution.uml2;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,11 +21,9 @@ import org.eclipse.uml2.uml.ControlFlow;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueAction;
+import org.eclipse.uml2.uml.Package;
 import org.junit.After;
 import org.junit.Test;
-
-
-import org.eclipse.uml2.uml.Package;
 
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;

@@ -1,6 +1,9 @@
 package carisma.tool.evolution.uml2.io;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +20,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.Pseudostate;
+import org.eclipse.uml2.uml.State;
 import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;

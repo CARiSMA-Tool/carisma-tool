@@ -1,5 +1,7 @@
 package carisma.core.io.content;
 
+import static carisma.core.io.content.ContentFactory.ContentFormats.getFormatValue;
+
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,16 +10,14 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONException;
 import org.json.XML;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import carisma.core.io.content.Content.ContentException;
-
-import static carisma.core.io.content.ContentFactory.ContentFormats.*;
 
 /**
  * Factory for creating and converting Content types.

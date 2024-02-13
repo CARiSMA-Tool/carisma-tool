@@ -11,7 +11,6 @@
 package carisma.modeltype.bpmn2.extended;
 
 import org.eclipse.bpmn2.Bpmn2Package;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;

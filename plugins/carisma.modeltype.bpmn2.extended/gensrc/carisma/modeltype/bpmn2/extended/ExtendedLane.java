@@ -12,7 +12,6 @@ package carisma.modeltype.bpmn2.extended;
 
 
 import org.eclipse.bpmn2.Lane;
-
 import org.eclipse.emf.common.util.EList;
 
 import carisma.modeltype.bpmn2.extension.Role;

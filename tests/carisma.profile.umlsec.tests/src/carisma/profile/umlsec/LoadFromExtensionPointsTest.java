@@ -1,6 +1,6 @@
 package carisma.profile.umlsec;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -24,8 +24,8 @@ public class LoadFromExtensionPointsTest {
 	public void plugin() throws IOException{
 		ResourceSet rs = new ResourceSetImpl();
 		URI uri = URI.createURI(PROFILE_PLUGIN_URI);
-		Resource r = rs.createResource(uri);
-		r.load(Collections.EMPTY_MAP);
+		Resource r = rs.createResource(uri); 
+		r.load(Collections.EMPTY_MAP); // at this point contents is null, cannot find UMLsec.profile.uml
 		assertTrue(r.getContents().size() == 1);
 		EObject eObject = r.getContents().get(0);
 		assertTrue(eObject instanceof Profile);

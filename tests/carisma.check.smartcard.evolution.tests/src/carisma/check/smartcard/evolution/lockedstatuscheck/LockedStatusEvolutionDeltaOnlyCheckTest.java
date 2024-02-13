@@ -1,8 +1,8 @@
 package carisma.check.smartcard.evolution.lockedstatuscheck;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.HashMap;
@@ -24,8 +24,8 @@ import carisma.core.logging.Logger;
 import carisma.evolution.DeltaFactoryCheck;
 import carisma.evolution.uml2.umlchange.UMLchangeParserCheck;
 import carisma.modeltype.uml2.UMLHelper;
-import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlchange.UMLchange;
+import carisma.profile.umlsec.UMLsec;
 import carisma.tests.modelutils.uml.TestHelper;
 
 /**

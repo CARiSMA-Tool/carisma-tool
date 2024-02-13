@@ -13,12 +13,12 @@ package carisma.modeltype.uml2.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.InitialNode;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
 import carisma.core.analysis.AnalysisHost;

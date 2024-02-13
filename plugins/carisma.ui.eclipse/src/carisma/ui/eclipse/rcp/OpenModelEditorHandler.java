@@ -15,6 +15,7 @@ package carisma.ui.eclipse.rcp;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+
 import carisma.core.analysis.Analysis;
 import carisma.core.analysis.AnalysisUtil;
 

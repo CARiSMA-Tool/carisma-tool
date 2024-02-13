@@ -18,8 +18,8 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 
 import carisma.core.analysis.Analysis;
-import carisma.core.analysis.CheckReference;
 import carisma.core.analysis.BooleanParameter;
+import carisma.core.analysis.CheckReference;
 import carisma.core.analysis.FloatParameter;
 import carisma.core.analysis.FolderParameter;
 import carisma.core.analysis.InputFileParameter;

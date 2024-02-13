@@ -14,13 +14,15 @@ package carisma.modeltype.bpmn2.extended.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import carisma.modeltype.bpmn2.extended.*;
-import carisma.modeltype.bpmn2.extended.impl.ExtendedTaskImpl;
+import carisma.modeltype.bpmn2.extended.ExtendedDocumentRoot;
+import carisma.modeltype.bpmn2.extended.ExtendedFactory;
+import carisma.modeltype.bpmn2.extended.ExtendedLane;
+import carisma.modeltype.bpmn2.extended.ExtendedPackage;
+import carisma.modeltype.bpmn2.extended.ExtendedProcess;
+import carisma.modeltype.bpmn2.extended.ExtendedTask;
 
 /**
  * <!-- begin-user-doc -->

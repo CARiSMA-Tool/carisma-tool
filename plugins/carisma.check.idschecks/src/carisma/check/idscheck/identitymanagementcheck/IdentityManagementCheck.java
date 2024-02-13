@@ -1,23 +1,25 @@
 package carisma.check.idscheck.identitymanagementcheck;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;  
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Package;
+
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.DummyHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
+import carisma.modeltype.uml2.UMLHelper;
 import carisma.profile.umlsec.umlsec4ids.UMLsec;
 import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
-import carisma.modeltype.uml2.UMLHelper;
 
 /**
  * analyzes a deployment diagram with respect to identity management rules.

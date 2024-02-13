@@ -9,10 +9,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.NamedElement;
-
-
+import org.eclipse.uml2.uml.Package;
 
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.DummyHost;

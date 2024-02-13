@@ -14,9 +14,7 @@ package carisma.modeltype.bpmn2.extended.util;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 import carisma.modeltype.bpmn2.extended.ExtendedPackage;

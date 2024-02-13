@@ -14,12 +14,20 @@ package carisma.modeltype.bpmn2.extension.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import carisma.modeltype.bpmn2.extension.*;
+import carisma.modeltype.bpmn2.extension.BaseElement;
+import carisma.modeltype.bpmn2.extension.ExtensionFactory;
+import carisma.modeltype.bpmn2.extension.ExtensionPackage;
+import carisma.modeltype.bpmn2.extension.ExtensionRoot;
+import carisma.modeltype.bpmn2.extension.Lane;
+import carisma.modeltype.bpmn2.extension.Performer;
+import carisma.modeltype.bpmn2.extension.Role;
+import carisma.modeltype.bpmn2.extension.Selection;
+import carisma.modeltype.bpmn2.extension.Task;
+import carisma.modeltype.bpmn2.extension.TaskSet;
+import carisma.modeltype.bpmn2.extension.WorkItem;
 
 /**
  * <!-- begin-user-doc -->

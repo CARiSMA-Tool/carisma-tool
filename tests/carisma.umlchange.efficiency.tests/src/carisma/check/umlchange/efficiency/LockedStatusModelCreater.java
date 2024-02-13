@@ -6,7 +6,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;

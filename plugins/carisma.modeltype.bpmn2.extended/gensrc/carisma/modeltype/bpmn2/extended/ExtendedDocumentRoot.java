@@ -12,7 +12,6 @@ package carisma.modeltype.bpmn2.extended;
 
 
 import org.eclipse.bpmn2.Definitions;
-
 import org.eclipse.emf.ecore.EObject;
 
 import carisma.modeltype.bpmn2.extension.ExtensionRoot;

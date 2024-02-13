@@ -22,8 +22,8 @@ import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.TestHelper;
+import carisma.modeltype.uml2.UMLHelper;
 
 /**
  * this JUnit test-case tests the StateMachienPaths plugin.
