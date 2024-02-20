@@ -61,8 +61,9 @@ If you find bugs, please use GitHub's issue tracker.
 For other questions contact: [Research Group Software Engineering at University of Koblenz](https://www.uni-koblenz.de/de/informatik/ist/juerjens)
 
 Contact:
-* Sven Peldszus
+* Jan Jürjens
 * Julian Flake
+* Sven Peldszus
 
 Further developers and contributors:
 * Sven Wenzel
