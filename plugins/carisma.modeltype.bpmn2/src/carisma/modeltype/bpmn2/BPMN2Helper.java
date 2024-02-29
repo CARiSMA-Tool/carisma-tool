@@ -19,6 +19,8 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
@@ -87,8 +89,17 @@ public final class BPMN2Helper {
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		String result = "";
 		try {
-        	Document doc = DocumentBuilderFactory.newInstance()
-        			.newDocumentBuilder().parse(inFilePath);
+        	//Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inFilePath);
+        	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder dBuilder;
+    		Document doc;
+        	dbFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+			dbFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+			dbFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+			dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+			dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+			dBuilder = dbFactory.newDocumentBuilder();
+			doc = dBuilder.parse(inFilePath);
         	result = xpath.evaluate(xPathQuery, doc);
         } catch (Exception e) {
         	return "";

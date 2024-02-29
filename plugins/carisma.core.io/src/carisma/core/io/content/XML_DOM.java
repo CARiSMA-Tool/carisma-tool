@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -33,6 +34,11 @@ public class XML_DOM implements Content {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
 		try {
+			dbFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+			dbFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+			dbFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+			dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+			dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 			dBuilder = dbFactory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
 			throw new ContentException(e);
@@ -59,6 +65,8 @@ public class XML_DOM implements Content {
 			StringWriter writer = new StringWriter();
 		    StreamResult result = new StreamResult(writer);
 		    TransformerFactory tf = TransformerFactory.newInstance();
+		    tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+		    tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 		    Transformer transformer = tf.newTransformer();
 	    	transformer.transform(domSource, result);
 		    return writer.toString();
