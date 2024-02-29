@@ -31,20 +31,17 @@ public class XML_DOM implements Content {
 	protected XML_DOM(final String xml) throws ContentException {
 		InputSource in = new InputSource();
 		in.setCharacterStream(new StringReader(xml));
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder;
 		try {
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			dbFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 			dbFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
 			dbFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
 			dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 			dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-			dBuilder = dbFactory.newDocumentBuilder();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			this.xmlDocument = dBuilder.parse(in);
 		} catch (ParserConfigurationException e) {
 			throw new ContentException(e);
-		}
-		try {
-			this.xmlDocument = dBuilder.parse(in);
 		} catch (SAXException e) {
 			throw new ContentException(e);
 		} catch (IOException e) {
