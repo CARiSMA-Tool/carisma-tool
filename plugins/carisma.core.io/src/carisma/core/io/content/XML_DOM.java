@@ -66,6 +66,7 @@ public class XML_DOM implements Content {
 		    StreamResult result = new StreamResult(writer);
 		    TransformerFactory tf = TransformerFactory.newInstance();
 		    tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+		    tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
 		    tf.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 		    Transformer transformer = tf.newTransformer();
 	    	transformer.transform(domSource, result);
