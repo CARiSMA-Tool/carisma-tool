@@ -55,7 +55,6 @@ import carisma.profile.umlsec.UMLsecUtil;
 import carisma.tests.modelutils.uml.TestHelper;
 
 
-@Ignore
 public class AuthorizedStatusEvolutionChecksTest {
 	
 	private class TestHost implements AnalysisHost{
@@ -237,7 +236,7 @@ public class AuthorizedStatusEvolutionChecksTest {
 			AddElement addTransition = new AddElement(region1, transition.eClass(), null);
 			addTransition.addKeyValuePair(NAME, "newTransition");
 			addTransition.addKeyValuePair("source", "State2");
-			addTransition.addKeyValuePair("target", "Region::State1");
+			addTransition.addKeyValuePair("target", "State1");
 			List<DeltaElement> content = new ArrayList<>();
 			content.add(addTransition);
 			this.deltas.add(new Delta(new ArrayList<String>(), content));
@@ -265,7 +264,7 @@ public class AuthorizedStatusEvolutionChecksTest {
 	public final void testASSubstPermission() {
 		init("testASSubstPermission.uml");
 		try {
-			State authorizedState = UMLHelper.getElementOfNameAndType(this.model, "Region::State1", State.class);
+			State authorizedState = UMLHelper.getElementOfNameAndType(this.model, "State1", State.class);
 			assertNotNull(authorizedState);
 			StereotypeApplication authorizedApp = UMLHelper.getStereotypeApplication(authorizedState, AUTHORIZED_STATUS);
 			assertNotNull(authorizedApp);
@@ -330,7 +329,7 @@ public class AuthorizedStatusEvolutionChecksTest {
 			AuthorizedStatusEvolutionModifierCheck theCheck = new AuthorizedStatusEvolutionModifierCheck();
 			assertFalse(theCheck.perform(null, this.testHost));
 			
-			State authorizedState = UMLHelper.getElementOfNameAndType(this.model, "Region::State1", State.class);
+			State authorizedState = UMLHelper.getElementOfNameAndType(this.model, "State1", State.class);
 			assertNotNull(authorizedState);
 			UMLHelper.unapplyStereotype(authorizedState, QUALIFIED_AUTHORIZED_STATUS);
 			this.deltas.clear();
