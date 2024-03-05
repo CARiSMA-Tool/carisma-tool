@@ -32,7 +32,7 @@ import carisma.tests.modelutils.uml.TestHelper;
  * @author jkowald
  *
  */
-@Ignore
+
 public class AuthorizedStatusEvolutionDeltaOnlyCheckTest {
 
 	/**
@@ -55,6 +55,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheckTest {
 	/**
 	 * Adding a guard to a random transition.
 	 */
+	@Ignore
 	@Test
 	public final void testAddGuardToTransition() {
 		assertTrue(performCheck("testAddGuardToTransition.uml"));
@@ -127,6 +128,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheckTest {
 	 * similar to the new value of the permission belonging to
 	 * <<authorized-status>>.
 	 */
+	@Ignore
 	@Test
 	public final void testDeleteGuardAddNewGuardEditPermission() {
 		assertTrue(performCheck("testDeleteGuardAddNewGuardEditPermission.uml"));
@@ -135,6 +137,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheckTest {
 	/**
 	 * Editing Guard and Permission in the same way.
 	 */
+	@Ignore
 	@Test
 	public final void testEditGuardEditPermission() {
 		assertTrue(performCheck("testEditGuardEditPermission.uml"));
