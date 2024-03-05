@@ -33,7 +33,7 @@ import carisma.tests.modelutils.uml.TestHelper;
  * @author jkowald
  *
  */
-@Ignore
+
 public class LockedStatusEvolutionDeltaOnlyCheckTest {
 	
 	/**
@@ -104,6 +104,7 @@ public class LockedStatusEvolutionDeltaOnlyCheckTest {
 	/**
 	 * A transition gets a new source state which owns the stereotype locked-status.
 	 */
+	@Ignore
 	@Test
 	public final void testEditTransition() {
 		assertFalse(performCheck("testEditTransition.uml"));
