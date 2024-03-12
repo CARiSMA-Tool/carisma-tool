@@ -115,13 +115,7 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 		int intDay = 0;
         try{
         	intDay = Integer.parseInt(formattedDate);
-        }
-        /*
-        catch (NumberFormatException ex){
-            ex.printStackTrace();
-        }
-        */
-        catch (NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             logger.warning("Failed to parse formatted date: " + formattedDate);
             logger.warning("Error message: " + ex.getMessage());
         }
