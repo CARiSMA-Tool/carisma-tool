@@ -20,6 +20,7 @@ import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.profile.umlsec.umlsec4ids.UMLsec;
 import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
+import java.util.logging.Logger;
 
 /**
  * analyzes a deployment diagram with respect to identity management rules.
@@ -29,6 +30,7 @@ import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
 
 public class IdentityManagementCheck implements CarismaCheckWithID {
 
+	private static final Logger logger = Logger.getLogger(IdentityManagementCheck.class.getName());
 	public static final String CHECK_ID = "carisma.check.idscheck.identitymanagementcheck";
 	public static final String CHECK_NAME = "UMLsec4ids Identity Management Check";
 
@@ -114,8 +116,14 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
         try{
         	intDay = Integer.parseInt(formattedDate);
         }
+        /*
         catch (NumberFormatException ex){
             ex.printStackTrace();
+        }
+        */
+        catch (NumberFormatException ex) {
+            logger.warning("Failed to parse formatted date: " + formattedDate);
+            logger.warning("Error message: " + ex.getMessage());
         }
         
         //------------------------------------------------------
@@ -153,10 +161,10 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 					
 						try{
 				        		intX509 = Integer.parseInt(dayX509.get(z).toString());
-				        	}
-				        	catch (NumberFormatException ex){
-				        		ex.printStackTrace();
-				        	}
+				        	} catch (NumberFormatException ex) {
+				            logger.warning("Failed to parse formatted date: " + formattedDate);
+				            logger.warning("Error message: " + ex.getMessage());
+							}
 						if(intX509 < intDay) {
 							this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509>> certificate is expired"));
 							this.analysisHost.appendLineToReport("X.509 certificate of " + nodeList.get(i).getName() + " is expired");
@@ -203,10 +211,10 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 					
 					 	try{
 					 			intX509TLS = Integer.parseInt(dayX509TLS.get(z).toString());
-					 		}
-					 		catch (NumberFormatException ex){
-					 			ex.printStackTrace();
-					 		}
+					 		} catch (NumberFormatException ex) {
+				            logger.warning("Failed to parse formatted date: " + formattedDate);
+				            logger.warning("Error message: " + ex.getMessage());
+					 		}	
 					 	if(intX509TLS < intDay) {
 					 		this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes <<X509TLS>> certificate is expired"));
 					 		this.analysisHost.appendLineToReport("X.509TLS certificate of " + nodeList.get(i).getName() + " is expired");
