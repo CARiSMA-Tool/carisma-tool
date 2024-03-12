@@ -282,13 +282,13 @@ public class SecureDependencyEvolutionCheckTest {
 			try {
 				loadModel(modelfilename);
 			} catch (IOException e) {
-				e.printStackTrace();
+				Logger.log(LogLevel.ERROR, "", e);
 			}
 		} else {
 			try {
 				loadModel("SDE-basis.uml");
 			} catch (IOException e) {
-				e.printStackTrace();
+				Logger.log(LogLevel.ERROR, "", e);
 			}
 			isBasisModel = true;
 		}

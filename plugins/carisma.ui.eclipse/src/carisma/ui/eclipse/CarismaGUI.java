@@ -450,7 +450,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 			}
 			return result.toString(StandardCharsets.UTF_8);
 		} catch (final IOException e) {
-			e.printStackTrace();
+			Logger.log(LogLevel.ERROR, "", e);
 			return null;
 		}
 

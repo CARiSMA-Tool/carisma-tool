@@ -275,7 +275,7 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 		try {
 			transitionMetaclass = UMLHelper.getMetaClass("Transition");
 		} catch (InvalidMetaclassException e) {
-			e.printStackTrace();
+			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 		}
 		AddElement addTransition = new AddElement(null, transitionMetaclass, null);
 		addTransition.addKeyValuePair("source", editElement.getValues().get("source"));
@@ -287,7 +287,7 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 		try {
 			transitionMetaclass = UMLHelper.getMetaClass("Transition");
 		} catch (InvalidMetaclassException e) {
-			e.printStackTrace();
+			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 		}
 		AddElement addTransition = new AddElement(null, transitionMetaclass, null);
 		addTransition.addKeyValuePair("source", copyElement.getChangedValues().get("source"));
@@ -300,7 +300,7 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 		try {
 			stereotypeMetaclass = UMLHelper.getMetaClass("Stereotype");
 		} catch (InvalidMetaclassException e) {
-			e.printStackTrace();
+			Logger.log(LogLevel.ERROR, e.getMessage(), e);
 		}		
 		AddElement addLocked = new AddElement(copyElement.getReceivingElement(), stereotypeMetaclass, null);
 		addLocked.addKeyValuePair("name", UMLsec.LOCKED_STATUS.toString());
@@ -338,7 +338,7 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 				try {
 					stereotypeMetaclass = UMLHelper.getMetaClass("Stereotype");
 				} catch (InvalidMetaclassException e) {
-					e.printStackTrace();
+					Logger.log(LogLevel.ERROR, e.getMessage(), e);
 				}
 				AddElement addedLockedStatus = new AddElement(sourceState, stereotypeMetaclass, null);
 				addedLockedStatus.addKeyValuePair("name", UMLsec.LOCKED_STATUS.toString());
@@ -368,7 +368,7 @@ public class LockedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWithID {
 			try {
 				transitionMetaclass = UMLHelper.getMetaClass("Transition");
 			} catch (InvalidMetaclassException e) {
-				e.printStackTrace();
+				Logger.log(LogLevel.ERROR, e.getMessage(), e);
 			}
 			AddElement addedOutgoingTransition = new AddElement(null, transitionMetaclass, null);
 			addedOutgoingTransition.addKeyValuePair("source", lockedState.getName());

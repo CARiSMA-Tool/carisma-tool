@@ -38,6 +38,8 @@ import org.eclipse.uml2.uml.Usage;
 import org.junit.After;
 import org.junit.Test;
 
+import carisma.core.logging.LogLevel;
+import carisma.core.logging.Logger;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 import carisma.profile.umlsec.UMLsec;
@@ -249,7 +251,7 @@ public class SecureDependencyChecksTest {
 				assertTrue(obj instanceof Model);
 				return (Model) obj;
 			} catch (IOException e) {
-				e.printStackTrace();
+				Logger.log(LogLevel.ERROR, "", e);
 				fail();
 			}
 		}
