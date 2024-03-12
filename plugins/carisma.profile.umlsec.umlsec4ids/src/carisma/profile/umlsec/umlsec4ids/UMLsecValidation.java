@@ -52,6 +52,9 @@ import carisma.modeltype.uml2.UML2ModelLoader;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 
+import java.util.logging.Logger;
+
+
 /**
  * This class validates UMLsec stereotypes.
  * When validating  a model, a List<String> will be returned, where every entry describes a violation
@@ -61,6 +64,8 @@ import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
  */
 @SuppressWarnings("deprecation")
 public final class UMLsecValidation {
+	
+	private static final Logger logger = Logger.getLogger(UMLsecValidation.class.getName());
 	
 //	TODO KR: beim testen ob ein String leer ist vielleicht besser --> testen ob ein String etwas anderes als leere Zeichen enth�lt
 //	TODO KR: Identifiable, wo darf das dran, findet sich im UMLsec Buch nicht
@@ -95,7 +100,7 @@ public final class UMLsecValidation {
 		try {
 			modelres = ml.load(file);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			List<String> exceptionValue = new ArrayList<String>();
 			exceptionValue.add("IOException occured  while loading the model");
 			return exceptionValue;

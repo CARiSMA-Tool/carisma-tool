@@ -29,6 +29,7 @@ import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
+import java.util.logging.Logger;
 
 
 /**
@@ -38,6 +39,7 @@ import carisma.core.checks.CheckParameter;
  */
 public class MariskBoundaryEventCheck implements CarismaCheckWithID {
 
+	private static final Logger logger = Logger.getLogger(MariskBoundaryEventCheck.class.getName());
 	public static final String CHECK_ID = "carisma.check.bpmn2.marisk.boundaryevent";
 	public static final String PARAM_PROCESS = "carisma.check.bpmn2.marisk.process";
 	public static final String PARAM_ACTIVITIES = "carisma.check.bpmn2.marisk.activities";
@@ -101,7 +103,7 @@ public class MariskBoundaryEventCheck implements CarismaCheckWithID {
 				try {
 					allItemsMatched = mapActivitiesAndContainer(containerParameter, this.activityNames);
 				} catch (IncompleteMappingExeption e) {
-					e.printStackTrace();
+					logger.warning("Error message: " + e.getMessage());
 					return false;
 				}
 				if (!allItemsMatched) {

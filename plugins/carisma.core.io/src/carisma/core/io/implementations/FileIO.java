@@ -15,9 +15,13 @@ import org.xml.sax.SAXException;
 
 import carisma.core.io.content.Content;
 
+import java.util.logging.Logger;
+
 
 public class FileIO {
 
+	private static final Logger logger = Logger.getLogger(FileIO.class.getName());
+	
 	public static Document read(File file) {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
@@ -29,17 +33,17 @@ public class FileIO {
 			dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
 			dBuilder = dbFactory.newDocumentBuilder();
 		} catch (ParserConfigurationException e1) {
-			e1.printStackTrace();
+			logger.warning("Error message: " + e1.getMessage());
 			return null;
 		}
 		Document doc;
 		try {
 			doc = dBuilder.parse(file);
 		} catch (SAXException e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			return null;
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			return null;
 		}
 		doc.getDocumentElement().normalize();
@@ -55,10 +59,10 @@ public class FileIO {
 			try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))){
 				bufferedWriter.write(content.asString());
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.warning("Error message: " + e.getMessage());
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 		}
 	}
 }

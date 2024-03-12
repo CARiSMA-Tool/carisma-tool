@@ -42,6 +42,7 @@ import carisma.modeltype.bpmn2.extension.Lane;
 import carisma.modeltype.bpmn2.extension.Task;
 import carisma.modeltype.bpmn2.extension.util.ExtensionUtil;
 
+import java.util.logging.Logger;
 
 /**
  * Test class.
@@ -50,6 +51,8 @@ import carisma.modeltype.bpmn2.extension.util.ExtensionUtil;
  */
 public class MergeModelsTest {
 
+	private static final Logger logger = Logger.getLogger(MergeModelsTest.class.getName());
+	
 	/**
 	 * The bpmn2 model loader.
 	 */
@@ -146,7 +149,7 @@ public class MergeModelsTest {
 		try {
 			root = (DocumentRoot) modelres.getContents().get(0);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			fail("Could not load document root");
 		}
 		assertNotNull(root);
@@ -160,7 +163,7 @@ public class MergeModelsTest {
 		try {
 			extendedRoot = (ExtendedDocumentRoot) extendedModel.getContents().get(0);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			fail(ROOT_DOCUMENT_ERROR);
 		}
 		assertNotNull(extendedRoot);
@@ -210,7 +213,7 @@ public class MergeModelsTest {
 		try {
 			extendedRoot = (ExtendedDocumentRoot) extendedModel.getContents().get(0);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			fail(ROOT_DOCUMENT_ERROR);
 		}
 		assertNotNull(extendedRoot);
@@ -253,7 +256,7 @@ public class MergeModelsTest {
 		try {
 			extensionRoot = (ExtensionRoot) extensionModel.getContents().get(0);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			fail(ROOT_DOCUMENT_ERROR);
 		}
 		assertNotNull(extensionRoot);
@@ -264,7 +267,7 @@ public class MergeModelsTest {
 		try {
 			extendedRoot = (ExtendedDocumentRoot) extendedModel.getContents().get(0);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			fail(ROOT_DOCUMENT_ERROR);
 		}
 		assertNotNull(extendedRoot);

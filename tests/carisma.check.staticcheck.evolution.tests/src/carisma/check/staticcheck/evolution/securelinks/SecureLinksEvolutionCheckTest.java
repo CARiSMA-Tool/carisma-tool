@@ -61,7 +61,6 @@ import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 
-
 @Ignore
 public class SecureLinksEvolutionCheckTest {
     

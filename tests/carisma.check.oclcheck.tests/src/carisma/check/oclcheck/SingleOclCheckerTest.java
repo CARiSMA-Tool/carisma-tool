@@ -34,6 +34,7 @@ import org.junit.Test;
 
 import carisma.check.oclcheck.util.DebugHost;
 
+import java.util.logging.Logger;
 
 /**
  * Test class.
@@ -41,6 +42,8 @@ import carisma.check.oclcheck.util.DebugHost;
  * 
  */
 public class SingleOclCheckerTest {
+	
+	private static final Logger logger = Logger.getLogger(SingleOclCheckerTest.class.getName());
 	
 	/**
 	 * The path to the model directory. 
@@ -113,7 +116,7 @@ public class SingleOclCheckerTest {
 						
 
 					} catch (Exception e) {
-						e.printStackTrace();
+						logger.warning("Error message: " + e.getMessage());
 						fail("Error during invoke (" + modelname + ")");
 					}
 					break;

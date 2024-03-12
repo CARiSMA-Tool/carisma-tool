@@ -76,11 +76,15 @@ import carisma.ui.eclipse.editors.descriptions.EditorDescriptor;
 import carisma.ui.eclipse.preferences.Constants;
 import carisma.ui.eclipse.preferences.pages.EditorPriorityList;
 
+import java.util.logging.Logger;
+
 /**
  * Structure and behavior of the adf editor GUI.
  */
 public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
+	private static final Logger logger = Logger.getLogger(AdfEditorMasterDetailsBlock.class.getName());
+	
 	/**
 	 * The controller between model (analysis) and view (adf editor).
 	 */
@@ -401,7 +405,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 						updateRunButtonEnable();
 						updateOpenModelButtonEnable();
 					} catch (Exception exc) {
-						exc.printStackTrace();
+						logger.warning("Error message: " + exc.getMessage());
 					}
 				}
 			}

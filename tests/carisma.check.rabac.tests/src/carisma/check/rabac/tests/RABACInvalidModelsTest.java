@@ -29,8 +29,13 @@ import carisma.core.analysis.InputFileParameter;
 import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CheckParameterDescriptor;
 
+import java.util.logging.Logger;
+
+
 @RunWith(Parameterized.class)
 public class RABACInvalidModelsTest implements RABACTest {
+	
+	private static final Logger logger = Logger.getLogger(RABACInvalidModelsTest.class.getName());
 	
 	private final static String filepath = "resources" + File.separator + "models";
 
@@ -73,7 +78,7 @@ public class RABACInvalidModelsTest implements RABACTest {
 				r.load(inputStream, Collections.EMPTY_MAP);
 				resources.add(r);
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.warning("Error message: " + e.getMessage());
 			} 
 		}
 		return resources;

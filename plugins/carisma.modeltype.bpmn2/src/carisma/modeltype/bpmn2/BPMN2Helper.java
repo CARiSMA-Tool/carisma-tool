@@ -18,6 +18,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -40,6 +41,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.w3c.dom.Document;
 
+import java.util.logging.Logger;
 /**
  * All reusable helper methods for bpmn2 models are implemented here.
  * 
@@ -47,6 +49,8 @@ import org.w3c.dom.Document;
  */
 public final class BPMN2Helper {
     
+	private static final Logger logger = Logger.getLogger(BPMN2Helper.class.getName());
+	
 	/**
 	 * XSLT output can be stored in the xsltOutputWriter object.  
 	 */
@@ -123,7 +127,7 @@ public final class BPMN2Helper {
 				BPMN2Helper.class.getClassLoader().getResourceAsStream(xslResourcePath)
 			));
 		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			return false;
 		}
 		
@@ -131,7 +135,7 @@ public final class BPMN2Helper {
 		try {
 			xformer = template.newTransformer();
 		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			return false;
 		}
 
@@ -140,10 +144,10 @@ public final class BPMN2Helper {
 			
 			source = new StreamSource(fileInputStream);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			return false;
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			logger.warning("Error message: " + e1.getMessage());
 			return false;
 		}
             
@@ -152,10 +156,10 @@ public final class BPMN2Helper {
           	try (FileOutputStream fileOutputStream = new FileOutputStream(outFilename);){
 				result = new StreamResult(fileOutputStream);
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				logger.warning("Error message: " + e.getMessage());
 				return false;
 			} catch (IOException e1) {
-				e1.printStackTrace();
+				logger.warning("Error message: " + e1.getMessage());
 				return false;
 			}
         } else {
@@ -166,7 +170,7 @@ public final class BPMN2Helper {
         try {
 			xformer.transform(source, result);
 		} catch (TransformerException e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			return false;
 		}
             

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -27,8 +28,12 @@ import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CheckParameterDescriptor;
 
+import java.util.logging.Logger;
+
 
 public class SequencediagrammCryptoCheckTest {
+	
+	private static final Logger logger = Logger.getLogger(SequencediagrammCryptoCheckTest.class.getName());
 	
     private String filepath = "resources/models";
 	
@@ -48,7 +53,7 @@ public class SequencediagrammCryptoCheckTest {
 				EObject obj = contents.get(0);
 				assertTrue(obj instanceof Model);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.warning("Error message: " + e.getMessage());
 				}
 			host.setAnalyzedModel(r);
 		}

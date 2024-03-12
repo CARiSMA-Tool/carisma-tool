@@ -28,8 +28,11 @@ import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheck;
 import carisma.core.checks.CheckParameter;
+import java.util.logging.Logger;
 
 public class Check implements CarismaCheck {
+	
+	private static final Logger logger = Logger.getLogger(Check.class.getName());
 	
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
@@ -63,12 +66,12 @@ public class Check implements CarismaCheck {
 		try {
 			File testinputfile = inputFileParameter.getValue();
 			if (!testinputfile.canRead()) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Test file: Can´t read test file!"));
+				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Test file: Canï¿½t read test file!"));
 			} else {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Test file: " + testinputfile.getAbsolutePath()));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 		}
 		
 		// Folder
@@ -80,7 +83,7 @@ public class Check implements CarismaCheck {
 		try {
 			File testfolder = folderParameter.getValue();
 			if (!testfolder.canRead()) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Test folder: Can´t read test folder!"));
+				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Test folder: Canï¿½t read test folder!"));
 			} else {
 				if (!testfolder.isDirectory()) {
 					host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Test folder: This is not a folder!"));
@@ -89,7 +92,7 @@ public class Check implements CarismaCheck {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 		}
 		
 		// OutputFile
@@ -120,7 +123,7 @@ public class Check implements CarismaCheck {
 			bw.write("OutputFileParameter: " + outputFileParameter.getValue().getAbsolutePath());
 			bw.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 		}
 		try {
 			host.putToRegister("carisma.check.parametertest.post", "this is a postcondition entry to the register");

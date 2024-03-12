@@ -6,11 +6,14 @@ import org.eclipse.jface.preference.IPreferenceStore;
 
 import carisma.check.sequencediagramcrypto.Activator;
 
+import java.util.logging.Logger;
+
 /**
  * A Sample Class to demonstrate how to access the preferences.
  */
 public class AccessPreferences {
 	
+	private static final Logger logger = Logger.getLogger(AccessPreferences.class.getName());
 	/**
 	 * Returns a String Preference.
 	 * 
@@ -48,7 +51,7 @@ public class AccessPreferences {
 			p = store.getString(PreferenceConstants.PATH_NAME).split(";");
 		}
 		catch (NullPointerException e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 			System.err.println("NO Path set");
 		}
 		return p;

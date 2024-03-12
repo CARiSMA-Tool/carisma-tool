@@ -38,6 +38,7 @@ import carisma.ocl.library.LibraryFactory;
 import carisma.ocl.library.OclExpression;
 
 
+import java.util.logging.Logger;
 /**
  * Test class. 
  * @author Marcel Michel
@@ -45,6 +46,8 @@ import carisma.ocl.library.OclExpression;
  */
 public class CheckTest {
 
+	private static final Logger logger = Logger.getLogger(CheckTest.class.getName());
+	
 	/**
 	 * The Check Instance.
 	 */
@@ -120,7 +123,7 @@ public class CheckTest {
 							methods[i].invoke(this.check, 
 									"<<pattern={pattern1}>>")));
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.warning("Error message: " + e.getMessage());
 					fail(INVOKE_ERROR);
 				}
 				break;

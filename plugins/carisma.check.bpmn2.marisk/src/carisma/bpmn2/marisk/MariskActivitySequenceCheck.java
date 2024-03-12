@@ -30,7 +30,7 @@ import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.bpmn2.trace.BPMN2Trace;
 import carisma.modeltype.bpmn2.trace.NoTracesCalculatedException;
-
+import java.util.logging.Logger;
 
 /**
  * Checker for the MaRisk(VA).
@@ -39,6 +39,7 @@ import carisma.modeltype.bpmn2.trace.NoTracesCalculatedException;
  */
 public class MariskActivitySequenceCheck implements CarismaCheckWithID {
 
+	private static final Logger logger = Logger.getLogger(MariskActivitySequenceCheck.class.getName());
 	private static final String CHECK_ID = "carisma.check.bpmn2.marisk.actvitysequence";
 	public static final String PARAM_STARTEVENT = "carisma.check.bpmn2.marisk.startevent";
 	public static final String PARAM_ACTIVITIES = "carisma.check.bpmn2.marisk.activities";
@@ -96,7 +97,7 @@ public class MariskActivitySequenceCheck implements CarismaCheckWithID {
 				try {
 					allItemsMatched = mapActivitiesAndContainer(containerParameter, this.activityNames);
 				} catch (IncompleteMappingExeption e1) {
-					e1.printStackTrace();
+		            logger.warning("Error message: " + e1.getMessage());
 					return false;
 				}
 				if (!allItemsMatched) {

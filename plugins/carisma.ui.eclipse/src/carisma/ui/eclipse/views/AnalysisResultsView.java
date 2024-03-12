@@ -43,11 +43,15 @@ import carisma.core.analysis.result.StatusType;
 import carisma.ui.eclipse.CarismaGUI;
 import carisma.ui.popup.actions.PopUpAction;
 
+import java.util.logging.Logger;
+
 /**
  * 
  */
 public class AnalysisResultsView extends ViewPart {
 
+	private static final Logger logger = Logger.getLogger(AnalysisResultsView.class.getName());
+	
 	/**
 	 * The ID string.
 	 */
@@ -192,7 +196,8 @@ public class AnalysisResultsView extends ViewPart {
 					try {
 						((PopUpAction) extension.createExecutableExtension("class")).perform(menuMgr, analysisResult);
 					} catch (CoreException e) {
-						e.printStackTrace();
+						logger.warning("Error message: " + e.getMessage());
+
 					}
 				}
 			}

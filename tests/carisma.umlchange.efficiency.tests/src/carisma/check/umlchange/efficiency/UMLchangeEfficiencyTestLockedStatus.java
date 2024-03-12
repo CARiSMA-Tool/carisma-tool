@@ -26,7 +26,7 @@ import carisma.evolution.uml2.UMLModifierCheck;
 import carisma.evolution.uml2.io.ModelExporterCheck;
 import carisma.evolution.uml2.umlchange.UMLchangeParserCheck;
 
-
+import java.util.logging.Logger;
 
 /**
  * Tests the efficiency of the Evolution-aware Locked Status test.
@@ -35,6 +35,8 @@ import carisma.evolution.uml2.umlchange.UMLchangeParserCheck;
  */
 public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 
+	private static final Logger logger = Logger.getLogger(UMLchangeEfficiencyTestLockedStatus.class.getName());
+	
 	/**
 	 * host for reports.
 	 */
@@ -143,7 +145,7 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 					res = loadModel(f.getAbsolutePath());
 					this.messages += "Could not load model " + f.getAbsolutePath() + "\n!"; //kann eigentlich nicht passieren
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					logger.warning("Error message: " + e1.getMessage());
 					continue;
 				}
 				TestingHost h = new TestingHost(false);
@@ -156,7 +158,7 @@ public class UMLchangeEfficiencyTestLockedStatus implements CarismaCheck {
 					res.delete(null);
 				} catch (IOException e) {
 					this.messages += "Could not load model " + f.getAbsolutePath() + "\n!"; //kann eigentlich nicht passieren
-					e.printStackTrace();
+					logger.warning("Error message: " + e.getMessage());
 				}
 				h.delete();
 				h = null;

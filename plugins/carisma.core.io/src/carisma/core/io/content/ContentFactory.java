@@ -20,6 +20,8 @@ import org.xml.sax.SAXException;
 
 import carisma.core.io.content.Content.ContentException;
 
+import java.util.logging.Logger;
+
 /**
  * Factory for creating and converting Content types.
  * @author speldszus
@@ -27,6 +29,7 @@ import carisma.core.io.content.Content.ContentException;
  */
 public final class ContentFactory {
 	
+	private static final Logger logger = Logger.getLogger(ContentFactory.class.getName());
 	/**
 	 * Shared instance of this factory.
 	 */
@@ -58,7 +61,7 @@ public final class ContentFactory {
 			try {
 				content = new JSON(serialized);
 			} catch (JSONException e) {
-				e.printStackTrace();
+				logger.warning("Error message: " + e.getMessage());
 			}
 		} else if (isBase64Encoded(serialized)) {
 			content = new BASE64(serialized.getBytes());
@@ -105,7 +108,7 @@ public final class ContentFactory {
 		try {
 			return new JSON(builder.toString());
 		} catch (JSONException e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 		}
 		return null;
 	}
@@ -146,7 +149,7 @@ public final class ContentFactory {
 			try {
 				string = XML.toString(content);
 			} catch (JSONException e1) {
-				e1.printStackTrace();
+				logger.warning("Error message: " + e1.getMessage());
 			}
 			
 			Document document = null;
@@ -160,11 +163,11 @@ public final class ContentFactory {
 				DocumentBuilder documentBuilder = factory.newDocumentBuilder();
 				document = documentBuilder.parse(string);
 			} catch (SAXException e) {
-				e.printStackTrace();
+				logger.warning("Error message: " + e.getMessage());
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.warning("Error message: " + e.getMessage());
 			} catch (ParserConfigurationException e) {
-				e.printStackTrace();
+				logger.warning("Error message: " + e.getMessage());
 			}
 			
 			if (document != null) {

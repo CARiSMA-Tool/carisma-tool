@@ -29,10 +29,15 @@ import org.eclipse.ui.PlatformUI;
 import carisma.core.models.ModelType;
 import carisma.ui.eclipse.CarismaGUI;
 
+import java.util.logging.Logger;
+
+
 /**
  * Class ModelWizardDetailsPage.
  */
 public class AdfModelWizardDetailsPage extends WizardPage {
+	
+	private static final Logger logger = Logger.getLogger(AdfModelWizardDetailsPage.class.getName());
 	
 	/**
 	 * The current instance of this page.
@@ -249,7 +254,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 				setPageComplete(validatePage());
 			} catch (Exception exc) {
 				iNSTANCE.setErrorMessage("Must select file");
-				exc.printStackTrace();
+				logger.warning("Error message: " + exc.getMessage());
 			}
 		}
 	}

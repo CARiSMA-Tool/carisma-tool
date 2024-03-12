@@ -38,6 +38,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+
+import java.util.logging.Logger;
+
+
 /**
  * Test class.
  * @author Marcel Michel
@@ -46,6 +50,8 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class MultiOclCheckerTest {
 
+	private static final Logger logger = Logger.getLogger(MultiOclCheckerTest.class.getName());
+	
 	/**
 	 * The path to the model directory. 
 	 */
@@ -140,7 +146,7 @@ public class MultiOclCheckerTest {
 						assertTrue(contextMap.containsKey(eClass.getName().toLowerCase(Locale.ENGLISH)));
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.warning("Error message: " + e.getMessage());
 					fail("Error during invoke (" + this.modelname + ")");
 				}
 				break;

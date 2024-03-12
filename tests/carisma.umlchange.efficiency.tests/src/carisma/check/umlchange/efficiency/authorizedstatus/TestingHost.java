@@ -25,6 +25,8 @@ import carisma.evolution.DeltaList;
 import carisma.evolution.uml2.ModifierMap;
 import carisma.evolution.uml2.UMLModifier;
 
+import java.util.logging.Logger;
+
 /**
  * Implementation of the {@link AnalysisHost} for testing purpose.
  * @author Klaus Rudack
@@ -32,6 +34,7 @@ import carisma.evolution.uml2.UMLModifier;
  */
 public class TestingHost implements AnalysisHost {
 	
+	private static final Logger logger = Logger.getLogger(TestingHost.class.getName());
 	
 	/**
 	 * boolean whether to print messages to the console or not.
@@ -177,7 +180,7 @@ public class TestingHost implements AnalysisHost {
 					}
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.warning("Error message: " + e.getMessage());
 			}
 		}
 	}

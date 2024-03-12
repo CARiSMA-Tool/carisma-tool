@@ -18,8 +18,12 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+
+import java.util.logging.Logger;
+
 public class XML_DOM implements Content {
 
+	private static final Logger logger = Logger.getLogger(XML_DOM.class.getName());
 	public static final String ID = "XML_DOM";
 	private Document xmlDocument;
 	
@@ -69,7 +73,7 @@ public class XML_DOM implements Content {
 	    	transformer.transform(domSource, result);
 		    return writer.toString();
 		} catch (TransformerException e) {
-			e.printStackTrace();
+			logger.warning("Error message: " + e.getMessage());
 		}
 	    return "";
 	}
