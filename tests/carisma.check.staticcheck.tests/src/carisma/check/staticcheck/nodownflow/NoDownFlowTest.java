@@ -52,7 +52,7 @@ public class NoDownFlowTest {
 	/**
 	 * tests if the class throws a NullPointerException if the model is null.
 	 */
-	@SuppressWarnings("static-method")
+	@SuppressWarnings("javabugs:S6416")
 	@Test (expected = IllegalArgumentException.class)
 	public final void testNull() {
 		NoDownFlow ndf = new NoDownFlow();
