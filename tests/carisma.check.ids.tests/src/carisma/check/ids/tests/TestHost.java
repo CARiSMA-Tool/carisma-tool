@@ -19,8 +19,9 @@ public class TestHost implements AnalysisHost {
     public TestHost(Resource modelres) {
         this.modelres = modelres;
     }
+ 
 
-    @Override
+	@Override
     public void addResultMessage(final AnalysisResultMessage detail) {
         Logger.log(LogLevel.INFO, detail.getText());
     }

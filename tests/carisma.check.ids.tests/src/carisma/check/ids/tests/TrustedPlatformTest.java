@@ -18,14 +18,6 @@ import org.junit.Test;
 
 
 import carisma.check.idscheck.trustedplatformcheck.TrustedPlatformCheck;
-
-import carisma.core.analysis.AnalysisHost;
-import carisma.core.analysis.RegisterInUseException;
-import carisma.core.analysis.RegisterNotInUseException;
-import carisma.core.analysis.UserAbortedAnalysisException;
-import carisma.core.analysis.result.AnalysisResultMessage;
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
 import carisma.profile.umlsec.umlsec4ids.*;
 
 /**
@@ -51,88 +43,12 @@ public class TrustedPlatformTest{
 		this.model = (Model) this.modelres.getContents().get(0);
 	}
 	
-	//--------------------------------------------------------------------------------------------------
-	private class TestHost implements AnalysisHost {
-
-		public TestHost() {
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		public void addResultMessage(final AnalysisResultMessage detail) {
-			Logger.log(LogLevel.INFO, detail.getText());
-		}
-
-		@Override
-		public void appendToReport(final String text) {
-			Logger.log(LogLevel.INFO, text);			
-		}
-
-		@Override
-		public void appendLineToReport(final String text) {
-			Logger.log(LogLevel.INFO, text);			
-		}
-
-		@Override
-		public Resource getAnalyzedModel() {
-			return TrustedPlatformTest.this.modelres;
-		}
-
-		@Override
-		public String getCurrentModelFilename() {
-			return TrustedPlatformTest.this.modelres.getURI().toFileString();
-		}
-
-		@Override
-		public void putToRegister(final String registerName, final Object data)
-				throws RegisterInUseException {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public boolean isRegisterInUse(final String registerName) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public Object getFromRegister(final String registerName)
-				throws RegisterNotInUseException {
-			return null;
-		}
-
-		@Override
-		public Object removeFromRegister(final String registerName)
-				throws RegisterNotInUseException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public void displayError(final String message) {
-			// TODO Auto-generated method stub
-			Logger.log(LogLevel.INFO, message);
-		}
-
-		@Override
-		public File getFileToBeWritten(final File file)
-				throws UserAbortedAnalysisException {
-			// TODO Auto-generated method stub
-			return file;
-		}
-	}
-	//--------------------------------------------------------------------------------------------------
-
-
-	
-	
 	// test for empty model
 	@Test
 	public void testEmptyModelTP() throws IOException {
 		loadModel("trustedplatform_empty_model.uml");
 		TrustedPlatformCheck check1 = new TrustedPlatformCheck();
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertTrue(check1.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -150,7 +66,7 @@ public class TrustedPlatformTest{
 		assertEquals(0, certified.size());
 		assertEquals(0, isolated.size());
 		assertEquals(0, encrypted.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check2.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -168,7 +84,7 @@ public class TrustedPlatformTest{
 		assertEquals(2, certified.size());
 		assertEquals(2, isolated.size());
 		assertEquals(2, encrypted.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check3.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -186,7 +102,7 @@ public class TrustedPlatformTest{
 		assertEquals(1, certified.size());
 		assertEquals(2, isolated.size());
 		assertEquals(2, encrypted.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check4.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -204,7 +120,7 @@ public class TrustedPlatformTest{
 		assertEquals(2, certified.size());
 		assertEquals(2, isolated.size());
 		assertEquals(1, encrypted.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check5.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -222,7 +138,7 @@ public class TrustedPlatformTest{
 		assertEquals(2, certified.size());
 		assertEquals(1, isolated.size());
 		assertEquals(2, encrypted.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check6.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -240,7 +156,7 @@ public class TrustedPlatformTest{
 		assertEquals(2, certified.size());
 		assertEquals(2, isolated.size());
 		assertEquals(2, encrypted.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertTrue(check7.perform(null, analysisHost));
 		this.modelres.unload();
 	}

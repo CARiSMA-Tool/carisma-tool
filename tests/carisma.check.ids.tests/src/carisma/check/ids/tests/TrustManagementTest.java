@@ -20,14 +20,6 @@ import org.eclipse.uml2.uml.Node;
 import org.junit.Test;
 
 import carisma.check.idschecks.trustmanagementcheck.TrustManagementCheck;
-
-import carisma.core.analysis.AnalysisHost;
-import carisma.core.analysis.RegisterInUseException;
-import carisma.core.analysis.RegisterNotInUseException;
-import carisma.core.analysis.UserAbortedAnalysisException;
-import carisma.core.analysis.result.AnalysisResultMessage;
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.profile.umlsec.umlsec4ids.*;
 
@@ -54,86 +46,13 @@ public class TrustManagementTest{
 		this.model = (Model) this.modelres.getContents().get(0);
 	}
 	
-	//--------------------------------------------------------------------------------------------------
-	private class TestHost implements AnalysisHost {
-
-		public TestHost() {
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		public void addResultMessage(final AnalysisResultMessage detail) {
-			Logger.log(LogLevel.INFO, detail.getText());
-		}
-
-		@Override
-		public void appendToReport(final String text) {
-			Logger.log(LogLevel.INFO, text);			
-		}
-
-		@Override
-		public void appendLineToReport(final String text) {
-			Logger.log(LogLevel.INFO, text);			
-		}
-
-		@Override
-		public Resource getAnalyzedModel() {
-			return TrustManagementTest.this.modelres;
-		}
-
-		@Override
-		public String getCurrentModelFilename() {
-			return TrustManagementTest.this.modelres.getURI().toFileString();
-		}
-
-		@Override
-		public void putToRegister(final String registerName, final Object data)
-				throws RegisterInUseException {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public boolean isRegisterInUse(final String registerName) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public Object getFromRegister(final String registerName)
-				throws RegisterNotInUseException {
-			return null;
-		}
-
-		@Override
-		public Object removeFromRegister(final String registerName)
-				throws RegisterNotInUseException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public void displayError(final String message) {
-			// TODO Auto-generated method stub
-			Logger.log(LogLevel.INFO, message);
-		}
-
-		@Override
-		public File getFileToBeWritten(final File file)
-				throws UserAbortedAnalysisException {
-			// TODO Auto-generated method stub
-			return file;
-		}
-	}
-	//--------------------------------------------------------------------------------------------------
-
 	
 	// test for empty model
 	@Test
 	public void testEmptyModelTM() throws IOException {
 		loadModel("trustmanagement_empty_model.uml");
 		TrustManagementCheck check1 = new TrustManagementCheck();
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertTrue(check1.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -149,7 +68,7 @@ public class TrustManagementTest{
 		List<Element> trust = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUST);
 		List<Element> trustplus = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUSTPLUS);
 		assertNotEquals(nodeList.size(), (basefree.size()+base.size()+trust.size()+trustplus.size()));
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check2.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -167,7 +86,7 @@ public class TrustManagementTest{
 		assertEquals(0, base.size());
 		assertEquals(0, trust.size());
 		assertEquals(0, trustplus.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check3.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -186,7 +105,7 @@ public class TrustManagementTest{
 		assertEquals(1, base.size());
 		assertEquals(0, trust.size());
 		assertEquals(0, trustplus.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check4.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -202,7 +121,7 @@ public class TrustManagementTest{
 		List<Element> trust = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUST);
 		List<Element> trustplus = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUSTPLUS);
 		assertNotEquals(nodeList.size(), (basefree.size()+base.size()+trust.size()+trustplus.size()));
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check5.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -212,7 +131,7 @@ public class TrustManagementTest{
 	public void testCorrectModelTM() throws IOException {
 		loadModel("trustmanagement_correct_model.uml");
 		TrustManagementCheck check6 = new TrustManagementCheck();
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertTrue(check6.perform(null, analysisHost));
 		this.modelres.unload();
 	}
