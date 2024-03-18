@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_DFlLIOEXEe6OaeKmlhRFDQ" name="generaltestdiagram">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_DIEecOEXEe6OaeKmlhRFDQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_EG6FQOEXEe6OaeKmlhRFDQ" name="Class2">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_PfEQUOEXEe6OaeKmlhRFDQ" name="testattribute">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_PfEQUeEXEe6OaeKmlhRFDQ" name="testliteral1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_EiE-UOEXEe6OaeKmlhRFDQ" name="Class3" classifierBehavior="_eyCjwOEaEe6OaeKmlhRFDQ">
+    <generalization xmi:type="uml:Generalization" xmi:id="_JXtQgOEXEe6OaeKmlhRFDQ" general="_EG6FQOEXEe6OaeKmlhRFDQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_XBMlAOEXEe6OaeKmlhRFDQ" name="testattribute">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_XBMlAeEXEe6OaeKmlhRFDQ" name="testattribute2"/>
+    </ownedAttribute>
+    <ownedBehavior xmi:type="uml:Activity" xmi:id="_eyCjwOEaEe6OaeKmlhRFDQ" name="Activity3" node="_pxRRcOEaEe6OaeKmlhRFDQ _zV63gOEaEe6OaeKmlhRFDQ">
+      <node xmi:type="uml:OpaqueAction" xmi:id="_pxRRcOEaEe6OaeKmlhRFDQ" name="OpaqueAction1"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_zV63gOEaEe6OaeKmlhRFDQ" name="OpaqueAction2"/>
+    </ownedBehavior>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_njQhwOEaEe6OaeKmlhRFDQ" name="Class5"/>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_PiBSQOR7Ee6J3r62RqKL3g">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PiEVkOR7Ee6J3r62RqKL3g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="generalprofiletestdiagram.profile.uml#_IPe4wOR7Ee6J3r62RqKL3g"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="generalprofiletestdiagram.profile.uml#_inCmwOEXEe6OaeKmlhRFDQ"/>
+  </profileApplication>
+</uml:Model>
