@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -18,14 +17,9 @@ import org.eclipse.uml2.uml.Model;
 import org.junit.Test;
 
 import carisma.check.idscheck.dataaccesscheck.DataAccessCheck;
-import carisma.core.analysis.AnalysisHost;
-import carisma.core.analysis.RegisterInUseException;
-import carisma.core.analysis.RegisterNotInUseException;
-import carisma.core.analysis.UserAbortedAnalysisException;
-import carisma.core.analysis.result.AnalysisResultMessage;
-import carisma.core.logging.LogLevel;
-import carisma.core.logging.Logger;
 import carisma.profile.umlsec.umlsec4ids.*;
+
+
 
 /**
  * JUnit test-file for the DataAccessControl of the Umlsec4IDS plugin.
@@ -39,7 +33,7 @@ public class DataAccessControlTest{
 	private ResourceSet rs = new ResourceSetImpl();
 	
 	private Resource modelres = null;
-	
+		
 	private Model model = null;
 	
 	public final void loadModel(final String testmodelname) throws IOException {
@@ -50,79 +44,6 @@ public class DataAccessControlTest{
 		this.model = (Model) this.modelres.getContents().get(0);
 	}
 	
-	//--------------------------------------------------------------------------------------------------
-	private class TestHost implements AnalysisHost {
-
-		public TestHost() {
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		public void addResultMessage(final AnalysisResultMessage detail) {
-			Logger.log(LogLevel.INFO, detail.getText());
-		}
-
-		@Override
-		public void appendToReport(final String text) {
-			Logger.log(LogLevel.INFO, text);			
-		}
-
-		@Override
-		public void appendLineToReport(final String text) {
-			Logger.log(LogLevel.INFO, text);			
-		}
-
-		@Override
-		public Resource getAnalyzedModel() {
-			return DataAccessControlTest.this.modelres;
-		}
-
-		@Override
-		public String getCurrentModelFilename() {
-			return DataAccessControlTest.this.modelres.getURI().toFileString();
-		}
-
-		@Override
-		public void putToRegister(final String registerName, final Object data)
-				throws RegisterInUseException {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public boolean isRegisterInUse(final String registerName) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public Object getFromRegister(final String registerName)
-				throws RegisterNotInUseException {
-			return null;
-		}
-
-		@Override
-		public Object removeFromRegister(final String registerName)
-				throws RegisterNotInUseException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public void displayError(final String message) {
-			// TODO Auto-generated method stub
-			Logger.log(LogLevel.INFO, message);
-		}
-
-		@Override
-		public File getFileToBeWritten(final File file)
-				throws UserAbortedAnalysisException {
-			// TODO Auto-generated method stub
-			return file;
-		}
-	}
-	//--------------------------------------------------------------------------------------------------
-
 	//tests for empty model
 	// should be 1, but it returns 4 as no owner, no consumer and missing protected action s returned also
 	@Test
@@ -133,7 +54,7 @@ public class DataAccessControlTest{
 		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
 		assertEquals(0, owner.size());
 		assertEquals(0, consumer.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check1.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -147,7 +68,7 @@ public class DataAccessControlTest{
 		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check2.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -161,7 +82,7 @@ public class DataAccessControlTest{
 		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
 		assertEquals(0, owner.size());
 		assertEquals(1, consumer.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check3.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -175,7 +96,7 @@ public class DataAccessControlTest{
 		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(0, consumer.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check4.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -190,7 +111,7 @@ public class DataAccessControlTest{
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
 		assertEquals(consumer, owner);
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check5.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -204,7 +125,7 @@ public class DataAccessControlTest{
 		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check6.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -218,7 +139,7 @@ public class DataAccessControlTest{
 		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check7.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -232,7 +153,7 @@ public class DataAccessControlTest{
 		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertTrue(check8.perform(null, analysisHost));
 		this.modelres.unload();
 	}
@@ -246,12 +167,10 @@ public class DataAccessControlTest{
 		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
-		TestHost analysisHost = new TestHost();
+		TestHost analysisHost = new TestHost(this.modelres);
 		assertTrue(check9.perform(null, analysisHost));
 		this.modelres.unload();
 	}
-
-		
 	
 	
 }
