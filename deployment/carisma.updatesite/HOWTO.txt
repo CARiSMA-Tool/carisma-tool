@@ -2,10 +2,7 @@
 Vorgehen zum Erstellen/Aktualisieren der Update-Site
 -----------------------------------------------------
 
-1. category.xml oeffnen
+1. category.xml oeffnen und Categories / Features hinzufuegen / ändern / loeschen
 
-2. ggf. Features hinzufuegen/loeschen
-
-3. index.html (verändert sich nicht), artifacts.jar, content.jar, plugins/*, features/* aus target/repository/ auf Update Site verfügbar machen (aktuell (2023) via SVN)
-
-TODO: Deployment via Maven Wagon automatisieren
+2. index.html (verändert sich nicht), artifacts.jar, content.jar, plugins/*, features/* aus target/repository/ auf Update Site via SVN verfügbar machen.
+   Dabei die Ordner 'features' und 'plugins' nicht löschen/neu hinzufügen, sondern nur (leeren und) neue .jar hinzufügen.
