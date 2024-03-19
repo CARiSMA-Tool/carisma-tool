@@ -23,6 +23,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -135,9 +136,6 @@ import carisma.modeltype.bpmn2.extension.provider.ExtensionItemProviderAdapterFa
  * <!-- end-user-doc -->
  * @generated
  */
-//We suppress all warnings, since this is generated code and we don't address warnings of generated code manually 
-//and want SonarCloud to ignore these as well
-@SuppressWarnings("all")
 public class ExtensionEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
