@@ -105,23 +105,24 @@ public class Check implements CarismaCheck {
 			File testoutputfile = outputFileParameter.getValue();
 			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Test output file: " + testoutputfile.getAbsolutePath()));
 			
-			BufferedWriter bw = new BufferedWriter(new FileWriter(testoutputfile));
-			bw.write("To test all parameters, the check will write them into this file:");
-			bw.newLine();
-			bw.write("StringParameter: " + stringParameter.getValue());
-			bw.newLine();
-			bw.write("IntegerParameter: " + integerParameter.getValue());
-			bw.newLine();
-			bw.write("FloatParameter: " + floatParameter.getValue());
-			bw.newLine();
-			bw.write("InputFileParameter: " + inputFileParameter.getValue().getAbsolutePath());
-			bw.newLine();
-			bw.write("BooleanParameter: " + booleanParameter.getValue());
-			bw.newLine();
-			bw.write("FolderParameter: " + folderParameter.getValue().getAbsolutePath());
-			bw.newLine();
-			bw.write("OutputFileParameter: " + outputFileParameter.getValue().getAbsolutePath());
-			bw.close();
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter(testoutputfile))) {
+				bw.write("To test all parameters, the check will write them into this file:");
+				bw.newLine();
+				bw.write("StringParameter: " + stringParameter.getValue());
+				bw.newLine();
+				bw.write("IntegerParameter: " + integerParameter.getValue());
+				bw.newLine();
+				bw.write("FloatParameter: " + floatParameter.getValue());
+				bw.newLine();
+				bw.write("InputFileParameter: " + inputFileParameter.getValue().getAbsolutePath());
+				bw.newLine();
+				bw.write("BooleanParameter: " + booleanParameter.getValue());
+				bw.newLine();
+				bw.write("FolderParameter: " + folderParameter.getValue().getAbsolutePath());
+				bw.newLine();
+				bw.write("OutputFileParameter: " + outputFileParameter.getValue().getAbsolutePath());
+				bw.close();
+			}
 		} catch (Exception e) {
 			logger.warning("Error message: " + e.getMessage());
 		}
