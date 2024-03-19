@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_kalRAOSFEe6J3r62RqKL3g" name="runningExample">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_kb0nIOSFEe6J3r62RqKL3g">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_kbDLEOSFEe6J3r62RqKL3g" name="Music access" node="_R5nx0OU2Ee6L4IT4GIXwmg _w6Mt8OU2Ee6L4IT4GIXwmg _6r5RgOU2Ee6L4IT4GIXwmg _RxLLAOU3Ee6L4IT4GIXwmg _lRHVgOU3Ee6L4IT4GIXwmg" group="_NBLFIOSGEe6J3r62RqKL3g _Nb6gYOSGEe6J3r62RqKL3g">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5EB70OU2Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g" target="_w6Mt8OU2Ee6L4IT4GIXwmg" source="_R5nx0OU2Ee6L4IT4GIXwmg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_OunY8OU3Ee6L4IT4GIXwmg" target="_6r5RgOU2Ee6L4IT4GIXwmg" source="_w6Mt8OU2Ee6L4IT4GIXwmg"/>
+    <edge xmi:type="uml:ObjectFlow" xmi:id="_WBGIEOU3Ee6L4IT4GIXwmg" target="_WBLAkOU3Ee6L4IT4GIXwmg" source="_WBH9QOU3Ee6L4IT4GIXwmg">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_WBZqEOU3Ee6L4IT4GIXwmg" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_WBZqEeU3Ee6L4IT4GIXwmg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_pE3T8OU3Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g" target="_lRHVgOU3Ee6L4IT4GIXwmg" source="_RxLLAOU3Ee6L4IT4GIXwmg">
+      <guard xmi:type="uml:LiteralString" xmi:id="_9qZ0kOU3Ee6L4IT4GIXwmg" value="1 month passed"/>
+    </edge>
+    <group xmi:type="uml:ActivityPartition" xmi:id="_NBLFIOSGEe6J3r62RqKL3g" name="Sony" node="_6r5RgOU2Ee6L4IT4GIXwmg"/>
+    <group xmi:type="uml:ActivityPartition" xmi:id="_Nb6gYOSGEe6J3r62RqKL3g" name="Bill" node="_R5nx0OU2Ee6L4IT4GIXwmg _w6Mt8OU2Ee6L4IT4GIXwmg _RxLLAOU3Ee6L4IT4GIXwmg _lRHVgOU3Ee6L4IT4GIXwmg" edge="_5EB70OU2Ee6L4IT4GIXwmg _pE3T8OU3Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_R5nx0OU2Ee6L4IT4GIXwmg" name="Start" outgoing="_5EB70OU2Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_w6Mt8OU2Ee6L4IT4GIXwmg" name="Pay 5 €" incoming="_5EB70OU2Ee6L4IT4GIXwmg" outgoing="_OunY8OU3Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_6r5RgOU2Ee6L4IT4GIXwmg" name="Transfer file" incoming="_OunY8OU3Ee6L4IT4GIXwmg" inPartition="_NBLFIOSGEe6J3r62RqKL3g">
+      <outputValue xmi:type="uml:OutputPin" xmi:id="_WBH9QOU3Ee6L4IT4GIXwmg" name="1999.mp3" outgoing="_WBGIEOU3Ee6L4IT4GIXwmg">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_WBJycOU3Ee6L4IT4GIXwmg" value="1"/>
+      </outputValue>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_RxLLAOU3Ee6L4IT4GIXwmg" name="Play music" outgoing="_pE3T8OU3Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g">
+      <inputValue xmi:type="uml:InputPin" xmi:id="_WBLAkOU3Ee6L4IT4GIXwmg" name="1999.mp3" incoming="_WBGIEOU3Ee6L4IT4GIXwmg">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_WBM1wOU3Ee6L4IT4GIXwmg" value="1"/>
+      </inputValue>
+    </node>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_lRHVgOU3Ee6L4IT4GIXwmg" name="End" incoming="_pE3T8OU3Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g"/>
+  </packagedElement>
+</uml:Model>

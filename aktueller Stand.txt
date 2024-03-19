@@ -1,0 +1,30 @@
+Diese Datei enthält den aktuellen Stand der Planung, die gegebenenfalls noch nicht in den Modellen umgesetzt ist..
+
+
+Die "name"-Attribute im Profil werden entfernt und durch eine mitgegebene Textdatei ersetzt, die eine Liste von Key-Value-Paaren enthält, die im Profil verwendeten Labeln formale Namen zuordnen.
+
+
+Wenn eine zuzuweisende Eigenschaft keine ausfüllbaren Attribute braucht (z.B. PolicyType, oder ConflictStrategy einer Policy), wird eine Stereotyprepräsentation gegebenenfalls durch eine Repräsentation als Enum ersetzt. Dabei spielt die erhöhte Sichtbarkeit (positiv für Übersicht, negativ bezüglich Platz) von Stereotypen eine Rolle, sowie die Multiplizitäten (da Stereotypanwendung keine Einschränkung bezüglich der Multiplizitäten zu haben scheint).
+
+
+
+Für einfache Policies (z.B. eine einfache Permission mit einer Duty (mit refinement) und einem Constraint wie in runningExampleSimple1) reichen direkt auf Aktivitäten angewandte Stereotypen wie im aktuellen Entwurf.
+
+Für kompliziertere Policies wird das aber wohl nicht reichen.
+Beispiele:
+-Bei verschachtelten logischen Ausdrücken (z.B. constraint1 AND (constraint1 OR constraint2)) lässt sich das nicht in einem einzelnen Objekt ausdrücken, sofern man nicht auf eine Liste von Strings ausweichen will, da constraint-Objekte nur über Zuweisung von Stereotypen generiert werden können, sich die Stereotyp-Anwendung aber sozusagen nicht verschachteln lässt, um eine Stereotyp-Anwendung im gleichen Objekt als Attribut einer anderen zu verwenden.
+
+-Wenn eine Aktion mit verschiedenen Refinements in verschiedenen Rules Anwendung findet (z.B. eine Zahlung (in einem einzelnen Aktivitätsknoten) stattfindet, die Höhe aber abhängig von dem gekauften Produkt ist), dann lässt sich das Refinement nicht direkt der Zahlaktion zuordnen, sondern muss der konkreten Kombination aus Zahlaktion und Produkt zugeordnet werden, wofür weder ein Stereotypattribut bei der Zahlung, noch beim Produkt geht (wegen möglicher Mehrdeutigkeit). 
+Eine Möglichkeit wäre, bei das Refinement bei beiden zu einem Attribut zuzuordnen, um die Zuordnung eindeutig zu machen. Das geht aber auch nur, wenn Constraints im Diagraamm nicht wiederverwendet werden können, sonst kann es dazu kommen, dass ein Constraint nicht in der Beziehung zwischen Action ac1 und Asset as1 verwendet werden soll, aber trotzdem in der Beziehung von Action ac1 zu asset as2 und von Action ac2 zu Asset as1. Dann wäre das Constraint in ac1 und as1 enthalten und würde fälschlicherweise auf ihre Beziehung angewandt.
+Eine weitere Alternative wäre, dass für jede Abweichung, die bei einer Aktion modelliert werden soll, ein separater Aktionsknoten erstellt wird (also ein 5€Zahlen-Knoten und ein 10€Zahlen-Knoten statt eines einzelnen, allgemeinen Zahlen-Knotens).
+
+Der aktuell geplante Ansatz ist die Möglichkeit, jede Regelanwendung optional in einen Kommentarfeld auszulagern, das (entweder über explizite Erklärung der zugehörigen Elemente in Stereotypattributen, oder über Verbindung mit den Elementen durch Kommentarlinks) die zu einer Regel gehörigen Elemente zusammenführt.
+Kommentarfelder sind geeignet, da sie die Verständlichkeit des Arbeitsablaufs weniger beeinträchtigen als es andere Knoten würden und da sie für eine übersichtliche Darstellung mit den verschiedenen Elementen, die in der graphishen Darstellung eines Arbeitsablauafs vorkommen, verbunden werden können.
+
+
+
+Wenn mehrere Eingabemöglichkeiten gegeben sein sollen (z.B. entweder durch Referenz auf ein Klassenenum oder Eintrag einer Klasse mit entsprechendem Stereotyp) werden mehrere Attribute mit verschiedenem Typ dafür zur Verfügung gestellt.
+
+
+
+Einschränkungen bezülich eines Profils (z.B. die allgemeine ODRL-Einschränkung, dass eine Duty, die consequence einer anderen Duty ist, selbst keine consequence haben darf) können im Profil formal definiert werden (oder für jedes Profil muss eine eigene Überprüfungsklasse geschrieben werden, was aber für die Nutzerfreundlichkeit schlechter wäre).

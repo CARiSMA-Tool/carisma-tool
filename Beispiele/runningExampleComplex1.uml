@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Bk_lYOU5Ee6L4IT4GIXwmg" name="runningExampleComplex1">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_BlhJ0OU5Ee6L4IT4GIXwmg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_BlJ9cOU5Ee6L4IT4GIXwmg" name="Music access" node="_MM278OU5Ee6L4IT4GIXwmg _QMEjgOU5Ee6L4IT4GIXwmg _W_GWgOU5Ee6L4IT4GIXwmg _qhpJEOU5Ee6L4IT4GIXwmg _zW0jkOVFEe6L4IT4GIXwmg _8jfSAOVGEe6L4IT4GIXwmg _eWpDcOVHEe6L4IT4GIXwmg _k-YzgOVHEe6L4IT4GIXwmg _yBbMAOVHEe6L4IT4GIXwmg _NfJ3AOVJEe6L4IT4GIXwmg _HhKZIOVKEe6L4IT4GIXwmg _q3cQkOVSEe6L4IT4GIXwmg _H874QOXQEe6mDp5rBd0xMw _8PaEsOXQEe6mDp5rBd0xMw _XH1fsOXREe6mDp5rBd0xMw" group="_JmUXgOU5Ee6L4IT4GIXwmg __1MfoOXQEe6mDp5rBd0xMw">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_9Lb5QOU6Ee6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_qhpJEOU5Ee6L4IT4GIXwmg" source="_MM278OU5Ee6L4IT4GIXwmg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_-BRVEOU6Ee6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_QMEjgOU5Ee6L4IT4GIXwmg" source="_qhpJEOU5Ee6L4IT4GIXwmg">
+      <guard xmi:type="uml:LiteralString" xmi:id="_eC2PoOVFEe6L4IT4GIXwmg" value="chose full version"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_-1kf0OU6Ee6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_W_GWgOU5Ee6L4IT4GIXwmg" source="_qhpJEOU5Ee6L4IT4GIXwmg">
+      <guard xmi:type="uml:LiteralString" xmi:id="_OXCeEOVFEe6L4IT4GIXwmg" value="chose trial version"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_qVuroOVHEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_k-YzgOVHEe6L4IT4GIXwmg" source="_W_GWgOU5Ee6L4IT4GIXwmg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_rR28sOVHEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_k-YzgOVHEe6L4IT4GIXwmg" source="_yBbMAOVHEe6L4IT4GIXwmg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_sLD1kOVHEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_zW0jkOVFEe6L4IT4GIXwmg" source="_k-YzgOVHEe6L4IT4GIXwmg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_jEaksOVIEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_yBbMAOVHEe6L4IT4GIXwmg" source="_QMEjgOU5Ee6L4IT4GIXwmg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_koHzIOVIEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_8jfSAOVGEe6L4IT4GIXwmg" source="_yBbMAOVHEe6L4IT4GIXwmg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_2yFMsOVJEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_NfJ3AOVJEe6L4IT4GIXwmg" source="_zW0jkOVFEe6L4IT4GIXwmg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_YBAPsOVKEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_HhKZIOVKEe6L4IT4GIXwmg" source="_8jfSAOVGEe6L4IT4GIXwmg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Y4KhMOVKEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_8jfSAOVGEe6L4IT4GIXwmg" source="_HhKZIOVKEe6L4IT4GIXwmg">
+      <guard xmi:type="uml:LiteralString" xmi:id="_fSHF0OVKEe6L4IT4GIXwmg" value="copied less than 3 times"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_lXbeQOVKEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_eWpDcOVHEe6L4IT4GIXwmg" source="_NfJ3AOVJEe6L4IT4GIXwmg">
+      <guard xmi:type="uml:LiteralString" xmi:id="_wumK0OVKEe6L4IT4GIXwmg" value="trial version and (played 10 times or 1 month passed)"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_eCVJ4OVTEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_zW0jkOVFEe6L4IT4GIXwmg" source="_NfJ3AOVJEe6L4IT4GIXwmg">
+      <guard xmi:type="uml:LiteralString" xmi:id="_eTg4sOXQEe6mDp5rBd0xMw" value="play music"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_MuEsAOXQEe6mDp5rBd0xMw" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_H874QOXQEe6mDp5rBd0xMw" source="_NfJ3AOVJEe6L4IT4GIXwmg">
+      <guard xmi:type="uml:LiteralString" xmi:id="_qHxw8OXQEe6mDp5rBd0xMw" value="full version and finish activity"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Q5BpgOXQEe6mDp5rBd0xMw" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_H874QOXQEe6mDp5rBd0xMw" source="_HhKZIOVKEe6L4IT4GIXwmg">
+      <guard xmi:type="uml:LiteralString" xmi:id="_59nBMOXQEe6mDp5rBd0xMw" value="else"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_T_MJMOXQEe6mDp5rBd0xMw" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_q3cQkOVSEe6L4IT4GIXwmg" source="_H874QOXQEe6mDp5rBd0xMw"/>
+    <edge xmi:type="uml:ObjectFlow" xmi:id="_IqgTcOXREe6mDp5rBd0xMw" target="_Iqkk4OXREe6mDp5rBd0xMw" source="_8PaEsOXQEe6mDp5rBd0xMw">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_IrACsOXREe6mDp5rBd0xMw" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_IrACseXREe6mDp5rBd0xMw" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ObjectFlow" xmi:id="_NOCwEOXREe6mDp5rBd0xMw" target="_NOElQOXREe6mDp5rBd0xMw" source="_8PaEsOXQEe6mDp5rBd0xMw">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_NOjtcOXREe6mDp5rBd0xMw" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_NOkUgOXREe6mDp5rBd0xMw" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ObjectFlow" xmi:id="_f_dAoOXREe6mDp5rBd0xMw" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg" target="_XH1fsOXREe6mDp5rBd0xMw" source="_f_e10OXREe6mDp5rBd0xMw">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_f_9W8OXREe6mDp5rBd0xMw" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_f_9W8eXREe6mDp5rBd0xMw" value="1"/>
+    </edge>
+    <group xmi:type="uml:ActivityPartition" xmi:id="_JmUXgOU5Ee6L4IT4GIXwmg" name="Bill" node="_MM278OU5Ee6L4IT4GIXwmg _QMEjgOU5Ee6L4IT4GIXwmg _W_GWgOU5Ee6L4IT4GIXwmg _qhpJEOU5Ee6L4IT4GIXwmg _zW0jkOVFEe6L4IT4GIXwmg _8jfSAOVGEe6L4IT4GIXwmg _eWpDcOVHEe6L4IT4GIXwmg _k-YzgOVHEe6L4IT4GIXwmg _yBbMAOVHEe6L4IT4GIXwmg _NfJ3AOVJEe6L4IT4GIXwmg _HhKZIOVKEe6L4IT4GIXwmg _q3cQkOVSEe6L4IT4GIXwmg _H874QOXQEe6mDp5rBd0xMw _XH1fsOXREe6mDp5rBd0xMw" edge="_9Lb5QOU6Ee6L4IT4GIXwmg _-BRVEOU6Ee6L4IT4GIXwmg _-1kf0OU6Ee6L4IT4GIXwmg _qVuroOVHEe6L4IT4GIXwmg _sLD1kOVHEe6L4IT4GIXwmg _rR28sOVHEe6L4IT4GIXwmg _jEaksOVIEe6L4IT4GIXwmg _koHzIOVIEe6L4IT4GIXwmg _2yFMsOVJEe6L4IT4GIXwmg _YBAPsOVKEe6L4IT4GIXwmg _Y4KhMOVKEe6L4IT4GIXwmg _lXbeQOVKEe6L4IT4GIXwmg _eCVJ4OVTEe6L4IT4GIXwmg _MuEsAOXQEe6mDp5rBd0xMw _Q5BpgOXQEe6mDp5rBd0xMw _T_MJMOXQEe6mDp5rBd0xMw _f_dAoOXREe6mDp5rBd0xMw"/>
+    <group xmi:type="uml:ActivityPartition" xmi:id="__1MfoOXQEe6mDp5rBd0xMw" name="Sony" node="_8PaEsOXQEe6mDp5rBd0xMw"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_MM278OU5Ee6L4IT4GIXwmg" name="Start" outgoing="_9Lb5QOU6Ee6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_QMEjgOU5Ee6L4IT4GIXwmg" name="Pay 5 €" incoming="_-BRVEOU6Ee6L4IT4GIXwmg" outgoing="_jEaksOVIEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_W_GWgOU5Ee6L4IT4GIXwmg" name="Agree to usage tracking" incoming="_-1kf0OU6Ee6L4IT4GIXwmg" outgoing="_qVuroOVHEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_qhpJEOU5Ee6L4IT4GIXwmg" name="DecisionNode5" incoming="_9Lb5QOU6Ee6L4IT4GIXwmg" outgoing="_-BRVEOU6Ee6L4IT4GIXwmg _-1kf0OU6Ee6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_zW0jkOVFEe6L4IT4GIXwmg" name="Play music" incoming="_sLD1kOVHEe6L4IT4GIXwmg _eCVJ4OVTEe6L4IT4GIXwmg" outgoing="_2yFMsOVJEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg">
+      <inputValue xmi:type="uml:InputPin" xmi:id="_Iqkk4OXREe6mDp5rBd0xMw" name="1999.mp3" incoming="_IqgTcOXREe6mDp5rBd0xMw">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_IqmaEOXREe6mDp5rBd0xMw" value="1"/>
+      </inputValue>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_8jfSAOVGEe6L4IT4GIXwmg" name="Copy file" incoming="_koHzIOVIEe6L4IT4GIXwmg _Y4KhMOVKEe6L4IT4GIXwmg" outgoing="_YBAPsOVKEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg">
+      <inputValue xmi:type="uml:InputPin" xmi:id="_NOElQOXREe6mDp5rBd0xMw" name="1999.mp3" incoming="_NOCwEOXREe6mDp5rBd0xMw">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_NOFzYOXREe6mDp5rBd0xMw" value="1"/>
+      </inputValue>
+      <outputValue xmi:type="uml:OutputPin" xmi:id="_f_e10OXREe6mDp5rBd0xMw" name="1999.mp3 copy" outgoing="_f_dAoOXREe6mDp5rBd0xMw">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_f_gD8OXREe6mDp5rBd0xMw" value="1"/>
+      </outputValue>
+    </node>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_eWpDcOVHEe6L4IT4GIXwmg" name="End (no permissions)" incoming="_lXbeQOVKEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:MergeNode" xmi:id="_k-YzgOVHEe6L4IT4GIXwmg" name="MergeNode12" incoming="_qVuroOVHEe6L4IT4GIXwmg _rR28sOVHEe6L4IT4GIXwmg" outgoing="_sLD1kOVHEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:ForkNode" xmi:id="_yBbMAOVHEe6L4IT4GIXwmg" name="ForkNode16" incoming="_jEaksOVIEe6L4IT4GIXwmg" outgoing="_rR28sOVHEe6L4IT4GIXwmg _koHzIOVIEe6L4IT4GIXwmg" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_NfJ3AOVJEe6L4IT4GIXwmg" name="DecisionNode19" incoming="_2yFMsOVJEe6L4IT4GIXwmg" outgoing="_lXbeQOVKEe6L4IT4GIXwmg _eCVJ4OVTEe6L4IT4GIXwmg _MuEsAOXQEe6mDp5rBd0xMw" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_HhKZIOVKEe6L4IT4GIXwmg" name="DecisionNode21" incoming="_YBAPsOVKEe6L4IT4GIXwmg" outgoing="_Y4KhMOVKEe6L4IT4GIXwmg _Q5BpgOXQEe6mDp5rBd0xMw" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_q3cQkOVSEe6L4IT4GIXwmg" name="End (Play music permission)" incoming="_T_MJMOXQEe6mDp5rBd0xMw" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:JoinNode" xmi:id="_H874QOXQEe6mDp5rBd0xMw" name="JoinNode27" incoming="_MuEsAOXQEe6mDp5rBd0xMw _Q5BpgOXQEe6mDp5rBd0xMw" outgoing="_T_MJMOXQEe6mDp5rBd0xMw" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg"/>
+    <node xmi:type="uml:DataStoreNode" xmi:id="_8PaEsOXQEe6mDp5rBd0xMw" name="SonyDataStore" outgoing="_IqgTcOXREe6mDp5rBd0xMw _NOCwEOXREe6mDp5rBd0xMw" inPartition="__1MfoOXQEe6mDp5rBd0xMw">
+      <upperBound xmi:type="uml:LiteralInteger" xmi:id="_8PbS0OXQEe6mDp5rBd0xMw" value="1"/>
+    </node>
+    <node xmi:type="uml:DataStoreNode" xmi:id="_XH1fsOXREe6mDp5rBd0xMw" name="PersonalDataStore" incoming="_f_dAoOXREe6mDp5rBd0xMw" inPartition="_JmUXgOU5Ee6L4IT4GIXwmg">
+      <upperBound xmi:type="uml:LiteralInteger" xmi:id="_XH2GwOXREe6mDp5rBd0xMw" value="1"/>
+    </node>
+  </packagedElement>
+</uml:Model>
