@@ -1492,8 +1492,10 @@ public class ExtensionEditor
 			//
 			((BasicCommandStack)this.editingDomain.getCommandStack()).saveIsDone();
 			firePropertyChange(IEditorPart.PROP_DIRTY);
-		}
-		catch (Exception exception) {
+		}catch (InterruptedException e) {
+		    Thread.currentThread().interrupt();
+		    ExtensionEditorPlugin.INSTANCE.log(e);
+		} catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
 			ExtensionEditorPlugin.INSTANCE.log(exception);
