@@ -2,18 +2,17 @@
 
 ## Eclipse Modeling Tools
 - First, you need to install the Eclipse Modeling Tools. You can find it at : https://www.eclipse.org/downloads/packages/
+- We successfully tested with Eclipse 2024-03
 - If you have problems installing it, check out the installation guide at : https://wiki.eclipse.org/Eclipse/Installation
 
-## BPMN2 Modeler
+## BPMN2 Modeler (optional)
 If you want to model business processes using BPMN models, you need to do the following steps:
 1. Open Eclipse.
 2. Navigate to *Help*.
-3. Select the *Eclipse Marketplace*.
-4. Search for the *Eclipse BPMN2 Modeler*.
-5. Install the *Eclipse BPMN2 Modeler*.
-6. Select at least the required features and confirm your choices.
+3. Click *Install New Software*, then *Add* and use the Location: https://download.eclipse.org/bpmn2-modeler/updates/2022-12/1.5.4-202212
+4. Select *Eclipse BPMN2 Modeler* -> *BPMN2 Modeler - Diagram Editor*
+5. Click *Next* and *Finish*
 7. Wait for the installation process to finish and restart Eclipse.
-
 
 ## Papyrus
 After installing the Eclipse Modeling Tools, you need to install Papyrus via the Update Site : https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2023-12/ . 
