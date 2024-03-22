@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:examples="http:///schemas/examples/_YyYYkOfXEe62rNWyPghrmA/30" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/examples/_YyYYkOfXEe62rNWyPghrmA/30 examples.profile.uml#_YyYYkefXEe62rNWyPghrmA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:examples="http:///schemas/examples/_h7LvgOgsEe6qot0yppu4ug/32" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/examples/_h7LvgOgsEe6qot0yppu4ug/32 examples.profile.uml#_h7OLwOgsEe6qot0yppu4ug">
   <uml:Model xmi:id="_kalRAOSFEe6J3r62RqKL3g" name="runningExample">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_kb0nIOSFEe6J3r62RqKL3g">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -39,15 +39,15 @@ Wenn mehrere Constraints zu einem Element gehören, werden sie als Konjunktion b
       <node xmi:type="uml:ActivityFinalNode" xmi:id="_lRHVgOU3Ee6L4IT4GIXwmg" name="End" incoming="_pE3T8OU3Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_JzVhoOdvEe6g6OPq7MEfWA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jAnoMOgZEe6u38kFabX_vQ" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAnoMegZEe6u38kFabX_vQ" key="Version" value="0.0.31"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAnoMugZEe6u38kFabX_vQ" key="Comment" value="Reorganized"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAnoM-gZEe6u38kFabX_vQ" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAoPQOgZEe6u38kFabX_vQ" key="Date" value="2024-03-22"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAoPQegZEe6u38kFabX_vQ" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gaVuMOg0Ee6qot0yppu4ug" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gaVuMeg0Ee6qot0yppu4ug" key="Version" value="0.0.33"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gaVuMug0Ee6qot0yppu4ug" key="Comment" value="Added comment"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gaVuM-g0Ee6qot0yppu4ug" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gaVuNOg0Ee6qot0yppu4ug" key="Date" value="2024-03-22"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gaVuNeg0Ee6qot0yppu4ug" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JzeEgOdvEe6g6OPq7MEfWA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="examples.profile.uml#_YyYYkefXEe62rNWyPghrmA"/>
+        <references xmi:type="ecore:EPackage" href="examples.profile.uml#_h7OLwOgsEe6qot0yppu4ug"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="examples.profile.uml#_Jd4L4OanEe6ForaCvY16Qg"/>
     </profileApplication>

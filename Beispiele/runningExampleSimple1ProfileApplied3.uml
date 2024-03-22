@@ -26,13 +26,13 @@ Die Zuordnung von der Duty zur Permission findet über ein Attribut der Permissi
       <group xmi:type="uml:ActivityPartition" xmi:id="_NBLFIOSGEe6J3r62RqKL3g" name="Sony" node="_6r5RgOU2Ee6L4IT4GIXwmg"/>
       <group xmi:type="uml:ActivityPartition" xmi:id="_Nb6gYOSGEe6J3r62RqKL3g" name="Bill" node="_R5nx0OU2Ee6L4IT4GIXwmg _w6Mt8OU2Ee6L4IT4GIXwmg _RxLLAOU3Ee6L4IT4GIXwmg _lRHVgOU3Ee6L4IT4GIXwmg" edge="_5EB70OU2Ee6L4IT4GIXwmg _pE3T8OU3Ee6L4IT4GIXwmg"/>
       <node xmi:type="uml:InitialNode" xmi:id="_R5nx0OU2Ee6L4IT4GIXwmg" name="Start" outgoing="_5EB70OU2Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_w6Mt8OU2Ee6L4IT4GIXwmg" name="Pay 5 €" incoming="_5EB70OU2Ee6L4IT4GIXwmg" outgoing="_OunY8OU3Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_w6Mt8OU2Ee6L4IT4GIXwmg" name="Compensate" incoming="_5EB70OU2Ee6L4IT4GIXwmg" outgoing="_OunY8OU3Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g"/>
       <node xmi:type="uml:OpaqueAction" xmi:id="_6r5RgOU2Ee6L4IT4GIXwmg" name="Transfer file" incoming="_OunY8OU3Ee6L4IT4GIXwmg" inPartition="_NBLFIOSGEe6J3r62RqKL3g">
         <outputValue xmi:type="uml:OutputPin" xmi:id="_WBH9QOU3Ee6L4IT4GIXwmg" name="1999.mp3" outgoing="_WBGIEOU3Ee6L4IT4GIXwmg">
           <upperBound xmi:type="uml:LiteralInteger" xmi:id="_WBJycOU3Ee6L4IT4GIXwmg" value="1"/>
         </outputValue>
       </node>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_RxLLAOU3Ee6L4IT4GIXwmg" name="Play music" outgoing="_pE3T8OU3Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g">
+      <node xmi:type="uml:OpaqueAction" xmi:id="_RxLLAOU3Ee6L4IT4GIXwmg" name="Play" outgoing="_pE3T8OU3Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g">
         <inputValue xmi:type="uml:InputPin" xmi:id="_WBLAkOU3Ee6L4IT4GIXwmg" name="1999.mp3" incoming="_WBGIEOU3Ee6L4IT4GIXwmg">
           <upperBound xmi:type="uml:LiteralInteger" xmi:id="_WBM1wOU3Ee6L4IT4GIXwmg" value="1"/>
         </inputValue>
@@ -56,10 +56,8 @@ Die Zuordnung von der Duty zur Permission findet über ein Attribut der Permissi
   <examples:Party xmi:id="_iCPyMOaqEe6ForaCvY16Qg" base_ActivityPartition="_Nb6gYOSGEe6J3r62RqKL3g" identifier="http://example.com/people/bill"/>
   <examples:Party xmi:id="_iusogOaqEe6ForaCvY16Qg" base_ActivityPartition="_NBLFIOSGEe6J3r62RqKL3g" identifier="http://example.com/org/sony-music"/>
   <examples:RuleDuty xmi:id="_k5-0UOaqEe6ForaCvY16Qg" base_Action="_w6Mt8OU2Ee6L4IT4GIXwmg"/>
-  <examples:ActionTypeCompensate xmi:id="_ni4-AOavEe6ForaCvY16Qg" base_Action="_w6Mt8OU2Ee6L4IT4GIXwmg"/>
   <examples:Asset xmi:id="_OJCWoOarEe6ForaCvY16Qg" base_Pin="_WBH9QOU3Ee6L4IT4GIXwmg" identifier="http://example.com/music/1999.mp3"/>
   <examples:RulePermission xmi:id="_WAvSsOarEe6ForaCvY16Qg" base_Action="_RxLLAOU3Ee6L4IT4GIXwmg"/>
-  <examples:ActionTypePlay xmi:id="_rB8e0OavEe6ForaCvY16Qg" base_Action="_RxLLAOU3Ee6L4IT4GIXwmg"/>
   <examples:ConLessThan xmi:id="_WA1ZUOarEe6ForaCvY16Qg" base_Action="_RxLLAOU3Ee6L4IT4GIXwmg" rightOperand="P1M" dataType="xsd:duration" unit=""/>
   <examples:Policy xmi:id="_VNtg8Od0Ee6g6OPq7MEfWA" base_Activity="_kbDLEOSFEe6J3r62RqKL3g"/>
   <examples:RefEqual xmi:id="_bAOukOg3Ee6qot0yppu4ug" base_Action="_w6Mt8OU2Ee6L4IT4GIXwmg" rightOperand="5.00" dataType="xsd:decimal" unit="http://dbpedia.org/resource/Euro" leftOperand="payAmount"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:examples="http:///schemas/examples/_YyYYkOfXEe62rNWyPghrmA/30" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/examples/_YyYYkOfXEe62rNWyPghrmA/30 examples.profile.uml#_YyYYkefXEe62rNWyPghrmA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:examples="http:///schemas/examples/_h7LvgOgsEe6qot0yppu4ug/32" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/examples/_h7LvgOgsEe6qot0yppu4ug/32 examples.profile.uml#_h7OLwOgsEe6qot0yppu4ug">
   <uml:Model xmi:id="_Bk_lYOU5Ee6L4IT4GIXwmg" name="runningExampleComplex1">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_BlhJ0OU5Ee6L4IT4GIXwmg">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -92,15 +92,15 @@ Bei der &quot;Copy file&quot;-Permission ist keine Erg√§nzung durch Kommentar n√
       </node>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Kt8hAOd1Ee6g6OPq7MEfWA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_rMju4OgZEe6u38kFabX_vQ" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rMju4egZEe6u38kFabX_vQ" key="Version" value="0.0.31"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rMju4ugZEe6u38kFabX_vQ" key="Comment" value="Reorganized"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rMju4-gZEe6u38kFabX_vQ" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rMju5OgZEe6u38kFabX_vQ" key="Date" value="2024-03-22"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rMju5egZEe6u38kFabX_vQ" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2BUdsOg0Ee6qot0yppu4ug" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_2BUdseg0Ee6qot0yppu4ug" key="Version" value="0.0.33"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_2BUdsug0Ee6qot0yppu4ug" key="Comment" value="Added comment"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_2BUds-g0Ee6qot0yppu4ug" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_2BUdtOg0Ee6qot0yppu4ug" key="Date" value="2024-03-22"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_2BUdteg0Ee6qot0yppu4ug" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Kt8hAed1Ee6g6OPq7MEfWA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="examples.profile.uml#_YyYYkefXEe62rNWyPghrmA"/>
+        <references xmi:type="ecore:EPackage" href="examples.profile.uml#_h7OLwOgsEe6qot0yppu4ug"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="examples.profile.uml#_Jd4L4OanEe6ForaCvY16Qg"/>
     </profileApplication>
