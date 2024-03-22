@@ -97,7 +97,8 @@
     <sonar.cpd.exclusions>
     	**/gensrc/**,
     	**/gen-src/**,
-    	**/model-gen/**
+    	**/model-gen/**,
+    	**/Activator.java
     </sonar.cpd.exclusions>
   </properties>
   <repositories> 
