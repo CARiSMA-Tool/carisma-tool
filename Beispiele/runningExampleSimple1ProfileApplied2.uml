@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:examples="http:///schemas/examples/_3_W58Od_Ee6-MpvHrqlBJA/28" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/examples/_3_W58Od_Ee6-MpvHrqlBJA/28 examples.profile.uml#_3_XhAOd_Ee6-MpvHrqlBJA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:examples="http:///schemas/examples/_YyYYkOfXEe62rNWyPghrmA/30" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/examples/_YyYYkOfXEe62rNWyPghrmA/30 examples.profile.uml#_YyYYkefXEe62rNWyPghrmA">
   <uml:Model xmi:id="_kalRAOSFEe6J3r62RqKL3g" name="runningExample">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_kb0nIOSFEe6J3r62RqKL3g">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -9,7 +9,9 @@
       <ownedComment xmi:type="uml:Comment" xmi:id="_PEW54OdwEe6g6OPq7MEfWA" annotatedElement="_ksQCQOcWEe6-oa3NRtHOaQ"/>
       <ownedComment xmi:type="uml:Comment" xmi:id="_beiykOeEEe6-MpvHrqlBJA">
         <body>Beispiel für Regeln, die nicht an bestehende Objektelemente gebunden sind. Gegebenenfalls sauberer in der Darstellung (ohne die ganzen verteilten Stereotypen).&#xD;
-Ein Kommentarlink kann (bei Eindeutigkeit) eine Zuordnung über Attribute ersetzen (wie hier von der Permission zu der Duty).</body>
+Ein Kommentarlink kann (bei Eindeutigkeit) eine Zuordnung über Attribute ersetzen (wie hier von der Permission zu der Duty).&#xD;
+Wenn mehrere Constraints zu einem Element gehören, werden sie als Konjunktion behandelt (auch ohne explizites AND).&#xD;
+</body>
       </ownedComment>
       <edge xmi:type="uml:ControlFlow" xmi:id="_5EB70OU2Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g" target="_w6Mt8OU2Ee6L4IT4GIXwmg" source="_R5nx0OU2Ee6L4IT4GIXwmg"/>
       <edge xmi:type="uml:ControlFlow" xmi:id="_OunY8OU3Ee6L4IT4GIXwmg" target="_6r5RgOU2Ee6L4IT4GIXwmg" source="_w6Mt8OU2Ee6L4IT4GIXwmg"/>
@@ -37,15 +39,15 @@ Ein Kommentarlink kann (bei Eindeutigkeit) eine Zuordnung über Attribute ersetz
       <node xmi:type="uml:ActivityFinalNode" xmi:id="_lRHVgOU3Ee6L4IT4GIXwmg" name="End" incoming="_pE3T8OU3Ee6L4IT4GIXwmg" inPartition="_Nb6gYOSGEe6J3r62RqKL3g"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_JzVhoOdvEe6g6OPq7MEfWA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Et-aQOeDEe6-MpvHrqlBJA" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Et-aQeeDEe6-MpvHrqlBJA" key="Version" value="0.0.29"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Et-aQueDEe6-MpvHrqlBJA" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Et-aQ-eDEe6-MpvHrqlBJA" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Et-aROeDEe6-MpvHrqlBJA" key="Date" value="2024-03-21"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Et-aReeDEe6-MpvHrqlBJA" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jAnoMOgZEe6u38kFabX_vQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAnoMegZEe6u38kFabX_vQ" key="Version" value="0.0.31"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAnoMugZEe6u38kFabX_vQ" key="Comment" value="Reorganized"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAnoM-gZEe6u38kFabX_vQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAoPQOgZEe6u38kFabX_vQ" key="Date" value="2024-03-22"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAoPQegZEe6u38kFabX_vQ" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JzeEgOdvEe6g6OPq7MEfWA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="examples.profile.uml#_3_XhAOd_Ee6-MpvHrqlBJA"/>
+        <references xmi:type="ecore:EPackage" href="examples.profile.uml#_YyYYkefXEe62rNWyPghrmA"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="examples.profile.uml#_Jd4L4OanEe6ForaCvY16Qg"/>
     </profileApplication>

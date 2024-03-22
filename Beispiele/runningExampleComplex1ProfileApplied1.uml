@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:examples="http:///schemas/examples/_3_W58Od_Ee6-MpvHrqlBJA/28" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/examples/_3_W58Od_Ee6-MpvHrqlBJA/28 examples.profile.uml#_3_XhAOd_Ee6-MpvHrqlBJA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:examples="http:///schemas/examples/_YyYYkOfXEe62rNWyPghrmA/30" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/examples/_YyYYkOfXEe62rNWyPghrmA/30 examples.profile.uml#_YyYYkefXEe62rNWyPghrmA">
   <uml:Model xmi:id="_Bk_lYOU5Ee6L4IT4GIXwmg" name="runningExampleComplex1">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_BlhJ0OU5Ee6L4IT4GIXwmg">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -92,15 +92,15 @@ Bei der &quot;Copy file&quot;-Permission ist keine Erg√§nzung durch Kommentar n√
       </node>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Kt8hAOd1Ee6g6OPq7MEfWA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Cec2YOd9Ee6-MpvHrqlBJA" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Cec2Yed9Ee6-MpvHrqlBJA" key="Version" value="0.0.27"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Cec2Yud9Ee6-MpvHrqlBJA" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Cec2Y-d9Ee6-MpvHrqlBJA" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Cec2ZOd9Ee6-MpvHrqlBJA" key="Date" value="2024-03-21"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Cec2Zed9Ee6-MpvHrqlBJA" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_rMju4OgZEe6u38kFabX_vQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rMju4egZEe6u38kFabX_vQ" key="Version" value="0.0.31"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rMju4ugZEe6u38kFabX_vQ" key="Comment" value="Reorganized"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rMju4-gZEe6u38kFabX_vQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rMju5OgZEe6u38kFabX_vQ" key="Date" value="2024-03-22"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rMju5egZEe6u38kFabX_vQ" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Kt8hAed1Ee6g6OPq7MEfWA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="examples.profile.uml#_3_XhAOd_Ee6-MpvHrqlBJA"/>
+        <references xmi:type="ecore:EPackage" href="examples.profile.uml#_YyYYkefXEe62rNWyPghrmA"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="examples.profile.uml#_Jd4L4OanEe6ForaCvY16Qg"/>
     </profileApplication>
@@ -119,7 +119,6 @@ Bei der &quot;Copy file&quot;-Permission ist keine Erg√§nzung durch Kommentar n√
   <examples:ConLessThan xmi:id="_4kqYsOd6Ee6-MpvHrqlBJA" base_Action="_8jfSAOVGEe6L4IT4GIXwmg" rightOperand="3" dataType="xsd:integer" leftOperand="count"/>
   <examples:Asset xmi:id="_M9zmoOd8Ee6-MpvHrqlBJA" identifier="http://example.com/music/1999.mp3" base_DataStoreNode="_8PaEsOXQEe6mDp5rBd0xMw"/>
   <examples:RulePermission xmi:id="_o8gGIOd8Ee6-MpvHrqlBJA" base_Comment="_cGfdAOd8Ee6-MpvHrqlBJA"/>
-  <examples:LConAND xmi:id="_ZcT5QOd9Ee6-MpvHrqlBJA" base_Comment="_cGfdAOd8Ee6-MpvHrqlBJA"/>
   <examples:ConLessThan xmi:id="_V09_IOd9Ee6-MpvHrqlBJA" base_Comment="_TirzcOd9Ee6-MpvHrqlBJA" rightOperand="P1M" dataType="xsd:duration"/>
   <examples:ConLessThan xmi:id="_QRH8EOd9Ee6-MpvHrqlBJA" base_Comment="_cGfdAOd8Ee6-MpvHrqlBJA" rightOperand="10" dataType="xsd:integer" leftOperand="count"/>
   <examples:Asset xmi:id="_KGM1cOd-Ee6-MpvHrqlBJA" base_Pin="_f_e10OXREe6mDp5rBd0xMw" identifier="Placeholder"/>
@@ -128,4 +127,5 @@ Bei der &quot;Copy file&quot;-Permission ist keine Erg√§nzung durch Kommentar n√
   <examples:ActionTypeTransfer xmi:id="_9wAp8Od_Ee6-MpvHrqlBJA" base_Comment="_MI2NMOd_Ee6-MpvHrqlBJA"/>
   <examples:Party xmi:id="_D1T0QOeAEe6-MpvHrqlBJA" base_ActivityPartition="__1MfoOXQEe6mDp5rBd0xMw" identifier="http://example.com/org/sony-music"/>
   <examples:Party xmi:id="_G2ZmsOeAEe6-MpvHrqlBJA" base_ActivityPartition="_JmUXgOU5Ee6L4IT4GIXwmg" identifier="http://example.com/people/Bill"/>
+  <examples:Policy xmi:id="_8ZkQQOfTEe62rNWyPghrmA" base_Activity="_BlJ9cOU5Ee6L4IT4GIXwmg"/>
 </xmi:XMI>
