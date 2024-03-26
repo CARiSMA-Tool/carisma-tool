@@ -1,42 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_dZppwOhHEe6qot0yppu4ug" name="classDiagram">
-  <packageImport xmi:type="uml:PackageImport" xmi:id="_db_MEOhHEe6qot0yppu4ug">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_dZppwOhHEe6qot0yppu4ug" name="classDiagram">
+  <packageImport xmi:id="_db_MEOhHEe6qot0yppu4ug">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
-  <packagedElement xmi:type="uml:Class" xmi:id="_efkwAOhHEe6qot0yppu4ug" name="Superclass">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_j_4W4OhHEe6qot0yppu4ug" name="associatedclass" type="_iejHAOhHEe6qot0yppu4ug" association="_j_3IwOhHEe6qot0yppu4ug">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_j_498OhHEe6qot0yppu4ug"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_j_498ehHEe6qot0yppu4ug" value="1"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_qrJ8EOhHEe6qot0yppu4ug" name="superAttribute" visibility="public">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wfHCQOhIEe6qot0yppu4ug"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_wuCrkOhHEe6qot0yppu4ug" name="Constraint" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_yeczcOiuEe6zk4jccHXFig" name="LogicalConstraint">
+    <generalization xmi:id="_MfHgAOivEe6zk4jccHXFig" general="_wuCrkOhHEe6qot0yppu4ug"/>
+    <ownedAttribute xmi:id="_ZyR_MOivEe6zk4jccHXFig" name="constraint" type="_wuCrkOhHEe6qot0yppu4ug" association="_ZyQxEOivEe6zk4jccHXFig">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZyVpkOivEe6zk4jccHXFig"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZyfakOivEe6zk4jccHXFig" value="*"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_fzWsEOhHEe6qot0yppu4ug" name="Subclass">
-    <generalization xmi:type="uml:Generalization" xmi:id="_hlms0OhHEe6qot0yppu4ug" general="_efkwAOhHEe6qot0yppu4ug"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_uNuD4OhHEe6qot0yppu4ug" name="subAttribute" visibility="public">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xXYuEOhIEe6qot0yppu4ug"/>
-    </ownedAttribute>
+  <packagedElement xmi:type="uml:Class" xmi:id="_2mHzcOiuEe6zk4jccHXFig" name="BaseConstraint">
+    <generalization xmi:id="_NYibUOivEe6zk4jccHXFig" general="_wuCrkOhHEe6qot0yppu4ug"/>
+    <ownedAttribute xmi:id="_QINGkOivEe6zk4jccHXFig" name="leftOperator" visibility="public" type="_54OdYOiuEe6zk4jccHXFig"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_iejHAOhHEe6qot0yppu4ug" name="AssociatedClass"/>
-  <packagedElement xmi:type="uml:Association" xmi:id="_j_3IwOhHEe6qot0yppu4ug" memberEnd="_j_4W4OhHEe6qot0yppu4ug _j_498uhHEe6qot0yppu4ug">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_j_3v0OhHEe6qot0yppu4ug" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_j_3v0ehHEe6qot0yppu4ug" key="nature" value="UML_Nature"/>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_54OdYOiuEe6zk4jccHXFig" name="LeftOperator">
+    <ownedLiteral xmi:id="_B95kAOivEe6zk4jccHXFig" name="payAmount"/>
+    <ownedLiteral xmi:id="_DeWqIOivEe6zk4jccHXFig" name="event"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ZyQxEOivEe6zk4jccHXFig" memberEnd="_ZyR_MOivEe6zk4jccHXFig _Zyk6IOivEe6zk4jccHXFig">
+    <eAnnotations xmi:id="_ZyRYIOivEe6zk4jccHXFig" source="org.eclipse.papyrus">
+      <details xmi:id="_ZyRYIeivEe6zk4jccHXFig" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_j_498uhHEe6qot0yppu4ug" name="superclass" type="_efkwAOhHEe6qot0yppu4ug" association="_j_3IwOhHEe6qot0yppu4ug"/>
+    <ownedEnd xmi:id="_Zyk6IOivEe6zk4jccHXFig" name="logicalconstraint" type="_yeczcOiuEe6zk4jccHXFig" association="_ZyQxEOivEe6zk4jccHXFig"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_wuCrkOhHEe6qot0yppu4ug" name="Constraint">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_r_j4UuhJEe6qot0yppu4ug" name="superclass" type="_efkwAOhHEe6qot0yppu4ug" association="_r_jRQOhJEe6qot0yppu4ug">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_r_mUkOhJEe6qot0yppu4ug"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_r_0-EOhJEe6qot0yppu4ug" value="1"/>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_dZkdMOnnEe6zXIQ0vEgfHw" name="ClassEnumeration">
+    <ownedLiteral xmi:id="_ecfSwOnnEe6zXIQ0vEgfHw" name="EnumerationLiteral1"/>
+    <ownedLiteral xmi:id="_e2bcwOnnEe6zXIQ0vEgfHw" name="EnumerationLiteral2"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ILhRkOrYEe62MdZx57QPvg" name="ClassDiagramDataType">
+    <ownedAttribute xmi:id="_MhsAkOrYEe62MdZx57QPvg" name="Property1">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_NqATgOrYEe62MdZx57QPvg" name="Property2" type="_ILhRkOrYEe62MdZx57QPvg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_bPA0AOsBEe6iSvBi4vHPsg" name="LeftOperatorClass">
+    <ownedAttribute xmi:id="_hSWPcOsBEe6iSvBi4vHPsg" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_r_jRQOhJEe6qot0yppu4ug" memberEnd="_r_j4UuhJEe6qot0yppu4ug _sADnkOhJEe6qot0yppu4ug">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_r_j4UOhJEe6qot0yppu4ug" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_r_j4UehJEe6qot0yppu4ug" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_sADnkOhJEe6qot0yppu4ug" name="constraint" type="_wuCrkOhHEe6qot0yppu4ug" association="_r_jRQOhJEe6qot0yppu4ug"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_mNvycOsBEe6iSvBi4vHPsg" name="LeftOperatorClass1" classifier="_bPA0AOsBEe6iSvBi4vHPsg">
+    <slot xmi:id="_nuoWYOsBEe6iSvBi4vHPsg" definingFeature="_hSWPcOsBEe6iSvBi4vHPsg">
+      <value xmi:type="uml:LiteralString" xmi:id="_zqXvoOsBEe6iSvBi4vHPsg" value="Event"/>
+    </slot>
   </packagedElement>
 </uml:Model>

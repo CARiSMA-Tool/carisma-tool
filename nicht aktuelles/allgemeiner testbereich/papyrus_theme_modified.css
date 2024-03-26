@@ -1,0 +1,271 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
+ *****************************************************************************/
+ 
+/* 
+ *	Papyrus CSS v0.9
+ */
+
+* {
+	
+	/**
+	*	GMF Display
+	*/
+
+	fillColor:#C3D1D5;
+	
+	/* 	fontHeight:9; */
+	
+	/** 
+	*	Gradient 
+	*/
+	
+	/* 	gradientColor:white; */
+	/* 	gradientStyle:vertical; */
+	
+	/*  
+	*	Global gradient (Equivalent to the latter)
+	*/
+	
+	gradient: white vertical; /* vertical white; is currently invalid */
+	
+	/* 
+	*	Global gradient (2)
+	*	Unsupported by diagrams (Color2 is unused) 
+	*/
+	
+	/* 	gradient:white blue vertical */
+	
+	/**
+	*	UML Display
+	*/
+	
+	elementIcon: true;
+	/* 	shadow:false; */
+	/* 	qualifiedNameDepth:Full; */
+	
+	/** 
+	* 	UML Stereotypes display 
+	*/
+	
+	/* 	stereotypeDisplay:"Text and Icon"; */
+	/* 	textAlignment:Vertical; */
+	/* 	displayPlace:"With brace"; */
+}
+
+
+Class {
+	
+	fillColor: #C3D7DD;
+}
+
+
+Comment {
+	fillColor: #FFFFCC;
+}
+
+Constraint {
+	fillColor: #C8FFE6;
+}
+
+Package {
+	fillColor: white;
+}
+
+Operation[isAbstract=true] {
+	italic:true;
+}
+
+/** This is the Diagram's root element. It doesn't support 
+gradient and should have the same color as the diagram */
+SequenceDiagram > Interaction {
+	fillColor:white;
+}
+
+SequenceDiagram CombinedFragment,ConsiderIgnoreFragment, 
+SequenceDiagram CombinedFragment,ConsiderIgnoreFragment * {
+	fillColor:white;
+}
+
+TimingDiagram OccurrenceSpecification,MessageOccurrenceSpecification {
+	fillColor: #006000;
+	lineColor: #006000;
+}
+
+TimingDiagram Lifeline {
+	gradient: white vertical;
+	fontHeight: 12;
+}
+
+TimingDiagram StateInvariant {
+	lineColor: black;
+	fillColor: #9BC7CC;
+	gradient: white vertical;
+}
+
+TimingDiagram Interaction {
+	fillColor: #9BC7CC;
+	gradient: none;
+}
+
+TimingDiagram Gate {
+	fillColor: #2A52BE;
+	lineColor: #2A52BE;
+}
+
+ParametricDiagram [appliedStereotypes~=ConstraintProperty] Property,
+ParametricDiagram [appliedStereotypes~=ConstraintProperty] {
+	elementIcon:false;
+}
+
+Label {
+	elementIcon: false;
+}
+
+ActivityDiagram Activity *,InteractionOverviewDiagram Activity * {
+	elementIcon:false; 
+}
+
+/* no gradiant for symbol to permit to change color */
+ActivityDiagram MergeNode, 
+ActivityDiagram ActivityFinalNode, 
+ActivityDiagram FlowFinalNode, 
+ActivityDiagram DecisionNode, 
+ActivityDiagram SendSignalAction,
+ActivityDiagram AcceptEventAction,
+InteractionOverviewDiagram MergeNode, 
+InteractionOverviewDiagram ActivityFinalNode, 
+InteractionOverviewDiagram FlowFinalNode, 
+InteractionOverviewDiagram DecisionNode
+{
+	gradient:none;
+	fillColor:white;
+}
+
+ActivityDiagram InitialNode,
+InteractionOverviewDiagram InitialNode{
+	gradient:none;
+	fillColor:black;
+}
+
+ClassDiagram Dependency{
+	fillColor:Black;
+	gradient:none;
+}
+
+
+/*
+ * The Actor element icon is not useful either
+ */
+UseCaseDiagram Actor {
+	elementIcon:false;
+}
+
+TimingDiagram * {
+	gradient:none;
+}
+
+UseCaseDiagram UseCase {
+	fillColor:white;
+}
+
+StateMachineDiagram Pseudostate[kind="exitPoint"],
+StateMachineDiagram Pseudostate[kind="entryPoint"]
+{
+	fillColor:white;
+}
+
+StateMachineDiagram Pseudostate[kind="initial"],
+StateMachineDiagram Pseudostate[kind="junction"]
+{
+	gradient:none;
+	fillColor:black;
+}
+
+
+
+/*---------------------------------------------------Versuchsbereich------------------------------------------------------------ */
+InstanceSpecification > Label:sourceRole{
+	visible:false;
+}
+
+InstanceSpecification {
+	fillColor: green;
+	targetDecoration:OpenArrow;
+	sourceDecoration:OpenArrow;
+}
+Class [name="testClass3"]{
+	fillColor:red;
+}
+[name=OpaqueAction1]{
+	fillColor:red;
+}
+Class [Property2=test]{
+	fillColor:red;
+}
+
+InstanceSpecification [classifier=testClass3]{
+	fillColor: white;
+}
+Association{
+	targetDecoration:OpenArrow;
+}
+/*Klappt nicht für Stereotyp-Attribute, die in Compartments angezeigt werden */
+/*Property {
+	visible:false;
+}
+*/
+
+Slot *{
+	visible:false;
+	
+}
+
+
+Property /*Label [type=DataType28]*/ {
+	/*visible:false;*/
+	maskLabel : name visibility;
+}
+
+Compartment[type=StereotypeCompartment]{
+	visible:true;
+}
+/*Compartment[type=StereotypeCompartment]>[property="assetRelation"] {
+	visible:false;
+}*/
+Compartment[type=StereotypeCompartment]>[property="assetRelation"] Label {
+	visible:false;
+}
+Compartment[type=StereotypeCompartment]>[property="assetRelation"] Label {
+	maskLabel:name;
+}
+Compartment[type=StereotypeCompartment]>[property="assetRelation"] {
+	qualifiedNameDepth:full;
+}
+Compartment[type=StereotypeCompartment] *{
+	maskLabel:name;
+}
+
+/* 
+
+Shape[type=StereotypeComment]{
+	visible:true;
+}
+ 
+StereotypeComment Compartment[type=StereotypeBrace]{
+	visible:true;
+}
+*/
+/*ActivityDiagram Action [appliedStereotypes~="generalprofiletestdiagram2::Stereotype3"][name=OpaqueAction1] {
+	fillColor:red;
+}*/
