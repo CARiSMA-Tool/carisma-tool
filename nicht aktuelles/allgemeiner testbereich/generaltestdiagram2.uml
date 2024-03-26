@@ -183,6 +183,9 @@
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_uXo2QOr3Ee62MdZx57QPvg" name="EnumerationLiteral3"/>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_vX4yUOr3Ee62MdZx57QPvg" name="EnumerationLiteral4"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ikUEoOtkEe6AlOW0tQKzjA" name="LeftOperandsClassInstance">
+      <classifier xmi:type="uml:Class" href="classDiagram.uml#_bPA0AOsBEe6iSvBi4vHPsg"/>
+    </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_HaFggOhaEe6QxaWHzEDA9g">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HaJK4OhaEe6QxaWHzEDA9g" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="generalprofiletestdiagram2.profile.uml#_PUDBYesCEe6iSvBi4vHPsg"/>
@@ -190,6 +193,11 @@
       <appliedProfile xmi:type="uml:Profile" href="generalprofiletestdiagram2.profile.uml#_w6KMQOhYEe6QxaWHzEDA9g"/>
     </profileApplication>
   </uml:Model>
-  <generalprofiletestdiagram2:Stereotype3 xmi:id="_NwELIOhaEe6QxaWHzEDA9g" base_Action="_Mf7Y8OhaEe6QxaWHzEDA9g"/>
+  <generalprofiletestdiagram2:Stereotype3 xmi:id="_NwELIOhaEe6QxaWHzEDA9g" base_Action="_Mf7Y8OhaEe6QxaWHzEDA9g">
+    <Property5 xmi:type="generalprofiletestdiagram2:classDiagram_ClassDiagramDataType" xmi:id="_AkAykOtlEe6AlOW0tQKzjA" Property1="String1">
+      <Property2 xmi:type="generalprofiletestdiagram2:classDiagram_ClassDiagramDataType" xmi:id="_AkAyketlEe6AlOW0tQKzjA" Property1="String2"/>
+    </Property5>
+    <Property5 xmi:type="generalprofiletestdiagram2:classDiagram_ClassDiagramDataType" xmi:id="_NhHiMOtlEe6AlOW0tQKzjA" Property1="String2.1"/>
+  </generalprofiletestdiagram2:Stereotype3>
   <generalprofiletestdiagram2:InstanceApplicationStereotype xmi:id="_ZUvqQOsCEe6iSvBi4vHPsg" base_Action="_X-x84OsCEe6iSvBi4vHPsg"/>
 </xmi:XMI>
