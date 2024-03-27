@@ -20,17 +20,6 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VFJlv-r0Ee62MdZx57QPvg"/>
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_VFJlwOr0Ee62MdZx57QPvg" type="Activity_ActivityNodeCompartment">
-        <children xmi:type="notation:Shape" xmi:id="_6F07QOtxEe6AlOW0tQKzjA" type="DataStoreNode_Shape">
-          <children xmi:type="notation:DecorationNode" xmi:id="_6F07QutxEe6AlOW0tQKzjA" type="DataStoreNode_NameLabel"/>
-          <children xmi:type="notation:DecorationNode" xmi:id="_6F07Q-txEe6AlOW0tQKzjA" type="DataStoreNode_SelectionLabel">
-            <layoutConstraint xmi:type="notation:Location" xmi:id="_6F07ROtxEe6AlOW0tQKzjA" y="15"/>
-          </children>
-          <children xmi:type="notation:DecorationNode" xmi:id="_6F07RetxEe6AlOW0tQKzjA" type="DataStoreNode_FloatingNameLabel">
-            <layoutConstraint xmi:type="notation:Location" xmi:id="_6F07RutxEe6AlOW0tQKzjA" y="15"/>
-          </children>
-          <element xmi:type="uml:DataStoreNode" href="ODRLModelTest.uml#_6FyfAOtxEe6AlOW0tQKzjA"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6F07QetxEe6AlOW0tQKzjA" x="561" y="219"/>
-        </children>
         <children xmi:type="notation:Shape" xmi:id="__lDjEOt8Ee6AlOW0tQKzjA" type="ActivityPartition_Shape">
           <children xmi:type="notation:DecorationNode" xmi:id="__lEKIOt8Ee6AlOW0tQKzjA" type="ActivityPartition_NameLabel"/>
           <children xmi:type="notation:DecorationNode" xmi:id="__lEKIet8Ee6AlOW0tQKzjA" type="ActivityPartition_FloatingNameLabel">
@@ -45,34 +34,45 @@
               <element xmi:type="uml:OpaqueAction" href="ODRLModelTest.uml#_3wCIkOtxEe6AlOW0tQKzjA"/>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3wUccOtxEe6AlOW0tQKzjA" x="39" y="57" width="341" height="156"/>
             </children>
-            <children xmi:type="notation:Shape" xmi:id="_yd8teet9Ee6AlOW0tQKzjA" type="StereotypeComment">
-              <styles xmi:type="notation:TitleStyle" xmi:id="_yd8teut9Ee6AlOW0tQKzjA"/>
-              <styles xmi:type="notation:EObjectValueStyle" xmi:id="_yd8tfOt9Ee6AlOW0tQKzjA" name="BASE_ELEMENT">
+            <children xmi:type="notation:Shape" xmi:id="_6F07QOtxEe6AlOW0tQKzjA" type="DataStoreNode_Shape">
+              <children xmi:type="notation:DecorationNode" xmi:id="_6F07QutxEe6AlOW0tQKzjA" type="DataStoreNode_NameLabel"/>
+              <children xmi:type="notation:DecorationNode" xmi:id="_6F07Q-txEe6AlOW0tQKzjA" type="DataStoreNode_SelectionLabel">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_6F07ROtxEe6AlOW0tQKzjA" y="15"/>
+              </children>
+              <children xmi:type="notation:DecorationNode" xmi:id="_6F07RetxEe6AlOW0tQKzjA" type="DataStoreNode_FloatingNameLabel">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_6F07RutxEe6AlOW0tQKzjA" y="15"/>
+              </children>
+              <element xmi:type="uml:DataStoreNode" href="ODRLModelTest.uml#_6FyfAOtxEe6AlOW0tQKzjA"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6F07QetxEe6AlOW0tQKzjA" x="470" y="62"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_kN_4AOxQEe6d25gTTlAkfA" type="StereotypeComment">
+              <styles xmi:type="notation:TitleStyle" xmi:id="_kN_4AexQEe6d25gTTlAkfA"/>
+              <styles xmi:type="notation:EObjectValueStyle" xmi:id="_kOAfEOxQEe6d25gTTlAkfA" name="BASE_ELEMENT">
                 <eObjectValue xmi:type="uml:OpaqueAction" href="ODRLModelTest.uml#_3wCIkOtxEe6AlOW0tQKzjA"/>
               </styles>
               <element xsi:nil="true"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yd8te-t9Ee6AlOW0tQKzjA" x="239" y="57"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kN_4AuxQEe6d25gTTlAkfA" x="239" y="57"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_kOJB8-xQEe6d25gTTlAkfA" type="StereotypeComment">
+              <styles xmi:type="notation:TitleStyle" xmi:id="_kOJB9OxQEe6d25gTTlAkfA"/>
+              <styles xmi:type="notation:EObjectValueStyle" xmi:id="_kOJB9uxQEe6d25gTTlAkfA" name="BASE_ELEMENT">
+                <eObjectValue xmi:type="uml:DataStoreNode" href="ODRLModelTest.uml#_6FyfAOtxEe6AlOW0tQKzjA"/>
+              </styles>
+              <element xsi:nil="true"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kOJB9exQEe6d25gTTlAkfA" x="670" y="62"/>
             </children>
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="__lEKJOt8Ee6AlOW0tQKzjA"/>
           </children>
           <element xmi:type="uml:ActivityPartition" href="ODRLModelTest.uml#__lAfwOt8Ee6AlOW0tQKzjA"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="__lDjEet8Ee6AlOW0tQKzjA" x="115" y="176" width="417" height="283"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="__lDjEet8Ee6AlOW0tQKzjA" x="115" y="176" width="645" height="394"/>
         </children>
-        <children xmi:type="notation:Shape" xmi:id="_yd3N6et9Ee6AlOW0tQKzjA" type="StereotypeComment">
-          <styles xmi:type="notation:TitleStyle" xmi:id="_yd3N6ut9Ee6AlOW0tQKzjA"/>
-          <styles xmi:type="notation:EObjectValueStyle" xmi:id="_yd3N7Ot9Ee6AlOW0tQKzjA" name="BASE_ELEMENT">
-            <eObjectValue xmi:type="uml:DataStoreNode" href="ODRLModelTest.uml#_6FyfAOtxEe6AlOW0tQKzjA"/>
-          </styles>
-          <element xsi:nil="true"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yd3N6-t9Ee6AlOW0tQKzjA" x="761" y="219"/>
-        </children>
-        <children xmi:type="notation:Shape" xmi:id="_yd6RMOt9Ee6AlOW0tQKzjA" type="StereotypeComment">
-          <styles xmi:type="notation:TitleStyle" xmi:id="_yd6RMet9Ee6AlOW0tQKzjA"/>
-          <styles xmi:type="notation:EObjectValueStyle" xmi:id="_yd6RM-t9Ee6AlOW0tQKzjA" name="BASE_ELEMENT">
+        <children xmi:type="notation:Shape" xmi:id="_kN38MOxQEe6d25gTTlAkfA" type="StereotypeComment">
+          <styles xmi:type="notation:TitleStyle" xmi:id="_kN38MexQEe6d25gTTlAkfA"/>
+          <styles xmi:type="notation:EObjectValueStyle" xmi:id="_kN38M-xQEe6d25gTTlAkfA" name="BASE_ELEMENT">
             <eObjectValue xmi:type="uml:ActivityPartition" href="ODRLModelTest.uml#__lAfwOt8Ee6AlOW0tQKzjA"/>
           </styles>
           <element xsi:nil="true"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yd6RMut9Ee6AlOW0tQKzjA" x="315" y="176"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kN38MuxQEe6d25gTTlAkfA" x="315" y="176"/>
         </children>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VFJlwer0Ee62MdZx57QPvg"/>
       </children>
@@ -85,35 +85,35 @@
       <owner xmi:type="uml:Model" href="ODRLModelTest.uml#_VE0OgOr0Ee62MdZx57QPvg"/>
     </styles>
     <element xmi:type="uml:Activity" href="ODRLModelTest.uml#_VFIXkOr0Ee62MdZx57QPvg"/>
-    <edges xmi:type="notation:Connector" xmi:id="_yd3N7et9Ee6AlOW0tQKzjA" type="StereotypeCommentLink" source="_6F07QOtxEe6AlOW0tQKzjA" target="_yd3N6et9Ee6AlOW0tQKzjA">
-      <styles xmi:type="notation:FontStyle" xmi:id="_yd3N7ut9Ee6AlOW0tQKzjA"/>
-      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_yd3N8ut9Ee6AlOW0tQKzjA" name="BASE_ELEMENT">
-        <eObjectValue xmi:type="uml:DataStoreNode" href="ODRLModelTest.uml#_6FyfAOtxEe6AlOW0tQKzjA"/>
-      </styles>
-      <element xsi:nil="true"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_yd3N7-t9Ee6AlOW0tQKzjA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yd3N8Ot9Ee6AlOW0tQKzjA"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yd3N8et9Ee6AlOW0tQKzjA"/>
-    </edges>
-    <edges xmi:type="notation:Connector" xmi:id="_yd6RNOt9Ee6AlOW0tQKzjA" type="StereotypeCommentLink" source="__lDjEOt8Ee6AlOW0tQKzjA" target="_yd6RMOt9Ee6AlOW0tQKzjA">
-      <styles xmi:type="notation:FontStyle" xmi:id="_yd6RNet9Ee6AlOW0tQKzjA"/>
-      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_yd6ROet9Ee6AlOW0tQKzjA" name="BASE_ELEMENT">
+    <edges xmi:type="notation:Connector" xmi:id="_kN38NOxQEe6d25gTTlAkfA" type="StereotypeCommentLink" source="__lDjEOt8Ee6AlOW0tQKzjA" target="_kN38MOxQEe6d25gTTlAkfA">
+      <styles xmi:type="notation:FontStyle" xmi:id="_kN38NexQEe6d25gTTlAkfA"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_kN4jQuxQEe6d25gTTlAkfA" name="BASE_ELEMENT">
         <eObjectValue xmi:type="uml:ActivityPartition" href="ODRLModelTest.uml#__lAfwOt8Ee6AlOW0tQKzjA"/>
       </styles>
       <element xsi:nil="true"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_yd6RNut9Ee6AlOW0tQKzjA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yd6RN-t9Ee6AlOW0tQKzjA"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yd6ROOt9Ee6AlOW0tQKzjA"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kN38NuxQEe6d25gTTlAkfA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kN4jQOxQEe6d25gTTlAkfA"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kN4jQexQEe6d25gTTlAkfA"/>
     </edges>
-    <edges xmi:type="notation:Connector" xmi:id="_yd8tfet9Ee6AlOW0tQKzjA" type="StereotypeCommentLink" source="_3wEk0OtxEe6AlOW0tQKzjA" target="_yd8teet9Ee6AlOW0tQKzjA">
-      <styles xmi:type="notation:FontStyle" xmi:id="_yd8tfut9Ee6AlOW0tQKzjA"/>
-      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_yd8tgut9Ee6AlOW0tQKzjA" name="BASE_ELEMENT">
+    <edges xmi:type="notation:Connector" xmi:id="_kOAfEexQEe6d25gTTlAkfA" type="StereotypeCommentLink" source="_3wEk0OtxEe6AlOW0tQKzjA" target="_kN_4AOxQEe6d25gTTlAkfA">
+      <styles xmi:type="notation:FontStyle" xmi:id="_kOAfEuxQEe6d25gTTlAkfA"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_kOAfFuxQEe6d25gTTlAkfA" name="BASE_ELEMENT">
         <eObjectValue xmi:type="uml:OpaqueAction" href="ODRLModelTest.uml#_3wCIkOtxEe6AlOW0tQKzjA"/>
       </styles>
       <element xsi:nil="true"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_yd8tf-t9Ee6AlOW0tQKzjA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yd8tgOt9Ee6AlOW0tQKzjA"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yd8tget9Ee6AlOW0tQKzjA"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kOAfE-xQEe6d25gTTlAkfA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kOAfFOxQEe6d25gTTlAkfA"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kOAfFexQEe6d25gTTlAkfA"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_kOJpAOxQEe6d25gTTlAkfA" type="StereotypeCommentLink" source="_6F07QOtxEe6AlOW0tQKzjA" target="_kOJB8-xQEe6d25gTTlAkfA">
+      <styles xmi:type="notation:FontStyle" xmi:id="_kOJpAexQEe6d25gTTlAkfA"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_kOJpBexQEe6d25gTTlAkfA" name="BASE_ELEMENT">
+        <eObjectValue xmi:type="uml:DataStoreNode" href="ODRLModelTest.uml#_6FyfAOtxEe6AlOW0tQKzjA"/>
+      </styles>
+      <element xsi:nil="true"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kOJpAuxQEe6d25gTTlAkfA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kOJpA-xQEe6d25gTTlAkfA"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kOJpBOxQEe6d25gTTlAkfA"/>
     </edges>
   </notation:Diagram>
   <notation:Diagram xmi:id="_NufjYOsDEe6iSvBi4vHPsg" type="PapyrusUMLClassDiagram" name="NewClassDiagram" measurementUnit="Pixel">

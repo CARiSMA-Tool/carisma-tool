@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRL="http:///schemas/ODRL/_w5w94Ot9Ee6AlOW0tQKzjA/123" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRL/_w5w94Ot9Ee6AlOW0tQKzjA/123 ODRLCommonVocabulary.profile.uml#_w5xk8Ot9Ee6AlOW0tQKzjA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRL="http:///schemas/ODRL/_jpLJIOxPEe6dK-Pt6MNoVg/125" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRL/_jpLJIOxPEe6dK-Pt6MNoVg/125 ODRLCommonVocabulary.profile.uml#_jpOMcOxPEe6dK-Pt6MNoVg">
   <uml:Model xmi:id="_VE0OgOr0Ee62MdZx57QPvg" name="ODRLModelTest">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_VFj1YOr0Ee62MdZx57QPvg">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
     <packagedElement xmi:type="uml:Activity" xmi:id="_VFIXkOr0Ee62MdZx57QPvg" name="Activity1" node="_3wCIkOtxEe6AlOW0tQKzjA _6FyfAOtxEe6AlOW0tQKzjA" group="__lAfwOt8Ee6AlOW0tQKzjA">
-      <group xmi:type="uml:ActivityPartition" xmi:id="__lAfwOt8Ee6AlOW0tQKzjA" name="ActivityPartition3" node="_3wCIkOtxEe6AlOW0tQKzjA"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="__lAfwOt8Ee6AlOW0tQKzjA" name="ActivityPartition3" node="_3wCIkOtxEe6AlOW0tQKzjA _6FyfAOtxEe6AlOW0tQKzjA"/>
       <node xmi:type="uml:OpaqueAction" xmi:id="_3wCIkOtxEe6AlOW0tQKzjA" name="OpaqueAction1" inPartition="__lAfwOt8Ee6AlOW0tQKzjA"/>
-      <node xmi:type="uml:DataStoreNode" xmi:id="_6FyfAOtxEe6AlOW0tQKzjA" name="DataStoreNode2">
+      <node xmi:type="uml:DataStoreNode" xmi:id="_6FyfAOtxEe6AlOW0tQKzjA" name="DataStoreNode2" inPartition="__lAfwOt8Ee6AlOW0tQKzjA">
         <upperBound xmi:type="uml:LiteralInteger" xmi:id="_6FzGEOtxEe6AlOW0tQKzjA" value="1"/>
       </node>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_RRnr4OsDEe6iSvBi4vHPsg" name="Class3"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_TAN7sOsDEe6iSvBi4vHPsg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yxhwwOt9Ee6AlOW0tQKzjA" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yxhwwet9Ee6AlOW0tQKzjA" key="Version" value="0.0.124"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yxhwwut9Ee6AlOW0tQKzjA" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yxhww-t9Ee6AlOW0tQKzjA" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yxhwxOt9Ee6AlOW0tQKzjA" key="Date" value="2024-03-26"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yxhwxet9Ee6AlOW0tQKzjA" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_knTI0OxQEe6d25gTTlAkfA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_knTI0exQEe6d25gTTlAkfA" key="Version" value="0.0.126"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_knTI0uxQEe6d25gTTlAkfA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_knTI0-xQEe6d25gTTlAkfA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_knTI1OxQEe6d25gTTlAkfA" key="Date" value="2024-03-27"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_knTI1exQEe6d25gTTlAkfA" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_TAN7sesDEe6iSvBi4vHPsg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="ODRLCommonVocabulary.profile.uml#_w5xk8Ot9Ee6AlOW0tQKzjA"/>
+        <references xmi:type="ecore:EPackage" href="ODRLCommonVocabulary.profile.uml#_jpOMcOxPEe6dK-Pt6MNoVg"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="ODRLCommonVocabulary.profile.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
     </profileApplication>
   </uml:Model>
   <ODRL:Asset xmi:id="_-JiBQOtxEe6AlOW0tQKzjA" base_DataStoreNode="_6FyfAOtxEe6AlOW0tQKzjA"/>
   <ODRL:Party xmi:id="_LkfwkOt9Ee6AlOW0tQKzjA" uid="test" base_ActivityPartition="__lAfwOt8Ee6AlOW0tQKzjA"/>
-  <ODRL:RulePermission xmi:id="_NgYOcOt9Ee6AlOW0tQKzjA" base_Action="_3wCIkOtxEe6AlOW0tQKzjA" target="_-JiBQOtxEe6AlOW0tQKzjA">
+  <ODRL:RulePermission xmi:id="_NgYOcOt9Ee6AlOW0tQKzjA" base_Action="_3wCIkOtxEe6AlOW0tQKzjA">
     <involvedParties xmi:type="ODRL:PartyFunction" xmi:id="_TyUtoOt9Ee6AlOW0tQKzjA" type="consentingParty" party="_LkfwkOt9Ee6AlOW0tQKzjA"/>
+    <involvedParties xmi:type="ODRL:PartyFunction" xmi:id="_ysxMgOxBEe6BFpfmkO_CUA" type="trackingParty" party="_LkfwkOt9Ee6AlOW0tQKzjA"/>
   </ODRL:RulePermission>
 </xmi:XMI>
