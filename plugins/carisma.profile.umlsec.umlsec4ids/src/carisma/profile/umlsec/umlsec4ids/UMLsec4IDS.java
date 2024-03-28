@@ -13,9 +13,10 @@ package carisma.profile.umlsec.umlsec4ids;
 import org.eclipse.uml2.uml.Stereotype;
 
 import carisma.modeltype.uml2.CarismaProfileDescriptor;
+import carisma.profile.common.UMLsecProfile;
 
 
-public enum UMLsec {
+public enum UMLsec4IDS implements UMLsecProfile {
 	
 	SECURE_DEPENDENCY ("secure dependency"),
 	DATA_SECURITY ("data security"),
@@ -78,7 +79,7 @@ public enum UMLsec {
 	
 	private final String readableName;
 	
-	private UMLsec(final String newName) {
+	private UMLsec4IDS(final String newName) {
 		readableName = newName;
 	}
 	
@@ -87,8 +88,8 @@ public enum UMLsec {
 		return readableName;
 	}
 	
-	public static UMLsec getValue(final String name) {
-		for (UMLsec type : UMLsec.values()) {
+	public static UMLsec4IDS getValue(final String name) {
+		for (UMLsec4IDS type : UMLsec4IDS.values()) {
 			if (type.toString().equalsIgnoreCase(name)) {
 				return type;
 			}
@@ -112,6 +113,11 @@ public enum UMLsec {
 	 */
 	public static boolean contains(Stereotype stereotype) {
 		return (stereotype.getProfile().getDefinition().getNsURI().contains(DESCRIPTOR.getProfileName()));
+	}
+
+	@Override
+	public String getReadableName() {
+		return readableName;
 	}
 	
 }

@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2011 Software Engineering Institute, TU Dortmund.
+ * Copyright (c) 2024 Research Group Software Engineering, University of Koblenz.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,8 +8,9 @@
  *
  * Contributors:
  *    {SecSE group} - initial API and implementation and/or initial documentation
+ *    {RGSE group} - externalized methods into abstract super class
  *******************************************************************************/
-package carisma.profile.umlsec.umlsec4ids;
+package carisma.profile.common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 
+import carisma.modeltype.uml2.CarismaProfileDescriptor;
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.TaggedValue;
 import carisma.modeltype.uml2.UMLHelper;
@@ -30,12 +33,9 @@ import carisma.modeltype.uml2.UMLHelper;
  * @author Daniel Warzecha
  *
  */
-public final class UMLsecUtil {
-    
-    /** Hide constructor.
-     */
-    private UMLsecUtil() {
-    }
+public abstract class AbstractUMLsecUtil {
+
+	public static CarismaProfileDescriptor DESCRIPTOR;
 	
 	/**
 	 * Returns a list of the subset of elements in the package pkg
@@ -58,9 +58,9 @@ public final class UMLsecUtil {
 	 * @param pkg - the package to search for applications of the stereotype
 	 * @return - a list of elements with applied UMLsec stereotypes.
 	 */
-	public static List<Element> getStereotypedElements(final Package pkg, final UMLsec stereo) {
-		List<Element> extendedElements = new ArrayList<Element>();		
-		if (UMLHelper.isProfileApplied(pkg, UMLsec.DESCRIPTOR)) {
+	public static List<Element> getStereotypedElements(final Package pkg, final UMLsecProfile stereo) {
+		List<Element> extendedElements = new ArrayList<>();		
+		if (UMLHelper.isProfileApplied(pkg, DESCRIPTOR)) {
 			if (hasStereotype(pkg, stereo)) {
 				extendedElements.add(pkg);
 			}
@@ -69,8 +69,8 @@ public final class UMLsecUtil {
 		return extendedElements;
 	}
 	
-	public static List<Element> getStereotypedElements(final List<Element> elements, final UMLsec stereo) {
-		List<Element> extendedElements = new ArrayList<Element>();		
+	public static List<Element> getStereotypedElements(final List<Element> elements, final UMLsecProfile stereo) {
+		List<Element> extendedElements = new ArrayList<>();		
 		for (Element element : elements) {
 			if (hasStereotype(element, stereo)) {
 				extendedElements.add(element);
@@ -86,9 +86,9 @@ public final class UMLsecUtil {
 	 * @return stereotypeApplication if found, null otherwise
 	 */
 	public static StereotypeApplication getStereotypeApplication(
-			final Element element, final UMLsec stereo) {
-		for (StereotypeApplication stereoApp : getStereotypeApplications(element, stereo)) {
-			UMLsec type = UMLsec.getValue(stereoApp.getAppliedStereotype().getName());
+			final Element element, final UMLsecProfile stereo) {
+		for (StereotypeApplication stereoApp : getStereotypeApplications(element)) {
+			UMLsecProfile type = UMLsecProfile.getValue(stereoApp.getAppliedStereotype().getName());
 			if (type.equals(stereo)) {
 				return stereoApp;
 			}
@@ -110,8 +110,8 @@ public final class UMLsecUtil {
 	 * @param pkg - the package containing UMLsec applications
 	 * @return - list of UMLsec applications in package of given type
 	 */
-	public static List<StereotypeApplication> getStereotypeApplications(final Package pkg, final UMLsec stereotype) {
-		List<StereotypeApplication> applications = new ArrayList<StereotypeApplication>();
+	public static List<StereotypeApplication> getStereotypeApplications(final Package pkg, final UMLsecProfile stereotype) {
+		List<StereotypeApplication> applications = new ArrayList<>();
 		for (Element extendedElement : getStereotypedElements(pkg, stereotype)) {
 			applications.add(getStereotypeApplication(extendedElement, stereotype));
 		}
@@ -124,27 +124,31 @@ public final class UMLsecUtil {
 	 * @param element - the element to inspect
 	 * @return - list of UMLsec stereotype applications
 	 */
-	public static List<StereotypeApplication> getStereotypeApplications(final Element element, final UMLsec stereotype) {
-		List<StereotypeApplication> result = new ArrayList<StereotypeApplication>();
+	public static List<StereotypeApplication> getStereotypeApplications(final Element element) {
+		List<StereotypeApplication> result = new ArrayList<>();
 		for (Stereotype stereo : element.getAppliedStereotypes()) {
-			if (UMLsec.contains(stereo)) {
+			if (checkIfProfileCOntains(stereo)) {
 				result.add(new StereotypeApplication(stereo, element));
 			}
 		}
 		return result;
 	}
 	
+	public static boolean checkIfProfileCOntains(Stereotype stereo) {
+		return false;
+	}
+	
 	public static boolean hasStereotype(final Element elem) {
 		return hasStereotype(elem, null);
 	}
 	
-	public static boolean hasStereotype(final Element elem, final UMLsec stereo) {
+	public static boolean hasStereotype(final Element elem, final UMLsecProfile stereo) {
 		for (Stereotype appliedStereo : elem.getAppliedStereotypes()) {
 			if (stereo == null) {
-				if (UMLsec.contains(appliedStereo)) {
+				if (checkIfProfileCOntains(appliedStereo)) {
 					return true;
 				}
-			} else if (stereo.isEqual(appliedStereo)) {
+			} else if (stereo.isApplicable(appliedStereo)) {
 				return true;
 			}
 		}
@@ -159,8 +163,8 @@ public final class UMLsecUtil {
 	 * @param stereoParent - the element the stereotype is applied to
 	 * @return - a list of string tag values; empty if the stereotype doesn't have the tag
 	 */
-	public static List<String> getStringValues(final String tagName, final UMLsec stereo, final Element stereoParent) {
-		List<String> tagValues = new ArrayList<String>();
+	public static List<String> getStringValues(final String tagName, final UMLsecProfile stereo, final Element stereoParent) {
+		List<String> tagValues = new ArrayList<>();
 		List<Object> tmp = getTaggedValues(tagName, stereo, stereoParent);
 		for (Object obj : tmp) {
 			if (obj instanceof String) {
@@ -177,8 +181,8 @@ public final class UMLsecUtil {
 	 * @return - a list of tag values; empty if the stereotype doesn't have the tag
 	 */
 	@SuppressWarnings("unchecked")
-	public static List<Object> getTaggedValues(final String tagName, final UMLsec stereo, final Element stereoParent) {
-		List<Object> tagValues = new ArrayList<Object>();
+	public static List<Object> getTaggedValues(final String tagName, final UMLsecProfile stereo, final Element stereoParent) {
+		List<Object> tagValues = new ArrayList<>();
 		if (stereoParent == null) {
 			return tagValues;
 		}
@@ -200,7 +204,7 @@ public final class UMLsecUtil {
 		return tagValues;
 	}
 
-	public static boolean isInScopeOfStereotype(final Element element, final UMLsec stereotype) {
+	public static boolean isInScopeOfStereotype(final Element element, final UMLsecProfile stereotype) {
 		if (hasStereotype(element, stereotype)) {
 			return true;
 		}

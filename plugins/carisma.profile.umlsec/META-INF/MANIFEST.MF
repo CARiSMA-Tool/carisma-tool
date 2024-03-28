@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.uml2.uml;visibility:=reexport,
 Bundle-ActivationPolicy: lazy
 Export-Package: carisma.profile.umlsec,
  carisma.profile.umlsec.impl,
- carisma.profile.umlsec.util
+ carisma.profile.umlsec.util,
+ carisma.profile.common
 Bundle-Activator: carisma.profile.umlsec.UMLsecActivator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
