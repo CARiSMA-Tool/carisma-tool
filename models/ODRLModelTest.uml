@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRL="http:///schemas/ODRL/_jpLJIOxPEe6dK-Pt6MNoVg/125" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRL/_jpLJIOxPEe6dK-Pt6MNoVg/125 ODRLCommonVocabulary.profile.uml#_jpOMcOxPEe6dK-Pt6MNoVg">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRL="http:///schemas/ODRL/__VoLQPDzEe6y15VFqLFGCg/137" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRL/__VoLQPDzEe6y15VFqLFGCg/137 ODRLCommonVocabulary.profile.uml#__VoyUPDzEe6y15VFqLFGCg">
   <uml:Model xmi:id="_VE0OgOr0Ee62MdZx57QPvg" name="ODRLModelTest">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_VFj1YOr0Ee62MdZx57QPvg">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -13,15 +13,15 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_RRnr4OsDEe6iSvBi4vHPsg" name="Class3"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_TAN7sOsDEe6iSvBi4vHPsg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_knTI0OxQEe6d25gTTlAkfA" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_knTI0exQEe6d25gTTlAkfA" key="Version" value="0.0.126"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_knTI0uxQEe6d25gTTlAkfA" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_knTI0-xQEe6d25gTTlAkfA" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_knTI1OxQEe6d25gTTlAkfA" key="Date" value="2024-03-27"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_knTI1exQEe6d25gTTlAkfA" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_A4If0PD0Ee6y15VFqLFGCg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_A4If0fD0Ee6y15VFqLFGCg" key="Version" value="0.0.138"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_A4If0vD0Ee6y15VFqLFGCg" key="Comment" value="Deleted leftover reference"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_A4If0_D0Ee6y15VFqLFGCg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_A4If1PD0Ee6y15VFqLFGCg" key="Date" value="2024-04-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_A4If1fD0Ee6y15VFqLFGCg" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_TAN7sesDEe6iSvBi4vHPsg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="ODRLCommonVocabulary.profile.uml#_jpOMcOxPEe6dK-Pt6MNoVg"/>
+        <references xmi:type="ecore:EPackage" href="ODRLCommonVocabulary.profile.uml#__VoyUPDzEe6y15VFqLFGCg"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="ODRLCommonVocabulary.profile.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
     </profileApplication>
@@ -29,7 +29,11 @@
   <ODRL:Asset xmi:id="_-JiBQOtxEe6AlOW0tQKzjA" base_DataStoreNode="_6FyfAOtxEe6AlOW0tQKzjA"/>
   <ODRL:Party xmi:id="_LkfwkOt9Ee6AlOW0tQKzjA" uid="test" base_ActivityPartition="__lAfwOt8Ee6AlOW0tQKzjA"/>
   <ODRL:RulePermission xmi:id="_NgYOcOt9Ee6AlOW0tQKzjA" base_Action="_3wCIkOtxEe6AlOW0tQKzjA">
+    <refinement xmi:type="ODRL:LogicalConstraint" xmi:id="_xHHlgPDwEe6y15VFqLFGCg"/>
     <involvedParties xmi:type="ODRL:PartyFunction" xmi:id="_TyUtoOt9Ee6AlOW0tQKzjA" type="consentingParty" party="_LkfwkOt9Ee6AlOW0tQKzjA"/>
     <involvedParties xmi:type="ODRL:PartyFunction" xmi:id="_ysxMgOxBEe6BFpfmkO_CUA" type="trackingParty" party="_LkfwkOt9Ee6AlOW0tQKzjA"/>
   </ODRL:RulePermission>
+  <ODRL:ODRLPolicy xmi:id="_B8uJUPD0Ee6y15VFqLFGCg" base_Activity="_VFIXkOr0Ee62MdZx57QPvg">
+    <profiles>http://example.com/profile1</profiles>
+  </ODRL:ODRLPolicy>
 </xmi:XMI>
