@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:generalprofiletestdiagram="http:///schemas/generalprofiletestdiagram/_upucYPD4Ee6y15VFqLFGCg/114" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/generalprofiletestdiagram/_upucYPD4Ee6y15VFqLFGCg/114 generalprofiletestdiagram.profile.uml#_upvDcPD4Ee6y15VFqLFGCg">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:generalprofiletestdiagram="http:///schemas/generalprofiletestdiagram/_96cQQPJfEe62MocNSPrYaQ/121" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/generalprofiletestdiagram/_96cQQPJfEe62MocNSPrYaQ/121 generalprofiletestdiagram.profile.uml#_96c3UPJfEe62MocNSPrYaQ">
   <uml:Model xmi:id="_8FLngOr7Ee6iSvBi4vHPsg" name="generaltestdiagram">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_8FvoMOr7Ee6iSvBi4vHPsg">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -23,20 +23,20 @@
       <ownedEnd xmi:type="uml:Property" xmi:id="_xUULc_DZEe6y15VFqLFGCg" name="class4" type="_UtCpAPDZEe6y15VFqLFGCg" association="_xUHXIPDZEe6y15VFqLFGCg"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_RlTEkOr9Ee6iSvBi4vHPsg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_vk-jsPD4Ee6y15VFqLFGCg" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vk-jsfD4Ee6y15VFqLFGCg" key="Version" value="0.0.115"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vk-jsvD4Ee6y15VFqLFGCg" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vk-js_D4Ee6y15VFqLFGCg" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vk-jtPD4Ee6y15VFqLFGCg" key="Date" value="2024-04-02"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vk-jtfD4Ee6y15VFqLFGCg" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_afUJgPJhEe62MocNSPrYaQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_afUJgfJhEe62MocNSPrYaQ" key="Version" value="0.0.122"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_afUJgvJhEe62MocNSPrYaQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_afUJg_JhEe62MocNSPrYaQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_afUJhPJhEe62MocNSPrYaQ" key="Date" value="2024-04-04"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_afUJhfJhEe62MocNSPrYaQ" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RlUSsOr9Ee6iSvBi4vHPsg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="generalprofiletestdiagram.profile.uml#_upvDcPD4Ee6y15VFqLFGCg"/>
+        <references xmi:type="ecore:EPackage" href="generalprofiletestdiagram.profile.uml#_96c3UPJfEe62MocNSPrYaQ"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="generalprofiletestdiagram.profile.uml#_inCmwOEXEe6OaeKmlhRFDQ"/>
     </profileApplication>
   </uml:Model>
-  <generalprofiletestdiagram:Constraint xmi:id="_SpDAkOr9Ee6iSvBi4vHPsg" base_Action="_onUrMOr8Ee6iSvBi4vHPsg">
+  <generalprofiletestdiagram:ConstraintWithSymbol xmi:id="_SpDAkOr9Ee6iSvBi4vHPsg" base_Action="_onUrMOr8Ee6iSvBi4vHPsg">
     <Property1>SpecifiedEnumLiteral</Property1>
     <Property4 xmi:type="generalprofiletestdiagram:ConstraintDataType1" xmi:id="_40PIkPD4Ee6y15VFqLFGCg">
       <leftProperty>test</leftProperty>
@@ -44,7 +44,7 @@
     <constraintAssociation xmi:type="generalprofiletestdiagram:ConstraintDataType2" xmi:id="_3qhugPD4Ee6y15VFqLFGCg">
       <rightProperty>test</rightProperty>
     </constraintAssociation>
-  </generalprofiletestdiagram:Constraint>
+  </generalprofiletestdiagram:ConstraintWithSymbol>
   <generalprofiletestdiagram:FlowStereotype xmi:id="_foiGMPDZEe6y15VFqLFGCg" base_ControlFlow="_dZYuEPDZEe6y15VFqLFGCg">
     <refinement xmi:type="generalprofiletestdiagram:StringList" xmi:id="_s-AAkPDbEe6y15VFqLFGCg">
       <_>Event</_>
@@ -58,4 +58,7 @@
     </refinement>
   </generalprofiletestdiagram:FlowStereotype>
   <generalprofiletestdiagram:LinkStereotype xmi:id="_yHCB0PDZEe6y15VFqLFGCg" base_Association="_xUHXIPDZEe6y15VFqLFGCg"/>
+  <generalprofiletestdiagram:ConstraintWithSymbol xmi:id="_kacAwPJfEe62MocNSPrYaQ" base_Class="_UtCpAPDZEe6y15VFqLFGCg">
+    <constraintAssociation xmi:type="generalprofiletestdiagram:ConstraintDataType2" xmi:id="_dEresPJgEe62MocNSPrYaQ"/>
+  </generalprofiletestdiagram:ConstraintWithSymbol>
 </xmi:XMI>

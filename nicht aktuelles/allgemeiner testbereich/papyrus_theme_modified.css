@@ -255,6 +255,13 @@ Compartment[type=StereotypeCompartment]>[property="assetRelation"] {
 Compartment[type=StereotypeCompartment] *{
 	maskLabel:name;
 }
+Class {
+	shapeVisibility:true;
+	shapeDiraction:0;
+	/*imagePath:"/bachelorarbeit-modelle/nicht aktuelles/allgemeiner testbereich/exampleIcon.png";*/
+	shapeDecorationStereotype:true;
+}
+
 
 /* 
 
