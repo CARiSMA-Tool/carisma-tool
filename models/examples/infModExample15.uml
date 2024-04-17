@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRL="http:///schemas/ODRL/_6sBToPcZEe6_OsudmEv5_g/156" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRL/_6sBToPcZEe6_OsudmEv5_g/156 ../ODRLCommonVocabulary.profile.uml#_6sChwPcZEe6_OsudmEv5_g">
+  <uml:Model xmi:id="_w952QPceEe6_OsudmEv5_g" name="infModExample15">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_w_FiAPceEe6_OsudmEv5_g">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_w-iIYPceEe6_OsudmEv5_g" name="ReproduceAssetViaOnlineOrPrint" node="_QfWq0PcfEe6_OsudmEv5_g _RFuHQPcfEe6_OsudmEv5_g _RpbRQPcfEe6_OsudmEv5_g _XYiwMPcfEe6_OsudmEv5_g">
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_eMfwQPcfEe6_OsudmEv5_g" target="_eMgXUPcfEe6_OsudmEv5_g" source="_XYiwMPcfEe6_OsudmEv5_g">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_eMlP0PcfEe6_OsudmEv5_g" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_eMlP0fcfEe6_OsudmEv5_g" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_iups0PcfEe6_OsudmEv5_g" target="_RpbRQPcfEe6_OsudmEv5_g" source="_QfWq0PcfEe6_OsudmEv5_g"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_jWcsoPcfEe6_OsudmEv5_g" target="_RFuHQPcfEe6_OsudmEv5_g" source="_RpbRQPcfEe6_OsudmEv5_g"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_QfWq0PcfEe6_OsudmEv5_g" name="InitialNode1" outgoing="_iups0PcfEe6_OsudmEv5_g"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_RFuHQPcfEe6_OsudmEv5_g" name="ActivityFinalNode2" incoming="_jWcsoPcfEe6_OsudmEv5_g"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_RpbRQPcfEe6_OsudmEv5_g" name="Reproduce" incoming="_iups0PcfEe6_OsudmEv5_g" outgoing="_jWcsoPcfEe6_OsudmEv5_g">
+        <inputValue xmi:type="uml:InputPin" xmi:id="_eMgXUPcfEe6_OsudmEv5_g" name="InputPin1" incoming="_eMfwQPcfEe6_OsudmEv5_g">
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_eMg-YPcfEe6_OsudmEv5_g" value="1"/>
+        </inputValue>
+      </node>
+      <node xmi:type="uml:DataStoreNode" xmi:id="_XYiwMPcfEe6_OsudmEv5_g" name="DataStoreNode4" outgoing="_eMfwQPcfEe6_OsudmEv5_g">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_XYjXQPcfEe6_OsudmEv5_g" value="1"/>
+      </node>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3wj10PceEe6_OsudmEv5_g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3wkc4PceEe6_OsudmEv5_g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../ODRLCommonVocabulary.profile.uml#_6sChwPcZEe6_OsudmEv5_g"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../ODRLCommonVocabulary.profile.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
+    </profileApplication>
+  </uml:Model>
+  <ODRL:ODRLPolicy xmi:id="_4eUTsPceEe6_OsudmEv5_g" uid="http://example.com/policy:88" base_Activity="_w-iIYPceEe6_OsudmEv5_g" policyType="Offer">
+    <profiles>http://example.com/odrl:profile:10</profiles>
+  </ODRL:ODRLPolicy>
+  <ODRL:Party xmi:id="_Y_Bl0PcfEe6_OsudmEv5_g" uid="http://example.com/org/paisley-park" base_DataStoreNode="_XYiwMPcfEe6_OsudmEv5_g"/>
+  <ODRL:Asset xmi:id="_gVhSQPcfEe6_OsudmEv5_g" base_Pin="_eMgXUPcfEe6_OsudmEv5_g" uid="http://example.com/book/1999"/>
+  <ODRL:Permission xmi:id="_qS4TQPcfEe6_OsudmEv5_g" base_Action="_RpbRQPcfEe6_OsudmEv5_g">
+    <refinement xmi:type="ODRL:LogicalConstraint" xmi:id="_v_GPMPcfEe6_OsudmEv5_g" logicalOperator="xone">
+      <constraints xmi:type="ODRL:Constraint" xmi:id="_294mQPcfEe6_OsudmEv5_g" uid="" leftOperand="media" operator="eq" dataType="xsd:string">
+        <rightOperand>online</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRL:Constraint" xmi:id="_8ui9UPcfEe6_OsudmEv5_g" uid="" leftOperand="media" operator="eq" dataType="xsd:string">
+        <rightOperand>print</rightOperand>
+      </constraints>
+    </refinement>
+  </ODRL:Permission>
+</xmi:XMI>
