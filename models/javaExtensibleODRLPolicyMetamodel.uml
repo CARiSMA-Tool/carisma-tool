@@ -3,9 +3,6 @@
   <ownedComment xmi:type="uml:Comment" xmi:id="_SEjPgOIBEe60_tJiLUtJIw" annotatedElement="_vYWh0OEyEe61yJTtEAJzgw">
     <body>mindestens ein Eintrag in mindestens einem der  Rule-Attribute</body>
   </ownedComment>
-  <ownedComment xmi:type="uml:Comment" xmi:id="_6WJrEOIBEe60_tJiLUtJIw" annotatedElement="_tizVcOEyEe61yJTtEAJzgw">
-    <body>Erst mal kein inheritsFrom, da keine anderen Policies im Diagramm vorkommen</body>
-  </ownedComment>
   <ownedComment xmi:type="uml:Comment" xmi:id="_hPsukOICEe60_tJiLUtJIw" annotatedElement="_TzS04OEzEe61yJTtEAJzgw">
     <body>Noch shared Properties und möglicherweise Policy-Metadata hinzufügen</body>
   </ownedComment>
@@ -77,25 +74,22 @@ Notiz: Möglicherweise die target-Relation, die assigner/assignee-Functions und 
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JfOqY-H_Ee60_tJiLUtJIw"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JfOqZOH_Ee60_tJiLUtJIw" value="*"/>
     </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_boG20PvTEe6E2OVSk60MHg" name="inheritsFrom">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gwQcYPvTEe6E2OVSk60MHg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gw6jsPvTEe6E2OVSk60MHg" value="*"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_EQ1aQOH8Ee60_tJiLUtJIw" name="Asset">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_mErrEOIDEe60_tJiLUtJIw" name="uid">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pSFbMOIDEe60_tJiLUtJIw"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_wcYesuIDEe60_tJiLUtJIw" name="partOf" type="_W_3sQOH8Ee60_tJiLUtJIw" association="_wcX3oOIDEe60_tJiLUtJIw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wcZFwOIDEe60_tJiLUtJIw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wcZFweIDEe60_tJiLUtJIw" value="*"/>
-    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_QZ9vQOH8Ee60_tJiLUtJIw" name="Party">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_kjZXIOIGEe60_tJiLUtJIw" name="uid">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oTin8OIGEe60_tJiLUtJIw"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_tq-msuIGEe60_tJiLUtJIw" name="partOf" type="_TSv6QOH8Ee60_tJiLUtJIw" association="_tq9_oOIGEe60_tJiLUtJIw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tq_NwOIGEe60_tJiLUtJIw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tq_NweIGEe60_tJiLUtJIw" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_TSv6QOH8Ee60_tJiLUtJIw" name="PartyCollection">
@@ -124,15 +118,11 @@ Notiz: Möglicherweise die target-Relation, die assigner/assignee-Functions und 
     <ownedAttribute xmi:type="uml:Property" xmi:id="_HOUhQOILEe60_tJiLUtJIw" name="refinement" type="_VQZXEOIaEe6mKsJPh0BQjA">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4bfL0OIaEe6mKsJPh0BQjA"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_XeXBQuILEe60_tJiLUtJIw" name="implies" type="_n4zYQOH8Ee60_tJiLUtJIw" association="_XeVzIOILEe60_tJiLUtJIw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XeXoUOILEe60_tJiLUtJIw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XeXoUeILEe60_tJiLUtJIw" value="*"/>
-    </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_lbZU4OKwEe6zvfrUTUXOvg" name="name">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_oluvsOH8Ee60_tJiLUtJIw" name="Rule">
+  <packagedElement xmi:type="uml:Class" xmi:id="_oluvsOH8Ee60_tJiLUtJIw" name="Rule" isAbstract="true">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_njvNkOIEEe60_tJiLUtJIw" name="target" type="_EQ1aQOH8Ee60_tJiLUtJIw" association="_njt_cOIEEe60_tJiLUtJIw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_njvNkeIEEe60_tJiLUtJIw"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_njvNkuIEEe60_tJiLUtJIw" value="1"/>
@@ -250,23 +240,11 @@ Notiz: Möglicherweise die target-Relation, die assigner/assignee-Functions und 
     </eAnnotations>
     <ownedEnd xmi:type="uml:Property" xmi:id="_JfPRcOH_Ee60_tJiLUtJIw" name="policy" type="_tizVcOEyEe61yJTtEAJzgw" association="_JfODUOH_Ee60_tJiLUtJIw"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_wcX3oOIDEe60_tJiLUtJIw" memberEnd="_wcYesuIDEe60_tJiLUtJIw _wcZFwuIDEe60_tJiLUtJIw">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_wcYesOIDEe60_tJiLUtJIw" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_wcYeseIDEe60_tJiLUtJIw" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_wcZFwuIDEe60_tJiLUtJIw" name="asset" type="_EQ1aQOH8Ee60_tJiLUtJIw" association="_wcX3oOIDEe60_tJiLUtJIw"/>
-  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_njt_cOIEEe60_tJiLUtJIw" memberEnd="_njvNkOIEEe60_tJiLUtJIw _njvNk-IEEe60_tJiLUtJIw">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_njumgOIEEe60_tJiLUtJIw" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_njumgeIEEe60_tJiLUtJIw" key="nature" value="UML_Nature"/>
     </eAnnotations>
     <ownedEnd xmi:type="uml:Property" xmi:id="_njvNk-IEEe60_tJiLUtJIw" name="rule" type="_oluvsOH8Ee60_tJiLUtJIw" association="_njt_cOIEEe60_tJiLUtJIw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_tq9_oOIGEe60_tJiLUtJIw" memberEnd="_tq-msuIGEe60_tJiLUtJIw _tq_NwuIGEe60_tJiLUtJIw">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tq-msOIGEe60_tJiLUtJIw" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tq-mseIGEe60_tJiLUtJIw" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_tq_NwuIGEe60_tJiLUtJIw" name="party" type="_QZ9vQOH8Ee60_tJiLUtJIw" association="_tq9_oOIGEe60_tJiLUtJIw"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_wNl38OIHEe60_tJiLUtJIw" memberEnd="_wNntIuIHEe60_tJiLUtJIw _wNo7QuIHEe60_tJiLUtJIw">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_wNntIOIHEe60_tJiLUtJIw" source="org.eclipse.papyrus">
@@ -279,15 +257,6 @@ Notiz: Möglicherweise die target-Relation, die assigner/assignee-Functions und 
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_12QJkeIHEe60_tJiLUtJIw" key="nature" value="UML_Nature"/>
     </eAnnotations>
     <ownedEnd xmi:type="uml:Property" xmi:id="_12QwouIHEe60_tJiLUtJIw" name="rule" type="_oluvsOH8Ee60_tJiLUtJIw" association="_12PigOIHEe60_tJiLUtJIw"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_XeVzIOILEe60_tJiLUtJIw" memberEnd="_XeXBQuILEe60_tJiLUtJIw _XeXoUuILEe60_tJiLUtJIw">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XeXBQOILEe60_tJiLUtJIw" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XeXBQeILEe60_tJiLUtJIw" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_XeXoUuILEe60_tJiLUtJIw" name="action" type="_n4zYQOH8Ee60_tJiLUtJIw" association="_XeVzIOILEe60_tJiLUtJIw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pPNMsOILEe60_tJiLUtJIw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pPdEUOILEe60_tJiLUtJIw" value="*"/>
-    </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_kCwqEOIYEe6mKsJPh0BQjA" memberEnd="_kC83UOIYEe6mKsJPh0BQjA _kC9eYeIYEe6mKsJPh0BQjA">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kC7CIOIYEe6mKsJPh0BQjA" source="org.eclipse.papyrus">
