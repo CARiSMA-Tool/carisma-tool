@@ -17,8 +17,8 @@ import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
-import carisma.profile.umlsec.umlsec4ids.UMLsec;
-import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDS;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDSUtil;
 
 /**
  * analyzes a deployment diagram with respect to trust management rules.
@@ -80,38 +80,38 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 		boolean checkSuccessful = true;
 		//Test if Nodes have one Security Profile
 		for (int i = 0; i < nodeList.size(); i++) {	
-			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASEFREE) && (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS))) {
-				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE)) {
+			if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.BASEFREE) && (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.BASE) || UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUST) || UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUSTPLUS))) {
+				if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.BASE)) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<BaseFree>> and <<Base>>");
 				}
-				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST)) {
+				if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUST)) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<BaseFree>> and <<Trust>>");
 				}
-				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) {
+				if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUSTPLUS)) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<BaseFree>> and <<Trustplus>>");
 				}
 				checkSuccessful = false;
 			}
-			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE) && (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS))) {
-				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST)) {
+			if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.BASE) && (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUST) || UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUSTPLUS))) {
+				if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUST)) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<Base>> and <<Trust>>");
 				}
-				if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) {
+				if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUSTPLUS)) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<Base>> and <<Trustplus>>");
 				}
 				checkSuccessful = false;
 			}
-			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) && UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) {
+			if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUST) && UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUSTPLUS)) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes contain more than one Security Profile"));
 					this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " contains both Stereotypes <<Trust>> and <<Trustplus>>");
 					checkSuccessful = false;
 			}
-			if ((UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASEFREE) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.BASE) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.TRUSTPLUS)) == false) {
+			if ((UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.BASEFREE) || UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.BASE) || UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUST) || UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.TRUSTPLUS)) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes have a missing Security Profile"));
 				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " has no Security Profile");
 				checkSuccessful = false;
@@ -132,28 +132,28 @@ public class TrustManagementCheck implements CarismaCheckWithID {
 			for (int x = 0; x < nodeList.size(); x++) {
 				currentNode2 = nodeList.get(x).getName().toLowerCase();
 				if ((communicationMember1.equals(currentNode1) || communicationMember1.equals(currentNode2)) && (communicationMember2.equals(currentNode1) || communicationMember2.equals(currentNode2))) {
-					if (UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.BASEFREE) && UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.TRUSTPLUS)) {
+					if (UMLsec4IDSUtil.hasStereotype(nodeList.get(z), UMLsec4IDS.BASEFREE) && UMLsec4IDSUtil.hasStereotype(nodeList.get(x), UMLsec4IDS.TRUSTPLUS)) {
 						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Trust Plus Security Profile communicates with Base Free Security Profile"));
 						this.analysisHost.appendLineToReport(nodeList.get(x).getName() + " has Trust+ Profile and tries to communicate with a Base Free Security Profile.");
 					}
-					if (UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.TRUSTPLUS) && UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.BASEFREE)) {
+					if (UMLsec4IDSUtil.hasStereotype(nodeList.get(z), UMLsec4IDS.TRUSTPLUS) && UMLsec4IDSUtil.hasStereotype(nodeList.get(x), UMLsec4IDS.BASEFREE)) {
 						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Trust Plus Security Profile communicates with Base Free Security Profile"));
 						this.analysisHost.appendLineToReport(nodeList.get(x).getName() + " has Trust+ Profile and tries to communicate with a Base Free Security Profile.");
 					}
-					if ((UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.TRUSTPLUS) || UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.TRUST)) && UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.BASE)) {
+					if ((UMLsec4IDSUtil.hasStereotype(nodeList.get(z), UMLsec4IDS.TRUSTPLUS) || UMLsec4IDSUtil.hasStereotype(nodeList.get(x), UMLsec4IDS.TRUST)) && UMLsec4IDSUtil.hasStereotype(nodeList.get(x), UMLsec4IDS.BASE)) {
 						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Trust Plus and Trust Security Profiles can reject communication with Base Security Profile"));
 						this.analysisHost.appendLineToReport("Trust Plus and Trust Security Profiles can reject communication with Base Security Profile");
 					}
-					if (UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.BASE) && (UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.TRUSTPLUS))) {
+					if (UMLsec4IDSUtil.hasStereotype(nodeList.get(z), UMLsec4IDS.BASE) && (UMLsec4IDSUtil.hasStereotype(nodeList.get(x), UMLsec4IDS.TRUST) || UMLsec4IDSUtil.hasStereotype(nodeList.get(x), UMLsec4IDS.TRUSTPLUS))) {
 						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Trust Plus and Trust Security Profiles can reject communication with Base Security Profile"));
 						this.analysisHost.appendLineToReport("Trust Plus and Trust Security Profiles can reject communication with Base Security Profile");
 					}
-					if (UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.BASEFREE) && (UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.TRUST) || UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.BASE))) {
+					if (UMLsec4IDSUtil.hasStereotype(nodeList.get(z), UMLsec4IDS.BASEFREE) && (UMLsec4IDSUtil.hasStereotype(nodeList.get(x), UMLsec4IDS.TRUST) || UMLsec4IDSUtil.hasStereotype(nodeList.get(x), UMLsec4IDS.BASE))) {
 						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Basefree Security Profiles cannot communicate with Trust or Base Security Profile"));
 						this.analysisHost.appendLineToReport("Basefree Security Profiles cannot communicate with Trust or Base Security Profile");
 						checkSuccessful = false;
 					}
-					if ((UMLsecUtil.hasStereotype(nodeList.get(z), UMLsec.BASE) || UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.TRUST)) && UMLsecUtil.hasStereotype(nodeList.get(x), UMLsec.BASEFREE)) {
+					if ((UMLsec4IDSUtil.hasStereotype(nodeList.get(z), UMLsec4IDS.BASE) || UMLsec4IDSUtil.hasStereotype(nodeList.get(x), UMLsec4IDS.TRUST)) && UMLsec4IDSUtil.hasStereotype(nodeList.get(x), UMLsec4IDS.BASEFREE)) {
 						this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Basefree Security Profiles cannot communicate with Trust or Base Security Profile"));
 						this.analysisHost.appendLineToReport("Basefree Security Profiles cannot communicate with Trust or Base Security Profile");
 						checkSuccessful = false;

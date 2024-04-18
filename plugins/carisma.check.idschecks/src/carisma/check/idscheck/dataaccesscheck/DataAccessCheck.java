@@ -20,8 +20,8 @@ import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
-import carisma.profile.umlsec.umlsec4ids.UMLsec;
-import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDS;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDSUtil;
 
 /**
  * analyzes an activity diagram with respect to data access rules.
@@ -113,15 +113,15 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		// iterate over all Partitions and get the number of Partitions with Consumer/Owner Stereotype
 		
 		for (int i = 0; i < partitionList.size(); i++) {
-			if(UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.CONSUMER) && UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.OWNER)) {
+			if(UMLsec4IDSUtil.hasStereotype(partitionList.get(i), UMLsec4IDS.CONSUMER) && UMLsec4IDSUtil.hasStereotype(partitionList.get(i), UMLsec4IDS.OWNER)) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "User is Owner and Consumer"));
 				this.analysisHost.appendLineToReport(partitionList.get(i).getName() + " has Owner and Consumer Stereotype");
 				checkSuccessful = false;
 			}
-			if (UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.CONSUMER)) {
+			if (UMLsec4IDSUtil.hasStereotype(partitionList.get(i), UMLsec4IDS.CONSUMER)) {
 				numberConsumer ++;
 			}
-			if (UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.OWNER)) {
+			if (UMLsec4IDSUtil.hasStereotype(partitionList.get(i), UMLsec4IDS.OWNER)) {
 				numberOwner ++;
 			}
 		}
@@ -143,7 +143,7 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		ArrayList<String> namesAllPartitionsOwner = new ArrayList<String>();
 		ArrayList<ActivityPartition> allPartitionsOwner = new ArrayList<ActivityPartition>();
 		for(int i = 0; i < partitionList.size(); i++) {
-			if(UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.OWNER)) {
+			if(UMLsec4IDSUtil.hasStereotype(partitionList.get(i), UMLsec4IDS.OWNER)) {
 				getAllSubpartitions (partitionList.get(i), allPartitionsOwner);
 				for(int x = 0; x < allPartitionsOwner.size(); x++) {
 					namesAllPartitionsOwner.add(allPartitionsOwner.get(x).getName());
@@ -153,7 +153,7 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		ArrayList<String> namesAllPartitionsConsumer = new ArrayList<String>();
 		ArrayList<ActivityPartition> allPartitionsConsumer = new ArrayList<ActivityPartition>();
 		for(int i = 0; i < partitionList.size(); i++) {
-			if(UMLsecUtil.hasStereotype(partitionList.get(i), UMLsec.CONSUMER)) {
+			if(UMLsec4IDSUtil.hasStereotype(partitionList.get(i), UMLsec4IDS.CONSUMER)) {
 				getAllSubpartitions (partitionList.get(i), allPartitionsConsumer);
 				for(int x = 0; x < allPartitionsConsumer.size(); x++) {
 					namesAllPartitionsConsumer.add(allPartitionsConsumer.get(x).getName());
@@ -193,24 +193,24 @@ public class DataAccessCheck implements CarismaCheckWithID {
 		List<String> taggedValuesReqAttOwner = null;
 		List<Object> taggedValuesProtectedOwner = null;
 		ArrayList<String> protectedActions = new ArrayList<String>();
-		List<Element> elementOwner = (List<Element>) UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
+		List<Element> elementOwner = (List<Element>) UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.OWNER);
 		for(int x = 0; x < elementOwner.size(); x++) {
-			taggedValuesProtectedOwner = UMLsecUtil.getTaggedValues("protected", UMLsec.OWNER, elementOwner.get(x));
+			taggedValuesProtectedOwner = UMLsec4IDSUtil.getTaggedValues("protected", UMLsec4IDS.OWNER, elementOwner.get(x));
 			for (int y = 0; y < taggedValuesProtectedOwner.size(); y++) {
 				String currentTag = ((NamedElement) taggedValuesProtectedOwner.get(y)).getName();
 				protectedActions.add(currentTag);
 			}
-			taggedValuesReqAttOwner = UMLsecUtil.getStringValues("requested_attributes", UMLsec.OWNER, elementOwner.get(x));
-			taggedValuesReqActOwner = UMLsecUtil.getStringValues("requested_actions", UMLsec.OWNER, elementOwner.get(x));
+			taggedValuesReqAttOwner = UMLsec4IDSUtil.getStringValues("requested_attributes", UMLsec4IDS.OWNER, elementOwner.get(x));
+			taggedValuesReqActOwner = UMLsec4IDSUtil.getStringValues("requested_actions", UMLsec4IDS.OWNER, elementOwner.get(x));
 
 		}
 		//create lists with tagged values of consumer
 		List<String> taggedValuesActConsumer = null;
-		List<Element> elementConsumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		List<Element> elementConsumer = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CONSUMER);
 		List<String> taggedValuesAttConsumer = null;
 		for(int x = 0; x < elementConsumer.size(); x++) {
-			taggedValuesAttConsumer = UMLsecUtil.getStringValues("attributes", UMLsec.CONSUMER, elementConsumer.get(x));
-			taggedValuesActConsumer = UMLsecUtil.getStringValues("actions", UMLsec.CONSUMER, elementConsumer.get(x));
+			taggedValuesAttConsumer = UMLsec4IDSUtil.getStringValues("attributes", UMLsec4IDS.CONSUMER, elementConsumer.get(x));
+			taggedValuesActConsumer = UMLsec4IDSUtil.getStringValues("actions", UMLsec4IDS.CONSUMER, elementConsumer.get(x));
 		
 
 		}

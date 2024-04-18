@@ -63,10 +63,10 @@ public class TrustManagementTest{
 		loadModel("trustmanagement_no_profile.uml");
 		TrustManagementCheck check2 = new TrustManagementCheck();
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
-		List<Element> basefree = UMLsecUtil.getStereotypedElements(model, UMLsec.BASEFREE);
-		List<Element> base = UMLsecUtil.getStereotypedElements(model, UMLsec.BASE);
-		List<Element> trust = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUST);
-		List<Element> trustplus = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUSTPLUS);
+		List<Element> basefree = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.BASEFREE);
+		List<Element> base = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.BASE);
+		List<Element> trust = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.TRUST);
+		List<Element> trustplus = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.TRUSTPLUS);
 		assertNotEquals(nodeList.size(), (basefree.size()+base.size()+trust.size()+trustplus.size()));
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check2.perform(null, analysisHost));
@@ -78,10 +78,10 @@ public class TrustManagementTest{
 	public void testNoProfile2TM() throws IOException {
 		loadModel("trustmanagement_single_node_without_profile.uml");
 		TrustManagementCheck check3 = new TrustManagementCheck();
-		List<Element> basefree = UMLsecUtil.getStereotypedElements(model, UMLsec.BASEFREE);
-		List<Element> base = UMLsecUtil.getStereotypedElements(model, UMLsec.BASE);
-		List<Element> trust = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUST);
-		List<Element> trustplus = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUSTPLUS);
+		List<Element> basefree = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.BASEFREE);
+		List<Element> base = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.BASE);
+		List<Element> trust = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.TRUST);
+		List<Element> trustplus = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.TRUSTPLUS);
 		assertEquals(0, basefree.size());
 		assertEquals(0, base.size());
 		assertEquals(0, trust.size());
@@ -97,10 +97,10 @@ public class TrustManagementTest{
 	public void testUnallowedCommunicationTM() throws IOException {
 		loadModel("trustmanagement_communication_not_allowed.uml");
 		TrustManagementCheck check4 = new TrustManagementCheck();
-		List<Element> basefree = UMLsecUtil.getStereotypedElements(model, UMLsec.BASEFREE);
-		List<Element> base = UMLsecUtil.getStereotypedElements(model, UMLsec.BASE);
-		List<Element> trust = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUST);
-		List<Element> trustplus = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUSTPLUS);
+		List<Element> basefree = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.BASEFREE);
+		List<Element> base = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.BASE);
+		List<Element> trust = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.TRUST);
+		List<Element> trustplus = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.TRUSTPLUS);
 		assertEquals(1, basefree.size());
 		assertEquals(1, base.size());
 		assertEquals(0, trust.size());
@@ -116,10 +116,10 @@ public class TrustManagementTest{
 		loadModel("trustmanagement_multiple_profiles.uml");
 		TrustManagementCheck check5 = new TrustManagementCheck();
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
-		List<Element> basefree = UMLsecUtil.getStereotypedElements(model, UMLsec.BASEFREE);
-		List<Element> base = UMLsecUtil.getStereotypedElements(model, UMLsec.BASE);
-		List<Element> trust = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUST);
-		List<Element> trustplus = UMLsecUtil.getStereotypedElements(model, UMLsec.TRUSTPLUS);
+		List<Element> basefree = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.BASEFREE);
+		List<Element> base = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.BASE);
+		List<Element> trust = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.TRUST);
+		List<Element> trustplus = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.TRUSTPLUS);
 		assertNotEquals(nodeList.size(), (basefree.size()+base.size()+trust.size()+trustplus.size()));
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check5.perform(null, analysisHost));

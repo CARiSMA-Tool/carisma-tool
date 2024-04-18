@@ -33,7 +33,7 @@ import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.profile.umlsec.rabac.UMLsec;
-import carisma.profile.umlsec.rabac.UMLsecUtil;
+import carisma.profile.umlsec.rabac.UMLsecRABACUtil;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;
 
@@ -80,7 +80,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 
 		if (model.getContents().get(0) instanceof Package) {
 			final var content = (Package) model.getContents().get(0);
-			final var abac = UMLsecUtil.getStereotypedElements(content, UMLsec.ABAC);
+			final var abac = UMLsecRABACUtil.getStereotypedElements(content, UMLsec.ABAC);
 			final var abacNum = abac.size();
 			if (abacNum == 0) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Could not find a abac stereotype"));
@@ -93,7 +93,7 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 			}
 			final var abacClass = abac.get(0);
 
-			this.usersTag = UMLsecUtil.getStringValues("roles", UMLsec.ABAC, abacClass);
+			this.usersTag = UMLsecRABACUtil.getStringValues("roles", UMLsec.ABAC, abacClass);
 			if (this.usersTag.size() == 0) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Roles missing!"));
 				return false;
@@ -104,16 +104,16 @@ public class RABACConfigCheck implements CarismaCheckWithID, ActionListener {
 				return false;
 			}
 
-			final var abacRequire = UMLsecUtil.getStereotypedElements(content, UMLsec.ABACREQUIRE);
+			final var abacRequire = UMLsecRABACUtil.getStereotypedElements(content, UMLsec.ABACREQUIRE);
 			this.objects = new HashSet<>();
 			for (final Element e : abacRequire) {
 				this.objects.add(e instanceof Transition ? ((Transition) e).containingStateMachine().getName()
 						: ((Operation) e).getClass_().getName());
 			}
 
-			final var abacAttribute = UMLsecUtil.getStereotypedElements(content, UMLsec.ABACATTRIBUTE);
+			final var abacAttribute = UMLsecRABACUtil.getStereotypedElements(content, UMLsec.ABACATTRIBUTE);
 			for (final Element e : abacAttribute) {
-				final var nameTag = UMLsecUtil.getStringValues("name", UMLsec.ABACATTRIBUTE, e);
+				final var nameTag = UMLsecRABACUtil.getStringValues("name", UMLsec.ABACATTRIBUTE, e);
 				// use name of operation when no explicit one is given
 				final var name = nameTag.size() == 0 ? ((NamedElement) e).getName() : nameTag.get(0);
 

@@ -53,9 +53,9 @@ public class DataUsageControlTest{
 	public void testEmptyModelDUC() throws IOException {
 		loadModel("datausagecontrol_empty_model.uml");
 		DataUsageCheck check1 = new DataUsageCheck();
-		List<Element> duc = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAUSAGECONTROL);
+		List<Element> duc = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAUSAGECONTROL);
 		assertEquals(0, duc.size());
-		StereotypeApplication ducApp = UMLsecUtil.getStereotypeApplication(this.model, UMLsec.DATAUSAGECONTROL);
+		StereotypeApplication ducApp = UMLsec4IDSUtil.getStereotypeApplication(this.model, UMLsec4IDS.DATAUSAGECONTROL);
 		assertNull(ducApp);
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check1.perform(null, analysisHost));
@@ -70,7 +70,7 @@ public class DataUsageControlTest{
 	public void testNoValidPathDUC() throws IOException {
 		loadModel("datausagecontrol_no_valid_path.uml");
 		DataUsageCheck check2 = new DataUsageCheck();
-		List<Element> duc = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAUSAGECONTROL);
+		List<Element> duc = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAUSAGECONTROL);
 		assertEquals(1, duc.size());
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertTrue(check2.perform(null, analysisHost));
@@ -82,7 +82,7 @@ public class DataUsageControlTest{
 	public void testActionProhibittedDUC() throws IOException {
 		loadModel("datausagecontrol_action_prohibitted.uml");
 		DataUsageCheck check3 = new DataUsageCheck();
-		List<Element> duc = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAUSAGECONTROL);
+		List<Element> duc = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAUSAGECONTROL);
 		assertEquals(1, duc.size());
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check3.perform(null, analysisHost));
@@ -94,7 +94,7 @@ public class DataUsageControlTest{
 	public void testNotAllPermittedDUC() throws IOException {
 		loadModel("datausagecontrol_not_all_permitted.uml");
 		DataUsageCheck check4 = new DataUsageCheck();
-		List<Element> duc = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAUSAGECONTROL);
+		List<Element> duc = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAUSAGECONTROL);
 		assertEquals(1, duc.size());
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check4.perform(null, analysisHost));
@@ -106,7 +106,7 @@ public class DataUsageControlTest{
 	public void testObligationStopNotExecutedDUC() throws IOException {
 		loadModel("datausagecontrol_obligation_stop_not_executed.uml");
 		DataUsageCheck check5 = new DataUsageCheck();
-		List<Element> duc = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAUSAGECONTROL);
+		List<Element> duc = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAUSAGECONTROL);
 		assertEquals(1, duc.size());
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check5.perform(null, analysisHost));
@@ -118,7 +118,7 @@ public class DataUsageControlTest{
 	public void testDifferentAmountStartStopsDUC() throws IOException {
 		loadModel("datausagecontrol_different_amount_obligation_start_stop.uml");
 		DataUsageCheck check6 = new DataUsageCheck();
-		List<Element> duc = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAUSAGECONTROL);
+		List<Element> duc = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAUSAGECONTROL);
 		assertEquals(1, duc.size());
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check6.perform(null, analysisHost));
@@ -130,7 +130,7 @@ public class DataUsageControlTest{
 	public void testStartBeforeForkDUC() throws IOException {
 		loadModel("datausagecontrol_start_before_fork.uml");
 		DataUsageCheck check7 = new DataUsageCheck();
-		List<Element> duc = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAUSAGECONTROL);
+		List<Element> duc = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAUSAGECONTROL);
 		assertEquals(1, duc.size());
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check7.perform(null, analysisHost));

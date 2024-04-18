@@ -34,7 +34,7 @@ import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.statemachine.StateMachinePaths;
 import carisma.ocl.OclEvaluator;
 import carisma.profile.umlsec.rabac.UMLsec;
-import carisma.profile.umlsec.rabac.UMLsecUtil;
+import carisma.profile.umlsec.rabac.UMLsecRABACUtil;
 import jakarta.xml.bind.JAXBContext;
 
 /**
@@ -78,7 +78,7 @@ public class RABACCheck implements CarismaCheckWithID {
 		if (model.getContents().get(0) instanceof Package) {
 			final var content = (Package) model.getContents().get(0);
 
-			final var abac = UMLsecUtil.getStereotypedElements(content, UMLsec.ABAC);
+			final var abac = UMLsecRABACUtil.getStereotypedElements(content, UMLsec.ABAC);
 			final var abacNum = abac.size();
 			if (abacNum == 0) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
@@ -96,7 +96,7 @@ public class RABACCheck implements CarismaCheckWithID {
 			}
 			final var abacClass = abac.get(0);
 
-			final var usersTag = UMLsecUtil.getStringValues("roles", UMLsec.ABAC, abacClass);
+			final var usersTag = UMLsecRABACUtil.getStringValues("roles", UMLsec.ABAC, abacClass);
 			if (usersTag.isEmpty()) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Roles missing!"));
 				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
@@ -111,7 +111,7 @@ public class RABACCheck implements CarismaCheckWithID {
 				return false;
 			}
 
-			final var rightsTag = UMLsecUtil.getStringValues("rights", UMLsec.ABAC, abacClass);
+			final var rightsTag = UMLsecRABACUtil.getStringValues("rights", UMLsec.ABAC, abacClass);
 			if (rightsTag.isEmpty()) {
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Rights missing!"));
 				this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
@@ -147,7 +147,7 @@ public class RABACCheck implements CarismaCheckWithID {
 				}
 				host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Loaded sessions"));
 
-				final var dsdTag = UMLsecUtil.getStringValues("dsd", UMLsec.ABAC, abacClass);
+				final var dsdTag = UMLsecRABACUtil.getStringValues("dsd", UMLsec.ABAC, abacClass);
 				if (dsdTag.size() > 0) {
 					final var dsdEntries = dsdTag.get(0).split("\\),\\(");
 					for (final String d : dsdEntries) {
@@ -183,7 +183,7 @@ public class RABACCheck implements CarismaCheckWithID {
 							+ " StateMachine(s) found"));
 				}
 
-				final var abacRequire = UMLsecUtil.getStereotypedElements(content, UMLsec.ABACREQUIRE);
+				final var abacRequire = UMLsecRABACUtil.getStereotypedElements(content, UMLsec.ABACREQUIRE);
 				if (abacRequire.isEmpty()) {
 					host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "No CHECK_ID constraints found!"));
 					this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
@@ -201,7 +201,7 @@ public class RABACCheck implements CarismaCheckWithID {
 				}
 
 				String globalFilter = null;
-				final var attributeFiltersTag = UMLsecUtil.getStringValues("attributeFilters", UMLsec.ABAC,
+				final var attributeFiltersTag = UMLsecRABACUtil.getStringValues("attributeFilters", UMLsec.ABAC,
 						abacClass);
 				if (attributeFiltersTag.size() > 0) {
 					if("".equals(globalFilter) || "null".equals(globalFilter)){
@@ -219,7 +219,7 @@ public class RABACCheck implements CarismaCheckWithID {
 					// verify constraints based on all elements which contain a
 					// CHECK_ID stereotype
 					for (final Element e : abacRequire) {
-						final var right = UMLsecUtil.getStringValues("right", UMLsec.ABACREQUIRE, e);
+						final var right = UMLsecRABACUtil.getStringValues("right", UMLsec.ABACREQUIRE, e);
 						if (right.isEmpty()) {
 							host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, ((NamedElement) e)
 									.getName() + " has no right!"));
@@ -229,7 +229,7 @@ public class RABACCheck implements CarismaCheckWithID {
 						}
 
 						Set<String> roles = this.sessions.get(u).getSet();
-						final var rhTag = UMLsecUtil.getStringValues("rh", UMLsec.ABAC, abacClass);
+						final var rhTag = UMLsecRABACUtil.getStringValues("rh", UMLsec.ABAC, abacClass);
 						if (rhTag.size() > 0) {
 							roles = getElementsFromHierarchy(roles, rhTag.get(0));
 						}
@@ -240,7 +240,7 @@ public class RABACCheck implements CarismaCheckWithID {
 										e instanceof Transition ? ((Transition) e).containingStateMachine().getName()
 												: ((Operation) e).getClass_().getName());
 
-								final var filter = UMLsecUtil.getStringValues("filters", UMLsec.ABACREQUIRE, e);
+								final var filter = UMLsecRABACUtil.getStringValues("filters", UMLsec.ABACREQUIRE, e);
 								if ((filter.isEmpty() || filter.get(0).equals("") || attributeFilter(filter.get(0),
 										transformedModel))
 										&& ((globalFilter == null) || attributeFilter(globalFilter, transformedModel))) {
@@ -268,7 +268,7 @@ public class RABACCheck implements CarismaCheckWithID {
 								states.add(e);
 								// make sure access control happens on path
 								if ((e instanceof Transition)
-										&& !UMLsecUtil.getStringValues("right", UMLsec.ABACREQUIRE, e).isEmpty()) {
+										&& !UMLsecRABACUtil.getStringValues("right", UMLsec.ABACREQUIRE, e).isEmpty()) {
 									if (validTransitions.contains(e)) {
 										printPath = true;
 									} else {
@@ -294,7 +294,7 @@ public class RABACCheck implements CarismaCheckWithID {
 								for (final Element e : p) {
 									if (validTransitions.contains(e)) {
 										host.appendToReport(" (via right "
-												+ UMLsecUtil.getStringValues("right", UMLsec.ABACREQUIRE, e).get(0)
+												+ UMLsecRABACUtil.getStringValues("right", UMLsec.ABACREQUIRE, e).get(0)
 												+ ")");
 									}
 									if (e instanceof Vertex) {
