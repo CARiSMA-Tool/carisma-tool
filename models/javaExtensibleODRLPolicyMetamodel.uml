@@ -17,17 +17,11 @@ Agreement muss einen Assigner und Assignee haben&#xD;
   <ownedComment xmi:type="uml:Comment" xmi:id="_rnStIOIFEe60_tJiLUtJIw" annotatedElement="_njt_cOIEEe60_tJiLUtJIw _wNl38OIHEe60_tJiLUtJIw _12PigOIHEe60_tJiLUtJIw _sNWlcOEyEe61yJTtEAJzgw _srQ3UOIgEe6mKsJPh0BQjA">
     <body>target, assigner/assignee und consequence/remedy in der Spezifikation sub-properties von abstrakten super-properties</body>
   </ownedComment>
-  <ownedComment xmi:type="uml:Comment" xmi:id="_MTqDYOILEe60_tJiLUtJIw" annotatedElement="_n4zYQOH8Ee60_tJiLUtJIw">
-    <body>musss includedIn haben (außer use und transfer)</body>
-  </ownedComment>
   <ownedComment xmi:type="uml:Comment" xmi:id="_khGpYOIMEe60_tJiLUtJIw" annotatedElement="_36bBwOH8Ee60_tJiLUtJIw">
     <body>MUSS (exklusiv) entweder rightOperand oder rightOperandReference haben</body>
   </ownedComment>
   <ownedComment xmi:type="uml:Comment" xmi:id="_RLAh8OINEe60_tJiLUtJIw">
     <body>Aktuell: 2.5.1: Constraint Class</body>
-  </ownedComment>
-  <ownedComment xmi:type="uml:Comment" xmi:id="_FdzoEOIaEe6mKsJPh0BQjA" annotatedElement="_5EpZMOH8Ee60_tJiLUtJIw">
-    <body>IM ODRL-Model ist der Operator der Beziehungstyp</body>
   </ownedComment>
   <ownedComment xmi:type="uml:Comment" xmi:id="_bAgiQOIfEe6mKsJPh0BQjA" annotatedElement="_vYEmMOH8Ee60_tJiLUtJIw _wbOFQOH8Ee60_tJiLUtJIw">
     <body>MUST have target</body>
@@ -42,6 +36,9 @@ Blau identifiziert Elemente, die das Basisprofil darstellen, orange Elemente, di
 .&#xD;
 .&#xD;
 Notiz: Möglicherweise die target-Relation, die assigner/assignee-Functions und die default rule types auch in der generischen Form darstellen.</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_wn10YP4pEe6pUJFEoa5naQ">
+    <body>Gegebenenfalls (bei allen Klassen) Name der zugehörigen Modell-Node speichen, damit bei Nachrichten zu einem Element auf den entsprechenden Ort im Modell hingeweisen werden kann</body>
   </ownedComment>
   <packageImport xmi:type="uml:PackageImport" xmi:id="_sOGzYOEyEe61yJTtEAJzgw">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>

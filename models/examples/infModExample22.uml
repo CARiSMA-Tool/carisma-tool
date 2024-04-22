@@ -47,7 +47,7 @@
   <ODRL:Permission xmi:id="_2nY94PD1Ee6y15VFqLFGCg" base_Action="_IP3F4PD1Ee6y15VFqLFGCg" action="play" duties="_7hW9gPD1Ee6y15VFqLFGCg"/>
   <ODRL:Duty xmi:id="_7hW9gPD1Ee6y15VFqLFGCg" base_Action="_ZP5fcPD1Ee6y15VFqLFGCg" action="compensate">
     <refinement xmi:type="ODRL:LogicalConstraint" xmi:id="_ceX7sPD3Ee6y15VFqLFGCg">
-      <constraints xmi:type="ODRL:Constraint" xmi:id="_ij36UPD3Ee6y15VFqLFGCg" operator="eq" dataType="xsd:decimal" unit="http://dbpedia.org/resource/Euro">
+      <constraints xmi:type="ODRL:Constraint" xmi:id="_ij36UPD3Ee6y15VFqLFGCg" uid="" leftOperand="payAmount" operator="eq" dataType="xsd:decimal" unit="http://dbpedia.org/resource/Euro">
         <rightOperand>5.00</rightOperand>
       </constraints>
     </refinement>

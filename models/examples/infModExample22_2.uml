@@ -4,22 +4,26 @@
     <packageImport xmi:type="uml:PackageImport" xmi:id="_H5aLgO-GEe6hFNIXfTHa6g">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
-    <packagedElement xmi:type="uml:Activity" xmi:id="_H4wrQO-GEe6hFNIXfTHa6g" name="Purchase 1999" node="_IP3F4PD1Ee6y15VFqLFGCg _ZP5fcPD1Ee6y15VFqLFGCg" group="_kCSD8PD1Ee6y15VFqLFGCg">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_H4wrQO-GEe6hFNIXfTHa6g" name="Purchase 1999" node="_5q8D4PD0Ee6y15VFqLFGCg _8kUEwPD0Ee6y15VFqLFGCg _IP3F4PD1Ee6y15VFqLFGCg _ZP5fcPD1Ee6y15VFqLFGCg" group="_kCSD8PD1Ee6y15VFqLFGCg">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_9EmR4PD1Ee6y15VFqLFGCg" target="_ZP5fcPD1Ee6y15VFqLFGCg" source="_5q8D4PD0Ee6y15VFqLFGCg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_-eQMcPD1Ee6y15VFqLFGCg" target="_8kUEwPD0Ee6y15VFqLFGCg" source="_IP3F4PD1Ee6y15VFqLFGCg"/>
       <group xmi:type="uml:ActivityPartition" xmi:id="_kCSD8PD1Ee6y15VFqLFGCg" name="Sony"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_IP3F4PD1Ee6y15VFqLFGCg" name="Play Music">
+      <node xmi:type="uml:InitialNode" xmi:id="_5q8D4PD0Ee6y15VFqLFGCg" name="" outgoing="_9EmR4PD1Ee6y15VFqLFGCg"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_8kUEwPD0Ee6y15VFqLFGCg" name="" incoming="_-eQMcPD1Ee6y15VFqLFGCg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_IP3F4PD1Ee6y15VFqLFGCg" name="Play Music" outgoing="_-eQMcPD1Ee6y15VFqLFGCg">
         <inputValue xmi:type="uml:InputPin" xmi:id="_Gjcx8PD2Ee6y15VFqLFGCg" name="1999.mp3">
           <upperBound xmi:type="uml:LiteralInteger" xmi:id="_GjeAEPD2Ee6y15VFqLFGCg" value="1"/>
         </inputValue>
       </node>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_ZP5fcPD1Ee6y15VFqLFGCg" name="Pay 5€"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_ZP5fcPD1Ee6y15VFqLFGCg" name="Pay 5€" incoming="_9EmR4PD1Ee6y15VFqLFGCg"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_U7F30PD0Ee6y15VFqLFGCg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PCBk0Pw7Ee6E7pRD1FDu5w" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PCBk0fw7Ee6E7pRD1FDu5w" key="Version" value="0.0.159"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PCBk0vw7Ee6E7pRD1FDu5w" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PCBk0_w7Ee6E7pRD1FDu5w" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PCBk1Pw7Ee6E7pRD1FDu5w" key="Date" value="2024-04-16"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PCBk1fw7Ee6E7pRD1FDu5w" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mVZGAPwtEe6E7pRD1FDu5w" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mVZGAfwtEe6E7pRD1FDu5w" key="Version" value="0.0.159"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mVZGAvwtEe6E7pRD1FDu5w" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mVZGA_wtEe6E7pRD1FDu5w" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mVZGBPwtEe6E7pRD1FDu5w" key="Date" value="2024-04-16"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mVZGBfwtEe6E7pRD1FDu5w" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_U7HtAPD0Ee6y15VFqLFGCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="../ODRLCommonVocabulary.profile.uml#_oq9zEPwpEe6E7pRD1FDu5w"/>
@@ -32,16 +36,16 @@
   </ODRL:ODRLPolicy>
   <ODRL:Party xmi:id="_pMYxUPD1Ee6y15VFqLFGCg" uid="http://example.com/assigner:sony" base_ActivityPartition="_kCSD8PD1Ee6y15VFqLFGCg"/>
   <ODRL:Permission xmi:id="_2nY94PD1Ee6y15VFqLFGCg" base_Action="_IP3F4PD1Ee6y15VFqLFGCg" action="play" duties="_7hW9gPD1Ee6y15VFqLFGCg">
-    <involvedParties xmi:type="ODRL:PartyFunction" xmi:id="_5pRioPtKEe6LxsioeJ0_ig" type="assigner" party="_pMYxUPD1Ee6y15VFqLFGCg"/>
+    <involvedParties xmi:type="ODRL:PartyFunction" xmi:id="_u3UjsABzEe-GguKPsaxxZA" type="assigner" party="_pMYxUPD1Ee6y15VFqLFGCg"/>
   </ODRL:Permission>
   <ODRL:Duty xmi:id="_7hW9gPD1Ee6y15VFqLFGCg" base_Action="_ZP5fcPD1Ee6y15VFqLFGCg" action="compensate">
     <refinement xmi:type="ODRL:LogicalConstraint" xmi:id="_ceX7sPD3Ee6y15VFqLFGCg">
-      <constraints xmi:type="ODRL:Constraint" xmi:id="_ij36UPD3Ee6y15VFqLFGCg" operator="eq" dataType="xsd:decimal" unit="http://dbpedia.org/resource/Euro">
+      <constraints xmi:type="ODRL:Constraint" xmi:id="_ij36UPD3Ee6y15VFqLFGCg" uid="" leftOperand="payAmount" operator="eq" dataType="xsd:decimal" unit="http://dbpedia.org/resource/Euro">
         <rightOperand>5.00</rightOperand>
       </constraints>
     </refinement>
-    <constraint xmi:type="ODRL:LogicalConstraint" xmi:id="_XJI14Pw7Ee6E7pRD1FDu5w">
-      <constraints xmi:type="ODRL:Constraint" xmi:id="_aBwBwPw7Ee6E7pRD1FDu5w" uid="" leftOperand="event" operator="lt">
+    <constraint xmi:type="ODRL:LogicalConstraint" xmi:id="_tIPS0PwtEe6E7pRD1FDu5w" uid="">
+      <constraints xmi:type="ODRL:Constraint" xmi:id="_wbl58PwtEe6E7pRD1FDu5w" uid="" leftOperand="event" operator="lt">
         <rightOperand>policyUsage</rightOperand>
       </constraints>
     </constraint>
