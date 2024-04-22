@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRL="http:///schemas/ODRL/_oq7W0PwpEe6E7pRD1FDu5w/158" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRL/_oq7W0PwpEe6E7pRD1FDu5w/158 ../ODRLCommonVocabulary.profile.uml#_oq9zEPwpEe6E7pRD1FDu5w">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRL="http:///schemas/ODRL/_J1xXEACIEe-GguKPsaxxZA/161" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRL/_J1xXEACIEe-GguKPsaxxZA/161 ../ODRLCommonVocabulary.profile.uml#_J1ylMACIEe-GguKPsaxxZA">
   <uml:Model xmi:id="_H4TYQO-GEe6hFNIXfTHa6g" name="simpleExample1">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_H5aLgO-GEe6hFNIXfTHa6g">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -27,15 +27,15 @@
       </node>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_U7F30PD0Ee6y15VFqLFGCg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mVZGAPwtEe6E7pRD1FDu5w" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mVZGAfwtEe6E7pRD1FDu5w" key="Version" value="0.0.159"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mVZGAvwtEe6E7pRD1FDu5w" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mVZGA_wtEe6E7pRD1FDu5w" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mVZGBPwtEe6E7pRD1FDu5w" key="Date" value="2024-04-16"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mVZGBfwtEe6E7pRD1FDu5w" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_fRkfYACKEe-GguKPsaxxZA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fRkfYQCKEe-GguKPsaxxZA" key="Version" value="0.0.162"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fRkfYgCKEe-GguKPsaxxZA" key="Comment" value="Presentation diagram adjustments"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fRkfYwCKEe-GguKPsaxxZA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fRkfZACKEe-GguKPsaxxZA" key="Date" value="2024-04-22"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fRkfZQCKEe-GguKPsaxxZA" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_U7HtAPD0Ee6y15VFqLFGCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="../ODRLCommonVocabulary.profile.uml#_oq9zEPwpEe6E7pRD1FDu5w"/>
+        <references xmi:type="ecore:EPackage" href="../ODRLCommonVocabulary.profile.uml#_J1ylMACIEe-GguKPsaxxZA"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="../ODRLCommonVocabulary.profile.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
     </profileApplication>
