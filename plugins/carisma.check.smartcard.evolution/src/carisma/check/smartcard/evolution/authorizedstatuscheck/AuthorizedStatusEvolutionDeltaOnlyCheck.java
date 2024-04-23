@@ -264,7 +264,6 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 			String newPermission = getAfterPermission(changedState);
 			for (Transition t : changedState.getIncomings()) {
 				String newGuard = getAfterGuard(t);
-				//if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 				if (newPermission != null && newGuard != null && !newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 					this.errorMessages.add(new AnalysisMessage(
 							StatusType.ERROR,
@@ -334,7 +333,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 		String newPermission = getAfterPermission(receivingState);
 		for (Transition incomingTransition : receivingState.getIncomings()) {
 			String newGuard = getAfterGuard(incomingTransition);
-			if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
+			if (newPermission != null && newGuard != null && !newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 				this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH,
 						Messages.copiedPermissionGuardNotAdjusted(receivingState, newPermission, incomingTransition)));
 			}

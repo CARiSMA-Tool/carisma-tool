@@ -124,32 +124,41 @@ public class MultiOclChecker extends AbstractOclChecker {
 		
 		//check models with ocl queries
 		int missed = 0;
-		for (OclExpression expr : oclExpressions) {
-			
-			this.statement = expr.getQuery().trim();
-			this.context = this.contextMap.get(expr.getContext().toLowerCase(Locale.ENGLISH).trim());
-			
-			if (this.context == null && !expr.getContext().equalsIgnoreCase(OclEvaluator.CONTEXT_FREE)) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
-						"Model contains no " + expr.getContext() + " object."));
-				host.addResultMessage(new AnalysisResultMessage(StatusType.INFO,
-						"Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + this.statement + "'"));
-				host.appendLineToReport("Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + this.statement
-										+ "' - No object of type '" + expr.getContext() + "' in model.");
-			} else {
-				if (!super.performOclQuery(host)) {
-					missed++;
+		if (oclExpressions != null) {
+			for (OclExpression expr : oclExpressions) {
+				
+				this.statement = expr.getQuery().trim();
+				this.context = this.contextMap.get(expr.getContext().toLowerCase(Locale.ENGLISH).trim());
+				
+				if (this.context == null && !expr.getContext().equalsIgnoreCase(OclEvaluator.CONTEXT_FREE)) {
+					host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
+							"Model contains no " + expr.getContext() + " object."));
+					host.addResultMessage(new AnalysisResultMessage(StatusType.INFO,
+							"Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + this.statement + "'"));
+					host.appendLineToReport("Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + this.statement
+											+ "' - No object of type '" + expr.getContext() + "' in model.");
+				} else {
+					if (!super.performOclQuery(host)) {
+						missed++;
+					}
 				}
+				
+				host.appendLineToReport("");
 			}
-			
-			host.appendLineToReport("");
 		}
+		
 		
 		//check number of missed constraints
 		if (missed > 0) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
-					missed + " out of " + oclExpressions.size() + " constraints violated."));
-			host.appendLineToReport(missed + " out of " + oclExpressions.size() + " constraints violated.");
+			if (oclExpressions == null) {
+				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "OCL expressions undefined."));
+				host.appendLineToReport("OCL expressions undefined.");
+			} else {
+				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
+						missed + " out of " + oclExpressions.size() + " constraints violated."));
+				host.appendLineToReport(missed + " out of " + oclExpressions.size() + " constraints violated.");
+			}
+			
 			return false;
 		}
 				
