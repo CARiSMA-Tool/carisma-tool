@@ -264,7 +264,8 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 			String newPermission = getAfterPermission(changedState);
 			for (Transition t : changedState.getIncomings()) {
 				String newGuard = getAfterGuard(t);
-				if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
+				//if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
+				if (newPermission != null && newGuard != null && !newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 					this.errorMessages.add(new AnalysisMessage(
 							StatusType.ERROR,
 							OutputTarget.BOTH,
@@ -322,7 +323,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 		}
 		String newPermission = getAfterPermission(newTargetState);
 		String newGuard = getAfterGuard(oldTransition);
-		if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
+		if (newPermission != null && newGuard != null && !newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 			this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, 
 					OutputTarget.BOTH, Messages.copiedTransitionNotAdjusted(oldTransition, newTargetState, newPermission)));
 		}
@@ -345,7 +346,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 		State authState = (State) receivingTransition.getTarget();
 		String newPermission = getAfterPermission(authState);
 		String newGuard = getAfterGuard(receivingTransition);
-		if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
+		if (newPermission != null && newGuard != null && !newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 			this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH, Messages.copiedGuardIncorrect(receivingTransition)));
 		}
 	}
@@ -362,7 +363,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 			}
 			String newPermission = getAfterPermission(newTargetState);
 			String newGuard = getAfterGuard(editedTransition);
-			if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
+			if (newPermission != null && newGuard != null && !newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 				this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH, Messages.editedTransitionWrongGuard(editedTransition)));
 			}
 		}
@@ -374,7 +375,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 		State targetState = (State) editedTransition.getTarget();
 		String newPermission = getAfterPermission(targetState);
 		String newGuard = getAfterGuard(editedTransition);
-		if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
+		if (newPermission != null && newGuard != null && !newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 			this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH, Messages.editedGuardWrong(editedTransition)));
 		}
 	}
@@ -385,7 +386,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 		String newPermission = getAfterPermission(authState);
 		for (Transition incomingTransition : authState.getIncomings()) {
 			String newGuard = getAfterGuard(incomingTransition);
-			if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
+			if (newPermission != null && newGuard != null && !newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 					this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH,
 							Messages.editedPermissionTransitionNotAdjusted(incomingTransition))); 
 			}
@@ -406,7 +407,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 		}
 		String newGuard = getAfterGuard(owningTransition);
 		String permission = getAfterPermission(targetState);
-		if (!permission.isEmpty() && !newGuard.equals(permission)) {
+		if (permission != null && newGuard != null && !permission.isEmpty() && !newGuard.equals(permission)) {
 			this.errorMessages.add(new AnalysisMessage(
 					StatusType.ERROR,
 					OutputTarget.BOTH,
@@ -433,7 +434,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 					break;
 				}
 			}
-			if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
+			if (newPermission != null && newGuard != null && !newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 				this.errorMessages.add(new AnalysisMessage(
 						StatusType.ERROR,
 						OutputTarget.BOTH,
@@ -448,7 +449,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 		String newPermission = getAfterPermission(authState);
 		for (Transition incomingTransition : authState.getIncomings()) {
 			String newGuard = getAfterGuard(incomingTransition);
-			if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
+			if (newPermission != null && newGuard != null && !newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 				this.errorMessages.add(new AnalysisMessage(
 						StatusType.ERROR,
 						OutputTarget.BOTH,
@@ -465,7 +466,7 @@ public class AuthorizedStatusEvolutionDeltaOnlyCheck implements CarismaCheckWith
 		State authorizedState = UMLStateMachineHelper.getTargetState(incomingTransition);
 		String newPermission = getAfterPermission(authorizedState);
 		String newGuard = getAfterGuard(incomingTransition);
-		if (!newPermission.isEmpty() && !newGuard.equals(newPermission)) {
+		if (newPermission != null && newGuard != null && !newPermission.isEmpty() && !newGuard.equals(newPermission)) {
 			this.errorMessages.add(new AnalysisMessage(
 					StatusType.ERROR,
 					OutputTarget.BOTH,
