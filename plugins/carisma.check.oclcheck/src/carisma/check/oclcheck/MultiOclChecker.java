@@ -95,17 +95,22 @@ public class MultiOclChecker extends AbstractOclChecker {
 		
 		try {
 			lib = getOclLibrary(oclFile);
-			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "OCL-Library: " + lib.getName()));
+			if (lib != null) {
+				host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "OCL-Library: " + lib.getName()));
+			}
 		} catch (Exception e) {
 			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, 
 					"Could not load OCL library: " + e.getMessage()));
 			return false;
 		}
 		
-		oclExpressions = lib.getOclExpressions();
-		if (oclExpressions.size() == 0) {
-			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,	"Library contains no constraints."));
+		if (lib != null) {
+			oclExpressions = lib.getOclExpressions();
+			if (oclExpressions.size() == 0) {
+				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,	"Library contains no constraints."));
+			}
 		}
+		
 
 		//check model and instantiate hashmap
 		Resource model = host.getAnalyzedModel();
