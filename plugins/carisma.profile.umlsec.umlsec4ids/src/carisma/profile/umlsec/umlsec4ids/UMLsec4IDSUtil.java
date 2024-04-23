@@ -27,7 +27,7 @@ import carisma.modeltype.uml2.UMLHelper;
  * The implementation of the UMLsec profile.
  * Provides easy access to the profile's stereotypes
  * and to applications of those.
- * @author Daniel Warzecha
+ * @author Alexander Peikert
  *
  */
 public final class UMLsec4IDSUtil {

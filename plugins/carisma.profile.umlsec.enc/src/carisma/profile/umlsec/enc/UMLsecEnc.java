@@ -15,49 +15,14 @@ import org.eclipse.uml2.uml.Stereotype;
 import carisma.modeltype.uml2.CarismaProfileDescriptor;
 
 
-public enum UMLsec {
+public enum UMLsecEnc {
 	
-	SECURE_DEPENDENCY ("secure dependency"),
-	DATA_SECURITY ("data security"),
-	SECURE_LINKS ("secure links"),
-	NO_UP_FLOW ("no up-flow"),
-	NO_DOWN_FLOW ("no down-flow"),
-	GUARDED_ACCESS ("guarded access"),
-	RBAC ("rbac"),
-	CRITICAL ("critical"),
-	SEND ("send"),
-	SECRECY ("secrecy"),
-	INTEGRITY ("integrity"),
-	HIGH ("high"),
-	ENCRYPTED ("encrypted"),
-	WIRE ("wire"),
-	INTERNET ("Internet"),
-	LAN ("LAN"),
-	POS_DEVICE ("POS device"),
-	ISSUER_NODE ("issuer node"),
-	SMART_CARD ("smart card"),
-	PROVABLE ("provable"),
-	FAIR_EXCHANGE ("fair exchange"),
-	SEPERATION_OF_DUTY ("seperation of duty"),
-	ALLOWED_USERS ("allowed users"),
-	SAP_TRANSACTION ("SAP Transaction"),
-	USED_BY ("used-by"),
-	PROTECTED ("protected"),
-	AUTHORIZED_STATUS ("authorized-status"),
-	LOCKED_STATUS ("locked-status"),
-	IDENTIFIABLE ("identifiable"),
-	GUARDED ("guarded"),
-	CALL ("call"),
-	REQUIRES ("requires"),
 	
 	// Encryption Stereotypes
 	SECURE_LINKS_ENC("secure links enc"),
 	SECRECY_ENC ("secrecy enc"),
 	ENCRYPTED_ENC ("encrypted enc");
 	
-	public static final String TAG_CRITICAL_HIGH = "high";
-	public static final String TAG_CRITICAL_SECRECY = "secrecy";
-	public static final String TAG_CRITICAL_INTEGRITY = "integrity";
 	
 	private static final String PROFILE_NAME = "UMLsecenc";
 	private static final String PROFILE_VERSION = "1";
@@ -68,7 +33,7 @@ public enum UMLsec {
 	
 	private final String readableName;
 	
-	private UMLsec(final String newName) {
+	private UMLsecEnc(final String newName) {
 		readableName = newName;
 	}
 	
@@ -77,8 +42,8 @@ public enum UMLsec {
 		return readableName;
 	}
 	
-	public static UMLsec getValue(final String name) {
-		for (UMLsec type : UMLsec.values()) {
+	public static UMLsecEnc getValue(final String name) {
+		for (UMLsecEnc type : UMLsecEnc.values()) {
 			if (type.toString().equalsIgnoreCase(name)) {
 				return type;
 			}
