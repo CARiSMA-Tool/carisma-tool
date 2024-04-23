@@ -63,8 +63,6 @@ public final class ContentFactory {
 			} catch (JSONException e) {
 				logger.warning("Error message: " + e.getMessage());
 			}
-		} else if (isBase64Encoded(serialized)) {
-			content = new BASE64(serialized.getBytes());
 		} else  {
 			content = new PLAIN(serialized);
 		}
