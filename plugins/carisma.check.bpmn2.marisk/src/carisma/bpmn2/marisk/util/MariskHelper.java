@@ -118,13 +118,10 @@ public class MariskHelper {
 		Set<EPackage> packagesToAdd = new HashSet<>();
 		
 		for (EPackage epac : pacSet) {
-			//pacSet.addAll(epac.getESubpackages());
 			packagesToAdd.addAll(epac.getESubpackages());
 			
 			EPackage superPac = epac.getESuperPackage();
-			//while (superPac != null && pacSet.add(superPac)) {
 			while (superPac != null && packagesToAdd.add(superPac)) {
-				//pacSet.add(superPac);
 				superPac = superPac.getESuperPackage(); 
 			}
 		}

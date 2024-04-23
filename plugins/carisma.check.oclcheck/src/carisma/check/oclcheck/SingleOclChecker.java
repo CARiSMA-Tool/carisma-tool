@@ -142,14 +142,17 @@ public class SingleOclChecker extends AbstractOclChecker {
 		}
 		
 		//list sub- / superpackages
+		Set<EPackage> packagesToAdd = new HashSet<>();
+		
 		for (EPackage epac : pacSet) {
-			pacSet.addAll(epac.getESubpackages());
+			packagesToAdd.addAll(epac.getESubpackages());
 			
 			EPackage superPac = epac.getESuperPackage();
-			while (superPac != null && pacSet.add(superPac)) {
-				pacSet.add(superPac);
+			while (superPac != null && packagesToAdd.add(superPac)) {
+				superPac = superPac.getESuperPackage(); 
 			}
 		}
+		pacSet.addAll(packagesToAdd);
 	
 		//search in packages
 		for (EPackage epac : pacSet) {
