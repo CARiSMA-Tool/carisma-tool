@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:generalprofiletestdiagram3="http:///schemas/generalprofiletestdiagram3/_dvUOIOtwEe6AlOW0tQKzjA/6" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/generalprofiletestdiagram3/_dvUOIOtwEe6AlOW0tQKzjA/6 generalprofiletestdiagram3.profile.uml#_dvUOIetwEe6AlOW0tQKzjA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:generalprofiletestdiagram3="http:///schemas/generalprofiletestdiagram3/_HEIs8AOpEe-OPuTdNG-Obg/11" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/generalprofiletestdiagram3/_HEIs8AOpEe-OPuTdNG-Obg/11 generalprofiletestdiagram3.profile.uml#_HEJUAAOpEe-OPuTdNG-Obg">
   <uml:Model xmi:id="_Cr1qEOiZEe6a2pLYi5gdnw" name="generaltestdiagram4">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_CtIqkOiZEe6a2pLYi5gdnw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
-    <packagedElement xmi:type="uml:Activity" xmi:id="_hZC-QOiZEe6a2pLYi5gdnw" name="Activity4" node="_is39oOiZEe6a2pLYi5gdnw">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_hZC-QOiZEe6a2pLYi5gdnw" name="Activity4" node="_is39oOiZEe6a2pLYi5gdnw" group="_MK7AkAOpEe-OPuTdNG-Obg">
+      <group xmi:type="uml:ActivityPartition" xmi:id="_MK7AkAOpEe-OPuTdNG-Obg" name="ActivityPartition2"/>
       <node xmi:type="uml:OpaqueAction" xmi:id="_is39oOiZEe6a2pLYi5gdnw" name="OpaqueAction1"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_mvpmMOtwEe6AlOW0tQKzjA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_J0UVkAOpEe-OPuTdNG-Obg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_J0UVkQOpEe-OPuTdNG-Obg" key="Version" value="0.0.5"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_J0UVkgOpEe-OPuTdNG-Obg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_J0UVkwOpEe-OPuTdNG-Obg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_J0UVlAOpEe-OPuTdNG-Obg" key="Date" value="2024-04-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_J0UVlQOpEe-OPuTdNG-Obg" key="Author" value=""/>
+      </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mvq0UOtwEe6AlOW0tQKzjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="generalprofiletestdiagram3.profile.uml#_dvUOIetwEe6AlOW0tQKzjA"/>
+        <references xmi:type="ecore:EPackage" href="generalprofiletestdiagram3.profile.uml#_HEJUAAOpEe-OPuTdNG-Obg"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="generalprofiletestdiagram3.profile.uml#_bUVBIOtqEe6AlOW0tQKzjA"/>
     </profileApplication>
   </uml:Model>
-  <generalprofiletestdiagram3:SubStereotype xmi:id="_oDTmcOtwEe6AlOW0tQKzjA" base_Action="_is39oOiZEe6a2pLYi5gdnw"/>
+  <generalprofiletestdiagram3:SubStereotype xmi:id="_oDTmcOtwEe6AlOW0tQKzjA" base_Action="_is39oOiZEe6a2pLYi5gdnw" property="2"/>
 </xmi:XMI>
