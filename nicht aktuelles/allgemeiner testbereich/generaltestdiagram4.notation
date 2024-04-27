@@ -36,14 +36,6 @@
           <element xmi:type="uml:OpaqueAction" href="generaltestdiagram4.uml#_is39oOiZEe6a2pLYi5gdnw"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_is8PEOiZEe6a2pLYi5gdnw" x="690" y="102"/>
         </children>
-        <children xmi:type="notation:Shape" xmi:id="_KKmHlQOpEe-OPuTdNG-Obg" type="StereotypeComment">
-          <styles xmi:type="notation:TitleStyle" xmi:id="_KKmHlgOpEe-OPuTdNG-Obg"/>
-          <styles xmi:type="notation:EObjectValueStyle" xmi:id="_KKmHmAOpEe-OPuTdNG-Obg" name="BASE_ELEMENT">
-            <eObjectValue xmi:type="uml:OpaqueAction" href="generaltestdiagram4.uml#_is39oOiZEe6a2pLYi5gdnw"/>
-          </styles>
-          <element xsi:nil="true"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KKmHlwOpEe-OPuTdNG-Obg" x="667" y="199"/>
-        </children>
         <children xmi:type="notation:Shape" xmi:id="_MK-q8AOpEe-OPuTdNG-Obg" type="ActivityPartition_Shape">
           <children xmi:type="notation:DecorationNode" xmi:id="_MK-q8gOpEe-OPuTdNG-Obg" type="ActivityPartition_NameLabel"/>
           <children xmi:type="notation:DecorationNode" xmi:id="_MK-q8wOpEe-OPuTdNG-Obg" type="ActivityPartition_FloatingNameLabel">
@@ -54,6 +46,14 @@
           </children>
           <element xmi:type="uml:ActivityPartition" href="generaltestdiagram4.uml#_MK7AkAOpEe-OPuTdNG-Obg"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MK-q8QOpEe-OPuTdNG-Obg" x="129" y="135"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_jWIxBQS8Ee-P9-wnj1R-cw" type="StereotypeComment">
+          <styles xmi:type="notation:TitleStyle" xmi:id="_jWIxBgS8Ee-P9-wnj1R-cw"/>
+          <styles xmi:type="notation:EObjectValueStyle" xmi:id="_jWIxCAS8Ee-P9-wnj1R-cw" name="BASE_ELEMENT">
+            <eObjectValue xmi:type="uml:OpaqueAction" href="generaltestdiagram4.uml#_is39oOiZEe6a2pLYi5gdnw"/>
+          </styles>
+          <element xsi:nil="true"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jWIxBwS8Ee-P9-wnj1R-cw" x="890" y="102"/>
         </children>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hmJmMeiZEe6a2pLYi5gdnw"/>
       </children>
@@ -66,15 +66,15 @@
       <owner xmi:type="uml:Model" href="generaltestdiagram4.uml#_Cr1qEOiZEe6a2pLYi5gdnw"/>
     </styles>
     <element xmi:type="uml:Activity" href="generaltestdiagram4.uml#_hZC-QOiZEe6a2pLYi5gdnw"/>
-    <edges xmi:type="notation:Connector" xmi:id="_KKmHmQOpEe-OPuTdNG-Obg" type="StereotypeCommentLink" source="_is6Z4OiZEe6a2pLYi5gdnw" target="_KKmHlQOpEe-OPuTdNG-Obg">
-      <styles xmi:type="notation:FontStyle" xmi:id="_KKmHmgOpEe-OPuTdNG-Obg"/>
-      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_KKmuogOpEe-OPuTdNG-Obg" name="BASE_ELEMENT">
+    <edges xmi:type="notation:Connector" xmi:id="_jWIxCQS8Ee-P9-wnj1R-cw" type="StereotypeCommentLink" source="_is6Z4OiZEe6a2pLYi5gdnw" target="_jWIxBQS8Ee-P9-wnj1R-cw">
+      <styles xmi:type="notation:FontStyle" xmi:id="_jWIxCgS8Ee-P9-wnj1R-cw"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_jWJYEgS8Ee-P9-wnj1R-cw" name="BASE_ELEMENT">
         <eObjectValue xmi:type="uml:OpaqueAction" href="generaltestdiagram4.uml#_is39oOiZEe6a2pLYi5gdnw"/>
       </styles>
       <element xsi:nil="true"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_KKmHmwOpEe-OPuTdNG-Obg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_KKmuoAOpEe-OPuTdNG-Obg"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_KKmuoQOpEe-OPuTdNG-Obg"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jWIxCwS8Ee-P9-wnj1R-cw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jWJYEAS8Ee-P9-wnj1R-cw"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jWJYEQS8Ee-P9-wnj1R-cw"/>
     </edges>
   </notation:Diagram>
 </xmi:XMI>
