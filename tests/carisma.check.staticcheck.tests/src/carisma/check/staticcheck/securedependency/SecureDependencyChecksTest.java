@@ -51,6 +51,7 @@ import carisma.profile.umlsec.UMLsecUtil;
  * @author Sven Wenzel
  *
  */
+@SuppressWarnings("java:S5960")
 public class SecureDependencyChecksTest {
 	
 	private String filepath = "resources/models/secure_dependency";
