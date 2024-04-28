@@ -8,6 +8,342 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ti6y9OttEe6AlOW0tQKzjA" key="Date" value=""/>
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ti6y9ettEe6AlOW0tQKzjA" key="Author" value="&lt;undefined>"/>
     </eAnnotations>
+    <contents xmi:type="ecore:EPackage" xmi:id="_8eb8oQU0Ee-gDfFbtP7ruw" name="generalprofiletestdiagram3" nsURI="http:///schemas/generalprofiletestdiagram3/_8eb8oAU0Ee-gDfFbtP7ruw/18" nsPrefix="generalprofiletestdiagram3">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8edx0wU0Ee-gDfFbtP7ruw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8edx1AU0Ee-gDfFbtP7ruw" key="Version" value="0.0.12"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8edx1QU0Ee-gDfFbtP7ruw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8edx1gU0Ee-gDfFbtP7ruw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8edx1wU0Ee-gDfFbtP7ruw" key="Date" value="2024-04-28"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8edx2AU0Ee-gDfFbtP7ruw" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb8ogU0Ee-gDfFbtP7ruw" name="SuperStereotype">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb8owU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_w85FAOtqEe6AlOW0tQKzjA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb8pAU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_8eb8pgU0Ee-gDfFbtP7ruw" name="property" ordered="false" lowerBound="1" defaultValueLiteral="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb8qAU0Ee-gDfFbtP7ruw" name="SubStereotype" eSuperTypes="_8eb8ogU0Ee-gDfFbtP7ruw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb8qQU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_1mXKgOtqEe6AlOW0tQKzjA"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb8qgU0Ee-gDfFbtP7ruw" source="duplicates">
+          <contents xmi:type="ecore:EAttribute" xmi:id="_8eb8qwU0Ee-gDfFbtP7ruw" name="property" ordered="false" lowerBound="1" defaultValueLiteral="2">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb8rAU0Ee-gDfFbtP7ruw" source="redefines" references="_8eb8pgU0Ee-gDfFbtP7ruw"/>
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+          </contents>
+        </eAnnotations>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb8rwU0Ee-gDfFbtP7ruw" name="Party">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb8sAU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VNxY4AIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb8sQU0Ee-gDfFbtP7ruw" name="base_ActivityPartition" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityPartition"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb8swU0Ee-gDfFbtP7ruw" name="Permission">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb8tAU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_s8w9wAIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb8tQU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb8twU0Ee-gDfFbtP7ruw" name="Duty">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb8uAU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_vkdYwAIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb8uQU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb8uwU0Ee-gDfFbtP7ruw" name="Asset">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb8vAU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_2U5x0AIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb8vQU0Ee-gDfFbtP7ruw" name="base_Pin" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Pin"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb8vwU0Ee-gDfFbtP7ruw" name="Target">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb8wAU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_7VfW0AIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb8wQU0Ee-gDfFbtP7ruw" name="base_Pin" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Pin"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb8wwU0Ee-gDfFbtP7ruw" name="Assigner">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb8xAU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_UY9bUAIwEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb8xQU0Ee-gDfFbtP7ruw" name="base_ObjectFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ObjectFlow"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb8xwU0Ee-gDfFbtP7ruw" name="base_ControlFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ControlFlow"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb8yQU0Ee-gDfFbtP7ruw" name="TrackingParty">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb8ygU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_iDDh4AIyEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb8ywU0Ee-gDfFbtP7ruw" name="base_ObjectFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ObjectFlow"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb8zQU0Ee-gDfFbtP7ruw" name="base_ControlFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ControlFlow"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb8zwU0Ee-gDfFbtP7ruw" name="datausagecontrol">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb80AU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_4HnDQAOoEe-OPuTdNG-Obg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb80QU0Ee-gDfFbtP7ruw" name="base_ActivityPartition" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityPartition"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb80wU0Ee-gDfFbtP7ruw" name="permissions" ordered="false" upperBound="-1" eType="_8eb81QU0Ee-gDfFbtP7ruw" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb81QU0Ee-gDfFbtP7ruw" name="ExtendedActionRule">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb81gU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_8IpPwAOoEe-OPuTdNG-Obg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb81wU0Ee-gDfFbtP7ruw" name="action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb82QU0Ee-gDfFbtP7ruw" name="Stereotype1">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb82gU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_I_uTYAS7Ee-P9-wnj1R-cw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb82wU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb83QU0Ee-gDfFbtP7ruw" name="datatypeattr" ordered="false" upperBound="-1" eType="_8eb83wU0Ee-gDfFbtP7ruw" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb83wU0Ee-gDfFbtP7ruw" name="Supertype">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb84AU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VN1PAAS7Ee-P9-wnj1R-cw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_8eb84QU0Ee-gDfFbtP7ruw" name="test" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb84wU0Ee-gDfFbtP7ruw" name="Subtype" eSuperTypes="_8eb83wU0Ee-gDfFbtP7ruw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb85AU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WvG0gAS7Ee-P9-wnj1R-cw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb85QU0Ee-gDfFbtP7ruw" name="subtest" ordered="false" eType="_8eb83wU0Ee-gDfFbtP7ruw" containment="true"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_8eb85wU0Ee-gDfFbtP7ruw" name="subtest2" ordered="false" upperBound="-1" eType="_8eb86gU0Ee-gDfFbtP7ruw" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_8eb86gU0Ee-gDfFbtP7ruw" name="TestType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8eb86wU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_k_j3YAU0Ee-gDfFbtP7ruw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_8eb87AU0Ee-gDfFbtP7ruw" name="test" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_1DGMcAU0Ee-gDfFbtP7ruw" name="generalprofiletestdiagram3" nsURI="http:///schemas/generalprofiletestdiagram3/_1DFlYAU0Ee-gDfFbtP7ruw/17" nsPrefix="generalprofiletestdiagram3">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DIBoAU0Ee-gDfFbtP7ruw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1DIBoQU0Ee-gDfFbtP7ruw" key="Version" value="0.0.11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1DIBogU0Ee-gDfFbtP7ruw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1DIBowU0Ee-gDfFbtP7ruw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1DIBpAU0Ee-gDfFbtP7ruw" key="Date" value="2024-04-28"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1DIBpQU0Ee-gDfFbtP7ruw" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMcQU0Ee-gDfFbtP7ruw" name="SuperStereotype">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMcgU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_w85FAOtqEe6AlOW0tQKzjA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMcwU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_1DGMdQU0Ee-gDfFbtP7ruw" name="property" ordered="false" lowerBound="1" defaultValueLiteral="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMdwU0Ee-gDfFbtP7ruw" name="SubStereotype" eSuperTypes="_1DGMcQU0Ee-gDfFbtP7ruw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMeAU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_1mXKgOtqEe6AlOW0tQKzjA"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMeQU0Ee-gDfFbtP7ruw" source="duplicates">
+          <contents xmi:type="ecore:EAttribute" xmi:id="_1DGMegU0Ee-gDfFbtP7ruw" name="property" ordered="false" lowerBound="1" defaultValueLiteral="2">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMewU0Ee-gDfFbtP7ruw" source="redefines" references="_1DGMdQU0Ee-gDfFbtP7ruw"/>
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+          </contents>
+        </eAnnotations>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMfgU0Ee-gDfFbtP7ruw" name="Party">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMfwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VNxY4AIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMgAU0Ee-gDfFbtP7ruw" name="base_ActivityPartition" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityPartition"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMggU0Ee-gDfFbtP7ruw" name="Permission">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMgwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_s8w9wAIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMhAU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMhgU0Ee-gDfFbtP7ruw" name="Duty">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMhwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_vkdYwAIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMiAU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMigU0Ee-gDfFbtP7ruw" name="Asset">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMiwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_2U5x0AIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMjAU0Ee-gDfFbtP7ruw" name="base_Pin" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Pin"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMjgU0Ee-gDfFbtP7ruw" name="Target">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMjwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_7VfW0AIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMkAU0Ee-gDfFbtP7ruw" name="base_Pin" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Pin"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMkgU0Ee-gDfFbtP7ruw" name="Assigner">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMkwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_UY9bUAIwEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMlAU0Ee-gDfFbtP7ruw" name="base_ObjectFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ObjectFlow"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMlgU0Ee-gDfFbtP7ruw" name="base_ControlFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ControlFlow"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMmAU0Ee-gDfFbtP7ruw" name="TrackingParty">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMmQU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_iDDh4AIyEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMmgU0Ee-gDfFbtP7ruw" name="base_ObjectFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ObjectFlow"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMnAU0Ee-gDfFbtP7ruw" name="base_ControlFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ControlFlow"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMngU0Ee-gDfFbtP7ruw" name="datausagecontrol">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMnwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_4HnDQAOoEe-OPuTdNG-Obg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMoAU0Ee-gDfFbtP7ruw" name="base_ActivityPartition" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityPartition"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMogU0Ee-gDfFbtP7ruw" name="permissions" ordered="false" upperBound="-1" eType="_1DGMpAU0Ee-gDfFbtP7ruw" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMpAU0Ee-gDfFbtP7ruw" name="ExtendedActionRule">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMpQU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_8IpPwAOoEe-OPuTdNG-Obg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMpgU0Ee-gDfFbtP7ruw" name="action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMqAU0Ee-gDfFbtP7ruw" name="Stereotype1">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMqQU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_I_uTYAS7Ee-P9-wnj1R-cw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMqgU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMrAU0Ee-gDfFbtP7ruw" name="datatypeattr" ordered="false" upperBound="-1" eType="_1DGMrgU0Ee-gDfFbtP7ruw" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMrgU0Ee-gDfFbtP7ruw" name="Supertype">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMrwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VN1PAAS7Ee-P9-wnj1R-cw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_1DGMsAU0Ee-gDfFbtP7ruw" name="test" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMsgU0Ee-gDfFbtP7ruw" name="Subtype" eSuperTypes="_1DGMrgU0Ee-gDfFbtP7ruw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMswU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WvG0gAS7Ee-P9-wnj1R-cw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMtAU0Ee-gDfFbtP7ruw" name="subtest" ordered="false" lowerBound="1" eType="_1DGMrgU0Ee-gDfFbtP7ruw" containment="true"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_1DGMtgU0Ee-gDfFbtP7ruw" name="subtest2" ordered="false" upperBound="-1" eType="_1DGMuQU0Ee-gDfFbtP7ruw" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_1DGMuQU0Ee-gDfFbtP7ruw" name="TestType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1DGMugU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_k_j3YAU0Ee-gDfFbtP7ruw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_1DGMuwU0Ee-gDfFbtP7ruw" name="test" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_ryBpsAU0Ee-gDfFbtP7ruw" name="generalprofiletestdiagram3" nsURI="http:///schemas/generalprofiletestdiagram3/_rx_0gAU0Ee-gDfFbtP7ruw/16" nsPrefix="generalprofiletestdiagram3">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryEtAAU0Ee-gDfFbtP7ruw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ryEtAQU0Ee-gDfFbtP7ruw" key="Version" value="0.0.10"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ryEtAgU0Ee-gDfFbtP7ruw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ryEtAwU0Ee-gDfFbtP7ruw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ryEtBAU0Ee-gDfFbtP7ruw" key="Date" value="2024-04-28"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ryEtBQU0Ee-gDfFbtP7ruw" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBpsQU0Ee-gDfFbtP7ruw" name="SuperStereotype">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBpsgU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_w85FAOtqEe6AlOW0tQKzjA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBpswU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ryBptQU0Ee-gDfFbtP7ruw" name="property" ordered="false" lowerBound="1" defaultValueLiteral="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBptwU0Ee-gDfFbtP7ruw" name="SubStereotype" eSuperTypes="_ryBpsQU0Ee-gDfFbtP7ruw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBpuAU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_1mXKgOtqEe6AlOW0tQKzjA"/>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBpuQU0Ee-gDfFbtP7ruw" source="duplicates">
+          <contents xmi:type="ecore:EAttribute" xmi:id="_ryBpugU0Ee-gDfFbtP7ruw" name="property" ordered="false" lowerBound="1" defaultValueLiteral="2">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBpuwU0Ee-gDfFbtP7ruw" source="redefines" references="_ryBptQU0Ee-gDfFbtP7ruw"/>
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+          </contents>
+        </eAnnotations>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBpvgU0Ee-gDfFbtP7ruw" name="Party">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBpvwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VNxY4AIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBpwAU0Ee-gDfFbtP7ruw" name="base_ActivityPartition" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityPartition"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBpwgU0Ee-gDfFbtP7ruw" name="Permission">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBpwwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_s8w9wAIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBpxAU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBpxgU0Ee-gDfFbtP7ruw" name="Duty">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBpxwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_vkdYwAIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBpyAU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBpygU0Ee-gDfFbtP7ruw" name="Asset">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBpywU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_2U5x0AIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBpzAU0Ee-gDfFbtP7ruw" name="base_Pin" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Pin"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBpzgU0Ee-gDfFbtP7ruw" name="Target">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBpzwU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_7VfW0AIvEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp0AU0Ee-gDfFbtP7ruw" name="base_Pin" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Pin"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBp0gU0Ee-gDfFbtP7ruw" name="Assigner">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBp0wU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_UY9bUAIwEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp1AU0Ee-gDfFbtP7ruw" name="base_ObjectFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ObjectFlow"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp1gU0Ee-gDfFbtP7ruw" name="base_ControlFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ControlFlow"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBp2AU0Ee-gDfFbtP7ruw" name="TrackingParty">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBp2QU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_iDDh4AIyEe-6x-N4kX7UZw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp2gU0Ee-gDfFbtP7ruw" name="base_ObjectFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ObjectFlow"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp3AU0Ee-gDfFbtP7ruw" name="base_ControlFlow" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ControlFlow"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBp3gU0Ee-gDfFbtP7ruw" name="datausagecontrol">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBp3wU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_4HnDQAOoEe-OPuTdNG-Obg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp4AU0Ee-gDfFbtP7ruw" name="base_ActivityPartition" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityPartition"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp4gU0Ee-gDfFbtP7ruw" name="permissions" ordered="false" upperBound="-1" eType="_ryBp5AU0Ee-gDfFbtP7ruw" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBp5AU0Ee-gDfFbtP7ruw" name="ExtendedActionRule">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBp5QU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_8IpPwAOoEe-OPuTdNG-Obg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp5gU0Ee-gDfFbtP7ruw" name="action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBp6AU0Ee-gDfFbtP7ruw" name="Stereotype1">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBp6QU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_I_uTYAS7Ee-P9-wnj1R-cw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp6gU0Ee-gDfFbtP7ruw" name="base_Action" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp7AU0Ee-gDfFbtP7ruw" name="datatypeattr" ordered="false" upperBound="-1" eType="_ryBp7gU0Ee-gDfFbtP7ruw" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBp7gU0Ee-gDfFbtP7ruw" name="Supertype">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBp7wU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_VN1PAAS7Ee-P9-wnj1R-cw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ryBp8AU0Ee-gDfFbtP7ruw" name="test" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBp8gU0Ee-gDfFbtP7ruw" name="Subtype" eSuperTypes="_ryBp7gU0Ee-gDfFbtP7ruw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBp8wU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WvG0gAS7Ee-P9-wnj1R-cw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp9AU0Ee-gDfFbtP7ruw" name="subtest" ordered="false" lowerBound="1" eType="_ryBp7gU0Ee-gDfFbtP7ruw" containment="true"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ryBp9gU0Ee-gDfFbtP7ruw" name="subtest2" ordered="false" lowerBound="1" eType="_ryBp-QU0Ee-gDfFbtP7ruw" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ryBp-QU0Ee-gDfFbtP7ruw" name="TestType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ryBp-gU0Ee-gDfFbtP7ruw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_k_j3YAU0Ee-gDfFbtP7ruw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ryBp-wU0Ee-gDfFbtP7ruw" name="test" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
     <contents xmi:type="ecore:EPackage" xmi:id="_hrvEsAS8Ee-P9-wnj1R-cw" name="generalprofiletestdiagram3" nsURI="http:///schemas/generalprofiletestdiagram3/_hrudoAS8Ee-P9-wnj1R-cw/15" nsPrefix="generalprofiletestdiagram3">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hrvrzwS8Ee-P9-wnj1R-cw" source="PapyrusVersion">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hrvr0AS8Ee-P9-wnj1R-cw" key="Version" value="0.0.9"/>
@@ -1050,6 +1386,17 @@
   </packagedElement>
   <packagedElement xmi:type="uml:DataType" xmi:id="_WvG0gAS7Ee-P9-wnj1R-cw" name="Subtype">
     <generalization xmi:type="uml:Generalization" xmi:id="_cy3GsAS7Ee-P9-wnj1R-cw" general="_VN1PAAS7Ee-P9-wnj1R-cw"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_aEajcAS7Ee-P9-wnj1R-cw" name="subtest" type="_VN1PAAS7Ee-P9-wnj1R-cw"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_aEajcAS7Ee-P9-wnj1R-cw" name="subtest" type="_VN1PAAS7Ee-P9-wnj1R-cw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7zeUEAU0Ee-gDfFbtP7ruw"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_oCxwwAU0Ee-gDfFbtP7ruw" name="subtest2" visibility="public" type="_k_j3YAU0Ee-gDfFbtP7ruw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0brnIAU0Ee-gDfFbtP7ruw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0cb1EAU0Ee-gDfFbtP7ruw" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_k_j3YAU0Ee-gDfFbtP7ruw" name="TestType">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_md_kQAU0Ee-gDfFbtP7ruw" name="test">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
   </packagedElement>
 </uml:Profile>
