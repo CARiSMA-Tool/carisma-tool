@@ -15,6 +15,7 @@ import org.eclipse.uml2.uml.Profile;
 import org.junit.Ignore;
 import org.junit.Test;
 
+@SuppressWarnings("java:S5960")
 public class LoadFromExtensionPointsTest {
 
 	private final static String PROFILE_PLUGIN_URI = UMLsecActivator.UML_URI;

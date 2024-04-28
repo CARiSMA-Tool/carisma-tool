@@ -32,6 +32,7 @@ import java.util.logging.Logger;
  * @author Klaus Rudack
  *
  */
+@SuppressWarnings("java:S5960")
 public class UMLchangeEfficiencyTestAuthorizedStatus implements CarismaCheck {
 
 	private static final Logger logger = Logger.getLogger(UMLchangeEfficiencyTestAuthorizedStatus.class.getName());

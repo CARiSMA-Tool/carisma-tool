@@ -40,6 +40,7 @@ import carisma.profile.umlsec.UMLsecUtil;
  * @author Daniel Warzecha
  *
  */
+@SuppressWarnings("java:S5960")
 public class SecureLinksCheckTest {
 	private String filepath = "resources/models/secure_links";
 		

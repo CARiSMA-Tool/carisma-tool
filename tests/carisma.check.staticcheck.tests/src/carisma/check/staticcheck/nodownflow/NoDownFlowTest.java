@@ -21,6 +21,7 @@ import org.junit.Test;
  * @author Klaus Rudack
  *
  */
+@SuppressWarnings("java:S5960")
 public class NoDownFlowTest {
 
 	/**

@@ -7,6 +7,7 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
+@SuppressWarnings("java:S5960")
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID

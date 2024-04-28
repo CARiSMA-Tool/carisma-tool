@@ -28,6 +28,7 @@ import carisma.tests.modelutils.uml.TestHelper;
  * @author bberghoff
  *
  */
+@SuppressWarnings("java:S5960")
 public class AllTest {
 
 	/** 

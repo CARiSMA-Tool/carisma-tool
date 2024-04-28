@@ -35,7 +35,7 @@ import carisma.modeltype.uml2.UMLStateMachineHelper;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 
-
+@SuppressWarnings("java:S5960")
 public class AuthorizedStatusCheckTest {
 
 	private static final String filepath = "resources/models/";

@@ -62,6 +62,7 @@ import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 
 @Ignore
+@SuppressWarnings("java:S5960")
 public class SecureLinksEvolutionCheckTest {
     
     /**

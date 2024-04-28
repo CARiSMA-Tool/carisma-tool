@@ -24,6 +24,7 @@ import carisma.core.analysis.InputFileParameter;
 import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CheckParameterDescriptor;
 
+@SuppressWarnings("java:S5960")
 public class RABACInvalidConfigurationTest implements RABACTest {
 
 	private final static String filepath = "resources" + File.separator + "models";

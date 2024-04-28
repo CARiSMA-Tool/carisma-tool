@@ -33,6 +33,7 @@ import carisma.check.oclcheck.util.DummyOclChecker;
  * @author Marcel Michel
  * 
  */
+@SuppressWarnings("java:S5960")
 public class AbstrOclCheckerTest {
 	
 	/**

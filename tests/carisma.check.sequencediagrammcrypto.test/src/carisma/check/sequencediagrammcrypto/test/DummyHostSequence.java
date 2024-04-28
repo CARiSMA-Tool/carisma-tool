@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import carisma.core.analysis.DummyHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 
+@SuppressWarnings("java:S5960")
 public class DummyHostSequence extends DummyHost{
 
 	private Resource analyzedModel;

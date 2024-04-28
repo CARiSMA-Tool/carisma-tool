@@ -22,7 +22,7 @@ import org.junit.Test;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
 
-
+@SuppressWarnings("java:S5960")
 public class ActivitypathsTest {
 	
 	private String filepath = "resources/models/";

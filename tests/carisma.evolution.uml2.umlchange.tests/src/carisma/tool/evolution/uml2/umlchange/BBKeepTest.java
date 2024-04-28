@@ -43,6 +43,7 @@ import carisma.tests.modelutils.uml.TestHelper;
  * @author Berghoff
  *
  */
+@SuppressWarnings("java:S5960")
 public class BBKeepTest {
 
 	/**

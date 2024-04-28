@@ -24,6 +24,7 @@ import carisma.modeltype.bpmn2.yaoqiang.YaoqiangHelper;
  * @author Marcel Michel
  * 
  */
+@SuppressWarnings("java:S5960")
 public class BPMN2HelperTest {
 
 	/**

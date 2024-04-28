@@ -26,6 +26,7 @@ import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 import carisma.profile.umlsec.UmlsecPackage;
 
+@SuppressWarnings("java:S5960")
 public class TestHelper {
 
 	private static ResourceSet rs = initRS();

@@ -26,7 +26,7 @@ import carisma.core.logging.Logger;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
 
-
+@SuppressWarnings("java:S5960")
 public class DeletingRelationsTest {
 	
 	private ResourceSet rs = new ResourceSetImpl();

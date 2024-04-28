@@ -33,6 +33,7 @@ import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
  * @author Klaus Rudack
  *
  */
+@SuppressWarnings("java:S5960")
 public class UMLsecValidationTest {
 
 	/** Path to the fair exchange testmodel folder. */

@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import carisma.check.smartcard.TestHelper;
 
-
+@SuppressWarnings("java:S5960")
 public class LockedStatusCheckTest {
 	
 	private static final String filepath = "resources/models/";

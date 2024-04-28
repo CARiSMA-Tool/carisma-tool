@@ -17,6 +17,7 @@ import org.junit.Test;
 import carisma.evolution.uml2.umlchange.datatype.SimpleElementDescription;
 
 
+@SuppressWarnings("java:S5960")
 public class SimpleElementDescriptionTest {
 
 	@Test

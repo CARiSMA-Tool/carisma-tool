@@ -32,6 +32,7 @@ import carisma.core.logging.Logger;
  * @author Marcel Michel
  *
  */
+@SuppressWarnings("java:S5960")
 public class DebugHost implements AnalysisHost {
 
 	/**

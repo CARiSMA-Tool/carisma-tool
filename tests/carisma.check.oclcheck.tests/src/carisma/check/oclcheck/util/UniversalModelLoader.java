@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import carisma.core.models.ModelLoader;
 
+@SuppressWarnings("java:S5960")
 @Deprecated
 public class UniversalModelLoader implements ModelLoader {
 

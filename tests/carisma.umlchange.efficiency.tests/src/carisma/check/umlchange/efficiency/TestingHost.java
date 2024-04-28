@@ -33,6 +33,7 @@ import java.util.logging.Logger;
  * @author Klaus Rudack
  *
  */
+@SuppressWarnings("java:S5960")
 public class TestingHost implements AnalysisHost {
 	
 	private static final Logger logger = Logger.getLogger(TestingHost.class.getName());

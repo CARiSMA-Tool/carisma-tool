@@ -24,6 +24,7 @@ import carisma.tests.modelutils.uml.TestHelper;
  * Testclass for the copy stereotype.
  * @author Klaus Rudack
  */
+@SuppressWarnings("java:S5960")
 public class CopyTest {
 
 	/**

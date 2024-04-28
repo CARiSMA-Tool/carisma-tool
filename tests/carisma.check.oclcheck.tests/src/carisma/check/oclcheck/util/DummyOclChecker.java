@@ -25,6 +25,7 @@ import carisma.core.checks.CheckParameter;
  * @author Marcel Michel
  * 
  */
+@SuppressWarnings("java:S5960")
 public class DummyOclChecker extends AbstractOclChecker {
 
 	// Not registered at carisma.carismacheck

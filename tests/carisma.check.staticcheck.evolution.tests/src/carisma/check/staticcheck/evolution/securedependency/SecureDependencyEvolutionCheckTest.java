@@ -64,6 +64,7 @@ import carisma.profile.umlsec.UMLsec;
  * @author Sven Wenzel
  *
  */
+@SuppressWarnings("java:S5960")
 public class SecureDependencyEvolutionCheckTest {
 	
 	private class TestHost implements AnalysisHost {

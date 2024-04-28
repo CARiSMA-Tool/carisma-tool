@@ -12,6 +12,7 @@ package carisma.check.test.dummy;
 
 import junit.framework.TestCase;
 
+@SuppressWarnings("java:S5960")
 public class SampleTest extends TestCase {
 
 	@Override

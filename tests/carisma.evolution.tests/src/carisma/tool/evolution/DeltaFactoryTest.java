@@ -51,6 +51,7 @@ import carisma.modeltype.uml2.exceptions.InvalidMetaclassException;
  * @author bberghoff
  *
  */
+@SuppressWarnings("java:S5960")
 public class DeltaFactoryTest {
 	
 	/**

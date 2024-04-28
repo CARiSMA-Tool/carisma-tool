@@ -23,6 +23,7 @@ import carisma.core.analysis.InputFileParameter;
 import carisma.core.checks.CheckParameter;
 import carisma.core.checks.CheckParameterDescriptor;
 
+@SuppressWarnings("java:S5960")
 public class RABACValidModelsTest implements RABACTest {
 
 	public Resource model = null;

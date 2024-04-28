@@ -17,6 +17,7 @@ package carisma.modeltype.bpmn2.util;
  * @param <T>
  * @param <V>
  */
+@SuppressWarnings("java:S5960")
 public class Tupel<T, V> {
 	
 	/** object1. */

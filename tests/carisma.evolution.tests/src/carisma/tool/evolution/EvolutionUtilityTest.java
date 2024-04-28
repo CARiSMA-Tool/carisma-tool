@@ -11,6 +11,7 @@ import carisma.evolution.EvolutionUtility;
  * @author Klaus Rudack
  *
  */
+@SuppressWarnings("java:S5960")
 public class EvolutionUtilityTest {
 
 	/**

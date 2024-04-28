@@ -47,6 +47,7 @@ import java.util.logging.Logger;
  * @author Marcel Michel
  * 
  */
+@SuppressWarnings("java:S5960")
 @RunWith(Parameterized.class)
 public class MultiOclCheckerTest {
 

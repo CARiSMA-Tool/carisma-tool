@@ -31,7 +31,7 @@ import carisma.core.checks.CheckParameterDescriptor;
 
 import java.util.logging.Logger;
 
-
+@SuppressWarnings("java:S5960")
 @RunWith(Parameterized.class)
 public class RABACInvalidModelsTest implements RABACTest {
 	

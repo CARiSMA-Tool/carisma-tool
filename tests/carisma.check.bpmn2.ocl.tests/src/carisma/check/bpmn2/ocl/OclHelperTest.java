@@ -37,6 +37,7 @@ import carisma.ocl.library.OclLibrary;
  * @author Marcel Michel
  *
  */
+@SuppressWarnings("java:S5960")
 public class OclHelperTest {
 
 	/**

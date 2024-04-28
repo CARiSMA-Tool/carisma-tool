@@ -21,6 +21,7 @@ import org.junit.Test;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 
+@SuppressWarnings("java:S5960")
 public class UML2ModelLoaderTest {
 
 	private String filepath = "resources/models/";

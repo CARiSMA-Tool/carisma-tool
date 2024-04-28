@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import carisma.ocl.library.OclLibrary;
 
+@SuppressWarnings("java:S5960")
 public class LoadOclLibraryTest {
 	/**
 	 * The path to the model directory. 

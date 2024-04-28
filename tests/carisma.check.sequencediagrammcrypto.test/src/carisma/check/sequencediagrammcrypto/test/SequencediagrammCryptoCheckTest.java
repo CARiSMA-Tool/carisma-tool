@@ -30,7 +30,7 @@ import carisma.core.checks.CheckParameterDescriptor;
 
 import java.util.logging.Logger;
 
-
+@SuppressWarnings("java:S5960")
 public class SequencediagrammCryptoCheckTest {
 	
 	private static final Logger logger = Logger.getLogger(SequencediagrammCryptoCheckTest.class.getName());

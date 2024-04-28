@@ -12,6 +12,7 @@ import carisma.evolution.AddElement;
 import carisma.evolution.uml2.umlchange.UMLchangeParser;
 import carisma.tests.modelutils.uml.TestHelper;
 
+@SuppressWarnings("java:S5960")
 public class UMLchangeParserStereotype_allTest {
 
 	private String testmodeldir = "resources/models/add-all";

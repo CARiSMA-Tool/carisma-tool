@@ -10,7 +10,7 @@ import carisma.evolution.uml2.umlchange.datatype.GrammarAlternative;
 import carisma.evolution.uml2.umlchange.datatype.GrammarBlock;
 import carisma.evolution.uml2.umlchange.datatype.SimpleElementDescription;
 
-
+@SuppressWarnings("java:S5960")
 public class GrammarBlockTest {
 
 	/**

@@ -14,6 +14,7 @@ import carisma.check.test.dummy.SampleTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+@SuppressWarnings("java:S5960")
 public final class AllTests {
     /** Hide constructor.
      */

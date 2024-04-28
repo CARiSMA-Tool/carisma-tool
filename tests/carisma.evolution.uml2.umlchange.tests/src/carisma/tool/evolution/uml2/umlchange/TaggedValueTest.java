@@ -19,6 +19,7 @@ import carisma.profile.umlchange.UMLchange;
 import carisma.profile.umlchange.UMLchangeUtil;
 import carisma.tests.modelutils.uml.TestHelper;
 
+@SuppressWarnings("java:S5960")
 public class TaggedValueTest {
 	
 	/**

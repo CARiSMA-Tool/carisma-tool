@@ -13,6 +13,7 @@ package carisma.modeltype.uml2;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+@SuppressWarnings("java:S5960")
 public final class AllTests {
 
 	/**

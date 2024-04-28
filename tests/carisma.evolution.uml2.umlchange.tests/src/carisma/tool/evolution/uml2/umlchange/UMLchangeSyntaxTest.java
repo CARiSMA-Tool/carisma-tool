@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import carisma.evolution.uml2.umlchange.UMLchangeSyntax;
 
+@SuppressWarnings("java:S5960")
 public class UMLchangeSyntaxTest {
 
 	@SuppressWarnings("static-method")

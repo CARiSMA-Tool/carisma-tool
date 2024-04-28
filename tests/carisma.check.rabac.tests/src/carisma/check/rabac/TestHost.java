@@ -10,6 +10,7 @@ import carisma.core.analysis.RegisterNotInUseException;
 import carisma.core.analysis.UserAbortedAnalysisException;
 import carisma.core.analysis.result.AnalysisResultMessage;
 
+@SuppressWarnings("java:S5960")
 public class TestHost implements AnalysisHost {
 	
 	private final RABACTest rabacTest;

@@ -34,6 +34,7 @@ import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
  * @author Klaus Rudack  edited by bberghoff
  *
  */
+@SuppressWarnings("java:S5960")
 public class UMLModifierElementFactoryTest {
 
 	

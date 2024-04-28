@@ -17,6 +17,7 @@ import org.junit.Test;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 
+@SuppressWarnings("java:S5960")
 public class ProfileEnumConformanceTest {
 
 	@SuppressWarnings("static-method")

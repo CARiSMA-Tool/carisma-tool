@@ -49,6 +49,7 @@ import carisma.bpmn2.marisk.util.IncompleteMappingExeption;
 import carisma.bpmn2.marisk.util.MariskHelper;
 import carisma.check.bpmn2.marisk.util.Tupel;
 
+@SuppressWarnings("java:S5960")
 public class MariskHelperTest {
 
 	/**

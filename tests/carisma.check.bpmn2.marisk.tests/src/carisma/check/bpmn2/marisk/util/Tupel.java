@@ -17,6 +17,7 @@ package carisma.check.bpmn2.marisk.util;
  * @param <T>
  * @param <V>
  */
+@SuppressWarnings("java:S5960")
 public class Tupel<T, V> {
 	
 	/** object1. */

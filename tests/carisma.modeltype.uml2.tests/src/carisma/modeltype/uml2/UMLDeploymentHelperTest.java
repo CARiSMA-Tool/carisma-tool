@@ -20,6 +20,7 @@ import org.eclipse.uml2.uml.Package;
 import org.junit.After;
 import org.junit.Test;
 
+@SuppressWarnings("java:S5960")
 public class UMLDeploymentHelperTest {
 	
 	private String filepath = "resources/models/";

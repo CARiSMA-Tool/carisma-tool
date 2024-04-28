@@ -26,7 +26,7 @@ import carisma.profile.umlsec.umlsec4ids.*;
  * @author Alexander Peikert
  *
  */
-
+@SuppressWarnings("java:S5960")
 public class DataAccessControlTest{
 	private String filepath = "resources/models/dataaccesscontrol";
 	

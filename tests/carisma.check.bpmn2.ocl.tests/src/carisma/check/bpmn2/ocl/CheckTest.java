@@ -44,6 +44,7 @@ import java.util.logging.Logger;
  * @author Marcel Michel
  *
  */
+@SuppressWarnings("java:S5960")
 public class CheckTest {
 
 	private static final Logger logger = Logger.getLogger(CheckTest.class.getName());

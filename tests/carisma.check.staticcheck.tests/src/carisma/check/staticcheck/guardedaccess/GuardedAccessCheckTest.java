@@ -36,6 +36,7 @@ import carisma.profile.umlsec.UMLsecUtil;
  * @author Klaus Rudack
  *
  */
+@SuppressWarnings("java:S5960")
 public class GuardedAccessCheckTest {
 	
 	/** Path to the testmodel folder. */

@@ -31,6 +31,7 @@ import carisma.tests.modelutils.uml.TestHelper;
  * @author Klaus Rudack
  *
  */
+@SuppressWarnings("java:S5960")
 public class UMLchangeValidatorTest {
 
 	/**

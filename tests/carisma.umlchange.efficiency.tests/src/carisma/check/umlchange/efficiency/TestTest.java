@@ -4,6 +4,7 @@ import org.eclipse.uml2.uml.Model;
 import org.junit.Ignore;
 import org.junit.Test;
 
+@SuppressWarnings("java:S5960")
 @Ignore
 public class TestTest {
 	

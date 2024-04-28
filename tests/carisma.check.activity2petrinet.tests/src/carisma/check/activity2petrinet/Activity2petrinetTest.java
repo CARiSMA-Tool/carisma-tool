@@ -25,6 +25,7 @@ import carisma.modeltype.uml2.UMLHelper;
  * @author Klaus Rudack
  *
  */
+@SuppressWarnings("java:S5960")
 public class Activity2petrinetTest {
 
 	/**

@@ -44,6 +44,7 @@ import carisma.modeltype.bpmn2.util.Tupel;
  * @author Marcel Michel
  * 
  */
+@SuppressWarnings("java:S5960")
 public class BPMN2TraceTest {
 
 	/**

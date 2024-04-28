@@ -49,6 +49,7 @@ import java.util.logging.Logger;
  * @author Marcel Michel
  *
  */
+@SuppressWarnings("java:S5960")
 public class MergeModelsTest {
 
 	private static final Logger logger = Logger.getLogger(MergeModelsTest.class.getName());

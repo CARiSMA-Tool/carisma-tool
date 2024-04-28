@@ -31,6 +31,7 @@ import carisma.profile.umlsec.UMLsecActivator;
  * @author Klaus Rudack
  *
  */
+@SuppressWarnings("java:S5960")
 public class AuthorizedStatusModelCreater {
 	
 	/**

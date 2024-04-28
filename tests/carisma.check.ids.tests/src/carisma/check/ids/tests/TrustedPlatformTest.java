@@ -25,7 +25,7 @@ import carisma.profile.umlsec.umlsec4ids.*;
  * @author Alexander Peikert
  *
  */
-
+@SuppressWarnings("java:S5960")
 public class TrustedPlatformTest{
 	private String filepath = "resources/models/trustedplatform";
 	
