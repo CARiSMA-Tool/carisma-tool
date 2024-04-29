@@ -60,6 +60,7 @@ import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
  *
  */
 @Ignore
+@SuppressWarnings("java:S5960")
 public class ExporterTest {
 	/** 
 	 * XMI-ID of the NamedElement used as Target.

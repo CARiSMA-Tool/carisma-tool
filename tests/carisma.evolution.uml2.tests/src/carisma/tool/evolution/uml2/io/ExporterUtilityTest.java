@@ -16,6 +16,7 @@ import carisma.evolution.uml2.io.datatype.ExporterUtility;
  * @author bberghoff
  *
  */
+@SuppressWarnings("java:S5960")
 public class ExporterUtilityTest {
     
     /**

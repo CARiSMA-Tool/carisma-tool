@@ -41,7 +41,7 @@ import carisma.modeltype.uml2.exceptions.ModelElementNotFoundException;
  * @author bberghoff
  *
  */
-
+@SuppressWarnings("java:S5960")
 public class ImporterTest {
 	/**
 	 * Path to xml-file resources.
