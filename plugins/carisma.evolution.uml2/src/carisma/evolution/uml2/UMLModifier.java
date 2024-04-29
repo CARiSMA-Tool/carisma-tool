@@ -213,8 +213,6 @@ public class UMLModifier implements IModifier {
 				if (de instanceof AddElement) {
 					addElement((AddElement) de);
 				} else if (de instanceof CopyElement) {
-						copyElement((CopyElement) de);						
-				} else if (de instanceof CopyElement) {
 					copyElement((CopyElement) de);						
 				} else if (de instanceof DelElement) {
 					deleteElement((DelElement) de);
@@ -709,7 +707,7 @@ public class UMLModifier implements IModifier {
 //		}
 
 //		Model theModel = UMLHelper.getModel(association);
-//		// edit enthält end1=ALTES::ZIEL;;;NEUES::ZIEL
+//		// edit enthï¿½lt end1=ALTES::ZIEL;;;NEUES::ZIEL
 //		if (realValue instanceof Map<?,?>) {
 //			Map<Element, Element> oldNewEnd = (Map<Element,Element>) realValue;
 //			for (Element oldEnd : oldNewEnd.keySet()) {
