@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Ef9jYAZDEe-Cwe-_pJLbqg" name="datatypeTestmodel">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_Eg4JYAZDEe-Cwe-_pJLbqg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_EgQeUAZDEe-Cwe-_pJLbqg" name="Activity1" node="_P51JMAZEEe-Y_b1R88kn3w">
+    <node xmi:type="uml:OpaqueAction" xmi:id="_P51JMAZEEe-Y_b1R88kn3w" name="OpaqueAction1"/>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ZQmgwAZDEe-Y_b1R88kn3w">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3WJGEAZFEe-Y_b1R88kn3w" source="PapyrusVersion">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3WJGEQZFEe-Y_b1R88kn3w" key="Version" value="0.0.1"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3WJGEgZFEe-Y_b1R88kn3w" key="Comment" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3WJGEwZFEe-Y_b1R88kn3w" key="Copyright" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3WJGFAZFEe-Y_b1R88kn3w" key="Date" value="2024-04-29"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3WJGFQZFEe-Y_b1R88kn3w" key="Author" value=""/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ZQt1gAZDEe-Y_b1R88kn3w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="datatypeTestprofile.profile.uml#_1FX9UAZFEe-Y_b1R88kn3w"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="datatypeTestprofile.profile.uml#_eJ49MAY-Ee-RSN2d9z0gMA"/>
+  </profileApplication>
+</uml:Model>
