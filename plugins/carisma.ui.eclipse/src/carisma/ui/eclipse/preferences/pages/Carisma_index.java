@@ -237,14 +237,18 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	void selectionArtChanged(final String newValue) {
 		
 		if (newValue.equals(Constants.AUTO)) {
+			this.edGroup.setEnabled(true);
 			if (this.list != null) {
 				//TODO init
+				this.list.setEnabled(true, this.edGroup);
 			}
-			this.edGroup.setEnabled(true);
-			this.list.setEnabled(true, this.edGroup);
+			
 		} else {
 			this.edGroup.setEnabled(false);
-			this.list.setEnabled(false, this.edGroup);
+			if (this.list != null) {
+				this.list.setEnabled(false, this.edGroup);
+			}
+			
 		}
 	}
 }
