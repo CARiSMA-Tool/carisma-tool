@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class provableImpl extends MinimalEObjectImpl.Container implements provable {
 	/**
 	 * The default value of the '{@link #getAction() <em>Action</em>}' attribute.

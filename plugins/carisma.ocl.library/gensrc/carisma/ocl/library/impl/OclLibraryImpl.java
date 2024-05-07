@@ -45,6 +45,7 @@ import carisma.ocl.library.OclLibrary;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class OclLibraryImpl extends EObjectImpl implements OclLibrary {
 	/**
 	 * The cached value of the '{@link #getOclExpressions() <em>Ocl Expressions</em>}' containment reference list.

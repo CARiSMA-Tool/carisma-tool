@@ -37,6 +37,7 @@ import carisma.modeltype.bpmn2.extension.TaskSet;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class TaskSetImpl extends BaseElementImpl implements TaskSet {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

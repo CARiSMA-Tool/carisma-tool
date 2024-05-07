@@ -32,6 +32,7 @@ import carisma.modeltype.bpmn2.extension.ExtensionPackage;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class BaseElementImpl extends EObjectImpl implements BaseElement {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.

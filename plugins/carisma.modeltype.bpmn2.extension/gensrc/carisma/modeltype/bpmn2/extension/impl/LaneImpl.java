@@ -37,6 +37,7 @@ import carisma.modeltype.bpmn2.extension.Role;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class LaneImpl extends BaseElementImpl implements Lane {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

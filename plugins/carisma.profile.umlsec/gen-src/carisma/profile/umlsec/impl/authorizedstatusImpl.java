@@ -29,6 +29,7 @@ import org.eclipse.uml2.uml.State;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class authorizedstatusImpl extends MinimalEObjectImpl.Container implements authorizedstatus {
 	/**
 	 * The default value of the '{@link #getPermission() <em>Permission</em>}' attribute.

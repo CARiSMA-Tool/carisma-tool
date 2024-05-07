@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class securelinksImpl extends MinimalEObjectImpl.Container implements securelinks {
 	/**
 	 * The default value of the '{@link #getAdversary() <em>Adversary</em>}' attribute.

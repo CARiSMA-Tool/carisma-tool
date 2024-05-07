@@ -42,6 +42,7 @@ import carisma.modeltype.bpmn2.extension.WorkItem;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class PerformerImpl extends BaseElementImpl implements Performer {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

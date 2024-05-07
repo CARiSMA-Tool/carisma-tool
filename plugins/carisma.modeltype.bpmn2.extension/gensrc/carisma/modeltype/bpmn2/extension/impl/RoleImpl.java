@@ -44,6 +44,7 @@ import carisma.modeltype.bpmn2.extension.Role;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class RoleImpl extends BaseElementImpl implements Role {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

@@ -29,6 +29,7 @@ import org.eclipse.uml2.uml.Action;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class SAPTransactionImpl extends MinimalEObjectImpl.Container implements SAPTransaction {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.

@@ -29,6 +29,7 @@ import org.eclipse.uml2.uml.Element;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class identifiableImpl extends MinimalEObjectImpl.Container implements identifiable {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.

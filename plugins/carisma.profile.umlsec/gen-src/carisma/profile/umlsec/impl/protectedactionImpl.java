@@ -31,6 +31,7 @@ import org.eclipse.uml2.uml.State;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class protectedactionImpl extends MinimalEObjectImpl.Container implements protectedaction {
 	/**
 	 * The default value of the '{@link #getPermission() <em>Permission</em>}' attribute.

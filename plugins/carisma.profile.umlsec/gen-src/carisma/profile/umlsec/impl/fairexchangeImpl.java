@@ -37,6 +37,7 @@ import org.eclipse.uml2.uml.Action;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class fairexchangeImpl extends MinimalEObjectImpl.Container implements fairexchange {
 	/**
 	 * The cached value of the '{@link #getStart() <em>Start</em>}' reference list.

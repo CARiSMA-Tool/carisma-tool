@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class datasecurityImpl extends MinimalEObjectImpl.Container implements datasecurity {
 	/**
 	 * The default value of the '{@link #getAdversary() <em>Adversary</em>}' attribute.

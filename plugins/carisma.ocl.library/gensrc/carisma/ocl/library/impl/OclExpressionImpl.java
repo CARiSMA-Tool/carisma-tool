@@ -37,6 +37,7 @@ import carisma.ocl.library.OclExpression;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class OclExpressionImpl extends EObjectImpl implements OclExpression {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

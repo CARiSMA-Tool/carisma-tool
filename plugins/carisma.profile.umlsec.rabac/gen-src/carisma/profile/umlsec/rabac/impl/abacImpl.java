@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class abacImpl extends MinimalEObjectImpl.Container implements abac {
 	/**
 	 * The default value of the '{@link #getRoles() <em>Roles</em>}' attribute.

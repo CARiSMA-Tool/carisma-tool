@@ -32,6 +32,7 @@ import org.eclipse.uml2.uml.Transition;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class abacRequireImpl extends MinimalEObjectImpl.Container implements abacRequire {
 	/**
 	 * The default value of the '{@link #getRight() <em>Right</em>}' attribute.

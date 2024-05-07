@@ -29,6 +29,7 @@ import org.eclipse.uml2.uml.Operation;
  *
  * @generated
  */
+@SuppressWarnings("java:S2583")
 public class abacAttributeImpl extends MinimalEObjectImpl.Container implements abacAttribute {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
