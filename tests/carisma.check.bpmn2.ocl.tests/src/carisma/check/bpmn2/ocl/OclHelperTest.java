@@ -123,7 +123,10 @@ public class OclHelperTest {
 		}
 		
 		assertTrue(testLib != null);
-		assertTrue(testLib.getName().equals("Library"));
+		if (testLib != null) {
+			assertTrue(testLib.getName().equals("Library"));
+		}
+		
 		
 		assertTrue(testLib.getOclExpressions().get(0).getContext().equals("context"));
 		assertTrue(testLib.getOclExpressions().get(0).getDescription().equals("description"));
