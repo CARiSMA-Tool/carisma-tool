@@ -64,10 +64,11 @@ public class ConvertEmfCheck implements CarismaCheckWithID {
 			return false;
 		}
 		
-		
-		if (YaoqiangHelper.emf2yaoqiangModel(modelFile.getAbsolutePath(), 
-				outputFile.getAbsolutePath())) {
-			return true;
+	
+		if (outputFile != null) { 
+		    if (YaoqiangHelper.emf2yaoqiangModel(modelFile.getAbsolutePath(), outputFile.getAbsolutePath())) {
+		        return true;
+		    }
 		}
 		host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
 			"Error during conversion!"));
