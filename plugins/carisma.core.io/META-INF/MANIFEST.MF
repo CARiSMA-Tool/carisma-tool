@@ -26,8 +26,7 @@ Bundle-ClassPath: .,
  target/dependency/istack-commons-runtime.jar
 Require-Bundle: org.apache.httpcomponents.httpcore,
  org.apache.httpcomponents.httpclient,
- org.eclipse.core.runtime,
- org.apache.commons.codec
+ org.eclipse.core.runtime
 Bundle-Activator: carisma.core.io.IOActivator
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: carisma.core.io
