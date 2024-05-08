@@ -95,22 +95,22 @@ public class MultiOclChecker extends AbstractOclChecker {
 		
 		try {
 			lib = getOclLibrary(oclFile);
-			if (lib != null) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "OCL-Library: " + lib.getName()));
-			}
-		} catch (Exception e) {
+		} catch (IOException e) {
 			host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, 
-					"Could not load OCL library: " + e.getMessage()));
+					"Could not load OCL library (IOException): " + e.getMessage()));
 			return false;
 		}
-		
-		if (lib != null) {
-			oclExpressions = lib.getOclExpressions();
-			if (oclExpressions.size() == 0) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,	"Library contains no constraints."));
-			}
+		if (lib == null) {
+			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "OCL-Library could not be loaded (is null)"));
+			return false;
 		}
+		host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "OCL-Library: " + lib.getName()));
 		
+		oclExpressions = lib.getOclExpressions();
+		if (oclExpressions == null || oclExpressions.size() == 0) {
+			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,	"Library contains no constraints."));
+			return false;
+		}		
 
 		//check model and instantiate hashmap
 		Resource model = host.getAnalyzedModel();
@@ -124,41 +124,33 @@ public class MultiOclChecker extends AbstractOclChecker {
 		
 		//check models with ocl queries
 		int missed = 0;
-		if (oclExpressions != null) {
-			for (OclExpression expr : oclExpressions) {
-				
-				this.statement = expr.getQuery().trim();
-				this.context = this.contextMap.get(expr.getContext().toLowerCase(Locale.ENGLISH).trim());
-				
-				if (this.context == null && !expr.getContext().equalsIgnoreCase(OclEvaluator.CONTEXT_FREE)) {
-					host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
-							"Model contains no " + expr.getContext() + " object."));
-					host.addResultMessage(new AnalysisResultMessage(StatusType.INFO,
-							"Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + this.statement + "'"));
-					host.appendLineToReport("Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + this.statement
-											+ "' - No object of type '" + expr.getContext() + "' in model.");
-				} else {
-					if (!super.performOclQuery(host)) {
-						missed++;
-					}
+		for (OclExpression expr : oclExpressions) {
+			
+			this.statement = expr.getQuery().trim();
+			this.context = this.contextMap.get(expr.getContext().toLowerCase(Locale.ENGLISH).trim());
+			
+			if (this.context == null && !expr.getContext().equalsIgnoreCase(OclEvaluator.CONTEXT_FREE)) {
+				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
+						"Model contains no " + expr.getContext() + " object."));
+				host.addResultMessage(new AnalysisResultMessage(StatusType.INFO,
+						"Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + this.statement + "'"));
+				host.appendLineToReport("Constraint passed: Context = '" + expr.getContext() + "' Statement = '" + this.statement
+										+ "' - No object of type '" + expr.getContext() + "' in model.");
+			} else {
+				if (!super.performOclQuery(host)) {
+					missed++;
 				}
-				
-				host.appendLineToReport("");
 			}
+			
+			host.appendLineToReport("");
 		}
-		
+	
 		
 		//check number of missed constraints
 		if (missed > 0) {
-			if (oclExpressions == null) {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "OCL expressions undefined."));
-				host.appendLineToReport("OCL expressions undefined.");
-			} else {
-				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
-						missed + " out of " + oclExpressions.size() + " constraints violated."));
-				host.appendLineToReport(missed + " out of " + oclExpressions.size() + " constraints violated.");
-			}
-			
+			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING,
+					missed + " out of " + oclExpressions.size() + " constraints violated."));
+			host.appendLineToReport(missed + " out of " + oclExpressions.size() + " constraints violated.");	
 			return false;
 		}
 				
