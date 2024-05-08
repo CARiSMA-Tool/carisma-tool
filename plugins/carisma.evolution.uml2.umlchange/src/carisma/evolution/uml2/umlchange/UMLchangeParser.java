@@ -1334,10 +1334,13 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 							addTagValue = new AddElement(originalApp, tag.eClass(), null);
 							extensionAdds.add(addTagValue);													
 						} else {
-							addTagValue = new AddElement(null, tag.eClass(), addStereotype);
+							if (addStereotype != null) {
+								addTagValue = new AddElement(null, tag.eClass(), addStereotype);
+								
+								//TODO: Don't use null check of originalApp to check whether addStereotype is initialized
+								addStereotype.addContainedElement(addTagValue);
+							}
 							
-							//TODO: Don't use null check of originalApp to check whether addStereotype is initialized
-							addStereotype.addContainedElement(addTagValue);
 						}
 						addTagValue.addKeyValuePair(NAME, tag.getName());
 						addTagValue.addKeyValuePair(VALUE, tagValue);
