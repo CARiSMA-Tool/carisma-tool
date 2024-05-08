@@ -422,7 +422,9 @@ public class UMLchangeValidatorTest {
 			fail(e.getMessage());
 		}
 		assertNotNull(class9);
-		class9.destroy();
+		if (class9 != null) {
+			class9.destroy();	
+		}
 		assertFalse(this.validator.isValidApplication(oldApp, new ArrayList<String>()));
 	}
  
