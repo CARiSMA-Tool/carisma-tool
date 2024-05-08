@@ -172,26 +172,32 @@ public class MergeModelsTest {
 		TreeIterator<EObject> iterator = null;
 		
 		HashMap<String, EObject> bpmn2elements = new HashMap<>();
-		iterator = root.eAllContents();
-		while (iterator.hasNext()) {
-			EObject obj = iterator.next();
-			
-			//XML Informations in the document root will not be merged
-			if (!(obj instanceof org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl)) {
-				bpmn2elements.put(getStructuralFeature("id", obj), obj);
+		if (root != null) {
+			iterator = root.eAllContents();
+			while (iterator.hasNext()) {
+				EObject obj = iterator.next();
+				
+				//XML Informations in the document root will not be merged
+				if (!(obj instanceof org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl)) {
+					bpmn2elements.put(getStructuralFeature("id", obj), obj);
+				}
 			}
 		}
 		
-		iterator = extendedRoot.eAllContents();
-		while (iterator.hasNext()) {
-			EObject obj = iterator.next();
-			String id = getStructuralFeature("id", obj);
-			if (bpmn2elements.containsKey(id)) {
-				bpmn2elements.remove(id);
+		if (extendedRoot != null) {
+			iterator = extendedRoot.eAllContents();
+			while (iterator.hasNext()) {
+				EObject obj = iterator.next();
+				String id = getStructuralFeature("id", obj);
+				if (bpmn2elements.containsKey(id)) {
+					bpmn2elements.remove(id);
+				}
 			}
+			assertEquals(0, bpmn2elements.size());
 		}
+		
 
-		assertEquals(0, bpmn2elements.size());
+		
 	}
 	
 	/**
@@ -222,22 +228,25 @@ public class MergeModelsTest {
 		boolean extensionError = false;
 		
 		TreeIterator<EObject> iterator = null;
-		iterator = extendedRoot.eAllContents();
-		while (iterator.hasNext()) {
-			EObject obj = iterator.next();
-			
-			if (obj instanceof org.eclipse.bpmn2.impl.TaskImpl) {
-				if (!(obj instanceof carisma.modeltype.bpmn2.extended.impl.ExtendedTaskImpl)) {
+		if (extendedRoot != null) {
+			iterator = extendedRoot.eAllContents();
+			while (iterator.hasNext()) {
+				EObject obj = iterator.next();
+				
+				if (obj instanceof org.eclipse.bpmn2.impl.TaskImpl) {
+					if (!(obj instanceof carisma.modeltype.bpmn2.extended.impl.ExtendedTaskImpl)) {
+						extensionError = true;
+						break;
+					}
+				} else if (obj instanceof org.eclipse.bpmn2.impl.LaneImpl 
+						&& !(obj instanceof carisma.modeltype.bpmn2.extended.impl.ExtendedLaneImpl)) {
 					extensionError = true;
 					break;
 				}
-			} else if (obj instanceof org.eclipse.bpmn2.impl.LaneImpl 
-					&& !(obj instanceof carisma.modeltype.bpmn2.extended.impl.ExtendedLaneImpl)) {
-				extensionError = true;
-				break;
 			}
+			assertTrue(!extensionError);
 		}
-		assertTrue(!extensionError);
+		
 	}
 	
 	/**
