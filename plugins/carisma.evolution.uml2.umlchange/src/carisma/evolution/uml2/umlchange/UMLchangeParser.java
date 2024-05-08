@@ -1342,8 +1342,11 @@ public class UMLchangeParser implements IDeltaDescriptionGenerator {
 							}
 							
 						}
-						addTagValue.addKeyValuePair(NAME, tag.getName());
-						addTagValue.addKeyValuePair(VALUE, tagValue);
+						if (addTagValue != null) {
+							addTagValue.addKeyValuePair(NAME, tag.getName());
+							addTagValue.addKeyValuePair(VALUE, tagValue);
+						}
+						
 					}
 				}
 			}
