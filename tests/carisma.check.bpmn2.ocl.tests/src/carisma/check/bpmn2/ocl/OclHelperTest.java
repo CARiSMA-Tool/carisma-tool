@@ -125,12 +125,14 @@ public class OclHelperTest {
 		assertTrue(testLib != null);
 		if (testLib != null) {
 			assertTrue(testLib.getName().equals("Library"));
+			
+			assertTrue(testLib.getOclExpressions().get(0).getContext().equals("context"));
+			assertTrue(testLib.getOclExpressions().get(0).getDescription().equals("description"));
+			assertTrue(testLib.getOclExpressions().get(0).getName().equals("name"));
+			assertTrue(testLib.getOclExpressions().get(0).getQuery().equals("query"));
 		}
 		
 		
-		assertTrue(testLib.getOclExpressions().get(0).getContext().equals("context"));
-		assertTrue(testLib.getOclExpressions().get(0).getDescription().equals("description"));
-		assertTrue(testLib.getOclExpressions().get(0).getName().equals("name"));
-		assertTrue(testLib.getOclExpressions().get(0).getQuery().equals("query"));
+		
 	}
 }
