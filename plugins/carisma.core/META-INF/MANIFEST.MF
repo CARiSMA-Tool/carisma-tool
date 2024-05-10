@@ -36,7 +36,11 @@ Export-Package: carisma.core,
  com.thoughtworks.xstream.mapper,
  com.thoughtworks.xstream.persistence,
  jakarta.xml.bind,
- jakarta.xml.bind.annotation
+ jakarta.xml.bind.annotation,
+ jakarta.xml.bind.annotation.adapters,
+ jakarta.xml.bind.attachment,
+ jakarta.xml.bind.helpers,
+ jakarta.xml.bind.util
 Bundle-ClassPath: .,
  target/dependency/xstream.jar,
  target/dependency/jakarta.activation-api.jar,
