@@ -36,10 +36,16 @@ Export-Package: carisma.core,
  com.thoughtworks.xstream.mapper,
  com.thoughtworks.xstream.persistence
 Bundle-ClassPath: .,
- target/dependency/xstream.jar
+ target/dependency/xstream.jar,
+ target/dependency/jakarta.activation-api.jar,
+ target/dependency/jakarta.xml.bind-api.jar,
+ target/dependency/jaxb-core.jar,
+ target/dependency/jaxb-runtime.jar,
+ target/dependency/txw2.jar,
+ target/dependency/angus-activation.jar,
+ target/dependency/istack-commons-runtime.jar
 Bundle-Vendor: Software Engineering Institute, TU Dortmund
 Require-Bundle: org.eclipse.core.resources,
  org.eclipse.core.runtime,
- org.eclipse.emf.ecore,
- carisma.core.io
+ org.eclipse.emf.ecore
 Automatic-Module-Name: carisma.core

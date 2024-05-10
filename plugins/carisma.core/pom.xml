@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>carisma</groupId>
-    <artifactId>carisma-tool</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../../</relativePath>
-  </parent>
-  <groupId>carisma</groupId>
-  <artifactId>carisma.core</artifactId>
-  <version>1.4.3-SNAPSHOT</version>
-  <packaging>eclipse-plugin</packaging>
-  
-  <build>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>carisma</groupId>
+		<artifactId>carisma-tool</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../</relativePath>
+	</parent>
+	<groupId>carisma</groupId>
+	<artifactId>carisma.core</artifactId>
+	<version>1.4.3-SNAPSHOT</version>
+	<packaging>eclipse-plugin</packaging>
+
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -37,12 +39,17 @@
 			</plugin>
 		</plugins>
 	</build>
-  
-  <dependencies>
-  	<dependency>
-  		<groupId>com.thoughtworks.xstream</groupId>
-  		<artifactId>xstream</artifactId>
-  		<version>1.4.20</version>
-  	</dependency>
-  </dependencies>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.20</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+	</dependencies>
 </project>
