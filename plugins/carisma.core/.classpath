@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="target/dependency/istack-commons-runtime.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/dependency/jaxb-core.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/dependency/jaxb-runtime.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -10,10 +13,5 @@
 	<classpathentry exported="true" kind="lib" path="target/dependency/xstream.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/dependency/jakarta.activation-api.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/dependency/jakarta.xml.bind-api.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/dependency/jaxb-core.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/dependency/jaxb-runtime.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/dependency/txw2.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/dependency/angus-activation.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/dependency/istack-commons-runtime.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
