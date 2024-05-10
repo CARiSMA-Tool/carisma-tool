@@ -10,8 +10,6 @@
  *******************************************************************************/
 package carisma.ui.eclipse;
 
-
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -42,7 +40,6 @@ import carisma.core.Carisma;
 import carisma.core.analysis.Analysis;
 import carisma.core.analysis.result.AnalysisResult;
 import carisma.core.checks.CheckRegistry;
-import carisma.core.io.util.StringInputStream;
 import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 import carisma.core.models.ModelManager;
@@ -58,7 +55,6 @@ import jakarta.xml.bind.Marshaller;
  * The activator class controls the plug-in life cycle.
  */
 public class CarismaGUI extends AbstractUIPlugin {
-
 
 	/**
 	 * The plug-in ID.
@@ -140,7 +136,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 	/**
 	 * @param context
 	 * @throws Exception
-	 *             an Exception
+	 *                   an Exception
 	 */
 	@Override
 	public final void start(final BundleContext context) throws Exception {
@@ -184,7 +180,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 	 */
 	/**
 	 * @param context
-	 *            BundleContext
+	 *                BundleContext
 	 * @throws Exception
 	 */
 	@Override
@@ -247,7 +243,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 	 * relative path.
 	 *
 	 * @param path
-	 *            the path
+	 *             the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(final String path) {
@@ -297,7 +293,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 	/**
 	 *
 	 * @param analysis
-	 *            the analysis to be run
+	 *                 the analysis to be run
 	 */
 	public static final void runAnalysis(final Analysis analysis) {
 		Carisma.getInstance().runAnalysis(analysis, new EclipseUIConnector());
@@ -314,7 +310,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 	/**
 	 *
 	 * @param analysisResult
-	 *            the analysis result
+	 *                       the analysis result
 	 *
 	 */
 
@@ -326,13 +322,11 @@ public class CarismaGUI extends AbstractUIPlugin {
 		final var page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		final var container = analysisResult.getAnalysis().getIFile().getParent();
 		IFile file = null;
-		if (container instanceof IFolder) {
-			final var folder = (IFolder) container;
+		if (container instanceof final IFolder folder) {
 			file = folder.getFile("report-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".html"); // changedfrom
 			// txt
 
-		} else if (container instanceof IProject) {
-			final var project = (IProject) container;
+		} else if (container instanceof final IProject project) {
 			file = project
 					.getFile("report-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".html"); // changedfrom
 			// txt
@@ -342,25 +336,28 @@ public class CarismaGUI extends AbstractUIPlugin {
 		}
 
 		// new...
-		final var htmlOpen = "<!DOCTYPE html>\n"
-				+ "<html lang=\"de\">\n"
-				+ "<head>\n"
-				+ "\t<meta charset=\"utf-8\">\n"
-				+ "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
-				+ "\t<title>CARiSMA Report</title>\n"
-				+ "</head>\n"
-				+ "<body>\n"
-				+ "\t<p>\n\t";
-		final var htmlClose="</p>\n"
-				+ "</body>\n"
-				+ "</html>";
+		final var htmlOpen = """
+				<!DOCTYPE html>
+				<html lang="de">
+				<head>
+					<meta charset="utf-8">
+					<meta name="viewport" content="width=device-width, initial-scale=1.0">
+					<title>CARiSMA Report</title>
+				</head>
+				<body>
+					<p>
+					""";
+		final var htmlClose = """
+				</p>
+				</body>
+				</html>""";
 		var htmlBody = StringEscapeUtils.escapeHtml4(analysisResult.getReport());
-		htmlBody = htmlBody.replace("\t", "&emsp;").replaceAll("[\\r\\n]", "<br/>"+System.lineSeparator()+"\t");
+		htmlBody = htmlBody.replace("\t", "&emsp;").replaceAll("[\\r\\n]", "<br/>" + System.lineSeparator() + "\t");
 		final var html = (htmlOpen + htmlBody + htmlClose);
 
 		try {
 			if (!(file.exists())) {
-				file.create(StringInputStream.createInputStreamFromString(html), true, null);
+				file.create(new ByteArrayInputStream(html.getBytes()), true, null);
 			}
 
 			final var desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
@@ -386,13 +383,11 @@ public class CarismaGUI extends AbstractUIPlugin {
 	public static final void saveXml(final AnalysisResult analysisResult) {
 		final var container = analysisResult.getAnalysis().getIFile().getParent();
 		IFile file = null;
-		if (container instanceof IFolder) {
-			final var folder = (IFolder) container;
+		if (container instanceof final IFolder folder) {
 			file = folder
 					.getFile("xml-output-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".xml");
 
-		} else if (container instanceof IProject) {
-			final var project = (IProject) container;
+		} else if (container instanceof final IProject project) {
 			file = project
 					.getFile("xml-output-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".xml");
 		} else {
@@ -401,7 +396,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 		}
 		if (!(file.exists())) {
 
-			try (var out = new ByteArrayOutputStream()){
+			try (var out = new ByteArrayOutputStream()) {
 
 				final var context = JAXBContext.newInstance(carisma.core.analysis.result.AnalysisResult.class);
 				final var m = context.createMarshaller();
@@ -411,7 +406,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 				final var store = new String(out.toByteArray(), StandardCharsets.UTF_8);
 
-				try(final InputStream is = new ByteArrayInputStream(store.getBytes(StandardCharsets.UTF_8))){
+				try (final InputStream is = new ByteArrayInputStream(store.getBytes(StandardCharsets.UTF_8))) {
 					file.create(is, true, null);
 				}
 
@@ -432,7 +427,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 	@Override
 	protected final void initializeDefaultPluginPreferences() {
-		final var store = getPreferenceStore();
+		final var store = this.getPreferenceStore();
 		store.setDefault(Constants.EDITOR_ID, Constants.TEXT_EDITOR_ID);
 		store.setDefault(Constants.PERSPECTIVE_ID, Perspective.ID);
 		store.setDefault(Constants.PREF_ANALYSE, false);
