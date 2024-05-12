@@ -42,10 +42,6 @@ public class Convert {
 	 * The loaded model. 
 	 */
 	private Model model;
-	/**
-	 * Manages the activity diagram.
-	 */
-	//private ActivityDiagramManager man;
 	
 	/**
 	 * host for report.
@@ -58,7 +54,6 @@ public class Convert {
 	 */
 	public Convert(final Model model) {
 		this.model = model;
-		//this.man = new ActivityDiagramManager(model);
 	}
 	
 	/**
@@ -68,7 +63,6 @@ public class Convert {
 	 */
 	public Convert(final Model model, final AnalysisHost analysisHost) {
 		this.model = model;
-	//	this.man = new ActivityDiagramManager(model);
 		if (analysisHost != null) {
 			this.host = analysisHost;
 		}
@@ -106,8 +100,8 @@ public class Convert {
 				initialNode = node;
 			}
 		}
-//		TODO KR: ein Aktivitätsdigramm kann mehrere Initialnodes haben
-//		das muss hier berücksichtigt werden, entsprechende places mit tokens erstellen
+//		TODO KR: ein Aktivitï¿½tsdigramm kann mehrere Initialnodes haben
+//		das muss hier berï¿½cksichtigt werden, entsprechende places mit tokens erstellen
 		if (initialNode == null) {
 			this.host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Found no initial node"));
    			this.host.appendLineToReport("Found no initial node");
