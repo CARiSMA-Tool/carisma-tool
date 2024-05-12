@@ -51,10 +51,8 @@ public class Activity2PetrinetCheck implements CarismaCheckWithID {
 		}
 		if (currentModel.getContents().get(0) instanceof Model) {
 			Package model = (Package) currentModel.getContents().get(0);
-			if (parameters.containsKey(Activity2PetrinetCheck.PARAM_PAGE)) {
-				if (parameters.get(Activity2PetrinetCheck.PARAM_PAGE) instanceof BooleanParameter) {
-					withPage = ((BooleanParameter) parameters.get(Activity2PetrinetCheck.PARAM_PAGE)).getValue();
-				}
+			if ((parameters.containsKey(Activity2PetrinetCheck.PARAM_PAGE)) && (parameters.get(Activity2PetrinetCheck.PARAM_PAGE) instanceof BooleanParameter)) {
+				withPage = ((BooleanParameter) parameters.get(Activity2PetrinetCheck.PARAM_PAGE)).getValue();
 			}
 			host.appendLineToReport("Starting the Conversion...");
 			PetriNet petriNet = new Convert((Model) model, host).convert();
