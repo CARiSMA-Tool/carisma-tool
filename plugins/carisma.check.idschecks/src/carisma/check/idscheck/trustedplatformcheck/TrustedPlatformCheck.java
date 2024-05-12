@@ -14,8 +14,8 @@ import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
-import carisma.profile.umlsec.umlsec4ids.UMLsec;
-import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDS;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDSUtil;
 
 /**
  * analyzes a deployment diagram with respect to trusted platform rules.
@@ -76,22 +76,22 @@ public class TrustedPlatformCheck implements CarismaCheckWithID {
 		boolean checkSuccessful = true;
 		//For any node, check if he has all required stereotypes
 		for (int i = 0; i < nodeList.size(); i++) {
-			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.VERIFIED) == false) {
+			if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.VERIFIED) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes are not verified"));
 				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " is missing the <<verified>> Stereotype");
 				checkSuccessful = false;
 			}
-			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.ENCRYPTION) == false) {
+			if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.ENCRYPTION) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes do not use encryption"));
 				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " is missing the <<encryption>> Stereotype");
 				checkSuccessful = false;
 			}
-			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.ISOLATED) == false) {
+			if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.ISOLATED) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes are not isolated"));
 				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " is missing the <<isolated>> Stereotype");
 				checkSuccessful = false;
 			}
-			if (UMLsecUtil.hasStereotype(nodeList.get(i), UMLsec.CERTIFIED) == false) {
+			if (UMLsec4IDSUtil.hasStereotype(nodeList.get(i), UMLsec4IDS.CERTIFIED) == false) {
 				this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Nodes are not certified"));
 				this.analysisHost.appendLineToReport(nodeList.get(i).getName() + " is missing the <<certified>> Stereotype");
 				checkSuccessful = false;

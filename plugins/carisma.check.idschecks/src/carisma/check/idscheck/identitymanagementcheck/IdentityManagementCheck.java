@@ -18,8 +18,8 @@ import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
-import carisma.profile.umlsec.umlsec4ids.UMLsec;
-import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDS;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDSUtil;
 import java.util.logging.Logger;
 
 /**
@@ -81,8 +81,8 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
 		boolean checkSuccessful = true;
 		//Get all nodes and nodes with stereotypes
 		ArrayList<Node> nodeList = (ArrayList<Node>) UMLHelper.getAllElementsOfType(model, Node.class);
-		ArrayList<Element> x509List = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.X509);
-		ArrayList<Element> x509TLSList = (ArrayList<Element>) UMLsecUtil.getStereotypedElements(this.model, UMLsec.X509TLS);
+		ArrayList<Element> x509List = (ArrayList<Element>) UMLsec4IDSUtil.getStereotypedElements(this.model, UMLsec4IDS.X509);
+		ArrayList<Element> x509TLSList = (ArrayList<Element>) UMLsec4IDSUtil.getStereotypedElements(this.model, UMLsec4IDS.X509TLS);
 		//-----------------------------------------------------------------
 				
 		//Check if any node has the required stereotypes
@@ -124,7 +124,7 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
         // check if the date of the X.509 certificate is a valid date and check if the certificate is already expired
         int intX509 = 0;
         for(int i = 0; i < nodeList.size(); i++) {
-			List<Object> dayX509 = UMLsecUtil.getTaggedValues("expiration_date_yyyy_mm_dd", UMLsec.X509, nodeList.get(i));
+			List<Object> dayX509 = UMLsec4IDSUtil.getTaggedValues("expiration_date_yyyy_mm_dd", UMLsec4IDS.X509, nodeList.get(i));
 				for(int z = 0; z < dayX509.size(); z++) {
 					String strX509 = dayX509.get(z).toString();
 					if(strX509.length() != 8) {
@@ -172,7 +172,7 @@ public class IdentityManagementCheck implements CarismaCheckWithID {
         
         int intX509TLS = 0;
         for(int i = 0; i < nodeList.size(); i++) {
-			List<Object> dayX509TLS = UMLsecUtil.getTaggedValues("expiration_date_yyyy_mm_dd", UMLsec.X509TLS, nodeList.get(i));
+			List<Object> dayX509TLS = UMLsec4IDSUtil.getTaggedValues("expiration_date_yyyy_mm_dd", UMLsec4IDS.X509TLS, nodeList.get(i));
 				for(int z = 0; z < dayX509TLS.size(); z++) {
 					String strX509TLS = dayX509TLS.get(z).toString();
 					if(strX509TLS.length() != 8) {

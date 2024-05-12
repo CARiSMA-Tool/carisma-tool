@@ -58,10 +58,10 @@ public class TrustedPlatformTest{
 	public void testNoStereotypesTP() throws IOException {
 		loadModel("trustedplatform_no_stereo.uml");
 		TrustedPlatformCheck check2 = new TrustedPlatformCheck();
-		List<Element> verified = UMLsecUtil.getStereotypedElements(model, UMLsec.VERIFIED);
-		List<Element> certified = UMLsecUtil.getStereotypedElements(model, UMLsec.CERTIFIED);
-		List<Element> isolated = UMLsecUtil.getStereotypedElements(model, UMLsec.ISOLATED);
-		List<Element> encrypted = UMLsecUtil.getStereotypedElements(model, UMLsec.ENCRYPTION);
+		List<Element> verified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.VERIFIED);
+		List<Element> certified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CERTIFIED);
+		List<Element> isolated = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ISOLATED);
+		List<Element> encrypted = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ENCRYPTION);
 		assertEquals(0, verified.size());
 		assertEquals(0, certified.size());
 		assertEquals(0, isolated.size());
@@ -76,10 +76,10 @@ public class TrustedPlatformTest{
 	public void testNoVerificationTP() throws IOException {
 		loadModel("trustedplatform_no_verification.uml");
 		TrustedPlatformCheck check3 = new TrustedPlatformCheck();
-		List<Element> verified = UMLsecUtil.getStereotypedElements(model, UMLsec.VERIFIED);
-		List<Element> certified = UMLsecUtil.getStereotypedElements(model, UMLsec.CERTIFIED);
-		List<Element> isolated = UMLsecUtil.getStereotypedElements(model, UMLsec.ISOLATED);
-		List<Element> encrypted = UMLsecUtil.getStereotypedElements(model, UMLsec.ENCRYPTION);
+		List<Element> verified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.VERIFIED);
+		List<Element> certified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CERTIFIED);
+		List<Element> isolated = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ISOLATED);
+		List<Element> encrypted = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ENCRYPTION);
 		assertEquals(1, verified.size());
 		assertEquals(2, certified.size());
 		assertEquals(2, isolated.size());
@@ -94,10 +94,10 @@ public class TrustedPlatformTest{
 	public void testNoCertificationTP() throws IOException {
 		loadModel("trustedplatform_no_certification.uml");
 		TrustedPlatformCheck check4 = new TrustedPlatformCheck();
-		List<Element> verified = UMLsecUtil.getStereotypedElements(model, UMLsec.VERIFIED);
-		List<Element> certified = UMLsecUtil.getStereotypedElements(model, UMLsec.CERTIFIED);
-		List<Element> isolated = UMLsecUtil.getStereotypedElements(model, UMLsec.ISOLATED);
-		List<Element> encrypted = UMLsecUtil.getStereotypedElements(model, UMLsec.ENCRYPTION);
+		List<Element> verified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.VERIFIED);
+		List<Element> certified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CERTIFIED);
+		List<Element> isolated = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ISOLATED);
+		List<Element> encrypted = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ENCRYPTION);
 		assertEquals(2, verified.size());
 		assertEquals(1, certified.size());
 		assertEquals(2, isolated.size());
@@ -112,10 +112,10 @@ public class TrustedPlatformTest{
 	public void testNoEncryptionTP() throws IOException {
 		loadModel("trustedplatform_no_encryption.uml");
 		TrustedPlatformCheck check5 = new TrustedPlatformCheck();
-		List<Element> verified = UMLsecUtil.getStereotypedElements(model, UMLsec.VERIFIED);
-		List<Element> certified = UMLsecUtil.getStereotypedElements(model, UMLsec.CERTIFIED);
-		List<Element> isolated = UMLsecUtil.getStereotypedElements(model, UMLsec.ISOLATED);
-		List<Element> encrypted = UMLsecUtil.getStereotypedElements(model, UMLsec.ENCRYPTION);
+		List<Element> verified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.VERIFIED);
+		List<Element> certified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CERTIFIED);
+		List<Element> isolated = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ISOLATED);
+		List<Element> encrypted = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ENCRYPTION);
 		assertEquals(2, verified.size());
 		assertEquals(2, certified.size());
 		assertEquals(2, isolated.size());
@@ -130,10 +130,10 @@ public class TrustedPlatformTest{
 	public void testNoIsolationTP() throws IOException {
 		loadModel("trustedplatform_no_isolation.uml");
 		TrustedPlatformCheck check6 = new TrustedPlatformCheck();
-		List<Element> verified = UMLsecUtil.getStereotypedElements(model, UMLsec.VERIFIED);
-		List<Element> certified = UMLsecUtil.getStereotypedElements(model, UMLsec.CERTIFIED);
-		List<Element> isolated = UMLsecUtil.getStereotypedElements(model, UMLsec.ISOLATED);
-		List<Element> encrypted = UMLsecUtil.getStereotypedElements(model, UMLsec.ENCRYPTION);
+		List<Element> verified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.VERIFIED);
+		List<Element> certified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CERTIFIED);
+		List<Element> isolated = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ISOLATED);
+		List<Element> encrypted = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ENCRYPTION);
 		assertEquals(2, verified.size());
 		assertEquals(2, certified.size());
 		assertEquals(1, isolated.size());
@@ -148,10 +148,10 @@ public class TrustedPlatformTest{
 	public void testCorrectModelTP() throws IOException {
 		loadModel("trustedplatform_correct_model.uml");
 		TrustedPlatformCheck check7 = new TrustedPlatformCheck();
-		List<Element> verified = UMLsecUtil.getStereotypedElements(model, UMLsec.VERIFIED);
-		List<Element> certified = UMLsecUtil.getStereotypedElements(model, UMLsec.CERTIFIED);
-		List<Element> isolated = UMLsecUtil.getStereotypedElements(model, UMLsec.ISOLATED);
-		List<Element> encrypted = UMLsecUtil.getStereotypedElements(model, UMLsec.ENCRYPTION);
+		List<Element> verified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.VERIFIED);
+		List<Element> certified = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CERTIFIED);
+		List<Element> isolated = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ISOLATED);
+		List<Element> encrypted = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.ENCRYPTION);
 		assertEquals(2, verified.size());
 		assertEquals(2, certified.size());
 		assertEquals(2, isolated.size());

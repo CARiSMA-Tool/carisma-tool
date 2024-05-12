@@ -15,7 +15,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import carisma.modeltype.uml2.CarismaProfileDescriptor;
 
 
-public enum UMLsec {
+public enum UMLsecRABAC {
 	
 	SECURE_DEPENDENCY ("secure dependency"),
 	DATA_SECURITY ("data security"),
@@ -66,7 +66,7 @@ public enum UMLsec {
 	
 	private final String readableName;
 	
-	private UMLsec(final String newName) {
+	private UMLsecRABAC(final String newName) {
 		this.readableName = newName;
 	}
 	
@@ -75,8 +75,8 @@ public enum UMLsec {
 		return this.readableName;
 	}
 	
-	public static UMLsec getValue(final String name) {
-		for (UMLsec type : UMLsec.values()) {
+	public static UMLsecRABAC getValue(final String name) {
+		for (UMLsecRABAC type : UMLsecRABAC.values()) {
 			if (type.toString().equalsIgnoreCase(name)) {
 				return type;
 			}

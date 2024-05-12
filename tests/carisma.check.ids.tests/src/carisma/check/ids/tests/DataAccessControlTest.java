@@ -50,8 +50,8 @@ public class DataAccessControlTest{
 	public void testEmptyModelDAC() throws IOException {
 		loadModel("data_access_control_empty_model.uml");
 		DataAccessCheck check1 = new DataAccessCheck();
-		List<Element> owner = UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
-		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		List<Element> owner = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.OWNER);
+		List<Element> consumer = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CONSUMER);
 		assertEquals(0, owner.size());
 		assertEquals(0, consumer.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -64,8 +64,8 @@ public class DataAccessControlTest{
 	public void testNoPathDAC() throws IOException {
 		loadModel("data_access_control_no_path.uml");
 		DataAccessCheck check2 = new DataAccessCheck();
-		List<Element> owner = UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
-		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		List<Element> owner = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.OWNER);
+		List<Element> consumer = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -78,8 +78,8 @@ public class DataAccessControlTest{
 	public void testNoOwnerDAC() throws IOException {
 		loadModel("data_access_control_no_owner.uml");
 		DataAccessCheck check3 = new DataAccessCheck();
-		List<Element> owner = UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
-		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		List<Element> owner = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.OWNER);
+		List<Element> consumer = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CONSUMER);
 		assertEquals(0, owner.size());
 		assertEquals(1, consumer.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -92,8 +92,8 @@ public class DataAccessControlTest{
 	public void testNoConsumerDAC() throws IOException {
 		loadModel("data_access_control_no_consumer.uml");
 		DataAccessCheck check4 = new DataAccessCheck();
-		List<Element> owner = UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
-		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		List<Element> owner = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.OWNER);
+		List<Element> consumer = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(0, consumer.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -106,8 +106,8 @@ public class DataAccessControlTest{
 	public void testStereoSamePartitionDAC() throws IOException {
 		loadModel("data_access_control_owner_consumer_same_partition.uml");
 		DataAccessCheck check5 = new DataAccessCheck();
-		List<Element> owner = UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
-		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		List<Element> owner = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.OWNER);
+		List<Element> consumer = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
 		assertEquals(consumer, owner);
@@ -121,8 +121,8 @@ public class DataAccessControlTest{
 	public void testRequestedAttributesDAC() throws IOException {
 		loadModel("data_access_control_requested_attributes.uml");
 		DataAccessCheck check6 = new DataAccessCheck();
-		List<Element> owner = UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
-		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		List<Element> owner = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.OWNER);
+		List<Element> consumer = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -135,8 +135,8 @@ public class DataAccessControlTest{
 	public void testRequestedActiosDAC() throws IOException {
 		loadModel("data_access_control_requested_actions.uml");
 		DataAccessCheck check7 = new DataAccessCheck();
-		List<Element> owner = UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
-		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		List<Element> owner = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.OWNER);
+		List<Element> consumer = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -149,8 +149,8 @@ public class DataAccessControlTest{
 	public final void testSuccess_subpartitions() throws IOException {
 		loadModel("data_access_control_subpartitions.uml");
 		DataAccessCheck check8 = new DataAccessCheck();
-		List<Element> owner = UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
-		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		List<Element> owner = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.OWNER);
+		List<Element> consumer = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -163,8 +163,8 @@ public class DataAccessControlTest{
 	public final void testSuccess() throws IOException {
 		loadModel("data_access_correct_model.uml");
 		DataAccessCheck check9 = new DataAccessCheck();
-		List<Element> owner = UMLsecUtil.getStereotypedElements(model, UMLsec.OWNER);
-		List<Element> consumer = UMLsecUtil.getStereotypedElements(model, UMLsec.CONSUMER);
+		List<Element> owner = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.OWNER);
+		List<Element> consumer = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.CONSUMER);
 		assertEquals(1, owner.size());
 		assertEquals(1, consumer.size());
 		TestHost analysisHost = new TestHost(this.modelres);

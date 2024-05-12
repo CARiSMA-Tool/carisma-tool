@@ -22,8 +22,8 @@ import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
-import carisma.profile.umlsec.umlsec4ids.UMLsec;
-import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDS;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDSUtil;
 
 /**
  * analyzes an activity diagram with respect to data usage control rules.
@@ -174,16 +174,16 @@ public class DataUsageCheck implements CarismaCheckWithID {
 		ArrayList<ActivityPartition> partitionList = (ArrayList<ActivityPartition>) UMLHelper.getAllElementsOfType(model, ActivityPartition.class);
 		//Iterate over every Partition, check for data usage control stereotype
 		for (int z = 0; z < partitionList.size(); z++) {
-			if(UMLsecUtil.hasStereotype(partitionList.get(z), UMLsec.DATAUSAGECONTROL)) {
+			if(UMLsec4IDSUtil.hasStereotype(partitionList.get(z), UMLsec4IDS.DATAUSAGECONTROL)) {
 				namesProhibs.clear();
 				namesObligStart.clear();
 				namesObligStop.clear();
 				namesPerm.clear();
 				validNodesForPath.clear();
-				taggedValuesProhibitions = UMLsecUtil.getTaggedValues("prohibition", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
-				taggedValuesObligationStart = UMLsecUtil.getTaggedValues("obligation_start", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
-				taggedValuesObligationStop = UMLsecUtil.getTaggedValues("obligation_stop", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
-				taggedValuesPermissions = UMLsecUtil.getTaggedValues("permission", UMLsec.DATAUSAGECONTROL, partitionList.get(z));
+				taggedValuesProhibitions = UMLsec4IDSUtil.getTaggedValues("prohibition", UMLsec4IDS.DATAUSAGECONTROL, partitionList.get(z));
+				taggedValuesObligationStart = UMLsec4IDSUtil.getTaggedValues("obligation_start", UMLsec4IDS.DATAUSAGECONTROL, partitionList.get(z));
+				taggedValuesObligationStop = UMLsec4IDSUtil.getTaggedValues("obligation_stop", UMLsec4IDS.DATAUSAGECONTROL, partitionList.get(z));
+				taggedValuesPermissions = UMLsec4IDSUtil.getTaggedValues("permission", UMLsec4IDS.DATAUSAGECONTROL, partitionList.get(z));
 				
 				//Check for subpartitions and nodes of subpartitions
 			

@@ -27,14 +27,14 @@ import carisma.modeltype.uml2.UMLHelper;
  * The implementation of the UMLsec profile.
  * Provides easy access to the profile's stereotypes
  * and to applications of those.
- * @author Daniel Warzecha
+ * @author Alexander Peikert
  *
  */
-public final class UMLsecUtil {
+public final class UMLsec4IDSUtil {
     
     /** Hide constructor.
      */
-    private UMLsecUtil() {
+    private UMLsec4IDSUtil() {
     }
 	
 	/**
@@ -58,9 +58,9 @@ public final class UMLsecUtil {
 	 * @param pkg - the package to search for applications of the stereotype
 	 * @return - a list of elements with applied UMLsec stereotypes.
 	 */
-	public static List<Element> getStereotypedElements(final Package pkg, final UMLsec stereo) {
+	public static List<Element> getStereotypedElements(final Package pkg, final UMLsec4IDS stereo) {
 		List<Element> extendedElements = new ArrayList<Element>();		
-		if (UMLHelper.isProfileApplied(pkg, UMLsec.DESCRIPTOR)) {
+		if (UMLHelper.isProfileApplied(pkg, UMLsec4IDS.DESCRIPTOR)) {
 			if (hasStereotype(pkg, stereo)) {
 				extendedElements.add(pkg);
 			}
@@ -69,7 +69,7 @@ public final class UMLsecUtil {
 		return extendedElements;
 	}
 	
-	public static List<Element> getStereotypedElements(final List<Element> elements, final UMLsec stereo) {
+	public static List<Element> getStereotypedElements(final List<Element> elements, final UMLsec4IDS stereo) {
 		List<Element> extendedElements = new ArrayList<Element>();		
 		for (Element element : elements) {
 			if (hasStereotype(element, stereo)) {
@@ -86,9 +86,9 @@ public final class UMLsecUtil {
 	 * @return stereotypeApplication if found, null otherwise
 	 */
 	public static StereotypeApplication getStereotypeApplication(
-			final Element element, final UMLsec stereo) {
+			final Element element, final UMLsec4IDS stereo) {
 		for (StereotypeApplication stereoApp : getStereotypeApplications(element, stereo)) {
-			UMLsec type = UMLsec.getValue(stereoApp.getAppliedStereotype().getName());
+			UMLsec4IDS type = UMLsec4IDS.getValue(stereoApp.getAppliedStereotype().getName());
 			if (type.equals(stereo)) {
 				return stereoApp;
 			}
@@ -110,7 +110,7 @@ public final class UMLsecUtil {
 	 * @param pkg - the package containing UMLsec applications
 	 * @return - list of UMLsec applications in package of given type
 	 */
-	public static List<StereotypeApplication> getStereotypeApplications(final Package pkg, final UMLsec stereotype) {
+	public static List<StereotypeApplication> getStereotypeApplications(final Package pkg, final UMLsec4IDS stereotype) {
 		List<StereotypeApplication> applications = new ArrayList<StereotypeApplication>();
 		for (Element extendedElement : getStereotypedElements(pkg, stereotype)) {
 			applications.add(getStereotypeApplication(extendedElement, stereotype));
@@ -124,10 +124,10 @@ public final class UMLsecUtil {
 	 * @param element - the element to inspect
 	 * @return - list of UMLsec stereotype applications
 	 */
-	public static List<StereotypeApplication> getStereotypeApplications(final Element element, final UMLsec stereotype) {
+	public static List<StereotypeApplication> getStereotypeApplications(final Element element, final UMLsec4IDS stereotype) {
 		List<StereotypeApplication> result = new ArrayList<StereotypeApplication>();
 		for (Stereotype stereo : element.getAppliedStereotypes()) {
-			if (UMLsec.contains(stereo)) {
+			if (UMLsec4IDS.contains(stereo)) {
 				result.add(new StereotypeApplication(stereo, element));
 			}
 		}
@@ -138,10 +138,10 @@ public final class UMLsecUtil {
 		return hasStereotype(elem, null);
 	}
 	
-	public static boolean hasStereotype(final Element elem, final UMLsec stereo) {
+	public static boolean hasStereotype(final Element elem, final UMLsec4IDS stereo) {
 		for (Stereotype appliedStereo : elem.getAppliedStereotypes()) {
 			if (stereo == null) {
-				if (UMLsec.contains(appliedStereo)) {
+				if (UMLsec4IDS.contains(appliedStereo)) {
 					return true;
 				}
 			} else if (stereo.isEqual(appliedStereo)) {
@@ -159,7 +159,7 @@ public final class UMLsecUtil {
 	 * @param stereoParent - the element the stereotype is applied to
 	 * @return - a list of string tag values; empty if the stereotype doesn't have the tag
 	 */
-	public static List<String> getStringValues(final String tagName, final UMLsec stereo, final Element stereoParent) {
+	public static List<String> getStringValues(final String tagName, final UMLsec4IDS stereo, final Element stereoParent) {
 		List<String> tagValues = new ArrayList<String>();
 		List<Object> tmp = getTaggedValues(tagName, stereo, stereoParent);
 		for (Object obj : tmp) {
@@ -177,7 +177,7 @@ public final class UMLsecUtil {
 	 * @return - a list of tag values; empty if the stereotype doesn't have the tag
 	 */
 	@SuppressWarnings("unchecked")
-	public static List<Object> getTaggedValues(final String tagName, final UMLsec stereo, final Element stereoParent) {
+	public static List<Object> getTaggedValues(final String tagName, final UMLsec4IDS stereo, final Element stereoParent) {
 		List<Object> tagValues = new ArrayList<Object>();
 		if (stereoParent == null) {
 			return tagValues;
@@ -200,17 +200,4 @@ public final class UMLsecUtil {
 		return tagValues;
 	}
 
-	public static boolean isInScopeOfStereotype(final Element element, final UMLsec stereotype) {
-		if (hasStereotype(element, stereotype)) {
-			return true;
-		}
-		Element owner = element.getOwner();
-		while (owner != null) {
-			if (hasStereotype(owner, stereotype)) {
-				return true;
-			}
-			owner = owner.getOwner();
-		}
-		return false;
-	}
 }

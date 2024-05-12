@@ -61,8 +61,8 @@ public class IdentityManagementTest{
 	public void testNoCommunicationIM() throws IOException {
 		loadModel("identitymanagement_no_communication.uml");
 		IdentityManagementCheck check2 = new IdentityManagementCheck();
-		List<Element> x509 = UMLsecUtil.getStereotypedElements(model, UMLsec.X509);
-		List<Element> x509tls = UMLsecUtil.getStereotypedElements(model, UMLsec.X509TLS);
+		List<Element> x509 = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509);
+		List<Element> x509tls = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509TLS);
 		assertEquals(1, x509.size());
 		assertEquals(1, x509tls.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -76,8 +76,8 @@ public class IdentityManagementTest{
 	public void testDateInPastIM() throws IOException {
 		loadModel("identitymanagement_date_in_past.uml");
 		IdentityManagementCheck check3 = new IdentityManagementCheck();
-		List<Element> x509 = UMLsecUtil.getStereotypedElements(model, UMLsec.X509);
-		List<Element> x509tls = UMLsecUtil.getStereotypedElements(model, UMLsec.X509TLS);
+		List<Element> x509 = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509);
+		List<Element> x509tls = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509TLS);
 		assertEquals(1, x509.size());
 		assertEquals(1, x509tls.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -90,8 +90,8 @@ public class IdentityManagementTest{
 	public void testInvalidDateIM() throws IOException {
 		loadModel("identitymanagement_invalid_date.uml");
 		IdentityManagementCheck check4 = new IdentityManagementCheck();
-		List<Element> x509 = UMLsecUtil.getStereotypedElements(model, UMLsec.X509);
-		List<Element> x509tls = UMLsecUtil.getStereotypedElements(model, UMLsec.X509TLS);
+		List<Element> x509 = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509);
+		List<Element> x509tls = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509TLS);
 		assertEquals(1, x509.size());
 		assertEquals(1, x509tls.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -105,8 +105,8 @@ public class IdentityManagementTest{
 	public void testMissingX509StereoIM() throws IOException {
 		loadModel("identitymanagement_no_x509.uml");
 		IdentityManagementCheck check5 = new IdentityManagementCheck();
-		List<Element> x509 = UMLsecUtil.getStereotypedElements(model, UMLsec.X509);
-		List<Element> x509tls = UMLsecUtil.getStereotypedElements(model, UMLsec.X509TLS);
+		List<Element> x509 = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509);
+		List<Element> x509tls = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509TLS);
 		assertEquals(0, x509.size());
 		assertEquals(1, x509tls.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -120,8 +120,8 @@ public class IdentityManagementTest{
 	public void testMissingX509TLSStereoIM() throws IOException {
 		loadModel("identitymanagement_no_x509tls.uml");
 		IdentityManagementCheck check6 = new IdentityManagementCheck();
-		List<Element> x509 = UMLsecUtil.getStereotypedElements(model, UMLsec.X509);
-		List<Element> x509tls = UMLsecUtil.getStereotypedElements(model, UMLsec.X509TLS);
+		List<Element> x509 = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509);
+		List<Element> x509tls = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509TLS);
 		assertEquals(1, x509.size());
 		assertEquals(0, x509tls.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -134,8 +134,8 @@ public class IdentityManagementTest{
 	public void testNonExistingDateIM() throws IOException {
 		loadModel("identitymanagement_non_existing_date.uml");
 		IdentityManagementCheck check7 = new IdentityManagementCheck();
-		List<Element> x509 = UMLsecUtil.getStereotypedElements(model, UMLsec.X509);
-		List<Element> x509tls = UMLsecUtil.getStereotypedElements(model, UMLsec.X509TLS);
+		List<Element> x509 = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509);
+		List<Element> x509tls = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509TLS);
 		assertEquals(1, x509.size());
 		assertEquals(1, x509tls.size());
 		TestHost analysisHost = new TestHost(this.modelres);
@@ -148,8 +148,8 @@ public class IdentityManagementTest{
 	public void testCorrectModelTP() throws IOException {
 		loadModel("identitymanagement_correct_model.uml");
 		IdentityManagementCheck check8 = new IdentityManagementCheck();
-		List<Element> x509 = UMLsecUtil.getStereotypedElements(model, UMLsec.X509);
-		List<Element> x509tls = UMLsecUtil.getStereotypedElements(model, UMLsec.X509TLS);
+		List<Element> x509 = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509);
+		List<Element> x509tls = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.X509TLS);
 		assertEquals(2, x509.size());
 		assertEquals(2, x509tls.size());
 		TestHost analysisHost = new TestHost(this.modelres);

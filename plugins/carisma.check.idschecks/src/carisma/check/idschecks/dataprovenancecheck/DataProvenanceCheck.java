@@ -23,8 +23,8 @@ import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.modeltype.uml2.activity.ActivityDiagramManager;
-import carisma.profile.umlsec.umlsec4ids.UMLsec;
-import carisma.profile.umlsec.umlsec4ids.UMLsecUtil;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDS;
+import carisma.profile.umlsec.umlsec4ids.UMLsec4IDSUtil;
 
 /**
  * analyzes an activity diagram with respect to data provenance tracking rules.
@@ -151,11 +151,11 @@ public class DataProvenanceCheck implements CarismaCheckWithID {
 			List<Object> taggedValuesStopAction = new ArrayList<Object>();
 			List<Object> taggedValuesProtected = new ArrayList<Object>();
 			//Get tagged values for the data provenance tracking activity
-			if(UMLsecUtil.hasStereotype(activityList.get(i), UMLsec.DATAPROVENANCETRACKING)){
-				taggedValuesClearingHouse = UMLsecUtil.getTaggedValues("clearing_house", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
-				taggedValuesStartAction = UMLsecUtil.getTaggedValues("start_action", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
-				taggedValuesStopAction = UMLsecUtil.getTaggedValues("stop_action", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
-				taggedValuesProtected = UMLsecUtil.getTaggedValues("protected", UMLsec.DATAPROVENANCETRACKING, activityList.get(i));
+			if(UMLsec4IDSUtil.hasStereotype(activityList.get(i), UMLsec4IDS.DATAPROVENANCETRACKING)){
+				taggedValuesClearingHouse = UMLsec4IDSUtil.getTaggedValues("clearing_house", UMLsec4IDS.DATAPROVENANCETRACKING, activityList.get(i));
+				taggedValuesStartAction = UMLsec4IDSUtil.getTaggedValues("start_action", UMLsec4IDS.DATAPROVENANCETRACKING, activityList.get(i));
+				taggedValuesStopAction = UMLsec4IDSUtil.getTaggedValues("stop_action", UMLsec4IDS.DATAPROVENANCETRACKING, activityList.get(i));
+				taggedValuesProtected = UMLsec4IDSUtil.getTaggedValues("protected", UMLsec4IDS.DATAPROVENANCETRACKING, activityList.get(i));
 				//Check for amounts of actions in tags and an existing clearing house
 				if(taggedValuesClearingHouse.size() < 1) {
 					this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "There is no existing Clearing House"));

@@ -51,9 +51,9 @@ public class DataProvenanceTrackingTest {
 	public void testEmptyModelDPT() throws IOException {
 		loadModel("dataprovenancetracking.uml");
 		DataProvenanceCheck check1 = new DataProvenanceCheck();
-		List<Element> dpt = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAPROVENANCETRACKING);
+		List<Element> dpt = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAPROVENANCETRACKING);
 		assertEquals(0, dpt.size());
-		StereotypeApplication dptApp = UMLsecUtil.getStereotypeApplication(this.model, UMLsec.DATAPROVENANCETRACKING);
+		StereotypeApplication dptApp = UMLsec4IDSUtil.getStereotypeApplication(this.model, UMLsec4IDS.DATAPROVENANCETRACKING);
 		assertNull(dptApp);
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check1.perform(null, analysisHost));
@@ -68,7 +68,7 @@ public class DataProvenanceTrackingTest {
 	public void testNoClearingHouseDPT() throws IOException {
 		loadModel("dataprovenancetracking_no_clearing.uml");
 		DataProvenanceCheck check2 = new DataProvenanceCheck();
-		List<Element> dpt = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAPROVENANCETRACKING);
+		List<Element> dpt = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAPROVENANCETRACKING);
 		assertEquals(1, dpt.size());
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check2.perform(null, analysisHost));
@@ -80,7 +80,7 @@ public class DataProvenanceTrackingTest {
 	public void testProtectedActionNotInClearingHouseDPT() throws IOException {
 		loadModel("dataprovenancetracking_protected_no_clearing.uml");
 		DataProvenanceCheck check3 = new DataProvenanceCheck();
-		List<Element> dpt = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAPROVENANCETRACKING);
+		List<Element> dpt = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAPROVENANCETRACKING);
 		assertEquals(1, dpt.size());
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(check3.perform(null, analysisHost));
@@ -92,7 +92,7 @@ public class DataProvenanceTrackingTest {
 	public void testSubpartitionsDPT() throws IOException {
 		loadModel("dataprovenancetracking_subpartition.uml");
 		DataProvenanceCheck check4 = new DataProvenanceCheck();
-		List<Element> dpt = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAPROVENANCETRACKING);
+		List<Element> dpt = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAPROVENANCETRACKING);
 		assertEquals(1, dpt.size());
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertTrue(check4.perform(null, analysisHost));
@@ -104,7 +104,7 @@ public class DataProvenanceTrackingTest {
 	public void testNoStereotypeDPT() throws IOException {
 		loadModel("dataprovenancetracking_no_stereo.uml");
 		DataProvenanceCheck check5 = new DataProvenanceCheck();
-		List<Element> dpt = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAPROVENANCETRACKING);
+		List<Element> dpt = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAPROVENANCETRACKING);
 		assertEquals(0, dpt.size());
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertTrue(check5.perform(null, analysisHost));
@@ -116,7 +116,7 @@ public class DataProvenanceTrackingTest {
 	public void testCorrectModelDPT() throws IOException {
 		loadModel("dataprovenancetracking_correct_model.uml");
 		DataProvenanceCheck check6 = new DataProvenanceCheck();
-		List<Element> dpt = UMLsecUtil.getStereotypedElements(model, UMLsec.DATAPROVENANCETRACKING);
+		List<Element> dpt = UMLsec4IDSUtil.getStereotypedElements(model, UMLsec4IDS.DATAPROVENANCETRACKING);
 		assertEquals(1, dpt.size());
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertTrue(check6.perform(null, analysisHost));
