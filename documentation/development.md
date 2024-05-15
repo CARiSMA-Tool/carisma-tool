@@ -12,6 +12,9 @@
 
 To start your working copy of CARiSMA, right click on a plugin project, select "Run As" -> "Eclipse Application".
 
+Sometimes it can happen that the target platform configuration is broken. To fix this issue, you need to navigate *Preferences* → *Plug-In Development* → *Target Platform*. In the *Target Platform* settings, you can specify the plugins and libraries that should be included in your target platform configuration. You can add, remove, or modify the entries as necessary to ensure that you have the correct dependencies.
+
+
 # Creating a Plugin Project containing CARiSMA Checks
 1. Create a new Plug-in Project: New → Other → Plug-in Development → Plug-in Project
 2. Enter your plugin name. The convention is **"carisma.check.[pluginName]"**.
