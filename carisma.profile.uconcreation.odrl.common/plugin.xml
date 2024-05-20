@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://PolicyCreation/ODRLCommonVocabulary.uml"
+            target="platform:/plugin/carisma.profile.uconcreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            name="ODRLCore"
+            path="pathmap://PolicyCreation/ODRLCommonVocabulary.uml">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="carisma.profile.uconcreation.odrl.common.ODRLCommonVocabularyPackage"
+            genModel="profile/ODRLCommonVocabulary.genmodel"
+            uri="http://www.umlsec.de/profiles/PolicyCreation/ODRLCommonVocabulary">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="platform:/plugin/carisma.profile.uconcreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#_RB7R8Nx8Ee6AOue6E9VgEA"
+            uri="http://www.umlsec.de/profiles/PolicyCreation/ODRLCommonVocabulary">
+      </profile>
+   </extension>
+
+</plugin>
