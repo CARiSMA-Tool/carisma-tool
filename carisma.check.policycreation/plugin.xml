@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="carisma.carismacheck">
+      <check
+            id="carisma.check.samplepackage"
+            name="policycreation-check"
+            description="creates policy"
+            publisher="[Enter publisher]"
+            targetModelType="UML2"
+            implementingClass="carisma.check.policycreation.Check">
+         <parameter
+               id="carisma.check.dummy.parameter1"
+               optional="false"
+               type="String"
+               name="bb a test string"
+               description="e.g. your name">
+         </parameter>
+         <parameter
+               id="carisma.check.dummy.parameter2"
+               optional="true"
+               type="int"
+               defaultValue="17"
+               name="bb a number"
+               description="possible values: 0, 1, or 2">
+         </parameter>
+      </check>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            id="carisma.check.samplepackage.preferencepage.My Preference Page"
+            name="My Preference Page"
+            category="carisma.core.index"
+            class="carisma.check.samplepackage.preferencepage.MyPrefPage">
+      </page>
+   </extension>
+
+</plugin>
