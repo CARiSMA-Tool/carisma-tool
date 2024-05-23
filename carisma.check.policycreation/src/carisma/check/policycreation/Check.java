@@ -2,6 +2,7 @@ package carisma.check.policycreation;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
@@ -16,6 +17,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.ProfileApplication;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.json.JSONObject;
@@ -39,7 +41,7 @@ public class Check implements CarismaCheckWithID {
 	
 //--------------
 	AnalysisHost host;
-	Map<String,ExtendedJSONObject> odrlObjects = new HashMap<String, ExtendedJSONObject>();
+	Map<String,ExtendedJSONObject> odrlObjects = new HashMap<String, ExtendedJSONObject>();//TODO: if counter is used as ID, String may be replaced with int or map may be replaced with an array
 	Map<String,Collection<ExtendedJSONObject>> typeBuckets = new HashMap<String,Collection<ExtendedJSONObject>>();
 	ExtendedJSONObject root;
 	//Map<JSONObject>
@@ -78,6 +80,7 @@ public class Check implements CarismaCheckWithID {
 				}
 			}
 			//
+			/*
 			System.out.print("Contained ProfileApplications: ");
 			for (ProfileApplication t : model.getProfileApplications()) {
 				System.out.print(t.toString());
@@ -103,7 +106,7 @@ public class Check implements CarismaCheckWithID {
 				System.out.print(t.toString());
 			}
 			System.out.println();
-			//
+			//*/
 			structureModel(model);
 			System.out.println("Empty?:"+UMLHelper.getAllElementsOfType(model, ActivityPartition.class).isEmpty());
 			//
@@ -144,10 +147,46 @@ public class Check implements CarismaCheckWithID {
 	
 	private void structureModel(Package inputModel) {
 		Collection<Element> modelContents = inputModel.allOwnedElements();
+		//Collection<Element> relevantElements = new LinkedList<Element>();
+		Integer idCounter = 0;
+		
 		for (Element e : modelContents) {
-			System.out.println("processing " + e.toString());
-			processElement(e);
+			Collection<Stereotype> stereotypes = e.getAppliedStereotypes();
+			System.out.println("stereotypes empty: " + stereotypes.isEmpty());
+			for (Stereotype s : stereotypes) {
+				System.out.println(s.getProfile().getQualifiedName());
+				if (s.getProfile().getQualifiedName().equals("ODRLCommonVocabulary")) { //create final-Variable for profile, propably replace qualified name comparison by an actually unique identifier
+					System.out.println("is equal");
+					processStereotype_creation(s, idCounter);
+				}
+			}
 		}
+		/*
+		//Filter for Elements stereotyped by the relevant profile
+		for (Element e : modelContents) {
+			Collection<Stereotype> stereotypes = e.getAppliedStereotypes();
+			System.out.println("stereotypes empty: " + stereotypes.isEmpty());
+			for (Stereotype s : stereotypes) {
+				System.out.println(s.getProfile().getQualifiedName());
+				if (s.getProfile().getQualifiedName().equals("ODRLCommonVocabulary")) { //create final-Variable for profile, propably replace qualified name comparison by an actually unique identifier
+					System.out.println("is equal");
+					relevantElements.add(e);
+				}
+			}
+		}
+		
+		for (Element e : relevantElements) {
+			for (Stereotype s : e.getAppliedStereotypes()) {
+				System.out.println("Owner of " + s + " : " +s.getOwner());
+				if (s.getProfile().getQualifiedName().equals("ODRLCommonVocabulary")) { //create final-Variable for profile, propably replace qualified name comparison by an actually unique identifier
+					System.out.println("is equal");
+					processStereotype_creation(s);
+					//e.get
+				}
+			}
+			System.out.println("processing " + e.toString());
+			
+		}*/
 		
 		
 		
@@ -162,21 +201,45 @@ public class Check implements CarismaCheckWithID {
 	}
 	
 	
-	private void processElement(Element e) {
+	private void processElement_creation(Element e) {
 		Collection<Stereotype> stereotypes = e.getAppliedStereotypes();
 		System.out.println("stereotypes empty: " + stereotypes.isEmpty());
 		for (Stereotype s : stereotypes) {
 			System.out.println(s.getProfile().getQualifiedName());
-			if (s.getProfile().getQualifiedName() == "ODRLCommonVocabulary") { //create final-Variable for profile, propaby replace qualified name comparison by an actually unique identifier
-				processStereotype(s);
+			if (s.getProfile().getQualifiedName().equals("ODRLCommonVocabulary")) { //create final-Variable for profile, propably replace qualified name comparison by an actually unique identifier
+				System.out.println("is equal");
+				//processStereotype_creation(s);
 			}
 		}
 	}
 	
-	private void processStereotype(Stereotype stereotype) {
-		ExtendedJSONObject currentRoot = new ExtendedJSONObject();
-		switch (stereotype.getName()) {
+	private void processStereotype_creation(Stereotype stereotype, Integer id) {
+		ExtendedJSONObject currentObject;
+		//
+		System.out.println("Stereotype name: "+(stereotype.getName()));
+		//
+		String stereotypeName = stereotype.getName();
+		//possibly replace switch-case with if-clauses that check for inheritance from a common superclass (such as Rule for Permission/Prohibition/Obligation
+		switch (stereotypeName) {
+		case "ODRL-Policy":
+			//maybe put the bodies of the cases into own methods
+			currentObject = new ExtendedJSONObject();
+			currentObject.put("type",stereotypeName);//replace type by a common type-attribute name defined in a class attribute
+			odrlObjects.put((id++).toString(), currentObject);
+			addToType(currentObject, stereotypeName);			
+			break;
 		case "Permission":
+		case "Prohibition":
+		case "Obligation":
+			currentObject = new ExtendedJSONObject();
+			currentObject.put("type", stereotypeName);
+			odrlObjects.put((id++).toString(), currentObject);
+			addToType(currentObject, stereotypeName);	
+			List<org.eclipse.uml2.uml.Class> baseClasses = stereotype.getAllExtendedMetaclasses();
+			for (Property p : stereotype.getAttributes()) {
+				//add Attribute to the odrlObjects if attribute value is not simple type and attribute name ist not of pattern base_*ContainedInNamesOfBaseClassesList*
+			}
+			
 			
 			break;
 		}
