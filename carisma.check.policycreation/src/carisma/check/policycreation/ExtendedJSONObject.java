@@ -8,7 +8,7 @@ import java.util.TreeSet;
 
 import org.json.JSONObject;
 
-public class ExtendedJSONObject extends JSONObject {
+public class ExtendedJSONObject extends JSONObject{
 	//no set (in case of parent removel with multiple occurences of one)
 	List<ExtendedJSONObject> parents =new LinkedList<ExtendedJSONObject>();
 	
@@ -21,6 +21,4 @@ public class ExtendedJSONObject extends JSONObject {
 	public void addParent(ExtendedJSONObject parent) {
 		this.parents.add(parent);
 	}
-	
-	
 }

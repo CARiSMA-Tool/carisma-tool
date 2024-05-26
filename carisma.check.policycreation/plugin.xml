@@ -28,14 +28,5 @@
          </parameter>
       </check>
    </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            id="carisma.check.samplepackage.preferencepage.My Preference Page"
-            name="My Preference Page"
-            category="carisma.core.index"
-            class="carisma.check.samplepackage.preferencepage.MyPrefPage">
-      </page>
-   </extension>
 
 </plugin>

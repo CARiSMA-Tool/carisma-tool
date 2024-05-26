@@ -11,17 +11,17 @@
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
-            name="ODRLCore"
+            name="ODRLCommon"
             path="pathmap://PolicyCreation/ODRLCommonVocabulary.uml">
       </profile>
    </extension>
-   <extension
-         point="org.eclipse.emf.ecore.generated_package">
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated ODRLCommonVocabulary -->
       <package
-            class="carisma.profile.uconcreation.odrl.common.ODRLCommonVocabularyPackage"
-            genModel="profile/ODRLCommonVocabulary.genmodel"
-            uri="http://www.umlsec.de/profiles/PolicyCreation/ODRLCommonVocabulary">
-      </package>
+            uri="http:///ODRLCommonVocabulary.ecore"
+            class="ODRLCommonVocabulary.ODRLCommonVocabularyPackage"
+            genModel="profile/ODRLCommonVocabulary.genmodel"/>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
