@@ -1,6 +1,8 @@
 package carisma.check.policycreation;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -26,6 +28,55 @@ public class TestClass {
 		//topObj.
 		
 		System.out.println(topObj.toString(2));
+		JSONConvTest test = new JSONConvTest("");
+		System.out.println((new JSONObject(test).toString(2)));
+		
+		
+	}
+	public static class JSONConvTest {
+		String stringAttr = "Hi";
+		String stringAttrEmpty;
+		
+		List<List<JSONConvTest>> testClasses;
+		List<List<JSONConvTest>> testClassesEmpty;
+		
+		public JSONConvTest(String s) {
+			JSONConvTest testclass = new JSONConvTest();
+			testClasses= new LinkedList<List<JSONConvTest>>();
+			List<JSONConvTest> firstLevel = new LinkedList<JSONConvTest>();
+			testClasses.add(firstLevel);
+			firstLevel.add(testclass);
+		}
+		public JSONConvTest() {
+		}
+		public String getStringAttr() {
+			return stringAttr;
+		}
+		public void setStringAttr(String stringAttr) {
+			this.stringAttr = stringAttr;
+		}
+		public String getStringAttrEmpty() {
+			return stringAttrEmpty;
+		}
+		public void setStringAttrEmpty(String stringAttrEmpty) {
+			this.stringAttrEmpty = stringAttrEmpty;
+		}
+		public List<List<JSONConvTest>> getTestClasses() {
+			return testClasses;
+		}
+		public void setTestClasses(List<List<JSONConvTest>> testClasses) {
+			this.testClasses = testClasses;
+		}
+		public List<List<JSONConvTest>> getTestClassesEmpty() {
+			return testClassesEmpty;
+		}
+		public void setTestClassesEmpty(List<List<JSONConvTest>> testClassesEmpty) {
+			this.testClassesEmpty = testClassesEmpty;
+		}
+
+	
+		
+		
 		
 		
 	}
