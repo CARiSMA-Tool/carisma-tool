@@ -25,8 +25,6 @@ After installing the Eclipse Modeling Tools, you need to install Papyrus via the
 Next, you are ready to install the CARiSMA tool. There are two ways to install CARiSMA into your Eclipse:
 
 ### Installation via remote Update Site (recommended)
-*HINT: Currently the access to the Update Site is restricted from outside of University of Koblenz. This may let this procedure fail. If the procedure fails, see the next section describing the installation via ZIP file.*
-
 To install CARiSMA via the remote Update Site do the following:
 1. Navigate to *Help* -> *Install New Software*, then click *Add* 
 2. Enter the following URL into the "Location" field: https://carisma-tool.github.io/carisma-tool/
