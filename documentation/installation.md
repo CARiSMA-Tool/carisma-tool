@@ -29,7 +29,7 @@ Next, you are ready to install the CARiSMA tool. There are two ways to install C
 
 To install CARiSMA via the remote Update Site do the following:
 1. Navigate to *Help* -> *Install New Software*, then click *Add* 
-2. Enter the following URL into the "Location" field: https://rgse.uni-koblenz.de/carisma/updatesite/
+2. Enter the following URL into the "Location" field: https://carisma-tool.github.io/carisma-tool/
 3. Press *Add* and choose the features you want to install. At least, install ”CARiSMA Checks for UML2".
 4. Click *Next* and *Finish*
 5. Wait for the installation to finish and restart Eclipse.
