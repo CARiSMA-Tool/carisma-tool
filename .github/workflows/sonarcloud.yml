@@ -1,5 +1,6 @@
 name: SonarCloud
 on:
+  workflow_dispatch:
   push:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -9,16 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [ '17' ]
+        java: [ '17', '21' ]
     steps:
-      - uses: actions/checkout@v3
+      - name: Clone Repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Set up JDK ${{ matrix.Java }}
+      - name: Set up JDK version ${{ matrix.Java }}
         uses: actions/setup-java@v3
         with:
+          distribution: 'temurin'
           java-version: ${{ matrix.Java }}
-          distribution: 'zulu' # Alternative distribution options are available.
+          cache: 'maven'  
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
@@ -31,7 +34,7 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Build and analyze with Sonarcloud
+      - name: Build with JaCoCo and analyze with Sonarcloud
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
