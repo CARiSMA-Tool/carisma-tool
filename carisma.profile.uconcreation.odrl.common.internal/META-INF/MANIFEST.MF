@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Internal
+Bundle-SymbolicName: carisma.profile.uconcreation.odrl.common.internal
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: carisma.profile.uconcreation.odrl.common.internal.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ carisma.profile.uconcreation.odrl.core.internal;bundle-version="1.0.0";visibility:=reexport
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: carisma.profile.uconcreation.odrl.common.internal
+Bundle-ActivationPolicy: lazy

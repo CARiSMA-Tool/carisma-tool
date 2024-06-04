@@ -1,5 +1,6 @@
 package carisma.check.policycreation;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,12 +30,15 @@ public class TestClass {
 		
 		System.out.println(topObj.toString(2));
 		JSONConvTest test = new JSONConvTest("");
-		System.out.println((new JSONObject(test).toString(2)));
+		String[] allowedAttributes = {"stringAttr"};
+		System.out.println(new JSONObject(test, allowedAttributes));
+		System.out.println();
+		System.out.println(TestClass.class.getSimpleName());
 		
 		
 	}
 	public static class JSONConvTest {
-		String stringAttr = "Hi";
+		public String stringAttr = "Hi";
 		String stringAttrEmpty;
 		
 		List<List<JSONConvTest>> testClasses;
@@ -72,13 +76,10 @@ public class TestClass {
 		}
 		public void setTestClassesEmpty(List<List<JSONConvTest>> testClassesEmpty) {
 			this.testClassesEmpty = testClassesEmpty;
-		}
-
-	
-		
-		
-		
-		
+		}		
+	}
+	public static class ExtensionTestClass extends JSONConvTest {
+		public String substring = "subst";
 	}
 
 }

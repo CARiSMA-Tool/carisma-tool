@@ -3,52 +3,36 @@ package carisma.check.policycreation;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityContent;
-import org.eclipse.uml2.uml.ActivityNode;
-import org.eclipse.uml2.uml.ActivityPartition;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Feature;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.ProfileApplication;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.StructuralFeature;
-import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.internal.impl.PropertyImpl;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
-import ODRLCommonVocabulary.LogicalConstraint;
-import carisma.modeltype.uml2.UMLHelper;
+import ODRLCommonVocabulary.ConflictStrategy;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
-import carisma.core.checks.CheckParameter;
-import carisma.core.checks.CarismaCheck;
 import carisma.core.checks.CarismaCheckWithID;
+import carisma.core.checks.CheckParameter;
+import carisma.modeltype.uml2.UMLHelper;
+import carisma.profile.uconcreation.odrl.core.internal.classes.ODRLClass;
+import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.Permit;
+import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.Prohibit;
+import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.VoidPolicy;
 
 /** Contains a Simple CARiSMA Check which returns all elements of a given Model.
  *
@@ -61,12 +45,13 @@ public class Check implements CarismaCheckWithID {
 	
 //--------------
 	AnalysisHost host;
-	Map<EObject,ExtendedJSONObject> directlyContainedOdrlObjects = new HashMap<EObject, ExtendedJSONObject>();
+	Map<EObject,ExtendedJSONObject> referencingList = new HashMap<EObject, ExtendedJSONObject>();
 	Map<String,Collection<ExtendedJSONObject>> typeBuckets = new HashMap<String,Collection<ExtendedJSONObject>>();
 	ExtendedJSONObject root;
 	Package usedPackage;
 	//Map<JSONObject>
 	final String type = "@type";
+	final String nullString = "Null";
 	final String profileName = "ODRLCommonVocabulary";
 
 	//TODO remove
@@ -336,16 +321,20 @@ public class Check implements CarismaCheckWithID {
 		String stereotypeName = stereoAppl.eClass().getName();
 		
 		currentObject.put(type,stereotypeName);
-		addToType(currentObject, stereotypeName);//propably chose a more unique id. qualifiedName?	
-		directlyContainedOdrlObjects.put(stereoAppl,currentObject);
-		System.out.println("now checking for subobjects of " + stereoAppl);
-		addSubObjects_create(stereoAppl, currentObject);
-		
+		addToType(currentObject, stereotypeName);//propably chose a more unique id. qualifiedName?
+		if (!referencingList.containsKey(stereoAppl)) {
+			referencingList.put(stereoAppl,currentObject);
+			System.out.println("now checking for subobjects of " + stereoAppl);
+			addSubObjects_create(stereoAppl, currentObject);
+		}
 		
 		
 		System.out.println(currentObject.toString(3));
 		
 		
+		System.out.println("All Trees:");
+		for (ExtendedJSONObject eJO: referencingList.values())
+			System.out.println(eJO.toString(5));
 		
 		
 		/*
@@ -487,13 +476,14 @@ public class Check implements CarismaCheckWithID {
 	public boolean addInFirstStep2(EObject currentTop, EStructuralFeature feature, ExtendedJSONObject jObject) {
 		if (currentTop.eGet(feature) == null)
 			return false;
+		//Keeps out the base_Element-attributes of the stereotypes
 		if (currentTop.eGet(feature) instanceof ActivityContent || currentTop.eGet(feature) instanceof Activity)
 			return false;
-		if (currentTop.eGet(feature) instanceof List) {
+		if (currentTop.eGet(feature) instanceof List list) {
 			JSONArray addedJson = new JSONArray();
 			boolean empty = true;
 			
-			for (Object listObject : (List) currentTop.eGet(feature)) {
+			for (Object listObject : list) {
 				 if (addInFirstStep2(listObject, addedJson))
 					 empty = false;
 			}
@@ -503,6 +493,7 @@ public class Check implements CarismaCheckWithID {
 			return !empty;
 		}
 		else if (feature.getEType() instanceof EEnum) {
+			System.out.println("EEnum value: " + currentTop.eGet(feature) + "       Class:" + currentTop.eGet(feature).getClass());
 			ExtendedJSONObject addedJson = new ExtendedJSONObject();
 			addedJson.put(type, currentTop.eGet(feature).toString());
 			jObject.put(feature.getName(), addedJson);
@@ -514,19 +505,21 @@ public class Check implements CarismaCheckWithID {
 				jObject.put(feature.getName(), currentTop.eGet(feature).toString());
 			}
 		} else if (feature instanceof EReference) {
-			Element e = usedPackage.getAppliedProfile(profileName).getOwnedMember(feature.getEType().getName());
-			if (e != null) {
-				if (e instanceof Stereotype)
-					return true;
-				else  {
 					ExtendedJSONObject addedJson = new ExtendedJSONObject();
-					addedJson.put(type, feature.getEType().getName());
 					if (currentTop.eGet(feature) instanceof EObject) {
-						for (EStructuralFeature newFeature : ((EObject)(currentTop.eGet(feature))).eClass().getEAllStructuralFeatures() )
-							addInFirstStep2((EObject)(currentTop.eGet(feature)),newFeature, addedJson);
+						EObject currentValueEO = (EObject) currentTop.eGet(feature);
+						//Referenced Element not already processed
+						if (referencingList.get(currentValueEO)==null) {
+							addedJson.put(type, feature.getEType().getName());
+							referencingList.put(currentValueEO, addedJson);
+							for (EStructuralFeature newFeature : ((EObject)(currentTop.eGet(feature))).eClass().getEAllStructuralFeatures() )
+								addInFirstStep2(currentValueEO,newFeature, addedJson);
+						} else {//Referenced Element already processed
+							addedJson = referencingList.get(currentTop.eGet(feature));
 					}
 					jObject.put(feature.getName(), addedJson);
-				}
+					return true;
+				
 					
 			}
 		}
@@ -540,7 +533,6 @@ public class Check implements CarismaCheckWithID {
 	
 	
 	
-	///not working yet
 	public boolean addInFirstStep2(Object value, JSONArray jArray) {
 		System.out.println("Processing " + value);
 			
@@ -548,26 +540,28 @@ public class Check implements CarismaCheckWithID {
 			System.out.println("null");
 			return false;
 		}
+		//Keeps out the base_Element-attributes of the stereotypes
 		if (value instanceof ActivityContent || value instanceof Activity) {
-			System.out.println("ActivityInstance");
 			return false;
 		}
+		/*
+		 * Not needed with the current Model
 		if (value instanceof Collection) {
 			JSONArray addedJson = new JSONArray();
 			boolean empty = true;
 			//TODO: nested List
-			/*
+			
 			for (Object listObject : (Collection) currentTop.eGet(feature)) {
 				 //if (addInFirstStep(listObject, addedJson))
 					 empty = false;
 			}
 			if (!empty) {
 				jObject.put(feature.getName(), addedJson);
-			}
-			*/	
+			}			
 			return !empty;
 		}
-		else if (value instanceof EEnum) {
+		else*/
+		if (value instanceof EEnum) {
 			System.out.println(0);
 			ExtendedJSONObject addedJson = new ExtendedJSONObject();
 			addedJson.put(type, value.toString());
@@ -581,161 +575,26 @@ public class Check implements CarismaCheckWithID {
 				return true;
 			}
 		} else if (value instanceof EObject) {
-			System.out.println(value + " is instance of EObject");
-			Element e = usedPackage.getAppliedProfile(profileName).getOwnedMember(((EObject)value).eClass().getName());
-			System.out.println("Element " +  e);
-			if (e != null) {
-				if (e instanceof Stereotype)
-					return false;//true or false?
-				else  {
-					ExtendedJSONObject addedJson = new ExtendedJSONObject();
-					addedJson.put(type, ((EObject)value).eClass().getName());
-						for (EStructuralFeature newFeature : ((EObject)value).eClass().getEAllStructuralFeatures() )
-							addInFirstStep2((EObject)value,newFeature, addedJson);
-					
-					jArray.put(addedJson);
-					return true;
-				}
-					
-			}
+			EObject valueEOb = (EObject) value;	
+			ExtendedJSONObject addedJson = new ExtendedJSONObject();
+			//Referenced Element not already processed
+			if (referencingList.get(valueEOb)==null) {
+				addedJson.put(type, valueEOb.eClass().getName());
+				referencingList.put(valueEOb, addedJson);
+				for (EStructuralFeature newFeature : (valueEOb).eClass().getEAllStructuralFeatures() )
+					addInFirstStep2(valueEOb,newFeature, addedJson);
+			} else {//Referenced Element already processed
+				addedJson = referencingList.get(valueEOb);
+			}		
+				
+				jArray.put(addedJson);
+				return true;	
 		}
-		System.out.println("ValueClass: " + value.getClass());
 		return false;
 	}
 	
 	
 	
-	
-	
-	
-	
-	/*
-	public boolean addInFirstStep(String name, List list, ExtendedJSONObject jObject) {
-		System.out.println("In L1 with " + name);
-		if (list.isEmpty())
-			return false;
-	
-		JSONArray addedJson = new JSONArray();
-		boolean empty = true;
-		for (Object listEntry : list) {
-			if (listEntry instanceof List)	{
-				//Check if ordered
-				//
-				if (addInFirstStep((List) listEntry, addedJson)) {
-					empty=false;
-				}
-			}
-			else if (listEntry instanceof EObject) {
-				if(addInFirstStep((EObject) listEntry, addedJson)) {
-				empty = false;
-				}
-			}
-		}
-		if (!empty) {
-			//attach new json-Element to the parent one
-			jObject.put(name,addedJson);
-		}
-		return !empty;
-	}
-	
-	public boolean addInFirstStep(List list, JSONArray jArray) {
-		System.out.println("in L2");
-		if (list.isEmpty())
-			return false;
-	
-		JSONArray addedJson = new JSONArray();
-		boolean empty = true;
-		for (Object listEntry : list) {
-			if (listEntry instanceof List)	{
-				//Check if ordered
-				//
-				if (addInFirstStep((List) listEntry, addedJson)) {
-					empty=false;
-				}
-			}
-			else if (listEntry instanceof EObject) {
-				if(addInFirstStep((EObject) listEntry, addedJson)) {
-				empty = false;
-				}
-			}
-		}
-		if (!empty) {
-			//attach new json-Element to the parent one
-			jArray.put(addedJson);
-		}
-		return !empty;
-	}
-	
-	public boolean addInFirstStep(String name, EObject eObj, ExtendedJSONObject jObject) {
-		System.out.println("In first before with Property " + name + ",   " + eObj + "        " + eObj.eClass() + "          " + eObj.getClass());
-		Element profileElement = usedPackage.getAppliedProfile(profileName).getOwnedMember(eObj.eClass().getName());
-		System.out.println("In first after with profileElement " + profileElement);
-		if (profileElement instanceof Stereotype || eObj instanceof Activity || eObj instanceof ActivityContent) {
-			System.out.println("kicked out");
-			return false;
-		}
-		ExtendedJSONObject addedJson = new ExtendedJSONObject();
-		boolean empty = true;
-		for (EStructuralFeature feature : eObj.eClass().getEAllStructuralFeatures()) {
-			Object featureValue = eObj.eGet(feature);
-			if (featureValue!= null) {
-				if (addInFirstStep(featureValue, addedJson)) {
-					empty = false;
-				}
-			}
-		}
-		//
-		if (eObj instanceof EEnumLiteral) {
-			addedJson.put(type, ((EEnumLiteral)eObj).getLiteral());
-		}
-		//
-		if (!empty) {
-			(jObject).put(name, addedJson);
-		}
-		return !empty; 
-		
-	}
-	public boolean addInFirstStep(EObject eObj, JSONArray jArray) {
-		System.out.println("In second before");
-		Element profileElement = usedPackage.getAppliedProfile(profileName).getOwnedMember(eObj.eClass().getName());
-		System.out.println("In second after");
-		if (profileElement instanceof Stereotype || eObj instanceof ActivityNode) {
-			return false;
-		}
-		ExtendedJSONObject addedJson = new ExtendedJSONObject();
-		boolean empty = true;
-		for (EStructuralFeature feature : eObj.eClass().getEAllStructuralFeatures()) {
-			Object featureValue = eObj.eGet(feature);
-			if (featureValue!= null) {
-				if (addInFirstStep(featureValue, addedJson)) {
-					empty = false;
-				}
-			}
-		}
-		if (!empty) {
-			(jArray).put(addedJson);
-		}
-		return !empty; 
-		
-	}
-	public boolean addInFirstStep(Object object, Object jsonThing) {
-		System.out.println("in last1");
-		System.out.println(jsonThing.getClass());
-
-		
-		System.out.println("!!!----------------------------!!! Applied to Object " + (object==null ? "Null" : object + "   " + object.getClass()) +  " !!!----------------------------!!!");
-
-		return true;
-	}
-	public boolean addInFirstStep(String s, Object object, Object jsonThing) {
-		System.out.println("in last2with " + s);
-		if (jsonThing instanceof ExtendedJSONObject)
-		((ExtendedJSONObject)jsonThing).put(s, object);
-		//System.out.println(jsonThing);
-		System.out.println("!!!----------------------------!!! Applied to Object " + (object==null ? "Null" : object) +  " !!!----------------------------!!!");
-		return true;
-	}
-	*/
 	
 	private void addToType(ExtendedJSONObject typedElement, String type) {
 		if (!typeBuckets.containsKey(type)) {
@@ -743,6 +602,47 @@ public class Check implements CarismaCheckWithID {
 		}
 		typeBuckets.get(type).add(typedElement);	
 	}
+	
+	///////////////////////////////
+	private ODRLClass addElement(EObject eObject, ODRLClass odrlParent) {//TODO modify the names if the eCore naming derives form the names in generated code
+		String objectClassName = eObject.eClass().getName();
+		ODRLClass newOdrlObject = null;
+		if (eObject instanceof EEnumLiteral eEnumLiteralObject) {
+			String objectName = eObject.toString();		
+
+			if (objectClassName.equals(ConflictStrategy.class.getSimpleName())){//try to get names (also attribute names (but getting fields by attribute (not String) seems not supported in java) from the genmodel to minimize the risk of spelling mistakes
+				if (objectName.equals(ConflictStrategy.PERMIT.getName())) {
+					newOdrlObject = new Permit();
+				}
+				else if (objectName.equals(ConflictStrategy.PROHIBIT.getName())) {
+					newOdrlObject = new Prohibit();
+				}
+				else if (objectName.equals(ConflictStrategy.VOID_POLICY.getName())) {
+					newOdrlObject = new VoidPolicy();
+				}
+				return newOdrlObject;
+			}
+		}
+			
+			return null;
+		return null;
+	}
+	
+	private boolean addElement(EObject eParent, EStructuralFeature feature, ODRLClass odrlParent) {
+		Object eValue = eParent.eGet(feature);
+		//if (eParent instanceof )
+			
+			return false;
+		return false;
+	}
+	
+	
+	
+	
+	
+	///////////////////////////////
+	
+	
 	
 
 	@Override
