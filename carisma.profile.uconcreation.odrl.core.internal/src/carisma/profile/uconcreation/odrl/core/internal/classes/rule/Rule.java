@@ -17,4 +17,32 @@ public abstract class Rule extends ODRLClass {
 	String involvedPartiesName;
 	String involvedAssetsName;
 	String actionName;
+	
+	
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+	public Set<Function> getInvolvedParties() {
+		return involvedParties;
+	}
+	public void setInvolvedParties(Set<Function> involvedParties) {
+		this.involvedParties = involvedParties;
+	}
+	public Set<Relation> getInvolvedAssets() {
+		return involvedAssets;
+	}
+	public void setInvolvedAssets(Set<Relation> involvedAssets) {
+		this.involvedAssets = involvedAssets;
+	}
+	public Action getAction() {
+		return action;
+	}
+	public void setAction(Action action) {
+		this.action = action;
+	}
+	
+	
 }

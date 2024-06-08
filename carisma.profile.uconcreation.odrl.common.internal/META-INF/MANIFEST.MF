@@ -3,6 +3,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Internal
 Bundle-SymbolicName: carisma.profile.uconcreation.odrl.common.internal
 Bundle-Version: 1.0.0.qualifier
+Export-Package: carisma.profile.uconcreation.odrl.common.internal,
+ carisma.profile.uconcreation.odrl.common.internal.classes.function,
+ carisma.profile.uconcreation.odrl.common.internal.classes.policy,
+ carisma.profile.uconcreation.odrl.common.internal.classes.relation
 Bundle-Activator: carisma.profile.uconcreation.odrl.common.internal.Activator
 Require-Bundle: org.eclipse.core.runtime,
  carisma.profile.uconcreation.odrl.core.internal;bundle-version="1.0.0";visibility:=reexport

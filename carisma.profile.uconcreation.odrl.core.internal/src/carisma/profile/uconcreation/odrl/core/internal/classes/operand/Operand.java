@@ -9,5 +9,14 @@ public abstract class Operand extends ODRLClass {
 	List<Constraint> constraints;
 	
 	String constraintsName;//TODO Handle differently as Operand-subproperties
+
+	public List<Constraint> getConstraints() {
+		return constraints;
+	}
+
+	public void setConstraints(List<Constraint> constraints) {
+		this.constraints = constraints;
+	}
+	
 	
 }

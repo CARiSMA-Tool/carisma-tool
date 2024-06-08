@@ -8,4 +8,20 @@ public class AssetCollection extends Asset {
 	
 	String refinementName;
 	String sourceName;
+	
+	
+	public ConstraintInterface getRefinement() {
+		return refinement;
+	}
+	public void setRefinement(ConstraintInterface refinement) {
+		this.refinement = refinement;
+	}
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	
+	
 }

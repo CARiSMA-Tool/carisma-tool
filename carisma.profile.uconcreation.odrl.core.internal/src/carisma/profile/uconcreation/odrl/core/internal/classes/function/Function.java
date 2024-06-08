@@ -7,4 +7,14 @@ public abstract class Function extends ODRLClass {
 	Party party;
 	
 	String partyName;
+
+	public Party getParty() {
+		return party;
+	}
+
+	public void setParty(Party party) {
+		this.party = party;
+	}
+	
+	
 }

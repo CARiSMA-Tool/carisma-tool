@@ -9,4 +9,14 @@ public abstract class Failure extends ODRLClass {
 	Set<Rule> rules;
 	
 	String rulesName;//TODO treat differently as subproperty
+
+	public Set<Rule> getRules() {
+		return rules;
+	}
+
+	public void setRules(Set<Rule> rules) {
+		this.rules = rules;
+	}
+	
+	
 }

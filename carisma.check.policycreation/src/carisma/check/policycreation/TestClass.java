@@ -1,18 +1,42 @@
 package carisma.check.policycreation;
 
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
 
 public class TestClass {
 
 	public static void main(String[] args) {
-		Map<String,JSONObject> jmap = new HashMap();
+		ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
+		System.out.println(odrlPackage.getAsset_Uid().getName());
+		System.out.println(odrlPackage.getPermission().getName());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*Map<String,JSONObject> jmap = new HashMap();
 		JSONObject jso = new JSONObject();
 		JSONObject jso2 = new JSONObject();
 		jmap.put("jso2",jso2);
@@ -34,7 +58,7 @@ public class TestClass {
 		System.out.println(new JSONObject(test, allowedAttributes));
 		System.out.println();
 		System.out.println(TestClass.class.getSimpleName());
-		
+		*/
 		
 	}
 	public static class JSONConvTest {

@@ -9,5 +9,19 @@ public class LogicalConstraint extends ODRLClass implements ConstraintInterface{
 	
 	String uidName;
 	String operandName;
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+	public Operand getOperand() {
+		return operand;
+	}
+	public void setOperand(Operand operand) {
+		this.operand = operand;
+	}
+	
+	
 	
 }

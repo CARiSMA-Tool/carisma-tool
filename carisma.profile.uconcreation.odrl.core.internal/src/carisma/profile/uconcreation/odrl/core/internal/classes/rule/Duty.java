@@ -6,4 +6,14 @@ public class Duty extends Rule {
 	Consequence consequences;
 	
 	String consequencesName;
+
+	public Consequence getConsequences() {
+		return consequences;
+	}
+
+	public void setConsequences(Consequence consequences) {
+		this.consequences = consequences;
+	}
+	
+	
 }

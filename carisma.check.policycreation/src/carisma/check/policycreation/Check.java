@@ -1,11 +1,14 @@
 package carisma.check.policycreation;
 
+import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -21,18 +24,70 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
+import ODRLCommonVocabulary.Action;
+import ODRLCommonVocabulary.AssetRelationType;
 import ODRLCommonVocabulary.ConflictStrategy;
+import ODRLCommonVocabulary.ConstraintOperator;
+import ODRLCommonVocabulary.LeftOperand;
+import ODRLCommonVocabulary.LogicalOperator;
+import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
+import ODRLCommonVocabulary.PartyFunctionType;
+import ODRLCommonVocabulary.PolicyType;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 import carisma.modeltype.uml2.UMLHelper;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.AttributedParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.CompensatedParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.CompensatingParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.ConsentedParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.ConsentingParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.ContractedParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.ContractingParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.InformedParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.InformingParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.TrackedParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.TrackingParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.policy.Assertion;
+import carisma.profile.uconcreation.odrl.common.internal.classes.policy.Privacy;
+import carisma.profile.uconcreation.odrl.common.internal.classes.policy.Request;
+import carisma.profile.uconcreation.odrl.common.internal.classes.policy.Ticket;
+import carisma.profile.uconcreation.odrl.common.internal.classes.relation.Output;
 import carisma.profile.uconcreation.odrl.core.internal.classes.ODRLClass;
+import carisma.profile.uconcreation.odrl.core.internal.classes.asset.Asset;
+import carisma.profile.uconcreation.odrl.core.internal.classes.asset.AssetCollection;
 import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.Permit;
 import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.Prohibit;
 import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.VoidPolicy;
+import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.Constraint;
+import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintInterface;
+import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.LogicalConstraint;
+import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Failure;
+import carisma.profile.uconcreation.odrl.core.internal.classes.function.Assignee;
+import carisma.profile.uconcreation.odrl.core.internal.classes.function.Assigner;
+import carisma.profile.uconcreation.odrl.core.internal.classes.function.Function;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operand.And;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operand.AndSequence;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Operand;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Or;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Xone;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.Operator;
+import carisma.profile.uconcreation.odrl.core.internal.classes.party.Party;
+import carisma.profile.uconcreation.odrl.core.internal.classes.party.PartyCollection;
+import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Agreement;
+import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Offer;
+import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Policy;
+import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Set;
+import carisma.profile.uconcreation.odrl.core.internal.classes.relation.Relation;
+import carisma.profile.uconcreation.odrl.core.internal.classes.relation.Target;
+import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Duty;
+import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Permission;
+import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Prohibition;
+import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Rule;
 
 /** Contains a Simple CARiSMA Check which returns all elements of a given Model.
  *
@@ -45,7 +100,8 @@ public class Check implements CarismaCheckWithID {
 	
 //--------------
 	AnalysisHost host;
-	Map<EObject,ExtendedJSONObject> referencingList = new HashMap<EObject, ExtendedJSONObject>();
+	Map<EObject,ExtendedJSONObject> referencingList = new HashMap<EObject, ExtendedJSONObject>(); //Would have been used if JSON was used for internal representation
+	Map<EObject,ODRLClass> referencingList2 = new HashMap<EObject, ODRLClass>();
 	Map<String,Collection<ExtendedJSONObject>> typeBuckets = new HashMap<String,Collection<ExtendedJSONObject>>();
 	ExtendedJSONObject root;
 	Package usedPackage;
@@ -53,6 +109,7 @@ public class Check implements CarismaCheckWithID {
 	final String type = "@type";
 	final String nullString = "Null";
 	final String profileName = "ODRLCommonVocabulary";
+	ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
 
 	//TODO remove
 	int numOfElements = 0;
@@ -110,35 +167,7 @@ public class Check implements CarismaCheckWithID {
 			}
 			for (NamedElement ne : model.getMembers())
 				System.out.println(ne.getName() + "      " + ne);
-			//
-			/*
-			System.out.print("Contained ProfileApplications: ");
-			for (ProfileApplication t : model.getProfileApplications()) {
-				System.out.print(t.toString());
-			}
-			TreeIterator<EObject> iterator = model.eAllContents();
-			System.out.println();
-			System.out.println("Complicated Iterator:");
-			while (iterator.hasNext()) {
-				EObject eobj = iterator.next();
-				System.out.println(eobj);
-				List<EObject> objlistpre = eobj.eContents();
-				System.out.println(objlistpre.isEmpty());
-			}
-			List<EObject> objlist = model.eContents();
-			System.out.println("Simple Iterator:");
-			for (EObject eob : objlist) {
-				System.out.println(eob);
-			}
-			
-			System.out.println();
-			System.out.print("Contained Types: ");
-			for (Type t : model.getOwnedTypes()) {
-				System.out.print(t.toString());
-			}
-			System.out.println();
-			//*/
-			//System.out.println("Instance of model?: " + (model instanceof Model) + "  "+ model.getModel());
+
 			
 			structureModel(model);
 			
@@ -182,7 +211,7 @@ public class Check implements CarismaCheckWithID {
 	private void structureModel(Package inputModel) {
 		Collection<Element> modelContents = inputModel.allOwnedElements();
 		//Collection<Element> relevantElements = new LinkedList<Element>();
-		
+		List<ODRLClass> generatedClasses = new LinkedList<ODRLClass>();
 		for (Element e : modelContents) {
 			/*
 			
@@ -207,107 +236,35 @@ public class Check implements CarismaCheckWithID {
 			
 			for (Stereotype s : e.getAppliedStereotypes()) {
 				if (s.getProfile().getQualifiedName().equals(profileName)) { //propably replace qualified name comparison by an more unique identifier
-					processStereotype_create(e.getStereotypeApplication(s));
-				}
-			}
-			
-			
-			/*
-			Collection<Stereotype> stereotypes = e.getAppliedStereotypes();
-			System.out.println("stereotypes empty: " + stereotypes.isEmpty());
-			for (Stereotype s : stereotypes) {
-				System.out.println(s.getProfile().getQualifiedName());
-				if (s.getProfile().getQualifiedName().equals("ODRLCommonVocabulary")) { //create final-Variable for profile, propably replace qualified name comparison by an actually unique identifier
-					System.out.println(s.getName());
-					if(s.getName().equals("Duty")) {
-						System.out.println("Testing Permission---------------------------------------:");
-						System.out.println(e.getValue(s, "uid"));
-						for (Element el : s.getOwnedElements()) {
-							System.out.println("Stereotype owned elements: " + el);
-						}
+					ODRLClass odrlC = (addElement(e.getStereotypeApplication(s), null, e));
+					System.out.println(odrlC);
+					if (odrlC instanceof Policy policy) {
+						System.out.println(new JSONObject(policy));
 					}
-					//
-					processStereotype_creation(s);
-				}
-			}
-			*/
-			/*
-			for (Stereotype s : e.getAppliedStereotypes()) {
-				if (s.getProfile().getQualifiedName().equals("ODRLCommonVocabulary")) { //create final-Variable for profile, propably replace qualified name comparison by an actually unique identifier
-					EObject stereoAppl = e.getStereotypeApplication(s);
-					//TODO processStereotype_creation(stereoAppl);
-					for (Property p : s.getAllAttributes()) {
-						System.out.println("Value of " + p.getName() + ": " + e.getValue(s, p.getName()) + "    +    " + e.getValue(s, p.getName()).getClass());
-						Object elo = e.getValue(s, p.getName());
-						if (elo instanceof DataType) {
-							DataType dt = (DataType) elo;
-							//}
-						//for (Object o : e.getValue(s, p.getName()) 
-						}
+					if (odrlC instanceof Rule rule ) {
+						System.out.println(new JSONObject(rule));
+					}
+					if (odrlC instanceof Rule rule ) {
+						System.out.println(new JSONObject(rule));
 					}
 					System.out.println();
+					//processStereotype_create(e.getStereotypeApplication(s));
 				}
-			}*/
-				/*if (stereoAppl.getProfile().getQualifiedName().equals("ODRLCommonVocabulary")) { //create final-Variable for profile, propably replace qualified name comparison by an actually unique identifier
-					System.out.println(s.getName());
-					if(s.getName().equals("Duty")) {
-						System.out.println("Testing Permission---------------------------------------:");
-						System.out.println(e.getValue(s, "uid"));
-						for (Element el : s.getOwnedElements()) {
-							System.out.println("Stereotype owned elements: " + el);
-						}
-					}
-					//
-					processStereotype_creation(s);
-				}*/
+				
 			}
-			
-		
+		}
 		/*
-		//Filter for Elements stereotyped by the relevant profile
-		for (Element e : modelContents) {
-			Collection<Stereotype> stereotypes = e.getAppliedStereotypes();
-			System.out.println("stereotypes empty: " + stereotypes.isEmpty());
-			for (Stereotype s : stereotypes) {
-				System.out.println(s.getProfile().getQualifiedName());
-				if (s.getProfile().getQualifiedName().equals("ODRLCommonVocabulary")) { //create final-Variable for profile, propably replace qualified name comparison by an actually unique identifier
-					System.out.println("is equal");
-					relevantElements.add(e);
-				}
-			}
+		for (ODRLClass oc : generatedClasses) {
+			System.out.println(oc);
+			System.out.println(new JSONObject(oc));
+			System.out.println();
 		}
-		
-		for (Element e : relevantElements) {
-			for (Stereotype s : e.getAppliedStereotypes()) {
-				System.out.println("Owner of " + s + " : " +s.getOwner());
-				if (s.getProfile().getQualifiedName().equals("ODRLCommonVocabulary")) { //create final-Variable for profile, propably replace qualified name comparison by an actually unique identifier
-					System.out.println("is equal");
-					processStereotype_creation(s);
-					//e.get
-				}
-			}
-			System.out.println("processing " + e.toString());
-			
-		}*/
+		*/
 		
 		
 		
 	
 	}
-	
-/*	
-	private void processElement_creation(Element e) {
-		Collection<Stereotype> stereotypes = e.getAppliedStereotypes();
-		System.out.println("stereotypes empty: " + stereotypes.isEmpty());
-		for (Stereotype s : stereotypes) {
-			System.out.println(s.getProfile().getQualifiedName());
-			if (s.getProfile().getQualifiedName().equals("ODRLCommonVocabulary")) { //create final-Variable for profile, propably replace qualified name comparison by an actually unique identifier
-				System.out.println("is equal");
-				//processStereotype_creation(s);
-			}
-		}
-	}
-	*/
 	
 	private void processStereotype_create(EObject stereoAppl) {
 		ExtendedJSONObject currentObject = new ExtendedJSONObject();
@@ -335,49 +292,6 @@ public class Check implements CarismaCheckWithID {
 		System.out.println("All Trees:");
 		for (ExtendedJSONObject eJO: referencingList.values())
 			System.out.println(eJO.toString(5));
-		
-		
-		/*
-		//possibly replace switch-case with if-clauses that check for inheritance from a common superclass (such as Rule for Permission/Prohibition/Obligation
-		switch (stereotypeName) {
-		case "ODRL-Policy":
-			//maybe put the bodies of the cases into own methods
-			currentObject = new ExtendedJSONObject();
-			currentObject.put(type,stereotypeName);//replace type by a common type-attribute name defined in a class attribute
-			addToType(currentObject, stereotypeName);	
-			containedObjects.add(currentObject);				
-			break;
-		case "Permission":
-		case "Prohibition":
-		case "Obligation":
-			currentObject = new ExtendedJSONObject();
-			currentObject.put(type, stereotypeName);
-			containedObjects.add(currentObject);
-			addToType(currentObject, stereotypeName);
-			for (Property p : stereotype.getAttributes()) {
-				System.out.println("Property " + p.getName() + ":" + p.eContents());
-				
-				//if (p.getValue())
-				//add Attribute to the odrlObjects if attribute value is simple type, datatype or Enum
-			}
-			
-			
-			break;
-			
-		}
-		
-		
-		//add new Elements to 
-		if (!containedObjects.isEmpty()) {
-			for(ExtendedJSONObject containedObject : containedObjects) {;
-				if (containedObject.get(type) instanceof String) {
-					String objectType = (String) containedObject.get(type);
-				addToType(containedObject, objectType);
-				}
-			}
-			containedOdrlObjects.put(stereotype, containedObjects);
-		}
-		*/
 	}
 	
 	public void addSubObjects_create(EObject currentElementUML, ExtendedJSONObject currentElementJSON) {
@@ -603,14 +517,22 @@ public class Check implements CarismaCheckWithID {
 		typeBuckets.get(type).add(typedElement);	
 	}
 	
-	///////////////////////////////
-	private ODRLClass addElement(EObject eObject, ODRLClass odrlParent) {//TODO modify the names if the eCore naming derives form the names in generated code
-		String objectClassName = eObject.eClass().getName();
-		ODRLClass newOdrlObject = null;
-		if (eObject instanceof EEnumLiteral eEnumLiteralObject) {
-			String objectName = eObject.toString();		
 
-			if (objectClassName.equals(ConflictStrategy.class.getSimpleName())){//try to get names (also attribute names (but getting fields by attribute (not String) seems not supported in java) from the genmodel to minimize the risk of spelling mistakes
+	
+	
+	///////////////////////////////
+	private ODRLClass addElement(EObject currentEObject, ODRLClass odrlParent, EObject activityElement) {//TODO modify the names if the eCore naming derives form the names in generated code
+		if (referencingList2.get(currentEObject)!= null) {//TODO either add parent to parents-Attribute here (and before the other return-statement) or in the method processing the return value (if that's where it's decided whether it's actually added (for example in case it would, but must not ovewrite a value of the parent))
+			return referencingList2.get(currentEObject);
+		}
+		String objectClassName = currentEObject.eClass().getName();
+		ODRLClass newOdrlObject = null;
+		EClass autoGenClass = null;
+		EStructuralFeature classFeature = null;
+		if (currentEObject instanceof EEnumLiteral eEnumLiteralObject) {//ODRLClasses without content
+			String objectName = currentEObject.toString();		
+
+			if (objectClassName.equals(ConflictStrategy.class.getSimpleName())){//try to get names (also attribute names (but getting fields by attribute (not String) seems not supported in java) from the genmodel-code to minimize the risk of spelling mistakes
 				if (objectName.equals(ConflictStrategy.PERMIT.getName())) {
 					newOdrlObject = new Permit();
 				}
@@ -620,12 +542,216 @@ public class Check implements CarismaCheckWithID {
 				else if (objectName.equals(ConflictStrategy.VOID_POLICY.getName())) {
 					newOdrlObject = new VoidPolicy();
 				}
-				return newOdrlObject;
+			}
+			else if (objectClassName.equals(PolicyType.class.getSimpleName())) {//TODO Remove (used as type-enum in creation of ODRLPolicy)
+				//if(objectName.equals()) {
+				//}
+			}
+			else if (objectClassName.equals(PartyFunctionType.class.getSimpleName())) {//TODO Remove (used as type-enum in creation of PartyFunction)
+				//if(objectName.equals()) {
+				//}
+			}
+			else if (objectClassName.equals(AssetRelationType.class.getSimpleName())) {//TODO Remove (used as type-enum in creation of AssetRelation)
+				//if(objectName.equals()) {
+				//}
+			}
+			else if (objectClassName.equals(Action.class.getSimpleName())) {
+				//if(objectName.equals()) {
+				//}
+			}
+			else if (objectClassName.equals(LogicalOperator.class.getSimpleName())) {//TODO Remove (used as type-enum in creation of LogicalConstraint)
+				//if(objectName.equals()) {
+				//}
+			}
+			else if (objectClassName.equals(ConstraintOperator.class.getSimpleName())) {
+				//if(objectName.equals()) {
+				//}
+			}
+			else if (objectClassName.equals(LeftOperand.class.getSimpleName())) {
+				//if(objectName.equals()) {
+				//}
 			}
 		}
+		
+		//Rules
+		else if (objectClassName.equals(odrlPackage.getPermission().getName())) {//Erst Erstellung des jeweiligen Objekts mit den einzelnen Klassen, am Ende dann auf Basis von Vererbung die Attribute füllen (z.B. if instanceof Rule: currentObject.adduid( eObject.getFeature(Rule.getUID().getName()) )
+			autoGenClass = odrlPackage.getPermission();//?
+			newOdrlObject=new Permission();			
+		}
+		else if (objectClassName.equals(odrlPackage.getProhibition().getName())) {
+			newOdrlObject=new Permission();
+		}
+		else if (objectClassName.equals(odrlPackage.getDuty().getName())) {
+			newOdrlObject=new Duty();
+		}
+		//Policy (type enum-attribute-determined)
+		else if (objectClassName.equals(odrlPackage.getODRLPolicy().getName())) {
+			classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_PolicyType().getName());
+			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
+				if (classEnum.getName().equals(PolicyType.AGREEMENT.getName())) {
+					newOdrlObject = new Agreement();
+				}
+				else if (classEnum.getName().equals(PolicyType.ASSERTION.getName())) {
+					newOdrlObject = new Assertion();
+				}
+				else if (classEnum.getName().equals(PolicyType.OFFER.getName())) {
+					newOdrlObject = new Offer();
+				}
+				else if (classEnum.getName().equals(PolicyType.PRIVACY.getName())) {
+					newOdrlObject = new Privacy();
+				}
+				else if (classEnum.getName().equals(PolicyType.REQUEST.getName())) {
+					newOdrlObject = new Request();
+				}
+				else if (classEnum.getName().equals(PolicyType.SET.getName())) {
+					newOdrlObject = new Set();
+				}
+				else if (classEnum.getName().equals(PolicyType.TICKET.getName())) {
+					newOdrlObject = new Ticket();
+				}
+				else {//Default case, no type-information (is interpreted as Set-Policy by evaluators)
+					newOdrlObject = new Policy();
+				}
+			}
 			
-			return null;
-		return null;
+		}
+		//AssetRelation (type enum-attribute-determined)
+		else if (objectClassName.equals(odrlPackage.getAssetRelation().getName())) {
+			classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getAssetRelation_Type().getName());
+			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
+				if (classEnum.getName().equals(AssetRelationType.TARGET.getName())) {
+					newOdrlObject = new Target();
+				}
+				else if (classEnum.getName().equals(AssetRelationType.OUTPUT.getName())) {
+					newOdrlObject = new Output();
+				}
+			}
+		}
+		//PartyFunction (type enum-attribute-determined)
+		else if (objectClassName.equals(odrlPackage.getPartyFunction().getName())) {
+			classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getPartyFunction_Type().getName());
+			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
+				if (classEnum.getName().equals(PartyFunctionType.ASSIGNEE.getName())) {
+					newOdrlObject = new Assignee();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.ASSIGNER.getName())) {
+					newOdrlObject = new Assigner();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.ATTRIBUTED_PARTY.getName())) {
+					newOdrlObject = new AttributedParty();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.COMPENSATED_PARTY.getName())) {
+					newOdrlObject = new CompensatedParty();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.COMPENSATING_PARTY.getName())) {
+					newOdrlObject = new CompensatingParty();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.CONSENTED_PARTY.getName())) {
+					newOdrlObject = new ConsentedParty();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.CONSENTING_PARTY.getName())) {
+					newOdrlObject = new ConsentingParty();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.CONTRACTED_PARTY.getName())) {
+					newOdrlObject = new ContractedParty();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.CONTRACTING_PARTY.getName())) {
+					newOdrlObject = new ContractingParty();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.INFORMED_PARTY.getName())) {
+					newOdrlObject = new InformedParty();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.INFORMING_PARTY.getName())) {
+					newOdrlObject = new InformingParty();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.TRACKED_PARTY.getName())) {
+					newOdrlObject = new TrackedParty();
+				}
+				else if (classEnum.getName().equals(PartyFunctionType.TRACKING_PARTY.getName())) {
+					newOdrlObject = new TrackingParty();
+				}
+			}
+		}
+		//LogicalOperators (type enum-attribute-determined)
+		else if (objectClassName.equals(odrlPackage.getLogicalConstraint().getName())) {
+			classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getPartyFunction_Type().getName());
+			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
+				if (classEnum.getName().equals(LogicalOperator.AND.getName())) {
+					newOdrlObject = new And();
+				}
+				else if (classEnum.getName().equals(LogicalOperator.AND_SEQUENCE.getName())) {
+					newOdrlObject = new AndSequence();
+				}
+				else if (classEnum.getName().equals(LogicalOperator.OR.getName())) {
+					newOdrlObject = new Or();
+				}
+				else if (classEnum.getName().equals(LogicalOperator.XONE.getName())) {
+					newOdrlObject = new Xone();
+				}
+				else if (classEnum.getName().equals(LogicalOperator.NULL.getName())) {//LogicalConstraint only used as wrapper for the constraint as using a common supertype to make both eligible as value does not work with papyrus 
+					newOdrlObject = new Constraint();
+				}
+			}
+		}
+		/*
+		//
+		//Fill attributes of generated classes
+		//
+		if (newOdrlObject instanceof Policy newPolicy) {
+			//conflict
+			Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_ConflictStrategy().getName()));
+			if (attributeValue instanceof EObject newEObj) {
+				ODRLClass attributeValueOdrl = addElement(newEObj, newOdrlObject);
+				if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.conflict.ConflictStrategy conflictValue) {
+					newPolicy.setConflictStrategy(conflictValue);
+				}
+			}
+			//
+			attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_InheritsFrom().getName()));
+			if (attributeValue instanceof EObject newEObj) {//TODO String List attribute				
+			}
+			attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_Profiles().getName()));
+			if (attributeValue instanceof EObject newEObj) {//TODO String List attribute
+			}
+			attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_Uid().getName()));
+			if (attributeValue instanceof EObject newEObj) {
+				ODRLClass attributeValueOdrl = addElement(newEObj, newOdrlObject);
+				if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.conflict.ConflictStrategy conflictValue) {
+					newPolicy.setConflictStrategy(conflictValue);
+				}
+			}
+		}
+		*/
+		//Filling the generated object
+		if (newOdrlObject instanceof Asset asset) {
+			fillAsset(currentEObject, asset, activityElement);
+		}
+		if (newOdrlObject instanceof AssetCollection assetCollection) {
+			fillAssetCollection(currentEObject, assetCollection, activityElement);
+		}
+		if (newOdrlObject instanceof Constraint constraint) {
+			fillConstraint(currentEObject, constraint, activityElement);
+		}
+		if (newOdrlObject instanceof  Failure failure) {
+			fillFailure(currentEObject, failure, activityElement);
+		}
+		if (newOdrlObject instanceof  Function function) {
+			fillFunction(currentEObject, function, activityElement);
+		}
+		//TODO add rest
+		if (newOdrlObject instanceof  Policy policy) {
+			fillPolicy(currentEObject, policy, activityElement);
+		}
+		if (newOdrlObject instanceof  Rule rule) {
+			fillRule(currentEObject, rule, activityElement);
+		}
+		
+		
+		
+		if (newOdrlObject!=null) {
+			referencingList2.put(currentEObject, newOdrlObject);
+		}
+		return newOdrlObject;
 	}
 	
 	private boolean addElement(EObject eParent, EStructuralFeature feature, ODRLClass odrlParent) {
@@ -636,8 +762,190 @@ public class Check implements CarismaCheckWithID {
 		return false;
 	}
 	
+	//Filling-Methods for assets
+	private void fillAsset(EObject currentEObject, Asset asset, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getAsset_Uid().getName()));
+		if (attributeValue instanceof String stringValue) {
+			asset.setUid(stringValue);
+		}
+	}
+	private void fillAssetCollection(EObject currentEObject, AssetCollection assetCollection, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getAssetCollection_Source().getName()));
+		if (attributeValue instanceof String stringValue) {
+			assetCollection.setSource(stringValue);
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRefinableElement_Refinement().getName())); 
+		if (attributeValue instanceof EObject newEObj) {
+			ODRLClass attributeValueOdrl = addElement(newEObj, assetCollection, activityElement);
+			if (attributeValueOdrl instanceof ConstraintInterface refinement) {
+				assetCollection.setRefinement(refinement);
+			}
+		}
+	}
+	//Filling-Methods for Conflict (TODO only maybe add (as the methods would be empty))
+	//Filling-Methods for Constraints (TODO maybe add ConstraintInterface)
+	private void fillConstraint(EObject currentEObject, Constraint constraint, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_DataType().getName()));
+		if (attributeValue instanceof String stringValue) {
+			constraint.setDataType(stringValue);
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_LeftOperand().getName()));
+		if (attributeValue instanceof EObject newEObj) {
+			ODRLClass attributeValueOdrl = addElement(newEObj, constraint, activityElement);
+			if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.leftoperand.LeftOperand leftOperand) {
+				constraint.setLeftOperand(leftOperand);
+			}
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_Operator().getName()));
+		if (attributeValue instanceof EObject newEObj) {
+			ODRLClass attributeValueOdrl = addElement(newEObj, constraint, activityElement);
+			if (attributeValueOdrl instanceof Operator operator) {
+				constraint.setOperator(operator);
+			}
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_RightOperand().getName()));
+		if (attributeValue instanceof EObject newEObj) { //TODO List attribute
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_RightOperandReference().getName()));
+		if (attributeValue instanceof EObject newEObj) { //TODO List attribute
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_Status().getName()));
+		if (attributeValue instanceof String stringValue) {
+			constraint.setStatus(stringValue);
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_Uid().getName()));
+		if (attributeValue instanceof String stringValue) {
+			constraint.setUid(stringValue);
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_Unit().getName()));
+		if (attributeValue instanceof String stringValue) {
+			constraint.setUnit(stringValue);
+		}
+	}
+	private void fillLogicalConstraint(EObject currentEObject, LogicalConstraint logicalConstraint, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_Constraints().getName()));
+		if (attributeValue instanceof EObject newEObj) { //TODO List attribute
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_Uid().getName()));
+		if (attributeValue instanceof String stringValue) {
+			logicalConstraint.setUid(stringValue);
+		}
+	}
+	//Filling-Methods for Failures (TODO maybe add empty subproperties)
+	private void fillFailure(EObject currentEObject, Failure failure, EObject activityElement) {//TODO failure currently not present on the uml-profile
+		//Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage));
+		//if (attributeValue instanceof EObject newEObj) { //TODO List attribute
+		//}
+	}
+	//Filling-Methods for Functions
+	private void fillFunction(EObject currentEObject, Function function, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getPartyFunction_Party().getName()));
+		if (attributeValue instanceof EObject newEObj) {
+			ODRLClass attributeValueOdrl = addElement(newEObj, function, activityElement);
+			if (attributeValueOdrl instanceof Party party) {
+				function.setParty(party);
+			}
+		}
+		
+	}
+	//Filling-Methods for Leftoperands (TODO only maybe add (as the methods would be empty))
+	//Filling-Methods for Operands (TODO maybe add empty subproperties)
+	private void fillOperand(EObject currentEObject, Operand operand, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_Constraints().getName()));
+		if (attributeValue instanceof EObject newEObj) {//TODO List attribute
+		}
+	}
+	//Filling-Methods for Operators (TODO only maybe add (as the methods would be empty))
+	//Filling-Methods for Parties
+	private void fillParty(EObject currentEObject, Party party, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getParty_Uid().getName()));
+		if (attributeValue instanceof String stringValue) {
+			party.setUid(stringValue);
+		}
+	}
+	private void fillPartyCollection(EObject currentEObject, PartyCollection partyCollection, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getPartyCollection_Source().getName()));
+		if (attributeValue instanceof String stringValue) {
+			partyCollection.setSource(stringValue);
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRefinableElement_Refinement().getName())); 
+		if (attributeValue instanceof EObject newEObj) {
+			ODRLClass attributeValueOdrl = addElement(newEObj, partyCollection, activityElement);
+			if (attributeValueOdrl instanceof ConstraintInterface refinement) {
+				partyCollection.setRefinement(refinement);
+			}
+		}
+	}	
+	//Filling-methods for Policies (TODO maybe add empty subclass-methods)
+	private void fillPolicy(EObject currentEObject, Policy policy, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_ConflictStrategy().getName()));
+		if (attributeValue instanceof EObject newEObj) {
+			ODRLClass attributeValueOdrl = addElement(newEObj, policy, activityElement);
+			if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.conflict.ConflictStrategy conflictValue) {
+				policy.setConflictStrategy(conflictValue);
+			}
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_InheritsFrom().getName()));
+		if (attributeValue instanceof EObject newEObj) {//TODO String List attribute				
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_Profiles().getName()));
+		if (attributeValue instanceof EObject newEObj) {//TODO String List attribute
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_Uid().getName()));
+		if (attributeValue instanceof EObject newEObj) {//TODO String List attribute
+		}
+	}
+	//Filling-Methods for Relation
+	private void fillRelation(EObject currentEObject, Relation relation, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getAssetRelation_Asset().getName()));
+		if (attributeValue instanceof EObject newEObj) {
+			ODRLClass attributeValueOdrl = addElement(newEObj, relation, activityElement);
+			if (attributeValueOdrl instanceof Asset asset) {
+				relation.setAsset(asset);
+			}
+		}
+	}
+	//Filling-Methods for RightOperands TODO deal with once the different RightOperandInterface-implementers are finished	
+	//Filling-methods for rules
+	private void fillRule(EObject currentEObject, Rule rule, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRule_Action().getName()));
+		if (attributeValue instanceof EObject newEObj) {
+			ODRLClass attributeValueOdrl = addElement(newEObj, rule, activityElement);
+			if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.action.Action action) {
+				rule.setAction(action);
+			}
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRule_Uid().getName()));
+		if (attributeValue instanceof EObject newEObj) {//TODO String List attribute
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRule_InvolvedAssets().getName()));
+		if (attributeValue instanceof EObject newEObj) {//TODO List attribute
+		}
+		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRule_InvolvedParties().getName()));
+		if (attributeValue instanceof EObject newEObj) {//TODO List attribute
+		}		
+	}
+	private void fillPermission(EObject currentEObject, Permission permission, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getPermission_Duties().getName()));
+		if (attributeValue instanceof EObject newEObj) { //TODO List attribute
+		}
+	}
+	private void fillProhibition(EObject currentEObject, Prohibition prohibition, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getProhibition_Remedies().getName()));
+		if (attributeValue instanceof EObject newEObj) { //TODO List attribute
+		}
+	}
+	private void fillDuty(EObject currentEObject, Duty duty, EObject activityElement) {
+		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getDuty_Consequences().getName()));
+		if (attributeValue instanceof EObject newEObj) { //TODO List attribute
+		}
+	}
 	
-	
+	//Maybe (for brevity) replace all occurrences of currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getX_Y().getName())) with getEObjValue(currentObject, odrlPackage.getX_Y().getName()
+	private Object getEObjValue(EObject eObject, String featureName) {
+		Object attributeValue = eObject.eGet(eObject.eClass().getEStructuralFeature(featureName));
+		return attributeValue;
+	}
 	
 	
 	///////////////////////////////

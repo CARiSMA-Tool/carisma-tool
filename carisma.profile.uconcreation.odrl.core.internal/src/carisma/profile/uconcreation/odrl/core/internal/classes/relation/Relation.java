@@ -7,4 +7,14 @@ public abstract class Relation extends ODRLClass {
 	Asset asset;
 	
 	String assetName;
+
+	public Asset getAsset() {
+		return asset;
+	}
+
+	public void setAsset(Asset asset) {
+		this.asset = asset;
+	}
+	
+	
 }
