@@ -7,7 +7,7 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.leftoperand.LeftO
 import carisma.profile.uconcreation.odrl.core.internal.classes.operator.Operator;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rightoperand.RightOperandInterface;
 
-public class Constraint extends ODRLClass implements ConstraintInterface{
+public class Constraint extends ODRLClass{
 	String uid;
 	LeftOperand leftOperand;
 	Operator operator;
@@ -158,11 +158,4 @@ public class Constraint extends ODRLClass implements ConstraintInterface{
 
 
 
-	public String toString() {
-		String returnString = this.getClass().getName();
-		returnString += System.lineSeparator()+ uid.indent(stringIndent);
-		returnString += System.lineSeparator()+ leftOperand.toString().indent(stringIndent);
-		//......
-		return returnString;
-	}
 }

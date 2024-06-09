@@ -8,6 +8,6 @@ public class TestClass {
 		Policy policy1 = new Policy();
 		Agreement policy2 = new Agreement();
 		
-		System.out.println(policy2.getOdrlAttributes());
+		//System.out.println(policy2.getOdrlAttributes());
 	}
 }

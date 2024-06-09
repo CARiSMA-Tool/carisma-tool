@@ -177,16 +177,4 @@ public class Policy extends ODRLClass{
 		ownAttributes.add("uid");
 	}
 	
-	
-	
-	
-	
-
-	
-	@Override
-	public Set<String> getOdrlAttributes() {
-		Set<String> attributes = super.getOdrlAttributes();
-		attributes.add("uid");//alternative zu ownAttributes
-		return attributes;
-	}
 }

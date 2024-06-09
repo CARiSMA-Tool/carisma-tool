@@ -1,18 +1,25 @@
 package carisma.check.policycreation;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
 
 public class TestClass {
 
 	public static void main(String[] args) {
+		
 		ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
 		System.out.println(odrlPackage.getAsset_Uid().getName());
 		System.out.println(odrlPackage.getPermission().getName());
 		
 		
+
 		
 		
 		
@@ -34,9 +41,8 @@ public class TestClass {
 		
 		
 		
-		
-		
-		/*Map<String,JSONObject> jmap = new HashMap();
+		/*
+		Map<String,JSONObject> jmap = new HashMap();
 		JSONObject jso = new JSONObject();
 		JSONObject jso2 = new JSONObject();
 		jmap.put("jso2",jso2);
@@ -50,14 +56,25 @@ public class TestClass {
 		jso.append("duplicate", jso3);
 		JSONArray topObj = new JSONArray();
 		topObj.put(jso);
-		//topObj.
-		
 		System.out.println(topObj.toString(2));
+		//topObj.
+		 */
+		 
+		
+		
 		JSONConvTest test = new JSONConvTest("");
 		String[] allowedAttributes = {"stringAttr"};
-		System.out.println(new JSONObject(test, allowedAttributes));
+		System.out.println(new JSONObject(test));
 		System.out.println();
 		System.out.println(TestClass.class.getSimpleName());
+		
+		
+		/*
+		List<String> slist = new LinkedList<String>();
+		List<List<String>> llist =  new LinkedList<List<String>>();
+		slist.add("Hi");
+		llist.add(slist);
+		System.out.println(new JSONObject(llist));
 		*/
 		
 	}
@@ -67,6 +84,7 @@ public class TestClass {
 		
 		List<List<JSONConvTest>> testClasses;
 		List<List<JSONConvTest>> testClassesEmpty;
+		List<JSONConvTest> list = new LinkedList<TestClass.JSONConvTest>();
 		
 		public JSONConvTest(String s) {
 			JSONConvTest testclass = new JSONConvTest();
@@ -100,7 +118,14 @@ public class TestClass {
 		}
 		public void setTestClassesEmpty(List<List<JSONConvTest>> testClassesEmpty) {
 			this.testClassesEmpty = testClassesEmpty;
-		}		
+		}
+		public List<JSONConvTest> getList() {
+			return list;
+		}
+		public void setList(List<JSONConvTest> list) {
+			this.list = list;
+		}
+		
 	}
 	public static class ExtensionTestClass extends JSONConvTest {
 		public String substring = "subst";

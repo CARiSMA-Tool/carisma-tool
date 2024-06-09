@@ -26,9 +26,4 @@ public abstract class Action extends ODRLClass {
 
 
 
-	public String toString() {
-		String returnString = this.getClass().getName();
-		returnString += System.lineSeparator() + refinement.toString().indent(stringIndent);
-		return returnString;
-	}
 }

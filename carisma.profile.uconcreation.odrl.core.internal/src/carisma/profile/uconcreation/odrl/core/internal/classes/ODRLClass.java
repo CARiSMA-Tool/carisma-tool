@@ -7,9 +7,7 @@ public abstract class ODRLClass {
 	public static final int stringIndent = 4;
 	protected Set<ODRLClass> referredBy;
 	
-	public Set<String> getOdrlAttributes() {
-		return new TreeSet<>();
-	};
+
 	
 	
 	//public String toString() {
