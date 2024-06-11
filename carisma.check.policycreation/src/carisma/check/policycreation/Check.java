@@ -100,6 +100,38 @@ import carisma.profile.uconcreation.odrl.common.internal.classes.function.Inform
 import carisma.profile.uconcreation.odrl.common.internal.classes.function.InformingParty;
 import carisma.profile.uconcreation.odrl.common.internal.classes.function.TrackedParty;
 import carisma.profile.uconcreation.odrl.common.internal.classes.function.TrackingParty;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.AbsoluteAssetPosition;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.AbsoluteAssetSize;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.AbsoluteSpartialAssetPosition;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.AbsoluteTemporalAssetPosition;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.AssetPercentage;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.Count;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.DateTime;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.DelayPeriod;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.DeliveryChannel;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.ElapsedTime;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.Event;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.FileFormat;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.GeospatialCoordinates;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.GeospatialNamedArea;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.IndustryContext;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.Language;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.MediaContext;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.MeteredTime;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.PaymentAmount;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.ProductContext;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.Purpose;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.Recipient;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RecurringTimeInterval;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RelativeAssetPosition;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RelativeAssetSize;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RelativeSpartialAssetPosition;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RelativeTemporalAssetPosition;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RenditionResolution;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.SystemDevice;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.UnitOfCount;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.Version;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.VirtualItCommunicationLocation;
 import carisma.profile.uconcreation.odrl.common.internal.classes.policy.Assertion;
 import carisma.profile.uconcreation.odrl.common.internal.classes.policy.Privacy;
 import carisma.profile.uconcreation.odrl.common.internal.classes.policy.Request;
@@ -785,8 +817,102 @@ public class Check implements CarismaCheckWithID {
 				//}
 			}
 			else if (enumName.equals(LeftOperand.class.getSimpleName())) {
-				//if(objectName.equals()) {
-				//}
+				if(objectName.equals("")) {//TODO absolute position seems to be missing
+					newObject = new AbsoluteAssetPosition();
+				}
+				else if(objectName.equals(LeftOperand.ABSOLUTE_SIZE.getName())) {
+					newObject = new AbsoluteAssetSize();
+				}
+				else if(objectName.equals(LeftOperand.ABSOLUTE_SPARTIAL_POSITION.getName())) {
+					newObject = new AbsoluteSpartialAssetPosition();
+				}
+				else if(objectName.equals(LeftOperand.ABSOLUTE_TEMPORAL_POSITION.getName())) {
+					newObject = new AbsoluteTemporalAssetPosition();
+				}
+				else if(objectName.equals(LeftOperand.PERCENTAGE.getName())) {
+					newObject = new AssetPercentage();
+				}
+				else if(objectName.equals(LeftOperand.COUNT.getName())) {
+					newObject = new Count();
+				}
+				else if(objectName.equals(LeftOperand.DATE_TIME.getName())) {
+					newObject = new DateTime();
+				}
+				else if(objectName.equals(LeftOperand.DELAY_PERIOD.getName())) {
+					newObject = new DelayPeriod();
+				}
+				else if(objectName.equals(LeftOperand.DELIVERY_CHANNEL.getName())) {
+					newObject = new DeliveryChannel();
+				}
+				else if(objectName.equals(LeftOperand.ELAPSED_TIME.getName())) {
+					newObject = new ElapsedTime();
+				}
+				else if(objectName.equals(LeftOperand.EVENT.getName())) {
+					newObject = new Event();
+				}
+				else if(objectName.equals(LeftOperand.FILE_FORMAT.getName())) {
+					newObject = new FileFormat();
+				}
+				else if(objectName.equals(LeftOperand.SPARTIAL_COORDINATES.getName())) {
+					newObject = new GeospatialCoordinates();
+				}
+				else if(objectName.equals(LeftOperand.SPARTIAL.getName())) {
+					newObject = new GeospatialNamedArea();
+				}
+				else if(objectName.equals(LeftOperand.INDUSTRY.getName())) {
+					newObject = new IndustryContext();
+				}
+				else if(objectName.equals(LeftOperand.LANGUAGE.getName())) {
+					newObject = new Language();
+				}
+				else if(objectName.equals(LeftOperand.MEDIA.getName())) {
+					newObject = new MediaContext();
+				}
+				else if(objectName.equals(LeftOperand.METERED_TIME.getName())) {
+					newObject = new MeteredTime();
+				}
+				else if(objectName.equals(LeftOperand.PAY_AMOUNT.getName())) {
+					newObject = new PaymentAmount();
+				}
+				else if(objectName.equals(LeftOperand.PRODUCT.getName())) {
+					newObject = new ProductContext();
+				}
+				else if(objectName.equals(LeftOperand.PURPOSE.getName())) {
+					newObject = new Purpose();
+				}
+				else if(objectName.equals(LeftOperand.RECIPIENT.getName())) {
+					newObject = new Recipient();
+				}
+				else if(objectName.equals(LeftOperand.TIME_INTERVAL.getName())) {
+					newObject = new RecurringTimeInterval();
+				}
+				else if(objectName.equals(LeftOperand.RELATIVE_POSITION.getName())) {
+					newObject = new RelativeAssetPosition();
+				}
+				else if(objectName.equals(LeftOperand.RELATIVE_SIZE.getName())) {
+					newObject = new RelativeAssetSize();
+				}
+				else if(objectName.equals(LeftOperand.RELATIVE_SPARTIAL_POSITION.getName())) {
+					newObject = new RelativeSpartialAssetPosition();
+				}
+				else if(objectName.equals(LeftOperand.RELATIVE_TEMPORAL_POSITION.getName())) {
+					newObject = new RelativeTemporalAssetPosition();
+				}
+				else if(objectName.equals(LeftOperand.RESOLUTION.getName())) {
+					newObject = new RenditionResolution();
+				}
+				else if(objectName.equals(LeftOperand.DEVICE.getName())) {
+					newObject = new SystemDevice();
+				}
+				else if(objectName.equals(LeftOperand.UNIT_OF_COUNT.getName())) {
+					newObject = new UnitOfCount();
+				}
+				else if(objectName.equals(LeftOperand.VERSION.getName())) {
+					newObject = new Version();
+				}
+				else if(objectName.equals(LeftOperand.VIRTUAL_LOCATION.getName())) {
+					newObject = new VirtualItCommunicationLocation();
+				}
 			}
 		}
 		
@@ -796,7 +922,7 @@ public class Check implements CarismaCheckWithID {
 			newObject=new Permission();			
 		}
 		else if (objectClassName.equals(odrlPackage.getProhibition().getName())) {
-			newObject=new Permission();
+			newObject=new Prohibition();
 		}
 		else if (objectClassName.equals(odrlPackage.getDuty().getName())) {
 			newObject=new Duty();
@@ -956,31 +1082,7 @@ public class Check implements CarismaCheckWithID {
 		}
 		*/
 		//Filling the generated object
-		if (newObject instanceof Asset asset) {
-			fillAsset(currentEObject, asset, activityElement);
-		}
-		if (newObject instanceof AssetCollection assetCollection) {
-			fillAssetCollection(currentEObject, assetCollection, activityElement);
-		}
-		if (newObject instanceof Constraint constraint) {
-			fillConstraint(currentEObject, constraint, activityElement);
-		}
-		if (newObject instanceof  Failure failure) {
-			fillFailure(currentEObject, failure, activityElement);
-		}
-		if (newObject instanceof  Function function) {
-			fillFunction(currentEObject, function, activityElement);
-		}
-		//TODO add rest
-		if (newObject instanceof  LogicalConstraint logCon) {
-			fillLogicalConstraint(currentEObject, logCon, activityElement);
-		}
-		if (newObject instanceof  Policy policy) {
-			fillPolicy(currentEObject, policy, activityElement);
-		}
-		if (newObject instanceof  Rule rule) {
-			fillRule(currentEObject, rule, activityElement);
-		}
+		fill(currentEObject, newObject, activityElement);
 		
 		
 		
@@ -1027,6 +1129,57 @@ public class Check implements CarismaCheckWithID {
 	
 	
 	//Filling-Methods for assets
+	private void fill(EObject currentEObject, Object toBeFilled, EObject activityElement) {
+		if (toBeFilled instanceof Asset asset) {
+			fillAsset(currentEObject, asset, activityElement);
+		}
+		if (toBeFilled instanceof AssetCollection assetCollection) {
+			fillAssetCollection(currentEObject, assetCollection, activityElement);
+		}
+		if (toBeFilled instanceof Constraint constraint) {
+			fillConstraint(currentEObject, constraint, activityElement);
+		}
+		if (toBeFilled instanceof  LogicalConstraint logCon) {
+			fillLogicalConstraint(currentEObject, logCon, activityElement);
+		}
+		if (toBeFilled instanceof  Failure failure) {
+			fillFailure(currentEObject, failure, activityElement);
+		}
+		if (toBeFilled instanceof  Function function) {
+			fillFunction(currentEObject, function, activityElement);
+		}
+//		if (toBeFilled instanceof  Operand operand) {//Currently empty as Contents need to be filled in the LogicalConstrain-fill-method
+//			fillOperand(currentEObject, operand, activityElement);
+//		}
+		if (toBeFilled instanceof  Party party) {
+			fillParty(currentEObject, party, activityElement);
+		}
+		if (toBeFilled instanceof  PartyCollection partyCollection) {
+			fillPartyCollection(currentEObject, partyCollection, activityElement);
+		}
+		if (toBeFilled instanceof  Policy policy) {
+			fillPolicy(currentEObject, policy, activityElement);
+		}
+		if (toBeFilled instanceof  Relation relation) {
+			fillRelation(currentEObject, relation, activityElement);
+		}
+//		if (toBeFilled instanceof  RightOperand rightOperand) {//TODO add RightOperand-Fillers once the structure of them is set
+//		}
+		//Rules
+		if (toBeFilled instanceof  Duty duty) {
+			fillDuty(currentEObject, duty, activityElement);
+		}
+		if (toBeFilled instanceof  Permission permission) {
+			fillPermission(currentEObject, permission, activityElement);
+		}
+		if (toBeFilled instanceof  Prohibition prohibition) {
+			fillProhibition(currentEObject, prohibition, activityElement);
+		}
+		if (toBeFilled instanceof  Rule rule) {
+			fillRule(currentEObject, rule, activityElement);
+		}
+	}
+	
 	private void fillAsset(EObject currentEObject, Asset asset, EObject activityElement) {
 		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getAsset_Uid().getName()));
 		if (attributeValue instanceof String stringValue) {
@@ -1095,7 +1248,6 @@ public class Check implements CarismaCheckWithID {
 		}
 	}
 	private void fillLogicalConstraint(EObject currentEObject, LogicalConstraint logicalConstraint, EObject activityElement) {
-		System.out.println("in filllogicalconstraint");
 		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_LogicalOperator().getName()));
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = addElement(newEObj, logicalConstraint, activityElement);
@@ -1112,7 +1264,6 @@ public class Check implements CarismaCheckWithID {
 		}
 		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_Uid().getName()));
 		if (attributeValue instanceof String stringValue) {
-			System.out.println("set logicalConstraint uid to " + stringValue);
 			logicalConstraint.setUid(stringValue);
 		}
 	}
@@ -1140,7 +1291,7 @@ public class Check implements CarismaCheckWithID {
 		if (attributeValue instanceof EObject newEObj) {//TODO List attribute
 		}
 	}
-	//Filling-Methods for Operators (TODO only maybe add (as the methods would be empty))
+	//Filling-Methods for Operators (TODO only maybe add (as the methods would be empty)) (Filling needs to come from the owning LogicalConstraint currently as it owns the Constraint list)
 	//Filling-Methods for Parties
 	private void fillParty(EObject currentEObject, Party party, EObject activityElement) {
 		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getParty_Uid().getName()));
@@ -1192,6 +1343,7 @@ public class Check implements CarismaCheckWithID {
 		}
 	}
 	//Filling-Methods for RightOperands TODO deal with once the different RightOperandInterface-implementers are finished	
+	
 	//Filling-methods for rules
 	private void fillRule(EObject currentEObject, Rule rule, EObject activityElement) {
 		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRule_Action().getName()));
@@ -1212,13 +1364,9 @@ public class Check implements CarismaCheckWithID {
 		if (attributeValue instanceof EObject newEObj) {//TODO List attribute
 		}
 		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstrainableElement_Constraint().getName()));
-		System.out.println("attributeValue of const in rule: " + attributeValue);//TODO-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		if (attributeValue instanceof EObject newEObj) {//TODO get constraint
-			System.out.println("before the constraint in " + rule);
 			Object attributeValueOdrl = addElement(newEObj, rule, activityElement);
-			System.out.println("odrl attribute value "+ attributeValueOdrl);
 			if (attributeValueOdrl instanceof ConstraintInterface constraintInterface) {
-				System.out.println("there's a constraint in rule " + rule);
 				//if (attributeValueOdrl instanceof List constraintList) {TODO add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
 				//	rule.getConstraint().
 				//}
@@ -1246,8 +1394,8 @@ public class Check implements CarismaCheckWithID {
 	
 	//Maybe (for brevity) replace all occurrences of currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getX_Y().getName())) with getEObjValue(currentObject, odrlPackage.getX_Y().getName()
 	private Object getEObjValue(EObject eObject, String featureName) {
-		Object attributeValue = eObject.eGet(eObject.eClass().getEStructuralFeature(featureName));
-		return attributeValue;
+		EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
+		return feature==null ? null : eObject.eGet(eObject.eClass().getEStructuralFeature(featureName));
 	}
 	
 	
