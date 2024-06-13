@@ -147,6 +147,7 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.Prohibit
 import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.VoidPolicy;
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.Constraint;
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintInterface;
+import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintList;
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.LogicalConstraint;
 import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Failure;
 import carisma.profile.uconcreation.odrl.core.internal.classes.function.Assignee;
@@ -157,6 +158,18 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.operand.AndSequen
 import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Operand;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Or;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Xone;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.EqualTo;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.GreaterEq;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.GreaterThan;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.HasPart;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.IsA;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.IsAllOf;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.IsAnyOf;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.IsNoneOf;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.IsPartOf;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.LessThan;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.LessThanEq;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.NotEqualTo;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operator.Operator;
 import carisma.profile.uconcreation.odrl.core.internal.classes.party.Party;
 import carisma.profile.uconcreation.odrl.core.internal.classes.party.PartyCollection;
@@ -184,15 +197,16 @@ public class Check implements CarismaCheckWithID {
 	
 //--------------
 	AnalysisHost host;
-	Map<EObject,ExtendedJSONObject> referencingList = new HashMap<EObject, ExtendedJSONObject>(); //Would have been used if JSON was used for internal representation
-	Map<EObject,ODRLClass> referencingList2 = new HashMap<EObject, ODRLClass>();
-	Map<String,Collection<ExtendedJSONObject>> typeBuckets = new HashMap<String,Collection<ExtendedJSONObject>>();
-	ExtendedJSONObject root;
+
+	Map<EObject,ODRLClass> referencingList2 = new HashMap<>();
+	Map<String,Collection<ODRLClass>> typeBuckets = new HashMap<String,Collection<ODRLClass>>();//TODO Not used anymore
+	ODRLClass root;
 	Package usedPackage;
 	//Map<JSONObject>
-	final String type = "@type";
-	final String nullString = "Null";
-	final String profileName = "ODRLCommonVocabulary";
+	final static String typeString = "@type";
+	final static String nullString = "Null";
+	//possibly add emptyString-Variable since empty strings are treated as Null-Strings
+	final static String profileName = "ODRLCommonVocabulary";
 	ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
 
 	//TODO remove
@@ -209,59 +223,57 @@ public class Check implements CarismaCheckWithID {
 			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
 			return false;
 		}
-		for (EObject content : currentModel.getContents()) {
-			System.out.println("Model content:" + content);
-		}
+//		for (EObject content : currentModel.getContents()) {
+//			System.out.println("Model content:" + content);
+//		}
 
-		if (currentModel.getContents().get(0) instanceof Package) {
-			
-			Package model = (Package) currentModel.getContents().get(0);
+		if (currentModel.getContents().get(0) instanceof Package model) {
 			
 			
 			//
-			usedPackage = model;
-			for (Stereotype s : usedPackage.getAppliedProfile(profileName).getOwnedStereotypes())
-			System.out.println("-----------------Owned Stereotype: " + s);
-			for (NamedElement ne : usedPackage.getAppliedProfile(profileName).getOwnedMembers())
-				System.out.println("-------|||--------Named Element: " + ne + " --------||||------- " + ne.eClass());
+//			usedPackage = model;
+//			for (Stereotype s : usedPackage.getAppliedProfile(profileName).getOwnedStereotypes())
+//			System.out.println("-----------------Owned Stereotype: " + s);
+//			for (NamedElement ne : usedPackage.getAppliedProfile(profileName).getOwnedMembers())
+//				System.out.println("-------|||--------Named Element: " + ne + " --------||||------- " + ne.eClass());
 			//
 			
 			//
-			for (Element e : model.allOwnedElements()) {
-				System.out.println("Owned Element: " + e);
-				
-				for (Stereotype st : e.getAppliedStereotypes()) {
-					System.out.println("Stereotype: "+st);
-					if (st.getName().equals("ODRL-Policy")) {
-					}
-					if (st.getQualifiedName().equals(profileName + "::Permission")) {
-						if (e.getValue(st, "refinement") instanceof EObject) {
-							EObject datatype = (EObject) e.getValue(st, "refinement");
-							System.out.println("           -------------             "+ datatype);
-							
-							for (EStructuralFeature f : datatype.eClass().getEAllStructuralFeatures()) {
-								System.out.println(f);
-								System.out.println(datatype.eGet(f));
-								System.out.println(datatype.eGet(f).getClass());
-						}
-							System.out.println("-|-|-|-<");
-						}
-					}
-				}
-			}
-			for (NamedElement ne : model.getMembers())
-				System.out.println(ne.getName() + "      " + ne);
+//			for (Element e : model.allOwnedElements()) {
+//				System.out.println("Owned Element: " + e);
+//				
+//				for (Stereotype st : e.getAppliedStereotypes()) {
+//					System.out.println("Stereotype: "+st);
+//					if (st.getName().equals("ODRL-Policy")) {
+//					}
+//					if (st.getQualifiedName().equals(profileName + "::Permission")) {
+//						if (e.getValue(st, "refinement") instanceof EObject) {
+//							EObject datatype = (EObject) e.getValue(st, "refinement");
+//							System.out.println("           -------------             "+ datatype);
+//							
+//							for (EStructuralFeature f : datatype.eClass().getEAllStructuralFeatures()) {
+//								System.out.println(f);
+//								Object value = datatype.eGet(f);
+//								if (value != null) {
+//								System.out.println(datatype.eGet(f));
+//								System.out.println(datatype.eGet(f).getClass());
+//								}
+//						}
+//							System.out.println("-|-|-|-<");
+//						}
+//					}
+//				}
+//			}
+//			for (NamedElement ne : model.getMembers()) {
+//				System.out.println(ne.getName() + "      " + ne);
+//			}
 
-			
+			//Convert the UML-Model to the Java-Class-Model used here
 			structureModel(model);
-			
-			 //System.out.println("Empty?:"+UMLHelper.getAllElementsOfType(model.getModel(), ActivityPartition.class).isEmpty());
 			//
-			//------TODO remove
+
 			printContent(model, "");
-			for ( Stereotype e : UMLHelper.getAllElementsOfType(model, Stereotype.class)) {
-				host.appendLineToReport("---------------------------------||||||||||||||||||------------" + e.toString());
-			}
+
 			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "number of elements counted: "+numOfElements));
 			return true;
 			//------
@@ -294,327 +306,47 @@ public class Check implements CarismaCheckWithID {
 	
 	private void structureModel(Package inputModel) {
 		Collection<Element> modelContents = inputModel.allOwnedElements();
-		//Collection<Element> relevantElements = new LinkedList<Element>();
-		List<ODRLClass> generatedClasses = new LinkedList<ODRLClass>();
 		for (Element e : modelContents) {
-			/*
-			
-			for (EObject ele: e.getStereotypeApplications()) {
-				System.out.println("there's a stereotypeApplication of: " + ele);
-				for (EStructuralFeature esf1 : ele.eClass().getEAllStructuralFeatures()) {//alternativ geteallattributes
-					System.out.println("With EStructuralfeature:" + esf1.getName() + ": " + ele.eGet(esf1) + " of class " + (ele.eGet(esf1) != null ? ele.eGet(esf1).getClass() : "Null") + " equaling ActivityNode? " + (ele.eGet(esf1) instanceof ActivityNode));
-					System.out.println("With EStructuralfeature:" + esf1.getName() + ": " + ele.eGet(esf1) + " of class " + esf1.getEType() + " equaling ActivityNode? " + (esf1.getEType() instanceof ActivityNode)); //klappt nicht
-				}
-				for (EStructuralFeature esf1 : ele.eClass().getEAllAttributes()) {////////
-					System.out.println("With EAttributes: " + esf1.getName() + ": " + ele.eGet(esf1));
-				}
-				for (EObject eobj : ele.eContents()) {
-					System.out.println("Contained EObject: "+ eobj);
-				}
-				
-			}
-			
-			
-			*/
-			
-			
 			for (Stereotype s : e.getAppliedStereotypes()) {
-				if (s.getProfile().getQualifiedName().equals(profileName)) { //propably replace qualified name comparison by an more unique identifier
+				if (s.getProfile().getQualifiedName().equals(profileName)) { //probably replace qualified name comparison by an more unique identifier
 					Object odrlC = (addElement(e.getStereotypeApplication(s), null, e));
 					
 					if (odrlC != null) {
-						System.out.println(odrlC);
-						System.out.println(new JSONObject(odrlC));
+						System.out.println("Created ODRLObject: " + odrlC);
+						System.out.println(new JSONObject(odrlC).toString(4));
 					}
 					else {
-						System.out.println("Null");
-					}
-					System.out.println();
-					//processStereotype_create(e.getStereotypeApplication(s));
-				}
-				
-			}
-		}
-		/*
-		for (ODRLClass oc : generatedClasses) {
-			System.out.println(oc);
-			System.out.println(new JSONObject(oc));
-			System.out.println();
-		}
-		*/
-		
-		
-		
-	
-	}
-	
-	private void processStereotype_create(EObject stereoAppl) {
-		ExtendedJSONObject currentObject = new ExtendedJSONObject();
-		/*
-		System.out.println("Stereotype name: "+(stereotype.getName()));
-		System.out.println("Stereotype qualified name: "+(stereotype.getQualifiedName()));
-		System.out.println("Stereotype is instance of ODRL-Policy: "+(stereotype.getClass()));
-		*/
-		//Collection<ExtendedJSONObject> containedObjects = new LinkedList<ExtendedJSONObject>();
-		
-		String stereotypeName = stereoAppl.eClass().getName();
-		
-		currentObject.put(type,stereotypeName);
-		addToType(currentObject, stereotypeName);//propably chose a more unique id. qualifiedName?
-		if (!referencingList.containsKey(stereoAppl)) {
-			referencingList.put(stereoAppl,currentObject);
-			System.out.println("now checking for subobjects of " + stereoAppl);
-			addSubObjects_create(stereoAppl, currentObject);
-		}
-		
-		
-		System.out.println(currentObject.toString(3));
-		
-		
-		System.out.println("All Trees:");
-		for (ExtendedJSONObject eJO: referencingList.values())
-			System.out.println(eJO.toString(5));
-	}
-	
-	public void addSubObjects_create(EObject currentElementUML, ExtendedJSONObject currentElementJSON) {
-		
-		System.out.println("Eclass: " + currentElementUML.eClass() + " instance of Element?: " + (currentElementUML instanceof Element) + "  " + (Element.class.isInstance(currentElementJSON)));
-		//for ()
-		
-		
-		for (EStructuralFeature feature : currentElementUML.eClass().getEAllStructuralFeatures()) {			
-			Object featureValue = currentElementUML.eGet(feature);
-			/*if (featureValue instanceof EObject) {
-				Element profileElement = usedPackage.getAppliedProfile(profileName).getOwnedMember(((EObject)featureValue).eClass().getName());
-				if (profileElement instanceof Stereotype || featureValue instanceof ActivityNode) {
-					continue;
-				}
-			}*/
-			System.out.println("FeatureValue of " + feature.getName() + " in addSubObjects: " + featureValue + "  |||  Feature: " + feature + "   |||   Feature.getClass()" + feature.getClass() + " |||  Feature.eClass(): " + feature.eClass() + " ||| Feature.getEType(): " + feature.getEType());
-			System.out.println((feature.getEType() instanceof EEnum) + "    " + (feature.getEType() instanceof EDataType) + "     " + (feature.getEType() instanceof EClassImpl));	
-			//EEnum, EDatatype, EClassImpl, value auf Element prüfen
-			addInFirstStep2(currentElementUML, feature, currentElementJSON);
-				
-			
-			/*
-			System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-			System.out.println("Now checking type of property " + feature.getName());
-			System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-			System.out.println(featureValue==null ? "Null" : "FeatureValue: " + featureValue.toString() +"  FeatureValueType: " + featureValue.getClass() + "   FeatureType: " + feature.getEType() + "    Feature: " + feature);
-			System.out.println("Instance of Element:  FeatureValue: " + (featureValue instanceof Element) + " " + Element.class.isInstance(featureValue));
-			System.out.println("instance of ActivityNode:" + (featureValue instanceof ActivityNode) + ",   instance of Stereotype: " + (featureValue instanceof Stereotype));
-			if (!(featureValue instanceof ActivityNode) && !(featureValue instanceof Stereotype)) {
-				if (featureValue instanceof List) {
-					//create method to iteratively check whether an Object is a list containing Stereotypes or ActivityNodes at some depth and use it as boolean in the first instanceof--if-clause
-					if (!((List) featureValue).isEmpty()) {
-					}
-				}
-				//
-				//if (featureValue instanceof EObject && !(feature.getName().contains("base_"))) {
-				//addSubObjects(((EObject)featureValue), currentElementJSON);
-				//}
-				//
-				System.out.println("Non-Node and Non-Stereotype. Value: " + currentElementUML.eGet(feature) + " of class " + (currentElementUML.eGet(feature) != null ? currentElementUML.eGet(feature).getClass() : "Null"));
-				//if (featureValue instanceof simp)
-				//ExtendedJSONObject newObject;
-			}*/
-		}
-		
-		/*
-		for (EStructuralFeature feature : currentElementUML.eClass().getEAllStructuralFeatures()) {
-			Object featureValue = currentElementUML.eGet(feature);
-			System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-			System.out.println("Now checking type of property " + feature.getName());
-			System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-			System.out.println(featureValue==null ? "Null" : "FeatureValue: " + featureValue.toString() +"  FeatureValueType: " + featureValue.getClass() + "   FeatureType: " + feature.getEType() + "    Feature: " + feature);
-			System.out.println("Instance of Element:  FeatureValue: " + (featureValue instanceof Element) + " " + Element.class.isInstance(featureValue));
-			System.out.println("instance of ActivityNode:" + (featureValue instanceof ActivityNode) + ",   instance of Stereotype: " + (featureValue instanceof Stereotype));
-			if (!(featureValue instanceof ActivityNode) && !(featureValue instanceof Stereotype)) {
-				if (featureValue instanceof List) {
-					//create method to iteratively check whether an Object is a list containing Stereotypes or ActivityNodes at some depth and use it as boolean in the first instanceof--if-clause
-					if (!((List) featureValue).isEmpty()) {
-						if (((List) featureValue).get(0) instanceof EObject) {
-							EObject testeobj = (EObject) ((List) featureValue).get(0);
-							
-							System.out.println(testeobj.getClass() + "     " + testeobj.eClass() + "        " + testeobj.eClass().eClass());
-							System.out.println("------------------");
-							for (EStructuralFeature esf : testeobj.eClass().getEAllStructuralFeatures()) {
-								System.out.println(esf.getName() + ": " + esf + ",    Value: " + testeobj.eGet(esf));	
-								if(esf instanceof EReference)
-									System.out.println("EreferenceType: " + ((EReference) esf).getEReferenceType());
-								if (esf instanceof EAttribute)
-									System.out.println("EAttributeType: " + ((EAttribute) esf).getEAttributeType());
-							}
-							
-							System.out.println("----------------");
-							for (EObject eobje : testeobj.eCrossReferences()) {
-								System.out.println(eobje + ",          eClass: " + eobje.eClass() + ",    Class: " + eobje.getClass());
-							}
-							System.out.println("----------------");
-							System.out.println(testeobj);//add emptyCheck
-
-							
+						System.out.println("Null: " + e.getStereotypeApplication(s));
+						for (EStructuralFeature esf : e.getStereotypeApplication(s).eClass().getEStructuralFeatures()) {
+							System.out.println("ESF: " + esf);
 						}
 					}
-				}
-				//
-				//if (featureValue instanceof EObject && !(feature.getName().contains("base_"))) {
-				//addSubObjects(((EObject)featureValue), currentElementJSON);
-				//}
-				//
-				System.out.println("Non-Node and Non-Stereotype. Value: " + currentElementUML.eGet(feature) + " of class " + (currentElementUML.eGet(feature) != null ? currentElementUML.eGet(feature).getClass() : "Null"));
-				//if (featureValue instanceof simp)
-				//ExtendedJSONObject newObject;
+					System.out.println();
+				}			
 			}
-		}*/
+		}
 	}
+		
+		
+		
 	
-	public boolean addInFirstStep2(EObject currentTop, EStructuralFeature feature, ExtendedJSONObject jObject) {
-		if (currentTop.eGet(feature) == null)
-			return false;
-		//Keeps out the base_Element-attributes of the stereotypes
-		if (currentTop.eGet(feature) instanceof ActivityContent || currentTop.eGet(feature) instanceof Activity)
-			return false;
-		if (currentTop.eGet(feature) instanceof List list) {
-			JSONArray addedJson = new JSONArray();
-			boolean empty = true;
-			
-			for (Object listObject : list) {
-				 if (addInFirstStep2(listObject, addedJson))
-					 empty = false;
-			}
-			if (!empty) {
-				jObject.put(feature.getName(), addedJson);
-			}	
-			return !empty;
-		}
-		else if (feature.getEType() instanceof EEnum) {
-			System.out.println("EEnum value: " + currentTop.eGet(feature) + "       Class:" + currentTop.eGet(feature).getClass());
-			ExtendedJSONObject addedJson = new ExtendedJSONObject();
-			addedJson.put(type, currentTop.eGet(feature).toString());
-			jObject.put(feature.getName(), addedJson);
-			return true;
-		}
-		else if (feature.getEType() instanceof EDataType) {
-			System.out.println("value instance of EDataType in 1: " + feature + "    Etype: " + feature.getEType() + "     Value: " + currentTop.eGet(feature)  + ",      Null?: " + currentTop.eGet(feature)==null);
-			if (feature.getEType().getName().equals("String")) {
-				jObject.put(feature.getName(), currentTop.eGet(feature).toString());
-			}
-		} else if (feature instanceof EReference) {
-					ExtendedJSONObject addedJson = new ExtendedJSONObject();
-					if (currentTop.eGet(feature) instanceof EObject) {
-						EObject currentValueEO = (EObject) currentTop.eGet(feature);
-						//Referenced Element not already processed
-						if (referencingList.get(currentValueEO)==null) {
-							addedJson.put(type, feature.getEType().getName());
-							referencingList.put(currentValueEO, addedJson);
-							for (EStructuralFeature newFeature : ((EObject)(currentTop.eGet(feature))).eClass().getEAllStructuralFeatures() )
-								addInFirstStep2(currentValueEO,newFeature, addedJson);
-						} else {//Referenced Element already processed
-							addedJson = referencingList.get(currentTop.eGet(feature));
-					}
-					jObject.put(feature.getName(), addedJson);
-					return true;
-				
-					
-			}
-		}
-		return false;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	public boolean addInFirstStep2(Object value, JSONArray jArray) {
-		System.out.println("Processing " + value);
-			
-		if (value == null) {
-			System.out.println("null");
-			return false;
-		}
-		//Keeps out the base_Element-attributes of the stereotypes
-		if (value instanceof ActivityContent || value instanceof Activity) {
-			return false;
-		}
-		/*
-		 * Not needed with the current Model
-		if (value instanceof Collection) {
-			JSONArray addedJson = new JSONArray();
-			boolean empty = true;
-			//TODO: nested List
-			
-			for (Object listObject : (Collection) currentTop.eGet(feature)) {
-				 //if (addInFirstStep(listObject, addedJson))
-					 empty = false;
-			}
-			if (!empty) {
-				jObject.put(feature.getName(), addedJson);
-			}			
-			return !empty;
-		}
-		else*/
-		if (value instanceof EEnum) {
-			System.out.println(0);
-			ExtendedJSONObject addedJson = new ExtendedJSONObject();
-			addedJson.put(type, value.toString());
-			jArray.put(addedJson);
-			return true;
-		}
-		else if (value instanceof EDataType) {
-			System.out.println("value instance of EDataType in 2: " + value);
-			if (((EDataType) value).getName().equals("String")) {
-				jArray.put(value.toString());
-				return true;
-			}
-		} else if (value instanceof EObject) {
-			EObject valueEOb = (EObject) value;	
-			ExtendedJSONObject addedJson = new ExtendedJSONObject();
-			//Referenced Element not already processed
-			if (referencingList.get(valueEOb)==null) {
-				addedJson.put(type, valueEOb.eClass().getName());
-				referencingList.put(valueEOb, addedJson);
-				for (EStructuralFeature newFeature : (valueEOb).eClass().getEAllStructuralFeatures() )
-					addInFirstStep2(valueEOb,newFeature, addedJson);
-			} else {//Referenced Element already processed
-				addedJson = referencingList.get(valueEOb);
-			}		
-				
-				jArray.put(addedJson);
-				return true;	
-		}
-		return false;
-	}
-	
-	
-	
-	
-	private void addToType(ExtendedJSONObject typedElement, String type) {
-		if (!typeBuckets.containsKey(type)) {
-			typeBuckets.put(type, new HashSet<ExtendedJSONObject>());
-		}
-		typeBuckets.get(type).add(typedElement);	
-	}
-	
-
 	
 	
 	///////////////////////////////
 	private Object addElement(EObject currentEObject, ODRLClass odrlParent, EObject activityElement) {//TODO modify the names if the eCore naming derives form the names in generated code
 		if (referencingList2.get(currentEObject)!= null) {//TODO either add parent to parents-Attribute here (and before the other return-statement) or in the method processing the return value (if that's where it's decided whether it's actually added (for example in case it would, but must not ovewrite a value of the parent))
+			System.out.println("already generated: " + currentEObject);
 			return referencingList2.get(currentEObject);
 		}
 		String objectClassName = currentEObject.eClass().getName();
 		Object newObject = null;
 		EClass autoGenClass = null;
 		EStructuralFeature classFeature = null;
-		if (currentEObject instanceof EEnumLiteral eEnumLiteralObject) {//Classes without content in the UML-Profile (may have content as ODRLClass)
+		//Vorgehen: Erst Erstellung des jeweiligen Objekts mit den einzelnen Klassen, am Ende dann auf Basis von Vererbung die Attribute füllen (z.B. if instanceof Rule: currentObject.adduid( eObject.getFeature(Rule.getUID().getName()) )
+		if (currentEObject instanceof EEnumLiteral eEnumLiteralObject) {//Enums: Classes without content in the UML-Profile (may have content as ODRLClass)
 			String enumName =  eEnumLiteralObject .getEEnum().getName();
 			String objectName = currentEObject.toString();		
-			if (enumName.equals(ConflictStrategy.class.getSimpleName())){//try to get names (also attribute names (but getting fields by attribute (not String) seems not supported in java) from the genmodel-code to minimize the risk of spelling mistakes
+			if (enumName.equals(ConflictStrategy.class.getSimpleName())){//try to get names of the UML-model-elements (also for attributes) from the genmodel-generated-code to minimize the risk of spelling mistakes
 				if (objectName.equals(ConflictStrategy.PERMIT.getName())) {
 					newObject = new Permit();
 				}
@@ -792,7 +524,6 @@ public class Check implements CarismaCheckWithID {
 					newObject = new Watermark();
 				}
 			}
-			
 			else if (enumName.equals(LogicalOperator.class.getSimpleName())) {
 				if (objectName.equals(LogicalOperator.AND.getName())) {
 					newObject = new And();
@@ -806,18 +537,48 @@ public class Check implements CarismaCheckWithID {
 				else if (objectName.equals(LogicalOperator.XONE.getName())) {
 					newObject = new Xone();
 				}
-				else if (objectName.equals(LogicalOperator.NULL.getName())) {//LogicalConstraint only used as wrapper for the constraint as using a common supertype to make both eligible as value does not work with papyrus 
-					//newObject = new Constraint();
-					if (currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_Constraints().getName()) instanceof List constraintList)
-						return addElement(constraintList, odrlParent, activityElement, Constraint.class);//TODO watch out in with doubled parent-assignment. Propably add boolean variable that is consulted at the end before parents are added and set false here
-				}//return here as otherwise it fills the constraint from the LogicalConstraint-EObject at the end of the method
+				//The Null-Case and its special implications (Constraint instead of LogicalConstraint) are handled in the LogicalConstraint-case of this method
 			}
 			else if (enumName.equals(ConstraintOperator.class.getSimpleName())) {
-				//if(objectName.equals()) {
-				//}
+				if(objectName.equals(ConstraintOperator.EQ.getName())) {
+					newObject = new EqualTo();
+				}
+				else if(objectName.equals(ConstraintOperator.GTEQ.getName())) {
+					newObject = new GreaterEq();
+				}
+				else if(objectName.equals(ConstraintOperator.GT.getName())) {
+					newObject = new GreaterThan();
+				}
+				else if(objectName.equals(ConstraintOperator.HAS_PART.getName())) {
+					newObject = new HasPart();
+				}
+				else if(objectName.equals(ConstraintOperator.IS_A.getName())) {
+					newObject = new IsA();
+				}
+				else if(objectName.equals(ConstraintOperator.IS_ALL_OF.getName())) {
+					newObject = new IsAllOf();
+				}
+				else if(objectName.equals(ConstraintOperator.IS_ANY_OF.getName())) {
+					newObject = new IsAnyOf();
+				}
+				else if(objectName.equals(ConstraintOperator.IS_NONE_OF.getName())) {
+					newObject = new IsNoneOf();
+				}
+				else if(objectName.equals(ConstraintOperator.IS_PART_OF.getName())) {
+					newObject = new IsPartOf();
+				}
+				else if(objectName.equals(ConstraintOperator.LT.getName())) {
+					newObject = new LessThan();
+				}
+				else if(objectName.equals(ConstraintOperator.LTEQ.getName())) {
+					newObject = new LessThanEq();
+				}
+				else if(objectName.equals(ConstraintOperator.NEQ.getName())) {
+					newObject = new NotEqualTo();
+				}
 			}
 			else if (enumName.equals(LeftOperand.class.getSimpleName())) {
-				if(objectName.equals("")) {//TODO absolute position seems to be missing
+				if(objectName.equals("")) {//TODO absolute position seems to be missing in UMl-Model
 					newObject = new AbsoluteAssetPosition();
 				}
 				else if(objectName.equals(LeftOperand.ABSOLUTE_SIZE.getName())) {
@@ -915,18 +676,6 @@ public class Check implements CarismaCheckWithID {
 				}
 			}
 		}
-		
-		//Rules
-		else if (objectClassName.equals(odrlPackage.getPermission().getName())) {//Erst Erstellung des jeweiligen Objekts mit den einzelnen Klassen, am Ende dann auf Basis von Vererbung die Attribute füllen (z.B. if instanceof Rule: currentObject.adduid( eObject.getFeature(Rule.getUID().getName()) )
-			autoGenClass = odrlPackage.getPermission();//?
-			newObject=new Permission();			
-		}
-		else if (objectClassName.equals(odrlPackage.getProhibition().getName())) {
-			newObject=new Prohibition();
-		}
-		else if (objectClassName.equals(odrlPackage.getDuty().getName())) {
-			newObject=new Duty();
-		}
 		//Policy (type enum-attribute-determined)
 		else if (objectClassName.equals(odrlPackage.getODRLPolicy().getName())) {
 			classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_PolicyType().getName());
@@ -952,7 +701,7 @@ public class Check implements CarismaCheckWithID {
 				else if (classEnum.getName().equals(PolicyType.TICKET.getName())) {
 					newObject = new Ticket();
 				}
-				else {//Default case, no type-information (is interpreted as Set-Policy by evaluators)
+				else  if (classEnum.getName().equals(PolicyType.NULL.getName())) {//No type-information (is interpreted as Set-Policy by evaluators)
 					newObject = new Policy();
 				}
 			}
@@ -1015,80 +764,59 @@ public class Check implements CarismaCheckWithID {
 				}
 			}
 		}
+		//Rules
+		else if (objectClassName.equals(odrlPackage.getPermission().getName())) {
+			newObject=new Permission();			
+		}
+		else if (objectClassName.equals(odrlPackage.getProhibition().getName())) {
+			newObject=new Prohibition();
+		}
+		else if (objectClassName.equals(odrlPackage.getDuty().getName())) {
+			newObject=new Duty();
+		}
 		//LogicalConstraint
 		else if (objectClassName.equals(odrlPackage.getLogicalConstraint().getName())) {
-			newObject=new LogicalConstraint();
+			classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_LogicalOperator().getName());
+			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
+				if (classEnum.toString().equals(LogicalOperator.NULL.getName())) {//Operator Null: LogicalConstraint only used as wrapper for the constraint without added information (using a common super-datatype to make both eligible as value does not work with papyrus)
+					if (getValue(currentEObject, odrlPackage.getLogicalConstraint_Constraints().getName()) instanceof List constraintList) {
+						List<Constraint> constraints = new ConstraintList();
+						constraints.addAll(addElement(constraintList, odrlParent, activityElement, Constraint.class));
+						return constraints;//TODO watch out in with doubled parent-assignment.
+					}//may need to be returned directly and not just assigned so that the fill-method is not called twice (in this method at the end and in the one called with the constraintList). Alternatively: alreadyProcessed-Boolean or something like that, that prevents adding parents and calling the fill()-method (should not prevent adding to the referenceList (as the called methods add with another key))
+				} else {
+					newObject=new LogicalConstraint();
+				}
+			}
 		}
 		//Constraint
 		else if (objectClassName.equals(odrlPackage.getConstraint().getName())) {
 			newObject=new Constraint();
 		}
-		
-		
-		/*
-		//LogicalOperators (type enum-attribute-determined) //Change approach: combine elements in fillLogicalConstraint
-		else if (objectClassName.equals(odrlPackage.getLogicalConstraint().getName())) {
-			classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_LogicalOperator().getName());		
-			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
-				System.out.println("Logical operator creation with  " + classEnum.getName());
-				if (classEnum.getName().equals(LogicalOperator.AND.getName())) {
-					newObject = new And();
-				}
-				else if (classEnum.getName().equals(LogicalOperator.AND_SEQUENCE.getName())) {
-					newObject = new AndSequence();
-				}
-				else if (classEnum.getName().equals(LogicalOperator.OR.getName())) {
-					newObject = new Or();
-				}
-				else if (classEnum.getName().equals(LogicalOperator.XONE.getName())) {
-					newObject = new Xone();
-				}
-				else if (classEnum.getName().equals(LogicalOperator.NULL.getName())) {//LogicalConstraint only used as wrapper for the constraint as using a common supertype to make both eligible as value does not work with papyrus 
-					//newObject = new Constraint();
-					if (currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_Constraints().getName()) instanceof List constraintList)
-					return addElement(constraintList, odrlParent, activityElement, Constraint.class);//TODO watch out in with doubled parent-assignment. Propably add boolean variable that is consulted at the end before parents are added and set false here
-				}//return here as otherwise it fills the constraint from the LogicalConstraint-EObject at the end of the method
-			}
+		//Asset
+		else if (objectClassName.equals(odrlPackage.getAsset().getName())) {
+			newObject=new Asset();			
 		}
-		*/
-		
-		/*
-		//
-		//Fill attributes of generated classes
-		//
-		if (newOdrlObject instanceof Policy newPolicy) {
-			//conflict
-			Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_ConflictStrategy().getName()));
-			if (attributeValue instanceof EObject newEObj) {
-				ODRLClass attributeValueOdrl = addElement(newEObj, newOdrlObject);
-				if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.conflict.ConflictStrategy conflictValue) {
-					newPolicy.setConflictStrategy(conflictValue);
-				}
-			}
-			//
-			attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_InheritsFrom().getName()));
-			if (attributeValue instanceof EObject newEObj) {//TODO String List attribute				
-			}
-			attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_Profiles().getName()));
-			if (attributeValue instanceof EObject newEObj) {//TODO String List attribute
-			}
-			attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_Uid().getName()));
-			if (attributeValue instanceof EObject newEObj) {
-				ODRLClass attributeValueOdrl = addElement(newEObj, newOdrlObject);
-				if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.conflict.ConflictStrategy conflictValue) {
-					newPolicy.setConflictStrategy(conflictValue);
-				}
-			}
+		else if (objectClassName.equals(odrlPackage.getAssetCollection().getName())) {
+			newObject=new AssetCollection();
 		}
-		*/
+		//Party
+		else if (objectClassName.equals(odrlPackage.getParty().getName())) {
+			newObject=new Party();			
+		}
+		else if (objectClassName.equals(odrlPackage.getPartyCollection().getName())) {
+			newObject=new PartyCollection();
+		}
+		
+		
 		//Filling the generated object
 		fill(currentEObject, newObject, activityElement);
 		
 		
-		
+		//
 		if (newObject instanceof ODRLClass newOdrlObject) {
-			System.out.println("at end of addElement :" + newObject);
-			referencingList2.put(currentEObject, newOdrlObject);
+			System.out.println("At end of addElement :" + newObject);
+			referencingList2.put(currentEObject, newOdrlObject);//Maybe extend the valid keys and add all objects, not just ODRLClasses
 		}
 		
 		return newObject;
@@ -1101,6 +829,14 @@ public class Check implements CarismaCheckWithID {
 			for (Object o : currentList) {
 				if (o instanceof EObject eObj) {
 					Object newOdrlObject = addElement(eObj,odrlParent,activityElement);
+					if (type.isInstance(newOdrlObject)) {
+						newOdrlList.add((T)newOdrlObject);
+					} else {
+						fullyCompartible=false;
+					}
+				}
+				else if (o instanceof String string) {
+					Object newOdrlObject = addElement(string,odrlParent,activityElement);
 					if (type.isInstance(newOdrlObject)) {
 						newOdrlList.add((T)newOdrlObject);
 					} else {
@@ -1148,7 +884,7 @@ public class Check implements CarismaCheckWithID {
 		if (toBeFilled instanceof  Function function) {
 			fillFunction(currentEObject, function, activityElement);
 		}
-//		if (toBeFilled instanceof  Operand operand) {//Currently empty as Contents need to be filled in the LogicalConstrain-fill-method
+//		if (toBeFilled instanceof  Operand operand) {//Currently empty as Contents need to be filled in the LogicalConstraint-fill-method
 //			fillOperand(currentEObject, operand, activityElement);
 //		}
 		if (toBeFilled instanceof  Party party) {
@@ -1181,17 +917,19 @@ public class Check implements CarismaCheckWithID {
 	}
 	
 	private void fillAsset(EObject currentEObject, Asset asset, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getAsset_Uid().getName()));
-		if (attributeValue instanceof String stringValue) {
+		Object attributeValue = getValue(currentEObject, odrlPackage.getAsset_Uid().getName());
+		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
+			
 			asset.setUid(stringValue);
 		}
 	}
 	private void fillAssetCollection(EObject currentEObject, AssetCollection assetCollection, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getAssetCollection_Source().getName()));
-		if (attributeValue instanceof String stringValue) {
+		Object attributeValue = getValue(currentEObject, odrlPackage.getAssetCollection_Source().getName());
+		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
+			
 			assetCollection.setSource(stringValue);
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRefinableElement_Refinement().getName())); 
+		attributeValue = getValue(currentEObject, odrlPackage.getRefinableElement_Refinement().getName()); 
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = addElement(newEObj, assetCollection, activityElement);
 			if (attributeValueOdrl instanceof ConstraintInterface refinement) {
@@ -1202,68 +940,68 @@ public class Check implements CarismaCheckWithID {
 	//Filling-Methods for Conflict (TODO only maybe add (as the methods would be empty))
 	//Filling-Methods for Constraints (TODO maybe add ConstraintInterface)
 	private void fillConstraint(EObject currentEObject, Constraint constraint, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_DataType().getName()));
-		if (attributeValue instanceof String stringValue) {
+		Object attributeValue = getValue(currentEObject, odrlPackage.getConstraint_DataType().getName());
+		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {		
 			constraint.setDataType(stringValue);
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_LeftOperand().getName()));
+		attributeValue = getValue(currentEObject, odrlPackage.getConstraint_LeftOperand().getName());
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = addElement(newEObj, constraint, activityElement);
 			if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.leftoperand.LeftOperand leftOperand) {
 				constraint.setLeftOperand(leftOperand);
 			}
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_Operator().getName()));
+		attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Operator().getName());
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = addElement(newEObj, constraint, activityElement);
 			if (attributeValueOdrl instanceof Operator operator) {
 				constraint.setOperator(operator);
 			}
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_RightOperand().getName()));
-		if (attributeValue instanceof List list) { //TODO List attribute
+		attributeValue = getValue(currentEObject, odrlPackage.getConstraint_RightOperand().getName());
+		if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
 			List<RightOperandInterface> attributeValueOdrl = addElement(list, constraint, activityElement, RightOperandInterface.class);
 			if (attributeValueOdrl!=null) {
-				constraint.getRightOperand().addAll(attributeValueOdrl);
+				constraint.setRightOperand(attributeValueOdrl);
 			}
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_RightOperandReference().getName()));
-		if (attributeValue instanceof List list) { //TODO List attribute
+		attributeValue = getValue(currentEObject, odrlPackage.getConstraint_RightOperandReference().getName());
+		if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
 			List<String> attributeValueOdrl = addElement(list, constraint, activityElement, String.class);
 			if (attributeValueOdrl!=null) {
-				constraint.getRightOperandReference().addAll(attributeValueOdrl);
+				constraint.setRightOperandReference(attributeValueOdrl);
 			}
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_Status().getName()));
-		if (attributeValue instanceof String stringValue) {
+		attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Status().getName());
+		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {			
 			constraint.setStatus(stringValue);
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_Uid().getName()));
-		if (attributeValue instanceof String stringValue) {
-			constraint.setUid(stringValue);
+		attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Uid().getName());
+		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {		
+				constraint.setUid(stringValue);			
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstraint_Unit().getName()));
-		if (attributeValue instanceof String stringValue) {
+		attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Unit().getName());
+		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {		
 			constraint.setUnit(stringValue);
 		}
 	}
 	private void fillLogicalConstraint(EObject currentEObject, LogicalConstraint logicalConstraint, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_LogicalOperator().getName()));
+		Object attributeValue = getValue(currentEObject, odrlPackage.getLogicalConstraint_LogicalOperator().getName());
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = addElement(newEObj, logicalConstraint, activityElement);
 			if (attributeValueOdrl instanceof Operand operand) {
 				logicalConstraint.setOperand(operand);
 			}
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_Constraints().getName()));
+		attributeValue = getValue(currentEObject, odrlPackage.getLogicalConstraint_Constraints().getName());
 		if (attributeValue instanceof List list) { //TODO List attribute
 			List<Constraint> attributeValueOdrl = addElement(list, logicalConstraint, activityElement, Constraint.class);
-			if (attributeValueOdrl!=null&&logicalConstraint.getOperand()!=null) {
+			if (attributeValueOdrl!=null&&logicalConstraint.getOperand()!=null) {//TODO Maybe remove operand-nullcheck, as it being null would point to a faulty model
 				logicalConstraint.getOperand().setConstraints(attributeValueOdrl);//(After creation of operand earlier in this method) set constraints to it
 			}
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_Uid().getName()));
-		if (attributeValue instanceof String stringValue) {
+		attributeValue = getValue(currentEObject, odrlPackage.getLogicalConstraint_Uid().getName());
+		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
 			logicalConstraint.setUid(stringValue);
 		}
 	}
@@ -1275,7 +1013,7 @@ public class Check implements CarismaCheckWithID {
 	}
 	//Filling-Methods for Functions
 	private void fillFunction(EObject currentEObject, Function function, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getPartyFunction_Party().getName()));
+		Object attributeValue = getValue(currentEObject, odrlPackage.getPartyFunction_Party().getName());
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = addElement(newEObj, function, activityElement);
 			if (attributeValueOdrl instanceof Party party) {
@@ -1285,26 +1023,25 @@ public class Check implements CarismaCheckWithID {
 		
 	}
 	//Filling-Methods for Leftoperands (TODO only maybe add (as the methods would be empty))
-	//Filling-Methods for Operands (TODO maybe add empty subproperties)
-	private void fillOperand(EObject currentEObject, Operand operand, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_Constraints().getName()));
-		if (attributeValue instanceof EObject newEObj) {//TODO List attribute
-		}
-	}
-	//Filling-Methods for Operators (TODO only maybe add (as the methods would be empty)) (Filling needs to come from the owning LogicalConstraint currently as it owns the Constraint list)
+	
+	//Filling-Methods for Operands (TODO maybe add empty subproperties)  //Filling is done in the owning LogicalConstraint currently as it owns the Constraint list
+//	private void fillOperand(EObject currentEObject, Operand operand, EObject activityElement) {
+//	}
+	//Filling-Methods for Operators (TODO only maybe add (as the methods would be empty))
+	
 	//Filling-Methods for Parties
 	private void fillParty(EObject currentEObject, Party party, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getParty_Uid().getName()));
-		if (attributeValue instanceof String stringValue) {
+		Object attributeValue = getValue(currentEObject, odrlPackage.getParty_Uid().getName());
+		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {	
 			party.setUid(stringValue);
 		}
 	}
 	private void fillPartyCollection(EObject currentEObject, PartyCollection partyCollection, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getPartyCollection_Source().getName()));
-		if (attributeValue instanceof String stringValue) {
+		Object attributeValue = getValue(currentEObject, odrlPackage.getPartyCollection_Source().getName());
+		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
 			partyCollection.setSource(stringValue);
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRefinableElement_Refinement().getName())); 
+		attributeValue = getValue(currentEObject, odrlPackage.getRefinableElement_Refinement().getName()); 
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = addElement(newEObj, partyCollection, activityElement);
 			if (attributeValueOdrl instanceof ConstraintInterface refinement) {
@@ -1314,27 +1051,35 @@ public class Check implements CarismaCheckWithID {
 	}	
 	//Filling-methods for Policies (TODO maybe add empty subclass-methods)
 	private void fillPolicy(EObject currentEObject, Policy policy, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_ConflictStrategy().getName()));
+		Object attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_ConflictStrategy().getName());
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = addElement(newEObj, policy, activityElement);
 			if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.conflict.ConflictStrategy conflictValue) {
 				policy.setConflictStrategy(conflictValue);
 			}
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_InheritsFrom().getName()));
-		if (attributeValue instanceof EObject newEObj) {//TODO String List attribute				
+		attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_InheritsFrom().getName());
+		if (attributeValue instanceof List list) { //TODO String List attribute
+			List<String> attributeValueOdrl = addElement(list, policy, activityElement, String.class);
+			if (attributeValueOdrl!=null) {
+				policy.setInheritsFrom(attributeValueOdrl);
+			}
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_Profiles().getName()));
-		if (attributeValue instanceof EObject newEObj) {//TODO String List attribute
+		attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_Profiles().getName());
+		if (attributeValue instanceof List list) { //TODO String List attribute
+			List<String> attributeValueOdrl = addElement(list, policy, activityElement, String.class);
+			if (attributeValueOdrl!=null) {
+				policy.setProfiles(attributeValueOdrl);
+			}
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_Uid().getName()));
+		attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_Uid().getName());
 		if (attributeValue instanceof String string) {
 			policy.setUid(string);
 		}
 	}
 	//Filling-Methods for Relation
 	private void fillRelation(EObject currentEObject, Relation relation, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getAssetRelation_Asset().getName()));
+		Object attributeValue = getValue(currentEObject, odrlPackage.getAssetRelation_Asset().getName());
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = addElement(newEObj, relation, activityElement);
 			if (attributeValueOdrl instanceof Asset asset) {
@@ -1346,61 +1091,171 @@ public class Check implements CarismaCheckWithID {
 	
 	//Filling-methods for rules
 	private void fillRule(EObject currentEObject, Rule rule, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRule_Action().getName()));
+		Object attributeValue = getValue(currentEObject, odrlPackage.getRule_Action().getName());
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = addElement(newEObj, rule, activityElement);
 			if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.action.Action action) {
 				rule.setAction(action);
 			}
 		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRule_Uid().getName()));
-		if (attributeValue instanceof String string) {
-			rule.setUid(string);
-		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRule_InvolvedAssets().getName()));
-		if (attributeValue instanceof EObject newEObj) {//TODO List attribute
-		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getRule_InvolvedParties().getName()));
-		if (attributeValue instanceof EObject newEObj) {//TODO List attribute
-		}
-		attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getConstrainableElement_Constraint().getName()));
+		attributeValue = getValue(currentEObject, odrlPackage.getRefinableElement_Refinement().getName());
 		if (attributeValue instanceof EObject newEObj) {//TODO get constraint
-			Object attributeValueOdrl = addElement(newEObj, rule, activityElement);
+			Object attributeValueOdrl = addElement(newEObj, rule.getAction(), activityElement);
 			if (attributeValueOdrl instanceof ConstraintInterface constraintInterface) {
 				//if (attributeValueOdrl instanceof List constraintList) {TODO add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
 				//	rule.getConstraint().
 				//}
-				rule.setConstraint(constraintInterface);
+				if (rule.getAction()!=null) {//TODO also add null check for other cases where a gotten object is further used or keep the nullpointer as sign that something is missing
+					rule.getAction().setRefinement(constraintInterface);
+				}
 			}
 			
 		}
-		
+		attributeValue = getValue(currentEObject, odrlPackage.getRule_Uid().getName());
+		if (attributeValue instanceof String string) {
+			rule.setUid(string);
+		}
+		attributeValue = getValue(currentEObject, odrlPackage.getRule_InvolvedAssets().getName());
+		if (attributeValue instanceof List list) { //TODO List attribute
+			List<Relation> attributeValueOdrl = addElement(list, rule, activityElement, Relation.class);
+			if (attributeValueOdrl!=null) {
+				rule.setInvolvedAssets(attributeValueOdrl);
+			}
+		}
+		attributeValue = getValue(currentEObject, odrlPackage.getRule_InvolvedParties().getName());
+		if (attributeValue instanceof List list) { //TODO List attribute
+			List<Function> attributeValueOdrl = addElement(list, rule, activityElement, Function.class);
+			if (attributeValueOdrl!=null) {
+				rule.setInvolvedParties(attributeValueOdrl);
+			}
+		}
+		attributeValue = getValue(currentEObject, odrlPackage.getConstrainableElement_Constraint().getName());
+		if (attributeValue instanceof EObject newEObj) {//TODO get constraint
+			Object attributeValueOdrl = addElement(newEObj, rule, activityElement);
+			if (attributeValueOdrl instanceof ConstraintInterface constraintInterface) {
+				//if (attributeValueOdrl instanceof List constraintList) {TODO maybe add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
+				//	rule.getConstraint().
+				//}
+				rule.setConstraint(constraintInterface);
+			}
+		}		
 	}
 	private void fillPermission(EObject currentEObject, Permission permission, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getPermission_Duties().getName()));
-		if (attributeValue instanceof EObject newEObj) { //TODO List attribute
+		Object attributeValue = getValue(currentEObject, odrlPackage.getPermission_Duties().getName());
+		if (attributeValue instanceof List list) { //TODO List attribute
+			List<Duty> attributeValueOdrl = addElement(list, permission, activityElement, Duty.class);
+			if (attributeValueOdrl!=null) {
+				permission.setDuties(attributeValueOdrl);
+			}
 		}
 	}
 	private void fillProhibition(EObject currentEObject, Prohibition prohibition, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getProhibition_Remedies().getName()));
+		Object attributeValue = getValue(currentEObject,odrlPackage.getProhibition_Remedies().getName());
 		if (attributeValue instanceof EObject newEObj) { //TODO List attribute
 		}
 	}
 	private void fillDuty(EObject currentEObject, Duty duty, EObject activityElement) {
-		Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getDuty_Consequences().getName()));
+		Object attributeValue = getValue(currentEObject, odrlPackage.getDuty_Consequences().getName());
 		if (attributeValue instanceof EObject newEObj) { //TODO List attribute
 		}
 	}
 	
-	//Maybe (for brevity) replace all occurrences of currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage.getX_Y().getName())) with getEObjValue(currentObject, odrlPackage.getX_Y().getName()
-	private Object getEObjValue(EObject eObject, String featureName) {
-		EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
-		return feature==null ? null : eObject.eGet(eObject.eClass().getEStructuralFeature(featureName));
+	
+	private Object getValue(EObject eObject, String featureName) {
+//		EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
+//		if(feature == null) {
+//			//TODO add missing feature information?
+//		}
+//		return feature==null ? null : eObject.eGet(feature);
+		return eObject.eGet(eObject.eClass().getEStructuralFeature(featureName));//Nullpointer-exception with null-feature can only be produced by code errors, not by input errors
 	}
 	
 	
 	///////////////////////////////
 	
+	private void checkProfileRequirements(ODRLClass testedElement) {//replace testedElement with the created objects
+		//TODO no checks for valid form of IRIs so far
+		if (testedElement instanceof Policy policy) {
+			if (policy.getPermission().isEmpty()
+					&& policy.getProhibition().isEmpty()
+					&& policy.getObligation().isEmpty()) {
+				//TODO add warning: invalid policy: needs to have at least one permission, prohibition or obligation
+			}
+			
+			if (policy instanceof Offer offer) {
+				//TODO one assigner (only one? needed with every rule or just with one?)
+			} else if (policy instanceof Agreement agreement) {
+				//TODO one assigner, one assignee
+			}
+		} else if (testedElement instanceof AssetCollection assetCollection) {
+			if (assetCollection.getRefinement()!=null
+					&& assetCollection.getSource()==null) {
+				//TODO add warning: invalid assetCollection: source-property needs to be used with refinement
+			}
+		} else if (testedElement instanceof PartyCollection partyCollection) {
+			if (partyCollection.getRefinement()!=null
+					&& partyCollection.getSource()==null) {
+				//TODO add warning: invalid assetCollection: source-property needs to be used with refinement
+			}
+		} else if (testedElement instanceof Constraint constraint) {
+			if (constraint.getLeftOperand()==null) {
+				//TODO add warning: invalid constraint: needs to have a leftOperand selected
+			}
+			if (constraint.getOperator()==null) {
+				//TODO add warning: invalid constraint: needs to have an operator selected
+			}
+			if ( (constraint.getRightOperand()==null
+					||constraint.getRightOperand().isEmpty() 
+					) && ( constraint.getRightOperandReference()==null
+					||constraint.getRightOperandReference().isEmpty())) {
+				//TODO add warning: invalid Constraint: needs to have either a rightOperand, or rightOperandReference, has neither
+			}
+			if ( (constraint.getRightOperand()!=null
+					&& !constraint.getRightOperand().isEmpty() 
+					 && constraint.getRightOperandReference()!=null
+					&& !constraint.getRightOperandReference().isEmpty())) {
+				//TODO add warning: invalid Constraint: must not have both rightOperand and rightOperandReference (is that the case?)
+			}
+		}
+		if (testedElement instanceof Rule rule) {
+			if (rule.getAction() == null) {
+				//TODO add warning: invalid rule: needs to have an action selected
+			}
+			if (testedElement instanceof Permission permission) {
+				boolean hasTarget = false;
+				for (Relation relation : permission.getInvolvedAssets()) {
+					if (relation instanceof Target) {
+						hasTarget = true;
+					}
+				}
+				if (!hasTarget) {
+					//TODO add warning: invalid permission: needs to have a relation of type target
+				}
+			} else if (testedElement instanceof Prohibition prohibition) {
+				boolean hasTarget = false;
+				for (Relation relation : prohibition.getInvolvedAssets()) {
+					if (relation instanceof Target) {
+						hasTarget = true;
+					}
+				}
+				if (!hasTarget) {
+					//TODO add warning: invalid prohibition: needs to have a relation of type target
+				}
+			} else if (testedElement instanceof Duty duty) {
+				for (Rule consequence : duty.getConsequences().getRules()) {
+					if (!(consequence instanceof Duty)) {
+						//TODO add warning: Invalid Duty: consequences must be of type Duty
+					}
+					if (consequence instanceof Duty consequenceDuty) {
+						if (consequenceDuty.getConsequences()!=null) {
+							//TODO add warning: Invalid consequence duty: consequence-Duty must not have a consequence itself
+						}
+					}
+				}
+			}
+		}
+			
+	}
 	
 	
 

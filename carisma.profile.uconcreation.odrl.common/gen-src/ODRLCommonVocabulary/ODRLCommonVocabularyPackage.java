@@ -232,7 +232,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	int RULE__INVOLVED_PARTIES = CONSTRAINABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Involved Assets</b></em>' attribute list.
+	 * The feature id for the '<em><b>Involved Assets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -568,97 +568,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getPermission()
 	 * @generated
 	 */
-	int PERMISSION = 8;
-
-	/**
-	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERMISSION__CONSTRAINT = RULE__CONSTRAINT;
-
-	/**
-	 * The feature id for the '<em><b>Refinement</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERMISSION__REFINEMENT = RULE__REFINEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Base Action</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERMISSION__BASE_ACTION = RULE__BASE_ACTION;
-
-	/**
-	 * The feature id for the '<em><b>Uid</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERMISSION__UID = RULE__UID;
-
-	/**
-	 * The feature id for the '<em><b>Involved Parties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERMISSION__INVOLVED_PARTIES = RULE__INVOLVED_PARTIES;
-
-	/**
-	 * The feature id for the '<em><b>Involved Assets</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERMISSION__INVOLVED_ASSETS = RULE__INVOLVED_ASSETS;
-
-	/**
-	 * The feature id for the '<em><b>Action</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERMISSION__ACTION = RULE__ACTION;
-
-	/**
-	 * The feature id for the '<em><b>Duties</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERMISSION__DUTIES = RULE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Permission</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERMISSION_FEATURE_COUNT = RULE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Permission</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERMISSION_OPERATION_COUNT = RULE_OPERATION_COUNT + 0;
+	int PERMISSION = 10;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.DutyImpl <em>Duty</em>}' class.
@@ -668,97 +578,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getDuty()
 	 * @generated
 	 */
-	int DUTY = 9;
-
-	/**
-	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DUTY__CONSTRAINT = RULE__CONSTRAINT;
-
-	/**
-	 * The feature id for the '<em><b>Refinement</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DUTY__REFINEMENT = RULE__REFINEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Base Action</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DUTY__BASE_ACTION = RULE__BASE_ACTION;
-
-	/**
-	 * The feature id for the '<em><b>Uid</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DUTY__UID = RULE__UID;
-
-	/**
-	 * The feature id for the '<em><b>Involved Parties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DUTY__INVOLVED_PARTIES = RULE__INVOLVED_PARTIES;
-
-	/**
-	 * The feature id for the '<em><b>Involved Assets</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DUTY__INVOLVED_ASSETS = RULE__INVOLVED_ASSETS;
-
-	/**
-	 * The feature id for the '<em><b>Action</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DUTY__ACTION = RULE__ACTION;
-
-	/**
-	 * The feature id for the '<em><b>Consequences</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DUTY__CONSEQUENCES = RULE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Duty</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DUTY_FEATURE_COUNT = RULE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Duty</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DUTY_OPERATION_COUNT = RULE_OPERATION_COUNT + 0;
+	int DUTY = 11;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.ProhibitionImpl <em>Prohibition</em>}' class.
@@ -768,97 +588,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getProhibition()
 	 * @generated
 	 */
-	int PROHIBITION = 10;
-
-	/**
-	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROHIBITION__CONSTRAINT = RULE__CONSTRAINT;
-
-	/**
-	 * The feature id for the '<em><b>Refinement</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROHIBITION__REFINEMENT = RULE__REFINEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Base Action</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROHIBITION__BASE_ACTION = RULE__BASE_ACTION;
-
-	/**
-	 * The feature id for the '<em><b>Uid</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROHIBITION__UID = RULE__UID;
-
-	/**
-	 * The feature id for the '<em><b>Involved Parties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROHIBITION__INVOLVED_PARTIES = RULE__INVOLVED_PARTIES;
-
-	/**
-	 * The feature id for the '<em><b>Involved Assets</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROHIBITION__INVOLVED_ASSETS = RULE__INVOLVED_ASSETS;
-
-	/**
-	 * The feature id for the '<em><b>Action</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROHIBITION__ACTION = RULE__ACTION;
-
-	/**
-	 * The feature id for the '<em><b>Remedies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROHIBITION__REMEDIES = RULE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Prohibition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROHIBITION_FEATURE_COUNT = RULE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Prohibition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROHIBITION_OPERATION_COUNT = RULE_OPERATION_COUNT + 0;
+	int PROHIBITION = 12;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.AssetImpl <em>Asset</em>}' class.
@@ -868,7 +598,73 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAsset()
 	 * @generated
 	 */
-	int ASSET = 11;
+	int ASSET = 9;
+
+	/**
+	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.AssetCollectionImpl <em>Asset Collection</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ODRLCommonVocabulary.impl.AssetCollectionImpl
+	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAssetCollection()
+	 * @generated
+	 */
+	int ASSET_COLLECTION = 13;
+
+	/**
+	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.PartyCollectionImpl <em>Party Collection</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ODRLCommonVocabulary.impl.PartyCollectionImpl
+	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getPartyCollection()
+	 * @generated
+	 */
+	int PARTY_COLLECTION = 14;
+
+	/**
+	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.AssetRelationImpl <em>Asset Relation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ODRLCommonVocabulary.impl.AssetRelationImpl
+	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAssetRelation()
+	 * @generated
+	 */
+	int ASSET_RELATION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSET_RELATION__TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Asset</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSET_RELATION__ASSET = 1;
+
+	/**
+	 * The number of structural features of the '<em>Asset Relation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSET_RELATION_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Asset Relation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSET_RELATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Data Store Node</b></em>' reference.
@@ -916,14 +712,274 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	int ASSET_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.AssetCollectionImpl <em>Asset Collection</em>}' class.
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ODRLCommonVocabulary.impl.AssetCollectionImpl
-	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAssetCollection()
 	 * @generated
+	 * @ordered
 	 */
-	int ASSET_COLLECTION = 12;
+	int PERMISSION__CONSTRAINT = RULE__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Refinement</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERMISSION__REFINEMENT = RULE__REFINEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Base Action</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERMISSION__BASE_ACTION = RULE__BASE_ACTION;
+
+	/**
+	 * The feature id for the '<em><b>Uid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERMISSION__UID = RULE__UID;
+
+	/**
+	 * The feature id for the '<em><b>Involved Parties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERMISSION__INVOLVED_PARTIES = RULE__INVOLVED_PARTIES;
+
+	/**
+	 * The feature id for the '<em><b>Involved Assets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERMISSION__INVOLVED_ASSETS = RULE__INVOLVED_ASSETS;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERMISSION__ACTION = RULE__ACTION;
+
+	/**
+	 * The feature id for the '<em><b>Duties</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERMISSION__DUTIES = RULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Permission</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERMISSION_FEATURE_COUNT = RULE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Permission</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERMISSION_OPERATION_COUNT = RULE_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUTY__CONSTRAINT = RULE__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Refinement</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUTY__REFINEMENT = RULE__REFINEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Base Action</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUTY__BASE_ACTION = RULE__BASE_ACTION;
+
+	/**
+	 * The feature id for the '<em><b>Uid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUTY__UID = RULE__UID;
+
+	/**
+	 * The feature id for the '<em><b>Involved Parties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUTY__INVOLVED_PARTIES = RULE__INVOLVED_PARTIES;
+
+	/**
+	 * The feature id for the '<em><b>Involved Assets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUTY__INVOLVED_ASSETS = RULE__INVOLVED_ASSETS;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUTY__ACTION = RULE__ACTION;
+
+	/**
+	 * The feature id for the '<em><b>Consequences</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUTY__CONSEQUENCES = RULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Duty</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUTY_FEATURE_COUNT = RULE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Duty</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUTY_OPERATION_COUNT = RULE_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROHIBITION__CONSTRAINT = RULE__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Refinement</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROHIBITION__REFINEMENT = RULE__REFINEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Base Action</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROHIBITION__BASE_ACTION = RULE__BASE_ACTION;
+
+	/**
+	 * The feature id for the '<em><b>Uid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROHIBITION__UID = RULE__UID;
+
+	/**
+	 * The feature id for the '<em><b>Involved Parties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROHIBITION__INVOLVED_PARTIES = RULE__INVOLVED_PARTIES;
+
+	/**
+	 * The feature id for the '<em><b>Involved Assets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROHIBITION__INVOLVED_ASSETS = RULE__INVOLVED_ASSETS;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROHIBITION__ACTION = RULE__ACTION;
+
+	/**
+	 * The feature id for the '<em><b>Remedies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROHIBITION__REMEDIES = RULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Prohibition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROHIBITION_FEATURE_COUNT = RULE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Prohibition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROHIBITION_OPERATION_COUNT = RULE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Data Store Node</b></em>' reference.
@@ -989,16 +1045,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	int ASSET_COLLECTION_OPERATION_COUNT = ASSET_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.PartyCollectionImpl <em>Party Collection</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ODRLCommonVocabulary.impl.PartyCollectionImpl
-	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getPartyCollection()
-	 * @generated
-	 */
-	int PARTY_COLLECTION = 13;
-
-	/**
 	 * The feature id for the '<em><b>Uid</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1060,52 +1106,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARTY_COLLECTION_OPERATION_COUNT = PARTY_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.AssetRelationImpl <em>Asset Relation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ODRLCommonVocabulary.impl.AssetRelationImpl
-	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAssetRelation()
-	 * @generated
-	 */
-	int ASSET_RELATION = 14;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET_RELATION__TYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Asset</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET_RELATION__ASSET = 1;
-
-	/**
-	 * The number of structural features of the '<em>Asset Relation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET_RELATION_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Asset Relation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET_RELATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.ConflictStrategy <em>Conflict Strategy</em>}' enum.
@@ -1308,15 +1308,15 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	EReference getRule_InvolvedParties();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ODRLCommonVocabulary.Rule#getInvolvedAssets <em>Involved Assets</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ODRLCommonVocabulary.Rule#getInvolvedAssets <em>Involved Assets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Involved Assets</em>'.
+	 * @return the meta object for the containment reference list '<em>Involved Assets</em>'.
 	 * @see ODRLCommonVocabulary.Rule#getInvolvedAssets()
 	 * @see #getRule()
 	 * @generated
 	 */
-	EAttribute getRule_InvolvedAssets();
+	EReference getRule_InvolvedAssets();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ODRLCommonVocabulary.Rule#getAction <em>Action</em>}'.
@@ -1963,12 +1963,12 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 		EReference RULE__INVOLVED_PARTIES = eINSTANCE.getRule_InvolvedParties();
 
 		/**
-		 * The meta object literal for the '<em><b>Involved Assets</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Involved Assets</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RULE__INVOLVED_ASSETS = eINSTANCE.getRule_InvolvedAssets();
+		EReference RULE__INVOLVED_ASSETS = eINSTANCE.getRule_InvolvedAssets();
 
 		/**
 		 * The meta object literal for the '<em><b>Action</b></em>' attribute feature.

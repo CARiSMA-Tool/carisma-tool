@@ -64,7 +64,7 @@ public class TestClass {
 		
 		JSONConvTest test = new JSONConvTest("");
 		String[] allowedAttributes = {"stringAttr"};
-		System.out.println(new JSONObject(test));
+		System.out.println(new JSONObject(test).toString(4));
 		System.out.println();
 		System.out.println(TestClass.class.getSimpleName());
 		

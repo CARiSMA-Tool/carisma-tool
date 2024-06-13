@@ -100,6 +100,14 @@ public class ODRLCommonVocabularyAdapterFactory extends AdapterFactoryImpl {
 				return createPartyAdapter();
 			}
 			@Override
+			public Adapter caseAssetRelation(AssetRelation object) {
+				return createAssetRelationAdapter();
+			}
+			@Override
+			public Adapter caseAsset(Asset object) {
+				return createAssetAdapter();
+			}
+			@Override
 			public Adapter casePermission(Permission object) {
 				return createPermissionAdapter();
 			}
@@ -112,20 +120,12 @@ public class ODRLCommonVocabularyAdapterFactory extends AdapterFactoryImpl {
 				return createProhibitionAdapter();
 			}
 			@Override
-			public Adapter caseAsset(Asset object) {
-				return createAssetAdapter();
-			}
-			@Override
 			public Adapter caseAssetCollection(AssetCollection object) {
 				return createAssetCollectionAdapter();
 			}
 			@Override
 			public Adapter casePartyCollection(PartyCollection object) {
 				return createPartyCollectionAdapter();
-			}
-			@Override
-			public Adapter caseAssetRelation(AssetRelation object) {
-				return createAssetRelationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

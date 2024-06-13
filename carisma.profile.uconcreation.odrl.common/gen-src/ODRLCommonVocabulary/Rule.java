@@ -101,22 +101,20 @@ public interface Rule extends ConstrainableElement, RefinableElement {
 	EList<PartyFunction> getInvolvedParties();
 
 	/**
-	 * Returns the value of the '<em><b>Involved Assets</b></em>' attribute list.
-	 * The list contents are of type {@link ODRLCommonVocabulary.AssetRelationType}.
-	 * The literals are from the enumeration {@link ODRLCommonVocabulary.AssetRelationType}.
+	 * Returns the value of the '<em><b>Involved Assets</b></em>' containment reference list.
+	 * The list contents are of type {@link ODRLCommonVocabulary.AssetRelation}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Involved Assets</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Involved Assets</em>' attribute list.
-	 * @see ODRLCommonVocabulary.AssetRelationType
+	 * @return the value of the '<em>Involved Assets</em>' containment reference list.
 	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getRule_InvolvedAssets()
-	 * @model ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<AssetRelationType> getInvolvedAssets();
+	EList<AssetRelation> getInvolvedAssets();
 
 	/**
 	 * Returns the value of the '<em><b>Action</b></em>' attribute.

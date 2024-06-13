@@ -197,7 +197,7 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Rule/uid"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Rule/involvedParties"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Rule/involvedAssets"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Rule/involvedAssets"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Rule/action"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ODRLCommonVocabulary.ecore#//RefinableElement">
@@ -236,6 +236,18 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Party/base_DataStoreNode"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//AssetRelation">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//AssetRelation/type"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//AssetRelation/asset"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Asset">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Asset/base_DataStoreNode"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Asset/base_Pin"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Asset/uid"/>
+    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Permission">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Permission/duties"/>
@@ -248,23 +260,11 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Prohibition/remedies"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Asset">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Asset/base_DataStoreNode"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Asset/base_Pin"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Asset/uid"/>
-    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//AssetCollection">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//AssetCollection/source"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//PartyCollection">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//PartyCollection/source"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//AssetRelation">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//AssetRelation/type"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//AssetRelation/asset"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

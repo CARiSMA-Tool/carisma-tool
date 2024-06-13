@@ -10,7 +10,8 @@ public abstract class ODRLClass {
 
 	
 	
-	//public String toString() {
-	//	return this.getClass().getName();
-	//}
+
+	public String getType() {//for the automatic JSON-Conversion currently used for testing
+		return this.getClass().getSimpleName();
+	}
 }

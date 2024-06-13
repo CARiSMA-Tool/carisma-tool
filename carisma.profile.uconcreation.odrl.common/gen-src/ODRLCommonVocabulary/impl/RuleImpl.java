@@ -2,7 +2,7 @@
  */
 package ODRLCommonVocabulary.impl;
 
-import ODRLCommonVocabulary.AssetRelationType;
+import ODRLCommonVocabulary.AssetRelation;
 import ODRLCommonVocabulary.LogicalConstraint;
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
 import ODRLCommonVocabulary.PartyFunction;
@@ -20,8 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -97,14 +95,14 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 	protected EList<PartyFunction> involvedParties;
 
 	/**
-	 * The cached value of the '{@link #getInvolvedAssets() <em>Involved Assets</em>}' attribute list.
+	 * The cached value of the '{@link #getInvolvedAssets() <em>Involved Assets</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInvolvedAssets()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AssetRelationType> involvedAssets;
+	protected EList<AssetRelation> involvedAssets;
 
 	/**
 	 * The default value of the '{@link #getAction() <em>Action</em>}' attribute.
@@ -272,9 +270,9 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 	 * @generated
 	 */
 	@Override
-	public EList<AssetRelationType> getInvolvedAssets() {
+	public EList<AssetRelation> getInvolvedAssets() {
 		if (involvedAssets == null) {
-			involvedAssets = new EDataTypeUniqueEList<AssetRelationType>(AssetRelationType.class, this, ODRLCommonVocabularyPackage.RULE__INVOLVED_ASSETS);
+			involvedAssets = new EObjectContainmentEList<AssetRelation>(AssetRelation.class, this, ODRLCommonVocabularyPackage.RULE__INVOLVED_ASSETS);
 		}
 		return involvedAssets;
 	}
@@ -314,6 +312,8 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 				return basicSetRefinement(null, msgs);
 			case ODRLCommonVocabularyPackage.RULE__INVOLVED_PARTIES:
 				return ((InternalEList<?>)getInvolvedParties()).basicRemove(otherEnd, msgs);
+			case ODRLCommonVocabularyPackage.RULE__INVOLVED_ASSETS:
+				return ((InternalEList<?>)getInvolvedAssets()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -367,7 +367,7 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 				return;
 			case ODRLCommonVocabularyPackage.RULE__INVOLVED_ASSETS:
 				getInvolvedAssets().clear();
-				getInvolvedAssets().addAll((Collection<? extends AssetRelationType>)newValue);
+				getInvolvedAssets().addAll((Collection<? extends AssetRelation>)newValue);
 				return;
 			case ODRLCommonVocabularyPackage.RULE__ACTION:
 				setAction((ODRLCommonVocabulary.Action)newValue);
@@ -474,8 +474,6 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (uid: ");
 		result.append(uid);
-		result.append(", involvedAssets: ");
-		result.append(involvedAssets);
 		result.append(", action: ");
 		result.append(action);
 		result.append(')');

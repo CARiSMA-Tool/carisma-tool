@@ -1,15 +1,15 @@
 package carisma.profile.uconcreation.odrl.core.internal.classes.rule;
 
-import java.util.Set;
+import java.util.List;
 
 public class Permission extends Rule {
-	Set<Duty> duties;
+	List<Duty> duties;
 
-	public Set<Duty> getDuties() {
+	public List<Duty> getDuties() {
 		return duties;
 	}
 
-	public void setDuties(Set<Duty> duties) {
+	public void setDuties(List<Duty> duties) {
 		this.duties = duties;
 	}
 	

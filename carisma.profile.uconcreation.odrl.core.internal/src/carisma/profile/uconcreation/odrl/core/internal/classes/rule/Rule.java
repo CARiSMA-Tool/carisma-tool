@@ -1,6 +1,6 @@
 package carisma.profile.uconcreation.odrl.core.internal.classes.rule;
 
-import java.util.Set;
+import java.util.List;
 
 import carisma.profile.uconcreation.odrl.core.internal.classes.ODRLClass;
 import carisma.profile.uconcreation.odrl.core.internal.classes.action.Action;
@@ -10,8 +10,8 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.relation.Relation
 
 public abstract class Rule extends ODRLClass {
 	String uid;
-	Set<Function> involvedParties;
-	Set<Relation> involvedAssets;
+	List<Function> involvedParties;
+	List<Relation> involvedAssets;
 	Action action;
 	ConstraintInterface constraint;
 	
@@ -27,16 +27,16 @@ public abstract class Rule extends ODRLClass {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public Set<Function> getInvolvedParties() {
+	public List<Function> getInvolvedParties() {
 		return involvedParties;
 	}
-	public void setInvolvedParties(Set<Function> involvedParties) {
+	public void setInvolvedParties(List<Function> involvedParties) {
 		this.involvedParties = involvedParties;
 	}
-	public Set<Relation> getInvolvedAssets() {
+	public List<Relation> getInvolvedAssets() {
 		return involvedAssets;
 	}
-	public void setInvolvedAssets(Set<Relation> involvedAssets) {
+	public void setInvolvedAssets(List<Relation> involvedAssets) {
 		this.involvedAssets = involvedAssets;
 	}
 	public Action getAction() {

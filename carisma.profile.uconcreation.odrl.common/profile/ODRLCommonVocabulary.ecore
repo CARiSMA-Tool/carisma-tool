@@ -47,8 +47,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="involvedParties" ordered="false"
         upperBound="-1" eType="#//PartyFunction" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="involvedAssets" ordered="false"
-        upperBound="-1" eType="#//AssetRelationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="involvedAssets" ordered="false"
+        upperBound="-1" eType="#//AssetRelation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" ordered="false"
         lowerBound="1" eType="#//Action"/>
   </eClassifiers>
@@ -179,10 +179,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataStoreNode" ordered="false"
         eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DataStoreNode"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssetRelation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" lowerBound="1"
+        eType="#//AssetRelationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="asset" ordered="false"
+        lowerBound="1" eType="#//Asset"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AssetRelationType">
     <eLiterals name="Null"/>
     <eLiterals name="target" value="1"/>
     <eLiterals name="output" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Asset">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataStoreNode" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DataStoreNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Pin" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Pin"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Action">
     <eLiterals name="Null"/>
@@ -250,13 +263,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="remedies" ordered="false"
         upperBound="-1" eType="#//Duty"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Asset">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataStoreNode" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DataStoreNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Pin" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Pin"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssetCollection" eSuperTypes="#//Asset #//RefinableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" ordered="false"
         eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
@@ -264,11 +270,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="PartyCollection" eSuperTypes="#//Party #//RefinableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" ordered="false"
         eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AssetRelation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" lowerBound="1"
-        eType="#//AssetRelationType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="asset" ordered="false"
-        lowerBound="1" eType="#//Asset"/>
   </eClassifiers>
 </ecore:EPackage>

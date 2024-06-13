@@ -62,13 +62,13 @@ public class ODRLCommonVocabularyFactoryImpl extends EFactoryImpl implements ODR
 			case ODRLCommonVocabularyPackage.CONSTRAINT: return createConstraint();
 			case ODRLCommonVocabularyPackage.PARTY_FUNCTION: return createPartyFunction();
 			case ODRLCommonVocabularyPackage.PARTY: return createParty();
+			case ODRLCommonVocabularyPackage.ASSET_RELATION: return createAssetRelation();
+			case ODRLCommonVocabularyPackage.ASSET: return createAsset();
 			case ODRLCommonVocabularyPackage.PERMISSION: return createPermission();
 			case ODRLCommonVocabularyPackage.DUTY: return createDuty();
 			case ODRLCommonVocabularyPackage.PROHIBITION: return createProhibition();
-			case ODRLCommonVocabularyPackage.ASSET: return createAsset();
 			case ODRLCommonVocabularyPackage.ASSET_COLLECTION: return createAssetCollection();
 			case ODRLCommonVocabularyPackage.PARTY_COLLECTION: return createPartyCollection();
-			case ODRLCommonVocabularyPackage.ASSET_RELATION: return createAssetRelation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

@@ -116,6 +116,18 @@ public class ODRLCommonVocabularySwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ODRLCommonVocabularyPackage.ASSET_RELATION: {
+				AssetRelation assetRelation = (AssetRelation)theEObject;
+				T result = caseAssetRelation(assetRelation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ODRLCommonVocabularyPackage.ASSET: {
+				Asset asset = (Asset)theEObject;
+				T result = caseAsset(asset);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ODRLCommonVocabularyPackage.PERMISSION: {
 				Permission permission = (Permission)theEObject;
 				T result = casePermission(permission);
@@ -143,12 +155,6 @@ public class ODRLCommonVocabularySwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ODRLCommonVocabularyPackage.ASSET: {
-				Asset asset = (Asset)theEObject;
-				T result = caseAsset(asset);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ODRLCommonVocabularyPackage.ASSET_COLLECTION: {
 				AssetCollection assetCollection = (AssetCollection)theEObject;
 				T result = caseAssetCollection(assetCollection);
@@ -162,12 +168,6 @@ public class ODRLCommonVocabularySwitch<T> extends Switch<T> {
 				T result = casePartyCollection(partyCollection);
 				if (result == null) result = caseParty(partyCollection);
 				if (result == null) result = caseRefinableElement(partyCollection);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ODRLCommonVocabularyPackage.ASSET_RELATION: {
-				AssetRelation assetRelation = (AssetRelation)theEObject;
-				T result = caseAssetRelation(assetRelation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
