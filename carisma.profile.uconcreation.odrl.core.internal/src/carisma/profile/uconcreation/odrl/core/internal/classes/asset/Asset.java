@@ -22,12 +22,4 @@ public class Asset extends ODRLClass {
 		this.uid = uid;
 	}
 
-
-
-
-	public String toString() {
-		String returnString = this.getClass().getName();
-		returnString += System.lineSeparator()+ uid.indent(stringIndent);
-		return returnString;
-	}
 }

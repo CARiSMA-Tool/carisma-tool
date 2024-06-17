@@ -1,5 +1,6 @@
 package carisma.check.policycreation;
 
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,14 +10,16 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
+import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Offer;
+import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Policy;
 
 public class TestClass {
 
 	public static void main(String[] args) {
 		
-		ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
-		System.out.println(odrlPackage.getAsset_Uid().getName());
-		System.out.println(odrlPackage.getPermission().getName());
+//		ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
+//		System.out.println(odrlPackage.getAsset_Uid().getName());
+//		System.out.println(odrlPackage.getPermission().getName());
 		
 		
 
@@ -24,7 +27,12 @@ public class TestClass {
 		
 		
 		
-		
+		Class<? extends Policy> klass = Offer.class;
+		for (Constructor c : klass.getConstructors()) {
+			System.out.println(c);
+			
+		}
+		System.out.println(klass.getConstructors());
 		
 		
 		
@@ -62,11 +70,11 @@ public class TestClass {
 		 
 		
 		
-		JSONConvTest test = new JSONConvTest("");
-		String[] allowedAttributes = {"stringAttr"};
-		System.out.println(new JSONObject(test).toString(4));
-		System.out.println();
-		System.out.println(TestClass.class.getSimpleName());
+//		JSONConvTest test = new JSONConvTest("");
+//		String[] allowedAttributes = {"stringAttr"};
+//		System.out.println(new JSONObject(test).toString(4));
+//		System.out.println();
+//		System.out.println(TestClass.class.getSimpleName());
 		
 		
 		/*
@@ -85,6 +93,7 @@ public class TestClass {
 		List<List<JSONConvTest>> testClasses;
 		List<List<JSONConvTest>> testClassesEmpty;
 		List<JSONConvTest> list = new LinkedList<TestClass.JSONConvTest>();
+		List<JSONConvTest> listEmpty;
 		
 		public JSONConvTest(String s) {
 			JSONConvTest testclass = new JSONConvTest();

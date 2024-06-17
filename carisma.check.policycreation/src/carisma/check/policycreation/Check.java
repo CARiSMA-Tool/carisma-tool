@@ -2,27 +2,20 @@ package carisma.check.policycreation;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.Activity;
-import org.eclipse.uml2.uml.ActivityContent;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import ODRLCommonVocabulary.Action;
@@ -32,14 +25,16 @@ import ODRLCommonVocabulary.ConstraintOperator;
 import ODRLCommonVocabulary.LeftOperand;
 import ODRLCommonVocabulary.LogicalOperator;
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
+import ODRLCommonVocabulary.ODRLCommonVocabularyFactory;
 import ODRLCommonVocabulary.PartyFunctionType;
 import ODRLCommonVocabulary.PolicyType;
+import ODRLCommonVocabulary.impl.ODRLCommonVocabularyFactoryImpl;
+import ODRLCommonVocabulary.util.ODRLCommonVocabularySwitchImpl;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
-import carisma.modeltype.uml2.UMLHelper;
 import carisma.profile.uconcreation.odrl.common.internal.classes.action.AcceptTracking;
 import carisma.profile.uconcreation.odrl.common.internal.classes.action.Aggregate;
 import carisma.profile.uconcreation.odrl.common.internal.classes.action.Annotate;
@@ -102,7 +97,7 @@ import carisma.profile.uconcreation.odrl.common.internal.classes.function.Tracke
 import carisma.profile.uconcreation.odrl.common.internal.classes.function.TrackingParty;
 import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.AbsoluteAssetPosition;
 import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.AbsoluteAssetSize;
-import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.AbsoluteSpartialAssetPosition;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.AbsoluteSpatialAssetPosition;
 import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.AbsoluteTemporalAssetPosition;
 import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.AssetPercentage;
 import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.Count;
@@ -125,7 +120,7 @@ import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.Rec
 import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RecurringTimeInterval;
 import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RelativeAssetPosition;
 import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RelativeAssetSize;
-import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RelativeSpartialAssetPosition;
+import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RelativeSpatialAssetPosition;
 import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RelativeTemporalAssetPosition;
 import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.RenditionResolution;
 import carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand.SystemDevice;
@@ -149,7 +144,9 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.Constr
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintInterface;
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintList;
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.LogicalConstraint;
+import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Consequence;
 import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Failure;
+import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Remedy;
 import carisma.profile.uconcreation.odrl.core.internal.classes.function.Assignee;
 import carisma.profile.uconcreation.odrl.core.internal.classes.function.Assigner;
 import carisma.profile.uconcreation.odrl.core.internal.classes.function.Function;
@@ -179,7 +176,6 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Policy;
 import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Set;
 import carisma.profile.uconcreation.odrl.core.internal.classes.relation.Relation;
 import carisma.profile.uconcreation.odrl.core.internal.classes.relation.Target;
-import carisma.profile.uconcreation.odrl.core.internal.classes.rightoperand.RightOperand;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rightoperand.RightOperandInterface;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Duty;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Permission;
@@ -208,7 +204,7 @@ public class Check implements CarismaCheckWithID {
 	//possibly add emptyString-Variable since empty strings are treated as Null-Strings
 	final static String profileName = "ODRLCommonVocabulary";
 	ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
-
+	ODRLCommonVocabularySwitchImpl<? extends ODRLClass> odrlSwitch = new ODRLCommonVocabularySwitchImpl<>();//TODO:remove
 	//TODO remove
 	int numOfElements = 0;
 	//
@@ -269,6 +265,14 @@ public class Check implements CarismaCheckWithID {
 //			}
 
 			//Convert the UML-Model to the Java-Class-Model used here
+			ODRLCommonVocabularyFactory factory = ODRLCommonVocabularyFactory.eINSTANCE;
+			System.out.println("Registered package: " + EPackage.Registry.INSTANCE.keySet());
+			System.out.println("Test of duty: " + factory.eINSTANCE.createDuty().eClass().getEPackage());
+			System.out.println("Package: " + odrlPackage);
+			for (Element e : model.allOwnedElements()) {
+				odrlSwitch.doSwitch(e);//TODO remove
+				System.out.println("Classifier id: " + e.eClass().getClassifierID());
+			}
 			structureModel(model);
 			//
 
@@ -334,6 +338,11 @@ public class Check implements CarismaCheckWithID {
 	
 	///////////////////////////////
 	private Object addElement(EObject currentEObject, ODRLClass odrlParent, EObject activityElement) {//TODO modify the names if the eCore naming derives form the names in generated code
+//		odrlSwitch.doSwitch(currentEObject);//TODO remove
+//		System.out.println("Classifier id: " + currentEObject.eClass().getClassifierID());//TODO remove
+		if (currentEObject==null) {//Not necessary for result
+			return null;
+		}
 		if (referencingList2.get(currentEObject)!= null) {//TODO either add parent to parents-Attribute here (and before the other return-statement) or in the method processing the return value (if that's where it's decided whether it's actually added (for example in case it would, but must not ovewrite a value of the parent))
 			System.out.println("already generated: " + currentEObject);
 			return referencingList2.get(currentEObject);
@@ -585,7 +594,7 @@ public class Check implements CarismaCheckWithID {
 					newObject = new AbsoluteAssetSize();
 				}
 				else if(objectName.equals(LeftOperand.ABSOLUTE_SPARTIAL_POSITION.getName())) {
-					newObject = new AbsoluteSpartialAssetPosition();
+					newObject = new AbsoluteSpatialAssetPosition();
 				}
 				else if(objectName.equals(LeftOperand.ABSOLUTE_TEMPORAL_POSITION.getName())) {
 					newObject = new AbsoluteTemporalAssetPosition();
@@ -654,7 +663,7 @@ public class Check implements CarismaCheckWithID {
 					newObject = new RelativeAssetSize();
 				}
 				else if(objectName.equals(LeftOperand.RELATIVE_SPARTIAL_POSITION.getName())) {
-					newObject = new RelativeSpartialAssetPosition();
+					newObject = new RelativeSpatialAssetPosition();
 				}
 				else if(objectName.equals(LeftOperand.RELATIVE_TEMPORAL_POSITION.getName())) {
 					newObject = new RelativeTemporalAssetPosition();
@@ -674,6 +683,15 @@ public class Check implements CarismaCheckWithID {
 				else if(objectName.equals(LeftOperand.VIRTUAL_LOCATION.getName())) {
 					newObject = new VirtualItCommunicationLocation();
 				}
+			}
+		}
+		else if (currentEObject instanceof EStructuralFeature esf) {//TODO-----------------------------------------------------------------------
+
+			if (esf.getName().equals(odrlPackage.getProhibition_Remedies().getName())) {
+					newObject = new Remedy();
+			}
+			else if (esf.getName().equals(odrlPackage.getDuty_Consequences().getName())) {
+				newObject = new Consequence();
 			}
 		}
 		//Policy (type enum-attribute-determined)
@@ -810,7 +828,7 @@ public class Check implements CarismaCheckWithID {
 		
 		
 		//Filling the generated object
-		fill(currentEObject, newObject, activityElement);
+		fill(currentEObject, newObject, activityElement);//TODO maybe return boolean with the fill()-method to signal whether it was filled sufficiently
 		
 		
 		//
@@ -818,9 +836,18 @@ public class Check implements CarismaCheckWithID {
 			System.out.println("At end of addElement :" + newObject);
 			referencingList2.put(currentEObject, newOdrlObject);//Maybe extend the valid keys and add all objects, not just ODRLClasses
 		}
-		
+		System.out.println(UMLModelConverter.getOdrlObject(currentEObject)==null?"Helper: Null": "Helper:  " + UMLModelConverter.getOdrlObject(currentEObject));
+		System.out.println("passed EObject: " + currentEObject);
 		return newObject;
 	}
+	
+	
+	private Object foo() {
+		Map<String,Class> map = new HashMap<>();
+		map.put(odrlPackage.getProhibition().getName(), Prohibit.class);
+		return map;
+	}
+	
 	
 	private <T> List<T> addElement(List currentList, ODRLClass odrlParent, EObject activityElement, Class<T> type) {//No check for several layers of lists as that case does not occur in the current model
 		List<T> newOdrlList = new LinkedList<>();
@@ -864,7 +891,6 @@ public class Check implements CarismaCheckWithID {
 	}
 	
 	
-	//Filling-Methods for assets
 	private void fill(EObject currentEObject, Object toBeFilled, EObject activityElement) {
 		if (toBeFilled instanceof Asset asset) {
 			fillAsset(currentEObject, asset, activityElement);
@@ -916,6 +942,7 @@ public class Check implements CarismaCheckWithID {
 		}
 	}
 	
+	//Filling-Methods for assets
 	private void fillAsset(EObject currentEObject, Asset asset, EObject activityElement) {
 		Object attributeValue = getValue(currentEObject, odrlPackage.getAsset_Uid().getName());
 		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
@@ -1150,14 +1177,43 @@ public class Check implements CarismaCheckWithID {
 		}
 	}
 	private void fillProhibition(EObject currentEObject, Prohibition prohibition, EObject activityElement) {
+		//Currently leads to properties of unrelated duty being taken over
+		EStructuralFeature remedyFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getProhibition_Remedies().getName());
+		if (getValue(currentEObject,odrlPackage.getProhibition_Remedies().getName()) != null) {
+			Object attributeValueOdrl = addElement(remedyFeature, prohibition, activityElement);
+			if (attributeValueOdrl instanceof Remedy remedy) {
+				prohibition.setRemedy(remedy);
+			}
+		}//TODO only set the remedy if its rules-Property is not empty (in ecore it has the empty list, making the remedy and List non-null in any case). Possibility: fillRemedies
 		Object attributeValue = getValue(currentEObject,odrlPackage.getProhibition_Remedies().getName());
-		if (attributeValue instanceof EObject newEObj) { //TODO List attribute
+		if (attributeValue instanceof List list) { //TODO List attribute
+			List<Duty> attributeValueOdrl = addElement(list, prohibition.getRemedy(), activityElement, Duty.class);
+			if (attributeValueOdrl!=null) {
+				if (prohibition.getRemedy().getRules()==null)
+					prohibition.getRemedy().setRules(new LinkedList<Rule>());
+				prohibition.getRemedy().getRules().addAll(attributeValueOdrl);//TODO change getters to conditional generators or add null-checks with additional creation everywhere were gotten objects are further used
+			}
 		}
 	}
 	private void fillDuty(EObject currentEObject, Duty duty, EObject activityElement) {
-		Object attributeValue = getValue(currentEObject, odrlPackage.getDuty_Consequences().getName());
-		if (attributeValue instanceof EObject newEObj) { //TODO List attribute
-		}
+//		EStructuralFeature consequenceFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getDuty_Consequences().getName());
+//		if (getValue(currentEObject,odrlPackage.getDuty_Consequences().getName()) != null) {
+//			System.out.println("ConsequenceValue" + getValue(currentEObject,odrlPackage.getDuty_Consequences().getName()));
+//			Object attributeValueOdrl = addElement(consequenceFeature, duty, activityElement);
+//			if (attributeValueOdrl instanceof Consequence consequence) {
+//				duty.setConsequences(consequence);
+//			}
+//		}
+		//Following part currently leads to stack overflow when JSON-Objects are created
+//		Object attributeValue = getValue(currentEObject, odrlPackage.getDuty_Consequences().getName());
+//		if (attributeValue instanceof List list) { //TODO List attribute
+//			List<Duty> attributeValueOdrl = addElement(list, duty.getConsequences(), activityElement, Duty.class);
+//			if (attributeValueOdrl!=null) {
+//				if (duty.getConsequences().getRules()==null)
+//					duty.getConsequences().setRules(new LinkedList<Rule>());
+//				duty.getConsequences().getRules().addAll(attributeValueOdrl);//TODO change getters to conditional generators or add null-checks with additional creation everywhere were gotten objects are further used
+//			}
+//		}
 	}
 	
 	
@@ -1241,6 +1297,16 @@ public class Check implements CarismaCheckWithID {
 				if (!hasTarget) {
 					//TODO add warning: invalid prohibition: needs to have a relation of type target
 				}
+				for (Rule remedy : prohibition.getRemedy().getRules()) {
+					if (!(remedy instanceof Duty)) {
+						//TODO add warning: Invalid Prohibition: remedy must be of type Duty
+					}
+					if (remedy instanceof Duty consequenceDuty) {
+						if (consequenceDuty.getConsequences()!=null) {
+							//TODO add warning: Invalid remedy duty: remedy-Duty must not have a consequence itself
+						}
+					}
+				}
 			} else if (testedElement instanceof Duty duty) {
 				for (Rule consequence : duty.getConsequences().getRules()) {
 					if (!(consequence instanceof Duty)) {
@@ -1252,7 +1318,7 @@ public class Check implements CarismaCheckWithID {
 						}
 					}
 				}
-			}
+			} 
 		}
 			
 	}
