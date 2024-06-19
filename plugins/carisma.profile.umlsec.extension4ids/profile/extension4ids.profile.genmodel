@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    modelDirectory="/carisma.profile.umlsec.extension4ids/src" modelPluginID="carisma.profile.umlsec.extension4ids"
+    modelName="Extension4ids" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="17.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>extension4ids.profile.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="Extension4ids" basePackage="carisma.profile.umlsec"
+      disposableProviderFactory="true" ecorePackage="extension4ids.profile.ecore#/">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="extension4ids.profile.ecore#//IDSconnector">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference extension4ids.profile.ecore#//IDSconnector/base_Artifact"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="extension4ids.profile.ecore#//usagecontrol">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference extension4ids.profile.ecore#//usagecontrol/base_Dependency"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="extension4ids.profile.ecore#//datatransfer">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute extension4ids.profile.ecore#//datatransfer/type"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference extension4ids.profile.ecore#//datatransfer/transfer_req_step"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference extension4ids.profile.ecore#//datatransfer/transfer_start_step"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference extension4ids.profile.ecore#//datatransfer/push_pull_step"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference extension4ids.profile.ecore#//datatransfer/transfer_complete_step"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference extension4ids.profile.ecore#//datatransfer/transfer_suspend_step"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference extension4ids.profile.ecore#//datatransfer/transfer_terminate_step"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference extension4ids.profile.ecore#//datatransfer/base_Interaction"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="extension4ids.profile.ecore#//provider">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference extension4ids.profile.ecore#//provider/base_Lifeline"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="extension4ids.profile.ecore#//consumer">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference extension4ids.profile.ecore#//consumer/base_Lifeline"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
