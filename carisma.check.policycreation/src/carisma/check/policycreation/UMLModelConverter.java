@@ -1,6 +1,8 @@
 package carisma.check.policycreation;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -121,6 +123,8 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.Permit;
 import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.Prohibit;
 import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.VoidPolicy;
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.Constraint;
+import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintList;
+import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.LogicalConstraint;
 import carisma.profile.uconcreation.odrl.core.internal.classes.function.Assignee;
 import carisma.profile.uconcreation.odrl.core.internal.classes.function.Assigner;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operand.And;
@@ -151,15 +155,16 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Permission;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Prohibition;
 
 public class UMLModelConverter {
-	private static final Map<String,Map<String,Class<? extends ODRLClass>>> enumMap = new HashMap<>();
-	private static final Map<String,String> typeEnumMap1 = new HashMap<>();
-	private static final Map<String,Map<String,Class<? extends ODRLClass>>> typeEnumMap2 = new HashMap<>();
-	private static final Map<String,Class<? extends ODRLClass>> classMap = new HashMap<>();
-	private static final ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
+	private  final Map<String,Map<String,Class<? extends ODRLClass>>> enumMap = new HashMap<>();
+	private  final Map<String,String> typeEnumMap1 = new HashMap<>();
+	private  final Map<String,Map<String,Class<? extends ODRLClass>>> typeEnumMap2 = new HashMap<>();
+	private  final Map<String,Class<? extends ODRLClass>> classMap = new HashMap<>();
+	private  final ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
 	
-	private Map<EObject,ODRLClass> referencingMap = new HashMap<>();//Save with unique EObject, watch out for uniqueness of enums
+	private Map<EObject,ODRLClass> referencingMap = new HashMap<>();//Save with unique EObject, watch out for uniqueness of enums (may need to be saved as triple (the )
+	//Also save lists, not just their elements
 	
-	static {
+	 {
 		
 		enumMap.put(ConflictStrategy.class.getSimpleName(), Map.ofEntries(
 				Map.entry(ConflictStrategy.PERMIT.getName(),Permit.class),
@@ -322,7 +327,76 @@ public class UMLModelConverter {
 		
 		//Missing: LogicalConstraint, StructuralFeatures
 	}
-	public static ODRLClass getOdrlObject(EObject eObject) {
+	
+	private  Object specialCases(EObject currentEObject, ODRLClass odrlParent, EObject activityElement) {
+		ODRLClass newObject = null;
+		String objectClassName = currentEObject.eClass().getName();
+		if (objectClassName.equals(odrlPackage.getLogicalConstraint().getName())) {
+			EStructuralFeature classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_LogicalOperator().getName());
+			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
+				if (classEnum.toString().equals(LogicalOperator.NULL.getName())) {//Operator Null: LogicalConstraint only used as wrapper for the constraint without added information (using a common super-datatype to make both eligible as value does not work with papyrus)
+					if (getValue(currentEObject, odrlPackage.getLogicalConstraint_Constraints().getName()) instanceof List constraintList) {
+						List<Constraint> constraints = new ConstraintList();
+						constraints.addAll(addElement(constraintList, odrlParent, activityElement, Constraint.class));
+						return constraints;//TODO watch out in with doubled parent-assignment.
+					}//may need to be returned directly and not just assigned so that the fill-method is not called twice (in this method at the end and in the one called with the constraintList). Alternatively: alreadyProcessed-Boolean or something like that, that prevents adding parents and calling the fill()-method (should not prevent adding to the referenceList (as the called methods add with another key))
+				} else {
+					newObject=new LogicalConstraint();
+				}
+			}
+		}
+		return newObject;
+	}
+	
+	public  Object addElement(EObject currentEObject, ODRLClass odrlParent, EObject activityElement) {
+		Object newObject = null;
+		newObject = getOdrlObject(currentEObject, odrlParent, activityElement);
+		if (newObject ==null) {
+			newObject = specialCases(currentEObject, odrlParent, activityElement);
+		}
+		return newObject;
+	}
+	
+	private <T> List<T> addElement(List currentList, ODRLClass odrlParent, EObject activityElement, Class<T> type) {//No check for several layers of lists as that case does not occur in the current model
+		List<T> newOdrlList = new LinkedList<>();
+		boolean fullyCompartible = true;
+		if (currentList!=null && !currentList.isEmpty()) {
+			for (Object o : currentList) {
+				if (o instanceof EObject eObj) {
+					Object newOdrlObject = addElement(eObj,odrlParent,activityElement);
+					if (type.isInstance(newOdrlObject)) {
+						newOdrlList.add((T)newOdrlObject);
+					} else {
+						fullyCompartible=false;
+					}
+				}
+				else if (o instanceof String string) {
+					Object newOdrlObject = addElement(string,odrlParent,activityElement);
+					if (type.isInstance(newOdrlObject)) {
+						newOdrlList.add((T)newOdrlObject);
+					} else {
+						fullyCompartible=false;
+					}
+				}
+			}
+		}
+		return newOdrlList.isEmpty()||!fullyCompartible? null : newOdrlList;//Only return a List if all elements of the passed List were of the specified class (and it's not empty)
+	}
+	
+	private String addElement(String currentObject, ODRLClass odrlParent, EObject activityElement) {
+		return currentObject;
+	}
+	
+	public  Object getValue(EObject eObject, String featureName) {
+//		EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
+//		if(feature == null) {
+//			//TODO add missing feature information?
+//		}
+//		return feature==null ? null : eObject.eGet(feature);
+		return eObject.eGet(eObject.eClass().getEStructuralFeature(featureName));//Nullpointer-exception with null-feature can only be produced by code errors, not by input errors
+	}
+	
+	public  ODRLClass getOdrlObject(EObject eObject, ODRLClass odrlParent, EObject activityElement) {
 		Class<? extends ODRLClass> odrlClass = null;
 		if (eObject instanceof EEnumLiteral enumLiteral) {
 			Map<String, Class<? extends ODRLClass>> literalMap = enumMap.get(enumLiteral.getEEnum().getName());

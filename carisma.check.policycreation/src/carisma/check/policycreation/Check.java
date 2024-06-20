@@ -269,10 +269,11 @@ public class Check implements CarismaCheckWithID {
 			System.out.println("Registered package: " + EPackage.Registry.INSTANCE.keySet());
 			System.out.println("Test of duty: " + factory.eINSTANCE.createDuty().eClass().getEPackage());
 			System.out.println("Package: " + odrlPackage);
-			for (Element e : model.allOwnedElements()) {
-				odrlSwitch.doSwitch(e);//TODO remove
-				System.out.println("Classifier id: " + e.eClass().getClassifierID());
-			}
+//			for (Element e : model.allOwnedElements()) {
+//				odrlSwitch.doSwitch(e);//TODO remove
+//				System.out.println("Classifier id: " + e.eClass().getClassifierID());
+//				System.out.println("InstanceClassName: "+ e.eClass().getInstanceClassName() + "           , InstanenceType: " + e.eClass().getInstanceTypeName());
+//			}
 			structureModel(model);
 			//
 
@@ -307,8 +308,8 @@ public class Check implements CarismaCheckWithID {
 			printContent(child, indent+"  ");
 		}
 	}
-	
 	private void structureModel(Package inputModel) {
+		List<JSONObject> printList = new LinkedList<JSONObject>();
 		Collection<Element> modelContents = inputModel.allOwnedElements();
 		for (Element e : modelContents) {
 			for (Stereotype s : e.getAppliedStereotypes()) {
@@ -317,7 +318,9 @@ public class Check implements CarismaCheckWithID {
 					
 					if (odrlC != null) {
 						System.out.println("Created ODRLObject: " + odrlC);
-						System.out.println(new JSONObject(odrlC).toString(4));
+						JSONObject jso = new JSONObject(odrlC);
+						printList.add(jso);
+						System.out.println(jso.toString(4));
 					}
 					else {
 						System.out.println("Null: " + e.getStereotypeApplication(s));
@@ -328,6 +331,10 @@ public class Check implements CarismaCheckWithID {
 					System.out.println();
 				}			
 			}
+		}
+		for (JSONObject jobj : printList) {
+		System.out.println(jobj.toString(4));
+		System.out.println();
 		}
 	}
 		
@@ -345,7 +352,7 @@ public class Check implements CarismaCheckWithID {
 		}
 		if (referencingList2.get(currentEObject)!= null) {//TODO either add parent to parents-Attribute here (and before the other return-statement) or in the method processing the return value (if that's where it's decided whether it's actually added (for example in case it would, but must not ovewrite a value of the parent))
 			System.out.println("already generated: " + currentEObject);
-			return referencingList2.get(currentEObject);
+			return referencingList2.get(currentEObject);//Problem: Same enums are used in the generation of different ODRL-Objects (e.g. one action-enum with several different refinements)
 		}
 		String objectClassName = currentEObject.eClass().getName();
 		Object newObject = null;
@@ -381,6 +388,7 @@ public class Check implements CarismaCheckWithID {
 			else if (enumName.equals(Action.class.getSimpleName())) {
 				if(objectName.equals(Action.ACCEPT_TRACKING.getName())) {
 					newObject = new AcceptTracking();
+					System.out.println("Check for enum-uniqueness: " + currentEObject);
 				}
 				else if (objectName.equals(Action.AGGREGATE.getName())) {
 					newObject = new Aggregate();
@@ -836,7 +844,8 @@ public class Check implements CarismaCheckWithID {
 			System.out.println("At end of addElement :" + newObject);
 			referencingList2.put(currentEObject, newOdrlObject);//Maybe extend the valid keys and add all objects, not just ODRLClasses
 		}
-		System.out.println(UMLModelConverter.getOdrlObject(currentEObject)==null?"Helper: Null": "Helper:  " + UMLModelConverter.getOdrlObject(currentEObject));
+		UMLModelConverter converter = new UMLModelConverter();
+		System.out.println(converter.addElement(currentEObject,null,null)==null?"Helper: Null": "Helper:  " + converter.addElement(currentEObject,null,null));
 		System.out.println("passed EObject: " + currentEObject);
 		return newObject;
 	}

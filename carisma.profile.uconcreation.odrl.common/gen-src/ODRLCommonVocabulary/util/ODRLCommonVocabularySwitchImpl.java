@@ -27,7 +27,12 @@ public class ODRLCommonVocabularySwitchImpl<T> extends ODRLCommonVocabularySwitc
 	@Override
 	protected T doSwitch(EClass eClass, EObject eObject) {
 		System.out.println("In doSwitch(2)");
+		System.out.println(eClass);
 		System.out.println(eClass.getEPackage());
+		System.out.println(eClass.getInstanceClass());
+		if(EClass.class.isInstance(eClass.getInstanceClass())) {
+			System.out.println("is instance");
+		}
 		if (isSwitchFor(eClass.getEPackage()))
 	    {
 			System.out.println("is for package");
