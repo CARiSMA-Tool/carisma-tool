@@ -359,10 +359,8 @@
   <packagedElement xmi:type="uml:Extension" xmi:id="_ZjsPcCvgEe-fAuOaI3WziA" name="E_usagecontrol_Dependency8" memberEnd="_Zjs2gCvgEe-fAuOaI3WziA _Zjs2gSvgEe-fAuOaI3WziA">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Zjs2gCvgEe-fAuOaI3WziA" name="extension_usagecontrol" type="_YdHo8CvgEe-fAuOaI3WziA" aggregation="composite" association="_ZjsPcCvgEe-fAuOaI3WziA"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Stereotype" xmi:id="_eQTvkCvgEe-fAuOaI3WziA" name="data transfer">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_szOmcCvgEe-fAuOaI3WziA" name="type">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-    </ownedAttribute>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_eQTvkCvgEe-fAuOaI3WziA" name="TransferProcessProtocol">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_szOmcCvgEe-fAuOaI3WziA" name="type" type="__CrYkC9FEe-XvfAHGnB7Rg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_kP1zoCvhEe-fAuOaI3WziA" name="transfer_req_step" visibility="private">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Message"/>
     </ownedAttribute>
@@ -395,8 +393,8 @@
   <packagedElement xmi:type="uml:Extension" xmi:id="_G1_54CvjEe-fAuOaI3WziA" name="E_provider_Lifeline15" memberEnd="_G2Ag8CvjEe-fAuOaI3WziA _G2BIACvjEe-fAuOaI3WziA">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_G2Ag8CvjEe-fAuOaI3WziA" name="extension_provider" type="_DMdAUCvjEe-fAuOaI3WziA" aggregation="composite" association="_G1_54CvjEe-fAuOaI3WziA"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Extension" xmi:id="_Ht7ncCvjEe-fAuOaI3WziA" name="E_data transfer_Interaction17" memberEnd="_Ht8OgCvjEe-fAuOaI3WziA _Ht8OgSvjEe-fAuOaI3WziA">
-    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Ht8OgCvjEe-fAuOaI3WziA" name="extension_data transfer" type="_eQTvkCvgEe-fAuOaI3WziA" aggregation="composite" association="_Ht7ncCvjEe-fAuOaI3WziA"/>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_Ht7ncCvjEe-fAuOaI3WziA" name="E_TransferProcessProtocol_Interaction1" memberEnd="_Ht8OgCvjEe-fAuOaI3WziA _Ht8OgSvjEe-fAuOaI3WziA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Ht8OgCvjEe-fAuOaI3WziA" name="extension_TransferProcessProtocol" type="_eQTvkCvgEe-fAuOaI3WziA" aggregation="composite" association="_Ht7ncCvjEe-fAuOaI3WziA"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_SNpuoCvjEe-fAuOaI3WziA" name="consumer">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_Ted2QCvjEe-fAuOaI3WziA" name="base_Lifeline" association="_TedPMCvjEe-fAuOaI3WziA">
@@ -406,6 +404,10 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Extension" xmi:id="_TedPMCvjEe-fAuOaI3WziA" name="E_consumer_Lifeline18" memberEnd="_TedPMSvjEe-fAuOaI3WziA _Ted2QCvjEe-fAuOaI3WziA">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_TedPMSvjEe-fAuOaI3WziA" name="extension_consumer" type="_SNpuoCvjEe-fAuOaI3WziA" aggregation="composite" association="_TedPMCvjEe-fAuOaI3WziA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="__CrYkC9FEe-XvfAHGnB7Rg" name="TransferType">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_AigMkC9GEe-XvfAHGnB7Rg" name="PUSH"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_BAjagC9GEe-XvfAHGnB7Rg" name="PULL"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_jUFLcCvgEe-fAuOaI3WziA">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jUKD8CvgEe-fAuOaI3WziA" source="http://www.eclipse.org/uml2/2.0.0/UML">

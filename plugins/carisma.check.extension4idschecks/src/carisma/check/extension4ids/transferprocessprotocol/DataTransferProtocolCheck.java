@@ -1,4 +1,4 @@
-package carisma.check.extension4ids.datatransfer;
+package carisma.check.extension4ids.transferprocessprotocol;
 
 import java.util.Map;
 
@@ -18,7 +18,7 @@ import carisma.core.checks.CheckParameter;
 public class DataTransferProtocolCheck implements CarismaCheckWithID {
 	
 	public static final String CHECK_ID = "carisma.check.extension4idschecks.datatransfer";
-	public static final String CHECK_NAME = "Extension4ids Data Transfer Protocol Check";
+	public static final String CHECK_NAME = "Extension4ids Transfer Process Protocol Check";
 
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost newHost) {

@@ -8,7 +8,7 @@ public enum Extension4IDS {
 	
 	IDSCONNECTOR ("IDS connector"),
 	USAGECONTROL ("usagecontrol"),
-	DATATRANSFER ("data transfer"),
+	DATATRANSFER ("TransferProcessProtocol"),
 	PROVIDER ("provider"),
 	CONSUMER ("consumer");
 	private static final String PROFILE_NAME = "extension4ids";

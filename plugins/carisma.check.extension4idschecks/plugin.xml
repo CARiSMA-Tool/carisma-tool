@@ -13,10 +13,10 @@
             implementingClass="carisma.check.extension4ids.usagecontrol.UsageControlCheck">
       </check>
       <check
-            description="Checks if IDS data transfer protocol is satisfied"
+            description="Checks if IDS transfer process protocol is satisfied"
             id="carisma.check.extension4ids.datatransfer"
-            implementingClass="carisma.check.extension4ids.datatransfer.DataTransferProtocolCheck"
-            name="Extension4IDS Data Transfer Protocol Check"
+            implementingClass="carisma.check.extension4ids.transferprocessprotocol.DataTransferProtocolCheck"
+            name="Extension4IDS Transfer Process Protocol Check"
             publisher="Sanjeev Sun Shakya"
             targetModelType="UML2">
       </check>
