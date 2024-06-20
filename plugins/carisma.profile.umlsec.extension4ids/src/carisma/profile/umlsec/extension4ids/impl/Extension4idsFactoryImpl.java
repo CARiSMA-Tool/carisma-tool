@@ -2,8 +2,6 @@
  */
 package carisma.profile.umlsec.extension4ids.impl;
 
-import carisma.profile.umlsec.extension4ids.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -11,6 +9,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import carisma.profile.umlsec.extension4ids.*;
 
 /**
  * <!-- begin-user-doc -->

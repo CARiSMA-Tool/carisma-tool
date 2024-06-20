@@ -2,9 +2,6 @@
  */
 package carisma.profile.umlsec.extension4ids.impl;
 
-import carisma.profile.umlsec.extension4ids.Extension4idsPackage;
-import carisma.profile.umlsec.extension4ids.datatransfer;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -15,6 +12,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
+
+import carisma.profile.umlsec.extension4ids.Extension4idsPackage;
+import carisma.profile.umlsec.extension4ids.datatransfer;
 
 /**
  * <!-- begin-user-doc -->

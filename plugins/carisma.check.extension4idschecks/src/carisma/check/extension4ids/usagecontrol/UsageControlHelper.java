@@ -1,5 +1,6 @@
 package carisma.check.extension4ids.usagecontrol;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +14,11 @@ import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 
+import carisma.check.staticcheck.securelinks.Messages;
+import carisma.check.staticcheck.securelinks.SecureLinks;
+import carisma.check.staticcheck.securelinks.utils.AnalysisMessage;
+import carisma.check.staticcheck.securelinks.utils.OutputTarget;
+import carisma.core.analysis.result.StatusType;
 import carisma.core.util.EObjectUtil;
 import carisma.modeltype.uml2.UMLDeploymentHelper;
 import carisma.modeltype.uml2.UMLHelper;
@@ -24,6 +30,7 @@ import carisma.profile.umlsec.extension4ids.Extension4IDSUtil;
  *
  */
 public class UsageControlHelper {
+	private static final String DATA_USAGE_CONTROL = "ignore usage control";
 	
 	/**
      * Checks if any artifact deployed on the node has the <<IDSconnector>> stereotype.

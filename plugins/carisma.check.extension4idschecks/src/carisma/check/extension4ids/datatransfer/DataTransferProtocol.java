@@ -397,12 +397,11 @@ public class DataTransferProtocol {
 	            return false;
 	        }
 	    } else if (PULL.equalsIgnoreCase(type)) {
-	    	
 	        if (!(provider.equals(sendReceiveLifelines.get("sendLifeline")) || consumer.equals(sendReceiveLifelines.get("sendLifeline")))) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer complete should be sent by either consumer or provider"));
 	            return false;
 	        }
-	        if (!(consumer.equals(sendReceiveLifelines.get("receiveLifeline")) || provider.equals(sendReceiveLifelines.get("receiveLifeline")))) {
+	        if (!(provider.equals(sendReceiveLifelines.get("receiveLifeline")) || provider.equals(sendReceiveLifelines.get("receiveLifeline")))) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer complete should be sent by either consumer or provider"));
 	            return false;
 	        }
@@ -426,12 +425,12 @@ public class DataTransferProtocol {
 
 	    Map<String, Lifeline> sendReceiveLifelines = UMLSequenceHelper.getSendAndRecieveLifeline(message);
 
-	    if (!provider.equals(sendReceiveLifelines.get("sendLifeline")) || !consumer.equals(sendReceiveLifelines.get("sendLifeline"))) {
+	    if (!provider.equals(sendReceiveLifelines.get("sendLifeline")) || !provider.equals(sendReceiveLifelines.get("receiveLifeline"))) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, stepName + "must be sent either by provider or consumer"));
 	        return false;
 	    }
 
-	    if (!consumer.equals(sendReceiveLifelines.get("receiveLifeline")) || !provider.equals(sendReceiveLifelines.get("receiveLifeline"))) {
+	    if (!consumer.equals(sendReceiveLifelines.get("receiveLifeline")) || !consumer.equals(sendReceiveLifelines.get("sendLifeline"))) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, stepName + "must be sent either by provider or consumer"));
 	        return false;
 	    }

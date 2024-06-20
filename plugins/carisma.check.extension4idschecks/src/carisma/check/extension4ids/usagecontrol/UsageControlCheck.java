@@ -47,7 +47,6 @@ public class UsageControlCheck implements CarismaCheckWithID {
 		Package model = (Package) currentModel.getContents().get(0);
 		UsageControl check = new UsageControl(host);
 		if (check.checkUsageControl(model) > 0) {
-			//TODO: Alternate for AnalysisMessage
 			for (AnalysisMessage errorMessage : check.getErrorMessages()) {
 				if (errorMessage.getType() == StatusType.ERROR) {
 					noErrors = false;

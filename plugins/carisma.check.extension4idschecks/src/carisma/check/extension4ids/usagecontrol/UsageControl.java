@@ -18,14 +18,17 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 
+import carisma.check.staticcheck.securelinks.Messages;
+import carisma.check.staticcheck.securelinks.SecureLinksHelper;
 import carisma.check.staticcheck.securelinks.utils.AnalysisMessage;
 import carisma.check.staticcheck.securelinks.utils.OutputTarget;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.DummyHost;
 import carisma.core.analysis.result.StatusType;
+import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.modeltype.uml2.UMLDeploymentHelper;
 
-/** Analyzes a deployment diagram for usage control violation
+/** Analyzes a deployment diagram for usage control validation
  * @author Sanjeev Sun Shakya
  *
  */

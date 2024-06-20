@@ -2,12 +2,12 @@
  */
 package carisma.profile.umlsec.extension4ids.util;
 
-import carisma.profile.umlsec.extension4ids.*;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+
+import carisma.profile.umlsec.extension4ids.*;
 
 /**
  * <!-- begin-user-doc -->

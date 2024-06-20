@@ -2,14 +2,14 @@
  */
 package carisma.profile.umlsec.extension4ids.util;
 
-import carisma.profile.umlsec.extension4ids.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+
+import carisma.profile.umlsec.extension4ids.*;
 
 /**
  * <!-- begin-user-doc -->

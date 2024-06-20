@@ -2,9 +2,6 @@
  */
 package carisma.profile.umlsec.extension4ids.impl;
 
-import carisma.profile.umlsec.extension4ids.Extension4idsPackage;
-import carisma.profile.umlsec.extension4ids.IDSconnector;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -13,38 +10,41 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.uml2.uml.Artifact;
+import org.eclipse.uml2.uml.Lifeline;
+
+import carisma.profile.umlsec.extension4ids.Extension4idsPackage;
+import carisma.profile.umlsec.extension4ids.provider;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>ID Sconnector</b></em>'.
+ * An implementation of the model object '<em><b>provider</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link carisma.profile.umlsec.extension4ids.impl.IDSconnectorImpl#getBase_Artifact <em>Base Artifact</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.impl.providerImpl#getBase_Lifeline <em>Base Lifeline</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IDSconnectorImpl extends MinimalEObjectImpl.Container implements IDSconnector {
+public class providerImpl extends MinimalEObjectImpl.Container implements provider {
 	/**
-	 * The cached value of the '{@link #getBase_Artifact() <em>Base Artifact</em>}' reference.
+	 * The cached value of the '{@link #getBase_Lifeline() <em>Base Lifeline</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBase_Artifact()
+	 * @see #getBase_Lifeline()
 	 * @generated
 	 * @ordered
 	 */
-	protected Artifact base_Artifact;
+	protected Lifeline base_Lifeline;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IDSconnectorImpl() {
+	protected providerImpl() {
 		super();
 	}
 
@@ -55,7 +55,7 @@ public class IDSconnectorImpl extends MinimalEObjectImpl.Container implements ID
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Extension4idsPackage.Literals.ID_SCONNECTOR;
+		return Extension4idsPackage.Literals.PROVIDER;
 	}
 
 	/**
@@ -64,16 +64,16 @@ public class IDSconnectorImpl extends MinimalEObjectImpl.Container implements ID
 	 * @generated
 	 */
 	@Override
-	public Artifact getBase_Artifact() {
-		if (base_Artifact != null && base_Artifact.eIsProxy()) {
-			InternalEObject oldBase_Artifact = (InternalEObject)base_Artifact;
-			base_Artifact = (Artifact)eResolveProxy(oldBase_Artifact);
-			if (base_Artifact != oldBase_Artifact) {
+	public Lifeline getBase_Lifeline() {
+		if (base_Lifeline != null && base_Lifeline.eIsProxy()) {
+			InternalEObject oldBase_Lifeline = (InternalEObject)base_Lifeline;
+			base_Lifeline = (Lifeline)eResolveProxy(oldBase_Lifeline);
+			if (base_Lifeline != oldBase_Lifeline) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.ID_SCONNECTOR__BASE_ARTIFACT, oldBase_Artifact, base_Artifact));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.PROVIDER__BASE_LIFELINE, oldBase_Lifeline, base_Lifeline));
 			}
 		}
-		return base_Artifact;
+		return base_Lifeline;
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class IDSconnectorImpl extends MinimalEObjectImpl.Container implements ID
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Artifact basicGetBase_Artifact() {
-		return base_Artifact;
+	public Lifeline basicGetBase_Lifeline() {
+		return base_Lifeline;
 	}
 
 	/**
@@ -91,11 +91,11 @@ public class IDSconnectorImpl extends MinimalEObjectImpl.Container implements ID
 	 * @generated
 	 */
 	@Override
-	public void setBase_Artifact(Artifact newBase_Artifact) {
-		Artifact oldBase_Artifact = base_Artifact;
-		base_Artifact = newBase_Artifact;
+	public void setBase_Lifeline(Lifeline newBase_Lifeline) {
+		Lifeline oldBase_Lifeline = base_Lifeline;
+		base_Lifeline = newBase_Lifeline;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.ID_SCONNECTOR__BASE_ARTIFACT, oldBase_Artifact, base_Artifact));
+			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.PROVIDER__BASE_LIFELINE, oldBase_Lifeline, base_Lifeline));
 	}
 
 	/**
@@ -106,9 +106,9 @@ public class IDSconnectorImpl extends MinimalEObjectImpl.Container implements ID
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Extension4idsPackage.ID_SCONNECTOR__BASE_ARTIFACT:
-				if (resolve) return getBase_Artifact();
-				return basicGetBase_Artifact();
+			case Extension4idsPackage.PROVIDER__BASE_LIFELINE:
+				if (resolve) return getBase_Lifeline();
+				return basicGetBase_Lifeline();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,8 +121,8 @@ public class IDSconnectorImpl extends MinimalEObjectImpl.Container implements ID
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Extension4idsPackage.ID_SCONNECTOR__BASE_ARTIFACT:
-				setBase_Artifact((Artifact)newValue);
+			case Extension4idsPackage.PROVIDER__BASE_LIFELINE:
+				setBase_Lifeline((Lifeline)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,8 +136,8 @@ public class IDSconnectorImpl extends MinimalEObjectImpl.Container implements ID
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Extension4idsPackage.ID_SCONNECTOR__BASE_ARTIFACT:
-				setBase_Artifact((Artifact)null);
+			case Extension4idsPackage.PROVIDER__BASE_LIFELINE:
+				setBase_Lifeline((Lifeline)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -151,10 +151,10 @@ public class IDSconnectorImpl extends MinimalEObjectImpl.Container implements ID
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Extension4idsPackage.ID_SCONNECTOR__BASE_ARTIFACT:
-				return base_Artifact != null;
+			case Extension4idsPackage.PROVIDER__BASE_LIFELINE:
+				return base_Lifeline != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //IDSconnectorImpl
+} //providerImpl

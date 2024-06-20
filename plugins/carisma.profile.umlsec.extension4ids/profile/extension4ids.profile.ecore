@@ -7,11 +7,11 @@
       <details key="originalName" value="IDS connector"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
+        eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="usagecontrol">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Dependency" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
+        eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="datatransfer">
     <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -20,26 +20,26 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transfer_req_step" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
+        lowerBound="1" eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transfer_start_step" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
+        lowerBound="1" eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="push_pull_step" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
+        lowerBound="1" eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transfer_complete_step"
-        ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
+        ordered="false" lowerBound="1" eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transfer_suspend_step"
-        ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
+        ordered="false" lowerBound="1" eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transfer_terminate_step"
-        ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
+        ordered="false" lowerBound="1" eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Interaction" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Interaction"/>
+        eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Interaction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="provider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Lifeline" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Lifeline"/>
+        eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Lifeline"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="consumer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Lifeline" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Lifeline"/>
+        eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Lifeline"/>
   </eClassifiers>
 </ecore:EPackage>

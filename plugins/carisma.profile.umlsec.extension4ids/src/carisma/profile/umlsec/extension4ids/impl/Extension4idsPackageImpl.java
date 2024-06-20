@@ -2,14 +2,6 @@
  */
 package carisma.profile.umlsec.extension4ids.impl;
 
-import carisma.profile.umlsec.extension4ids.Extension4idsFactory;
-import carisma.profile.umlsec.extension4ids.Extension4idsPackage;
-import carisma.profile.umlsec.extension4ids.IDSconnector;
-import carisma.profile.umlsec.extension4ids.consumer;
-import carisma.profile.umlsec.extension4ids.datatransfer;
-import carisma.profile.umlsec.extension4ids.provider;
-import carisma.profile.umlsec.extension4ids.usagecontrol;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -21,6 +13,14 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.uml2.types.TypesPackage;
 
 import org.eclipse.uml2.uml.UMLPackage;
+
+import carisma.profile.umlsec.extension4ids.Extension4idsFactory;
+import carisma.profile.umlsec.extension4ids.Extension4idsPackage;
+import carisma.profile.umlsec.extension4ids.IDSconnector;
+import carisma.profile.umlsec.extension4ids.consumer;
+import carisma.profile.umlsec.extension4ids.datatransfer;
+import carisma.profile.umlsec.extension4ids.provider;
+import carisma.profile.umlsec.extension4ids.usagecontrol;
 
 /**
  * <!-- begin-user-doc -->

@@ -5,7 +5,7 @@
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="pathmap://UMLSEC_EXT4IDS/"
-            target="platform:/plugin/carisma.profile.umlsec.extension4ids/profile">
+            target="platform:/plugin/carisma.profile.umlsec.extension4ids/profile/">
       </mapping>
    </extension>
    <extension
@@ -23,6 +23,13 @@
             uri="http://www.umlsec.de/profiles/UMLsec/extension4ids"
             class="carisma.profile.umlsec.extension4ids.Extension4idsPackage"
             genModel="profile/extension4ids.profile.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="platform:/plugin/carisma.profile.umlsec.extension4ids/profile/extension4ids.profile.uml#_xESocCvfEe-fAuOaI3WziA"
+            uri="http://www.umlsec.de/profiles/UMLsec/extension4ids">
+      </profile>
    </extension>
 
 </plugin>
