@@ -13,7 +13,7 @@ import carisma.check.extension4ids.dto.RelevantMessagesDto;
 import carisma.profile.umlsec.extension4ids.Extension4IDS;
 import carisma.profile.umlsec.extension4ids.Extension4IDSUtil;
 
-public class DataTransferProtocolHelper {
+public class TransferProcessProtocolHelper {
 	
 	private static final String TRANSFER_REQUEST = "transfer_req_step";
 	private static final String TRANSFER_START = "transfer_start_step";

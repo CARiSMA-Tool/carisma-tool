@@ -15,7 +15,7 @@
       <check
             description="Checks if IDS transfer process protocol is satisfied"
             id="carisma.check.extension4ids.datatransfer"
-            implementingClass="carisma.check.extension4ids.transferprocessprotocol.DataTransferProtocolCheck"
+            implementingClass="carisma.check.extension4ids.transferprocessprotocol.TransferProcessProtocolCheck"
             name="Extension4IDS Transfer Process Protocol Check"
             publisher="Sanjeev Sun Shakya"
             targetModelType="UML2">

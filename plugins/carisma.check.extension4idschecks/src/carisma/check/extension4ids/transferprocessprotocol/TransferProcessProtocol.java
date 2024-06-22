@@ -27,14 +27,14 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
-public class DataTransferProtocol {
+public class TransferProcessProtocol {
 	
 	private static final String PUSH = "push";
 	private static final String PULL = "pull";
 	
 	private AnalysisHost analysisHost;
 	
-	public DataTransferProtocol(AnalysisHost host) {
+	public TransferProcessProtocol(AnalysisHost host) {
 		if(host!= null) {
 			this.analysisHost = host;
 		} else {
@@ -47,11 +47,11 @@ public class DataTransferProtocol {
 		 List<Interaction> interactions = UMLHelper.getAllElementsOfType(pkg, Interaction.class);
 		 Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(pkg);
 		 Set<Message> allMessages = UMLSequenceHelper.getAllMessages(pkg);
-		 Set<Lifeline> providers = DataTransferProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
-		 Set<Lifeline> consumers = DataTransferProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+		 Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		 Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
 		
 		 //Checks if datatransfer stereotype is present
-		if(!DataTransferProtocolHelper.hasDataTransferStereotype(interactions)) {
+		if(!TransferProcessProtocolHelper.hasDataTransferStereotype(interactions)) {
 			this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "The model is not annotated with Data Transfer Stereotype!"));
 			return false;
 		}
@@ -70,7 +70,7 @@ public class DataTransferProtocol {
 		Lifeline consumer = consumers.stream().findFirst().get();
 		Interaction interaction = interactions.stream().findFirst().get();
 		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
-		RelevantMessagesDto relevantMessagesDto = DataTransferProtocolHelper.getTaggedValues(interaction);	
+		RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);	
 		
 		//checks if minimum combination of steps to make a data transfer is present
 		if(!hasMinimumSteps(relevantMessagesDto)) {

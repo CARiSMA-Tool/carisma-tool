@@ -15,7 +15,7 @@ import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 
-public class DataTransferProtocolCheck implements CarismaCheckWithID {
+public class TransferProcessProtocolCheck implements CarismaCheckWithID {
 	
 	public static final String CHECK_ID = "carisma.check.extension4idschecks.datatransfer";
 	public static final String CHECK_NAME = "Extension4ids Transfer Process Protocol Check";
@@ -38,7 +38,7 @@ public class DataTransferProtocolCheck implements CarismaCheckWithID {
 			return false;
 		}
 		Package model = (Package) currentModel.getContents().get(0);
-		DataTransferProtocol check = new DataTransferProtocol(host);
+		TransferProcessProtocol check = new TransferProcessProtocol(host);
 		return check.checkDataTransferProtocol(model);
 	}
 
