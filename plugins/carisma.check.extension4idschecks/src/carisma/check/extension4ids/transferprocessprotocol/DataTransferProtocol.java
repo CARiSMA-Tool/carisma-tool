@@ -3,9 +3,11 @@ package carisma.check.extension4ids.transferprocessprotocol;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import carisma.check.extension4ids.dto.DataTransferProtocolDto;
 import carisma.check.extension4ids.dto.RelevantMessagesDto;
@@ -84,6 +86,11 @@ public class DataTransferProtocol {
 		if(!hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto)) {
 			return false;
 		}
+		
+		//checks if the there are messages that starts from either consumer or provider and not end in either as well.
+//		if(hasMessagesNotBetweenConnectors(dataTransferProtocolDto)) {
+//			return false;
+//		}
 		
 		return checkSuccessful;
 		
@@ -231,8 +238,50 @@ public class DataTransferProtocol {
 	    if (relevantMessagesDto.getTransferTerminate()!= null && !isValidSuspendOrTerminateStep(dataTransferProtocolDto, relevantMessagesDto.getTransferTerminate(), "Transfer Terminate")) {
 	        return false;
 	    }
+	    
+	    hasIrrelevantMessages(dataTransferProtocolDto, relevantMessagesDto);
+	    	
 
 	    return true;
+	}
+	
+	public void hasIrrelevantMessages(DataTransferProtocolDto dataTransferProtocolDto, RelevantMessagesDto relevantMessagesDto) {
+		Set<Message> allMessagesBetweenLifelines = UMLSequenceHelper.getAllMessagesBetweenLifelines(dataTransferProtocolDto.getConsumer(), dataTransferProtocolDto.getProvider());
+		
+		// Collect non-null relevant messages
+	    Set<Message> relevantMessageSet = Stream.of(
+	            relevantMessagesDto.getTransferRequest(),
+	            relevantMessagesDto.getTransferStart(),
+	            relevantMessagesDto.getTransferTerminate(),
+	            relevantMessagesDto.getTransferSuspend(),
+	            relevantMessagesDto.getTransferComplete(),
+	            relevantMessagesDto.getPushPull()
+	    ).filter(Objects::nonNull)
+	     .collect(Collectors.toSet());
+		
+	    // Find irrelevant messages by removing relevant messages from all messages
+	    Set<Message> irrelevantMessageSet = new HashSet<>(allMessagesBetweenLifelines);
+	    irrelevantMessageSet.removeAll(relevantMessageSet);
+		
+		if (!irrelevantMessageSet.isEmpty()) {
+			String irrelevantMessages = irrelevantMessageSet.stream()
+	                .map(Message::getName)
+	                .collect(Collectors.joining(", "));
+	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "These messages are irrelevant to the transfer process protocol: " + irrelevantMessages));
+	    }
+	}
+	
+	
+	public boolean hasMessagesNotBetweenConnectors(DataTransferProtocolDto dataTransferProtocolDto) {
+		Set<Message> messagesNotBetweenConnectors = UMLSequenceHelper.getAllMessagesNotBetweenLifelines(dataTransferProtocolDto.getProvider(), dataTransferProtocolDto.getConsumer());
+		if (!messagesNotBetweenConnectors.isEmpty()) {
+			String messages = messagesNotBetweenConnectors.stream()
+	                .map(Message::getName) 
+	                .collect(Collectors.joining(", "));
+	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "These messages are irrelevant to the transfer process protocol: " + messages));
+	        return true;
+	    }
+		return false;
 	}
 
 	
@@ -286,8 +335,6 @@ public class DataTransferProtocol {
 	    	this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, first.get().getName() + " or " + second.get().getName() + "step missing"));
 	        return false; // If any of the events are missing, we assume no violation
 	    }
-	    System.out.println("First: "+ first.get().getName() + "index: " + occurrences.stream().toList().indexOf(first.get()));
-	    System.out.println("Second: "+ second.get().getName() + "index: " + occurrences.stream().toList().indexOf(second.get()));
 	    return occurrences.stream().toList().indexOf(first.get()) < occurrences.stream().toList().indexOf(second.get());
 	}
 	

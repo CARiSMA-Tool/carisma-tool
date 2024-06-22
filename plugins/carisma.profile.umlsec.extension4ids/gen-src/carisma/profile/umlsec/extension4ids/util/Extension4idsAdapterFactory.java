@@ -72,20 +72,20 @@ public class Extension4idsAdapterFactory extends AdapterFactoryImpl {
 				return createIDSconnectorAdapter();
 			}
 			@Override
-			public Adapter caseusagecontrol(usagecontrol object) {
-				return createusagecontrolAdapter();
+			public Adapter caseUsageControl(UsageControl object) {
+				return createUsageControlAdapter();
 			}
 			@Override
-			public Adapter casedatatransfer(datatransfer object) {
-				return createdatatransferAdapter();
+			public Adapter caseTransferProcessProtocol(TransferProcessProtocol object) {
+				return createTransferProcessProtocolAdapter();
 			}
 			@Override
-			public Adapter caseprovider(provider object) {
-				return createproviderAdapter();
+			public Adapter caseProviderConnector(ProviderConnector object) {
+				return createProviderConnectorAdapter();
 			}
 			@Override
-			public Adapter caseconsumer(consumer object) {
-				return createconsumerAdapter();
+			public Adapter caseConsumerConnector(ConsumerConnector object) {
+				return createConsumerConnectorAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -122,58 +122,58 @@ public class Extension4idsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.extension4ids.usagecontrol <em>usagecontrol</em>}'.
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.extension4ids.UsageControl <em>Usage Control</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see carisma.profile.umlsec.extension4ids.usagecontrol
+	 * @see carisma.profile.umlsec.extension4ids.UsageControl
 	 * @generated
 	 */
-	public Adapter createusagecontrolAdapter() {
+	public Adapter createUsageControlAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.extension4ids.datatransfer <em>datatransfer</em>}'.
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.extension4ids.TransferProcessProtocol <em>Transfer Process Protocol</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see carisma.profile.umlsec.extension4ids.datatransfer
+	 * @see carisma.profile.umlsec.extension4ids.TransferProcessProtocol
 	 * @generated
 	 */
-	public Adapter createdatatransferAdapter() {
+	public Adapter createTransferProcessProtocolAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.extension4ids.provider <em>provider</em>}'.
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.extension4ids.ProviderConnector <em>Provider Connector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see carisma.profile.umlsec.extension4ids.provider
+	 * @see carisma.profile.umlsec.extension4ids.ProviderConnector
 	 * @generated
 	 */
-	public Adapter createproviderAdapter() {
+	public Adapter createProviderConnectorAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.extension4ids.consumer <em>consumer</em>}'.
+	 * Creates a new adapter for an object of class '{@link carisma.profile.umlsec.extension4ids.ConsumerConnector <em>Consumer Connector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see carisma.profile.umlsec.extension4ids.consumer
+	 * @see carisma.profile.umlsec.extension4ids.ConsumerConnector
 	 * @generated
 	 */
-	public Adapter createconsumerAdapter() {
+	public Adapter createConsumerConnectorAdapter() {
 		return null;
 	}
 

@@ -31,40 +31,40 @@ public interface Extension4idsFactory extends EFactory {
 	IDSconnector createIDSconnector();
 
 	/**
-	 * Returns a new object of class '<em>usagecontrol</em>'.
+	 * Returns a new object of class '<em>Usage Control</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>usagecontrol</em>'.
+	 * @return a new object of class '<em>Usage Control</em>'.
 	 * @generated
 	 */
-	usagecontrol createusagecontrol();
+	UsageControl createUsageControl();
 
 	/**
-	 * Returns a new object of class '<em>datatransfer</em>'.
+	 * Returns a new object of class '<em>Transfer Process Protocol</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>datatransfer</em>'.
+	 * @return a new object of class '<em>Transfer Process Protocol</em>'.
 	 * @generated
 	 */
-	datatransfer createdatatransfer();
+	TransferProcessProtocol createTransferProcessProtocol();
 
 	/**
-	 * Returns a new object of class '<em>provider</em>'.
+	 * Returns a new object of class '<em>Provider Connector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>provider</em>'.
+	 * @return a new object of class '<em>Provider Connector</em>'.
 	 * @generated
 	 */
-	provider createprovider();
+	ProviderConnector createProviderConnector();
 
 	/**
-	 * Returns a new object of class '<em>consumer</em>'.
+	 * Returns a new object of class '<em>Consumer Connector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>consumer</em>'.
+	 * @return a new object of class '<em>Consumer Connector</em>'.
 	 * @generated
 	 */
-	consumer createconsumer();
+	ConsumerConnector createConsumerConnector();
 
 	/**
 	 * Returns the package supported by this factory.

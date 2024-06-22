@@ -8,21 +8,21 @@ import org.eclipse.uml2.uml.Lifeline;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>provider</b></em>'.
+ * A representation of the model object '<em><b>Consumer Connector</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link carisma.profile.umlsec.extension4ids.provider#getBase_Lifeline <em>Base Lifeline</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.ConsumerConnector#getBase_Lifeline <em>Base Lifeline</em>}</li>
  * </ul>
  *
- * @see carisma.profile.umlsec.extension4ids.Extension4idsPackage#getprovider()
+ * @see carisma.profile.umlsec.extension4ids.Extension4idsPackage#getConsumerConnector()
  * @model
  * @generated
  */
-public interface provider extends EObject {
+public interface ConsumerConnector extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Lifeline</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -33,14 +33,14 @@ public interface provider extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Lifeline</em>' reference.
 	 * @see #setBase_Lifeline(Lifeline)
-	 * @see carisma.profile.umlsec.extension4ids.Extension4idsPackage#getprovider_Base_Lifeline()
+	 * @see carisma.profile.umlsec.extension4ids.Extension4idsPackage#getConsumerConnector_Base_Lifeline()
 	 * @model ordered="false"
 	 * @generated
 	 */
 	Lifeline getBase_Lifeline();
 
 	/**
-	 * Sets the value of the '{@link carisma.profile.umlsec.extension4ids.provider#getBase_Lifeline <em>Base Lifeline</em>}' reference.
+	 * Sets the value of the '{@link carisma.profile.umlsec.extension4ids.ConsumerConnector#getBase_Lifeline <em>Base Lifeline</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Base Lifeline</em>' reference.
@@ -49,4 +49,4 @@ public interface provider extends EObject {
 	 */
 	void setBase_Lifeline(Lifeline value);
 
-} // provider
+} // ConsumerConnector

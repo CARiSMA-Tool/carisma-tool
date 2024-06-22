@@ -19,7 +19,7 @@ import org.eclipse.uml2.uml.Artifact;
  * </ul>
  *
  * @see carisma.profile.umlsec.extension4ids.Extension4idsPackage#getIDSconnector()
- * @model annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='IDS connector'"
+ * @model
  * @generated
  */
 public interface IDSconnector extends EObject {

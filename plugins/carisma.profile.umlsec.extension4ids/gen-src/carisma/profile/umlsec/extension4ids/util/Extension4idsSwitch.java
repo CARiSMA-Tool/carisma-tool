@@ -72,27 +72,27 @@ public class Extension4idsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Extension4idsPackage.USAGECONTROL: {
-				usagecontrol usagecontrol = (usagecontrol)theEObject;
-				T result = caseusagecontrol(usagecontrol);
+			case Extension4idsPackage.USAGE_CONTROL: {
+				UsageControl usageControl = (UsageControl)theEObject;
+				T result = caseUsageControl(usageControl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Extension4idsPackage.DATATRANSFER: {
-				datatransfer datatransfer = (datatransfer)theEObject;
-				T result = casedatatransfer(datatransfer);
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL: {
+				TransferProcessProtocol transferProcessProtocol = (TransferProcessProtocol)theEObject;
+				T result = caseTransferProcessProtocol(transferProcessProtocol);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Extension4idsPackage.PROVIDER: {
-				provider provider = (provider)theEObject;
-				T result = caseprovider(provider);
+			case Extension4idsPackage.PROVIDER_CONNECTOR: {
+				ProviderConnector providerConnector = (ProviderConnector)theEObject;
+				T result = caseProviderConnector(providerConnector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Extension4idsPackage.CONSUMER: {
-				consumer consumer = (consumer)theEObject;
-				T result = caseconsumer(consumer);
+			case Extension4idsPackage.CONSUMER_CONNECTOR: {
+				ConsumerConnector consumerConnector = (ConsumerConnector)theEObject;
+				T result = caseConsumerConnector(consumerConnector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -116,62 +116,62 @@ public class Extension4idsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>usagecontrol</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Usage Control</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>usagecontrol</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Usage Control</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseusagecontrol(usagecontrol object) {
+	public T caseUsageControl(UsageControl object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>datatransfer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Transfer Process Protocol</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>datatransfer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Transfer Process Protocol</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casedatatransfer(datatransfer object) {
+	public T caseTransferProcessProtocol(TransferProcessProtocol object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>provider</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Provider Connector</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>provider</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Provider Connector</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseprovider(provider object) {
+	public T caseProviderConnector(ProviderConnector object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>consumer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Consumer Connector</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>consumer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Consumer Connector</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseconsumer(consumer object) {
+	public T caseConsumerConnector(ConsumerConnector object) {
 		return null;
 	}
 

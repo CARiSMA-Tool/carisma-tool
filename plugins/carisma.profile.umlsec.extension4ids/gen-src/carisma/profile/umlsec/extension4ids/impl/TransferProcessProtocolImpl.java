@@ -14,29 +14,30 @@ import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
 
 import carisma.profile.umlsec.extension4ids.Extension4idsPackage;
-import carisma.profile.umlsec.extension4ids.datatransfer;
+import carisma.profile.umlsec.extension4ids.TransferProcessProtocol;
+import carisma.profile.umlsec.extension4ids.TransferType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>datatransfer</b></em>'.
+ * An implementation of the model object '<em><b>Transfer Process Protocol</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link carisma.profile.umlsec.extension4ids.impl.datatransferImpl#getType <em>Type</em>}</li>
- *   <li>{@link carisma.profile.umlsec.extension4ids.impl.datatransferImpl#getTransfer_req_step <em>Transfer req step</em>}</li>
- *   <li>{@link carisma.profile.umlsec.extension4ids.impl.datatransferImpl#getTransfer_start_step <em>Transfer start step</em>}</li>
- *   <li>{@link carisma.profile.umlsec.extension4ids.impl.datatransferImpl#getPush_pull_step <em>Push pull step</em>}</li>
- *   <li>{@link carisma.profile.umlsec.extension4ids.impl.datatransferImpl#getTransfer_complete_step <em>Transfer complete step</em>}</li>
- *   <li>{@link carisma.profile.umlsec.extension4ids.impl.datatransferImpl#getTransfer_suspend_step <em>Transfer suspend step</em>}</li>
- *   <li>{@link carisma.profile.umlsec.extension4ids.impl.datatransferImpl#getTransfer_terminate_step <em>Transfer terminate step</em>}</li>
- *   <li>{@link carisma.profile.umlsec.extension4ids.impl.datatransferImpl#getBase_Interaction <em>Base Interaction</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl#getType <em>Type</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl#getTransfer_req_step <em>Transfer req step</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl#getTransfer_start_step <em>Transfer start step</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl#getPush_pull_step <em>Push pull step</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl#getTransfer_complete_step <em>Transfer complete step</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl#getTransfer_suspend_step <em>Transfer suspend step</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl#getTransfer_terminate_step <em>Transfer terminate step</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl#getBase_Interaction <em>Base Interaction</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class datatransferImpl extends MinimalEObjectImpl.Container implements datatransfer {
+public class TransferProcessProtocolImpl extends MinimalEObjectImpl.Container implements TransferProcessProtocol {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -45,7 +46,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TYPE_EDEFAULT = null;
+	protected static final TransferType TYPE_EDEFAULT = TransferType.PUSH;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -55,7 +56,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 	 * @generated
 	 * @ordered
 	 */
-	protected String type = TYPE_EDEFAULT;
+	protected TransferType type = TYPE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTransfer_req_step() <em>Transfer req step</em>}' reference.
@@ -132,7 +133,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected datatransferImpl() {
+	protected TransferProcessProtocolImpl() {
 		super();
 	}
 
@@ -143,7 +144,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Extension4idsPackage.Literals.DATATRANSFER;
+		return Extension4idsPackage.Literals.TRANSFER_PROCESS_PROTOCOL;
 	}
 
 	/**
@@ -152,7 +153,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 	 * @generated
 	 */
 	@Override
-	public String getType() {
+	public TransferType getType() {
 		return type;
 	}
 
@@ -162,11 +163,11 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 	 * @generated
 	 */
 	@Override
-	public void setType(String newType) {
-		String oldType = type;
-		type = newType;
+	public void setType(TransferType newType) {
+		TransferType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.DATATRANSFER__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TYPE, oldType, type));
 	}
 
 	/**
@@ -181,7 +182,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 			transfer_req_step = (Message)eResolveProxy(oldTransfer_req_step);
 			if (transfer_req_step != oldTransfer_req_step) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.DATATRANSFER__TRANSFER_REQ_STEP, oldTransfer_req_step, transfer_req_step));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_REQ_STEP, oldTransfer_req_step, transfer_req_step));
 			}
 		}
 		return transfer_req_step;
@@ -206,7 +207,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 		Message oldTransfer_req_step = transfer_req_step;
 		transfer_req_step = newTransfer_req_step;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.DATATRANSFER__TRANSFER_REQ_STEP, oldTransfer_req_step, transfer_req_step));
+			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_REQ_STEP, oldTransfer_req_step, transfer_req_step));
 	}
 
 	/**
@@ -221,7 +222,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 			transfer_start_step = (Message)eResolveProxy(oldTransfer_start_step);
 			if (transfer_start_step != oldTransfer_start_step) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.DATATRANSFER__TRANSFER_START_STEP, oldTransfer_start_step, transfer_start_step));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_START_STEP, oldTransfer_start_step, transfer_start_step));
 			}
 		}
 		return transfer_start_step;
@@ -246,7 +247,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 		Message oldTransfer_start_step = transfer_start_step;
 		transfer_start_step = newTransfer_start_step;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.DATATRANSFER__TRANSFER_START_STEP, oldTransfer_start_step, transfer_start_step));
+			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_START_STEP, oldTransfer_start_step, transfer_start_step));
 	}
 
 	/**
@@ -261,7 +262,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 			push_pull_step = (Message)eResolveProxy(oldPush_pull_step);
 			if (push_pull_step != oldPush_pull_step) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.DATATRANSFER__PUSH_PULL_STEP, oldPush_pull_step, push_pull_step));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__PUSH_PULL_STEP, oldPush_pull_step, push_pull_step));
 			}
 		}
 		return push_pull_step;
@@ -286,7 +287,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 		Message oldPush_pull_step = push_pull_step;
 		push_pull_step = newPush_pull_step;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.DATATRANSFER__PUSH_PULL_STEP, oldPush_pull_step, push_pull_step));
+			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__PUSH_PULL_STEP, oldPush_pull_step, push_pull_step));
 	}
 
 	/**
@@ -301,7 +302,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 			transfer_complete_step = (Message)eResolveProxy(oldTransfer_complete_step);
 			if (transfer_complete_step != oldTransfer_complete_step) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.DATATRANSFER__TRANSFER_COMPLETE_STEP, oldTransfer_complete_step, transfer_complete_step));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_COMPLETE_STEP, oldTransfer_complete_step, transfer_complete_step));
 			}
 		}
 		return transfer_complete_step;
@@ -326,7 +327,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 		Message oldTransfer_complete_step = transfer_complete_step;
 		transfer_complete_step = newTransfer_complete_step;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.DATATRANSFER__TRANSFER_COMPLETE_STEP, oldTransfer_complete_step, transfer_complete_step));
+			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_COMPLETE_STEP, oldTransfer_complete_step, transfer_complete_step));
 	}
 
 	/**
@@ -341,7 +342,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 			transfer_suspend_step = (Message)eResolveProxy(oldTransfer_suspend_step);
 			if (transfer_suspend_step != oldTransfer_suspend_step) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.DATATRANSFER__TRANSFER_SUSPEND_STEP, oldTransfer_suspend_step, transfer_suspend_step));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_SUSPEND_STEP, oldTransfer_suspend_step, transfer_suspend_step));
 			}
 		}
 		return transfer_suspend_step;
@@ -366,7 +367,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 		Message oldTransfer_suspend_step = transfer_suspend_step;
 		transfer_suspend_step = newTransfer_suspend_step;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.DATATRANSFER__TRANSFER_SUSPEND_STEP, oldTransfer_suspend_step, transfer_suspend_step));
+			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_SUSPEND_STEP, oldTransfer_suspend_step, transfer_suspend_step));
 	}
 
 	/**
@@ -381,7 +382,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 			transfer_terminate_step = (Message)eResolveProxy(oldTransfer_terminate_step);
 			if (transfer_terminate_step != oldTransfer_terminate_step) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.DATATRANSFER__TRANSFER_TERMINATE_STEP, oldTransfer_terminate_step, transfer_terminate_step));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_TERMINATE_STEP, oldTransfer_terminate_step, transfer_terminate_step));
 			}
 		}
 		return transfer_terminate_step;
@@ -406,7 +407,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 		Message oldTransfer_terminate_step = transfer_terminate_step;
 		transfer_terminate_step = newTransfer_terminate_step;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.DATATRANSFER__TRANSFER_TERMINATE_STEP, oldTransfer_terminate_step, transfer_terminate_step));
+			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_TERMINATE_STEP, oldTransfer_terminate_step, transfer_terminate_step));
 	}
 
 	/**
@@ -421,7 +422,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 			base_Interaction = (Interaction)eResolveProxy(oldBase_Interaction);
 			if (base_Interaction != oldBase_Interaction) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.DATATRANSFER__BASE_INTERACTION, oldBase_Interaction, base_Interaction));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__BASE_INTERACTION, oldBase_Interaction, base_Interaction));
 			}
 		}
 		return base_Interaction;
@@ -446,7 +447,7 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 		Interaction oldBase_Interaction = base_Interaction;
 		base_Interaction = newBase_Interaction;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.DATATRANSFER__BASE_INTERACTION, oldBase_Interaction, base_Interaction));
+			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__BASE_INTERACTION, oldBase_Interaction, base_Interaction));
 	}
 
 	/**
@@ -457,27 +458,27 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Extension4idsPackage.DATATRANSFER__TYPE:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TYPE:
 				return getType();
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_REQ_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_REQ_STEP:
 				if (resolve) return getTransfer_req_step();
 				return basicGetTransfer_req_step();
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_START_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_START_STEP:
 				if (resolve) return getTransfer_start_step();
 				return basicGetTransfer_start_step();
-			case Extension4idsPackage.DATATRANSFER__PUSH_PULL_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__PUSH_PULL_STEP:
 				if (resolve) return getPush_pull_step();
 				return basicGetPush_pull_step();
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_COMPLETE_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_COMPLETE_STEP:
 				if (resolve) return getTransfer_complete_step();
 				return basicGetTransfer_complete_step();
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_SUSPEND_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_SUSPEND_STEP:
 				if (resolve) return getTransfer_suspend_step();
 				return basicGetTransfer_suspend_step();
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_TERMINATE_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_TERMINATE_STEP:
 				if (resolve) return getTransfer_terminate_step();
 				return basicGetTransfer_terminate_step();
-			case Extension4idsPackage.DATATRANSFER__BASE_INTERACTION:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__BASE_INTERACTION:
 				if (resolve) return getBase_Interaction();
 				return basicGetBase_Interaction();
 		}
@@ -492,28 +493,28 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Extension4idsPackage.DATATRANSFER__TYPE:
-				setType((String)newValue);
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TYPE:
+				setType((TransferType)newValue);
 				return;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_REQ_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_REQ_STEP:
 				setTransfer_req_step((Message)newValue);
 				return;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_START_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_START_STEP:
 				setTransfer_start_step((Message)newValue);
 				return;
-			case Extension4idsPackage.DATATRANSFER__PUSH_PULL_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__PUSH_PULL_STEP:
 				setPush_pull_step((Message)newValue);
 				return;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_COMPLETE_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_COMPLETE_STEP:
 				setTransfer_complete_step((Message)newValue);
 				return;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_SUSPEND_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_SUSPEND_STEP:
 				setTransfer_suspend_step((Message)newValue);
 				return;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_TERMINATE_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_TERMINATE_STEP:
 				setTransfer_terminate_step((Message)newValue);
 				return;
-			case Extension4idsPackage.DATATRANSFER__BASE_INTERACTION:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__BASE_INTERACTION:
 				setBase_Interaction((Interaction)newValue);
 				return;
 		}
@@ -528,28 +529,28 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Extension4idsPackage.DATATRANSFER__TYPE:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_REQ_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_REQ_STEP:
 				setTransfer_req_step((Message)null);
 				return;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_START_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_START_STEP:
 				setTransfer_start_step((Message)null);
 				return;
-			case Extension4idsPackage.DATATRANSFER__PUSH_PULL_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__PUSH_PULL_STEP:
 				setPush_pull_step((Message)null);
 				return;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_COMPLETE_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_COMPLETE_STEP:
 				setTransfer_complete_step((Message)null);
 				return;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_SUSPEND_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_SUSPEND_STEP:
 				setTransfer_suspend_step((Message)null);
 				return;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_TERMINATE_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_TERMINATE_STEP:
 				setTransfer_terminate_step((Message)null);
 				return;
-			case Extension4idsPackage.DATATRANSFER__BASE_INTERACTION:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__BASE_INTERACTION:
 				setBase_Interaction((Interaction)null);
 				return;
 		}
@@ -564,21 +565,21 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Extension4idsPackage.DATATRANSFER__TYPE:
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_REQ_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TYPE:
+				return type != TYPE_EDEFAULT;
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_REQ_STEP:
 				return transfer_req_step != null;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_START_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_START_STEP:
 				return transfer_start_step != null;
-			case Extension4idsPackage.DATATRANSFER__PUSH_PULL_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__PUSH_PULL_STEP:
 				return push_pull_step != null;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_COMPLETE_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_COMPLETE_STEP:
 				return transfer_complete_step != null;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_SUSPEND_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_SUSPEND_STEP:
 				return transfer_suspend_step != null;
-			case Extension4idsPackage.DATATRANSFER__TRANSFER_TERMINATE_STEP:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__TRANSFER_TERMINATE_STEP:
 				return transfer_terminate_step != null;
-			case Extension4idsPackage.DATATRANSFER__BASE_INTERACTION:
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL__BASE_INTERACTION:
 				return base_Interaction != null;
 		}
 		return super.eIsSet(featureID);
@@ -600,4 +601,4 @@ public class datatransferImpl extends MinimalEObjectImpl.Container implements da
 		return result.toString();
 	}
 
-} //datatransferImpl
+} //TransferProcessProtocolImpl

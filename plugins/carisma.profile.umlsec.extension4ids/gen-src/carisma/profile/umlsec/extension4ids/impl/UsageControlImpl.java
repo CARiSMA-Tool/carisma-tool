@@ -13,22 +13,22 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.uml2.uml.Dependency;
 
 import carisma.profile.umlsec.extension4ids.Extension4idsPackage;
-import carisma.profile.umlsec.extension4ids.usagecontrol;
+import carisma.profile.umlsec.extension4ids.UsageControl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>usagecontrol</b></em>'.
+ * An implementation of the model object '<em><b>Usage Control</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link carisma.profile.umlsec.extension4ids.impl.usagecontrolImpl#getBase_Dependency <em>Base Dependency</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.impl.UsageControlImpl#getBase_Dependency <em>Base Dependency</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class usagecontrolImpl extends MinimalEObjectImpl.Container implements usagecontrol {
+public class UsageControlImpl extends MinimalEObjectImpl.Container implements UsageControl {
 	/**
 	 * The cached value of the '{@link #getBase_Dependency() <em>Base Dependency</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -44,7 +44,7 @@ public class usagecontrolImpl extends MinimalEObjectImpl.Container implements us
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected usagecontrolImpl() {
+	protected UsageControlImpl() {
 		super();
 	}
 
@@ -55,7 +55,7 @@ public class usagecontrolImpl extends MinimalEObjectImpl.Container implements us
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Extension4idsPackage.Literals.USAGECONTROL;
+		return Extension4idsPackage.Literals.USAGE_CONTROL;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class usagecontrolImpl extends MinimalEObjectImpl.Container implements us
 			base_Dependency = (Dependency)eResolveProxy(oldBase_Dependency);
 			if (base_Dependency != oldBase_Dependency) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.USAGECONTROL__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.USAGE_CONTROL__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 			}
 		}
 		return base_Dependency;
@@ -95,7 +95,7 @@ public class usagecontrolImpl extends MinimalEObjectImpl.Container implements us
 		Dependency oldBase_Dependency = base_Dependency;
 		base_Dependency = newBase_Dependency;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.USAGECONTROL__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
+			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.USAGE_CONTROL__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class usagecontrolImpl extends MinimalEObjectImpl.Container implements us
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Extension4idsPackage.USAGECONTROL__BASE_DEPENDENCY:
+			case Extension4idsPackage.USAGE_CONTROL__BASE_DEPENDENCY:
 				if (resolve) return getBase_Dependency();
 				return basicGetBase_Dependency();
 		}
@@ -121,7 +121,7 @@ public class usagecontrolImpl extends MinimalEObjectImpl.Container implements us
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Extension4idsPackage.USAGECONTROL__BASE_DEPENDENCY:
+			case Extension4idsPackage.USAGE_CONTROL__BASE_DEPENDENCY:
 				setBase_Dependency((Dependency)newValue);
 				return;
 		}
@@ -136,7 +136,7 @@ public class usagecontrolImpl extends MinimalEObjectImpl.Container implements us
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Extension4idsPackage.USAGECONTROL__BASE_DEPENDENCY:
+			case Extension4idsPackage.USAGE_CONTROL__BASE_DEPENDENCY:
 				setBase_Dependency((Dependency)null);
 				return;
 		}
@@ -151,10 +151,10 @@ public class usagecontrolImpl extends MinimalEObjectImpl.Container implements us
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Extension4idsPackage.USAGECONTROL__BASE_DEPENDENCY:
+			case Extension4idsPackage.USAGE_CONTROL__BASE_DEPENDENCY:
 				return base_Dependency != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //usagecontrolImpl
+} //UsageControlImpl

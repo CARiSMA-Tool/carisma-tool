@@ -4,6 +4,7 @@ package carisma.profile.umlsec.extension4ids;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -38,7 +39,7 @@ public interface Extension4idsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.umlsec.de/profiles/UMLsec/extension4ids";
+	String eNS_URI = "http:///extension4ids.ecore";
 
 	/**
 	 * The package namespace name.
@@ -94,14 +95,14 @@ public interface Extension4idsPackage extends EPackage {
 	int ID_SCONNECTOR_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link carisma.profile.umlsec.extension4ids.impl.usagecontrolImpl <em>usagecontrol</em>}' class.
+	 * The meta object id for the '{@link carisma.profile.umlsec.extension4ids.impl.UsageControlImpl <em>Usage Control</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see carisma.profile.umlsec.extension4ids.impl.usagecontrolImpl
-	 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getusagecontrol()
+	 * @see carisma.profile.umlsec.extension4ids.impl.UsageControlImpl
+	 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getUsageControl()
 	 * @generated
 	 */
-	int USAGECONTROL = 1;
+	int USAGE_CONTROL = 1;
 
 	/**
 	 * The feature id for the '<em><b>Base Dependency</b></em>' reference.
@@ -110,35 +111,35 @@ public interface Extension4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USAGECONTROL__BASE_DEPENDENCY = 0;
+	int USAGE_CONTROL__BASE_DEPENDENCY = 0;
 
 	/**
-	 * The number of structural features of the '<em>usagecontrol</em>' class.
+	 * The number of structural features of the '<em>Usage Control</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USAGECONTROL_FEATURE_COUNT = 1;
+	int USAGE_CONTROL_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>usagecontrol</em>' class.
+	 * The number of operations of the '<em>Usage Control</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USAGECONTROL_OPERATION_COUNT = 0;
+	int USAGE_CONTROL_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link carisma.profile.umlsec.extension4ids.impl.datatransferImpl <em>datatransfer</em>}' class.
+	 * The meta object id for the '{@link carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl <em>Transfer Process Protocol</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see carisma.profile.umlsec.extension4ids.impl.datatransferImpl
-	 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getdatatransfer()
+	 * @see carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl
+	 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getTransferProcessProtocol()
 	 * @generated
 	 */
-	int DATATRANSFER = 2;
+	int TRANSFER_PROCESS_PROTOCOL = 2;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -147,7 +148,7 @@ public interface Extension4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATATRANSFER__TYPE = 0;
+	int TRANSFER_PROCESS_PROTOCOL__TYPE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Transfer req step</b></em>' reference.
@@ -156,7 +157,7 @@ public interface Extension4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATATRANSFER__TRANSFER_REQ_STEP = 1;
+	int TRANSFER_PROCESS_PROTOCOL__TRANSFER_REQ_STEP = 1;
 
 	/**
 	 * The feature id for the '<em><b>Transfer start step</b></em>' reference.
@@ -165,7 +166,7 @@ public interface Extension4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATATRANSFER__TRANSFER_START_STEP = 2;
+	int TRANSFER_PROCESS_PROTOCOL__TRANSFER_START_STEP = 2;
 
 	/**
 	 * The feature id for the '<em><b>Push pull step</b></em>' reference.
@@ -174,7 +175,7 @@ public interface Extension4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATATRANSFER__PUSH_PULL_STEP = 3;
+	int TRANSFER_PROCESS_PROTOCOL__PUSH_PULL_STEP = 3;
 
 	/**
 	 * The feature id for the '<em><b>Transfer complete step</b></em>' reference.
@@ -183,7 +184,7 @@ public interface Extension4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATATRANSFER__TRANSFER_COMPLETE_STEP = 4;
+	int TRANSFER_PROCESS_PROTOCOL__TRANSFER_COMPLETE_STEP = 4;
 
 	/**
 	 * The feature id for the '<em><b>Transfer suspend step</b></em>' reference.
@@ -192,7 +193,7 @@ public interface Extension4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATATRANSFER__TRANSFER_SUSPEND_STEP = 5;
+	int TRANSFER_PROCESS_PROTOCOL__TRANSFER_SUSPEND_STEP = 5;
 
 	/**
 	 * The feature id for the '<em><b>Transfer terminate step</b></em>' reference.
@@ -201,7 +202,7 @@ public interface Extension4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATATRANSFER__TRANSFER_TERMINATE_STEP = 6;
+	int TRANSFER_PROCESS_PROTOCOL__TRANSFER_TERMINATE_STEP = 6;
 
 	/**
 	 * The feature id for the '<em><b>Base Interaction</b></em>' reference.
@@ -210,35 +211,35 @@ public interface Extension4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATATRANSFER__BASE_INTERACTION = 7;
+	int TRANSFER_PROCESS_PROTOCOL__BASE_INTERACTION = 7;
 
 	/**
-	 * The number of structural features of the '<em>datatransfer</em>' class.
+	 * The number of structural features of the '<em>Transfer Process Protocol</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATATRANSFER_FEATURE_COUNT = 8;
+	int TRANSFER_PROCESS_PROTOCOL_FEATURE_COUNT = 8;
 
 	/**
-	 * The number of operations of the '<em>datatransfer</em>' class.
+	 * The number of operations of the '<em>Transfer Process Protocol</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATATRANSFER_OPERATION_COUNT = 0;
+	int TRANSFER_PROCESS_PROTOCOL_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link carisma.profile.umlsec.extension4ids.impl.providerImpl <em>provider</em>}' class.
+	 * The meta object id for the '{@link carisma.profile.umlsec.extension4ids.impl.ProviderConnectorImpl <em>Provider Connector</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see carisma.profile.umlsec.extension4ids.impl.providerImpl
-	 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getprovider()
+	 * @see carisma.profile.umlsec.extension4ids.impl.ProviderConnectorImpl
+	 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getProviderConnector()
 	 * @generated
 	 */
-	int PROVIDER = 3;
+	int PROVIDER_CONNECTOR = 3;
 
 	/**
 	 * The feature id for the '<em><b>Base Lifeline</b></em>' reference.
@@ -247,35 +248,35 @@ public interface Extension4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROVIDER__BASE_LIFELINE = 0;
+	int PROVIDER_CONNECTOR__BASE_LIFELINE = 0;
 
 	/**
-	 * The number of structural features of the '<em>provider</em>' class.
+	 * The number of structural features of the '<em>Provider Connector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROVIDER_FEATURE_COUNT = 1;
+	int PROVIDER_CONNECTOR_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>provider</em>' class.
+	 * The number of operations of the '<em>Provider Connector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROVIDER_OPERATION_COUNT = 0;
+	int PROVIDER_CONNECTOR_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link carisma.profile.umlsec.extension4ids.impl.consumerImpl <em>consumer</em>}' class.
+	 * The meta object id for the '{@link carisma.profile.umlsec.extension4ids.impl.ConsumerConnectorImpl <em>Consumer Connector</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see carisma.profile.umlsec.extension4ids.impl.consumerImpl
-	 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getconsumer()
+	 * @see carisma.profile.umlsec.extension4ids.impl.ConsumerConnectorImpl
+	 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getConsumerConnector()
 	 * @generated
 	 */
-	int CONSUMER = 4;
+	int CONSUMER_CONNECTOR = 4;
 
 	/**
 	 * The feature id for the '<em><b>Base Lifeline</b></em>' reference.
@@ -284,25 +285,35 @@ public interface Extension4idsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSUMER__BASE_LIFELINE = 0;
+	int CONSUMER_CONNECTOR__BASE_LIFELINE = 0;
 
 	/**
-	 * The number of structural features of the '<em>consumer</em>' class.
+	 * The number of structural features of the '<em>Consumer Connector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSUMER_FEATURE_COUNT = 1;
+	int CONSUMER_CONNECTOR_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>consumer</em>' class.
+	 * The number of operations of the '<em>Consumer Connector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSUMER_OPERATION_COUNT = 0;
+	int CONSUMER_CONNECTOR_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link carisma.profile.umlsec.extension4ids.TransferType <em>Transfer Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see carisma.profile.umlsec.extension4ids.TransferType
+	 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getTransferType()
+	 * @generated
+	 */
+	int TRANSFER_TYPE = 5;
 
 
 	/**
@@ -327,165 +338,175 @@ public interface Extension4idsPackage extends EPackage {
 	EReference getIDSconnector_Base_Artifact();
 
 	/**
-	 * Returns the meta object for class '{@link carisma.profile.umlsec.extension4ids.usagecontrol <em>usagecontrol</em>}'.
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.extension4ids.UsageControl <em>Usage Control</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>usagecontrol</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.usagecontrol
+	 * @return the meta object for class '<em>Usage Control</em>'.
+	 * @see carisma.profile.umlsec.extension4ids.UsageControl
 	 * @generated
 	 */
-	EClass getusagecontrol();
+	EClass getUsageControl();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.usagecontrol#getBase_Dependency <em>Base Dependency</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.UsageControl#getBase_Dependency <em>Base Dependency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Dependency</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.usagecontrol#getBase_Dependency()
-	 * @see #getusagecontrol()
+	 * @see carisma.profile.umlsec.extension4ids.UsageControl#getBase_Dependency()
+	 * @see #getUsageControl()
 	 * @generated
 	 */
-	EReference getusagecontrol_Base_Dependency();
+	EReference getUsageControl_Base_Dependency();
 
 	/**
-	 * Returns the meta object for class '{@link carisma.profile.umlsec.extension4ids.datatransfer <em>datatransfer</em>}'.
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.extension4ids.TransferProcessProtocol <em>Transfer Process Protocol</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>datatransfer</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.datatransfer
+	 * @return the meta object for class '<em>Transfer Process Protocol</em>'.
+	 * @see carisma.profile.umlsec.extension4ids.TransferProcessProtocol
 	 * @generated
 	 */
-	EClass getdatatransfer();
+	EClass getTransferProcessProtocol();
 
 	/**
-	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.extension4ids.datatransfer#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.datatransfer#getType()
-	 * @see #getdatatransfer()
+	 * @see carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getType()
+	 * @see #getTransferProcessProtocol()
 	 * @generated
 	 */
-	EAttribute getdatatransfer_Type();
+	EAttribute getTransferProcessProtocol_Type();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.datatransfer#getTransfer_req_step <em>Transfer req step</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getTransfer_req_step <em>Transfer req step</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Transfer req step</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.datatransfer#getTransfer_req_step()
-	 * @see #getdatatransfer()
+	 * @see carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getTransfer_req_step()
+	 * @see #getTransferProcessProtocol()
 	 * @generated
 	 */
-	EReference getdatatransfer_Transfer_req_step();
+	EReference getTransferProcessProtocol_Transfer_req_step();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.datatransfer#getTransfer_start_step <em>Transfer start step</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getTransfer_start_step <em>Transfer start step</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Transfer start step</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.datatransfer#getTransfer_start_step()
-	 * @see #getdatatransfer()
+	 * @see carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getTransfer_start_step()
+	 * @see #getTransferProcessProtocol()
 	 * @generated
 	 */
-	EReference getdatatransfer_Transfer_start_step();
+	EReference getTransferProcessProtocol_Transfer_start_step();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.datatransfer#getPush_pull_step <em>Push pull step</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getPush_pull_step <em>Push pull step</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Push pull step</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.datatransfer#getPush_pull_step()
-	 * @see #getdatatransfer()
+	 * @see carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getPush_pull_step()
+	 * @see #getTransferProcessProtocol()
 	 * @generated
 	 */
-	EReference getdatatransfer_Push_pull_step();
+	EReference getTransferProcessProtocol_Push_pull_step();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.datatransfer#getTransfer_complete_step <em>Transfer complete step</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getTransfer_complete_step <em>Transfer complete step</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Transfer complete step</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.datatransfer#getTransfer_complete_step()
-	 * @see #getdatatransfer()
+	 * @see carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getTransfer_complete_step()
+	 * @see #getTransferProcessProtocol()
 	 * @generated
 	 */
-	EReference getdatatransfer_Transfer_complete_step();
+	EReference getTransferProcessProtocol_Transfer_complete_step();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.datatransfer#getTransfer_suspend_step <em>Transfer suspend step</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getTransfer_suspend_step <em>Transfer suspend step</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Transfer suspend step</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.datatransfer#getTransfer_suspend_step()
-	 * @see #getdatatransfer()
+	 * @see carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getTransfer_suspend_step()
+	 * @see #getTransferProcessProtocol()
 	 * @generated
 	 */
-	EReference getdatatransfer_Transfer_suspend_step();
+	EReference getTransferProcessProtocol_Transfer_suspend_step();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.datatransfer#getTransfer_terminate_step <em>Transfer terminate step</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getTransfer_terminate_step <em>Transfer terminate step</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Transfer terminate step</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.datatransfer#getTransfer_terminate_step()
-	 * @see #getdatatransfer()
+	 * @see carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getTransfer_terminate_step()
+	 * @see #getTransferProcessProtocol()
 	 * @generated
 	 */
-	EReference getdatatransfer_Transfer_terminate_step();
+	EReference getTransferProcessProtocol_Transfer_terminate_step();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.datatransfer#getBase_Interaction <em>Base Interaction</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getBase_Interaction <em>Base Interaction</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Interaction</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.datatransfer#getBase_Interaction()
-	 * @see #getdatatransfer()
+	 * @see carisma.profile.umlsec.extension4ids.TransferProcessProtocol#getBase_Interaction()
+	 * @see #getTransferProcessProtocol()
 	 * @generated
 	 */
-	EReference getdatatransfer_Base_Interaction();
+	EReference getTransferProcessProtocol_Base_Interaction();
 
 	/**
-	 * Returns the meta object for class '{@link carisma.profile.umlsec.extension4ids.provider <em>provider</em>}'.
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.extension4ids.ProviderConnector <em>Provider Connector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>provider</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.provider
+	 * @return the meta object for class '<em>Provider Connector</em>'.
+	 * @see carisma.profile.umlsec.extension4ids.ProviderConnector
 	 * @generated
 	 */
-	EClass getprovider();
+	EClass getProviderConnector();
 
 	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.provider#getBase_Lifeline <em>Base Lifeline</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Lifeline</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.provider#getBase_Lifeline()
-	 * @see #getprovider()
-	 * @generated
-	 */
-	EReference getprovider_Base_Lifeline();
-
-	/**
-	 * Returns the meta object for class '{@link carisma.profile.umlsec.extension4ids.consumer <em>consumer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>consumer</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.consumer
-	 * @generated
-	 */
-	EClass getconsumer();
-
-	/**
-	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.consumer#getBase_Lifeline <em>Base Lifeline</em>}'.
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.ProviderConnector#getBase_Lifeline <em>Base Lifeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Lifeline</em>'.
-	 * @see carisma.profile.umlsec.extension4ids.consumer#getBase_Lifeline()
-	 * @see #getconsumer()
+	 * @see carisma.profile.umlsec.extension4ids.ProviderConnector#getBase_Lifeline()
+	 * @see #getProviderConnector()
 	 * @generated
 	 */
-	EReference getconsumer_Base_Lifeline();
+	EReference getProviderConnector_Base_Lifeline();
+
+	/**
+	 * Returns the meta object for class '{@link carisma.profile.umlsec.extension4ids.ConsumerConnector <em>Consumer Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Consumer Connector</em>'.
+	 * @see carisma.profile.umlsec.extension4ids.ConsumerConnector
+	 * @generated
+	 */
+	EClass getConsumerConnector();
+
+	/**
+	 * Returns the meta object for the reference '{@link carisma.profile.umlsec.extension4ids.ConsumerConnector#getBase_Lifeline <em>Base Lifeline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Lifeline</em>'.
+	 * @see carisma.profile.umlsec.extension4ids.ConsumerConnector#getBase_Lifeline()
+	 * @see #getConsumerConnector()
+	 * @generated
+	 */
+	EReference getConsumerConnector_Base_Lifeline();
+
+	/**
+	 * Returns the meta object for enum '{@link carisma.profile.umlsec.extension4ids.TransferType <em>Transfer Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Transfer Type</em>'.
+	 * @see carisma.profile.umlsec.extension4ids.TransferType
+	 * @generated
+	 */
+	EEnum getTransferType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -529,14 +550,14 @@ public interface Extension4idsPackage extends EPackage {
 		EReference ID_SCONNECTOR__BASE_ARTIFACT = eINSTANCE.getIDSconnector_Base_Artifact();
 
 		/**
-		 * The meta object literal for the '{@link carisma.profile.umlsec.extension4ids.impl.usagecontrolImpl <em>usagecontrol</em>}' class.
+		 * The meta object literal for the '{@link carisma.profile.umlsec.extension4ids.impl.UsageControlImpl <em>Usage Control</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see carisma.profile.umlsec.extension4ids.impl.usagecontrolImpl
-		 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getusagecontrol()
+		 * @see carisma.profile.umlsec.extension4ids.impl.UsageControlImpl
+		 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getUsageControl()
 		 * @generated
 		 */
-		EClass USAGECONTROL = eINSTANCE.getusagecontrol();
+		EClass USAGE_CONTROL = eINSTANCE.getUsageControl();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Dependency</b></em>' reference feature.
@@ -544,17 +565,17 @@ public interface Extension4idsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USAGECONTROL__BASE_DEPENDENCY = eINSTANCE.getusagecontrol_Base_Dependency();
+		EReference USAGE_CONTROL__BASE_DEPENDENCY = eINSTANCE.getUsageControl_Base_Dependency();
 
 		/**
-		 * The meta object literal for the '{@link carisma.profile.umlsec.extension4ids.impl.datatransferImpl <em>datatransfer</em>}' class.
+		 * The meta object literal for the '{@link carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl <em>Transfer Process Protocol</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see carisma.profile.umlsec.extension4ids.impl.datatransferImpl
-		 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getdatatransfer()
+		 * @see carisma.profile.umlsec.extension4ids.impl.TransferProcessProtocolImpl
+		 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getTransferProcessProtocol()
 		 * @generated
 		 */
-		EClass DATATRANSFER = eINSTANCE.getdatatransfer();
+		EClass TRANSFER_PROCESS_PROTOCOL = eINSTANCE.getTransferProcessProtocol();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -562,7 +583,7 @@ public interface Extension4idsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATATRANSFER__TYPE = eINSTANCE.getdatatransfer_Type();
+		EAttribute TRANSFER_PROCESS_PROTOCOL__TYPE = eINSTANCE.getTransferProcessProtocol_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Transfer req step</b></em>' reference feature.
@@ -570,7 +591,7 @@ public interface Extension4idsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATATRANSFER__TRANSFER_REQ_STEP = eINSTANCE.getdatatransfer_Transfer_req_step();
+		EReference TRANSFER_PROCESS_PROTOCOL__TRANSFER_REQ_STEP = eINSTANCE.getTransferProcessProtocol_Transfer_req_step();
 
 		/**
 		 * The meta object literal for the '<em><b>Transfer start step</b></em>' reference feature.
@@ -578,7 +599,7 @@ public interface Extension4idsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATATRANSFER__TRANSFER_START_STEP = eINSTANCE.getdatatransfer_Transfer_start_step();
+		EReference TRANSFER_PROCESS_PROTOCOL__TRANSFER_START_STEP = eINSTANCE.getTransferProcessProtocol_Transfer_start_step();
 
 		/**
 		 * The meta object literal for the '<em><b>Push pull step</b></em>' reference feature.
@@ -586,7 +607,7 @@ public interface Extension4idsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATATRANSFER__PUSH_PULL_STEP = eINSTANCE.getdatatransfer_Push_pull_step();
+		EReference TRANSFER_PROCESS_PROTOCOL__PUSH_PULL_STEP = eINSTANCE.getTransferProcessProtocol_Push_pull_step();
 
 		/**
 		 * The meta object literal for the '<em><b>Transfer complete step</b></em>' reference feature.
@@ -594,7 +615,7 @@ public interface Extension4idsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATATRANSFER__TRANSFER_COMPLETE_STEP = eINSTANCE.getdatatransfer_Transfer_complete_step();
+		EReference TRANSFER_PROCESS_PROTOCOL__TRANSFER_COMPLETE_STEP = eINSTANCE.getTransferProcessProtocol_Transfer_complete_step();
 
 		/**
 		 * The meta object literal for the '<em><b>Transfer suspend step</b></em>' reference feature.
@@ -602,7 +623,7 @@ public interface Extension4idsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATATRANSFER__TRANSFER_SUSPEND_STEP = eINSTANCE.getdatatransfer_Transfer_suspend_step();
+		EReference TRANSFER_PROCESS_PROTOCOL__TRANSFER_SUSPEND_STEP = eINSTANCE.getTransferProcessProtocol_Transfer_suspend_step();
 
 		/**
 		 * The meta object literal for the '<em><b>Transfer terminate step</b></em>' reference feature.
@@ -610,7 +631,7 @@ public interface Extension4idsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATATRANSFER__TRANSFER_TERMINATE_STEP = eINSTANCE.getdatatransfer_Transfer_terminate_step();
+		EReference TRANSFER_PROCESS_PROTOCOL__TRANSFER_TERMINATE_STEP = eINSTANCE.getTransferProcessProtocol_Transfer_terminate_step();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Interaction</b></em>' reference feature.
@@ -618,35 +639,17 @@ public interface Extension4idsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATATRANSFER__BASE_INTERACTION = eINSTANCE.getdatatransfer_Base_Interaction();
+		EReference TRANSFER_PROCESS_PROTOCOL__BASE_INTERACTION = eINSTANCE.getTransferProcessProtocol_Base_Interaction();
 
 		/**
-		 * The meta object literal for the '{@link carisma.profile.umlsec.extension4ids.impl.providerImpl <em>provider</em>}' class.
+		 * The meta object literal for the '{@link carisma.profile.umlsec.extension4ids.impl.ProviderConnectorImpl <em>Provider Connector</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see carisma.profile.umlsec.extension4ids.impl.providerImpl
-		 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getprovider()
+		 * @see carisma.profile.umlsec.extension4ids.impl.ProviderConnectorImpl
+		 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getProviderConnector()
 		 * @generated
 		 */
-		EClass PROVIDER = eINSTANCE.getprovider();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Lifeline</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROVIDER__BASE_LIFELINE = eINSTANCE.getprovider_Base_Lifeline();
-
-		/**
-		 * The meta object literal for the '{@link carisma.profile.umlsec.extension4ids.impl.consumerImpl <em>consumer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see carisma.profile.umlsec.extension4ids.impl.consumerImpl
-		 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getconsumer()
-		 * @generated
-		 */
-		EClass CONSUMER = eINSTANCE.getconsumer();
+		EClass PROVIDER_CONNECTOR = eINSTANCE.getProviderConnector();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Lifeline</b></em>' reference feature.
@@ -654,7 +657,35 @@ public interface Extension4idsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONSUMER__BASE_LIFELINE = eINSTANCE.getconsumer_Base_Lifeline();
+		EReference PROVIDER_CONNECTOR__BASE_LIFELINE = eINSTANCE.getProviderConnector_Base_Lifeline();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.extension4ids.impl.ConsumerConnectorImpl <em>Consumer Connector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.extension4ids.impl.ConsumerConnectorImpl
+		 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getConsumerConnector()
+		 * @generated
+		 */
+		EClass CONSUMER_CONNECTOR = eINSTANCE.getConsumerConnector();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Lifeline</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSUMER_CONNECTOR__BASE_LIFELINE = eINSTANCE.getConsumerConnector_Base_Lifeline();
+
+		/**
+		 * The meta object literal for the '{@link carisma.profile.umlsec.extension4ids.TransferType <em>Transfer Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see carisma.profile.umlsec.extension4ids.TransferType
+		 * @see carisma.profile.umlsec.extension4ids.impl.Extension4idsPackageImpl#getTransferType()
+		 * @generated
+		 */
+		EEnum TRANSFER_TYPE = eINSTANCE.getTransferType();
 
 	}
 

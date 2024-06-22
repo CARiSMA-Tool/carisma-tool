@@ -3,6 +3,7 @@
 package carisma.profile.umlsec.extension4ids.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -57,12 +58,42 @@ public class Extension4idsFactoryImpl extends EFactoryImpl implements Extension4
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case Extension4idsPackage.ID_SCONNECTOR: return createIDSconnector();
-			case Extension4idsPackage.USAGECONTROL: return createusagecontrol();
-			case Extension4idsPackage.DATATRANSFER: return createdatatransfer();
-			case Extension4idsPackage.PROVIDER: return createprovider();
-			case Extension4idsPackage.CONSUMER: return createconsumer();
+			case Extension4idsPackage.USAGE_CONTROL: return createUsageControl();
+			case Extension4idsPackage.TRANSFER_PROCESS_PROTOCOL: return createTransferProcessProtocol();
+			case Extension4idsPackage.PROVIDER_CONNECTOR: return createProviderConnector();
+			case Extension4idsPackage.CONSUMER_CONNECTOR: return createConsumerConnector();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case Extension4idsPackage.TRANSFER_TYPE:
+				return createTransferTypeFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case Extension4idsPackage.TRANSFER_TYPE:
+				return convertTransferTypeToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -83,9 +114,9 @@ public class Extension4idsFactoryImpl extends EFactoryImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public usagecontrol createusagecontrol() {
-		usagecontrolImpl usagecontrol = new usagecontrolImpl();
-		return usagecontrol;
+	public UsageControl createUsageControl() {
+		UsageControlImpl usageControl = new UsageControlImpl();
+		return usageControl;
 	}
 
 	/**
@@ -94,9 +125,9 @@ public class Extension4idsFactoryImpl extends EFactoryImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public datatransfer createdatatransfer() {
-		datatransferImpl datatransfer = new datatransferImpl();
-		return datatransfer;
+	public TransferProcessProtocol createTransferProcessProtocol() {
+		TransferProcessProtocolImpl transferProcessProtocol = new TransferProcessProtocolImpl();
+		return transferProcessProtocol;
 	}
 
 	/**
@@ -105,9 +136,9 @@ public class Extension4idsFactoryImpl extends EFactoryImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public provider createprovider() {
-		providerImpl provider = new providerImpl();
-		return provider;
+	public ProviderConnector createProviderConnector() {
+		ProviderConnectorImpl providerConnector = new ProviderConnectorImpl();
+		return providerConnector;
 	}
 
 	/**
@@ -116,9 +147,29 @@ public class Extension4idsFactoryImpl extends EFactoryImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public consumer createconsumer() {
-		consumerImpl consumer = new consumerImpl();
-		return consumer;
+	public ConsumerConnector createConsumerConnector() {
+		ConsumerConnectorImpl consumerConnector = new ConsumerConnectorImpl();
+		return consumerConnector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TransferType createTransferTypeFromString(EDataType eDataType, String initialValue) {
+		TransferType result = TransferType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTransferTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

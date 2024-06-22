@@ -12,23 +12,23 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.uml2.uml.Lifeline;
 
+import carisma.profile.umlsec.extension4ids.ConsumerConnector;
 import carisma.profile.umlsec.extension4ids.Extension4idsPackage;
-import carisma.profile.umlsec.extension4ids.provider;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>provider</b></em>'.
+ * An implementation of the model object '<em><b>Consumer Connector</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link carisma.profile.umlsec.extension4ids.impl.providerImpl#getBase_Lifeline <em>Base Lifeline</em>}</li>
+ *   <li>{@link carisma.profile.umlsec.extension4ids.impl.ConsumerConnectorImpl#getBase_Lifeline <em>Base Lifeline</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class providerImpl extends MinimalEObjectImpl.Container implements provider {
+public class ConsumerConnectorImpl extends MinimalEObjectImpl.Container implements ConsumerConnector {
 	/**
 	 * The cached value of the '{@link #getBase_Lifeline() <em>Base Lifeline</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -44,7 +44,7 @@ public class providerImpl extends MinimalEObjectImpl.Container implements provid
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected providerImpl() {
+	protected ConsumerConnectorImpl() {
 		super();
 	}
 
@@ -55,7 +55,7 @@ public class providerImpl extends MinimalEObjectImpl.Container implements provid
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Extension4idsPackage.Literals.PROVIDER;
+		return Extension4idsPackage.Literals.CONSUMER_CONNECTOR;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class providerImpl extends MinimalEObjectImpl.Container implements provid
 			base_Lifeline = (Lifeline)eResolveProxy(oldBase_Lifeline);
 			if (base_Lifeline != oldBase_Lifeline) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.PROVIDER__BASE_LIFELINE, oldBase_Lifeline, base_Lifeline));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Extension4idsPackage.CONSUMER_CONNECTOR__BASE_LIFELINE, oldBase_Lifeline, base_Lifeline));
 			}
 		}
 		return base_Lifeline;
@@ -95,7 +95,7 @@ public class providerImpl extends MinimalEObjectImpl.Container implements provid
 		Lifeline oldBase_Lifeline = base_Lifeline;
 		base_Lifeline = newBase_Lifeline;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.PROVIDER__BASE_LIFELINE, oldBase_Lifeline, base_Lifeline));
+			eNotify(new ENotificationImpl(this, Notification.SET, Extension4idsPackage.CONSUMER_CONNECTOR__BASE_LIFELINE, oldBase_Lifeline, base_Lifeline));
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class providerImpl extends MinimalEObjectImpl.Container implements provid
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Extension4idsPackage.PROVIDER__BASE_LIFELINE:
+			case Extension4idsPackage.CONSUMER_CONNECTOR__BASE_LIFELINE:
 				if (resolve) return getBase_Lifeline();
 				return basicGetBase_Lifeline();
 		}
@@ -121,7 +121,7 @@ public class providerImpl extends MinimalEObjectImpl.Container implements provid
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Extension4idsPackage.PROVIDER__BASE_LIFELINE:
+			case Extension4idsPackage.CONSUMER_CONNECTOR__BASE_LIFELINE:
 				setBase_Lifeline((Lifeline)newValue);
 				return;
 		}
@@ -136,7 +136,7 @@ public class providerImpl extends MinimalEObjectImpl.Container implements provid
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Extension4idsPackage.PROVIDER__BASE_LIFELINE:
+			case Extension4idsPackage.CONSUMER_CONNECTOR__BASE_LIFELINE:
 				setBase_Lifeline((Lifeline)null);
 				return;
 		}
@@ -151,10 +151,10 @@ public class providerImpl extends MinimalEObjectImpl.Container implements provid
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Extension4idsPackage.PROVIDER__BASE_LIFELINE:
+			case Extension4idsPackage.CONSUMER_CONNECTOR__BASE_LIFELINE:
 				return base_Lifeline != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //providerImpl
+} //ConsumerConnectorImpl

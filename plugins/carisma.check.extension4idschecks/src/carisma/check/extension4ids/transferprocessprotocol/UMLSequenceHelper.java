@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
@@ -136,6 +137,101 @@ public class UMLSequenceHelper {
 	    }
 
 	    return sendEvents;
+	}
+	
+	/**
+	 * Retrieves all messages sent from a given lifeline.
+	 *
+	 * @param lifeline - The lifeline from which to retrieve sent messages.
+	 * @return A set of messages sent from the specified lifeline.
+	 */
+	public static Set<Message> getAllMessagesFromLifeline(final Lifeline lifeline){
+		Set<Message> sentMessages = lifeline.getCoveredBys().stream()
+				.filter(element -> element instanceof MessageOccurrenceSpecification && element.getName().contains("Send"))
+				.map(element -> (MessageOccurrenceSpecification) element)
+				.map(element -> element.getMessage())
+				.collect(Collectors.toSet());
+		
+		return sentMessages;
+	}
+	
+	/**
+	 * Retrieves all messages sent to a given lifeline.
+	 *
+	 * @param lifeline - The lifeline from which to retrieve recevied messages.
+	 * @return A set of messages sent to the specified lifeline.
+	 */
+	public static Set<Message> getAllMessagesToLifeline(final Lifeline lifeline){
+		Set<Message> receivedMessages = lifeline.getCoveredBys().stream()
+				.filter(element -> element instanceof MessageOccurrenceSpecification && element.getName().contains("Receive"))
+				.map(element -> (MessageOccurrenceSpecification) element)
+				.map(element -> element.getMessage())
+				.collect(Collectors.toSet());
+		
+		return receivedMessages;
+	}
+	
+	/**
+	 * Retrieves all messages exchanged between two given lifelines.
+	 *
+	 * @param lifelineA - The first lifeline.
+	 * @param lifelineB - The second lifeline.
+	 * @return A set of messages exchanged between the specified lifelines.
+	 */
+	public static Set<Message> getAllMessagesBetweenLifelines(final Lifeline lifelineA, final Lifeline lifelineB){
+		Set<Message> allMessagesBetweenLifelines = new HashSet<>();
+		
+		Set<Message> lifelineASentMessages = getAllMessagesFromLifeline(lifelineA);
+		Set<Message> lifelineAReceivedMessages = getAllMessagesToLifeline(lifelineA);
+		
+		Set<Message> lifelineBSentMessages = getAllMessagesFromLifeline(lifelineB);
+		Set<Message> lifelineBReceivedMessages = getAllMessagesToLifeline(lifelineB);
+		
+		allMessagesBetweenLifelines.addAll(
+		        lifelineASentMessages.stream()
+		            .filter(lifelineBReceivedMessages::contains)
+		            .collect(Collectors.toSet())
+		    );
+
+		    allMessagesBetweenLifelines.addAll(
+		        lifelineBSentMessages.stream()
+		            .filter(lifelineAReceivedMessages::contains)
+		            .collect(Collectors.toSet())
+		    );
+		
+		return allMessagesBetweenLifelines;
+	}
+	
+	/**
+	 * Retrieves all messages sent from lifelineA that are not received by lifelineB
+	 * and messages sent from lifelineB that are not received by lifelineA.
+	 *
+	 * @param lifelineA - The first lifeline.
+	 * @param lifelineB - The second lifeline.
+	 * @return A set of messages not exchanged between the specified lifelines.
+	 */
+	public static Set<Message> getAllMessagesNotBetweenLifelines(final Lifeline lifelineA, final Lifeline lifelineB){
+		Set<Message> allMessagesNotBetweenLifelines = new HashSet<>();
+		
+		Set<Message> lifelineASentMessages = getAllMessagesFromLifeline(lifelineA);
+		Set<Message> lifelineAReceivedMessages = getAllMessagesToLifeline(lifelineA);
+		
+		Set<Message> lifelineBSentMessages = getAllMessagesFromLifeline(lifelineB);
+		Set<Message> lifelineBReceivedMessages = getAllMessagesToLifeline(lifelineB);
+		
+		allMessagesNotBetweenLifelines.addAll(
+		        lifelineASentMessages.stream()
+		            .filter(message -> !lifelineBReceivedMessages.contains(message))
+		            .collect(Collectors.toSet())
+		    );
+
+	    allMessagesNotBetweenLifelines.addAll(
+		        lifelineBSentMessages.stream()
+		            .filter(message -> !lifelineAReceivedMessages.contains(message))
+		            .collect(Collectors.toSet())
+		    );
+		
+		return allMessagesNotBetweenLifelines;
 	}
 	
 

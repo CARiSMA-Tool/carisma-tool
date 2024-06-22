@@ -4,6 +4,7 @@ package carisma.profile.umlsec.extension4ids.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -14,13 +15,14 @@ import org.eclipse.uml2.types.TypesPackage;
 
 import org.eclipse.uml2.uml.UMLPackage;
 
+import carisma.profile.umlsec.extension4ids.ConsumerConnector;
 import carisma.profile.umlsec.extension4ids.Extension4idsFactory;
 import carisma.profile.umlsec.extension4ids.Extension4idsPackage;
 import carisma.profile.umlsec.extension4ids.IDSconnector;
-import carisma.profile.umlsec.extension4ids.consumer;
-import carisma.profile.umlsec.extension4ids.datatransfer;
-import carisma.profile.umlsec.extension4ids.provider;
-import carisma.profile.umlsec.extension4ids.usagecontrol;
+import carisma.profile.umlsec.extension4ids.ProviderConnector;
+import carisma.profile.umlsec.extension4ids.TransferProcessProtocol;
+import carisma.profile.umlsec.extension4ids.TransferType;
+import carisma.profile.umlsec.extension4ids.UsageControl;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,28 +43,35 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass usagecontrolEClass = null;
+	private EClass usageControlEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass datatransferEClass = null;
+	private EClass transferProcessProtocolEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass providerEClass = null;
+	private EClass providerConnectorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass consumerEClass = null;
+	private EClass consumerConnectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum transferTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -155,8 +164,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EClass getusagecontrol() {
-		return usagecontrolEClass;
+	public EClass getUsageControl() {
+		return usageControlEClass;
 	}
 
 	/**
@@ -165,8 +174,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EReference getusagecontrol_Base_Dependency() {
-		return (EReference)usagecontrolEClass.getEStructuralFeatures().get(0);
+	public EReference getUsageControl_Base_Dependency() {
+		return (EReference)usageControlEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -175,8 +184,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EClass getdatatransfer() {
-		return datatransferEClass;
+	public EClass getTransferProcessProtocol() {
+		return transferProcessProtocolEClass;
 	}
 
 	/**
@@ -185,8 +194,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EAttribute getdatatransfer_Type() {
-		return (EAttribute)datatransferEClass.getEStructuralFeatures().get(0);
+	public EAttribute getTransferProcessProtocol_Type() {
+		return (EAttribute)transferProcessProtocolEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -195,8 +204,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EReference getdatatransfer_Transfer_req_step() {
-		return (EReference)datatransferEClass.getEStructuralFeatures().get(1);
+	public EReference getTransferProcessProtocol_Transfer_req_step() {
+		return (EReference)transferProcessProtocolEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -205,8 +214,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EReference getdatatransfer_Transfer_start_step() {
-		return (EReference)datatransferEClass.getEStructuralFeatures().get(2);
+	public EReference getTransferProcessProtocol_Transfer_start_step() {
+		return (EReference)transferProcessProtocolEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -215,8 +224,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EReference getdatatransfer_Push_pull_step() {
-		return (EReference)datatransferEClass.getEStructuralFeatures().get(3);
+	public EReference getTransferProcessProtocol_Push_pull_step() {
+		return (EReference)transferProcessProtocolEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -225,8 +234,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EReference getdatatransfer_Transfer_complete_step() {
-		return (EReference)datatransferEClass.getEStructuralFeatures().get(4);
+	public EReference getTransferProcessProtocol_Transfer_complete_step() {
+		return (EReference)transferProcessProtocolEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -235,8 +244,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EReference getdatatransfer_Transfer_suspend_step() {
-		return (EReference)datatransferEClass.getEStructuralFeatures().get(5);
+	public EReference getTransferProcessProtocol_Transfer_suspend_step() {
+		return (EReference)transferProcessProtocolEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -245,8 +254,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EReference getdatatransfer_Transfer_terminate_step() {
-		return (EReference)datatransferEClass.getEStructuralFeatures().get(6);
+	public EReference getTransferProcessProtocol_Transfer_terminate_step() {
+		return (EReference)transferProcessProtocolEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -255,8 +264,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EReference getdatatransfer_Base_Interaction() {
-		return (EReference)datatransferEClass.getEStructuralFeatures().get(7);
+	public EReference getTransferProcessProtocol_Base_Interaction() {
+		return (EReference)transferProcessProtocolEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -265,8 +274,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EClass getprovider() {
-		return providerEClass;
+	public EClass getProviderConnector() {
+		return providerConnectorEClass;
 	}
 
 	/**
@@ -275,8 +284,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EReference getprovider_Base_Lifeline() {
-		return (EReference)providerEClass.getEStructuralFeatures().get(0);
+	public EReference getProviderConnector_Base_Lifeline() {
+		return (EReference)providerConnectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -285,8 +294,8 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EClass getconsumer() {
-		return consumerEClass;
+	public EClass getConsumerConnector() {
+		return consumerConnectorEClass;
 	}
 
 	/**
@@ -295,8 +304,18 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 	 * @generated
 	 */
 	@Override
-	public EReference getconsumer_Base_Lifeline() {
-		return (EReference)consumerEClass.getEStructuralFeatures().get(0);
+	public EReference getConsumerConnector_Base_Lifeline() {
+		return (EReference)consumerConnectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getTransferType() {
+		return transferTypeEEnum;
 	}
 
 	/**
@@ -331,24 +350,27 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 		idSconnectorEClass = createEClass(ID_SCONNECTOR);
 		createEReference(idSconnectorEClass, ID_SCONNECTOR__BASE_ARTIFACT);
 
-		usagecontrolEClass = createEClass(USAGECONTROL);
-		createEReference(usagecontrolEClass, USAGECONTROL__BASE_DEPENDENCY);
+		usageControlEClass = createEClass(USAGE_CONTROL);
+		createEReference(usageControlEClass, USAGE_CONTROL__BASE_DEPENDENCY);
 
-		datatransferEClass = createEClass(DATATRANSFER);
-		createEAttribute(datatransferEClass, DATATRANSFER__TYPE);
-		createEReference(datatransferEClass, DATATRANSFER__TRANSFER_REQ_STEP);
-		createEReference(datatransferEClass, DATATRANSFER__TRANSFER_START_STEP);
-		createEReference(datatransferEClass, DATATRANSFER__PUSH_PULL_STEP);
-		createEReference(datatransferEClass, DATATRANSFER__TRANSFER_COMPLETE_STEP);
-		createEReference(datatransferEClass, DATATRANSFER__TRANSFER_SUSPEND_STEP);
-		createEReference(datatransferEClass, DATATRANSFER__TRANSFER_TERMINATE_STEP);
-		createEReference(datatransferEClass, DATATRANSFER__BASE_INTERACTION);
+		transferProcessProtocolEClass = createEClass(TRANSFER_PROCESS_PROTOCOL);
+		createEAttribute(transferProcessProtocolEClass, TRANSFER_PROCESS_PROTOCOL__TYPE);
+		createEReference(transferProcessProtocolEClass, TRANSFER_PROCESS_PROTOCOL__TRANSFER_REQ_STEP);
+		createEReference(transferProcessProtocolEClass, TRANSFER_PROCESS_PROTOCOL__TRANSFER_START_STEP);
+		createEReference(transferProcessProtocolEClass, TRANSFER_PROCESS_PROTOCOL__PUSH_PULL_STEP);
+		createEReference(transferProcessProtocolEClass, TRANSFER_PROCESS_PROTOCOL__TRANSFER_COMPLETE_STEP);
+		createEReference(transferProcessProtocolEClass, TRANSFER_PROCESS_PROTOCOL__TRANSFER_SUSPEND_STEP);
+		createEReference(transferProcessProtocolEClass, TRANSFER_PROCESS_PROTOCOL__TRANSFER_TERMINATE_STEP);
+		createEReference(transferProcessProtocolEClass, TRANSFER_PROCESS_PROTOCOL__BASE_INTERACTION);
 
-		providerEClass = createEClass(PROVIDER);
-		createEReference(providerEClass, PROVIDER__BASE_LIFELINE);
+		providerConnectorEClass = createEClass(PROVIDER_CONNECTOR);
+		createEReference(providerConnectorEClass, PROVIDER_CONNECTOR__BASE_LIFELINE);
 
-		consumerEClass = createEClass(CONSUMER);
-		createEReference(consumerEClass, CONSUMER__BASE_LIFELINE);
+		consumerConnectorEClass = createEClass(CONSUMER_CONNECTOR);
+		createEReference(consumerConnectorEClass, CONSUMER_CONNECTOR__BASE_LIFELINE);
+
+		// Create enums
+		transferTypeEEnum = createEEnum(TRANSFER_TYPE);
 	}
 
 	/**
@@ -387,53 +409,32 @@ public class Extension4idsPackageImpl extends EPackageImpl implements Extension4
 		initEClass(idSconnectorEClass, IDSconnector.class, "IDSconnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIDSconnector_Base_Artifact(), theUMLPackage.getArtifact(), null, "base_Artifact", null, 0, 1, IDSconnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(usagecontrolEClass, usagecontrol.class, "usagecontrol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getusagecontrol_Base_Dependency(), theUMLPackage.getDependency(), null, "base_Dependency", null, 0, 1, usagecontrol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(usageControlEClass, UsageControl.class, "UsageControl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUsageControl_Base_Dependency(), theUMLPackage.getDependency(), null, "base_Dependency", null, 0, 1, UsageControl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(datatransferEClass, datatransfer.class, "datatransfer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getdatatransfer_Type(), ecorePackage.getEString(), "type", null, 1, 1, datatransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getdatatransfer_Transfer_req_step(), theUMLPackage.getMessage(), null, "transfer_req_step", null, 1, 1, datatransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getdatatransfer_Transfer_start_step(), theUMLPackage.getMessage(), null, "transfer_start_step", null, 1, 1, datatransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getdatatransfer_Push_pull_step(), theUMLPackage.getMessage(), null, "push_pull_step", null, 1, 1, datatransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getdatatransfer_Transfer_complete_step(), theUMLPackage.getMessage(), null, "transfer_complete_step", null, 1, 1, datatransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getdatatransfer_Transfer_suspend_step(), theUMLPackage.getMessage(), null, "transfer_suspend_step", null, 1, 1, datatransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getdatatransfer_Transfer_terminate_step(), theUMLPackage.getMessage(), null, "transfer_terminate_step", null, 1, 1, datatransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getdatatransfer_Base_Interaction(), theUMLPackage.getInteraction(), null, "base_Interaction", null, 0, 1, datatransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(transferProcessProtocolEClass, TransferProcessProtocol.class, "TransferProcessProtocol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTransferProcessProtocol_Type(), this.getTransferType(), "type", null, 1, 1, TransferProcessProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getTransferProcessProtocol_Transfer_req_step(), theUMLPackage.getMessage(), null, "transfer_req_step", null, 1, 1, TransferProcessProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getTransferProcessProtocol_Transfer_start_step(), theUMLPackage.getMessage(), null, "transfer_start_step", null, 1, 1, TransferProcessProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getTransferProcessProtocol_Push_pull_step(), theUMLPackage.getMessage(), null, "push_pull_step", null, 1, 1, TransferProcessProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getTransferProcessProtocol_Transfer_complete_step(), theUMLPackage.getMessage(), null, "transfer_complete_step", null, 1, 1, TransferProcessProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getTransferProcessProtocol_Transfer_suspend_step(), theUMLPackage.getMessage(), null, "transfer_suspend_step", null, 1, 1, TransferProcessProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getTransferProcessProtocol_Transfer_terminate_step(), theUMLPackage.getMessage(), null, "transfer_terminate_step", null, 1, 1, TransferProcessProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getTransferProcessProtocol_Base_Interaction(), theUMLPackage.getInteraction(), null, "base_Interaction", null, 0, 1, TransferProcessProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(providerEClass, provider.class, "provider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getprovider_Base_Lifeline(), theUMLPackage.getLifeline(), null, "base_Lifeline", null, 0, 1, provider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(providerConnectorEClass, ProviderConnector.class, "ProviderConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProviderConnector_Base_Lifeline(), theUMLPackage.getLifeline(), null, "base_Lifeline", null, 0, 1, ProviderConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(consumerEClass, consumer.class, "consumer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getconsumer_Base_Lifeline(), theUMLPackage.getLifeline(), null, "base_Lifeline", null, 0, 1, consumer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(consumerConnectorEClass, ConsumerConnector.class, "ConsumerConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConsumerConnector_Base_Lifeline(), theUMLPackage.getLifeline(), null, "base_Lifeline", null, 0, 1, ConsumerConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(transferTypeEEnum, TransferType.class, "TransferType");
+		addEEnumLiteral(transferTypeEEnum, TransferType.PUSH);
+		addEEnumLiteral(transferTypeEEnum, TransferType.PULL);
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// http://www.eclipse.org/uml2/2.0.0/UML
-		createUMLAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/uml2/2.0.0/UML</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createUMLAnnotations() {
-		String source = "http://www.eclipse.org/uml2/2.0.0/UML";
-		addAnnotation
-		  (idSconnectorEClass,
-		   source,
-		   new String[] {
-			   "originalName", "IDS connector"
-		   });
-		addAnnotation
-		  (datatransferEClass,
-		   source,
-		   new String[] {
-			   "originalName", "data transfer"
-		   });
 	}
 
 } //Extension4idsPackageImpl

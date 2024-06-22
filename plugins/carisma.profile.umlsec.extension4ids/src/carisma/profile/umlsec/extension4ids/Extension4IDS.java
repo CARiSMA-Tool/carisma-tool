@@ -6,11 +6,11 @@ import carisma.modeltype.uml2.CarismaProfileDescriptor;
 
 public enum Extension4IDS {
 	
-	IDSCONNECTOR ("IDS connector"),
-	USAGECONTROL ("usagecontrol"),
+	IDSCONNECTOR ("IDSconnector"),
+	USAGECONTROL ("UsageControl"),
 	DATATRANSFER ("TransferProcessProtocol"),
-	PROVIDER ("provider"),
-	CONSUMER ("consumer");
+	PROVIDER ("ProviderConnector"),
+	CONSUMER ("ConsumerConnector");
 	private static final String PROFILE_NAME = "extension4ids";
 	private static final String PROFILE_VERSION = "1";
 	private static final String PROFILE_URI = "platform:/carisma.profile.umlsec.extension4ids/profile/extension4ids.profile.uml";

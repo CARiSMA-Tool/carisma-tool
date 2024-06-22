@@ -57,17 +57,17 @@ public class DataTransferProtocolHelper {
 	public static RelevantMessagesDto getTaggedValues(Interaction interaction) {
 		
 		String taggedValueType = (String) getTaggedValue(TRANSFER_TYPE, Extension4IDS.DATATRANSFER, interaction);
-		System.out.println("type: "+ taggedValueType);
+
 		Message taggedValueTransferRequest = (Message) getTaggedValue(TRANSFER_REQUEST, Extension4IDS.DATATRANSFER, interaction);
-		System.out.println("req: "+ taggedValueTransferRequest);
+
 		Message taggedValueTransferStart = (Message) getTaggedValue(TRANSFER_START, Extension4IDS.DATATRANSFER, interaction);
-		System.out.println("start: "+taggedValueTransferStart);
+
 		Message taggedValueTransferComplete = (Message) getTaggedValue(TRANSFER_COMPLETE, Extension4IDS.DATATRANSFER, interaction);
-		System.out.println("complete: "+ taggedValueTransferComplete);
+
 		Message taggedValueTransferSuspend = (Message) getTaggedValue(TRANSFER_SUSPENDED, Extension4IDS.DATATRANSFER, interaction);
-		System.out.println("suspended: "+taggedValueTransferSuspend);
+
 		Message taggedValueTransferTerminate = (Message) getTaggedValue(TRANSFER_TERMINATED, Extension4IDS.DATATRANSFER, interaction);
-		System.out.println("terminate: "+taggedValueTransferTerminate);
+
 		Message taggedValuePushPull = (Message) getTaggedValue(PUSH_PULL_STEP, Extension4IDS.DATATRANSFER, interaction);
 		
 		return new RelevantMessagesDto(taggedValueType, 
