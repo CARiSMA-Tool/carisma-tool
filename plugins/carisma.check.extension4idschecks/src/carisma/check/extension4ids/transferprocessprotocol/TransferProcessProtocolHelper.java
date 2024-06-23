@@ -12,7 +12,12 @@ import org.eclipse.uml2.uml.Message;
 import carisma.check.extension4ids.dto.RelevantMessagesDto;
 import carisma.profile.umlsec.extension4ids.Extension4IDS;
 import carisma.profile.umlsec.extension4ids.Extension4IDSUtil;
+import carisma.profile.umlsec.extension4ids.TransferType;
 
+/**
+ * Helper class for the Transfer Process Protocol Check
+ * @author Sanjeev Sun Shakya
+ */
 public class TransferProcessProtocolHelper {
 	
 	private static final String TRANSFER_REQUEST = "transfer_req_step";
@@ -56,7 +61,7 @@ public class TransferProcessProtocolHelper {
 	 */
 	public static RelevantMessagesDto getTaggedValues(Interaction interaction) {
 		
-		String taggedValueType = (String) getTaggedValue(TRANSFER_TYPE, Extension4IDS.DATATRANSFER, interaction);
+		TransferType taggedValueType = getTransferTypeTaggedValue(TRANSFER_TYPE, Extension4IDS.DATATRANSFER, interaction);
 
 		Message taggedValueTransferRequest = (Message) getTaggedValue(TRANSFER_REQUEST, Extension4IDS.DATATRANSFER, interaction);
 
@@ -91,6 +96,29 @@ public class TransferProcessProtocolHelper {
 	private static Object getTaggedValue(final String tagName, final Extension4IDS stereo, final Element stereoParent) {
 		List<Object> taggedValue = Extension4IDSUtil.getTaggedValues(tagName, stereo, stereoParent);
 		return taggedValue.isEmpty() ? null : taggedValue.get(0);
+	}
+	
+	/**
+	 * Retrieves the TransferType tagged value for a given tag name, stereotype, and parent element.
+	 *
+	 * @param tagName The name of the tag.
+	 * @param stereo The stereotype to check for the tag.
+	 * @param stereoParent The parent element that contains the stereotype.
+	 * @return The TransferType tagged value if present, or null if no valid tagged value is found.
+	 */
+	private static TransferType getTransferTypeTaggedValue(final String tagName, final Extension4IDS stereo, final Element stereoParent) {
+	    Object taggedValue = getTaggedValue(tagName, stereo, stereoParent);
+
+	    if (taggedValue instanceof String) {
+	        try {
+	            return TransferType.valueOf((String) taggedValue);
+	        } catch (IllegalArgumentException e) {
+	            System.err.println("Invalid TransferType value: " + taggedValue);
+	        }
+	    } else {
+	        System.err.println("Tagged value is not a String: " + taggedValue);
+	    }
+	    return null;
 	}
 	
 	

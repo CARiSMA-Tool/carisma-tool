@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_qPsQQDFSEe-Q585fhUgV9w" type="PapyrusUMLSequenceDiagram" name="Sequence Diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_qPsQQTFSEe-Q585fhUgV9w" type="Interaction_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_qPsQQjFSEe-Q585fhUgV9w" type="Interaction_NameLabel"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_qPsQQzFSEe-Q585fhUgV9w" type="Interaction_SubfragmentCompartment">
+      <children xmi:type="notation:Shape" xmi:id="_q23lADFSEe-Q585fhUgV9w" type="Lifeline_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_q23lAjFSEe-Q585fhUgV9w" type="Lifeline_NameLabel"/>
+        <element xmi:type="uml:Lifeline" href="transfer_process_protocol_no_provider.uml#_q20hsDFSEe-Q585fhUgV9w"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_q23lATFSEe-Q585fhUgV9w" x="210" y="10"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_rGLzYDFSEe-Q585fhUgV9w" type="Lifeline_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_rGLzYjFSEe-Q585fhUgV9w" type="Lifeline_NameLabel"/>
+        <element xmi:type="uml:Lifeline" href="transfer_process_protocol_no_provider.uml#_rGIwEDFSEe-Q585fhUgV9w"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rGLzYTFSEe-Q585fhUgV9w" x="386" y="10"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_sKyD8DFSEe-Q585fhUgV9w" type="StereotypeComment">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_sKyD8TFSEe-Q585fhUgV9w"/>
+        <styles xmi:type="notation:EObjectValueStyle" xmi:id="_sKyD8zFSEe-Q585fhUgV9w" name="BASE_ELEMENT">
+          <eObjectValue xmi:type="uml:Lifeline" href="transfer_process_protocol_no_provider.uml#_q20hsDFSEe-Q585fhUgV9w"/>
+        </styles>
+        <element xsi:nil="true"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sKyD8jFSEe-Q585fhUgV9w" x="410" y="10"/>
+      </children>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qPsQRDFSEe-Q585fhUgV9w"/>
+    </children>
+    <element xmi:type="uml:Interaction" href="transfer_process_protocol_no_provider.uml#_qPrpMDFSEe-Q585fhUgV9w"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qPsQRTFSEe-Q585fhUgV9w"/>
+  </children>
+  <children xmi:type="notation:BasicCompartment" xmi:id="_qSBLgDFSEe-Q585fhUgV9w" type="GRILLING"/>
+  <children xmi:type="notation:Shape" xmi:id="_1JfEUDFSEe-Q585fhUgV9w" type="StereotypeComment">
+    <styles xmi:type="notation:TitleStyle" xmi:id="_1JfEUTFSEe-Q585fhUgV9w"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_1JfEUzFSEe-Q585fhUgV9w" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:Interaction" href="transfer_process_protocol_no_provider.uml#_qPrpMDFSEe-Q585fhUgV9w"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1JfEUjFSEe-Q585fhUgV9w" x="200"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_qPsQRjFSEe-Q585fhUgV9w" name="diagram_compatibility_version" stringValue="1.4.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_qPsQRzFSEe-Q585fhUgV9w"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_qPsQSDFSEe-Q585fhUgV9w" diagramKindId="org.eclipse.papyrus.uml.diagram.sequence">
+    <owner xmi:type="uml:Model" href="transfer_process_protocol_no_provider.uml#_qPmJoDFSEe-Q585fhUgV9w"/>
+  </styles>
+  <element xmi:type="uml:Interaction" href="transfer_process_protocol_no_provider.uml#_qPrpMDFSEe-Q585fhUgV9w"/>
+  <edges xmi:type="notation:Connector" xmi:id="_sKyD9DFSEe-Q585fhUgV9w" type="StereotypeCommentLink" source="_q23lADFSEe-Q585fhUgV9w" target="_sKyD8DFSEe-Q585fhUgV9w">
+    <styles xmi:type="notation:FontStyle" xmi:id="_sKyD9TFSEe-Q585fhUgV9w"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_sKzSEDFSEe-Q585fhUgV9w" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:Lifeline" href="transfer_process_protocol_no_provider.uml#_q20hsDFSEe-Q585fhUgV9w"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sKyD9jFSEe-Q585fhUgV9w" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sKyD9zFSEe-Q585fhUgV9w"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sKyD-DFSEe-Q585fhUgV9w"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_1JfEVDFSEe-Q585fhUgV9w" type="StereotypeCommentLink" source="_qPsQQTFSEe-Q585fhUgV9w" target="_1JfEUDFSEe-Q585fhUgV9w">
+    <styles xmi:type="notation:FontStyle" xmi:id="_1JfEVTFSEe-Q585fhUgV9w"/>
+    <styles xmi:type="notation:EObjectValueStyle" xmi:id="_1JfEWTFSEe-Q585fhUgV9w" name="BASE_ELEMENT">
+      <eObjectValue xmi:type="uml:Interaction" href="transfer_process_protocol_no_provider.uml#_qPrpMDFSEe-Q585fhUgV9w"/>
+    </styles>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1JfEVjFSEe-Q585fhUgV9w" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1JfEVzFSEe-Q585fhUgV9w"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1JfEWDFSEe-Q585fhUgV9w"/>
+  </edges>
+</notation:Diagram>

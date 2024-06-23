@@ -40,7 +40,6 @@ public class UsageControlHelper {
      */
 	public static boolean hasConnectorArtifact(Node node) {
         for (Element element : UMLDeploymentHelper.getDeployedArtifacts(node)) {
-        	System.out.println("Depolyed artifact: "+ element);
             if (element instanceof Artifact && Extension4IDSUtil.hasStereotype(element, Extension4IDS.IDSCONNECTOR)) {
             	System.out.println("Is truee");
                 return true;
@@ -79,8 +78,6 @@ public class UsageControlHelper {
 		Set<Dependency> relevantDependencies = new HashSet<>();
 		
 		relevantDependencies.addAll(UMLHelper.getAllElementsOfType(pkg, Dependency.class));
-		
-		System.out.println("Relevant dependencies: "+ relevantDependencies);
 		return relevantDependencies;
 	}
     
@@ -149,7 +146,6 @@ public class UsageControlHelper {
 	 */
 	public static boolean hasUsageControlRequirements(final Dependency aDep) {
 		for (Stereotype stereo : aDep.getAppliedStereotypes()) {
-			System.out.println("Applied stereotype: "+ stereo.getName());
 			if (isUsageControlRequirement(stereo)) {
 				return true;
 			}

@@ -76,6 +76,7 @@ public class UsageControl {
 		this.analysisHost.appendLineToReport("The usage control analysis detected "+errorMessages.size()+" errors.");
 		this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------");
 		this.analysisHost.appendLineToReport("------------------------------------------------------------------------------------\n");
+		System.out.println("error msg size: " +this.errorMessages.size() );
 		return this.errorMessages.size();
 	}
 	

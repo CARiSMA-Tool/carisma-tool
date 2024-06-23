@@ -2,8 +2,10 @@ package carisma.check.extension4ids.dto;
 
 import org.eclipse.uml2.uml.Message;
 
+import carisma.profile.umlsec.extension4ids.TransferType;
+
 public class RelevantMessagesDto {
-	private String type;
+	private TransferType type;
 	private Message transferRequest;
 	private Message transferStart;
 	private Message transferComplete;
@@ -11,7 +13,7 @@ public class RelevantMessagesDto {
 	private Message transferSuspend;
 	private Message pushPull;
 	
-	public RelevantMessagesDto(String type, Message transferRequest, Message transferStart, Message transferComplete,
+	public RelevantMessagesDto(TransferType type, Message transferRequest, Message transferStart, Message transferComplete,
 			Message transferTerminate, Message transferSuspend, Message pushPull) {
 		this.type = type;
 		this.transferRequest = transferRequest;
@@ -22,10 +24,10 @@ public class RelevantMessagesDto {
 		this.pushPull = pushPull;
 	}
 	
-	public String getType() {
+	public TransferType getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(TransferType type) {
 		this.type = type;
 	}
 	public Message getTransferRequest() {

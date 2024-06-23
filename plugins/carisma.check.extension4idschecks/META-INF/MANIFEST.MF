@@ -4,6 +4,7 @@ Bundle-Name: Extension4idschecks
 Bundle-SymbolicName: carisma.check.extension4idschecks;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Export-Package: carisma.check.extension4ids,
+ carisma.check.extension4ids.dto,
  carisma.check.extension4ids.transferprocessprotocol,
  carisma.check.extension4ids.usagecontrol
 Require-Bundle: org.eclipse.ui,

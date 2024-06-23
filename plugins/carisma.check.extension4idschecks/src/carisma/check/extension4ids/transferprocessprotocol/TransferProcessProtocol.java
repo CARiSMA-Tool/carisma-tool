@@ -18,6 +18,7 @@ import carisma.core.analysis.result.StatusType;
 import carisma.modeltype.uml2.UMLHelper;
 import carisma.profile.umlsec.extension4ids.Extension4IDS;
 import carisma.profile.umlsec.extension4ids.Extension4IDSUtil;
+import carisma.profile.umlsec.extension4ids.TransferType;
 
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
@@ -27,10 +28,11 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
+/**
+ * Analyzes a Sequence Diagram for Transfer Process Protocol set by International Data Space
+ * @author Sanjeev Sun Shakya
+ */
 public class TransferProcessProtocol {
-	
-	private static final String PUSH = "push";
-	private static final String PULL = "pull";
 	
 	private AnalysisHost analysisHost;
 	
@@ -111,26 +113,32 @@ public class TransferProcessProtocol {
 		
 		if (consumerCount == 0 && providerCount == 0) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Consumer and Provider not present!"));
+	        this.analysisHost.appendLineToReport("Consumer and Provider not present!");
 	        return false;
 	    }
 	    if (consumerCount == 0) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Consumer not present!"));
+	        this.analysisHost.appendLineToReport("Consumer not present!");
 	        return false;
 	    }
 	    if (providerCount == 0) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Provider not present!"));
+	        this.analysisHost.appendLineToReport("Provider not present!");
 	        return false;
 	    }
 	    if (consumerCount > 1 && providerCount > 1) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Too many consumers and providers!"));
+	        this.analysisHost.appendLineToReport("Too many consumers and providers!");
 	        return false;
 	    }
 	    if (consumerCount > 1) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Too many consumers!"));
+	        this.analysisHost.appendLineToReport("Too many consumers!");
 	        return false;
 	    }
 	    if (providerCount > 1) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "Too many providers!"));
+	        this.analysisHost.appendLineToReport("Too many providers!");
 	        return false;
 	    }
 	    return true;
@@ -153,17 +161,20 @@ public class TransferProcessProtocol {
 	    
 	    if (!transferRequestPresent) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer request step not present!"));
+	        this.analysisHost.appendLineToReport("Transfer request step not present!");
 	        return false;
 	    }
 	    
 	    if (!transferStartPresent && !transferTerminatePresent) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Once transfer request is sent, there should be transfer start or terminate!"));
+	        this.analysisHost.appendLineToReport("Once transfer request is sent, there should be transfer start or terminate!");
 	        return false;
 	    }
 
 	    if (transferStartPresent) {
 	        if (!transferSuspendPresent && !transferTerminatePresent && !pushPullPresent) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "If transfer start is present, there should be either suspend, terminate, or push/pull!"));
+	            this.analysisHost.appendLineToReport("If transfer start is present, there should be either suspend, terminate, or push/pull!");
 	            return false;
 	        }
 	    }
@@ -171,22 +182,26 @@ public class TransferProcessProtocol {
 	    if (pushPullPresent) {
 	        if (!transferSuspendPresent && !transferTerminatePresent && !transferCompletePresent) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "If push/pull is present, there should be either suspend, terminate, or complete!"));
+	            this.analysisHost.appendLineToReport("If push/pull is present, there should be either suspend, terminate, or complete!");
 	            return false;
 	        }
 	    }
 
 	    if (transferSuspendPresent && !transferStartPresent) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "If transfer suspend is present, transfer start should be present!"));
+	        this.analysisHost.appendLineToReport("If transfer suspend is present, transfer start should be present!");
 	        return false;
 	    }
 	    
 	    if(transferCompletePresent) {
 	    	if(transferTerminatePresent) {
 	    		this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "If transfer complete is present, transfer terminate should not be present!"));
-		        return false;
+	    		this.analysisHost.appendLineToReport("If transfer complete is present, transfer terminate should not be present!");
+	    		return false;
 	    	} else if(transferSuspendPresent) {
 	    		this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "If transfer complete is present, transfer suspend should not be present!"));
-		        return false;
+	    		this.analysisHost.appendLineToReport("If transfer complete is present, transfer suspend should not be present!");
+	    		return false;
 	    	}
 	    }
 
@@ -268,10 +283,11 @@ public class TransferProcessProtocol {
 	                .map(Message::getName)
 	                .collect(Collectors.joining(", "));
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "These messages are irrelevant to the transfer process protocol: " + irrelevantMessages));
+	        this.analysisHost.appendLineToReport("These messages are irrelevant to the transfer process protocol: " + irrelevantMessages);
 	    }
 	}
 	
-	
+	//Not used
 	public boolean hasMessagesNotBetweenConnectors(DataTransferProtocolDto dataTransferProtocolDto) {
 		Set<Message> messagesNotBetweenConnectors = UMLSequenceHelper.getAllMessagesNotBetweenLifelines(dataTransferProtocolDto.getProvider(), dataTransferProtocolDto.getConsumer());
 		if (!messagesNotBetweenConnectors.isEmpty()) {
@@ -302,20 +318,44 @@ public class TransferProcessProtocol {
 	    Optional<MessageOccurrenceSpecification> pushPullSend = dto.getPushPull() != null ? UMLSequenceHelper.getSendEvent(dto.getPushPull()) : Optional.empty();
 
 	    // Check order: request -> start -> pushPull -> complete
-	    if (!isOrdered(requestSend, startSend, sendOccurrences) || !isOrdered(startSend, pushPullSend, sendOccurrences) || !isOrdered(pushPullSend, completeSend, sendOccurrences)) {
-	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Order violation: Transfer Start should be after Transfer Request, Push/Pull should be after Transfer Start, and Transfer Complete should be after Push/Pull"));
+	    if (requestSend.isPresent() && startSend.isPresent() && !isOrdered(requestSend, startSend, sendOccurrences)) {
+	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
+	                "Order violation: Transfer Start should be after Transfer Request"));
+	        this.analysisHost.appendLineToReport("Order violation: Transfer Start should be after Transfer Request");
 	        return false;
 	    }
 
-	    // Terminate can be after request, start, or suspend
-	    if (terminateSend.isPresent() && !(isOrdered(requestSend, terminateSend, sendOccurrences) || isOrdered(startSend, terminateSend, sendOccurrences) || isOrdered(suspendSend, terminateSend, sendOccurrences))) {
-	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer Terminate should be after  Transfer Request, Transfer Start, or Transfer Suspend"));
+	    if (startSend.isPresent() && pushPullSend.isPresent() && !isOrdered(startSend, pushPullSend, sendOccurrences)) {
+	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
+	                "Order violation: Push/Pull should be after Transfer Start"));
+	        this.analysisHost.appendLineToReport("Order violation: Push/Pull should be after Transfer Start");
+	        return false;
+	    }
+
+	    if (pushPullSend.isPresent() && completeSend.isPresent() && !isOrdered(pushPullSend, completeSend, sendOccurrences)) {
+	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
+	                "Order violation: Transfer Complete should be after Push/Pull"));
+	        this.analysisHost.appendLineToReport("Order violation: Transfer Complete should be after Push/Pull");
+	        return false;
+	    }
+
+	    // Terminate can be after request, start, suspend, or pushPull
+	    if (terminateSend.isPresent() && !(isOrdered(requestSend, terminateSend, sendOccurrences)
+	            || isOrdered(startSend, terminateSend, sendOccurrences)
+	            || isOrdered(suspendSend, terminateSend, sendOccurrences)
+	            || isOrdered(pushPullSend, terminateSend, sendOccurrences))) {
+	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
+	                "Transfer Terminate should be after Transfer Request, Transfer Start, Transfer Suspend, or Push/Pull"));
+	        this.analysisHost.appendLineToReport("Transfer Terminate should be after Transfer Request, Transfer Start, Transfer Suspend, or Push/Pull");
 	        return false;
 	    }
 
 	    // Suspend and start must have correct order between them
-	    if (suspendSend.isPresent() && startSend.isPresent() && !(isOrdered(startSend, suspendSend, sendOccurrences) || isOrdered(suspendSend, startSend, sendOccurrences))) {
-	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer Suspend and Transfer Start should have correct order between them"));
+	    if (suspendSend.isPresent() && startSend.isPresent() && !(isOrdered(startSend, suspendSend, sendOccurrences)
+	            || isOrdered(suspendSend, startSend, sendOccurrences))) {
+	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR,
+	                "Transfer Suspend and Transfer Start should have correct order between them"));
+	        this.analysisHost.appendLineToReport("Transfer Suspend and Transfer Start should have correct order between them");
 	        return false;
 	    }
 
@@ -331,7 +371,8 @@ public class TransferProcessProtocol {
 	 * @return true if the first message occurrence is ordered before the second; false otherwise.
 	 */
 	private boolean isOrdered(Optional<MessageOccurrenceSpecification> first, Optional<MessageOccurrenceSpecification> second, Set<MessageOccurrenceSpecification> occurrences) {
-	    if (!first.isPresent() || !second.isPresent()) {
+	    System.out.println("first: "+first.get().getName() + "second: " + second.get().getName());
+		if (!first.isPresent() || !second.isPresent()) {
 	    	this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, first.get().getName() + " or " + second.get().getName() + "step missing"));
 	        return false; // If any of the events are missing, we assume no violation
 	    }
@@ -344,6 +385,7 @@ public class TransferProcessProtocol {
 
 	    if (message == null) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer Request Step is empty"));
+	        this.analysisHost.appendLineToReport("Transfer Request Step is empty");
 	        return false;
 	    }
 
@@ -351,11 +393,13 @@ public class TransferProcessProtocol {
 
 	    if (!consumer.equals(sendReceiveLifelines.get("sendLifeline"))) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer Request must be sent by consumer"));
+	        this.analysisHost.appendLineToReport("Transfer Request must be sent by consumer");
 	        return false;
 	    }
 
 	    if (!provider.equals(sendReceiveLifelines.get("receiveLifeline"))) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer Request must be received by provider"));
+	        this.analysisHost.appendLineToReport("Transfer Request must be received by provider");
 	        return false;
 	    }
 
@@ -368,6 +412,7 @@ public class TransferProcessProtocol {
 
 	    if (message == null) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer Start Step is empty"));
+	        this.analysisHost.appendLineToReport("Transfer Start Step is empty");
 	        return false;
 	    }
 
@@ -375,85 +420,99 @@ public class TransferProcessProtocol {
 
 	    if (!provider.equals(sendReceiveLifelines.get("sendLifeline"))) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer Start must be sent by provider"));
+	        this.analysisHost.appendLineToReport("Transfer Start must be sent by provider");
 	        return false;
 	    }
 
 	    if (!consumer.equals(sendReceiveLifelines.get("receiveLifeline"))) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer Start must be received by consumer"));
+	        this.analysisHost.appendLineToReport("Transfer Start must be received by consumer");
 	        return false;
 	    }
 
 	    return true;
 	}
 
-	public boolean isValidPushPullStep(final DataTransferProtocolDto dataTransferProtocolDto, final Message message, final String type) {
+	public boolean isValidPushPullStep(final DataTransferProtocolDto dataTransferProtocolDto, final Message message, final TransferType type) {
 	    Lifeline provider = dataTransferProtocolDto.getProvider();
 	    Lifeline consumer = dataTransferProtocolDto.getConsumer();
 
 	    if (message == null) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Push/Pull Step is empty"));
+	        this.analysisHost.appendLineToReport("Push/Pull Step is empty");
 	        return false;
 	    }
 
 	    Map<String, Lifeline> sendReceiveLifelines = UMLSequenceHelper.getSendAndRecieveLifeline(message);
 
-	    if (PUSH.equalsIgnoreCase(type)) {
+	    if (type == TransferType.PUSH) {
 	        if (!provider.equals(sendReceiveLifelines.get("sendLifeline"))) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Push should be sent by provider"));
+	            this.analysisHost.appendLineToReport("Push should be sent by provider");
 	            return false;
 	        }
 	        if (!consumer.equals(sendReceiveLifelines.get("receiveLifeline"))) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Push should be received by consumer"));
+	            this.analysisHost.appendLineToReport("Push should be received by consumer");
 	            return false;
 	        }
-	    } else if (PULL.equalsIgnoreCase(type)) {
+	    } else if (type == TransferType.PULL) {
 	        if (!consumer.equals(sendReceiveLifelines.get("sendLifeline"))) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Pull should be sent by consumer"));
+	            this.analysisHost.appendLineToReport("Pull should be sent by consumer");
 	            return false;
 	        }
 	        if (!provider.equals(sendReceiveLifelines.get("receiveLifeline"))) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Pull should be received by provider"));
+	            this.analysisHost.appendLineToReport("Pull should be received by provider");
 	            return false;
 	        }
 	    } else {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Invalid type for Push/Pull"));
+	        this.analysisHost.appendLineToReport("Invalid type for Push/Pull");
 	        return false;
 	    }
 
 	    return true;
 	}
 
-	public boolean isValidTransferCompleteStep(final DataTransferProtocolDto dataTransferProtocolDto, final Message message, final String type) {
+	public boolean isValidTransferCompleteStep(final DataTransferProtocolDto dataTransferProtocolDto, final Message message, final TransferType type) {
 		Lifeline provider = dataTransferProtocolDto.getProvider();
 	    Lifeline consumer = dataTransferProtocolDto.getConsumer();
 		
 		if (message == null) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer Complete Step is empty"));
+	        this.analysisHost.appendLineToReport("Transfer Complete Step is empty");
 	        return false;
 	    }
 	    
 	    Map<String, Lifeline> sendReceiveLifelines = UMLSequenceHelper.getSendAndRecieveLifeline(message);
 
-	    if (PUSH.equalsIgnoreCase(type)) {
+	    if (type == TransferType.PUSH) {
 	        if (!provider.equals(sendReceiveLifelines.get("sendLifeline"))) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer complete should be sent by provider"));
+	            this.analysisHost.appendLineToReport("Transfer complete should be sent by provider");
 	            return false;
 	        }
 	        if (!consumer.equals(sendReceiveLifelines.get("receiveLifeline"))) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer complete should be received by consumer"));
+	            this.analysisHost.appendLineToReport("Transfer complete should be received by consumer");
 	            return false;
 	        }
-	    } else if (PULL.equalsIgnoreCase(type)) {
+	    } else if (type == TransferType.PULL) {
 	        if (!(provider.equals(sendReceiveLifelines.get("sendLifeline")) || consumer.equals(sendReceiveLifelines.get("sendLifeline")))) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer complete should be sent by either consumer or provider"));
+	            this.analysisHost.appendLineToReport("Transfer complete should be sent by either consumer or provider");
 	            return false;
 	        }
 	        if (!(provider.equals(sendReceiveLifelines.get("receiveLifeline")) || provider.equals(sendReceiveLifelines.get("receiveLifeline")))) {
 	            this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Transfer complete should be sent by either consumer or provider"));
+	            this.analysisHost.appendLineToReport("Transfer complete should be sent by either consumer or provider");
 	            return false;
 	        }
 	    } else {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Invalid type for Push/Pull"));
+	        this.analysisHost.appendLineToReport("Invalid type for Push/Pull");
 	        return false;
 	    }
 
@@ -466,19 +525,22 @@ public class TransferProcessProtocol {
 	    
 	    if (message == null) {
 	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Push/Pull Step is empty"));
+	        this.analysisHost.appendLineToReport("Push/Pull Step is empty");
 	        return false;
 	    }
 
 
 	    Map<String, Lifeline> sendReceiveLifelines = UMLSequenceHelper.getSendAndRecieveLifeline(message);
 
-	    if (!provider.equals(sendReceiveLifelines.get("sendLifeline")) || !provider.equals(sendReceiveLifelines.get("receiveLifeline"))) {
-	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, stepName + "must be sent either by provider or consumer"));
+	    if (!(provider.equals(sendReceiveLifelines.get("sendLifeline")) || consumer.equals(sendReceiveLifelines.get("sendLifeline")))) {
+	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, stepName + " must be sent either by provider or consumer"));
+	        this.analysisHost.appendLineToReport(stepName + " must be sent either by provider or consumer");
 	        return false;
 	    }
 
-	    if (!consumer.equals(sendReceiveLifelines.get("receiveLifeline")) || !consumer.equals(sendReceiveLifelines.get("sendLifeline"))) {
-	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, stepName + "must be sent either by provider or consumer"));
+	    if (!(provider.equals(sendReceiveLifelines.get("receiveLifeline")) || provider.equals(sendReceiveLifelines.get("receiveLifeline")))) {
+	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, stepName + " must be sent either by provider or consumer"));
+	        this.analysisHost.appendLineToReport(stepName + " must be sent either by provider or consumer");
 	        return false;
 	    }
 

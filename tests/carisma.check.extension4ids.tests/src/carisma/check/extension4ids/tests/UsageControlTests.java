@@ -20,6 +20,8 @@ import org.eclipse.uml2.uml.Package;
 import org.junit.After;
 import org.junit.Test;
 
+import carisma.check.extension4ids.usagecontrol.UsageControl;
+import carisma.check.extension4ids.usagecontrol.UsageControlHelper;
 import carisma.check.staticcheck.securelinks.SecureLinks;
 import carisma.check.staticcheck.securelinks.SecureLinksHelper;
 import carisma.modeltype.uml2.StereotypeApplication;
@@ -27,7 +29,7 @@ import carisma.profile.umlsec.extension4ids.Extension4IDS;
 import carisma.profile.umlsec.extension4ids.Extension4IDSUtil;
 
 public class UsageControlTests {
-	private String filepath = "resources/models/usage_control";
+	private String filepath = "resources/usage_control";
 	
 	private ResourceSet rs = new ResourceSetImpl();
 	
@@ -43,48 +45,41 @@ public class UsageControlTests {
 		this.model = (Model) this.modelres.getContents().get(0);
 	}
 	
+	
 	@Test
-	public final void testRequirements() throws IOException {
-		loadModel("testRequirements.uml");
-		NamedElement ne = this.model.getMember("pkg");
-		assertNotNull(ne);
-		Package pkg = (Package) ne;
-		ne = pkg.getMember("dep");
-		Dependency dep = (Dependency) ne;
-		assertEquals(4, dep.getAppliedStereotypes().size());
-		StereotypeApplication requirementApp = Extension4IDSUtil.getStereotypeApplication(dep, Extension4IDS.USAGECONTROL);
-		assertNotNull(requirementApp);
-		assertTrue(SecureLinksHelper.isSecureLinksRequirement(requirementApp.getAppliedStereotype()));
-		
-		this.modelres.unload();
+	public final void testNoCommunicatonPath() throws IOException {
+		loadModel("usage_control_no_communication_path.uml");
+		UsageControl theCheck = new UsageControl(null);
+		assertEquals(1, theCheck.checkUsageControl(this.model));
 	}
 	
 	@Test
-	public final void testCheckWrongLinktype() throws IOException {
-		loadModel("testDeploymentWrongLinktype.uml");
-		SecureLinks theCheck = new SecureLinks(null);
-		assertEquals(1, theCheck.checkSecureLinks(this.model));
+	public final void testNoDependencyLink() throws IOException {
+		loadModel("usage_control_no_dependency_link.uml");
+		UsageControl theCheck = new UsageControl(null);
+		assertEquals(0, theCheck.checkUsageControl(this.model));
 	}
 	
 	@Test
-	public final void testCheckRightLinktype() throws IOException {
-		loadModel("testDeploymentRightLinktype.uml");
-		SecureLinks theCheck = new SecureLinks(null);
-		assertEquals(0, theCheck.checkSecureLinks(this.model));
+	public final void testOnlyOneIdsConnector() throws IOException {
+		loadModel("usage_control_no_ids_connector.uml");
+		UsageControl theCheck = new UsageControl(null);
+		assertEquals(1, theCheck.checkUsageControl(this.model));
+	}
+	
+	
+	@Test
+	public final void testNoRequirement() throws IOException {
+		loadModel("usage_control_no_usage_control_requirement.uml");
+		UsageControl theCheck = new UsageControl(null);
+		assertEquals(0, theCheck.checkUsageControl(this.model));
 	}
 	
 	@Test
-	public final void testCheckWrongCustomMultipleRequirements() throws IOException {
-		loadModel("testDeploymentWrongCustomMultipleRequirements.uml");
-		SecureLinks theCheck = new SecureLinks(null);
-		assertEquals(1, theCheck.checkSecureLinks(this.model));
-	}
-	
-	@Test
-	public final void testCheckNonExtension4idsStereotypes() throws IOException {
-		loadModel("testDeploymentNonExtension4idsStereotype.uml");
-		SecureLinks theCheck = new SecureLinks(null);
-		assertEquals(0, theCheck.checkSecureLinks(this.model));
+	public final void testCheckSuccess() throws IOException {
+		loadModel("usage_control_check_success.uml");
+		UsageControl theCheck = new UsageControl(null);
+		assertEquals(0, theCheck.checkUsageControl(this.model));
 	}
 	
 	@After

@@ -15,6 +15,9 @@ import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 
+/**
+ * @author Sanjeev Sun Shakya
+ */
 public class TransferProcessProtocolCheck implements CarismaCheckWithID {
 	
 	public static final String CHECK_ID = "carisma.check.extension4idschecks.datatransfer";
