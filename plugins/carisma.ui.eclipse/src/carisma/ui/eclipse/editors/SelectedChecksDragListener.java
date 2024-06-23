@@ -12,12 +12,12 @@ import carisma.core.analysis.CheckReference;
  * @author jkowald
  */
 public class SelectedChecksDragListener implements DragSourceListener {
-	
+
 	/**
 	 * Corresponding TableViewer.
 	 */
 	private final TableViewer tableViewer;
-		
+
 	/**
 	 * Constructor.
 	 * @param tableViewer The corresponding TableViewer.

@@ -17,20 +17,20 @@ import org.eclipse.core.resources.IFile;
 
 import carisma.ui.eclipse.editors.AbstractEditorDescriptor;
 
-/**Replaced with carisma.ui.eclipse.descriptor 
- * 
- * 
+/**Replaced with carisma.ui.eclipse.descriptor
+ *
+ *
  * Extends the AbstractEditorDescriptor for Acceleo.
  * @author Johannes Kowald
  */
 @Deprecated
 public class AcceleoEditorDescriptor extends AbstractEditorDescriptor {
-	
+
 	/**
 	 * EditorDescriptor name.
 	 */
 	public static final String NAME = "Acceleo Reflective Editor";
-	
+
 	//########################################################################################
 	/**
 	 * Constructor.
@@ -80,25 +80,25 @@ public class AcceleoEditorDescriptor extends AbstractEditorDescriptor {
 	@Override
 	public void setName(String name) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setID(String id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setTypes(List<String> types) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setExtension(String extension) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

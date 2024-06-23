@@ -24,7 +24,7 @@ import carisma.ui.eclipse.CarismaGUI;
  */
 public class CustomizedElementTreeSelectionDialog extends
 		ElementTreeSelectionDialog {
-	
+
 	/**
 	 * Constructor.
 	 * @param parent the parent shell
@@ -35,11 +35,11 @@ public class CustomizedElementTreeSelectionDialog extends
         final ILabelProvider labelProvider, final ITreeContentProvider contentProvider) {
 		super(parent, labelProvider, contentProvider);
 	}
-	
+
 	@Override
 	protected final void configureShell(final Shell shell) {
-		super.configureShell(shell);		
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(shell, CarismaGUI.PLUGIN_ID + ".AdfEditor"); 
+		super.configureShell(shell);
+		PlatformUI.getWorkbench().getHelpSystem().setHelp(shell, CarismaGUI.PLUGIN_ID + ".AdfEditor");
 	}
-	
+
 }

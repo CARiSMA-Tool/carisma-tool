@@ -26,7 +26,7 @@ public class EditorRadioGroupFieldEditor extends RadioGroupFieldEditor {
 	 */
 	private String editorId = "";
 	/**
-	 * 
+	 *
 	 */
 	private String editorSelectionId = Constants.MANUALLY;
 	/**
@@ -37,7 +37,7 @@ public class EditorRadioGroupFieldEditor extends RadioGroupFieldEditor {
 	 * @param labelAndValues label and values
 	 * @param parent parent Composite
 	 * @param useGroup whether to use a Group control to contain the radio buttons
-	 * @param editorId 
+	 * @param editorId
 	 */
 	public EditorRadioGroupFieldEditor(final String name, final String labelText,
 			final int numColumns, final String[][] labelAndValues, final Composite parent,
@@ -55,9 +55,9 @@ public class EditorRadioGroupFieldEditor extends RadioGroupFieldEditor {
 	public final void setEditorId(final String id) {
 		this.editorId = id;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return Id of this editor
 	 */
 	public final String getEditorId() {
@@ -65,13 +65,13 @@ public class EditorRadioGroupFieldEditor extends RadioGroupFieldEditor {
 	}
 	/**
 	 * Id of selection Art (e.g. "default", "manually")
-	 * @param id 
+	 * @param id
 	 */
 	public final void setEditorSelectionId(final String id) {
 		this.editorSelectionId = id;
 	}
 	/**
-	 * 
+	 *
 	 * @return Id of selection Art (e.g. "default", "manually")
 	 */
 	public final String getEditorSelectionId() {

@@ -34,7 +34,7 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 		IWorkbenchPreferencePage {
 
     public static final String EXTENSION_ID = "carisma.ui.eclipse.index";
-	
+
     /**
      * Constant String for Page description.
      */
@@ -55,7 +55,7 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	 * FieldEditor for add/remove/up/down-Buttons and list.
 	 */
 	private EditorPriorityList list;
-	
+
 	/**
 	 * Consturctor.
 	 */
@@ -108,14 +108,14 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	@Override
 	protected void createFieldEditors() {
 		// addField(new BooleanFieldEditor(Constants.PREF_ANALYSE,
 		// "Run every open analysis when starting CARiSMA?.",
 		// getFieldEditorParent()));
-		
+
 	}
 
 	/**
@@ -135,45 +135,45 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	}
 
 	/**
-	 * 
+	 *
 	 * @param composite the composite
 	 */
 	private void selectEditor(final Composite composite) {
-		
-		this.editors = new EditorRadioGroupFieldEditor(Constants.EDITOR_SELECTION_ART, 
+
+		this.editors = new EditorRadioGroupFieldEditor(Constants.EDITOR_SELECTION_ART,
 				"Open a Model with", 1, new String[][] {
 				{"&Editor selection combo box", Constants.MANUALLY},
 				{"&Use editor priority list", Constants.AUTO},
 		}, composite, true, getPreferenceStore().getString(Constants.EDITOR_SELECTION_ART));
-				
+
 		this.editors.setPage(this);
 		this.editors.setPreferenceStore(getPreferenceStore());
 		this.editors.load();
-		
+
 		this.edGroup = new Group(composite, SWT.NONE);
-		
+
 		this.list = new EditorPriorityList(
 				Constants.EDITORS_LIST,
 				"Editor priority list",
-				this.edGroup); 
+				this.edGroup);
 		this.list.setPage(this);
 		this.list.setPreferenceStore(getPreferenceStore());
 		this.list.load();
-		
+
 		selectionArtChanged(getPreferenceStore().getString(Constants.EDITOR_SELECTION_ART));
-		
-		this.editors.setPropertyChangeListener(new IPropertyChangeListener() {	
+
+		this.editors.setPropertyChangeListener(new IPropertyChangeListener() {
 			@Override
 			public void propertyChange(final PropertyChangeEvent event) {
-				if (!event.getNewValue().toString().equals(event.getOldValue().toString())) {					
-//					updateApplyButton();					
+				if (!event.getNewValue().toString().equals(event.getOldValue().toString())) {
+//					updateApplyButton();
 					String newSelectionIdValue = event.getNewValue().toString();
 					Carisma_index.this.editors.setEditorSelectionId(newSelectionIdValue);
 					selectionArtChanged(newSelectionIdValue);
 				}
 			}
-		});		
-	} 
+		});
+	}
 
 	/**
 	 * Save the state.
@@ -189,19 +189,19 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 		}
 		return super.performOk();
 	}
-	
+
 	@Override
 	public final void performApply() {
 		super.performApply();
 	}
 
 	/**
-	 * @return boolean 
+	 * @return boolean
 	 */
 	@Override
 	public final boolean isValid() {
-	
-		if (this.editors != null) {			
+
+		if (this.editors != null) {
 			if (!this.editors.isValid()) {
 				setErrorMessage("Editor is not active or installed");
 				return false;
@@ -209,7 +209,7 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 			setErrorMessage(null);
 		}
 		return super.isValid();
-		
+
 	}
 
 	/**
@@ -218,13 +218,13 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	@Override
 	protected final void performDefaults() {
 		this.editors.loadDefault();
-		this.list.loadDefault();		
+		this.list.loadDefault();
 		selectionArtChanged(getPreferenceStore().getString(Constants.EDITOR_ID));
 		super.performDefaults();
 	}
 
 	/**
-	 * 
+	 *
 	 * @return top
 	 */
 	public final Composite getTop() {
@@ -235,20 +235,20 @@ public class Carisma_index extends FieldEditorPreferencePage implements
 	 * @param newValue the new value of Selection art
 	 */
 	void selectionArtChanged(final String newValue) {
-		
+
 		if (newValue.equals(Constants.AUTO)) {
 			this.edGroup.setEnabled(true);
 			if (this.list != null) {
 				//TODO init
 				this.list.setEnabled(true, this.edGroup);
 			}
-			
+
 		} else {
 			this.edGroup.setEnabled(false);
 			if (this.list != null) {
 				this.list.setEnabled(false, this.edGroup);
 			}
-			
+
 		}
 	}
 }

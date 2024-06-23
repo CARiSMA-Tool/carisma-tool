@@ -6,6 +6,6 @@ import carisma.core.analysis.result.AnalysisResult;
 
 public interface PopUpAction {
 
-	
+
 	public boolean perform(final IMenuManager manager, final AnalysisResult analysisResult);
 }

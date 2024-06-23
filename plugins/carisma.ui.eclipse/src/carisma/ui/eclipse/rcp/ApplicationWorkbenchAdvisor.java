@@ -22,7 +22,7 @@ import carisma.ui.eclipse.Perspective;
 
 
 /**
- * 
+ *
  */
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 	/**
@@ -44,20 +44,20 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
 	/**
 	 * To get the resource workspace as input, override this method.
-	 * @return the Root 
+	 * @return the Root
 	 */
 	@Override
 	public final IAdaptable getDefaultPageInput() {
-		return ResourcesPlugin.getWorkspace().getRoot();   
+		return ResourcesPlugin.getWorkspace().getRoot();
 	}
-	
+
 	/**
 	 * To get the correct adapters hooked up add this code to the initialize() method.
 	 * @param configurer IWorkbenchConfigurer
 	 */
 	@Override
 	public final void initialize(final IWorkbenchConfigurer configurer) {
-		super.initialize(configurer);		                 
+		super.initialize(configurer);
 		IDE.registerAdapters();
 	}
 

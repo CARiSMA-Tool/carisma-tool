@@ -83,10 +83,10 @@ public class EditorPriorityList extends FieldEditor {
 	 */
 	private Composite container = null;
 	/**
-	 * List Control for the items. 
+	 * List Control for the items.
 	 */
 	List guiList = null;
-	/** 
+	/**
 	 * Constant to separate different entries.
 	 */
 	private static final String SEPARATOR = ";";
@@ -111,10 +111,10 @@ public class EditorPriorityList extends FieldEditor {
 	 */
 	private java.util.List<ModelType> listModelTypes = null;
 	/**
-	 * Structure to manage model types and selected editors. 
+	 * Structure to manage model types and selected editors.
 	 */
 	HashMap<String, ArrayList<String>> selectedEditors = null;
-	
+
 	/**
 	 * Konstruktor.
 	 * @param name the name of the FieldEditor in the Preference Page
@@ -125,7 +125,7 @@ public class EditorPriorityList extends FieldEditor {
 			final Composite parent) {
 		init(name, labelText);
 		createControl(parent);
-		
+
 		this.container = parent;
 	}
 
@@ -141,20 +141,20 @@ public class EditorPriorityList extends FieldEditor {
 		GridLayout layout = new GridLayout(2, false);
 		this.container.setLayout(layout);
 		this.container.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		
-		
+
+
 		this.modelTypeLabel = new Label(this.container, SWT.LEFT);
 		this.modelTypeLabel.setText("Select ModelType:");
 		this.modelTypeCombo = new Combo(this.container, SWT.READ_ONLY);
 
 		this.modelTypeCombo.addSelectionListener(new SelectionListener() {
-			
+
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				updatePriorityList();
 				selectionChanged();
 			}
-			
+
 			@Override
 			public void widgetDefaultSelected(final SelectionEvent e) {
 				updatePriorityList();
@@ -165,19 +165,19 @@ public class EditorPriorityList extends FieldEditor {
 		this.titleLabel = getLabelControl(this.container);
 		GridData gdTitleLabel = new GridData(GridData.FILL_HORIZONTAL);
 		gdTitleLabel.horizontalSpan = 2;
-		this.titleLabel.setLayoutData(gdTitleLabel);		
+		this.titleLabel.setLayoutData(gdTitleLabel);
 
 		this.guiList = new List(this.container, SWT.BORDER);
-		GridData listGd = new GridData(SWT.FILL, SWT.FILL, true, true); 
+		GridData listGd = new GridData(SWT.FILL, SWT.FILL, true, true);
 		listGd.verticalAlignment = GridData.FILL;
 		listGd.horizontalAlignment = GridData.FILL;
 		this.guiList.setLayoutData(listGd);
 		this.guiList.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				selectionChanged(); 				
+				selectionChanged();
 			}
-		});	
+		});
 
 		Composite addRemoveGroup = new Composite(this.container, SWT.NONE);
 		addRemoveGroup.setLayoutData(new GridData());
@@ -216,8 +216,8 @@ public class EditorPriorityList extends FieldEditor {
 					selectionChanged();
 				}
 			}
-		});			
-			
+		});
+
 		this.btRemove = new Button(buttonGroup, SWT.PUSH);
 		this.btRemove.setText("Remove");
 		this.btRemove.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -230,13 +230,13 @@ public class EditorPriorityList extends FieldEditor {
 				if (selection > -1) {
 					java.util.List<String> editors = EditorPriorityList.this.selectedEditors.get(EditorPriorityList.this.modelTypeCombo.getText());
 					editors.remove(EditorPriorityList.this.guiList.getItem(EditorPriorityList.this.guiList.getSelectionIndex()));
-					
+
 					EditorPriorityList.this.guiList.remove(EditorPriorityList.this.guiList.getSelectionIndex());
 					selectionChanged();
 				}
 			}
 		});
-		
+
 		this.btUp = new Button(buttonGroup, SWT.PUSH);
 		this.btUp.setText("Up");
 		this.btUp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -245,22 +245,22 @@ public class EditorPriorityList extends FieldEditor {
 			public void widgetSelected(final SelectionEvent e) {
 				super.widgetSelected(e);
 				int index = EditorPriorityList.this.guiList.getSelectionIndex();
-				if (index > 0) {					
-					String selectedItem = EditorPriorityList.this.guiList.getItem(index); 				
-					String itemAboveSelected = EditorPriorityList.this.guiList.getItem(index - 1); 
-					
+				if (index > 0) {
+					String selectedItem = EditorPriorityList.this.guiList.getItem(index);
+					String itemAboveSelected = EditorPriorityList.this.guiList.getItem(index - 1);
+
 					java.util.List<String> editors = EditorPriorityList.this.selectedEditors.get(EditorPriorityList.this.modelTypeCombo.getText());
 					editors.add(index - 1, editors.remove(index));
-					
-					EditorPriorityList.this.guiList.add(selectedItem, index - 1);					
-					EditorPriorityList.this.guiList.remove(index);					
+
+					EditorPriorityList.this.guiList.add(selectedItem, index - 1);
+					EditorPriorityList.this.guiList.remove(index);
 					EditorPriorityList.this.guiList.add(itemAboveSelected, index);
 					EditorPriorityList.this.guiList.remove(index + 1);
 					EditorPriorityList.this.guiList.select(index - 1);
 				}
 			}
 		});
-		
+
 		this.btDown = new Button(buttonGroup, SWT.PUSH);
 		this.btDown.setText("Down");
 		this.btDown.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -270,18 +270,18 @@ public class EditorPriorityList extends FieldEditor {
 				super.widgetSelected(e);
 				int index = EditorPriorityList.this.guiList.getSelectionIndex();
 				if (index > -1 && index < EditorPriorityList.this.guiList.getItemCount() - 1) {
-					String selectedItem = EditorPriorityList.this.guiList.getItem(index);  
+					String selectedItem = EditorPriorityList.this.guiList.getItem(index);
 					String itemBelowSelected = EditorPriorityList.this.guiList.getItem(index + 1);
-					
+
 					java.util.List<String> editors = EditorPriorityList.this.selectedEditors.get(EditorPriorityList.this.modelTypeCombo.getText());
 					editors.add(index + 1, editors.remove(index));
-					
+
 					EditorPriorityList.this.guiList.remove(index + 1);
 					EditorPriorityList.this.guiList.remove(index);
 					EditorPriorityList.this.guiList.add(itemBelowSelected, index);
-					EditorPriorityList.this.guiList.add(selectedItem, index + 1);	
+					EditorPriorityList.this.guiList.add(selectedItem, index + 1);
 					EditorPriorityList.this.guiList.select(index + 1);
-				}				
+				}
 			}
 		});
 		Composite addComposite = new Composite(this.container, SWT.NONE);
@@ -290,11 +290,11 @@ public class EditorPriorityList extends FieldEditor {
 		layout.marginHeight = 0;
 		addComposite.setLayout(layout);
 		gdTitleLabel = new GridData(GridData.FILL_HORIZONTAL);
-		gdTitleLabel.horizontalSpan = 2;		
+		gdTitleLabel.horizontalSpan = 2;
 		addComposite.setLayoutData(gdTitleLabel);
-		
+
 		/*noteLabel1 = new Label(addComposite, SWT.NONE);
-		noteLabel1.setFont(new Font(addComposite.getDisplay(), "Arial", 9, SWT.BOLD)); 
+		noteLabel1.setFont(new Font(addComposite.getDisplay(), "Arial", 9, SWT.BOLD));
 		noteLabel1.setText("Note:");
 		noteLabel2 = new Label(addComposite, SWT.NONE);
 		noteLabel2.setText("If the model can't be opened using any of the above editors, the user will be asked for an editor to use.");*/
@@ -314,7 +314,7 @@ public class EditorPriorityList extends FieldEditor {
 		doLoad();
 		//super.load();
 	}
-	
+
 	@Override
 	protected final void doLoadDefault() {
 		//CarismaGUI.INSTANCE.getPreferenceStore().setValue(getPreferenceName(), "");
@@ -325,7 +325,7 @@ public class EditorPriorityList extends FieldEditor {
 
 	@Override
 	protected final void doStore() {
-		java.util.List<String> toBeSaved = new java.util.ArrayList<>(); 
+		java.util.List<String> toBeSaved = new java.util.ArrayList<>();
 		Set<Map.Entry<String, java.util.ArrayList<String>>> set = this.selectedEditors.entrySet();
 		for (Map.Entry<String, java.util.ArrayList<String>> entry : set) {
 			for (String editor : entry.getValue()) {
@@ -340,8 +340,8 @@ public class EditorPriorityList extends FieldEditor {
 			if (i + 1 < toBeSaved.size()) {
 				result.append(SEPARATOR_LIST);
 			}
-		}	
-		CarismaGUI.INSTANCE.getPreferenceStore().setValue(getPreferenceName(), result.toString());	
+		}
+		CarismaGUI.INSTANCE.getPreferenceStore().setValue(getPreferenceName(), result.toString());
 	}
 
 	@Override
@@ -363,12 +363,12 @@ public class EditorPriorityList extends FieldEditor {
 	 */
 	private void init(final String propertyString) {
 		this.listModelTypes = Carisma.getInstance().getModelTypeRegistry().getSupportedTypes();
-		
+
 		this.modelTypeCombo.removeAll();
 		for (ModelType type : this.listModelTypes) {
 			this.modelTypeCombo.add(type.getName());
 		}
-		
+
 		this.selectedEditors = new HashMap<>();
 		this.guiList.removeAll();
 		for (ModelType mt : this.listModelTypes) {
@@ -444,29 +444,29 @@ public class EditorPriorityList extends FieldEditor {
 		return null;
 
 	}
-	
+
 	/**
 	 * Filters the available editors in regard to the selected model type.
 	 * @return java.util.List<String> List of available editors represented as string object
 	 */
 	private java.util.List<String> getAvailableEditors() {
 		java.util.List<String> choosenEditors = Arrays.asList(this.guiList.getItems());
-		
+
 		// Info: availableItems must be a copy of list. Otherwise, when removing items in list, they are no more there
 		java.util.ArrayList<String> availableItems  = new ArrayList<>();
-		
+
 		java.util.List<EditorDescriptor> edDescriptors = CarismaGUI.INSTANCE.getEditorRegistry().getRegisteredEditors();
 		for (EditorDescriptor edDesc : edDescriptors) {
-			if (edDesc.isAvailable() 
+			if (edDesc.isAvailable()
 					&& !choosenEditors.contains(edDesc.getName())
-					&& (edDesc.getTypes().contains(".*") 
-							|| edDesc.getTypes().contains(this.modelTypeCombo.getText().toLowerCase()) 
-							|| (this.modelTypeCombo.getText().equalsIgnoreCase("uml2") ? edDesc.getTypes().contains("uml") 
+					&& (edDesc.getTypes().contains(".*")
+							|| edDesc.getTypes().contains(this.modelTypeCombo.getText().toLowerCase())
+							|| (this.modelTypeCombo.getText().equalsIgnoreCase("uml2") ? edDesc.getTypes().contains("uml")
 									: this.modelTypeCombo.getText().equalsIgnoreCase("bpmn2") ? edDesc.getTypes().contains("bpmn") : false))) {
 				availableItems.add(edDesc.getName());
 			}
 		}
-		
+
 		return availableItems;
 	}
 
@@ -485,9 +485,9 @@ public class EditorPriorityList extends FieldEditor {
 		this.btRemove.setEnabled(false);
 		this.btUp.setEnabled(false);
 		this.btDown.setEnabled(false);
-		
+
 	}
-	
+
 	/**
      * Set whether or not the controls in the field editor are enabled.
      * @param enabled The enabled state.
@@ -501,22 +501,22 @@ public class EditorPriorityList extends FieldEditor {
 		this.btRemove.setEnabled(enabled);
 		this.btUp.setEnabled(enabled);
 		this.btDown.setEnabled(enabled);
-		
+
 		this.modelTypeCombo.setEnabled(enabled);
 		this.guiList.setEnabled(enabled);
-		
+
 		this.modelTypeLabel.setEnabled(enabled);
 		this.titleLabel.setEnabled(enabled);
 		/*noteLabel1.setEnabled(enabled);
 		noteLabel2.setEnabled(enabled);*/
-		
+
 		if (enabled) {
 			selectionChanged();
 		}
 	}
-	
+
 	/**
-	 * Method extract a saved property. 
+	 * Method extract a saved property.
 	 * @param savedString The saved property string
 	 * @param propertyName The property name
 	 * @return If available the desired property represented as string,
@@ -525,14 +525,14 @@ public class EditorPriorityList extends FieldEditor {
 	private static String getProperty(final String savedString, final String propertyName) {
 		String[] properties = savedString.split(SEPARATOR);
 		for (String prop : properties) {
-			if (prop.length() > propertyName.length() 
+			if (prop.length() > propertyName.length()
 					&& prop.substring(0, propertyName.length()).equalsIgnoreCase(propertyName)) {
 				return prop.substring(propertyName.length());
 			}
 		}
 		return "";
 	}
-	
+
 	/**
 	 * Method will look up the saved editors by model type.
 	 * @param savedString The saved property string
@@ -553,10 +553,10 @@ public class EditorPriorityList extends FieldEditor {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Method will look up the saved editors by model type.
-	 * @param modelType The desired model type 
+	 * @param modelType The desired model type
 	 * @return List of available editors represented as string object
 	 */
 	public static java.util.List<String> getPriorityList(final String modelType) {

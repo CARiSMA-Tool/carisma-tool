@@ -19,14 +19,14 @@ import carisma.ui.eclipse.views.AnalysisResultsView;
 //import carisma.xutils.regulatory.importer.superior.ui.SettingsView;
 
 /**
- * 
+ *
  */
 public class Perspective implements IPerspectiveFactory {
 	/**
-	 * 
+	 *
 	 */
 	public static final String ID = "carisma.perspective";
-	
+
 	/**
 	 * @param layout the page layout
 	 */
@@ -36,7 +36,7 @@ public class Perspective implements IPerspectiveFactory {
 		layout.setEditorAreaVisible(true);
 
 		layout.addStandaloneView("org.eclipse.ui.views.navigator.ResourceNavigator", true, IPageLayout.LEFT, 0.3f, editorArea);
-		
+
 		IFolderLayout bottomfolder = layout.createFolder("Bottom",
 				IPageLayout.BOTTOM, 0.7f, editorArea);
 		bottomfolder.addView("org.eclipse.pde.runtime.LogView");

@@ -33,16 +33,16 @@ import carisma.ui.eclipse.preferences.pages.EditorPriorityList;
 
 
 /**
- * Class reads from the preferences the chosen editor 
- * and brings it to the user. 
+ * Class reads from the preferences the chosen editor
+ * and brings it to the user.
  */
 public class EditorTranslator {
-	
+
 	/**
 	 * The analysis for this translator.
 	 */
 	private Analysis analysis;
-	
+
 	//########################################################################################
 	/**
 	 * Constructor.
@@ -60,17 +60,17 @@ public class EditorTranslator {
 	 */
 	public final boolean openEditor(final boolean defaultEditor) {
 		EditorRegistry editorRegistry = CarismaGUI.INSTANCE.getEditorRegistry();
-		String editorSelectionArt = 
+		String editorSelectionArt =
 				CarismaGUI.INSTANCE.getPreferenceStore().getString(Constants.EDITOR_SELECTION_ART);
 		// Priority list
 		if (editorSelectionArt.equals(Constants.AUTO)) {
 			List<String> editorPriorityList = EditorPriorityList.getPriorityList(this.analysis.getModelType());
 			if (editorPriorityList == null || editorPriorityList.size() < 1) {
 				MessageDialog mDialog = new MessageDialog(Display.getDefault().getActiveShell(),
-						"Error", null, 
+						"Error", null,
 						"The editor priority list is empty\n"
-						+ "Add editors to the list in the CARiSMA Preferences", 
-						MessageDialog.ERROR, 
+						+ "Add editors to the list in the CARiSMA Preferences",
+						MessageDialog.ERROR,
 						new String[]{"OK"}, 0);
 				mDialog.open();
 				return false;
@@ -97,27 +97,27 @@ public class EditorTranslator {
 					return true;
 				}
 				MessageDialog mDialog = new MessageDialog(Display.getDefault().getActiveShell(),
-						"Error", null, 
-						"The selected editor cannot be opened", 
-						MessageDialog.ERROR, 
+						"Error", null,
+						"The selected editor cannot be opened",
+						MessageDialog.ERROR,
 						new String[]{"OK"}, 0);
 				mDialog.open();
 				return false;
 			}
 			MessageDialog mDialog = new MessageDialog(Display.getDefault().getActiveShell(),
-					"Error", null, 
-					"The selected editor was not found", 
-					MessageDialog.ERROR, 
+					"Error", null,
+					"The selected editor was not found",
+					MessageDialog.ERROR,
 					new String[]{"OK"}, 0);
 			mDialog.open();
 			return false;
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Gets the Eclipse default editor for the selected file and
-	 * returns the corresponding {@EditorDescriptor}. 
+	 * returns the corresponding {@EditorDescriptor}.
 	 * @return EditorDescriptor The corresponding {@EditorDescriptor}
 	 */
 	public final EditorDescriptor getDefaultEditor() {

@@ -2,6 +2,7 @@ package carisma.ui.eclipse.editors;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -29,46 +30,44 @@ import org.eclipse.ui.PlatformUI;
 import carisma.core.models.ModelType;
 import carisma.ui.eclipse.CarismaGUI;
 
-import java.util.logging.Logger;
-
 
 /**
  * Class ModelWizardDetailsPage.
  */
 public class AdfModelWizardDetailsPage extends WizardPage {
-	
+
 	private static final Logger logger = Logger.getLogger(AdfModelWizardDetailsPage.class.getName());
-	
+
 	/**
 	 * The current instance of this page.
 	 */
 	private static AdfModelWizardDetailsPage iNSTANCE;
-	
+
 	/**
 	 * The model file as an IFile instance.
 	 */
 	private IFile sourceFile;
-	
+
 	/**
 	 * The type of the model.
 	 */
 	private String modelType;
-	
+
 	/**
 	 * Contains the model file extensions which are valid.
 	 */
 	String[] extensionFilter;
-	
+
 	/**
 	 * The second page of the AdfModelWizard.
 	 */
 	private AdfModelWizardNewFileCreationPage newFilePage = null;
-	
+
 	/**
 	 * The text box which displays the path to the model file.
 	 */
 	private Text pathToModelFileText = null;
-	
+
 	/**
 	 * Constructor.
 	 * @param pageName the name of the wizard page
@@ -92,11 +91,11 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 		gridLayout.marginWidth  = (parent.getStyle() == SWT.BORDER) ? 0 : 2;
 		composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		composite.setLayout(gridLayout);
-		
+
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(
 				composite,
 				CarismaGUI.PLUGIN_ID + "." + AdfModelWizard.ADFWIZARDCONTEXTID);
-		
+
 		new Label(composite, SWT.NONE).setText("Select model type");
 
 		final Combo typeCombo = new Combo(composite, SWT.BORDER | SWT.READ_ONLY);
@@ -127,7 +126,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 				setPageComplete(validatePage());
 			}
 		});
-		
+
 		new Label(composite, SWT.NONE).setText("Select the model file");
 
 		this.pathToModelFileText = new Text(composite, SWT.SINGLE | SWT.BORDER);
@@ -137,10 +136,10 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 		this.pathToModelFileText.setToolTipText("Displays the path to the selected model file");
 
 		createBrowse(composite, this.pathToModelFileText);
-		 
+
 		setControl(composite);
 	}
-	
+
 	/**
 	 * @param sourceFile set the file that has to be analyzed, e.g. model.uml
 	 */
@@ -170,22 +169,22 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 	public final String getModelType() {
 		return this.modelType;
 	}
-	
+
 	/**
 	 * Validates the input data of the Page.
 	 * @return Success of wizard page validation
 	 */
 	protected final boolean validatePage() {
-		if ((getSourceFile() != null) 
+		if ((getSourceFile() != null)
 				&& (getModelType() != null)
 				&& !"".equals(getModelType())) {
 			if (Arrays.asList(this.extensionFilter).contains(getSourceFile().getFileExtension())) {
-				this.setErrorMessage(null); 
+				this.setErrorMessage(null);
 				setPageComplete(true);
-				return true;					
+				return true;
 			}
 			this.setErrorMessage("Model file is not of type " + getModelType());
-			return false;					
+			return false;
 		}
 		setDescription("Choose the model file and its type");
 		setPageComplete(false);
@@ -196,7 +195,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 	public final void performHelp() {
 		PlatformUI.getWorkbench().getHelpSystem().displayHelp(CarismaGUI.PLUGIN_ID + "." + AdfModelWizard.ADFWIZARDCONTEXTID);
 	}
-	
+
 	/**
 	 * Creates the 'Browse Workspace' button and the corresponding dialog.
 	 * @param composite The composite where the button is placed
@@ -206,7 +205,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 		Button browseWS = new Button(composite, SWT.PUSH);
 		browseWS.setText("Browse");
 		browseWS.setToolTipText("Choose the model file from your workspace");
-		
+
 		GridData gridDataSpan = new GridData(GridData.HORIZONTAL_ALIGN_END);
 		browseWS.setLayoutData(gridDataSpan);
 
@@ -217,7 +216,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 			}
 		});
 	}
-	
+
 	/**
 	 * Opens a FileDialog and sets its extension and path filter.
 	 * @param composite The parent composite
@@ -225,7 +224,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 	 */
 	void openFileDialog(final Composite composite, final boolean onlyWorkspace) {
 		FileDialog fileDialog = new FileDialog(composite.getShell(), SWT.OPEN);
-		
+
 		// Filter the files via the chosen extension
 		final String[] fileDialogExtensionFilter = new String[this.extensionFilter.length];
 		int iterate = 0;
@@ -233,17 +232,17 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 			fileDialogExtensionFilter[iterate++] = "*." + singleExtension;
 		}
 		fileDialog.setFilterExtensions(fileDialogExtensionFilter);
-		
+
 		// Set the root directory to workspace if indicated
 		if (onlyWorkspace) {
 			System.out.println("WORKSPACE PATH: " + ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString());
 			fileDialog.setFilterPath(ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString());
 		}
-		
+
 		if (getSourceFile() != null) {
 			fileDialog.setFileName(getSourceFile().getFullPath().toOSString());
 		}
-		
+
 		String filepath = fileDialog.open();
 		if (filepath != null) {
 			try {
@@ -258,7 +257,7 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns the IFile of the selected model file and creates, if necessary, a link to a non workspace file.
 	 * @param filepath Path to the model file
@@ -269,11 +268,11 @@ public class AdfModelWizardDetailsPage extends WizardPage {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IPath location = Path.fromOSString(filepath);
 		IFile modelIFile = workspace.getRoot().getFileForLocation(location);
-		
+
 		if (modelIFile != null) {
 			// If the file is in scope of the workspace
 			return modelIFile;
-		} 
+		}
 		// If the file is outside the scope of the workspace
 		IProject projectExternal = workspace.getRoot().getProject("External Files");
 		if (!projectExternal.exists()) {

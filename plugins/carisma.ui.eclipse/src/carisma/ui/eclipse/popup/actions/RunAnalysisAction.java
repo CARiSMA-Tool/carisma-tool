@@ -53,12 +53,12 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 	 * The analysis.
 	 */
 	private Analysis analysis;
-	
+
 	/**
 	 * The selected file.
 	 */
 	private IFile selectedFile;
-	
+
 	//########################################################################################
 	@Override
 	public final void run(final IAction action) {
@@ -82,23 +82,23 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 					setTitle("ERROR: Check list is empty!");
 					PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, CarismaGUI.PLUGIN_ID + ".AdfEditor");
 					setHelpAvailable(true);
-					
+
 					final Composite composite = (Composite) super.createDialogArea(parent);
 					GridLayout compositeLayout = new GridLayout(1, false);
 					compositeLayout.marginHeight = 2;
 					compositeLayout.marginWidth = 10;
 					composite.setLayout(compositeLayout);
-					
+
 					final Label label = new Label(composite, SWT.NONE);
 					label.setText("There is no check in the list of the analysis.\n" +
 							"Maybe the analysis is still open and there are unsaved changes.\n \n");
 					final Link link = new Link(composite, SWT.NONE);
-					link.setText("Read CARiSMA <A>Help</A> for more information.");					
+					link.setText("Read CARiSMA <A>Help</A> for more information.");
 					link.addSelectionListener(new SelectionAdapter() {
 						@Override
 						public void widgetSelected(final SelectionEvent e) {
 //							PlatformUI.getWorkbench().getHelpSystem().displayHelpResource("/" + Carisma.PLUGIN_ID + "/help/html/maintopic.html");
-							PlatformUI.getWorkbench().getHelpSystem().displayHelp();	
+							PlatformUI.getWorkbench().getHelpSystem().displayHelp();
 //							PlatformUI.getWorkbench().getHelpSystem().displayHelp(Carisma.PLUGIN_ID + ".AdfEditor");
 							close();
 						}
@@ -106,15 +106,15 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 					return composite;
 				}
 			};
-			tad.create();			
-			tad.open();			
+			tad.create();
+			tad.open();
 		}
 
 	}
 
 	/**
 	 * Checks for all checks together, if there are required parameter to be
-	 * set. 
+	 * set.
 	 * @return list<CheckReference>
 	 */
 	private List<CheckReference> getChecksWithRequiredParameters() {
@@ -168,7 +168,7 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 	public final void setActivePart(final IAction action, final IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub
 	}
-	
+
 	/**
 	 * Initialization by Handler.
 	 * @return true, if successful (e.g. an editor is opened and the opened resource has an "adf" extension)
@@ -178,7 +178,7 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 	    try {
 	    	FileEditorInput editorInput = (FileEditorInput) page.getActiveEditor().getEditorInput();
 	    	this.selectedFile = editorInput.getFile();
-	    	
+
 	    	if (this.selectedFile.getName().endsWith(".adf")) {
 	    		return true;
 	    	}
@@ -190,7 +190,7 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 	}
 
 	/**
-	 * Selection in Project navigator, not in editor. 
+	 * Selection in Project navigator, not in editor.
 	 * @return true, if an resource was selected
 	 */
 	public final boolean initSelectionByService() {
@@ -199,9 +199,9 @@ public class RunAnalysisAction implements IObjectActionDelegate {
 			ISelection selection = ww.getSelectionService().getSelection();
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 			this.selectedFile = (IFile) structuredSelection.getFirstElement();
-			
+
 			return true;
-			
+
 		} catch (NullPointerException npe) {
 			Logger.log(LogLevel.INFO, "No resource selected");
 		}

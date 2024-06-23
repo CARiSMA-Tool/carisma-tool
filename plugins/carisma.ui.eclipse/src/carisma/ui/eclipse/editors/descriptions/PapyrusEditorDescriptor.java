@@ -21,18 +21,18 @@ import org.eclipse.core.runtime.Path;
 import carisma.ui.eclipse.editors.AbstractEditorDescriptor;
 
 
-/**Replaced with carisma.ui.eclipse.descriptor 
- * 
+/**Replaced with carisma.ui.eclipse.descriptor
+ *
  * Extends the AbstractEditorDescriptor for Papyrus.
  */
 @Deprecated
 public class PapyrusEditorDescriptor extends AbstractEditorDescriptor {
-	
+
 	/**
 	 * EditorDescriptor name.
 	 */
 	public static final String NAME = "Papyrus";
-	
+
 	//########################################################################################
 	/**
 	 * Constructor.
@@ -82,10 +82,10 @@ public class PapyrusEditorDescriptor extends AbstractEditorDescriptor {
 	 */
 	@Override
 	public final boolean forceOpen(final IFile modelIFile) {
-		
+
 		return super.forceOpen(getGraphicalFile(modelIFile));
 	}
-	
+
 	/**
 	 * Returns the corresponding ".di"-File for a model file.
 	 * @param modelIFile the graphical IFile
@@ -95,11 +95,11 @@ public class PapyrusEditorDescriptor extends AbstractEditorDescriptor {
 		if (!modelIFile.getFileExtension().equalsIgnoreCase("uml")) {
 			return null;
 		}
-		
+
 		String fileWithoutExt = modelIFile.getFullPath().toOSString().substring(0,
 				modelIFile.getFullPath().toOSString().length() - 4);
 		IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-		IPath path = Path.fromOSString(fileWithoutExt + ".di"); 
+		IPath path = Path.fromOSString(fileWithoutExt + ".di");
 		IFile grIfile = workspaceRoot.getFile(path);
 
 		return grIfile;
@@ -108,25 +108,25 @@ public class PapyrusEditorDescriptor extends AbstractEditorDescriptor {
 	@Override
 	public void setName(String name) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setID(String id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setTypes(List<String> types) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setExtension(String extension) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

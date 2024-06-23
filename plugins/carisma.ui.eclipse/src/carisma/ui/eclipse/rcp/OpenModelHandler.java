@@ -26,50 +26,50 @@ import carisma.ui.eclipse.editors.EditorTranslator;
 public abstract class OpenModelHandler extends AbstractHandler {
 
  	/**
-	 * @param openwith true, when the command "open with" is called, 
+	 * @param openwith true, when the command "open with" is called,
 	 * false - when command "open" is called
 	 * @return null
 	 */
 	public final Object execute(final boolean openwith) {
 		/**
-		 * is the model file of the selected file. 
+		 * is the model file of the selected file.
 		 */
-		IFile modelFile = getModelFile(); 
+		IFile modelFile = getModelFile();
 		/**
 		 * the selected resource
 		 */
 		IFile selectedFile = getSelectedFile();
 		/**
 		 * the analysis.
-		 */	
+		 */
 		if (selectedFile == null) {
 		    //TODO
 		    return null;
 		}
 		Analysis analysis = AnalysisUtil.readAnalysis(selectedFile.getLocation().toOSString());
-		
+
 	    if (analysis == null || modelFile == null || !modelFile.exists()) {
 	    	return null;
 	    }
 	    EditorTranslator editorTranslator = new EditorTranslator(analysis);
 	    editorTranslator.openEditor(false);
-	    
+
 	    /* TODO (jk) Check if the following is necessary without select editor dialog
 	    et.handleManually(analysis.getModelFile().toString(), openwith);
 
 	    if (et.getRemember() && !"".equals(et.getSaveSelectionEditorId())) { // save decision
 			analysis.setSelectedEditorId(et.getSaveSelectionEditorId());
-			
+
 			Display display = Display.getDefault();
 		    Shell shell = new Shell(display);
 			MessageDialog mDialog = new MessageDialog(shell,
-					"Save and Launch", null, 
+					"Save and Launch", null,
 					"Do you want to save the changes in" + selectedFile
-					.getLocation().toOSString() + "?", 0, 
+					.getLocation().toOSString() + "?", 0,
 					new String[]{"OK", "Cancel"}, 0);
 			mDialog.open();
-			
-			if (mDialog.getReturnCode() == 0) {  		// save analysis 	
+
+			if (mDialog.getReturnCode() == 0) {  		// save analysis
 				AnalysisUtil.storeAnalysis(analysis, selectedFile.getLocation().toOSString());
 				// refresh resource
 				try {
@@ -87,10 +87,10 @@ public abstract class OpenModelHandler extends AbstractHandler {
 	 * @return the selected file in editor or navigator
 	 */
 	abstract IFile getSelectedFile();
-	
+
 	/**
 	 * finds the selection file in navigator.
-	 * 
+	 *
 	 * @return the model file of the selected resource
 	 */
 	protected final IFile getModelFile() {

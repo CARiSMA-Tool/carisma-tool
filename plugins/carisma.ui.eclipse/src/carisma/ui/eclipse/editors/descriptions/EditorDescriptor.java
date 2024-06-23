@@ -32,7 +32,7 @@ public interface EditorDescriptor {
 	String getId();
 
 	/**
-	 * If EditorDescriptor is available in the registry. 
+	 * If EditorDescriptor is available in the registry.
 	 * @return boolean
 	 */
 	boolean isAvailable();
@@ -40,7 +40,7 @@ public interface EditorDescriptor {
 	/**
 	 * Check if EditorDescriptor is applicable for <code>file</code>.
 	 * @param modelIFile the model IFile
-	 * @return boolean 
+	 * @return boolean
 	 */
 	boolean isApplicable(IFile modelIFile);
 
@@ -50,34 +50,34 @@ public interface EditorDescriptor {
 	 * @return boolean
 	 */
 	boolean forceOpen(IFile file);
-	
+
 	/** Set the name of the Editor, used in the ui.
-	 * 
+	 *
 	 * @param name Name of the Editor.
 	 */
 	void setName(String name);
-	
+
 	/** Set the id of Editor with which is registered in eclipse.
-	 * 
+	 *
 	 * @param id the id.
 	 */
 	void setID(String id);
-	
+
 	/** Sets a List of file extensions which can be opened with this editor.
-	 * 
+	 *
 	 * @param types the list of types.
 	 */
 	void setTypes(List<String> types);
-	
+
 	/**
 	 * Getter for the list of file extensions which can be opened with this editor.
-	 * 
+	 *
 	 * @return list of supported types.
 	 */
 	List<String> getTypes();
-	
+
 	/** Sets the optional setting if the file to be opened differs from the model type.
-	 * 
+	 *
 	 * @param extension The extension.
 	 */
 	void setExtension(String extension);

@@ -34,34 +34,34 @@ import carisma.core.logging.Logger;
  * Wizard for the creation of adf files.
  */
 public class AdfModelWizard extends Wizard implements INewWizard {
-	
+
 	public static final String EXTENSION_ID = "carisma.ui.eclipse.editors.AdfModelWizardID";
-	
+
 	/**
 	 * Wizard page for new file.
 	 */
 	private AdfModelWizardNewFileCreationPage createnewfilePage = null;
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private AdfModelWizardDetailsPage detailsPage = null;
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private IStructuredSelection selection;
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private IWorkbench workbench;
-	
+
 	/**
-	 * constant for the context id. 
-	 */	
+	 * constant for the context id.
+	 */
 	protected static final String ADFWIZARDCONTEXTID = "AdfWizard";
-	
+
 	@Override
 	public final void init(final IWorkbench iWorkbench, final IStructuredSelection iStructuresSelection) {
 		this.workbench = iWorkbench;
@@ -73,13 +73,13 @@ public class AdfModelWizard extends Wizard implements INewWizard {
 	public final void addPages() {
 		this.createnewfilePage = new AdfModelWizardNewFileCreationPage("newFilePage", this.selection);
 		this.createnewfilePage.setPageComplete(false);
-		
+
 		this.detailsPage = new AdfModelWizardDetailsPage("DetailsPage", this.createnewfilePage);
 		this.detailsPage.setPageComplete(false);
 
 		addPage(this.detailsPage);
 		addPage(this.createnewfilePage);
-		
+
 	}
 
 	@Override
@@ -87,14 +87,14 @@ public class AdfModelWizard extends Wizard implements INewWizard {
 		try {
 			this.createnewfilePage.setFileExtension("adf");
 			this.createnewfilePage.createNewFile();
-			
-			// create name of Analyse Editor taking the filename whitout the extension 
+
+			// create name of Analyse Editor taking the filename whitout the extension
 			String filenameWithoutExt = this.createnewfilePage.getTargetFile().getName();
 			int index = filenameWithoutExt.lastIndexOf('.');
 			if (index > 0 && index <= filenameWithoutExt.length() - 2) {
 				filenameWithoutExt = filenameWithoutExt.substring(0, index);
-			}  
-			
+			}
+
 			Analysis analysis = new Analysis(filenameWithoutExt, this.detailsPage.getModelType(), this.detailsPage.getSourceFile());
 			AnalysisUtil.storeAnalysis(analysis, this.createnewfilePage.getTargetFile().getLocation().toString());
 
@@ -103,7 +103,7 @@ public class AdfModelWizard extends Wizard implements INewWizard {
 			for (IProject projectToRefresh : projects) {
 				projectToRefresh.refreshLocal(IResource.DEPTH_ONE, null);
 			}
-			
+
 		} catch (CoreException e) {
 			Logger.log(LogLevel.ERROR, "Could not refresh resource");
 		}
@@ -113,13 +113,13 @@ public class AdfModelWizard extends Wizard implements INewWizard {
 		IWorkbenchPage page = workbenchWindow.getActivePage();
 		try {
 			page.openEditor(new FileEditorInput(this.createnewfilePage.getTargetFile()),
-				 this.workbench.getEditorRegistry().getDefaultEditor(this.createnewfilePage.getTargetFile().getFullPath().toString()).getId());					 	 
+				 this.workbench.getEditorRegistry().getDefaultEditor(this.createnewfilePage.getTargetFile().getFullPath().toString()).getId());
 		} catch (PartInitException exception) {
 			MessageDialog.openError(workbenchWindow.getShell(), "Analysis Editor", exception.getMessage());
 			return false;
 		}
 		return true;
 	}
-	
-	
+
+
 }

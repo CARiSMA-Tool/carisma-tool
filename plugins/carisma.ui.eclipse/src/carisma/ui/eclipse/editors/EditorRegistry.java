@@ -34,7 +34,7 @@ public class EditorRegistry {
 	 * List of registered editors.
 	 */
 	private List<EditorDescriptor> registeredEditors;
-	
+
 	//########################################################################################
 	/**
 	 * Constructor.
@@ -42,7 +42,7 @@ public class EditorRegistry {
 	public EditorRegistry() {
 		this.registeredEditors = new ArrayList<>();
 	}
-	
+
 	/**
 	 * Register editor descriptors.
 	 */
@@ -50,7 +50,7 @@ public class EditorRegistry {
 		// search for adapters in ExtensionRegistry
 		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
 		IExtensionPoint extensionPoint = extensionRegistry.getExtensionPoint(CarismaGUI.EDITOR_DESCRIPTION);
-		
+
 		for (IExtension extension : extensionPoint.getExtensions()) {
 			for (IConfigurationElement checkElement : extension.getConfigurationElements()) {
 				try {
@@ -59,7 +59,7 @@ public class EditorRegistry {
 					editorDescrtipion.setName(checkElement.getAttribute("name"));
 					List<String> types = new ArrayList<>();
 					for (IConfigurationElement parameterElement : checkElement.getChildren("EditorType")) {
-						types.add(parameterElement.getAttribute("Name")); 
+						types.add(parameterElement.getAttribute("Name"));
 					}
 					editorDescrtipion.setExtension(checkElement.getAttribute("file_extension"));
 					editorDescrtipion.setTypes(types);
@@ -70,7 +70,7 @@ public class EditorRegistry {
 			}
 		}
 	}
-	
+
 	/**
 	 * Getter for the list of registered editors.
 	 * @return registeredEditors
@@ -78,7 +78,7 @@ public class EditorRegistry {
 	public final List<EditorDescriptor> getRegisteredEditors() {
 		return this.registeredEditors;
 	}
-	
+
 	/**
 	 * Getter for EditorDescriptors identified by their name.
 	 * @param name the Name of the EditorDescriptor to search for
@@ -92,11 +92,11 @@ public class EditorRegistry {
 		}
 		return null;
 	}
-	
+
 	/**
 	 *  Getter for EditorDescriptors identified by their id.
 	 * @param id the Id of of the EditorDescriptor to search for
-	 * @return <code>EditorDescriptor</code> for this Id or <code>null</code> when EditorDescriptor not found 
+	 * @return <code>EditorDescriptor</code> for this Id or <code>null</code> when EditorDescriptor not found
 	 */
 	public final EditorDescriptor getEditorDescriptorById(final String id) {
 		for (EditorDescriptor ed : this.registeredEditors) {

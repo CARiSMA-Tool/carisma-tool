@@ -14,13 +14,13 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 /**
- * 
+ *
  */
 
 //TODO: What is the purpose of this class?
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	/**
-	 * 
+	 *
 	 * @param configurer IActionBarConfigurer
 	 */
 	public ApplicationActionBarAdvisor(final IActionBarConfigurer configurer) {
@@ -37,6 +37,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	 */
 	@Override
 	protected void fillMenuBar(final IMenuManager menuBar) {
-		
+
 	}
 }

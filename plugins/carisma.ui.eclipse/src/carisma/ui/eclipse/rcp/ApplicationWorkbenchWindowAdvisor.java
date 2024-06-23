@@ -18,7 +18,7 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 /**
- * 
+ *
  */
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	/**
@@ -38,7 +38,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		return new ApplicationActionBarAdvisor(configurer);
 	}
 	/**
-	 * 
+	 *
 	 */
 	@Override
 	public final void preWindowOpen() {
@@ -47,25 +47,25 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 		configurer.setShowCoolBar(false);						// Toolbar hidden
 		configurer.setShowStatusLine(true);
 		configurer.setTitle("CARiSMA");
-		
+
 	}
 
 	@Override
 	public final void postWindowOpen() {
-		
+
 //	remove unused menus
 		IMenuManager mm =
 	            getWindowConfigurer().getActionBarConfigurer().getMenuManager();
 	        IContributionItem[] mItems = mm.getItems();
-	        for (int i = 0; i < mItems.length; i++) {
-	            
-	            if (mItems[i].getId().equals("navigate") 
-	            		|| mItems[i].getId().equals("additions") 
-	            		|| mItems[i].getId().equals("org.eclipse.search.menu") 
-	            		|| mItems[i].getId().equals("org.eclipse.ui.run") 
-	            		|| mItems[i].getId().equals("org.eclipse.jdt.ui.refactoring.menu") 
-	            		|| mItems[i].getId().equals("org.eclipse.jdt.ui.source.menu")) {
-	              mm.remove(mItems[i].getId());
+	        for (IContributionItem mItem : mItems) {
+
+	            if (mItem.getId().equals("navigate")
+	            		|| mItem.getId().equals("additions")
+	            		|| mItem.getId().equals("org.eclipse.search.menu")
+	            		|| mItem.getId().equals("org.eclipse.ui.run")
+	            		|| mItem.getId().equals("org.eclipse.jdt.ui.refactoring.menu")
+	            		|| mItem.getId().equals("org.eclipse.jdt.ui.source.menu")) {
+	              mm.remove(mItem.getId());
 	              mm.update(true);
 	            }
 	        }

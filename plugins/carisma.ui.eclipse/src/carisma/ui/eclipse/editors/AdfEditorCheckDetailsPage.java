@@ -130,7 +130,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	// ########################################################################################
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param controller
 	 *            the corresponding AdfEditorController instance
 	 * @param modifyListener
@@ -148,7 +148,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 
 	/**
 	 * Initialize method sets the managed form.
-	 * 
+	 *
 	 * @param mform
 	 *            the managedForm
 	 */
@@ -159,7 +159,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 
 	/**
 	 * Sets and configures the composite for the detail part.
-	 * 
+	 *
 	 * @param parent
 	 *            the parent composite
 	 */
@@ -212,7 +212,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	/**
 	 * Method builds the structure of the detail part and calls a handle method,
 	 * depending on the parameter type.
-	 * 
+	 *
 	 * @param input
 	 *            the check reference, that is currently selected in the list of
 	 *            checks of the MasterDetailBlock
@@ -311,7 +311,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 	/**
 	 * Method builds the structure of the detail part and calls a handle method,
 	 * depending on the parameter type.
-	 * 
+	 *
 	 * @param checkReference
 	 *            is a reference to the check, that is currently selected in
 	 *            MasterDetailBlock
@@ -487,7 +487,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 
 	/**
 	 * Handles Text parameter.
-	 * 
+	 *
 	 * @param comp
 	 *            the composite for the parameter input elements
 	 * @param checkParameter
@@ -526,7 +526,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 
 	/**
 	 * Handles Integer parameter.
-	 * 
+	 *
 	 * @param comp
 	 *            the composite for the parameter input elements
 	 * @param checkParameter
@@ -609,13 +609,13 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				decoration.hide();
 			}
 		});
-		
+
 		text.addListener(SWT.Modify, this.masterListener);
 	}
 
 	/**
 	 * Handles Float parameter.
-	 * 
+	 *
 	 * @param comp
 	 *            the composite for the parameter input elements
 	 * @param checkParameter
@@ -704,13 +704,13 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				decoration.hide();
 			}
 		});
-		
+
 		text.addListener(SWT.Modify, this.masterListener);
 	}
 
 	/**
 	 * Handles Boolean parameter.
-	 * 
+	 *
 	 * @param comp
 	 *            the composite for the parameter input elements
 	 * @param checkParameter
@@ -751,7 +751,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 
 	/**
 	 * Handles InputFile parameter.
-	 * 
+	 *
 	 * @param comp
 	 *            the composite for the parameter input elements
 	 * @param checkParameter
@@ -806,7 +806,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				decoration.hide();
 			}
 		});
-		
+
 		text.addListener(SWT.Modify, this.masterListener);
 
 		// Open file dialog
@@ -853,7 +853,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 
 	/**
 	 * Handles Folder parameter.
-	 * 
+	 *
 	 * @param comp
 	 *            the composite for the parameter input elements
 	 * @param checkParameter
@@ -909,7 +909,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				decoration.hide();
 			}
 		});
-		
+
 		text.addListener(SWT.Modify, this.masterListener);
 
 		Button folderOpen = this.toolkit.createButton(comp,
@@ -943,7 +943,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 
 	/**
 	 * Handles Output parameter.
-	 * 
+	 *
 	 * @param comp
 	 *            the composite for the parameter input elements
 	 * @param checkParameter
@@ -1014,7 +1014,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 				decoration.hide();
 			}
 		});
-		
+
 		text.addListener(SWT.Modify, this.masterListener);
 
 		outputFileOpen.addSelectionListener(new SelectionAdapter() {
@@ -1043,7 +1043,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 
 	/**
 	 * Applies a modify event to a text and returns the changed text.
-	 * 
+	 *
 	 * @param text
 	 *            The text element whose content is used to apply the event
 	 * @param event
@@ -1059,7 +1059,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 
 	/**
 	 * Sets the font of a label to a bold font.
-	 * 
+	 *
 	 * @param label
 	 *            the label which gets the bold font
 	 */
@@ -1073,7 +1073,7 @@ public class AdfEditorCheckDetailsPage implements IDetailsPage {
 
 	/**
 	 * Sets the font of a label to a bold font.
-	 * 
+	 *
 	 * @param label
 	 *            the label which gets the bold font
 	 */

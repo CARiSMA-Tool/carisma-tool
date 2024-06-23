@@ -11,12 +11,12 @@ import carisma.core.analysis.CheckReference;
  */
 public class SelectedChecksContentProvider extends ArrayContentProvider {
 	@Override
-	public final Object[] getElements(final Object inputElement) {		
-		if (inputElement instanceof List<?>) {	
+	public final Object[] getElements(final Object inputElement) {
+		if (inputElement instanceof List<?>) {
 			@SuppressWarnings("unchecked")
 			List<CheckReference> checkReferenceList = (List<CheckReference>) inputElement;
 			return checkReferenceList.toArray();
-		}	
+		}
 		return null;
 	}
 }

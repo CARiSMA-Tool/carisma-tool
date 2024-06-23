@@ -15,12 +15,12 @@ import carisma.core.analysis.CheckReference;
  * @author jkowald
  */
 public class SelectedChecksDropListener extends ViewerDropAdapter {
-	
+
 	/**
 	 * Location of drop.
 	 */
 	private int location;
-	
+
 	/**
 	 * Target of drop (not the dropped Element).
 	 */
@@ -30,12 +30,12 @@ public class SelectedChecksDropListener extends ViewerDropAdapter {
 	 * Corresponding TableViewer.
 	 */
 	private final TableViewer tableViewer;
-		
+
 	/**
 	 * The AdfEditor instance belonging to the UI instance containing the TableViewer.
 	 */
 	private AdfEditorController controller;
-	
+
 	/**
 	 * Constructor.
 	 * @param viewer Corresponding TableViewer
@@ -46,7 +46,7 @@ public class SelectedChecksDropListener extends ViewerDropAdapter {
 		this.tableViewer = (TableViewer) viewer;
 		this.controller = controller;
 	}
-	
+
 	@Override
 	public final void drop(final DropTargetEvent event) {
 		this.location = this.determineLocation(event);
@@ -65,12 +65,12 @@ public class SelectedChecksDropListener extends ViewerDropAdapter {
 
 	@Override
 	public final boolean validateDrop(
-			final Object targetObject, 
+			final Object targetObject,
 			final int operation,
 			final TransferData transferType) {
 		return true;
 	}
-	
+
 	/**
 	 * Drops the item at the determined target location.
 	 * @param dropItem The element to drop.
@@ -111,13 +111,13 @@ public class SelectedChecksDropListener extends ViewerDropAdapter {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Gets the index of the target element in the list of CheckReferences.
 	 * @return The index or -1 if the element was not found
 	 */
 	private int getTargetIndex() {
-		List<CheckReference> checkReferenceList = this.controller.getSelectedChecksList(); 
+		List<CheckReference> checkReferenceList = this.controller.getSelectedChecksList();
 		if (this.target != null && checkReferenceList != null) {
 			return checkReferenceList.indexOf(this.target);
 		}

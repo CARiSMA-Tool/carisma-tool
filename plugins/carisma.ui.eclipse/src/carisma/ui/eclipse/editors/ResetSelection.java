@@ -19,17 +19,17 @@ import carisma.core.logging.Logger;
 
 
 /** Resets the saved editor selection of an analysis.
- * 
+ *
  * @author bberghoff
  *
  */
 public class ResetSelection implements IObjectActionDelegate {
 
-	/** 
+	/**
 	 * Selected analysis file.
 	 */
 	private IFile selectedFile;
-	
+
 	@Override
 	public final void run(final IAction action) {
 		Logger.log(LogLevel.DEBUG, "Test Message");
@@ -37,8 +37,8 @@ public class ResetSelection implements IObjectActionDelegate {
 		Analysis analysis = AnalysisUtil.readAnalysis(this.selectedFile.getLocation()
 				.toOSString());
 		analysis.setSelectedEditorId("");
-		
-		// save analysis 	
+
+		// save analysis
 		AnalysisUtil.storeAnalysis(analysis, this.selectedFile.getLocation().toOSString());
 		// refresh resource
 
@@ -50,7 +50,7 @@ public class ResetSelection implements IObjectActionDelegate {
 		}
 		for (IWorkbenchPage page : pages) {
 			for (IEditorReference editorRef : page.getEditorReferences()) {
-				if (editorRef != null 
+				if (editorRef != null
 						&& this.selectedFile.getName().equals(editorRef.getName())
 						&& editorRef.getEditor(false) instanceof AdfEditor) {
 					((AdfEditor) editorRef.getEditor(false)).loadAnalysis();
@@ -70,7 +70,7 @@ public class ResetSelection implements IObjectActionDelegate {
 	@Override
 	public void setActivePart(final IAction action, final IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

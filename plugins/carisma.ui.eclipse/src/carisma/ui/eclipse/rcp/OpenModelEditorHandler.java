@@ -24,21 +24,21 @@ import carisma.core.analysis.AnalysisUtil;
  *
  */
 public class OpenModelEditorHandler extends OpenModelHandler {
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	@Override
 	public final Object execute(final ExecutionEvent event) throws ExecutionException {
-		
+
 		return super.execute(false);
 	}
-	
+
 	@Override
-	protected final IFile getSelectedFile() { 
+	protected final IFile getSelectedFile() {
 		return HandlerUtilz.getSelectedEditorFile();
 	}
-	
+
 	@Override
 	public final boolean isEnabled() {
 		IFile selectedFile = getSelectedFile();

@@ -11,6 +11,7 @@
 package carisma.ui.eclipse.views;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -43,15 +44,13 @@ import carisma.core.analysis.result.StatusType;
 import carisma.ui.eclipse.CarismaGUI;
 import carisma.ui.popup.actions.PopUpAction;
 
-import java.util.logging.Logger;
-
 /**
- * 
+ *
  */
 public class AnalysisResultsView extends ViewPart {
 
 	private static final Logger logger = Logger.getLogger(AnalysisResultsView.class.getName());
-	
+
 	/**
 	 * The ID string.
 	 */
@@ -179,7 +178,7 @@ public class AnalysisResultsView extends ViewPart {
 					// If there is not selection nothing is to do
 					return;
 				}
-				
+
 				AnalysisResult tmpAnalysisResult;
 				if (firstElement instanceof carisma.core.analysis.result.AnalysisResult) {
 					tmpAnalysisResult = (AnalysisResult) firstElement;
@@ -191,7 +190,7 @@ public class AnalysisResultsView extends ViewPart {
 					throw new RuntimeException("Unknown Selection: " + firstElement);
 				}
 				final AnalysisResult analysisResult = tmpAnalysisResult;
-				
+
 				for(IConfigurationElement extension : Platform.getExtensionRegistry().getConfigurationElementsFor(CarismaGUI.ANALYSIS_POPUP_MENU)){
 					try {
 						((PopUpAction) extension.createExecutableExtension("class")).perform(menuMgr, analysisResult);
