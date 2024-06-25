@@ -23,3 +23,4 @@ Require-Bundle: org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: carisma.profile.uconcreation.odrl.core.internal
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.emf.ecore

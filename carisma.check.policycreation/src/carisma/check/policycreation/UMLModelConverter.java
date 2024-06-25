@@ -4,10 +4,17 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.InputPin;
+import org.eclipse.uml2.uml.OutputPin;
 
 import ODRLCommonVocabulary.Action;
 import ODRLCommonVocabulary.AssetRelation;
@@ -123,12 +130,18 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.Permit;
 import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.Prohibit;
 import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.VoidPolicy;
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.Constraint;
+import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintInterface;
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintList;
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.LogicalConstraint;
+import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Consequence;
+import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Failure;
+import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Remedy;
 import carisma.profile.uconcreation.odrl.core.internal.classes.function.Assignee;
 import carisma.profile.uconcreation.odrl.core.internal.classes.function.Assigner;
+import carisma.profile.uconcreation.odrl.core.internal.classes.function.Function;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operand.And;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operand.AndSequence;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Operand;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Or;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Xone;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operator.EqualTo;
@@ -143,26 +156,65 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.operator.IsPartOf
 import carisma.profile.uconcreation.odrl.core.internal.classes.operator.LessThan;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operator.LessThanEq;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operator.NotEqualTo;
+import carisma.profile.uconcreation.odrl.core.internal.classes.operator.Operator;
 import carisma.profile.uconcreation.odrl.core.internal.classes.party.Party;
 import carisma.profile.uconcreation.odrl.core.internal.classes.party.PartyCollection;
 import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Agreement;
 import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Offer;
 import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Policy;
 import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Set;
+import carisma.profile.uconcreation.odrl.core.internal.classes.relation.Relation;
 import carisma.profile.uconcreation.odrl.core.internal.classes.relation.Target;
+import carisma.profile.uconcreation.odrl.core.internal.classes.rightoperand.RightOperandInterface;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Duty;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Permission;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Prohibition;
+import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Rule;
 
 public class UMLModelConverter {
-	private  final Map<String,Map<String,Class<? extends ODRLClass>>> enumMap = new HashMap<>();
-	private  final Map<String,String> typeEnumMap1 = new HashMap<>();
-	private  final Map<String,Map<String,Class<? extends ODRLClass>>> typeEnumMap2 = new HashMap<>();
-	private  final Map<String,Class<? extends ODRLClass>> classMap = new HashMap<>();
-	private  final ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
+	private final Map<String,Map<String,Class<? extends ODRLClass>>> enumMap = new HashMap<>();
+	private final Map<String,String> typeEnumMap1 = new HashMap<>();
+	private final Map<String,Map<String,Class<? extends ODRLClass>>> typeEnumMap2 = new HashMap<>();
+	private final Map<String,Class<? extends ODRLClass>> classMap = new HashMap<>();
+	private final Map<StringTuple,Class<? extends ODRLClass>> featureMap = new HashMap<>();
+	private final ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
 	
-	private Map<EObject,ODRLClass> referencingMap = new HashMap<>();//Save with unique EObject, watch out for uniqueness of enums (may need to be saved as triple (the )
+	private Map<EObject,ODRLClass> referencingMap = new HashMap<>();//Currently: Save top-level elements (stereotype applications) as they may be referred by several objects, others may not. (If more Elements should be accessed: Save with unique EObject, watch out for uniqueness of enums (may need to be saved as triple)
 	//Also save lists, not just their elements
+	
+	private class StringTuple {
+		public StringTuple(String owner, String feature) {
+			this.owner=owner;
+			this.feature=feature;
+		}
+		String owner;
+		String feature;
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getEnclosingInstance().hashCode();
+			result = prime * result + Objects.hash(feature, owner);
+			return result;
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			StringTuple other = (StringTuple) obj;
+			if (!getEnclosingInstance().equals(other.getEnclosingInstance()))
+				return false;
+			return Objects.equals(feature, other.feature) && Objects.equals(owner, other.owner);
+		}
+		private UMLModelConverter getEnclosingInstance() {
+			return UMLModelConverter.this;
+		}
+		
+	}
 	
 	 {
 		
@@ -324,6 +376,10 @@ public class UMLModelConverter {
 				Map.entry(odrlPackage.getParty().getName(), Party.class),
 				Map.entry(odrlPackage.getPartyCollection().getName(), PartyCollection.class)
 				));
+		featureMap.putAll(Map.ofEntries(
+				Map.entry(new StringTuple(odrlPackage.getProhibition().getName(),odrlPackage.getProhibition_Remedies().getName()), Remedy.class),
+				Map.entry(new StringTuple(odrlPackage.getDuty().getName(),odrlPackage.getDuty_Consequences().getName()), Consequence.class)
+				));
 		
 		//Missing: LogicalConstraint, StructuralFeatures
 	}
@@ -354,6 +410,10 @@ public class UMLModelConverter {
 		if (newObject ==null) {
 			newObject = specialCases(currentEObject, odrlParent, activityElement);
 		}
+		if (currentEObject!=null) {
+			System.out.println("Qualified name of " + currentEObject + ": " + EcoreUtil.getIdentification(currentEObject));//TODO remove
+		}
+		fill(currentEObject, newObject, activityElement);
 		return newObject;
 	}
 	
@@ -395,14 +455,26 @@ public class UMLModelConverter {
 //		return feature==null ? null : eObject.eGet(feature);
 		return eObject.eGet(eObject.eClass().getEStructuralFeature(featureName));//Nullpointer-exception with null-feature can only be produced by code errors, not by input errors
 	}
+	public Object getValue(EObject eObject, EStructuralFeature feature) {
+		return eObject.eGet(eObject.eClass().getEStructuralFeature(feature.getName()));
+	}
 	
 	public  ODRLClass getOdrlObject(EObject eObject, ODRLClass odrlParent, EObject activityElement) {
+		if (referencingMap.get(eObject)!=null) {
+			return referencingMap.get(eObject);
+		}
+		System.out.println("EObject in getOdrlObjects: " + eObject);
 		Class<? extends ODRLClass> odrlClass = null;
 		if (eObject instanceof EEnumLiteral enumLiteral) {
 			Map<String, Class<? extends ODRLClass>> literalMap = enumMap.get(enumLiteral.getEEnum().getName());
 			if (literalMap!= null) {
 				odrlClass = literalMap.get(enumLiteral.getName());
 			}
+		} else if (eObject instanceof EStructuralFeature eFeature) {
+			String featureName = eFeature.getName();
+			String owningClassName = eFeature.getEContainingClass().getName();
+			StringTuple tuple = new StringTuple(owningClassName,featureName);
+			odrlClass = featureMap.get(tuple);
 		} else {
 			String className = eObject.eClass().getName();
 			odrlClass = classMap.get(className);
@@ -431,4 +503,371 @@ public class UMLModelConverter {
 		}
 		return null;
 	}
+	
+	
+	private void fill(EObject currentEObject, Object toBeFilled, EObject activityElement) {//TODO change to switch-case with Class name or implement as functions of the ODRLClasses (both cases would need to call the function of their "superclass)
+		if (toBeFilled instanceof Asset asset) {
+			fillAsset(currentEObject, asset, activityElement);
+		}
+		if (toBeFilled instanceof AssetCollection assetCollection) {
+			fillAssetCollection(currentEObject, assetCollection, activityElement);
+		}
+		if (toBeFilled instanceof Constraint constraint) {
+			fillConstraint(currentEObject, constraint, activityElement);
+		}
+		if (toBeFilled instanceof  LogicalConstraint logCon) {
+			fillLogicalConstraint(currentEObject, logCon, activityElement);
+		}
+		if (toBeFilled instanceof  Failure failure) {
+			fillFailure(currentEObject, failure, activityElement);
+		}
+		if (toBeFilled instanceof  Function function) {
+			fillFunction(currentEObject, function, activityElement);
+		}
+//		if (toBeFilled instanceof  Operand operand) {//Currently empty as Contents need to be filled in the LogicalConstraint-fill-method
+//			fillOperand(currentEObject, operand, activityElement);
+//		}
+		if (toBeFilled instanceof  Party party) {
+			fillParty(currentEObject, party, activityElement);
+		}
+		if (toBeFilled instanceof  PartyCollection partyCollection) {
+			fillPartyCollection(currentEObject, partyCollection, activityElement);
+		}
+		if (toBeFilled instanceof  Policy policy) {
+			fillPolicy(currentEObject, policy, activityElement);
+		}
+		if (toBeFilled instanceof  Relation relation) {
+			fillRelation(currentEObject, relation, activityElement);
+		}
+//		if (toBeFilled instanceof  RightOperand rightOperand) {//TODO add RightOperand-Fillers once the structure of them is set
+//		}
+		//Rules
+		if (toBeFilled instanceof  Duty duty) {
+			fillDuty(currentEObject, duty, activityElement);
+		}
+		if (toBeFilled instanceof  Permission permission) {
+			fillPermission(currentEObject, permission, activityElement);
+		}
+		if (toBeFilled instanceof  Prohibition prohibition) {
+			fillProhibition(currentEObject, prohibition, activityElement);
+		}
+		if (toBeFilled instanceof  Rule rule) {
+			fillRule(currentEObject, rule, activityElement);
+		}
+	}
+	
+	//Filling-Methods for assets
+		private void fillAsset(EObject currentEObject, Asset asset, EObject activityElement) {
+			Object attributeValue = getValue(currentEObject, odrlPackage.getAsset_Uid().getName());
+			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
+				
+				asset.setUid(stringValue);
+			}
+		}
+		private void fillAssetCollection(EObject currentEObject, AssetCollection assetCollection, EObject activityElement) {
+			Object attributeValue = getValue(currentEObject, odrlPackage.getAssetCollection_Source().getName());
+			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
+				
+				assetCollection.setSource(stringValue);
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getRefinableElement_Refinement().getName()); 
+			if (attributeValue instanceof EObject newEObj) {
+				Object attributeValueOdrl = addElement(newEObj, assetCollection, activityElement);
+				if (attributeValueOdrl instanceof ConstraintInterface refinement) {
+					assetCollection.setRefinement(refinement);
+				}
+			}
+		}
+		//Filling-Methods for Conflict (TODO only maybe add (as the methods would be empty))
+		//Filling-Methods for Constraints (TODO maybe add ConstraintInterface)
+		private void fillConstraint(EObject currentEObject, Constraint constraint, EObject activityElement) {
+			Object attributeValue = getValue(currentEObject, odrlPackage.getConstraint_DataType().getName());
+			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {		
+				constraint.setDataType(stringValue);
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_LeftOperand().getName());
+			if (attributeValue instanceof EObject newEObj) {
+				Object attributeValueOdrl = addElement(newEObj, constraint, activityElement);
+				if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.leftoperand.LeftOperand leftOperand) {
+					constraint.setLeftOperand(leftOperand);
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Operator().getName());
+			if (attributeValue instanceof EObject newEObj) {
+				Object attributeValueOdrl = addElement(newEObj, constraint, activityElement);
+				if (attributeValueOdrl instanceof Operator operator) {
+					constraint.setOperator(operator);
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_RightOperand().getName());
+			if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
+				List<RightOperandInterface> attributeValueOdrl = addElement(list, constraint, activityElement, RightOperandInterface.class);
+				if (attributeValueOdrl!=null) {
+					constraint.setRightOperand(attributeValueOdrl);
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_RightOperandReference().getName());
+			if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
+				List<String> attributeValueOdrl = addElement(list, constraint, activityElement, String.class);
+				if (attributeValueOdrl!=null) {
+					constraint.setRightOperandReference(attributeValueOdrl);
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Status().getName());
+			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {			
+				constraint.setStatus(stringValue);
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Uid().getName());
+			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {		
+					constraint.setUid(stringValue);			
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Unit().getName());
+			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {		
+				constraint.setUnit(stringValue);
+			}
+		}
+		private void fillLogicalConstraint(EObject currentEObject, LogicalConstraint logicalConstraint, EObject activityElement) {
+			Object attributeValue = getValue(currentEObject, odrlPackage.getLogicalConstraint_LogicalOperator().getName());
+			if (attributeValue instanceof EObject newEObj) {
+				Object attributeValueOdrl = addElement(newEObj, logicalConstraint, activityElement);
+				if (attributeValueOdrl instanceof Operand operand) {
+					logicalConstraint.setOperand(operand);
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getLogicalConstraint_Constraints().getName());
+			if (attributeValue instanceof List list) { //TODO List attribute
+				List<Constraint> attributeValueOdrl = addElement(list, logicalConstraint, activityElement, Constraint.class);
+				if (attributeValueOdrl!=null&&logicalConstraint.getOperand()!=null) {//TODO Maybe remove operand-nullcheck, as it being null would point to a faulty model
+					logicalConstraint.getOperand().setConstraints(attributeValueOdrl);//(After creation of operand earlier in this method) set constraints to it
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getLogicalConstraint_Uid().getName());
+			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
+				logicalConstraint.setUid(stringValue);
+			}
+		}
+		//Filling-Methods for Failures (TODO maybe add empty subproperties)
+		private void fillFailure(EObject currentEObject, Failure failure, EObject activityElement) {//TODO failure currently not present on the uml-profile
+			//Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage));
+			//if (attributeValue instanceof EObject newEObj) { //TODO List attribute
+			//}
+		}
+		//Filling-Methods for Functions
+		private void fillFunction(EObject currentEObject, Function function, EObject activityElement) {
+			Object attributeValue = getValue(currentEObject, odrlPackage.getPartyFunction_Party().getName());
+			if (attributeValue instanceof EObject newEObj) {
+				Object attributeValueOdrl = addElement(newEObj, function, activityElement);
+				if (attributeValueOdrl instanceof Party party) {
+					function.setParty(party);
+				}
+			}
+			
+		}
+		//Filling-Methods for Leftoperands (TODO only maybe add (as the methods would be empty))
+		
+		//Filling-Methods for Operands (TODO maybe add empty subproperties)  //Filling is done in the owning LogicalConstraint currently as it owns the Constraint list
+//		private void fillOperand(EObject currentEObject, Operand operand, EObject activityElement) {
+//		}
+		//Filling-Methods for Operators (TODO only maybe add (as the methods would be empty))
+		
+		//Filling-Methods for Parties
+		private void fillParty(EObject currentEObject, Party party, EObject activityElement) {
+			Object attributeValue = getValue(currentEObject, odrlPackage.getParty_Uid().getName());
+			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {	
+				party.setUid(stringValue);
+			}
+		}
+		private void fillPartyCollection(EObject currentEObject, PartyCollection partyCollection, EObject activityElement) {
+			Object attributeValue = getValue(currentEObject, odrlPackage.getPartyCollection_Source().getName());
+			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
+				partyCollection.setSource(stringValue);
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getRefinableElement_Refinement().getName()); 
+			if (attributeValue instanceof EObject newEObj) {
+				Object attributeValueOdrl = addElement(newEObj, partyCollection, activityElement);
+				if (attributeValueOdrl instanceof ConstraintInterface refinement) {
+					partyCollection.setRefinement(refinement);
+				}
+			}
+		}	
+		//Filling-methods for Policies (TODO maybe add empty subclass-methods)
+		private void fillPolicy(EObject currentEObject, Policy policy, EObject activityElement) {
+			Object attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_ConflictStrategy().getName());
+			if (attributeValue instanceof EObject newEObj) {
+				Object attributeValueOdrl = addElement(newEObj, policy, activityElement);
+				if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.conflict.ConflictStrategy conflictValue) {
+					policy.setConflictStrategy(conflictValue);
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_InheritsFrom().getName());
+			if (attributeValue instanceof List list) { //TODO String List attribute
+				List<String> attributeValueOdrl = addElement(list, policy, activityElement, String.class);
+				if (attributeValueOdrl!=null) {
+					policy.setInheritsFrom(attributeValueOdrl);
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_Profiles().getName());
+			if (attributeValue instanceof List list) { //TODO String List attribute
+				List<String> attributeValueOdrl = addElement(list, policy, activityElement, String.class);
+				if (attributeValueOdrl!=null) {
+					policy.setProfiles(attributeValueOdrl);
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_Uid().getName());
+			if (attributeValue instanceof String string) {
+				policy.setUid(string);
+			}
+			//Activity Diagram: Get contained rules from the contained actions
+			if (getValue(currentEObject, odrlPackage.getODRLPolicy_Base_Activity()) instanceof Activity baseActivity) {
+				for (ActivityNode node : baseActivity.getNodes()) {
+					if (node instanceof org.eclipse.uml2.uml.Action action) {
+						for (EObject stereoAppl : action.getStereotypeApplications()) {
+							Object newObject = addElement(stereoAppl, policy, action);
+							if (newObject instanceof Permission permission) {
+								policy.addPermission(permission);
+							} else if (newObject instanceof Prohibition prohibition) {
+								policy.addProhibition(prohibition);
+							} else if (newObject instanceof Duty obligation) {
+								policy.addObligation(obligation);
+							}
+						}
+					}
+				}
+			}
+		}
+		//Filling-Methods for Relation
+		private void fillRelation(EObject currentEObject, Relation relation, EObject activityElement) {
+			Object attributeValue = getValue(currentEObject, odrlPackage.getAssetRelation_Asset().getName());
+			if (attributeValue instanceof EObject newEObj) {
+				Object attributeValueOdrl = addElement(newEObj, relation, activityElement);
+				if (attributeValueOdrl instanceof Asset asset) {
+					relation.setAsset(asset);
+				}
+			}
+		}
+		//Filling-Methods for RightOperands TODO deal with once the different RightOperandInterface-implementers are finished	
+		
+		//Filling-methods for rules
+		private void fillRule(EObject currentEObject, Rule rule, EObject activityElement) {
+			Object attributeValue = getValue(currentEObject, odrlPackage.getRule_Action().getName());
+			if (attributeValue instanceof EObject newEObj) {
+				Object attributeValueOdrl = addElement(newEObj, rule, activityElement);
+				if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.action.Action action) {
+					rule.setAction(action);
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getRefinableElement_Refinement().getName());
+			if (attributeValue instanceof EObject newEObj) {//TODO get constraint
+				Object attributeValueOdrl = addElement(newEObj, rule.getAction(), activityElement);
+				if (attributeValueOdrl instanceof ConstraintInterface constraintInterface) {
+					//if (attributeValueOdrl instanceof List constraintList) {TODO add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
+					//	rule.getConstraint().
+					//}
+					if (rule.getAction()!=null) {//TODO also add null check for other cases where a gotten object is further used or keep the nullpointer as sign that something is missing
+						rule.getAction().setRefinement(constraintInterface);
+					}
+				}
+				
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getRule_Uid().getName());
+			if (attributeValue instanceof String string) {
+				rule.setUid(string);
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getRule_InvolvedAssets().getName());
+			if (attributeValue instanceof List list) { //TODO List attribute
+				List<Relation> attributeValueOdrl = addElement(list, rule, activityElement, Relation.class);
+				if (attributeValueOdrl!=null) {
+					rule.setInvolvedAssets(attributeValueOdrl);
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getRule_InvolvedParties().getName());
+			if (attributeValue instanceof List list) { //TODO List attribute
+				List<Function> attributeValueOdrl = addElement(list, rule, activityElement, Function.class);
+				if (attributeValueOdrl!=null) {
+					rule.setInvolvedParties(attributeValueOdrl);
+				}
+			}
+			attributeValue = getValue(currentEObject, odrlPackage.getConstrainableElement_Constraint().getName());
+			if (attributeValue instanceof EObject newEObj) {//TODO get constraint
+				Object attributeValueOdrl = addElement(newEObj, rule, activityElement);
+				if (attributeValueOdrl instanceof ConstraintInterface constraintInterface) {
+					//if (attributeValueOdrl instanceof List constraintList) {TODO maybe add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
+					//	rule.getConstraint().
+					//}
+					rule.setConstraint(constraintInterface);
+				}
+			}
+			//Activity diagram: Get related Assets from neighboring pins (TODO: clear up conflicts with explicitly listed Relations?)
+			if (activityElement instanceof org.eclipse.uml2.uml.Action action) {
+				for (InputPin inPin : action.getInputs()) {
+					for (EObject stereoAppl : inPin.getStereotypeApplications()) {
+						if (addElement(stereoAppl, rule, action) instanceof Asset asset) {
+							Relation newTarget = new Target();
+							newTarget.setAsset(asset);
+							rule.addInvolvedAssets(newTarget);
+						}
+					}
+				}
+				for (OutputPin outPin : action.getOutputs()) {
+					for (EObject stereoAppl : outPin.getStereotypeApplications()) {
+						if (addElement(stereoAppl, rule, action) instanceof Asset asset) {
+							Relation newTarget = new Output();
+							newTarget.setAsset(asset);
+							rule.addInvolvedAssets(newTarget);
+						}
+					}
+				}
+			}
+		}
+		private void fillPermission(EObject currentEObject, Permission permission, EObject activityElement) {
+			Object attributeValue = getValue(currentEObject, odrlPackage.getPermission_Duties().getName());
+			if (attributeValue instanceof List list) { //TODO List attribute
+				List<Duty> attributeValueOdrl = addElement(list, permission, activityElement, Duty.class);
+				if (attributeValueOdrl!=null) {
+					permission.setDuties(attributeValueOdrl);
+				}
+			}
+		}
+		private void fillProhibition(EObject currentEObject, Prohibition prohibition, EObject activityElement) {
+			//Currently leads to properties of unrelated duty being taken over
+			EStructuralFeature remedyFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getProhibition_Remedies().getName());
+			if (getValue(currentEObject,odrlPackage.getProhibition_Remedies().getName()) != null) {
+				Object attributeValueOdrl = addElement(remedyFeature, prohibition, activityElement);
+				System.out.println("attributeValue remedy: " + attributeValueOdrl);
+				if (attributeValueOdrl instanceof Remedy remedy) {
+					prohibition.setRemedy(remedy);
+				}
+			}//TODO only set the remedy if its rules-Property is not empty (in ecore it has the empty list, making the remedy and List non-null in any case). Possibility: fillRemedies
+			Object attributeValue = getValue(currentEObject,odrlPackage.getProhibition_Remedies().getName());
+			if (attributeValue instanceof List list) { //TODO List attribute
+				List<Duty> attributeValueOdrl = addElement(list, prohibition.getRemedy(), activityElement, Duty.class);
+				if (attributeValueOdrl!=null) {
+					if (prohibition.getRemedy().getRules()==null)
+						prohibition.getRemedy().setRules(new LinkedList<>());
+					prohibition.getRemedy().getRules().addAll(attributeValueOdrl);//TODO change getters to conditional generators or add null-checks with additional creation everywhere were gotten objects are further used
+				}
+			}
+		}
+		private void fillDuty(EObject currentEObject, Duty duty, EObject activityElement) {
+			EStructuralFeature consequenceFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getDuty_Consequences().getName());
+			if (getValue(currentEObject,odrlPackage.getDuty_Consequences().getName()) != null) {
+				System.out.println("ConsequenceValue" + getValue(currentEObject,odrlPackage.getDuty_Consequences().getName()));
+				Object attributeValueOdrl = addElement(consequenceFeature, duty, activityElement);
+				if (attributeValueOdrl instanceof Consequence consequence) {
+					duty.setConsequences(consequence);
+				}
+			}
+			//Following part currently leads to stack overflow when JSON-Objects are created (Does not anymore. did with old references)
+			Object attributeValue = getValue(currentEObject, odrlPackage.getDuty_Consequences().getName());
+			if (attributeValue instanceof List list) { //TODO List attribute
+				List<Duty> attributeValueOdrl = addElement(list, duty.getConsequences(), activityElement, Duty.class);
+				if (attributeValueOdrl!=null) {
+					if (duty.getConsequences().getRules()==null)
+						duty.getConsequences().setRules(new LinkedList<Rule>());
+					duty.getConsequences().getRules().addAll(attributeValueOdrl);//TODO change getters to conditional generators or add null-checks with additional creation everywhere were gotten objects are further used
+				}
+			}
+		}
+	
+		
 }

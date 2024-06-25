@@ -20,7 +20,10 @@ public class TestClass {
 //		ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
 //		System.out.println(odrlPackage.getAsset_Uid().getName());
 //		System.out.println(odrlPackage.getPermission().getName());
-		
+		String string1 = "Hi";
+		String string2 = "Hi";
+		System.out.println(string1.hashCode());
+		System.out.println(string2.hashCode());
 		
 
 		

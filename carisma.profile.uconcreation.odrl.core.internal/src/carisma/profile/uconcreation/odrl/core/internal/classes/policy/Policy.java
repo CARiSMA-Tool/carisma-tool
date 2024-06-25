@@ -1,5 +1,6 @@
 package carisma.profile.uconcreation.odrl.core.internal.classes.policy;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -11,14 +12,13 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Permission;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Prohibition;
 
 public class Policy extends ODRLClass{
-	private static Set<String> ownAttributes = new TreeSet<>() ;
 	String uid;
 	ConflictStrategy conflictStrategy;
 	List<String> profiles;
 	List<String> inheritsFrom;
-	List<Permission> permission;
-	List<Prohibition> prohibition;
-	List<Duty> obligation;
+	List<Permission> permission = new LinkedList<Permission>();
+	List<Prohibition> prohibition = new LinkedList<Prohibition>();
+	List<Duty> obligation = new LinkedList<Duty>();
 	
 	
 	String uidName;
@@ -126,6 +126,9 @@ public class Policy extends ODRLClass{
 	public void setPermission(List<Permission> permission) {
 		this.permission = permission;
 	}
+	public void addPermission(Permission permission) {
+		this.permission.add(permission);
+	}
 
 
 
@@ -145,6 +148,9 @@ public class Policy extends ODRLClass{
 
 	public void setProhibition(List<Prohibition> prohibition) {
 		this.prohibition = prohibition;
+	}
+	public void addProhibition(Prohibition prohibition) {
+		this.prohibition.add(prohibition);
 	}
 
 
@@ -166,15 +172,9 @@ public class Policy extends ODRLClass{
 	public void setObligation(List<Duty> obligation) {
 		this.obligation = obligation;
 	}
-
-
-
-
-
-
-
-	static {
-		ownAttributes.add("uid");
-	}
 	
+	public void addObligation(Duty obligation) {
+		this.obligation.add(obligation);
+	}
+
 }

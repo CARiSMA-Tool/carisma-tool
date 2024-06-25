@@ -310,16 +310,25 @@ public class Check implements CarismaCheckWithID {
 	}
 	private void structureModel(Package inputModel) {
 		List<JSONObject> printList = new LinkedList<JSONObject>();
+		List<ODRLClass> objectList = new LinkedList<ODRLClass>();
 		Collection<Element> modelContents = inputModel.allOwnedElements();
 		for (Element e : modelContents) {
+			System.out.println("Element: " + e);//TODO: remove
+			for(EStructuralFeature esf : e.eClass().getEAllStructuralFeatures()) {//TODO remove
+				if (e.eGet(esf)!=null) {
+					if (e.eGet(esf) instanceof List list && !list.isEmpty())
+					System.out.println("Feature: " + esf + "        With value: " + e.eGet(esf));
+				}
+			}
 			for (Stereotype s : e.getAppliedStereotypes()) {
 				if (s.getProfile().getQualifiedName().equals(profileName)) { //probably replace qualified name comparison by an more unique identifier
-					Object odrlC = (addElement(e.getStereotypeApplication(s), null, e));
+					Object object = (addElement(e.getStereotypeApplication(s), null, e));
 					
-					if (odrlC != null) {
+					if (object instanceof ODRLClass odrlC) {
 						System.out.println("Created ODRLObject: " + odrlC);
 						JSONObject jso = new JSONObject(odrlC);
 						printList.add(jso);
+						objectList.add(odrlC);
 						System.out.println(jso.toString(4));
 					}
 					else {
@@ -332,10 +341,13 @@ public class Check implements CarismaCheckWithID {
 				}			
 			}
 		}
-		for (JSONObject jobj : printList) {
-		System.out.println(jobj.toString(4));
-		System.out.println();
+		for (ODRLClass odrlc : objectList) {
+			checkProfileRequirements(odrlc);
 		}
+//		for (JSONObject jobj : printList) {
+//			System.out.println(jobj.toString(4));
+//			System.out.println();
+//		}
 	}
 		
 		
@@ -356,487 +368,11 @@ public class Check implements CarismaCheckWithID {
 		}
 		String objectClassName = currentEObject.eClass().getName();
 		Object newObject = null;
-		EClass autoGenClass = null;
-		EStructuralFeature classFeature = null;
-		//Vorgehen: Erst Erstellung des jeweiligen Objekts mit den einzelnen Klassen, am Ende dann auf Basis von Vererbung die Attribute füllen (z.B. if instanceof Rule: currentObject.adduid( eObject.getFeature(Rule.getUID().getName()) )
-		if (currentEObject instanceof EEnumLiteral eEnumLiteralObject) {//Enums: Classes without content in the UML-Profile (may have content as ODRLClass)
-			String enumName =  eEnumLiteralObject .getEEnum().getName();
-			String objectName = currentEObject.toString();		
-			if (enumName.equals(ConflictStrategy.class.getSimpleName())){//try to get names of the UML-model-elements (also for attributes) from the genmodel-generated-code to minimize the risk of spelling mistakes
-				if (objectName.equals(ConflictStrategy.PERMIT.getName())) {
-					newObject = new Permit();
-				}
-				else if (objectName.equals(ConflictStrategy.PROHIBIT.getName())) {
-					newObject = new Prohibit();
-				}
-				else if (objectName.equals(ConflictStrategy.VOID_POLICY.getName())) {
-					newObject = new VoidPolicy();
-				}
-			}
-			else if (enumName.equals(PolicyType.class.getSimpleName())) {//TODO Remove (used as type-enum in creation of ODRLPolicy)
-				//if(objectName.equals()) {
-				//}
-			}
-			else if (enumName.equals(PartyFunctionType.class.getSimpleName())) {//TODO Remove (used as type-enum in creation of PartyFunction)
-				//if(objectName.equals()) {
-				//}
-			}
-			else if (enumName.equals(AssetRelationType.class.getSimpleName())) {//TODO Remove (used as type-enum in creation of AssetRelation)
-				//if(objectName.equals()) {
-				//}
-			}
-			else if (enumName.equals(Action.class.getSimpleName())) {
-				if(objectName.equals(Action.ACCEPT_TRACKING.getName())) {
-					newObject = new AcceptTracking();
-					System.out.println("Check for enum-uniqueness: " + currentEObject);
-				}
-				else if (objectName.equals(Action.AGGREGATE.getName())) {
-					newObject = new Aggregate();
-				}
-				else if (objectName.equals(Action.ANNOTATE.getName())) {
-					newObject = new Annotate();
-				}
-				else if (objectName.equals(Action.ANONYMIZE.getName())) {
-					newObject = new Anonymize();
-				}
-				else if (objectName.equals(Action.ARCHIVE.getName())) {
-					newObject = new Archive();
-				}
-				else if (objectName.equals(Action.ATTRIBUTE.getName())) {
-					newObject = new Attribute();
-				}
-				else if (objectName.equals(Action.CC_ATTRIBUTION.getName())) {
-					newObject = new Attribution();
-				}
-				else if (objectName.equals(Action.CC_COMMERCIAL_USE.getName())) {
-					newObject = new CommercialUse();
-				}
-				else if (objectName.equals(Action.CC_DERIVATIVE_WORKS.getName())) {
-					newObject = new DerivativeWorks();
-				}
-				else if (objectName.equals(Action.CC_DISTRIBUTION.getName())) {
-					newObject = new Distribution();
-				}
-				else if (objectName.equals(Action.CC_NOTICE.getName())) {
-					newObject = new Notice();
-				}
-				else if (objectName.equals(Action.CC_REPRODUCTION.getName())) {
-					newObject = new Reproduction();
-				}
-				else if (objectName.equals(Action.CC_SHARE_ALIKE.getName())) {
-					newObject = new ShareAlike();
-				}
-				else if (objectName.equals(Action.CC_SHARING.getName())) {
-					newObject = new Sharing();
-				}
-				else if (objectName.equals(Action.CC_SOURCE_CODE.getName())) {
-					newObject = new SourceCode();
-				}
-				else if (objectName.equals(Action.COMPENSATE.getName())) {
-					newObject = new Compensate();
-				}
-				else if (objectName.equals(Action.CONCURRENT_USE.getName())) {
-					newObject = new ConcurrentUse();
-				}
-				else if (objectName.equals(Action.DELETE.getName())) {
-					newObject = new Delete();
-				}
-				else if (objectName.equals(Action.DERIVE.getName())) {
-					newObject = new Derive();
-				}
-				else if (objectName.equals(Action.DIGITIZE.getName())) {
-					newObject = new Digitize();
-				}
-				else if (objectName.equals(Action.DISPLAY.getName())) {
-					newObject = new Display();
-				}
-				else if (objectName.equals(Action.DISTRIBUTE.getName())) {
-					newObject = new Distribute();
-				}
-				else if (objectName.equals(Action.ENSURE_EXCLUSIVITY.getName())) {
-					newObject = new EnsureExclusivity();
-				}
-				else if (objectName.equals(Action.EXECUTE.getName())) {
-					newObject = new Execute();
-				}
-				else if (objectName.equals(Action.EXTRACT.getName())) {
-					newObject = new Extract();
-				}
-				else if (objectName.equals(Action.GIVE.getName())) {
-					newObject = new Give();
-				}
-				else if (objectName.equals(Action.GRANT_USE.getName())) {
-					newObject = new GrantUse();
-				}
-				else if (objectName.equals(Action.INCLUDE.getName())) {
-					newObject = new Include();
-				}
-				else if (objectName.equals(Action.INDEX.getName())) {
-					newObject = new Index();
-				}
-				else if (objectName.equals(Action.INFORM.getName())) {
-					newObject = new Inform();
-				}
-				else if (objectName.equals(Action.INSTALL.getName())) {
-					newObject = new Install();
-				}
-				else if (objectName.equals(Action.MODIFY.getName())) {
-					newObject = new Modify();
-				}
-				else if (objectName.equals(Action.MOVE.getName())) {
-					newObject = new Move();
-				}
-				else if (objectName.equals(Action.NEXT_POLICY.getName())) {
-					newObject = new NextPolicy();
-				}
-				else if (objectName.equals(Action.OBTAIN_CONSENT.getName())) {
-					newObject = new ObtainConsent();
-				}
-				else if (objectName.equals(Action.PLAY.getName())) {
-					newObject = new Play();
-				}
-				else if (objectName.equals(Action.PRESENT.getName())) {
-					newObject = new Present();
-				}
-				else if (objectName.equals(Action.PRINT.getName())) {
-					newObject = new Print();
-				}
-				else if (objectName.equals(Action.READ.getName())) {
-					newObject = new Read();
-				}
-				else if (objectName.equals(Action.REPRODUCE.getName())) {
-					newObject = new Reproduce();
-				}
-				else if (objectName.equals(Action.REVIEW_POLICY.getName())) {
-					newObject = new ReviewPolicy();
-				}
-				else if (objectName.equals(Action.SELL.getName())) {
-					newObject = new Sell();
-				}
-				else if (objectName.equals(Action.STREAM.getName())) {
-					newObject = new Stream();
-				}
-				else if (objectName.equals(Action.SYNCHRONIZE.getName())) {
-					newObject = new Synchronize();
-				}
-				else if (objectName.equals(Action.TEXT_TO_SPEECH.getName())) {
-					newObject = new TextToSpeech();
-				}
-				else if (objectName.equals(Action.TRANSFER.getName())) {
-					newObject = new TransferOwnership();
-				}
-				else if (objectName.equals(Action.TRANSFORM.getName())) {
-					newObject = new Transform();
-				}
-				else if (objectName.equals(Action.TRANSLATE.getName())) {
-					newObject = new Translate();
-				}
-				else if (objectName.equals(Action.UNINSTALL.getName())) {
-					newObject = new Uninstall();
-				}
-				else if (objectName.equals(Action.USE.getName())) {
-					newObject = new Use();
-				}
-				else if (objectName.equals(Action.WATERMARK.getName())) {
-					newObject = new Watermark();
-				}
-			}
-			else if (enumName.equals(LogicalOperator.class.getSimpleName())) {
-				if (objectName.equals(LogicalOperator.AND.getName())) {
-					newObject = new And();
-				}
-				else if (objectName.equals(LogicalOperator.AND_SEQUENCE.getName())) {
-					newObject = new AndSequence();
-				}
-				else if (objectName.equals(LogicalOperator.OR.getName())) {
-					newObject = new Or();
-				}
-				else if (objectName.equals(LogicalOperator.XONE.getName())) {
-					newObject = new Xone();
-				}
-				//The Null-Case and its special implications (Constraint instead of LogicalConstraint) are handled in the LogicalConstraint-case of this method
-			}
-			else if (enumName.equals(ConstraintOperator.class.getSimpleName())) {
-				if(objectName.equals(ConstraintOperator.EQ.getName())) {
-					newObject = new EqualTo();
-				}
-				else if(objectName.equals(ConstraintOperator.GTEQ.getName())) {
-					newObject = new GreaterEq();
-				}
-				else if(objectName.equals(ConstraintOperator.GT.getName())) {
-					newObject = new GreaterThan();
-				}
-				else if(objectName.equals(ConstraintOperator.HAS_PART.getName())) {
-					newObject = new HasPart();
-				}
-				else if(objectName.equals(ConstraintOperator.IS_A.getName())) {
-					newObject = new IsA();
-				}
-				else if(objectName.equals(ConstraintOperator.IS_ALL_OF.getName())) {
-					newObject = new IsAllOf();
-				}
-				else if(objectName.equals(ConstraintOperator.IS_ANY_OF.getName())) {
-					newObject = new IsAnyOf();
-				}
-				else if(objectName.equals(ConstraintOperator.IS_NONE_OF.getName())) {
-					newObject = new IsNoneOf();
-				}
-				else if(objectName.equals(ConstraintOperator.IS_PART_OF.getName())) {
-					newObject = new IsPartOf();
-				}
-				else if(objectName.equals(ConstraintOperator.LT.getName())) {
-					newObject = new LessThan();
-				}
-				else if(objectName.equals(ConstraintOperator.LTEQ.getName())) {
-					newObject = new LessThanEq();
-				}
-				else if(objectName.equals(ConstraintOperator.NEQ.getName())) {
-					newObject = new NotEqualTo();
-				}
-			}
-			else if (enumName.equals(LeftOperand.class.getSimpleName())) {
-				if(objectName.equals("")) {//TODO absolute position seems to be missing in UMl-Model
-					newObject = new AbsoluteAssetPosition();
-				}
-				else if(objectName.equals(LeftOperand.ABSOLUTE_SIZE.getName())) {
-					newObject = new AbsoluteAssetSize();
-				}
-				else if(objectName.equals(LeftOperand.ABSOLUTE_SPARTIAL_POSITION.getName())) {
-					newObject = new AbsoluteSpatialAssetPosition();
-				}
-				else if(objectName.equals(LeftOperand.ABSOLUTE_TEMPORAL_POSITION.getName())) {
-					newObject = new AbsoluteTemporalAssetPosition();
-				}
-				else if(objectName.equals(LeftOperand.PERCENTAGE.getName())) {
-					newObject = new AssetPercentage();
-				}
-				else if(objectName.equals(LeftOperand.COUNT.getName())) {
-					newObject = new Count();
-				}
-				else if(objectName.equals(LeftOperand.DATE_TIME.getName())) {
-					newObject = new DateTime();
-				}
-				else if(objectName.equals(LeftOperand.DELAY_PERIOD.getName())) {
-					newObject = new DelayPeriod();
-				}
-				else if(objectName.equals(LeftOperand.DELIVERY_CHANNEL.getName())) {
-					newObject = new DeliveryChannel();
-				}
-				else if(objectName.equals(LeftOperand.ELAPSED_TIME.getName())) {
-					newObject = new ElapsedTime();
-				}
-				else if(objectName.equals(LeftOperand.EVENT.getName())) {
-					newObject = new Event();
-				}
-				else if(objectName.equals(LeftOperand.FILE_FORMAT.getName())) {
-					newObject = new FileFormat();
-				}
-				else if(objectName.equals(LeftOperand.SPARTIAL_COORDINATES.getName())) {
-					newObject = new GeospatialCoordinates();
-				}
-				else if(objectName.equals(LeftOperand.SPARTIAL.getName())) {
-					newObject = new GeospatialNamedArea();
-				}
-				else if(objectName.equals(LeftOperand.INDUSTRY.getName())) {
-					newObject = new IndustryContext();
-				}
-				else if(objectName.equals(LeftOperand.LANGUAGE.getName())) {
-					newObject = new Language();
-				}
-				else if(objectName.equals(LeftOperand.MEDIA.getName())) {
-					newObject = new MediaContext();
-				}
-				else if(objectName.equals(LeftOperand.METERED_TIME.getName())) {
-					newObject = new MeteredTime();
-				}
-				else if(objectName.equals(LeftOperand.PAY_AMOUNT.getName())) {
-					newObject = new PaymentAmount();
-				}
-				else if(objectName.equals(LeftOperand.PRODUCT.getName())) {
-					newObject = new ProductContext();
-				}
-				else if(objectName.equals(LeftOperand.PURPOSE.getName())) {
-					newObject = new Purpose();
-				}
-				else if(objectName.equals(LeftOperand.RECIPIENT.getName())) {
-					newObject = new Recipient();
-				}
-				else if(objectName.equals(LeftOperand.TIME_INTERVAL.getName())) {
-					newObject = new RecurringTimeInterval();
-				}
-				else if(objectName.equals(LeftOperand.RELATIVE_POSITION.getName())) {
-					newObject = new RelativeAssetPosition();
-				}
-				else if(objectName.equals(LeftOperand.RELATIVE_SIZE.getName())) {
-					newObject = new RelativeAssetSize();
-				}
-				else if(objectName.equals(LeftOperand.RELATIVE_SPARTIAL_POSITION.getName())) {
-					newObject = new RelativeSpatialAssetPosition();
-				}
-				else if(objectName.equals(LeftOperand.RELATIVE_TEMPORAL_POSITION.getName())) {
-					newObject = new RelativeTemporalAssetPosition();
-				}
-				else if(objectName.equals(LeftOperand.RESOLUTION.getName())) {
-					newObject = new RenditionResolution();
-				}
-				else if(objectName.equals(LeftOperand.DEVICE.getName())) {
-					newObject = new SystemDevice();
-				}
-				else if(objectName.equals(LeftOperand.UNIT_OF_COUNT.getName())) {
-					newObject = new UnitOfCount();
-				}
-				else if(objectName.equals(LeftOperand.VERSION.getName())) {
-					newObject = new Version();
-				}
-				else if(objectName.equals(LeftOperand.VIRTUAL_LOCATION.getName())) {
-					newObject = new VirtualItCommunicationLocation();
-				}
-			}
-		}
-		else if (currentEObject instanceof EStructuralFeature esf) {//TODO-----------------------------------------------------------------------
-
-			if (esf.getName().equals(odrlPackage.getProhibition_Remedies().getName())) {
-					newObject = new Remedy();
-			}
-			else if (esf.getName().equals(odrlPackage.getDuty_Consequences().getName())) {
-				newObject = new Consequence();
-			}
-		}
-		//Policy (type enum-attribute-determined)
-		else if (objectClassName.equals(odrlPackage.getODRLPolicy().getName())) {
-			classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getODRLPolicy_PolicyType().getName());
-			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
-				if (classEnum.getName().equals(PolicyType.AGREEMENT.getName())) {
-					newObject = new Agreement();
-				}
-				else if (classEnum.getName().equals(PolicyType.ASSERTION.getName())) {
-					newObject = new Assertion();
-				}
-				else if (classEnum.getName().equals(PolicyType.OFFER.getName())) {
-					newObject = new Offer();
-				}
-				else if (classEnum.getName().equals(PolicyType.PRIVACY.getName())) {
-					newObject = new Privacy();
-				}
-				else if (classEnum.getName().equals(PolicyType.REQUEST.getName())) {
-					newObject = new Request();
-				}
-				else if (classEnum.getName().equals(PolicyType.SET.getName())) {
-					newObject = new Set();
-				}
-				else if (classEnum.getName().equals(PolicyType.TICKET.getName())) {
-					newObject = new Ticket();
-				}
-				else  if (classEnum.getName().equals(PolicyType.NULL.getName())) {//No type-information (is interpreted as Set-Policy by evaluators)
-					newObject = new Policy();
-				}
-			}
-			
-		}
-		//AssetRelation (type enum-attribute-determined)
-		else if (objectClassName.equals(odrlPackage.getAssetRelation().getName())) {
-			classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getAssetRelation_Type().getName());
-			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
-				if (classEnum.getName().equals(AssetRelationType.TARGET.getName())) {
-					newObject = new Target();
-				}
-				else if (classEnum.getName().equals(AssetRelationType.OUTPUT.getName())) {
-					newObject = new Output();
-				}
-			}
-		}
-		//PartyFunction (type enum-attribute-determined)
-		else if (objectClassName.equals(odrlPackage.getPartyFunction().getName())) {
-			classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getPartyFunction_Type().getName());
-			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
-				if (classEnum.getName().equals(PartyFunctionType.ASSIGNEE.getName())) {
-					newObject = new Assignee();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.ASSIGNER.getName())) {
-					newObject = new Assigner();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.ATTRIBUTED_PARTY.getName())) {
-					newObject = new AttributedParty();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.COMPENSATED_PARTY.getName())) {
-					newObject = new CompensatedParty();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.COMPENSATING_PARTY.getName())) {
-					newObject = new CompensatingParty();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.CONSENTED_PARTY.getName())) {
-					newObject = new ConsentedParty();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.CONSENTING_PARTY.getName())) {
-					newObject = new ConsentingParty();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.CONTRACTED_PARTY.getName())) {
-					newObject = new ContractedParty();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.CONTRACTING_PARTY.getName())) {
-					newObject = new ContractingParty();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.INFORMED_PARTY.getName())) {
-					newObject = new InformedParty();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.INFORMING_PARTY.getName())) {
-					newObject = new InformingParty();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.TRACKED_PARTY.getName())) {
-					newObject = new TrackedParty();
-				}
-				else if (classEnum.getName().equals(PartyFunctionType.TRACKING_PARTY.getName())) {
-					newObject = new TrackingParty();
-				}
-			}
-		}
-		//Rules
-		else if (objectClassName.equals(odrlPackage.getPermission().getName())) {
-			newObject=new Permission();			
-		}
-		else if (objectClassName.equals(odrlPackage.getProhibition().getName())) {
-			newObject=new Prohibition();
-		}
-		else if (objectClassName.equals(odrlPackage.getDuty().getName())) {
-			newObject=new Duty();
-		}
-		//LogicalConstraint
-		else if (objectClassName.equals(odrlPackage.getLogicalConstraint().getName())) {
-			classFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getLogicalConstraint_LogicalOperator().getName());
-			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
-				if (classEnum.toString().equals(LogicalOperator.NULL.getName())) {//Operator Null: LogicalConstraint only used as wrapper for the constraint without added information (using a common super-datatype to make both eligible as value does not work with papyrus)
-					if (getValue(currentEObject, odrlPackage.getLogicalConstraint_Constraints().getName()) instanceof List constraintList) {
-						List<Constraint> constraints = new ConstraintList();
-						constraints.addAll(addElement(constraintList, odrlParent, activityElement, Constraint.class));
-						return constraints;//TODO watch out in with doubled parent-assignment.
-					}//may need to be returned directly and not just assigned so that the fill-method is not called twice (in this method at the end and in the one called with the constraintList). Alternatively: alreadyProcessed-Boolean or something like that, that prevents adding parents and calling the fill()-method (should not prevent adding to the referenceList (as the called methods add with another key))
-				} else {
-					newObject=new LogicalConstraint();
-				}
-			}
-		}
-		//Constraint
-		else if (objectClassName.equals(odrlPackage.getConstraint().getName())) {
-			newObject=new Constraint();
-		}
-		//Asset
-		else if (objectClassName.equals(odrlPackage.getAsset().getName())) {
-			newObject=new Asset();			
-		}
-		else if (objectClassName.equals(odrlPackage.getAssetCollection().getName())) {
-			newObject=new AssetCollection();
-		}
-		//Party
-		else if (objectClassName.equals(odrlPackage.getParty().getName())) {
-			newObject=new Party();			
-		}
-		else if (objectClassName.equals(odrlPackage.getPartyCollection().getName())) {
-			newObject=new PartyCollection();
-		}
 		
-		
+		UMLModelConverter converter = new UMLModelConverter();
 		//Filling the generated object
-		fill(currentEObject, newObject, activityElement);//TODO maybe return boolean with the fill()-method to signal whether it was filled sufficiently
+		newObject = converter.addElement(currentEObject, odrlParent, activityElement);
+		//fill(currentEObject, newObject, activityElement);//TODO maybe return boolean with the fill()-method to signal whether it was filled sufficiently
 		
 		
 		//
@@ -844,7 +380,6 @@ public class Check implements CarismaCheckWithID {
 			System.out.println("At end of addElement :" + newObject);
 			referencingList2.put(currentEObject, newOdrlObject);//Maybe extend the valid keys and add all objects, not just ODRLClasses
 		}
-		UMLModelConverter converter = new UMLModelConverter();
 		System.out.println(converter.addElement(currentEObject,null,null)==null?"Helper: Null": "Helper:  " + converter.addElement(currentEObject,null,null));
 		System.out.println("passed EObject: " + currentEObject);
 		return newObject;
@@ -1245,6 +780,7 @@ public class Check implements CarismaCheckWithID {
 					&& policy.getProhibition().isEmpty()
 					&& policy.getObligation().isEmpty()) {
 				//TODO add warning: invalid policy: needs to have at least one permission, prohibition or obligation
+				addWarning("Invalid Policy. Policy needs to have at least one permission, prohibition or obligation.",testedElement);;
 			}
 			
 			if (policy instanceof Offer offer) {
@@ -1255,36 +791,36 @@ public class Check implements CarismaCheckWithID {
 		} else if (testedElement instanceof AssetCollection assetCollection) {
 			if (assetCollection.getRefinement()!=null
 					&& assetCollection.getSource()==null) {
-				//TODO add warning: invalid assetCollection: source-property needs to be used with refinement
+				addWarning("Invalid assetCollection: source-property needs to be used with refinement.", testedElement);
 			}
 		} else if (testedElement instanceof PartyCollection partyCollection) {
 			if (partyCollection.getRefinement()!=null
 					&& partyCollection.getSource()==null) {
-				//TODO add warning: invalid assetCollection: source-property needs to be used with refinement
+				addWarning("Invalid partyCollection: source-property needs to be used with refinement.", testedElement);
 			}
 		} else if (testedElement instanceof Constraint constraint) {
 			if (constraint.getLeftOperand()==null) {
-				//TODO add warning: invalid constraint: needs to have a leftOperand selected
+				addWarning("Invalid constraint: needs to have a leftOperand selected.",testedElement);
 			}
 			if (constraint.getOperator()==null) {
-				//TODO add warning: invalid constraint: needs to have an operator selected
+				addWarning("Invalid constraint: needs to have an operator selected.",testedElement);
 			}
 			if ( (constraint.getRightOperand()==null
 					||constraint.getRightOperand().isEmpty() 
 					) && ( constraint.getRightOperandReference()==null
 					||constraint.getRightOperandReference().isEmpty())) {
-				//TODO add warning: invalid Constraint: needs to have either a rightOperand, or rightOperandReference, has neither
+				addWarning("Invalid Constraint: needs to have either a rightOperand, or rightOperandReference, has neither.",testedElement);
 			}
 			if ( (constraint.getRightOperand()!=null
 					&& !constraint.getRightOperand().isEmpty() 
 					 && constraint.getRightOperandReference()!=null
 					&& !constraint.getRightOperandReference().isEmpty())) {
-				//TODO add warning: invalid Constraint: must not have both rightOperand and rightOperandReference (is that the case?)
+				addWarning("Invalid Constraint: must not have both rightOperand and rightOperandReference (is that the case?)",testedElement);//TODO check if restriction actually exists
 			}
 		}
 		if (testedElement instanceof Rule rule) {
 			if (rule.getAction() == null) {
-				//TODO add warning: invalid rule: needs to have an action selected
+				addWarning("Invalid rule: needs to have an action selected.",testedElement);
 			}
 			if (testedElement instanceof Permission permission) {
 				boolean hasTarget = false;
@@ -1294,7 +830,7 @@ public class Check implements CarismaCheckWithID {
 					}
 				}
 				if (!hasTarget) {
-					//TODO add warning: invalid permission: needs to have a relation of type target
+					addWarning("Invalid permission: needs to have a relation of type target.",testedElement);
 				}
 			} else if (testedElement instanceof Prohibition prohibition) {
 				boolean hasTarget = false;
@@ -1304,32 +840,38 @@ public class Check implements CarismaCheckWithID {
 					}
 				}
 				if (!hasTarget) {
-					//TODO add warning: invalid prohibition: needs to have a relation of type target
+					addWarning("Invalid prohibition: needs to have a relation of type target.",testedElement);
 				}
-				for (Rule remedy : prohibition.getRemedy().getRules()) {
-					if (!(remedy instanceof Duty)) {
-						//TODO add warning: Invalid Prohibition: remedy must be of type Duty
-					}
-					if (remedy instanceof Duty consequenceDuty) {
-						if (consequenceDuty.getConsequences()!=null) {
-							//TODO add warning: Invalid remedy duty: remedy-Duty must not have a consequence itself
+				if (prohibition.getRemedy()!=null && prohibition.getRemedy().getRules()!=null && !prohibition.getRemedy().getRules().isEmpty()) {
+					for (Rule remedy : prohibition.getRemedy().getRules()) {
+						if (!(remedy instanceof Duty)) {
+							addWarning("Invalid Prohibition: remedy must be of type Duty.",testedElement);//TODO covered in the Model
+						}
+						if (remedy instanceof Duty consequenceDuty) {
+							if (consequenceDuty.getConsequences()!=null) {
+								addWarning("Invalid remedy duty: remedy-Duty must not have a consequence itself.",testedElement);
+							}
 						}
 					}
 				}
 			} else if (testedElement instanceof Duty duty) {
-				for (Rule consequence : duty.getConsequences().getRules()) {
-					if (!(consequence instanceof Duty)) {
-						//TODO add warning: Invalid Duty: consequences must be of type Duty
-					}
-					if (consequence instanceof Duty consequenceDuty) {
-						if (consequenceDuty.getConsequences()!=null) {
-							//TODO add warning: Invalid consequence duty: consequence-Duty must not have a consequence itself
+				if (duty.getConsequences()!=null && duty.getConsequences().getRules()!=null && !duty.getConsequences().getRules().isEmpty()) {
+					for (Rule consequence : duty.getConsequences().getRules()) {
+						if (!(consequence instanceof Duty)) {
+							addWarning("Invalid Duty: consequence must be of type Duty.",testedElement);//TODO covered in the Model
+						}
+						if (consequence instanceof Duty consequenceDuty) {
+							if (consequenceDuty.getConsequences()!=null) {
+								addWarning("Invalid consequence duty: consequence-Duty must not have a consequence itself.",testedElement);
+							}
 						}
 					}
 				}
 			} 
-		}
-			
+		}		
+	}
+	private void addWarning(String warning, ODRLClass object) {//possibly add with list of ODRLClass-objects
+		host.appendLineToReport("Warning: " + warning + " Found in a " + object.getClass().getSimpleName() + " contained in the " + "object.containingUMLElement.getClass()" + " named " + "object.containingUMLElement.getName()");//TODO: unimplemented parts
 	}
 	
 	
