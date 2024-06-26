@@ -1,5 +1,5 @@
 package carisma.profile.uconcreation.odrl.core.internal.classes.operator;
 
-public class IsNoneOf extends Operator {
+public interface IsNoneOf extends Operator {
 
 }

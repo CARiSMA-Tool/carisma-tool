@@ -2,6 +2,6 @@ package carisma.profile.uconcreation.odrl.common.internal.classes.function;
 
 import carisma.profile.uconcreation.odrl.core.internal.classes.function.Function;
 
-public class InformingParty extends Function{
+public interface InformingParty extends Function{
 
 }

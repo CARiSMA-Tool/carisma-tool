@@ -2,6 +2,6 @@ package carisma.profile.uconcreation.odrl.common.internal.classes.action;
 
 import carisma.profile.uconcreation.odrl.core.internal.classes.action.Action;
 
-public class CommercialUse extends Action{
+public interface CommercialUse extends Action{
 
 }

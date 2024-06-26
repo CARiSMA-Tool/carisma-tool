@@ -7,155 +7,102 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.leftoperand.LeftO
 import carisma.profile.uconcreation.odrl.core.internal.classes.operator.Operator;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rightoperand.RightOperandInterface;
 
-public class Constraint extends ODRLClass{
-	String uid;
-	LeftOperand leftOperand;
-	Operator operator;
-	List<RightOperandInterface> rightOperand;
-	List<String> rightOperandReference;
-	String dataType;
-	String unit;
-	String status;
-	
-	String uidName;
-	String leftOperandName;
-	String operatorName;
-	String rightOperandName;
-	String rightOperandReferenceName;
-	String dataTypeName;
-	String unitName;
-	String statusName;
+public interface Constraint extends ODRLClass{
 
 	
 	
 	
 	
-	public String getUid() {
-		return uid;
-	}
+	public String getUid();
 
 
 
 
 
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
+	public void setUid(String uid);
 
 
 
 
 
-	public LeftOperand getLeftOperand() {
-		return leftOperand;
-	}
+	public LeftOperand getLeftOperand();
 
 
 
 
 
-	public void setLeftOperand(LeftOperand leftOperand) {
-		this.leftOperand = leftOperand;
-	}
+	public void setLeftOperand(LeftOperand leftOperand);
 
 
 
 
 
-	public Operator getOperator() {
-		return operator;
-	}
+	public Operator getOperator();
 
 
 
 
 
-	public void setOperator(Operator operator) {
-		this.operator = operator;
-	}
+	public void setOperator(Operator operator);
 
 
 
 
+	public List<RightOperandInterface> getRightOperand();
 
-	public List<RightOperandInterface> getRightOperand() {
-		return rightOperand;
-	}
 
 
 
 
+	public void setRightOperand(List<RightOperandInterface> rightOperand);
 
-	public void setRightOperand(List<RightOperandInterface> rightOperand) {
-		this.rightOperand = rightOperand;
-	}
 
 
 
 
+	public List<String> getRightOperandReference();
 
-	public List<String> getRightOperandReference() {
-		return rightOperandReference;
-	}
 
 
 
 
+	public void setRightOperandReference(List<String> rightOperandReference);
 
-	public void setRightOperandReference(List<String> rightOperandReference) {
-		this.rightOperandReference = rightOperandReference;
-	}
 
 
 
 
+	public String getDataType();
 
-	public String getDataType() {
-		return dataType;
-	}
 
 
 
 
+	public void setDataType(String dataType);
 
-	public void setDataType(String dataType) {
-		this.dataType = dataType;
-	}
 
 
 
 
+	public String getUnit();
 
-	public String getUnit() {
-		return unit;
-	}
 
 
 
 
+	public void setUnit(String unit);
 
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
 
 
 
 
+	public String getStatus();
 
-	public String getStatus() {
-		return status;
-	}
 
 
 
 
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-
-
+	public void setStatus(String status);
 
 
 }

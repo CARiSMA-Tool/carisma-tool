@@ -2,26 +2,12 @@ package carisma.profile.uconcreation.odrl.core.internal.classes.party;
 
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintInterface;
 
-public class PartyCollection extends Party {
-	ConstraintInterface refinement;
-	String source;
-	
-	String refinementName;
-	String sourceName;
-	
-	
-	public ConstraintInterface getRefinement() {
-		return refinement;
-	}
-	public void setRefinement(ConstraintInterface refinement) {
-		this.refinement = refinement;
-	}
-	public String getSource() {
-		return source;
-	}
-	public void setSource(String source) {
-		this.source = source;
-	}
+public interface PartyCollection extends Party {
+
+	public ConstraintInterface getRefinement();
+	public void setRefinement(ConstraintInterface refinement);
+	public String getSource();
+	public void setSource(String source);
 	
 	
 }

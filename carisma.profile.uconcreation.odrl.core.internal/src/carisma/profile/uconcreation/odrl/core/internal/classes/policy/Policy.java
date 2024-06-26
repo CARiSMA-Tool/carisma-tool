@@ -11,170 +11,101 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Duty;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Permission;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Prohibition;
 
-public class Policy extends ODRLClass{
-	String uid;
-	ConflictStrategy conflictStrategy;
-	List<String> profiles;
-	List<String> inheritsFrom;
-	List<Permission> permission = new LinkedList<Permission>();
-	List<Prohibition> prohibition = new LinkedList<Prohibition>();
-	List<Duty> obligation = new LinkedList<Duty>();
+public interface Policy extends ODRLClass{
+
 	
+	public String getUid();
+
+
+
+
+
+
+
+	public void setUid(String uid);
+
+
+
+
+
+
+
+	public ConflictStrategy getConflictStrategy();
+
+
+
+
+
+
+
+	public void setConflictStrategy(ConflictStrategy conflictStrategy);
+
+
+
+
+
+
+
+	public List<String> getProfiles();
+
+
+
+
+
+
+
+	public void setProfiles(List<String> profiles);
+
+
+
+
+
+
+	public List<String> getInheritsFrom();
+
+
+
+	public void setInheritsFrom(List<String> inheritsFrom);
+
+
+
+
+
+	public List<Permission> getPermission();
+
+
+
+
+
+	public void setPermission(List<Permission> permission);
+	public void addPermission(Permission permission);
+
+
+
+
+
+	public List<Prohibition> getProhibition();
+
+
+	public void setProhibition(List<Prohibition> prohibition);
 	
-	String uidName;
-	String conflictStrategyName;
-	String profilesName;
-	String inheritsFromName;
-	String permissionName;
-	String prohibitionName;
-	String obligationName;
+	public void addProhibition(Prohibition prohibition);
+
+
+
+
+
+
+
+	public List<Duty> getObligation();
+
+
+
+
+
+
+	public void setObligation(List<Duty> obligation);
 	
-	
-	
-	
-	
-	public String getUid() {
-		return uid;
-	}
-
-
-
-
-
-
-
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
-
-
-
-
-
-
-
-	public ConflictStrategy getConflictStrategy() {
-		return conflictStrategy;
-	}
-
-
-
-
-
-
-
-	public void setConflictStrategy(ConflictStrategy conflictStrategy) {
-		this.conflictStrategy = conflictStrategy;
-	}
-
-
-
-
-
-
-
-	public List<String> getProfiles() {
-		return profiles;
-	}
-
-
-
-
-
-
-
-	public void setProfiles(List<String> profiles) {
-		this.profiles = profiles;
-	}
-
-
-
-
-
-
-
-	public List<String> getInheritsFrom() {
-		return inheritsFrom;
-	}
-
-
-
-
-
-
-
-	public void setInheritsFrom(List<String> inheritsFrom) {
-		this.inheritsFrom = inheritsFrom;
-	}
-
-
-
-
-
-
-
-	public List<Permission> getPermission() {
-		return permission;
-	}
-
-
-
-
-
-
-
-	public void setPermission(List<Permission> permission) {
-		this.permission = permission;
-	}
-	public void addPermission(Permission permission) {
-		this.permission.add(permission);
-	}
-
-
-
-
-
-
-
-	public List<Prohibition> getProhibition() {
-		return prohibition;
-	}
-
-
-
-
-
-
-
-	public void setProhibition(List<Prohibition> prohibition) {
-		this.prohibition = prohibition;
-	}
-	public void addProhibition(Prohibition prohibition) {
-		this.prohibition.add(prohibition);
-	}
-
-
-
-
-
-
-
-	public List<Duty> getObligation() {
-		return obligation;
-	}
-
-
-
-
-
-
-
-	public void setObligation(List<Duty> obligation) {
-		this.obligation = obligation;
-	}
-	
-	public void addObligation(Duty obligation) {
-		this.obligation.add(obligation);
-	}
+	public void addObligation(Duty obligation);
 
 }

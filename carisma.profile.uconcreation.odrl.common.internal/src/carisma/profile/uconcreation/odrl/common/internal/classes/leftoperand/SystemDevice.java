@@ -2,6 +2,6 @@ package carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand;
 
 import carisma.profile.uconcreation.odrl.core.internal.classes.leftoperand.LeftOperand;
 
-public class SystemDevice extends LeftOperand {
+public interface SystemDevice extends LeftOperand {
 
 }

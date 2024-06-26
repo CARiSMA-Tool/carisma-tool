@@ -5,18 +5,11 @@ import java.util.List;
 import carisma.profile.uconcreation.odrl.core.internal.classes.ODRLClass;
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.Constraint;
 
-public abstract class Operand extends ODRLClass {
-	List<Constraint> constraints;
-	
-	String constraintsName;//TODO Handle differently as Operand-subproperties
+public interface Operand extends ODRLClass {
 
-	public List<Constraint> getConstraints() {
-		return constraints;
-	}
+	public List<Constraint> getConstraints();
 
-	public void setConstraints(List<Constraint> constraints) {
-		this.constraints = constraints;
-	}
+	public void setConstraints(List<Constraint> constraints);
 	
 	
 }

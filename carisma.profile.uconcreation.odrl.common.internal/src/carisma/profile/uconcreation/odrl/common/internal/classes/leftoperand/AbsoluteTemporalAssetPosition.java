@@ -2,6 +2,6 @@ package carisma.profile.uconcreation.odrl.common.internal.classes.leftoperand;
 
 import carisma.profile.uconcreation.odrl.core.internal.classes.leftoperand.LeftOperand;
 
-public class AbsoluteTemporalAssetPosition extends LeftOperand {
+public interface AbsoluteTemporalAssetPosition extends LeftOperand {
 
 }

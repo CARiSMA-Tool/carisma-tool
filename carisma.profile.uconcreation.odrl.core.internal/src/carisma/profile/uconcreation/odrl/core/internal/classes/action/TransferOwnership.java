@@ -1,5 +1,5 @@
 package carisma.profile.uconcreation.odrl.core.internal.classes.action;
 
-public class TransferOwnership extends Action {
+public interface TransferOwnership extends Action {
 
 }

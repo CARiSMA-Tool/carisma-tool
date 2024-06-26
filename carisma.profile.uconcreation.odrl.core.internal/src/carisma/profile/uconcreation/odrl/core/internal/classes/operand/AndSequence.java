@@ -1,5 +1,5 @@
 package carisma.profile.uconcreation.odrl.core.internal.classes.operand;
 
-public class AndSequence extends Operand {
+public interface AndSequence extends Operand {
 
 }

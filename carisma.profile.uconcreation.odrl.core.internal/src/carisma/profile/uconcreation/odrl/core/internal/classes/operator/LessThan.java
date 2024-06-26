@@ -1,5 +1,5 @@
 package carisma.profile.uconcreation.odrl.core.internal.classes.operator;
 
-public class LessThan extends Operator {
+public interface LessThan extends Operator {
 
 }

@@ -1,5 +1,5 @@
 package carisma.profile.uconcreation.odrl.core.internal.classes.operator;
 
-public class IsAnyOf extends Operator {
+public interface IsAnyOf extends Operator {
 
 }

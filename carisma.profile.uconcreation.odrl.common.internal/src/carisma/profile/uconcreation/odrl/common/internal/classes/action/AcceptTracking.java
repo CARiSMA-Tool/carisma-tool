@@ -2,6 +2,6 @@ package carisma.profile.uconcreation.odrl.common.internal.classes.action;
 
 import carisma.profile.uconcreation.odrl.core.internal.classes.action.Action;
 
-public class AcceptTracking extends Action {
+public interface AcceptTracking extends Action {
 
 }

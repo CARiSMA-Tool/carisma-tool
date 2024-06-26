@@ -5,18 +5,11 @@ import java.util.List;
 import carisma.profile.uconcreation.odrl.core.internal.classes.ODRLClass;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Rule;
 
-public abstract class Failure extends ODRLClass {
-	List<Rule> rules;
-	
-	String rulesName;//TODO treat differently as subproperty
+public interface Failure extends ODRLClass {
 
-	public List<Rule> getRules() {
-		return rules;
-	}
+	public List<Rule> getRules();
 
-	public void setRules(List<Rule> rules) {
-		this.rules = rules;
-	}
+	public void setRules(List<Rule> rules);
 	
 	
 }

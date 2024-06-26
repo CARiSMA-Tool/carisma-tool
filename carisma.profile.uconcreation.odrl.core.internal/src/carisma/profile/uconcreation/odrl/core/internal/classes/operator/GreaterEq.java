@@ -1,5 +1,5 @@
 package carisma.profile.uconcreation.odrl.core.internal.classes.operator;
 
-public class GreaterEq extends Operator {
+public interface GreaterEq extends Operator {
 
 }

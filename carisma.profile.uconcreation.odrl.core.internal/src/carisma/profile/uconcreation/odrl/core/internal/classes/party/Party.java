@@ -2,24 +2,13 @@ package carisma.profile.uconcreation.odrl.core.internal.classes.party;
 
 import carisma.profile.uconcreation.odrl.core.internal.classes.ODRLClass;
 
-public class Party extends ODRLClass {
-	String uid;
+public interface Party extends ODRLClass {
 	
-	
-	
-	String uidName;
+	public String getUid();
 
 
 
-	public String getUid() {
-		return uid;
-	}
-
-
-
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
+	public void setUid(String uid);
 	
 	
 }
