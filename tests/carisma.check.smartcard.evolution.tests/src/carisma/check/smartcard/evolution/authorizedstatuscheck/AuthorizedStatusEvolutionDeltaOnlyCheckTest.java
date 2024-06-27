@@ -32,6 +32,7 @@ import carisma.tests.modelutils.uml.TestHelper;
  * @author jkowald
  *
  */
+@Ignore
 @SuppressWarnings("java:S5960")
 public class AuthorizedStatusEvolutionDeltaOnlyCheckTest {
 

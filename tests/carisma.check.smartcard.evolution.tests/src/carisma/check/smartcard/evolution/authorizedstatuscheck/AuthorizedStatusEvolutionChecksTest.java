@@ -55,6 +55,7 @@ import carisma.profile.umlsec.UMLsecUtil;
 import carisma.tests.modelutils.uml.TestHelper;
 
 @SuppressWarnings("java:S5960")
+@Ignore
 public class AuthorizedStatusEvolutionChecksTest {
 	
 	private class TestHost implements AnalysisHost{

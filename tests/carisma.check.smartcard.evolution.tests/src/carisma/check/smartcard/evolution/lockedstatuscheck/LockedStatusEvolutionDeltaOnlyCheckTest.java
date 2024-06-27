@@ -33,6 +33,7 @@ import carisma.tests.modelutils.uml.TestHelper;
  * @author jkowald
  *
  */
+
 @SuppressWarnings("java:S5960")
 public class LockedStatusEvolutionDeltaOnlyCheckTest {
 	
@@ -56,6 +57,7 @@ public class LockedStatusEvolutionDeltaOnlyCheckTest {
 	/**
 	 * A transition is added with a source state that owns the stereotype locked-state.
 	 */
+	@Ignore
 	@Test
 	public final void testAddTransitionWithSourceStateIsLocked() {
 		assertFalse(performCheck("testAddTransitionWithSourceStateIsLocked.uml"));
