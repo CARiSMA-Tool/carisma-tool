@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
@@ -74,15 +75,18 @@ import carisma.check.policycreation.profileimpl.common.action.TranslateImpl;
 import carisma.check.policycreation.profileimpl.common.action.UninstallImpl;
 import carisma.check.policycreation.profileimpl.common.action.WatermarkImpl;
 import carisma.check.policycreation.profileimpl.common.function.AttributedPartyImpl;
+import carisma.check.policycreation.profileimpl.common.function.AttributingPartyImpl;
 import carisma.check.policycreation.profileimpl.common.function.CompensatedPartyImpl;
 import carisma.check.policycreation.profileimpl.common.function.CompensatingPartyImpl;
 import carisma.check.policycreation.profileimpl.common.function.ConsentedPartyImpl;
 import carisma.check.policycreation.profileimpl.common.function.ConsentingPartyImpl;
 import carisma.check.policycreation.profileimpl.common.function.ContractedPartyImpl;
 import carisma.check.policycreation.profileimpl.common.function.ContractingPartyImpl;
+import carisma.check.policycreation.profileimpl.common.function.InformedPartyImpl;
 import carisma.check.policycreation.profileimpl.common.function.InformingPartyImpl;
 import carisma.check.policycreation.profileimpl.common.function.TrackedPartyImpl;
 import carisma.check.policycreation.profileimpl.common.function.TrackingPartyImpl;
+import carisma.check.policycreation.profileimpl.common.leftoperand.AbsoluteAssetPositionImpl;
 import carisma.check.policycreation.profileimpl.common.leftoperand.AbsoluteAssetSizeImpl;
 import carisma.check.policycreation.profileimpl.common.leftoperand.AbsoluteSpatialAssetPositionImpl;
 import carisma.check.policycreation.profileimpl.common.leftoperand.AbsoluteTemporalAssetPositionImpl;
@@ -120,10 +124,12 @@ import carisma.check.policycreation.profileimpl.common.policy.RequestImpl;
 import carisma.check.policycreation.profileimpl.common.policy.TicketImpl;
 import carisma.check.policycreation.profileimpl.common.relation.OutputImpl;
 import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
+import carisma.check.policycreation.profileimpl.core.action.ActionImpl;
 import carisma.check.policycreation.profileimpl.core.action.TransferOwnershipImpl;
 import carisma.check.policycreation.profileimpl.core.action.UseImpl;
 import carisma.check.policycreation.profileimpl.core.asset.AssetCollectionImpl;
 import carisma.check.policycreation.profileimpl.core.asset.AssetImpl;
+import carisma.check.policycreation.profileimpl.core.conflict.ConflictStrategyImpl;
 import carisma.check.policycreation.profileimpl.core.conflict.PermitImpl;
 import carisma.check.policycreation.profileimpl.core.conflict.ProhibitImpl;
 import carisma.check.policycreation.profileimpl.core.conflict.VoidPolicyImpl;
@@ -131,11 +137,14 @@ import carisma.check.policycreation.profileimpl.core.constraint.ConstraintImpl;
 import carisma.check.policycreation.profileimpl.core.constraint.ConstraintListImpl;
 import carisma.check.policycreation.profileimpl.core.constraint.LogicalConstraintImpl;
 import carisma.check.policycreation.profileimpl.core.failure.ConsequenceImpl;
+import carisma.check.policycreation.profileimpl.core.failure.FailureImpl;
 import carisma.check.policycreation.profileimpl.core.failure.RemedyImpl;
 import carisma.check.policycreation.profileimpl.core.function.AssigneeImpl;
 import carisma.check.policycreation.profileimpl.core.function.AssignerImpl;
+import carisma.check.policycreation.profileimpl.core.function.FunctionImpl;
 import carisma.check.policycreation.profileimpl.core.operand.AndImpl;
 import carisma.check.policycreation.profileimpl.core.operand.AndSequenceImpl;
+import carisma.check.policycreation.profileimpl.core.operand.OperandImpl;
 import carisma.check.policycreation.profileimpl.core.operand.OrImpl;
 import carisma.check.policycreation.profileimpl.core.operand.XoneImpl;
 import carisma.check.policycreation.profileimpl.core.operator.EqualToImpl;
@@ -156,10 +165,13 @@ import carisma.check.policycreation.profileimpl.core.policy.AgreementImpl;
 import carisma.check.policycreation.profileimpl.core.policy.OfferImpl;
 import carisma.check.policycreation.profileimpl.core.policy.PolicyImpl;
 import carisma.check.policycreation.profileimpl.core.policy.SetImpl;
+import carisma.check.policycreation.profileimpl.core.relation.RelationImpl;
 import carisma.check.policycreation.profileimpl.core.relation.TargetImpl;
 import carisma.check.policycreation.profileimpl.core.rule.DutyImpl;
 import carisma.check.policycreation.profileimpl.core.rule.PermissionImpl;
 import carisma.check.policycreation.profileimpl.core.rule.ProhibitionImpl;
+import carisma.profile.uconcreation.odrl.common.internal.classes.action.AcceptTracking;
+import carisma.profile.uconcreation.odrl.common.internal.classes.function.AttributedParty;
 import carisma.profile.uconcreation.odrl.common.internal.classes.relation.Output;
 import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintInterface;
 import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Consequence;
@@ -168,6 +180,7 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Remedy;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Operand;
 import carisma.profile.uconcreation.odrl.core.internal.classes.operator.Operator;
 import carisma.profile.uconcreation.odrl.core.internal.classes.rightoperand.RightOperandInterface;
+import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Rule;
 
 public class UMLModelConverter {
 	private final Map<String,Map<String,Class<? extends ODRLClassImpl>>> enumMap = new HashMap<>();
@@ -175,6 +188,10 @@ public class UMLModelConverter {
 	private final Map<String,Map<String,Class<? extends ODRLClassImpl>>> typeEnumMap2 = new HashMap<>();
 	private final Map<String,Class<? extends ODRLClassImpl>> classMap = new HashMap<>();
 	private final Map<StringTuple,Class<? extends ODRLClassImpl>> featureMap = new HashMap<>();
+	
+	public static final String TYPE_STRING = "@type";
+	
+	private final Map<Object,Object> termMap = new HashMap<>(); //Instead do mapping in the map-conversion-methods of the odrl-classes?
 	public static final ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
 	
 	private Map<EObject,ODRLClassImpl> referencingMap = new HashMap<>();//Currently: Save top-level elements (stereotype applications) as they may be referred by several objects, others may not. (If more Elements should be accessed: Save with unique EObject, watch out for uniqueness of enums (may need to be saved as triple)
@@ -379,7 +396,219 @@ public class UMLModelConverter {
 				Map.entry(new StringTuple(odrlPackage.getDuty().getName(),odrlPackage.getDuty_Consequences().getName()), ConsequenceImpl.class)
 				));
 		
-		//Missing: LogicalConstraint, StructuralFeatures
+		//Missing: LogicalConstraint (is in specialCases)
+		
+		
+		termMap.put(null, null);//TODO: TermMap?
+		try {
+			//ODRL-Core
+			//Action
+			termMap.put(ActionImpl.class, "Action");//Currently abstract
+			termMap.put(ActionImpl.class.getDeclaredField("refinement"), "refinement");
+			termMap.put(TransferOwnershipImpl.class, "transfer");
+			termMap.put(UseImpl.class, "use");
+			//Asset
+			termMap.put(AssetImpl.class, "Asset");
+			termMap.put(AssetImpl.class.getDeclaredField("uid"), "uid");
+			termMap.put(AssetCollectionImpl.class, "AssetCollection");
+			termMap.put(AssetCollectionImpl.class.getDeclaredField("source"), "source");
+			termMap.put(AssetCollectionImpl.class.getDeclaredField("refinement"), "refinement");
+			//Conflict
+			termMap.put(ConflictStrategyImpl.class, "ConflictTerm");//Currently abstract
+			termMap.put(PermitImpl.class, "perm");
+			termMap.put(ProhibitionImpl.class, "prohibit");
+			termMap.put(VoidPolicyImpl.class, "invalid");
+			//Constraint
+			termMap.put(ConstraintImpl.class, "Constraint");
+			termMap.put(ConstraintImpl.class.getDeclaredField("uid"), "uid");
+			termMap.put(ConstraintImpl.class.getDeclaredField("leftOperand"), "leftOperand");
+			termMap.put(ConstraintImpl.class.getDeclaredField("operator"), "operator");
+			termMap.put(ConstraintImpl.class.getDeclaredField("rightOperand"), "rightOperand");
+			termMap.put(ConstraintImpl.class.getDeclaredField("rightOperandReference"), "rightOperandReference");
+			termMap.put(ConstraintImpl.class.getDeclaredField("dataType"), "dataType");
+			termMap.put(ConstraintImpl.class.getDeclaredField("unit"), "unit");
+			termMap.put(ConstraintImpl.class.getDeclaredField("status"), "status");
+			termMap.put(LogicalConstraintImpl.class, "LogicalConstraint");
+			termMap.put(LogicalConstraintImpl.class.getDeclaredField("uid"), "uid");
+			termMap.put(LogicalConstraintImpl.class.getDeclaredField("operand"), "operand");
+			//Failure
+			//termMap.put(FailureImpl.class, ""); //Is (Sub)-Property, does not exist as class in the model
+			termMap.put(ConsequenceImpl.class, "consequence"); //Is (Sub)-Property, does not exist as class in the model
+			termMap.put(RemedyImpl.class, "remedy"); //Is (Sub)-Property, does not exist as class in the model
+			//Function
+			termMap.put(FunctionImpl.class, "function"); //Is (Sub)-Property, does not exist as class in the model
+			termMap.put(AssigneeImpl.class, "assignee"); //Is (Sub)-Property, does not exist as class in the model
+			termMap.put(AssignerImpl.class, "assigner"); //Is (Sub)-Property, does not exist as class in the model
+			//LeftOperand
+			termMap.put(LeftOperand.class, "LeftOperand");//Currently abstract
+			//Operand
+			//termMap.put(OperandImpl.class, "");
+			termMap.put(AndImpl.class, "and");
+			termMap.put(AndSequenceImpl.class, "andSequence");
+			termMap.put(OrImpl.class, "or");
+			termMap.put(XoneImpl.class, "xone");
+			//Operator
+			//termMap.put(OperatorImpl.class, "");
+			termMap.put(EqualToImpl.class, "eq");
+			termMap.put(GreaterEqImpl.class, "gteq");
+			termMap.put(GreaterThanImpl.class, "gt");
+			termMap.put(HasPartImpl.class, "hasPart");
+			termMap.put(IsAImpl.class, "isA");
+			termMap.put(IsAllOfImpl.class, "isAllOf");
+			termMap.put(IsAnyOfImpl.class, "isAnyOf");
+			termMap.put(IsNoneOfImpl.class, "isNoneOf");
+			termMap.put(IsPartOfImpl.class, "isPartOf");
+			termMap.put(LessThanEqImpl.class, "lteq");
+			termMap.put(LessThanImpl.class, "lt");
+			termMap.put(NotEqualToImpl.class, "neq");
+			//Party
+			termMap.put(PartyImpl.class, "Party");
+			termMap.put(PartyImpl.class.getDeclaredField("uid"), "uid");
+			termMap.put(PartyCollectionImpl.class, "PartyCollection");
+			termMap.put(PartyCollectionImpl.class.getDeclaredField("refinement"), "refinement");
+			termMap.put(PartyCollectionImpl.class.getDeclaredField("source"), "source");
+			//Policy
+			termMap.put(PolicyImpl.class, "Policy");
+			termMap.put(PolicyImpl.class.getDeclaredField("uid"), "uid");
+			termMap.put(PolicyImpl.class.getDeclaredField("conflictStrategy"), "conflict");
+			termMap.put(PolicyImpl.class.getDeclaredField("profiles"), "profile");
+			termMap.put(PolicyImpl.class.getDeclaredField("inheritsFrom"), "inheritFrom");
+			termMap.put(PolicyImpl.class.getDeclaredField("permission"), "permission");
+			termMap.put(PolicyImpl.class.getDeclaredField("obligation"), "obligation");
+			termMap.put(AgreementImpl.class, "Agreement");
+			termMap.put(OfferImpl.class, "Offer");
+			termMap.put(SetImpl.class, "Set");
+			//Relation
+			termMap.put(RelationImpl.class, "relation"); //Is (Sub)-Property, does not exist as class in the model
+			termMap.put(TargetImpl.class, "target"); //Is (Sub)-Property, does not exist as class in the model
+			//RightOperand//TODO
+			//
+			//Rule
+			termMap.put(Rule.class, "Rule");//Currently abstract
+			termMap.put(Rule.class.getDeclaredField("uid"), "uid");
+			//termMap.put(Rule.class.getDeclaredField("involvedParties"), ""); //handled through value types
+			//termMap.put(Rule.class.getDeclaredField("involvedAssets"), ""); //handled through value types
+			termMap.put(Rule.class.getDeclaredField("action"), "action");
+			termMap.put(Rule.class.getDeclaredField("constraint"), "constraint");
+			termMap.put(DutyImpl.class, "Duty");
+			termMap.put(Rule.class.getDeclaredField("consequences"), "consequence");//TODO: maybe change to failure
+			termMap.put(PermissionImpl.class, "Permission");
+			termMap.put(PermissionImpl.class.getDeclaredField("duties"), "duty");
+			termMap.put(ProhibitionImpl.class, "Prohibition");
+			termMap.put(PermissionImpl.class.getDeclaredField("remedy"), "remedy");//TODO: maybe change to failure
+			
+			//ODRL-Common
+			//Action
+			termMap.put(AcceptTrackingImpl.class, "acceptTracking");
+			termMap.put(AggregateImpl.class, "aggregate");
+			termMap.put(AnnotateImpl.class, "annotate");
+			termMap.put(AnonymizeImpl.class, "anonymize");
+			termMap.put(ArchiveImpl.class, "archive");
+			termMap.put(AttributeImpl.class, "attribute");
+			termMap.put(AttributionImpl.class, "cc:Attribution");//TODO: maybe deal with creative commons terms differently (identify creative commons terms by the cc: in their ID currently)
+			termMap.put(CommercialUseImpl.class, "cc:CommericalUse");
+			termMap.put(CompensateImpl.class, "compensate");
+			termMap.put(ConcurrentUseImpl.class, "concurrentUse");
+			termMap.put(DeleteImpl.class, "delete");
+			termMap.put(DerivativeWorksImpl.class, "cc:DerivativeWorks");
+			termMap.put(DeriveImpl.class, "derive");
+			termMap.put(DigitizeImpl.class, "digitize");
+			termMap.put(DisplayImpl.class, "display");
+			termMap.put(DistributeImpl.class, "distribute");
+			termMap.put(DistributionImpl.class, "cc:Distribution");
+			termMap.put(EnsureExclusivityImpl.class, "ensureExclusivity");
+			termMap.put(ExecuteImpl.class, "execute");
+			termMap.put(ExtractImpl.class, "extract");
+			termMap.put(GiveImpl.class, "give");
+			termMap.put(GrantUseImpl.class, "grantUse");
+			termMap.put(IncludeImpl.class, "include");
+			termMap.put(IndexImpl.class, "index");
+			termMap.put(InformImpl.class, "inform");
+			termMap.put(InstallImpl.class, "install");
+			termMap.put(ModifyImpl.class, "modify");
+			termMap.put(MoveImpl.class, "move");
+			termMap.put(NextPolicyImpl.class, "nextPolicy");
+			termMap.put(NoticeImpl.class, "cc:Notice");
+			termMap.put(ObtainConsentImpl.class, "obtainConsent");
+			termMap.put(PlayImpl.class, "play");
+			termMap.put(PresentImpl.class, "present");
+			termMap.put(PrintImpl.class, "print");
+			termMap.put(ReadImpl.class, "read");
+			termMap.put(ReproduceImpl.class, "reproduce");
+			termMap.put(ReproductionImpl.class, "cc:Reproduction");
+			termMap.put(ReviewPolicyImpl.class, "reviewPolicy");
+			termMap.put(SellImpl.class, "sell");
+			termMap.put(ShareAlikeImpl.class, "cc:ShareAlike");
+			termMap.put(SharingImpl.class, "cc:Sharing");
+			termMap.put(SourceCodeImpl.class, "cc:SourceCode");
+			termMap.put(StreamImpl.class, "stream");
+			termMap.put(SynchronizeImpl.class, "http://www.w3.org/ns/odrl/2/synchronize");
+			termMap.put(TextToSpeechImpl.class, "textToSpeech");
+			termMap.put(TransformImpl.class, "transform");
+			termMap.put(TranslateImpl.class, "translate");
+			termMap.put(UninstallImpl.class, "uninstall");
+			termMap.put(WatermarkImpl.class, "watermark");
+			
+			//Function
+			termMap.put(AttributedPartyImpl.class, "attributedParty");
+			termMap.put(AttributingPartyImpl.class, "attributingParty");
+			termMap.put(CompensatedPartyImpl.class, "compensatedParty");
+			termMap.put(CompensatingPartyImpl.class, "compensatingParty");
+			termMap.put(ConsentedPartyImpl.class, "consentedParty");
+			termMap.put(ConsentingPartyImpl.class, "consentingParty");
+			termMap.put(ContractedPartyImpl.class, "contractedParty");
+			termMap.put(ContractingPartyImpl.class, "contractingParty");
+			termMap.put(InformedPartyImpl.class, "informedParty");
+			termMap.put(InformingPartyImpl.class, "informingParty");
+			termMap.put(TrackedPartyImpl.class, "trackedParty");
+			termMap.put(TrackingPartyImpl.class, "trackingParty");
+			
+			//LeftOperand
+			termMap.put(AbsoluteAssetPositionImpl.class, "absolutePosition");
+			termMap.put(AbsoluteAssetSizeImpl.class, "absoluteSize");
+			termMap.put(AbsoluteSpatialAssetPositionImpl.class, "absoluteSpatialPosition");
+			termMap.put(AbsoluteTemporalAssetPositionImpl.class, "absoluteTemporalPosition");
+			termMap.put(AssetPercentageImpl.class, "percentage");
+			termMap.put(CountImpl.class, "count");
+			termMap.put(DateTimeImpl.class, "dateTime");
+			termMap.put(DelayPeriodImpl.class, "delayPeriod");
+			termMap.put(DeliveryChannelImpl.class, "deliveryChannel");
+			termMap.put(ElapsedTimeImpl.class, "elapsedTime");
+			termMap.put(EventImpl.class, "event");
+			termMap.put(FileFormatImpl.class, "fileFormat");
+			termMap.put(GeospatialCoordinatesImpl.class, "spatialCoordinates");
+			termMap.put(GeospatialNamedAreaImpl.class, "spatial");
+			termMap.put(IndustryContextImpl.class, "industry");
+			termMap.put(LanguageImpl.class, "language");
+			termMap.put(MediaContextImpl.class, "media");
+			termMap.put(MeteredTimeImpl.class, "meteredTime");
+			termMap.put(PaymentAmountImpl.class, "payAmount");
+			termMap.put(ProductContextImpl.class, "product");
+			termMap.put(PurposeImpl.class, "purpose");
+			termMap.put(RecipientImpl.class, "recipient");
+			termMap.put(RecurringTimeIntervalImpl.class, "timeInterval");
+			termMap.put(RelativeAssetPositionImpl.class, "relativePosition");
+			termMap.put(RelativeAssetSizeImpl.class, "relativeSize");
+			termMap.put(RelativeSpatialAssetPositionImpl.class, "relativeSpatialPosition");
+			termMap.put(RelativeTemporalAssetPositionImpl.class, "relativeTemporalPosition");
+			termMap.put(RenditionResolutionImpl.class, "resolution");
+			termMap.put(SystemDeviceImpl.class, "systemDevice");
+			termMap.put(UnitOfCountImpl.class, "unitOfCount");
+			termMap.put(VersionImpl.class, "version");
+			termMap.put(VirtualItCommunicationLocationImpl.class, "virtualLocation");
+			
+			//Policy
+			termMap.put(AssertionImpl.class, "Assertion");
+			termMap.put(PrivacyImpl.class, "Privacy");
+			termMap.put(RequestImpl.class, "Request");
+			termMap.put(TicketImpl.class, "Ticket");
+			
+			//Relation
+			termMap.put(OutputImpl.class, "output");
+			
+		} catch (Exception e){//For noSuchFieldException
+			e.printStackTrace();
+		}
 	}
 	
 	private  Object specialCases(EObject currentEObject, ODRLClassImpl odrlParent, EObject activityElement) {
@@ -409,9 +638,11 @@ public class UMLModelConverter {
 			newObject = specialCases(currentEObject, odrlParent, activityElement);
 		}
 		if (currentEObject!=null) {
-			System.out.println("Qualified name of " + currentEObject + ": " + EcoreUtil.getIdentification(currentEObject));//TODO remove
-		}
+			//System.out.println("Qualified name of " + currentEObject + ": " + EcoreUtil.getIdentification(currentEObject));//TODO remove
+			System.out.println(currentEObject +" contained in: " + currentEObject.eContainer() + " with containment feature: " + currentEObject.eContainmentFeature());
+		}		
 		if (newObject instanceof ODRLClassImpl newObjectOdrl) {
+			newObjectOdrl.setHandler(this);//Possibly TODO Needs to be done before any further operations (as those operations rely on the . Currently not done in the constructor as that requires manual changes in all ODRL-classes every time the approach is changed
 			newObjectOdrl.fill(currentEObject, activityElement, this);
 		}
 		
@@ -465,21 +696,21 @@ public class UMLModelConverter {
 			return referencingMap.get(eObject);
 		}
 		System.out.println("EObject in getOdrlObjects: " + eObject);
-		Class<? extends ODRLClassImpl> ODRLClassImpl = null;
+		Class<? extends ODRLClassImpl> odrlClassImpl = null;
 		if (eObject instanceof EEnumLiteral enumLiteral) {
 			Map<String, Class<? extends ODRLClassImpl>> literalMap = enumMap.get(enumLiteral.getEEnum().getName());
 			if (literalMap!= null) {
-				ODRLClassImpl = literalMap.get(enumLiteral.getName());
+				odrlClassImpl = literalMap.get(enumLiteral.getName());
 			}
 		} else if (eObject instanceof EStructuralFeature eFeature) {
 			String featureName = eFeature.getName();
 			String owningClassName = eFeature.getEContainingClass().getName();
 			StringTuple tuple = new StringTuple(owningClassName,featureName);
-			ODRLClassImpl = featureMap.get(tuple);
+			odrlClassImpl = featureMap.get(tuple);
 		} else {
 			String className = eObject.eClass().getName();
-			ODRLClassImpl = classMap.get(className);
-			if (ODRLClassImpl==null) {
+			odrlClassImpl = classMap.get(className);
+			if (odrlClassImpl==null) {
 				String typeFeatureString = typeEnumMap1.get(className);
 				EStructuralFeature typeFeature = eObject.eClass().getEStructuralFeature(typeFeatureString);
 				if (typeFeature != null) {
@@ -487,14 +718,14 @@ public class UMLModelConverter {
 					if (typeValue instanceof EEnumLiteral enumLiteral) {
 						Map<String, Class<? extends ODRLClassImpl>> typeEnums = typeEnumMap2.get(className);
 						if (typeEnums != null) {
-							ODRLClassImpl = typeEnums.get(enumLiteral.getName());
+							odrlClassImpl = typeEnums.get(enumLiteral.getName());
 						}
 					}
 				}
 			}
 		}
-		if (ODRLClassImpl!=null && ODRLClassImpl.class.isAssignableFrom(ODRLClassImpl)) {
-			Class<ODRLClassImpl> newClass = (Class<ODRLClassImpl>) ODRLClassImpl;
+		if (odrlClassImpl!=null && ODRLClassImpl.class.isAssignableFrom(odrlClassImpl)) {
+			Class<ODRLClassImpl> newClass = (Class<ODRLClassImpl>) odrlClassImpl;
 			try {
 			ODRLClassImpl newObject = newClass.getConstructor().newInstance();
 			return newObject;
@@ -825,6 +1056,29 @@ public class UMLModelConverter {
 //			}
 //		}
 	
+	public Object createMap(ODRLClassImpl object, Set<ODRLClassImpl> circlePreventionSet) {
+		return object.createMap(circlePreventionSet);
+	}
+	public String createMap(String string,  Set<ODRLClassImpl> circlePreventionSet) {
+		return string;
+	}
+	public List<Object>  createMap(List<? extends ODRLClassImpl> list,  Set<ODRLClassImpl> circlePreventionSet) {
+		List<Object> newList = new LinkedList<>();
+		for (ODRLClassImpl object : list) {
+			Object conversionresult = object.createMap(circlePreventionSet);
+			if (conversionresult != null) {
+				newList.add(conversionresult);
+			}
+		}
+		return newList;
+	}
+	public Object createMap(Object object,  Set<ODRLClassImpl> circlePreventionSet) {
+		return null;
+	}
+
+	public Map<Object, Object> getTermMap() {
+		return termMap;
+	}
 	
-		
+	
 }

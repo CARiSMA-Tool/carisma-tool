@@ -1,11 +1,13 @@
 package carisma.check.policycreation;
 
 import java.lang.reflect.Constructor;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.ui.internal.handlers.WizardHandler.New;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,34 +22,45 @@ public class TestClass {
 //		ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
 //		System.out.println(odrlPackage.getAsset_Uid().getName());
 //		System.out.println(odrlPackage.getPermission().getName());
-		String string1 = "Hi";
-		String string2 = "Hi";
-		System.out.println(string1.hashCode());
-		System.out.println(string2.hashCode());
-		
+
 
 		
 		
 		
-		
-		Class<? extends Policy> klass = Offer.class;
-		for (Constructor c : klass.getConstructors()) {
-			System.out.println(c);
-			
-		}
-		System.out.println(klass.getConstructors());
-		
+//		Class<? extends Policy> klass = Offer.class;
+//		for (Constructor c : klass.getConstructors()) {
+//			System.out.println(c);
+//			
+//		}
+//		System.out.println(klass.getConstructors());
 		
 		
 		
 		
+//		Map<String, Object> topLevelMap = new HashMap<>();
+//		topLevelMap.put("object1", Map.ofEntries(
+//				Map.entry("Test", "hi"),
+//				Map.entry("Array", new int[]{3,5,6}),
+//				Map.entry("List",Arrays.asList(new String[] {"String1","String2"})),
+//				Map.entry("FurtherNesting", Map.ofEntries(Map.entry("down", "downvalue")
+//						))
+//				));
+//				
+//		JSONObject jo = new JSONObject(topLevelMap);
+//		System.out.println(jo.toString(4));
+		
+//		switch(topLevelMap.get("hi").getClass().getSimpleName()) {
+//		
+//		}
 		
 		
 		
+		JSONObject jo = new JSONObject();
+		JSONObject jo2 = new JSONObject();
+		jo.put("HI",jo2);
+		jo2.put("@id","hi3");
 		
-		
-		
-		
+		System.out.println(jo.toString(4));
 		
 		
 		

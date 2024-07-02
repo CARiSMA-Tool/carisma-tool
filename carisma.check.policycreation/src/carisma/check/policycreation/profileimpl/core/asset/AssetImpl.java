@@ -10,9 +10,6 @@ public class AssetImpl extends ODRLClassImpl {
 	
 	
 	
-	String uidName;
-	
-	
 	
 	public String getUid() {
 		return uid;

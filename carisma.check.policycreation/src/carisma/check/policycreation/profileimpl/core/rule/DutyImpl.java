@@ -11,8 +11,6 @@ import carisma.check.policycreation.profileimpl.core.failure.ConsequenceImpl;
 
 public class DutyImpl extends RuleImpl {
 	ConsequenceImpl consequences;
-	
-	String consequencesName;
 
 	public ConsequenceImpl getConsequences() {
 		return consequences;

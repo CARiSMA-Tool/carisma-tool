@@ -19,16 +19,10 @@ import carisma.check.policycreation.profileimpl.core.relation.TargetImpl;
 
 public abstract class RuleImpl extends ODRLClassImpl {
 	String uid;
-	List<FunctionImpl> involvedParties = new LinkedList<FunctionImpl>();
-	List<RelationImpl> involvedAssets = new LinkedList<RelationImpl>();
+	List<FunctionImpl> involvedParties = new LinkedList<>();
+	List<RelationImpl> involvedAssets = new LinkedList<>();
 	ActionImpl action;
 	ConstraintInterfaceImpl constraint;
-	
-	String uidName;
-	String involvedPartiesName;
-	String involvedAssetsName;
-	String actionName;
-	
 	
 	public String getUid() {
 		return uid;

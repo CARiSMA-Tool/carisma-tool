@@ -302,14 +302,14 @@ public class Check implements CarismaCheckWithID {
 	}
 	
 	
-	private Object getValue(EObject eObject, String featureName) {
-//		EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
-//		if(feature == null) {
-//			//TODO add missing feature information?
-//		}
-//		return feature==null ? null : eObject.eGet(feature);
-		return eObject.eGet(eObject.eClass().getEStructuralFeature(featureName));//Nullpointer-exception with null-feature can only be produced by code errors, not by input errors
-	}
+//	private Object getValue(EObject eObject, String featureName) {
+////		EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
+////		if(feature == null) {
+////			//TODO add missing feature information?
+////		}
+////		return feature==null ? null : eObject.eGet(feature);
+//		return eObject.eGet(eObject.eClass().getEStructuralFeature(featureName));//Nullpointer-exception with null-feature can only be produced by code errors, not by input errors
+//	}
 	
 	
 	///////////////////////////////

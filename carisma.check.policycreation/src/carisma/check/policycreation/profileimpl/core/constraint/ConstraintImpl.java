@@ -19,18 +19,7 @@ public class ConstraintImpl extends ODRLClassImpl{
 	String dataType;
 	String unit;
 	String status;
-	
-	String uidName;
-	String leftOperandName;
-	String operatorName;
-	String rightOperandName;
-	String rightOperandReferenceName;
-	String dataTypeName;
-	String unitName;
-	String statusName;
 
-	
-	
 	
 	
 	public String getUid() {

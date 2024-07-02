@@ -7,11 +7,6 @@ import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
 
 public class PartyImpl extends ODRLClassImpl {
 	String uid;
-	
-	
-	
-	String uidName;
-
 
 
 	public String getUid() {

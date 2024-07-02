@@ -9,9 +9,7 @@ import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.Constr
 public class AssetCollectionImpl extends AssetImpl {
 	ConstraintInterfaceImpl refinement;
 	String source;
-	
-	String refinementName;
-	String sourceName;
+
 	
 	
 	public ConstraintInterfaceImpl getRefinement() {

@@ -8,10 +8,7 @@ import carisma.check.policycreation.profileimpl.core.constraint.ConstraintInterf
 public class PartyCollectionImpl extends PartyImpl {
 	ConstraintInterfaceImpl refinement;
 	String source;
-	
-	String refinementName;
-	String sourceName;
-	
+
 	
 	public ConstraintInterfaceImpl getRefinement() {
 		return refinement;

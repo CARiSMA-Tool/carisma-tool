@@ -11,8 +11,7 @@ import carisma.check.policycreation.profileimpl.core.failure.RemedyImpl;
 
 public class ProhibitionImpl extends RuleImpl {
 	RemedyImpl remedy;
-	
-	String remedyName;
+
 
 	public RemedyImpl getRemedy() {
 		return remedy;

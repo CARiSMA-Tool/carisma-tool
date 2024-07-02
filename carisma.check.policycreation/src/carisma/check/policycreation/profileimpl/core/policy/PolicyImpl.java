@@ -2,6 +2,8 @@ package carisma.check.policycreation.profileimpl.core.policy;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Activity;
@@ -24,108 +26,37 @@ public class PolicyImpl extends ODRLClassImpl{
 	List<DutyImpl> obligation = new LinkedList<DutyImpl>();
 	
 	
-	String uidName;
-	String conflictStrategyName;
-	String profilesName;
-	String inheritsFromName;
-	String permissionName;
-	String prohibitionName;
-	String obligationName;
-	
-	
-	
-	
-	
 	public String getUid() {
 		return uid;
 	}
-
-
-
-
-
-
-
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-
-
-
-
-
-
-
+	
 	public ConflictStrategyImpl getConflictStrategy() {
 		return conflictStrategy;
 	}
-
-
-
-
-
-
-
 	public void setConflictStrategy(ConflictStrategyImpl conflictStrategy) {
 		this.conflictStrategy = conflictStrategy;
 	}
-
-
-
-
-
-
-
+	
 	public List<String> getProfiles() {
 		return profiles;
 	}
-
-
-
-
-
-
-
 	public void setProfiles(List<String> profiles) {
 		this.profiles = profiles;
 	}
-
-
-
-
-
-
-
+	
 	public List<String> getInheritsFrom() {
 		return inheritsFrom;
 	}
-
-
-
-
-
-
-
 	public void setInheritsFrom(List<String> inheritsFrom) {
 		this.inheritsFrom = inheritsFrom;
 	}
-
-
-
-
-
-
-
+	
 	public List<PermissionImpl> getPermission() {
 		return permission;
 	}
-
-
-
-
-
-
-
 	public void setPermission(List<PermissionImpl> permission) {
 		this.permission = permission;
 	}
@@ -133,22 +64,9 @@ public class PolicyImpl extends ODRLClassImpl{
 		this.permission.add(permission);
 	}
 
-
-
-
-
-
-
 	public List<ProhibitionImpl> getProhibition() {
 		return prohibition;
 	}
-
-
-
-
-
-
-
 	public void setProhibition(List<ProhibitionImpl> prohibition) {
 		this.prohibition = prohibition;
 	}
@@ -156,26 +74,12 @@ public class PolicyImpl extends ODRLClassImpl{
 		this.prohibition.add(prohibition);
 	}
 
-
-
-
-
-
-
 	public List<DutyImpl> getObligation() {
 		return obligation;
 	}
-
-
-
-
-
-
-
 	public void setObligation(List<DutyImpl> obligation) {
 		this.obligation = obligation;
 	}
-	
 	public void addObligation(DutyImpl obligation) {
 		this.obligation.add(obligation);
 	}
@@ -227,5 +131,21 @@ public class PolicyImpl extends ODRLClassImpl{
 			}
 		}
 	}
+
+	@Override
+	public void fillMap(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet) {
+		super.fillMap(map, circlePreventionSet);
+		String uidResult = handler.createMap(uid, circlePreventionSet);
+		if (uidResult != null) {
+			Object termKey = handler.getTermMap().get(this.getClass().getDeclaredField("uid"));
+			if (termKey instanceof String termKeyString) {
+				map.put(termKeyString,uidResult);
+			}
+			
+		}
+		
+	}
+	
+	
 
 }

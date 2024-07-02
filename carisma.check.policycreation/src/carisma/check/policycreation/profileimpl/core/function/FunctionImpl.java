@@ -6,10 +6,8 @@ import carisma.check.policycreation.UMLModelConverter;
 import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
 import carisma.check.policycreation.profileimpl.core.party.PartyImpl;
 
-public abstract class FunctionImpl extends ODRLClassImpl {
+public class FunctionImpl extends ODRLClassImpl {
 	PartyImpl party;
-	
-	String partyName;
 
 	public PartyImpl getParty() {
 		return party;

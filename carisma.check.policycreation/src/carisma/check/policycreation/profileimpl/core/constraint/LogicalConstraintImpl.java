@@ -12,8 +12,7 @@ public class LogicalConstraintImpl extends ODRLClassImpl implements ConstraintIn
 	String uid;
 	OperandImpl operand;
 	
-	String uidName;
-	String operandName;
+	
 	public String getUid() {
 		return uid;
 	}
