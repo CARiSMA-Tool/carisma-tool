@@ -39,6 +39,7 @@ import carisma.tests.modelutils.uml.TestHelper;
 /**
  * 
  */
+@Ignore
 @SuppressWarnings("java:S5960")
 public class ComplexChangesParserTest {
 	

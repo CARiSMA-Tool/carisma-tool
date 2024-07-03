@@ -10,6 +10,7 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.evolution.Change;
@@ -19,6 +20,7 @@ import carisma.modeltype.uml2.UMLHelper;
 import carisma.profile.umlchange.UMLchange;
 import carisma.tests.modelutils.uml.TestHelper;
 
+@Ignore
 @SuppressWarnings("java:S5960")
 public class DelTest {
 

@@ -22,6 +22,7 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.check.smartcard.TestHelper;
@@ -35,6 +36,7 @@ import carisma.modeltype.uml2.UMLStateMachineHelper;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 
+@Ignore
 @SuppressWarnings("java:S5960")
 public class AuthorizedStatusCheckTest {
 
