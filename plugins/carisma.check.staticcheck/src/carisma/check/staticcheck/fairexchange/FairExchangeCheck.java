@@ -88,6 +88,14 @@ public class FairExchangeCheck implements CarismaCheckWithID {
 			this.dummyHost.addResultMessage(analysisResultMessage);
 			return false;
 		}
+		List<Element> allStereotypedElements = UMLsecUtil.getStereotypedElements(givenModel, UMLsec.FAIR_EXCHANGE);
+		if (allStereotypedElements.size() > 1) {
+			this.dummyHost.appendLineToReport("Multiple <<fair-exchange>> stereotypes applied.");
+			AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.WARNING,
+					"Multiple occurances of fair exchange (on activity and package), please delete at least one of them.");
+			this.dummyHost.addResultMessage(analysisResultMessage);
+			return false;
+		}
 		//this.stereotype = this.elementWithFairExchange.getAppliedStereotype(fairName);
 		this.stereotype = givenModel.getAppliedStereotype(fairName);
 		if (this.stereotype == null) {
@@ -180,8 +188,6 @@ public class FairExchangeCheck implements CarismaCheckWithID {
 	@SuppressWarnings("unchecked")
 	private boolean checkStereotype() {
 		if (((List<List<Element>>) this.elementWithFairExchange.getValue(this.stereotype, "start")).isEmpty()) {
-			this.dummyHost.appendLineToReport("Value start element" + this.elementWithFairExchange.getValue(this.stereotype, "start"));
-			this.dummyHost.appendLineToReport("Value stop element" + this.elementWithFairExchange.getValue(this.stereotype, "stop"));
 			this.dummyHost.appendLineToReport("No start-Elements are defined.");
 			this.dummyHost.appendLineToReport("Check failed with respect to <<fair exchange>>.");
 			AnalysisResultMessage analysisResultMessage = new AnalysisResultMessage(StatusType.WARNING,
