@@ -7,8 +7,6 @@ import carisma.check.policycreation.profileimpl.core.rule.RuleImpl;
 
 public abstract class FailureImpl extends ODRLClassImpl {
 	List<RuleImpl> rules;
-	
-	String rulesName;//TODO treat differently as subproperty
 
 	public List<RuleImpl> getRules() {
 		return rules;

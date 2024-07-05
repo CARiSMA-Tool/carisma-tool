@@ -25,7 +25,6 @@ public class DutyImpl extends RuleImpl {
 		super.fill(currentEObject, activityElement, handler);
 		EStructuralFeature consequenceFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getDuty_Consequences().getName());
 		if (UMLModelConverter.getValue(currentEObject,odrlPackage.getDuty_Consequences()) != null) {
-			System.out.println("ConsequenceValue" + UMLModelConverter.getValue(currentEObject,odrlPackage.getDuty_Consequences()));
 			Object attributeValueOdrl = handler.addElement(consequenceFeature, this, activityElement);
 			if (attributeValueOdrl instanceof ConsequenceImpl consequence) {
 				this.setConsequences(consequence);

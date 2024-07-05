@@ -1,6 +1,8 @@
 package carisma.check.policycreation.profileimpl.core.constraint;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -50,5 +52,13 @@ public class LogicalConstraintImpl extends ODRLClassImpl implements ConstraintIn
 		}
 	}
 	
+	@Override
+	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
+		Object operatorEntry = map.remove(getFieldTerm("operand"));
+		if (operand != null) {
+			map.put(operand.gatClassTerm(), operatorEntry);
+		}
+		return null;
+	}
 	
 }

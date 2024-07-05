@@ -1,5 +1,8 @@
 package carisma.check.policycreation.profileimpl.core.party;
 
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EObject;
 
 import carisma.check.policycreation.UMLModelConverter;
@@ -28,4 +31,14 @@ public class PartyImpl extends ODRLClassImpl {
 		}
 	}
 	
+	@Override
+	public Object fillMapIndividual(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet)
+			throws NoSuchFieldException, SecurityException {
+		if (map.size()==1 && map.get(getFieldTerm("uid"))!=null) {
+				return map.get(getFieldTerm("uid"));
+		} else {
+			map.put(getTypeKeyword(), gatClassTerm());//TODO: Not sure if that's how it is in the specification
+		}
+		return null;
+	}
 }

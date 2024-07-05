@@ -189,11 +189,27 @@ public class Check implements CarismaCheckWithID {
 			}
 			for (Stereotype s : e.getAppliedStereotypes()) {
 				if (s.getProfile().getQualifiedName().equals(profileName)) { //probably replace qualified name comparison by an more unique identifier
+					System.out.println("Structural features of a stereotype application:");
+					for(EStructuralFeature stAppEsf : e.getStereotypeApplication(s).eClass().getEAllStructuralFeatures()) {
+						System.out.println(stAppEsf);
+					}
+					System.out.println("Features end");
 					Object object = (addElement(e.getStereotypeApplication(s), null, e));
 					
 					if (object instanceof ODRLClassImpl odrlC) {
 						System.out.println("Created ODRLObject: " + odrlC);
 						JSONObject jso = new JSONObject(odrlC);
+						//
+						UMLModelConverter converter = new UMLModelConverter();
+						Object converterMap = converter.printMap(odrlC);
+						System.out.println("converter print map");
+						System.out.println(converterMap);
+						System.out.println("converter print JSON");
+						if (converterMap instanceof Map actualMap)
+						System.out.println(new JSONObject(actualMap).toString(4));
+						else System.out.println(converterMap==null?"Convertermap is null" : converterMap.getClass());
+						System.out.println("converter printed to json");
+						//
 						printList.add(jso);
 						objectList.add(odrlC);
 						System.out.println(jso.toString(4));
@@ -247,17 +263,11 @@ public class Check implements CarismaCheckWithID {
 			System.out.println("At end of addElement :" + newObject);
 			referencingList2.put(currentEObject, newOdrlObject);//Maybe extend the valid keys and add all objects, not just ODRLClassImples
 		}
-		System.out.println(converter.addElement(currentEObject,null,null)==null?"Helper: Null": "Helper:  " + converter.addElement(currentEObject,null,null));
+		System.out.println(converter.addElement(currentEObject,null,null)==null?"Helper: Null": "Helper:  " + converter.addElement(currentEObject,null,null)); //TODO: Watch out: 2nd call
 		System.out.println("passed EObject: " + currentEObject);
 		return newObject;
 	}
 	
-	
-	private Object foo() {
-		Map<String,Class> map = new HashMap<>();
-		map.put(odrlPackage.getProhibition().getName(), Prohibit.class);
-		return map;
-	}
 	
 	
 	private <T> List<T> addElement(List currentList, ODRLClassImpl odrlParent, EObject activityElement, Class<T> type) {//No check for several layers of lists as that case does not occur in the current model

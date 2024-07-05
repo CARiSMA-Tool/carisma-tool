@@ -1,5 +1,7 @@
 package carisma.check.policycreation.profileimpl.core.action;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.json.JSONObject;
@@ -19,16 +21,17 @@ public abstract class ActionImpl extends ODRLClassImpl {
 		this.refinement = refinement;
 	}
 
-
-
-	@Override
-	public void fillJson(JSONObject newJson, Set<ODRLClassImpl> circlePreventionSet, UMLModelConverter handler) {
-		super.fillJson(newJson, circlePreventionSet, handler);
-		newJson.put(refinementName, false);
-		
-	}
-
-
 	
+	@Override
+	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
+		if (refinement == null) {
+			return gatClassTerm();
+		} else {
+			Map<String,String> valueEntry= new HashMap<>();
+			valueEntry.put(gatIdKeyword(), gatClassTerm());//TODO: expand the classTerm with its namespace identifier prefix (extract from the context file)
+			map.put("rdf:value", valueEntry);
+		}
+		return null;
+	}
 
 }

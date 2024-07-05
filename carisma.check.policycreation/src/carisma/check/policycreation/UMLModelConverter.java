@@ -1,6 +1,7 @@
 package carisma.check.policycreation;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -10,11 +11,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.uml2.uml.Activity;
-import org.eclipse.uml2.uml.ActivityNode;
-import org.eclipse.uml2.uml.InputPin;
-import org.eclipse.uml2.uml.OutputPin;
 
 import ODRLCommonVocabulary.Action;
 import ODRLCommonVocabulary.AssetRelationType;
@@ -137,7 +133,6 @@ import carisma.check.policycreation.profileimpl.core.constraint.ConstraintImpl;
 import carisma.check.policycreation.profileimpl.core.constraint.ConstraintListImpl;
 import carisma.check.policycreation.profileimpl.core.constraint.LogicalConstraintImpl;
 import carisma.check.policycreation.profileimpl.core.failure.ConsequenceImpl;
-import carisma.check.policycreation.profileimpl.core.failure.FailureImpl;
 import carisma.check.policycreation.profileimpl.core.failure.RemedyImpl;
 import carisma.check.policycreation.profileimpl.core.function.AssigneeImpl;
 import carisma.check.policycreation.profileimpl.core.function.AssignerImpl;
@@ -170,28 +165,20 @@ import carisma.check.policycreation.profileimpl.core.relation.TargetImpl;
 import carisma.check.policycreation.profileimpl.core.rule.DutyImpl;
 import carisma.check.policycreation.profileimpl.core.rule.PermissionImpl;
 import carisma.check.policycreation.profileimpl.core.rule.ProhibitionImpl;
-import carisma.profile.uconcreation.odrl.common.internal.classes.action.AcceptTracking;
-import carisma.profile.uconcreation.odrl.common.internal.classes.function.AttributedParty;
-import carisma.profile.uconcreation.odrl.common.internal.classes.relation.Output;
-import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintInterface;
-import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Consequence;
-import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Failure;
-import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Remedy;
-import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Operand;
-import carisma.profile.uconcreation.odrl.core.internal.classes.operator.Operator;
-import carisma.profile.uconcreation.odrl.core.internal.classes.rightoperand.RightOperandInterface;
-import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Rule;
+import carisma.check.policycreation.profileimpl.core.rule.RuleImpl;
 
 public class UMLModelConverter {
-	private final Map<String,Map<String,Class<? extends ODRLClassImpl>>> enumMap = new HashMap<>();
-	private final Map<String,String> typeEnumMap1 = new HashMap<>();
-	private final Map<String,Map<String,Class<? extends ODRLClassImpl>>> typeEnumMap2 = new HashMap<>();
-	private final Map<String,Class<? extends ODRLClassImpl>> classMap = new HashMap<>();
-	private final Map<StringTuple,Class<? extends ODRLClassImpl>> featureMap = new HashMap<>();
+	private final Map<String,Map<String,Class<? extends ODRLClassImpl>>> enumMap = new HashMap<>();//Mapping of EEnumLiterals to the ODRLClass-Objects they represent
+	private final Map<String,String> typeEnumMap1 = new HashMap<>();//Mapping of EClasses to the EStructuralFeature that contains the EEnumLiteral that represents the ODRLClass
+	private final Map<String,Map<String,Class<? extends ODRLClassImpl>>> typeEnumMap2 = new HashMap<>();//Mapping of EEnumLiterals to the ODRLClass-Objects they represent (used with typeEnumMap1) //TODO: potential problem: if several Enumerations with same-name Literals are valid as value of the structural feature their literals may not be distinguishable with the current approach
+	private final Map<String,Class<? extends ODRLClassImpl>> classMap = new HashMap<>();//Mapping of EClasses to the ODRLClass-Objects they represent
+	private final Map<StringTuple,Class<? extends ODRLClassImpl>> featureMap = new HashMap<>();//Mapping of EStructuralFeatures to the ODRLClass-Objects they represent
 	
 	public static final String TYPE_STRING = "@type";
 	
-	private final Map<Object,Object> termMap = new HashMap<>(); //Instead do mapping in the map-conversion-methods of the odrl-classes?
+	public static final String JSONLD_TYPE_STRING = "@type";
+	
+	private final Map<Object,String> termMap = new HashMap<>(); //Instead do mapping in the map-conversion-methods of the odrl-classes?
 	public static final ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
 	
 	private Map<EObject,ODRLClassImpl> referencingMap = new HashMap<>();//Currently: Save top-level elements (stereotype applications) as they may be referred by several objects, others may not. (If more Elements should be accessed: Save with unique EObject, watch out for uniqueness of enums (may need to be saved as triple)
@@ -399,7 +386,6 @@ public class UMLModelConverter {
 		//Missing: LogicalConstraint (is in specialCases)
 		
 		
-		termMap.put(null, null);//TODO: TermMap?
 		try {
 			//ODRL-Core
 			//Action
@@ -430,7 +416,7 @@ public class UMLModelConverter {
 			termMap.put(ConstraintImpl.class.getDeclaredField("status"), "status");
 			termMap.put(LogicalConstraintImpl.class, "LogicalConstraint");
 			termMap.put(LogicalConstraintImpl.class.getDeclaredField("uid"), "uid");
-			termMap.put(LogicalConstraintImpl.class.getDeclaredField("operand"), "operand");
+			termMap.put(LogicalConstraintImpl.class.getDeclaredField("operand"), "operand");//TODO Possibly remove as only subproperties of operand are used
 			//Failure
 			//termMap.put(FailureImpl.class, ""); //Is (Sub)-Property, does not exist as class in the model
 			termMap.put(ConsequenceImpl.class, "consequence"); //Is (Sub)-Property, does not exist as class in the model
@@ -443,6 +429,7 @@ public class UMLModelConverter {
 			termMap.put(LeftOperand.class, "LeftOperand");//Currently abstract
 			//Operand
 			//termMap.put(OperandImpl.class, "");
+			termMap.put(OperandImpl.class.getDeclaredField("constraints"), "TODO:Remove operand from termMap");//TODO:Remove, just here for testing
 			termMap.put(AndImpl.class, "and");
 			termMap.put(AndSequenceImpl.class, "andSequence");
 			termMap.put(OrImpl.class, "or");
@@ -484,18 +471,18 @@ public class UMLModelConverter {
 			//RightOperand//TODO
 			//
 			//Rule
-			termMap.put(Rule.class, "Rule");//Currently abstract
-			termMap.put(Rule.class.getDeclaredField("uid"), "uid");
+			termMap.put(RuleImpl.class, "Rule");//Currently abstract
+			termMap.put(RuleImpl.class.getDeclaredField("uid"), "uid");
 			//termMap.put(Rule.class.getDeclaredField("involvedParties"), ""); //handled through value types
 			//termMap.put(Rule.class.getDeclaredField("involvedAssets"), ""); //handled through value types
-			termMap.put(Rule.class.getDeclaredField("action"), "action");
-			termMap.put(Rule.class.getDeclaredField("constraint"), "constraint");
+			termMap.put(RuleImpl.class.getDeclaredField("action"), "action");
+			termMap.put(RuleImpl.class.getDeclaredField("constraint"), "constraint");
 			termMap.put(DutyImpl.class, "Duty");
-			termMap.put(Rule.class.getDeclaredField("consequences"), "consequence");//TODO: maybe change to failure
+			termMap.put(DutyImpl.class.getDeclaredField("consequences"), "consequence");//TODO: maybe change to failure
 			termMap.put(PermissionImpl.class, "Permission");
 			termMap.put(PermissionImpl.class.getDeclaredField("duties"), "duty");
 			termMap.put(ProhibitionImpl.class, "Prohibition");
-			termMap.put(PermissionImpl.class.getDeclaredField("remedy"), "remedy");//TODO: maybe change to failure
+			termMap.put(ProhibitionImpl.class.getDeclaredField("remedy"), "remedy");//TODO: maybe change to failure
 			
 			//ODRL-Common
 			//Action
@@ -636,14 +623,10 @@ public class UMLModelConverter {
 		newObject = getOdrlObject(currentEObject, odrlParent, activityElement);
 		if (newObject ==null) {
 			newObject = specialCases(currentEObject, odrlParent, activityElement);
-		}
-		if (currentEObject!=null) {
-			//System.out.println("Qualified name of " + currentEObject + ": " + EcoreUtil.getIdentification(currentEObject));//TODO remove
-			System.out.println(currentEObject +" contained in: " + currentEObject.eContainer() + " with containment feature: " + currentEObject.eContainmentFeature());
 		}		
 		if (newObject instanceof ODRLClassImpl newObjectOdrl) {
 			newObjectOdrl.setHandler(this);//Possibly TODO Needs to be done before any further operations (as those operations rely on the . Currently not done in the constructor as that requires manual changes in all ODRL-classes every time the approach is changed
-			newObjectOdrl.fill(currentEObject, activityElement, this);
+			newObjectOdrl.fill(currentEObject, activityElement, this); //TODO: Add boolean-return to fill to notify whether an object should be given back or not (since the ODRLClass-Creation based on Features always is executed no matter whether the object in question has a value with the feature)
 		}
 		
 		return newObject;
@@ -695,19 +678,18 @@ public class UMLModelConverter {
 		if (referencingMap.get(eObject)!=null) {
 			return referencingMap.get(eObject);
 		}
-		System.out.println("EObject in getOdrlObjects: " + eObject);
 		Class<? extends ODRLClassImpl> odrlClassImpl = null;
-		if (eObject instanceof EEnumLiteral enumLiteral) {
+		if (eObject instanceof EEnumLiteral enumLiteral) {//Object represented as Enumeration in the read model
 			Map<String, Class<? extends ODRLClassImpl>> literalMap = enumMap.get(enumLiteral.getEEnum().getName());
 			if (literalMap!= null) {
 				odrlClassImpl = literalMap.get(enumLiteral.getName());
 			}
-		} else if (eObject instanceof EStructuralFeature eFeature) {
+		} else if (eObject instanceof EStructuralFeature eFeature) {//Object represented as feature in the read model
 			String featureName = eFeature.getName();
 			String owningClassName = eFeature.getEContainingClass().getName();
 			StringTuple tuple = new StringTuple(owningClassName,featureName);
 			odrlClassImpl = featureMap.get(tuple);
-		} else {
+		} else {//Object represented as other type of EObject
 			String className = eObject.eClass().getName();
 			odrlClassImpl = classMap.get(className);
 			if (odrlClassImpl==null) {
@@ -1056,27 +1038,54 @@ public class UMLModelConverter {
 //			}
 //		}
 	
-	public Object createMap(ODRLClassImpl object, Set<ODRLClassImpl> circlePreventionSet) {
+	public Object printMap(Object obj) {
+		if (obj instanceof ODRLClassImpl odrlObj) {
+			try {
+				return odrlObj.createMap(new HashSet<ODRLClassImpl>());
+			} catch (NoSuchFieldException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	public Object createMap(ODRLClassImpl object, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
 		return object.createMap(circlePreventionSet);
 	}
 	public String createMap(String string,  Set<ODRLClassImpl> circlePreventionSet) {
 		return string;
 	}
-	public List<Object>  createMap(List<? extends ODRLClassImpl> list,  Set<ODRLClassImpl> circlePreventionSet) {
+	public <T> List<Object>  createMap(List<T> list,  Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
 		List<Object> newList = new LinkedList<>();
-		for (ODRLClassImpl object : list) {
-			Object conversionresult = object.createMap(circlePreventionSet);
-			if (conversionresult != null) {
-				newList.add(conversionresult);
+		for (T object : list) {
+			if (object instanceof ODRLClassImpl odrlObject) {
+				Object conversionresult = odrlObject.createMap(circlePreventionSet);
+				if (conversionresult != null) {
+					newList.add(conversionresult);
+				}
+			} else if (object != null) {
+					newList.add(object);
 			}
 		}
 		return newList;
 	}
-	public Object createMap(Object object,  Set<ODRLClassImpl> circlePreventionSet) {
+	
+	public Object createMap(Object object,  Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
+		if (object instanceof ODRLClassImpl odrlObject) {
+			return createMap(odrlObject, circlePreventionSet);
+		} else if (object instanceof String stringObject) {
+			return createMap(stringObject, circlePreventionSet);
+		} else if (object instanceof List<?> list) {
+			return createMap(list, circlePreventionSet);
+		}			
 		return null;
 	}
 
-	public Map<Object, Object> getTermMap() {
+	
+	public Map<Object, String> getTermMap() {
 		return termMap;
 	}
 	

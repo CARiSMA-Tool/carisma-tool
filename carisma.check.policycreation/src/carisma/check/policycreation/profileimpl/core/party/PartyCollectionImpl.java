@@ -1,8 +1,12 @@
 package carisma.check.policycreation.profileimpl.core.party;
 
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EObject;
 
 import carisma.check.policycreation.UMLModelConverter;
+import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
 import carisma.check.policycreation.profileimpl.core.constraint.ConstraintInterfaceImpl;
 
 public class PartyCollectionImpl extends PartyImpl {
@@ -38,6 +42,13 @@ public class PartyCollectionImpl extends PartyImpl {
 				this.setRefinement(refinement);
 			}
 		}
+	}
+	
+	@Override
+	public Object fillMapIndividual(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet)
+			throws NoSuchFieldException, SecurityException {
+		map.put(getTypeKeyword(), gatClassTerm());
+		return null;
 	}
 	
 }

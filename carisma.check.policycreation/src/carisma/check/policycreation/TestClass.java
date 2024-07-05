@@ -23,7 +23,15 @@ public class TestClass {
 //		System.out.println(odrlPackage.getAsset_Uid().getName());
 //		System.out.println(odrlPackage.getPermission().getName());
 
-
+		try {
+			throw new NoSuchFieldException("bye");
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		
@@ -55,14 +63,12 @@ public class TestClass {
 		
 		
 		
-		JSONObject jo = new JSONObject();
-		JSONObject jo2 = new JSONObject();
-		jo.put("HI",jo2);
-		jo2.put("@id","hi3");
-		
-		System.out.println(jo.toString(4));
-		
-		
+//		JSONObject jo = new JSONObject();
+//		JSONObject jo2 = new JSONObject();
+//		jo.put("HI",jo2);
+//		jo2.put("@id","hi3");
+//		
+//		System.out.println(jo.toString(4));
 		
 		
 		/*
@@ -100,6 +106,21 @@ public class TestClass {
 		llist.add(slist);
 		System.out.println(new JSONObject(llist));
 		*/
+		
+		
+		
+//		JSONConvTest o1 = new JSONConvTest();
+//		JSONConvTest o2 = new ExtensionTestClass();
+//		System.out.println("1");
+//		testMethod(o1);
+//		System.out.println("2");
+//		testMethod(o2);
+		
+//		Integer i = 4;
+//		Map<Object,Object> newMap = new HashMap<Object, Object>();
+//		newMap.put("hi", i);
+//		JSONObject nj = new JSONObject(newMap);
+//		System.out.println(nj.toString(4));
 		
 	}
 	public static class JSONConvTest {
@@ -154,6 +175,13 @@ public class TestClass {
 	}
 	public static class ExtensionTestClass extends JSONConvTest {
 		public String substring = "subst";
+	}
+	
+	public static <T>  void testMethod(T input) {
+		if (input instanceof ExtensionTestClass) {
+			System.out.println("Is Extension");
+		}
+		
 	}
 
 }

@@ -1,5 +1,6 @@
 package carisma.check.policycreation.profileimpl.core.rule;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -7,7 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import carisma.check.policycreation.UMLModelConverter;
 
 public class PermissionImpl extends RuleImpl {
-	List<DutyImpl> duties;
+	List<DutyImpl> duties =  new LinkedList<DutyImpl>();
 
 	public List<DutyImpl> getDuties() {
 		return duties;
