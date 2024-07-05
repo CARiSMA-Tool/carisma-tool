@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    modelDirectory="/carisma.profile.uconcreation.odrl.common/src"
+    modelPluginID="carisma.profile.uconcreation.odrl.common" modelName="ODRLCommonVocabulary"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.uml2.uml.ecore.importer"
+    complianceLevel="17.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
+    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="PROPERTY_DEFAULT_EXPRESSIONS" value="IGNORE"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
+    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="REPORT"/>
+    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="NON_API_INVARIANTS" value="IGNORE"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNTYPED_PROPERTIES" value="REPORT"/>
+    <details key="REDEFINING_PROPERTIES" value="REPORT"/>
+    <details key="INVOCATION_DELEGATES" value="IGNORE"/>
+    <details key="VALIDATION_DELEGATES" value="IGNORE"/>
+  </genAnnotations>
+  <foreignModel>ODRLCommonVocabulary.profile.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="ODRLCommonVocabulary" disposableProviderFactory="true"
+      ecorePackage="ODRLCommonVocabulary.ecore#/">
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ODRLCommonVocabulary.ecore#//ConflictStrategy">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConflictStrategy/Null"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConflictStrategy/Permit"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConflictStrategy/Prohibit"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConflictStrategy/Void_Policy"/>
+    </genEnums>
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ODRLCommonVocabulary.ecore#//PolicyType">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PolicyType/Null"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PolicyType/Agreement"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PolicyType/Assertion"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PolicyType/Offer"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PolicyType/Privacy"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PolicyType/Request"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PolicyType/Set"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PolicyType/Ticket"/>
+    </genEnums>
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ODRLCommonVocabulary.ecore#//LogicalOperator">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LogicalOperator/Null"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LogicalOperator/and"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LogicalOperator/andSequence"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LogicalOperator/or"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LogicalOperator/xone"/>
+    </genEnums>
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ODRLCommonVocabulary.ecore#//LeftOperand">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/Null"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/absoluteSize"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/absoluteSpartialPosition"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/absoluteTemporalPosition"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/count"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/dateTime"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/delayPeriod"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/deliveryChannel"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/device"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/elapsedTime"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/event"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/fileFormat"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/industry"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/language"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/media"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/meteredTime"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/payAmount"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/percentage"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/product"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/purpose"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/recipient"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/relativePosition"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/relativeSize"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/relativeSpartialPosition"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/relativeTemporalPosition"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/resolution"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/spartial"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/spartialCoordinates"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/system"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/systemDevice"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/timeInterval"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/unitOfCount"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/version"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/virtualLocation"/>
+    </genEnums>
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ODRLCommonVocabulary.ecore#//ConstraintOperator">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/Null"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/eq"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/gt"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/gteq"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/hasPart"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/isA"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/isAllOf"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/isAnyOf"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/isNoneOf"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/isPartOf"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/lt"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/lteq"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//ConstraintOperator/neq"/>
+    </genEnums>
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ODRLCommonVocabulary.ecore#//PartyFunctionType">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/Null"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/assignee"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/assigner"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/attributedParty"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/compensatedParty"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/compensatingParty"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/consentedParty"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/consentingParty"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/contractedParty"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/contractingParty"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/informedParty"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/informingParty"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/trackedParty"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/trackingParty"/>
+    </genEnums>
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ODRLCommonVocabulary.ecore#//AssetRelationType">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//AssetRelationType/Null"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//AssetRelationType/target"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//AssetRelationType/output"/>
+    </genEnums>
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ODRLCommonVocabulary.ecore#//Action">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/Null"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/cc_Attribution"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/cc_CommercialUse"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/cc_DerivativeWorks"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/cc_Distribution"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/cc_Notice"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/cc_Reproduction"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/cc_ShareAlike"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/cc_Sharing"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/cc_SourceCode"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/acceptTracking"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/aggregate"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/annotate"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/anonymize"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/archive"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/attribute"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/compensate"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/concurrentUse"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/delete"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/derive"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/digitize"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/display"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/distribute"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/ensureExclusivity"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/execute"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/extract"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/give"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/grantUse"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/include"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/index"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/inform"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/install"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/modify"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/move"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/nextPolicy"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/obtainConsent"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/play"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/present"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/print"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/read"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/reproduce"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/reviewPolicy"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/sell"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/stream"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/synchronize"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/textToSpeech"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/transfer"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/transform"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/translate"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/uninstall"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/use"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/watermark"/>
+    </genEnums>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//ODRLPolicy">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//ODRLPolicy/uid"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//ODRLPolicy/base_Activity"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//ODRLPolicy/conflictStrategy"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//ODRLPolicy/policyType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//ODRLPolicy/profiles"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//ODRLPolicy/inheritsFrom"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ODRLCommonVocabulary.ecore#//Rule">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Rule/base_Action"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Rule/uid"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Rule/involvedParties"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Rule/involvedAssets"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Rule/action"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ODRLCommonVocabulary.ecore#//RefinableElement">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//RefinableElement/refinement"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//LogicalConstraint">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//LogicalConstraint/uid"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//LogicalConstraint/logicalOperator"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//LogicalConstraint/constraints"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Constraint">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Constraint/uid"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Constraint/leftOperand"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Constraint/status"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Constraint/operator"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Constraint/rightOperand"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Constraint/rightOperandReference"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Constraint/dataType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Constraint/unit"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ODRLCommonVocabulary.ecore#//ConstrainableElement">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//ConstrainableElement/constraint"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//PartyFunction">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//PartyFunction/type"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//PartyFunction/party"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Party">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Party/uid"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Party/base_ActivityPartition"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Party/base_DataStoreNode"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//AssetRelation">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//AssetRelation/type"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//AssetRelation/asset"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Asset">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Asset/base_DataStoreNode"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Asset/base_Pin"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Asset/uid"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Permission">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Permission/duties"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Duty">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Duty/consequences"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Prohibition">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Prohibition/remedies"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//AssetCollection">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//AssetCollection/source"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//PartyCollection">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//PartyCollection/source"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
