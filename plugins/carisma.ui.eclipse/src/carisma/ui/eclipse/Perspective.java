@@ -35,11 +35,6 @@ public class Perspective implements IPerspectiveFactory {
 	    String editorArea = layout.getEditorArea();
 	    layout.setEditorAreaVisible(true);
 	    
-	    /*
-	    IFolderLayout leftfolder = layout.createFolder("Left", IPageLayout.LEFT, 0.2f, editorArea);
-	    leftfolder.addView(IPageLayout.ID_PROJECT_EXPLORER);
-	    leftfolder.addView("org.eclipse.papyrus.views.modelexplorer.modelexplorer");
-	    */
 	    
 	    IFolderLayout leftTopFolder = layout.createFolder("LeftTop", IPageLayout.LEFT, 0.2f, editorArea);
         leftTopFolder.addView(IPageLayout.ID_PROJECT_EXPLORER);
