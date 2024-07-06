@@ -16,38 +16,28 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 import org.json.JSONObject;
 
+import ODRLCommonVocabulary.Duty;
 import ODRLCommonVocabulary.ODRLCommonVocabularyFactory;
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
 import ODRLCommonVocabulary.util.ODRLCommonVocabularySwitchImpl;
 import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
+import carisma.check.policycreation.profileimpl.core.asset.AssetCollectionImpl;
+import carisma.check.policycreation.profileimpl.core.constraint.ConstraintImpl;
+import carisma.check.policycreation.profileimpl.core.party.PartyCollectionImpl;
+import carisma.check.policycreation.profileimpl.core.policy.AgreementImpl;
+import carisma.check.policycreation.profileimpl.core.policy.OfferImpl;
+import carisma.check.policycreation.profileimpl.core.policy.PolicyImpl;
+import carisma.check.policycreation.profileimpl.core.relation.RelationImpl;
+import carisma.check.policycreation.profileimpl.core.relation.TargetImpl;
+import carisma.check.policycreation.profileimpl.core.rule.DutyImpl;
+import carisma.check.policycreation.profileimpl.core.rule.PermissionImpl;
+import carisma.check.policycreation.profileimpl.core.rule.ProhibitionImpl;
+import carisma.check.policycreation.profileimpl.core.rule.RuleImpl;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
-import carisma.profile.uconcreation.odrl.core.internal.classes.asset.Asset;
-import carisma.profile.uconcreation.odrl.core.internal.classes.asset.AssetCollection;
-import carisma.profile.uconcreation.odrl.core.internal.classes.conflict.Prohibit;
-import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.Constraint;
-import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintInterface;
-import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.LogicalConstraint;
-import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Failure;
-import carisma.profile.uconcreation.odrl.core.internal.classes.failure.Remedy;
-import carisma.profile.uconcreation.odrl.core.internal.classes.function.Function;
-import carisma.profile.uconcreation.odrl.core.internal.classes.operand.Operand;
-import carisma.profile.uconcreation.odrl.core.internal.classes.operator.Operator;
-import carisma.profile.uconcreation.odrl.core.internal.classes.party.Party;
-import carisma.profile.uconcreation.odrl.core.internal.classes.party.PartyCollection;
-import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Agreement;
-import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Offer;
-import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Policy;
-import carisma.profile.uconcreation.odrl.core.internal.classes.relation.Relation;
-import carisma.profile.uconcreation.odrl.core.internal.classes.relation.Target;
-import carisma.profile.uconcreation.odrl.core.internal.classes.rightoperand.RightOperandInterface;
-import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Duty;
-import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Permission;
-import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Prohibition;
-import carisma.profile.uconcreation.odrl.core.internal.classes.rule.Rule;
 
 /** Contains a Simple CARiSMA Check which returns all elements of a given Model.
  *
@@ -326,7 +316,7 @@ public class Check implements CarismaCheckWithID {
 	
 	private void checkProfileRequirements(ODRLClassImpl testedElement) {//replace testedElement with the created objects
 		//TODO no checks for valid form of IRIs so far
-		if (testedElement instanceof Policy policy) {
+		if (testedElement instanceof PolicyImpl policy) {
 			if (policy.getPermission().isEmpty()
 					&& policy.getProhibition().isEmpty()
 					&& policy.getObligation().isEmpty()) {
@@ -334,22 +324,22 @@ public class Check implements CarismaCheckWithID {
 				addWarning("Invalid Policy. Policy needs to have at least one permission, prohibition or obligation.",testedElement);;
 			}
 			
-			if (policy instanceof Offer offer) {
+			if (policy instanceof OfferImpl offer) {
 				//TODO one assigner (only one? needed with every rule or just with one?)
-			} else if (policy instanceof Agreement agreement) {
+			} else if (policy instanceof AgreementImpl agreement) {
 				//TODO one assigner, one assignee
 			}
-		} else if (testedElement instanceof AssetCollection assetCollection) {
+		} else if (testedElement instanceof AssetCollectionImpl assetCollection) {
 			if (assetCollection.getRefinement()!=null
 					&& assetCollection.getSource()==null) {
 				addWarning("Invalid assetCollection: source-property needs to be used with refinement.", testedElement);
 			}
-		} else if (testedElement instanceof PartyCollection partyCollection) {
+		} else if (testedElement instanceof PartyCollectionImpl partyCollection) {
 			if (partyCollection.getRefinement()!=null
 					&& partyCollection.getSource()==null) {
 				addWarning("Invalid partyCollection: source-property needs to be used with refinement.", testedElement);
 			}
-		} else if (testedElement instanceof Constraint constraint) {
+		} else if (testedElement instanceof ConstraintImpl constraint) {
 			if (constraint.getLeftOperand()==null) {
 				addWarning("Invalid constraint: needs to have a leftOperand selected.",testedElement);
 			}
@@ -369,24 +359,24 @@ public class Check implements CarismaCheckWithID {
 				addWarning("Invalid Constraint: must not have both rightOperand and rightOperandReference (is that the case?)",testedElement);//TODO check if restriction actually exists
 			}
 		}
-		if (testedElement instanceof Rule rule) {
+		if (testedElement instanceof RuleImpl rule) {
 			if (rule.getAction() == null) {
 				addWarning("Invalid rule: needs to have an action selected.",testedElement);
 			}
-			if (testedElement instanceof Permission permission) {
+			if (testedElement instanceof PermissionImpl permission) {
 				boolean hasTarget = false;
-				for (Relation relation : permission.getInvolvedAssets()) {
-					if (relation instanceof Target) {
+				for (RelationImpl relation : permission.getInvolvedAssets()) {
+					if (relation instanceof TargetImpl) {
 						hasTarget = true;
 					}
 				}
 				if (!hasTarget) {
 					addWarning("Invalid permission: needs to have a relation of type target.",testedElement);
 				}
-			} else if (testedElement instanceof Prohibition prohibition) {
+			} else if (testedElement instanceof ProhibitionImpl prohibition) {
 				boolean hasTarget = false;
-				for (Relation relation : prohibition.getInvolvedAssets()) {
-					if (relation instanceof Target) {
+				for (RelationImpl relation : prohibition.getInvolvedAssets()) {
+					if (relation instanceof TargetImpl) {
 						hasTarget = true;
 					}
 				}
@@ -394,24 +384,24 @@ public class Check implements CarismaCheckWithID {
 					addWarning("Invalid prohibition: needs to have a relation of type target.",testedElement);
 				}
 				if (prohibition.getRemedy()!=null && prohibition.getRemedy().getRules()!=null && !prohibition.getRemedy().getRules().isEmpty()) {
-					for (Rule remedy : prohibition.getRemedy().getRules()) {
-						if (!(remedy instanceof Duty)) {
+					for (RuleImpl remedy : prohibition.getRemedy().getRules()) {
+						if (!(remedy instanceof DutyImpl)) {
 							addWarning("Invalid Prohibition: remedy must be of type Duty.",testedElement);//TODO covered in the Model
 						}
-						if (remedy instanceof Duty consequenceDuty) {
+						if (remedy instanceof DutyImpl consequenceDuty) {
 							if (consequenceDuty.getConsequences()!=null) {
 								addWarning("Invalid remedy duty: remedy-Duty must not have a consequence itself.",testedElement);
 							}
 						}
 					}
 				}
-			} else if (testedElement instanceof Duty duty) {
+			} else if (testedElement instanceof DutyImpl duty) {
 				if (duty.getConsequences()!=null && duty.getConsequences().getRules()!=null && !duty.getConsequences().getRules().isEmpty()) {
-					for (Rule consequence : duty.getConsequences().getRules()) {
-						if (!(consequence instanceof Duty)) {
+					for (RuleImpl consequence : duty.getConsequences().getRules()) {
+						if (!(consequence instanceof DutyImpl)) {
 							addWarning("Invalid Duty: consequence must be of type Duty.",testedElement);//TODO covered in the Model
 						}
-						if (consequence instanceof Duty consequenceDuty) {
+						if (consequence instanceof DutyImpl consequenceDuty) {
 							if (consequenceDuty.getConsequences()!=null) {
 								addWarning("Invalid consequence duty: consequence-Duty must not have a consequence itself.",testedElement);
 							}
