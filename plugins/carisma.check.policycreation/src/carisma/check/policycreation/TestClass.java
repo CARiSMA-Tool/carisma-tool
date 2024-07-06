@@ -1,19 +1,7 @@
 package carisma.check.policycreation;
 
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
-import org.eclipse.ui.internal.handlers.WizardHandler.New;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
-import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Offer;
-import carisma.profile.uconcreation.odrl.core.internal.classes.policy.Policy;
 
 public class TestClass {
 

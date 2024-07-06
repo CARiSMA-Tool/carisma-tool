@@ -13,8 +13,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml.resources,
  carisma.core,
  org.eclipse.uml2.uml,
- carisma.profile.uconcreation.odrl.common,
- carisma.profile.uconcreation.odrl.common.internal;bundle-version="1.0.0"
+ carisma.profile.uconcreation.odrl.common;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: carisma.check.policycreation
 Bundle-ActivationPolicy: lazy

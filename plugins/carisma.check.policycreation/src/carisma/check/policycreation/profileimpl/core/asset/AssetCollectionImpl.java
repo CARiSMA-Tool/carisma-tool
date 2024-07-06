@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EObject;
 import carisma.check.policycreation.UMLModelConverter;
 import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
 import carisma.check.policycreation.profileimpl.core.constraint.ConstraintInterfaceImpl;
-import carisma.profile.uconcreation.odrl.core.internal.classes.constraint.ConstraintInterface;
 
 public class AssetCollectionImpl extends AssetImpl {
 	ConstraintInterfaceImpl refinement;

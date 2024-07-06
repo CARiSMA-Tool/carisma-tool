@@ -2,7 +2,6 @@ package carisma.check.policycreation.profileimpl.core;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +9,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.json.JSONObject;
 
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
 import carisma.check.policycreation.UMLModelConverter;
