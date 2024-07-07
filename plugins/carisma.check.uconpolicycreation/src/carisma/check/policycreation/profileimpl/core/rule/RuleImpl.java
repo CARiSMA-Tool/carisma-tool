@@ -127,6 +127,7 @@ public abstract class RuleImpl extends ODRLClassImpl {
 				for (EObject stereoAppl : inPin.getStereotypeApplications()) {
 					if (handler.addElement(stereoAppl, this, baseElement) instanceof AssetImpl asset) {
 						RelationImpl newTarget = new TargetImpl();
+						newTarget.setHandler(handler);//TODO watch out: not all classes are created in the Converter, remove if handler passing is changed to constructor
 						newTarget.setAsset(asset);
 						this.addInvolvedAssets(newTarget);
 					}
@@ -136,6 +137,7 @@ public abstract class RuleImpl extends ODRLClassImpl {
 				for (EObject stereoAppl : outPin.getStereotypeApplications()) {
 					if (handler.addElement(stereoAppl, this, baseElement) instanceof AssetImpl asset) {
 						RelationImpl newOutput = new OutputImpl();
+						newOutput.setHandler(handler);//TODO watch out: not all classes are created in the Converter, remove if handler passing is changed to constructor
 						newOutput.setAsset(asset);
 						this.addInvolvedAssets(newOutput);
 					}
