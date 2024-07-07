@@ -55,10 +55,8 @@ public class LogicalConstraintImpl extends ODRLClassImpl implements ConstraintIn
 	
 	@Override
 	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
-		Object operatorEntry = map.remove(getFieldTerm("operand"));
-		if (operand != null) {
-			map.put(operand.gatClassTerm(), operatorEntry);
-		}
+		Object operatorEntry = handler.createMap(operand, circlePreventionSet);
+		map.put(operand.gatClassTerm(), operatorEntry);
 		return null;
 	}
 	

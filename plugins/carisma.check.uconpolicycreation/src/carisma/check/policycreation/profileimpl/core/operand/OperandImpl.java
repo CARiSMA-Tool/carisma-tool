@@ -21,7 +21,7 @@ public abstract class OperandImpl extends ODRLClassImpl {
 	
 	@Override
 	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
-		return map.get(getFieldTerm("constraints"));
+		return handler.createMap(constraints, circlePreventionSet);
 	}
 	
 	
