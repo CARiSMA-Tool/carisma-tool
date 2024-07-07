@@ -33,4 +33,8 @@ public class FunctionImpl extends ODRLClassImpl {
 			}
 		}		
 	}
+	
+	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
+		return handler.createMap(party, circlePreventionSet);
+	}
 }

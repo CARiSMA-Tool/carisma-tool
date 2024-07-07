@@ -145,4 +145,21 @@ public abstract class RuleImpl extends ODRLClassImpl {
 			}
 		}
 	}
+	
+	@Override
+	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
+		for (FunctionImpl function : involvedParties) {
+			Object functionMapObject = handler.createMap(function, circlePreventionSet);
+			if (functionMapObject != null) {
+				map.put(function.gatClassTerm(), functionMapObject);//TODO: check for duplicates (not here, in the fill()-method (or in the validity checks later))
+			}
+		}
+		for (RelationImpl relation : involvedAssets) {
+			Object relationMapObject = handler.createMap(relation, circlePreventionSet);
+			if (relationMapObject != null) {
+				map.put(relation.gatClassTerm(), relationMapObject);//TODO: check for duplicates (not here, in the fill()-method (or in the validity checks later))
+			}
+		}
+		return null;
+	}
 }
