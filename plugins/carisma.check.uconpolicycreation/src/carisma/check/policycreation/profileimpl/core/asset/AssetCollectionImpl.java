@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Element;
 
 import carisma.check.policycreation.UMLModelConverter;
 import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
@@ -29,8 +30,8 @@ public class AssetCollectionImpl extends AssetImpl {
 	}
 	
 	@Override
-	public void fill(EObject currentEObject, EObject activityElement, UMLModelConverter handler) {
-		super.fill(currentEObject, activityElement, handler);
+	public void fill(EObject currentEObject, Element activityElement) {
+		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getAssetCollection_Source());
 		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
 			
@@ -38,9 +39,9 @@ public class AssetCollectionImpl extends AssetImpl {
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRefinableElement_Refinement()); 
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, activityElement);
-			if (attributeValueOdrl instanceof ConstraintInterfaceImpl refinement) {
-				this.setRefinement(refinement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
+			if (attributeValueOdrl instanceof ConstraintInterfaceImpl refinementImpl) {
+				this.setRefinement(refinementImpl);
 			}
 		}
 	}
@@ -48,7 +49,7 @@ public class AssetCollectionImpl extends AssetImpl {
 	@Override
 	public Object fillMapIndividual(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet)
 			throws NoSuchFieldException, SecurityException {
-		map.put(getTypeKeyword(), gatClassTerm());
+		map.put(gatTypeKeyword(), gatClassTerm());
 		return null;
 	}
 	

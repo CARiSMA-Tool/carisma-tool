@@ -9,6 +9,8 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
 import carisma.check.policycreation.UMLModelConverter;
@@ -18,22 +20,37 @@ public abstract class ODRLClassImpl{
 	public ENamedElement containingUMLElement;
 	public ODRLClassImpl directParent;//maybe
 	protected ODRLCommonVocabularyPackage odrlPackage = UMLModelConverter.odrlPackage;
-	public UMLModelConverter handler = null;
+	protected UMLModelConverter handler = null;
+	protected Element baseElement;
 	
 	
 	
-	public void fill(EObject input, EObject activityElement, UMLModelConverter handler) {
+	public void fill(EObject input, Element activityElement) {
+		if (baseElement == null) {
+			baseElement = UMLUtil.getBaseElement(input);
+			if (baseElement == null) {
+				baseElement = activityElement;
+			}
+		}
 	}
 
-	protected UMLModelConverter getHandler() {//TODO hidden for testing
+	public UMLModelConverter gatHandler() {//TODO hidden for testing
 		return handler;
 	}
 	public void setHandler(UMLModelConverter handler) {
 		this.handler = handler;
 	}
+	
 
+	public Element gatBaseElement() {
+		return baseElement;
+	}
 
-
+	public void setBaseElement(Element baseElement) {
+		this.baseElement = baseElement;
+	}
+	
+	
 
 	public String getType() {//for the automatic JSON-Conversion currently used for testing
 		return this.getClass().getSimpleName();
@@ -100,7 +117,7 @@ public abstract class ODRLClassImpl{
 	public String gatClassTerm() {
 		return handler.getTermMap().get(this.getClass());
 	}
-	public String getTypeKeyword() {
+	public String gatTypeKeyword() {
 		return "@type";
 	}
 	public String gatIdKeyword() {

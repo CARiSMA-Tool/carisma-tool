@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Element;
 
 import carisma.check.policycreation.UMLModelConverter;
 
@@ -19,8 +20,8 @@ public class PermissionImpl extends RuleImpl {
 	}
 	
 	@Override
-	public void fill(EObject currentEObject, EObject activityElement, UMLModelConverter handler) {
-		super.fill(currentEObject, activityElement, handler);
+	public void fill(EObject currentEObject, Element activityElement) {
+		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getPermission_Duties());
 		if (attributeValue instanceof List list) { //TODO List attribute
 			List<DutyImpl> attributeValueOdrl = handler.addElement(list, this, activityElement, DutyImpl.class);

@@ -1,9 +1,13 @@
 package carisma.check.policycreation.profileimpl.core.rule;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.OutputPin;
 
@@ -67,18 +71,18 @@ public abstract class RuleImpl extends ODRLClassImpl {
 	
 	
 	@Override
-	public void fill(EObject currentEObject, EObject activityElement, UMLModelConverter handler) {
-		super.fill(currentEObject, activityElement, handler);
+	public void fill(EObject currentEObject, Element activityElement) {
+		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_Action());
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, activityElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
 			if (attributeValueOdrl instanceof ActionImpl action) {
 				this.setAction(action);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRefinableElement_Refinement());
 		if (attributeValue instanceof EObject newEObj) {//TODO get constraint
-			Object attributeValueOdrl = handler.addElement(newEObj, this.getAction(), activityElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this.getAction(), baseElement);
 			if (attributeValueOdrl instanceof ConstraintInterfaceImpl constraintInterface) {
 				//if (attributeValueOdrl instanceof List constraintList) {TODO add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
 				//	rule.getConstraint().
@@ -95,21 +99,21 @@ public abstract class RuleImpl extends ODRLClassImpl {
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_InvolvedAssets());
 		if (attributeValue instanceof List list) { //TODO List attribute
-			List<RelationImpl> attributeValueOdrl = handler.addElement(list, this, activityElement, RelationImpl.class);
+			List<RelationImpl> attributeValueOdrl = handler.addElement(list, this, baseElement, RelationImpl.class);
 			if (attributeValueOdrl!=null) {
 				this.setInvolvedAssets(attributeValueOdrl);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_InvolvedParties());
 		if (attributeValue instanceof List list) { //TODO List attribute
-			List<FunctionImpl> attributeValueOdrl = handler.addElement(list, this, activityElement, FunctionImpl.class);
+			List<FunctionImpl> attributeValueOdrl = handler.addElement(list, this, baseElement, FunctionImpl.class);
 			if (attributeValueOdrl!=null) {
 				this.setInvolvedParties(attributeValueOdrl);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstrainableElement_Constraint());
 		if (attributeValue instanceof EObject newEObj) {//TODO get constraint
-			Object attributeValueOdrl = handler.addElement(newEObj, this, activityElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
 			if (attributeValueOdrl instanceof ConstraintInterfaceImpl constraintInterface) {
 				//if (attributeValueOdrl instanceof List constraintList) {TODO maybe add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
 				//	rule.getConstraint().
@@ -118,10 +122,10 @@ public abstract class RuleImpl extends ODRLClassImpl {
 			}
 		}
 		//Activity diagram: Get related Assets from neighboring pins (TODO: clear up conflicts with explicitly listed Relations?)
-		if (activityElement instanceof org.eclipse.uml2.uml.Action action) {
+		if (baseElement instanceof org.eclipse.uml2.uml.Action action) {
 			for (InputPin inPin : action.getInputs()) {
 				for (EObject stereoAppl : inPin.getStereotypeApplications()) {
-					if (handler.addElement(stereoAppl, this, action) instanceof AssetImpl asset) {
+					if (handler.addElement(stereoAppl, this, baseElement) instanceof AssetImpl asset) {
 						RelationImpl newTarget = new TargetImpl();
 						newTarget.setAsset(asset);
 						this.addInvolvedAssets(newTarget);
@@ -130,10 +134,10 @@ public abstract class RuleImpl extends ODRLClassImpl {
 			}
 			for (OutputPin outPin : action.getOutputs()) {
 				for (EObject stereoAppl : outPin.getStereotypeApplications()) {
-					if (handler.addElement(stereoAppl, this, action) instanceof AssetImpl asset) {
-						RelationImpl newTarget = new OutputImpl();
-						newTarget.setAsset(asset);
-						this.addInvolvedAssets(newTarget);
+					if (handler.addElement(stereoAppl, this, baseElement) instanceof AssetImpl asset) {
+						RelationImpl newOutput = new OutputImpl();
+						newOutput.setAsset(asset);
+						this.addInvolvedAssets(newOutput);
 					}
 				}
 			}

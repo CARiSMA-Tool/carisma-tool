@@ -3,6 +3,7 @@ package carisma.check.policycreation.profileimpl.core.constraint;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Element;
 
 import carisma.check.policycreation.UMLModelConverter;
 import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
@@ -148,36 +149,36 @@ public class ConstraintImpl extends ODRLClassImpl{
 
 
 	@Override
-	public void fill(EObject currentEObject, EObject activityElement, UMLModelConverter handler) {
-		super.fill(currentEObject, activityElement, handler);
+	public void fill(EObject currentEObject, Element activityElement) {
+		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_DataType());
 		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {		
 			this.setDataType(stringValue);
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_LeftOperand());
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, activityElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
 			if (attributeValueOdrl instanceof LeftOperandImpl leftOperand) {
 				this.setLeftOperand(leftOperand);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_Operator());
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, activityElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
 			if (attributeValueOdrl instanceof OperatorImpl operator) {
 				this.setOperator(operator);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_RightOperand());
 		if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
-			List<RightOperandInterfaceImpl> attributeValueOdrl = handler.addElement(list, this, activityElement, RightOperandInterfaceImpl.class);
+			List<RightOperandInterfaceImpl> attributeValueOdrl = handler.addElement(list, this, baseElement, RightOperandInterfaceImpl.class);
 			if (attributeValueOdrl!=null) {
 				this.setRightOperand(attributeValueOdrl);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_RightOperandReference());
 		if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
-			List<String> attributeValueOdrl = handler.addElement(list, this, activityElement, String.class);
+			List<String> attributeValueOdrl = handler.addElement(list, this, baseElement, String.class);
 			if (attributeValueOdrl!=null) {
 				this.setRightOperandReference(attributeValueOdrl);
 			}

@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Element;
 
 import carisma.check.policycreation.UMLModelConverter;
 import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
@@ -30,18 +31,18 @@ public class LogicalConstraintImpl extends ODRLClassImpl implements ConstraintIn
 	
 	
 	@Override
-	public void fill(EObject currentEObject, EObject activityElement, UMLModelConverter handler) {
-		super.fill(currentEObject, activityElement, handler);
+	public void fill(EObject currentEObject, Element activityElement) {
+		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getLogicalConstraint_LogicalOperator());
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, activityElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
 			if (attributeValueOdrl instanceof OperandImpl operand) {
 				this.setOperand(operand);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getLogicalConstraint_Constraints());
 		if (attributeValue instanceof List list) { //TODO List attribute
-			List<ConstraintImpl> attributeValueOdrl = handler.addElement(list, this, activityElement, ConstraintImpl.class);
+			List<ConstraintImpl> attributeValueOdrl = handler.addElement(list, this, baseElement, ConstraintImpl.class);
 			if (attributeValueOdrl!=null && this.getOperand()!=null) {//TODO Maybe remove operand-nullcheck, as it being null would point to a faulty model
 				this.getOperand().setConstraints(attributeValueOdrl);//(After creation of operand earlier in this method) set constraints to it
 			}

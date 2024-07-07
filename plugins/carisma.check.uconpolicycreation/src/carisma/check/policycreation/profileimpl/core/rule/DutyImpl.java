@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.uml2.uml.Element;
 
 import carisma.check.policycreation.UMLModelConverter;
 import carisma.check.policycreation.profileimpl.core.failure.ConsequenceImpl;
@@ -21,8 +22,8 @@ public class DutyImpl extends RuleImpl {
 	}
 	
 	@Override
-	public void fill(EObject currentEObject, EObject activityElement, UMLModelConverter handler) {
-		super.fill(currentEObject, activityElement, handler);
+	public void fill(EObject currentEObject, Element activityElement) {
+		super.fill(currentEObject, activityElement);
 		EStructuralFeature consequenceFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getDuty_Consequences().getName());
 		if (UMLModelConverter.getValue(currentEObject,odrlPackage.getDuty_Consequences()) != null) {
 			Object attributeValueOdrl = handler.addElement(consequenceFeature, this, activityElement);

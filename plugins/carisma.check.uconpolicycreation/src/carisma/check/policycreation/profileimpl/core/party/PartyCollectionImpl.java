@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Element;
 
 import carisma.check.policycreation.UMLModelConverter;
 import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
@@ -29,15 +30,15 @@ public class PartyCollectionImpl extends PartyImpl {
 	
 	
 	@Override
-	public void fill(EObject currentEObject, EObject activityElement, UMLModelConverter handler) {
-		super.fill(currentEObject, activityElement, handler);
+	public void fill(EObject currentEObject, Element activityElement) {
+		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getPartyCollection_Source());
 		if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
 			this.setSource(stringValue);
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRefinableElement_Refinement()); 
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, activityElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
 			if (attributeValueOdrl instanceof ConstraintInterfaceImpl refinement) {
 				this.setRefinement(refinement);
 			}
@@ -47,7 +48,7 @@ public class PartyCollectionImpl extends PartyImpl {
 	@Override
 	public Object fillMapIndividual(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet)
 			throws NoSuchFieldException, SecurityException {
-		map.put(getTypeKeyword(), gatClassTerm());
+		map.put(gatTypeKeyword(), gatClassTerm());
 		return null;
 	}
 	

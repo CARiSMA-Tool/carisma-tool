@@ -1,6 +1,10 @@
 package carisma.check.policycreation.profileimpl.core.relation;
 
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Element;
 
 import carisma.check.policycreation.UMLModelConverter;
 import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
@@ -9,7 +13,6 @@ import carisma.check.policycreation.profileimpl.core.asset.AssetImpl;
 public abstract class RelationImpl extends ODRLClassImpl {
 	AssetImpl asset;
 	
-	String assetName;
 
 	public AssetImpl getAsset() {
 		return asset;
@@ -21,8 +24,8 @@ public abstract class RelationImpl extends ODRLClassImpl {
 	
 	
 	@Override
-	public void fill(EObject currentEObject, EObject activityElement, UMLModelConverter handler) {
-		super.fill(currentEObject, activityElement, handler);
+	public void fill(EObject currentEObject, Element activityElement) {
+		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getAssetRelation_Asset());
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = handler.addElement(newEObj, this, activityElement);

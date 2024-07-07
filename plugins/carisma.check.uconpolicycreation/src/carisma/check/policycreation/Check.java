@@ -229,7 +229,7 @@ public class Check implements CarismaCheckWithID {
 	
 	
 	///////////////////////////////
-	private Object addElement(EObject currentEObject, ODRLClassImpl odrlParent, EObject activityElement) {//TODO modify the names if the eCore naming derives form the names in generated code
+	private Object addElement(EObject currentEObject, ODRLClassImpl odrlParent, Element activityElement) {//TODO modify the names if the eCore naming derives form the names in generated code
 //		odrlSwitch.doSwitch(currentEObject);//TODO remove
 //		System.out.println("Classifier id: " + currentEObject.eClass().getClassifierID());//TODO remove
 		if (currentEObject==null) {//Not necessary for result
@@ -260,7 +260,7 @@ public class Check implements CarismaCheckWithID {
 	
 	
 	
-	private <T> List<T> addElement(List currentList, ODRLClassImpl odrlParent, EObject activityElement, Class<T> type) {//No check for several layers of lists as that case does not occur in the current model
+	private <T> List<T> addElement(List currentList, ODRLClassImpl odrlParent, Element activityElement, Class<T> type) {//No check for several layers of lists as that case does not occur in the current model
 		List<T> newOdrlList = new LinkedList<>();
 		boolean fullyCompartible = true;
 		if (currentList!=null && !currentList.isEmpty()) {

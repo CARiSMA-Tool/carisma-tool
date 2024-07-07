@@ -11,6 +11,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.uml2.uml.Element;
 
 import ODRLCommonVocabulary.Action;
 import ODRLCommonVocabulary.AssetRelationType;
@@ -416,13 +417,13 @@ public class UMLModelConverter {
 			termMap.put(ConstraintImpl.class.getDeclaredField("status"), "status");
 			termMap.put(LogicalConstraintImpl.class, "LogicalConstraint");
 			termMap.put(LogicalConstraintImpl.class.getDeclaredField("uid"), "uid");
-			termMap.put(LogicalConstraintImpl.class.getDeclaredField("operand"), "operand");//TODO Possibly remove as only subproperties of operand are used
+			//termMap.put(LogicalConstraintImpl.class.getDeclaredField("operand"), "operand");//TODO Possibly remove as only subproperties of operand are used
 			//Failure
 			//termMap.put(FailureImpl.class, ""); //Is (Sub)-Property, does not exist as class in the model
 			termMap.put(ConsequenceImpl.class, "consequence"); //Is (Sub)-Property, does not exist as class in the model
 			termMap.put(RemedyImpl.class, "remedy"); //Is (Sub)-Property, does not exist as class in the model
 			//Function
-			termMap.put(FunctionImpl.class, "function"); //Is (Sub)-Property, does not exist as class in the model
+			//termMap.put(FunctionImpl.class, "function"); //Is (Sub)-Property, does not exist as class in the model
 			termMap.put(AssigneeImpl.class, "assignee"); //Is (Sub)-Property, does not exist as class in the model
 			termMap.put(AssignerImpl.class, "assigner"); //Is (Sub)-Property, does not exist as class in the model
 			//LeftOperand
@@ -598,7 +599,7 @@ public class UMLModelConverter {
 		}
 	}
 	
-	private  Object specialCases(EObject currentEObject, ODRLClassImpl odrlParent, EObject activityElement) {
+	private  Object specialCases(EObject currentEObject, ODRLClassImpl odrlParent, Element activityElement) {
 		ODRLClassImpl newObject = null;
 		String objectClassName = currentEObject.eClass().getName();
 		if (objectClassName.equals(odrlPackage.getLogicalConstraint().getName())) {
@@ -618,7 +619,7 @@ public class UMLModelConverter {
 		return newObject;
 	}
 	
-	public  Object addElement(EObject currentEObject, ODRLClassImpl odrlParent, EObject activityElement) {
+	public  Object addElement(EObject currentEObject, ODRLClassImpl odrlParent, Element activityElement) {
 		Object newObject = null;
 		newObject = getOdrlObject(currentEObject, odrlParent, activityElement);
 		if (newObject ==null) {
@@ -626,13 +627,13 @@ public class UMLModelConverter {
 		}		
 		if (newObject instanceof ODRLClassImpl newObjectOdrl) {
 			newObjectOdrl.setHandler(this);//Possibly TODO Needs to be done before any further operations (as those operations rely on the . Currently not done in the constructor as that requires manual changes in all ODRL-classes every time the approach is changed
-			newObjectOdrl.fill(currentEObject, activityElement, this); //TODO: Add boolean-return to fill to notify whether an object should be given back or not (since the ODRLClass-Creation based on Features always is executed no matter whether the object in question has a value with the feature)
+			newObjectOdrl.fill(currentEObject, activityElement); //TODO: Add boolean-return to fill to notify whether an object should be given back or not (since the ODRLClass-Creation based on Features always is executed no matter whether the object in question has a value with the feature)
 		}
 		
 		return newObject;
 	}
 	
-	public <T> List<T> addElement(List currentList, ODRLClassImpl odrlParent, EObject activityElement, Class<T> type) {//No check for several layers of lists as that case does not occur in the current model
+	public <T> List<T> addElement(List currentList, ODRLClassImpl odrlParent, Element activityElement, Class<T> type) {//No check for several layers of lists as that case does not occur in the current model
 		List<T> newOdrlList = new LinkedList<>();
 		boolean fullyCompartible = true;
 		if (currentList!=null && !currentList.isEmpty()) {
@@ -658,7 +659,7 @@ public class UMLModelConverter {
 		return newOdrlList.isEmpty()||!fullyCompartible? null : newOdrlList;//Only return a List if all elements of the passed List were of the specified class (and it's not empty)
 	}
 	
-	private String addElement(String currentObject, ODRLClassImpl odrlParent, EObject activityElement) {
+	private String addElement(String currentObject, ODRLClassImpl odrlParent, Element activityElement) {
 		return currentObject;
 	}
 	
