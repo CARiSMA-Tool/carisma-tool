@@ -11,7 +11,7 @@
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
-            location="platform:/plugin/carisma.profile.uconcreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"
+            location="platform:/plugin/carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"
             uri="http://www.umlsec.de/profiles/ODRLCommonVocabulary">
       </profile>
    </extension>
@@ -26,7 +26,7 @@
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="pathmap://PolicyCreation/ODRLCommonVocabulary.uml"
-            target="platform:/plugin/carisma.profile.uconcreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml">
+            target="platform:/plugin/carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml">
       </mapping>
    </extension>
 

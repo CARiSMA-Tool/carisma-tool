@@ -65,7 +65,6 @@ public class ODRLCommonVocabularySwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		System.out.println("Hi");
 		switch (classifierID) {
 			case ODRLCommonVocabularyPackage.ODRL_POLICY: {
 				ODRLPolicy odrlPolicy = (ODRLPolicy)theEObject;
