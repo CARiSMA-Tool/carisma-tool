@@ -96,21 +96,21 @@ public class PolicyImpl extends ODRLClassImpl{
 		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getODRLPolicy_ConflictStrategy());
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, containingUmlElement);
 			if (attributeValueOdrl instanceof ConflictStrategyImpl conflictValue) {
 				this.setConflictStrategy(conflictValue);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getODRLPolicy_InheritsFrom());
 		if (attributeValue instanceof List list) { //TODO String List attribute
-			List<String> attributeValueOdrl = handler.addElement(list, this, baseElement, String.class);
+			List<String> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, String.class);
 			if (attributeValueOdrl!=null) {
 				this.getInheritsFrom().addAll(attributeValueOdrl);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getODRLPolicy_Profiles());
 		if (attributeValue instanceof List list) { //TODO String List attribute
-			List<String> attributeValueOdrl = handler.addElement(list, this, baseElement, String.class);
+			List<String> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, String.class);
 			if (attributeValueOdrl!=null) {
 				this.getProfiles().addAll(attributeValueOdrl);
 			}
@@ -126,7 +126,7 @@ public class PolicyImpl extends ODRLClassImpl{
 				if (node instanceof org.eclipse.uml2.uml.Action action) {
 					for (EObject stereoAppl : new HashSet<>(action.getStereotypeApplications())) {
 						//TODO: check for already created stereotypes, add to References?
-						Object newObject = handler.addElement(stereoAppl, this, baseElement);//TODO No explicit passing of different baseElement for the other Element, as that's nor always practical
+						Object newObject = handler.addElement(stereoAppl, this, containingUmlElement);//TODO No explicit passing of different baseElement for the other Element, as that's nor always practical
 						if (newObject instanceof PermissionImpl permissionImpl) {
 							this.addPermission(permissionImpl);
 						} else if (newObject instanceof ProhibitionImpl prohibitionImpl) {

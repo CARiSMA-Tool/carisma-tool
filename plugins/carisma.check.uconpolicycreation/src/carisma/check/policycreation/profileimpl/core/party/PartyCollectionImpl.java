@@ -38,7 +38,7 @@ public class PartyCollectionImpl extends PartyImpl {
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRefinableElement_Refinement()); 
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, containingUmlElement);
 			if (attributeValueOdrl instanceof ConstraintInterfaceImpl refinement) {
 				this.setRefinement(refinement);
 			}

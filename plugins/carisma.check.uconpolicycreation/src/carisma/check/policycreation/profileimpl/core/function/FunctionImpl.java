@@ -27,7 +27,7 @@ public class FunctionImpl extends ODRLClassImpl {
 		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getPartyFunction_Party());
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, containingUmlElement);
 			if (attributeValueOdrl instanceof PartyImpl partyImpl) {
 				this.setParty(partyImpl);
 			}

@@ -169,17 +169,38 @@ import carisma.check.policycreation.profileimpl.core.rule.ProhibitionImpl;
 import carisma.check.policycreation.profileimpl.core.rule.RuleImpl;
 
 public class UMLModelConverter {
-	private final Map<String,Map<String,Class<? extends ODRLClassImpl>>> enumMap = new HashMap<>();//Mapping of EEnumLiterals to the ODRLClass-Objects they represent
-	private final Map<String,String> typeEnumMap1 = new HashMap<>();//Mapping of EClasses to the EStructuralFeature that contains the EEnumLiteral that represents the ODRLClass
-	private final Map<String,Map<String,Class<? extends ODRLClassImpl>>> typeEnumMap2 = new HashMap<>();//Mapping of EEnumLiterals to the ODRLClass-Objects they represent (used with typeEnumMap1) //TODO: potential problem: if several Enumerations with same-name Literals are valid as value of the structural feature their literals may not be distinguishable with the current approach
-	private final Map<String,Class<? extends ODRLClassImpl>> classMap = new HashMap<>();//Mapping of EClasses to the ODRLClass-Objects they represent
+	/**
+	 * Map of {@link EEnum}s and their {@link EEnumLiteral}s to the {@link ODRLClass} they represent, by name.
+	 */
+	private final Map<String,Map<String,Class<? extends ODRLClassImpl>>> enumMap = new HashMap<>();
+	/**
+	 * Map of {@link EClass}es to the {@link EStructuralFeature} containing their ODRL-type-defining {@link EEnumLiteral}, by name.
+	 */
+	private final Map<String,String> typeEnumMap1 = new HashMap<>();
+	/**
+	 * Map of {@link EClass}es and the {@link EEnumLiteral} defining their ODRL-type to the {@link ODRLClass} they represent, by name.
+	 */
+	private final Map<String,Map<String,Class<? extends ODRLClassImpl>>> typeEnumMap2 = new HashMap<>();//TODO: potential problem: if several Enumerations with same-name Literals are valid as value of the structural feature their literals are not distinguishable with the current approach
+	/**
+	 * Map of {@link EClass}es to the {@link ODRLClass} they represent, by name.
+	 */
+	private final Map<String,Class<? extends ODRLClassImpl>> classMap = new HashMap<>();
+	/**
+	 * Map of {@link EClass}es and their {@link EStructuralFeature}s (wrapped in a {@link StringTuple}) to the {@link ODRLClass} they represent, by name.
+	 */
 	private final Map<StringTuple,Class<? extends ODRLClassImpl>> featureMap = new HashMap<>();//Mapping of EStructuralFeatures to the ODRLClass-Objects they represent
 	
 	public static final String TYPE_STRING = "@type";
 	
 	public static final String JSONLD_TYPE_STRING = "@type";
 	
+	/**
+	 * Map of {@link EClass}es and their {@link EStructuralFeature}s to the terms used in their JSON-LD-representation.
+	 */
 	private final Map<Object,String> termMap = new HashMap<>(); //Instead do mapping in the map-conversion-methods of the odrl-classes?
+	/**
+	 * Package generated from the used profile.
+	 */
 	public static final ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
 	
 	private Map<EObject,ODRLClassImpl> referencingMap = new HashMap<>();//Currently: Save top-level elements (stereotype applications) as they may be referred by several objects, others may not. (If more Elements should be accessed: Save with unique EObject, watch out for uniqueness of enums (may need to be saved as triple)
@@ -599,6 +620,17 @@ public class UMLModelConverter {
 		}
 	}
 	
+	
+	/**
+	 * Converts an Ecore-representation of a model element to an ODRL-java-based one.
+	 * Deals with cases not covered by the used maps.
+	 * 
+	 * @param currentEObject {@link EObject} to be converted
+	 * @param odrlParent {@link ODRLClassImpl} from which the method is called
+	 * @param activityElement {@link Element} in which the input model element is contained
+	 * @return ODRL-java-representation, or null if no ODRL-java-representation for input found
+	 *
+	 */
 	private  Object specialCases(EObject currentEObject, ODRLClassImpl odrlParent, Element activityElement) {
 		ODRLClassImpl newObject = null;
 		String objectClassName = currentEObject.eClass().getName();
@@ -619,6 +651,16 @@ public class UMLModelConverter {
 		return newObject;
 	}
 	
+	
+	/**
+	 * Converts an Ecore-representation of a model element to an ODRL-java-based one and fills its attributes.
+	 * 
+	 * 
+	 * @param currentEObject model element to be converted
+	 * @param odrlParent {@link ODRLClassImpl} from which the method is called
+	 * @param activityElement {@link Element} in which the input model element is contained
+	 * @return ODRL-java-representation, or null if no ODRL-java-representation for input found
+	 */
 	public  Object addElement(EObject currentEObject, ODRLClassImpl odrlParent, Element activityElement) {
 		Object newObject = null;
 		newObject = getOdrlObject(currentEObject, odrlParent, activityElement);
@@ -633,6 +675,16 @@ public class UMLModelConverter {
 		return newObject;
 	}
 	
+	/**
+	 * Converts an Ecore-representation of a list to an ODRL-java-based one.
+	 * 
+	 * @param <T> the {@link Class} of the list elements
+	 * @param currentList {@link List} to be converted
+	 * @param odrlParent {@link ODRLClassImpl} from which the method is called
+	 * @param activityElement {@link Element} in which the input model element is contained
+	 * @param type the {@link Class} of the list elements
+	 * @return list of type T, or null if no ODRL-java-representation of the type was found for one of the list elements
+	 */
 	public <T> List<T> addElement(List currentList, ODRLClassImpl odrlParent, Element activityElement, Class<T> type) {//No check for several layers of lists as that case does not occur in the current model
 		List<T> newOdrlList = new LinkedList<>();
 		boolean fullyCompartible = true;
@@ -659,22 +711,41 @@ public class UMLModelConverter {
 		return newOdrlList.isEmpty()||!fullyCompartible? null : newOdrlList;//Only return a List if all elements of the passed List were of the specified class (and it's not empty)
 	}
 	
+	
+	/**
+	 * Returns input string
+	 * @param currentObject {@link String} to be returned
+	 * @param odrlParent
+	 * @param activityElement
+	 * @return the string
+	 */
 	private String addElement(String currentObject, ODRLClassImpl odrlParent, Element activityElement) {
 		return currentObject;
 	}
 	
-//	public static Object getValue(EObject eObject, String featureName) {
-////		EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
-////		if(feature == null) {
-////			//TODO add missing feature information?
-////		}
-////		return feature==null ? null : eObject.eGet(feature);
-//		return eObject.eGet(eObject.eClass().getEStructuralFeature(featureName));//Nullpointer-exception with null-feature can only be produced by code errors, not by input errors
-//	}
+	
+	/**
+	 * Gets the value referred to by the {@link EStructuralFeature} of an {@link EObject} by name.
+	 * That means the {@link EStructuralFeature} does not actually need to be a {@link EStructuralFeature} of the {@link EObject}'s {@link EClass}, just share the name of one.
+	 * 
+	 * @param eObject {@link EObject} containing the feature
+	 * @param feature {@link EStructuralFeature} used to access the value
+	 * @return value referred by same-name {@link EStructuralFeature} of the {@link EObject}, or null if no such feature exists
+	 */
 	public static Object getValue(EObject eObject, EStructuralFeature feature) {
 		return eObject.eGet(eObject.eClass().getEStructuralFeature(feature.getName()));
 	}
 	
+	
+	/**
+	 * Converts an Ecore-representation of a model element to an ODRL-java-based one.
+	 * Deals with cases covered by the used maps.
+	 * 
+	 * @param currentEObject model element to be converted
+	 * @param odrlParent {@link ODRLClassImpl} from which the method is called
+	 * @param activityElement {@link Element} in which the input model element is contained
+	 * @return ODRL-java-representation, or null if no ODRL-java-representation for input found
+	 */
 	public  ODRLClassImpl getOdrlObject(EObject eObject, ODRLClassImpl odrlParent, EObject activityElement) {
 		if (referencingMap.get(eObject)!=null) {
 			return referencingMap.get(eObject);
@@ -720,325 +791,6 @@ public class UMLModelConverter {
 	}
 	
 	
-//	private void fill(EObject currentEObject, Object toBeFilled, EObject activityElement) {//TODO change to switch-case with Class name or implement as functions of the ODRLClassImples (both cases would need to call the function of their "superclass)
-//		if (toBeFilled instanceof ODRLClassImpl odrl) {
-//			odrl.fill(currentEObject, activityElement);
-//		}
-//	}
-//	
-//	//Filling-Methods for assets
-//		private void fillAsset(EObject currentEObject, Asset asset, EObject activityElement) {
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getAsset_Uid().getName());
-//			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
-//				
-//				asset.setUid(stringValue);
-//			}
-//		}
-//		private void fillAssetCollection(EObject currentEObject, AssetCollection assetCollection, EObject activityElement) {
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getAssetCollection_Source().getName());
-//			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
-//				
-//				assetCollection.setSource(stringValue);
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getRefinableElement_Refinement().getName()); 
-//			if (attributeValue instanceof EObject newEObj) {
-//				Object attributeValueOdrl = addElement(newEObj, assetCollection, activityElement);
-//				if (attributeValueOdrl instanceof ConstraintInterface refinement) {
-//					assetCollection.setRefinement(refinement);
-//				}
-//			}
-//		}
-//		//Filling-Methods for Conflict (TODO only maybe add (as the methods would be empty))
-//		//Filling-Methods for Constraints (TODO maybe add ConstraintInterface)
-//		private void fillConstraint(EObject currentEObject, Constraint constraint, EObject activityElement) {
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getConstraint_DataType().getName());
-//			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {		
-//				constraint.setDataType(stringValue);
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_LeftOperand().getName());
-//			if (attributeValue instanceof EObject newEObj) {
-//				Object attributeValueOdrl = addElement(newEObj, constraint, activityElement);
-//				if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.leftoperand.LeftOperand leftOperand) {
-//					constraint.setLeftOperand(leftOperand);
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Operator().getName());
-//			if (attributeValue instanceof EObject newEObj) {
-//				Object attributeValueOdrl = addElement(newEObj, constraint, activityElement);
-//				if (attributeValueOdrl instanceof Operator operator) {
-//					constraint.setOperator(operator);
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_RightOperand().getName());
-//			if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
-//				List<RightOperandInterface> attributeValueOdrl = addElement(list, constraint, activityElement, RightOperandInterface.class);
-//				if (attributeValueOdrl!=null) {
-//					constraint.setRightOperand(attributeValueOdrl);
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_RightOperandReference().getName());
-//			if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
-//				List<String> attributeValueOdrl = addElement(list, constraint, activityElement, String.class);
-//				if (attributeValueOdrl!=null) {
-//					constraint.setRightOperandReference(attributeValueOdrl);
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Status().getName());
-//			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {			
-//				constraint.setStatus(stringValue);
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Uid().getName());
-//			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {		
-//					constraint.setUid(stringValue);			
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getConstraint_Unit().getName());
-//			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {		
-//				constraint.setUnit(stringValue);
-//			}
-//		}
-//		private void fillLogicalConstraint(EObject currentEObject, LogicalConstraint logicalConstraint, EObject activityElement) {
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getLogicalConstraint_LogicalOperator().getName());
-//			if (attributeValue instanceof EObject newEObj) {
-//				Object attributeValueOdrl = addElement(newEObj, logicalConstraint, activityElement);
-//				if (attributeValueOdrl instanceof Operand operand) {
-//					logicalConstraint.setOperand(operand);
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getLogicalConstraint_Constraints().getName());
-//			if (attributeValue instanceof List list) { //TODO List attribute
-//				List<Constraint> attributeValueOdrl = addElement(list, logicalConstraint, activityElement, Constraint.class);
-//				if (attributeValueOdrl!=null&&logicalConstraint.getOperand()!=null) {//TODO Maybe remove operand-nullcheck, as it being null would point to a faulty model
-//					logicalConstraint.getOperand().setConstraints(attributeValueOdrl);//(After creation of operand earlier in this method) set constraints to it
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getLogicalConstraint_Uid().getName());
-//			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
-//				logicalConstraint.setUid(stringValue);
-//			}
-//		}
-//		//Filling-Methods for Failures (TODO maybe add empty subproperties)
-//		private void fillFailure(EObject currentEObject, Failure failure, EObject activityElement) {//TODO failure currently not present on the uml-profile
-//			//Object attributeValue = currentEObject.eGet(currentEObject.eClass().getEStructuralFeature(odrlPackage));
-//			//if (attributeValue instanceof EObject newEObj) { //TODO List attribute
-//			//}
-//		}
-//		//Filling-Methods for Functions
-//		private void fillFunction(EObject currentEObject, Function function, EObject activityElement) {
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getPartyFunction_Party().getName());
-//			if (attributeValue instanceof EObject newEObj) {
-//				Object attributeValueOdrl = addElement(newEObj, function, activityElement);
-//				if (attributeValueOdrl instanceof Party party) {
-//					function.setParty(party);
-//				}
-//			}
-//			
-//		}
-//		//Filling-Methods for Leftoperands (TODO only maybe add (as the methods would be empty))
-//		
-//		//Filling-Methods for Operands (TODO maybe add empty subproperties)  //Filling is done in the owning LogicalConstraint currently as it owns the Constraint list
-////		private void fillOperand(EObject currentEObject, Operand operand, EObject activityElement) {
-////		}
-//		//Filling-Methods for Operators (TODO only maybe add (as the methods would be empty))
-//		
-//		//Filling-Methods for Parties
-//		private void fillParty(EObject currentEObject, Party party, EObject activityElement) {
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getParty_Uid().getName());
-//			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {	
-//				party.setUid(stringValue);
-//			}
-//		}
-//		private void fillPartyCollection(EObject currentEObject, PartyCollection partyCollection, EObject activityElement) {
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getPartyCollection_Source().getName());
-//			if (attributeValue instanceof String stringValue && !stringValue.isEmpty()) {
-//				partyCollection.setSource(stringValue);
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getRefinableElement_Refinement().getName()); 
-//			if (attributeValue instanceof EObject newEObj) {
-//				Object attributeValueOdrl = addElement(newEObj, partyCollection, activityElement);
-//				if (attributeValueOdrl instanceof ConstraintInterface refinement) {
-//					partyCollection.setRefinement(refinement);
-//				}
-//			}
-//		}	
-//		//Filling-methods for Policies (TODO maybe add empty subclass-methods)
-//		private void fillPolicy(EObject currentEObject, Policy policy, EObject activityElement) {
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_ConflictStrategy().getName());
-//			if (attributeValue instanceof EObject newEObj) {
-//				Object attributeValueOdrl = addElement(newEObj, policy, activityElement);
-//				if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.conflict.ConflictStrategy conflictValue) {
-//					policy.setConflictStrategy(conflictValue);
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_InheritsFrom().getName());
-//			if (attributeValue instanceof List list) { //TODO String List attribute
-//				List<String> attributeValueOdrl = addElement(list, policy, activityElement, String.class);
-//				if (attributeValueOdrl!=null) {
-//					policy.setInheritsFrom(attributeValueOdrl);
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_Profiles().getName());
-//			if (attributeValue instanceof List list) { //TODO String List attribute
-//				List<String> attributeValueOdrl = addElement(list, policy, activityElement, String.class);
-//				if (attributeValueOdrl!=null) {
-//					policy.setProfiles(attributeValueOdrl);
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getODRLPolicy_Uid().getName());
-//			if (attributeValue instanceof String string) {
-//				policy.setUid(string);
-//			}
-//			//Activity Diagram: Get contained rules from the contained actions
-//			if (getValue(currentEObject, odrlPackage.getODRLPolicy_Base_Activity()) instanceof Activity baseActivity) {
-//				for (ActivityNode node : baseActivity.getNodes()) {
-//					if (node instanceof org.eclipse.uml2.uml.Action action) {
-//						for (EObject stereoAppl : action.getStereotypeApplications()) {
-//							Object newObject = addElement(stereoAppl, policy, action);
-//							if (newObject instanceof Permission permission) {
-//								policy.addPermission(permission);
-//							} else if (newObject instanceof Prohibition prohibition) {
-//								policy.addProhibition(prohibition);
-//							} else if (newObject instanceof Duty obligation) {
-//								policy.addObligation(obligation);
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
-//		//Filling-Methods for Relation
-//		private void fillRelation(EObject currentEObject, Relation relation, EObject activityElement) {
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getAssetRelation_Asset().getName());
-//			if (attributeValue instanceof EObject newEObj) {
-//				Object attributeValueOdrl = addElement(newEObj, relation, activityElement);
-//				if (attributeValueOdrl instanceof Asset asset) {
-//					relation.setAsset(asset);
-//				}
-//			}
-//		}
-//		//Filling-Methods for RightOperands TODO deal with once the different RightOperandInterface-implementers are finished	
-//		
-//		//Filling-methods for rules
-//		private void fillRule(EObject currentEObject, Rule rule, EObject activityElement) {
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getRule_Action().getName());
-//			if (attributeValue instanceof EObject newEObj) {
-//				Object attributeValueOdrl = addElement(newEObj, rule, activityElement);
-//				if (attributeValueOdrl instanceof carisma.profile.uconcreation.odrl.core.internal.classes.action.Action action) {
-//					rule.setAction(action);
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getRefinableElement_Refinement().getName());
-//			if (attributeValue instanceof EObject newEObj) {//TODO get constraint
-//				Object attributeValueOdrl = addElement(newEObj, rule.getAction(), activityElement);
-//				if (attributeValueOdrl instanceof ConstraintInterface constraintInterface) {
-//					//if (attributeValueOdrl instanceof List constraintList) {TODO add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
-//					//	rule.getConstraint().
-//					//}
-//					if (rule.getAction()!=null) {//TODO also add null check for other cases where a gotten object is further used or keep the nullpointer as sign that something is missing
-//						rule.getAction().setRefinement(constraintInterface);
-//					}
-//				}
-//				
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getRule_Uid().getName());
-//			if (attributeValue instanceof String string) {
-//				rule.setUid(string);
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getRule_InvolvedAssets().getName());
-//			if (attributeValue instanceof List list) { //TODO List attribute
-//				List<Relation> attributeValueOdrl = addElement(list, rule, activityElement, Relation.class);
-//				if (attributeValueOdrl!=null) {
-//					rule.setInvolvedAssets(attributeValueOdrl);
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getRule_InvolvedParties().getName());
-//			if (attributeValue instanceof List list) { //TODO List attribute
-//				List<Function> attributeValueOdrl = addElement(list, rule, activityElement, Function.class);
-//				if (attributeValueOdrl!=null) {
-//					rule.setInvolvedParties(attributeValueOdrl);
-//				}
-//			}
-//			attributeValue = getValue(currentEObject, odrlPackage.getConstrainableElement_Constraint().getName());
-//			if (attributeValue instanceof EObject newEObj) {//TODO get constraint
-//				Object attributeValueOdrl = addElement(newEObj, rule, activityElement);
-//				if (attributeValueOdrl instanceof ConstraintInterface constraintInterface) {
-//					//if (attributeValueOdrl instanceof List constraintList) {TODO maybe add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
-//					//	rule.getConstraint().
-//					//}
-//					rule.setConstraint(constraintInterface);
-//				}
-//			}
-//			//Activity diagram: Get related Assets from neighboring pins (TODO: clear up conflicts with explicitly listed Relations?)
-//			if (activityElement instanceof org.eclipse.uml2.uml.Action action) {
-//				for (InputPin inPin : action.getInputs()) {
-//					for (EObject stereoAppl : inPin.getStereotypeApplications()) {
-//						if (addElement(stereoAppl, rule, action) instanceof Asset asset) {
-//							Relation newTarget = new Target();
-//							newTarget.setAsset(asset);
-//							rule.addInvolvedAssets(newTarget);
-//						}
-//					}
-//				}
-//				for (OutputPin outPin : action.getOutputs()) {
-//					for (EObject stereoAppl : outPin.getStereotypeApplications()) {
-//						if (addElement(stereoAppl, rule, action) instanceof Asset asset) {
-//							Relation newTarget = new Output();
-//							newTarget.setAsset(asset);
-//							rule.addInvolvedAssets(newTarget);
-//						}
-//					}
-//				}
-//			}
-//		}
-//		private void fillPermission(EObject currentEObject, Permission permission, EObject activityElement) {
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getPermission_Duties().getName());
-//			if (attributeValue instanceof List list) { //TODO List attribute
-//				List<Duty> attributeValueOdrl = addElement(list, permission, activityElement, Duty.class);
-//				if (attributeValueOdrl!=null) {
-//					permission.setDuties(attributeValueOdrl);
-//				}
-//			}
-//		}
-//		private void fillProhibition(EObject currentEObject, Prohibition prohibition, EObject activityElement) {
-//			//Currently leads to properties of unrelated duty being taken over
-//			EStructuralFeature remedyFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getProhibition_Remedies().getName());
-//			if (getValue(currentEObject,odrlPackage.getProhibition_Remedies().getName()) != null) {
-//				Object attributeValueOdrl = addElement(remedyFeature, prohibition, activityElement);
-//				System.out.println("attributeValue remedy: " + attributeValueOdrl);
-//				if (attributeValueOdrl instanceof Remedy remedy) {
-//					prohibition.setRemedy(remedy);
-//				}
-//			}//TODO only set the remedy if its rules-Property is not empty (in ecore it has the empty list, making the remedy and List non-null in any case). Possibility: fillRemedies
-//			Object attributeValue = getValue(currentEObject,odrlPackage.getProhibition_Remedies().getName());
-//			if (attributeValue instanceof List list) { //TODO List attribute
-//				List<Duty> attributeValueOdrl = addElement(list, prohibition.getRemedy(), activityElement, Duty.class);
-//				if (attributeValueOdrl!=null) {
-//					if (prohibition.getRemedy().getRules()==null)
-//						prohibition.getRemedy().setRules(new LinkedList<>());
-//					prohibition.getRemedy().getRules().addAll(attributeValueOdrl);//TODO change getters to conditional generators or add null-checks with additional creation everywhere were gotten objects are further used
-//				}
-//			}
-//		}
-//		private void fillDuty(EObject currentEObject, Duty duty, EObject activityElement) {
-//			EStructuralFeature consequenceFeature = currentEObject.eClass().getEStructuralFeature(odrlPackage.getDuty_Consequences().getName());
-//			if (getValue(currentEObject,odrlPackage.getDuty_Consequences().getName()) != null) {
-//				System.out.println("ConsequenceValue" + getValue(currentEObject,odrlPackage.getDuty_Consequences().getName()));
-//				Object attributeValueOdrl = addElement(consequenceFeature, duty, activityElement);
-//				if (attributeValueOdrl instanceof Consequence consequence) {
-//					duty.setConsequences(consequence);
-//				}
-//			}
-//			//Following part currently leads to stack overflow when JSON-Objects are created (Does not anymore. did with old references)
-//			Object attributeValue = getValue(currentEObject, odrlPackage.getDuty_Consequences().getName());
-//			if (attributeValue instanceof List list) { //TODO List attribute
-//				List<Duty> attributeValueOdrl = addElement(list, duty.getConsequences(), activityElement, Duty.class);
-//				if (attributeValueOdrl!=null) {
-//					if (duty.getConsequences().getRules()==null)
-//						duty.getConsequences().setRules(new LinkedList<Rule>());
-//					duty.getConsequences().getRules().addAll(attributeValueOdrl);//TODO change getters to conditional generators or add null-checks with additional creation everywhere were gotten objects are further used
-//				}
-//			}
-//		}
-	
 	public Object printMap(Object obj) {
 		if (obj instanceof ODRLClassImpl odrlObj) {
 			try {
@@ -1053,12 +805,40 @@ public class UMLModelConverter {
 		}
 		return null;
 	}
-	public Object createMap(ODRLClassImpl object, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
+	
+	
+	/**
+	 * Creates a JSON-LD-structured map from an {@link ODRLClassImpl} by passing the task to it.
+	 * @param object {@link ODRLClassImpl} to create map from
+	 * @param circlePreventionSet {@link Set} to prevent infinite loops
+	 * @return JSON-LD-structured map
+	 * @throws NoSuchFieldException
+	 * @throws SecurityException
+	 */
+	public Object createMap(ODRLClassImpl object, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException { //TODO handle Exceptions at lower level
 		return object.createMap(circlePreventionSet);
 	}
+	
+	/**
+	 * Returns input string
+	 * @param string {@link String} to be returned
+	 * @param circlePreventionSet
+	 * @return the string
+	 */
 	public String createMap(String string,  Set<ODRLClassImpl> circlePreventionSet) {
 		return string;
 	}
+	
+	
+	/**
+	 * Creates a JSON-LD-structured list from a {@link List} of {@link ODRLClassImpl}.
+	 * @param <T> 
+	 * @param list {@link List} to crate the JSOn-LD-structure from
+	 * @param circlePreventionSet {@link Set} to prevent infinite loops
+	 * @return JSON-LD-structured list
+	 * @throws NoSuchFieldException
+	 * @throws SecurityException
+	 */
 	public <T> List<Object>  createMap(List<T> list,  Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
 		List<Object> newList = new LinkedList<>();
 		for (T object : list) {
@@ -1068,12 +848,23 @@ public class UMLModelConverter {
 					newList.add(conversionresult);
 				}
 			} else if (object != null) {
-					newList.add(object);
+					newList.add(object);//TODO propably remove this case
 			}
 		}
 		return newList;
 	}
 	
+	
+	/**
+	 * Creates a JSON-LD-structured representation from an {@link Object}.
+	 * Passes the task to other methods depending on the type of the {@link Object}.
+	 * 
+	 * @param object {@link Object} to create the map from
+	 * @param circlePreventionSet {@link Set} to prevent infinite loops
+	 * @return JSON-LD-structured representation, or null if object-input is not of a valid type
+	 * @throws NoSuchFieldException
+	 * @throws SecurityException
+	 */
 	public Object createMap(Object object,  Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
 		if (object instanceof ODRLClassImpl odrlObject) {
 			return createMap(odrlObject, circlePreventionSet);

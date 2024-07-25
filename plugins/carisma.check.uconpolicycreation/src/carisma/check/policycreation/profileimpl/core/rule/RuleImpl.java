@@ -75,14 +75,14 @@ public abstract class RuleImpl extends ODRLClassImpl {
 		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_Action());
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, containingUmlElement);
 			if (attributeValueOdrl instanceof ActionImpl action) {
 				this.setAction(action);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRefinableElement_Refinement());
 		if (attributeValue instanceof EObject newEObj) {//TODO get constraint
-			Object attributeValueOdrl = handler.addElement(newEObj, this.getAction(), baseElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this.getAction(), containingUmlElement);
 			if (attributeValueOdrl instanceof ConstraintInterfaceImpl constraintInterface) {
 				//if (attributeValueOdrl instanceof List constraintList) {TODO add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
 				//	rule.getConstraint().
@@ -99,21 +99,21 @@ public abstract class RuleImpl extends ODRLClassImpl {
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_InvolvedAssets());
 		if (attributeValue instanceof List list) { //TODO List attribute
-			List<RelationImpl> attributeValueOdrl = handler.addElement(list, this, baseElement, RelationImpl.class);
+			List<RelationImpl> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, RelationImpl.class);
 			if (attributeValueOdrl!=null) {
 				this.setInvolvedAssets(attributeValueOdrl);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_InvolvedParties());
 		if (attributeValue instanceof List list) { //TODO List attribute
-			List<FunctionImpl> attributeValueOdrl = handler.addElement(list, this, baseElement, FunctionImpl.class);
+			List<FunctionImpl> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, FunctionImpl.class);
 			if (attributeValueOdrl!=null) {
 				this.setInvolvedParties(attributeValueOdrl);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstrainableElement_Constraint());
 		if (attributeValue instanceof EObject newEObj) {//TODO get constraint
-			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, containingUmlElement);
 			if (attributeValueOdrl instanceof ConstraintInterfaceImpl constraintInterface) {
 				//if (attributeValueOdrl instanceof List constraintList) {TODO maybe add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
 				//	rule.getConstraint().
@@ -122,10 +122,10 @@ public abstract class RuleImpl extends ODRLClassImpl {
 			}
 		}
 		//Activity diagram: Get related Assets from neighboring pins (TODO: clear up conflicts with explicitly listed Relations?)
-		if (baseElement instanceof org.eclipse.uml2.uml.Action action) {
+		if (containingUmlElement instanceof org.eclipse.uml2.uml.Action action) {
 			for (InputPin inPin : action.getInputs()) {
 				for (EObject stereoAppl : inPin.getStereotypeApplications()) {
-					if (handler.addElement(stereoAppl, this, baseElement) instanceof AssetImpl asset) {
+					if (handler.addElement(stereoAppl, this, containingUmlElement) instanceof AssetImpl asset) {
 						RelationImpl newTarget = new TargetImpl();
 						newTarget.setHandler(handler);//TODO watch out: not all classes are created in the Converter, remove if handler passing is changed to constructor
 						newTarget.setAsset(asset);
@@ -135,7 +135,7 @@ public abstract class RuleImpl extends ODRLClassImpl {
 			}
 			for (OutputPin outPin : action.getOutputs()) {
 				for (EObject stereoAppl : outPin.getStereotypeApplications()) {
-					if (handler.addElement(stereoAppl, this, baseElement) instanceof AssetImpl asset) {
+					if (handler.addElement(stereoAppl, this, containingUmlElement) instanceof AssetImpl asset) {
 						RelationImpl newOutput = new OutputImpl();
 						newOutput.setHandler(handler);//TODO watch out: not all classes are created in the Converter, remove if handler passing is changed to constructor
 						newOutput.setAsset(asset);

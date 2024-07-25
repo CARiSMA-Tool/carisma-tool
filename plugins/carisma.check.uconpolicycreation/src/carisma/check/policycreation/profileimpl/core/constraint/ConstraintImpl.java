@@ -157,28 +157,28 @@ public class ConstraintImpl extends ODRLClassImpl{
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_LeftOperand());
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, containingUmlElement);
 			if (attributeValueOdrl instanceof LeftOperandImpl leftOperand) {
 				this.setLeftOperand(leftOperand);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_Operator());
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, containingUmlElement);
 			if (attributeValueOdrl instanceof OperatorImpl operator) {
 				this.setOperator(operator);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_RightOperand());
 		if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
-			List<RightOperandInterfaceImpl> attributeValueOdrl = handler.addElement(list, this, baseElement, RightOperandInterfaceImpl.class);
+			List<RightOperandInterfaceImpl> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, RightOperandInterfaceImpl.class);
 			if (attributeValueOdrl!=null) {
 				this.setRightOperand(attributeValueOdrl);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_RightOperandReference());
 		if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
-			List<String> attributeValueOdrl = handler.addElement(list, this, baseElement, String.class);
+			List<String> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, String.class);
 			if (attributeValueOdrl!=null) {
 				this.setRightOperandReference(attributeValueOdrl);
 			}

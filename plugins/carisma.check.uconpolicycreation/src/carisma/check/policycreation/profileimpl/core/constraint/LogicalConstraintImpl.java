@@ -35,14 +35,14 @@ public class LogicalConstraintImpl extends ODRLClassImpl implements ConstraintIn
 		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getLogicalConstraint_LogicalOperator());
 		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, baseElement);
+			Object attributeValueOdrl = handler.addElement(newEObj, this, containingUmlElement);
 			if (attributeValueOdrl instanceof OperandImpl operand) {
 				this.setOperand(operand);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getLogicalConstraint_Constraints());
 		if (attributeValue instanceof List list) { //TODO List attribute
-			List<ConstraintImpl> attributeValueOdrl = handler.addElement(list, this, baseElement, ConstraintImpl.class);
+			List<ConstraintImpl> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, ConstraintImpl.class);
 			if (attributeValueOdrl!=null && this.getOperand()!=null) {//TODO Maybe remove operand-nullcheck, as it being null would point to a faulty model
 				this.getOperand().setConstraints(attributeValueOdrl);//(After creation of operand earlier in this method) set constraints to it
 			}
