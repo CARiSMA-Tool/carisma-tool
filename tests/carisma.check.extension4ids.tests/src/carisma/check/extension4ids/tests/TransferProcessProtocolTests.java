@@ -103,6 +103,21 @@ public class TransferProcessProtocolTests {
 
         this.modelres.unload();
     }
+    
+    @Test
+    public final void testNoConsumerNoProvider() throws IOException {
+        loadModel("transfer_process_protocol_no_consumer_no_provider.uml");
+        TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Element> providers = Extension4IDSUtil.getStereotypedElements(this.model, Extension4IDS.PROVIDER);
+        List<Element> consumers = Extension4IDSUtil.getStereotypedElements(this.model, Extension4IDS.CONSUMER);
+        assertEquals(0, providers.size());
+        assertEquals(0, consumers.size());
+
+        TestHost analysisHost = new TestHost(this.modelres);
+        assertFalse(check.perform(null, analysisHost));
+
+        this.modelres.unload();
+    }
 
     @Test
     public final void testTooManyProviders() throws IOException {
@@ -129,7 +144,22 @@ public class TransferProcessProtocolTests {
         assertTrue(consumers.size() > 1);
 
         TestHost analysisHost = new TestHost(this.modelres);
-        assertFalse(check.perform(null, analysisHost)); // Ensure the perform method returns false
+        assertFalse(check.perform(null, analysisHost));
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testTooManyConsumersTooManyProviders() throws IOException {
+        loadModel("transfer_process_protocol_too_many_consumers_too_many_provider.uml");
+        TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Element> providers = Extension4IDSUtil.getStereotypedElements(this.model, Extension4IDS.PROVIDER);
+        List<Element> consumers = Extension4IDSUtil.getStereotypedElements(this.model, Extension4IDS.CONSUMER);
+        assertTrue(providers.size() > 1);
+        assertTrue(consumers.size() > 1);
+
+        TestHost analysisHost = new TestHost(this.modelres);
+        assertFalse(check.perform(null, analysisHost));
 
         this.modelres.unload();
     }
@@ -160,6 +190,40 @@ public class TransferProcessProtocolTests {
         assertNotNull(relevantMessagesDto.getTransferRequest());
         assertNull(relevantMessagesDto.getTransferStart());
         assertNull(relevantMessagesDto.getTransferTerminate());
+
+        TestHost analysisHost = new TestHost(this.modelres);
+
+        assertFalse(check.perform(null, analysisHost));
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testNoTransferStartButSuspendPresent() throws IOException {
+        loadModel("transfer_process_protocol_suspend_and_no_start.uml");
+        TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        assertNotNull(relevantMessagesDto.getTransferSuspend());
+        assertNull(relevantMessagesDto.getTransferStart());
+
+        TestHost analysisHost = new TestHost(this.modelres);
+
+        assertFalse(check.perform(null, analysisHost));
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testTransferCompleteAndSuspendPresent() throws IOException {
+        loadModel("transfer_process_protocol_complete_with_suspend.uml");
+        TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        assertNotNull(relevantMessagesDto.getTransferSuspend());
+        assertNotNull(relevantMessagesDto.getTransferComplete());
 
         TestHost analysisHost = new TestHost(this.modelres);
 
@@ -256,8 +320,331 @@ public class TransferProcessProtocolTests {
     }
     
     @Test
+    public final void testIncorrectOrderRequestAfterStart() throws IOException {
+    	loadModel("transfer_process_protocol_request_after_start.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+        assertFalse(tpp.hasCorrectOrderOfSteps(relevantMessagesDto, this.model));
+        assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testIncorrectOrderPushAfterComplete() throws IOException {
+    	loadModel("transfer_process_protocol_push_after_complete.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+        assertFalse(tpp.hasCorrectOrderOfSteps(relevantMessagesDto, this.model));
+        assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testIncorrectOrderPullAfterComplete() throws IOException {
+    	loadModel("transfer_process_protocol_pull_after_complete.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+        assertFalse(tpp.hasCorrectOrderOfSteps(relevantMessagesDto, this.model));
+        assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    
+    
+    @Test
     public final void testInvalidProtocolSteps() throws IOException{
     	loadModel("transfer_process_protocol_invalid_protocol_steps.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidTransferRequestStep() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_transfer_request.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidTransferRequestStepWrongReceiver() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_transfer_request_wrong_receiver.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidPushStep() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_push.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidPushWrongSender() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_push_wrong_sender.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidPullWrongSender() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_pull_wrong_sender.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidPull() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_pull.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidCompletePush() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_complete_push.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidCompletePushWrongReceiver() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_complete_push2.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidCompletePull() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_complete_pull.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidCompletePullWrongReceiver() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_complete_pull2.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidTerminate() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_terminate.uml");
+    	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
+        List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
+        Interaction interaction = interactions.stream().findFirst().get();
+        RelevantMessagesDto relevantMessagesDto = TransferProcessProtocolHelper.getTaggedValues(interaction);
+        TestHost analysisHost = new TestHost(this.modelres);
+        TransferProcessProtocol tpp = new TransferProcessProtocol(analysisHost);
+
+		Set<Lifeline> lifelines = UMLSequenceHelper.getAllLifeLines(this.model);
+        Set<Lifeline> providers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines, Extension4IDS.PROVIDER);
+		Set<Lifeline> consumers = TransferProcessProtocolHelper.getAnnotatedLifeline(lifelines,Extension4IDS.CONSUMER);
+        Lifeline provider = providers.stream().findFirst().get();
+		Lifeline consumer = consumers.stream().findFirst().get();
+		DataTransferProtocolDto dataTransferProtocolDto = new DataTransferProtocolDto(provider, consumer);
+		
+		assertFalse(tpp.hasValidProtocolSteps(dataTransferProtocolDto, relevantMessagesDto));
+		assertFalse(check.perform(null, analysisHost)); 
+
+        this.modelres.unload();
+    }
+    
+    @Test
+    public final void testInvalidSuspend() throws IOException{
+    	loadModel("transfer_process_protocol_invalid_suspend.uml");
     	TransferProcessProtocolCheck check = new TransferProcessProtocolCheck();
         List<Interaction> interactions = UMLHelper.getAllElementsOfType(this.model, Interaction.class);
         Interaction interaction = interactions.stream().findFirst().get();

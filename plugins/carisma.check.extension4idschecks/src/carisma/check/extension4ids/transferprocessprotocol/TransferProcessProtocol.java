@@ -288,17 +288,17 @@ public class TransferProcessProtocol {
 	}
 	
 	//Not used
-	public boolean hasMessagesNotBetweenConnectors(DataTransferProtocolDto dataTransferProtocolDto) {
-		Set<Message> messagesNotBetweenConnectors = UMLSequenceHelper.getAllMessagesNotBetweenLifelines(dataTransferProtocolDto.getProvider(), dataTransferProtocolDto.getConsumer());
-		if (!messagesNotBetweenConnectors.isEmpty()) {
-			String messages = messagesNotBetweenConnectors.stream()
-	                .map(Message::getName) 
-	                .collect(Collectors.joining(", "));
-	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "These messages are irrelevant to the transfer process protocol: " + messages));
-	        return true;
-	    }
-		return false;
-	}
+//	public boolean hasMessagesNotBetweenConnectors(DataTransferProtocolDto dataTransferProtocolDto) {
+//		Set<Message> messagesNotBetweenConnectors = UMLSequenceHelper.getAllMessagesNotBetweenLifelines(dataTransferProtocolDto.getProvider(), dataTransferProtocolDto.getConsumer());
+//		if (!messagesNotBetweenConnectors.isEmpty()) {
+//			String messages = messagesNotBetweenConnectors.stream()
+//	                .map(Message::getName) 
+//	                .collect(Collectors.joining(", "));
+//	        this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "These messages are irrelevant to the transfer process protocol: " + messages));
+//	        return true;
+//	    }
+//		return false;
+//	}
 
 	
 	/**
