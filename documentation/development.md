@@ -1,6 +1,6 @@
 # Setting up CARiSMA for development
 1. Install [Eclipse](installation.md#eclipse-modeling-tools)
-2. Install [BPMN2 Modeler](installation.md#bpmn2-modeler)
+2. Install [BPMN2 Modeler](installation.md#bpmn2-modeler) **As of 2024-08, the BPMN2 Modeler is not compatible with Eclipse versions**
 3. Install [Papyrus](installation.md#papyrus)
 4. If you already installed CARiSMA, delete the local installation.
 5. Import the CARiSMA Tool from the [git repository](https://github.com/CARiSMA-Tool/carisma-tool).
