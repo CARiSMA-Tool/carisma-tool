@@ -6,7 +6,8 @@
 - If you have problems installing it, check out the installation guide at : https://wiki.eclipse.org/Eclipse/Installation
 
 ## BPMN2 Modeler (optional)
-**As of 2024-08, the BPMN2 Modeler is not compatible with Eclipse versions**
+**(The BPMN2 Modeler is not compatible with Eclipse versions starting from 2024-06)**
+
 If you want to model business processes using BPMN models, you probably want to install the *BPMN2 modeler*
 1. Navigate to *Help* -> *Install New Software*, then click *Add* 
 2. Enter the following URL into the "Location" field: https://download.eclipse.org/bpmn2-modeler/updates/2022-12/1.5.4-202212
