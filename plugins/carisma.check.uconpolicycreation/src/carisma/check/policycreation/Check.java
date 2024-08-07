@@ -1,11 +1,21 @@
 package carisma.check.policycreation;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.internal.resources.ResourceException;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -16,7 +26,6 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 import org.json.JSONObject;
 
-import ODRLCommonVocabulary.Duty;
 import ODRLCommonVocabulary.ODRLCommonVocabularyFactory;
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
 import ODRLCommonVocabulary.util.ODRLCommonVocabularySwitchImpl;
@@ -169,6 +178,7 @@ public class Check implements CarismaCheckWithID {
 		List<JSONObject> printList = new LinkedList<JSONObject>();
 		List<ODRLClassImpl> objectList = new LinkedList<ODRLClassImpl>();
 		Collection<Element> modelContents = inputModel.allOwnedElements();
+		UMLModelConverter converter = new UMLModelConverter();
 		for (Element e : modelContents) {
 			System.out.println("Element: " + e);//TODO: remove
 			for(EStructuralFeature esf : e.eClass().getEAllStructuralFeatures()) {//TODO remove
@@ -176,7 +186,7 @@ public class Check implements CarismaCheckWithID {
 					if (e.eGet(esf) instanceof List list && !list.isEmpty())
 					System.out.println("Feature: " + esf + "        With value: " + e.eGet(esf));
 				}
-			}
+			}			
 			for (Stereotype s : e.getAppliedStereotypes()) {
 				if (s.getProfile().getQualifiedName().equals(profileName)) { //probably replace qualified name comparison by an more unique identifier
 					System.out.println("Structural features of a stereotype application:");
@@ -189,8 +199,7 @@ public class Check implements CarismaCheckWithID {
 					if (object instanceof ODRLClassImpl odrlC) {
 						System.out.println("Created ODRLObject: " + odrlC);
 						JSONObject jso = new JSONObject(odrlC);
-						//
-						UMLModelConverter converter = new UMLModelConverter();
+						//					
 						Object converterMap = converter.printMap(odrlC);
 						System.out.println("converter print map");
 						System.out.println(converterMap);
@@ -214,7 +223,32 @@ public class Check implements CarismaCheckWithID {
 				}			
 			}
 		}
+
 		for (ODRLClassImpl odrlc : objectList) {
+			if (odrlc instanceof PolicyImpl) {
+				Object converterMap = converter.printMap(odrlc);
+				if (converterMap instanceof Map actualMap) {
+					String outString =(new JSONObject(actualMap).toString(4));
+					
+					IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+					IPath p = Path.fromOSString("testp_/textfile.txt");//TODO change to parameter input
+					IFile iFile = workspaceRoot.getFile(p);
+					System.out.println("File Path: " + iFile.getLocation());
+					InputStream in = new ByteArrayInputStream(outString.getBytes(StandardCharsets.UTF_8));
+					try {
+					iFile.create(in, false, null);
+					in.close();
+					}
+					catch (ResourceException e) {
+						//TODO: Don't print, add as Error to analysis results
+						System.out.println(e.getMessage());
+					}
+					catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
+			}
 			checkProfileRequirements(odrlc);
 		}
 //		for (JSONObject jobj : printList) {
@@ -235,10 +269,10 @@ public class Check implements CarismaCheckWithID {
 		if (currentEObject==null) {//Not necessary for result
 			return null;
 		}
-		if (referencingList2.get(currentEObject)!= null) {//TODO either add parent to parents-Attribute here (and before the other return-statement) or in the method processing the return value (if that's where it's decided whether it's actually added (for example in case it would, but must not ovewrite a value of the parent))
-			System.out.println("already generated: " + currentEObject);
-			return referencingList2.get(currentEObject);//Problem: Same enums are used in the generation of different ODRL-Objects (e.g. one action-enum with several different refinements)
-		}
+//		if (referencingList2.get(currentEObject)!= null) {//TODO either add parent to parents-Attribute here (and before the other return-statement) or in the method processing the return value (if that's where it's decided whether it's actually added (for example in case it would, but must not ovewrite a value of the parent))
+//			System.out.println("already generated: " + currentEObject);
+//			return referencingList2.get(currentEObject);//Problem: Same enums are used in the generation of different ODRL-Objects (e.g. one action-enum with several different refinements)
+//		}
 		String objectClassName = currentEObject.eClass().getName();
 		Object newObject = null;
 		
@@ -249,10 +283,10 @@ public class Check implements CarismaCheckWithID {
 		
 		
 		//
-		if (newObject instanceof ODRLClassImpl newOdrlObject) {
-			System.out.println("At end of addElement :" + newObject);
-			referencingList2.put(currentEObject, newOdrlObject);//Maybe extend the valid keys and add all objects, not just ODRLClassImples
-		}
+//		if (newObject instanceof ODRLClassImpl newOdrlObject) {
+//			System.out.println("At end of addElement :" + newObject);
+//			referencingList2.put(currentEObject, newOdrlObject);//Maybe extend the valid keys and add all objects, not just ODRLClassImples
+//		}
 		System.out.println(converter.addElement(currentEObject,null,null)==null?"Helper: Null": "Helper:  " + converter.addElement(currentEObject,null,null)); //TODO: Watch out: 2nd call
 		System.out.println("passed EObject: " + currentEObject);
 		return newObject;

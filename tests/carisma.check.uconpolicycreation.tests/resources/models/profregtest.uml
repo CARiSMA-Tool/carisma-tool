@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRLCommonVocabulary="http:///schemas/ODRLCommonVocabulary/_HRErQCfQEe-E48J8CoOMMQ/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRLCommonVocabulary/_HRErQCfQEe-E48J8CoOMMQ/2 pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_HRGgcCfQEe-E48J8CoOMMQ">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRLCommonVocabulary="http:///schemas/ODRLCommonVocabulary/_BQw8wFGgEe-b_6a7W7_YMg/7" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRLCommonVocabulary/_BQw8wFGgEe-b_6a7W7_YMg/7 ../../../carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#_BQyK4FGgEe-b_6a7W7_YMg">
   <uml:Model xmi:id="_oOtF0BX8Ee-qfZXglk0hvg" name="profregtest">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_oSdkcBX8Ee-qfZXglk0hvg">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -36,9 +36,15 @@
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
     </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_CZurwFQYEe-UF-wdcDndtQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CZzkQFQYEe-UF-wdcDndtQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../../../carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#_BQyK4FGgEe-b_6a7W7_YMg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../../../carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
+    </profileApplication>
   </uml:Model>
   <ODRLCommonVocabulary:Duty xmi:id="_yfOTYBX8Ee-qfZXglk0hvg" base_Action="_xPo60BX8Ee-qfZXglk0hvg" uid="dutytest" action="attribute">
-    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_iyBQMBoZEe-GcPoCaAUuDQ" type="assignee" party="_IUdiUBhjEe-nJoZE-_kBQA"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_CZjFkVQYEe-UF-wdcDndtQ" type="assignee" party="_IUdiUBhjEe-nJoZE-_kBQA"/>
   </ODRLCommonVocabulary:Duty>
   <ODRLCommonVocabulary:Prohibition xmi:id="_4IiBUBfVEe-01bb08w7VdA" base_Action="_28ed4BfVEe-01bb08w7VdA"/>
   <ODRLCommonVocabulary:Party xmi:id="_IUdiUBhjEe-nJoZE-_kBQA" base_ActivityPartition="_09khMBfVEe-01bb08w7VdA"/>
@@ -46,17 +52,17 @@
     <profiles>example.com/profile1</profiles>
     <inheritsFrom>example.com/inheritedfromprofile</inheritsFrom>
   </ODRLCommonVocabulary:ODRLPolicy>
-  <ODRLCommonVocabulary:Permission xmi:id="_uX7XgBuGEe-TsoISa_0sSA" base_Action="_tN2xEBuGEe-TsoISa_0sSA" uid="permIdString" action="delete" duties="_yfOTYBX8Ee-qfZXglk0hvg">
-    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_2HLiMBuGEe-TsoISa_0sSA" uid="refinementuid" logicalOperator="and">
-      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_8EjfkBuGEe-TsoISa_0sSA" uid="constuid" leftOperand="dateTime" operator="eq">
+  <ODRLCommonVocabulary:Permission xmi:id="_uX7XgBuGEe-TsoISa_0sSA" base_Action="_tN2xEBuGEe-TsoISa_0sSA" uid="permIdString" action="delete">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_CZsPgVQYEe-UF-wdcDndtQ" uid="refinementuid" logicalOperator="and">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_CZsPglQYEe-UF-wdcDndtQ" uid="constuid" leftOperand="dateTime" operator="eq">
         <rightOperand>someDate</rightOperand>
       </constraints>
     </refinement>
-    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_-o8MkCZ2Ee-XVN-M5fX81w" uid="Loconstraintuid" logicalOperator="and">
-      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_A5PbQCZ3Ee-XVN-M5fX81w" uid="constraintuid" leftOperand="absoluteSpartialPosition" operator="hasPart"/>
+    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_CZsPg1QYEe-UF-wdcDndtQ" uid="Loconstraintuid" logicalOperator="and">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_CZsPhFQYEe-UF-wdcDndtQ" uid="constraintuid" leftOperand="absoluteSpartialPosition" operator="hasPart"/>
     </constraint>
-    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_04ndUBuGEe-TsoISa_0sSA" type="assigner" party="_IUdiUBhjEe-nJoZE-_kBQA"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_CZsPhVQYEe-UF-wdcDndtQ" type="assigner"/>
   </ODRLCommonVocabulary:Permission>
-  <ODRLCommonVocabulary:Asset xmi:id="_GKCsIB6YEe-J-6J5J5ivQA" base_DataStoreNode="_5Q850B6XEe-J-6J5J5ivQA" uid="assetuidtest"/>
+  <ODRLCommonVocabulary:Asset xmi:id="_GKCsIB6YEe-J-6J5J5ivQA" uid="assetuidtest"/>
   <ODRLCommonVocabulary:Asset xmi:id="_PnplYDF4Ee-sX-CZ7PgssA" base_Pin="_6I2yMB6XEe-J-6J5J5ivQA" uid="assetString"/>
 </xmi:XMI>

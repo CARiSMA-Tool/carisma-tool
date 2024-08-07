@@ -8,10 +8,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 import ODRLCommonVocabulary.Action;
 import ODRLCommonVocabulary.AssetRelationType;
@@ -137,7 +140,6 @@ import carisma.check.policycreation.profileimpl.core.failure.ConsequenceImpl;
 import carisma.check.policycreation.profileimpl.core.failure.RemedyImpl;
 import carisma.check.policycreation.profileimpl.core.function.AssigneeImpl;
 import carisma.check.policycreation.profileimpl.core.function.AssignerImpl;
-import carisma.check.policycreation.profileimpl.core.function.FunctionImpl;
 import carisma.check.policycreation.profileimpl.core.operand.AndImpl;
 import carisma.check.policycreation.profileimpl.core.operand.AndSequenceImpl;
 import carisma.check.policycreation.profileimpl.core.operand.OperandImpl;
@@ -484,6 +486,7 @@ public class UMLModelConverter {
 			termMap.put(PolicyImpl.class.getDeclaredField("inheritsFrom"), "inheritFrom");
 			termMap.put(PolicyImpl.class.getDeclaredField("permission"), "permission");
 			termMap.put(PolicyImpl.class.getDeclaredField("obligation"), "obligation");
+			termMap.put(PolicyImpl.class.getDeclaredField("prohibition"), "prohibition");
 			termMap.put(AgreementImpl.class, "Agreement");
 			termMap.put(OfferImpl.class, "Offer");
 			termMap.put(SetImpl.class, "Set");
@@ -551,7 +554,7 @@ public class UMLModelConverter {
 			termMap.put(SharingImpl.class, "cc:Sharing");
 			termMap.put(SourceCodeImpl.class, "cc:SourceCode");
 			termMap.put(StreamImpl.class, "stream");
-			termMap.put(SynchronizeImpl.class, "http://www.w3.org/ns/odrl/2/synchronize");
+			termMap.put(SynchronizeImpl.class, "synchronize");
 			termMap.put(TextToSpeechImpl.class, "textToSpeech");
 			termMap.put(TransformImpl.class, "transform");
 			termMap.put(TranslateImpl.class, "translate");
@@ -653,7 +656,7 @@ public class UMLModelConverter {
 	
 	
 	/**
-	 * Converts an Ecore-representation of a model element to an ODRL-java-based one and fills its attributes.
+	 * Converts an Ecore-representation of a model element to an ODRL-java-based one and fills its attributes, or returns the ODRL-java-based representation if it already exists.
 	 * 
 	 * 
 	 * @param currentEObject model element to be converted
@@ -663,6 +666,10 @@ public class UMLModelConverter {
 	 */
 	public  Object addElement(EObject currentEObject, ODRLClassImpl odrlParent, Element activityElement) {
 		Object newObject = null;
+		newObject = referencingMap.get(currentEObject);
+		if (newObject != null) {//currentEObject is a stereotypeApplication that already was processed
+			return newObject;
+		}
 		newObject = getOdrlObject(currentEObject, odrlParent, activityElement);
 		if (newObject ==null) {
 			newObject = specialCases(currentEObject, odrlParent, activityElement);
@@ -880,6 +887,8 @@ public class UMLModelConverter {
 	public Map<Object, String> getTermMap() {
 		return termMap;
 	}
-	
+	public void addToReferencingMap(EObject stereotypeApplication, ODRLClassImpl createdObject) {
+		referencingMap.put(stereotypeApplication, createdObject);
+	}
 	
 }

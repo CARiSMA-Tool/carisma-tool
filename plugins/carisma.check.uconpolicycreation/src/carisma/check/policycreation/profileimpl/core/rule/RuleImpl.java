@@ -97,13 +97,14 @@ public abstract class RuleImpl extends ODRLClassImpl {
 		if (attributeValue instanceof String string) {
 			this.setUid(string);
 		}
-		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_InvolvedAssets());
-		if (attributeValue instanceof List list) { //TODO List attribute
-			List<RelationImpl> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, RelationImpl.class);
-			if (attributeValueOdrl!=null) {
-				this.setInvolvedAssets(attributeValueOdrl);
-			}
-		}
+//		InvolvedAssets removed as attribute from UML-Model. Only defined through adjacent pins.
+//		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_InvolvedAssets());
+//		if (attributeValue instanceof List list) { //TODO List attribute
+//			List<RelationImpl> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, RelationImpl.class);
+//			if (attributeValueOdrl!=null) {
+//				this.setInvolvedAssets(attributeValueOdrl);
+//			}
+//		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_InvolvedParties());
 		if (attributeValue instanceof List list) { //TODO List attribute
 			List<FunctionImpl> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, FunctionImpl.class);

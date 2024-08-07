@@ -45,6 +45,8 @@ public abstract class ODRLClassImpl{
 			containingUmlElement = UMLUtil.getBaseElement(input);
 			if (containingUmlElement == null) {
 				containingUmlElement = activityElement;
+			} else {//New applied Stereotype was processed
+				handler.addToReferencingMap(input, this);
 			}
 		}
 	}
@@ -200,5 +202,4 @@ public abstract class ODRLClassImpl{
 			}
 		}
 	}
-	
 }
