@@ -14,10 +14,8 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 import ODRLCommonVocabulary.Action;
-import ODRLCommonVocabulary.AssetRelationType;
 import ODRLCommonVocabulary.ConflictStrategy;
 import ODRLCommonVocabulary.ConstraintOperator;
 import ODRLCommonVocabulary.LeftOperand;
@@ -326,7 +324,7 @@ public class UMLModelConverter {
 		enumMap.put(LeftOperand.class.getSimpleName(), Map.ofEntries(
 				//TODO absolute position seems to be missing in UMl-Model
 				Map.entry(LeftOperand.ABSOLUTE_SIZE.getName(), AbsoluteAssetSizeImpl.class),
-				Map.entry(LeftOperand.ABSOLUTE_SPARTIAL_POSITION.getName(), AbsoluteSpatialAssetPositionImpl.class),//TODO correct spelling from spartial to spatial
+				Map.entry(LeftOperand.ABSOLUTE_SPATIAL_POSITION.getName(), AbsoluteSpatialAssetPositionImpl.class),//TODO correct spelling from spartial to spatial
 				Map.entry(LeftOperand.ABSOLUTE_TEMPORAL_POSITION.getName(), AbsoluteTemporalAssetPositionImpl.class),
 				Map.entry(LeftOperand.PERCENTAGE.getName(), AssetPercentageImpl.class),
 				Map.entry(LeftOperand.COUNT.getName(), CountImpl.class),
@@ -336,8 +334,8 @@ public class UMLModelConverter {
 				Map.entry(LeftOperand.ELAPSED_TIME.getName(), ElapsedTimeImpl.class),
 				Map.entry(LeftOperand.EVENT.getName(), EventImpl.class),
 				Map.entry(LeftOperand.FILE_FORMAT.getName(), FileFormatImpl.class),
-				Map.entry(LeftOperand.SPARTIAL_COORDINATES.getName(), GeospatialCoordinatesImpl.class),//TODO correct spelling from spartial to spatial
-				Map.entry(LeftOperand.SPARTIAL.getName(), GeospatialNamedAreaImpl.class),//TODO correct spelling from spartial to spatial
+				Map.entry(LeftOperand.SPATIAL_COORDINATES.getName(), GeospatialCoordinatesImpl.class),//TODO correct spelling from spartial to spatial
+				Map.entry(LeftOperand.SPATIAL.getName(), GeospatialNamedAreaImpl.class),//TODO correct spelling from spartial to spatial
 				Map.entry(LeftOperand.INDUSTRY.getName(), IndustryContextImpl.class),
 				Map.entry(LeftOperand.LANGUAGE.getName(), LanguageImpl.class),
 				Map.entry(LeftOperand.MEDIA.getName(), MediaContextImpl.class),
@@ -349,7 +347,7 @@ public class UMLModelConverter {
 				Map.entry(LeftOperand.TIME_INTERVAL.getName(), RecurringTimeIntervalImpl.class),
 				Map.entry(LeftOperand.RELATIVE_POSITION.getName(), RelativeAssetPositionImpl.class),
 				Map.entry(LeftOperand.RELATIVE_SIZE.getName(), RelativeAssetSizeImpl.class),
-				Map.entry(LeftOperand.RELATIVE_SPARTIAL_POSITION.getName(), RelativeSpatialAssetPositionImpl.class),//TODO correct spelling from spartial to spatial
+				Map.entry(LeftOperand.RELATIVE_SPATIAL_POSITION.getName(), RelativeSpatialAssetPositionImpl.class),//TODO correct spelling from spartial to spatial
 				Map.entry(LeftOperand.RELATIVE_TEMPORAL_POSITION.getName(), RelativeTemporalAssetPositionImpl.class),
 				Map.entry(LeftOperand.RESOLUTION.getName(), RenditionResolutionImpl.class),
 				Map.entry(LeftOperand.DEVICE.getName(), SystemDeviceImpl.class),
@@ -368,11 +366,12 @@ public class UMLModelConverter {
 				Map.entry(PolicyType.TICKET.getName(), TicketImpl.class),
 				Map.entry(PolicyType.NULL.getName(), PolicyImpl.class)//No type-information (is interpreted as Set-Policy by evaluators)
 				));
-		typeEnumMap1.put(odrlPackage.getAssetRelation().getName(), odrlPackage.getAssetRelation_Type().getName());
-		typeEnumMap2.put(odrlPackage.getAssetRelation().getName(), Map.ofEntries(
-				Map.entry(AssetRelationType.TARGET.getName(), TargetImpl.class),
-				Map.entry(AssetRelationType.OUTPUT.getName(), OutputImpl.class)
-				));
+		//Explicit Relations were removed from the diagram
+//		typeEnumMap1.put(odrlPackage.getAssetRelation().getName(), odrlPackage.getAssetRelation_Type().getName());
+//		typeEnumMap2.put(odrlPackage.getAssetRelation().getName(), Map.ofEntries(
+//				Map.entry(AssetRelationType.TARGET.getName(), TargetImpl.class),
+//				Map.entry(AssetRelationType.OUTPUT.getName(), OutputImpl.class)
+//				));
 		typeEnumMap1.put(odrlPackage.getPartyFunction().getName(), odrlPackage.getPartyFunction_Type().getName());
 		typeEnumMap2.put(odrlPackage.getPartyFunction().getName(), Map.ofEntries(
 				Map.entry(PartyFunctionType.ASSIGNEE.getName(), AssigneeImpl.class),
@@ -823,6 +822,9 @@ public class UMLModelConverter {
 	 * @throws SecurityException
 	 */
 	public Object createMap(ODRLClassImpl object, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException { //TODO handle Exceptions at lower level
+		if (object == null) {//TODO tritt u.a. bei function mit leerer Party auf. Sollte bei Policyüberprüfung abgefangen werden
+			return null;
+		}
 		return object.createMap(circlePreventionSet);
 	}
 	

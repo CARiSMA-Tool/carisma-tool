@@ -22,18 +22,18 @@ public abstract class RelationImpl extends ODRLClassImpl {
 		this.asset = asset;
 	}
 	
-	
-	@Override
-	public void fill(EObject currentEObject, Element activityElement) {
-		super.fill(currentEObject, activityElement);
-		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getAssetRelation_Asset());
-		if (attributeValue instanceof EObject newEObj) {
-			Object attributeValueOdrl = handler.addElement(newEObj, this, activityElement);
-			if (attributeValueOdrl instanceof AssetImpl asset) {
-				this.setAsset(asset);
-			}
-		}
-	}
+	//Handled in Rule
+//	@Override
+//	public void fill(EObject currentEObject, Element activityElement) {
+//		super.fill(currentEObject, activityElement);
+//		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getAssetRelation_Asset());
+//		if (attributeValue instanceof EObject newEObj) {
+//			Object attributeValueOdrl = handler.addElement(newEObj, this, activityElement);
+//			if (attributeValueOdrl instanceof AssetImpl asset) {
+//				this.setAsset(asset);
+//			}
+//		}
+//	}
 	
 	@Override
 	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
