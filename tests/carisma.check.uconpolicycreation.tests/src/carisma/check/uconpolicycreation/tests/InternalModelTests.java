@@ -48,7 +48,7 @@ public class InternalModelTests {
 	
 	@Test
 	public final void modelTest() {
-		String modelName = "profregtest.uml";
+		String modelName = "uconpolicycreation-valid-filled.uml";
 		assertNull(this.modelres);
 		loadModel(this.filePath + File.separator + modelName);
 		Check policyCheck = new Check();
