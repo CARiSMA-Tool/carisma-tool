@@ -2,7 +2,6 @@ package carisma.check.policycreation;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashMap;
@@ -28,7 +27,6 @@ import org.json.JSONObject;
 
 import ODRLCommonVocabulary.ODRLCommonVocabularyFactory;
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
-import ODRLCommonVocabulary.util.ODRLCommonVocabularySwitchImpl;
 import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
 import carisma.check.policycreation.profileimpl.core.asset.AssetCollectionImpl;
 import carisma.check.policycreation.profileimpl.core.constraint.ConstraintImpl;
@@ -70,7 +68,7 @@ public class Check implements CarismaCheckWithID {
 	//possibly add emptyString-Variable since empty strings are treated as Null-Strings
 	final static String profileName = "ODRLCommonVocabulary";
 	ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
-	ODRLCommonVocabularySwitchImpl<? extends ODRLClassImpl> odrlSwitch = new ODRLCommonVocabularySwitchImpl<>();//TODO:remove
+	
 	//TODO remove
 	int numOfElements = 0;
 	//
