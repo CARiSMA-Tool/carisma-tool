@@ -9,13 +9,12 @@ import carisma.check.policycreation.UMLModelConverter;
 import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
 import carisma.check.policycreation.profileimpl.core.leftoperand.LeftOperandImpl;
 import carisma.check.policycreation.profileimpl.core.operator.OperatorImpl;
-import carisma.check.policycreation.profileimpl.core.rightoperand.RightOperandInterfaceImpl;
 
 public class ConstraintImpl extends ODRLClassImpl{
 	String uid;
 	LeftOperandImpl leftOperand;
 	OperatorImpl operator;
-	List<RightOperandInterfaceImpl> rightOperand;
+	List<String> rightOperand;
 	List<String> rightOperandReference;
 	String dataType;
 	String unit;
@@ -71,7 +70,7 @@ public class ConstraintImpl extends ODRLClassImpl{
 
 
 
-	public List<RightOperandInterfaceImpl> getRightOperand() {
+	public List<String> getRightOperand() {
 		return rightOperand;
 	}
 
@@ -79,7 +78,7 @@ public class ConstraintImpl extends ODRLClassImpl{
 
 
 
-	public void setRightOperand(List<RightOperandInterfaceImpl> rightOperand) {
+	public void setRightOperand(List<String> rightOperand) {
 		this.rightOperand = rightOperand;
 	}
 
@@ -171,7 +170,7 @@ public class ConstraintImpl extends ODRLClassImpl{
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_RightOperand());
 		if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
-			List<RightOperandInterfaceImpl> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, RightOperandInterfaceImpl.class);
+			List<String> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, String.class);
 			if (attributeValueOdrl!=null) {
 				this.setRightOperand(attributeValueOdrl);
 			}
