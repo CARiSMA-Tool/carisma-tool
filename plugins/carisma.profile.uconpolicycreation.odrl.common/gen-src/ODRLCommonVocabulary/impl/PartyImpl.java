@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.uml2.uml.ActivityPartition;
-import org.eclipse.uml2.uml.DataStoreNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +25,6 @@ import org.eclipse.uml2.uml.DataStoreNode;
  * <ul>
  *   <li>{@link ODRLCommonVocabulary.impl.PartyImpl#getUid <em>Uid</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.impl.PartyImpl#getBase_ActivityPartition <em>Base Activity Partition</em>}</li>
- *   <li>{@link ODRLCommonVocabulary.impl.PartyImpl#getBase_DataStoreNode <em>Base Data Store Node</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,16 +59,6 @@ public class PartyImpl extends MinimalEObjectImpl.Container implements Party {
 	 * @ordered
 	 */
 	protected ActivityPartition base_ActivityPartition;
-
-	/**
-	 * The cached value of the '{@link #getBase_DataStoreNode() <em>Base Data Store Node</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBase_DataStoreNode()
-	 * @generated
-	 * @ordered
-	 */
-	protected DataStoreNode base_DataStoreNode;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -160,46 +148,6 @@ public class PartyImpl extends MinimalEObjectImpl.Container implements Party {
 	 * @generated
 	 */
 	@Override
-	public DataStoreNode getBase_DataStoreNode() {
-		if (base_DataStoreNode != null && base_DataStoreNode.eIsProxy()) {
-			InternalEObject oldBase_DataStoreNode = (InternalEObject)base_DataStoreNode;
-			base_DataStoreNode = (DataStoreNode)eResolveProxy(oldBase_DataStoreNode);
-			if (base_DataStoreNode != oldBase_DataStoreNode) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ODRLCommonVocabularyPackage.PARTY__BASE_DATA_STORE_NODE, oldBase_DataStoreNode, base_DataStoreNode));
-			}
-		}
-		return base_DataStoreNode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DataStoreNode basicGetBase_DataStoreNode() {
-		return base_DataStoreNode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setBase_DataStoreNode(DataStoreNode newBase_DataStoreNode) {
-		DataStoreNode oldBase_DataStoreNode = base_DataStoreNode;
-		base_DataStoreNode = newBase_DataStoreNode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ODRLCommonVocabularyPackage.PARTY__BASE_DATA_STORE_NODE, oldBase_DataStoreNode, base_DataStoreNode));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ODRLCommonVocabularyPackage.PARTY__UID:
@@ -207,9 +155,6 @@ public class PartyImpl extends MinimalEObjectImpl.Container implements Party {
 			case ODRLCommonVocabularyPackage.PARTY__BASE_ACTIVITY_PARTITION:
 				if (resolve) return getBase_ActivityPartition();
 				return basicGetBase_ActivityPartition();
-			case ODRLCommonVocabularyPackage.PARTY__BASE_DATA_STORE_NODE:
-				if (resolve) return getBase_DataStoreNode();
-				return basicGetBase_DataStoreNode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -227,9 +172,6 @@ public class PartyImpl extends MinimalEObjectImpl.Container implements Party {
 				return;
 			case ODRLCommonVocabularyPackage.PARTY__BASE_ACTIVITY_PARTITION:
 				setBase_ActivityPartition((ActivityPartition)newValue);
-				return;
-			case ODRLCommonVocabularyPackage.PARTY__BASE_DATA_STORE_NODE:
-				setBase_DataStoreNode((DataStoreNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -249,9 +191,6 @@ public class PartyImpl extends MinimalEObjectImpl.Container implements Party {
 			case ODRLCommonVocabularyPackage.PARTY__BASE_ACTIVITY_PARTITION:
 				setBase_ActivityPartition((ActivityPartition)null);
 				return;
-			case ODRLCommonVocabularyPackage.PARTY__BASE_DATA_STORE_NODE:
-				setBase_DataStoreNode((DataStoreNode)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -268,8 +207,6 @@ public class PartyImpl extends MinimalEObjectImpl.Container implements Party {
 				return UID_EDEFAULT == null ? uid != null : !UID_EDEFAULT.equals(uid);
 			case ODRLCommonVocabularyPackage.PARTY__BASE_ACTIVITY_PARTITION:
 				return base_ActivityPartition != null;
-			case ODRLCommonVocabularyPackage.PARTY__BASE_DATA_STORE_NODE:
-				return base_DataStoreNode != null;
 		}
 		return super.eIsSet(featureID);
 	}

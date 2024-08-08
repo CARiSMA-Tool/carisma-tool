@@ -2,7 +2,6 @@
  */
 package ODRLCommonVocabulary.impl;
 
-import ODRLCommonVocabulary.AssetRelation;
 import ODRLCommonVocabulary.LogicalConstraint;
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
 import ODRLCommonVocabulary.PartyFunction;
@@ -37,7 +36,6 @@ import org.eclipse.uml2.uml.Action;
  *   <li>{@link ODRLCommonVocabulary.impl.RuleImpl#getBase_Action <em>Base Action</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.impl.RuleImpl#getUid <em>Uid</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.impl.RuleImpl#getInvolvedParties <em>Involved Parties</em>}</li>
- *   <li>{@link ODRLCommonVocabulary.impl.RuleImpl#getInvolvedAssets <em>Involved Assets</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.impl.RuleImpl#getAction <em>Action</em>}</li>
  * </ul>
  *
@@ -93,16 +91,6 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 	 * @ordered
 	 */
 	protected EList<PartyFunction> involvedParties;
-
-	/**
-	 * The cached value of the '{@link #getInvolvedAssets() <em>Involved Assets</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInvolvedAssets()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AssetRelation> involvedAssets;
 
 	/**
 	 * The default value of the '{@link #getAction() <em>Action</em>}' attribute.
@@ -270,19 +258,6 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 	 * @generated
 	 */
 	@Override
-	public EList<AssetRelation> getInvolvedAssets() {
-		if (involvedAssets == null) {
-			involvedAssets = new EObjectContainmentEList<AssetRelation>(AssetRelation.class, this, ODRLCommonVocabularyPackage.RULE__INVOLVED_ASSETS);
-		}
-		return involvedAssets;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ODRLCommonVocabulary.Action getAction() {
 		return action;
 	}
@@ -312,8 +287,6 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 				return basicSetRefinement(null, msgs);
 			case ODRLCommonVocabularyPackage.RULE__INVOLVED_PARTIES:
 				return ((InternalEList<?>)getInvolvedParties()).basicRemove(otherEnd, msgs);
-			case ODRLCommonVocabularyPackage.RULE__INVOLVED_ASSETS:
-				return ((InternalEList<?>)getInvolvedAssets()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -335,8 +308,6 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 				return getUid();
 			case ODRLCommonVocabularyPackage.RULE__INVOLVED_PARTIES:
 				return getInvolvedParties();
-			case ODRLCommonVocabularyPackage.RULE__INVOLVED_ASSETS:
-				return getInvolvedAssets();
 			case ODRLCommonVocabularyPackage.RULE__ACTION:
 				return getAction();
 		}
@@ -365,10 +336,6 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 				getInvolvedParties().clear();
 				getInvolvedParties().addAll((Collection<? extends PartyFunction>)newValue);
 				return;
-			case ODRLCommonVocabularyPackage.RULE__INVOLVED_ASSETS:
-				getInvolvedAssets().clear();
-				getInvolvedAssets().addAll((Collection<? extends AssetRelation>)newValue);
-				return;
 			case ODRLCommonVocabularyPackage.RULE__ACTION:
 				setAction((ODRLCommonVocabulary.Action)newValue);
 				return;
@@ -396,9 +363,6 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 			case ODRLCommonVocabularyPackage.RULE__INVOLVED_PARTIES:
 				getInvolvedParties().clear();
 				return;
-			case ODRLCommonVocabularyPackage.RULE__INVOLVED_ASSETS:
-				getInvolvedAssets().clear();
-				return;
 			case ODRLCommonVocabularyPackage.RULE__ACTION:
 				setAction(ACTION_EDEFAULT);
 				return;
@@ -422,8 +386,6 @@ public abstract class RuleImpl extends ConstrainableElementImpl implements Rule 
 				return UID_EDEFAULT == null ? uid != null : !UID_EDEFAULT.equals(uid);
 			case ODRLCommonVocabularyPackage.RULE__INVOLVED_PARTIES:
 				return involvedParties != null && !involvedParties.isEmpty();
-			case ODRLCommonVocabularyPackage.RULE__INVOLVED_ASSETS:
-				return involvedAssets != null && !involvedAssets.isEmpty();
 			case ODRLCommonVocabularyPackage.RULE__ACTION:
 				return action != ACTION_EDEFAULT;
 		}

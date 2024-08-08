@@ -59,6 +59,14 @@ public enum PartyFunctionType implements Enumerator {
 	ATTRIBUTED_PARTY(3, "attributedParty", "attributedParty"),
 
 	/**
+	 * The '<em><b>Attributing Party</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ATTRIBUTING_PARTY_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ATTRIBUTING_PARTY(4, "attributingParty", "attributingParty"), /**
 	 * The '<em><b>Compensated Party</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,7 +74,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMPENSATED_PARTY(4, "compensatedParty", "compensatedParty"),
+	COMPENSATED_PARTY(5, "compensatedParty", "compensatedParty"),
 
 	/**
 	 * The '<em><b>Compensating Party</b></em>' literal object.
@@ -76,7 +84,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMPENSATING_PARTY(5, "compensatingParty", "compensatingParty"),
+	COMPENSATING_PARTY(6, "compensatingParty", "compensatingParty"),
 
 	/**
 	 * The '<em><b>Consented Party</b></em>' literal object.
@@ -86,7 +94,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONSENTED_PARTY(6, "consentedParty", "consentedParty"),
+	CONSENTED_PARTY(7, "consentedParty", "consentedParty"),
 
 	/**
 	 * The '<em><b>Consenting Party</b></em>' literal object.
@@ -96,7 +104,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONSENTING_PARTY(7, "consentingParty", "consentingParty"),
+	CONSENTING_PARTY(8, "consentingParty", "consentingParty"),
 
 	/**
 	 * The '<em><b>Contracted Party</b></em>' literal object.
@@ -106,7 +114,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONTRACTED_PARTY(8, "contractedParty", "contractedParty"),
+	CONTRACTED_PARTY(9, "contractedParty", "contractedParty"),
 
 	/**
 	 * The '<em><b>Contracting Party</b></em>' literal object.
@@ -116,7 +124,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONTRACTING_PARTY(9, "contractingParty", "contractingParty"),
+	CONTRACTING_PARTY(10, "contractingParty", "contractingParty"),
 
 	/**
 	 * The '<em><b>Informed Party</b></em>' literal object.
@@ -126,7 +134,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INFORMED_PARTY(10, "informedParty", "informedParty"),
+	INFORMED_PARTY(11, "informedParty", "informedParty"),
 
 	/**
 	 * The '<em><b>Informing Party</b></em>' literal object.
@@ -136,7 +144,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INFORMING_PARTY(11, "informingParty", "informingParty"),
+	INFORMING_PARTY(12, "informingParty", "informingParty"),
 
 	/**
 	 * The '<em><b>Tracked Party</b></em>' literal object.
@@ -146,7 +154,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRACKED_PARTY(12, "trackedParty", "trackedParty"),
+	TRACKED_PARTY(13, "trackedParty", "trackedParty"),
 
 	/**
 	 * The '<em><b>Tracking Party</b></em>' literal object.
@@ -156,7 +164,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRACKING_PARTY(13, "trackingParty", "trackingParty");
+	TRACKING_PARTY(14, "trackingParty", "trackingParty");
 
 	/**
 	 * The '<em><b>Null</b></em>' literal value.
@@ -203,6 +211,17 @@ public enum PartyFunctionType implements Enumerator {
 	public static final int ATTRIBUTED_PARTY_VALUE = 3;
 
 	/**
+	 * The '<em><b>Attributing Party</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ATTRIBUTING_PARTY
+	 * @model name="attributingParty"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ATTRIBUTING_PARTY_VALUE = 4;
+
+	/**
 	 * The '<em><b>Compensated Party</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -211,7 +230,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMPENSATED_PARTY_VALUE = 4;
+	public static final int COMPENSATED_PARTY_VALUE = 5;
 
 	/**
 	 * The '<em><b>Compensating Party</b></em>' literal value.
@@ -222,7 +241,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMPENSATING_PARTY_VALUE = 5;
+	public static final int COMPENSATING_PARTY_VALUE = 6;
 
 	/**
 	 * The '<em><b>Consented Party</b></em>' literal value.
@@ -233,7 +252,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONSENTED_PARTY_VALUE = 6;
+	public static final int CONSENTED_PARTY_VALUE = 7;
 
 	/**
 	 * The '<em><b>Consenting Party</b></em>' literal value.
@@ -244,7 +263,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONSENTING_PARTY_VALUE = 7;
+	public static final int CONSENTING_PARTY_VALUE = 8;
 
 	/**
 	 * The '<em><b>Contracted Party</b></em>' literal value.
@@ -255,7 +274,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTRACTED_PARTY_VALUE = 8;
+	public static final int CONTRACTED_PARTY_VALUE = 9;
 
 	/**
 	 * The '<em><b>Contracting Party</b></em>' literal value.
@@ -266,7 +285,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTRACTING_PARTY_VALUE = 9;
+	public static final int CONTRACTING_PARTY_VALUE = 10;
 
 	/**
 	 * The '<em><b>Informed Party</b></em>' literal value.
@@ -277,7 +296,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INFORMED_PARTY_VALUE = 10;
+	public static final int INFORMED_PARTY_VALUE = 11;
 
 	/**
 	 * The '<em><b>Informing Party</b></em>' literal value.
@@ -288,7 +307,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INFORMING_PARTY_VALUE = 11;
+	public static final int INFORMING_PARTY_VALUE = 12;
 
 	/**
 	 * The '<em><b>Tracked Party</b></em>' literal value.
@@ -299,7 +318,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRACKED_PARTY_VALUE = 12;
+	public static final int TRACKED_PARTY_VALUE = 13;
 
 	/**
 	 * The '<em><b>Tracking Party</b></em>' literal value.
@@ -310,7 +329,7 @@ public enum PartyFunctionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRACKING_PARTY_VALUE = 13;
+	public static final int TRACKING_PARTY_VALUE = 14;
 
 	/**
 	 * An array of all the '<em><b>Party Function Type</b></em>' enumerators.
@@ -324,6 +343,7 @@ public enum PartyFunctionType implements Enumerator {
 			ASSIGNEE,
 			ASSIGNER,
 			ATTRIBUTED_PARTY,
+			ATTRIBUTING_PARTY,
 			COMPENSATED_PARTY,
 			COMPENSATING_PARTY,
 			CONSENTED_PARTY,
@@ -394,6 +414,7 @@ public enum PartyFunctionType implements Enumerator {
 			case ASSIGNEE_VALUE: return ASSIGNEE;
 			case ASSIGNER_VALUE: return ASSIGNER;
 			case ATTRIBUTED_PARTY_VALUE: return ATTRIBUTED_PARTY;
+			case ATTRIBUTING_PARTY_VALUE: return ATTRIBUTING_PARTY;
 			case COMPENSATED_PARTY_VALUE: return COMPENSATED_PARTY;
 			case COMPENSATING_PARTY_VALUE: return COMPENSATING_PARTY;
 			case CONSENTED_PARTY_VALUE: return CONSENTED_PARTY;

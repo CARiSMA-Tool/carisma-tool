@@ -23,7 +23,6 @@ import org.eclipse.uml2.uml.Action;
  *   <li>{@link ODRLCommonVocabulary.Rule#getBase_Action <em>Base Action</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.Rule#getUid <em>Uid</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.Rule#getInvolvedParties <em>Involved Parties</em>}</li>
- *   <li>{@link ODRLCommonVocabulary.Rule#getInvolvedAssets <em>Involved Assets</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.Rule#getAction <em>Action</em>}</li>
  * </ul>
  *
@@ -101,23 +100,8 @@ public interface Rule extends ConstrainableElement, RefinableElement {
 	EList<PartyFunction> getInvolvedParties();
 
 	/**
-	 * Returns the value of the '<em><b>Involved Assets</b></em>' containment reference list.
-	 * The list contents are of type {@link ODRLCommonVocabulary.AssetRelation}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Involved Assets</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Involved Assets</em>' containment reference list.
-	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getRule_InvolvedAssets()
-	 * @model containment="true" ordered="false"
-	 * @generated
-	 */
-	EList<AssetRelation> getInvolvedAssets();
-
-	/**
 	 * Returns the value of the '<em><b>Action</b></em>' attribute.
+	 * The default value is <code>"Null"</code>.
 	 * The literals are from the enumeration {@link ODRLCommonVocabulary.Action}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -129,7 +113,7 @@ public interface Rule extends ConstrainableElement, RefinableElement {
 	 * @see ODRLCommonVocabulary.Action
 	 * @see #setAction(ODRLCommonVocabulary.Action)
 	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getRule_Action()
-	 * @model required="true" ordered="false"
+	 * @model default="Null" required="true" ordered="false"
 	 * @generated
 	 */
 	ODRLCommonVocabulary.Action getAction();

@@ -58,6 +58,7 @@ public interface Constraint extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Left Operand</b></em>' attribute.
+	 * The default value is <code>"Null"</code>.
 	 * The literals are from the enumeration {@link ODRLCommonVocabulary.LeftOperand}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -69,7 +70,7 @@ public interface Constraint extends EObject {
 	 * @see ODRLCommonVocabulary.LeftOperand
 	 * @see #setLeftOperand(LeftOperand)
 	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getConstraint_LeftOperand()
-	 * @model required="true" ordered="false"
+	 * @model default="Null" required="true" ordered="false"
 	 * @generated
 	 */
 	LeftOperand getLeftOperand();
@@ -113,6 +114,7 @@ public interface Constraint extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
+	 * The default value is <code>"Null"</code>.
 	 * The literals are from the enumeration {@link ODRLCommonVocabulary.ConstraintOperator}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -124,7 +126,7 @@ public interface Constraint extends EObject {
 	 * @see ODRLCommonVocabulary.ConstraintOperator
 	 * @see #setOperator(ConstraintOperator)
 	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getConstraint_Operator()
-	 * @model required="true" ordered="false"
+	 * @model default="Null" required="true" ordered="false"
 	 * @generated
 	 */
 	ConstraintOperator getOperator();
@@ -183,7 +185,7 @@ public interface Constraint extends EObject {
 	 * @return the value of the '<em>Data Type</em>' attribute.
 	 * @see #setDataType(String)
 	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getConstraint_DataType()
-	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
 	 */
 	String getDataType();

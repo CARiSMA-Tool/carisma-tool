@@ -12,8 +12,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.uml2.uml.DataStoreNode;
 import org.eclipse.uml2.uml.Pin;
 
 /**
@@ -24,7 +22,6 @@ import org.eclipse.uml2.uml.Pin;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ODRLCommonVocabulary.impl.AssetImpl#getBase_DataStoreNode <em>Base Data Store Node</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.impl.AssetImpl#getBase_Pin <em>Base Pin</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.impl.AssetImpl#getUid <em>Uid</em>}</li>
  * </ul>
@@ -32,16 +29,6 @@ import org.eclipse.uml2.uml.Pin;
  * @generated
  */
 public class AssetImpl extends MinimalEObjectImpl.Container implements Asset {
-	/**
-	 * The cached value of the '{@link #getBase_DataStoreNode() <em>Base Data Store Node</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBase_DataStoreNode()
-	 * @generated
-	 * @ordered
-	 */
-	protected DataStoreNode base_DataStoreNode;
-
 	/**
 	 * The cached value of the '{@link #getBase_Pin() <em>Base Pin</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -89,46 +76,6 @@ public class AssetImpl extends MinimalEObjectImpl.Container implements Asset {
 	@Override
 	protected EClass eStaticClass() {
 		return ODRLCommonVocabularyPackage.Literals.ASSET;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DataStoreNode getBase_DataStoreNode() {
-		if (base_DataStoreNode != null && base_DataStoreNode.eIsProxy()) {
-			InternalEObject oldBase_DataStoreNode = (InternalEObject)base_DataStoreNode;
-			base_DataStoreNode = (DataStoreNode)eResolveProxy(oldBase_DataStoreNode);
-			if (base_DataStoreNode != oldBase_DataStoreNode) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ODRLCommonVocabularyPackage.ASSET__BASE_DATA_STORE_NODE, oldBase_DataStoreNode, base_DataStoreNode));
-			}
-		}
-		return base_DataStoreNode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DataStoreNode basicGetBase_DataStoreNode() {
-		return base_DataStoreNode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setBase_DataStoreNode(DataStoreNode newBase_DataStoreNode) {
-		DataStoreNode oldBase_DataStoreNode = base_DataStoreNode;
-		base_DataStoreNode = newBase_DataStoreNode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ODRLCommonVocabularyPackage.ASSET__BASE_DATA_STORE_NODE, oldBase_DataStoreNode, base_DataStoreNode));
 	}
 
 	/**
@@ -202,9 +149,6 @@ public class AssetImpl extends MinimalEObjectImpl.Container implements Asset {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ODRLCommonVocabularyPackage.ASSET__BASE_DATA_STORE_NODE:
-				if (resolve) return getBase_DataStoreNode();
-				return basicGetBase_DataStoreNode();
 			case ODRLCommonVocabularyPackage.ASSET__BASE_PIN:
 				if (resolve) return getBase_Pin();
 				return basicGetBase_Pin();
@@ -222,9 +166,6 @@ public class AssetImpl extends MinimalEObjectImpl.Container implements Asset {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ODRLCommonVocabularyPackage.ASSET__BASE_DATA_STORE_NODE:
-				setBase_DataStoreNode((DataStoreNode)newValue);
-				return;
 			case ODRLCommonVocabularyPackage.ASSET__BASE_PIN:
 				setBase_Pin((Pin)newValue);
 				return;
@@ -243,9 +184,6 @@ public class AssetImpl extends MinimalEObjectImpl.Container implements Asset {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ODRLCommonVocabularyPackage.ASSET__BASE_DATA_STORE_NODE:
-				setBase_DataStoreNode((DataStoreNode)null);
-				return;
 			case ODRLCommonVocabularyPackage.ASSET__BASE_PIN:
 				setBase_Pin((Pin)null);
 				return;
@@ -264,8 +202,6 @@ public class AssetImpl extends MinimalEObjectImpl.Container implements Asset {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ODRLCommonVocabularyPackage.ASSET__BASE_DATA_STORE_NODE:
-				return base_DataStoreNode != null;
 			case ODRLCommonVocabularyPackage.ASSET__BASE_PIN:
 				return base_Pin != null;
 			case ODRLCommonVocabularyPackage.ASSET__UID:

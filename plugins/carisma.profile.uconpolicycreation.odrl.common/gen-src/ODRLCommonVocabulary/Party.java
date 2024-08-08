@@ -5,7 +5,6 @@ package ODRLCommonVocabulary;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.ActivityPartition;
-import org.eclipse.uml2.uml.DataStoreNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +22,6 @@ import org.eclipse.uml2.uml.DataStoreNode;
  * <ul>
  *   <li>{@link ODRLCommonVocabulary.Party#getUid <em>Uid</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.Party#getBase_ActivityPartition <em>Base Activity Partition</em>}</li>
- *   <li>{@link ODRLCommonVocabulary.Party#getBase_DataStoreNode <em>Base Data Store Node</em>}</li>
  * </ul>
  *
  * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getParty()
@@ -82,31 +80,5 @@ public interface Party extends EObject {
 	 * @generated
 	 */
 	void setBase_ActivityPartition(ActivityPartition value);
-
-	/**
-	 * Returns the value of the '<em><b>Base Data Store Node</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Base Data Store Node</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Base Data Store Node</em>' reference.
-	 * @see #setBase_DataStoreNode(DataStoreNode)
-	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getParty_Base_DataStoreNode()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	DataStoreNode getBase_DataStoreNode();
-
-	/**
-	 * Sets the value of the '{@link ODRLCommonVocabulary.Party#getBase_DataStoreNode <em>Base Data Store Node</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Data Store Node</em>' reference.
-	 * @see #getBase_DataStoreNode()
-	 * @generated
-	 */
-	void setBase_DataStoreNode(DataStoreNode value);
 
 } // Party

@@ -116,18 +116,6 @@ public class ODRLCommonVocabularySwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ODRLCommonVocabularyPackage.ASSET_RELATION: {
-				AssetRelation assetRelation = (AssetRelation)theEObject;
-				T result = caseAssetRelation(assetRelation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ODRLCommonVocabularyPackage.ASSET: {
-				Asset asset = (Asset)theEObject;
-				T result = caseAsset(asset);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ODRLCommonVocabularyPackage.PERMISSION: {
 				Permission permission = (Permission)theEObject;
 				T result = casePermission(permission);
@@ -152,6 +140,12 @@ public class ODRLCommonVocabularySwitch<T> extends Switch<T> {
 				if (result == null) result = caseRule(prohibition);
 				if (result == null) result = caseConstrainableElement(prohibition);
 				if (result == null) result = caseRefinableElement(prohibition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ODRLCommonVocabularyPackage.ASSET: {
+				Asset asset = (Asset)theEObject;
+				T result = caseAsset(asset);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -382,21 +376,6 @@ public class ODRLCommonVocabularySwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePartyCollection(PartyCollection object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Asset Relation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Asset Relation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAssetRelation(AssetRelation object) {
 		return null;
 	}
 

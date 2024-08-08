@@ -89,6 +89,7 @@ public interface ODRLPolicy extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Conflict Strategy</b></em>' attribute.
+	 * The default value is <code>"Null"</code>.
 	 * The literals are from the enumeration {@link ODRLCommonVocabulary.ConflictStrategy}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -100,7 +101,7 @@ public interface ODRLPolicy extends EObject {
 	 * @see ODRLCommonVocabulary.ConflictStrategy
 	 * @see #setConflictStrategy(ConflictStrategy)
 	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getODRLPolicy_ConflictStrategy()
-	 * @model ordered="false"
+	 * @model default="Null" ordered="false"
 	 * @generated
 	 */
 	ConflictStrategy getConflictStrategy();
@@ -118,6 +119,7 @@ public interface ODRLPolicy extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Policy Type</b></em>' attribute.
+	 * The default value is <code>"Null"</code>.
 	 * The literals are from the enumeration {@link ODRLCommonVocabulary.PolicyType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -129,7 +131,7 @@ public interface ODRLPolicy extends EObject {
 	 * @see ODRLCommonVocabulary.PolicyType
 	 * @see #setPolicyType(PolicyType)
 	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getODRLPolicy_PolicyType()
-	 * @model required="true" ordered="false"
+	 * @model default="Null" ordered="false"
 	 * @generated
 	 */
 	PolicyType getPolicyType();

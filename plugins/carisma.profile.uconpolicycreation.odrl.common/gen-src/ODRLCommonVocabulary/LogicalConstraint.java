@@ -53,6 +53,7 @@ public interface LogicalConstraint extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Logical Operator</b></em>' attribute.
+	 * The default value is <code>"Null"</code>.
 	 * The literals are from the enumeration {@link ODRLCommonVocabulary.LogicalOperator}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -64,7 +65,7 @@ public interface LogicalConstraint extends EObject {
 	 * @see ODRLCommonVocabulary.LogicalOperator
 	 * @see #setLogicalOperator(LogicalOperator)
 	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getLogicalConstraint_LogicalOperator()
-	 * @model ordered="false"
+	 * @model default="Null" ordered="false"
 	 * @generated
 	 */
 	LogicalOperator getLogicalOperator();
@@ -91,7 +92,7 @@ public interface LogicalConstraint extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constraints</em>' containment reference list.
 	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getLogicalConstraint_Constraints()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EList<Constraint> getConstraints();

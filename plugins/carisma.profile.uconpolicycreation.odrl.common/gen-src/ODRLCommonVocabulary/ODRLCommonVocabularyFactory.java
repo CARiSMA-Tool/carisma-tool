@@ -121,15 +121,6 @@ public interface ODRLCommonVocabularyFactory extends EFactory {
 	PartyCollection createPartyCollection();
 
 	/**
-	 * Returns a new object of class '<em>Asset Relation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Asset Relation</em>'.
-	 * @generated
-	 */
-	AssetRelation createAssetRelation();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

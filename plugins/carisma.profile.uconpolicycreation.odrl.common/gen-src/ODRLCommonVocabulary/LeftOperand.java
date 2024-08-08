@@ -39,16 +39,14 @@ public enum LeftOperand implements Enumerator {
 	ABSOLUTE_SIZE(1, "absoluteSize", "absoluteSize"),
 
 	/**
-	 * The '<em><b>Absolute Spartial Position</b></em>' literal object.
+	 * The '<em><b>Absolute Spatial Position</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ABSOLUTE_SPARTIAL_POSITION_VALUE
+	 * @see #ABSOLUTE_SPATIAL_POSITION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ABSOLUTE_SPARTIAL_POSITION(2, "absoluteSpartialPosition", "absoluteSpartialPosition"),
-
-	/**
+	ABSOLUTE_SPATIAL_POSITION(2, "absoluteSpatialPosition", "absoluteSpatialPosition"), /**
 	 * The '<em><b>Absolute Temporal Position</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -249,16 +247,14 @@ public enum LeftOperand implements Enumerator {
 	RELATIVE_SIZE(22, "relativeSize", "relativeSize"),
 
 	/**
-	 * The '<em><b>Relative Spartial Position</b></em>' literal object.
+	 * The '<em><b>Relative Spatial Position</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RELATIVE_SPARTIAL_POSITION_VALUE
+	 * @see #RELATIVE_SPATIAL_POSITION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RELATIVE_SPARTIAL_POSITION(23, "relativeSpartialPosition", "relativeSpartialPosition"),
-
-	/**
+	RELATIVE_SPATIAL_POSITION(23, "relativeSpatialPosition", "relativeSpatialPosition"), /**
 	 * The '<em><b>Relative Temporal Position</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -279,26 +275,22 @@ public enum LeftOperand implements Enumerator {
 	RESOLUTION(25, "resolution", "resolution"),
 
 	/**
-	 * The '<em><b>Spartial</b></em>' literal object.
+	 * The '<em><b>Spatial</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SPARTIAL_VALUE
+	 * @see #SPATIAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SPARTIAL(26, "spartial", "spartial"),
-
-	/**
-	 * The '<em><b>Spartial Coordinates</b></em>' literal object.
+	SPATIAL(26, "spatial", "spatial"), /**
+	 * The '<em><b>Spatial Coordinates</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SPARTIAL_COORDINATES_VALUE
+	 * @see #SPATIAL_COORDINATES_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SPARTIAL_COORDINATES(27, "spartialCoordinates", "spartialCoordinates"),
-
-	/**
+	SPATIAL_COORDINATES(27, "spatialCoordinates", "spatialCoordinates"), /**
 	 * The '<em><b>System</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -381,15 +373,15 @@ public enum LeftOperand implements Enumerator {
 	public static final int ABSOLUTE_SIZE_VALUE = 1;
 
 	/**
-	 * The '<em><b>Absolute Spartial Position</b></em>' literal value.
+	 * The '<em><b>Absolute Spatial Position</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ABSOLUTE_SPARTIAL_POSITION
-	 * @model name="absoluteSpartialPosition"
+	 * @see #ABSOLUTE_SPATIAL_POSITION
+	 * @model name="absoluteSpatialPosition"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ABSOLUTE_SPARTIAL_POSITION_VALUE = 2;
+	public static final int ABSOLUTE_SPATIAL_POSITION_VALUE = 2;
 
 	/**
 	 * The '<em><b>Absolute Temporal Position</b></em>' literal value.
@@ -612,15 +604,15 @@ public enum LeftOperand implements Enumerator {
 	public static final int RELATIVE_SIZE_VALUE = 22;
 
 	/**
-	 * The '<em><b>Relative Spartial Position</b></em>' literal value.
+	 * The '<em><b>Relative Spatial Position</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RELATIVE_SPARTIAL_POSITION
-	 * @model name="relativeSpartialPosition"
+	 * @see #RELATIVE_SPATIAL_POSITION
+	 * @model name="relativeSpatialPosition"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RELATIVE_SPARTIAL_POSITION_VALUE = 23;
+	public static final int RELATIVE_SPATIAL_POSITION_VALUE = 23;
 
 	/**
 	 * The '<em><b>Relative Temporal Position</b></em>' literal value.
@@ -645,26 +637,26 @@ public enum LeftOperand implements Enumerator {
 	public static final int RESOLUTION_VALUE = 25;
 
 	/**
-	 * The '<em><b>Spartial</b></em>' literal value.
+	 * The '<em><b>Spatial</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SPARTIAL
-	 * @model name="spartial"
+	 * @see #SPATIAL
+	 * @model name="spatial"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPARTIAL_VALUE = 26;
+	public static final int SPATIAL_VALUE = 26;
 
 	/**
-	 * The '<em><b>Spartial Coordinates</b></em>' literal value.
+	 * The '<em><b>Spatial Coordinates</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SPARTIAL_COORDINATES
-	 * @model name="spartialCoordinates"
+	 * @see #SPATIAL_COORDINATES
+	 * @model name="spatialCoordinates"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPARTIAL_COORDINATES_VALUE = 27;
+	public static final int SPATIAL_COORDINATES_VALUE = 27;
 
 	/**
 	 * The '<em><b>System</b></em>' literal value.
@@ -742,7 +734,7 @@ public enum LeftOperand implements Enumerator {
 		new LeftOperand[] {
 			NULL,
 			ABSOLUTE_SIZE,
-			ABSOLUTE_SPARTIAL_POSITION,
+			ABSOLUTE_SPATIAL_POSITION,
 			ABSOLUTE_TEMPORAL_POSITION,
 			COUNT,
 			DATE_TIME,
@@ -763,11 +755,11 @@ public enum LeftOperand implements Enumerator {
 			RECIPIENT,
 			RELATIVE_POSITION,
 			RELATIVE_SIZE,
-			RELATIVE_SPARTIAL_POSITION,
+			RELATIVE_SPATIAL_POSITION,
 			RELATIVE_TEMPORAL_POSITION,
 			RESOLUTION,
-			SPARTIAL,
-			SPARTIAL_COORDINATES,
+			SPATIAL,
+			SPATIAL_COORDINATES,
 			SYSTEM,
 			SYSTEM_DEVICE,
 			TIME_INTERVAL,
@@ -832,7 +824,7 @@ public enum LeftOperand implements Enumerator {
 		switch (value) {
 			case NULL_VALUE: return NULL;
 			case ABSOLUTE_SIZE_VALUE: return ABSOLUTE_SIZE;
-			case ABSOLUTE_SPARTIAL_POSITION_VALUE: return ABSOLUTE_SPARTIAL_POSITION;
+			case ABSOLUTE_SPATIAL_POSITION_VALUE: return ABSOLUTE_SPATIAL_POSITION;
 			case ABSOLUTE_TEMPORAL_POSITION_VALUE: return ABSOLUTE_TEMPORAL_POSITION;
 			case COUNT_VALUE: return COUNT;
 			case DATE_TIME_VALUE: return DATE_TIME;
@@ -853,11 +845,11 @@ public enum LeftOperand implements Enumerator {
 			case RECIPIENT_VALUE: return RECIPIENT;
 			case RELATIVE_POSITION_VALUE: return RELATIVE_POSITION;
 			case RELATIVE_SIZE_VALUE: return RELATIVE_SIZE;
-			case RELATIVE_SPARTIAL_POSITION_VALUE: return RELATIVE_SPARTIAL_POSITION;
+			case RELATIVE_SPATIAL_POSITION_VALUE: return RELATIVE_SPATIAL_POSITION;
 			case RELATIVE_TEMPORAL_POSITION_VALUE: return RELATIVE_TEMPORAL_POSITION;
 			case RESOLUTION_VALUE: return RESOLUTION;
-			case SPARTIAL_VALUE: return SPARTIAL;
-			case SPARTIAL_COORDINATES_VALUE: return SPARTIAL_COORDINATES;
+			case SPATIAL_VALUE: return SPATIAL;
+			case SPATIAL_COORDINATES_VALUE: return SPATIAL_COORDINATES;
 			case SYSTEM_VALUE: return SYSTEM;
 			case SYSTEM_DEVICE_VALUE: return SYSTEM_DEVICE;
 			case TIME_INTERVAL_VALUE: return TIME_INTERVAL;

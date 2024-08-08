@@ -59,7 +59,7 @@
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ODRLCommonVocabulary.ecore#//LeftOperand">
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/Null"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/absoluteSize"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/absoluteSpartialPosition"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/absoluteSpatialPosition"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/absoluteTemporalPosition"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/count"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/dateTime"/>
@@ -80,11 +80,11 @@
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/recipient"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/relativePosition"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/relativeSize"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/relativeSpartialPosition"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/relativeSpatialPosition"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/relativeTemporalPosition"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/resolution"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/spartial"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/spartialCoordinates"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/spatial"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/spatialCoordinates"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/system"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/systemDevice"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//LeftOperand/timeInterval"/>
@@ -112,6 +112,7 @@
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/assignee"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/assigner"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/attributedParty"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/attributingParty"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/compensatedParty"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/compensatingParty"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/consentedParty"/>
@@ -122,11 +123,6 @@
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/informingParty"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/trackedParty"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//PartyFunctionType/trackingParty"/>
-    </genEnums>
-    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ODRLCommonVocabulary.ecore#//AssetRelationType">
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//AssetRelationType/Null"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//AssetRelationType/target"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//AssetRelationType/output"/>
     </genEnums>
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ODRLCommonVocabulary.ecore#//Action">
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ODRLCommonVocabulary.ecore#//Action/Null"/>
@@ -197,8 +193,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Rule/uid"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Rule/involvedParties"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Rule/involvedAssets"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Rule/action"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ODRLCommonVocabulary.ecore#//RefinableElement">
@@ -234,20 +228,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Party/uid"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Party/base_ActivityPartition"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Party/base_DataStoreNode"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//AssetRelation">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//AssetRelation/type"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//AssetRelation/asset"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Asset">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Asset/base_DataStoreNode"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Asset/base_Pin"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Asset/uid"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Permission">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -260,6 +240,11 @@
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Prohibition">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Prohibition/remedies"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//Asset">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ODRLCommonVocabulary.ecore#//Asset/base_Pin"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//Asset/uid"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="ODRLCommonVocabulary.ecore#//AssetCollection">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ODRLCommonVocabulary.ecore#//AssetCollection/source"/>

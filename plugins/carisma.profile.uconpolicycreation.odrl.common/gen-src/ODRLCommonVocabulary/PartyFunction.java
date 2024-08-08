@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface PartyFunction extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The default value is <code>"Null"</code>.
 	 * The literals are from the enumeration {@link ODRLCommonVocabulary.PartyFunctionType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -35,7 +36,7 @@ public interface PartyFunction extends EObject {
 	 * @see ODRLCommonVocabulary.PartyFunctionType
 	 * @see #setType(PartyFunctionType)
 	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getPartyFunction_Type()
-	 * @model required="true" ordered="false"
+	 * @model default="Null" required="true" ordered="false"
 	 * @generated
 	 */
 	PartyFunctionType getType();

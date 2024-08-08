@@ -100,14 +100,6 @@ public class ODRLCommonVocabularyAdapterFactory extends AdapterFactoryImpl {
 				return createPartyAdapter();
 			}
 			@Override
-			public Adapter caseAssetRelation(AssetRelation object) {
-				return createAssetRelationAdapter();
-			}
-			@Override
-			public Adapter caseAsset(Asset object) {
-				return createAssetAdapter();
-			}
-			@Override
 			public Adapter casePermission(Permission object) {
 				return createPermissionAdapter();
 			}
@@ -118,6 +110,10 @@ public class ODRLCommonVocabularyAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseProhibition(Prohibition object) {
 				return createProhibitionAdapter();
+			}
+			@Override
+			public Adapter caseAsset(Asset object) {
+				return createAssetAdapter();
 			}
 			@Override
 			public Adapter caseAssetCollection(AssetCollection object) {
@@ -340,20 +336,6 @@ public class ODRLCommonVocabularyAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPartyCollectionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ODRLCommonVocabulary.AssetRelation <em>Asset Relation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ODRLCommonVocabulary.AssetRelation
-	 * @generated
-	 */
-	public Adapter createAssetRelationAdapter() {
 		return null;
 	}
 

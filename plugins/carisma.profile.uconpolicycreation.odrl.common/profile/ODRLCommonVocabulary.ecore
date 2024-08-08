@@ -14,9 +14,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Activity" ordered="false"
         eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Activity"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="conflictStrategy" ordered="false"
-        eType="#//ConflictStrategy"/>
+        eType="#//ConflictStrategy" defaultValueLiteral="Null"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="policyType" ordered="false"
-        lowerBound="1" eType="#//PolicyType"/>
+        eType="#//PolicyType" defaultValueLiteral="Null"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="profiles" ordered="false"
         upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="inheritsFrom" ordered="false"
@@ -47,10 +47,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="involvedParties" ordered="false"
         upperBound="-1" eType="#//PartyFunction" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="involvedAssets" ordered="false"
-        upperBound="-1" eType="#//AssetRelation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" ordered="false"
-        lowerBound="1" eType="#//Action"/>
+        lowerBound="1" eType="#//Action" defaultValueLiteral="Null"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RefinableElement" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -62,9 +60,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="LogicalConstraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="logicalOperator" ordered="false"
-        eType="#//LogicalOperator"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-        eType="#//Constraint" containment="true"/>
+        eType="#//LogicalOperator" defaultValueLiteral="Null"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" lowerBound="1"
+        upperBound="-1" eType="#//Constraint" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="LogicalOperator">
     <eLiterals name="Null"/>
@@ -76,23 +74,23 @@
   <eClassifiers xsi:type="ecore:EClass" name="Constraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="leftOperand" ordered="false"
-        lowerBound="1" eType="#//LeftOperand"/>
+        lowerBound="1" eType="#//LeftOperand" defaultValueLiteral="Null"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" ordered="false"
         eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" ordered="false"
-        lowerBound="1" eType="#//ConstraintOperator"/>
+        lowerBound="1" eType="#//ConstraintOperator" defaultValueLiteral="Null"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rightOperand" ordered="false"
         upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rightOperandReference"
         ordered="false" upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="LeftOperand">
     <eLiterals name="Null"/>
     <eLiterals name="absoluteSize" value="1"/>
-    <eLiterals name="absoluteSpartialPosition" value="2"/>
+    <eLiterals name="absoluteSpatialPosition" value="2"/>
     <eLiterals name="absoluteTemporalPosition" value="3"/>
     <eLiterals name="count" value="4"/>
     <eLiterals name="dateTime" value="5"/>
@@ -113,11 +111,11 @@
     <eLiterals name="recipient" value="20"/>
     <eLiterals name="relativePosition" value="21"/>
     <eLiterals name="relativeSize" value="22"/>
-    <eLiterals name="relativeSpartialPosition" value="23"/>
+    <eLiterals name="relativeSpatialPosition" value="23"/>
     <eLiterals name="relativeTemporalPosition" value="24"/>
     <eLiterals name="resolution" value="25"/>
-    <eLiterals name="spartial" value="26"/>
-    <eLiterals name="spartialCoordinates" value="27"/>
+    <eLiterals name="spatial" value="26"/>
+    <eLiterals name="spatialCoordinates" value="27"/>
     <eLiterals name="system" value="28"/>
     <eLiterals name="systemDevice" value="29"/>
     <eLiterals name="timeInterval" value="30"/>
@@ -149,7 +147,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PartyFunction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" lowerBound="1"
-        eType="#//PartyFunctionType"/>
+        eType="#//PartyFunctionType" defaultValueLiteral="Null"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="party" ordered="false"
         lowerBound="1" eType="#//Party"/>
   </eClassifiers>
@@ -158,16 +156,17 @@
     <eLiterals name="assignee" value="1"/>
     <eLiterals name="assigner" value="2"/>
     <eLiterals name="attributedParty" value="3"/>
-    <eLiterals name="compensatedParty" value="4"/>
-    <eLiterals name="compensatingParty" value="5"/>
-    <eLiterals name="consentedParty" value="6"/>
-    <eLiterals name="consentingParty" value="7"/>
-    <eLiterals name="contractedParty" value="8"/>
-    <eLiterals name="contractingParty" value="9"/>
-    <eLiterals name="informedParty" value="10"/>
-    <eLiterals name="informingParty" value="11"/>
-    <eLiterals name="trackedParty" value="12"/>
-    <eLiterals name="trackingParty" value="13"/>
+    <eLiterals name="attributingParty" value="4"/>
+    <eLiterals name="compensatedParty" value="5"/>
+    <eLiterals name="compensatingParty" value="6"/>
+    <eLiterals name="consentedParty" value="7"/>
+    <eLiterals name="consentingParty" value="8"/>
+    <eLiterals name="contractedParty" value="9"/>
+    <eLiterals name="contractingParty" value="10"/>
+    <eLiterals name="informedParty" value="11"/>
+    <eLiterals name="informingParty" value="12"/>
+    <eLiterals name="trackedParty" value="13"/>
+    <eLiterals name="trackingParty" value="14"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Party">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -176,26 +175,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ActivityPartition"
         ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataStoreNode" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DataStoreNode"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AssetRelation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" lowerBound="1"
-        eType="#//AssetRelationType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="asset" ordered="false"
-        lowerBound="1" eType="#//Asset"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="AssetRelationType">
-    <eLiterals name="Null"/>
-    <eLiterals name="target" value="1"/>
-    <eLiterals name="output" value="2"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Asset">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataStoreNode" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DataStoreNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Pin" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Pin"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Action">
     <eLiterals name="Null"/>
@@ -262,6 +241,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Prohibition" eSuperTypes="#//Rule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="remedies" ordered="false"
         upperBound="-1" eType="#//Duty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Asset">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Pin" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Pin"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssetCollection" eSuperTypes="#//Asset #//RefinableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" ordered="false"

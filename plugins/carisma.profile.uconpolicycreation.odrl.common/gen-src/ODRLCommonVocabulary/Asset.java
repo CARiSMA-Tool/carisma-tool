@@ -3,8 +3,6 @@
 package ODRLCommonVocabulary;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.uml2.uml.DataStoreNode;
 import org.eclipse.uml2.uml.Pin;
 
 /**
@@ -16,7 +14,6 @@ import org.eclipse.uml2.uml.Pin;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ODRLCommonVocabulary.Asset#getBase_DataStoreNode <em>Base Data Store Node</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.Asset#getBase_Pin <em>Base Pin</em>}</li>
  *   <li>{@link ODRLCommonVocabulary.Asset#getUid <em>Uid</em>}</li>
  * </ul>
@@ -26,32 +23,6 @@ import org.eclipse.uml2.uml.Pin;
  * @generated
  */
 public interface Asset extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Base Data Store Node</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Base Data Store Node</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Base Data Store Node</em>' reference.
-	 * @see #setBase_DataStoreNode(DataStoreNode)
-	 * @see ODRLCommonVocabulary.ODRLCommonVocabularyPackage#getAsset_Base_DataStoreNode()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	DataStoreNode getBase_DataStoreNode();
-
-	/**
-	 * Sets the value of the '{@link ODRLCommonVocabulary.Asset#getBase_DataStoreNode <em>Base Data Store Node</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Data Store Node</em>' reference.
-	 * @see #getBase_DataStoreNode()
-	 * @generated
-	 */
-	void setBase_DataStoreNode(DataStoreNode value);
-
 	/**
 	 * Returns the value of the '<em><b>Base Pin</b></em>' reference.
 	 * <!-- begin-user-doc -->

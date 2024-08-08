@@ -62,11 +62,10 @@ public class ODRLCommonVocabularyFactoryImpl extends EFactoryImpl implements ODR
 			case ODRLCommonVocabularyPackage.CONSTRAINT: return createConstraint();
 			case ODRLCommonVocabularyPackage.PARTY_FUNCTION: return createPartyFunction();
 			case ODRLCommonVocabularyPackage.PARTY: return createParty();
-			case ODRLCommonVocabularyPackage.ASSET_RELATION: return createAssetRelation();
-			case ODRLCommonVocabularyPackage.ASSET: return createAsset();
 			case ODRLCommonVocabularyPackage.PERMISSION: return createPermission();
 			case ODRLCommonVocabularyPackage.DUTY: return createDuty();
 			case ODRLCommonVocabularyPackage.PROHIBITION: return createProhibition();
+			case ODRLCommonVocabularyPackage.ASSET: return createAsset();
 			case ODRLCommonVocabularyPackage.ASSET_COLLECTION: return createAssetCollection();
 			case ODRLCommonVocabularyPackage.PARTY_COLLECTION: return createPartyCollection();
 			default:
@@ -94,8 +93,6 @@ public class ODRLCommonVocabularyFactoryImpl extends EFactoryImpl implements ODR
 				return createConstraintOperatorFromString(eDataType, initialValue);
 			case ODRLCommonVocabularyPackage.PARTY_FUNCTION_TYPE:
 				return createPartyFunctionTypeFromString(eDataType, initialValue);
-			case ODRLCommonVocabularyPackage.ASSET_RELATION_TYPE:
-				return createAssetRelationTypeFromString(eDataType, initialValue);
 			case ODRLCommonVocabularyPackage.ACTION:
 				return createActionFromString(eDataType, initialValue);
 			default:
@@ -123,8 +120,6 @@ public class ODRLCommonVocabularyFactoryImpl extends EFactoryImpl implements ODR
 				return convertConstraintOperatorToString(eDataType, instanceValue);
 			case ODRLCommonVocabularyPackage.PARTY_FUNCTION_TYPE:
 				return convertPartyFunctionTypeToString(eDataType, instanceValue);
-			case ODRLCommonVocabularyPackage.ASSET_RELATION_TYPE:
-				return convertAssetRelationTypeToString(eDataType, instanceValue);
 			case ODRLCommonVocabularyPackage.ACTION:
 				return convertActionToString(eDataType, instanceValue);
 			default:
@@ -258,17 +253,6 @@ public class ODRLCommonVocabularyFactoryImpl extends EFactoryImpl implements ODR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public AssetRelation createAssetRelation() {
-		AssetRelationImpl assetRelation = new AssetRelationImpl();
-		return assetRelation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ConflictStrategy createConflictStrategyFromString(EDataType eDataType, String initialValue) {
 		ConflictStrategy result = ConflictStrategy.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -381,26 +365,6 @@ public class ODRLCommonVocabularyFactoryImpl extends EFactoryImpl implements ODR
 	 * @generated
 	 */
 	public String convertPartyFunctionTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AssetRelationType createAssetRelationTypeFromString(EDataType eDataType, String initialValue) {
-		AssetRelationType result = AssetRelationType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertAssetRelationTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

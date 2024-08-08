@@ -232,22 +232,13 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	int RULE__INVOLVED_PARTIES = CONSTRAINABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Involved Assets</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RULE__INVOLVED_ASSETS = CONSTRAINABLE_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
 	 * The feature id for the '<em><b>Action</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__ACTION = CONSTRAINABLE_ELEMENT_FEATURE_COUNT + 5;
+	int RULE__ACTION = CONSTRAINABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Rule</em>' class.
@@ -256,7 +247,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_FEATURE_COUNT = CONSTRAINABLE_ELEMENT_FEATURE_COUNT + 6;
+	int RULE_FEATURE_COUNT = CONSTRAINABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Rule</em>' class.
@@ -534,22 +525,13 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	int PARTY__BASE_ACTIVITY_PARTITION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Base Data Store Node</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARTY__BASE_DATA_STORE_NODE = 2;
-
-	/**
 	 * The number of structural features of the '<em>Party</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARTY_FEATURE_COUNT = 3;
+	int PARTY_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Party</em>' class.
@@ -568,7 +550,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getPermission()
 	 * @generated
 	 */
-	int PERMISSION = 10;
+	int PERMISSION = 8;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.DutyImpl <em>Duty</em>}' class.
@@ -578,7 +560,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getDuty()
 	 * @generated
 	 */
-	int DUTY = 11;
+	int DUTY = 9;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.ProhibitionImpl <em>Prohibition</em>}' class.
@@ -588,7 +570,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getProhibition()
 	 * @generated
 	 */
-	int PROHIBITION = 12;
+	int PROHIBITION = 10;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.AssetImpl <em>Asset</em>}' class.
@@ -598,7 +580,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAsset()
 	 * @generated
 	 */
-	int ASSET = 9;
+	int ASSET = 11;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.AssetCollectionImpl <em>Asset Collection</em>}' class.
@@ -608,7 +590,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAssetCollection()
 	 * @generated
 	 */
-	int ASSET_COLLECTION = 13;
+	int ASSET_COLLECTION = 12;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.PartyCollectionImpl <em>Party Collection</em>}' class.
@@ -618,98 +600,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getPartyCollection()
 	 * @generated
 	 */
-	int PARTY_COLLECTION = 14;
-
-	/**
-	 * The meta object id for the '{@link ODRLCommonVocabulary.impl.AssetRelationImpl <em>Asset Relation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ODRLCommonVocabulary.impl.AssetRelationImpl
-	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAssetRelation()
-	 * @generated
-	 */
-	int ASSET_RELATION = 8;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET_RELATION__TYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Asset</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET_RELATION__ASSET = 1;
-
-	/**
-	 * The number of structural features of the '<em>Asset Relation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET_RELATION_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Asset Relation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET_RELATION_OPERATION_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Base Data Store Node</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET__BASE_DATA_STORE_NODE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Base Pin</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET__BASE_PIN = 1;
-
-	/**
-	 * The feature id for the '<em><b>Uid</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET__UID = 2;
-
-	/**
-	 * The number of structural features of the '<em>Asset</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Asset</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSET_OPERATION_COUNT = 0;
+	int PARTY_COLLECTION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -755,15 +646,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @ordered
 	 */
 	int PERMISSION__INVOLVED_PARTIES = RULE__INVOLVED_PARTIES;
-
-	/**
-	 * The feature id for the '<em><b>Involved Assets</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERMISSION__INVOLVED_ASSETS = RULE__INVOLVED_ASSETS;
 
 	/**
 	 * The feature id for the '<em><b>Action</b></em>' attribute.
@@ -847,15 +729,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	int DUTY__INVOLVED_PARTIES = RULE__INVOLVED_PARTIES;
 
 	/**
-	 * The feature id for the '<em><b>Involved Assets</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DUTY__INVOLVED_ASSETS = RULE__INVOLVED_ASSETS;
-
-	/**
 	 * The feature id for the '<em><b>Action</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -937,15 +810,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	int PROHIBITION__INVOLVED_PARTIES = RULE__INVOLVED_PARTIES;
 
 	/**
-	 * The feature id for the '<em><b>Involved Assets</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROHIBITION__INVOLVED_ASSETS = RULE__INVOLVED_ASSETS;
-
-	/**
 	 * The feature id for the '<em><b>Action</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -982,13 +846,40 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	int PROHIBITION_OPERATION_COUNT = RULE_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Base Data Store Node</b></em>' reference.
+	 * The feature id for the '<em><b>Base Pin</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSET_COLLECTION__BASE_DATA_STORE_NODE = ASSET__BASE_DATA_STORE_NODE;
+	int ASSET__BASE_PIN = 0;
+
+	/**
+	 * The feature id for the '<em><b>Uid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSET__UID = 1;
+
+	/**
+	 * The number of structural features of the '<em>Asset</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSET_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Asset</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSET_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Pin</b></em>' reference.
@@ -1063,15 +954,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	int PARTY_COLLECTION__BASE_ACTIVITY_PARTITION = PARTY__BASE_ACTIVITY_PARTITION;
 
 	/**
-	 * The feature id for the '<em><b>Base Data Store Node</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARTY_COLLECTION__BASE_DATA_STORE_NODE = PARTY__BASE_DATA_STORE_NODE;
-
-	/**
 	 * The feature id for the '<em><b>Refinement</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1115,7 +997,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getConflictStrategy()
 	 * @generated
 	 */
-	int CONFLICT_STRATEGY = 15;
+	int CONFLICT_STRATEGY = 14;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.PolicyType <em>Policy Type</em>}' enum.
@@ -1125,7 +1007,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getPolicyType()
 	 * @generated
 	 */
-	int POLICY_TYPE = 16;
+	int POLICY_TYPE = 15;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.LogicalOperator <em>Logical Operator</em>}' enum.
@@ -1135,7 +1017,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getLogicalOperator()
 	 * @generated
 	 */
-	int LOGICAL_OPERATOR = 17;
+	int LOGICAL_OPERATOR = 16;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.LeftOperand <em>Left Operand</em>}' enum.
@@ -1145,7 +1027,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getLeftOperand()
 	 * @generated
 	 */
-	int LEFT_OPERAND = 18;
+	int LEFT_OPERAND = 17;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.ConstraintOperator <em>Constraint Operator</em>}' enum.
@@ -1155,7 +1037,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getConstraintOperator()
 	 * @generated
 	 */
-	int CONSTRAINT_OPERATOR = 19;
+	int CONSTRAINT_OPERATOR = 18;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.PartyFunctionType <em>Party Function Type</em>}' enum.
@@ -1165,17 +1047,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getPartyFunctionType()
 	 * @generated
 	 */
-	int PARTY_FUNCTION_TYPE = 20;
-
-	/**
-	 * The meta object id for the '{@link ODRLCommonVocabulary.AssetRelationType <em>Asset Relation Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ODRLCommonVocabulary.AssetRelationType
-	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAssetRelationType()
-	 * @generated
-	 */
-	int ASSET_RELATION_TYPE = 21;
+	int PARTY_FUNCTION_TYPE = 19;
 
 	/**
 	 * The meta object id for the '{@link ODRLCommonVocabulary.Action <em>Action</em>}' enum.
@@ -1185,7 +1057,7 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAction()
 	 * @generated
 	 */
-	int ACTION = 22;
+	int ACTION = 20;
 
 
 	/**
@@ -1306,17 +1178,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRule_InvolvedParties();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link ODRLCommonVocabulary.Rule#getInvolvedAssets <em>Involved Assets</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Involved Assets</em>'.
-	 * @see ODRLCommonVocabulary.Rule#getInvolvedAssets()
-	 * @see #getRule()
-	 * @generated
-	 */
-	EReference getRule_InvolvedAssets();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ODRLCommonVocabulary.Rule#getAction <em>Action</em>}'.
@@ -1577,17 +1438,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	EReference getParty_Base_ActivityPartition();
 
 	/**
-	 * Returns the meta object for the reference '{@link ODRLCommonVocabulary.Party#getBase_DataStoreNode <em>Base Data Store Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Data Store Node</em>'.
-	 * @see ODRLCommonVocabulary.Party#getBase_DataStoreNode()
-	 * @see #getParty()
-	 * @generated
-	 */
-	EReference getParty_Base_DataStoreNode();
-
-	/**
 	 * Returns the meta object for class '{@link ODRLCommonVocabulary.Permission <em>Permission</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1661,17 +1511,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	EClass getAsset();
 
 	/**
-	 * Returns the meta object for the reference '{@link ODRLCommonVocabulary.Asset#getBase_DataStoreNode <em>Base Data Store Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Data Store Node</em>'.
-	 * @see ODRLCommonVocabulary.Asset#getBase_DataStoreNode()
-	 * @see #getAsset()
-	 * @generated
-	 */
-	EReference getAsset_Base_DataStoreNode();
-
-	/**
 	 * Returns the meta object for the reference '{@link ODRLCommonVocabulary.Asset#getBase_Pin <em>Base Pin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1736,38 +1575,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	EAttribute getPartyCollection_Source();
 
 	/**
-	 * Returns the meta object for class '{@link ODRLCommonVocabulary.AssetRelation <em>Asset Relation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Asset Relation</em>'.
-	 * @see ODRLCommonVocabulary.AssetRelation
-	 * @generated
-	 */
-	EClass getAssetRelation();
-
-	/**
-	 * Returns the meta object for the attribute '{@link ODRLCommonVocabulary.AssetRelation#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see ODRLCommonVocabulary.AssetRelation#getType()
-	 * @see #getAssetRelation()
-	 * @generated
-	 */
-	EAttribute getAssetRelation_Type();
-
-	/**
-	 * Returns the meta object for the reference '{@link ODRLCommonVocabulary.AssetRelation#getAsset <em>Asset</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Asset</em>'.
-	 * @see ODRLCommonVocabulary.AssetRelation#getAsset()
-	 * @see #getAssetRelation()
-	 * @generated
-	 */
-	EReference getAssetRelation_Asset();
-
-	/**
 	 * Returns the meta object for enum '{@link ODRLCommonVocabulary.ConflictStrategy <em>Conflict Strategy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1826,16 +1633,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getPartyFunctionType();
-
-	/**
-	 * Returns the meta object for enum '{@link ODRLCommonVocabulary.AssetRelationType <em>Asset Relation Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Asset Relation Type</em>'.
-	 * @see ODRLCommonVocabulary.AssetRelationType
-	 * @generated
-	 */
-	EEnum getAssetRelationType();
 
 	/**
 	 * Returns the meta object for enum '{@link ODRLCommonVocabulary.Action <em>Action</em>}'.
@@ -1961,14 +1758,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RULE__INVOLVED_PARTIES = eINSTANCE.getRule_InvolvedParties();
-
-		/**
-		 * The meta object literal for the '<em><b>Involved Assets</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RULE__INVOLVED_ASSETS = eINSTANCE.getRule_InvolvedAssets();
 
 		/**
 		 * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
@@ -2175,14 +1964,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 		EReference PARTY__BASE_ACTIVITY_PARTITION = eINSTANCE.getParty_Base_ActivityPartition();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Data Store Node</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PARTY__BASE_DATA_STORE_NODE = eINSTANCE.getParty_Base_DataStoreNode();
-
-		/**
 		 * The meta object literal for the '{@link ODRLCommonVocabulary.impl.PermissionImpl <em>Permission</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2247,14 +2028,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 		EClass ASSET = eINSTANCE.getAsset();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Data Store Node</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASSET__BASE_DATA_STORE_NODE = eINSTANCE.getAsset_Base_DataStoreNode();
-
-		/**
 		 * The meta object literal for the '<em><b>Base Pin</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2305,32 +2078,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PARTY_COLLECTION__SOURCE = eINSTANCE.getPartyCollection_Source();
-
-		/**
-		 * The meta object literal for the '{@link ODRLCommonVocabulary.impl.AssetRelationImpl <em>Asset Relation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see ODRLCommonVocabulary.impl.AssetRelationImpl
-		 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAssetRelation()
-		 * @generated
-		 */
-		EClass ASSET_RELATION = eINSTANCE.getAssetRelation();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASSET_RELATION__TYPE = eINSTANCE.getAssetRelation_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Asset</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASSET_RELATION__ASSET = eINSTANCE.getAssetRelation_Asset();
 
 		/**
 		 * The meta object literal for the '{@link ODRLCommonVocabulary.ConflictStrategy <em>Conflict Strategy</em>}' enum.
@@ -2391,16 +2138,6 @@ public interface ODRLCommonVocabularyPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum PARTY_FUNCTION_TYPE = eINSTANCE.getPartyFunctionType();
-
-		/**
-		 * The meta object literal for the '{@link ODRLCommonVocabulary.AssetRelationType <em>Asset Relation Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see ODRLCommonVocabulary.AssetRelationType
-		 * @see ODRLCommonVocabulary.impl.ODRLCommonVocabularyPackageImpl#getAssetRelationType()
-		 * @generated
-		 */
-		EEnum ASSET_RELATION_TYPE = eINSTANCE.getAssetRelationType();
 
 		/**
 		 * The meta object literal for the '{@link ODRLCommonVocabulary.Action <em>Action</em>}' enum.

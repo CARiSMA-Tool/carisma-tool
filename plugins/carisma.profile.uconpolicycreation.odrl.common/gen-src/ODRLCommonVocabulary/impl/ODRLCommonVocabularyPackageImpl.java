@@ -5,8 +5,6 @@ package ODRLCommonVocabulary.impl;
 import ODRLCommonVocabulary.Action;
 import ODRLCommonVocabulary.Asset;
 import ODRLCommonVocabulary.AssetCollection;
-import ODRLCommonVocabulary.AssetRelation;
-import ODRLCommonVocabulary.AssetRelationType;
 import ODRLCommonVocabulary.ConflictStrategy;
 import ODRLCommonVocabulary.ConstrainableElement;
 import ODRLCommonVocabulary.Constraint;
@@ -151,13 +149,6 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass assetRelationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EEnum conflictStrategyEEnum = null;
 
 	/**
@@ -194,13 +185,6 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 	 * @generated
 	 */
 	private EEnum partyFunctionTypeEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum assetRelationTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -390,18 +374,8 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 	 * @generated
 	 */
 	@Override
-	public EReference getRule_InvolvedAssets() {
-		return (EReference)ruleEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getRule_Action() {
-		return (EAttribute)ruleEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)ruleEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -640,16 +614,6 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 	 * @generated
 	 */
 	@Override
-	public EReference getParty_Base_DataStoreNode() {
-		return (EReference)partyEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getPermission() {
 		return permissionEClass;
 	}
@@ -720,7 +684,7 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 	 * @generated
 	 */
 	@Override
-	public EReference getAsset_Base_DataStoreNode() {
+	public EReference getAsset_Base_Pin() {
 		return (EReference)assetEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -730,18 +694,8 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 	 * @generated
 	 */
 	@Override
-	public EReference getAsset_Base_Pin() {
-		return (EReference)assetEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getAsset_Uid() {
-		return (EAttribute)assetEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)assetEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -782,36 +736,6 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 	@Override
 	public EAttribute getPartyCollection_Source() {
 		return (EAttribute)partyCollectionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getAssetRelation() {
-		return assetRelationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getAssetRelation_Type() {
-		return (EAttribute)assetRelationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAssetRelation_Asset() {
-		return (EReference)assetRelationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -880,16 +804,6 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 	 * @generated
 	 */
 	@Override
-	public EEnum getAssetRelationType() {
-		return assetRelationTypeEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EEnum getAction() {
 		return actionEEnum;
 	}
@@ -935,7 +849,6 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 		createEReference(ruleEClass, RULE__BASE_ACTION);
 		createEAttribute(ruleEClass, RULE__UID);
 		createEReference(ruleEClass, RULE__INVOLVED_PARTIES);
-		createEReference(ruleEClass, RULE__INVOLVED_ASSETS);
 		createEAttribute(ruleEClass, RULE__ACTION);
 
 		refinableElementEClass = createEClass(REFINABLE_ELEMENT);
@@ -966,16 +879,6 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 		partyEClass = createEClass(PARTY);
 		createEAttribute(partyEClass, PARTY__UID);
 		createEReference(partyEClass, PARTY__BASE_ACTIVITY_PARTITION);
-		createEReference(partyEClass, PARTY__BASE_DATA_STORE_NODE);
-
-		assetRelationEClass = createEClass(ASSET_RELATION);
-		createEAttribute(assetRelationEClass, ASSET_RELATION__TYPE);
-		createEReference(assetRelationEClass, ASSET_RELATION__ASSET);
-
-		assetEClass = createEClass(ASSET);
-		createEReference(assetEClass, ASSET__BASE_DATA_STORE_NODE);
-		createEReference(assetEClass, ASSET__BASE_PIN);
-		createEAttribute(assetEClass, ASSET__UID);
 
 		permissionEClass = createEClass(PERMISSION);
 		createEReference(permissionEClass, PERMISSION__DUTIES);
@@ -985,6 +888,10 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 
 		prohibitionEClass = createEClass(PROHIBITION);
 		createEReference(prohibitionEClass, PROHIBITION__REMEDIES);
+
+		assetEClass = createEClass(ASSET);
+		createEReference(assetEClass, ASSET__BASE_PIN);
+		createEAttribute(assetEClass, ASSET__UID);
 
 		assetCollectionEClass = createEClass(ASSET_COLLECTION);
 		createEAttribute(assetCollectionEClass, ASSET_COLLECTION__SOURCE);
@@ -999,7 +906,6 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 		leftOperandEEnum = createEEnum(LEFT_OPERAND);
 		constraintOperatorEEnum = createEEnum(CONSTRAINT_OPERATOR);
 		partyFunctionTypeEEnum = createEEnum(PARTY_FUNCTION_TYPE);
-		assetRelationTypeEEnum = createEEnum(ASSET_RELATION_TYPE);
 		actionEEnum = createEEnum(ACTION);
 	}
 
@@ -1049,8 +955,8 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 		initEClass(odrlPolicyEClass, ODRLPolicy.class, "ODRLPolicy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getODRLPolicy_Uid(), theTypesPackage.getString(), "uid", null, 1, 1, ODRLPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getODRLPolicy_Base_Activity(), theUMLPackage.getActivity(), null, "base_Activity", null, 0, 1, ODRLPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getODRLPolicy_ConflictStrategy(), this.getConflictStrategy(), "conflictStrategy", null, 0, 1, ODRLPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getODRLPolicy_PolicyType(), this.getPolicyType(), "policyType", null, 1, 1, ODRLPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getODRLPolicy_ConflictStrategy(), this.getConflictStrategy(), "conflictStrategy", "Null", 0, 1, ODRLPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getODRLPolicy_PolicyType(), this.getPolicyType(), "policyType", "Null", 0, 1, ODRLPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getODRLPolicy_Profiles(), theTypesPackage.getString(), "profiles", null, 0, -1, ODRLPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getODRLPolicy_InheritsFrom(), theTypesPackage.getString(), "inheritsFrom", null, 0, -1, ODRLPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
@@ -1058,47 +964,36 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 		initEReference(getRule_Base_Action(), theUMLPackage.getAction(), null, "base_Action", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getRule_Uid(), theTypesPackage.getString(), "uid", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getRule_InvolvedParties(), this.getPartyFunction(), null, "involvedParties", null, 0, -1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getRule_InvolvedAssets(), this.getAssetRelation(), null, "involvedAssets", null, 0, -1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getRule_Action(), this.getAction(), "action", null, 1, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRule_Action(), this.getAction(), "action", "Null", 1, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(refinableElementEClass, RefinableElement.class, "RefinableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRefinableElement_Refinement(), this.getLogicalConstraint(), null, "refinement", null, 0, 1, RefinableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(logicalConstraintEClass, LogicalConstraint.class, "LogicalConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLogicalConstraint_Uid(), theTypesPackage.getString(), "uid", null, 0, 1, LogicalConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getLogicalConstraint_LogicalOperator(), this.getLogicalOperator(), "logicalOperator", null, 0, 1, LogicalConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getLogicalConstraint_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, LogicalConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLogicalConstraint_LogicalOperator(), this.getLogicalOperator(), "logicalOperator", "Null", 0, 1, LogicalConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getLogicalConstraint_Constraints(), this.getConstraint(), null, "constraints", null, 1, -1, LogicalConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstraint_Uid(), theTypesPackage.getString(), "uid", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getConstraint_LeftOperand(), this.getLeftOperand(), "leftOperand", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getConstraint_LeftOperand(), this.getLeftOperand(), "leftOperand", "Null", 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getConstraint_Status(), theTypesPackage.getString(), "status", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getConstraint_Operator(), this.getConstraintOperator(), "operator", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getConstraint_Operator(), this.getConstraintOperator(), "operator", "Null", 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getConstraint_RightOperand(), theTypesPackage.getString(), "rightOperand", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getConstraint_RightOperandReference(), theTypesPackage.getString(), "rightOperandReference", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getConstraint_DataType(), theTypesPackage.getString(), "dataType", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getConstraint_DataType(), theTypesPackage.getString(), "dataType", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getConstraint_Unit(), theTypesPackage.getString(), "unit", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(constrainableElementEClass, ConstrainableElement.class, "ConstrainableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConstrainableElement_Constraint(), this.getLogicalConstraint(), null, "constraint", null, 0, 1, ConstrainableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(partyFunctionEClass, PartyFunction.class, "PartyFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPartyFunction_Type(), this.getPartyFunctionType(), "type", null, 1, 1, PartyFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getPartyFunction_Type(), this.getPartyFunctionType(), "type", "Null", 1, 1, PartyFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPartyFunction_Party(), this.getParty(), null, "party", null, 1, 1, PartyFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(partyEClass, Party.class, "Party", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParty_Uid(), theTypesPackage.getString(), "uid", null, 0, 1, Party.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getParty_Base_ActivityPartition(), theUMLPackage.getActivityPartition(), null, "base_ActivityPartition", null, 0, 1, Party.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getParty_Base_DataStoreNode(), theUMLPackage.getDataStoreNode(), null, "base_DataStoreNode", null, 0, 1, Party.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(assetRelationEClass, AssetRelation.class, "AssetRelation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAssetRelation_Type(), this.getAssetRelationType(), "type", null, 1, 1, AssetRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getAssetRelation_Asset(), this.getAsset(), null, "asset", null, 1, 1, AssetRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(assetEClass, Asset.class, "Asset", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAsset_Base_DataStoreNode(), theUMLPackage.getDataStoreNode(), null, "base_DataStoreNode", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getAsset_Base_Pin(), theUMLPackage.getPin(), null, "base_Pin", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getAsset_Uid(), theTypesPackage.getString(), "uid", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(permissionEClass, Permission.class, "Permission", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPermission_Duties(), this.getDuty(), null, "duties", null, 0, -1, Permission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1108,6 +1003,10 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 
 		initEClass(prohibitionEClass, Prohibition.class, "Prohibition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProhibition_Remedies(), this.getDuty(), null, "remedies", null, 0, -1, Prohibition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(assetEClass, Asset.class, "Asset", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAsset_Base_Pin(), theUMLPackage.getPin(), null, "base_Pin", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAsset_Uid(), theTypesPackage.getString(), "uid", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(assetCollectionEClass, AssetCollection.class, "AssetCollection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAssetCollection_Source(), theTypesPackage.getString(), "source", null, 0, 1, AssetCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1142,7 +1041,7 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 		initEEnum(leftOperandEEnum, LeftOperand.class, "LeftOperand");
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.NULL);
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.ABSOLUTE_SIZE);
-		addEEnumLiteral(leftOperandEEnum, LeftOperand.ABSOLUTE_SPARTIAL_POSITION);
+		addEEnumLiteral(leftOperandEEnum, LeftOperand.ABSOLUTE_SPATIAL_POSITION);
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.ABSOLUTE_TEMPORAL_POSITION);
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.COUNT);
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.DATE_TIME);
@@ -1163,11 +1062,11 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.RECIPIENT);
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.RELATIVE_POSITION);
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.RELATIVE_SIZE);
-		addEEnumLiteral(leftOperandEEnum, LeftOperand.RELATIVE_SPARTIAL_POSITION);
+		addEEnumLiteral(leftOperandEEnum, LeftOperand.RELATIVE_SPATIAL_POSITION);
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.RELATIVE_TEMPORAL_POSITION);
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.RESOLUTION);
-		addEEnumLiteral(leftOperandEEnum, LeftOperand.SPARTIAL);
-		addEEnumLiteral(leftOperandEEnum, LeftOperand.SPARTIAL_COORDINATES);
+		addEEnumLiteral(leftOperandEEnum, LeftOperand.SPATIAL);
+		addEEnumLiteral(leftOperandEEnum, LeftOperand.SPATIAL_COORDINATES);
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.SYSTEM);
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.SYSTEM_DEVICE);
 		addEEnumLiteral(leftOperandEEnum, LeftOperand.TIME_INTERVAL);
@@ -1195,6 +1094,7 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 		addEEnumLiteral(partyFunctionTypeEEnum, PartyFunctionType.ASSIGNEE);
 		addEEnumLiteral(partyFunctionTypeEEnum, PartyFunctionType.ASSIGNER);
 		addEEnumLiteral(partyFunctionTypeEEnum, PartyFunctionType.ATTRIBUTED_PARTY);
+		addEEnumLiteral(partyFunctionTypeEEnum, PartyFunctionType.ATTRIBUTING_PARTY);
 		addEEnumLiteral(partyFunctionTypeEEnum, PartyFunctionType.COMPENSATED_PARTY);
 		addEEnumLiteral(partyFunctionTypeEEnum, PartyFunctionType.COMPENSATING_PARTY);
 		addEEnumLiteral(partyFunctionTypeEEnum, PartyFunctionType.CONSENTED_PARTY);
@@ -1205,11 +1105,6 @@ public class ODRLCommonVocabularyPackageImpl extends EPackageImpl implements ODR
 		addEEnumLiteral(partyFunctionTypeEEnum, PartyFunctionType.INFORMING_PARTY);
 		addEEnumLiteral(partyFunctionTypeEEnum, PartyFunctionType.TRACKED_PARTY);
 		addEEnumLiteral(partyFunctionTypeEEnum, PartyFunctionType.TRACKING_PARTY);
-
-		initEEnum(assetRelationTypeEEnum, AssetRelationType.class, "AssetRelationType");
-		addEEnumLiteral(assetRelationTypeEEnum, AssetRelationType.NULL);
-		addEEnumLiteral(assetRelationTypeEEnum, AssetRelationType.TARGET);
-		addEEnumLiteral(assetRelationTypeEEnum, AssetRelationType.OUTPUT);
 
 		initEEnum(actionEEnum, Action.class, "Action");
 		addEEnumLiteral(actionEEnum, Action.NULL);
