@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRLCommonVocabulary="http:///schemas/ODRLCommonVocabulary/_BQw8wFGgEe-b_6a7W7_YMg/7" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRLCommonVocabulary/_BQw8wFGgEe-b_6a7W7_YMg/7 ../../../../carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#_BQyK4FGgEe-b_6a7W7_YMg">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRLCommonVocabulary="http:///schemas/ODRLCommonVocabulary/_Xm-dwFWmEe-p5_deFFS4Yg/12" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRLCommonVocabulary/_Xm-dwFWmEe-p5_deFFS4Yg/12 pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_Xm_E0FWmEe-p5_deFFS4Yg">
   <uml:Model xmi:id="_uv3rIFD0Ee-9wuT63RS7Pw" name="uconpolicycreation_odrl_common_correct">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_uxKroFD0Ee-9wuT63RS7Pw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -30,33 +30,40 @@
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Ls8O4FErEe-9wuT63RS7Pw">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ls9dAFErEe-9wuT63RS7Pw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="../../../../carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#_BQyK4FGgEe-b_6a7W7_YMg"/>
+        <references xmi:type="ecore:EPackage" href="platform:/../../carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#_BQyK4FGgEe-b_6a7W7_YMg"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="../../../../carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
+      <appliedProfile xmi:type="uml:Profile" href="platform:/../../carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_gu-LsFZkEe-B-6tdhiRsEg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gu-ywFZkEe-B-6tdhiRsEg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_Xm_E0FWmEe-p5_deFFS4Yg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
     </profileApplication>
   </uml:Model>
   <ODRLCommonVocabulary:Asset xmi:id="_LCB38FGfEe-b_6a7W7_YMg" base_Pin="_aS8koFGcEe-b_6a7W7_YMg" uid="http://example.com/assets:examplesong.mp3"/>
-  <ODRLCommonVocabulary:ODRLPolicy xmi:id="_bJ56cFGfEe-b_6a7W7_YMg" uid="http:///example.com/policy:1234" base_Activity="_uwZPkFD0Ee-9wuT63RS7Pw" conflictStrategy="Null" policyType="Offer">
+  <ODRLCommonVocabulary:ODRLPolicy xmi:id="_bJ56cFGfEe-b_6a7W7_YMg" uid="http:///example.com/policy:1234" base_Activity="_uwZPkFD0Ee-9wuT63RS7Pw" policyType="Offer">
     <profiles>http://www.umlsec.de/profiles/ODRLCommonVocabulary</profiles>
   </ODRLCommonVocabulary:ODRLPolicy>
   <ODRLCommonVocabulary:Party xmi:id="_g0GAoFGgEe-b_6a7W7_YMg" uid="https://example.com/party:sony" base_ActivityPartition="_yRy_4FGbEe-b_6a7W7_YMg"/>
   <ODRLCommonVocabulary:Duty xmi:id="_l6TsgFGgEe-b_6a7W7_YMg" base_Action="_d6XzwFGbEe-b_6a7W7_YMg" action="compensate">
-    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_sW9m4FGgEe-b_6a7W7_YMg" uid="">
-      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_GCfJ4FGhEe-b_6a7W7_YMg" uid="" leftOperand="payAmount" status="" operator="eq" dataType="xsd:decimal" unit="http://dbpedia.org/resource/Euro">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_gu89kVZkEe-B-6tdhiRsEg" uid="">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_gu89klZkEe-B-6tdhiRsEg" uid="" leftOperand="payAmount" status="" operator="eq" dataType="xsd:decimal" unit="http://dbpedia.org/resource/Euro">
         <rightOperand>5.00</rightOperand>
       </constraints>
     </refinement>
-    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_odi98FGjEe-b_6a7W7_YMg">
-      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_AxlJkFGkEe-b_6a7W7_YMg" uid="" leftOperand="event" operator="lt">
+    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_gu89k1ZkEe-B-6tdhiRsEg">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_gu89lFZkEe-B-6tdhiRsEg" uid="" leftOperand="event" operator="lt">
         <rightOperand>policyUsage</rightOperand>
       </constraints>
     </constraint>
-    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_qQ3dEFGgEe-b_6a7W7_YMg" type="compensatedParty" party="_g0GAoFGgEe-b_6a7W7_YMg"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu89lVZkEe-B-6tdhiRsEg" type="compensatedParty"/>
   </ODRLCommonVocabulary:Duty>
-  <ODRLCommonVocabulary:Permission xmi:id="_HT3SMFGhEe-b_6a7W7_YMg" base_Action="_F6VswFGcEe-b_6a7W7_YMg" action="play" duties="_l6TsgFGgEe-b_6a7W7_YMg _It94sFGhEe-b_6a7W7_YMg">
-    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_Q4iGYFGhEe-b_6a7W7_YMg" type="assigner" party="_g0GAoFGgEe-b_6a7W7_YMg"/>
+  <ODRLCommonVocabulary:Permission xmi:id="_HT3SMFGhEe-b_6a7W7_YMg" base_Action="_F6VswFGcEe-b_6a7W7_YMg" action="play">
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu89l1ZkEe-B-6tdhiRsEg" type="assigner"/>
+    <duties xmi:type="ODRLCommonVocabulary:Duty" href="uconpolicycreation_odrl_common_correct.uml"/>
   </ODRLCommonVocabulary:Permission>
   <ODRLCommonVocabulary:Duty xmi:id="_It94sFGhEe-b_6a7W7_YMg" base_Action="_bwlVYFGeEe-b_6a7W7_YMg" action="attribute">
-    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_YdcpUFGhEe-b_6a7W7_YMg" type="attributedParty" party="_g0GAoFGgEe-b_6a7W7_YMg"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu9koVZkEe-B-6tdhiRsEg" type="attributedParty"/>
   </ODRLCommonVocabulary:Duty>
 </xmi:XMI>
