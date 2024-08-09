@@ -27,19 +27,19 @@ import org.json.JSONObject;
 
 import ODRLCommonVocabulary.ODRLCommonVocabularyFactory;
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
-import carisma.check.policycreation.profileimpl.core.ODRLClassImpl;
-import carisma.check.policycreation.profileimpl.core.asset.AssetCollectionImpl;
-import carisma.check.policycreation.profileimpl.core.constraint.ConstraintImpl;
-import carisma.check.policycreation.profileimpl.core.party.PartyCollectionImpl;
-import carisma.check.policycreation.profileimpl.core.policy.AgreementImpl;
-import carisma.check.policycreation.profileimpl.core.policy.OfferImpl;
-import carisma.check.policycreation.profileimpl.core.policy.PolicyImpl;
-import carisma.check.policycreation.profileimpl.core.relation.RelationImpl;
-import carisma.check.policycreation.profileimpl.core.relation.TargetImpl;
-import carisma.check.policycreation.profileimpl.core.rule.DutyImpl;
-import carisma.check.policycreation.profileimpl.core.rule.PermissionImpl;
-import carisma.check.policycreation.profileimpl.core.rule.ProhibitionImpl;
-import carisma.check.policycreation.profileimpl.core.rule.RuleImpl;
+import carisma.check.policycreation.profileimpl.core.ODRLClass;
+import carisma.check.policycreation.profileimpl.core.asset.AssetCollection;
+import carisma.check.policycreation.profileimpl.core.constraint.Constraint;
+import carisma.check.policycreation.profileimpl.core.party.PartyCollection;
+import carisma.check.policycreation.profileimpl.core.policy.Agreement;
+import carisma.check.policycreation.profileimpl.core.policy.Offer;
+import carisma.check.policycreation.profileimpl.core.policy.Policy;
+import carisma.check.policycreation.profileimpl.core.relation.Relation;
+import carisma.check.policycreation.profileimpl.core.relation.Target;
+import carisma.check.policycreation.profileimpl.core.rule.Duty;
+import carisma.check.policycreation.profileimpl.core.rule.Permission;
+import carisma.check.policycreation.profileimpl.core.rule.Prohibition;
+import carisma.check.policycreation.profileimpl.core.rule.Rule;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
@@ -58,9 +58,10 @@ public class Check implements CarismaCheckWithID {
 //--------------
 	AnalysisHost host;
 
-	Map<EObject,ODRLClassImpl> referencingList2 = new HashMap<>();
-	Map<String,Collection<ODRLClassImpl>> typeBuckets = new HashMap<String,Collection<ODRLClassImpl>>();//TODO Not used anymore
-	ODRLClassImpl root;
+	Map<EObject,ODRLClass> referencingList2 = new HashMap<>();
+	Map<String,Collection<ODRLClass>> typeBuckets = new HashMap<String,Collection<ODRLClass>>();//TODO Not used anymore
+	ODRLClass root;
+	String policyString;
 	Package usedPackage;
 	//Map<JSONObject>
 	final static String typeString = "@type";
@@ -174,7 +175,7 @@ public class Check implements CarismaCheckWithID {
 	}
 	private void structureModel(Package inputModel) {
 		List<JSONObject> printList = new LinkedList<JSONObject>();
-		List<ODRLClassImpl> objectList = new LinkedList<ODRLClassImpl>();
+		List<ODRLClass> objectList = new LinkedList<ODRLClass>();
 		Collection<Element> modelContents = inputModel.allOwnedElements();
 		UMLModelConverter converter = new UMLModelConverter();
 		for (Element e : modelContents) {
@@ -194,7 +195,7 @@ public class Check implements CarismaCheckWithID {
 					System.out.println("Features end");
 					Object object = (addElement(e.getStereotypeApplication(s), null, e));
 					
-					if (object instanceof ODRLClassImpl odrlC) {
+					if (object instanceof ODRLClass odrlC) {
 						System.out.println("Created ODRLObject: " + odrlC);
 						JSONObject jso = new JSONObject(odrlC);
 						//					
@@ -222,12 +223,12 @@ public class Check implements CarismaCheckWithID {
 			}
 		}
 
-		for (ODRLClassImpl odrlc : objectList) {
-			if (odrlc instanceof PolicyImpl) {
+		for (ODRLClass odrlc : objectList) {
+			if (odrlc instanceof Policy) {
 				Object converterMap = converter.printMap(odrlc);
 				if (converterMap instanceof Map actualMap) {
 					String outString =(new JSONObject(actualMap).toString(4));
-					
+					policyString = outString;
 					IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 					IPath p = Path.fromOSString("testp_/textfile.txt");//TODO change to parameter input
 					IFile iFile = workspaceRoot.getFile(p);
@@ -261,7 +262,7 @@ public class Check implements CarismaCheckWithID {
 	
 	
 	///////////////////////////////
-	private Object addElement(EObject currentEObject, ODRLClassImpl odrlParent, Element activityElement) {//TODO modify the names if the eCore naming derives form the names in generated code
+	private Object addElement(EObject currentEObject, ODRLClass odrlParent, Element activityElement) {//TODO modify the names if the eCore naming derives form the names in generated code
 //		odrlSwitch.doSwitch(currentEObject);//TODO remove
 //		System.out.println("Classifier id: " + currentEObject.eClass().getClassifierID());//TODO remove
 		if (currentEObject==null) {//Not necessary for result
@@ -292,7 +293,7 @@ public class Check implements CarismaCheckWithID {
 	
 	
 	
-	private <T> List<T> addElement(List currentList, ODRLClassImpl odrlParent, Element activityElement, Class<T> type) {//No check for several layers of lists as that case does not occur in the current model
+	private <T> List<T> addElement(List currentList, ODRLClass odrlParent, Element activityElement, Class<T> type) {//No check for several layers of lists as that case does not occur in the current model
 		List<T> newOdrlList = new LinkedList<>();
 		boolean fullyCompartible = true;
 		if (currentList!=null && !currentList.isEmpty()) {
@@ -329,7 +330,7 @@ public class Check implements CarismaCheckWithID {
 	}
 	*/
 	
-	private String addElement(String currentObject, ODRLClassImpl odrlParent, EObject activityElement) {
+	private String addElement(String currentObject, ODRLClass odrlParent, EObject activityElement) {
 		return currentObject;
 	}
 	
@@ -346,9 +347,9 @@ public class Check implements CarismaCheckWithID {
 	
 	///////////////////////////////
 	
-	private void checkProfileRequirements(ODRLClassImpl testedElement) {//replace testedElement with the created objects
+	private void checkProfileRequirements(ODRLClass testedElement) {//replace testedElement with the created objects
 		//TODO no checks for valid form of IRIs so far
-		if (testedElement instanceof PolicyImpl policy) {
+		if (testedElement instanceof Policy policy) {
 			if (policy.getPermission().isEmpty()
 					&& policy.getProhibition().isEmpty()
 					&& policy.getObligation().isEmpty()) {
@@ -356,22 +357,22 @@ public class Check implements CarismaCheckWithID {
 				addWarning("Invalid Policy. Policy needs to have at least one permission, prohibition or obligation.",testedElement);;
 			}
 			
-			if (policy instanceof OfferImpl offer) {
+			if (policy instanceof Offer offer) {
 				//TODO one assigner (only one? needed with every rule or just with one?)
-			} else if (policy instanceof AgreementImpl agreement) {
+			} else if (policy instanceof Agreement agreement) {
 				//TODO one assigner, one assignee
 			}
-		} else if (testedElement instanceof AssetCollectionImpl assetCollection) {
+		} else if (testedElement instanceof AssetCollection assetCollection) {
 			if (assetCollection.getRefinement()!=null
 					&& assetCollection.getSource()==null) {
 				addWarning("Invalid assetCollection: source-property needs to be used with refinement.", testedElement);
 			}
-		} else if (testedElement instanceof PartyCollectionImpl partyCollection) {
+		} else if (testedElement instanceof PartyCollection partyCollection) {
 			if (partyCollection.getRefinement()!=null
 					&& partyCollection.getSource()==null) {
 				addWarning("Invalid partyCollection: source-property needs to be used with refinement.", testedElement);
 			}
-		} else if (testedElement instanceof ConstraintImpl constraint) {
+		} else if (testedElement instanceof Constraint constraint) {
 			if (constraint.getLeftOperand()==null) {
 				addWarning("Invalid constraint: needs to have a leftOperand selected.",testedElement);
 			}
@@ -391,24 +392,24 @@ public class Check implements CarismaCheckWithID {
 				addWarning("Invalid Constraint: must not have both rightOperand and rightOperandReference (is that the case?)",testedElement);//TODO check if restriction actually exists
 			}
 		}
-		if (testedElement instanceof RuleImpl rule) {
+		if (testedElement instanceof Rule rule) {
 			if (rule.getAction() == null) {
 				addWarning("Invalid rule: needs to have an action selected.",testedElement);
 			}
-			if (testedElement instanceof PermissionImpl permission) {
+			if (testedElement instanceof Permission permission) {
 				boolean hasTarget = false;
-				for (RelationImpl relation : permission.getInvolvedAssets()) {
-					if (relation instanceof TargetImpl) {
+				for (Relation relation : permission.getInvolvedAssets()) {
+					if (relation instanceof Target) {
 						hasTarget = true;
 					}
 				}
 				if (!hasTarget) {
 					addWarning("Invalid permission: needs to have a relation of type target.",testedElement);
 				}
-			} else if (testedElement instanceof ProhibitionImpl prohibition) {
+			} else if (testedElement instanceof Prohibition prohibition) {
 				boolean hasTarget = false;
-				for (RelationImpl relation : prohibition.getInvolvedAssets()) {
-					if (relation instanceof TargetImpl) {
+				for (Relation relation : prohibition.getInvolvedAssets()) {
+					if (relation instanceof Target) {
 						hasTarget = true;
 					}
 				}
@@ -416,24 +417,24 @@ public class Check implements CarismaCheckWithID {
 					addWarning("Invalid prohibition: needs to have a relation of type target.",testedElement);
 				}
 				if (prohibition.getRemedy()!=null && prohibition.getRemedy().getRules()!=null && !prohibition.getRemedy().getRules().isEmpty()) {
-					for (RuleImpl remedy : prohibition.getRemedy().getRules()) {
-						if (!(remedy instanceof DutyImpl)) {
+					for (Rule remedy : prohibition.getRemedy().getRules()) {
+						if (!(remedy instanceof Duty)) {
 							addWarning("Invalid Prohibition: remedy must be of type Duty.",testedElement);//TODO covered in the Model
 						}
-						if (remedy instanceof DutyImpl consequenceDuty) {
+						if (remedy instanceof Duty consequenceDuty) {
 							if (consequenceDuty.getConsequences()!=null) {
 								addWarning("Invalid remedy duty: remedy-Duty must not have a consequence itself.",testedElement);
 							}
 						}
 					}
 				}
-			} else if (testedElement instanceof DutyImpl duty) {
+			} else if (testedElement instanceof Duty duty) {
 				if (duty.getConsequences()!=null && duty.getConsequences().getRules()!=null && !duty.getConsequences().getRules().isEmpty()) {
-					for (RuleImpl consequence : duty.getConsequences().getRules()) {
-						if (!(consequence instanceof DutyImpl)) {
+					for (Rule consequence : duty.getConsequences().getRules()) {
+						if (!(consequence instanceof Duty)) {
 							addWarning("Invalid Duty: consequence must be of type Duty.",testedElement);//TODO covered in the Model
 						}
-						if (consequence instanceof DutyImpl consequenceDuty) {
+						if (consequence instanceof Duty consequenceDuty) {
 							if (consequenceDuty.getConsequences()!=null) {
 								addWarning("Invalid consequence duty: consequence-Duty must not have a consequence itself.",testedElement);
 							}
@@ -443,7 +444,7 @@ public class Check implements CarismaCheckWithID {
 			} 
 		}		
 	}
-	private void addWarning(String warning, ODRLClassImpl object) {//possibly add with list of ODRLClassImpl-objects
+	private void addWarning(String warning, ODRLClass object) {//possibly add with list of ODRLClassImpl-objects
 		host.appendLineToReport("Warning: " + warning + " Found in a " + object.getClass().getSimpleName() + " contained in the " + "object.containingUMLElement.getClass()" + " named " + "object.containingUMLElement.getName()");//TODO: unimplemented parts
 	}
 	
@@ -457,6 +458,10 @@ public class Check implements CarismaCheckWithID {
 	@Override
 	public String getName() {
 		return CHECK_NAME;
+	}
+	
+	public String getPolicyString() {
+		return policyString;
 	}
 
 	
