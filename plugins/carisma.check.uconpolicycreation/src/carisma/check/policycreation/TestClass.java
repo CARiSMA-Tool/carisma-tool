@@ -1,7 +1,12 @@
 package carisma.check.policycreation;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class TestClass {
 
@@ -11,15 +16,15 @@ public class TestClass {
 //		System.out.println(odrlPackage.getAsset_Uid().getName());
 //		System.out.println(odrlPackage.getPermission().getName());
 
-		try {
-			throw new NoSuchFieldException("bye");
-		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			throw new NoSuchFieldException("bye");
+//		} catch (NoSuchFieldException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (SecurityException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 		
@@ -57,6 +62,42 @@ public class TestClass {
 //		jo2.put("@id","hi3");
 //		
 //		System.out.println(jo.toString(4));
+		
+		Map<String,JSONObject> jmap = new HashMap();
+		List<String> jList1 = new LinkedList<>();
+		jList1.add("hi");
+		jList1.add("bye");
+		List<String> jList2 = new LinkedList<>();
+		jList2.add("bye");
+		jList2.add("hi");
+		JSONArray jArray0 = new JSONArray();
+		jArray0.put("hi");
+		jArray0.put("bye");
+		JSONArray jArray1 = new JSONArray(jList1);
+		JSONArray jArray2 = new JSONArray(jList2);
+		System.out.println(jArray0.toString());
+		System.out.println(jArray1.toString());
+		System.out.println(jArray2.toString());
+		System.out.println("0 equals 1?: " + jArray0.similar(jArray1));
+		System.out.println("0 equals 2?: " + jArray0.similar(jArray2));
+		System.out.println("1 equals 2?: " + jArray1.similar(jArray2));
+		System.out.println("0 equals 1?(unordered): " + compareJsonLdEquality(jArray0, jArray1));
+		System.out.println("0 equals 2?(unordered): " + compareJsonLdEquality(jArray0, jArray2));
+		System.out.println("1 equals 2?(unordered): " + compareJsonLdEquality(jArray1, jArray2));
+		System.out.println("0 equals 1?(ordered): " + compareJsonLdEqualityOrderedList(jArray0, jArray1));
+		System.out.println("0 equals 2?(ordered): " + compareJsonLdEqualityOrderedList(jArray0, jArray2));
+		System.out.println("1 equals 2?(ordered): " + compareJsonLdEqualityOrderedList(jArray1, jArray2));
+		
+		JSONObject jso1 = new JSONObject();
+		JSONObject jso2 = new JSONObject();
+		jso1.put("bye","hi");
+		jso2.put("bye", "hi");
+		jso2.put("hi", "bye");
+		jso2.put("ai22222", "bye2");
+
+//		System.out.println(jso1.toString(4));
+//		System.out.println();
+//		System.out.println(jso2.toString(4));
 		
 		
 		/*
@@ -170,6 +211,67 @@ public class TestClass {
 			System.out.println("Is Extension");
 		}
 		
+	}
+	
+	public static boolean compareJsonLdEquality(Object o1, Object o2) {
+		if (o1 == null) {
+			return o2 == null;
+		}
+		if (o1.equals(o2)) {
+			return true;
+		}
+		if (o1.getClass().equals(JSONObject.class)&&o1.getClass().equals(JSONObject.class)) {
+			JSONObject jo1 = (JSONObject) o1;
+			JSONObject jo2 = (JSONObject) o2;
+			if(jo1.keySet().equals(jo2.keySet())) {
+				for (String  key : jo1.keySet()) {
+					if(key.equals("@list") && compareJsonLdEqualityOrderedList(jo1.get(key),jo2.get(key))==false) {
+						return false;
+					}
+					else if (compareJsonLdEquality(jo1.get(key), jo2.get(key))==false) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		else if (o1.getClass().equals(JSONArray.class)&&o2.getClass().equals(JSONArray.class)) {
+			JSONArray ja1 = (JSONArray) o1;
+			JSONArray ja2 = new JSONArray((JSONArray) o2);
+			if (ja1.length()==ja2.length()) {
+				for (Object ao1 : ja1) {
+					int removeIndex = -1;
+					for (int i = 0; i<ja2.length();i++) {
+						if (compareJsonLdEquality(ao1, ja2.get(i))) {
+							removeIndex = i;
+							break;
+						}
+					}
+					if (removeIndex != -1) {
+						ja2.remove(removeIndex);
+						
+					}
+				}
+			}
+			return ja2.length()==0;
+		}
+		return false;
+		
+	}
+	public static boolean compareJsonLdEqualityOrderedList(Object o1, Object o2) {
+		if (o1.getClass().equals(JSONArray.class)&&o2.getClass().equals(JSONArray.class)) {
+			JSONArray ja1 = (JSONArray) o1;
+			JSONArray ja2 = new JSONArray((JSONArray) o2);
+			if (ja1.length()==ja2.length()) {
+					for (int i = 0; i<ja1.length();i++) {
+						if (!compareJsonLdEquality(ja1.get(i), ja2.get(i))) {
+							return false;
+						}
+					}
+			}
+			return true;
+		}
+		return false;
 	}
 
 }
