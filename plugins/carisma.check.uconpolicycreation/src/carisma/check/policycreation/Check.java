@@ -27,19 +27,19 @@ import org.json.JSONObject;
 
 import ODRLCommonVocabulary.ODRLCommonVocabularyFactory;
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
-import carisma.check.policycreation.profileimpl.core.ODRLClass;
-import carisma.check.policycreation.profileimpl.core.asset.AssetCollection;
-import carisma.check.policycreation.profileimpl.core.constraint.Constraint;
-import carisma.check.policycreation.profileimpl.core.party.PartyCollection;
-import carisma.check.policycreation.profileimpl.core.policy.Agreement;
-import carisma.check.policycreation.profileimpl.core.policy.Offer;
-import carisma.check.policycreation.profileimpl.core.policy.Policy;
-import carisma.check.policycreation.profileimpl.core.relation.Relation;
-import carisma.check.policycreation.profileimpl.core.relation.Target;
-import carisma.check.policycreation.profileimpl.core.rule.Duty;
-import carisma.check.policycreation.profileimpl.core.rule.Permission;
-import carisma.check.policycreation.profileimpl.core.rule.Prohibition;
-import carisma.check.policycreation.profileimpl.core.rule.Rule;
+import carisma.check.policycreation.profileclasses.ODRLClass;
+import carisma.check.policycreation.profileclasses.core.asset.AssetCollection;
+import carisma.check.policycreation.profileclasses.core.constraints.Constraint;
+import carisma.check.policycreation.profileclasses.core.party.PartyCollection;
+import carisma.check.policycreation.profileclasses.core.policy.Agreement;
+import carisma.check.policycreation.profileclasses.core.policy.Offer;
+import carisma.check.policycreation.profileclasses.core.policy.Policy;
+import carisma.check.policycreation.profileclasses.core.relation.Relation;
+import carisma.check.policycreation.profileclasses.core.relation.Target;
+import carisma.check.policycreation.profileclasses.core.rule.Duty;
+import carisma.check.policycreation.profileclasses.core.rule.Permission;
+import carisma.check.policycreation.profileclasses.core.rule.Prohibition;
+import carisma.check.policycreation.profileclasses.core.rule.Rule;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
@@ -422,20 +422,20 @@ public class Check implements CarismaCheckWithID {
 							addWarning("Invalid Prohibition: remedy must be of type Duty.",testedElement);//TODO covered in the Model
 						}
 						if (remedy instanceof Duty consequenceDuty) {
-							if (consequenceDuty.getConsequences()!=null) {
+							if (consequenceDuty.getConsequence()!=null) {
 								addWarning("Invalid remedy duty: remedy-Duty must not have a consequence itself.",testedElement);
 							}
 						}
 					}
 				}
 			} else if (testedElement instanceof Duty duty) {
-				if (duty.getConsequences()!=null && duty.getConsequences().getRules()!=null && !duty.getConsequences().getRules().isEmpty()) {
-					for (Rule consequence : duty.getConsequences().getRules()) {
+				if (duty.getConsequence()!=null && duty.getConsequence().getRules()!=null && !duty.getConsequence().getRules().isEmpty()) {
+					for (Rule consequence : duty.getConsequence().getRules()) {
 						if (!(consequence instanceof Duty)) {
 							addWarning("Invalid Duty: consequence must be of type Duty.",testedElement);//TODO covered in the Model
 						}
 						if (consequence instanceof Duty consequenceDuty) {
-							if (consequenceDuty.getConsequences()!=null) {
+							if (consequenceDuty.getConsequence()!=null) {
 								addWarning("Invalid consequence duty: consequence-Duty must not have a consequence itself.",testedElement);
 							}
 						}
