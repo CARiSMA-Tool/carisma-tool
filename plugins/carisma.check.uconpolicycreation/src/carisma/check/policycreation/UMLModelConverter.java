@@ -1,5 +1,10 @@
 package carisma.check.policycreation;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -13,6 +18,7 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.Element;
+import org.json.JSONObject;
 
 import ODRLCommonVocabulary.ConstraintOperator;
 import ODRLCommonVocabulary.LeftOperand;
@@ -137,7 +143,6 @@ import carisma.check.policycreation.profileclasses.core.function.Assignee;
 import carisma.check.policycreation.profileclasses.core.function.Assigner;
 import carisma.check.policycreation.profileclasses.core.operand.And;
 import carisma.check.policycreation.profileclasses.core.operand.AndSequence;
-import carisma.check.policycreation.profileclasses.core.operand.Operand;
 import carisma.check.policycreation.profileclasses.core.operand.Or;
 import carisma.check.policycreation.profileclasses.core.operand.Xone;
 import carisma.check.policycreation.profileclasses.core.operator.EqualTo;
@@ -202,6 +207,10 @@ public class UMLModelConverter {
 	
 	private Map<EObject,ODRLClass> referencingMap = new HashMap<>();//Currently: Save top-level elements (stereotype applications) as they may be referred by several objects, others may not. (If more Elements should be accessed: Save with unique EObject, watch out for uniqueness of enums (may need to be saved as triple)
 	//Also save lists, not just their elements
+	private ODRLClass policyRoot;
+	private java.util.Set<ODRLClass> handledOdrlClasses = new HashSet<>();
+	private List<Object> topLevelMapElements = new LinkedList<>();
+	private List<Map<String,Object>> contexts = new LinkedList<>();
 	
 	private class StringTuple {
 		public StringTuple(String owner, String feature) {
@@ -234,6 +243,43 @@ public class UMLModelConverter {
 		private UMLModelConverter getEnclosingInstance() {
 			return UMLModelConverter.this;
 		}
+		
+	}
+	
+	public UMLModelConverter() {};
+	public UMLModelConverter(List<String> contextPaths) throws IOException {
+		for(String contextPath : contextPaths) {
+			ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+			InputStream is = classloader.getResourceAsStream(contextPath);
+			
+			
+			try(BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+			    StringBuilder sb = new StringBuilder();
+			    String line = br.readLine();
+
+			    while (line != null) {
+			        sb.append(line);
+			        sb.append(System.lineSeparator());
+			        line = br.readLine();
+			    }
+			    JSONObject contextWithString = new JSONObject(sb.toString());
+			    System.out.println("contextWithString: " + contextWithString.toString(2));
+//			    Map<String,Object> contextMap = new HashMap<>();
+//			    if (contextWithString.get("@context") instanceof JSONObject contextJO) {
+//			    	contextMap.put("@context",contextJO.toMap());
+//			    } //else throw exception
+//			    if (contextWithString.get("@id") instanceof String conIdString) {
+//			    	contextMap.put("@id",conIdString);
+//			    }
+			    System.out.println("context map: " + contextWithString.toMap().toString());
+			    this.contexts.add(contextWithString.toMap());
+			    System.out.println("actual context list: " + this.contexts.toString());
+			    System.out.println("handlerID: "+ this);
+			}
+		}
+	}
+	public UMLModelConverter(String contextPath) throws IOException {
+		this(Arrays.asList(contextPath));
 		
 	}
 	
@@ -675,7 +721,7 @@ public class UMLModelConverter {
 			if (odrlParent != null) {
 				newObjectOdrl.addReferredBy(odrlParent);
 			}
-			newObjectOdrl.fill(currentEObject, activityElement); //TODO: Add boolean-return to fill to notify whether an object should be given back or not (since the ODRLClassImpl-Creation based on Features always is executed no matter whether the object in question has a value with the feature)
+			newObjectOdrl.fill(currentEObject, activityElement); //TODO: possibly add boolean-return to fill to notify whether an object should be given back or not (since the ODRLClass-Creation based on Features always is executed no matter whether the object in question has a value with the feature)
 		}
 		
 		return newObject;
@@ -892,5 +938,91 @@ public class UMLModelConverter {
 	public void addToReferencingMap(EObject stereotypeApplication, ODRLClass createdObject) {
 		referencingMap.put(stereotypeApplication, createdObject);
 	}
+
+
+	public ODRLClass getPolicyRoot() {
+		return policyRoot;
+	}
+
+	public void setPolicyRoot(ODRLClass root) {
+		this.policyRoot = root;
+	}
+
+	public java.util.Set<ODRLClass> getHandledOdrlClasses() {
+		return handledOdrlClasses;
+	}
+
+	public void setHandledOdrlClasses(java.util.Set<ODRLClass> handledOdrlClasses) {
+		this.handledOdrlClasses = handledOdrlClasses;
+	}
+	public void addToHandledOdrlClasses(ODRLClass handledClass) {
+		this.handledOdrlClasses.add(handledClass);
+	}
+
+	public List<Object> getTopLevelMapElements() {
+		return topLevelMapElements;
+	}
+
+	public void setTopLevelMapElements(List<Object> topLevelMapElements) {
+		this.topLevelMapElements = topLevelMapElements;
+	}
+	public void addToTopLevelMapElements(Object addElement) {
+		topLevelMapElements.add(addElement);
+	}
+
+
+	public List<Map<String, Object>> getContexts() {
+		return contexts;
+	}
+
+
+	public void setContexts(List<Map<String, Object>> contexts) {
+		this.contexts = contexts;
+	}
+	
+	public void addContext(Map<String,Object> context) {
+		contexts.add(context);
+	}
+	
+	public String applyContext(String inputString) {
+		System.out.println("handlerID: "+ this);
+		System.out.println("Contexts in Method: " + contexts.toString());
+		for (Map<String,Object> contextWithId : contexts) {
+			System.out.println("Context in Method: " + contextWithId.toString());
+			System.out.println("ContextPrint: "+ new JSONObject(contextWithId).toString(3));
+			if (contextWithId.get("@context") instanceof Map<?,?> contextMap && contextMap.get(inputString) instanceof String extendedString) {
+					return extendedString;
+			}
+		}
+		return null;
+	}
+	public Map<String,Object> getContextMap() {
+		Object contextResult = null;
+		if (contexts.size()==1) {
+			Map<String,Object> context = contexts.get(0);
+			contextResult = context.get("@id");
+			if (!(contextResult instanceof String)) {
+				contextResult = context.get("@context");
+			}
+		}
+		
+		else if (contexts.size()>1){
+			List<Object> contextList = new LinkedList<>();
+			for (Map<String,Object> context : contexts) {
+				Object contextLocalResult = context.get("@id");
+				if (!(contextLocalResult instanceof String)) {
+					contextLocalResult = context.get("@context");
+				}
+				contextList.add(contextLocalResult);
+			}
+			contextResult = contextList;
+		}
+		Map<String,Object> resultMap = new HashMap<>();
+		resultMap.put("@context", contextResult);
+		return resultMap;
+	}
+
+
+
 	
 }

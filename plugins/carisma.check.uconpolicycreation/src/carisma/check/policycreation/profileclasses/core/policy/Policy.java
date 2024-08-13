@@ -139,6 +139,7 @@ public class Policy extends ODRLClass{
 	
 	@Override
 	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClass> circlePreventionSet) throws NoSuchFieldException, SecurityException {
+		handler.addToTopLevelMapElements(map);
 		map.put(gatTypeKeyword(), gatClassTerm());
 		String profileKey = "profile";
 		Object profileValue = null;
@@ -152,6 +153,14 @@ public class Policy extends ODRLClass{
 		}
 		return null;
 	}
+	
+	@Override
+	public void setHandler(UMLModelConverter handler) {
+		super.setHandler(handler);
+		handler.setPolicyRoot(this);
+	}
+	
+	
 	
 	//TODO: remove
 //	private void fillMapUid(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {

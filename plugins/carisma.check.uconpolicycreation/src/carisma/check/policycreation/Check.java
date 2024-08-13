@@ -1,6 +1,10 @@
 package carisma.check.policycreation;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
@@ -19,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -177,8 +182,13 @@ public class Check implements CarismaCheckWithID {
 		List<JSONObject> printList = new LinkedList<JSONObject>();
 		List<ODRLClass> objectList = new LinkedList<ODRLClass>();
 		Collection<Element> modelContents = inputModel.allOwnedElements();
-		UMLModelConverter converter = new UMLModelConverter();
+		try {
+		UMLModelConverter converter = new UMLModelConverter("resources" + File.separator + "odrl_jsonld_context_with_added_id.txt");
+		
 		for (Element e : modelContents) {
+			if (!(e instanceof Activity)) {
+				continue;
+			}
 			System.out.println("Element: " + e);//TODO: remove
 			for(EStructuralFeature esf : e.eClass().getEAllStructuralFeatures()) {//TODO remove
 				if (e.eGet(esf)!=null) {
@@ -193,7 +203,7 @@ public class Check implements CarismaCheckWithID {
 						System.out.println(stAppEsf);
 					}
 					System.out.println("Features end");
-					Object object = (addElement(e.getStereotypeApplication(s), null, e));
+					Object object = (converter.addElement(e.getStereotypeApplication(s), null, e));
 					
 					if (object instanceof ODRLClass odrlC) {
 						System.out.println("Created ODRLObject: " + odrlC);
@@ -254,6 +264,10 @@ public class Check implements CarismaCheckWithID {
 //			System.out.println(jobj.toString(4));
 //			System.out.println();
 //		}
+		} catch (IOException e) {
+			//TODO: add message to Report?
+			e.printStackTrace();
+		}
 	}
 		
 		

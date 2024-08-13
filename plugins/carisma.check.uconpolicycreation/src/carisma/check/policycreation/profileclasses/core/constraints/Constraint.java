@@ -244,6 +244,16 @@ public class Constraint extends ODRLClass{
 			}
 			
 		}
+		
+		if (this.uid!=null && map.size()!=1) {
+			//Display externally if it defines a new element referencable from outside through uid
+			map.put(gatTypeKeyword(), handler.getTermMap().get(this.getClass()));
+			map.put("@context", handler.getContextMap());
+			handler.addToTopLevelMapElements(map);
+			Map<String,Object> referenceToConstraint = new HashMap<>();
+			referenceToConstraint.put(gatIdKeyword(), this.uid);
+			return referenceToConstraint;
+		}
 		return null;
 	}
 	

@@ -1,6 +1,8 @@
 package carisma.check.policycreation.profileclasses.core.action;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,11 +26,15 @@ public abstract class Action extends ODRLClass {
 		if (refinement == null) {
 			return gatClassTerm();
 		} else {
-			Map<String,String> valueEntry= new HashMap<>();
-			valueEntry.put(gatIdKeyword(), gatClassTerm());//TODO: expand the classTerm with its namespace identifier prefix (extract from the context file)
+			Map<String,Object> valueEntry= new HashMap<>();
+			valueEntry.put(gatIdKeyword(), handler.applyContext(gatClassTerm()));//TODO: expand the classTerm with its namespace identifier prefix (extract from the context file)
+			System.out.println("ValueEntry: " + valueEntry.toString());
 			map.put("rdf:value", valueEntry);
+			List<Map<String,Object>> wrapperList = new LinkedList<>();
+			wrapperList.add(map);
+			return wrapperList;
 		}
-		return null;
+		//return null;
 	}
 
 }

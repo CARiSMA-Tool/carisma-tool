@@ -95,13 +95,15 @@ public class InternalModelTests {
 			JSONObject jo1 = (JSONObject) o1;
 			JSONObject jo2 = (JSONObject) o2;
 			if(!jo1.keySet().equals(jo2.keySet())) {
-				return false;//Differening
+				return false;//Differing
 			}
 			for (String  key : jo1.keySet()) {
 				if(key.equals("@list") && compareJsonLdEqualityOrderedList(jo1.get(key),jo2.get(key))==false) {
+					System.out.println("Ordered equality failed: " + o1.toString());
 					return false;
 				}
 				else if (compareJsonLdEquality(jo1.get(key), jo2.get(key))==false) {
+					System.out.println("Normal equality failed: " + o1.toString() + "    " + o2.toString());
 					return false;
 				}
 			}
@@ -112,6 +114,7 @@ public class InternalModelTests {
 			JSONArray ja1 = (JSONArray) o1;
 			JSONArray ja2 = new JSONArray((JSONArray) o2);
 			if (ja1.length()!=ja2.length()) {
+				System.out.println("Unequal length: " + o1.toString());
 				return false;
 			}	
 			for (Object ao1 : ja1) {
@@ -126,8 +129,12 @@ public class InternalModelTests {
 					ja2.remove(removeIndex);		
 				}
 			}
+			System.out.println("Uneven amount At the end: " + o1.toString());
 			return ja2.length()==0;//if all entries are shared all are removed from the 2nd array (same length checked before)
 		}
+		System.out.println("At the end: " + o1.toString());
+		System.out.println("O1: " + o1.getClass() + "  O2: " + o2.getClass());
+		System.out.println("O1: " + o1.toString() + "   O2: " + o2.toString());
 		return false;//both Elements are not equal() and, both are not JSONObjects or both are not JSONArrays
 		
 	}
@@ -147,12 +154,14 @@ public class InternalModelTests {
 			if (ja1.length()==ja2.length()) {
 					for (int i = 0; i<ja1.length();i++) {
 						if (!compareJsonLdEquality(ja1.get(i), ja2.get(i))) {
+							System.out.println(o1.toString());
 							return false;
 						}
 					}
 			}
 			return true;
 		}
+		System.out.println(o1.toString());
 		return false;
 	}
 	

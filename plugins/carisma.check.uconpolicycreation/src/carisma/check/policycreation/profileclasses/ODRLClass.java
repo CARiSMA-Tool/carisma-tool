@@ -67,6 +67,7 @@ public abstract class ODRLClass{
 	}
 	public void setHandler(UMLModelConverter handler) {
 		this.handler = handler;
+		handler.addToHandledOdrlClasses(this);
 	}
 	
 
