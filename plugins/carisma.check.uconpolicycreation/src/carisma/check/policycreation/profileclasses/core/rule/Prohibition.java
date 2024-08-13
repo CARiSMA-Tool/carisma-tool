@@ -8,7 +8,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.Element;
 
 import carisma.check.policycreation.UMLModelConverter;
+import carisma.check.policycreation.profileclasses.ODRLClass;
 import carisma.check.policycreation.profileclasses.core.failure.Remedy;
+import carisma.check.policycreation.profileclasses.core.policy.Policy;
 
 public class Prohibition extends Rule {
 	Remedy remedy;
@@ -38,9 +40,20 @@ public class Prohibition extends Rule {
 		if (attributeValue instanceof List list) { //TODO List attribute
 			List<Duty> attributeValueOdrl = handler.addElement(list, this.getRemedy(), activityElement, Duty.class);
 			if (attributeValueOdrl!=null) {
-				if (this.getRemedy().getRules()==null)
-					this.getRemedy().setRules(new LinkedList<>());
 				this.getRemedy().getRules().addAll(attributeValueOdrl);//TODO change getters to conditional generators or add null-checks with additional creation everywhere were gotten objects are further used
+				//remove duties from policy as direct elements, only contained through this rule
+				for (Duty duty : attributeValueOdrl) {
+					List<Policy> referringPolicies = new LinkedList<>();
+					for (ODRLClass referringObject: duty.gatReferredBy()) {
+						if (referringObject instanceof Policy policy) {
+							policy.getObligation().remove(duty);
+							referringPolicies.add(policy);
+						}
+					}
+					for (Policy policy : referringPolicies) {
+						duty.removeReferredBy(policy);
+					}
+				}
 			}
 		}
 	}

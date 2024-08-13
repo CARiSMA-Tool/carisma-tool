@@ -130,7 +130,9 @@ public abstract class Rule extends ODRLClass {
 						Relation newTarget = new Target();
 						newTarget.setHandler(handler);//TODO watch out: not all classes are created in the Converter, remove if handler passing is changed to constructor
 						newTarget.setAsset(asset);
+						asset.addReferredBy(newTarget);
 						this.addInvolvedAssets(newTarget);
+						newTarget.addReferredBy(this);
 					}
 				}
 			}
@@ -140,7 +142,9 @@ public abstract class Rule extends ODRLClass {
 						Relation newOutput = new Output();
 						newOutput.setHandler(handler);//TODO watch out: not all classes are created in the Converter, remove if handler passing is changed to constructor
 						newOutput.setAsset(asset);
+						asset.addReferredBy(newOutput);
 						this.addInvolvedAssets(newOutput);
+						newOutput.addReferredBy(this);
 					}
 				}
 			}

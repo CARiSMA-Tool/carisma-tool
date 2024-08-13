@@ -31,7 +31,7 @@ public class Duty extends Rule {
 				this.setConsequences(consequence);
 			}
 		}
-		//Following part currently leads to stack overflow when JSON-Objects are created (Does not anymore. did with old references)
+		
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getDuty_Consequences());
 		if (attributeValue instanceof List list) { //TODO List attribute
 			List<Duty> attributeValueOdrl = handler.addElement(list, this.getConsequence(), activityElement, Duty.class);

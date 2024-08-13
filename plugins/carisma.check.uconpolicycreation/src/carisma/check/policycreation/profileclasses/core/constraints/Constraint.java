@@ -1,6 +1,10 @@
 package carisma.check.policycreation.profileclasses.core.constraints;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Element;
@@ -14,8 +18,8 @@ public class Constraint extends ODRLClass{
 	String uid;
 	LeftOperand leftOperand;
 	Operator operator;
-	List<String> rightOperand;
-	List<String> rightOperandReference;
+	List<String> rightOperand = new LinkedList<>();
+	List<String> rightOperandReference = new LinkedList<>();
 	String dataType;
 	String unit;
 	String status;
@@ -195,6 +199,55 @@ public class Constraint extends ODRLClass{
 			this.setUnit(stringValue);
 		}
 	}
+
+
+
+
+
+	@Override
+	public Object fillMapIndividual(Map<String, Object> map, Set<ODRLClass> circlePreventionSet)
+			throws NoSuchFieldException, SecurityException {
+		String typeKey = gatTypeKeyword();
+		String typeValue = handler.createMap(dataType, circlePreventionSet);
+		if (typeValue!=null) {
+			if (rightOperand.size()>1) {
+				List<Map<String,String>> roList = new LinkedList<Map<String,String>>();
+				map.put("rightOperand", roList);
+				for (String rightOp : rightOperand) {
+					if (rightOp != null) {
+						Map<String,String> roMap = new HashMap<>();
+						roMap.put("@value", rightOp);
+						roMap.put(gatTypeKeyword(), typeValue);
+					}
+				}
+			} else if (rightOperand.size()==1) {
+				Map<String,String> roMap = new HashMap<>();
+				roMap.put("@value", rightOperand.get(0));
+				roMap.put(gatTypeKeyword(), typeValue);
+				map.put("rightOperand", roMap);
+			}
+			if (rightOperandReference.size()>1) {
+				List<Map<String,String>> rorList = new LinkedList<Map<String,String>>();
+				map.put("rightOperandReference", rorList);
+				for (String rightOpR : rightOperandReference) {
+					if (rightOpR != null) {
+						Map<String,String> rorMap = new HashMap<>();
+						rorMap.put("@value", rightOpR);
+						rorMap.put(gatTypeKeyword(), typeValue);
+					}
+				}
+			} else if (rightOperandReference.size()==1) {
+				Map<String,String> rorMap = new HashMap<>();
+				rorMap.put("@value", rightOperand.get(0));
+				rorMap.put(gatTypeKeyword(), typeValue);
+				map.put("rightOperandReference", rorMap);
+			}
+			
+		}
+		return null;
+	}
+	
+	
 
 
 }

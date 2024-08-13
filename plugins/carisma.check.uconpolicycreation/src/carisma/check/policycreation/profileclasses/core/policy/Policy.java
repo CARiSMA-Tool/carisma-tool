@@ -140,6 +140,16 @@ public class Policy extends ODRLClass{
 	@Override
 	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClass> circlePreventionSet) throws NoSuchFieldException, SecurityException {
 		map.put(gatTypeKeyword(), gatClassTerm());
+		String profileKey = "profile";
+		Object profileValue = null;
+		if (profiles.size()==1) {
+			profileValue=  handler.createMap(profiles.get(0), circlePreventionSet);
+		} else if (profiles.size()>1) {
+			profileValue = handler.createMap(profiles, circlePreventionSet);
+		}
+		if (profileValue != null && (!(profileValue instanceof List valueList) || !valueList.isEmpty())) {
+			map.put(profileKey, profileValue);
+		}
 		return null;
 	}
 	

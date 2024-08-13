@@ -429,9 +429,9 @@ public class UMLModelConverter {
 			termMap.put(Constraint.class.getDeclaredField("uid"), "uid");
 			termMap.put(Constraint.class.getDeclaredField("leftOperand"), "leftOperand");
 			termMap.put(Constraint.class.getDeclaredField("operator"), "operator");
-			termMap.put(Constraint.class.getDeclaredField("rightOperand"), "rightOperand");
-			termMap.put(Constraint.class.getDeclaredField("rightOperandReference"), "rightOperandReference");
-			termMap.put(Constraint.class.getDeclaredField("dataType"), "dataType");
+//			termMap.put(Constraint.class.getDeclaredField("rightOperand"), "rightOperand"); //TODO removed to put dataType into rightOperands instead of contraint
+//			termMap.put(Constraint.class.getDeclaredField("rightOperandReference"), "rightOperandReference"); //TODO removed to put dataType into rightOperands instead of contraint
+			//termMap.put(Constraint.class.getDeclaredField("dataType"), "dataType"); //TODO removed to put the type into the operands instead of the constraint
 			termMap.put(Constraint.class.getDeclaredField("unit"), "unit");
 			termMap.put(Constraint.class.getDeclaredField("status"), "status");
 			termMap.put(LogicalConstraint.class, "LogicalConstraint");
@@ -449,7 +449,7 @@ public class UMLModelConverter {
 			termMap.put(LeftOperand.class, "LeftOperand");//Currently abstract
 			//Operand
 			//termMap.put(OperandImpl.class, "");
-			termMap.put(Operand.class.getDeclaredField("constraints"), "TODO:Remove operand from termMap");//TODO:Remove, just here for testing
+			//termMap.put(Operand.class.getDeclaredField("constraints"), "TODO:Remove operand from termMap");//TODO:Remove, just here for testing
 			termMap.put(And.class, "and");
 			termMap.put(AndSequence.class, "andSequence");
 			termMap.put(Or.class, "or");
@@ -478,7 +478,7 @@ public class UMLModelConverter {
 			termMap.put(Policy.class, "Policy");
 			termMap.put(Policy.class.getDeclaredField("uid"), "uid");
 			termMap.put(Policy.class.getDeclaredField("conflictStrategy"), "conflict");
-			termMap.put(Policy.class.getDeclaredField("profiles"), "profile");
+			//termMap.put(Policy.class.getDeclaredField("profiles"), "profile");//TODO removed to change single-element-list to single element in manual process
 			termMap.put(Policy.class.getDeclaredField("inheritsFrom"), "inheritFrom");
 			termMap.put(Policy.class.getDeclaredField("permission"), "permission");
 			termMap.put(Policy.class.getDeclaredField("obligation"), "obligation");
@@ -672,6 +672,9 @@ public class UMLModelConverter {
 		}		
 		if (newObject instanceof ODRLClass newObjectOdrl) {
 			newObjectOdrl.setHandler(this);//Possibly TODO Needs to be done before any further operations (as those operations rely on the . Currently not done in the constructor as that requires manual changes in all ODRL-classes every time the approach is changed
+			if (odrlParent != null) {
+				newObjectOdrl.addReferredBy(odrlParent);
+			}
 			newObjectOdrl.fill(currentEObject, activityElement); //TODO: Add boolean-return to fill to notify whether an object should be given back or not (since the ODRLClassImpl-Creation based on Features always is executed no matter whether the object in question has a value with the feature)
 		}
 		

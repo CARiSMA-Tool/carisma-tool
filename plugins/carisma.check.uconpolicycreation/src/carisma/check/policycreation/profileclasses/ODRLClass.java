@@ -3,6 +3,7 @@ package carisma.check.policycreation.profileclasses;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,7 +19,7 @@ public abstract class ODRLClass{
 	/**
 	 * ODRLObjects that contain a reference to this object.
 	 */
-	protected Set<ODRLClass> referredBy;
+	protected List<ODRLClass> referredBy = new LinkedList<>();
 	public ODRLClass directParent;//maybe
 	/**
 	 * Package generated from the used profile.
@@ -33,6 +34,16 @@ public abstract class ODRLClass{
 	 */
 	protected Element containingUmlElement;
 	
+	
+	public List<ODRLClass> gatReferredBy() {
+		return referredBy;
+	}
+	public void addReferredBy(ODRLClass parent) {
+		referredBy.add(parent);
+	}
+	public void removeReferredBy(ODRLClass parent) {
+		referredBy.remove(parent);
+	}
 	
 
 	/**
