@@ -53,6 +53,10 @@ public class InternalModelTests {
 		assertNotNull(this.model);
 	}
 	
+	public final void loadModelWithFilePath(final String testmodelname) {
+		loadModel(this.filePath+File.separator+testmodelname);
+	}
+	
 	public final String readResourceFile(String path) {
 		try(BufferedReader br = new BufferedReader(new FileReader(path))) {
 		    StringBuilder sb = new StringBuilder();
@@ -87,7 +91,7 @@ public class InternalModelTests {
 		if (o1.equals(o2)) {
 			return true;
 		}
-		if (o1.getClass().equals(JSONObject.class)&&o1.getClass().equals(JSONObject.class)) {
+		if (o1.getClass().equals(JSONObject.class)&&o2.getClass().equals(JSONObject.class)) {
 			JSONObject jo1 = (JSONObject) o1;
 			JSONObject jo2 = (JSONObject) o2;
 			if(!jo1.keySet().equals(jo2.keySet())) {
@@ -152,8 +156,11 @@ public class InternalModelTests {
 		return false;
 	}
 	
+	
+	
+	
 	@Test
-	public final void modelTest() {
+	public final void modelCoverageTestFilled() {
 		String modelName = "uconpolicycreation-valid-filled.uml";
 		assertNull(this.modelres);
 		loadModel(this.filePath + File.separator + modelName);
@@ -176,13 +183,70 @@ public class InternalModelTests {
 		
 		String content = readResourceFile(this.filePath + File.separator +"w3OdrlModelExamples/W3OdrlModelExample1.txt");
 		JSONObject createdJson = new JSONObject(policyCheck.getPolicyString());
-		JSONObject externalJson = new JSONObject(content);
 		createdJson.put("@context", "http://www.w3.org/ns/odrl.jsonld");
 		System.out.println("Program-created:\n" + createdJson.toString(4));
-		System.out.println("Text-file-created:\n" + externalJson.toString(4));
+		System.out.println("Text-file-created:\n" + new JSONObject(content).toString(4));
 		assertTrue(compareJsonLdEquality(createdJson, new JSONObject(content)));
 		
 	}
+	
+	@Test
+	public final void w3OdrlModelExample3Test() {
+		String modelName = "w3OdrlModelExamples/W3OdrlModelExample3.uml";
+		assertNull(this.modelres);
+		loadModel(this.filePath + File.separator + modelName);
+		Check policyCheck = new Check();
+		TestHost analysisHost = new TestHost(this.modelres);
+		assertTrue(policyCheck.perform(null, analysisHost));
+		this.modelres.unload();
+		
+		String content = readResourceFile(this.filePath + File.separator +"w3OdrlModelExamples/W3OdrlModelExample3.txt");
+		JSONObject createdJson = new JSONObject(policyCheck.getPolicyString());
+		createdJson.put("@context", "http://www.w3.org/ns/odrl.jsonld");
+		System.out.println("Program-created:\n" + createdJson.toString(4));
+		System.out.println("Text-file-created:\n" + new JSONObject(content).toString(4));
+		assertTrue(compareJsonLdEquality(createdJson, new JSONObject(content)));
+		
+	}
+	
+	@Test
+	public final void w3OdrlModelExample13Test() {
+		String modelName = "w3OdrlModelExamples/W3OdrlModelExample13.uml";
+		assertNull(this.modelres);
+		loadModel(this.filePath + File.separator + modelName);
+		Check policyCheck = new Check();
+		TestHost analysisHost = new TestHost(this.modelres);
+		assertTrue(policyCheck.perform(null, analysisHost));
+		this.modelres.unload();
+		
+		String content = readResourceFile(this.filePath + File.separator +"w3OdrlModelExamples/W3OdrlModelExample13.txt");
+		JSONObject createdJson = new JSONObject(policyCheck.getPolicyString());
+		createdJson.put("@context", "http://www.w3.org/ns/odrl.jsonld");
+		System.out.println("Program-created:\n" + createdJson.toString(4));
+		System.out.println("Text-file-created:\n" + new JSONObject(content).toString(4));
+		assertTrue(compareJsonLdEquality(createdJson, new JSONObject(content)));
+		
+	}
+	
+	@Test
+	public final void w3OdrlModelExample14Test() {
+		String modelName = "w3OdrlModelExamples/W3OdrlModelExample14.uml";
+		assertNull(this.modelres);
+		loadModel(this.filePath + File.separator + modelName);
+		Check policyCheck = new Check();
+		TestHost analysisHost = new TestHost(this.modelres);
+		assertTrue(policyCheck.perform(null, analysisHost));
+		this.modelres.unload();
+		
+		String content = readResourceFile(this.filePath + File.separator +"w3OdrlModelExamples/W3OdrlModelExample14.txt");
+		JSONObject createdJson = new JSONObject(policyCheck.getPolicyString());
+		createdJson.put("@context", "http://www.w3.org/ns/odrl.jsonld");
+		System.out.println("Program-created:\n" + createdJson.toString(4));
+		System.out.println("Text-file-created:\n" + new JSONObject(content).toString(4));
+		assertTrue(compareJsonLdEquality(createdJson, new JSONObject(content)));
+		
+	}
+	
 	
 	@Test
 	public void emptyTest() {
