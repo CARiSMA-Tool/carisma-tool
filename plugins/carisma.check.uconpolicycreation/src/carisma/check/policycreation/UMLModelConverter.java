@@ -208,7 +208,7 @@ public class UMLModelConverter {
 	private Map<EObject,ODRLClass> referencingMap = new HashMap<>();//Currently: Save top-level elements (stereotype applications) as they may be referred by several objects, others may not. (If more Elements should be accessed: Save with unique EObject, watch out for uniqueness of enums (may need to be saved as triple)
 	//Also save lists, not just their elements
 	private ODRLClass policyRoot;
-	private java.util.Set<ODRLClass> handledOdrlClasses = new HashSet<>();
+	private java.util.Set<ODRLClass> handledOdrlObjects = new HashSet<>();
 	private List<Object> topLevelMapElements = new LinkedList<>();
 	private List<Map<String,Object>> contexts = new LinkedList<>();
 	
@@ -718,6 +718,7 @@ public class UMLModelConverter {
 		}		
 		if (newObject instanceof ODRLClass newObjectOdrl) {
 			newObjectOdrl.setHandler(this);//Possibly TODO Needs to be done before any further operations (as those operations rely on the . Currently not done in the constructor as that requires manual changes in all ODRL-classes every time the approach is changed
+			this.addToHandledOdrlObjects(newObjectOdrl);
 			if (odrlParent != null) {
 				newObjectOdrl.addReferredBy(odrlParent);
 			}
@@ -948,15 +949,18 @@ public class UMLModelConverter {
 		this.policyRoot = root;
 	}
 
-	public java.util.Set<ODRLClass> getHandledOdrlClasses() {
-		return handledOdrlClasses;
+	public java.util.Set<ODRLClass> getHandledOdrlObjects() {
+		return handledOdrlObjects;
 	}
 
-	public void setHandledOdrlClasses(java.util.Set<ODRLClass> handledOdrlClasses) {
-		this.handledOdrlClasses = handledOdrlClasses;
+	public void setHandledOdrlObjects(java.util.Set<ODRLClass> handledOdrlClasses) {
+		this.handledOdrlObjects = handledOdrlClasses;
 	}
-	public void addToHandledOdrlClasses(ODRLClass handledClass) {
-		this.handledOdrlClasses.add(handledClass);
+	public void addToHandledOdrlObjects(ODRLClass handledClass) {
+		this.handledOdrlObjects.add(handledClass);
+	}
+	public void removeFromHandledOdrlObjects(ODRLClass handledClass) {
+		this.handledOdrlObjects.remove(handledClass);
 	}
 
 	public List<Object> getTopLevelMapElements() {

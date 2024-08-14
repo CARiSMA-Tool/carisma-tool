@@ -129,6 +129,7 @@ public abstract class Rule extends ODRLClass {
 					if (handler.addElement(stereoAppl, this, containingUmlElement) instanceof Asset asset) {
 						Relation newTarget = new Target();
 						newTarget.setHandler(handler);//TODO watch out: not all classes are created in the Converter, remove if handler passing is changed to constructor
+						handler.addToHandledOdrlObjects(newTarget);
 						newTarget.setAsset(asset);
 						asset.addReferredBy(newTarget);
 						this.addInvolvedAssets(newTarget);
@@ -141,6 +142,7 @@ public abstract class Rule extends ODRLClass {
 					if (handler.addElement(stereoAppl, this, containingUmlElement) instanceof Asset asset) {
 						Relation newOutput = new Output();
 						newOutput.setHandler(handler);//TODO watch out: not all classes are created in the Converter, remove if handler passing is changed to constructor
+						handler.addToHandledOdrlObjects(newOutput);
 						newOutput.setAsset(asset);
 						asset.addReferredBy(newOutput);
 						this.addInvolvedAssets(newOutput);
