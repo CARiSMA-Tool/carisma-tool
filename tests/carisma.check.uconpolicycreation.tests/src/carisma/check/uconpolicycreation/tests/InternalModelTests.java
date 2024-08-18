@@ -1,6 +1,5 @@
 package carisma.check.uconpolicycreation.tests;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -9,11 +8,8 @@ import static org.junit.Assert.fail;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
 import java.util.Collections;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -23,7 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
 
-import carisma.check.policycreation.Check;
+import carisma.check.uconpolicycreation.Check;
 import carisma.core.logging.Logger;
 
 public class InternalModelTests {
@@ -192,7 +188,6 @@ public class InternalModelTests {
 		
 		String content = readResourceFile(this.filePath + File.separator +"w3OdrlModelExamples/W3OdrlModelExample1.txt");
 		JSONObject createdJson = new JSONObject(policyCheck.getPolicyString());
-		createdJson.put("@context", "http://www.w3.org/ns/odrl.jsonld");
 		System.out.println("Program-created:\n" + createdJson.toString(4));
 		System.out.println("Text-file-created:\n" + new JSONObject(content).toString(4));
 		assertTrue(compareJsonLdEquality(createdJson, new JSONObject(content)));
@@ -211,7 +206,6 @@ public class InternalModelTests {
 		
 		String content = readResourceFile(this.filePath + File.separator +"w3OdrlModelExamples/W3OdrlModelExample3.txt");
 		JSONObject createdJson = new JSONObject(policyCheck.getPolicyString());
-		createdJson.put("@context", "http://www.w3.org/ns/odrl.jsonld");
 		System.out.println("Program-created:\n" + createdJson.toString(4));
 		System.out.println("Text-file-created:\n" + new JSONObject(content).toString(4));
 		assertTrue(compareJsonLdEquality(createdJson, new JSONObject(content)));
@@ -230,7 +224,6 @@ public class InternalModelTests {
 		
 		String content = readResourceFile(this.filePath + File.separator +"w3OdrlModelExamples/W3OdrlModelExample13.txt");
 		JSONObject createdJson = new JSONObject(policyCheck.getPolicyString());
-		createdJson.put("@context", "http://www.w3.org/ns/odrl.jsonld");
 		System.out.println("Program-created:\n" + createdJson.toString(4));
 		System.out.println("Text-file-created:\n" + new JSONObject(content).toString(4));
 		assertTrue(compareJsonLdEquality(createdJson, new JSONObject(content)));
@@ -249,18 +242,28 @@ public class InternalModelTests {
 		
 		String content = readResourceFile(this.filePath + File.separator +"w3OdrlModelExamples/W3OdrlModelExample14.txt");
 		JSONObject createdJson = new JSONObject(policyCheck.getPolicyString());
-		createdJson.put("@context", "http://www.w3.org/ns/odrl.jsonld");
 		System.out.println("Program-created:\n" + createdJson.toString(4));
 		System.out.println("Text-file-created:\n" + new JSONObject(content).toString(4));
 		assertTrue(compareJsonLdEquality(createdJson, new JSONObject(content)));
 		
 	}
 	
-	
 	@Test
-	public void emptyTest() {
-		System.out.println("In empty test");
-		assertTrue(true);
-		assertFalse(true);
+	public final void w3OdrlModelExample22Test() {
+		String modelName = "w3OdrlModelExamples/W3OdrlModelExample22.uml";
+		assertNull(this.modelres);
+		loadModel(this.filePath + File.separator + modelName);
+		Check policyCheck = new Check();
+		TestHost analysisHost = new TestHost(this.modelres);
+		assertTrue(policyCheck.perform(null, analysisHost));
+		this.modelres.unload();
+		
+		String content = readResourceFile(this.filePath + File.separator +"w3OdrlModelExamples/W3OdrlModelExample22.txt");
+		JSONObject createdJson = new JSONObject(policyCheck.getPolicyString());
+		createdJson.put("@context", "http://www.w3.org/ns/odrl.jsonld");
+		System.out.println("Program-created:\n" + createdJson.toString(4));
+		System.out.println("Text-file-created:\n" + new JSONObject(content).toString(4));
+		assertTrue(compareJsonLdEquality(createdJson, new JSONObject(content)));
+		
 	}
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRLCommonVocabulary="http:///schemas/ODRLCommonVocabulary/_Xm-dwFWmEe-p5_deFFS4Yg/12" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRLCommonVocabulary/_Xm-dwFWmEe-p5_deFFS4Yg/12 pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_Xm_E0FWmEe-p5_deFFS4Yg">
-  <uml:Model xmi:id="_uv3rIFD0Ee-9wuT63RS7Pw" name="uconpolicycreation_odrl_common_correct">
+  <uml:Model xmi:id="_uv3rIFD0Ee-9wuT63RS7Pw" name="uconpolicycreation_odrl_common">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_uxKroFD0Ee-9wuT63RS7Pw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
@@ -52,18 +52,18 @@
         <rightOperand>5.00</rightOperand>
       </constraints>
     </refinement>
-    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_gu89k1ZkEe-B-6tdhiRsEg">
-      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_gu89lFZkEe-B-6tdhiRsEg" uid="" leftOperand="event" operator="lt">
-        <rightOperand>policyUsage</rightOperand>
-      </constraints>
-    </constraint>
-    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu89lVZkEe-B-6tdhiRsEg" type="compensatedParty"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu89lVZkEe-B-6tdhiRsEg" type="compensatedParty" party="_g0GAoFGgEe-b_6a7W7_YMg"/>
   </ODRLCommonVocabulary:Duty>
   <ODRLCommonVocabulary:Permission xmi:id="_HT3SMFGhEe-b_6a7W7_YMg" base_Action="_F6VswFGcEe-b_6a7W7_YMg" action="play">
+    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_pOt1sFznEe-vmvxe_1UeMA">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_nBSC4FzpEe-vmvxe_1UeMA" uid="" leftOperand="elapsedTime" operator="lteq" dataType="xsd:duration" unit="">
+        <rightOperand>P1M</rightOperand>
+      </constraints>
+    </constraint>
     <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu89l1ZkEe-B-6tdhiRsEg" type="assigner"/>
     <duties xmi:type="ODRLCommonVocabulary:Duty" href="uconpolicycreation_odrl_common_correct.uml"/>
   </ODRLCommonVocabulary:Permission>
   <ODRLCommonVocabulary:Duty xmi:id="_It94sFGhEe-b_6a7W7_YMg" base_Action="_bwlVYFGeEe-b_6a7W7_YMg" action="attribute">
-    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu9koVZkEe-B-6tdhiRsEg" type="attributedParty"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu9koVZkEe-B-6tdhiRsEg" type="attributedParty" party="_g0GAoFGgEe-b_6a7W7_YMg"/>
   </ODRLCommonVocabulary:Duty>
 </xmi:XMI>

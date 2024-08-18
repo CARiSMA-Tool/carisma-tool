@@ -5,26 +5,26 @@
    <extension
          point="carisma.carismacheck">
       <check
-            id="carisma.check.samplepackage"
-            name="policycreation-check"
-            description="creates policy"
+            id="carisma.check.uconpolicycreation"
+            name="uconpolicycreation"
+            description="Creates an ODRL-Policy in JSON-LD-Format from a UML-Model"
             publisher="[Enter publisher]"
             targetModelType="UML2"
-            implementingClass="carisma.check.policycreation.Check">
+            implementingClass="carisma.check.uconpolicycreation.Check">
          <parameter
-               id="carisma.check.dummy.parameter1"
-               optional="false"
-               type="String"
-               name="bb a test string"
-               description="e.g. your name">
+               id="carisma.check.uconpolicycreation.outputfile"
+               optional="true"
+               type="OutputFile"
+               name="outputfile"
+               description="File the created policy should be saved in">
          </parameter>
          <parameter
-               id="carisma.check.dummy.parameter2"
+               defaultValue="true"
+               description="Whether to create a policy file (or only check for errors)"
+               id="carisma.check.uconpolicycreation.createoutputfile"
+               name="createoutputfile"
                optional="true"
-               type="int"
-               defaultValue="17"
-               name="bb a number"
-               description="possible values: 0, 1, or 2">
+               type="boolean">
          </parameter>
       </check>
    </extension>
