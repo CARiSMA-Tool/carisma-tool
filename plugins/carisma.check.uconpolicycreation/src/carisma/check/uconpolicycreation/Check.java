@@ -26,6 +26,9 @@ import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
 import carisma.check.uconpolicycreation.profileclasses.ODRLClass;
 import carisma.check.uconpolicycreation.profileclasses.core.asset.AssetCollection;
 import carisma.check.uconpolicycreation.profileclasses.core.constraints.Constraint;
+import carisma.check.uconpolicycreation.profileclasses.core.function.Assigner;
+import carisma.check.uconpolicycreation.profileclasses.core.function.Function;
+import carisma.check.uconpolicycreation.profileclasses.core.party.Party;
 import carisma.check.uconpolicycreation.profileclasses.core.party.PartyCollection;
 import carisma.check.uconpolicycreation.profileclasses.core.policy.Agreement;
 import carisma.check.uconpolicycreation.profileclasses.core.policy.Offer;
@@ -70,15 +73,12 @@ public class Check implements CarismaCheckWithID {
 	ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
 	UMLModelConverter modelConversionHandler;
 	
-	//TODO remove
-	int numOfElements = 0;
-	//
+
 	
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
 		System.out.println("Starting Policycheck performance");
 		this.host = host;
-		this.numOfElements = 0;
 		Resource currentModel = host.getAnalyzedModel();
 		if (currentModel.getContents().isEmpty()) {
 			host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Empty model"));
@@ -86,21 +86,30 @@ public class Check implements CarismaCheckWithID {
 		}
 		if (currentModel.getContents().get(0) instanceof Package model) {
 
-			//Convert the UML-Model to the Java-Class-Model used here
-			ODRLCommonVocabularyFactory factory = ODRLCommonVocabularyFactory.eINSTANCE;
-			System.out.println("Registered package: " + EPackage.Registry.INSTANCE.keySet());
-			System.out.println("Test of duty: " + factory.eINSTANCE.createDuty().eClass().getEPackage());
-			System.out.println("Package: " + odrlPackage);
 			try {
 			modelConversionHandler = new UMLModelConverter("resources" + File.separator + "odrl_jsonld_context_with_added_id.txt");
 			} catch (IOException e) {
 				//TODO: Add Warning: no JSON-LD-context given
 				return false;
 			}
-			Collection<Element> modelContents = model.allOwnedElements();
+			//Collection<Element> modelContents = model.allOwnedElements();
 			
 			
 			structureModel(model, modelConversionHandler);
+			
+			//Check policy-validation
+			boolean policyValidChecked = true;
+			for (ODRLClass policyElement : modelConversionHandler.getHandledOdrlObjects()) {
+				boolean elementValid = checkProfileRequirements(policyElement);
+				if (!elementValid) {
+					policyValidChecked = false;
+				}
+			}
+			if (!policyValidChecked) {
+				host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "No policy-File was created. The resulting policy does not not adhere to the odrl-specification."));
+				return false;
+			}
+			
 			boolean createPolicyFile = parameters != null && ((BooleanParameter) parameters.get(PARAM_CREATEPOLICY)).getValue();
 			if (createPolicyFile) {
 				File file = ((OutputFileParameter) parameters.get(PARAM_OUTPUTFILE)).getValue();
@@ -108,7 +117,7 @@ public class Check implements CarismaCheckWithID {
 					writer.write(policyString);
 				} catch (IOException e) {
 					//host.appendLineToReport(e.getMessage());
-					host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "No policy-file was created. " +  e.getMessage()));
+					host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No policy-file was created. " +  e.getMessage()));
 					return false;
 				}
 			}
@@ -124,27 +133,7 @@ public class Check implements CarismaCheckWithID {
 		return false;
 	}
 	
-	
-	//TODO remove
-	public void printContent(Element element, String indent) {
-		numOfElements++;
-		host.appendToReport(indent+element.eClass().getName()+": ");
-		if (!element.getAppliedStereotypes().isEmpty()) {
-			host.appendToReport("<<");
-			for (Stereotype st : element.getAppliedStereotypes()) {
-				host.appendToReport(st.getName()+",");
-			}
-			host.appendToReport(">> ");
-		}
-		if (element instanceof NamedElement) {
-			NamedElement namedElement = (NamedElement)element;
-			host.appendToReport(namedElement.getName());
-		}
-		host.appendLineToReport("");
-		for (Element child : element.allOwnedElements()) {
-			printContent(child, indent+"  ");
-		}
-	}
+
 	private void structureModel(Package inputModel, UMLModelConverter converter) {
 		List<JSONObject> printList = new LinkedList<JSONObject>();
 		List<ODRLClass> objectList = new LinkedList<ODRLClass>();
@@ -159,106 +148,155 @@ public class Check implements CarismaCheckWithID {
 				if (s.getProfile().getQualifiedName().equals(profileName)) { //probably replace qualified name comparison by an more unique identifier
 					Object object = (converter.addElement(e.getStereotypeApplication(s), null, e));
 					
-					if (object instanceof ODRLClass odrlC) {
-						System.out.println("Created ODRLObject: " + odrlC);
-						JSONObject jso = new JSONObject(odrlC);
-						//					
-						Object converterMap = converter.startMap(odrlC);
-						System.out.println("converter print map");
-						System.out.println(converterMap);
-						System.out.println("converter print JSON");
-						if (converterMap instanceof Map actualMap)
-						System.out.println(new JSONObject(actualMap).toString(4));
-						else System.out.println(converterMap==null?"Convertermap is null" : converterMap.getClass());
-						System.out.println("converter printed to json");
-						//
-						printList.add(jso);
-						objectList.add(odrlC);
-						System.out.println(jso.toString(4));
-					}
-					else {
-						System.out.println("Null: " + e.getStereotypeApplication(s));
-						for (EStructuralFeature esf : e.getStereotypeApplication(s).eClass().getEStructuralFeatures()) {
-							System.out.println("ESF: " + esf);
-						}
-					}
-					System.out.println();
+//					if (object instanceof ODRLClass odrlC) {
+//						System.out.println("Created ODRLObject: " + odrlC);
+//						JSONObject jso = new JSONObject(odrlC);
+//						//					
+//						Object converterMap = converter.startMap(odrlC);
+//						System.out.println("converter print map");
+//						System.out.println(converterMap);
+//						System.out.println("converter print JSON");
+//						if (converterMap instanceof Map actualMap)
+//						System.out.println(new JSONObject(actualMap).toString(4));
+//						else System.out.println(converterMap==null?"Convertermap is null" : converterMap.getClass());
+//						System.out.println("converter printed to json");
+//						//
+//						printList.add(jso);
+//						objectList.add(odrlC);
+//						System.out.println(jso.toString(4));
+//					}
+//					else {
+//						System.out.println("Null: " + e.getStereotypeApplication(s));
+//						for (EStructuralFeature esf : e.getStereotypeApplication(s).eClass().getEStructuralFeatures()) {
+//							System.out.println("ESF: " + esf);
+//						}
+//					}
+//					System.out.println();
 				}			
 			}
 		}
 		String string1;
 		Object converterMap = converter.startMap(converter.getPolicyRoot());
-		if (converterMap instanceof Map actualMap) {
-			String outString =(new JSONObject(actualMap).toString(4));
-			policyString = outString;
-//			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-//			IPath p = Path.fromOSString("testp_/textfile.txt");//TODO change to parameter input
-//			IFile iFile = workspaceRoot.getFile(p);
-//			System.out.println("File Path: " + iFile.getLocation());
-//			InputStream in = new ByteArrayInputStream(outString.getBytes(StandardCharsets.UTF_8));
-//			try {
-//			iFile.create(in, false, null);
-//			in.close();
-//			}
-//			catch (ResourceException e) {
-//				//TODO: Don't print, add as Error to analysis results
-//				System.out.println(e.getMessage());
-//			}
-//			catch (Exception e) {
-//				e.printStackTrace();
-//			}
+		if (converterMap instanceof Map<?,?> actualMap) {
+			policyString =(new JSONObject(actualMap).toString(4));
+			//policyString = outString;
 		}
 	}
 		
-	
-	private void checkProfileRequirements(ODRLClass testedElement) {//replace testedElement with the created objects
+	//TODO change to more efficient approach (such as adding Elements to Class-Maps and accessing Classes and their Superclasses through their map-entries for the checks or adding the validity checks to the ODRLClasses themselves)
+	private boolean checkProfileRequirements(ODRLClass testedElement) {//replace testedElement with the created objects
+		boolean validPolicy = true;
 		//TODO no checks for valid form of IRIs so far
 		if (testedElement instanceof Policy policy) {
 			if (policy.getPermission().isEmpty()
 					&& policy.getProhibition().isEmpty()
 					&& policy.getObligation().isEmpty()) {
-				//TODO add warning: invalid policy: needs to have at least one permission, prohibition or obligation
-				addWarning("Invalid Policy. Policy needs to have at least one permission, prohibition or obligation.",testedElement);;
+				addWarning("Invalid Policy: Policy needs to have at least one permission, prohibition or obligation.",testedElement);
+				validPolicy = false;
 			}
 			
 			if (policy instanceof Offer offer) {
 				//TODO one assigner (only one? needed with every rule or just with one?)
+				//TODO Propably in separate method
+//				Assigner assigner = null;
+//				for (Permission rule : offer.getPermission()) {
+//					List<Function> functions = rule.getInvolvedParties();
+//					if (functions.size()==1) {
+//						if (functions.get(0) instanceof Assigner newAssigner) {
+//							if (assigner == null) {
+//								assigner = newAssigner;
+//							} else if (!assigner.getParty().equals(newAssigner.getParty())) {
+//								addWarning("Invalid Offer: Rules of an offer must not contain multiple distinct Assigners.",testedElement);
+//								validPolicy = false;
+//							}
+//						}
+//						else {
+//							addWarning("Invalid Offer: Rules of an offer must not contain Parties in Roles other than Assigners.",testedElement);
+//						}
+//					} else {
+//						addWarning("Invalid Offer: Rules of an offer must not contain Parties in multiple roles.",testedElement);
+//					}
+//				}
+//				for (Prohibition rule : offer.getProhibition()) {
+//					List<Function> functions = rule.getInvolvedParties();
+//					if (functions.size()==1) {
+//						if (functions.get(0) instanceof Assigner newAssigner) {
+//							if (assigner == null) {
+//								assigner = newAssigner;
+//							} else if (!assigner.getParty().equals(newAssigner.getParty())) {
+//								addWarning("Invalid Offer: Rules of an offer must not contain multiple distinct Assigners.",testedElement);
+//								validPolicy = false;
+//							}
+//						}
+//						else {
+//							addWarning("Invalid Offer: Rules of an offer must not contain Parties in Roles other than Assigners.",testedElement);
+//						}
+//					} else {
+//						addWarning("Invalid Offer: Rules of an offer must not contain Parties in multiple roles.",testedElement);
+//					}
+//				}
+//				for (Duty rule : offer.getObligation()) {
+//					List<Function> functions = rule.getInvolvedParties();
+//					if (functions.size()==1) {
+//						if (functions.get(0) instanceof Assigner newAssigner) {
+//							if (assigner == null) {
+//								assigner = newAssigner;
+//							} else if (!assigner.getParty().equals(newAssigner.getParty())) {
+//								addWarning("Invalid Offer: Rules of an offer must not contain multiple distinct Assigners.",testedElement);
+//								validPolicy = false;
+//							}
+//						}
+//						else {
+//							addWarning("Invalid Offer: Rules of an offer must not contain Parties in Roles other than Assigners.",testedElement);
+//						}
+//					} else {
+//						addWarning("Invalid Offer: Rules of an offer must not contain Parties in multiple roles.",testedElement);
+//					}
+//				}
+				
 			} else if (policy instanceof Agreement agreement) {
 				//TODO one assigner, one assignee
 			}
 		} else if (testedElement instanceof AssetCollection assetCollection) {
 			if (assetCollection.getRefinement()!=null
-					&& assetCollection.getSource()==null) {
-				addWarning("Invalid assetCollection: source-property needs to be used with refinement.", testedElement);
+					&& (assetCollection.getSource()==null || assetCollection.getSource().isEmpty())) {
+				addWarning("Invalid AssetCollection: Source-property needs to be used with refinement.", testedElement);
+				validPolicy = false;
 			}
 		} else if (testedElement instanceof PartyCollection partyCollection) {
 			if (partyCollection.getRefinement()!=null
-					&& partyCollection.getSource()==null) {
-				addWarning("Invalid partyCollection: source-property needs to be used with refinement.", testedElement);
+					&& (partyCollection.getSource()==null  || partyCollection.getSource().isEmpty())) {
+				addWarning("Invalid PartyCollection: Source-property needs to be used with refinement.", testedElement);
+				validPolicy = false;
 			}
 		} else if (testedElement instanceof Constraint constraint) {
 			if (constraint.getLeftOperand()==null) {
-				addWarning("Invalid constraint: needs to have a leftOperand selected.",testedElement);
+				addWarning("Invalid Constraint: Needs to have a leftOperand selected.",testedElement);
+				validPolicy = false;
 			}
 			if (constraint.getOperator()==null) {
-				addWarning("Invalid constraint: needs to have an operator selected.",testedElement);
+				addWarning("Invalid Constraint: Needs to have an operator selected.",testedElement);
+				validPolicy = false;
 			}
 			if ( (constraint.getRightOperand()==null
 					||constraint.getRightOperand().isEmpty() 
 					) && ( constraint.getRightOperandReference()==null
 					||constraint.getRightOperandReference().isEmpty())) {
-				addWarning("Invalid Constraint: needs to have either a rightOperand, or rightOperandReference, has neither.",testedElement);
+				addWarning("Invalid Constraint: Needs to have either a rightOperand, or rightOperandReference, has neither.",testedElement);
+				validPolicy = false;
 			}
 			if ( (constraint.getRightOperand()!=null
 					&& !constraint.getRightOperand().isEmpty() 
 					 && constraint.getRightOperandReference()!=null
 					&& !constraint.getRightOperandReference().isEmpty())) {
-				addWarning("Invalid Constraint: must not have both rightOperand and rightOperandReference (is that the case?)",testedElement);//TODO check if restriction actually exists
+				addWarning("Invalid Constraint: Must not have both rightOperand and rightOperandReference.",testedElement);//TODO check if restriction actually exists
+				validPolicy = false;
 			}
 		}
 		if (testedElement instanceof Rule rule) {
 			if (rule.getAction() == null) {
-				addWarning("Invalid rule: needs to have an action selected.",testedElement);
+				addWarning("Invalid Rule: Needs to have an action selected.",testedElement);
+				validPolicy = false;
 			}
 			if (testedElement instanceof Permission permission) {
 				boolean hasTarget = false;
@@ -268,7 +306,8 @@ public class Check implements CarismaCheckWithID {
 					}
 				}
 				if (!hasTarget) {
-					addWarning("Invalid permission: needs to have a relation of type target.",testedElement);
+					addWarning("Invalid Permission: Needs to have a relation of type target.",testedElement);
+					validPolicy = false;
 				}
 			} else if (testedElement instanceof Prohibition prohibition) {
 				boolean hasTarget = false;
@@ -278,16 +317,19 @@ public class Check implements CarismaCheckWithID {
 					}
 				}
 				if (!hasTarget) {
-					addWarning("Invalid prohibition: needs to have a relation of type target.",testedElement);
+					addWarning("Invalid Prohibition: Needs to have a relation of type target.",testedElement);
+					validPolicy = false;
 				}
 				if (prohibition.getRemedy()!=null && prohibition.getRemedy().getRules()!=null && !prohibition.getRemedy().getRules().isEmpty()) {
 					for (Rule remedy : prohibition.getRemedy().getRules()) {
 						if (!(remedy instanceof Duty)) {
-							addWarning("Invalid Prohibition: remedy must be of type Duty.",testedElement);//TODO covered in the Model
+							addWarning("Invalid Prohibition: Remedy must be of type Duty.",testedElement);//covered in the Model
+							validPolicy = false;
 						}
 						if (remedy instanceof Duty consequenceDuty) {
 							if (consequenceDuty.getConsequence()!=null) {
-								addWarning("Invalid remedy duty: remedy-Duty must not have a consequence itself.",testedElement);
+								addWarning("Invalid Remedy Duty: Remedy-Duty must not have a consequence itself.",testedElement);
+								validPolicy = false;
 							}
 						}
 					}
@@ -296,20 +338,38 @@ public class Check implements CarismaCheckWithID {
 				if (duty.getConsequence()!=null && duty.getConsequence().getRules()!=null && !duty.getConsequence().getRules().isEmpty()) {
 					for (Rule consequence : duty.getConsequence().getRules()) {
 						if (!(consequence instanceof Duty)) {
-							addWarning("Invalid Duty: consequence must be of type Duty.",testedElement);//TODO covered in the Model
+							addWarning("Invalid Duty: Consequence must be of type Duty.",testedElement);//covered in the Model
+							validPolicy = false;
 						}
 						if (consequence instanceof Duty consequenceDuty) {
 							if (consequenceDuty.getConsequence()!=null) {
-								addWarning("Invalid consequence duty: consequence-Duty must not have a consequence itself.",testedElement);
+								addWarning("Invalid Consequence Duty: Consequence-Duty must not have a consequence itself.",testedElement);//possibly instead refer to the consequence-duty
+								validPolicy = false;
 							}
 						}
 					}
 				}
 			} 
-		}		
+		}
+		return validPolicy;
 	}
+	
+	
 	private void addWarning(String warning, ODRLClass object) {//possibly add with list of ODRLClassImpl-objects
-		host.appendLineToReport("Warning: " + warning + " Found in a " + object.getClass().getSimpleName() + " contained in the " + "object.containingUMLElement.getClass()" + " named " + "object.containingUMLElement.getName()");//TODO: unimplemented parts
+		Element baseElement = object.gatContainingUmlElement();
+
+		String string = "Warning: " + warning;
+		if (baseElement != null) {
+			string += " Found in a " + object.getClass().getSimpleName();
+			//TODO the baseElement
+			if (baseElement instanceof NamedElement named) {
+				string +=  " contained in the " + baseElement.getClass().getSimpleName() + " named " + named.getName() + ".";
+			} else {
+				string += " contained in a " + baseElement.getClass().getSimpleName() + ".";
+			}
+		}
+		
+		host.appendLineToReport(string);//TODO: possibly add diagram name representation and directly containing ODRLClass to classes to be referred here
 	}
 	
 	

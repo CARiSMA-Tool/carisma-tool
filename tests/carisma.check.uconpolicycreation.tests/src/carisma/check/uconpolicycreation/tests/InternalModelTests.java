@@ -1,5 +1,6 @@
 package carisma.check.uconpolicycreation.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -171,7 +172,7 @@ public class InternalModelTests {
 		loadModel(this.filePath + File.separator + modelName);
 		Check policyCheck = new Check();
 		TestHost analysisHost = new TestHost(this.modelres);
-		assertTrue(policyCheck.perform(null, analysisHost));
+		assertFalse(policyCheck.perform(null, analysisHost));
 		System.out.println(new JSONObject(policyCheck.getPolicyString()).toString(4));
 		this.modelres.unload();
 	}

@@ -71,11 +71,11 @@ public abstract class ODRLClass{
 	}
 	
 
-	public Element gatBaseElement() {
+	public Element gatContainingUmlElement() {
 		return containingUmlElement;
 	}
 
-	public void setBaseElement(Element baseElement) {
+	public void setContainingUmlElement(Element baseElement) {
 		this.containingUmlElement = baseElement;
 	}
 	

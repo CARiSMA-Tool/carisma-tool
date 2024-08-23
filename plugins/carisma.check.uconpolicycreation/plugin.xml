@@ -20,7 +20,7 @@
          </parameter>
          <parameter
                defaultValue="true"
-               description="Whether to create a policy file (or only check for errors)"
+               description="Whether to create a policy file (or only check for errors). Disabling policy file creation does not disable the warning when an already existing file is used in  the outputfile-parameter. However in that case the warning can be ignored and resolved by chosing either option besides cancel."
                id="carisma.check.uconpolicycreation.createoutputfile"
                name="createoutputfile"
                optional="true"
