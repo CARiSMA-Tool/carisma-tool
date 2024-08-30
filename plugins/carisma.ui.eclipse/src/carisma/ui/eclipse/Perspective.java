@@ -15,9 +15,7 @@ import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
 import carisma.ui.eclipse.views.AnalysisResultsView;
-//import carisma.xutils.regulatory.importer.superior.ui.LogView;
-//import carisma.xutils.regulatory.importer.superior.ui.SettingsView;
-//import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
+
 /**
  *
  */
@@ -36,17 +34,15 @@ public class Perspective implements IPerspectiveFactory {
 	public final void createInitialLayout(final IPageLayout layout) {
 	    String editorArea = layout.getEditorArea();
 	    layout.setEditorAreaVisible(true);
+	    
+	    
+	    IFolderLayout leftTopFolder = layout.createFolder("LeftTop", IPageLayout.LEFT, 0.2f, editorArea);
+        leftTopFolder.addView(IPageLayout.ID_PROJECT_EXPLORER);
 
-	    IFolderLayout leftfolder = layout.createFolder("Left", IPageLayout.LEFT, 0.2f, editorArea);
-	    leftfolder.addView(IPageLayout.ID_PROJECT_EXPLORER);
-	    //String modelexplorer = "org.eclipse.papyrus.uml.modelexplorer.feature.feature.group";
-	    //org.eclipse.papyrus.uml.modelexplorer.ModelExplorerView
-	    //org.eclipse.papyrus.views.modelexplorer.resourceloading
-	    //org.eclipse.papyrus.views.modelexplorer.widgets
-	    //org.eclipse.papyrus.views.modelexplorer.newchild
-	    //org.eclipse.papyrus.views.modelexplorer.ModelExplorerView 
-	    //String modelexplorer = "org.eclipse.papyrus.views.modelexplorer.ModelExplorerView";
-	    //leftfolder.addView(modelexplorer);
+        IFolderLayout leftBottomFolder = layout.createFolder("LeftBottom", IPageLayout.BOTTOM, 0.5f, "LeftTop");
+        leftBottomFolder.addView("org.eclipse.papyrus.views.modelexplorer.modelexplorer");
+
+	    
 
 	    IFolderLayout bottomfolder = layout.createFolder("Bottom", IPageLayout.BOTTOM, 0.7f, editorArea);
 	    bottomfolder.addView(IPageLayout.ID_PROP_SHEET);
