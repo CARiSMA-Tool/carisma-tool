@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRLCommonVocabulary="http:///schemas/ODRLCommonVocabulary/_Xm-dwFWmEe-p5_deFFS4Yg/12" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRLCommonVocabulary/_Xm-dwFWmEe-p5_deFFS4Yg/12 pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_Xm_E0FWmEe-p5_deFFS4Yg">
+  <uml:Model xmi:id="_Z79yYFZaEe-wKv6OFZFixQ" name="W3OdrlModelExample1">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_Z9s3wFZaEe-wKv6OFZFixQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_Z8syMFZaEe-wKv6OFZFixQ" name="Play Movie" node="_kOSWwFZaEe-wKv6OFZFixQ">
+      <node xmi:type="uml:OpaqueAction" xmi:id="_kOSWwFZaEe-wKv6OFZFixQ" name="the play action">
+        <inputValue xmi:type="uml:InputPin" xmi:id="_vxc38FZaEe-wKv6OFZFixQ" name="the movie">
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_vxhwcFZaEe-wKv6OFZFixQ" value="1"/>
+        </inputValue>
+      </node>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_db1ykFZaEe-wKv6OFZFixQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_db414FZaEe-wKv6OFZFixQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_Xm_E0FWmEe-p5_deFFS4Yg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
+    </profileApplication>
+  </uml:Model>
+  <ODRLCommonVocabulary:ODRLPolicy xmi:id="_eWdnwFZaEe-wKv6OFZFixQ" uid="http://example.com/policy:1010" base_Activity="_Z8syMFZaEe-wKv6OFZFixQ" policyType="Set"/>
+  <ODRLCommonVocabulary:Permission xmi:id="_lUdUoFZaEe-wKv6OFZFixQ" base_Action="_kOSWwFZaEe-wKv6OFZFixQ" action="use"/>
+  <ODRLCommonVocabulary:Asset xmi:id="_w_GW0FZaEe-wKv6OFZFixQ" base_Pin="_vxc38FZaEe-wKv6OFZFixQ" uid="http://example.com/asset:9898.movie"/>
+</xmi:XMI>

@@ -1,0 +1,76 @@
+Whether an entry is mandatory generally can be seen from the cardinality of the attribute. If it cardinality allows 0, the entry is optional. Otherwise it's mandatory.
+
+Creating Elements:
+	Policy:
+		Apply the "ODRL-Policy"-Stereotype to the Activity at the top of an Activity Diagram.
+		Attributes:
+			uid: Makes the Policy referrable from outside the Model.
+			conflictStrategy: Decides how conflicts between Rules arising within the policy are resolved.
+			policyType: Decides the Type of Policy modelled.
+			profiles: List containing the IDs of the ODRL-Profiles that the Policy conforms to.
+			inheritsFrom: List containing the IDs of the Policies that this Policy inherits from.
+		Additional Information:
+			Rules (Permissions, Prohibitions, Obligations) of this Policy are automatically taken from the Rules defined in the Actions contained in the Activity. Those referred by other Rules are not directly added to this Policy.
+	Rule:
+		(Not directly created. Subclasses are Stereotypes applied to Actions. Covers part of the Permission, Prohibition and Obligation specification)
+		Attributes:
+			uid: Refers to an external Rule defined elsewhere. Other Attributes need to be empty if this attribute is filled.
+			involvedParties: Declares that a Party is related to this Rule and its role. Both the Party and the role are declared inside the created entries.
+			action: Declares the Action which this Rule refers to. The role of the Action depends on the implementation of the Rule-Stereotype used (Permission, Prohibition, Obligation).
+			refinement: Refines the action-Property with further details regarding the action. Creation of refinement is explained under the separate point "LogicalConstaint".
+			constraint: Constrains this Rule regarding its application. Creation of constraint is explained under the separate point "LogicalConstaint".
+		Additional Information:
+			Assets that are involved with this Rule are declared through Asset-Stereotypes attached to Input- and OutputPins which are attached to the Action. An InputPin signifies an Asset in the target-role, an OutputPin one in the output-role. Only one such relation to an Asset may be declared for each Rule.
+	Permission (is a Rule):
+		Apply the "Permission"-Stereotype to an Action contained in the Activity at the top of an Activity Diagram.
+		Attributes:
+			duties: Declares the Duties whose acceptance is required to obtain this Permission.
+	Prohibition (is a Rule):
+		Apply the "Prohibition"-Stereotype to an Action contained in the Activity at the top of an Activity Diagram.
+		Attributes:
+			remedies: Declares the Duties which need to be fulfilled if this Prohibition is not adhered to.
+	Duty (is a Rule):
+		Apply the "Duty"-Stereotype to an Action contained in the Activity at the top of an Activity Diagram.
+		Attributes:
+			consequence: Declares the Duties which need to be fulfilled if this Duty is not fulfilled. This Attribute must not be filled if this Duty is referred to in the consequence-property of another duty.
+	Asset:
+		Apply the "Asset"-Stereotype to a Pin attached to an Action with a Rule-Stereotype applied.
+		Attributes:
+			uid: Refers to an external Asset defined elsewhere. Other Attributes need to be empty if this attribute is filled.
+	AssetCollection (is an Asset):
+		Apply the "AssetCollection"-Stereotype to a Pin attached to an Action with a Rule-Stereotype applied.
+		Attributes:
+			source: Refers to an external definition of the collection of assets this AssetCollection is based on.
+			refinement: Selects the Assets of the collection referenced by the source-property that are used in this AssetCollection. Creation of refinement is explained under the separate point "LogicalConstaint".
+	Party:
+		Apply the "Party"-Stereotype to an ActivityPartition.
+		Attributes:
+			uid: Refers to an external Party defined elsewhere. Other Attributes need to be empty if this attribute is filled.
+	PartyCollection (is a Party):
+		Apply the "PartyCollection"-Stereotype to an ActivityPartition.
+		Attributes:
+			source: Refers to an external definition of the collection of parties this PartyCollection is based on.
+			refinement: Selects the Parties of the collection referenced by the source-property that are used in this PartyCollection. Creation of refinement is explained under the separate point "LogicalConstaint".
+	LogicalConstraint:
+		Not defined through Stereotype, but as attribute of other elements.
+		Attributes:
+			uid: Refers to an external LogicalConstraint defined elsewhere. Other Attributes need to be empty if this attribute is filled.
+			logicalOperator: Declares how the Constraints of the constraints-property are logically combined.
+			constraints: A List of Constraints contained by this LogicalConstraint.
+		Additional Information:
+			 If Null is selected for the logicalOperator-property, this LogicalConstraint is not processed as a LogicalConstraint, but as the List of Constraints in the constraint-property instead.
+	Constraint:
+		Not defined through Stereotype, but as attribute of a LogicalConstraint.
+		Attributes:
+			uid: Refers to an external Constraint defined elsewhere. Other Attributes need to be empty if this attribute is filled.
+			leftOperand: Declares one left operand.
+			status: Declares information about a pre-existing status of the leftOperand.
+			operator: Declares how the operands are evaluated. Can contain a list-based or not-list-based operator.
+			rightOperand: A List of values for the right operand. The values are directly used as operand.
+			rightOperandReference: A List of references for the right operand. Those must be dereferenced before evaluation.
+			dataType: Declares the type of values contained in the rightOperand- and rightOperandReference-properties.
+			unit: Declares a unit used for the values contained in the rightOperand- and rightOperandReference-properties.
+		Additional Information:
+			Depending on whether the operator-property-value is list-based or not, rightOperand/rightOperandReference may be restricted to a single entry.
+		
+		

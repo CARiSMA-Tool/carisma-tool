@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRLCommonVocabulary="http:///schemas/ODRLCommonVocabulary/_Xm-dwFWmEe-p5_deFFS4Yg/12" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRLCommonVocabulary/_Xm-dwFWmEe-p5_deFFS4Yg/12 pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_Xm_E0FWmEe-p5_deFFS4Yg">
+  <uml:Model xmi:id="_udPZ8FWdEe-1ueKCA6L_pQ" name="uconpolicycreation-valid">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_ueVmIFWdEe-1ueKCA6L_pQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_udiU4FWdEe-1ueKCA6L_pQ" name="Activity1" node="_ZjRvMFWiEe-5wp5yX2pajw _cRJqsFWiEe-5wp5yX2pajw _moD0IFWiEe-5wp5yX2pajw _8G-z0FWiEe-5wp5yX2pajw _OWBBAFWsEe-vMdnXJWbEQw _UPlccFWsEe-vMdnXJWbEQw" group="_6N55sFWfEe-5wp5yX2pajw _aeP0kFWgEe-5wp5yX2pajw _NKJq0FWsEe-vMdnXJWbEQw">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_nl25IFWiEe-5wp5yX2pajw" target="_cRJqsFWiEe-5wp5yX2pajw" source="_ZjRvMFWiEe-5wp5yX2pajw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_oSBbkFWiEe-5wp5yX2pajw" target="_moD0IFWiEe-5wp5yX2pajw" source="_cRJqsFWiEe-5wp5yX2pajw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Sh-rIFWsEe-vMdnXJWbEQw" target="_OWBBAFWsEe-vMdnXJWbEQw" source="_moD0IFWiEe-5wp5yX2pajw"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_VJtiYFWsEe-vMdnXJWbEQw" inPartition="_aeP0kFWgEe-5wp5yX2pajw" target="_UPlccFWsEe-vMdnXJWbEQw" source="_OWBBAFWsEe-vMdnXJWbEQw"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_6N55sFWfEe-5wp5yX2pajw" name="ActivityPartition1" node="_moD0IFWiEe-5wp5yX2pajw _8G-z0FWiEe-5wp5yX2pajw _yh-SUFWrEe-vMdnXJWbEQw _FKhh0FWsEe-vMdnXJWbEQw"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_aeP0kFWgEe-5wp5yX2pajw" name="ActivityPartition2" node="_OWBBAFWsEe-vMdnXJWbEQw _UPlccFWsEe-vMdnXJWbEQw" edge="_VJtiYFWsEe-vMdnXJWbEQw"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_NKJq0FWsEe-vMdnXJWbEQw" name="ActivityPartition9" node="_cRJqsFWiEe-5wp5yX2pajw"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_ZjRvMFWiEe-5wp5yX2pajw" name="InitialNode3" outgoing="_nl25IFWiEe-5wp5yX2pajw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_cRJqsFWiEe-5wp5yX2pajw" name="OpaqueAction4" incoming="_nl25IFWiEe-5wp5yX2pajw" outgoing="_oSBbkFWiEe-5wp5yX2pajw" inPartition="_NKJq0FWsEe-vMdnXJWbEQw">
+        <inputValue xmi:type="uml:InputPin" xmi:id="_roggIFWrEe-vMdnXJWbEQw" name="InputPin1">
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_ronN0FWrEe-vMdnXJWbEQw" value="1"/>
+        </inputValue>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_moD0IFWiEe-5wp5yX2pajw" name="OpaqueAction5" incoming="_oSBbkFWiEe-5wp5yX2pajw" outgoing="_Sh-rIFWsEe-vMdnXJWbEQw" inPartition="_6N55sFWfEe-5wp5yX2pajw">
+        <inputValue xmi:type="uml:InputPin" xmi:id="_yh-SUFWrEe-vMdnXJWbEQw" name="InputPin1" inPartition="_6N55sFWfEe-5wp5yX2pajw">
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_yh-5YFWrEe-vMdnXJWbEQw" value="1"/>
+        </inputValue>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_8G-z0FWiEe-5wp5yX2pajw" name="OpaqueAction8" inPartition="_6N55sFWfEe-5wp5yX2pajw">
+        <outputValue xmi:type="uml:OutputPin" xmi:id="_FKhh0FWsEe-vMdnXJWbEQw" name="OutputPin1" inPartition="_6N55sFWfEe-5wp5yX2pajw">
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_FKiI4FWsEe-vMdnXJWbEQw" value="1"/>
+        </outputValue>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_OWBBAFWsEe-vMdnXJWbEQw" name="OpaqueAction10" incoming="_Sh-rIFWsEe-vMdnXJWbEQw" outgoing="_VJtiYFWsEe-vMdnXJWbEQw" inPartition="_aeP0kFWgEe-5wp5yX2pajw"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_UPlccFWsEe-vMdnXJWbEQw" name="ActivityFinalNode12" incoming="_VJtiYFWsEe-vMdnXJWbEQw" inPartition="_aeP0kFWgEe-5wp5yX2pajw"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ImdwIFWfEe-5wp5yX2pajw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Imj2wFWfEe-5wp5yX2pajw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_Xm_E0FWmEe-p5_deFFS4Yg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
+    </profileApplication>
+  </uml:Model>
+  <ODRLCommonVocabulary:ODRLPolicy xmi:id="_LaORMFWfEe-5wp5yX2pajw" uid="http://validFilledPolicy" base_Activity="_udiU4FWdEe-1ueKCA6L_pQ" conflictStrategy="Permit" policyType="Set">
+    <profiles>http://www.umlsec.de/profiles/ODRLCommonVocabulary</profiles>
+    <inheritsFrom>http://profile1</inheritsFrom>
+  </ODRLCommonVocabulary:ODRLPolicy>
+  <ODRLCommonVocabulary:Party xmi:id="_ZzwGEFWgEe-5wp5yX2pajw" uid="http://someParty" base_ActivityPartition="_6N55sFWfEe-5wp5yX2pajw"/>
+  <ODRLCommonVocabulary:PartyCollection xmi:id="_bGNzgFWgEe-5wp5yX2pajw" base_ActivityPartition="_aeP0kFWgEe-5wp5yX2pajw" source="http://somePartyCollection">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_qiHg0FWgEe-5wp5yX2pajw" uid="http://partyCollectionLogicalConstraint" logicalOperator="and">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_4MipcFWgEe-5wp5yX2pajw" uid="http://partyCollectionConstraint" leftOperand="absoluteSize" status="" operator="eq" dataType="xsd:integer" unit="http://meters">
+        <rightOperand>3</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_Rq4FAFWhEe-5wp5yX2pajw" uid="" leftOperand="absoluteSpatialPosition" status="" operator="gt">
+        <rightOperandReference>http://positionReference</rightOperandReference>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_WsGjMFWhEe-5wp5yX2pajw" uid="" leftOperand="absoluteTemporalPosition" operator="gteq">
+        <rightOperand>operand</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_ZxK2sFWhEe-5wp5yX2pajw" uid="" leftOperand="count" status="3" operator="lt">
+        <rightOperand>5</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_iXoWMFWhEe-5wp5yX2pajw" uid="" leftOperand="dateTime" status="" operator="lteq">
+        <rightOperand>some time</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_ntPwAFWhEe-5wp5yX2pajw" uid="" leftOperand="delayPeriod" operator="neq">
+        <rightOperand>4</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_wNUToFWhEe-5wp5yX2pajw" uid="" leftOperand="deliveryChannel" operator="hasPart">
+        <rightOperand>somePart</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_2kvIsFWhEe-5wp5yX2pajw" uid="" leftOperand="device" operator="isA">
+        <rightOperand>someDeviceType</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_Ezg7kFWiEe-5wp5yX2pajw" uid="" leftOperand="elapsedTime" operator="isAnyOf">
+        <rightOperand>3</rightOperand>
+        <rightOperand>4</rightOperand>
+        <rightOperand>5</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_LWeSQFWiEe-5wp5yX2pajw" uid="" leftOperand="event" operator="isAllOf">
+        <rightOperandReference>http://event1</rightOperandReference>
+        <rightOperandReference>http://event2</rightOperandReference>
+        <rightOperandReference>http://event3</rightOperandReference>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_P7wbUFWiEe-5wp5yX2pajw" uid="" leftOperand="fileFormat" operator="isNoneOf">
+        <rightOperandReference>http://fileFromat1</rightOperandReference>
+        <rightOperandReference>http://fileFromat2</rightOperandReference>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_YTBBMFWiEe-5wp5yX2pajw" uid="" leftOperand="industry" operator="isPartOf">
+        <rightOperandReference>http://someContext</rightOperandReference>
+      </constraints>
+    </refinement>
+  </ODRLCommonVocabulary:PartyCollection>
+  <ODRLCommonVocabulary:Duty xmi:id="_erhbYFWiEe-5wp5yX2pajw" base_Action="_cRJqsFWiEe-5wp5yX2pajw" uid="http://someDuty" action="cc_Attribution" consequences="_pJVeEFWiEe-5wp5yX2pajw">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_Ab3JYFWjEe-5wp5yX2pajw">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_Lj9fMFWjEe-5wp5yX2pajw" uid="" leftOperand="language" operator="neq">
+        <rightOperandReference>http://someLanguage</rightOperandReference>
+      </constraints>
+    </refinement>
+    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_MnIzcFWjEe-5wp5yX2pajw">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_WM2JcFWjEe-5wp5yX2pajw" uid="" leftOperand="media" operator="isAnyOf">
+        <rightOperandReference>http://context1</rightOperandReference>
+        <rightOperandReference>http://context2</rightOperandReference>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_fbhfgFWjEe-5wp5yX2pajw" uid="" leftOperand="meteredTime" operator="isAnyOf">
+        <rightOperand>3</rightOperand>
+        <rightOperand>7</rightOperand>
+      </constraints>
+    </constraint>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_vQu6IFWiEe-5wp5yX2pajw" type="assignee" party="_ZzwGEFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_wsS5MFWiEe-5wp5yX2pajw" type="assigner" party="_bGNzgFWgEe-5wp5yX2pajw"/>
+  </ODRLCommonVocabulary:Duty>
+  <ODRLCommonVocabulary:Permission xmi:id="_ffpnAFWiEe-5wp5yX2pajw" base_Action="_cRJqsFWiEe-5wp5yX2pajw" uid="http://somePermission" action="cc_CommercialUse" duties="_erhbYFWiEe-5wp5yX2pajw">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_xqMZ8FWkEe-p6_Vp7FkDng" uid="" logicalOperator="andSequence">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_5hXKgFWkEe-p6_Vp7FkDng" uid="" leftOperand="payAmount" operator="gteq">
+        <rightOperand>3</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="__6w8kFWkEe-p6_Vp7FkDng" uid="" leftOperand="percentage" operator="gt">
+        <rightOperand>0.5</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_DOFugFWlEe-p6_Vp7FkDng" uid="" leftOperand="product" operator="isA">
+        <rightOperand>someProduct</rightOperand>
+      </constraints>
+    </refinement>
+    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_EKWicFWlEe-p6_Vp7FkDng" logicalOperator="or">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_JK_KwFWlEe-p6_Vp7FkDng" uid="" leftOperand="purpose" operator="eq">
+        <rightOperand></rightOperand>
+        <rightOperandReference>http://somePurpose</rightOperandReference>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_NHL6kFWlEe-p6_Vp7FkDng" uid="" leftOperand="recipient" operator="eq">
+        <rightOperandReference>http://someRecipient</rightOperandReference>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_QtYlMFWlEe-p6_Vp7FkDng" uid="" leftOperand="relativePosition" operator="isAnyOf">
+        <rightOperand>position1</rightOperand>
+        <rightOperand>position2</rightOperand>
+        <rightOperand>position3</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_T9XIMFWlEe-p6_Vp7FkDng" uid="" leftOperand="relativeSize" operator="lteq">
+        <rightOperand>4</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_ZBMOcFWlEe-p6_Vp7FkDng" uid="" leftOperand="relativeSpatialPosition" operator="isAnyOf">
+        <rightOperand>position1</rightOperand>
+        <rightOperand>position2</rightOperand>
+      </constraints>
+    </constraint>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_vi7n8FWjEe-5wp5yX2pajw" type="attributedParty" party="_ZzwGEFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_ao96AFWkEe-p6_Vp7FkDng" type="attributingParty" party="_bGNzgFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_bauHEFWkEe-p6_Vp7FkDng" type="compensatedParty" party="_ZzwGEFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_fVQC8FWkEe-p6_Vp7FkDng" type="compensatingParty" party="_bGNzgFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gwza8FWkEe-p6_Vp7FkDng" type="consentedParty" party="_ZzwGEFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_j5EzcFWkEe-p6_Vp7FkDng" type="consentingParty" party="_bGNzgFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_mIIsAFWkEe-p6_Vp7FkDng" type="contractedParty" party="_ZzwGEFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_oWpyAFWkEe-p6_Vp7FkDng" type="contractingParty" party="_ZzwGEFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_qcL7IFWkEe-p6_Vp7FkDng" type="informedParty" party="_ZzwGEFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_sOeYIFWkEe-p6_Vp7FkDng" type="informingParty" party="_bGNzgFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_t2WU4FWkEe-p6_Vp7FkDng" type="trackedParty" party="_ZzwGEFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_vANf8FWkEe-p6_Vp7FkDng" type="trackingParty" party="_bGNzgFWgEe-5wp5yX2pajw"/>
+  </ODRLCommonVocabulary:Permission>
+  <ODRLCommonVocabulary:Prohibition xmi:id="_ffw7wFWiEe-5wp5yX2pajw" base_Action="_cRJqsFWiEe-5wp5yX2pajw" uid="http://someProhibition" action="cc_DerivativeWorks" remedies="_erhbYFWiEe-5wp5yX2pajw _pJVeEFWiEe-5wp5yX2pajw">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_lpX28FWlEe-p6_Vp7FkDng" logicalOperator="xone">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_F1bx8FWqEe-vMdnXJWbEQw" uid="" leftOperand="relativeTemporalPosition" operator="neq">
+        <rightOperand>somePosition</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_JQYO0FWqEe-vMdnXJWbEQw" uid="" leftOperand="resolution" operator="gteq">
+        <rightOperand>2000</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_MMsO8FWqEe-vMdnXJWbEQw" uid="" leftOperand="spatial" operator="eq">
+        <rightOperand>something</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_OxvloFWqEe-vMdnXJWbEQw" uid="" leftOperand="spatialCoordinates" operator="neq">
+        <rightOperand>someCoordinates</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_SXJmEFWqEe-vMdnXJWbEQw" uid="" leftOperand="system" operator="eq">
+        <rightOperandReference>http://someSystem</rightOperandReference>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_V8f8IFWqEe-vMdnXJWbEQw" uid="" leftOperand="systemDevice" operator="eq">
+        <rightOperandReference>http://someDevice</rightOperandReference>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_ZRIVoFWqEe-vMdnXJWbEQw" uid="" leftOperand="timeInterval" operator="gteq">
+        <rightOperand>3.5</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_digEMFWqEe-vMdnXJWbEQw" uid="" leftOperand="unitOfCount" operator="isAnyOf">
+        <rightOperandReference>http://unit1</rightOperandReference>
+        <rightOperandReference>http://unit2</rightOperandReference>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_fZHnkFWqEe-vMdnXJWbEQw" uid="" leftOperand="version" operator="gteq">
+        <rightOperand>3.5</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_jkQLQFWqEe-vMdnXJWbEQw" uid="" leftOperand="virtualLocation" operator="neq">
+        <rightOperand></rightOperand>
+        <rightOperand>someLocation</rightOperand>
+      </constraints>
+    </refinement>
+    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_ktY9kFWqEe-vMdnXJWbEQw">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_vVdIcFWqEe-vMdnXJWbEQw" uid="" leftOperand="device" operator="isAllOf">
+        <rightOperand>deviceType1</rightOperand>
+        <rightOperand>deviceType2</rightOperand>
+      </constraints>
+    </constraint>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_ioijMFWlEe-p6_Vp7FkDng" type="assigner" party="_bGNzgFWgEe-5wp5yX2pajw"/>
+  </ODRLCommonVocabulary:Prohibition>
+  <ODRLCommonVocabulary:Duty xmi:id="_pJVeEFWiEe-5wp5yX2pajw" base_Action="_moD0IFWiEe-5wp5yX2pajw" uid="http://someDuty2" action="delete">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_8EaHUFWqEe-vMdnXJWbEQw">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="__PimkFWqEe-vMdnXJWbEQw" uid="" leftOperand="dateTime" operator="gt">
+        <rightOperand>someDateTime</rightOperand>
+      </constraints>
+    </refinement>
+    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_A6cpMFWrEe-vMdnXJWbEQw">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_C7JVoFWrEe-vMdnXJWbEQw" uid="" leftOperand="absoluteSize" operator="isAnyOf">
+        <rightOperand>2</rightOperand>
+        <rightOperand>5</rightOperand>
+        <rightOperand>8</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_Jlj_MFWrEe-vMdnXJWbEQw" uid="" leftOperand="count" operator="neq">
+        <rightOperand>3</rightOperand>
+      </constraints>
+    </constraint>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_zrNAsFWqEe-vMdnXJWbEQw" type="assignee" party="_ZzwGEFWgEe-5wp5yX2pajw"/>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_1r8JYFWqEe-vMdnXJWbEQw" type="trackedParty" party="_ZzwGEFWgEe-5wp5yX2pajw"/>
+  </ODRLCommonVocabulary:Duty>
+  <ODRLCommonVocabulary:Duty xmi:id="_9ZgysFWiEe-5wp5yX2pajw" base_Action="_8G-z0FWiEe-5wp5yX2pajw" uid="http://someDuty3" action="compensate">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_S4CQIFWrEe-vMdnXJWbEQw">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_VL5JIFWrEe-vMdnXJWbEQw" uid="" leftOperand="payAmount" operator="eq">
+        <rightOperand>3</rightOperand>
+      </constraints>
+    </refinement>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_PVBcYFWrEe-vMdnXJWbEQw" type="contractedParty" party="_bGNzgFWgEe-5wp5yX2pajw"/>
+  </ODRLCommonVocabulary:Duty>
+  <ODRLCommonVocabulary:Asset xmi:id="_uSKqAFWrEe-vMdnXJWbEQw" base_Pin="_roggIFWrEe-vMdnXJWbEQw" uid="http://someAsset"/>
+  <ODRLCommonVocabulary:AssetCollection xmi:id="_2wfhMFWrEe-vMdnXJWbEQw" base_Pin="_yh-SUFWrEe-vMdnXJWbEQw" source="http://someAssetCollection">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_7TZrsFWrEe-vMdnXJWbEQw" logicalOperator="or">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_9-s0UFWrEe-vMdnXJWbEQw" uid="" leftOperand="absoluteSpatialPosition" operator="eq">
+        <rightOperand>somePosition</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_Cxl7kFWsEe-vMdnXJWbEQw" uid="" leftOperand="recipient" operator="hasPart">
+        <rightOperand>somePart</rightOperand>
+      </constraints>
+    </refinement>
+  </ODRLCommonVocabulary:AssetCollection>
+  <ODRLCommonVocabulary:Asset xmi:id="_KljnIFWsEe-vMdnXJWbEQw" base_Pin="_FKhh0FWsEe-vMdnXJWbEQw"/>
+</xmi:XMI>
