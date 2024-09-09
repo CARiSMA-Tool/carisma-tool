@@ -17,6 +17,7 @@ import carisma.check.uconpolicycreation.profileclasses.core.conflict.ConflictStr
 import carisma.check.uconpolicycreation.profileclasses.core.rule.Duty;
 import carisma.check.uconpolicycreation.profileclasses.core.rule.Permission;
 import carisma.check.uconpolicycreation.profileclasses.core.rule.Prohibition;
+import carisma.check.uconpolicycreation.profileclasses.core.rule.Rule;
 
 public class Policy extends ODRLClass{
 	String uid;
@@ -121,15 +122,23 @@ public class Policy extends ODRLClass{
 			for (ActivityNode node : new HashSet<>(baseActivity.getNodes())) { //TODO check for alternative solution. Currently converted to set as the list contains every node twice
 				System.out.println("BaseActivity nodes of length " + baseActivity.getNodes().size() + baseActivity.getNodes().toString());
 				if (node instanceof org.eclipse.uml2.uml.Action action) {
+					processStereotypes:
 					for (EObject stereoAppl : new HashSet<>(action.getStereotypeApplications())) {
-						//TODO: check for already created stereotypes, add to References?
 						Object newObject = handler.addElement(stereoAppl, this, containingUmlElement);//TODO No explicit passing of different baseElement for the other Element, as that's nor always practical
-						if (newObject instanceof Permission permissionImpl) {
-							this.addPermission(permissionImpl);
-						} else if (newObject instanceof Prohibition prohibitionImpl) {
-							this.addProhibition(prohibitionImpl);
-						} else if (newObject instanceof Duty obligationImpl) {
-							this.addObligation(obligationImpl);
+						if (newObject instanceof Rule rule) {
+							for (ODRLClass referringElement : rule.gatReferredBy()) {
+								if (referringElement instanceof Rule) {//Rules referred by other elements should not be directly contained in the policy. Needs to be covered both at the Policy and the Rules because the processing order is not fixed.
+									rule.removeReferredBy(this);
+									continue processStereotypes;
+								}
+							}
+							if (newObject instanceof Permission permissionImpl) {
+								this.addPermission(permissionImpl);
+							} else if (newObject instanceof Prohibition prohibitionImpl) {
+								this.addProhibition(prohibitionImpl);
+							} else if (newObject instanceof Duty obligationImpl) {
+								this.addObligation(obligationImpl);
+							}
 						}
 					}
 				}
