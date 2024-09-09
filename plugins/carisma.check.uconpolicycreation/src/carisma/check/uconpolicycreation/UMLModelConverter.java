@@ -726,7 +726,10 @@ public class UMLModelConverter {
 	public Object addElement(EObject currentEObject, ODRLClass odrlParent, Element activityElement) {
 		Object newObject = null;
 		newObject = referencingMap.get(currentEObject);
-		if (newObject != null) {// currentEObject is a stereotypeApplication that already was processed
+		if (newObject instanceof ODRLClass newObjectOdrl) {// currentEObject is a stereotypeApplication that already was processed
+			if (odrlParent != null) {
+				newObjectOdrl.addReferredBy(odrlParent);
+			}
 			return newObject;
 		}
 		newObject = getOdrlObject(currentEObject, odrlParent, activityElement);
@@ -904,7 +907,7 @@ public class UMLModelConverter {
 					if (getValue(currentEObject,
 							odrlPackage.getLogicalConstraint_Constraints()) instanceof List constraintList) {
 						List<Constraint> constraints = new ConstraintList();
-						constraints.addAll(addElement(constraintList, odrlParent, activityElement, Constraint.class));
+						constraints.addAll(addElement(constraintList, odrlParent, activityElement, Constraint.class));//currently nullPointerException with empty constraint list (instead add Error message to output)
 						return constraints;// TODO watch out in with doubled parent-assignment.
 					} // may need to be returned directly and not just assigned so that the
 						// fill-method is not called twice (in this method at the end and in the one
