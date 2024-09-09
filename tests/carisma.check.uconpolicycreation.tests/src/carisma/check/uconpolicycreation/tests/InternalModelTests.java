@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Model;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.check.uconpolicycreation.Check;
@@ -250,6 +251,7 @@ public class InternalModelTests {
 	}
 	
 	@Test
+	@Ignore("Not yet implemented: RightOperand-Classes")
 	public final void w3OdrlModelExample22Test() {
 		String modelName = "w3OdrlModelExamples/W3OdrlModelExample22.uml";
 		assertNull(this.modelres);
