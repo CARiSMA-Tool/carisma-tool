@@ -187,35 +187,17 @@ public class UMLModelConverter {
 	 * Map of {@link EClass}es and the {@link EEnumLiteral} defining their ODRL-type
 	 * to the {@link ODRLClass} they represent, by name.
 	 */
-	private final Map<String, Map<String, Class<? extends ODRLClass>>> typeEnumMap2 = new HashMap<>();// TODO: potential
-																										// problem: if
-																										// several
-																										// Enumerations
-																										// with
-																										// same-name
-																										// Literals are
-																										// valid as
-																										// value of the
-																										// structural
-																										// feature their
-																										// literals are
-																										// not
-																										// distinguishable
-																										// with the
-																										// current
-																										// approach
+	//potential problem: if several Enumerations with same-name Literals are valid as value of th structural feature their literals are not distinguishable with the current approach
+	private final Map<String, Map<String, Class<? extends ODRLClass>>> typeEnumMap2 = new HashMap<>();
 	/**
 	 * Map of {@link EClass}es to the {@link ODRLClass} they represent, by name.
 	 */
 	private final Map<String, Class<? extends ODRLClass>> classMap = new HashMap<>();
 	/**
-	 * Map of {@link EClass}es and their {@link EStructuralFeature}s (wrapped in a
+	 * Map of {@link EClass}es and their {@link EStructuralFeature} (wrapped in a
 	 * {@link StringTuple}) to the {@link ODRLClass} they represent, by name.
 	 */
-	private final Map<StringTuple, Class<? extends ODRLClass>> featureMap = new HashMap<>();// Mapping of
-																							// EStructuralFeatures to
-																							// the ODRLClassImpl-Objects
-																							// they represent
+	private final Map<StringTuple, Class<? extends ODRLClass>> featureMap = new HashMap<>();
 
 	public static final String TYPE_STRING = "@type";
 
@@ -231,19 +213,29 @@ public class UMLModelConverter {
 	 * Package generated from the used profile.
 	 */
 	public static final ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
-
-	private Map<EObject, ODRLClass> referencingMap = new HashMap<>();// Currently: Save top-level elements (stereotype
-																		// applications) as they may be referred by
-																		// several objects, others may not. (If more
-																		// Elements should be accessed: Save with unique
-																		// EObject, watch out for uniqueness of enums
-																		// (may need to be saved as triple)
-	// Also save lists, not just their elements
+	/**
+	 * Contains a map of already processed stereotypes to the result of their processing.
+	 */
+	// Currently: Save top-level elements (stereotype applications) as they may be referred by several objects, others may
+	// not. (If more Elements should be accessed: Save with unique EObject, watch out for uniqueness of enums (may need to be saved as triple)
+	// In that case also save lists, not just their elements
+	private Map<EObject, ODRLClass> referencingMap = new HashMap<>();
+	/**
+	 * Single root-level element of the policy contained in this Object.
+	 */
 	private ODRLClass policyRoot;
+	/**
+	 * Policy elements contained in this Object.
+	 */
 	private java.util.Set<ODRLClass> handledOdrlObjects = new HashSet<>();
-	private List<Object> topLevelMapElements = new LinkedList<>();
+	//private List<Object> topLevelMapElements = new LinkedList<>();//part of something not implemented
+	/**
+	 * The JSON-LD-Contexts added to Policies in this Object.
+	 */
 	private List<Map<String, Object>> contexts = new LinkedList<>();
-
+	/**
+	 * Contains two Strings.
+	 */
 	private class StringTuple {
 		String owner;
 		String feature;
@@ -281,7 +273,12 @@ public class UMLModelConverter {
 		}
 
 	}
-
+	/**
+	 * Constructor for {@link UMLModelConverter} taking a List of paths to context files to add to it.
+	 * 
+	 * @param contextPaths {@link List} of Strings representing paths to the context files
+	 * @throws IOException
+	 */
 	public UMLModelConverter(List<String> contextPaths) throws IOException {
 		for (String contextPath : contextPaths) {
 			ClassLoader classloader = Thread.currentThread().getContextClassLoader();
@@ -297,22 +294,17 @@ public class UMLModelConverter {
 					line = br.readLine();
 				}
 				JSONObject contextWithString = new JSONObject(sb.toString());
-				System.out.println("contextWithString: " + contextWithString.toString(2));
-//			    Map<String,Object> contextMap = new HashMap<>();
-//			    if (contextWithString.get("@context") instanceof JSONObject contextJO) {
-//			    	contextMap.put("@context",contextJO.toMap());
-//			    } //else throw exception
-//			    if (contextWithString.get("@id") instanceof String conIdString) {
-//			    	contextMap.put("@id",conIdString);
-//			    }
-				System.out.println("context map: " + contextWithString.toMap().toString());
 				this.contexts.add(contextWithString.toMap());
-				System.out.println("actual context list: " + this.contexts.toString());
-				System.out.println("handlerID: " + this);
 			}
 		}
 	}
-
+	
+	/**
+	 * Constructor for {@link UMLModelConverter} taking a single paths to a context file to add to it.
+	 * 
+	 * @param contextPaths {@link String} representing the path to the context file
+	 * @throws IOException
+	 */
 	public UMLModelConverter(String contextPath) throws IOException {
 		this(Arrays.asList(contextPath));
 	}
@@ -396,7 +388,6 @@ public class UMLModelConverter {
 				// LogicalConstraint) are handled in the LogicalConstraint-case
 				));
 		enumMap.put(LeftOperand.class.getSimpleName(), Map.ofEntries(
-				// TODO absolute position seems to be missing in UMl-Model
 				Map.entry(LeftOperand.ABSOLUTE_SIZE.getName(), AbsoluteAssetSize.class),
 				Map.entry(LeftOperand.ABSOLUTE_SPATIAL_POSITION.getName(), AbsoluteSpatialAssetPosition.class),
 				Map.entry(LeftOperand.ABSOLUTE_TEMPORAL_POSITION.getName(), AbsoluteTemporalAssetPosition.class),
@@ -421,13 +412,7 @@ public class UMLModelConverter {
 				Map.entry(LeftOperand.TIME_INTERVAL.getName(), RecurringTimeInterval.class),
 				Map.entry(LeftOperand.RELATIVE_POSITION.getName(), RelativeAssetPosition.class),
 				Map.entry(LeftOperand.RELATIVE_SIZE.getName(), RelativeAssetSize.class),
-				Map.entry(LeftOperand.RELATIVE_SPATIAL_POSITION.getName(), RelativeSpatialAssetPosition.class), // TODO
-																												// correct
-																												// spelling
-																												// from
-																												// spartial
-																												// to
-																												// spatial
+				Map.entry(LeftOperand.RELATIVE_SPATIAL_POSITION.getName(), RelativeSpatialAssetPosition.class),
 				Map.entry(LeftOperand.RELATIVE_TEMPORAL_POSITION.getName(), RelativeTemporalAssetPosition.class),
 				Map.entry(LeftOperand.RESOLUTION.getName(), RenditionResolution.class),
 				Map.entry(LeftOperand.DEVICE.getName(), SystemDevice.class),
@@ -440,17 +425,12 @@ public class UMLModelConverter {
 				Map.entry(PolicyType.ASSERTION.getName(), Assertion.class),
 				Map.entry(PolicyType.OFFER.getName(), Offer.class),
 				Map.entry(PolicyType.PRIVACY.getName(), Privacy.class),
-				Map.entry(PolicyType.REQUEST.getName(), Request.class), Map.entry(PolicyType.SET.getName(), Set.class),
-				Map.entry(PolicyType.TICKET.getName(), Ticket.class), Map.entry(PolicyType.NULL.getName(), Policy.class)// No
-																														// type-information
-																														// (is
-																														// interpreted
-																														// as
-																														// Set-Policy
-																														// by
-																														// evaluators)
+				Map.entry(PolicyType.REQUEST.getName(), Request.class),
+				Map.entry(PolicyType.SET.getName(), Set.class),
+				Map.entry(PolicyType.TICKET.getName(), Ticket.class),
+				Map.entry(PolicyType.NULL.getName(), Policy.class)// No type-information (is interpreted as Set-Policy by evaluators)
 		));
-		// Explicit Relations were removed from the diagram
+		// Explicit Relations were removed from the diagram and replaced by certain pins
 //		typeEnumMap1.put(odrlPackage.getAssetRelation().getName(), odrlPackage.getAssetRelation_Type().getName());
 //		typeEnumMap2.put(odrlPackage.getAssetRelation().getName(), Map.ofEntries(
 //				Map.entry(AssetRelationType.TARGET.getName(), TargetImpl.class),
@@ -470,13 +450,16 @@ public class UMLModelConverter {
 						Map.entry(PartyFunctionType.INFORMED_PARTY.getName(), InformingParty.class),
 						Map.entry(PartyFunctionType.TRACKED_PARTY.getName(), TrackedParty.class),
 						Map.entry(PartyFunctionType.TRACKING_PARTY.getName(), TrackingParty.class)));
-		classMap.putAll(Map.ofEntries(Map.entry(odrlPackage.getPermission().getName(), Permission.class),
+		classMap.putAll(Map.ofEntries(
+				Map.entry(odrlPackage.getPermission().getName(), Permission.class),
 				Map.entry(odrlPackage.getProhibition().getName(), Prohibition.class),
 				Map.entry(odrlPackage.getDuty().getName(), Duty.class)));
 		classMap.put(odrlPackage.getConstraint().getName(), Constraint.class);
-		classMap.putAll(Map.ofEntries(Map.entry(odrlPackage.getAsset().getName(), Asset.class),
+		classMap.putAll(Map.ofEntries(
+				Map.entry(odrlPackage.getAsset().getName(), Asset.class),
 				Map.entry(odrlPackage.getAssetCollection().getName(), AssetCollection.class)));
-		classMap.putAll(Map.ofEntries(Map.entry(odrlPackage.getParty().getName(), Party.class),
+		classMap.putAll(Map.ofEntries(
+				Map.entry(odrlPackage.getParty().getName(), Party.class),
 				Map.entry(odrlPackage.getPartyCollection().getName(), PartyCollection.class)));
 		featureMap.putAll(Map.ofEntries(
 				Map.entry(new StringTuple(odrlPackage.getProhibition().getName(),
@@ -510,32 +493,27 @@ public class UMLModelConverter {
 			termMap.put(Constraint.class.getDeclaredField("uid"), "uid");
 			termMap.put(Constraint.class.getDeclaredField("leftOperand"), "leftOperand");
 			termMap.put(Constraint.class.getDeclaredField("operator"), "operator");
-//			termMap.put(Constraint.class.getDeclaredField("rightOperand"), "rightOperand"); //TODO removed to put dataType into rightOperands instead of contraint
-//			termMap.put(Constraint.class.getDeclaredField("rightOperandReference"), "rightOperandReference"); //TODO removed to put dataType into rightOperands instead of contraint
+//			termMap.put(Constraint.class.getDeclaredField("rightOperand"), "rightOperand"); // removed to put dataType into rightOperands instead of contraint
+//			termMap.put(Constraint.class.getDeclaredField("rightOperandReference"), "rightOperandReference"); // removed to put dataType into rightOperands instead of contraint
+			// // removed to put the type into the operands instead of the constraint
 			// termMap.put(Constraint.class.getDeclaredField("dataType"), "dataType");
-			// //TODO removed to put the type into the operands instead of the constraint
 			termMap.put(Constraint.class.getDeclaredField("unit"), "unit");
 			termMap.put(Constraint.class.getDeclaredField("status"), "status");
 			termMap.put(LogicalConstraint.class, "LogicalConstraint");
 			termMap.put(LogicalConstraint.class.getDeclaredField("uid"), "uid");
-			// termMap.put(LogicalConstraintImpl.class.getDeclaredField("operand"),
-			// "operand");//TODO Possibly remove as only subproperties of operand are used
+			// termMap.put(LogicalConstraintImpl.class.getDeclaredField("operand"), "operand");// Possibly remove as only subproperties of operand are used
 			// Failure
-			// termMap.put(FailureImpl.class, ""); //Is (Sub)-Property, does not exist as
-			// class in the model
+			// termMap.put(FailureImpl.class, ""); //Is (Sub)-Property, does not exist as class in the model
 			termMap.put(Consequence.class, "consequence"); // Is (Sub)-Property, does not exist as class in the model
 			termMap.put(Remedy.class, "remedy"); // Is (Sub)-Property, does not exist as class in the model
 			// Function
-			// termMap.put(FunctionImpl.class, "function"); //Is (Sub)-Property, does not
-			// exist as class in the model
+			// termMap.put(FunctionImpl.class, "function"); //Is (Sub)-Property, does not exist as class in the model
 			termMap.put(Assignee.class, "assignee"); // Is (Sub)-Property, does not exist as class in the model
 			termMap.put(Assigner.class, "assigner"); // Is (Sub)-Property, does not exist as class in the model
 			// LeftOperand
 			termMap.put(LeftOperand.class, "LeftOperand");// Currently abstract
 			// Operand
 			// termMap.put(OperandImpl.class, "");
-			// termMap.put(Operand.class.getDeclaredField("constraints"), "TODO:Remove
-			// operand from termMap");//TODO:Remove, just here for testing
 			termMap.put(And.class, "and");
 			termMap.put(AndSequence.class, "andSequence");
 			termMap.put(Or.class, "or");
@@ -564,8 +542,7 @@ public class UMLModelConverter {
 			termMap.put(Policy.class, "Policy");
 			termMap.put(Policy.class.getDeclaredField("uid"), "uid");
 			termMap.put(Policy.class.getDeclaredField("conflictStrategy"), "conflict");
-			// termMap.put(Policy.class.getDeclaredField("profiles"), "profile");//TODO
-			// removed to change single-element-list to single element in manual process
+			// termMap.put(Policy.class.getDeclaredField("profiles"), "profile");// removed to change single-element-list to single element in manual process
 			termMap.put(Policy.class.getDeclaredField("inheritsFrom"), "inheritFrom");
 			termMap.put(Policy.class.getDeclaredField("permission"), "permission");
 			termMap.put(Policy.class.getDeclaredField("obligation"), "obligation");
@@ -576,23 +553,21 @@ public class UMLModelConverter {
 			// Relation
 			termMap.put(Relation.class, "relation"); // Is (Sub)-Property, does not exist as class in the model
 			termMap.put(Target.class, "target"); // Is (Sub)-Property, does not exist as class in the model
-			// RightOperand//TODO
+			// RightOperand//add rightoperands when done
 			//
 			// Rule
 			termMap.put(Rule.class, "Rule");// Currently abstract
 			termMap.put(Rule.class.getDeclaredField("uid"), "uid");
-			// termMap.put(Rule.class.getDeclaredField("involvedParties"), ""); //handled
-			// through value types
-			// termMap.put(Rule.class.getDeclaredField("involvedAssets"), ""); //handled
-			// through value types
+			// termMap.put(Rule.class.getDeclaredField("involvedParties"), ""); //handled through type of the function
+			// termMap.put(Rule.class.getDeclaredField("involvedAssets"), ""); //handled through type of the relation
 			termMap.put(Rule.class.getDeclaredField("action"), "action");
 			termMap.put(Rule.class.getDeclaredField("constraint"), "constraint");
 			termMap.put(Duty.class, "Duty");
-			termMap.put(Duty.class.getDeclaredField("consequence"), "consequence");// TODO: maybe change to failure
+			termMap.put(Duty.class.getDeclaredField("consequence"), "consequence");// maybe change to failure
 			termMap.put(Permission.class, "Permission");
 			termMap.put(Permission.class.getDeclaredField("duties"), "duty");
 			termMap.put(Prohibition.class, "Prohibition");
-			termMap.put(Prohibition.class.getDeclaredField("remedy"), "remedy");// TODO: maybe change to failure
+			termMap.put(Prohibition.class.getDeclaredField("remedy"), "remedy");// maybe change to failure
 
 			// ODRL-Common
 			// Action
@@ -602,9 +577,7 @@ public class UMLModelConverter {
 			termMap.put(Anonymize.class, "anonymize");
 			termMap.put(Archive.class, "archive");
 			termMap.put(Attribute.class, "attribute");
-			termMap.put(Attribution.class, "cc:Attribution");// TODO: maybe deal with creative commons terms differently
-																// (identify creative commons terms by the cc: in their
-																// ID currently)
+			termMap.put(Attribution.class, "cc:Attribution");
 			termMap.put(CommercialUse.class, "cc:CommericalUse");
 			termMap.put(Compensate.class, "compensate");
 			termMap.put(ConcurrentUse.class, "concurrentUse");
@@ -737,7 +710,7 @@ public class UMLModelConverter {
 			newObject = specialCases(currentEObject, odrlParent, activityElement);
 		}
 		if (newObject instanceof ODRLClass newObjectOdrl) {
-			newObjectOdrl.setHandler(this);// Possibly TODO Needs to be done before any further operations (as those
+			newObjectOdrl.setHandler(this);// Needs to be done before any further operations (as those
 											// operations rely on the . Currently not done in the constructor as that
 											// requires manual changes in all ODRL-classes every time the approach is
 											// changed
@@ -745,7 +718,7 @@ public class UMLModelConverter {
 			if (odrlParent != null) {
 				newObjectOdrl.addReferredBy(odrlParent);
 			}
-			newObjectOdrl.fill(currentEObject, activityElement); // TODO: possibly add boolean-return to fill to notify
+			newObjectOdrl.fill(currentEObject, activityElement); // possibly add boolean-return to fill to notify
 																	// whether an object should be given back or not
 																	// (since the ODRLClass-Creation based on Features
 																	// always is executed no matter whether the object
@@ -767,23 +740,9 @@ public class UMLModelConverter {
 	 * @return list of type T, or null if no ODRL-java-representation of the type
 	 *         was found for one of the list elements
 	 */
-	public <T> List<T> addElement(List currentList, ODRLClass odrlParent, Element activityElement, Class<T> type) {// No
-																													// check
-																													// for
-																													// several
-																													// layers
-																													// of
-																													// lists
-																													// as
-																													// that
-																													// case
-																													// does
-																													// not
-																													// occur
-																													// in
-																													// the
-																													// current
-																													// model
+	@SuppressWarnings("unchecked")
+	public <T> List<T> addElement(List currentList, ODRLClass odrlParent, Element activityElement, Class<T> type) {
+		// No check for several layers of lists as that case does not occur with the current approach
 		List<T> newOdrlList = new LinkedList<>();
 		boolean fullyCompartible = true;
 		if (currentList != null && !currentList.isEmpty()) {
@@ -869,8 +828,7 @@ public class UMLModelConverter {
 		if (odrlClassImpl != null && ODRLClass.class.isAssignableFrom(odrlClassImpl)) {
 			Class<ODRLClass> newClass = (Class<ODRLClass>) odrlClassImpl;
 			try {
-				ODRLClass newObject = newClass.getConstructor().newInstance();
-				return newObject;
+				return newClass.getConstructor().newInstance();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -897,24 +855,14 @@ public class UMLModelConverter {
 			EStructuralFeature classFeature = currentEObject.eClass()
 					.getEStructuralFeature(odrlPackage.getLogicalConstraint_LogicalOperator().getName());
 			if (currentEObject.eGet(classFeature) instanceof EEnumLiteral classEnum) {
-				if (classEnum.toString().equals(LogicalOperator.NULL.getName())) {// Operator Null: LogicalConstraint
-																					// only used as wrapper for the
-																					// constraint without added
-																					// information (using a common
-																					// super-datatype to make both
-																					// eligible as value does not work
-																					// with papyrus)
+				if (classEnum.toString().equals(LogicalOperator.NULL.getName())) {
+					// Operator Null: LogicalConstraint only used as wrapper for the constraint without added information (using a common super-datatype to make both eligible as value does not work with papyrus)
 					if (getValue(currentEObject,
-							odrlPackage.getLogicalConstraint_Constraints()) instanceof List constraintList) {
+							odrlPackage.getLogicalConstraint_Constraints()) instanceof List<?> constraintList) {
 						List<Constraint> constraints = new ConstraintList();
 						constraints.addAll(addElement(constraintList, odrlParent, activityElement, Constraint.class));//currently nullPointerException with empty constraint list (instead add Error message to output)
-						return constraints;// TODO watch out in with doubled parent-assignment.
-					} // may need to be returned directly and not just assigned so that the
-						// fill-method is not called twice (in this method at the end and in the one
-						// called with the constraintList). Alternatively: alreadyProcessed-Boolean or
-						// something like that, that prevents adding parents and calling the
-						// fill()-method (should not prevent adding to the referenceList (as the called
-						// methods add with another key))
+						return constraints;
+					}
 				} else {
 					newObject = new LogicalConstraint();
 				}
@@ -972,10 +920,14 @@ public class UMLModelConverter {
 		return eObject.eGet(eObject.eClass().getEStructuralFeature(feature.getName()));
 	}
 
+	public Object startMap() {
+		return startMap(policyRoot);
+	}
+	
 	public Object startMap(Object obj) {
 		if (obj instanceof ODRLClass odrlObj) {
 			try {
-				return odrlObj.createMap(new HashSet<ODRLClass>());
+				return odrlObj.createMap(new HashSet<>());
 			} catch (NoSuchFieldException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1021,8 +973,8 @@ public class UMLModelConverter {
 	 * @throws SecurityException
 	 */
 	public Object createMap(ODRLClass object, java.util.Set<ODRLClass> circlePreventionSet)
-			throws NoSuchFieldException, SecurityException { // TODO handle Exceptions at lower level
-		if (object == null) {// TODO tritt u.a. bei function mit leerer Party auf. Sollte bei
+			throws NoSuchFieldException, SecurityException {
+		if (object == null) {// tritt u.a. bei function mit leerer Party auf. Sollte bei
 								// Policyüberprüfung abgefangen werden
 			return null;
 		}
@@ -1060,7 +1012,7 @@ public class UMLModelConverter {
 					newList.add(conversionresult);
 				}
 			} else if (object != null) {
-				newList.add(object);// TODO propably remove this case
+				newList.add(object);
 			}
 		}
 		return newList;
@@ -1097,18 +1049,18 @@ public class UMLModelConverter {
 	public void removeFromHandledOdrlObjects(ODRLClass handledClass) {
 		this.handledOdrlObjects.remove(handledClass);
 	}
-
-	public List<Object> getTopLevelMapElements() {
-		return topLevelMapElements;
-	}
-
-	public void setTopLevelMapElements(List<Object> topLevelMapElements) {
-		this.topLevelMapElements = topLevelMapElements;
-	}
-
-	public void addToTopLevelMapElements(Object addElement) {
-		topLevelMapElements.add(addElement);
-	}
+	//Part of something not implemented
+//	public List<Object> getTopLevelMapElements() {
+//		return topLevelMapElements;
+//	}
+//
+//	public void setTopLevelMapElements(List<Object> topLevelMapElements) {
+//		this.topLevelMapElements = topLevelMapElements;
+//	}
+//
+//	public void addToTopLevelMapElements(Object addElement) {
+//		topLevelMapElements.add(addElement);
+//	}
 
 	public List<Map<String, Object>> getContexts() {
 		return contexts;
@@ -1122,19 +1074,26 @@ public class UMLModelConverter {
 		contexts.add(context);
 	}
 
+	/**
+	 * Extends a String using one of the contexts contained in this Object's {@link #contexts}-property, if applicable.
+	 * 
+	 * @param inputString {@link String} to be extended
+	 * @return the extended string if the context was applicable, or the inputString otherwise.
+	 */
 	public String applyContext(String inputString) {
-		System.out.println("Contexts in Method: " + contexts.toString());
 		for (Map<String, Object> contextWithId : contexts) {
-			System.out.println("Context in Method: " + contextWithId.toString());
-			System.out.println("ContextPrint: " + new JSONObject(contextWithId).toString(3));
 			if (contextWithId.get("@context") instanceof Map<?, ?> contextMap
 					&& contextMap.get(inputString) instanceof String extendedString) {
 				return extendedString;
 			}
 		}
-		return null;
+		return inputString;
 	}
-
+	/**
+	 * Returns the context bodies contained in this Object's {@link #contexts}-property.
+	 * 
+	 * @return a single map if only a single context is contained, a list of maps if several contexts are contained, null if none are contained.
+	 */
 	public Object getContextMapValue() {
 		Object contextResult = null;
 		if (contexts.size() == 1) {

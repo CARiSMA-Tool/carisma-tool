@@ -12,7 +12,13 @@ import carisma.check.uconpolicycreation.profileclasses.ODRLClass;
 import carisma.check.uconpolicycreation.profileclasses.core.operand.Operand;
 
 public class LogicalConstraint extends ODRLClass implements ConstraintInterface{
+	/**
+	 * Reference to an external Constraint.
+	 */
 	String uid;
+	/**
+	 * Contains the constraints involved with this Object.
+	 */
 	Operand operand;
 	
 	
@@ -41,9 +47,9 @@ public class LogicalConstraint extends ODRLClass implements ConstraintInterface{
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getLogicalConstraint_Constraints());
-		if (attributeValue instanceof List list) { //TODO List attribute
+		if (attributeValue instanceof List<?> list) {
 			List<Constraint> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, Constraint.class);
-			if (attributeValueOdrl!=null && this.getOperand()!=null) {//TODO Maybe remove operand-nullcheck, as it being null would point to a faulty model
+			if (attributeValueOdrl!=null && this.getOperand()!=null) {// Maybe remove operand-nullcheck, as it being null would point to a faulty model
 				this.getOperand().setConstraints(attributeValueOdrl);//(After creation of operand earlier in this method) set constraints to it
 			}
 		}
@@ -56,7 +62,7 @@ public class LogicalConstraint extends ODRLClass implements ConstraintInterface{
 	@Override
 	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClass> circlePreventionSet) throws NoSuchFieldException, SecurityException {
 		Object operatorEntry = handler.createMap(operand, circlePreventionSet);
-		map.put(operand.gatClassTerm(), operatorEntry);
+		map.put(operand.getClassTerm(), operatorEntry);
 		return null;
 	}
 	

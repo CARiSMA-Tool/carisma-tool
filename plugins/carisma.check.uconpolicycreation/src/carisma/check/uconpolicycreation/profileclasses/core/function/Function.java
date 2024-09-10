@@ -11,6 +11,9 @@ import carisma.check.uconpolicycreation.profileclasses.ODRLClass;
 import carisma.check.uconpolicycreation.profileclasses.core.party.Party;
 
 public class Function extends ODRLClass {
+	/**
+	 * Party involved with Objects referring to this one.
+	 */
 	Party party;
 
 	public Party getParty() {

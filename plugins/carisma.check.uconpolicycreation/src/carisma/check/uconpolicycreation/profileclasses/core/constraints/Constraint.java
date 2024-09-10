@@ -15,13 +15,25 @@ import carisma.check.uconpolicycreation.profileclasses.core.leftoperand.LeftOper
 import carisma.check.uconpolicycreation.profileclasses.core.operator.Operator;
 
 public class Constraint extends ODRLClass{
+	/**
+	 * Reference to an external Constraint.
+	 */
 	String uid;
 	LeftOperand leftOperand;
 	Operator operator;
 	List<String> rightOperand = new LinkedList<>();
 	List<String> rightOperandReference = new LinkedList<>();
+	/**
+	 * The Datatype which the contents of the attributes {@link #rightOperand} and {@link #rightOperandReference} are interpreted as.
+	 */
 	String dataType;
+	/**
+	 * The Unit which the contents of the attributes {@link #rightOperand} and {@link #rightOperandReference} are interpreted in.
+	 */
 	String unit;
+	/**
+	 * A pre-existing status reated to the {@link leftOperand}.
+	 */
 	String status;
 
 	
@@ -173,14 +185,14 @@ public class Constraint extends ODRLClass{
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_RightOperand());
-		if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
+		if (attributeValue instanceof List<?> list) { //rightOperand not yet implemented
 			List<String> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, String.class);
 			if (attributeValueOdrl!=null) {
 				this.setRightOperand(attributeValueOdrl);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstraint_RightOperandReference());
-		if (attributeValue instanceof List list) { //TODO List attribute, also rightOperand not yet implemented
+		if (attributeValue instanceof List<?> list) { //rightOperand not yet implemented
 			List<String> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, String.class);
 			if (attributeValueOdrl!=null) {
 				this.setRightOperandReference(attributeValueOdrl);
@@ -207,7 +219,6 @@ public class Constraint extends ODRLClass{
 	@Override
 	public Object fillMapIndividual(Map<String, Object> map, Set<ODRLClass> circlePreventionSet)
 			throws NoSuchFieldException, SecurityException {
-		String typeKey = gatTypeKeyword();
 		String typeValue = handler.createMap(dataType, circlePreventionSet);
 		if (typeValue!=null) {
 			if (rightOperand.size()>1) {
@@ -217,13 +228,13 @@ public class Constraint extends ODRLClass{
 					if (rightOp != null) {
 						Map<String,String> roMap = new HashMap<>();
 						roMap.put("@value", rightOp);
-						roMap.put(gatTypeKeyword(), typeValue);
+						roMap.put(getTypeKeyword(), typeValue);
 					}
 				}
 			} else if (rightOperand.size()==1) {
 				Map<String,String> roMap = new HashMap<>();
 				roMap.put("@value", rightOperand.get(0));
-				roMap.put(gatTypeKeyword(), typeValue);
+				roMap.put(getTypeKeyword(), typeValue);
 				map.put("rightOperand", roMap);
 			}
 			if (rightOperandReference.size()>1) {
@@ -233,20 +244,20 @@ public class Constraint extends ODRLClass{
 					if (rightOpR != null) {
 						Map<String,String> rorMap = new HashMap<>();
 						rorMap.put("@value", rightOpR);
-						rorMap.put(gatTypeKeyword(), typeValue);
+						rorMap.put(getTypeKeyword(), typeValue);
 					}
 				}
 			} else if (rightOperandReference.size()==1) {
 				Map<String,String> rorMap = new HashMap<>();
 				rorMap.put("@value", rightOperand.get(0));
-				rorMap.put(gatTypeKeyword(), typeValue);
+				rorMap.put(getTypeKeyword(), typeValue);
 				map.put("rightOperandReference", rorMap);
 			}
 			
 		}
-		
+		//part of something not implemented
 //		if (this.uid!=null && map.size()!=1) {
-//			//Display externally if it defines a new element referencable from outside through uid//TODO possibly remove that part if creation of external elements should be disabled
+//			//Display externally if it defines a new element referencable from outside through uid
 //			map.put(gatTypeKeyword(), handler.getTermMap().get(this.getClass()));
 //			map.put("@context", handler.getContextMapValue());
 //			handler.addToTopLevelMapElements(map);

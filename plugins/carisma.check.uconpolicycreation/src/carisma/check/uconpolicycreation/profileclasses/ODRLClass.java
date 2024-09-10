@@ -14,28 +14,30 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
 import carisma.check.uconpolicycreation.UMLModelConverter;
-
+/**
+ * Top-Level-Class for representing elements of ODRL profiles. Concrete elements are represented by Classes inheriting from this Class.
+ */
 public abstract class ODRLClass{
 	/**
 	 * ODRLObjects that contain a reference to this object.
 	 */
 	protected List<ODRLClass> referredBy = new LinkedList<>();
-	public ODRLClass directParent;//maybe
+	//public ODRLClass directParent;//maybe use for better location in messages
 	/**
 	 * Package generated from the used profile.
 	 */
 	protected ODRLCommonVocabularyPackage odrlPackage = UMLModelConverter.odrlPackage;
 	/**
-	 * {@link UMLModelConverter} handling the conversion of this object.
+	 * Handles the conversion of this object.
 	 */
 	protected UMLModelConverter handler = null;
 	/**
-	 * UML-diagram-element containing the model-element-representation object.
+	 * UML-diagram-element containing the element corresponding to this Object.
 	 */
 	protected Element containingUmlElement;
 	
 	
-	public List<ODRLClass> gatReferredBy() {
+	public List<ODRLClass> getReferredBy() {
 		return referredBy;
 	}
 	public void addReferredBy(ODRLClass parent) {
@@ -62,7 +64,7 @@ public abstract class ODRLClass{
 		}
 	}
 
-	public UMLModelConverter gatHandler() {//TODO hidden for testing
+	public UMLModelConverter getHandler() {
 		return handler;
 	}
 	public void setHandler(UMLModelConverter handler) {
@@ -78,12 +80,6 @@ public abstract class ODRLClass{
 	public void setContainingUmlElement(Element baseElement) {
 		this.containingUmlElement = baseElement;
 	}
-	
-	
-
-	public String getType() {//for the automatic JSON-Conversion currently used for testing, remove afterwards
-		return this.getClass().getSimpleName();
-	}
 
 
 	
@@ -97,10 +93,10 @@ public abstract class ODRLClass{
 	public Object createMap(Set<ODRLClass> circlePreventionSet) throws NoSuchFieldException, SecurityException {
 		if (circlePreventionSet.contains(this)) {
 			//TODO: Message: Error in conversion to JSON: cyclic references (Possibly instead change to reference elements by their id)
+			//(Propably throw an exception or add handler-reference to containing check)
 		}
 		circlePreventionSet.add(this);
 		Map<String,Object> newMap = new HashMap<>();
-		//fillType(newMap);
 		
 		fillMapSimple(newMap, circlePreventionSet);
 		Object possiblyNewObject = fillMapIndividual(newMap, circlePreventionSet);
@@ -123,9 +119,8 @@ public abstract class ODRLClass{
 			for (Field f : klass.getDeclaredFields()) {
 				Object termKey = handler.getTermMap().get(f);
 				if (termKey instanceof String termKeyString) {
-					try {//TODO decide how to handle the exception					
+					try {//TODO decide how to handle the exceptions					
 						Object termValue = klass.getMethod("get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1)).invoke(this);
-						//Object termValue = f.get(this); //Does not work. Method is called as ODRLClassImpl even when called from subclass, hiding non-public fields from the subclass
 						Object mapValue = handler.createMap(termValue, circlePreventionSet);
 						if (mapValue != null &&
 								( !(mapValue instanceof List<?> list) || !(list.isEmpty()) )) {
@@ -151,8 +146,6 @@ public abstract class ODRLClass{
 		}
 	}
 	
-	//Returns null if the map should be used as value for this object. If another value should be used, returns this value 
-	
 	/**
 	 * Completes the JSON-LD-representation of this object based on an existing map-representation.
 	 * @param map {@link Map} to be filled
@@ -164,18 +157,18 @@ public abstract class ODRLClass{
 	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClass> circlePreventionSet) throws NoSuchFieldException, SecurityException {
 		return null;
 	}
-//	public void fillType(Map<String,Object> map) {
-//		map.put("@type", handler.getTermMap().get(this.getClass()));//TODO
-//	}
-	
-	//renamed from get to remove them form the testing with automated conversion
-	public String gatClassTerm() {
+
+	/**
+	 * Gets the term used in JSON-LD for this Object.
+	 * @return the term used
+	 */
+	public String getClassTerm() {
 		return handler.getTermMap().get(this.getClass());
 	}
-	public String gatTypeKeyword() {
+	public String getTypeKeyword() {
 		return "@type";
 	}
-	public String gatIdKeyword() {
+	public String getIdKeyword() {
 		return "@id";
 	}
 	
@@ -199,7 +192,7 @@ public abstract class ODRLClass{
 	 * @throws NoSuchFieldException
 	 * @throws SecurityException
 	 */
-	public String getFieldTerm(String fieldName, Class<?> klass) throws NoSuchFieldException, SecurityException {//TODO: Possibly change TermMapping from directly mapping classes and features to a 2-level-map that operates on the class as key at the first level and on the feature name as key at the 2nd level
+	public String getFieldTerm(String fieldName, Class<?> klass) throws NoSuchFieldException, SecurityException {
 		if (!(ODRLClass.class.isAssignableFrom(klass))) {
 			throw new NoSuchFieldException(fieldName);
 		}

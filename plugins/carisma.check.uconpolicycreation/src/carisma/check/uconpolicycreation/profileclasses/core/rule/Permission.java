@@ -11,7 +11,10 @@ import carisma.check.uconpolicycreation.profileclasses.ODRLClass;
 import carisma.check.uconpolicycreation.profileclasses.core.policy.Policy;
 
 public class Permission extends Rule {
-	List<Duty> duties =  new LinkedList<Duty>();
+	/**
+	 * What has to be done for the right to exercise this permission
+	 */
+	List<Duty> duties =  new LinkedList<>();
 
 	public List<Duty> getDuties() {
 		return duties;
@@ -25,14 +28,14 @@ public class Permission extends Rule {
 	public void fill(EObject currentEObject, Element activityElement) {
 		super.fill(currentEObject, activityElement);
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getPermission_Duties());
-		if (attributeValue instanceof List list) { //TODO List attribute
+		if (attributeValue instanceof List<?> list) {
 			List<Duty> attributeValueOdrl = handler.addElement(list, this, activityElement, Duty.class);
 			if (attributeValueOdrl!=null) {
 				this.setDuties(attributeValueOdrl);
 				//remove duties from policy as direct elements, only contained through this rule
 				for (Duty duty : attributeValueOdrl) {
 					List<Policy> referringPolicies = new LinkedList<>();
-					for (ODRLClass referringObject: duty.gatReferredBy()) {
+					for (ODRLClass referringObject: duty.getReferredBy()) {
 						if (referringObject instanceof Policy policy) {
 							policy.getObligation().remove(duty);
 							referringPolicies.add(policy);

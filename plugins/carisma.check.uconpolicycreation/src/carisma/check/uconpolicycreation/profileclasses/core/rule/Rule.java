@@ -22,10 +22,25 @@ import carisma.check.uconpolicycreation.profileclasses.core.relation.Relation;
 import carisma.check.uconpolicycreation.profileclasses.core.relation.Target;
 
 public abstract class Rule extends ODRLClass {
+	/**
+	 * Reference to an external rule.
+	 */
 	String uid;
+	/**
+	 * Involvement of {@link Party}s with this Object.
+	 */
 	List<Function> involvedParties = new LinkedList<>();
+	/**
+	 * Involvement of {@link Asset}s with this Object.
+	 */
 	List<Relation> involvedAssets = new LinkedList<>();
+	/**
+	 * The {@link Action} this rule applies to.
+	 */
 	Action action;
+	/**
+	 * Constrains the application of this rule.
+	 */
 	ConstraintInterface constraint;
 	
 	public String getUid() {
@@ -76,18 +91,15 @@ public abstract class Rule extends ODRLClass {
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_Action());
 		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = handler.addElement(newEObj, this, containingUmlElement);
-			if (attributeValueOdrl instanceof Action action) {
-				this.setAction(action);
+			if (attributeValueOdrl instanceof Action actionLocal) {
+				this.setAction(actionLocal);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRefinableElement_Refinement());
-		if (attributeValue instanceof EObject newEObj) {//TODO get constraint
+		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = handler.addElement(newEObj, this.getAction(), containingUmlElement);
 			if (attributeValueOdrl instanceof ConstraintInterface constraintInterface) {
-				//if (attributeValueOdrl instanceof List constraintList) {TODO add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
-				//	rule.getConstraint().
-				//}
-				if (this.getAction()!=null) {//TODO also add null check for other cases where a gotten object is further used or keep the nullpointer as sign that something is missing
+				if (this.getAction()!=null) {//TODO also add null check for other cases where a gotten object is further used or keep the nullpointer-exception as sign that something is missing
 					this.getAction().setRefinement(constraintInterface);
 				}
 			}
@@ -99,32 +111,29 @@ public abstract class Rule extends ODRLClass {
 		}
 //		InvolvedAssets removed as attribute from UML-Model. Only defined through adjacent pins.
 //		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_InvolvedAssets());
-//		if (attributeValue instanceof List list) { //TODO List attribute
+//		if (attributeValue instanceof List list) {
 //			List<RelationImpl> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, RelationImpl.class);
 //			if (attributeValueOdrl!=null) {
 //				this.setInvolvedAssets(attributeValueOdrl);
 //			}
 //		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getRule_InvolvedParties());
-		if (attributeValue instanceof List list) { //TODO List attribute
+		if (attributeValue instanceof List<?> list) {
 			List<Function> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, Function.class);
 			if (attributeValueOdrl!=null) {
 				this.setInvolvedParties(attributeValueOdrl);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getConstrainableElement_Constraint());
-		if (attributeValue instanceof EObject newEObj) {//TODO get constraint
+		if (attributeValue instanceof EObject newEObj) {
 			Object attributeValueOdrl = handler.addElement(newEObj, this, containingUmlElement);
 			if (attributeValueOdrl instanceof ConstraintInterface constraintInterface) {
-				//if (attributeValueOdrl instanceof List constraintList) {TODO maybe add seperate cases for logicalConstraint and List of constraints (in the 2nd case possibly also add instead of set)
-				//	rule.getConstraint().
-				//}
 				this.setConstraint(constraintInterface);
 			}
 		}
-		//Activity diagram: Get related Assets from neighboring pins (TODO: clear up conflicts with explicitly listed Relations?)
-		if (containingUmlElement instanceof org.eclipse.uml2.uml.Action action) {
-			for (InputPin inPin : action.getInputs()) {
+		//Activity diagram: Get related Assets from neighboring pins
+		if (containingUmlElement instanceof org.eclipse.uml2.uml.Action actionUML) {
+			for (InputPin inPin : actionUML.getInputs()) {
 				Object targets = handler.addElement(inPin, this, inPin);
 				if (targets instanceof List<?> targetsList) {
 					for (Object singleTarget : targetsList) {
@@ -133,20 +142,9 @@ public abstract class Rule extends ODRLClass {
 						}
 					}
 				}
-//				for (EObject stereoAppl : inPin.getStereotypeApplications()) {
-//					if (handler.addElement(stereoAppl, this, containingUmlElement) instanceof Asset asset) {
-//						Relation newTarget = new Target();
-//						newTarget.setHandler(handler);//TODO watch out: not all classes are created in the Converter, remove if handler passing is changed to constructor
-//						handler.addToHandledOdrlObjects(newTarget);
-//						newTarget.setAsset(asset);
-//						asset.addReferredBy(newTarget);
-//						this.addInvolvedAssets(newTarget);
-//						newTarget.addReferredBy(this);
-//					}
-//				}
 			}
-			for (OutputPin outPin : action.getOutputs()) {
-				for (EObject stereoAppl : outPin.getStereotypeApplications()) {
+			for (OutputPin outPin : actionUML.getOutputs()) {
+
 					Object outputs = handler.addElement(outPin, this, outPin);
 					if (outputs instanceof List<?> outputsList) {
 						for (Object singleOutput : outputsList) {
@@ -155,16 +153,6 @@ public abstract class Rule extends ODRLClass {
 							}
 						}
 					}
-//					if (handler.addElement(stereoAppl, this, containingUmlElement) instanceof Asset asset) {
-//						Relation newOutput = new Output();
-//						newOutput.setHandler(handler);//TODO watch out: not all classes are created in the Converter, remove if handler passing is changed to constructor
-//						handler.addToHandledOdrlObjects(newOutput);
-//						newOutput.setAsset(asset);
-//						asset.addReferredBy(newOutput);
-//						this.addInvolvedAssets(newOutput);
-//						newOutput.addReferredBy(this);
-//					}
-				}
 			}
 		}
 	}
@@ -174,13 +162,13 @@ public abstract class Rule extends ODRLClass {
 		for (Function function : involvedParties) {
 			Object functionMapObject = handler.createMap(function, circlePreventionSet);
 			if (functionMapObject != null) {
-				map.put(function.gatClassTerm(), functionMapObject);//TODO: check for duplicates (not here, in the fill()-method (or in the validity checks later))
+				map.put(function.getClassTerm(), functionMapObject);
 			}
 		}
 		for (Relation relation : involvedAssets) {
 			Object relationMapObject = handler.createMap(relation, circlePreventionSet);
 			if (relationMapObject != null) {
-				map.put(relation.gatClassTerm(), relationMapObject);//TODO: check for duplicates (not here, in the fill()-method (or in the validity checks later))
+				map.put(relation.getClassTerm(), relationMapObject);
 			}
 		}
 		return null;
