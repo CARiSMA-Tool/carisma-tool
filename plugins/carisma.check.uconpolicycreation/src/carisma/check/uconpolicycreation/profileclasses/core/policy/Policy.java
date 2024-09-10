@@ -20,13 +20,34 @@ import carisma.check.uconpolicycreation.profileclasses.core.rule.Prohibition;
 import carisma.check.uconpolicycreation.profileclasses.core.rule.Rule;
 
 public class Policy extends ODRLClass{
+	/**
+	 * The identifier which this policy can be referred by.
+	 */
 	String uid;
+	/**
+	 * How conflicting rules are resolved.
+	 */
 	ConflictStrategy conflictStrategy;
-	List<String> profiles = new LinkedList<String>();
-	List<String> inheritsFrom = new LinkedList<String>();
-	List<Permission> permission = new LinkedList<Permission>();
-	List<Prohibition> prohibition = new LinkedList<Prohibition>();
-	List<Duty> obligation = new LinkedList<Duty>();
+	/**
+	 * ODRL-Profiles that this policy conforms to.
+	 */
+	List<String> profiles = new LinkedList<>();
+	/**
+	 * ODRL-Profiles that this policy inherits from.
+	 */
+	List<String> inheritsFrom = new LinkedList<>();
+	/**
+	 * {@link Permission}s directly contained in this policy.
+	 */
+	List<Permission> permission = new LinkedList<>();
+	/**
+	 * {@link Prohibition}s directly contained in this policy.
+	 */
+	List<Prohibition> prohibition = new LinkedList<>();
+	/**
+	 * {@link Duty}s directly contained in this policy.
+	 */
+	List<Duty> obligation = new LinkedList<>();
 	
 	
 	
@@ -100,14 +121,14 @@ public class Policy extends ODRLClass{
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getODRLPolicy_InheritsFrom());
-		if (attributeValue instanceof List list) { //TODO String List attribute
+		if (attributeValue instanceof List list) {
 			List<String> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, String.class);
 			if (attributeValueOdrl!=null) {
 				this.getInheritsFrom().addAll(attributeValueOdrl);
 			}
 		}
 		attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getODRLPolicy_Profiles());
-		if (attributeValue instanceof List list) { //TODO String List attribute
+		if (attributeValue instanceof List list) {
 			List<String> attributeValueOdrl = handler.addElement(list, this, containingUmlElement, String.class);
 			if (attributeValueOdrl!=null) {
 				this.getProfiles().addAll(attributeValueOdrl);
@@ -119,14 +140,13 @@ public class Policy extends ODRLClass{
 		}
 		//Activity Diagram: Get contained rules from the contained actions
 		if (UMLModelConverter.getValue(currentEObject, odrlPackage.getODRLPolicy_Base_Activity()) instanceof Activity baseActivity) {
-			for (ActivityNode node : new HashSet<>(baseActivity.getNodes())) { //TODO check for alternative solution. Currently converted to set as the list contains every node twice
-				System.out.println("BaseActivity nodes of length " + baseActivity.getNodes().size() + baseActivity.getNodes().toString());
+			for (ActivityNode node : new HashSet<>(baseActivity.getNodes())) { //TODO check for alternative solution. Currently converted to Set as the list contains every node twice
 				if (node instanceof org.eclipse.uml2.uml.Action action) {
-					processStereotypes:
+					processStereotypes://Label to jump out if a rule being processes is already contained elsewhere
 					for (EObject stereoAppl : new HashSet<>(action.getStereotypeApplications())) {
-						Object newObject = handler.addElement(stereoAppl, this, containingUmlElement);//TODO No explicit passing of different baseElement for the other Element, as that's nor always practical
+						Object newObject = handler.addElement(stereoAppl, this, containingUmlElement);
 						if (newObject instanceof Rule rule) {
-							for (ODRLClass referringElement : rule.gatReferredBy()) {
+							for (ODRLClass referringElement : rule.getReferredBy()) {
 								if (referringElement instanceof Rule) {//Rules referred by other elements should not be directly contained in the policy. Needs to be covered both at the Policy and the Rules because the processing order is not fixed.
 									rule.removeReferredBy(this);
 									continue processStereotypes;
@@ -148,8 +168,8 @@ public class Policy extends ODRLClass{
 	
 	@Override
 	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClass> circlePreventionSet) throws NoSuchFieldException, SecurityException {
-		handler.addToTopLevelMapElements(map);
-		map.put(gatTypeKeyword(), gatClassTerm());
+		//handler.addToTopLevelMapElements(map); //part of something not implemented
+		map.put(getTypeKeyword(), getClassTerm());
 		String profileKey = "profile";
 		Object profileValue = null;
 		if (profiles.size()==1) {
@@ -169,63 +189,4 @@ public class Policy extends ODRLClass{
 		super.setHandler(handler);
 		handler.setPolicyRoot(this);
 	}
-	
-	
-	
-	//TODO: remove
-//	private void fillMapUid(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
-//		String uidResult = handler.createMap(uid, circlePreventionSet);
-//		if (uidResult != null) {
-//			Object termKey = handler.getTermMap().get(PolicyImpl.class.getDeclaredField("uid"));
-//			if (termKey instanceof String termKeyString) {
-//				map.put(termKeyString,uidResult);
-//			}			
-//		}
-//	}
-//	private void fillMapConflictStrategy(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
-//		Object conflictStrategyResult = handler.createMap(conflictStrategy, circlePreventionSet);
-//		if (conflictStrategyResult != null) {
-//			Object termKey = handler.getTermMap().get(PolicyImpl.class.getDeclaredField("conflictStrategy"));
-//			if (termKey instanceof String termKeyString) {
-//				map.put(termKeyString,conflictStrategyResult);
-//			}			
-//		}
-//	}
-//	private void fillMapProfiles(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
-//		List<Object> profilesResult = handler.createMap(profiles, circlePreventionSet);
-//		if (profilesResult != null && !profilesResult.isEmpty()) {
-//			Object termKey = handler.getTermMap().get(PolicyImpl.class.getDeclaredField("profiles"));
-//			if (termKey instanceof String termKeyString) {
-//				map.put(termKeyString, profilesResult);
-//			}
-//		}
-//	}
-//	private void fillMapInheritsFrom(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
-//		List<Object> inheritsFromResult = handler.createMap(inheritsFrom, circlePreventionSet);
-//		if (inheritsFromResult != null && !inheritsFromResult.isEmpty()) {
-//			Object termKey = handler.getTermMap().get(PolicyImpl.class.getDeclaredField("inheritsFrom"));
-//			if (termKey instanceof String termKeyString) {
-//				map.put(termKeyString, inheritsFromResult);
-//			}
-//		}	
-//	}
-//	private void fillMapPermission(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
-//		List<Object> permissionResult = handler.createMap(inheritsFrom, circlePreventionSet);
-//		if (permissionResult != null && !permissionResult.isEmpty()) {
-//			Object termKey = handler.getTermMap().get(PolicyImpl.class.getDeclaredField("permission"));
-//			if (termKey instanceof String termKeyString) {
-//				map.put(termKeyString, permissionResult);
-//			}
-//		}	
-//	}
-//	private void fillMapProhibition(Map<String, Object> map, Set<ODRLClassImpl> circlePreventionSet) throws NoSuchFieldException, SecurityException {
-//		List<Object> prohibitionResult = handler.createMap(inheritsFrom, circlePreventionSet);
-//		if (prohibitionResult != null && !prohibitionResult.isEmpty()) {
-//			Object termKey = handler.getTermMap().get(PolicyImpl.class.getDeclaredField("prohibition"));
-//			if (termKey instanceof String termKeyString) {
-//				map.put(termKeyString, prohibitionResult);
-//			}
-//		}	
-//	}
-
 }

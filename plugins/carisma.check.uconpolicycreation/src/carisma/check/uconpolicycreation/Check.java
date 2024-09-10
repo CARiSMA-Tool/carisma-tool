@@ -47,7 +47,7 @@ import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheckWithID;
 import carisma.core.checks.CheckParameter;
 
-/** Contains a Simple CARiSMA Check which returns all elements of a given Model.
+/** Contains a CARiSMA Check which creates a machine-readable Usage Control Policy from a given Model.
  *
  */
 
@@ -57,27 +57,26 @@ public class Check implements CarismaCheckWithID {
 	public static final String PARAM_CREATEPOLICY = "carisma.check.uconpolicycreation.createoutputfile";
 	public static final String CHECK_NAME = "Policy Model Transformation";
 	
-//--------------
 	AnalysisHost host;
-
-	Map<EObject,ODRLClass> referencingList2 = new HashMap<>();
-	Map<String,Collection<ODRLClass>> typeBuckets = new HashMap<String,Collection<ODRLClass>>();//TODO Not used anymore
-	ODRLClass root;
+	/**
+	 * Contains the Policy created in this Object (in JSON-LD-Form).
+	 */
 	String policyString;
-	Package usedPackage;
-	//Map<JSONObject>
-	final static String typeString = "@type";
-	final static String nullString = "Null";
-	//possibly add emptyString-Variable since empty strings are treated as Null-Strings
-	final static String profileName = "ODRLCommonVocabulary";
+
+	static final String PROFILE_NAME = "ODRLCommonVocabulary";
+	/**
+	 * Package generated from the used profile.
+	 */
 	ODRLCommonVocabularyPackage odrlPackage = ODRLCommonVocabularyPackage.eINSTANCE;
+	/**
+	 * Contains the Object handling model conversion for this class.
+	 */
 	UMLModelConverter modelConversionHandler;
 	
 
 	
 	@Override
 	public boolean perform(Map<String, CheckParameter> parameters, AnalysisHost host) {
-		System.out.println("Starting Policycheck performance");
 		this.host = host;
 		Resource currentModel = host.getAnalyzedModel();
 		if (currentModel.getContents().isEmpty()) {
@@ -89,12 +88,12 @@ public class Check implements CarismaCheckWithID {
 			try {
 			modelConversionHandler = new UMLModelConverter("resources" + File.separator + "odrl_jsonld_context_with_added_id.txt");
 			} catch (IOException e) {
-				//TODO: Add Warning: no JSON-LD-context given
+				host.appendLineToReport(e.toString());
+				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Context file could not be loaded."));
 				return false;
 			}
-			//Collection<Element> modelContents = model.allOwnedElements();
 			
-			
+			//Create policy
 			structureModel(model, modelConversionHandler);
 			
 			//Check policy-validation
@@ -112,81 +111,59 @@ public class Check implements CarismaCheckWithID {
 			
 			boolean createPolicyFile = parameters != null && ((BooleanParameter) parameters.get(PARAM_CREATEPOLICY)).getValue();
 			if (createPolicyFile) {
+				//Create file containing policy
 				File file = ((OutputFileParameter) parameters.get(PARAM_OUTPUTFILE)).getValue();
 				try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, false))){
 					writer.write(policyString);
 				} catch (IOException e) {
-					//host.appendLineToReport(e.getMessage());
-					host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No policy-file was created. " +  e.getMessage()));
+					host.appendLineToReport(e.toString());
+					host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "No policy-file was created. "));
 					return false;
 				}
 			}
 
-			//printContent(model, "");
-			
-			//host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, "number of elements counted: "+numOfElements));
 			host.addResultMessage(new AnalysisResultMessage(StatusType.INFO, (createPolicyFile ? ("Policy file \"" + ((OutputFileParameter) parameters.get(PARAM_OUTPUTFILE)).getValue() + "\" has been created. ") : "No policy-file has been created due to the createpolicyfile-parameter. " ) + "No errors were found in the policy."));
 			return true;
-			//------
+
 		}
 		host.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, "Content is not a model!"));
 		return false;
 	}
 	
-
+	/**
+	 * Creates a JSON-LD-Text of the Policy contained in a model using an {@link UMLModelConverter} and saves it in this {@link Check}'s {@link #policyString}-Attribute.
+	 * 
+	 * @param inputModel {@link Package} converted to a policy
+	 * @param converter {@link UMLModelConverter} handling the conversions
+	 */
 	private void structureModel(Package inputModel, UMLModelConverter converter) {
-		List<JSONObject> printList = new LinkedList<JSONObject>();
-		List<ODRLClass> objectList = new LinkedList<ODRLClass>();
-		Collection<Element> modelContents = inputModel.allOwnedElements();
-
-		
-		for (Element e : modelContents) {
+		Collection<Element> modelContents = inputModel.allOwnedElements();	
+		for (Element e : modelContents) {//only passes stereotypes on activities to the converter
 			if (!(e instanceof Activity)) {
 				continue;
 			}		
 			for (Stereotype s : e.getAppliedStereotypes()) {
-				if (s.getProfile().getQualifiedName().equals(profileName)) { //probably replace qualified name comparison by an more unique identifier
-					Object object = (converter.addElement(e.getStereotypeApplication(s), null, e));
-					
-//					if (object instanceof ODRLClass odrlC) {
-//						System.out.println("Created ODRLObject: " + odrlC);
-//						JSONObject jso = new JSONObject(odrlC);
-//						//					
-//						Object converterMap = converter.startMap(odrlC);
-//						System.out.println("converter print map");
-//						System.out.println(converterMap);
-//						System.out.println("converter print JSON");
-//						if (converterMap instanceof Map actualMap)
-//						System.out.println(new JSONObject(actualMap).toString(4));
-//						else System.out.println(converterMap==null?"Convertermap is null" : converterMap.getClass());
-//						System.out.println("converter printed to json");
-//						//
-//						printList.add(jso);
-//						objectList.add(odrlC);
-//						System.out.println(jso.toString(4));
-//					}
-//					else {
-//						System.out.println("Null: " + e.getStereotypeApplication(s));
-//						for (EStructuralFeature esf : e.getStereotypeApplication(s).eClass().getEStructuralFeatures()) {
-//							System.out.println("ESF: " + esf);
-//						}
-//					}
-//					System.out.println();
+				if (s.getProfile().getQualifiedName().equals(PROFILE_NAME)) { //probably replace qualified name comparison by an more unique identifier
+					converter.addElement(e.getStereotypeApplication(s), null, e);
 				}			
 			}
 		}
-		String string1;
-		Object converterMap = converter.startMap(converter.getPolicyRoot());
+		Object converterMap = converter.startMap();
 		if (converterMap instanceof Map<?,?> actualMap) {
 			policyString =(new JSONObject(actualMap).toString(4));
-			//policyString = outString;
 		}
 	}
 		
-	//TODO change to more efficient approach (such as adding Elements to Class-Maps and accessing Classes and their Superclasses through their map-entries for the checks or adding the validity checks to the ODRLClasses themselves)
-	private boolean checkProfileRequirements(ODRLClass testedElement) {//replace testedElement with the created objects
+	//TODO change to more efficient approach (such as adding Elements to Class-Maps and accessing Classes and their Superclasses through their map-entries for the checks or adding the validity checks directly to the ODRLClasses themselves)
+	/**
+	 * Checks whether an {@link ODRLClass} adheres to the odrl-specification.
+	 * 
+	 * @param testedElement {@link ODRLClass} to be tested
+	 * @return whether the Element does adhere
+	 */
+	private boolean checkProfileRequirements(ODRLClass testedElement) {
+		// no checks for valid form of IRIs so far
 		boolean validPolicy = true;
-		//TODO no checks for valid form of IRIs so far
 		if (testedElement instanceof Policy policy) {
 			if (policy.getPermission().isEmpty()
 					&& policy.getProhibition().isEmpty()
@@ -195,67 +172,10 @@ public class Check implements CarismaCheckWithID {
 				validPolicy = false;
 			}
 			
-			if (policy instanceof Offer offer) {
-				//TODO one assigner (only one? needed with every rule or just with one?)
-				//TODO Propably in separate method
-//				Assigner assigner = null;
-//				for (Permission rule : offer.getPermission()) {
-//					List<Function> functions = rule.getInvolvedParties();
-//					if (functions.size()==1) {
-//						if (functions.get(0) instanceof Assigner newAssigner) {
-//							if (assigner == null) {
-//								assigner = newAssigner;
-//							} else if (!assigner.getParty().equals(newAssigner.getParty())) {
-//								addWarning("Invalid Offer: Rules of an offer must not contain multiple distinct Assigners.",testedElement);
-//								validPolicy = false;
-//							}
-//						}
-//						else {
-//							addWarning("Invalid Offer: Rules of an offer must not contain Parties in Roles other than Assigners.",testedElement);
-//						}
-//					} else {
-//						addWarning("Invalid Offer: Rules of an offer must not contain Parties in multiple roles.",testedElement);
-//					}
-//				}
-//				for (Prohibition rule : offer.getProhibition()) {
-//					List<Function> functions = rule.getInvolvedParties();
-//					if (functions.size()==1) {
-//						if (functions.get(0) instanceof Assigner newAssigner) {
-//							if (assigner == null) {
-//								assigner = newAssigner;
-//							} else if (!assigner.getParty().equals(newAssigner.getParty())) {
-//								addWarning("Invalid Offer: Rules of an offer must not contain multiple distinct Assigners.",testedElement);
-//								validPolicy = false;
-//							}
-//						}
-//						else {
-//							addWarning("Invalid Offer: Rules of an offer must not contain Parties in Roles other than Assigners.",testedElement);
-//						}
-//					} else {
-//						addWarning("Invalid Offer: Rules of an offer must not contain Parties in multiple roles.",testedElement);
-//					}
-//				}
-//				for (Duty rule : offer.getObligation()) {
-//					List<Function> functions = rule.getInvolvedParties();
-//					if (functions.size()==1) {
-//						if (functions.get(0) instanceof Assigner newAssigner) {
-//							if (assigner == null) {
-//								assigner = newAssigner;
-//							} else if (!assigner.getParty().equals(newAssigner.getParty())) {
-//								addWarning("Invalid Offer: Rules of an offer must not contain multiple distinct Assigners.",testedElement);
-//								validPolicy = false;
-//							}
-//						}
-//						else {
-//							addWarning("Invalid Offer: Rules of an offer must not contain Parties in Roles other than Assigners.",testedElement);
-//						}
-//					} else {
-//						addWarning("Invalid Offer: Rules of an offer must not contain Parties in multiple roles.",testedElement);
-//					}
-//				}
-				
-			} else if (policy instanceof Agreement agreement) {
-				//TODO one assigner, one assignee
+			if (policy instanceof Offer offerLocal) {
+				//one assigner (only one? needed with every rule or just with one?)				
+			} else if (policy instanceof Agreement agreementLocal) {
+				// one assigner, one assignee
 			}
 		} else if (testedElement instanceof AssetCollection assetCollection) {
 			if (assetCollection.getRefinement()!=null
@@ -354,14 +274,19 @@ public class Check implements CarismaCheckWithID {
 		return validPolicy;
 	}
 	
-	
+	/**
+	 * Adds a warning message to the analysis report of this {@link Check}.
+	 * 
+	 * @param warning part of the message that contains the warning itself
+	 * @param object object for which the warning is created
+	 */
 	private void addWarning(String warning, ODRLClass object) {//possibly add with list of ODRLClassImpl-objects
 		Element baseElement = object.gatContainingUmlElement();
 
 		String string = "Warning: " + warning;
 		if (baseElement != null) {
 			string += " Found in a " + object.getClass().getSimpleName();
-			//TODO the baseElement
+			//baseElement takes  Impl-Classes so not entirely accurate for the diagram
 			if (baseElement instanceof NamedElement named) {
 				string +=  " contained in the " + baseElement.getClass().getSimpleName() + " named " + named.getName() + ".";
 			} else {
@@ -369,7 +294,7 @@ public class Check implements CarismaCheckWithID {
 			}
 		}
 		
-		host.appendLineToReport(string);//TODO: possibly add diagram name representation and directly containing ODRLClass to classes to be referred here
+		host.appendLineToReport(string);// possibly add diagram name representation and directly containing ODRLClass to classes to be referred here
 	}
 	
 	

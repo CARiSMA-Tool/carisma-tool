@@ -11,6 +11,9 @@ import carisma.check.uconpolicycreation.UMLModelConverter;
 import carisma.check.uconpolicycreation.profileclasses.core.failure.Consequence;
 
 public class Duty extends Rule {
+	/**
+	 * What has to be done if this duty is not exercised
+	 */
 	Consequence consequence;
 
 	public Consequence getConsequence() {
@@ -33,12 +36,12 @@ public class Duty extends Rule {
 		}
 		
 		Object attributeValue = UMLModelConverter.getValue(currentEObject, odrlPackage.getDuty_Consequences());
-		if (attributeValue instanceof List list) { //TODO List attribute
+		if (attributeValue instanceof List list) {
 			List<Duty> attributeValueOdrl = handler.addElement(list, this.getConsequence(), activityElement, Duty.class);
 			if (attributeValueOdrl!=null) {
 				if (this.getConsequence().getRules()==null)
-					this.getConsequence().setRules(new LinkedList<Rule>());
-				this.getConsequence().getRules().addAll(attributeValueOdrl);//TODO change getters to conditional generators or add null-checks with additional creation everywhere were gotten objects are further used
+					this.getConsequence().setRules(new LinkedList<>());
+				this.getConsequence().getRules().addAll(attributeValueOdrl);
 			}
 		}
 	}

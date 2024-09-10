@@ -11,7 +11,13 @@ import carisma.check.uconpolicycreation.profileclasses.ODRLClass;
 import carisma.check.uconpolicycreation.profileclasses.core.constraints.ConstraintInterface;
 
 public class PartyCollection extends Party {
+	/**
+	 * Filters the parties represented by this object from the source.
+	 */
 	ConstraintInterface refinement;
+	/**
+	 * Refers to the external source of the party collection.
+	 */
 	String source;
 
 	
@@ -48,7 +54,7 @@ public class PartyCollection extends Party {
 	@Override
 	public Object fillMapIndividual(Map<String, Object> map, Set<ODRLClass> circlePreventionSet)
 			throws NoSuchFieldException, SecurityException {
-		map.put(gatTypeKeyword(), gatClassTerm());
+		map.put(getTypeKeyword(), getClassTerm());
 		return null;
 	}
 	

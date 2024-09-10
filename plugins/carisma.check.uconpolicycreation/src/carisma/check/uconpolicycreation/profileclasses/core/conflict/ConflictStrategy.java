@@ -9,6 +9,6 @@ public abstract class ConflictStrategy extends ODRLClass {
 	
 	@Override
 	public Object fillMapIndividual(Map<String,Object> map, Set<ODRLClass> circlePreventionSet) throws NoSuchFieldException, SecurityException {
-		return gatClassTerm();
+		return getClassTerm();
 	}
 }
