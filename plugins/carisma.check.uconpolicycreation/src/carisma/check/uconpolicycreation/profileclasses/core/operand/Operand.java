@@ -8,6 +8,9 @@ import carisma.check.uconpolicycreation.profileclasses.ODRLClass;
 import carisma.check.uconpolicycreation.profileclasses.core.constraints.Constraint;
 
 public abstract class Operand extends ODRLClass {
+	/**
+	 * {@link Constraints} logically linked by this Object.
+	 */
 	List<Constraint> constraints;
 
 

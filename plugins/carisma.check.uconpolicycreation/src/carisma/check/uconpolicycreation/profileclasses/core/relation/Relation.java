@@ -7,6 +7,9 @@ import carisma.check.uconpolicycreation.profileclasses.ODRLClass;
 import carisma.check.uconpolicycreation.profileclasses.core.asset.Asset;
 
 public abstract class Relation extends ODRLClass {
+	/**
+	 * Asset involved with Objects referring to this one.
+	 */
 	Asset asset;
 	
 

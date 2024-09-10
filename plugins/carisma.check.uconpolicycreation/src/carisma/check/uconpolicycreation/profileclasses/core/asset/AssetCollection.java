@@ -11,7 +11,13 @@ import carisma.check.uconpolicycreation.profileclasses.ODRLClass;
 import carisma.check.uconpolicycreation.profileclasses.core.constraints.ConstraintInterface;
 
 public class AssetCollection extends Asset {
+	/**
+	 * Filters the assets represented by this object from the source.
+	 */
 	ConstraintInterface refinement;
+	/**
+	 * Refers to the external source of the asset collection.
+	 */
 	String source;
 
 	
@@ -49,7 +55,7 @@ public class AssetCollection extends Asset {
 	@Override
 	public Object fillMapIndividual(Map<String, Object> map, Set<ODRLClass> circlePreventionSet)
 			throws NoSuchFieldException, SecurityException {
-		map.put(gatTypeKeyword(), gatClassTerm());
+		map.put(getTypeKeyword(), getClassTerm());
 		return null;
 	}
 	

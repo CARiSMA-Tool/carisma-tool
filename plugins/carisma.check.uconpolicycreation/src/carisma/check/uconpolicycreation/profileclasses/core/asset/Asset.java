@@ -10,6 +10,9 @@ import carisma.check.uconpolicycreation.UMLModelConverter;
 import carisma.check.uconpolicycreation.profileclasses.ODRLClass;
 
 public class Asset extends ODRLClass {
+	/**
+	 * Identifier of the ODRL-Asset this class refers to.
+	 */
 	String uid;
 	
 	
@@ -44,7 +47,7 @@ public class Asset extends ODRLClass {
 		if (map.size()==1 && map.get(getFieldTerm("uid"))!=null) {
 				return map.get(getFieldTerm("uid"));
 		} else {
-			map.put(gatTypeKeyword(), gatClassTerm());//TODO: Not sure if that's how it is in the specification
+			map.put(getTypeKeyword(), getClassTerm());// Not sure if that's how it is in the specification
 		}
 		return null;
 	}
