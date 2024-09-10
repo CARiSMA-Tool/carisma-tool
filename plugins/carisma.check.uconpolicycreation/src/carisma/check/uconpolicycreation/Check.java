@@ -172,9 +172,9 @@ public class Check implements CarismaCheckWithID {
 				validPolicy = false;
 			}
 			
-			if (policy instanceof Offer offerLocal) {
+			if (policy instanceof Offer offer) {
 				//one assigner (only one? needed with every rule or just with one?)				
-			} else if (policy instanceof Agreement agreementLocal) {
+			} else if (policy instanceof Agreement agreement) {
 				// one assigner, one assignee
 			}
 		} else if (testedElement instanceof AssetCollection assetCollection) {
