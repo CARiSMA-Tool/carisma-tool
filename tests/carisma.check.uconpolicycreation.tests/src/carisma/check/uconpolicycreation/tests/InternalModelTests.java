@@ -173,7 +173,7 @@ public class InternalModelTests {
 		Check policyCheck = new Check();
 		TestHost analysisHost = new TestHost(this.modelres);
 		assertFalse(policyCheck.perform(null, analysisHost));
-		System.out.println(new JSONObject(policyCheck.getPolicyString()).toString(4));
+		//System.out.println(new JSONObject(policyCheck.getPolicyString()).toString(4));
 		this.modelres.unload();
 	}
 	
