@@ -281,9 +281,9 @@ public class UMLModelConverter {
 	 */
 	public UMLModelConverter(List<String> contextPaths) throws IOException {
 		for (String contextPath : contextPaths) {
-			ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-			InputStream is = classloader.getResourceAsStream(contextPath);
-
+//			ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+//			InputStream is = classloader.getResourceAsStream(contextPath);
+			InputStream is = getClass().getResourceAsStream(contextPath);
 			try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
 				StringBuilder sb = new StringBuilder();
 				String line = br.readLine();

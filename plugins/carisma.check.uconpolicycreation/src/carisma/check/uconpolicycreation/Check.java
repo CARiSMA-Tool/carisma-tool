@@ -5,14 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Element;
@@ -21,14 +15,10 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 import org.json.JSONObject;
 
-import ODRLCommonVocabulary.ODRLCommonVocabularyFactory;
 import ODRLCommonVocabulary.ODRLCommonVocabularyPackage;
 import carisma.check.uconpolicycreation.profileclasses.ODRLClass;
 import carisma.check.uconpolicycreation.profileclasses.core.asset.AssetCollection;
 import carisma.check.uconpolicycreation.profileclasses.core.constraints.Constraint;
-import carisma.check.uconpolicycreation.profileclasses.core.function.Assigner;
-import carisma.check.uconpolicycreation.profileclasses.core.function.Function;
-import carisma.check.uconpolicycreation.profileclasses.core.party.Party;
 import carisma.check.uconpolicycreation.profileclasses.core.party.PartyCollection;
 import carisma.check.uconpolicycreation.profileclasses.core.policy.Agreement;
 import carisma.check.uconpolicycreation.profileclasses.core.policy.Offer;
@@ -86,7 +76,7 @@ public class Check implements CarismaCheckWithID {
 		if (currentModel.getContents().get(0) instanceof Package model) {
 
 			try {
-			modelConversionHandler = new UMLModelConverter("resources" + File.separator + "odrl_jsonld_context_with_added_id.txt");
+			modelConversionHandler = new UMLModelConverter("odrl_jsonld_context_with_added_id.txt");
 			} catch (IOException e) {
 				host.appendLineToReport(e.toString());
 				host.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, "Context file could not be loaded."));
