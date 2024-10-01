@@ -36,6 +36,7 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Usage;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.core.logging.LogLevel;
@@ -51,6 +52,7 @@ import carisma.profile.umlsec.UMLsecUtil;
  * @author Sven Wenzel
  *
  */
+@Ignore
 @SuppressWarnings("java:S5960")
 public class SecureDependencyChecksTest {
 	

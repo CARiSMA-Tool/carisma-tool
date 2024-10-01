@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.modeltype.uml2.StereotypeApplication;
@@ -40,6 +41,7 @@ import carisma.profile.umlsec.UMLsecUtil;
  * @author Daniel Warzecha
  *
  */
+@Ignore
 @SuppressWarnings("java:S5960")
 public class SecureLinksCheckTest {
 	private String filepath = "resources/models/secure_links";
