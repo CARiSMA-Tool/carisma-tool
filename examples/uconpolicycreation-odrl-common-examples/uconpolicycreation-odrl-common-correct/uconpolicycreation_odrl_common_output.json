@@ -1,0 +1,32 @@
+{
+    "uid": "http:///example.com/policy:1234",
+    "permission": [{
+        "assigner": "https://example.com/party:sony",
+        "duty": [
+            {
+                "action": [{
+                    "refinement": [{
+                        "unit": "http://dbpedia.org/resource/Euro",
+                        "leftOperand": "payAmount",
+                        "operator": "eq",
+                        "rightOperand": {
+                            "@type": "xsd:decimal",
+                            "@value": "5.00"
+                        }
+                    }],
+                    "rdf:value": {"@id": "odrl:compensate"}
+                }],
+                "compensatedParty": "https://example.com/party:sony"
+            },
+            {
+                "attributedParty": "https://example.com/party:sony",
+                "action": "attribute"
+            }
+        ],
+        "action": "play",
+        "target": "https://example.com/asset:examplesong.mp3"
+    }],
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Offer",
+    "profile": "http://www.umlsec.de/profiles/ODRLCommonVocabulary"
+}
