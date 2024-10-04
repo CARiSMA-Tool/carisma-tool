@@ -104,7 +104,7 @@ Here you can find examples for the uconpolicycreation check.
 First a faulty model is shown that contains errors detected in the check.
 Afterwards a corrected version of the model is covered in more detail and result of the check applicatipon to it shown.
 
-##### Faulty Model
+### Faulty Model
 
 In the incorrect example shown below the Action "Play music" does not have an object Pin with an Asset-type-stereotype attached.
 Therefor the Permission represented by the &lt;&lt;Permission&gt;&gt; stereotype does not have an Asset to apply to, making it an invalid ODRL-element.
@@ -133,7 +133,7 @@ The messages generated in the corresponding report list the errors and their app
 	WARNING: No policy-File was created. The resulting policy does not not adhere to the odrl-specification.
 
 
-##### Correct Model
+### Correct Model
 
 In the correct example the &lt;&lt;Asset&gt;&gt; stereotype is added to the Pin bordering the "Play music"-Action.
 
