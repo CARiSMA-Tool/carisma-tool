@@ -47,17 +47,14 @@
   <ODRLCommonVocabulary:Party xmi:id="_g0GAoFGgEe-b_6a7W7_YMg" uid="https://example.com/party:sony" base_ActivityPartition="_yRy_4FGbEe-b_6a7W7_YMg"/>
   <ODRLCommonVocabulary:Duty xmi:id="_l6TsgFGgEe-b_6a7W7_YMg" base_Action="_d6XzwFGbEe-b_6a7W7_YMg" action="compensate">
     <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_gu89kVZkEe-B-6tdhiRsEg" uid="">
-      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_gu89klZkEe-B-6tdhiRsEg" uid="" leftOperand="payAmount" status="" operator="eq" dataType="xsd:decimal" unit="http://dbpedia.org/resource/Euro">
-        <rightOperand>5.00</rightOperand>
-      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_gu89klZkEe-B-6tdhiRsEg" uid="" leftOperand="payAmount" status="" operator="eq" dataType="xsd:decimal" unit="http://dbpedia.org/resource/Euro"/>
     </refinement>
     <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu89lVZkEe-B-6tdhiRsEg" type="compensatedParty" party="_g0GAoFGgEe-b_6a7W7_YMg"/>
   </ODRLCommonVocabulary:Duty>
-  <ODRLCommonVocabulary:Permission xmi:id="_HT3SMFGhEe-b_6a7W7_YMg" base_Action="_F6VswFGcEe-b_6a7W7_YMg" action="play" duties="_l6TsgFGgEe-b_6a7W7_YMg _It94sFGhEe-b_6a7W7_YMg">
+  <ODRLCommonVocabulary:Permission xmi:id="_HT3SMFGhEe-b_6a7W7_YMg" base_Action="_F6VswFGcEe-b_6a7W7_YMg" duties="_l6TsgFGgEe-b_6a7W7_YMg _It94sFGhEe-b_6a7W7_YMg">
     <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu89l1ZkEe-B-6tdhiRsEg" type="assigner" party="_g0GAoFGgEe-b_6a7W7_YMg"/>
   </ODRLCommonVocabulary:Permission>
   <ODRLCommonVocabulary:Duty xmi:id="_It94sFGhEe-b_6a7W7_YMg" base_Action="_bwlVYFGeEe-b_6a7W7_YMg" action="attribute">
     <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu9koVZkEe-B-6tdhiRsEg" type="attributedParty" party="_g0GAoFGgEe-b_6a7W7_YMg"/>
   </ODRLCommonVocabulary:Duty>
-  <ODRLCommonVocabulary:Asset xmi:id="_A6ScoIJXEe-EUf6yKV-S5w" base_Pin="_aS8koFGcEe-b_6a7W7_YMg" uid="https://example.com/asset:examplesong.mp3"/>
 </xmi:XMI>
