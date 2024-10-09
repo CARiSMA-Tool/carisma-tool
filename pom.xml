@@ -96,12 +96,12 @@
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/report-aggregate-module/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths> 
     <!-- Ignore generated code for duplication check -->
-    <sonar.cpd.exclusions>
+    <sonar.exclusions>
     	**/gensrc/**,
     	**/gen-src/**,
     	**/model-gen/**,
     	**/Activator.java
-    </sonar.cpd.exclusions>
+    </sonar.exclusions>
   </properties>
   <repositories> 
     <repository>
