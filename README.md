@@ -78,4 +78,6 @@ Further developers and contributors:
 * Alexander Peikert
 * Klaus Rudack
 
+## Licenses
 
+CARiSMA uses various third party components which utilize a number of different [licenses](documentation/licenses.md). 
