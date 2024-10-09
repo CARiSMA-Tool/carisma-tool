@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRLCommonVocabulary="http:///schemas/ODRLCommonVocabulary/_BQw8wFGgEe-b_6a7W7_YMg/7" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRLCommonVocabulary/_BQw8wFGgEe-b_6a7W7_YMg/7 pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_BQyK4FGgEe-b_6a7W7_YMg">
+  <uml:Model xmi:id="_oOtF0BX8Ee-qfZXglk0hvg" name="profregtest">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_oSdkcBX8Ee-qfZXglk0hvg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_oP1HMBX8Ee-qfZXglk0hvg" name="Activity1" node="_xPo60BX8Ee-qfZXglk0hvg _28ed4BfVEe-01bb08w7VdA _tN2xEBuGEe-TsoISa_0sSA _5Q850B6XEe-J-6J5J5ivQA _ZG_TsFUREe-Kq_WEBoicpw" group="_09khMBfVEe-01bb08w7VdA">
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_6ItBMB6XEe-J-6J5J5ivQA" target="_6I2yMB6XEe-J-6J5J5ivQA" source="_5Q850B6XEe-J-6J5J5ivQA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_6JKUMB6XEe-J-6J5J5ivQA" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_6JKUMR6XEe-J-6J5J5ivQA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_85P2MB6XEe-J-6J5J5ivQA" target="_tN2xEBuGEe-TsoISa_0sSA" source="_xPo60BX8Ee-qfZXglk0hvg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_-J17YB6XEe-J-6J5J5ivQA" target="_28ed4BfVEe-01bb08w7VdA" source="_xPo60BX8Ee-qfZXglk0hvg"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_09khMBfVEe-01bb08w7VdA" name="ActivityPartition2" node="_28ed4BfVEe-01bb08w7VdA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_xPo60BX8Ee-qfZXglk0hvg" name="OpaqueAction1" outgoing="_85P2MB6XEe-J-6J5J5ivQA _-J17YB6XEe-J-6J5J5ivQA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_28ed4BfVEe-01bb08w7VdA" name="OpaqueAction3" incoming="_-J17YB6XEe-J-6J5J5ivQA" inPartition="_09khMBfVEe-01bb08w7VdA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_tN2xEBuGEe-TsoISa_0sSA" name="OpaqueAction4" incoming="_85P2MB6XEe-J-6J5J5ivQA">
+        <inputValue xmi:type="uml:InputPin" xmi:id="_6I2yMB6XEe-J-6J5J5ivQA" name="InputPin1" incoming="_6ItBMB6XEe-J-6J5J5ivQA">
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_6I4nYB6XEe-J-6J5J5ivQA" value="1"/>
+        </inputValue>
+      </node>
+      <node xmi:type="uml:DataStoreNode" xmi:id="_5Q850B6XEe-J-6J5J5ivQA" name="DataStoreNode5" outgoing="_6ItBMB6XEe-J-6J5J5ivQA">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_5RHR4B6XEe-J-6J5J5ivQA" value="1"/>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_ZG_TsFUREe-Kq_WEBoicpw" name="OpaqueAction9"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_wr8X4BX8Ee-qfZXglk0hvg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IkiBwCfREe-3Jrv7naH_zA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IkiBwSfREe-3Jrv7naH_zA" key="Version" value="0.0.173"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IkiBwifREe-3Jrv7naH_zA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IkiBwyfREe-3Jrv7naH_zA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IkiBxCfREe-3Jrv7naH_zA" key="Date" value="2024-06-11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IkiBxSfREe-3Jrv7naH_zA" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_wsACQBX8Ee-qfZXglk0hvg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_BQyK4FGgEe-b_6a7W7_YMg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
+    </profileApplication>
+  </uml:Model>
+  <ODRLCommonVocabulary:Duty xmi:id="_yfOTYBX8Ee-qfZXglk0hvg" base_Action="_xPo60BX8Ee-qfZXglk0hvg" uid="dutytest" action="attribute">
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_xEW5gFUWEe-qGdx2O8dbjg" type="assignee" party="_IUdiUBhjEe-nJoZE-_kBQA"/>
+  </ODRLCommonVocabulary:Duty>
+  <ODRLCommonVocabulary:Prohibition xmi:id="_4IiBUBfVEe-01bb08w7VdA" base_Action="_28ed4BfVEe-01bb08w7VdA" uid="prohString">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_xEe1UVUWEe-qGdx2O8dbjg">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_xEe1UlUWEe-qGdx2O8dbjg" uid="" leftOperand="count" operator="eq"/>
+    </refinement>
+    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_xEe1U1UWEe-qGdx2O8dbjg" logicalOperator="andSequence">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_xEe1VFUWEe-qGdx2O8dbjg" uid="" leftOperand="delayPeriod" operator="lt">
+        <rightOperand>2</rightOperand>
+      </constraints>
+    </constraint>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_xEe1VVUWEe-qGdx2O8dbjg" type="assigner" party="_IUdiUBhjEe-nJoZE-_kBQA"/>
+  </ODRLCommonVocabulary:Prohibition>
+  <ODRLCommonVocabulary:Party xmi:id="_IUdiUBhjEe-nJoZE-_kBQA" base_ActivityPartition="_09khMBfVEe-01bb08w7VdA"/>
+  <ODRLCommonVocabulary:ODRLPolicy xmi:id="_JQu9UBhjEe-nJoZE-_kBQA" uid="testpolicyuidstring" base_Activity="_oP1HMBX8Ee-qfZXglk0hvg" conflictStrategy="Void_Policy" policyType="Set">
+    <profiles>example.com/profile1</profiles>
+    <inheritsFrom>example.com/inheritedfromprofile</inheritsFrom>
+  </ODRLCommonVocabulary:ODRLPolicy>
+  <ODRLCommonVocabulary:Permission xmi:id="_uX7XgBuGEe-TsoISa_0sSA" base_Action="_tN2xEBuGEe-TsoISa_0sSA" uid="permIdString" action="delete">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_xEh4oVUWEe-qGdx2O8dbjg" uid="refinementuid" logicalOperator="and">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_xEh4olUWEe-qGdx2O8dbjg" uid="constuid" leftOperand="dateTime" operator="eq">
+        <rightOperand>someDate</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_xEh4o1UWEe-qGdx2O8dbjg" uid="" leftOperand="count" status="3" operator="gt" dataType="" unit="">
+        <rightOperand>5</rightOperand>
+      </constraints>
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_xEh4pFUWEe-qGdx2O8dbjg" uid="" leftOperand="payAmount" status="" operator="gt" dataType="xsd:decimal" unit="http://Euro">
+        <rightOperandReference>https://cost</rightOperandReference>
+      </constraints>
+    </refinement>
+    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_xEh4pVUWEe-qGdx2O8dbjg" uid="Loconstraintuid" logicalOperator="and">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_xEh4plUWEe-qGdx2O8dbjg" uid="constraintuid" leftOperand="absoluteSpartialPosition" operator="hasPart"/>
+    </constraint>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_xEh4p1UWEe-qGdx2O8dbjg" type="assigner"/>
+  </ODRLCommonVocabulary:Permission>
+  <ODRLCommonVocabulary:Asset xmi:id="_PnplYDF4Ee-sX-CZ7PgssA" base_Pin="_6I2yMB6XEe-J-6J5J5ivQA" uid="assetString"/>
+  <ODRLCommonVocabulary:Duty xmi:id="_aNV3wFUREe-Kq_WEBoicpw" base_Action="_ZG_TsFUREe-Kq_WEBoicpw" uid="">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_xEjt0VUWEe-qGdx2O8dbjg" uid="someString">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_xEjt0lUWEe-qGdx2O8dbjg" uid="" leftOperand="device" operator="isPartOf">
+        <rightOperandReference>http://list_of_devices</rightOperandReference>
+      </constraints>
+    </refinement>
+    <constraint xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_xEjt01UWEe-qGdx2O8dbjg">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_xEjt1FUWEe-qGdx2O8dbjg" uid="" leftOperand="absoluteSize" operator="neq">
+        <rightOperand>3</rightOperand>
+      </constraints>
+    </constraint>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_xEjt1VUWEe-qGdx2O8dbjg" type="attributedParty" party="_IUdiUBhjEe-nJoZE-_kBQA"/>
+  </ODRLCommonVocabulary:Duty>
+</xmi:XMI>

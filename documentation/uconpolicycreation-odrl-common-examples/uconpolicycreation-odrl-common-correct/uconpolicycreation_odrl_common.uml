@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ODRLCommonVocabulary="http:///schemas/ODRLCommonVocabulary/_Xm-dwFWmEe-p5_deFFS4Yg/12" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ODRLCommonVocabulary/_Xm-dwFWmEe-p5_deFFS4Yg/12 pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_Xm_E0FWmEe-p5_deFFS4Yg">
+  <uml:Model xmi:id="_uv3rIFD0Ee-9wuT63RS7Pw" name="uconpolicycreation_odrl_common">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_uxKroFD0Ee-9wuT63RS7Pw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_uwZPkFD0Ee-9wuT63RS7Pw" name="Buy song " node="_ygpi8FGVEe-b_6a7W7_YMg _LdlhoFGWEe-b_6a7W7_YMg _d6XzwFGbEe-b_6a7W7_YMg _F6VswFGcEe-b_6a7W7_YMg _XfEHwFGcEe-b_6a7W7_YMg _bwlVYFGeEe-b_6a7W7_YMg" group="_pVWpUFGbEe-b_6a7W7_YMg _yRy_4FGbEe-b_6a7W7_YMg">
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_aS3FEFGcEe-b_6a7W7_YMg" target="_aS8koFGcEe-b_6a7W7_YMg" source="_XfEHwFGcEe-b_6a7W7_YMg">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_aTFukFGcEe-b_6a7W7_YMg" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_aTFukVGcEe-b_6a7W7_YMg" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_5Y9IcFGeEe-b_6a7W7_YMg" inPartition="_pVWpUFGbEe-b_6a7W7_YMg" target="_d6XzwFGbEe-b_6a7W7_YMg" source="_ygpi8FGVEe-b_6a7W7_YMg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_60ggcFGeEe-b_6a7W7_YMg" inPartition="_pVWpUFGbEe-b_6a7W7_YMg" target="_F6VswFGcEe-b_6a7W7_YMg" source="_d6XzwFGbEe-b_6a7W7_YMg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PwytIFGfEe-b_6a7W7_YMg" inPartition="_pVWpUFGbEe-b_6a7W7_YMg" target="_bwlVYFGeEe-b_6a7W7_YMg" source="_F6VswFGcEe-b_6a7W7_YMg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_QXuxUFGfEe-b_6a7W7_YMg" inPartition="_pVWpUFGbEe-b_6a7W7_YMg" target="_LdlhoFGWEe-b_6a7W7_YMg" source="_bwlVYFGeEe-b_6a7W7_YMg"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_pVWpUFGbEe-b_6a7W7_YMg" name="Customer" node="_LdlhoFGWEe-b_6a7W7_YMg _ygpi8FGVEe-b_6a7W7_YMg _d6XzwFGbEe-b_6a7W7_YMg _F6VswFGcEe-b_6a7W7_YMg _bwlVYFGeEe-b_6a7W7_YMg" edge="_5Y9IcFGeEe-b_6a7W7_YMg _60ggcFGeEe-b_6a7W7_YMg _PwytIFGfEe-b_6a7W7_YMg _QXuxUFGfEe-b_6a7W7_YMg"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_yRy_4FGbEe-b_6a7W7_YMg" name="Sony Records" node="_XfEHwFGcEe-b_6a7W7_YMg"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_ygpi8FGVEe-b_6a7W7_YMg" name="InitialNode1" outgoing="_5Y9IcFGeEe-b_6a7W7_YMg" inPartition="_pVWpUFGbEe-b_6a7W7_YMg"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_LdlhoFGWEe-b_6a7W7_YMg" name="ActivityFinalNode2" incoming="_QXuxUFGfEe-b_6a7W7_YMg" inPartition="_pVWpUFGbEe-b_6a7W7_YMg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_d6XzwFGbEe-b_6a7W7_YMg" name="Pay 5 € to Sony" incoming="_5Y9IcFGeEe-b_6a7W7_YMg" outgoing="_60ggcFGeEe-b_6a7W7_YMg" inPartition="_pVWpUFGbEe-b_6a7W7_YMg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_F6VswFGcEe-b_6a7W7_YMg" name="Play music" incoming="_60ggcFGeEe-b_6a7W7_YMg" outgoing="_PwytIFGfEe-b_6a7W7_YMg" inPartition="_pVWpUFGbEe-b_6a7W7_YMg">
+        <inputValue xmi:type="uml:InputPin" xmi:id="_aS8koFGcEe-b_6a7W7_YMg" name="music file" incoming="_aS3FEFGcEe-b_6a7W7_YMg">
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_aS9ywFGcEe-b_6a7W7_YMg" value="1"/>
+        </inputValue>
+      </node>
+      <node xmi:type="uml:DataStoreNode" xmi:id="_XfEHwFGcEe-b_6a7W7_YMg" name="Sony datastore" outgoing="_aS3FEFGcEe-b_6a7W7_YMg" inPartition="_yRy_4FGbEe-b_6a7W7_YMg">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_XfEu0FGcEe-b_6a7W7_YMg" value="1"/>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_bwlVYFGeEe-b_6a7W7_YMg" name="Inform listeners about Sony's copyright" incoming="_PwytIFGfEe-b_6a7W7_YMg" outgoing="_QXuxUFGfEe-b_6a7W7_YMg" inPartition="_pVWpUFGbEe-b_6a7W7_YMg"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Ls8O4FErEe-9wuT63RS7Pw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ls9dAFErEe-9wuT63RS7Pw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/../../carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#_BQyK4FGgEe-b_6a7W7_YMg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="platform:/../../carisma.profile.uconpolicycreation.odrl.common/profile/ODRLCommonVocabulary.profile.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_gu-LsFZkEe-B-6tdhiRsEg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gu-ywFZkEe-B-6tdhiRsEg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_Xm_E0FWmEe-p5_deFFS4Yg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PolicyCreation/ODRLCommonVocabulary.uml#_RB7R8Nx8Ee6AOue6E9VgEA"/>
+    </profileApplication>
+  </uml:Model>
+  <ODRLCommonVocabulary:ODRLPolicy xmi:id="_bJ56cFGfEe-b_6a7W7_YMg" uid="http:///example.com/policy:1234" base_Activity="_uwZPkFD0Ee-9wuT63RS7Pw" policyType="Offer">
+    <profiles>http://www.umlsec.de/profiles/ODRLCommonVocabulary</profiles>
+  </ODRLCommonVocabulary:ODRLPolicy>
+  <ODRLCommonVocabulary:Party xmi:id="_g0GAoFGgEe-b_6a7W7_YMg" uid="https://example.com/party:sony" base_ActivityPartition="_yRy_4FGbEe-b_6a7W7_YMg"/>
+  <ODRLCommonVocabulary:Duty xmi:id="_l6TsgFGgEe-b_6a7W7_YMg" base_Action="_d6XzwFGbEe-b_6a7W7_YMg" action="compensate">
+    <refinement xmi:type="ODRLCommonVocabulary:LogicalConstraint" xmi:id="_gu89kVZkEe-B-6tdhiRsEg" uid="">
+      <constraints xmi:type="ODRLCommonVocabulary:Constraint" xmi:id="_gu89klZkEe-B-6tdhiRsEg" uid="" leftOperand="payAmount" status="" operator="eq" dataType="xsd:decimal" unit="http://dbpedia.org/resource/Euro">
+        <rightOperand>5.00</rightOperand>
+      </constraints>
+    </refinement>
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu89lVZkEe-B-6tdhiRsEg" type="compensatedParty" party="_g0GAoFGgEe-b_6a7W7_YMg"/>
+  </ODRLCommonVocabulary:Duty>
+  <ODRLCommonVocabulary:Permission xmi:id="_HT3SMFGhEe-b_6a7W7_YMg" base_Action="_F6VswFGcEe-b_6a7W7_YMg" action="play" duties="_l6TsgFGgEe-b_6a7W7_YMg _It94sFGhEe-b_6a7W7_YMg">
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu89l1ZkEe-B-6tdhiRsEg" type="assigner" party="_g0GAoFGgEe-b_6a7W7_YMg"/>
+  </ODRLCommonVocabulary:Permission>
+  <ODRLCommonVocabulary:Duty xmi:id="_It94sFGhEe-b_6a7W7_YMg" base_Action="_bwlVYFGeEe-b_6a7W7_YMg" action="attribute">
+    <involvedParties xmi:type="ODRLCommonVocabulary:PartyFunction" xmi:id="_gu9koVZkEe-B-6tdhiRsEg" type="attributedParty" party="_g0GAoFGgEe-b_6a7W7_YMg"/>
+  </ODRLCommonVocabulary:Duty>
+  <ODRLCommonVocabulary:Asset xmi:id="_A6ScoIJXEe-EUf6yKV-S5w" base_Pin="_aS8koFGcEe-b_6a7W7_YMg" uid="https://example.com/asset:examplesong.mp3"/>
+</xmi:XMI>

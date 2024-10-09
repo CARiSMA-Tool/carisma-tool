@@ -128,7 +128,13 @@
       <artifactId>carisma.check.template</artifactId>
       <version>1.2.0-SNAPSHOT</version>
     </dependency>
-  
+
+    <dependency>
+      <groupId>carisma</groupId>
+      <artifactId>carisma.check.uconpolicycreation</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+
     <dependency>
       <groupId>carisma</groupId>
       <artifactId>carisma.core</artifactId>
@@ -221,6 +227,12 @@
       <version>1.0.3-SNAPSHOT</version>
     </dependency>
    
+    <dependency>
+      <groupId>carisma</groupId>
+      <artifactId>carisma.profile.uconpolicycreation.odrl.common</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    
     <!-- not core and tests not sufficient with 35%-->
     <dependency>
       <groupId>carisma</groupId>
@@ -354,6 +366,13 @@
       <artifactId>carisma.check.staticcheck.tests</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
+
+    <dependency>
+      <groupId>carisma</groupId>
+      <artifactId>carisma.check.uconpolicycreation.tests</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+
     <!-- not tested-->
     <dependency>
       <groupId>carisma</groupId>

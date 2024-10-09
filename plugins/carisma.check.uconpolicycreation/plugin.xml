@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="carisma.carismacheck">
+      <check
+            id="carisma.check.uconpolicycreation"
+            name="uconpolicycreation"
+            description="Creates an ODRL-Policy in JSON-LD-Format from a UML-Model"
+            publisher="[Enter publisher]"
+            targetModelType="UML2"
+            implementingClass="carisma.check.uconpolicycreation.Check">
+         <parameter
+               id="carisma.check.uconpolicycreation.outputfile"
+               optional="true"
+               type="OutputFile"
+               name="outputfile"
+               description="File the created policy should be saved in">
+         </parameter>
+         <parameter
+               defaultValue="true"
+               description="Whether to create a policy file (or only check for errors). Disabling policy file creation does not disable the warning when an already existing file is used in  the outputfile-parameter. However in that case the warning can be ignored and resolved by chosing either option besides cancel."
+               id="carisma.check.uconpolicycreation.createoutputfile"
+               name="createoutputfile"
+               optional="true"
+               type="boolean">
+         </parameter>
+      </check>
+   </extension>
+
+</plugin>
