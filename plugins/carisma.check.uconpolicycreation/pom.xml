@@ -11,4 +11,38 @@
   <artifactId>carisma.check.uconpolicycreation</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
+  
+  <build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<!--	<version>${dependency-plugin}</version>-->
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<excludeScope>provided</excludeScope>
+							<includeScope>runtime</includeScope>
+							<stripVersion>true</stripVersion>
+							<excludeGroupIds>carisma</excludeGroupIds>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- <https://mvnrepository.com/artifact/org.json/json> -->
+		<dependency>
+			<groupId>org.json</groupId>
+  			<artifactId>json</artifactId>
+  			<version>20240303</version>
+		</dependency>
+	</dependencies>
 </project>

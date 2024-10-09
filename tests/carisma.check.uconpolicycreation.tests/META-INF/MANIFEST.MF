@@ -3,13 +3,13 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Tests
 Bundle-SymbolicName: carisma.check.uconpolicycreation.tests
 Bundle-Version: 1.0.0.qualifier
+Import-Package: carisma.check.uconpolicycreation
 Require-Bundle: org.eclipse.core.runtime,
  org.junit;bundle-version="4.13.2",
  carisma.core;bundle-version="1.4.3",
  org.eclipse.emf.ecore,
  org.eclipse.uml2.uml,
- carisma.check.uconpolicycreation;bundle-version="1.0.0"
+ carisma.check.uconpolicycreation
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: carisma.check.uconpolicycreation.tests
 Bundle-ActivationPolicy: lazy
-Import-Package: org.json
