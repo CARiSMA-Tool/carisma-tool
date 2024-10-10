@@ -25,15 +25,15 @@ public class SelectedChecksLabelProvider extends LabelProvider implements ITable
 		}
 		return obj.toString();
 	}
-	
+
 	@Override
 	public final Image getColumnImage(final Object obj, final int index) {
 		if (obj instanceof CheckReference) {
-			CheckDescriptor checkDescriptor = 
+			CheckDescriptor checkDescriptor =
 				CarismaGUI.getCheckRegistry().getCheckDescriptor(((CheckReference) obj).getCheckID());
 			if (checkDescriptor == null) {
 				return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
-			} 
+			}
 			return PlatformUI.getWorkbench().getSharedImages().getImage(
 					ISharedImages.IMG_OBJ_ELEMENT);
 		}

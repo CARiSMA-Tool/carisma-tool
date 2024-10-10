@@ -19,7 +19,7 @@ public class HtmlOutput implements PopUpAction {
 		};
 		action.setText("Create report for selected analysis");
 		manager.add(action);
-		
+
 		return true;
 	}
 

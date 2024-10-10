@@ -12,7 +12,7 @@ public class EclipseLogPrinter implements ExternalLogPrinter {
 	public boolean print(StackTraceElement ste, LogLevel level, String message) {
 		if (level == LogLevel.DEBUG) {
 			return false;
-		} 
+		}
 		int status = -1;
 		if (level == LogLevel.INFO) {
 			status = IStatus.INFO;
@@ -23,7 +23,7 @@ public class EclipseLogPrinter implements ExternalLogPrinter {
 		}
 		String[] x = ste.getClassName().split("\\.");
 		String plugin = x[0] + "." + x[1] + "." + x[2] + "." + x[3];
-		
+
 		//Carisma.INSTANCE.getLog().log(new Status(status, plugin, message));
 		return true;
 	}

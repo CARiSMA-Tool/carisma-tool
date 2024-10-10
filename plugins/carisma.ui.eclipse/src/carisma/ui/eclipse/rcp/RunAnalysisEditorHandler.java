@@ -25,7 +25,7 @@ import carisma.ui.eclipse.popup.actions.RunAnalysisAction;
  */
 public class RunAnalysisEditorHandler extends AbstractHandler {
 	/**
-	 * 
+	 *
 	 */
 	private RunAnalysisAction runAction = null;
 	/**
@@ -34,15 +34,15 @@ public class RunAnalysisEditorHandler extends AbstractHandler {
 	public RunAnalysisEditorHandler() {
 		this.runAction = new RunAnalysisAction();
 	}
-	
+
 	@Override
 	public final Object execute(final ExecutionEvent event) throws ExecutionException {
 		if (this.runAction.initSelectionByEditor()) {
 			this.runAction.run(null);
 		}
-		
+
 		return null;
-		
+
 	}
-	
+
 }

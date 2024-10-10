@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:umlsec4ids="http://www.umlsec.de/profiles/UMLsec/umlsec4ids">
+  <uml:Model xmi:id="_tnOnYAF8Ee-8BduuxxCBkA" name="datausagecontrol">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_tpSc4AF8Ee-8BduuxxCBkA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_tniwcAF8Ee-8BduuxxCBkA" name="Activity1" node="_Q07EMAF9Ee-8BduuxxCBkA _WE8MUAF9Ee-8BduuxxCBkA _dfpDUAF9Ee-8BduuxxCBkA _lAPG8AF9Ee-8BduuxxCBkA _nBLD8AF9Ee-8BduuxxCBkA _qlQOsAF9Ee-8BduuxxCBkA _vrE5AAF9Ee-8BduuxxCBkA _1iW1cAF9Ee-8BduuxxCBkA _20LCoAF9Ee-8BduuxxCBkA _P6sbIAF-Ee-8BduuxxCBkA _TyrZUAF-Ee-8BduuxxCBkA _Zov00AF-Ee-8BduuxxCBkA _bkH8YAF-Ee-8BduuxxCBkA _qC1osAF-Ee-8BduuxxCBkA _rlgVUAF-Ee-8BduuxxCBkA _ygGI4AF-Ee-8BduuxxCBkA _0fl7cAF-Ee-8BduuxxCBkA _GbWg8AGAEe-8BduuxxCBkA _NqMGMAGAEe-8BduuxxCBkA" group="_10HwUAF8Ee-8BduuxxCBkA _5eo6QAF8Ee-8BduuxxCBkA">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_22Q34AF-Ee-8BduuxxCBkA" target="_P6sbIAF-Ee-8BduuxxCBkA" source="_Q07EMAF9Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_3w234AF-Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA" target="_WE8MUAF9Ee-8BduuxxCBkA" source="_P6sbIAF-Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_6T3AIAF-Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA" target="_TyrZUAF-Ee-8BduuxxCBkA" source="_WE8MUAF9Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_8oRSwAF-Ee-8BduuxxCBkA" name="Yes" inPartition="_10HwUAF8Ee-8BduuxxCBkA" target="_dfpDUAF9Ee-8BduuxxCBkA" source="_TyrZUAF-Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="__sX88AF-Ee-8BduuxxCBkA" name="No" inPartition="_10HwUAF8Ee-8BduuxxCBkA" target="_Zov00AF-Ee-8BduuxxCBkA" source="_TyrZUAF-Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_A0pzoAF_Ee-8BduuxxCBkA" name="Yes" inPartition="_10HwUAF8Ee-8BduuxxCBkA" target="_P6sbIAF-Ee-8BduuxxCBkA" source="_Zov00AF-Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_B8ovYAF_Ee-8BduuxxCBkA" name="No" inPartition="_10HwUAF8Ee-8BduuxxCBkA" target="_bkH8YAF-Ee-8BduuxxCBkA" source="_Zov00AF-Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_D8B0QAF_Ee-8BduuxxCBkA" target="_lAPG8AF9Ee-8BduuxxCBkA" source="_dfpDUAF9Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_EfJIYAF_Ee-8BduuxxCBkA" inPartition="_5eo6QAF8Ee-8BduuxxCBkA" target="_nBLD8AF9Ee-8BduuxxCBkA" source="_lAPG8AF9Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_FRvC8AF_Ee-8BduuxxCBkA" inPartition="_5eo6QAF8Ee-8BduuxxCBkA" target="_rlgVUAF-Ee-8BduuxxCBkA" source="_nBLD8AF9Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Fz4twAF_Ee-8BduuxxCBkA" name="No" inPartition="_5eo6QAF8Ee-8BduuxxCBkA" target="_qC1osAF-Ee-8BduuxxCBkA" source="_rlgVUAF-Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_GbcdAAF_Ee-8BduuxxCBkA" name="Yes" inPartition="_5eo6QAF8Ee-8BduuxxCBkA" target="_qlQOsAF9Ee-8BduuxxCBkA" source="_rlgVUAF-Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_HG_7cAF_Ee-8BduuxxCBkA" target="_vrE5AAF9Ee-8BduuxxCBkA" source="_qlQOsAF9Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Hu-hcAF_Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA" target="_ygGI4AF-Ee-8BduuxxCBkA" source="_vrE5AAF9Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_IeRQYAF_Ee-8BduuxxCBkA" name="No" inPartition="_10HwUAF8Ee-8BduuxxCBkA" target="_0fl7cAF-Ee-8BduuxxCBkA" source="_ygGI4AF-Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Jd_A8AF_Ee-8BduuxxCBkA" name="Yes" target="_1iW1cAF9Ee-8BduuxxCBkA" source="_ygGI4AF-Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_KIk2EAF_Ee-8BduuxxCBkA" inPartition="_BK5bUAF9Ee-8BduuxxCBkA" target="_20LCoAF9Ee-8BduuxxCBkA" source="_1iW1cAF9Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_I1IbwAGAEe-8BduuxxCBkA" inPartition="_BK5bUAF9Ee-8BduuxxCBkA" target="_GbWg8AGAEe-8BduuxxCBkA" source="_20LCoAF9Ee-8BduuxxCBkA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_VkId8AGAEe-8BduuxxCBkA" inPartition="_BK5bUAF9Ee-8BduuxxCBkA" target="_NqMGMAGAEe-8BduuxxCBkA" source="_GbWg8AGAEe-8BduuxxCBkA"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_10HwUAF8Ee-8BduuxxCBkA" name="DataConsumerBeforeContract" node="_WE8MUAF9Ee-8BduuxxCBkA _dfpDUAF9Ee-8BduuxxCBkA _vrE5AAF9Ee-8BduuxxCBkA _P6sbIAF-Ee-8BduuxxCBkA _TyrZUAF-Ee-8BduuxxCBkA _Zov00AF-Ee-8BduuxxCBkA _bkH8YAF-Ee-8BduuxxCBkA _ygGI4AF-Ee-8BduuxxCBkA _0fl7cAF-Ee-8BduuxxCBkA" edge="_3w234AF-Ee-8BduuxxCBkA _6T3AIAF-Ee-8BduuxxCBkA _8oRSwAF-Ee-8BduuxxCBkA __sX88AF-Ee-8BduuxxCBkA _A0pzoAF_Ee-8BduuxxCBkA _B8ovYAF_Ee-8BduuxxCBkA _Hu-hcAF_Ee-8BduuxxCBkA _IeRQYAF_Ee-8BduuxxCBkA">
+        <subpartition xmi:type="uml:ActivityPartition" xmi:id="_BK5bUAF9Ee-8BduuxxCBkA" name="DataConsumerAfterContract" node="_1iW1cAF9Ee-8BduuxxCBkA _20LCoAF9Ee-8BduuxxCBkA _GbWg8AGAEe-8BduuxxCBkA" edge="_KIk2EAF_Ee-8BduuxxCBkA _I1IbwAGAEe-8BduuxxCBkA _VkId8AGAEe-8BduuxxCBkA"/>
+      </group>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_5eo6QAF8Ee-8BduuxxCBkA" name="DataOwner" node="_lAPG8AF9Ee-8BduuxxCBkA _nBLD8AF9Ee-8BduuxxCBkA _qlQOsAF9Ee-8BduuxxCBkA _qC1osAF-Ee-8BduuxxCBkA _rlgVUAF-Ee-8BduuxxCBkA" edge="_EfJIYAF_Ee-8BduuxxCBkA _FRvC8AF_Ee-8BduuxxCBkA _Fz4twAF_Ee-8BduuxxCBkA _GbcdAAF_Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_Q07EMAF9Ee-8BduuxxCBkA" name="" outgoing="_22Q34AF-Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_WE8MUAF9Ee-8BduuxxCBkA" name="Look for suitable data" incoming="_3w234AF-Ee-8BduuxxCBkA" outgoing="_6T3AIAF-Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_dfpDUAF9Ee-8BduuxxCBkA" name="Contact DataOwner for contract" incoming="_8oRSwAF-Ee-8BduuxxCBkA" outgoing="_D8B0QAF_Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_lAPG8AF9Ee-8BduuxxCBkA" name="Recieve notification of DataConsumer interest" incoming="_D8B0QAF_Ee-8BduuxxCBkA" outgoing="_EfJIYAF_Ee-8BduuxxCBkA" inPartition="_5eo6QAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_nBLD8AF9Ee-8BduuxxCBkA" name="Look into DataConsumers attributes" incoming="_EfJIYAF_Ee-8BduuxxCBkA" outgoing="_FRvC8AF_Ee-8BduuxxCBkA" inPartition="_5eo6QAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_qlQOsAF9Ee-8BduuxxCBkA" name="Send data and contract to DataConsumer" incoming="_GbcdAAF_Ee-8BduuxxCBkA" outgoing="_HG_7cAF_Ee-8BduuxxCBkA" inPartition="_5eo6QAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_vrE5AAF9Ee-8BduuxxCBkA" name="Recieve data and contract" incoming="_HG_7cAF_Ee-8BduuxxCBkA" outgoing="_Hu-hcAF_Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_1iW1cAF9Ee-8BduuxxCBkA" name="Read data" incoming="_Jd_A8AF_Ee-8BduuxxCBkA" outgoing="_KIk2EAF_Ee-8BduuxxCBkA" inPartition="_BK5bUAF9Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_20LCoAF9Ee-8BduuxxCBkA" name="Modify data" incoming="_KIk2EAF_Ee-8BduuxxCBkA" outgoing="_I1IbwAGAEe-8BduuxxCBkA" inPartition="_BK5bUAF9Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:MergeNode" xmi:id="_P6sbIAF-Ee-8BduuxxCBkA" name="MergeNode1" incoming="_22Q34AF-Ee-8BduuxxCBkA _A0pzoAF_Ee-8BduuxxCBkA" outgoing="_3w234AF-Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_TyrZUAF-Ee-8BduuxxCBkA" name="Data found?" incoming="_6T3AIAF-Ee-8BduuxxCBkA" outgoing="_8oRSwAF-Ee-8BduuxxCBkA __sX88AF-Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_Zov00AF-Ee-8BduuxxCBkA" name="Look again?" incoming="__sX88AF-Ee-8BduuxxCBkA" outgoing="_A0pzoAF_Ee-8BduuxxCBkA _B8ovYAF_Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_bkH8YAF-Ee-8BduuxxCBkA" name="Stop1" incoming="_B8ovYAF_Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_qC1osAF-Ee-8BduuxxCBkA" name="Stop2" incoming="_Fz4twAF_Ee-8BduuxxCBkA" inPartition="_5eo6QAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_rlgVUAF-Ee-8BduuxxCBkA" name="Attributes sufficient?" incoming="_FRvC8AF_Ee-8BduuxxCBkA" outgoing="_Fz4twAF_Ee-8BduuxxCBkA _GbcdAAF_Ee-8BduuxxCBkA" inPartition="_5eo6QAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_ygGI4AF-Ee-8BduuxxCBkA" name="Accept contract?" incoming="_Hu-hcAF_Ee-8BduuxxCBkA" outgoing="_IeRQYAF_Ee-8BduuxxCBkA _Jd_A8AF_Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_0fl7cAF-Ee-8BduuxxCBkA" name="Stop3" incoming="_IeRQYAF_Ee-8BduuxxCBkA" inPartition="_10HwUAF8Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_GbWg8AGAEe-8BduuxxCBkA" name="Log modification" incoming="_I1IbwAGAEe-8BduuxxCBkA" outgoing="_VkId8AGAEe-8BduuxxCBkA" inPartition="_BK5bUAF9Ee-8BduuxxCBkA"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_NqMGMAGAEe-8BduuxxCBkA" name="Stop4" incoming="_VkId8AGAEe-8BduuxxCBkA"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_tpDMUAF8Ee-8BduuxxCBkA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tpG2sAF8Ee-8BduuxxCBkA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec/umlsec4ids#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/umlsec4ids.uml#_8Kno0CrOEe2IEZY6UiCIqg"/>
+    </profileApplication>
+  </uml:Model>
+  <umlsec4ids:datausagecontrol xmi:id="__oyoAAF_Ee-8BduuxxCBkA" base_ActivityPartition="_BK5bUAF9Ee-8BduuxxCBkA" permission="_1iW1cAF9Ee-8BduuxxCBkA _20LCoAF9Ee-8BduuxxCBkA _GbWg8AGAEe-8BduuxxCBkA" obligation_start="_20LCoAF9Ee-8BduuxxCBkA" obligation_stop="_GbWg8AGAEe-8BduuxxCBkA"/>
+</xmi:XMI>

@@ -7,7 +7,7 @@
  *
  * Contributors:
  *    {SecSE group} - initial API and implementation and/or initial documentation
- *    
+ *
  * This class includes code fragments of <code>org.eclipse.ui.dialogs.ListSelectionDialog</code>.
  * @see ListSelectionDialog
  *******************************************************************************/
@@ -59,12 +59,12 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 	 * List of recommended checks.
 	 */
 	List<CheckDescriptor> recommendedChecks = null;
-	
+
 	/**
 	 * Label string.
 	 */
 	private static final String SELECT_ALL = "Select all";
-	
+
 	/**
 	 * Label string.
 	 */
@@ -79,12 +79,12 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
      * Providers for populating this dialog.
      */
     private ILabelProvider labelProvider;
-    
+
     /**
      * Content provider given by calling class.
      */
     private IStructuredContentProvider contentProvider;
-    
+
     /**
      * Button to select the recommended checks.
      */
@@ -99,7 +99,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
      * Sizing constant.
      */
     private static final int SIZING_SELECTION_WIDGET_HEIGHT = 250;
-    
+
     /**
      * Sizing constant.
      */
@@ -107,7 +107,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 
     /**
      * Constructor. Creates a list selection dialog.
-     * 
+     *
      * @param parentShell the parent shell
      * @param input	the root element to populate this dialog with
      * @param contentProvider the content provider for navigating the model
@@ -127,19 +127,19 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
         if (message != null) {
 			setMessage(message);
 		} else {
-			setMessage("Select the items"); 
-		} 
+			setMessage("Select the items");
+		}
     }
-   
+
     /**
      * Add the selection and deselection buttons to the dialog.
-     * 
+     *
      * @param composite org.eclipse.swt.widgets.Composite
      */
     private void addSelectionButtons(final Composite composite) {
         Composite buttonComposite = new Composite(composite, SWT.NONE);
         GridLayout layout = new GridLayout();
-        layout.numColumns = 3;  
+        layout.numColumns = 3;
 		layout.marginWidth = 0;
 		layout.horizontalSpacing = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_SPACING);
         buttonComposite.setLayout(layout);
@@ -150,7 +150,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 		this.recommendedChecksButton.setText("Select recommended checks");
 		//setRecommendedChecks(recommendedChecks, true);	// remove comment to initially add the checked Checks to the recommendChecks-List
 		this.recommendedChecksButton.setSelection(false);		// set this on true to initially check the recommendedChecks
-		
+
 		this.recommendedChecksButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
@@ -163,10 +163,10 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 				}
 			}
 		});
-        
+
         Button selectButton = createButton(buttonComposite,
-                IDialogConstants.SELECT_ALL_ID, SELECT_ALL, false); 
- 
+                IDialogConstants.SELECT_ALL_ID, SELECT_ALL, false);
+
         SelectionListener listener = new SelectionAdapter() {
             @Override
 			public void widgetSelected(final SelectionEvent e) {
@@ -179,7 +179,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
         Button deselectButton = createButton(buttonComposite,
                 IDialogConstants.DESELECT_ALL_ID, DESELECT_ALL, false);
         deselectButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL, GridData.VERTICAL_ALIGN_FILL, false, false));
-        
+
         listener = new SelectionAdapter() {
             @Override
 			public void widgetSelected(final SelectionEvent e) {
@@ -190,18 +190,18 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
     }
 
     /**
-     * Visually checks the previously-specified elements in this dialog's list 
+     * Visually checks the previously-specified elements in this dialog's list
      * viewer.
      */
     private void checkInitialSelections() {
     	for (Object obj : getInitialElementSelections()) {
-			this.listViewer.setChecked(obj, true);    		
+			this.listViewer.setChecked(obj, true);
     	}
     }
-    
+
     /**
      * Sets the shell of the super class to the parameter shell.
-     * 
+     *
      * @param shell Shell
      */
     @Override
@@ -212,7 +212,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 
     /**
      * Creates the dialog area.
-     * 
+     *
      * @param parent the Composite
      * @return Control
      */
@@ -220,9 +220,9 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 	protected final Control createDialogArea(final Composite parent) {
         Composite composite = (Composite) super.createDialogArea(parent);
         parent.getShell().setMinimumSize(450, 450);
-        
+
         initializeDialogUnits(composite);
-        
+
         createMessageArea(composite);
 
         this.listViewer = CheckboxTableViewer.newCheckList(composite, SWT.BORDER);
@@ -237,9 +237,9 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
         addSelectionButtons(composite);
 
         initializeViewer();
-        
+
         if (this.recommendedChecksButton.getSelection()
-        		&& (this.recommendedChecks != null 
+        		&& (this.recommendedChecks != null
         		&& this.recommendedChecks.size() > 0)) {
 	        setInitialSelections(this.recommendedChecks.toArray());
         }
@@ -247,26 +247,26 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 			checkInitialSelections();
 		}
         Dialog.applyDialogFont(composite);
-        
+
         this.listViewer.addDoubleClickListener(new IDoubleClickListener() {
 			@Override
 			public void doubleClick(final DoubleClickEvent event) {
 				Object selection = ((IStructuredSelection) AdfEditorCheckSelectionDialog.this.listViewer.getSelection()).getFirstElement();
 				if (selection != null) {
 					boolean state = AdfEditorCheckSelectionDialog.this.listViewer.getChecked(selection);
-					state = state ^ true; // XOR swaps
+					state = !state; // XOR swaps
 					AdfEditorCheckSelectionDialog.this.listViewer.setChecked(selection, state);
 					AdfEditorCheckSelectionDialog.this.listViewer.refresh();
 				}
 			}
 		});
-        
+
         return composite;
     }
 
     /**
      * Returns the viewer used to show the list.
-     * 
+     *
      * @return the viewer, or <code>null</code> if not yet created
      */
     protected final CheckboxTableViewer getViewer() {
@@ -281,21 +281,20 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
     }
 
     /**
-     * The <code>ListSelectionDialog</code> implementation of this 
+     * The <code>ListSelectionDialog</code> implementation of this
      * <code>Dialog</code> method builds a list of the selected elements for later
      * retrieval by the client and closes this dialog.
      */
     @Override
 	protected final void okPressed() {
-    	
+
         // Get the input children.
         Object[] children = this.contentProvider.getElements(this.inputElements);
 
         // Build a list of selected children.
         if (children != null) {
             ArrayList<CheckDescriptor> list = new ArrayList<>();
-            for (int i = 0; i < children.length; ++i) {
-                Object element = children[i];
+            for (Object element : children) {
                 if (this.listViewer.getChecked(element)) {
 					list.add((CheckDescriptor) element);
 				}
@@ -305,7 +304,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 
         super.okPressed();
     }
-    
+
     /**
      * Nested Class: Content Provider.
      */
@@ -338,12 +337,12 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 
 		@Override
 		public Object[] getElements(final Object inputElement) {
-						
-			if ((inputElement != null) 
+
+			if ((inputElement != null)
 					&& (inputElement instanceof Object[])) {
 				return (Object[]) inputElement;
 			}
-			
+
 			Object[] inputs = new Object[CarismaGUI.getCheckRegistry()
 					.getRegisteredChecks().size()];
 			for (int i = 0; i < CarismaGUI.getCheckRegistry()
@@ -352,7 +351,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 						.getRegisteredChecks().get(i);
 			}
 			return inputs;
-			
+
 		}
 	}
 
@@ -360,21 +359,21 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
      * Nested Class: Label Provider.
      */
 	static class CheckSelectionLabelProvider implements ILabelProvider {
-		
+
 		/**
 		 * Returns a column text.
-		 * 
-		 * @param obj the object 
+		 *
+		 * @param obj the object
 		 * @param index the index
 		 * @return String the object
 		 */
 		public static String getColumnText(final Object obj, final int index) {
 			return obj.toString();
 		}
-		
+
 		/**
 		 * Returns a column image.
-		 * 
+		 *
 		 * @param obj the object
 		 * @param index the index
 		 * @return the Image
@@ -426,7 +425,7 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 
 	/**
 	 * Fills the list of recommended checks with the given array of checks.
-	 * 
+	 *
 	 * @param newRecommendedChecks an object array of recommended checks
 	 */
 	public final void setRecommendedChecks(final List<CheckDescriptor> newRecommendedChecks) {
@@ -437,10 +436,10 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 		}
 		this.recommendedChecks.addAll(newRecommendedChecks);
 	}
-	
+
 	/**
 	 * Changes the check state of the recommended checks in the list of chosen checks.
-	 * 
+	 *
 	 * @param recommendedChecks an object array of recommended checks
 	 * @param checked boolen
 	 */
@@ -448,13 +447,13 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 		if (recommendedChecks != null) {
 			for (CheckDescriptor descriptor : recommendedChecks) {
 				getViewer().setChecked(descriptor, checked);
-			} 
+			}
 		}
 	}
-	
+
 	/**
 	 * Sorts the input List of CheckDescriptor alphabetically.
-	 * 
+	 *
 	 * @param checkList the unsorted list of checks
 	 * @return Returns a list of checks which is sorted alphabetically
 	 */
@@ -467,5 +466,5 @@ public class AdfEditorCheckSelectionDialog extends SelectionDialog {
 		}
 		return returnObject;
 	}
-	
+
 }

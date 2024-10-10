@@ -12,6 +12,7 @@ package carisma.ui.eclipse.editors;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
@@ -76,15 +77,13 @@ import carisma.ui.eclipse.editors.descriptions.EditorDescriptor;
 import carisma.ui.eclipse.preferences.Constants;
 import carisma.ui.eclipse.preferences.pages.EditorPriorityList;
 
-import java.util.logging.Logger;
-
 /**
  * Structure and behavior of the adf editor GUI.
  */
 public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	private static final Logger logger = Logger.getLogger(AdfEditorMasterDetailsBlock.class.getName());
-	
+
 	/**
 	 * The controller between model (analysis) and view (adf editor).
 	 */
@@ -160,25 +159,25 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 * influence on the validation of the analysis.
 	 */
 	private Listener masterListener;
-	
+
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param controller
 	 *            the corresponding AdfEditorController instance
 	 */
 	public AdfEditorMasterDetailsBlock(final AdfEditorController controller) {
 		this.controller = controller;
 	}
-	
 
 
-	
+
+
 
 	/**
 	 * Constructs the whole GUI of the adf editor.
-	 * 
+	 *
 	 * @param managedForm
 	 *            managedForm for MasterDetailsBlock
 	 * @param parent
@@ -284,7 +283,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * Creates the analysis name text and the corresponding listener.
-	 * 
+	 *
 	 * @param toolkit
 	 *            The FormToolKit where the button is created
 	 * @param composite
@@ -311,7 +310,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	/**
 	 * Creates the model file label, text, the browse button and the
 	 * corresponding listener.
-	 * 
+	 *
 	 * @param toolkit
 	 *            The FormToolKit where the button is created
 	 * @param composite
@@ -414,7 +413,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * Creates the selected editor combo box.
-	 * 
+	 *
 	 * @param toolkit
 	 *            The FormToolKit where the button is created
 	 * @param composite
@@ -495,7 +494,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * Creates the open model button and the corresponding listener.
-	 * 
+	 *
 	 * @param toolkit
 	 *            The FormToolKit where the button is created
 	 * @param composite
@@ -528,7 +527,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * Creates the table viewer.
-	 * 
+	 *
 	 * @param toolkit
 	 *            The FormToolKit where the button is created
 	 * @param composite
@@ -565,7 +564,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 						.getSelection()).getFirstElement();
 				if (selection != null && selection instanceof CheckReference) {
 					boolean state = AdfEditorMasterDetailsBlock.this.viewer.getChecked(selection);
-					state = state ^ true; // XOR swaps
+					state = !state; // XOR swaps
 					AdfEditorMasterDetailsBlock.this.viewer.setChecked(selection, state);
 					AdfEditorMasterDetailsBlock.this.viewer.refresh();
 					AdfEditorMasterDetailsBlock.this.controller.setCheckSelection((CheckReference) selection,
@@ -619,7 +618,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * Creates the add button and the corresponding listener.
-	 * 
+	 *
 	 * @param toolkit
 	 *            The FormToolKit where the button is created
 	 * @param composite
@@ -668,7 +667,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * Creates the delete button and the corresponding listener.
-	 * 
+	 *
 	 * @param toolkit
 	 *            The FormToolKit where the button is created
 	 * @param composite
@@ -691,7 +690,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * Creates the up button and the corresponding listener.
-	 * 
+	 *
 	 * @param toolkit
 	 *            The FormToolKit where the button is created
 	 * @param composite
@@ -724,7 +723,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * Creates the up button and the corresponding listener.
-	 * 
+	 *
 	 * @param toolkit
 	 *            The FormToolKit where the button is created
 	 * @param composite
@@ -758,7 +757,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * Creates the run-button and the corresponding listener.
-	 * 
+	 *
 	 * @param toolkit
 	 *            The FormToolKit where the button is created
 	 * @param composite
@@ -830,7 +829,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	 * Returns true, if the list selection is not equal to the last selection.
 	 * This method also calls other methods to update the enable states of some
 	 * GUI elements and resizes the detail part if necessary.
-	 * 
+	 *
 	 * @return A boolean which indicates if the selection really changed
 	 */
 	boolean listSelectionChanged() {
@@ -929,7 +928,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * Returns true if at least one check is enabled.
-	 * 
+	 *
 	 * @return true when at least one check is enabled
 	 */
 	boolean isOneCheckEnabled() {
@@ -958,7 +957,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 			this.openModel.setEnabled(false);
 			updateSelectedEditorEnableState(false,
 					"The referenced model file is invalid");
-			this.modelFileNameDecoration.show();			
+			this.modelFileNameDecoration.show();
 		}
 	}
 
@@ -1024,7 +1023,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * Dis-/Enables the run button and shows the show problem link if necessary.
-	 * 
+	 *
 	 * @param enableState
 	 *            The new enable state of the run button
 	 */
@@ -1035,7 +1034,7 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 
 	/**
 	 * This method activates or deactivates the editors combo box.
-	 * 
+	 *
 	 * @param active
 	 *            True, if the combo box should be activated, false otherwise
 	 * @param message
@@ -1117,11 +1116,11 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 				if (messageDialog.getReturnCode() == 1) {
 					//set the stored Editor to the default Editor and saves the analysis file
 					setEditorToDefault();
-				}	
+				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Sets the editor for the modeltype to the eclipse default editor.
 	 */
@@ -1142,5 +1141,5 @@ public class AdfEditorMasterDetailsBlock extends MasterDetailsBlock {
 	protected void createToolBarActions(final IManagedForm arg0) {
 		// Auto-generated method stub
 	}
-	
+
 }

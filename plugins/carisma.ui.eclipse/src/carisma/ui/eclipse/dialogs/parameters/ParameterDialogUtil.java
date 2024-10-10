@@ -35,17 +35,17 @@ import carisma.core.checks.CheckDescriptor;
  * Dialog to set the parameters.
  */
 public class ParameterDialogUtil extends Dialog {
-	
+
 	/**
 	 * Constant text for all parameter.
 	 */
 	private static final String DIALOG_TEXT = "Set value for ";
-	
+
 	/**
 	 * The CheckDescriptor.
 	 */
 	private CheckDescriptor checkDescriptor = null;
-	
+
 	//########################################################################################
 	/**
 	 * Constructor.
@@ -64,7 +64,7 @@ public class ParameterDialogUtil extends Dialog {
 	 */
 	public final String queryStringParameter(final StringParameter parameter) {
 		InputDialog id = new InputDialog(super.getShell(), this.checkDescriptor.getName(),
-				DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (STRING)", 
+				DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (STRING)",
 				parameter.getValue(),
 				null);
 		int result = id.open();
@@ -82,7 +82,7 @@ public class ParameterDialogUtil extends Dialog {
 	 */
 	public final float queryFloatParameter(final FloatParameter parameter) {
 		final InputDialog inputDialog;
-		
+
 		IInputValidator inputValidator = new IInputValidator() {
 			@Override
 			public String isValid(final String newText) {
@@ -94,9 +94,9 @@ public class ParameterDialogUtil extends Dialog {
 				}
 			}
 		};
-		
+
 		inputDialog = new InputDialog(super.getShell(), this.checkDescriptor.getName(),
-				DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (FLOAT)", 
+				DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (FLOAT)",
 				String.valueOf(parameter.getValue()),
 				inputValidator);
 		int result = inputDialog.open();
@@ -125,19 +125,19 @@ public class ParameterDialogUtil extends Dialog {
 				}
 			}
 		};
-		
+
 		id = new InputDialog(super.getShell(), this.checkDescriptor.getName(),
 				DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (INTEGER)",
-				String.valueOf(parameter.getValue()), 
+				String.valueOf(parameter.getValue()),
 				iv);
-		
+
 		boolean isANumber = false;
 
 		while (!isANumber) {
 			isANumber = true;
 			int result = id.open();
 			if (result == 1) {		// Cancel
-				return parameter.getValue();	
+				return parameter.getValue();
 			}
 			// OK-Button
 			String value = id.getValue();
@@ -166,12 +166,12 @@ public class ParameterDialogUtil extends Dialog {
 		}
 		MessageDialog md = new MessageDialog(super.getShell(),
 				this.checkDescriptor.getName(), null,
-				DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (BOOLEAN)", 
-				0, 
-				new String[] {"True", "False" }, 
+				DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (BOOLEAN)",
+				0,
+				new String[] {"True", "False" },
 				result);
 		result = md.open();
-		
+
 		return result == 0;
 
 	}
@@ -201,7 +201,7 @@ public class ParameterDialogUtil extends Dialog {
 	 */
 	public final File queryFolderParameter(final FolderParameter parameter) {
 		DirectoryDialog dirDialog = new DirectoryDialog(super.getParentShell());
-		final String folderValue; 
+		final String folderValue;
 		if (parameter.getValue() != null) {
 			folderValue = parameter.getValue().getPath();
 		} else {
@@ -215,7 +215,7 @@ public class ParameterDialogUtil extends Dialog {
 		}
 		return parameter.getValue();
 	}
-	
+
 	/**
 	 * Getter for a OutputFile Parameter.
 	 * @param parameter OutputFile
@@ -226,7 +226,7 @@ public class ParameterDialogUtil extends Dialog {
 		fDialog.setOverwrite(true);
 		fDialog.setText(this.checkDescriptor.getName() + ": " + DIALOG_TEXT + "\"" + parameter.getDescriptor().getName() + "\" (OUTPUTFILE)");
 		String selection;
-		
+
 		if (parameter.getValue() != null) {
 			selection = parameter.getValue().getPath();
 			fDialog.setFileName(selection);

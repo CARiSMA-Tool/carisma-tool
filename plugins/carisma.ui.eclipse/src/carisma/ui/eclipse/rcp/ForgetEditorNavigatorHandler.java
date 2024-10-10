@@ -35,7 +35,7 @@ public class ForgetEditorNavigatorHandler extends ForgetEditorHandler {
 	final ForgetEditorHandler getHandler() {
 		return this.handler;
 	}
-	
+
 	/**
 	 * Synthetic method for access in anonymous class
 	 */

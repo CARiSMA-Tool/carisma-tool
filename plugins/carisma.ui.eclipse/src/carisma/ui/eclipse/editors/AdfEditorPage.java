@@ -18,15 +18,15 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
  * One page of the adf editor.
  */
 public class AdfEditorPage extends FormPage {
-	
+
 	/**
 	 * Adf-MasterDetailsBlock.
 	 */
 	private AdfEditorMasterDetailsBlock block;
-	
+
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param editor the Analysis Editor
 	 * @param controller instance of the AdfEditorController
 	 */
@@ -34,7 +34,7 @@ public class AdfEditorPage extends FormPage {
 		super(editor, "analysisEditor", "Analysis Editor");
 		this.block = new AdfEditorMasterDetailsBlock(controller);
 	}
-		
+
 	@Override
 	protected final void createFormContent(final IManagedForm managedForm) {
 		final ScrolledForm form = managedForm.getForm();

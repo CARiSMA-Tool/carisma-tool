@@ -24,7 +24,7 @@ import carisma.core.analysis.AnalysisUtil;
  *
  */
 public class OpenModelNavigatorHandler extends OpenModelHandler {
-		
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
@@ -33,7 +33,7 @@ public class OpenModelNavigatorHandler extends OpenModelHandler {
 
 		return super.execute(false);
 	}
-	
+
 	/**
 	 * @return the selection file in the navigator.
 	 */
@@ -41,7 +41,7 @@ public class OpenModelNavigatorHandler extends OpenModelHandler {
 	protected final IFile getSelectedFile() {
 		return HandlerUtilz.getSelectedNavigatorFile();
 	}
-	
+
 	@Override
 	public final boolean isEnabled() {
 		IFile selectedFile = getSelectedFile();

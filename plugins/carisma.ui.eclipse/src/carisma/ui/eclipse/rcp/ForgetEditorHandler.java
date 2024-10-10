@@ -43,7 +43,7 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 	 */
 	private IFile selectedFile;
 	/**
-	 * 
+	 *
 	 */
 	private boolean alreadyInstalledSelectionListener = false;
 	/**
@@ -51,9 +51,9 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 	 */
 	private Analysis analysis;
 
-	
+
 	/**
-	 * @return the selected resource in navigator or editor 
+	 * @return the selected resource in navigator or editor
 	 */
 	abstract IFile getSelectedFile();
 	/**
@@ -64,24 +64,24 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 	 * initialize the listeners.
 	 */
 	abstract void installListener();
-	
+
 	/** Getter for alreadyInstalledSelectionListener.
-	 * 
+	 *
 	 * @return the boolean value of alreadyInstalledSelectionListener.
 	 */
 	public final boolean getAlreadyInstalledSelectionListener() {
 	    return this.alreadyInstalledSelectionListener;
 	}
-	
+
 	/** Setter for alreadyInstalledSelectionListener.
-	 * 
+	 *
 	 * @param newValue the new value for alreadyInstalledSelectionListener.
 	 */
 	public final void setAlreadyInstalledSelectionListener(final boolean newValue) {
 	    this.alreadyInstalledSelectionListener = newValue;
 	}
 
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
@@ -107,12 +107,12 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 		this.analysis.setSelectedEditorId(null);
 		fireHandlerChanged(new HandlerEvent(getHandler(), true, false));
 		saveChanges();
-		
+
 		IWorkbenchPage[] pages = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPages();
 
 		for (IWorkbenchPage page : pages) {
 			for (IEditorReference editorRef : page.getEditorReferences()) {
-				if (editorRef != null 
+				if (editorRef != null
 						&& this.selectedFile.getName().equals(editorRef.getName())
 						&& editorRef.getEditor(false) instanceof AdfEditor) {
 					IEditorInput editInput = ((AdfEditor) editorRef.getEditor(false)).getEditorInput();
@@ -125,12 +125,12 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 		}
 
 		return null;
-	
+
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
 	 */
 	/**
@@ -160,7 +160,7 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 	}
 
 
-	
+
 	/**
 	 * save changes to resource.
 	 */
@@ -181,12 +181,12 @@ public abstract class ForgetEditorHandler extends AbstractHandler {
 			AnalysisUtil.storeAnalysis(this.analysis, this.selectedFile.getLocation()
 					.toOSString());
 			// refresh resource
-			
+
 			try {
 				this.selectedFile.refreshLocal(IResource.DEPTH_ZERO, null);
 			} catch (CoreException e) {
 				Logger.log(LogLevel.INFO, "Could not refresh resource");
-			
+
 			}
 		}
 	}

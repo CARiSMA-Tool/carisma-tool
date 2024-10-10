@@ -17,6 +17,7 @@
     <module>deployment/feature.carisma.uml2.evolution</module>
     <module>deployment/feature.carisma.uml2.evolution.checks</module>
     <module>deployment/feature.carisma.uml2.ids.checks</module>
+    <module>deployment/feature.carisma.uml2.odrl.uconcreation</module>
     <module>plugins/carisma.check.activity2petrinet</module>
     <module>plugins/carisma.check.activitypaths</module>
     <module>plugins/carisma.check.bpmn2.dummy</module>
@@ -36,6 +37,7 @@
     <module>plugins/carisma.check.staticcheck.evolution</module>
     <module>plugins/carisma.check.template</module>
     <module>plugins/carisma.check.extension4idschecks</module>
+    <module>plugins/carisma.check.uconpolicycreation</module>
     <module>plugins/carisma.core</module>
     <module>plugins/carisma.evolution</module>
     <module>plugins/carisma.evolution.uml2</module>
@@ -51,6 +53,7 @@
     <module>plugins/carisma.ocl.library</module>
     <module>plugins/carisma.ocl.library.edit</module>
     <module>plugins/carisma.ocl.library.editor</module>
+    <module>plugins/carisma.profile.uconpolicycreation.odrl.common</module>
     <module>plugins/carisma.profile.umlchange</module>
     <module>plugins/carisma.profile.umlsec</module>
     <module>plugins/carisma.profile.umlsec.rabac</module>
@@ -72,6 +75,7 @@
     <module>tests/carisma.check.smartcard.tests</module>
     <module>tests/carisma.check.staticcheck.evolution.tests</module>
     <module>tests/carisma.check.staticcheck.tests</module>
+    <module>tests/carisma.check.uconpolicycreation.tests</module>
     <module>tests/carisma.core.tests</module>
     <module>tests/carisma.evolution.tests</module>
     <module>tests/carisma.evolution.uml2.tests</module>
@@ -95,18 +99,18 @@
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/report-aggregate-module/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths> 
     <!-- Ignore generated code for duplication check -->
-    <sonar.cpd.exclusions>
+    <sonar.exclusions>
     	**/gensrc/**,
     	**/gen-src/**,
     	**/model-gen/**,
     	**/Activator.java
-    </sonar.cpd.exclusions>
+    </sonar.exclusions>
   </properties>
   <repositories> 
     <repository>
-      <id>Eclipse Latest</id>
+      <id>Eclipse 2024-03</id>
       <layout>p2</layout>
-      <url>https://download.eclipse.org/releases/latest</url>
+      <url>https://download.eclipse.org/releases/2024-03</url>
     </repository>
     <repository>
       <id>2023-06 Update Site</id>

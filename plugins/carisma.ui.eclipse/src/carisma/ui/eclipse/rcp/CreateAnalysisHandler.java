@@ -21,9 +21,9 @@ public class CreateAnalysisHandler extends AbstractHandler {
 	@Override
 	public final Object execute(final ExecutionEvent event) throws ExecutionException {
 		String name = "";
-		IFile selectedFile = HandlerUtilz.getSelectedNavigatorFile(); 
+		IFile selectedFile = HandlerUtilz.getSelectedNavigatorFile();
 		if (selectedFile != null) {
-			String ext = "." + selectedFile.getFileExtension();			
+			String ext = "." + selectedFile.getFileExtension();
 			name = selectedFile.getName().substring(0, selectedFile.getName().indexOf(ext));
 			String file = selectedFile.getLocation().toString().substring(0, selectedFile.getLocation().toString().indexOf(ext));
 			file = Utils.incrementFileNameIfNecessary(file + "_analysis.adf");
@@ -52,7 +52,7 @@ public class CreateAnalysisHandler extends AbstractHandler {
 
 		return null;
 	}
-	
+
 	/**
 	 * Writes the initiale plugin-list to file.
 	 * @param analyseName The name of the analysis
@@ -70,7 +70,7 @@ public class CreateAnalysisHandler extends AbstractHandler {
 		}
 		Analysis analysis = new Analysis(analyseName, type.getName(), modelFile);
 		AnalysisUtil.storeAnalysis(analysis, analyseFile);
-		return true;	
+		return true;
 	}
 
 }

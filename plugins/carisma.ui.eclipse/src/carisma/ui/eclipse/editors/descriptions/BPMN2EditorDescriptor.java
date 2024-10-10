@@ -8,19 +8,19 @@ import carisma.ui.eclipse.editors.AbstractEditorDescriptor;
 import carisma.ui.eclipse.preferences.Constants;
 
 
-/**Replaced with carisma.ui.eclipse.descriptor 
- * 
+/**Replaced with carisma.ui.eclipse.descriptor
+ *
  * Extends the AbstractEditorDescriptor for BPNM2 Visual Editor.
  */
 @Deprecated
 public class BPMN2EditorDescriptor extends AbstractEditorDescriptor {
-	
+
 	/**
 	 * Getter for the EditorDescriptor name.
 	 * @return the name of the descriptor
 	 */
 	public static final String NAME = "BPMN_EDITOR";
-	
+
 	@Override
 	public final String getName() {
 		return NAME;
@@ -33,7 +33,7 @@ public class BPMN2EditorDescriptor extends AbstractEditorDescriptor {
 
 	@Override
 	public final boolean isApplicable(final IFile modelIFile) {
-		if (modelIFile != null 
+		if (modelIFile != null
 				&& (modelIFile.getFileExtension().equalsIgnoreCase("bpmn2") ||
 						modelIFile.getFileExtension().equalsIgnoreCase("bpmn"))
 				&& modelIFile.exists()) {
@@ -45,25 +45,25 @@ public class BPMN2EditorDescriptor extends AbstractEditorDescriptor {
 	@Override
 	public void setName(String name) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setID(String id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setTypes(List<String> types) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setExtension(String extension) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

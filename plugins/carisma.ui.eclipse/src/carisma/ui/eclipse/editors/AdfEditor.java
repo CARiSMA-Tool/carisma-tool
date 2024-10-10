@@ -31,24 +31,24 @@ import carisma.core.logging.Logger;
  * This class represents frontend to modify the analysis parameter and checks.
  */
 public class AdfEditor extends FormEditor {
-		
+
 	public static final String EXTENSION_ID = "carisma.ui.eclipse.editors.AdfEditor";
-	
+
 	/**
 	 * Corresponding analysis.
 	 */
 	private Analysis analysis;
-	
+
 	/**
 	 * Corresponding instance of the AdfEditorController.
 	 */
 	private AdfEditorController controller;
-	
+
 	/**
 	 * Dirty state of the editor.
 	 */
 	private boolean dirty;
-		
+
 	/**
 	 * Constructor.
 	 */
@@ -57,19 +57,19 @@ public class AdfEditor extends FormEditor {
 		this.dirty = false;
 		this.controller = new AdfEditorController(this, this.analysis);
 	}
-	
+
 	/**
 	 * Returns the corresponding analysis.
-	 * 
+	 *
 	 * @return the analysis
 	 */
 	protected final AdfEditorController getController() {
 		return this.controller;
 	}
-		
+
 	/**
 	 * Need to set the EditorInput explicit when pages are switched
-	 * otherwise it is not working when more than one file(model) is opened and changed. 
+	 * otherwise it is not working when more than one file(model) is opened and changed.
 	 */
 	@Override
 	protected final void initializePageSwitching() {
@@ -78,9 +78,9 @@ public class AdfEditor extends FormEditor {
 		setInputWithNotify(editorInput);
 	}
 
-	/** 
-	 * Adds current AdfEditor to new page.  
-	 */	
+	/**
+	 * Adds current AdfEditor to new page.
+	 */
 	@Override
 	protected final void addPages() {
 		try {
@@ -90,10 +90,10 @@ public class AdfEditor extends FormEditor {
 			Logger.log(LogLevel.ERROR, "could not add page!", e);
 		}
 	}
-	
-	/** 
+
+	/**
 	 * Saves current page.
-	 * 
+	 *
 	 * @param arg0 the corresponding IProgressMonitor
 	 */
 	@Override
@@ -103,8 +103,8 @@ public class AdfEditor extends FormEditor {
 	}
 
 
-	/** 
-	 * Saves current page with another name and/or at another location.  
+	/**
+	 * Saves current page with another name and/or at another location.
 	 */
 	@Override
 	public final void doSaveAs() {
@@ -124,20 +124,20 @@ public class AdfEditor extends FormEditor {
 			}
 		}
 	}
-	
-	/** 
+
+	/**
 	 * Returns the dirty-state of this AdfEditor.
-	 * 
+	 *
 	 * @return the dirty-state
 	 */
 	@Override
 	public final boolean isSaveAsAllowed() {
 		return isDirty();
 	}
-	
+
 	/**
-	 * Loads the analysis for selected file. 
-	 * 
+	 * Loads the analysis for selected file.
+	 *
 	 * @return the loaded analysis instance
 	 */
 	protected final Analysis loadAnalysis() {
@@ -148,7 +148,7 @@ public class AdfEditor extends FormEditor {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Saves the analysis to file.
 	 */
@@ -163,9 +163,9 @@ public class AdfEditor extends FormEditor {
 			Logger.log(LogLevel.ERROR, "could not refresh resource", e);
 		}
 	}
-	
+
 	protected final void saveAutomaticAnalysis(Analysis ana){
-	
+
 		IFile file = ana.getIFile();
 		AnalysisUtil.storeAnalysis(this.analysis, file.getLocation().toOSString());
 		// refresh resources
@@ -176,10 +176,10 @@ public class AdfEditor extends FormEditor {
 			Logger.log(LogLevel.ERROR, "could not refresh resource", e);
 		}
 	}
-	
-	/** 
+
+	/**
 	 * Sets editor's dirty-state.
-	 * 
+	 *
 	 * @param newDirty the new dirty-state of the editor
 	 **/
 	protected final void setDirty(final boolean newDirty) {
@@ -188,14 +188,14 @@ public class AdfEditor extends FormEditor {
 			super.editorDirtyStateChanged();
 		}
 	}
-	
-	/** 
+
+	/**
 	 * Returns the dirty-state of this AdfEditor.
-	 * 
+	 *
 	 * @return the dirty-state
 	 */
 	@Override
 	public final boolean isDirty() {
 		return this.dirty;
-	}	
+	}
 }

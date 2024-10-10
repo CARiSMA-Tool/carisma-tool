@@ -28,10 +28,10 @@ public class OpenModelWithNavigatorHandler extends OpenModelHandler {
 
 		return super.execute(true);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see carisma.core.rcp.OpenModelHandler#getSelectedFile()
 	 */
 	@Override

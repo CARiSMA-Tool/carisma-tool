@@ -15,19 +15,19 @@ import carisma.core.logging.Logger;
  *
  */
 public final class HandlerUtilz {
-	
+
 	/** hide default constructor.
-	 * 
+	 *
 	 */
 	private HandlerUtilz() {
-		
+
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	/**
 	 * @return the selection file in the navigator.
 	 */
@@ -39,14 +39,14 @@ public final class HandlerUtilz {
 			return (IFile) structuredSelection.getFirstElement();
 		} catch (NullPointerException npe) {
 			Logger.log(LogLevel.INFO, "No resource selected");
-		}	
+		}
 		return null;
 	}
-	
-	/** 
+
+	/**
 	 * @return the file in opened in the activated editor.
 	 */
-	public static IFile getSelectedEditorFile() { 
+	public static IFile getSelectedEditorFile() {
 		IWorkbenchPage page = org.eclipse.ui.PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 	    try {
 	    	FileEditorInput editorInput = (FileEditorInput) page.getActiveEditor().getEditorInput();
@@ -54,7 +54,7 @@ public final class HandlerUtilz {
 	    } catch (NullPointerException npe) {
 	    	// do nothing
 	    	Logger.log(LogLevel.INFO, "No resource selected");
-	    }    	
+	    }
 		return null;
 	}
 }

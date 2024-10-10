@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ODRLCommonVocabulary" nsURI="http:///ODRLCommonVocabulary.ecore"
+    nsPrefix="ODRLCommonVocabulary">
+  <eClassifiers xsi:type="ecore:EClass" name="ODRLPolicy">
+    <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details key="originalName" value="ODRL-Policy"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Nach aktuellem Stand wird das gleichzeitige Anwenden von mehreren ODRL-Profilen mit separat erstellten UML-Profilen nicht möglich sein, da die enumerations der Profile nicht zusammengeführt werden können.&#xD;&#xA;Profiles-Attribut gegebenenfalls als String in das entsprechende UML-Profil schreiben"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Activity" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Activity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conflictStrategy" ordered="false"
+        eType="#//ConflictStrategy" defaultValueLiteral="Null"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="policyType" ordered="false"
+        eType="#//PolicyType" defaultValueLiteral="Null"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="profiles" ordered="false"
+        upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="inheritsFrom" ordered="false"
+        upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ConflictStrategy">
+    <eLiterals name="Null"/>
+    <eLiterals name="Permit" value="1"/>
+    <eLiterals name="Prohibit" value="2"/>
+    <eLiterals name="Void_Policy" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PolicyType">
+    <eLiterals name="Null"/>
+    <eLiterals name="Agreement" value="1"/>
+    <eLiterals name="Assertion" value="2"/>
+    <eLiterals name="Offer" value="3"/>
+    <eLiterals name="Privacy" value="4"/>
+    <eLiterals name="Request" value="5"/>
+    <eLiterals name="Set" value="6"/>
+    <eLiterals name="Ticket" value="7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rule" abstract="true" eSuperTypes="#//ConstrainableElement #//RefinableElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Die Attribute mit DatyType-Typ haben im Diagramm eine Darstellung, die sehr viel Platz wegnimmt und für einen Betrachter nicht hilfreich ist.&#xD;&#xA;Entsprechende Attribute müssen mit einem CSS-Stylesheet versteckt werden."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Action" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="involvedParties" ordered="false"
+        upperBound="-1" eType="#//PartyFunction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" ordered="false"
+        lowerBound="1" eType="#//Action" defaultValueLiteral="Null"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RefinableElement" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Statt Vererbung der Attribute an bestimmte Stereotypen direkte Anwendung im Diagramm ?"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refinement" ordered="false"
+        eType="#//LogicalConstraint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LogicalConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="logicalOperator" ordered="false"
+        eType="#//LogicalOperator" defaultValueLiteral="Null"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" lowerBound="1"
+        upperBound="-1" eType="#//Constraint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LogicalOperator">
+    <eLiterals name="Null"/>
+    <eLiterals name="and" value="1"/>
+    <eLiterals name="andSequence" value="2"/>
+    <eLiterals name="or" value="3"/>
+    <eLiterals name="xone" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="leftOperand" ordered="false"
+        lowerBound="1" eType="#//LeftOperand" defaultValueLiteral="Null"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" ordered="false"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" ordered="false"
+        lowerBound="1" eType="#//ConstraintOperator" defaultValueLiteral="Null"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rightOperand" ordered="false"
+        upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rightOperandReference"
+        ordered="false" upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" ordered="false"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LeftOperand">
+    <eLiterals name="Null"/>
+    <eLiterals name="absoluteSize" value="1"/>
+    <eLiterals name="absoluteSpatialPosition" value="2"/>
+    <eLiterals name="absoluteTemporalPosition" value="3"/>
+    <eLiterals name="count" value="4"/>
+    <eLiterals name="dateTime" value="5"/>
+    <eLiterals name="delayPeriod" value="6"/>
+    <eLiterals name="deliveryChannel" value="7"/>
+    <eLiterals name="device" value="8"/>
+    <eLiterals name="elapsedTime" value="9"/>
+    <eLiterals name="event" value="10"/>
+    <eLiterals name="fileFormat" value="11"/>
+    <eLiterals name="industry" value="12"/>
+    <eLiterals name="language" value="13"/>
+    <eLiterals name="media" value="14"/>
+    <eLiterals name="meteredTime" value="15"/>
+    <eLiterals name="payAmount" value="16"/>
+    <eLiterals name="percentage" value="17"/>
+    <eLiterals name="product" value="18"/>
+    <eLiterals name="purpose" value="19"/>
+    <eLiterals name="recipient" value="20"/>
+    <eLiterals name="relativePosition" value="21"/>
+    <eLiterals name="relativeSize" value="22"/>
+    <eLiterals name="relativeSpatialPosition" value="23"/>
+    <eLiterals name="relativeTemporalPosition" value="24"/>
+    <eLiterals name="resolution" value="25"/>
+    <eLiterals name="spatial" value="26"/>
+    <eLiterals name="spatialCoordinates" value="27"/>
+    <eLiterals name="system" value="28"/>
+    <eLiterals name="systemDevice" value="29"/>
+    <eLiterals name="timeInterval" value="30"/>
+    <eLiterals name="unitOfCount" value="31"/>
+    <eLiterals name="version" value="32"/>
+    <eLiterals name="virtualLocation" value="33"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ConstraintOperator">
+    <eLiterals name="Null"/>
+    <eLiterals name="eq" value="1"/>
+    <eLiterals name="gt" value="2"/>
+    <eLiterals name="gteq" value="3"/>
+    <eLiterals name="hasPart" value="4"/>
+    <eLiterals name="isA" value="5"/>
+    <eLiterals name="isAllOf" value="6"/>
+    <eLiterals name="isAnyOf" value="7"/>
+    <eLiterals name="isNoneOf" value="8"/>
+    <eLiterals name="isPartOf" value="9"/>
+    <eLiterals name="lt" value="10"/>
+    <eLiterals name="lteq" value="11"/>
+    <eLiterals name="neq" value="12"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstrainableElement" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Statt Vererbung der Attribute an bestimmte Stereotypen direkte Anwendung im Diagramm ?"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" ordered="false"
+        eType="#//LogicalConstraint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PartyFunction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" lowerBound="1"
+        eType="#//PartyFunctionType" defaultValueLiteral="Null"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="party" ordered="false"
+        lowerBound="1" eType="#//Party"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PartyFunctionType">
+    <eLiterals name="Null"/>
+    <eLiterals name="assignee" value="1"/>
+    <eLiterals name="assigner" value="2"/>
+    <eLiterals name="attributedParty" value="3"/>
+    <eLiterals name="attributingParty" value="4"/>
+    <eLiterals name="compensatedParty" value="5"/>
+    <eLiterals name="compensatingParty" value="6"/>
+    <eLiterals name="consentedParty" value="7"/>
+    <eLiterals name="consentingParty" value="8"/>
+    <eLiterals name="contractedParty" value="9"/>
+    <eLiterals name="contractingParty" value="10"/>
+    <eLiterals name="informedParty" value="11"/>
+    <eLiterals name="informingParty" value="12"/>
+    <eLiterals name="trackedParty" value="13"/>
+    <eLiterals name="trackingParty" value="14"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Party">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Party erbt im ODRL-Vokabular von einigen verschiedenen externen Klassen mit vielen verschiedenen Attributen.&#xD;&#xA;Diese werden hier erstmal nicht beachtet."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_ActivityPartition"
+        ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Action">
+    <eLiterals name="Null"/>
+    <eLiterals name="cc_Attribution" value="1"/>
+    <eLiterals name="cc_CommercialUse" value="2"/>
+    <eLiterals name="cc_DerivativeWorks" value="3"/>
+    <eLiterals name="cc_Distribution" value="4"/>
+    <eLiterals name="cc_Notice" value="5"/>
+    <eLiterals name="cc_Reproduction" value="6"/>
+    <eLiterals name="cc_ShareAlike" value="7"/>
+    <eLiterals name="cc_Sharing" value="8"/>
+    <eLiterals name="cc_SourceCode" value="9"/>
+    <eLiterals name="acceptTracking" value="10"/>
+    <eLiterals name="aggregate" value="11"/>
+    <eLiterals name="annotate" value="12"/>
+    <eLiterals name="anonymize" value="13"/>
+    <eLiterals name="archive" value="14"/>
+    <eLiterals name="attribute" value="15"/>
+    <eLiterals name="compensate" value="16"/>
+    <eLiterals name="concurrentUse" value="17"/>
+    <eLiterals name="delete" value="18"/>
+    <eLiterals name="derive" value="19"/>
+    <eLiterals name="digitize" value="20"/>
+    <eLiterals name="display" value="21"/>
+    <eLiterals name="distribute" value="22"/>
+    <eLiterals name="ensureExclusivity" value="23"/>
+    <eLiterals name="execute" value="24"/>
+    <eLiterals name="extract" value="25"/>
+    <eLiterals name="give" value="26"/>
+    <eLiterals name="grantUse" value="27"/>
+    <eLiterals name="include" value="28"/>
+    <eLiterals name="index" value="29"/>
+    <eLiterals name="inform" value="30"/>
+    <eLiterals name="install" value="31"/>
+    <eLiterals name="modify" value="32"/>
+    <eLiterals name="move" value="33"/>
+    <eLiterals name="nextPolicy" value="34"/>
+    <eLiterals name="obtainConsent" value="35"/>
+    <eLiterals name="play" value="36"/>
+    <eLiterals name="present" value="37"/>
+    <eLiterals name="print" value="38"/>
+    <eLiterals name="read" value="39"/>
+    <eLiterals name="reproduce" value="40"/>
+    <eLiterals name="reviewPolicy" value="41"/>
+    <eLiterals name="sell" value="42"/>
+    <eLiterals name="stream" value="43"/>
+    <eLiterals name="synchronize" value="44"/>
+    <eLiterals name="textToSpeech" value="45"/>
+    <eLiterals name="transfer" value="46"/>
+    <eLiterals name="transform" value="47"/>
+    <eLiterals name="translate" value="48"/>
+    <eLiterals name="uninstall" value="49"/>
+    <eLiterals name="use" value="50"/>
+    <eLiterals name="watermark" value="51"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Permission" eSuperTypes="#//Rule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="duties" ordered="false"
+        upperBound="-1" eType="#//Duty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Duty" eSuperTypes="#//Rule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consequences" ordered="false"
+        upperBound="-1" eType="#//Duty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Prohibition" eSuperTypes="#//Rule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="remedies" ordered="false"
+        upperBound="-1" eType="#//Duty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Asset">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Pin" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Pin"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uid" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssetCollection" eSuperTypes="#//Asset #//RefinableElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" ordered="false"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PartyCollection" eSuperTypes="#//Party #//RefinableElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" ordered="false"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+</ecore:EPackage>

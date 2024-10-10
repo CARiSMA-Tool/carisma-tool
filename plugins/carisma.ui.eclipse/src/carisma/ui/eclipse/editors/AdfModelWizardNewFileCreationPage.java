@@ -12,8 +12,8 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import carisma.ui.eclipse.CarismaGUI;
 
 /**
- * Class for creating the new ADF File. This class overwrites the WizardNewFileCreationPage 
- * and is similar to it, but this page also converts the returned filename into an IFile 
+ * Class for creating the new ADF File. This class overwrites the WizardNewFileCreationPage
+ * and is similar to it, but this page also converts the returned filename into an IFile
  * @see WizardNewFileCreationPage
  */
 public class AdfModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
@@ -37,14 +37,14 @@ public class AdfModelWizardNewFileCreationPage extends WizardNewFileCreationPage
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), CarismaGUI.PLUGIN_ID + "." + AdfModelWizard.ADFWIZARDCONTEXTID);
 		setPageComplete(validatePage());
 	}
-	
+
 	@Override
 	protected final void createAdvancedControls(final Composite parent) {
 		Composite emptyComposite = new Composite(parent, SWT.NONE);
 		super.createAdvancedControls(emptyComposite);
 		emptyComposite.setVisible(false);
 	}
-			
+
 	/**
 	 * @return the IFile of the choosen model filename
 	 */
@@ -52,15 +52,15 @@ public class AdfModelWizardNewFileCreationPage extends WizardNewFileCreationPage
 		return ResourcesPlugin.getWorkspace().getRoot()
 				.getFile(getContainerFullPath().append(getFileName()));
 	}
-	
+
 	@Override
 	protected final boolean validatePage() {
 		if (!super.validatePage()) {
 			return false;
 		}
-		
+
 		String filename = super.getFileName();
-		
+
 		// file name contains a dot
 		if (filename.contains(".")) {
 			setErrorMessage("Filename contains invalid dot character");
@@ -76,16 +76,16 @@ public class AdfModelWizardNewFileCreationPage extends WizardNewFileCreationPage
 			setErrorMessage("Filename begins (a) with whitespace(s)");
 			return false;
 		}
-		
+
 		setErrorMessage(null);
 		return true;
 	}
-	
+
 	@Override
 	public final void performHelp() {
 		PlatformUI.getWorkbench().getHelpSystem().displayHelp(CarismaGUI.PLUGIN_ID + "." + AdfModelWizard.ADFWIZARDCONTEXTID);
 	}
-	
+
 	/**
 	 * Called by the previous page to set the suggested folder and filename for the adf file.
 	 * @param name Name of the model file selected for the analysis
@@ -93,7 +93,7 @@ public class AdfModelWizardNewFileCreationPage extends WizardNewFileCreationPage
 	 */
 	protected final void suggestFileNameAndFolder(final String name, final IPath path) {
 		// Suggest Filename
-		String fileExt = ".";			
+		String fileExt = ".";
 		String sourceFilenameWithoutExt = name.substring(0, name.indexOf(fileExt));
 		String filename = sourceFilenameWithoutExt + "_analysis";
 		super.setFileName(filename);

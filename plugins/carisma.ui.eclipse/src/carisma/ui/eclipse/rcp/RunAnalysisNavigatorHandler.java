@@ -25,7 +25,7 @@ import carisma.ui.eclipse.popup.actions.RunAnalysisAction;
 public class RunAnalysisNavigatorHandler extends AbstractHandler {
 
 	/**
-	 * 
+	 *
 	 */
 	private RunAnalysisAction runAction = null;
 	/**
@@ -44,11 +44,11 @@ public class RunAnalysisNavigatorHandler extends AbstractHandler {
 		if (this.runAction.initSelectionByService()) {
 			this.runAction.run(null);
 		}
-		
+
 		return null;
 	}
-	
-	
+
+
 	@Override
 	public final boolean isEnabled() {
 		IFile selectedFile = HandlerUtilz.getSelectedNavigatorFile();

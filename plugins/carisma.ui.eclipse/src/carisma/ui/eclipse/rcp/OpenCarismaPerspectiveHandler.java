@@ -12,6 +12,7 @@ import org.eclipse.ui.WorkbenchException;
  * @author jkowald
  *
  */
+
 public class OpenCarismaPerspectiveHandler extends AbstractHandler {
 
 	@Override
@@ -27,5 +28,5 @@ public class OpenCarismaPerspectiveHandler extends AbstractHandler {
 		}
 		return null;
 	}
-
 }
+

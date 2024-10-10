@@ -30,7 +30,7 @@ public class TopcasedEditorDescriptor extends AbstractEditorDescriptor {
 	 * EditorDescriptor name.
 	 */
 	public static final String NAME = "TOPCASED";
-	
+
 	//########################################################################################
 	/**
 	 * Constructor.
@@ -66,7 +66,7 @@ public class TopcasedEditorDescriptor extends AbstractEditorDescriptor {
 	public final boolean isApplicable(final IFile modelIFile) {
 
 		IFile f = getGraphicalFile(modelIFile);
-		
+
 		if (f != null && f.exists()) {
 			return true;
 		}
@@ -80,7 +80,7 @@ public class TopcasedEditorDescriptor extends AbstractEditorDescriptor {
 	 */
 	@Override
 	public final boolean forceOpen(final IFile modelIFile) {
-				
+
 		return super.forceOpen(getGraphicalFile(modelIFile));
 	}
 
@@ -98,32 +98,32 @@ public class TopcasedEditorDescriptor extends AbstractEditorDescriptor {
 		IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 		IPath path = Path.fromOSString(fileWithoutExt + ".umldi");
 		IFile grIfile = workspaceRoot.getFile(path);
-		
+
 		return grIfile;
 	}
 
 	@Override
 	public void setName(String name) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setID(String id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setTypes(List<String> types) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setExtension(String extension) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

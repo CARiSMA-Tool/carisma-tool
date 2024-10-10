@@ -25,13 +25,13 @@ public class OpenModelWithEditorHandler extends OpenModelHandler {
 	 */
 	@Override
 	public final Object execute(final ExecutionEvent event) throws ExecutionException {
-		
+
 		return super.execute(true);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see carisma.core.rcp.OpenModelHandler#getSelectedFile()
 	 */
 	@Override

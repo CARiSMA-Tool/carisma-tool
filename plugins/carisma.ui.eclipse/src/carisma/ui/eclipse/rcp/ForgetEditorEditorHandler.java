@@ -36,7 +36,7 @@ public class ForgetEditorEditorHandler extends ForgetEditorHandler {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the selected file
 	 */
 	@Override
@@ -51,7 +51,7 @@ public class ForgetEditorEditorHandler extends ForgetEditorHandler {
 	protected void fireHandlerChanged(HandlerEvent handlerEvent) {
 		super.fireHandlerChanged(handlerEvent);
 	}
-	
+
 	/**
 	 * Adds listeners for this handler to listen if an selection in AdfEditor has changed.
 	 */
@@ -65,28 +65,28 @@ public class ForgetEditorEditorHandler extends ForgetEditorHandler {
 		this.handler = this;
 
 		partService.addPartListener(new IPartListener() {
-			
+
 			@Override
 			public void partActivated(final IWorkbenchPart part) {
 				fireHandlerChanged(new HandlerEvent(ForgetEditorEditorHandler.this.handler, true, false));
 			}
-		
+
 			@Override
 			public void partOpened(final IWorkbenchPart part) {
-		
+
 				fireHandlerChanged(new HandlerEvent(ForgetEditorEditorHandler.this.handler, true, false));
 			}
-		
+
 			@Override
 			public void partDeactivated(final IWorkbenchPart part) {
 				fireHandlerChanged(new HandlerEvent(ForgetEditorEditorHandler.this.handler, true, false));
 			}
-		
+
 			@Override
 			public void partClosed(final IWorkbenchPart part) {
 				fireHandlerChanged(new HandlerEvent(ForgetEditorEditorHandler.this.handler, true, false));
 			}
-		
+
 			@Override
 			public void partBroughtToTop(final IWorkbenchPart part) {
 				fireHandlerChanged(new HandlerEvent(ForgetEditorEditorHandler.this.handler, true, false));

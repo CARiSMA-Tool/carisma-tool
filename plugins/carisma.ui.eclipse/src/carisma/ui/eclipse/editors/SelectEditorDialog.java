@@ -35,17 +35,17 @@ import carisma.ui.eclipse.editors.descriptions.EditorDescriptor;
  * Dialog that is initialized with the available Editors for opening a model.
  */
 public class SelectEditorDialog extends ListDialog {
-	
+
 	/**
 	 * Shell.
 	 */
 	private Shell shell = null;
-	
+
 	/**
-	 * Flag to remember a decision/selection. 
+	 * Flag to remember a decision/selection.
 	 */
 	boolean remember = false;
-	
+
 	/**
 	 * A check button to remember.
 	 */
@@ -56,7 +56,7 @@ public class SelectEditorDialog extends ListDialog {
 	 * Constructor.
 	 * @param parent the Shell
 	 * @param saveSelectionId the Id, that was saved in the analysis
-	 * @param fileName the IFile is used to select Editors which are capable of opening it. 
+	 * @param fileName the IFile is used to select Editors which are capable of opening it.
 	 */
 	public SelectEditorDialog(final Shell parent, final String saveSelectionId, final IFile fileName) {
 		super(parent);
@@ -74,12 +74,12 @@ public class SelectEditorDialog extends ListDialog {
 	public final void init(final IFile modelFile) {
 		setTitle("Open the model with");
 		setMessage("Select an editor");
-		
+
 		setContentProvider(ArrayContentProvider.getInstance());
 		setLabelProvider(new LabelProvider());
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(this.shell, CarismaGUI.PLUGIN_ID + ".AdfEditor");
-		setHelpAvailable(true); 
-		
+		setHelpAvailable(true);
+
 		List<String> input = new ArrayList<>();
 
 		// insert editors from registry
@@ -90,7 +90,7 @@ public class SelectEditorDialog extends ListDialog {
 			}
 		}
 		setInput(input);
-		
+
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class SelectEditorDialog extends ListDialog {
 	@Override
 	protected final void createButtonsForButtonBar(final Composite parent) {
 		super.createButtonsForButtonBar(parent);
-		
+
 		this.rememberButton = new Button(parent, SWT.CHECK);
 		this.rememberButton.setText("Remember my decision");
 		this.rememberButton.setSelection(this.remember);
@@ -109,14 +109,14 @@ public class SelectEditorDialog extends ListDialog {
 			public void widgetSelected(final SelectionEvent e) {
 				SelectEditorDialog.this.remember = SelectEditorDialog.this.rememberButton.getSelection();
 			}
-		}); 
+		});
 	}
 
 	/**
 	 * Getter for the remember flag.
 	 * @return remember decision flag
 	 */
-	public final boolean getRemember() {	
+	public final boolean getRemember() {
 		return this.remember;
 	}
 

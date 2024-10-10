@@ -36,7 +36,8 @@ See [Smartcard](examples/smartcard-check-examples/README.md) for the specific ch
 See [OCL](examples/ocl-check-examples/README.md) for the specific checks. 
 ### RABAC
 See [RABAC](examples/rabac/README.md) for the specific checks. 
-
+### Uconpolicycreation
+See [Uconpolicycreation](examples/uconpolicycreation-odrl-common-examples/README.md) for the specific checks. 
 
 ## Development
 If you want to extend CARiSMA, consult the [Development Guide](documentation/development.md).
@@ -77,4 +78,6 @@ Further developers and contributors:
 * Alexander Peikert
 * Klaus Rudack
 
+## Licenses
 
+CARiSMA uses various third party components which utilize a number of different [licenses](documentation/licenses.md). 

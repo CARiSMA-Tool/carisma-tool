@@ -34,9 +34,9 @@ import carisma.ui.eclipse.CarismaGUI;
 
 /**
  * Model = Analysis. View = AdfEditor. Controller = AdfEditorController.
- * 
+ *
  * @author Johannes Kowald
- * 
+ *
  */
 public class AdfEditorController {
 
@@ -68,7 +68,7 @@ public class AdfEditorController {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param editor
 	 *            Corresponding {@link AdfEditor}
 	 * @param analysis
@@ -82,7 +82,7 @@ public class AdfEditorController {
 
 	/**
 	 * Indicates if the {@link AdfEditor} is in a dirty state.
-	 * 
+	 *
 	 * @return The dirty state of the corresponding {@link AdfEditor}
 	 */
 	protected final boolean isEditorDirty() {
@@ -91,7 +91,7 @@ public class AdfEditorController {
 
 	/**
 	 * Provides the list of {@link CheckReference}s to the GUI.
-	 * 
+	 *
 	 * @return a list of {@link CheckReference}s as input to the check list
 	 *         viewer.
 	 */
@@ -102,7 +102,7 @@ public class AdfEditorController {
 	/**
 	 * Creates a new {@link CheckReference} and adds it to the list of
 	 * {@link CheckReference}s in the corresponding {@link Analysis}.
-	 * 
+	 *
 	 * @param checkDescriptorId
 	 *            The ID of the {@link CheckDescriptor} which will be created
 	 */
@@ -118,7 +118,7 @@ public class AdfEditorController {
 	/**
 	 * Adds a {@link CheckReference} to the list of {@link CheckReference}s in
 	 * the corresponding {@link Analysis}.
-	 * 
+	 *
 	 * @param checkReference
 	 *            The {@link CheckReference} which should be added
 	 */
@@ -130,7 +130,7 @@ public class AdfEditorController {
 	/**
 	 * Removes a {@link CheckReference} from the list of {@link CheckReference}s
 	 * in the corresponding {@link Analysis}.
-	 * 
+	 *
 	 * @param checkReference
 	 *            The {@link CheckReference} which should be removed
 	 */
@@ -141,7 +141,7 @@ public class AdfEditorController {
 
 	/**
 	 * Provides the name of the {@link Analysis}.
-	 * 
+	 *
 	 * @return the name of the {@link Analysis}
 	 */
 	protected final String getAnalysisName() {
@@ -151,7 +151,7 @@ public class AdfEditorController {
 	/**
 	 * Sets the name of the {@link Analysis} and tells the {@link AdfEditor} to
 	 * be dirty.
-	 * 
+	 *
 	 * @param name
 	 *            the new name of the {@link Analysis}
 	 */
@@ -164,7 +164,7 @@ public class AdfEditorController {
 
 	/**
 	 * Provides the model type of the {@link Analysis}.
-	 * 
+	 *
 	 * @return the model type of the {@link Analysis} as a String
 	 */
 	protected final String getModelType() {
@@ -173,7 +173,7 @@ public class AdfEditorController {
 
 	/**
 	 * Provides the model {@link IFile} of the analysis.
-	 * 
+	 *
 	 * @return The model file of the {@link Analysis} as an {@link IFile}
 	 */
 	protected final IFile getModelIFile() {
@@ -182,7 +182,7 @@ public class AdfEditorController {
 
 	/**
 	 * Sets the model {@link IFile} of the the {@link Analysis}.
-	 * 
+	 *
 	 * @param newIFile
 	 *            The new model {@link IFile}
 	 */
@@ -195,7 +195,7 @@ public class AdfEditorController {
 
 	/**
 	 * Indicates if the {@link Analysis}' model file is valid.
-	 * 
+	 *
 	 * @return true if the {@link Analysis}' model file is valid
 	 */
 	protected final boolean isModelFileValid() {
@@ -205,7 +205,7 @@ public class AdfEditorController {
 
 	/**
 	 * Provides the {@link Analysis}' selected editor id.
-	 * 
+	 *
 	 * @return the id of the selected editor of the {@link Analysis}
 	 */
 	protected final String getSelectedEditorId() {
@@ -214,7 +214,7 @@ public class AdfEditorController {
 
 	/**
 	 * Sets the {@link Analysis}' selected editor id.
-	 * 
+	 *
 	 * @param newEditorId
 	 *            the new editor id
 	 */
@@ -228,7 +228,7 @@ public class AdfEditorController {
 	/**
 	 * Enables/Disables a {@link CheckReference} and tells the {@link AdfEditor}
 	 * to be dirty if necessary.
-	 * 
+	 *
 	 * @param checkReference
 	 *            the {@link CheckReference} to enable/disable
 	 * @param enabled
@@ -259,7 +259,7 @@ public class AdfEditorController {
 	/**
 	 * Opens the correct editor for the model file regarding to the choices made
 	 * in CARiSMA preferences and the editor combo box.
-	 * 
+	 *
 	 * @param defaultEditor
 	 *            indicates if the default editor should be opened
 	 */
@@ -280,7 +280,7 @@ public class AdfEditorController {
 	/**
 	 * Returns the {@link IFile} of the selected model file and creates, if
 	 * necessary, a link to a non workspace file.
-	 * 
+	 *
 	 * @param filepath
 	 *            Path to the model file
 	 * @return The {@link IFile} object of the selected file
@@ -318,7 +318,7 @@ public class AdfEditorController {
 	/**
 	 * Sets the value of a {@link CheckParameter} and tells the
 	 * {@link AdfEditor} to be dirty if necessary.
-	 * 
+	 *
 	 * @param checkParameter
 	 *            the {@link CheckParameter} which will be updated
 	 * @param value
@@ -390,7 +390,7 @@ public class AdfEditorController {
 	/**
 	 * Sets the query on demand flag of a {@link CheckParameter} and tells the
 	 * {@link AdfEditor} to be dirty if necessary.
-	 * 
+	 *
 	 * @param checkParameter
 	 *            the {@link CheckParameter} which will be updated
 	 * @param qod
@@ -408,7 +408,7 @@ public class AdfEditorController {
 	 * Iterates over all checks to proof, that the not optional parameters have
 	 * valid values or set to query on demand. If a check is disabled, it will
 	 * be ignored. If a parameter is optional, it will be ignored.
-	 * 
+	 *
 	 * @return True if there are invalid parameters, false otherwise
 	 */
 	protected final boolean hasAnalysisInvalidParameters() {
@@ -518,7 +518,7 @@ public class AdfEditorController {
 
 	/**
 	 * Adds a problem associated to a parameter to the list.
-	 * 
+	 *
 	 * @param checkReference
 	 *            The {@link CheckReference} which has the problem
 	 * @param checkParameter
@@ -542,7 +542,7 @@ public class AdfEditorController {
 
 	/**
 	 * Adds a problem not associated to a parameter to the list.
-	 * 
+	 *
 	 * @param source
 	 *            An identifier of the source of the problem
 	 * @param text
@@ -554,7 +554,7 @@ public class AdfEditorController {
 
 	/**
 	 * Removes a problem from the list associated to a parameter.
-	 * 
+	 *
 	 * @param checkReference
 	 *            The {@link CheckReference} which lost the problem
 	 * @param checkParameter
@@ -583,7 +583,7 @@ public class AdfEditorController {
 
 	/**
 	 * Removes a problem from the list not associated to a parameter.
-	 * 
+	 *
 	 * @param source
 	 *            An identifier of the source of the problem
 	 */
@@ -600,7 +600,7 @@ public class AdfEditorController {
 
 	/**
 	 * Returns the list of problems as a list of strings.
-	 * 
+	 *
 	 * @return A list of strings which describe the problems.
 	 */
 	protected final List<String> getProblems() {

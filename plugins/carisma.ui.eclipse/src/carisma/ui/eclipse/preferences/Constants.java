@@ -15,7 +15,7 @@ package carisma.ui.eclipse.preferences;
  *
  */
 public final class Constants {
-	
+
 	/**
 	 * Hide constructor.
 	 */
@@ -36,17 +36,17 @@ public final class Constants {
 	 * id of the editor.
 	 */
 	public static final String EDITOR_ID = "editor_id";
-	
-	
+
+
 	/**
 	 * identifier for the selection of the editor.
 	 */
 	public static final String EDITOR_SELECTION_ART = "editor_selection_art";
-	
+
 	/**
 	 * Text editor Id.
 	 */
-	public static final String TEXT_EDITOR_ID = "org.eclipse.ui.DefaultTextEditor"; 
+	public static final String TEXT_EDITOR_ID = "org.eclipse.ui.DefaultTextEditor";
 	/**
 	 * UML Editor Id.
 	 */
@@ -71,14 +71,14 @@ public final class Constants {
 	 * Ecore Editor Id.
 	 */
 	public static final String ECORE_EDITOR_ID = "org.eclipse.emf.ecore.presentation.EcoreEditorID";
-	
-	
+
+
 	/**
 	 * Consts, used for the selection Art.
 	 */
 	//public static final String DEFAULT = "default";
 	/**
-	 * Constant for Manually. 
+	 * Constant for Manually.
 	 */
 	public static final String MANUALLY = "manually";
 	/**

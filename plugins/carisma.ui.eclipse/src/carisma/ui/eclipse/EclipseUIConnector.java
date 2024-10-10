@@ -43,7 +43,7 @@ public class EclipseUIConnector implements UIConnector {
 	public final <T extends CheckParameter> T askParameter(
 			final CheckDescriptor checkDescriptor, final T checkParameter) {
 		ParameterDialogUtil parameterDialogUtil = new ParameterDialogUtil(new Shell(), checkDescriptor);
-		
+
 		if (checkParameter instanceof BooleanParameter) {
 			((BooleanParameter) checkParameter).setValue(parameterDialogUtil.queryBooleanParameter((BooleanParameter) checkParameter));
 			return checkParameter;
@@ -76,10 +76,10 @@ public class EclipseUIConnector implements UIConnector {
 	@Override
 	public final int sendMessage(final String title, final String message, final StatusType type,
 			final String[] answers, final int defaultIndex) {
-		
+
 		Display display = Display.getDefault();
 		Shell shell = new Shell(display);
-		
+
 		int dialogType = MessageDialog.NONE;
 		if (type.equals(StatusType.ERROR)) {
 			dialogType = MessageDialog.ERROR;
@@ -88,9 +88,9 @@ public class EclipseUIConnector implements UIConnector {
 		} else if (type.equals(StatusType.INFO)) {
 			dialogType = MessageDialog.INFORMATION;
 		}
-		
+
 		MessageDialog mDialog = new MessageDialog(shell,
-				title, null, message, dialogType, 
+				title, null, message, dialogType,
 				answers, defaultIndex);
 		mDialog.open();
 		return mDialog.getReturnCode();

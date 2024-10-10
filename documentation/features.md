@@ -18,6 +18,7 @@ worked as well.
 
 ## BPMN2 Support
 
+**As of 2024-08, the BPMN2 Modeler is not compatible with Eclipse versions**
 The Business Process Model and Notation (BPMN) is a graphical representation for specifying business processes. The control of compliance, risk, and security properties is a fundamental paradigm of business workflows. An extension of CARiSMA offers Checks that perform custom security analyses on BPMN2 models.
 
 We have tested and recommend the analysis of BPMN2 models that have been created with
