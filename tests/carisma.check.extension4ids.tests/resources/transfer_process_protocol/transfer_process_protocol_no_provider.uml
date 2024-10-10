@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:extension4ids="http:///schemas/extension4ids/_Ogvo8CvsEe-fAuOaI3WziA/4" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/extension4ids/_Ogvo8CvsEe-fAuOaI3WziA/4 pathmap://UMLsec/extension4ids.uml#_Ogvo8SvsEe-fAuOaI3WziA">
+  <uml:Model xmi:id="_qPmJoDFSEe-Q585fhUgV9w" name="transfer_process_protocol_no_provider">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_qQNNoDFSEe-Q585fhUgV9w">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_qPrpMDFSEe-Q585fhUgV9w" name="Interaction1">
+      <lifeline xmi:type="uml:Lifeline" xmi:id="_q20hsDFSEe-Q585fhUgV9w" name="Lifeline1"/>
+      <lifeline xmi:type="uml:Lifeline" xmi:id="_rGIwEDFSEe-Q585fhUgV9w" name="Lifeline2"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_qP32cDFSEe-Q585fhUgV9w">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qP32cjFSEe-Q585fhUgV9w" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qP32czFSEe-Q585fhUgV9w" key="Version" value="0.0.5"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qP32dDFSEe-Q585fhUgV9w" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qP32dTFSEe-Q585fhUgV9w" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qP32djFSEe-Q585fhUgV9w" key="Date" value="2024-06-16"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qP32dzFSEe-Q585fhUgV9w" key="Author" value="Sanjeev"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qP32cTFSEe-Q585fhUgV9w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLsec/extension4ids.uml#_Ogvo8SvsEe-fAuOaI3WziA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/extension4ids.uml#_xESocCvfEe-fAuOaI3WziA"/>
+    </profileApplication>
+  </uml:Model>
+  <extension4ids:consumer xmi:id="_sKqvMDFSEe-Q585fhUgV9w" base_Lifeline="_q20hsDFSEe-Q585fhUgV9w"/>
+  <extension4ids:datatransfer xmi:id="_1JXIgDFSEe-Q585fhUgV9w" base_Interaction="_qPrpMDFSEe-Q585fhUgV9w"/>
+</xmi:XMI>

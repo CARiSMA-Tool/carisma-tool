@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:extension4ids="http:///schemas/extension4ids/_Ogvo8CvsEe-fAuOaI3WziA/4" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/extension4ids/_Ogvo8CvsEe-fAuOaI3WziA/4 pathmap://UMLsec/extension4ids.uml#_Ogvo8SvsEe-fAuOaI3WziA">
+  <uml:Model xmi:id="_LAfAQDFoEe-jNLgjgTuCfQ" name="transfer_process_protocol_no_transfer_request">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_LCl5EDFoEe-jNLgjgTuCfQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_LBS4kDFoEe-jNLgjgTuCfQ" name="Interaction1">
+      <lifeline xmi:type="uml:Lifeline" xmi:id="_LwGfUDFoEe-jNLgjgTuCfQ" name="Lifeline1" coveredBy="_OuPEYDFoEe-jNLgjgTuCfQ _OuMBEDFoEe-jNLgjgTuCfQ _QEV7sDFoEe-jNLgjgTuCfQ _Rnr9wTFoEe-jNLgjgTuCfQ _UTmKYDFoEe-jNLgjgTuCfQ _VoNM4DFoEe-jNLgjgTuCfQ _OuPEYTFoEe-jNLgjgTuCfQ"/>
+      <lifeline xmi:type="uml:Lifeline" xmi:id="_L_tBkDFoEe-jNLgjgTuCfQ" name="Lifeline2" coveredBy="_PZLe0DFoEe-jNLgjgTuCfQ _PZKQsDFoEe-jNLgjgTuCfQ _QEV7sTFoEe-jNLgjgTuCfQ _Rnr9wDFoEe-jNLgjgTuCfQ _UTmKYTFoEe-jNLgjgTuCfQ _VoNM4TFoEe-jNLgjgTuCfQ _PZLe0TFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_OuPEYDFoEe-jNLgjgTuCfQ" name="ActionExecutionSpecification3Start" covered="_LwGfUDFoEe-jNLgjgTuCfQ" execution="_OuMBEDFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_OuMBEDFoEe-jNLgjgTuCfQ" name="ActionExecutionSpecification3" covered="_LwGfUDFoEe-jNLgjgTuCfQ" finish="_OuPEYTFoEe-jNLgjgTuCfQ" start="_OuPEYDFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_PZLe0DFoEe-jNLgjgTuCfQ" name="ActionExecutionSpecification6Start" covered="_L_tBkDFoEe-jNLgjgTuCfQ" execution="_PZKQsDFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_PZKQsDFoEe-jNLgjgTuCfQ" name="ActionExecutionSpecification6" covered="_L_tBkDFoEe-jNLgjgTuCfQ" finish="_PZLe0TFoEe-jNLgjgTuCfQ" start="_PZLe0DFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_QEV7sDFoEe-jNLgjgTuCfQ" name="Message9SendEvent" covered="_LwGfUDFoEe-jNLgjgTuCfQ" message="_QES4YDFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_QEV7sTFoEe-jNLgjgTuCfQ" name="Message9ReceiveEvent" covered="_L_tBkDFoEe-jNLgjgTuCfQ" message="_QES4YDFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Rnr9wDFoEe-jNLgjgTuCfQ" name="Message12SendEvent" covered="_L_tBkDFoEe-jNLgjgTuCfQ" message="_RnrWsDFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Rnr9wTFoEe-jNLgjgTuCfQ" name="Message12ReceiveEvent" covered="_LwGfUDFoEe-jNLgjgTuCfQ" message="_RnrWsDFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_UTmKYDFoEe-jNLgjgTuCfQ" name="Message15SendEvent" covered="_LwGfUDFoEe-jNLgjgTuCfQ" message="_UTljUDFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_UTmKYTFoEe-jNLgjgTuCfQ" name="Message15ReceiveEvent" covered="_L_tBkDFoEe-jNLgjgTuCfQ" message="_UTljUDFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_VoNM4DFoEe-jNLgjgTuCfQ" name="Message18SendEvent" covered="_LwGfUDFoEe-jNLgjgTuCfQ" message="_VoMl0DFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_VoNM4TFoEe-jNLgjgTuCfQ" name="Message18ReceiveEvent" covered="_L_tBkDFoEe-jNLgjgTuCfQ" message="_VoMl0DFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_OuPEYTFoEe-jNLgjgTuCfQ" name="ActionExecutionSpecification3Finish" covered="_LwGfUDFoEe-jNLgjgTuCfQ" execution="_OuMBEDFoEe-jNLgjgTuCfQ"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_PZLe0TFoEe-jNLgjgTuCfQ" name="ActionExecutionSpecification6Finish" covered="_L_tBkDFoEe-jNLgjgTuCfQ" execution="_PZKQsDFoEe-jNLgjgTuCfQ"/>
+      <message xmi:type="uml:Message" xmi:id="_QES4YDFoEe-jNLgjgTuCfQ" name="req" receiveEvent="_QEV7sTFoEe-jNLgjgTuCfQ" sendEvent="_QEV7sDFoEe-jNLgjgTuCfQ"/>
+      <message xmi:type="uml:Message" xmi:id="_RnrWsDFoEe-jNLgjgTuCfQ" name="start" receiveEvent="_Rnr9wTFoEe-jNLgjgTuCfQ" sendEvent="_Rnr9wDFoEe-jNLgjgTuCfQ"/>
+      <message xmi:type="uml:Message" xmi:id="_UTljUDFoEe-jNLgjgTuCfQ" name="pull" receiveEvent="_UTmKYTFoEe-jNLgjgTuCfQ" sendEvent="_UTmKYDFoEe-jNLgjgTuCfQ"/>
+      <message xmi:type="uml:Message" xmi:id="_VoMl0DFoEe-jNLgjgTuCfQ" name="complete" receiveEvent="_VoNM4TFoEe-jNLgjgTuCfQ" sendEvent="_VoNM4DFoEe-jNLgjgTuCfQ"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_LB6joDFoEe-jNLgjgTuCfQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_LCDtkDFoEe-jNLgjgTuCfQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_LCDtkTFoEe-jNLgjgTuCfQ" key="Version" value="0.0.5"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_LCDtkjFoEe-jNLgjgTuCfQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_LCDtkzFoEe-jNLgjgTuCfQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_LCDtlDFoEe-jNLgjgTuCfQ" key="Date" value="2024-06-16"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_LCDtlTFoEe-jNLgjgTuCfQ" key="Author" value="Sanjeev"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_LB-OADFoEe-jNLgjgTuCfQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLsec/extension4ids.uml#_Ogvo8SvsEe-fAuOaI3WziA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/extension4ids.uml#_xESocCvfEe-fAuOaI3WziA"/>
+    </profileApplication>
+  </uml:Model>
+  <extension4ids:datatransfer xmi:id="_MzfO8DFoEe-jNLgjgTuCfQ" type="PULL" transfer_req_step="_QES4YDFoEe-jNLgjgTuCfQ" base_Interaction="_LBS4kDFoEe-jNLgjgTuCfQ"/>
+  <extension4ids:consumer xmi:id="_NW9vcDFoEe-jNLgjgTuCfQ" base_Lifeline="_LwGfUDFoEe-jNLgjgTuCfQ"/>
+  <extension4ids:provider xmi:id="_N542UDFoEe-jNLgjgTuCfQ" base_Lifeline="_L_tBkDFoEe-jNLgjgTuCfQ"/>
+</xmi:XMI>

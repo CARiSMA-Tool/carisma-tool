@@ -36,6 +36,7 @@
     <module>plugins/carisma.check.staticcheck</module>
     <module>plugins/carisma.check.staticcheck.evolution</module>
     <module>plugins/carisma.check.template</module>
+    <module>plugins/carisma.check.extension4idschecks</module>
     <module>plugins/carisma.check.uconpolicycreation</module>
     <module>plugins/carisma.core</module>
     <module>plugins/carisma.evolution</module>
@@ -57,6 +58,7 @@
     <module>plugins/carisma.profile.umlsec</module>
     <module>plugins/carisma.profile.umlsec.rabac</module>
     <module>plugins/carisma.profile.umlsec.umlsec4ids</module>
+    <module>plugins/carisma.profile.umlsec.extension4ids</module>
     <module>plugins/carisma.ui.console</module>
     <module>plugins/carisma.ui.eclipse</module>
     <module>plugins/carisma.ui.eclipse.descriptor</module>
@@ -86,6 +88,7 @@
     <module>tests/carisma.tests.modelutils.uml</module>
     <module>tests/carisma.umlchange.efficiency.tests</module>
     <module>tests/carisma.check.ids.tests</module>
+    <module>tests/carisma.check.extension4ids.tests</module>
     <module>report-aggregate-module</module>
   </modules>
   <properties>

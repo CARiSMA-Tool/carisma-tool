@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="carisma.carismacheck">
+      <check
+            id="carisma.check.extension4ids.usagecontrol"
+            name="Extension4IDS Usage Control Check"
+            description="Checks if usage control is satisfied"
+            publisher="Sanjeev Sun Shakya"
+            targetModelType="UML2"
+            implementingClass="carisma.check.extension4ids.usagecontrol.UsageControlCheck">
+      </check>
+      <check
+            description="Checks if IDS transfer process protocol is satisfied"
+            id="carisma.check.extension4ids.datatransfer"
+            implementingClass="carisma.check.extension4ids.transferprocessprotocol.TransferProcessProtocolCheck"
+            name="Extension4IDS Transfer Process Protocol Check"
+            publisher="Sanjeev Sun Shakya"
+            targetModelType="UML2">
+      </check>
+   </extension>
+
+</plugin>
