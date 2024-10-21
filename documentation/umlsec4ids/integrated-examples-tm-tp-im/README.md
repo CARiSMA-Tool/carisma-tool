@@ -11,3 +11,5 @@ In addition to that, they all have sufficient certificates and security standard
 
 The same applies for the communication between Connector2 and Connector3, except that Connector3 has the `basefree` security profile instead of `trust`.
 Therefore, only a directed communication is possible.
+
+![integrated-example](./demo1_deployment.png)

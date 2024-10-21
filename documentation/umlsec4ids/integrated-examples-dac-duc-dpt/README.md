@@ -8,3 +8,6 @@ The owner and consumer are annotated with the stereotypes and the consumer has s
 After the consumer accepted a usage contract, he got an annotated partitione with the `datausagecontrol` stereotype.
 There he is permitted every action he wants to execute and has as obligation the action "Send Copy To Owner", when the action "Write Into Data Set" is executed.
 At last, the clearing house needs to execute "Log Performed Read Action On Data Set" after "Read Data Set" is performed.
+
+
+![integrated-example](./demo2_activity.png)
