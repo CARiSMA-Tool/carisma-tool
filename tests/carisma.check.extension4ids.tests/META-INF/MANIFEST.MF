@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: carisma.check.extension4ids.tests
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: carisma.core;bundle-version="1.4.3",
+ org.eclipse.uml2.uml;bundle-version="5.5.0",
+ carisma.modeltype.uml2;bundle-version="1.1.4",
+ carisma.profile.umlsec.extension4ids;bundle-version="1.0.0",
+ carisma.check.extension4idschecks;bundle-version="1.0.0",
+ org.junit;bundle-version="4.13.2",
+ org.eclipse.emf.ecore.change;bundle-version="2.15.0",
+ carisma.check.staticcheck;bundle-version="1.0.4"
+Automatic-Module-Name: carisma.check.extension4ids.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-17

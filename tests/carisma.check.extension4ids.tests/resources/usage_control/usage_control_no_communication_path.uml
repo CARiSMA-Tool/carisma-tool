@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:extension4ids="http:///schemas/extension4ids/_Ogvo8CvsEe-fAuOaI3WziA/4" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/extension4ids/_Ogvo8CvsEe-fAuOaI3WziA/4 pathmap://UMLsec/extension4ids.uml#_Ogvo8SvsEe-fAuOaI3WziA">
+  <uml:Model xmi:id="_e9f1YDF1Ee-MzstXGFRXuw" name="no_usage_control_requirement">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_e-LK0DF1Ee-MzstXGFRXuw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Node" xmi:id="_fcZ-8DF1Ee-MzstXGFRXuw" name="Node3">
+      <deployment xmi:type="uml:Deployment" xmi:id="_ivb18DF1Ee-MzstXGFRXuw" client="_fcZ-8DF1Ee-MzstXGFRXuw" supplier="_f8l64DF1Ee-MzstXGFRXuw" deployedArtifact="_f8l64DF1Ee-MzstXGFRXuw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_fp5oYDF1Ee-MzstXGFRXuw" name="Node4">
+      <deployment xmi:type="uml:Deployment" xmi:id="_iew8sDF1Ee-MzstXGFRXuw" client="_fp5oYDF1Ee-MzstXGFRXuw" supplier="_gORgwDF1Ee-MzstXGFRXuw" deployedArtifact="_gORgwDF1Ee-MzstXGFRXuw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_f8l64DF1Ee-MzstXGFRXuw" name="Artifact5" fileName=""/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_gORgwDF1Ee-MzstXGFRXuw" name="Artifact6"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_hvWR8DF1Ee-MzstXGFRXuw" client="_f8l64DF1Ee-MzstXGFRXuw" supplier="_gORgwDF1Ee-MzstXGFRXuw"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_e9428DF1Ee-MzstXGFRXuw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_e976QTF1Ee-MzstXGFRXuw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_e976QjF1Ee-MzstXGFRXuw" key="Version" value="0.0.5"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_e976QzF1Ee-MzstXGFRXuw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_e976RDF1Ee-MzstXGFRXuw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_e976RTF1Ee-MzstXGFRXuw" key="Date" value="2024-06-16"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_e976RjF1Ee-MzstXGFRXuw" key="Author" value="Sanjeev"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_e976QDF1Ee-MzstXGFRXuw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLsec/extension4ids.uml#_Ogvo8SvsEe-fAuOaI3WziA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLsec/extension4ids.uml#_xESocCvfEe-fAuOaI3WziA"/>
+    </profileApplication>
+  </uml:Model>
+  <extension4ids:IDSconnector xmi:id="_jjl2wDF1Ee-MzstXGFRXuw" base_Artifact="_f8l64DF1Ee-MzstXGFRXuw"/>
+  <extension4ids:IDSconnector xmi:id="_j030ADF1Ee-MzstXGFRXuw" base_Artifact="_gORgwDF1Ee-MzstXGFRXuw"/>
+  <extension4ids:usagecontrol xmi:id="_akGhUDF3Ee-nGKgS-LHl-g" base_Dependency="_hvWR8DF1Ee-MzstXGFRXuw"/>
+</xmi:XMI>
