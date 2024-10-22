@@ -22,22 +22,9 @@ See [Installation Guide](documentation/installation.md) for how to install CARiS
 ## General Usage
 See [Usage Guide](documentation/usage.md) for information on how to use CARiSMA.
 
+## Features
+See [Features](documentation/README.md) for information on CARiSMA specific features.
 
-## Specific checks
-### Static Checks
-See [Static Checks](examples/static-check-examples/README.md) for the specific checks.
-### UMLsec4IDS
-See [UMLsec4IDS](examples/umlsec4ids/README.md) for the specific checks. 
-### Activity2PetriNets
-See [Activity2PetriNet](examples/activity2pertinet/README.md) for the specific checks. 
-### Smartcard Checks
-See [Smartcard](examples/smartcard-check-examples/README.md) for the specific checks. 
-### The OCL Check Plugin
-See [OCL](examples/ocl-check-examples/README.md) for the specific checks. 
-### RABAC
-See [RABAC](examples/rabac/README.md) for the specific checks. 
-### Uconpolicycreation
-See [Uconpolicycreation](examples/uconpolicycreation-odrl-common-examples/README.md) for the specific checks. 
 
 ## Development
 If you want to extend CARiSMA, consult the [Development Guide](documentation/development.md).
@@ -54,6 +41,9 @@ There are multiple different screencasts available on the CARiSMA-Tool:
 * [Example run with a successful security check](https://rgse.uni-koblenz.de/carisma/videos/check_ok.avi)
 * [Correcting a model according to a failed report](https://rgse.uni-koblenz.de/carisma/videos/correcting_model_wrt_to_report.mp4)
 * [Applying the UMLsec profile and Stereotypes](https://rgse.uni-koblenz.de/carisma/videos/apply_profile_and_stereotypes.mp4)
+* [Introduction to the Usage Control Check](https://rgse.uni-koblenz.de/carisma/videos/usage-control-check-demo.mp4)
+* [Introduction to the Transfer Process Protocol Check](https://rgse.uni-koblenz.de/carisma/videos/tpp-demo.mp4)
+* [Introduction to the ODRL Check](https://rgse.uni-koblenz.de/carisma/videos/demo.flv)
 
 ## Contact / Team
 
@@ -77,6 +67,8 @@ Further developers and contributors:
 * Marcel Michel
 * Alexander Peikert
 * Klaus Rudack
+* Nils Rodewald
+* Sanjeev Sun Shakya
 
 ## Licenses
 
