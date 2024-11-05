@@ -43,7 +43,7 @@ There are multiple different screencasts available on the CARiSMA-Tool:
 * [Applying the UMLsec profile and Stereotypes](https://rgse.uni-koblenz.de/carisma/videos/apply_profile_and_stereotypes.mp4)
 * [Introduction to the Usage Control Check](https://rgse.uni-koblenz.de/carisma/videos/usage-control-check-demo.mp4)
 * [Introduction to the Transfer Process Protocol Check](https://rgse.uni-koblenz.de/carisma/videos/tpp-demo.mp4)
-* [Introduction to the ODRL Check](https://rgse.uni-koblenz.de/carisma/videos/demo.flv)
+* [Introduction to the ODRL Check](https://rgse.uni-koblenz.de/carisma/videos/odrl-policy-creation.m4v)
 
 ## Contact / Team
 
