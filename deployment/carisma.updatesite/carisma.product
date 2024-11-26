@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="CARiSMA-Product" uid="carisma" id="carisma.ui.eclipse.product" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" type="features" includeLaunchers="true" autoIncludeRequirements="true">
+
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
+   </launcherArgs>
+
+   <windowImages/>
+
+   <splash
+      location="carisma.ui.eclipse" />
+   <launcher>
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+
+   <vm>
+   </vm>
+
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="feature.carisma.core" installMode="root"/>
+      <feature id="feature.carisma.ocl" installMode="root"/>
+      <feature id="feature.carisma.uml2" installMode="root"/>
+      <feature id="feature.carisma.uml2.checks" installMode="root"/>
+      <feature id="feature.carisma.uml2.evolution" installMode="root"/>
+      <feature id="feature.carisma.uml2.evolution.checks" installMode="root"/>
+      <feature id="feature.carisma.uml2.ids.checks" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.architecture.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.internationalization.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.emf.expressions.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.ui.feature" installMode="root"/>
+      <feature id="org.eclipse.uml2.common" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.gmfdiag.css.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.internationalization.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.tools.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.search.feature" installMode="root"/>
+      <feature id="org.eclipse.uml2.codegen.ecore.ui" installMode="root"/>
+      <feature id="org.eclipse.uml2.uml" installMode="root"/>
+      <feature id="org.eclipse.xsd" installMode="root"/>
+      <feature id="org.eclipse.papyrus.views.references.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.services.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.modelexplorer.feature" installMode="root"/>
+      <feature id="org.eclipse.uml2.uml.edit" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.emf.facet.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.viewpoints.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.emf.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.emf.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.m2m.qvto.feature" installMode="root"/>
+      <feature id="org.eclipse.uml2" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.properties.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.views.modelexplorer.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.doc.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.ui.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.nattable.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.diagram.css.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.views.search.feature" installMode="root"/>
+      <feature id="org.eclipse.xwt.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.diagram.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.alf.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.textedit.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.nattable.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.editor.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.views.validation.feature" installMode="root"/>
+      <feature id="org.eclipse.uml2.common.edit" installMode="root"/>
+      <feature id="org.eclipse.emf.ecore" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.architecture.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.views.documentation.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.decoratormodel.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.sdk.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.xtext.integration.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.views.properties.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.widget.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.views.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.core.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.uml.expressions.feature" installMode="root"/>
+      <feature id="org.eclipse.papyrus.infra.gmfdiag.feature" installMode="root"/>
+      <feature id="org.eclipse.emf.edit"/>
+      <feature id="org.eclipse.emf.edit.source" installMode="root"/>
+      <feature id="org.eclipse.emf.edit.ui" installMode="root"/>
+      <feature id="org.eclipse.emf.edit.ui.source" installMode="root"/>
+      <feature id="org.eclipse.e4.rcp" installMode="root"/>
+      <feature id="org.eclipse.e4.rcp.source" installMode="root"/>
+   </features>
+
+   <configurations>
+      <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+   </configurations>
+
+   <preferencesInfo>
+      <targetfile overwrite="false"/>
+   </preferencesInfo>
+
+   <cssInfo>
+   </cssInfo>
+
+</product>

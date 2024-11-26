@@ -3,4 +3,16 @@
 <plugin>
    <extension-point id="carisma.carismacheck" name="CARiSMA Analysis Check" schema="schema/carisma.carismacheck.exsd"/>
    <extension-point id="carisma.modeltype" name="UMLsec Model Type Support" schema="schema/carisma.modeltype.exsd"/>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="carisma.ui.console"
+            name="CARiSMA-Product">
+         <property
+               name="appName"
+               value="CARiSMA-Product">
+         </property>
+      </product>
+   </extension>
 </plugin>
