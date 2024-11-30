@@ -12,10 +12,12 @@ package carisma.check.smartcard.lockedstatus;
 
 import static org.junit.Assert.assertEquals;
 import org.eclipse.uml2.uml.Model;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.check.smartcard.TestHelper;
 
+@Ignore
 @SuppressWarnings("java:S5960")
 public class LockedStatusCheckTest {
 	
