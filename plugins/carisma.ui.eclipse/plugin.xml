@@ -137,7 +137,7 @@
        </product>
     </extension>
     <extension
-          id="coreapp"
+          id="carisma.ui.eclipse.coreapp"
           point="org.eclipse.core.runtime.applications">
        <application
              cardinality="singleton-global"
@@ -790,18 +790,6 @@
             <popupmenu
                   class="carisma.ui.popup.actions.XMLOutput">
             </popupmenu>
-      </extension>
-      <extension
-            id="product"
-            point="org.eclipse.core.runtime.products">
-         <product
-               application="org.eclipse.ui.ide.workbench"
-               name="CARiSMA-Product">
-            <property
-                  name="appName"
-                  value="CARiSMA-Product">
-            </property>
-         </product>
       </extension>
 
 </plugin>
