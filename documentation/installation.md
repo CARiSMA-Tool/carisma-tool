@@ -42,3 +42,58 @@ To install CARiSMA via the Update Site ZIP file do the following:
 3. Choose the downloaded ZIP file, optionally assign a name.
 4. Press *Add* and choose the features you want to install. At least, install ”CARiSMA Checks for UML2".
 5. Wait for the installation to finish and restart Eclipse.
+
+# Setting up CARiSMA via Docker Container
+
+## Documentation to start on MacOS
+
+### 1. Install XQuartz 
+
+### 2. Configure XQuartz to Allow Connections (on first start)
+* Open XQuartz preferences 
+* Go to Security tab
+* Allow connections from network clients
+* Restart
+
+### 3. Look up host IP address  
+In xQuartz run :
+```
+ifconfig en0 | grep inet | awk '$1=="inet" {print $2}'  
+```
+
+### 4. Allow connections from your host IP:
+In xQuartz run :
+```
+xhost + <your_host_ip>
+```
+
+### 5. Build the Docker image
+In you console run :
+```
+docker build -t carisma-container .
+```
+
+### 6. Run the Docker container with X11 forwarding:
+```
+docker run -it \
+    -e DISPLAY=<your_host_ip>:0 \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    carisma-container
+```
+
+### 7. Eclipse should start automatically
+
+## Documentation to start on Linux
+
+1. Make sure you have some X11 server running. If you're on wayland, you can use XWayland, which allows you to run X11 applications on wayland.
+2. Make sure you have the command `xhost` available (try `which xhost`, which should tell you the path to your executable). The package you may need to install, depends on your distribution.
+3. Allow connections from your host IP. In a shell run `xhost +`.
+4. Build the Docker image: `docker build -t carisma-container`.
+5. Run the Docker container with X11 forwarding and enjoy CARiSMA:
+
+```
+docker run -it \
+    -e DISPLAY=:0 \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    carisma-container
+```
