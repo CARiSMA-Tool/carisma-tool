@@ -97,3 +97,29 @@ docker run -it \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     carisma-container
 ```
+
+## Documentation to start on Windows
+
+### 1. Install XLaunch
+
+### 2. Open XLaunch
+* Select "Multiple windows" and set "Display number" to 0 and click "Next"
+* Choose "Start no client" and click "Next"
+* In "Extra settings" tick all boxes and cick "Next"
+* Click "Finish"
+
+### 3. Open your Console 
+* Type "set DISPLAY=host.docker.internal:0.0" and press "Enter"
+
+### 4. Build the Docker image
+In you console run :
+```
+docker build -t carisma-container .
+```
+
+### 5. Run the Docker container with X11 forwarding:
+```
+docker run -it -e DISPLAY=<your_host_ip>:0 -v /tmp/.X11-unix:/tmp/.X11-unix carisma-container
+```
+
+### 6. Eclipse should start automatically
