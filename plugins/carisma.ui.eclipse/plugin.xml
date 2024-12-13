@@ -791,5 +791,13 @@
                   class="carisma.ui.popup.actions.XMLOutput">
             </popupmenu>
       </extension>
+      <extension
+            id="product"
+            point="org.eclipse.core.runtime.products">
+         <product
+               application="carisma.ui.eclipse.coreapp"
+               name="CARiSMA Product">
+         </product>
+      </extension>
 
 </plugin>
