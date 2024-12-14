@@ -70,5 +70,5 @@ jobs:
           files: ./deployment/carisma.updatesite/target/carisma.updatesite-${{ github.ref_name }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Release ${{ github.ref_name }}
-          draft: false
+          draft: true
           prerelease: false
