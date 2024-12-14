@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Deploy Eclipse Update Site on GitHub Pages
+name: Create Release and Deploy Update Site
 
 on:
   # Runs on tags starting with "build-"
@@ -48,26 +48,34 @@ jobs:
         run: ./mvnw clean verify
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        # if: startsWith(github.ref, 'refs/tags/build-')
       - name: Upload artifacts
-        # if: startsWith(github.ref, 'refs/tags/build-')
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
           path: 'deployment/carisma.updatesite/target/repository'
       - name: Deploy to GitHub Pages
-        # if: startsWith(github.ref, 'refs/tags/build-')
         id: deployment
         uses: actions/deploy-pages@v4
       - name: Rename Updatesite ZIP
-        id: rename_zip
+        id: rename_updatesite
         run: mv ./deployment/carisma.updatesite/target/carisma.updatesite-*.zip ./deployment/carisma.updatesite/target/carisma.updatesite-${{ github.ref_name }}.zip
-      - name: Create Release
-        # if: startsWith(github.ref, 'refs/tags/build-')
+      - name: Rename product archives
+        id: rename_products
+        run: |
+          mv ./deployment/carisma.product/target/products/carisma-product-linux.gtk.x86_64.tar.gz ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-linux.gtk.x86_64.tar.gz
+          mv ./deployment/carisma.product/target/products/carisma-product-macosx.cocoa.aarch64.tar.gz ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-macosx.cocoa.aarch64.tar.gz
+          mv ./deployment/carisma.product/target/products/carisma-product-macosx.cocoa.x86_64.tar.gz ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-macosx.cocoa.x86_64.tar.gz
+          mv ./deployment/carisma.product/target/products/carisma-product-win32.win32.x86_64.zip ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-win32.win32.x86_64.zip
+      - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
-          files: ./deployment/carisma.updatesite/target/carisma.updatesite-${{ github.ref_name }}.zip
+          files: |
+            ./deployment/carisma.updatesite/target/carisma.updatesite-${{ github.ref_name }}.zip
+            ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-linux.gtk.x86_64.tar.gz
+            ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-macosx.cocoa.aarch64.tar.gz
+            ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-macosx.cocoa.x86_64.tar.gz
+            ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-win32.win32.x86_64.zip
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Release ${{ github.ref_name }}
           draft: true
