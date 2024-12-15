@@ -20,7 +20,6 @@ RUN apt-get -y update && \
     openjdk-21-jdk \
     wget \
     libc6 libgtk-3-0 libxss1 libnss3 libxtst6 libxrender1 libxi6 libgl1-mesa-dri
-# are the following packages required? they could not be found in ubuntu 24.04: libgl1-mesa-glx gconf2 libasound2 libc6-dev
 
 # Configure SSH
 RUN mkdir /var/run/sshd
@@ -36,8 +35,8 @@ EXPOSE 22
 RUN apt-get clean
 
 # install carisma
-COPY deployment/carisma.product/target/products/carisma-product-linux.gtk.x86_64.tar.gz /tmp/eclipse.tar.gz	
 RUN mkdir /opt/carisma \
+    && wget -cq https://github.com/CARiSMA-Tool/carisma-tool/releases/latest/download/carisma-product-linux.gtk.x86_64.tar.gz -O /tmp/eclipse.tar.gz \
     && tar -zxf /tmp/eclipse.tar.gz -C /opt/carisma \
     && rm /tmp/eclipse.tar.gz
 
