@@ -2,13 +2,13 @@
 name: Create Release and Deploy Update Site
 
 on:
-  # Runs on tags starting with "build-"
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Runs on tags starting with "build-" or "release-"
   push:
     tags:
       - 'build-*'
-      
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+      - 'release-*'
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages and to create a release
 permissions:
