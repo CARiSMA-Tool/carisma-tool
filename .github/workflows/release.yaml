@@ -24,7 +24,7 @@ concurrency:
 
 jobs:
   # Single deploy job since we're just deploying
-  deploy:
+  create_release:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -33,6 +33,8 @@ jobs:
       matrix:
         java: [ '21' ]
     steps:
+      - name: Setup Environment variable(s)
+        run: echo "RELEASE_NAME=$(echo ${{ github.ref_name }} | sed 's/release-\|build-//')"  >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up JDK version ${{ matrix.Java }}
@@ -58,25 +60,18 @@ jobs:
         uses: actions/deploy-pages@v4
       - name: Rename Updatesite ZIP
         id: rename_updatesite
-        run: mv ./deployment/carisma.updatesite/target/carisma.updatesite-*.zip ./deployment/carisma.updatesite/target/carisma.updatesite-${{ github.ref_name }}.zip
-      - name: Rename product archives
-        id: rename_products
-        run: |
-          mv ./deployment/carisma.product/target/products/carisma-product-linux.gtk.x86_64.tar.gz ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-linux.gtk.x86_64.tar.gz
-          mv ./deployment/carisma.product/target/products/carisma-product-macosx.cocoa.aarch64.tar.gz ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-macosx.cocoa.aarch64.tar.gz
-          mv ./deployment/carisma.product/target/products/carisma-product-macosx.cocoa.x86_64.tar.gz ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-macosx.cocoa.x86_64.tar.gz
-          mv ./deployment/carisma.product/target/products/carisma-product-win32.win32.x86_64.zip ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-win32.win32.x86_64.zip
+        run: mv ./deployment/carisma.updatesite/target/carisma.updatesite-*.zip ./deployment/carisma.updatesite/target/carisma.updatesite.zip
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ./deployment/carisma.updatesite/target/carisma.updatesite-${{ github.ref_name }}.zip
-            ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-linux.gtk.x86_64.tar.gz
-            ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-macosx.cocoa.aarch64.tar.gz
-            ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-macosx.cocoa.x86_64.tar.gz
-            ./deployment/carisma.product/target/products/carisma-product-${{ github.ref_name }}-win32.win32.x86_64.zip
+            ./deployment/carisma.updatesite/target/carisma.updatesite.zip
+            ./deployment/carisma.product/target/products/carisma-product-linux.gtk.x86_64.tar.gz
+            ./deployment/carisma.product/target/products/carisma-product-macosx.cocoa.aarch64.tar.gz
+            ./deployment/carisma.product/target/products/carisma-product-macosx.cocoa.x86_64.tar.gz
+            ./deployment/carisma.product/target/products/carisma-product-win32.win32.x86_64.zip
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: Release ${{ github.ref_name }}
+          name: Release ${{ env.RELEASE_NAME }}
           draft: true
           prerelease: false
