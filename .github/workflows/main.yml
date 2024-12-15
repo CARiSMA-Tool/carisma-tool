@@ -1,7 +1,12 @@
 name: Java CI with Sonarcloud
 on:
+  # run if triggered manually
   workflow_dispatch:
+  # runs on push to any branch, (but not on tags)
   push:
+    branches:
+      - '*'
+  # run on pull requests
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
