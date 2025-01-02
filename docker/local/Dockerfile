@@ -1,5 +1,5 @@
 # Make sure you have some X server running and that X connections are allowed (run `xhost +`)
-FROM --platform=linux/amd64 ubuntu:24.04
+FROM --platform=linux/amd64 docker.io/library/ubuntu:24.04
 
 # Install Java, wget, openjdk. OpenJDK is required although "shipped with the product" (already checked)
 RUN apt-get -y update && \
