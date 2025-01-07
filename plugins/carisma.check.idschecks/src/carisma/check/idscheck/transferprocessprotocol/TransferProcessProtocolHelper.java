@@ -1,4 +1,4 @@
-package carisma.check.extension4ids.transferprocessprotocol;
+package carisma.check.idscheck.transferprocessprotocol;
 
 import java.util.List;
 import java.util.Set;
@@ -9,7 +9,7 @@ import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 
-import carisma.check.extension4ids.dto.RelevantMessagesDto;
+import carisma.check.idscheck.dto.RelevantMessagesDto;
 import carisma.profile.umlsec.extension4ids.Extension4IDS;
 import carisma.profile.umlsec.extension4ids.Extension4IDSUtil;
 import carisma.profile.umlsec.extension4ids.TransferType;

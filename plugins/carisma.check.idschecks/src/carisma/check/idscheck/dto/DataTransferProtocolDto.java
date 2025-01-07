@@ -1,4 +1,4 @@
-package carisma.check.extension4ids.dto;
+package carisma.check.idscheck.dto;
 
 import java.util.List;
 import java.util.Set;
