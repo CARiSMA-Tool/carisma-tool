@@ -1,4 +1,4 @@
-package carisma.check.extension4ids.usagecontrol;
+package carisma.check.idscheck.usagecontrol;
 
 import java.util.ArrayList;
 import java.util.Collections;

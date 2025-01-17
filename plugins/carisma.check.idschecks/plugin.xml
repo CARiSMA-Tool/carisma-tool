@@ -60,6 +60,22 @@
             publisher="Alexander Peikert"
             targetModelType="UML2">
       </check>
+      <check
+            description="Checks if usage control is satisfied"
+            id="carisma.check.idschecks.usagecontrol"
+            implementingClass="carisma.check.idscheck.usagecontrol.UsageControlCheck"
+            name="UMLsec4ids Usage Control Check"
+            publisher="Sanjeev Sun Shakya"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Checks if IDS transfer process protocol is satisfied"
+            id="carisma.check.idscheck.transferprocessprotocol"
+            implementingClass="carisma.check.idscheck.transferprocessprotocol.TransferProcessProtocolCheck"
+            name="UMLsec4ids Transfer Process Protocol Check"
+            publisher="Sanjeev Sun Shakya"
+            targetModelType="UML2">
+      </check>
    </extension>
   
 </plugin>
