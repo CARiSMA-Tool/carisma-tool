@@ -1,17 +1,6 @@
 # This docker file you create a ubuntu container that you can connect to via ssh and start CARiSMA from a remote server
-#
-# 1. Create an authorized_keys file in this directory that contains the public SSH key(s) of user(s) that should be able to login to the container
-#
-# 2. build image with:
-#     `docker build -f Dockerfile-ssh -t carisma .`
-#
-# 3. run container with (container's port 22 is mapped to docker host's port 3000):
-#     `docker run -it -e DISPLAY=$DISPLAY -p 3000:22 --name carisma carisma`
-#
-# 4. connect via ssh and run CARiSMA:
-#     `ssh -X -p 3000 root@<docker-host> /opt/carisma/carisma-launcher`
-#
-FROM --platform=linux/amd64 ubuntu:24.04
+
+FROM --platform=linux/amd64 docker.io/library/ubuntu:24.04
 
 # Run command on the image to install Java, openjdk is required although "shipped with the product" (already checked)
 RUN apt-get -y update && \
@@ -36,7 +25,7 @@ RUN apt-get clean
 
 # install carisma
 RUN mkdir /opt/carisma \
-    && wget -cq https://github.com/CARiSMA-Tool/carisma-tool/releases/latest/download/carisma-product-linux.gtk.x86_64.tar.gz -O /tmp/eclipse.tar.gz \
+    && wget -c https://github.com/CARiSMA-Tool/carisma-tool/releases/latest/download/carisma-product-linux.gtk.x86_64.tar.gz -O /tmp/eclipse.tar.gz \
     && tar -zxf /tmp/eclipse.tar.gz -C /opt/carisma \
     && rm /tmp/eclipse.tar.gz
 
