@@ -1,4 +1,4 @@
-package carisma.check.extension4ids.transferprocessprotocol;
+package carisma.check.idscheck.transferprocessprotocol;
 
 import java.util.HashMap;
 import java.util.HashSet;

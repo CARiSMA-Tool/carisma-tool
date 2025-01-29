@@ -1,4 +1,4 @@
-package carisma.check.extension4ids.transferprocessprotocol;
+package carisma.check.idscheck.transferprocessprotocol;
 
 import java.util.HashSet;
 import java.util.List;
@@ -9,8 +9,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import carisma.check.extension4ids.dto.DataTransferProtocolDto;
-import carisma.check.extension4ids.dto.RelevantMessagesDto;
+import carisma.check.idscheck.dto.DataTransferProtocolDto;
+import carisma.check.idscheck.dto.RelevantMessagesDto;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.DummyHost;
 import carisma.core.analysis.result.AnalysisResultMessage;

@@ -1,4 +1,4 @@
-package carisma.check.extension4ids.tests;
+package carisma.check.ids.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -26,13 +26,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import carisma.check.extension4ids.dto.DataTransferProtocolDto;
-import carisma.check.extension4ids.dto.RelevantMessagesDto;
-import carisma.check.extension4ids.transferprocessprotocol.TransferProcessProtocol;
-import carisma.check.extension4ids.transferprocessprotocol.TransferProcessProtocolCheck;
-import carisma.check.extension4ids.transferprocessprotocol.TransferProcessProtocolHelper;
-import carisma.check.extension4ids.transferprocessprotocol.UMLSequenceHelper;
-import carisma.check.extension4ids.usagecontrol.UsageControlCheck;
+import carisma.check.idscheck.dto.DataTransferProtocolDto;
+import carisma.check.idscheck.dto.RelevantMessagesDto;
+import carisma.check.idscheck.transferprocessprotocol.TransferProcessProtocol;
+import carisma.check.idscheck.transferprocessprotocol.TransferProcessProtocolCheck;
+import carisma.check.idscheck.transferprocessprotocol.TransferProcessProtocolHelper;
+import carisma.check.idscheck.transferprocessprotocol.UMLSequenceHelper;
+import carisma.check.idscheck.usagecontrol.UsageControlCheck;
 import carisma.core.analysis.AnalysisHost;
 import carisma.core.analysis.DummyHost;
 import carisma.modeltype.uml2.UMLHelper;

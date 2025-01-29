@@ -11,4 +11,6 @@ Require-Bundle: carisma.core;bundle-version="1.4.3",
  carisma.profile.umlsec.umlsec4ids;bundle-version="1.0.0",
  carisma.check.idschecks;bundle-version="1.0.0",
  org.junit;bundle-version="4.13.2",
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore,
+ carisma.profile.umlsec.extension4ids;bundle-version="1.0.0",
+ carisma.check.staticcheck;bundle-version="1.0.4"

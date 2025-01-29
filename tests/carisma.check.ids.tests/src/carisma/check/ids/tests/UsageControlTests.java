@@ -1,4 +1,4 @@
-package carisma.check.extension4ids.tests;
+package carisma.check.ids.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -20,8 +20,8 @@ import org.eclipse.uml2.uml.Package;
 import org.junit.After;
 import org.junit.Test;
 
-import carisma.check.extension4ids.usagecontrol.UsageControl;
-import carisma.check.extension4ids.usagecontrol.UsageControlHelper;
+import carisma.check.idscheck.usagecontrol.UsageControl;
+import carisma.check.idscheck.usagecontrol.UsageControlHelper;
 import carisma.check.staticcheck.securelinks.SecureLinks;
 import carisma.check.staticcheck.securelinks.SecureLinksHelper;
 import carisma.modeltype.uml2.StereotypeApplication;
