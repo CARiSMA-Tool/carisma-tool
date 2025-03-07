@@ -242,16 +242,14 @@ litigation.
 
    <plugin
          id="carisma.check.idschecks"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="carisma.profile.umlsec.umlsec4ids"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
+
+   <plugin
+         id="carisma.profile.umlsec.extension4ids"
+         version="0.0.0"/>
 
 </feature>
