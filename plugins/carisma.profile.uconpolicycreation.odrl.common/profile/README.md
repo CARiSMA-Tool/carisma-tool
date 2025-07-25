@@ -1,0 +1,1 @@
+Nils Rodewald's original submission contained several representations of the profile. During migration to Sirius-based Papyrus, we dropped the representations and generated a single new representation. The old representations can be found in Rodewald's thesis and in the history of the git repository.
