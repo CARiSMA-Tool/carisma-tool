@@ -242,7 +242,6 @@ litigation.
       <import plugin="carisma.profile.umlsec"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.ui.workbench"/>
-      <import plugin="carisma.profile.umlsec.rabac"/>
       <import plugin="jakarta.xml.bind"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.uml2.types"/>
@@ -267,10 +266,6 @@ litigation.
 
    <plugin
          id="carisma.check.activity2petrinet"
-         version="0.0.0"/>
-
-   <plugin
-         id="carisma.check.rabac"
          version="0.0.0"/>
 
    <plugin
