@@ -23,8 +23,7 @@ See [Installation Guide](documentation/installation.md) for how to install CARiS
 See [Usage Guide](documentation/usage.md) for information on how to use CARiSMA.
 
 ## Features
-See [Features](documentation/README.md) for information on CARiSMA specific features.
-
+See [Features](documentation/features.md) for information on CARiSMA specific features.
 
 ## Development
 If you want to extend CARiSMA, consult the [Development Guide](documentation/development.md).
