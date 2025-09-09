@@ -2,7 +2,7 @@
 
 ## Eclipse Modeling Tools
 - First, you need to install the Eclipse Modeling Tools. You can find it at : https://www.eclipse.org/downloads/packages/
-- We successfully tested with Eclipse 2024-03
+- We successfully tested with Eclipse 2025-06
 - If you have problems installing it, check out the installation guide at : https://wiki.eclipse.org/Eclipse/Installation
 
 ## BPMN2 Modeler (optional)

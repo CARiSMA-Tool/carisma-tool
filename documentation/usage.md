@@ -15,14 +15,24 @@
 
 
 ## Importing the UMLsec profile after model creation
-1. If the model is open, close the *.di* file of your project.
+1. If the model is open, close the *.aird* file of your project.
 2. In the *Project Explorer* open the *.uml* file of your model.
 3. Select the <Model> element in the UML Model Editor.
 4. Select the menu item *UML Editor* → *Package* → *Apply Profile*.
 5. Select the *UMLsec* profile in the appearing window.
 6. Click *Add* to apply the profile and *OK* to confirm your decision.
 7. Save your project.
-8. If you re-open your model in Papyrus, the UMLsec profile is added and its stereotypes may be applied.
+8. If you re-open your model in *.aird*, the UMLsec profile is added and its stereotypes may be applied.
+
+## Applying stereotypes after applying the UMLsec profile 
+1. If the model is open, close the *.aird* file of your project.
+2. In the *Project Explorer* open the *.uml* file of your model.
+3. Select the element you want to apply a stereotype to in the UML Model Editor.
+4. Select the menu item *UML Editor* → *Element* → *Apply Stereotype*.
+5. Select the *UMLsec* stereotype in the appearing window.
+6. Click *Add* to apply the stereotype and *OK* to confirm your decision.
+7. Save your project.
+8. If you re-open your model in the *.aird*, the UMLsec stereotype is added to the element.
 
 ## Analyzing a model with CARiSMA
 1. You created a model, applied the UMLsec profile and stereotypes/tags.

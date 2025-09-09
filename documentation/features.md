@@ -1,5 +1,5 @@
 # Checks and Features
-
+***Please note that this guide is currently outdated due to recent Papyrus Sirius updates. Some checks and features may not work accordingly. A revised version will be made available shortly.***
 ## Specific checks
 
 ### Static Checks
