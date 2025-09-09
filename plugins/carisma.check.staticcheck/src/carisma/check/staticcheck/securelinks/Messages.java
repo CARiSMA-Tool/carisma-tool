@@ -33,6 +33,11 @@ public final class Messages {
 				+ ".";
 	}
 	
+	static String twoStereotypesOnCommPath(final CommunicationPath commPath) {
+		return EObjectUtil.getTypeAndName(commPath)
+				+ " has two Stereotypes applied to it.";
+	}
+	
 	static String secureLinksViolated(
 			final String attacker,
 			final CommunicationPath commPath,

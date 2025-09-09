@@ -81,6 +81,11 @@ public final class SecureLinks {
 				printProcessedDependency(dependency);
 
 				for (CommunicationPath commPath : UMLDeploymentHelper.getCommunicationPaths(dependency)) {
+					List<StereotypeApplication> appliedStereotypes = UMLsecUtil.getStereotypeApplications(commPath);
+					if(appliedStereotypes.size() > 1) {
+						this.errorMessages.add(new AnalysisMessage(StatusType.ERROR, OutputTarget.BOTH,
+								Messages.twoStereotypesOnCommPath(commPath)));
+					}
 					printProcessedCommunicationPath(commPath);
 
 					this.errorMessages.addAll(compliesWithRequirements(commPath, dependency));
