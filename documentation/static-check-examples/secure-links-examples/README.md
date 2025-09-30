@@ -7,6 +7,9 @@ Currently there are three types of adversaries, which are "default", "insider" a
 - **Insider** can read, insert and delete at a communication path annotated with &lt;&lt;Internet&gt;&gt;, &lt;&lt;encrypted&gt;&gt; and &lt;&lt;LAN&gt;&gt;.
 - **Custom** can read, insert and delete at a communication path annotated with &lt;&lt;Internet&gt;&gt; and only read at &lt;&lt;wire&gt;&gt;.
 
+If there is no stereotype applied to a communication path, the analysis will not check for any security threats and puts out a success with warning.
+Every communication path must have no more than one stereotype applied to it.
+
 Here, for both examples are for a default adversary.
 In the incorrect example the `CommunicationPath1` got annotated with the stereotype &lt;&lt;Internet&gt;&gt;.
 

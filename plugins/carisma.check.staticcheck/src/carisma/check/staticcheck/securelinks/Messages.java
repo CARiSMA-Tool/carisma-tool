@@ -38,6 +38,11 @@ public final class Messages {
 				+ " has two Stereotypes applied to it.";
 	}
 	
+	static String noStereotypeOnCommPath(final CommunicationPath commPath) {
+		return EObjectUtil.getTypeAndName(commPath)
+				+ " is unspecified. Apply a stereotype to check security threats.";
+	}
+	
 	static String secureLinksViolated(
 			final String attacker,
 			final CommunicationPath commPath,
