@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLsec="http://www.umlsec.de/profiles/UMLsec" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_jCrNEJ4hEfCILNljBn41og">
+    <packagedElement xmi:type="uml:Package" xmi:id="_o5sq0J4hEfCILNljBn41og">
+      <packagedElement xmi:type="uml:Node" xmi:id="_tvqUMJ4hEfCILNljBn41og" name="Node1">
+        <deployment xmi:id="_FJao4J4iEfCILNljBn41og" name="Deployment1" client="_tvqUMJ4hEfCILNljBn41og" supplier="_wI9t4J4hEfCILNljBn41og" deployedArtifact="_wI9t4J4hEfCILNljBn41og"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Node" xmi:id="_uxMpsJ4hEfCILNljBn41og" name="Node2">
+        <deployment xmi:id="_G0fDkJ4iEfCILNljBn41og" name="Deployment2" client="_uxMpsJ4hEfCILNljBn41og" supplier="_w5DHAJ4hEfCILNljBn41og" deployedArtifact="_w5DHAJ4hEfCILNljBn41og"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_wI9t4J4hEfCILNljBn41og" name="Artifact1"/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_w5DHAJ4hEfCILNljBn41og" name="Artifact2"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_0DFaEJ4hEfCILNljBn41og" name="Dependency1" client="_wI9t4J4hEfCILNljBn41og" supplier="_w5DHAJ4hEfCILNljBn41og"/>
+      <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_1Uf-oJ4hEfCILNljBn41og" name="CommPath1" memberEnd="_Y0ZlwJ4iEfCILNljBn41og _fN10EJ4iEfCILNljBn41og">
+        <ownedEnd xmi:id="_Y0ZlwJ4iEfCILNljBn41og" name="source" type="_tvqUMJ4hEfCILNljBn41og" association="_1Uf-oJ4hEfCILNljBn41og"/>
+        <ownedEnd xmi:id="_fN10EJ4iEfCILNljBn41og" name="target" type="_uxMpsJ4hEfCILNljBn41og" association="_1Uf-oJ4hEfCILNljBn41og"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_kHSPQJ4iEfCILNljBn41og">
+      <eAnnotations xmi:id="_kHWgsJ4iEfCILNljBn41og" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.umlsec.de/profiles/UMLsec#/"/>
+      </eAnnotations>
+      <appliedProfile href="platform:/plugin/carisma.profile.umlsec/profile/UMLsec.profile.uml#_kGQWQDnkEeCyb9nmG-9Lpw"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLsec:securelinks xmi:id="_mFrOkJ4iEfCILNljBn41og" base_Package="_jCrNEJ4hEfCILNljBn41og"/>
+  <UMLsec:securelinks xmi:id="_nhJHAJ4iEfCILNljBn41og" base_Package="_o5sq0J4hEfCILNljBn41og"/>
+  <UMLsec:integrity xmi:id="_pm7u0J4iEfCILNljBn41og" base_Dependency="_0DFaEJ4hEfCILNljBn41og"/>
+  <UMLsec:encrypted xmi:id="_sE3J0J4iEfCILNljBn41og" base_CommunicationPath="_1Uf-oJ4hEfCILNljBn41og"/>
+  <UMLsec:LAN xmi:id="_sE3J0Z4iEfCILNljBn41og" base_CommunicationPath="_1Uf-oJ4hEfCILNljBn41og"/>
+</xmi:XMI>

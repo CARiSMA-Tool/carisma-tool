@@ -125,6 +125,13 @@ public class SecureLinksCheckTest {
 		assertEquals(0, theCheck.checkSecureLinks(this.model));
 	}
 	
+	@Test
+	public final void testTwoStereotypesOneCommPath() throws IOException {
+		loadModel("testTwoStereotypesOneCommPath.uml");
+		SecureLinks theCheck = new SecureLinks(null);
+		assertEquals(1, theCheck.checkSecureLinks(this.model));
+	}
+	
 	@After
 	public void unloadModel(){
 		for(Resource r : this.rs.getResources()){
