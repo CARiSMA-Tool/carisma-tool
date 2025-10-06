@@ -1,7 +1,7 @@
 # Prepare X server on local machine
 ## MacOS
 1. Install XQuartz and configure XQuartz to Allow Connections (on first start)
-  * Open XQuartz preferences 
+  * Open XQuartz settings / preferences 
   * Go to Security tab
   * Allow connections from network clients
   * Restart
@@ -19,7 +19,7 @@
   * Choose "Start no client" and click "Next"
   * In "Extra settings" tick all boxes and cick "Next"
   * Click "Finish"
-3. Open your Console and type `set DISPLAY=host.docker.internal:0.0` and press "Enter"
+2. Open your Console and type `set DISPLAY=host.docker.internal:0.0` and press "Enter"
 
 # Build the image and run the container
 
@@ -28,7 +28,7 @@
 ```
     docker build -t carisma .
 ```
-3. Run the Docker container with X11 forwarding:
+2. Run the Docker container with X11 forwarding:
 
 ```
     docker run -it \
@@ -36,4 +36,4 @@
 	  -v /tmp/.X11-unix:/tmp/.X11-unix \
 	  carisma
 ```
-4. Eclipse should start automatically
+3. Eclipse should start automatically
