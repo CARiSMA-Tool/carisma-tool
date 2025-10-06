@@ -12,6 +12,21 @@
 1. Make sure you have some X11 server running. If you're on wayland, you can use XWayland, which allows you to run X11 applications on wayland.
 2. Allow X connections from the container to your local machine (host): Make sure you have the command `xhost` available at your local machine. You can try `which xhost`, which should tell you the path to your executable. The package you may need to install, depends on your distribution.
 3. In a shell on the local machine run `xhost +`
+4. Build the Docker image. In your console run: 
+
+```
+    docker build -t carisma .
+```
+5. Run the Docker container with X11 forwarding:
+
+```
+    docker run -it \
+      -e DISPLAY=$DISPLAY \
+	  -v /tmp/.X11-unix:/tmp/.X11-unix \
+	  carisma
+```
+
+Eclipse should start automatically
 
 ## Windows
 1. Install and configure XLaunch:
