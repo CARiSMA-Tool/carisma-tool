@@ -5,8 +5,21 @@
   * Go to Security tab
   * Allow connections from network clients
   * Restart
-2. Look up host IP address. In XQuartz run: `ifconfig en0 | grep inet | awk '$1=="inet" {print $2}'`
-3. Allow connections from your host IP. In XQuartz run: `xhost + <your_host_ip>`
+2. Allow connections from your host IP. In XQuartz run: `xhost +localhost`
+3. Build the Docker image. In your console run: 
+
+```
+    docker build -t carisma .
+```
+4. Run the Docker container with X11 forwarding:
+
+```
+    docker run -it \
+	 --platform linux/amd64 \
+	 -e DISPLAY=host.docker.internal:0 \
+	 -v /tmp/.X11-unix:/tmp/.X11-unix \
+	 carisma
+```
 
 ## Linux
 1. Make sure you have some X11 server running. If you're on wayland, you can use XWayland, which allows you to run X11 applications on wayland.
