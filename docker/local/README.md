@@ -1,4 +1,4 @@
-# Prepare X server on local machine
+# Run CARiSMA in a docker container and forward its graphical user interface to the docker host's display
 ## MacOS
 1. Install XQuartz and configure XQuartz to Allow Connections (on first start)
   * Open XQuartz settings / preferences 
@@ -41,22 +41,19 @@
 
 Eclipse should start automatically
 
-## Windows
+## Windows (needs testing)
 1. Install and configure XLaunch:
   * Select "Multiple windows" and set "Display number" to 0 and click "Next"
   * Choose "Start no client" and click "Next"
   * In "Extra settings" tick all boxes and cick "Next"
   * Click "Finish"
 2. Open your Console and type `set DISPLAY=host.docker.internal:0.0` and press "Enter"
-
-# Build the image and run the container
-
-1. Build the Docker image. In your console run: 
+3. Build the Docker image. In your console run: 
 
 ```
     docker build -t carisma .
 ```
-2. Run the Docker container with X11 forwarding:
+4. Run the Docker container with X11 forwarding:
 
 ```
     docker run -it \
@@ -64,4 +61,3 @@ Eclipse should start automatically
 	  -v /tmp/.X11-unix:/tmp/.X11-unix \
 	  carisma
 ```
-3. Eclipse should start automatically
