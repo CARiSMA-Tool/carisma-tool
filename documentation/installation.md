@@ -46,11 +46,12 @@ To install CARiSMA via the Update Site ZIP file do the following:
 # Setting up CARiSMA via Docker Container
 Please refer to the documentation in the [docker directory](../docker/) on how to run CARiSMA in a docker container.
 
-### Use of CARiSMA via GitHub Releases
+# Use of CARiSMA via GitHub Releases
 To install CARiSMA via the GitHub Releases Site do the following:
 1. Download the latest `carisma-product-***.tar.gz` release from https://github.com/CARiSMA-Tool/carisma-tool/releases
+2. Follow the usual installation procedures for your operating system
 
-**Additional Steps for Apple :**
+## Additional Steps for Apple
 From MacOS version 15 quarantine flags are set, they need to be removed first.
 1. Download`carisma-product-macosx.cocoa.aarch64.tar.gz` for MacBooks with M1 Chip or newer or `carisma-product-macosx.cocoa.x86_64.tar.gz` for older MacBooks. 
 2. Unpack the downloaded file and open a Terminal. 
