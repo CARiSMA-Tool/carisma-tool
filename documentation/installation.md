@@ -12,7 +12,7 @@ From MacOS version 15 quarantine flags are set, they need to be removed first.
 5. If you see `com.apple.quarantine`, type `xattr -dr com.apple.quarantine` and drag the unpacked Eclipse file in your Terminal.
 6. Now open the application.
 
-# Setting up Eclipse for CARiSMA
+# Setting up Eclipse for CARiSMA using an Eclipse Update Site
 
 ## Eclipse Modeling Tools
 - First, you need to install the Eclipse Modeling Tools. You can find it at : https://www.eclipse.org/downloads/packages/
