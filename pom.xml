@@ -107,9 +107,14 @@
   </properties>
   <repositories> 
     <repository>
-      <id>Eclipse 2024-03</id>
+      <id>Eclipse 2025-06</id>
       <layout>p2</layout>
-      <url>https://download.eclipse.org/releases/2024-03</url>
+      <url>https://download.eclipse.org/releases/2025-06</url>
+    </repository>
+   <repository>
+      <id>Papyrus 2025-06</id>
+      <layout>p2</layout>
+      <url>https://download.eclipse.org/modeling/mdt/papyrus/papyrus-desktop/updates/releases/2025-06/</url>
     </repository>
     <!-- Keep Eclipse 2023-06, otherwise BPMN2 cannot be found -->
     <repository>
@@ -124,11 +129,6 @@
     	<url>https://download.eclipse.org/bpmn2-modeler/updates/nightly/2022-12/</url>
     </repository>
     -->
-    <repository>
-    	<id>Papyrus 2024-06</id>
-    	<layout>p2</layout>
-    	<url>https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2024-06/</url>
-    </repository>
   </repositories>
   <build>
     <plugins>
