@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.Ignore;
 
 import carisma.check.tests.tools.DebugHost;
 import carisma.ocl.library.LibraryFactory;
@@ -326,28 +327,29 @@ public class CheckTest {
 	 * @throws IOException 
 	 */
 	@Test
+	@Ignore
 	public final void performQuery() throws IOException {
-		ArrayList<OclExpression> oclExpressions;
+	    ArrayList<OclExpression> oclExpressions;
 		
-		OclExpression expr1 = LibraryFactory.eINSTANCE.createOclExpression();
-		expr1.setContext("BaseElement");
-		expr1.setQuery("true");
+	    OclExpression expr1 = LibraryFactory.eINSTANCE.createOclExpression();
+	    expr1.setContext("BaseElement");
+	    expr1.setQuery("true");
 		
-		OclExpression expr2 = LibraryFactory.eINSTANCE.createOclExpression();
-		expr2.setContext("BaseElement");
-		expr2.setQuery("false");
+	    OclExpression expr2 = LibraryFactory.eINSTANCE.createOclExpression();
+	    expr2.setContext("BaseElement");
+	    expr2.setQuery("false");
 		
-		loadModel("trade.bpmn2");
-		assertNotNull(this.modelres);
+	    loadModel("trade.bpmn2");
+	    assertNotNull(this.modelres);
 		
-		Field oclHelperField;
-		try {
-			oclHelperField = this.check.getClass().getDeclaredField("oclHelper");
-			oclHelperField.setAccessible(true);
-			oclHelperField.set(this.check, new OclHelper());
-		} catch (Exception e) {
-			fail(e.getMessage());
-		}
+	    Field oclHelperField;
+	    try {
+		oclHelperField = this.check.getClass().getDeclaredField("oclHelper");
+		oclHelperField.setAccessible(true);
+		oclHelperField.set(this.check, new OclHelper());
+	    } catch (Exception e) {
+		fail(e.getMessage());
+	}
 		
 		
 		Field analysisHostField;

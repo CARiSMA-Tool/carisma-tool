@@ -3,6 +3,7 @@
 
 <product name="CARiSMA Product" uid="carisma-product" id="carisma.ui.eclipse.product" application="carisma.ui.eclipse.coreapp" version="1.0.0.qualifier" type="features" includeLaunchers="true" includeJRE="true" autoIncludeRequirements="true">
 
+
    <configIni use="default">
    </configIni>
 
@@ -10,6 +11,8 @@
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
+
+   <windowImages/>
 
    <splash
       location="carisma.ui.eclipse" />
@@ -19,73 +22,27 @@
       </win>
    </launcher>
 
+
    <vm>
       <linux include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21</linux>
       <macos include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21</macos>
       <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21</windows>
    </vm>
 
+
    <plugins>
    </plugins>
 
    <features>
       <feature id="feature.carisma.uml2.checks"/>
-      <feature id="org.eclipse.e4.rcp" installMode="root"/>
-      <feature id="org.eclipse.e4.rcp.source" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.architecture.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.internationalization.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.emf.expressions.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.ui.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.gmfdiag.css.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.internationalization.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.tools.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.search.feature" installMode="root"/>
+    
       <feature id="feature.carisma.core" installMode="root"/>
-      <feature id="org.eclipse.papyrus.views.references.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.services.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.modelexplorer.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.emf.facet.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.viewpoints.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.emf.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.emf.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.m2m.qvto.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.properties.feature" installMode="root"/>
+   
       <feature id="feature.carisma.uml2" installMode="root"/>
-      <feature id="org.eclipse.papyrus.views.modelexplorer.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.doc.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.ui.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.nattable.feature" installMode="root"/>
-      <feature id="org.eclipse.emf.common" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.diagram.css.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.views.search.feature" installMode="root"/>
-      <feature id="org.eclipse.xwt.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.diagram.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.alf.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.textedit.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.nattable.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.editor.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.views.validation.feature" installMode="root"/>
-      <feature id="org.eclipse.emf.ecore" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.architecture.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.views.documentation.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.decoratormodel.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.sdk.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.xtext.integration.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.views.properties.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.widget.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.views.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.core.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.uml.expressions.feature" installMode="root"/>
-      <feature id="org.eclipse.papyrus.infra.gmfdiag.feature" installMode="root"/>
-      <feature id="org.eclipse.gef.fx.swt" installMode="root"/>
-      <feature id="org.eclipse.gef.geometry.convert.swt" installMode="root"/>
-      <feature id="org.eclipse.gef.common" installMode="root"/>
-      <feature id="org.eclipse.gef.geometry" installMode="root"/>
-      <feature id="org.eclipse.fx.runtime.min.feature" installMode="root"/>
+
       <feature id="feature.carisma.uml2.ids.checks" installMode="root"/>
       <feature id="feature.carisma.uml2.odrl.uconcreation" installMode="root"/>
+  
    </features>
 
    <configurations>
@@ -95,5 +52,12 @@
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
    </configurations>
+
+   <preferencesInfo>
+      <targetfile overwrite="false"/>
+   </preferencesInfo>
+
+   <cssInfo>
+   </cssInfo>
 
 </product>

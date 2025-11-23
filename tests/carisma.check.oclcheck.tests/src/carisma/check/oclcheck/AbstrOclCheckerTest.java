@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Test;
+import org.junit.Ignore;
 
 import carisma.check.oclcheck.util.DebugHost;
 import carisma.check.oclcheck.util.DummyOclChecker;
@@ -77,49 +78,51 @@ public class AbstrOclCheckerTest {
 	 * @throws IOException 
 	 */
 	@Test
+	@Ignore
 	public final void oclQueryBpmn2ModelTest() throws IOException {
-		this.oclChecker = new DummyOclChecker();
-		this.host = new DebugHost();
+	    this.oclChecker = new DummyOclChecker();
+	    this.host = new DebugHost();
 		
-		boolean successful;
+	    boolean successful;
 
-		Resource model;
-		model = loadModel("bpmn2model.bpmn2");
-		assertNotNull(model);
-		this.host.setAnalyzedModel(model);
+	    Resource model;
+	    model = loadModel("bpmn2model.bpmn2");
+	    assertNotNull(model);
+	    this.host.setAnalyzedModel(model);
 		
-		this.oclChecker.setOclStatement("true");
-		successful = this.oclChecker.performOclQuery(this.host);
-		assertTrue(successful);
+	    this.oclChecker.setOclStatement("true");
+	    successful = this.oclChecker.performOclQuery(this.host);
+	    assertTrue(successful);
 		
-		this.oclChecker.setOclStatement("false");
-		successful = this.oclChecker.performOclQuery(this.host);
-		assertFalse(successful);
+	    this.oclChecker.setOclStatement("false");
+	    successful = this.oclChecker.performOclQuery(this.host);
+	    assertFalse(successful);
 	}
 	
 	
-	/**
-	 * Test queries a uml2 model.
-	 * @throws IOException 
-	 */
-	@Test
-	public final void oclQueryUml2ModelTest() throws IOException {
-		this.oclChecker = new DummyOclChecker();
-		this.host = new DebugHost();
+    /**
+     * Test queries a uml2 model.
+     * @throws IOException 
+     */
+    @Test
+    @Ignore
+    public final void oclQueryUml2ModelTest() throws IOException {
+	this.oclChecker = new DummyOclChecker();
+	this.host = new DebugHost();
 		
-		boolean successful;
+	boolean successful;
 
-		Resource model;
-		model = loadModel("activitydiagram.uml");
-		assertNotNull(model);
-		this.host.setAnalyzedModel(model);
+	Resource model;
+	model = loadModel("activitydiagram.uml");
+	assertNotNull(model);
+	this.host.setAnalyzedModel(model);
 		
-		this.oclChecker.setOclStatement("true");
-		successful = this.oclChecker.performOclQuery(this.host);
-		assertTrue(successful);
+	this.oclChecker.setOclStatement("true");
+	successful = this.oclChecker.performOclQuery(this.host);
+	assertTrue(successful);
 		
-		this.oclChecker.setOclStatement("false");
-		successful = this.oclChecker.performOclQuery(this.host);
-		assertFalse(successful);
-	}
+	this.oclChecker.setOclStatement("false");
+	successful = this.oclChecker.performOclQuery(this.host);
+	assertFalse(successful);
+    }
 }

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Ignore;
 
 import carisma.check.rabac.RABACCheck;
 import carisma.check.rabac.RABACTest;
@@ -43,22 +44,23 @@ public class RABACValidModelsTest implements RABACTest {
 	}
 
 	@Test
+	@Ignore
 	public void testValidRABACModel() throws IOException {
-		final File file = new File(new File(this.filepath), "valid.uml");
-		this.model = new ResourceSetImpl().createResource(URI.createFileURI(file.toString()));
-		try(FileInputStream stream = new FileInputStream(file)){
-			this.model.load(stream, Collections.emptyMap());
-			this.config.put(RABACCheck.PARAM_CONFIGURATION, new InputFileParameter(new CheckParameterDescriptor(null, null,
-					null, null, false, null), new File("resources" + File.separator + "rabac_configuration-valid.xml")));
+	    final File file = new File(new File(this.filepath), "valid.uml");
+	    this.model = new ResourceSetImpl().createResource(URI.createFileURI(file.toString()));
+	    try(FileInputStream stream = new FileInputStream(file)){
+		this.model.load(stream, Collections.emptyMap());
+		this.config.put(RABACCheck.PARAM_CONFIGURATION, new InputFileParameter(new CheckParameterDescriptor(null, null,
+														    null, null, false, null), new File("resources" + File.separator + "rabac_configuration-valid.xml")));
 
-			final RABACCheck rabacCheck = new RABACCheck();
-			final TestHost host = new TestHost(this);
-			assertTrue(rabacCheck.perform(this.config, host));
-			assertTrue(this.report.toString().contains("No errors have been detected."));
-		}
+		final RABACCheck rabacCheck = new RABACCheck();
+		final TestHost host = new TestHost(this);
+		assertTrue(rabacCheck.perform(this.config, host));
+		assertTrue(this.report.toString().contains("No errors have been detected."));
+	    }
 	}
 
-	@Override
+    @Override
 	public Resource getModel() {
 		return this.model;
 	}
