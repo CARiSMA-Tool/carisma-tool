@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -27,6 +28,7 @@ import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.junit.After;
 import org.junit.Test;
 
@@ -51,6 +53,7 @@ public class SecureLinksCheckTest {
 	private Model model = null;
 	
 	public final void loadModel(final String testmodelname) throws IOException {
+		UMLResourcesUtil.init(rs);
 		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
 		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
@@ -66,7 +69,20 @@ public class SecureLinksCheckTest {
 		Package pkg = (Package) ne;
 		ne = pkg.getMember("dep");
 		Dependency dep = (Dependency) ne;
-		assertEquals(4, dep.getAppliedStereotypes().size());
+		List<StereotypeApplication> result = UMLsecUtil.getStereotypeApplications(dep);
+		//System.out.println("applied "+ dep.getStereotypeName());
+		System.out.println("is profile applied" + this.model.getAllAppliedProfiles());
+		//System.out.println("profile applicable stereo" + this.model.getApplicableStereotypes());
+		for(int i = 0; i<this.model.getApplicableStereotypes().size() ;i++ ) {
+			System.out.println(this.model.getApplicableStereotypes().get(i));
+		}
+		System.out.println("dependency applicable stereo" + dep.getApplicableStereotypes()); //immer empty, maybe profile broken?
+		System.out.println("applied stereo "+ result);
+		System.out.println("applied stereo old "+ dep.getAppliedStereotypes());
+		assertEquals(4, dep.getAppliedStereotypes().size()); //properties lack stereotypes (new Sirius definition?) therefore here 0
+		//Why does the SecureLinksCheck from the release detects stereotypes, but not here?	
+		//https://download.eclipse.org/modeling/mdt/uml2/javadoc/5.1.0/org/eclipse/uml2/uml/Stereotype.html
+	
 		StereotypeApplication requirementApp = UMLsecUtil.getStereotypeApplication(dep, UMLsec.HIGH);
 		assertNotNull(requirementApp);
 		assertTrue(SecureLinksHelper.isSecureLinksRequirement(requirementApp.getAppliedStereotype()));
@@ -125,6 +141,7 @@ public class SecureLinksCheckTest {
 		assertEquals(0, theCheck.checkSecureLinks(this.model));
 	}
 	
+
 	@After
 	public void unloadModel(){
 		for(Resource r : this.rs.getResources()){
