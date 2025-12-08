@@ -28,29 +28,29 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.junit.After;
-import org.junit.Test;
 import org.junit.Ignore;
+import org.junit.Test;
 
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 
-
 /**
  * To test the UMLsec implementation.
+ * 
  * @author Daniel Warzecha
  *
  */
 @SuppressWarnings("java:S5960")
 public class SecureLinksCheckTest {
 	private String filepath = "resources/models/secure_links";
-		
+
 	private ResourceSet rs = new ResourceSetImpl();
-	
+
 	private Resource modelres = null;
-	
+
 	private Model model = null;
-	
+
 	public final void loadModel(final String testmodelname) throws IOException {
 		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
@@ -58,7 +58,7 @@ public class SecureLinksCheckTest {
 		this.modelres.load(Collections.EMPTY_MAP);
 		this.model = (Model) this.modelres.getContents().get(0);
 	}
-	
+
 	@Test
 	public final void testRequirements() throws IOException {
 		loadModel("testRequirements.uml");
@@ -67,21 +67,7 @@ public class SecureLinksCheckTest {
 		Package pkg = (Package) ne;
 		ne = pkg.getMember("dep");
 		Dependency dep = (Dependency) ne;
-		assertEquals(4, dep.getAppliedStereotypes().size()); 
-		List<StereotypeApplication> result = UMLsecUtil.getStereotypeApplications(dep);
-		//System.out.println("applied "+ dep.getStereotypeName());
-		System.out.println("is profile applied" + this.model.getAllAppliedProfiles());
-		//System.out.println("profile applicable stereo" + this.model.getApplicableStereotypes());
-		for(int i = 0; i<this.model.getApplicableStereotypes().size() ;i++ ) {
-			System.out.println(this.model.getApplicableStereotypes().get(i));
-		}
-		System.out.println("dependency applicable stereo" + dep.getApplicableStereotypes()); //immer empty, maybe profile broken?
-		System.out.println("applied stereo "+ result);
-		System.out.println("applied stereo old "+ dep.getAppliedStereotypes());
-		assertEquals(4, dep.getAppliedStereotypes().size()); //properties lack stereotypes (new Sirius definition?) therefore here 0
-		//Why does the SecureLinksCheck from the release detects stereotypes, but not here?	
-		//https://download.eclipse.org/modeling/mdt/uml2/javadoc/5.1.0/org/eclipse/uml2/uml/Stereotype.html
-	
+		assertEquals(4, dep.getAppliedStereotypes().size());
 		StereotypeApplication requirementApp = UMLsecUtil.getStereotypeApplication(dep, UMLsec.HIGH);
 		assertNotNull(requirementApp);
 		assertTrue(SecureLinksHelper.isSecureLinksRequirement(requirementApp.getAppliedStereotype()));
@@ -96,63 +82,63 @@ public class SecureLinksCheckTest {
 		assertFalse(SecureLinksHelper.isSecureLinksRequirement(requirementApp.getAppliedStereotype()));
 		this.modelres.unload();
 	}
-	
+
 	@Test
 	public final void testCheckAttacker() throws IOException {
 		loadModel("testRequirements.uml");
-		assertEquals("insider",SecureLinks.getAttacker(this.model));
+		assertEquals("insider", SecureLinks.getAttacker(this.model));
 		NamedElement ne = this.model.getMember("pkg");
 		assertNotNull(ne);
 		Package pkg = (Package) ne;
 		ne = pkg.getMember("aNode");
-		assertEquals("custom",SecureLinks.getAttacker(ne));
+		assertEquals("custom", SecureLinks.getAttacker(ne));
 		ne = pkg.getMember("bNode");
-		assertEquals("custom",SecureLinks.getAttacker(ne));
+		assertEquals("custom", SecureLinks.getAttacker(ne));
 		ne = pkg.getMember("dep");
-		assertEquals("custom",SecureLinks.getAttacker(ne));
+		assertEquals("custom", SecureLinks.getAttacker(ne));
 	}
-	
+
 	@Test
 	public final void testCheckWrongLinktype() throws IOException {
 		loadModel("testDeploymentWrongLinktype.uml");
 		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
-	
+
 	@Test
 	public final void testCheckRightLinktype() throws IOException {
 		loadModel("testDeploymentRightLinktype.uml");
 		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(0, theCheck.checkSecureLinks(this.model));
 	}
-	
+
 	@Test
 	public final void testCheckWrongCustomMultipleRequirements() throws IOException {
 		loadModel("testDeploymentWrongCustomMultipleRequirements.uml");
 		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
-	
+
 	@Test
 	public final void testCheckNonUMLsecStereotypes() throws IOException {
 		loadModel("testDeploymentNonUMLsecStereotype.uml");
 		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(0, theCheck.checkSecureLinks(this.model));
 	}
-	
+
 	@Test
 	@Ignore
 	public final void testTwoStereotypesOneCommPath() throws IOException {
-	    loadModel("testTwoStereotypesOneCommPath.uml");
-	    SecureLinks theCheck = new SecureLinks(null);
-	    assertEquals(1, theCheck.checkSecureLinks(this.model));
+		loadModel("testTwoStereotypesOneCommPath.uml");
+		SecureLinks theCheck = new SecureLinks(null);
+		assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
-	
-    @After
-    public void unloadModel(){
-	for(Resource r : this.rs.getResources()){
-	    r.unload();
+
+	@After
+	public void unloadModel() {
+		for (Resource r : this.rs.getResources()) {
+			r.unload();
+		}
 	}
-    }
-	
+
 }
