@@ -28,7 +28,6 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import carisma.modeltype.uml2.StereotypeApplication;
@@ -127,7 +126,6 @@ public class SecureLinksCheckTest {
 	}
 
 	@Test
-	@Ignore
 	public final void testTwoStereotypesOneCommPath() throws IOException {
 		loadModel("testTwoStereotypesOneCommPath.uml");
 		SecureLinks theCheck = new SecureLinks(null);
