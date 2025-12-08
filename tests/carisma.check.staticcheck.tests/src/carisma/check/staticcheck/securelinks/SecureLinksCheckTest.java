@@ -67,7 +67,21 @@ public class SecureLinksCheckTest {
 		Package pkg = (Package) ne;
 		ne = pkg.getMember("dep");
 		Dependency dep = (Dependency) ne;
-		assertEquals(4, dep.getAppliedStereotypes().size());
+		assertEquals(4, dep.getAppliedStereotypes().size()); 
+		List<StereotypeApplication> result = UMLsecUtil.getStereotypeApplications(dep);
+		//System.out.println("applied "+ dep.getStereotypeName());
+		System.out.println("is profile applied" + this.model.getAllAppliedProfiles());
+		//System.out.println("profile applicable stereo" + this.model.getApplicableStereotypes());
+		for(int i = 0; i<this.model.getApplicableStereotypes().size() ;i++ ) {
+			System.out.println(this.model.getApplicableStereotypes().get(i));
+		}
+		System.out.println("dependency applicable stereo" + dep.getApplicableStereotypes()); //immer empty, maybe profile broken?
+		System.out.println("applied stereo "+ result);
+		System.out.println("applied stereo old "+ dep.getAppliedStereotypes());
+		assertEquals(4, dep.getAppliedStereotypes().size()); //properties lack stereotypes (new Sirius definition?) therefore here 0
+		//Why does the SecureLinksCheck from the release detects stereotypes, but not here?	
+		//https://download.eclipse.org/modeling/mdt/uml2/javadoc/5.1.0/org/eclipse/uml2/uml/Stereotype.html
+	
 		StereotypeApplication requirementApp = UMLsecUtil.getStereotypeApplication(dep, UMLsec.HIGH);
 		assertNotNull(requirementApp);
 		assertTrue(SecureLinksHelper.isSecureLinksRequirement(requirementApp.getAppliedStereotype()));
