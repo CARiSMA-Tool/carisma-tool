@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.resource.UMLResource;
-import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.junit.Test;
 
 /**
@@ -33,17 +32,14 @@ import org.junit.Test;
 public class ProfileLoadingTest {
 
 	/**
-	 * - {@code ./mvnw --projects :carisma.profile.umlsec.tests clean verify}
-	 * succeeds with this test
-	 * 
-	 * - Running this test in Eclipse fails.
+	 * This test requires an eclipse environment, i.e. it succeeds as JUnit Plugin
+	 * test only (just like most CARiSMA tests).
 	 * 
 	 * @throws IOException
 	 */
 	@Test
 	public final void profileLoadingFromModelTest() throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		UMLResourcesUtil.init(resourceSet);
 		String path = "resources/models/profileLoading/profileLoadingTest.uml";
 		UMLResource resource = (UMLResource) resourceSet.createResource(URI.createFileURI(path));
 		assertNotNull(resource);
