@@ -27,40 +27,38 @@ import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.Ignore;
 
 import carisma.modeltype.uml2.StereotypeApplication;
 import carisma.profile.umlsec.UMLsec;
 import carisma.profile.umlsec.UMLsecUtil;
 
+
 /**
  * To test the UMLsec implementation.
- * 
  * @author Daniel Warzecha
  *
  */
 @SuppressWarnings("java:S5960")
 public class SecureLinksCheckTest {
 	private String filepath = "resources/models/secure_links";
-
+		
 	private ResourceSet rs = new ResourceSetImpl();
-
+	
 	private Resource modelres = null;
-
+	
 	private Model model = null;
-
+	
 	public final void loadModel(final String testmodelname) throws IOException {
-		UMLResourcesUtil.init(rs);
 		File testmodelfile = new File(this.filepath + File.separator + testmodelname);
 		assertTrue(testmodelfile.exists());
 		this.modelres = this.rs.createResource(URI.createFileURI(testmodelfile.getAbsolutePath()));
 		this.modelres.load(Collections.EMPTY_MAP);
 		this.model = (Model) this.modelres.getContents().get(0);
 	}
-
+	
 	@Test
 	public final void testRequirements() throws IOException {
 		loadModel("testRequirements.uml");
@@ -84,63 +82,63 @@ public class SecureLinksCheckTest {
 		assertFalse(SecureLinksHelper.isSecureLinksRequirement(requirementApp.getAppliedStereotype()));
 		this.modelres.unload();
 	}
-
+	
 	@Test
 	public final void testCheckAttacker() throws IOException {
 		loadModel("testRequirements.uml");
-		assertEquals("insider", SecureLinks.getAttacker(this.model));
+		assertEquals("insider",SecureLinks.getAttacker(this.model));
 		NamedElement ne = this.model.getMember("pkg");
 		assertNotNull(ne);
 		Package pkg = (Package) ne;
 		ne = pkg.getMember("aNode");
-		assertEquals("custom", SecureLinks.getAttacker(ne));
+		assertEquals("custom",SecureLinks.getAttacker(ne));
 		ne = pkg.getMember("bNode");
-		assertEquals("custom", SecureLinks.getAttacker(ne));
+		assertEquals("custom",SecureLinks.getAttacker(ne));
 		ne = pkg.getMember("dep");
-		assertEquals("custom", SecureLinks.getAttacker(ne));
+		assertEquals("custom",SecureLinks.getAttacker(ne));
 	}
-
+	
 	@Test
 	public final void testCheckWrongLinktype() throws IOException {
 		loadModel("testDeploymentWrongLinktype.uml");
 		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
-
+	
 	@Test
 	public final void testCheckRightLinktype() throws IOException {
 		loadModel("testDeploymentRightLinktype.uml");
 		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(0, theCheck.checkSecureLinks(this.model));
 	}
-
+	
 	@Test
 	public final void testCheckWrongCustomMultipleRequirements() throws IOException {
 		loadModel("testDeploymentWrongCustomMultipleRequirements.uml");
 		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
-
+	
 	@Test
 	public final void testCheckNonUMLsecStereotypes() throws IOException {
 		loadModel("testDeploymentNonUMLsecStereotype.uml");
 		SecureLinks theCheck = new SecureLinks(null);
 		assertEquals(0, theCheck.checkSecureLinks(this.model));
 	}
-
+	
 	@Test
 	@Ignore
 	public final void testTwoStereotypesOneCommPath() throws IOException {
-		loadModel("testTwoStereotypesOneCommPath.uml");
-		SecureLinks theCheck = new SecureLinks(null);
-		assertEquals(1, theCheck.checkSecureLinks(this.model));
+	    loadModel("testTwoStereotypesOneCommPath.uml");
+	    SecureLinks theCheck = new SecureLinks(null);
+	    assertEquals(1, theCheck.checkSecureLinks(this.model));
 	}
-
-	@After
-	public void unloadModel() {
-		for (Resource r : this.rs.getResources()) {
-			r.unload();
-		}
+	
+    @After
+    public void unloadModel(){
+	for(Resource r : this.rs.getResources()){
+	    r.unload();
 	}
-
+    }
+	
 }
