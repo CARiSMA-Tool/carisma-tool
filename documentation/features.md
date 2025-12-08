@@ -4,10 +4,8 @@
 
 ### Static Checks
 See [Static Checks](static-check-examples/README.md) for the specific checks.
-### UMLsec4IDS
+### UMLsec4IDS / Extension4IDS
 See [UMLsec4IDS](umlsec4ids/README.md) for the specific checks. 
-### Extension4IDS
-See [Extension4IDS](extension4ids/README.md) for the specific checks. 
 ### Activity2PetriNets
 See [Activity2PetriNet](activity2pertinet/README.md) for the specific checks. 
 ### Smartcard Checks
