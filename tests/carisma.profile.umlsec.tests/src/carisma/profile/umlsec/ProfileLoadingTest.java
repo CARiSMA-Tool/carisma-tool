@@ -29,6 +29,7 @@ import org.junit.Test;
  * @author Julian Flake
  *
  */
+@SuppressWarnings("java:S5960")
 public class ProfileLoadingTest {
 
 	/**
