@@ -32,7 +32,7 @@ If you want to model business processes using BPMN models, you probably want to 
 ## Papyrus
 After installing the Eclipse Modeling Tools, you need to install Papyrus via the Update Site:
 1. Navigate to *Help* -> *Install New Software*, then click *Add* 
-2. Enter the following URL into the "Location" field: https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2025-06/7.1.0
+2. Enter the following URL into the "Location" field: https://download.eclipse.org/modeling/mdt/papyrus/papyrus-desktop/updates/releases/2025-06/7.1.0/
 3. At least, install ”Papyrus for UML” and ”Papyrus for UML Developer Resources”.
 4. Click *Next* and *Finish*
 5. Wait for the installation to finish and restart Eclipse.
