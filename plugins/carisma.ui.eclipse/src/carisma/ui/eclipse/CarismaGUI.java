@@ -135,8 +135,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 	 */
 	/**
 	 * @param context
-	 * @throws Exception
-	 *                   an Exception
+	 * @throws Exception an Exception
 	 */
 	@Override
 	public final void start(final BundleContext context) throws Exception {
@@ -163,8 +162,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 		INSTANCE.getWorkbench().getDisplay().asyncExec(() -> {
 			try {
 				final var page = INSTANCE.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				final var analysisResultsView = (AnalysisResultsView) page
-						.showView(AnalysisResultsView.ID);
+				final var analysisResultsView = (AnalysisResultsView) page.showView(AnalysisResultsView.ID);
 				analysisResultsView.update();
 			} catch (final PartInitException e) {
 				Logger.log(LogLevel.ERROR, "Could not initialize, \"" + AnalysisResultsView.ID + "\" correctly", e);
@@ -179,8 +177,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 	 * BundleContext )
 	 */
 	/**
-	 * @param context
-	 *                BundleContext
+	 * @param context BundleContext
 	 * @throws Exception
 	 */
 	@Override
@@ -239,11 +236,10 @@ public class CarismaGUI extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given plug-in
-	 * relative path.
+	 * Returns an image descriptor for the image file at the given plug-in relative
+	 * path.
 	 *
-	 * @param path
-	 *             the path
+	 * @param path the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(final String path) {
@@ -292,8 +288,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 	/**
 	 *
-	 * @param analysis
-	 *                 the analysis to be run
+	 * @param analysis the analysis to be run
 	 */
 	public static final void runAnalysis(final Analysis analysis) {
 		Carisma.getInstance().runAnalysis(analysis, new EclipseUIConnector());
@@ -309,8 +304,7 @@ public class CarismaGUI extends AbstractUIPlugin {
 
 	/**
 	 *
-	 * @param analysisResult
-	 *                       the analysis result
+	 * @param analysisResult the analysis result
 	 *
 	 */
 
@@ -353,6 +347,9 @@ public class CarismaGUI extends AbstractUIPlugin {
 				</html>""";
 		var htmlBody = StringEscapeUtils.escapeHtml4(analysisResult.getReport());
 		htmlBody = htmlBody.replace("\t", "&emsp;").replaceAll("[\\r\\n]", "<br/>" + System.lineSeparator() + "\t");
+		htmlBody = htmlBody.replaceAll("INFO:", "");
+		htmlBody = htmlBody.replaceAll("ERROR:", "<span style=\"color:#ff0000;font-weight:bold;\">ERROR:</span>");
+		htmlBody = htmlBody.replaceAll("WARNING:", "<span style=\"color:#FFBF00;font-weight:bold;\">WARNING:</span>");
 		final var html = (htmlOpen + htmlBody + htmlClose);
 
 		try {

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mltop10" nsURI="http:///mltop10.ecore" nsPrefix="mltop10">
+  <eClassifiers xsi:type="ecore:EClass" name="MLModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Public" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AccessControl" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AdversarialTraining" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AnomalyDetection" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CryptographicallySecured"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="DefenseMechanism" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="DifferentialPrivacy" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EnsembleModel" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Obfuscation" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="LegalProtection" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegularBackup" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegularRetraining" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RobustActivationFunction"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RobustArchitecture" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegularAuditAndMonitoring"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegularPerformanceMonitoring"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegularTestingAndMonitoring"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Transparency" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Validation" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Watermarking" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AIAlgorithm">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Public" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AccessControl" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Randomize" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Regularisation" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TrainingData">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Public" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AccessControl" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AnomalyDetection" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Reduced" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegularAuditAndMonitoring"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegularUpdatesAndTraining"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Trusted" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Validation" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Verification" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Watermarking" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegularBackup" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AIApplication">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CheckModelResultAuthenticity"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="InputValidation" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="TamperEvidentLogging" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegularAuditAndMonitoring"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TrainingDataServer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Node" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="SecureDataStorage" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SecureAIScenario">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="PackageIntegrityVerified"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="PackagesFromSecureSources"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegularSecurityAudits"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegularPackageUpdates"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="SecureDeployment" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Model" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Model"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeedbackData">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AccessControl" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AnomalyDetection" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AuthenticityVerified" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Cleaning" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Validation" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="integrity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_CommunicationPath"
+        ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//CommunicationPath"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="secrecy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_CommunicationPath"
+        ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//CommunicationPath"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="carisma.carismacheck">
+      <check
+            description="Performs input manipulation check"
+            id="carisma.check.mltop10checks.inputmanipulation"
+            implementingClass="carisma.check.mltop10checks.inputmanipulation.InputManipulationCheck"
+            name="MLTop10 Input Manipulation Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs AI Supply Chain Attack Check"
+            id="carisma.check.mltop10checks.aisupplychain"
+            implementingClass="carisma.check.mltop10checks.aisupplychain.AISupplyChainCheck"
+            name="MLTop10 AI Supply Chain Attack Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs Transfer Learning Attack Check"
+            id="carisma.check.mltop10checks.transferlearning"
+            implementingClass="carisma.check.mltop10checks.transferlearning.TransferLearningCheck"
+            name="MLTop10 Transfer Learning Attack Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs Data Poisoning Attack Check"
+            id="carisma.check.mltop10checks.datapoisoning"
+            implementingClass="carisma.check.mltop10checks.datapoisoning.DataPoisoningCheck"
+            name="MLTop10 Data Poisoning Attack Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs Membership Inference Attack Check"
+            id="carisma.check.mltop10checks.membershipinference"
+            implementingClass="carisma.check.mltop10checks.membershipinference.MembershipInferenceCheck"
+            name="MLTop10 Membership Inference Attack Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs Model Inversion Attack Check"
+            id="carisma.check.mltop10checks.modelinversion"
+            implementingClass="carisma.check.mltop10checks.modelinversion.ModelInversionCheck"
+            name="MLTop10 Model Inversion Attack Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs Model Poisoning Attack Check"
+            id="carisma.check.mltop10checks.modelpoisoning"
+            implementingClass="carisma.check.mltop10checks.modelpoisoning.ModelPoisoningCheck"
+            name="MLTop10 Model Poisoning Attack Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs Model Skewing Attack Check"
+            id="carisma.check.mltop10checks.modelskewing"
+            implementingClass="carisma.check.mltop10checks.modelskewing.ModelSkewingCheck"
+            name="MLTop10 Model Skewing Attack Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs Model Theft Attack Check"
+            id="carisma.check.mltop10checks.modeltheft"
+            implementingClass="carisma.check.mltop10checks.modeltheft.ModelTheftCheck"
+            name="MLTop10 Model Theft Attack Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="Performs Output Integrity Attack Check"
+            id="carisma.check.mltop10checks.outputintegrity"
+            implementingClass="carisma.check.mltop10checks.outputintegrity.OutputIntegrityCheck"
+            name="MLTop10 Output Integrity Attack Check"
+            publisher="Alexander Peikert"
+            targetModelType="UML2">
+      </check>
+      <check
+            description="This check aggregates the OWASP ML Security Top 10 checks into an aggregated Check and Report."
+            id="carisma.check.mltop10checks.aggregator"
+            implementingClass="carisma.check.mltop10checks.aggregator.MLSecTop10Aggregator"
+            name="ML Security Top10 Aggregator Check"
+            publisher="University of Koblenz - Institute for Software Technology - Research Group Software Engineering"
+            targetModelType="UML2">
+      </check>
+   </extension>
+
+</plugin>

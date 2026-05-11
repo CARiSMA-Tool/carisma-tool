@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+  
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mltop10.profile -->
+      <package
+            uri="http://www.umlsec.de/profiles/UMLsec/mltop10"
+            class="mltop10.Mltop10Package"
+            genModel="profile/mltop10.profile.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            iconpath="icons/Logo16x16.png"
+            name="UMLSec.MLSecTop10"
+            path="pathmap://UMLsec/mltop10.uml">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://UMLsec/mltop10.uml"
+            target="platform:/plugin/carisma.profile.umlsec.mltop10/profile/mltop10.profile.uml">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="platform:/plugin/carisma.profile.umlsec.mltop10/profile/mltop10.profile.uml#_6ufFsPVCEfCR7r3VmXr6IQ"
+            uri="http://mltop10.ecore">
+      </profile>
+   </extension>
+
+</plugin>

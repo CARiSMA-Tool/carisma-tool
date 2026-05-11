@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OWASP ML Security Top 10 Checks
+Bundle-SymbolicName: carisma.check.mltop10checks;singleton:=true
+Bundle-Vendor: RGSE, University of Koblenz
+Bundle-Version: 1.0.0.qualifier
+Export-Package: carisma.check.mltop10checks.aggregator,
+ carisma.check.mltop10checks.aisupplychain,
+ carisma.check.mltop10checks.common,
+ carisma.check.mltop10checks.datapoisoning,
+ carisma.check.mltop10checks.inputmanipulation,
+ carisma.check.mltop10checks.membershipinference,
+ carisma.check.mltop10checks.modelinversion,
+ carisma.check.mltop10checks.modelpoisoning,
+ carisma.check.mltop10checks.modelskewing,
+ carisma.check.mltop10checks.modeltheft,
+ carisma.check.mltop10checks.outputintegrity,
+ carisma.check.mltop10checks.transferlearning
+Require-Bundle: org.eclipse.swt,
+ org.eclipse.jface,
+ carisma.modeltype.uml2,
+ carisma.profile.umlsec,
+ org.eclipse.uml2.uml,
+ carisma.core,
+ org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.uml2.uml.resources,
+ carisma.check.staticcheck,
+ carisma.profile.umlsec.mltop10
+Automatic-Module-Name: carisma.check.mltop10checks
+Bundle-RequiredExecutionEnvironment: JavaSE-17
