@@ -29,20 +29,16 @@
       <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21</windows>
    </vm>
 
-
    <plugins>
    </plugins>
 
    <features>
       <feature id="feature.carisma.uml2.checks"/>
-    
       <feature id="feature.carisma.core" installMode="root"/>
-   
       <feature id="feature.carisma.uml2" installMode="root"/>
-
       <feature id="feature.carisma.uml2.ids.checks" installMode="root"/>
       <feature id="feature.carisma.uml2.odrl.uconcreation" installMode="root"/>
-  
+      <feature id="feature.carisma.uml2.mlsectop10" installMode="root"/>
    </features>
 
    <configurations>

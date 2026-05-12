@@ -16,9 +16,7 @@ Export-Package: carisma.check.mltop10checks.aggregator,
  carisma.check.mltop10checks.modeltheft,
  carisma.check.mltop10checks.outputintegrity,
  carisma.check.mltop10checks.transferlearning
-Require-Bundle: org.eclipse.swt,
- org.eclipse.jface,
- carisma.modeltype.uml2,
+Require-Bundle: carisma.modeltype.uml2,
  carisma.profile.umlsec,
  org.eclipse.uml2.uml,
  carisma.core,
@@ -29,4 +27,4 @@ Require-Bundle: org.eclipse.swt,
  carisma.check.staticcheck,
  carisma.profile.umlsec.mltop10
 Automatic-Module-Name: carisma.check.mltop10checks
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
