@@ -17,6 +17,7 @@
     <module>deployment/feature.carisma.uml2.evolution</module>
     <module>deployment/feature.carisma.uml2.evolution.checks</module>
     <module>deployment/feature.carisma.uml2.ids.checks</module>
+    <module>deployment/feature.carisma.uml2.mlsectop10</module>
     <module>deployment/feature.carisma.uml2.odrl.uconcreation</module>
     <module>deployment/carisma.product</module>
     <module>plugins/carisma.check.activity2petrinet</module>
@@ -109,28 +110,22 @@
   </properties>
   <repositories> 
     <repository>
-      <id>Eclipse 2025-06</id>
+      <id>Eclipse 2025-09</id>
       <layout>p2</layout>
-      <url>https://download.eclipse.org/releases/2025-06</url>
+      <url>https://download.eclipse.org/releases/2025-09</url>
     </repository>
-   <repository>
+    <repository>
+      <!-- This repository also contains artifacts released after 2025-06 -->
       <id>Papyrus 2025-06</id>
       <layout>p2</layout>
       <url>https://download.eclipse.org/modeling/mdt/papyrus/papyrus-desktop/updates/releases/2025-06/</url>
     </repository>
-    <!-- Keep Eclipse 2023-06, otherwise BPMN2 cannot be found -->
     <repository>
+      <!-- Keep Eclipse 2023-06, otherwise BPMN2 cannot be found -->
       <id>Eclipse 2023-06</id>
       <layout>p2</layout>
       <url>https://download.eclipse.org/releases/2023-06</url>
     </repository>
-    <!--
-    <repository>
-    	<id>BPMN2 - Modeler 2022-12</id>
-    	<layout>p2</layout>
-    	<url>https://download.eclipse.org/bpmn2-modeler/updates/nightly/2022-12/</url>
-    </repository>
-    -->
   </repositories>
   <build>
     <plugins>
