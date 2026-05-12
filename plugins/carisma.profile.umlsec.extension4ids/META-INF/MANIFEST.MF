@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: carisma.profile.umlsec.extension4ids.Activator
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Export-Package: carisma.profile.umlsec.extension4ids,
  carisma.profile.umlsec.extension4ids.impl,
  carisma.profile.umlsec.extension4ids.util

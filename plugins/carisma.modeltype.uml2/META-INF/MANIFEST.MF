@@ -6,7 +6,7 @@ Bundle-Version: 1.1.4.qualifier
 Require-Bundle: org.eclipse.uml2.uml.resources;visibility:=reexport,
  carisma.core;visibility:=reexport,
  org.eclipse.core.runtime;visibility:=reexport
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Export-Package: carisma.modeltype.uml2,
  carisma.modeltype.uml2.activity,
  carisma.modeltype.uml2.exceptions,
