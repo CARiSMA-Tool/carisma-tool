@@ -17,7 +17,7 @@ public class HtmlOutput implements PopUpAction {
 				CarismaGUI.openReport(analysisResult);
 			}
 		};
-		action.setText("Create report for selected analysis");
+		action.setText("Create HTML report for this analysis");
 		manager.add(action);
 
 		return true;

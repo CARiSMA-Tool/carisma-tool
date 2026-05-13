@@ -17,7 +17,6 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import org.apache.commons.text.StringEscapeUtils;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -44,12 +43,13 @@ import carisma.core.logging.LogLevel;
 import carisma.core.logging.Logger;
 import carisma.core.models.ModelManager;
 import carisma.core.models.ModelTypeRegistry;
+import carisma.core.reports.HTMLReport;
+import carisma.core.reports.JSONReport;
+import carisma.core.reports.XMLReport;
 import carisma.ui.eclipse.editors.EditorRegistry;
 import carisma.ui.eclipse.logging.EclipseLogPrinter;
 import carisma.ui.eclipse.preferences.Constants;
 import carisma.ui.eclipse.views.AnalysisResultsView;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.Marshaller;
 
 /**
  * The activator class controls the plug-in life cycle.
@@ -303,72 +303,33 @@ public class CarismaGUI extends AbstractUIPlugin {
 	}
 
 	/**
-	 *
-	 * @param analysisResult the analysis result
-	 *
-	 */
-
-	/*
-	 *
 	 * Currently changed to output HTML-Files
+	 * 
+	 * @param analysisResult the analysis result
+	 * 
 	 */
 	public static final void openReport(final AnalysisResult analysisResult) {
-		final var page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		final var container = analysisResult.getAnalysis().getIFile().getParent();
-		IFile file = null;
-		if (container instanceof final IFolder folder) {
-			file = folder.getFile("report-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".html"); // changedfrom
-			// txt
-
-		} else if (container instanceof final IProject project) {
-			file = project
-					.getFile("report-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".html"); // changedfrom
-			// txt
-		} else {
-			Logger.log(LogLevel.ERROR, "Analyzed file is not part of a project.");
+		IFile file = getFile(analysisResult, "report", "html");
+		if (file == null) {
+			Logger.log(LogLevel.ERROR, "Could not create file object.");
 			return;
 		}
-
-		// new...
-		final var htmlOpen = """
-				<!DOCTYPE html>
-				<html lang="de">
-				<head>
-					<meta charset="utf-8">
-					<meta name="viewport" content="width=device-width, initial-scale=1.0">
-					<title>CARiSMA Report</title>
-				</head>
-				<body>
-					<p>
-					""";
-		final var htmlClose = """
-				</p>
-				</body>
-				</html>""";
-		var htmlBody = StringEscapeUtils.escapeHtml4(analysisResult.getReport());
-		htmlBody = htmlBody.replace("\t", "&emsp;").replaceAll("[\\r\\n]", "<br/>" + System.lineSeparator() + "\t");
-		htmlBody = htmlBody.replaceAll("INFO:", "");
-		htmlBody = htmlBody.replaceAll("ERROR:", "<span style=\"color:#ff0000;font-weight:bold;\">ERROR:</span>");
-		htmlBody = htmlBody.replaceAll("WARNING:", "<span style=\"color:#FFBF00;font-weight:bold;\">WARNING:</span>");
-		final var html = (htmlOpen + htmlBody + htmlClose);
-
+		if (file.exists()) {
+			Logger.log(LogLevel.ERROR, "File already exists: " + file.getFullPath());
+			return;
+		}
+		String html = new HTMLReport(analysisResult).getHtml();
+		writeToFile(html, file);
+		final var page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		final var desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
 		try {
-			if (!(file.exists())) {
-				file.create(new ByteArrayInputStream(html.getBytes()), true, null);
-			}
-
-			final var desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
-			try {
-				page.openEditor(new FileEditorInput(file), desc.getId());
-			} catch (final PartInitException e) {
-				Logger.log(LogLevel.ERROR, "Could not start editor, \"" + desc.getId() + "\".", e);
-			}
-		} catch (final CoreException e) {
-			Logger.log(LogLevel.ERROR, "", e);
+			page.openEditor(new FileEditorInput(file), desc.getId());
+		} catch (final PartInitException e) {
+			Logger.log(LogLevel.ERROR, "Could not start editor, \"" + desc.getId() + "\".", e);
 		}
 	}
 
-	/*
+	/**
 	 * This class handles the xml output. The Marshaller gets the class
 	 * "AnalysisResult" as context.
 	 *
@@ -376,42 +337,83 @@ public class CarismaGUI extends AbstractUIPlugin {
 	 *
 	 *
 	 */
-
 	public static final void saveXml(final AnalysisResult analysisResult) {
-		final var container = analysisResult.getAnalysis().getIFile().getParent();
-		IFile file = null;
-		if (container instanceof final IFolder folder) {
-			file = folder
-					.getFile("xml-output-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".xml");
-
-		} else if (container instanceof final IProject project) {
-			file = project
-					.getFile("xml-output-" + analysisResult.getName() + "-" + analysisResult.getTimestamp() + ".xml");
-		} else {
-			Logger.log(LogLevel.ERROR, "Analyzed file is not part of a project.");
+		IFile file = getFile(analysisResult, "report", "xml");
+		if (file == null) {
+			Logger.log(LogLevel.ERROR, "Could not create file object.");
 			return;
 		}
-		if (!(file.exists())) {
-
-			try (var out = new ByteArrayOutputStream()) {
-
-				final var context = JAXBContext.newInstance(carisma.core.analysis.result.AnalysisResult.class);
-				final var m = context.createMarshaller();
-				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-				m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-				m.marshal(analysisResult, out);
-
-				final var store = new String(out.toByteArray(), StandardCharsets.UTF_8);
-
-				try (final InputStream is = new ByteArrayInputStream(store.getBytes(StandardCharsets.UTF_8))) {
-					file.create(is, true, null);
-				}
-
-			} catch (final Exception e) {
-				System.out.println(e.getMessage());
-			}
-
+		if (file.exists()) {
+			Logger.log(LogLevel.ERROR, "File already exists: " + file.getFullPath());
+			return;
 		}
+		String xml = new XMLReport(analysisResult).getXml();
+		writeToFile(xml, file);
+
+	}
+
+	/**
+	 * Writes analysis results to a JSON file.
+	 * 
+	 * @author Julian Flake <flake@uni-koblenz.de>
+	 * 
+	 * @param analysisResult the analysis result
+	 */
+	public static final void saveJson(final AnalysisResult analysisResult) {
+		IFile file = getFile(analysisResult, "report", "json");
+		if (file == null) {
+			Logger.log(LogLevel.ERROR, "Could not create file object.");
+			return;
+		}
+		if (file.exists()) {
+			Logger.log(LogLevel.ERROR, "File already exists: " + file.getFullPath());
+			return;
+		}
+		String content = new JSONReport(analysisResult).getJson();
+		writeToFile(content, file);
+	}
+
+	/**
+	 * @author Julian Flake <flake@uni-koblenz.de>
+	 * 
+	 * @param content The content to write to file
+	 * @param file    the IFile object
+	 */
+	private static void writeToFile(String content, IFile file) {
+		if (content != null) {
+			try (final InputStream is = new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8))) {
+				file.create(is, true, null);
+			} catch (CoreException | IOException e) {
+				Logger.log(LogLevel.ERROR, "Could not write contents to file: " + e.getLocalizedMessage());
+			}
+		}
+
+	}
+
+	/**
+	 * Returns an IFile object for the analysisResult with filename set to prefix
+	 * and extension set to extension.
+	 * 
+	 * @author Julian Flake <flake@uni-koblenz.de>
+	 * 
+	 * @param result     the IFile object is created this analysisResult
+	 * @param prefix     filename prefix (e.g. "report")
+	 * @param extension, file extension (e.g. ".html")
+	 * @return IFile object, of null, if object could not be created
+	 */
+	private static IFile getFile(AnalysisResult result, String prefix, String extension) {
+		final var container = result.getAnalysis().getIFile().getParent();
+		String fileName = prefix + "-" + result.getName() + "-" + result.getTimestamp() + "." + extension;
+		IFile file = null;
+		if (container instanceof final IFolder folder) {
+			file = folder.getFile(fileName);
+		} else if (container instanceof final IProject project) {
+			file = project.getFile(fileName);
+		} else {
+			Logger.log(LogLevel.ERROR, "Analyzed file is not part of a project or a folder.");
+			return null;
+		}
+		return file;
 	}
 
 	@Override

@@ -12,44 +12,4 @@
 	<version>1.4.6-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<!--        <version>${dependency-plugin}</version>-->
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<excludeScope>provided</excludeScope>
-							<includeScope>runtime</includeScope>
-							<stripVersion>true</stripVersion>
-							<excludeGroupIds>carisma</excludeGroupIds>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-
-	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
-		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-text</artifactId>
-		    <version>1.10.0</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-lang3</artifactId>
-		    <version>3.18.0</version>
-		</dependency>		
-	</dependencies>
 </project>

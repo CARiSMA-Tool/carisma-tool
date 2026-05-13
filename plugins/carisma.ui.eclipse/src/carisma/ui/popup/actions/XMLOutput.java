@@ -21,7 +21,7 @@ public class XMLOutput implements PopUpAction {
 				CarismaGUI.saveXml(analysisResult);
 			}
 		};
-		action2.setText("Create XML-Output for selected analysis");
+		action2.setText("Create XML report for this analysis");
 		manager.add(action2);
 
 		return true;
