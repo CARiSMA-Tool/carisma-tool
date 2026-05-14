@@ -9,10 +9,9 @@ import mltop10.MLModel;
 import mltop10.Mltop10Factory;
 import mltop10.Mltop10Package;
 import mltop10.SecureAIScenario;
+import mltop10.SecureCommPath;
 import mltop10.TrainingData;
 import mltop10.TrainingDataServer;
-import mltop10.integrity;
-import mltop10.secrecy;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -87,14 +86,7 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass integrityEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass secrecyEClass = null;
+	private EClass secureCommPathEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -817,8 +809,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getintegrity() {
-		return integrityEClass;
+	public EClass getSecureCommPath() {
+		return secureCommPathEClass;
 	}
 
 	/**
@@ -827,8 +819,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getintegrity_Base_CommunicationPath() {
-		return (EReference)integrityEClass.getEStructuralFeatures().get(0);
+	public EReference getSecureCommPath_Base_CommunicationPath() {
+		return (EReference)secureCommPathEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -837,8 +829,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getsecrecy() {
-		return secrecyEClass;
+	public EAttribute getSecureCommPath_ConfidelityPreserving() {
+		return (EAttribute)secureCommPathEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -847,8 +839,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getsecrecy_Base_CommunicationPath() {
-		return (EReference)secrecyEClass.getEStructuralFeatures().get(0);
+	public EAttribute getSecureCommPath_IntegrityPreserving() {
+		return (EAttribute)secureCommPathEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -952,11 +944,10 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 		createEAttribute(feedbackDataEClass, FEEDBACK_DATA__CLEANING);
 		createEAttribute(feedbackDataEClass, FEEDBACK_DATA__VALIDATION);
 
-		integrityEClass = createEClass(INTEGRITY);
-		createEReference(integrityEClass, INTEGRITY__BASE_COMMUNICATION_PATH);
-
-		secrecyEClass = createEClass(SECRECY);
-		createEReference(secrecyEClass, SECRECY__BASE_COMMUNICATION_PATH);
+		secureCommPathEClass = createEClass(SECURE_COMM_PATH);
+		createEReference(secureCommPathEClass, SECURE_COMM_PATH__BASE_COMMUNICATION_PATH);
+		createEAttribute(secureCommPathEClass, SECURE_COMM_PATH__CONFIDELITY_PRESERVING);
+		createEAttribute(secureCommPathEClass, SECURE_COMM_PATH__INTEGRITY_PRESERVING);
 	}
 
 	/**
@@ -1065,11 +1056,10 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 		initEAttribute(getFeedbackData_Cleaning(), theTypesPackage.getBoolean(), "Cleaning", null, 1, 1, FeedbackData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFeedbackData_Validation(), theTypesPackage.getBoolean(), "Validation", null, 1, 1, FeedbackData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(integrityEClass, integrity.class, "integrity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getintegrity_Base_CommunicationPath(), theUMLPackage.getCommunicationPath(), null, "base_CommunicationPath", null, 0, 1, integrity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(secrecyEClass, secrecy.class, "secrecy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getsecrecy_Base_CommunicationPath(), theUMLPackage.getCommunicationPath(), null, "base_CommunicationPath", null, 0, 1, secrecy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(secureCommPathEClass, SecureCommPath.class, "SecureCommPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSecureCommPath_Base_CommunicationPath(), theUMLPackage.getCommunicationPath(), null, "base_CommunicationPath", null, 0, 1, SecureCommPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSecureCommPath_ConfidelityPreserving(), theTypesPackage.getBoolean(), "ConfidelityPreserving", null, 1, 1, SecureCommPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSecureCommPath_IntegrityPreserving(), theTypesPackage.getBoolean(), "IntegrityPreserving", null, 1, 1, SecureCommPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

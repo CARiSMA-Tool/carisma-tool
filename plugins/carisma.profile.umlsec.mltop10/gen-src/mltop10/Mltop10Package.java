@@ -775,14 +775,14 @@ public interface Mltop10Package extends EPackage {
 	int FEEDBACK_DATA_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link mltop10.impl.integrityImpl <em>integrity</em>}' class.
+	 * The meta object id for the '{@link mltop10.impl.SecureCommPathImpl <em>Secure Comm Path</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see mltop10.impl.integrityImpl
-	 * @see mltop10.impl.Mltop10PackageImpl#getintegrity()
+	 * @see mltop10.impl.SecureCommPathImpl
+	 * @see mltop10.impl.Mltop10PackageImpl#getSecureCommPath()
 	 * @generated
 	 */
-	int INTEGRITY = 7;
+	int SECURE_COMM_PATH = 7;
 
 	/**
 	 * The feature id for the '<em><b>Base Communication Path</b></em>' reference.
@@ -791,62 +791,43 @@ public interface Mltop10Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGRITY__BASE_COMMUNICATION_PATH = 0;
+	int SECURE_COMM_PATH__BASE_COMMUNICATION_PATH = 0;
 
 	/**
-	 * The number of structural features of the '<em>integrity</em>' class.
+	 * The feature id for the '<em><b>Confidelity Preserving</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGRITY_FEATURE_COUNT = 1;
+	int SECURE_COMM_PATH__CONFIDELITY_PRESERVING = 1;
 
 	/**
-	 * The number of operations of the '<em>integrity</em>' class.
+	 * The feature id for the '<em><b>Integrity Preserving</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGRITY_OPERATION_COUNT = 0;
+	int SECURE_COMM_PATH__INTEGRITY_PRESERVING = 2;
 
 	/**
-	 * The meta object id for the '{@link mltop10.impl.secrecyImpl <em>secrecy</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see mltop10.impl.secrecyImpl
-	 * @see mltop10.impl.Mltop10PackageImpl#getsecrecy()
-	 * @generated
-	 */
-	int SECRECY = 8;
-
-	/**
-	 * The feature id for the '<em><b>Base Communication Path</b></em>' reference.
+	 * The number of structural features of the '<em>Secure Comm Path</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SECRECY__BASE_COMMUNICATION_PATH = 0;
+	int SECURE_COMM_PATH_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of structural features of the '<em>secrecy</em>' class.
+	 * The number of operations of the '<em>Secure Comm Path</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SECRECY_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>secrecy</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECRECY_OPERATION_COUNT = 0;
+	int SECURE_COMM_PATH_OPERATION_COUNT = 0;
 
 
 	/**
@@ -1558,46 +1539,47 @@ public interface Mltop10Package extends EPackage {
 	EAttribute getFeedbackData_Validation();
 
 	/**
-	 * Returns the meta object for class '{@link mltop10.integrity <em>integrity</em>}'.
+	 * Returns the meta object for class '{@link mltop10.SecureCommPath <em>Secure Comm Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>integrity</em>'.
-	 * @see mltop10.integrity
+	 * @return the meta object for class '<em>Secure Comm Path</em>'.
+	 * @see mltop10.SecureCommPath
 	 * @generated
 	 */
-	EClass getintegrity();
+	EClass getSecureCommPath();
 
 	/**
-	 * Returns the meta object for the reference '{@link mltop10.integrity#getBase_CommunicationPath <em>Base Communication Path</em>}'.
+	 * Returns the meta object for the reference '{@link mltop10.SecureCommPath#getBase_CommunicationPath <em>Base Communication Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Communication Path</em>'.
-	 * @see mltop10.integrity#getBase_CommunicationPath()
-	 * @see #getintegrity()
+	 * @see mltop10.SecureCommPath#getBase_CommunicationPath()
+	 * @see #getSecureCommPath()
 	 * @generated
 	 */
-	EReference getintegrity_Base_CommunicationPath();
+	EReference getSecureCommPath_Base_CommunicationPath();
 
 	/**
-	 * Returns the meta object for class '{@link mltop10.secrecy <em>secrecy</em>}'.
+	 * Returns the meta object for the attribute '{@link mltop10.SecureCommPath#isConfidelityPreserving <em>Confidelity Preserving</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>secrecy</em>'.
-	 * @see mltop10.secrecy
+	 * @return the meta object for the attribute '<em>Confidelity Preserving</em>'.
+	 * @see mltop10.SecureCommPath#isConfidelityPreserving()
+	 * @see #getSecureCommPath()
 	 * @generated
 	 */
-	EClass getsecrecy();
+	EAttribute getSecureCommPath_ConfidelityPreserving();
 
 	/**
-	 * Returns the meta object for the reference '{@link mltop10.secrecy#getBase_CommunicationPath <em>Base Communication Path</em>}'.
+	 * Returns the meta object for the attribute '{@link mltop10.SecureCommPath#isIntegrityPreserving <em>Integrity Preserving</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Communication Path</em>'.
-	 * @see mltop10.secrecy#getBase_CommunicationPath()
-	 * @see #getsecrecy()
+	 * @return the meta object for the attribute '<em>Integrity Preserving</em>'.
+	 * @see mltop10.SecureCommPath#isIntegrityPreserving()
+	 * @see #getSecureCommPath()
 	 * @generated
 	 */
-	EReference getsecrecy_Base_CommunicationPath();
+	EAttribute getSecureCommPath_IntegrityPreserving();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2157,14 +2139,14 @@ public interface Mltop10Package extends EPackage {
 		EAttribute FEEDBACK_DATA__VALIDATION = eINSTANCE.getFeedbackData_Validation();
 
 		/**
-		 * The meta object literal for the '{@link mltop10.impl.integrityImpl <em>integrity</em>}' class.
+		 * The meta object literal for the '{@link mltop10.impl.SecureCommPathImpl <em>Secure Comm Path</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see mltop10.impl.integrityImpl
-		 * @see mltop10.impl.Mltop10PackageImpl#getintegrity()
+		 * @see mltop10.impl.SecureCommPathImpl
+		 * @see mltop10.impl.Mltop10PackageImpl#getSecureCommPath()
 		 * @generated
 		 */
-		EClass INTEGRITY = eINSTANCE.getintegrity();
+		EClass SECURE_COMM_PATH = eINSTANCE.getSecureCommPath();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Communication Path</b></em>' reference feature.
@@ -2172,25 +2154,23 @@ public interface Mltop10Package extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTEGRITY__BASE_COMMUNICATION_PATH = eINSTANCE.getintegrity_Base_CommunicationPath();
+		EReference SECURE_COMM_PATH__BASE_COMMUNICATION_PATH = eINSTANCE.getSecureCommPath_Base_CommunicationPath();
 
 		/**
-		 * The meta object literal for the '{@link mltop10.impl.secrecyImpl <em>secrecy</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see mltop10.impl.secrecyImpl
-		 * @see mltop10.impl.Mltop10PackageImpl#getsecrecy()
-		 * @generated
-		 */
-		EClass SECRECY = eINSTANCE.getsecrecy();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Communication Path</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Confidelity Preserving</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SECRECY__BASE_COMMUNICATION_PATH = eINSTANCE.getsecrecy_Base_CommunicationPath();
+		EAttribute SECURE_COMM_PATH__CONFIDELITY_PRESERVING = eINSTANCE.getSecureCommPath_ConfidelityPreserving();
+
+		/**
+		 * The meta object literal for the '<em><b>Integrity Preserving</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SECURE_COMM_PATH__INTEGRITY_PRESERVING = eINSTANCE.getSecureCommPath_IntegrityPreserving();
 
 	}
 

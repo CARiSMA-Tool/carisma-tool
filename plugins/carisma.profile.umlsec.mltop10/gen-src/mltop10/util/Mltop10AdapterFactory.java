@@ -96,12 +96,8 @@ public class Mltop10AdapterFactory extends AdapterFactoryImpl {
 				return createFeedbackDataAdapter();
 			}
 			@Override
-			public Adapter caseintegrity(integrity object) {
-				return createintegrityAdapter();
-			}
-			@Override
-			public Adapter casesecrecy(secrecy object) {
-				return createsecrecyAdapter();
+			public Adapter caseSecureCommPath(SecureCommPath object) {
+				return createSecureCommPathAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -222,30 +218,16 @@ public class Mltop10AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link mltop10.integrity <em>integrity</em>}'.
+	 * Creates a new adapter for an object of class '{@link mltop10.SecureCommPath <em>Secure Comm Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see mltop10.integrity
+	 * @see mltop10.SecureCommPath
 	 * @generated
 	 */
-	public Adapter createintegrityAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link mltop10.secrecy <em>secrecy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see mltop10.secrecy
-	 * @generated
-	 */
-	public Adapter createsecrecyAdapter() {
+	public Adapter createSecureCommPathAdapter() {
 		return null;
 	}
 

@@ -13,6 +13,10 @@ Export-Package: carisma.profile.umlsec.mltop10,
  mltop10.impl,
  mltop10.util
 Require-Bundle: carisma.modeltype.uml2;visibility:=reexport,
- carisma.core;visibility:=reexport
+ carisma.core;visibility:=reexport,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.uml2.types;visibility:=reexport,
+ org.eclipse.uml2.uml;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: carisma.profile.umlsec.mltop10.Activator

@@ -63,8 +63,7 @@ public class Mltop10FactoryImpl extends EFactoryImpl implements Mltop10Factory {
 			case Mltop10Package.TRAINING_DATA_SERVER: return createTrainingDataServer();
 			case Mltop10Package.SECURE_AI_SCENARIO: return createSecureAIScenario();
 			case Mltop10Package.FEEDBACK_DATA: return createFeedbackData();
-			case Mltop10Package.INTEGRITY: return createintegrity();
-			case Mltop10Package.SECRECY: return createsecrecy();
+			case Mltop10Package.SECURE_COMM_PATH: return createSecureCommPath();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -153,20 +152,9 @@ public class Mltop10FactoryImpl extends EFactoryImpl implements Mltop10Factory {
 	 * @generated
 	 */
 	@Override
-	public integrity createintegrity() {
-		integrityImpl integrity = new integrityImpl();
-		return integrity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public secrecy createsecrecy() {
-		secrecyImpl secrecy = new secrecyImpl();
-		return secrecy;
+	public SecureCommPath createSecureCommPath() {
+		SecureCommPathImpl secureCommPath = new SecureCommPathImpl();
+		return secureCommPath;
 	}
 
 	/**

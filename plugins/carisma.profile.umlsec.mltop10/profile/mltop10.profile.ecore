@@ -131,12 +131,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Validation" ordered="false"
         lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="integrity">
+  <eClassifiers xsi:type="ecore:EClass" name="SecureCommPath">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_CommunicationPath"
         ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//CommunicationPath"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="secrecy">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_CommunicationPath"
-        ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//CommunicationPath"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ConfidelityPreserving"
+        ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="IntegrityPreserving" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
   </eClassifiers>
 </ecore:EPackage>

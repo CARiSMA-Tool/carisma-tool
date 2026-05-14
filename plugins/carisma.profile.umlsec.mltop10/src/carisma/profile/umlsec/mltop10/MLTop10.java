@@ -8,7 +8,7 @@ public enum MLTop10 {
 
 	MLModel("MLModel"), AIApplication("AIApplication"), TrainingData("TrainingData"), FeedbackData("FeedbackData"),
 	AIAlgorithm("AIAlgorithm"), SecureAIScenario("SecureAIScenario"), TrainingDataServer("TrainingDataServer"),
-	Integrity("integrity"), Secrecy("secrecy");
+	Integrity("integrity"), Secrecy("secrecy"), SecureCommPath("SecureCommPath");
 
 	private static final String PROFILE_NAME = "mltop10";
 	private static final String PROFILE_VERSION = "1";

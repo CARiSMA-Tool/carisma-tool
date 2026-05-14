@@ -85,22 +85,13 @@ public interface Mltop10Factory extends EFactory {
 	FeedbackData createFeedbackData();
 
 	/**
-	 * Returns a new object of class '<em>integrity</em>'.
+	 * Returns a new object of class '<em>Secure Comm Path</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>integrity</em>'.
+	 * @return a new object of class '<em>Secure Comm Path</em>'.
 	 * @generated
 	 */
-	integrity createintegrity();
-
-	/**
-	 * Returns a new object of class '<em>secrecy</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>secrecy</em>'.
-	 * @generated
-	 */
-	secrecy createsecrecy();
+	SecureCommPath createSecureCommPath();
 
 	/**
 	 * Returns the package supported by this factory.
