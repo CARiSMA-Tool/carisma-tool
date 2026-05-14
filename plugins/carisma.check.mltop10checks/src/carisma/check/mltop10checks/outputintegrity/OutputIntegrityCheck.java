@@ -94,13 +94,13 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 				for (CommunicationPath path : commPaths) {
 					if (MLTop10Util.getMemberNodes(path).containsAll(Arrays.asList(fromNode, toNode))) {
 						// integrity on relevant paths?
-						if (!MLTop10Util.hasStereotype(path, MLTop10.Integrity)) {
+						if (!MLTop10Util.isTaggedValueTrue(path, MLTop10.SecureCommPath, "IntegrityPreserving")) {
 							this.addError("2: There is a dependency between '" + from.getName() + "' and '"
 									+ to.getName()
 									+ "', but the communication path between the nodes these artifacts are deployed to, does not fulfill 'integrity'.");
 						}
 						// secrecy on relevant paths?
-						if (!MLTop10Util.hasStereotype(path, MLTop10.Secrecy)) {
+						if (!MLTop10Util.isTaggedValueTrue(path, MLTop10.SecureCommPath, "ConfidelityPreserving")) {
 							this.addError("2: There is a dependency between '" + from.getName() + "' and '"
 									+ to.getName()
 									+ "', but the communication path between the nodes these artifacts are deployed to, does not fulfill 'secrecy'.");

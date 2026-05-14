@@ -85,7 +85,7 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 				for (CommunicationPath path : commPaths) {
 					if (MLTop10Util.getMemberNodes(path).containsAll(Arrays.asList(fromNode, toNode))) {
 						// secrecy on relevant paths?
-						if (!MLTop10Util.hasStereotype(path, MLTop10.Secrecy)) {
+						if (!MLTop10Util.isTaggedValueTrue(path, MLTop10.SecureCommPath, "ConfidelityPreserving")) {
 							this.addError("Pre b. There is a dependency between '" + from.getName() + "' and '"
 									+ to.getName()
 									+ "', but the communication path between the nodes these artifacts are deployed to, does not fulfill 'secrecy'.");
