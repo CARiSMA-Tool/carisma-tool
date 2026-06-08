@@ -271,9 +271,7 @@ We recommend using the report for more detailed messages regarding the check.
       - Search and select `ActivityPartition`.
       - Drag and drop `Stereotype` from the **Nodes** palette and name it (e.g., `test`).
       - Use `Extension` from the **Edges** palette to connect the stereotype to the metaclass.
-    - To add tag values:
-      - Click on the stereotype (e.g., `test`), navigate to the **Properties** tab.
-      - Select `UML`, then under **Owned Attribute**, add attributes (name, label, type, multiplicity, etc.).
+    - To add a property to a stereotype, drag and drop a **Property** node from the **Nodes** palette to the properties area of the stereotype (e.g., `test`) on the canvas and edit the property's properties (name, type, multiplicty etc.) of the **Property** node in the property view (bottom of the screen). For example, to set the type of a property to `Boolean`, select "..." under "Type" in the "Main" tab of the property view, navigate to `pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml` -> `<<EPackage, ModelLibrary>> <Model> PrimitiveTypes`, then select `<<EDataType>> <PrimitiveType> Boolean` and click "Finish"
 8. Save the profile and provide dynamic definition details (date, author, version). Update the dynamic definition with every change.
 
 ---
