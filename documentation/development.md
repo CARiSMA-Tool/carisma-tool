@@ -272,22 +272,24 @@ We recommend using the report for more detailed messages regarding the check.
       - Drag and drop `Stereotype` from the **Nodes** palette and name it (e.g., `test`).
       - Use `Extension` from the **Edges** palette to connect the stereotype to the metaclass.
     - To add a property to a stereotype, drag and drop a **Property** node from the **Nodes** palette to the properties area of the stereotype (e.g., `test`) on the canvas and edit the property's properties (name, type, multiplicty etc.) of the **Property** node in the property view (bottom of the screen). For example, to set the type of a property to `Boolean`, select "..." under "Type" in the "Main" tab of the property view, navigate to `pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml` -> `<<EPackage, ModelLibrary>> <Model> UML PrimitiveTypes`, then select `<<EDataType>> <PrimitiveType> Boolean` and click "Finish"
-8. Save the profile and provide dynamic definition details (date, author, version). Update the dynamic definition with every change.
+8. Set the URI of the package in the "Main" tab of the property view, e.g., `http://www.umlsec.de/profiles/UMLsec/<profilename>.ecore`
+9. Save the profile and provide dynamic definition details (date, author, version). Update the dynamic definition with every change.
 
 ---
 
 ## 2. Create Ecore Model from the Profile
 
 1. Right-click on the UML file under `<profilename>.profile` and select `New > Other > Eclipse Modeling Framework > EMF Generator Model`.
-2. Set the parent folder and file name: `<profilename>.profile.genmodel`.
+2. Set the parent folder and file name: `<profilename>.profile.genmodel`, click `Next`.
 3. Select `UML Model` as the Model Importer and click `Next`.
-4. Ensure the Model URI is correct, click `Load`, and then `Next`.
-5. Under **Root Packages**, select `<profilename>` package and set the file name to `<profilename>.profile.ecore`.
+4. Ensure the Model URI is correct, e.g., `http://www.umlsec.de/profiles/UMLsec/<profilename>.uml`, click `Load` (possible problems can be ignored), and then click `Next`.
+5. Under **Root Packages**, select `<profilename>` package.
 6. Under **Referenced generator models**, select `Ecore`, `Types`, and `UML` (if present).
 7. Click `Finish`.
-8. Right-click the generated `.genmodel` file, open it with `EMF Generator`, right-click the root package `<profilename>`, and select `Generate Model Code`.
-9. Refactor the generated `src` package to `gen-src` and rename packages to `carisma.profile.<profilename>`.
-10. Create a new `src` package and set it up as a source folder in the Java Build Path.
+8. Set the output folder for the generated Java source files to `gen-src` by one of the following procedures:
+   - Alternative a: Set the Model Directory to `gen-src` in the property tree of the genmodel in the section "Model".
+   - Alternative b: Right-click the generated `.genmodel` file, open it with `EMF Generator`, right-click the root package `<profilename>`, and select `Generate Model Code`. Finally, Refactor the generated `src` package to `gen-src` and rename packages to `carisma.profile.<profilename>`.
+9. Create a new `src` package and set it up as a source folder in the Java Build Path.
 
 ---
 
@@ -323,7 +325,7 @@ We recommend using the report for more detailed messages regarding the check.
             - Name: `UMLsec.<profilename>`
             - Path: `pathmap://UMLsec/<profilename>.uml`
             - IconPath: Path to the CARiSMA logo file.
-        - `org.eclipse.emf.ecore.generated_package`
+        - `org.eclipse.emf.ecore.generated_package`, e.g.
             - URI: `http://www.umlsec.de/profiles/UMLsec/<profilename>.ecore`
             - Class: `carisma.profile.umlsec.<profilename>.<Profilename>Package`
             - GenModel: `profile/<profilename>.profile.genmodel`
