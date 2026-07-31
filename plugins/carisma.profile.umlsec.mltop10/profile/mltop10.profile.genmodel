@@ -32,92 +32,92 @@
   </genAnnotations>
   <foreignModel>mltop10.profile.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Mltop10" disposableProviderFactory="true"
-      ecorePackage="mltop10.profile.ecore#/">
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.profile.ecore#//MLModel">
+      ecorePackage="mltop10.ecore#/">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//MLModel">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.profile.ecore#//MLModel/base_Artifact"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/Public"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/AccessControl"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/AdversarialTraining"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/AnomalyDetection"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/CryptographicallySecured"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/DefenseMechanism"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/DifferentialPrivacy"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/EnsembleModel"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/Obfuscation"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/LegalProtection"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/RegularBackup"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/RegularRetraining"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/RobustActivationFunction"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/RobustArchitecture"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/RegularAuditAndMonitoring"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/RegularPerformanceMonitoring"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/RegularTestingAndMonitoring"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/Transparency"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/Validation"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//MLModel/Watermarking"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//MLModel/base_Artifact"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/Public"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/AccessControl"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/AdversarialTraining"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/AnomalyDetection"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/CryptographicallySecured"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/DefenseMechanism"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/DifferentialPrivacy"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/EnsembleModel"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/Obfuscation"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/LegalProtection"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RegularBackup"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RegularRetraining"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RobustActivationFunction"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RobustArchitecture"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RegularAuditAndMonitoring"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RegularPerformanceMonitoring"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RegularTestingAndMonitoring"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/Transparency"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/Validation"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/Watermarking"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.profile.ecore#//AIAlgorithm">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//AIAlgorithm">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.profile.ecore#//AIAlgorithm/base_Artifact"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//AIAlgorithm/Public"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//AIAlgorithm/AccessControl"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//AIAlgorithm/Randomize"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//AIAlgorithm/Regularisation"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//AIAlgorithm/base_Artifact"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//AIAlgorithm/Public"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//AIAlgorithm/AccessControl"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//AIAlgorithm/Randomize"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//AIAlgorithm/Regularisation"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.profile.ecore#//TrainingData">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//TrainingData">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.profile.ecore#//TrainingData/base_Artifact"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingData/Public"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingData/AccessControl"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingData/AnomalyDetection"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingData/Reduced"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingData/RegularAuditAndMonitoring"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingData/RegularUpdatesAndTraining"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingData/Trusted"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingData/Validation"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingData/Verification"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingData/Watermarking"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingData/RegularBackup"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//TrainingData/base_Artifact"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingData/Public"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingData/AccessControl"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingData/AnomalyDetection"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingData/Reduced"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingData/RegularAuditAndMonitoring"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingData/RegularUpdatesAndTraining"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingData/Trusted"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingData/Validation"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingData/Verification"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingData/Watermarking"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingData/RegularBackup"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.profile.ecore#//AIApplication">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//AIApplication">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.profile.ecore#//AIApplication/base_Artifact"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//AIApplication/CheckModelResultAuthenticity"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//AIApplication/InputValidation"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//AIApplication/TamperEvidentLogging"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//AIApplication/RegularAuditAndMonitoring"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//AIApplication/base_Artifact"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//AIApplication/CheckModelResultAuthenticity"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//AIApplication/InputValidation"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//AIApplication/TamperEvidentLogging"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//AIApplication/RegularAuditAndMonitoring"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.profile.ecore#//TrainingDataServer">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//TrainingDataServer">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.profile.ecore#//TrainingDataServer/base_Node"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//TrainingDataServer/SecureDataStorage"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//TrainingDataServer/base_Node"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingDataServer/SecureDataStorage"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.profile.ecore#//SecureAIScenario">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//SecureAIScenario/PackageIntegrityVerified"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//SecureAIScenario/PackagesFromSecureSources"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//SecureAIScenario/RegularSecurityAudits"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//SecureAIScenario/RegularPackageUpdates"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//SecureAIScenario/SecureDeployment"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//SecureAIScenario">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIScenario/PackageIntegrityVerified"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIScenario/PackagesFromSecureSources"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIScenario/RegularSecurityAudits"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIScenario/RegularPackageUpdates"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIScenario/SecureDeployment"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.profile.ecore#//SecureAIScenario/base_Package"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//SecureAIScenario/base_Package"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.profile.ecore#//SecureAIScenario/base_Model"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//SecureAIScenario/base_Model"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.profile.ecore#//FeedbackData">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//FeedbackData">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.profile.ecore#//FeedbackData/base_Artifact"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//FeedbackData/AccessControl"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//FeedbackData/AnomalyDetection"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//FeedbackData/AuthenticityVerified"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//FeedbackData/Cleaning"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//FeedbackData/Validation"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//FeedbackData/base_Artifact"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//FeedbackData/AccessControl"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//FeedbackData/AnomalyDetection"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//FeedbackData/AuthenticityVerified"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//FeedbackData/Cleaning"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//FeedbackData/Validation"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.profile.ecore#//SecureCommPath">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//SecureCommPath">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.profile.ecore#//SecureCommPath/base_CommunicationPath"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//SecureCommPath/ConfidelityPreserving"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.profile.ecore#//SecureCommPath/IntegrityPreserving"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//SecureCommPath/base_CommunicationPath"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureCommPath/ConfidentialityPreserving"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureCommPath/IntegrityPreserving"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

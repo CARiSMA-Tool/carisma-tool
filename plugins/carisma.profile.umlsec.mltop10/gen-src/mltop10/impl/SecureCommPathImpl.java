@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.CommunicationPath;
  * </p>
  * <ul>
  *   <li>{@link mltop10.impl.SecureCommPathImpl#getBase_CommunicationPath <em>Base Communication Path</em>}</li>
- *   <li>{@link mltop10.impl.SecureCommPathImpl#isConfidelityPreserving <em>Confidelity Preserving</em>}</li>
+ *   <li>{@link mltop10.impl.SecureCommPathImpl#isConfidentialityPreserving <em>Confidentiality Preserving</em>}</li>
  *   <li>{@link mltop10.impl.SecureCommPathImpl#isIntegrityPreserving <em>Integrity Preserving</em>}</li>
  * </ul>
  *
@@ -42,24 +42,24 @@ public class SecureCommPathImpl extends MinimalEObjectImpl.Container implements 
 	protected CommunicationPath base_CommunicationPath;
 
 	/**
-	 * The default value of the '{@link #isConfidelityPreserving() <em>Confidelity Preserving</em>}' attribute.
+	 * The default value of the '{@link #isConfidentialityPreserving() <em>Confidentiality Preserving</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isConfidelityPreserving()
+	 * @see #isConfidentialityPreserving()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean CONFIDELITY_PRESERVING_EDEFAULT = false;
+	protected static final boolean CONFIDENTIALITY_PRESERVING_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isConfidelityPreserving() <em>Confidelity Preserving</em>}' attribute.
+	 * The cached value of the '{@link #isConfidentialityPreserving() <em>Confidentiality Preserving</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isConfidelityPreserving()
+	 * @see #isConfidentialityPreserving()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean confidelityPreserving = CONFIDELITY_PRESERVING_EDEFAULT;
+	protected boolean confidentialityPreserving = CONFIDENTIALITY_PRESERVING_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isIntegrityPreserving() <em>Integrity Preserving</em>}' attribute.
@@ -146,8 +146,8 @@ public class SecureCommPathImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public boolean isConfidelityPreserving() {
-		return confidelityPreserving;
+	public boolean isConfidentialityPreserving() {
+		return confidentialityPreserving;
 	}
 
 	/**
@@ -156,11 +156,11 @@ public class SecureCommPathImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public void setConfidelityPreserving(boolean newConfidelityPreserving) {
-		boolean oldConfidelityPreserving = confidelityPreserving;
-		confidelityPreserving = newConfidelityPreserving;
+	public void setConfidentialityPreserving(boolean newConfidentialityPreserving) {
+		boolean oldConfidentialityPreserving = confidentialityPreserving;
+		confidentialityPreserving = newConfidentialityPreserving;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_COMM_PATH__CONFIDELITY_PRESERVING, oldConfidelityPreserving, confidelityPreserving));
+			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_COMM_PATH__CONFIDENTIALITY_PRESERVING, oldConfidentialityPreserving, confidentialityPreserving));
 	}
 
 	/**
@@ -197,8 +197,8 @@ public class SecureCommPathImpl extends MinimalEObjectImpl.Container implements 
 			case Mltop10Package.SECURE_COMM_PATH__BASE_COMMUNICATION_PATH:
 				if (resolve) return getBase_CommunicationPath();
 				return basicGetBase_CommunicationPath();
-			case Mltop10Package.SECURE_COMM_PATH__CONFIDELITY_PRESERVING:
-				return isConfidelityPreserving();
+			case Mltop10Package.SECURE_COMM_PATH__CONFIDENTIALITY_PRESERVING:
+				return isConfidentialityPreserving();
 			case Mltop10Package.SECURE_COMM_PATH__INTEGRITY_PRESERVING:
 				return isIntegrityPreserving();
 		}
@@ -216,8 +216,8 @@ public class SecureCommPathImpl extends MinimalEObjectImpl.Container implements 
 			case Mltop10Package.SECURE_COMM_PATH__BASE_COMMUNICATION_PATH:
 				setBase_CommunicationPath((CommunicationPath)newValue);
 				return;
-			case Mltop10Package.SECURE_COMM_PATH__CONFIDELITY_PRESERVING:
-				setConfidelityPreserving((Boolean)newValue);
+			case Mltop10Package.SECURE_COMM_PATH__CONFIDENTIALITY_PRESERVING:
+				setConfidentialityPreserving((Boolean)newValue);
 				return;
 			case Mltop10Package.SECURE_COMM_PATH__INTEGRITY_PRESERVING:
 				setIntegrityPreserving((Boolean)newValue);
@@ -237,8 +237,8 @@ public class SecureCommPathImpl extends MinimalEObjectImpl.Container implements 
 			case Mltop10Package.SECURE_COMM_PATH__BASE_COMMUNICATION_PATH:
 				setBase_CommunicationPath((CommunicationPath)null);
 				return;
-			case Mltop10Package.SECURE_COMM_PATH__CONFIDELITY_PRESERVING:
-				setConfidelityPreserving(CONFIDELITY_PRESERVING_EDEFAULT);
+			case Mltop10Package.SECURE_COMM_PATH__CONFIDENTIALITY_PRESERVING:
+				setConfidentialityPreserving(CONFIDENTIALITY_PRESERVING_EDEFAULT);
 				return;
 			case Mltop10Package.SECURE_COMM_PATH__INTEGRITY_PRESERVING:
 				setIntegrityPreserving(INTEGRITY_PRESERVING_EDEFAULT);
@@ -257,8 +257,8 @@ public class SecureCommPathImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 			case Mltop10Package.SECURE_COMM_PATH__BASE_COMMUNICATION_PATH:
 				return base_CommunicationPath != null;
-			case Mltop10Package.SECURE_COMM_PATH__CONFIDELITY_PRESERVING:
-				return confidelityPreserving != CONFIDELITY_PRESERVING_EDEFAULT;
+			case Mltop10Package.SECURE_COMM_PATH__CONFIDENTIALITY_PRESERVING:
+				return confidentialityPreserving != CONFIDENTIALITY_PRESERVING_EDEFAULT;
 			case Mltop10Package.SECURE_COMM_PATH__INTEGRITY_PRESERVING:
 				return integrityPreserving != INTEGRITY_PRESERVING_EDEFAULT;
 		}
@@ -275,8 +275,8 @@ public class SecureCommPathImpl extends MinimalEObjectImpl.Container implements 
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (ConfidelityPreserving: ");
-		result.append(confidelityPreserving);
+		result.append(" (ConfidentialityPreserving: ");
+		result.append(confidentialityPreserving);
 		result.append(", IntegrityPreserving: ");
 		result.append(integrityPreserving);
 		result.append(')');

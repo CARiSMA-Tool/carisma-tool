@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mltop10" nsURI="http:///mltop10.ecore" nsPrefix="mltop10">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mltop10" nsURI="http://www.umlsec.de/profiles/UMLsec/mltop10.ecore"
+    nsPrefix="mltop10">
   <eClassifiers xsi:type="ecore:EClass" name="MLModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Artifact" ordered="false"
         eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
@@ -134,7 +135,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="SecureCommPath">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_CommunicationPath"
         ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//CommunicationPath"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ConfidelityPreserving"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ConfidentialityPreserving"
         ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="IntegrityPreserving" ordered="false"
         lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>

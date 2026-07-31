@@ -26,14 +26,14 @@
          point="org.eclipse.uml2.uml.generated_package">
       <profile
             location="platform:/plugin/carisma.profile.umlsec.mltop10/profile/mltop10.profile.uml#_6ufFsPVCEfCR7r3VmXr6IQ"
-            uri="http://mltop10.ecore">
+            uri="http://www.umlsec.de/profiles/UMLsec/mltop10.ecore">
       </profile>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated mltop10.profile -->
       <package
-            uri="http:///mltop10.ecore"
+            uri="http://www.umlsec.de/profiles/UMLsec/mltop10.ecore"
             class="mltop10.Mltop10Package"
             genModel="profile/mltop10.profile.genmodel"/>
    </extension>

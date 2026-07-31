@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_6ufFsPVCEfCR7r3VmXr6IQ" name="mltop10" metaclassReference="_EGxDsPVDEfCR7r3VmXr6IQ _VePmUPeHEfCJHs41Ucc5Qw _dS8ZAPhIEfC0xrlNZNWBXg _dS9nIPhIEfC0xrlNZNWBXg _q4CxoBx3EfGQp9bQUApNdA _q4D_wBx3EfGQp9bQUApNdA">
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_6ufFsPVCEfCR7r3VmXr6IQ" name="mltop10" URI="http://www.umlsec.de/profiles/UMLsec/mltop10.ecore" metaclassReference="_EGxDsPVDEfCR7r3VmXr6IQ _VePmUPeHEfCJHs41Ucc5Qw _dS8ZAPhIEfC0xrlNZNWBXg _dS9nIPhIEfC0xrlNZNWBXg _q4CxoBx3EfGQp9bQUApNdA _q4D_wBx3EfGQp9bQUApNdA">
   <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HFYJ4PVDEfCR7r3VmXr6IQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1-HfgDaUEfGL8tg-8tfbTA" source="PapyrusVersion">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1-HfgTaUEfGL8tg-8tfbTA" key="Version" value="0.0.0"/>
@@ -22,6 +22,438 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_5RT95PeDEfCJHs41Ucc5Qw" key="Date" value=""/>
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_5RT95feDEfCJHs41Ucc5Qw" key="Author" value="&lt;undefined>"/>
     </eAnnotations>
+    <contents xmi:type="ecore:EPackage" xmi:id="_d2fm4IzFEfGiH4cO90aG3Q" name="mltop10" nsURI="http://www.umlsec.de/profiles/UMLsec/mltop10.ecore" nsPrefix="mltop10">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d2g1CYzFEfGiH4cO90aG3Q" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d2g1CozFEfGiH4cO90aG3Q" key="Version" value="0.0.11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d2g1C4zFEfGiH4cO90aG3Q" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d2g1DIzFEfGiH4cO90aG3Q" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d2g1DYzFEfGiH4cO90aG3Q" key="Date" value="2026-07-31"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d2g1DozFEfGiH4cO90aG3Q" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_d2fm4YzFEfGiH4cO90aG3Q" name="MLModel">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d2fm4ozFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ElRkoPVDEfCR7r3VmXr6IQ"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_d2fm44zFEfGiH4cO90aG3Q" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm5YzFEfGiH4cO90aG3Q" name="Public" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm54zFEfGiH4cO90aG3Q" name="AccessControl" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm6YzFEfGiH4cO90aG3Q" name="AdversarialTraining" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm64zFEfGiH4cO90aG3Q" name="AnomalyDetection" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm7YzFEfGiH4cO90aG3Q" name="CryptographicallySecured" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm74zFEfGiH4cO90aG3Q" name="DefenseMechanism" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm8YzFEfGiH4cO90aG3Q" name="DifferentialPrivacy" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm84zFEfGiH4cO90aG3Q" name="EnsembleModel" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm9YzFEfGiH4cO90aG3Q" name="Obfuscation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm94zFEfGiH4cO90aG3Q" name="LegalProtection" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm-YzFEfGiH4cO90aG3Q" name="RegularBackup" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm-4zFEfGiH4cO90aG3Q" name="RegularRetraining" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm_YzFEfGiH4cO90aG3Q" name="RobustActivationFunction" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fm_4zFEfGiH4cO90aG3Q" name="RobustArchitecture" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnAYzFEfGiH4cO90aG3Q" name="RegularAuditAndMonitoring" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnA4zFEfGiH4cO90aG3Q" name="RegularPerformanceMonitoring" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnBYzFEfGiH4cO90aG3Q" name="RegularTestingAndMonitoring" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnB4zFEfGiH4cO90aG3Q" name="Transparency" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnCYzFEfGiH4cO90aG3Q" name="Validation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnC4zFEfGiH4cO90aG3Q" name="Watermarking" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_d2fnDYzFEfGiH4cO90aG3Q" name="AIAlgorithm">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d2fnDozFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_5RSIsPeDEfCJHs41Ucc5Qw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_d2fnD4zFEfGiH4cO90aG3Q" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnEYzFEfGiH4cO90aG3Q" name="Public" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnE4zFEfGiH4cO90aG3Q" name="AccessControl" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnFYzFEfGiH4cO90aG3Q" name="Randomize" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnF4zFEfGiH4cO90aG3Q" name="Regularisation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_d2fnGYzFEfGiH4cO90aG3Q" name="TrainingData">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d2fnGozFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_8YlQ0PeDEfCJHs41Ucc5Qw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_d2fnG4zFEfGiH4cO90aG3Q" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnHYzFEfGiH4cO90aG3Q" name="Public" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnH4zFEfGiH4cO90aG3Q" name="AccessControl" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnIYzFEfGiH4cO90aG3Q" name="AnomalyDetection" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnI4zFEfGiH4cO90aG3Q" name="Reduced" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnJYzFEfGiH4cO90aG3Q" name="RegularAuditAndMonitoring" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnJ4zFEfGiH4cO90aG3Q" name="RegularUpdatesAndTraining" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnKYzFEfGiH4cO90aG3Q" name="Trusted" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnK4zFEfGiH4cO90aG3Q" name="Validation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnLYzFEfGiH4cO90aG3Q" name="Verification" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnL4zFEfGiH4cO90aG3Q" name="Watermarking" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnMYzFEfGiH4cO90aG3Q" name="RegularBackup" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_d2fnM4zFEfGiH4cO90aG3Q" name="AIApplication">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d2fnNIzFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_A7y9UPeEEfCJHs41Ucc5Qw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_d2fnNYzFEfGiH4cO90aG3Q" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnN4zFEfGiH4cO90aG3Q" name="CheckModelResultAuthenticity" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnOYzFEfGiH4cO90aG3Q" name="InputValidation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnO4zFEfGiH4cO90aG3Q" name="TamperEvidentLogging" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnPYzFEfGiH4cO90aG3Q" name="RegularAuditAndMonitoring" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_d2fnP4zFEfGiH4cO90aG3Q" name="TrainingDataServer">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d2fnQIzFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WQHvMPeHEfCJHs41Ucc5Qw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_d2fnQYzFEfGiH4cO90aG3Q" name="base_Node" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Node"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnQ4zFEfGiH4cO90aG3Q" name="SecureDataStorage" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_d2fnRYzFEfGiH4cO90aG3Q" name="SecureAIScenario">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d2fnRozFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ec5qsPhIEfC0xrlNZNWBXg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnR4zFEfGiH4cO90aG3Q" name="PackageIntegrityVerified" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnSYzFEfGiH4cO90aG3Q" name="PackagesFromSecureSources" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnS4zFEfGiH4cO90aG3Q" name="RegularSecurityAudits" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnTYzFEfGiH4cO90aG3Q" name="RegularPackageUpdates" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnT4zFEfGiH4cO90aG3Q" name="SecureDeployment" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_d2fnUYzFEfGiH4cO90aG3Q" name="base_Package" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_d2fnU4zFEfGiH4cO90aG3Q" name="base_Model" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_d2fnVYzFEfGiH4cO90aG3Q" name="FeedbackData">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d2fnVozFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_oMOxUABMEfGhxM4pqoD1lA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_d2fnV4zFEfGiH4cO90aG3Q" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnWYzFEfGiH4cO90aG3Q" name="AccessControl" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnW4zFEfGiH4cO90aG3Q" name="AnomalyDetection" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnXYzFEfGiH4cO90aG3Q" name="AuthenticityVerified" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnX4zFEfGiH4cO90aG3Q" name="Cleaning" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnYYzFEfGiH4cO90aG3Q" name="Validation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_d2fnY4zFEfGiH4cO90aG3Q" name="SecureCommPath">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d2fnZIzFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_wWLOQBx3EfGQp9bQUApNdA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_d2fnZYzFEfGiH4cO90aG3Q" name="base_CommunicationPath" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//CommunicationPath"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnZ4zFEfGiH4cO90aG3Q" name="ConfidentialityPreserving" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_d2fnaYzFEfGiH4cO90aG3Q" name="IntegrityPreserving" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_VxM6wIzFEfGiH4cO90aG3Q" name="mltop10" nsURI="http://www.umlsec.de/profiles/UMLsec/mltop10.ecore" nsPrefix="mltop10">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VxOv8IzFEfGiH4cO90aG3Q" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VxOv8YzFEfGiH4cO90aG3Q" key="Version" value="0.0.10"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VxOv8ozFEfGiH4cO90aG3Q" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VxOv84zFEfGiH4cO90aG3Q" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VxOv9IzFEfGiH4cO90aG3Q" key="Date" value="2026-07-31"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VxOv9YzFEfGiH4cO90aG3Q" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_VxM6wYzFEfGiH4cO90aG3Q" name="MLModel">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VxM6wozFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ElRkoPVDEfCR7r3VmXr6IQ"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_VxM6w4zFEfGiH4cO90aG3Q" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM6xYzFEfGiH4cO90aG3Q" name="Public" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM6x4zFEfGiH4cO90aG3Q" name="AccessControl" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM6yYzFEfGiH4cO90aG3Q" name="AdversarialTraining" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM6y4zFEfGiH4cO90aG3Q" name="AnomalyDetection" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM6zYzFEfGiH4cO90aG3Q" name="CryptographicallySecured" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM6z4zFEfGiH4cO90aG3Q" name="DefenseMechanism" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM60YzFEfGiH4cO90aG3Q" name="DifferentialPrivacy" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM604zFEfGiH4cO90aG3Q" name="EnsembleModel" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM61YzFEfGiH4cO90aG3Q" name="Obfuscation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM614zFEfGiH4cO90aG3Q" name="LegalProtection" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM62YzFEfGiH4cO90aG3Q" name="RegularBackup" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM624zFEfGiH4cO90aG3Q" name="RegularRetraining" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM63YzFEfGiH4cO90aG3Q" name="RobustActivationFunction" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM634zFEfGiH4cO90aG3Q" name="RobustArchitecture" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM64YzFEfGiH4cO90aG3Q" name="RegularAuditAndMonitoring" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM644zFEfGiH4cO90aG3Q" name="RegularPerformanceMonitoring" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM65YzFEfGiH4cO90aG3Q" name="RegularTestingAndMonitoring" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM654zFEfGiH4cO90aG3Q" name="Transparency" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM66YzFEfGiH4cO90aG3Q" name="Validation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM664zFEfGiH4cO90aG3Q" name="Watermarking" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_VxM67YzFEfGiH4cO90aG3Q" name="AIAlgorithm">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VxM67ozFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_5RSIsPeDEfCJHs41Ucc5Qw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_VxM674zFEfGiH4cO90aG3Q" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM68YzFEfGiH4cO90aG3Q" name="Public" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM684zFEfGiH4cO90aG3Q" name="AccessControl" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM69YzFEfGiH4cO90aG3Q" name="Randomize" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM694zFEfGiH4cO90aG3Q" name="Regularisation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_VxM6-YzFEfGiH4cO90aG3Q" name="TrainingData">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VxM6-ozFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_8YlQ0PeDEfCJHs41Ucc5Qw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_VxM6-4zFEfGiH4cO90aG3Q" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM6_YzFEfGiH4cO90aG3Q" name="Public" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM6_4zFEfGiH4cO90aG3Q" name="AccessControl" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7AYzFEfGiH4cO90aG3Q" name="AnomalyDetection" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7A4zFEfGiH4cO90aG3Q" name="Reduced" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7BYzFEfGiH4cO90aG3Q" name="RegularAuditAndMonitoring" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7B4zFEfGiH4cO90aG3Q" name="RegularUpdatesAndTraining" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7CYzFEfGiH4cO90aG3Q" name="Trusted" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7C4zFEfGiH4cO90aG3Q" name="Validation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7DYzFEfGiH4cO90aG3Q" name="Verification" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7D4zFEfGiH4cO90aG3Q" name="Watermarking" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7EYzFEfGiH4cO90aG3Q" name="RegularBackup" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_VxM7E4zFEfGiH4cO90aG3Q" name="AIApplication">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VxM7FIzFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_A7y9UPeEEfCJHs41Ucc5Qw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_VxM7FYzFEfGiH4cO90aG3Q" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7F4zFEfGiH4cO90aG3Q" name="CheckModelResultAuthenticity" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7GYzFEfGiH4cO90aG3Q" name="InputValidation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7G4zFEfGiH4cO90aG3Q" name="TamperEvidentLogging" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7HYzFEfGiH4cO90aG3Q" name="RegularAuditAndMonitoring" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_VxM7H4zFEfGiH4cO90aG3Q" name="TrainingDataServer">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VxM7IIzFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WQHvMPeHEfCJHs41Ucc5Qw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_VxM7IYzFEfGiH4cO90aG3Q" name="base_Node" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Node"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7I4zFEfGiH4cO90aG3Q" name="SecureDataStorage" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_VxM7JYzFEfGiH4cO90aG3Q" name="SecureAIScenario">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VxM7JozFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ec5qsPhIEfC0xrlNZNWBXg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7J4zFEfGiH4cO90aG3Q" name="PackageIntegrityVerified" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7KYzFEfGiH4cO90aG3Q" name="PackagesFromSecureSources" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7K4zFEfGiH4cO90aG3Q" name="RegularSecurityAudits" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7LYzFEfGiH4cO90aG3Q" name="RegularPackageUpdates" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7L4zFEfGiH4cO90aG3Q" name="SecureDeployment" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_VxM7MYzFEfGiH4cO90aG3Q" name="base_Package" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_VxM7M4zFEfGiH4cO90aG3Q" name="base_Model" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_VxM7NYzFEfGiH4cO90aG3Q" name="FeedbackData">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VxM7NozFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_oMOxUABMEfGhxM4pqoD1lA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_VxM7N4zFEfGiH4cO90aG3Q" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7OYzFEfGiH4cO90aG3Q" name="AccessControl" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7O4zFEfGiH4cO90aG3Q" name="AnomalyDetection" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7PYzFEfGiH4cO90aG3Q" name="AuthenticityVerified" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7P4zFEfGiH4cO90aG3Q" name="Cleaning" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7QYzFEfGiH4cO90aG3Q" name="Validation" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_VxM7Q4zFEfGiH4cO90aG3Q" name="SecureCommPath">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VxM7RIzFEfGiH4cO90aG3Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_wWLOQBx3EfGQp9bQUApNdA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_VxM7RYzFEfGiH4cO90aG3Q" name="base_CommunicationPath" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//CommunicationPath"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7R4zFEfGiH4cO90aG3Q" name="ConfidelityPreserving" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_VxM7SYzFEfGiH4cO90aG3Q" name="IntegrityPreserving" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
     <contents xmi:type="ecore:EPackage" xmi:id="_I3dnME_HEfGZ6c2HkFTyhA" name="mltop10" nsURI="http:///schemas/mltop10/_I3cZEE_HEfGZ6c2HkFTyhA/8" nsPrefix="mltop10">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_I3e1Vk_HEfGZ6c2HkFTyhA" source="PapyrusVersion">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_I3e1V0_HEfGZ6c2HkFTyhA" key="Version" value="0.0.9"/>
@@ -1623,7 +2055,7 @@
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#CommunicationPath"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HauH8hx4EfGQp9bQUApNdA"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_vHxV4E_GEfGZ6c2HkFTyhA" name="ConfidelityPreserving">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_vHxV4E_GEfGZ6c2HkFTyhA" name="ConfidentialityPreserving" visibility="public">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_zvzQ8E_GEfGZ6c2HkFTyhA" name="IntegrityPreserving">

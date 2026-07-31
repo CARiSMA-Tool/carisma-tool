@@ -829,7 +829,7 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSecureCommPath_ConfidelityPreserving() {
+	public EAttribute getSecureCommPath_ConfidentialityPreserving() {
 		return (EAttribute)secureCommPathEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -946,7 +946,7 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 
 		secureCommPathEClass = createEClass(SECURE_COMM_PATH);
 		createEReference(secureCommPathEClass, SECURE_COMM_PATH__BASE_COMMUNICATION_PATH);
-		createEAttribute(secureCommPathEClass, SECURE_COMM_PATH__CONFIDELITY_PRESERVING);
+		createEAttribute(secureCommPathEClass, SECURE_COMM_PATH__CONFIDENTIALITY_PRESERVING);
 		createEAttribute(secureCommPathEClass, SECURE_COMM_PATH__INTEGRITY_PRESERVING);
 	}
 
@@ -1058,7 +1058,7 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 
 		initEClass(secureCommPathEClass, SecureCommPath.class, "SecureCommPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSecureCommPath_Base_CommunicationPath(), theUMLPackage.getCommunicationPath(), null, "base_CommunicationPath", null, 0, 1, SecureCommPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getSecureCommPath_ConfidelityPreserving(), theTypesPackage.getBoolean(), "ConfidelityPreserving", null, 1, 1, SecureCommPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSecureCommPath_ConfidentialityPreserving(), theTypesPackage.getBoolean(), "ConfidentialityPreserving", null, 1, 1, SecureCommPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getSecureCommPath_IntegrityPreserving(), theTypesPackage.getBoolean(), "IntegrityPreserving", null, 1, 1, SecureCommPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource

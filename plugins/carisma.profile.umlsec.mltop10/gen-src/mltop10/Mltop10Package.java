@@ -38,7 +38,7 @@ public interface Mltop10Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http:///mltop10.ecore";
+	String eNS_URI = "http://www.umlsec.de/profiles/UMLsec/mltop10.ecore";
 
 	/**
 	 * The package namespace name.
@@ -794,13 +794,13 @@ public interface Mltop10Package extends EPackage {
 	int SECURE_COMM_PATH__BASE_COMMUNICATION_PATH = 0;
 
 	/**
-	 * The feature id for the '<em><b>Confidelity Preserving</b></em>' attribute.
+	 * The feature id for the '<em><b>Confidentiality Preserving</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SECURE_COMM_PATH__CONFIDELITY_PRESERVING = 1;
+	int SECURE_COMM_PATH__CONFIDENTIALITY_PRESERVING = 1;
 
 	/**
 	 * The feature id for the '<em><b>Integrity Preserving</b></em>' attribute.
@@ -1560,15 +1560,15 @@ public interface Mltop10Package extends EPackage {
 	EReference getSecureCommPath_Base_CommunicationPath();
 
 	/**
-	 * Returns the meta object for the attribute '{@link mltop10.SecureCommPath#isConfidelityPreserving <em>Confidelity Preserving</em>}'.
+	 * Returns the meta object for the attribute '{@link mltop10.SecureCommPath#isConfidentialityPreserving <em>Confidentiality Preserving</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Confidelity Preserving</em>'.
-	 * @see mltop10.SecureCommPath#isConfidelityPreserving()
+	 * @return the meta object for the attribute '<em>Confidentiality Preserving</em>'.
+	 * @see mltop10.SecureCommPath#isConfidentialityPreserving()
 	 * @see #getSecureCommPath()
 	 * @generated
 	 */
-	EAttribute getSecureCommPath_ConfidelityPreserving();
+	EAttribute getSecureCommPath_ConfidentialityPreserving();
 
 	/**
 	 * Returns the meta object for the attribute '{@link mltop10.SecureCommPath#isIntegrityPreserving <em>Integrity Preserving</em>}'.
@@ -2157,12 +2157,12 @@ public interface Mltop10Package extends EPackage {
 		EReference SECURE_COMM_PATH__BASE_COMMUNICATION_PATH = eINSTANCE.getSecureCommPath_Base_CommunicationPath();
 
 		/**
-		 * The meta object literal for the '<em><b>Confidelity Preserving</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Confidentiality Preserving</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SECURE_COMM_PATH__CONFIDELITY_PRESERVING = eINSTANCE.getSecureCommPath_ConfidelityPreserving();
+		EAttribute SECURE_COMM_PATH__CONFIDENTIALITY_PRESERVING = eINSTANCE.getSecureCommPath_ConfidentialityPreserving();
 
 		/**
 		 * The meta object literal for the '<em><b>Integrity Preserving</b></em>' attribute feature.
