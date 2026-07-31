@@ -331,17 +331,17 @@ We recommend using the report for more detailed messages regarding the check.
             - GenModel: `profile/<profilename>.profile.genmodel`
 3. Edit the `build.properties` file:
     ```
-    source. = gen-src/,\
-    src/
-    output. = target/classes/
-    bin.includes = META-INF/,\
-    .,\
-    plugin.xml,\
-    profile/,\
-    plugin.properties,\
-    src/,\
-    gen-src/
-    src.includes = profile/
+    source.. = src/,gen-src/
+	output.. = target/classes/
+	bin.includes = .,\
+	META-INF/,\
+	profile/,\
+	plugin.xml,\
+	plugin.properties,\
+	gen-src/,\
+	src/,\
+	               
+	jars.compile.order = .
     ```
 4. Import the project into the plugin directory of the CARiSMA tool project.
 5. Edit `pom.xml` in the CARiSMA tool project and add:
