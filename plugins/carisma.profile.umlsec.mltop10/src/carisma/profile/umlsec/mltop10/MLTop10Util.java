@@ -155,6 +155,11 @@ public final class MLTop10Util {
 		return !(tag != null && !tag.isEmpty() && tag.get(0).equals(false));
 	}
 
+	public static String getTaggedValueString(Element element, MLTop10 stereotype, String attribute) {
+		List<Object> tag = MLTop10Util.getTaggedValues(attribute, stereotype, element);
+		return (String) tag.get(0);
+	}
+
 	/**
 	 * Returns a list of the tag values of the UMLsec stereotype at the given
 	 * element stereoParent.

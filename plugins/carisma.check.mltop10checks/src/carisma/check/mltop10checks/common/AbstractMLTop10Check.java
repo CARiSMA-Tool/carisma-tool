@@ -12,6 +12,8 @@ import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.StatusType;
 import carisma.core.checks.CarismaCheck;
 import carisma.core.checks.CheckParameter;
+import carisma.profile.umlsec.mltop10.MLTop10;
+import carisma.profile.umlsec.mltop10.MLTop10Util;
 
 /**
  * Abstract super class for the ML Security Top 10 checks.
@@ -68,9 +70,14 @@ public abstract class AbstractMLTop10Check implements CarismaCheck {
 			return false;
 		}
 		this.modelEl = (Model) currentModel.getContents().get(0);
-		return runCheck();
+		boolean result = runCheck();
+		this.addInfo(
+				MLTop10Util.getTaggedValueString(modelEl, MLTop10.ThreatComments, this.getThreatCommentAttribute()));
+		return result;
 	}
 
 	public abstract boolean runCheck();
+
+	public abstract String getThreatCommentAttribute();
 
 }

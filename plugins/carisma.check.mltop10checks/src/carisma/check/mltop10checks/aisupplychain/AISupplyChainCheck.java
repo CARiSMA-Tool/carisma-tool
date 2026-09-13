@@ -21,6 +21,7 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 
 	public static final String CHECK_ID = "carisma.check.mltop10checks.aisupplychain";
 	public static final String CHECK_NAME = "MLTop10 AI Supply Chain Attack Check";
+	public static final String THREAT_COMMENT_ATTRIBUTE = "AISupplyChain";
 
 	@Override
 	public boolean runCheck() {
@@ -98,6 +99,11 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 	@Override
 	public String getName() {
 		return CHECK_NAME;
+	}
+
+	@Override
+	public String getThreatCommentAttribute() {
+		return THREAT_COMMENT_ATTRIBUTE;
 	}
 
 }

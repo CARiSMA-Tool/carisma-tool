@@ -119,5 +119,21 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureCommPath/ConfidentialityPreserving"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureCommPath/IntegrityPreserving"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//ThreatComments">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//ThreatComments/InputManipulation"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//ThreatComments/base_Package"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//ThreatComments/base_Model"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//ThreatComments/AISupplyChain"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//ThreatComments/DataPoisoning"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//ThreatComments/MembershipInference"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//ThreatComments/ModelInversion"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//ThreatComments/ModelPoisoning"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//ThreatComments/ModelSkewing"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//ThreatComments/ModelTheft"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//ThreatComments/OutputIntegrity"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//ThreatComments/TransferLearning"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

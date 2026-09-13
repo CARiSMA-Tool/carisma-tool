@@ -28,6 +28,7 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 
 	public static final String CHECK_ID = "carisma.check.mltop10checks.outputintegrity";
 	public static final String CHECK_NAME = "MLTop10 Output Integrity Attack Check";
+	public static final String THREAT_COMMENT_ATTRIBUTE = "OutputIntegrity";
 
 	@Override
 	public boolean runCheck() {
@@ -160,6 +161,11 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 	@Override
 	public String getName() {
 		return CHECK_NAME;
+	}
+
+	@Override
+	public String getThreatCommentAttribute() {
+		return THREAT_COMMENT_ATTRIBUTE;
 	}
 
 }

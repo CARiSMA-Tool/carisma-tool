@@ -100,6 +100,10 @@ public class Mltop10AdapterFactory extends AdapterFactoryImpl {
 				return createSecureCommPathAdapter();
 			}
 			@Override
+			public Adapter caseThreatComments(ThreatComments object) {
+				return createThreatCommentsAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -228,6 +232,20 @@ public class Mltop10AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSecureCommPathAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link mltop10.ThreatComments <em>Threat Comments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see mltop10.ThreatComments
+	 * @generated
+	 */
+	public Adapter createThreatCommentsAdapter() {
 		return null;
 	}
 

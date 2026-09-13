@@ -26,6 +26,7 @@ public class ModelTheftCheck extends AbstractMLTop10Check implements CarismaChec
 
 	public static final String CHECK_ID = "carisma.check.mltop10checks.modeltheft";
 	public static final String CHECK_NAME = "MLTop10 Model Theft Attack Check";
+	public static final String THREAT_COMMENT_ATTRIBUTE = "ModelTheft";
 
 	@Override
 	public boolean runCheck() {
@@ -186,6 +187,11 @@ public class ModelTheftCheck extends AbstractMLTop10Check implements CarismaChec
 	@Override
 	public String getName() {
 		return CHECK_NAME;
+	}
+
+	@Override
+	public String getThreatCommentAttribute() {
+		return THREAT_COMMENT_ATTRIBUTE;
 	}
 
 }

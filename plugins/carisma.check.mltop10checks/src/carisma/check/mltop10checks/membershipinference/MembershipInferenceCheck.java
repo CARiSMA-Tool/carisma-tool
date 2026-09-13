@@ -26,6 +26,7 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 
 	public static final String CHECK_ID = "carisma.check.mltop10checks.membershipinference";
 	public static final String CHECK_NAME = "MLTop10 Membership Inference Attack Check";
+	public static final String THREAT_COMMENT_ATTRIBUTE = "MembershipInference";
 
 	@Override
 	public boolean runCheck() {
@@ -153,6 +154,11 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 	@Override
 	public String getName() {
 		return CHECK_NAME;
+	}
+
+	@Override
+	public String getThreatCommentAttribute() {
+		return THREAT_COMMENT_ATTRIBUTE;
 	}
 
 }

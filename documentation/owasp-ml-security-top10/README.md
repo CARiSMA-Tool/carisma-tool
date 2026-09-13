@@ -91,6 +91,8 @@ The profile defines the following stereotypes and stereotype attributes:
 
     - *SecureDataStorage*: Boolean attribute that indicates whether the training data is stored in a secure manner, using encryption, secure data transfer protocols, and firewalls.
 	
-8. `<<integrity>>`: This stereotype can be attached to a communication path within a deployment diagram. 
+8. `<<SecureCommPath>>`: This stereotype can be attached to a communication path within a deployment diagram. 
 
-9. `<<secrecy>>`: This stereotype can be attached to a communication path within a deployment diagram. 
+    - *ConfidentialityPreserving*: Boolean attribute that indicates whether a communication path preserves confidentiality.
+    - *IntegrityPreserving*: Boolean attribute that indicates whether a communication path preserves integrity.
+

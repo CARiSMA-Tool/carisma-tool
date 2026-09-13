@@ -22,6 +22,7 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 
 	public static final String CHECK_ID = "carisma.check.mltop10checks.transferlearning";
 	public static final String CHECK_NAME = "MLTop10 Transfer Learning Attack Check";
+	public static final String THREAT_COMMENT_ATTRIBUTE = "TransferLearning";
 
 	@Override
 	public boolean runCheck() {
@@ -127,6 +128,11 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 	@Override
 	public String getName() {
 		return CHECK_NAME;
+	}
+
+	@Override
+	public String getThreatCommentAttribute() {
+		return THREAT_COMMENT_ATTRIBUTE;
 	}
 
 }

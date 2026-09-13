@@ -10,6 +10,7 @@ import mltop10.Mltop10Factory;
 import mltop10.Mltop10Package;
 import mltop10.SecureAIScenario;
 import mltop10.SecureCommPath;
+import mltop10.ThreatComments;
 import mltop10.TrainingData;
 import mltop10.TrainingDataServer;
 
@@ -87,6 +88,13 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	private EClass secureCommPathEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass threatCommentsEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -849,6 +857,136 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getThreatComments() {
+		return threatCommentsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getThreatComments_InputManipulation() {
+		return (EAttribute)threatCommentsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getThreatComments_Base_Package() {
+		return (EReference)threatCommentsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getThreatComments_Base_Model() {
+		return (EReference)threatCommentsEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getThreatComments_AISupplyChain() {
+		return (EAttribute)threatCommentsEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getThreatComments_DataPoisoning() {
+		return (EAttribute)threatCommentsEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getThreatComments_MembershipInference() {
+		return (EAttribute)threatCommentsEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getThreatComments_ModelInversion() {
+		return (EAttribute)threatCommentsEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getThreatComments_ModelPoisoning() {
+		return (EAttribute)threatCommentsEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getThreatComments_ModelSkewing() {
+		return (EAttribute)threatCommentsEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getThreatComments_ModelTheft() {
+		return (EAttribute)threatCommentsEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getThreatComments_OutputIntegrity() {
+		return (EAttribute)threatCommentsEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getThreatComments_TransferLearning() {
+		return (EAttribute)threatCommentsEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Mltop10Factory getMltop10Factory() {
 		return (Mltop10Factory)getEFactoryInstance();
 	}
@@ -948,6 +1086,20 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 		createEReference(secureCommPathEClass, SECURE_COMM_PATH__BASE_COMMUNICATION_PATH);
 		createEAttribute(secureCommPathEClass, SECURE_COMM_PATH__CONFIDENTIALITY_PRESERVING);
 		createEAttribute(secureCommPathEClass, SECURE_COMM_PATH__INTEGRITY_PRESERVING);
+
+		threatCommentsEClass = createEClass(THREAT_COMMENTS);
+		createEAttribute(threatCommentsEClass, THREAT_COMMENTS__INPUT_MANIPULATION);
+		createEReference(threatCommentsEClass, THREAT_COMMENTS__BASE_PACKAGE);
+		createEReference(threatCommentsEClass, THREAT_COMMENTS__BASE_MODEL);
+		createEAttribute(threatCommentsEClass, THREAT_COMMENTS__AI_SUPPLY_CHAIN);
+		createEAttribute(threatCommentsEClass, THREAT_COMMENTS__DATA_POISONING);
+		createEAttribute(threatCommentsEClass, THREAT_COMMENTS__MEMBERSHIP_INFERENCE);
+		createEAttribute(threatCommentsEClass, THREAT_COMMENTS__MODEL_INVERSION);
+		createEAttribute(threatCommentsEClass, THREAT_COMMENTS__MODEL_POISONING);
+		createEAttribute(threatCommentsEClass, THREAT_COMMENTS__MODEL_SKEWING);
+		createEAttribute(threatCommentsEClass, THREAT_COMMENTS__MODEL_THEFT);
+		createEAttribute(threatCommentsEClass, THREAT_COMMENTS__OUTPUT_INTEGRITY);
+		createEAttribute(threatCommentsEClass, THREAT_COMMENTS__TRANSFER_LEARNING);
 	}
 
 	/**
@@ -1060,6 +1212,20 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 		initEReference(getSecureCommPath_Base_CommunicationPath(), theUMLPackage.getCommunicationPath(), null, "base_CommunicationPath", null, 0, 1, SecureCommPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getSecureCommPath_ConfidentialityPreserving(), theTypesPackage.getBoolean(), "ConfidentialityPreserving", null, 1, 1, SecureCommPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getSecureCommPath_IntegrityPreserving(), theTypesPackage.getBoolean(), "IntegrityPreserving", null, 1, 1, SecureCommPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(threatCommentsEClass, ThreatComments.class, "ThreatComments", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getThreatComments_InputManipulation(), theTypesPackage.getString(), "InputManipulation", null, 0, -1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getThreatComments_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 0, 1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getThreatComments_Base_Model(), theUMLPackage.getModel(), null, "base_Model", null, 0, 1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getThreatComments_AISupplyChain(), theTypesPackage.getString(), "AISupplyChain", null, 0, -1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getThreatComments_DataPoisoning(), theTypesPackage.getString(), "DataPoisoning", null, 0, -1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getThreatComments_MembershipInference(), theTypesPackage.getString(), "MembershipInference", null, 0, -1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getThreatComments_ModelInversion(), theTypesPackage.getString(), "ModelInversion", null, 0, -1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getThreatComments_ModelPoisoning(), theTypesPackage.getString(), "ModelPoisoning", null, 0, -1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getThreatComments_ModelSkewing(), theTypesPackage.getString(), "ModelSkewing", null, 0, -1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getThreatComments_ModelTheft(), theTypesPackage.getString(), "ModelTheft", null, 0, -1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getThreatComments_OutputIntegrity(), theTypesPackage.getString(), "OutputIntegrity", null, 0, -1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getThreatComments_TransferLearning(), theTypesPackage.getString(), "TransferLearning", null, 0, -1, ThreatComments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

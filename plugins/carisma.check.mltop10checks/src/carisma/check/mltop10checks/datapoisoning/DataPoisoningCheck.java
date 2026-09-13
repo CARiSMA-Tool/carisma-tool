@@ -21,6 +21,7 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 
 	public static final String CHECK_ID = "carisma.check.mltop10checks.datapoisoning";
 	public static final String CHECK_NAME = "MLTop10 Data Poisoning Attack Check";
+	public static final String THREAT_COMMENT_ATTRIBUTE = "DataPoisoning";
 
 	@Override
 	public boolean runCheck() {
@@ -142,6 +143,11 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 	@Override
 	public String getName() {
 		return CHECK_NAME;
+	}
+
+	@Override
+	public String getThreatCommentAttribute() {
+		return THREAT_COMMENT_ATTRIBUTE;
 	}
 
 }

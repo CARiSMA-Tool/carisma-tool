@@ -829,6 +829,142 @@ public interface Mltop10Package extends EPackage {
 	 */
 	int SECURE_COMM_PATH_OPERATION_COUNT = 0;
 
+	/**
+	 * The meta object id for the '{@link mltop10.impl.ThreatCommentsImpl <em>Threat Comments</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see mltop10.impl.ThreatCommentsImpl
+	 * @see mltop10.impl.Mltop10PackageImpl#getThreatComments()
+	 * @generated
+	 */
+	int THREAT_COMMENTS = 8;
+
+	/**
+	 * The feature id for the '<em><b>Input Manipulation</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__INPUT_MANIPULATION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Base Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__BASE_PACKAGE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Base Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__BASE_MODEL = 2;
+
+	/**
+	 * The feature id for the '<em><b>AI Supply Chain</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__AI_SUPPLY_CHAIN = 3;
+
+	/**
+	 * The feature id for the '<em><b>Data Poisoning</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__DATA_POISONING = 4;
+
+	/**
+	 * The feature id for the '<em><b>Membership Inference</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__MEMBERSHIP_INFERENCE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Model Inversion</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__MODEL_INVERSION = 6;
+
+	/**
+	 * The feature id for the '<em><b>Model Poisoning</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__MODEL_POISONING = 7;
+
+	/**
+	 * The feature id for the '<em><b>Model Skewing</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__MODEL_SKEWING = 8;
+
+	/**
+	 * The feature id for the '<em><b>Model Theft</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__MODEL_THEFT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Output Integrity</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__OUTPUT_INTEGRITY = 10;
+
+	/**
+	 * The feature id for the '<em><b>Transfer Learning</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS__TRANSFER_LEARNING = 11;
+
+	/**
+	 * The number of structural features of the '<em>Threat Comments</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS_FEATURE_COUNT = 12;
+
+	/**
+	 * The number of operations of the '<em>Threat Comments</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAT_COMMENTS_OPERATION_COUNT = 0;
+
 
 	/**
 	 * Returns the meta object for class '{@link mltop10.MLModel <em>ML Model</em>}'.
@@ -1582,6 +1718,148 @@ public interface Mltop10Package extends EPackage {
 	EAttribute getSecureCommPath_IntegrityPreserving();
 
 	/**
+	 * Returns the meta object for class '{@link mltop10.ThreatComments <em>Threat Comments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Threat Comments</em>'.
+	 * @see mltop10.ThreatComments
+	 * @generated
+	 */
+	EClass getThreatComments();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link mltop10.ThreatComments#getInputManipulation <em>Input Manipulation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Input Manipulation</em>'.
+	 * @see mltop10.ThreatComments#getInputManipulation()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EAttribute getThreatComments_InputManipulation();
+
+	/**
+	 * Returns the meta object for the reference '{@link mltop10.ThreatComments#getBase_Package <em>Base Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Package</em>'.
+	 * @see mltop10.ThreatComments#getBase_Package()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EReference getThreatComments_Base_Package();
+
+	/**
+	 * Returns the meta object for the reference '{@link mltop10.ThreatComments#getBase_Model <em>Base Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Model</em>'.
+	 * @see mltop10.ThreatComments#getBase_Model()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EReference getThreatComments_Base_Model();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link mltop10.ThreatComments#getAISupplyChain <em>AI Supply Chain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>AI Supply Chain</em>'.
+	 * @see mltop10.ThreatComments#getAISupplyChain()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EAttribute getThreatComments_AISupplyChain();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link mltop10.ThreatComments#getDataPoisoning <em>Data Poisoning</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Data Poisoning</em>'.
+	 * @see mltop10.ThreatComments#getDataPoisoning()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EAttribute getThreatComments_DataPoisoning();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link mltop10.ThreatComments#getMembershipInference <em>Membership Inference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Membership Inference</em>'.
+	 * @see mltop10.ThreatComments#getMembershipInference()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EAttribute getThreatComments_MembershipInference();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link mltop10.ThreatComments#getModelInversion <em>Model Inversion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Model Inversion</em>'.
+	 * @see mltop10.ThreatComments#getModelInversion()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EAttribute getThreatComments_ModelInversion();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link mltop10.ThreatComments#getModelPoisoning <em>Model Poisoning</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Model Poisoning</em>'.
+	 * @see mltop10.ThreatComments#getModelPoisoning()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EAttribute getThreatComments_ModelPoisoning();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link mltop10.ThreatComments#getModelSkewing <em>Model Skewing</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Model Skewing</em>'.
+	 * @see mltop10.ThreatComments#getModelSkewing()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EAttribute getThreatComments_ModelSkewing();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link mltop10.ThreatComments#getModelTheft <em>Model Theft</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Model Theft</em>'.
+	 * @see mltop10.ThreatComments#getModelTheft()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EAttribute getThreatComments_ModelTheft();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link mltop10.ThreatComments#getOutputIntegrity <em>Output Integrity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Output Integrity</em>'.
+	 * @see mltop10.ThreatComments#getOutputIntegrity()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EAttribute getThreatComments_OutputIntegrity();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link mltop10.ThreatComments#getTransferLearning <em>Transfer Learning</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Transfer Learning</em>'.
+	 * @see mltop10.ThreatComments#getTransferLearning()
+	 * @see #getThreatComments()
+	 * @generated
+	 */
+	EAttribute getThreatComments_TransferLearning();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2171,6 +2449,112 @@ public interface Mltop10Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute SECURE_COMM_PATH__INTEGRITY_PRESERVING = eINSTANCE.getSecureCommPath_IntegrityPreserving();
+
+		/**
+		 * The meta object literal for the '{@link mltop10.impl.ThreatCommentsImpl <em>Threat Comments</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see mltop10.impl.ThreatCommentsImpl
+		 * @see mltop10.impl.Mltop10PackageImpl#getThreatComments()
+		 * @generated
+		 */
+		EClass THREAT_COMMENTS = eINSTANCE.getThreatComments();
+
+		/**
+		 * The meta object literal for the '<em><b>Input Manipulation</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THREAT_COMMENTS__INPUT_MANIPULATION = eINSTANCE.getThreatComments_InputManipulation();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference THREAT_COMMENTS__BASE_PACKAGE = eINSTANCE.getThreatComments_Base_Package();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Model</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference THREAT_COMMENTS__BASE_MODEL = eINSTANCE.getThreatComments_Base_Model();
+
+		/**
+		 * The meta object literal for the '<em><b>AI Supply Chain</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THREAT_COMMENTS__AI_SUPPLY_CHAIN = eINSTANCE.getThreatComments_AISupplyChain();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Poisoning</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THREAT_COMMENTS__DATA_POISONING = eINSTANCE.getThreatComments_DataPoisoning();
+
+		/**
+		 * The meta object literal for the '<em><b>Membership Inference</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THREAT_COMMENTS__MEMBERSHIP_INFERENCE = eINSTANCE.getThreatComments_MembershipInference();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Inversion</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THREAT_COMMENTS__MODEL_INVERSION = eINSTANCE.getThreatComments_ModelInversion();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Poisoning</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THREAT_COMMENTS__MODEL_POISONING = eINSTANCE.getThreatComments_ModelPoisoning();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Skewing</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THREAT_COMMENTS__MODEL_SKEWING = eINSTANCE.getThreatComments_ModelSkewing();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Theft</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THREAT_COMMENTS__MODEL_THEFT = eINSTANCE.getThreatComments_ModelTheft();
+
+		/**
+		 * The meta object literal for the '<em><b>Output Integrity</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THREAT_COMMENTS__OUTPUT_INTEGRITY = eINSTANCE.getThreatComments_OutputIntegrity();
+
+		/**
+		 * The meta object literal for the '<em><b>Transfer Learning</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THREAT_COMMENTS__TRANSFER_LEARNING = eINSTANCE.getThreatComments_TransferLearning();
 
 	}
 

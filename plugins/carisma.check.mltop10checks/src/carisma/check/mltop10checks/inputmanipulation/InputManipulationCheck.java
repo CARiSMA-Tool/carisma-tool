@@ -21,6 +21,7 @@ public class InputManipulationCheck extends AbstractMLTop10Check implements Cari
 
 	public static final String CHECK_ID = "carisma.check.mltop10checks.inputmanipulation";
 	public static final String CHECK_NAME = "MLTop10 Input Manipulation Check";
+	public static final String THREAT_COMMENT_ATTRIBUTE = "InputManipulation";
 
 	@Override
 	public boolean runCheck() {
@@ -92,4 +93,8 @@ public class InputManipulationCheck extends AbstractMLTop10Check implements Cari
 		return CHECK_NAME;
 	}
 
+	@Override
+	public String getThreatCommentAttribute() {
+		return THREAT_COMMENT_ATTRIBUTE;
+	}
 }

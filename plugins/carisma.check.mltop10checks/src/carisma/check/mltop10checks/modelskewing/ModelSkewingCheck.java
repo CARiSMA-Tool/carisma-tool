@@ -21,6 +21,7 @@ public class ModelSkewingCheck extends AbstractMLTop10Check implements CarismaCh
 
 	public static final String CHECK_ID = "carisma.check.mltop10checks.modelskewing";
 	public static final String CHECK_NAME = "MLTop10 Model Skewing Attack Check";
+	public static final String THREAT_COMMENT_ATTRIBUTE = "ModelSkewing";
 
 	@Override
 	public boolean runCheck() {
@@ -124,6 +125,11 @@ public class ModelSkewingCheck extends AbstractMLTop10Check implements CarismaCh
 	@Override
 	public String getName() {
 		return CHECK_NAME;
+	}
+
+	@Override
+	public String getThreatCommentAttribute() {
+		return THREAT_COMMENT_ATTRIBUTE;
 	}
 
 }

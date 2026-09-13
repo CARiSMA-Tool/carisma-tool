@@ -94,6 +94,15 @@ public interface Mltop10Factory extends EFactory {
 	SecureCommPath createSecureCommPath();
 
 	/**
+	 * Returns a new object of class '<em>Threat Comments</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Threat Comments</em>'.
+	 * @generated
+	 */
+	ThreatComments createThreatComments();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
