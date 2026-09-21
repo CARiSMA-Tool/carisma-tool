@@ -12,7 +12,7 @@ Check condition: All Artifacts with stereotype `<<AI Algorithm>>` need to have `
 ## 2. Robust Model Design
 > Designing models with robust architectures and activation functions can help reduce the chances of successful model poisoning attacks.
 
-Check condition: All Artifacts with stereotype `<<ML Model>>` need to have `{RobustArchitecture}` and `{RobustActivationFunction}` set to `true`.
+Check condition: All Artifacts with stereotype `<<ML Model>>` need to have `{RobustModelDesign}` set to `true`.
 
 ## 3. Cryptographic Techniques
 > Cryptographic techniques can be used to secure the parameters and weights of the model, and prevent unauthorized access or manipulation of these parameters.

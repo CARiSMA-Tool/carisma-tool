@@ -8,7 +8,7 @@ import mltop10.FeedbackData;
 import mltop10.MLModel;
 import mltop10.Mltop10Factory;
 import mltop10.Mltop10Package;
-import mltop10.SecureAIScenario;
+import mltop10.SecureAIService;
 import mltop10.SecureCommPath;
 import mltop10.ThreatComments;
 import mltop10.TrainingData;
@@ -73,7 +73,7 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass secureAIScenarioEClass = null;
+	private EClass secureAIServiceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -307,7 +307,7 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getMLModel_RobustActivationFunction() {
+	public EAttribute getMLModel_RobustModelDesign() {
 		return (EAttribute)mlModelEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -667,8 +667,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EClass getSecureAIScenario() {
-		return secureAIScenarioEClass;
+	public EClass getSecureAIService() {
+		return secureAIServiceEClass;
 	}
 
 	/**
@@ -677,8 +677,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSecureAIScenario_PackageIntegrityVerified() {
-		return (EAttribute)secureAIScenarioEClass.getEStructuralFeatures().get(0);
+	public EAttribute getSecureAIService_PackageIntegrityVerified() {
+		return (EAttribute)secureAIServiceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -687,8 +687,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSecureAIScenario_PackagesFromSecureSources() {
-		return (EAttribute)secureAIScenarioEClass.getEStructuralFeatures().get(1);
+	public EAttribute getSecureAIService_PackagesFromSecureSources() {
+		return (EAttribute)secureAIServiceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -697,8 +697,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSecureAIScenario_RegularSecurityAudits() {
-		return (EAttribute)secureAIScenarioEClass.getEStructuralFeatures().get(2);
+	public EAttribute getSecureAIService_RegularSecurityAudits() {
+		return (EAttribute)secureAIServiceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -707,8 +707,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSecureAIScenario_RegularPackageUpdates() {
-		return (EAttribute)secureAIScenarioEClass.getEStructuralFeatures().get(3);
+	public EAttribute getSecureAIService_RegularPackageUpdates() {
+		return (EAttribute)secureAIServiceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -717,8 +717,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSecureAIScenario_SecureDeployment() {
-		return (EAttribute)secureAIScenarioEClass.getEStructuralFeatures().get(4);
+	public EAttribute getSecureAIService_SecureDeployment() {
+		return (EAttribute)secureAIServiceEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -727,8 +727,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSecureAIScenario_Base_Package() {
-		return (EReference)secureAIScenarioEClass.getEStructuralFeatures().get(5);
+	public EReference getSecureAIService_Base_Package() {
+		return (EReference)secureAIServiceEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -737,8 +737,8 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSecureAIScenario_Base_Model() {
-		return (EReference)secureAIScenarioEClass.getEStructuralFeatures().get(6);
+	public EReference getSecureAIService_Base_Model() {
+		return (EReference)secureAIServiceEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1024,7 +1024,7 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 		createEAttribute(mlModelEClass, ML_MODEL__LEGAL_PROTECTION);
 		createEAttribute(mlModelEClass, ML_MODEL__REGULAR_BACKUP);
 		createEAttribute(mlModelEClass, ML_MODEL__REGULAR_RETRAINING);
-		createEAttribute(mlModelEClass, ML_MODEL__ROBUST_ACTIVATION_FUNCTION);
+		createEAttribute(mlModelEClass, ML_MODEL__ROBUST_MODEL_DESIGN);
 		createEAttribute(mlModelEClass, ML_MODEL__ROBUST_ARCHITECTURE);
 		createEAttribute(mlModelEClass, ML_MODEL__REGULAR_AUDIT_AND_MONITORING);
 		createEAttribute(mlModelEClass, ML_MODEL__REGULAR_PERFORMANCE_MONITORING);
@@ -1065,14 +1065,14 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 		createEReference(trainingDataServerEClass, TRAINING_DATA_SERVER__BASE_NODE);
 		createEAttribute(trainingDataServerEClass, TRAINING_DATA_SERVER__SECURE_DATA_STORAGE);
 
-		secureAIScenarioEClass = createEClass(SECURE_AI_SCENARIO);
-		createEAttribute(secureAIScenarioEClass, SECURE_AI_SCENARIO__PACKAGE_INTEGRITY_VERIFIED);
-		createEAttribute(secureAIScenarioEClass, SECURE_AI_SCENARIO__PACKAGES_FROM_SECURE_SOURCES);
-		createEAttribute(secureAIScenarioEClass, SECURE_AI_SCENARIO__REGULAR_SECURITY_AUDITS);
-		createEAttribute(secureAIScenarioEClass, SECURE_AI_SCENARIO__REGULAR_PACKAGE_UPDATES);
-		createEAttribute(secureAIScenarioEClass, SECURE_AI_SCENARIO__SECURE_DEPLOYMENT);
-		createEReference(secureAIScenarioEClass, SECURE_AI_SCENARIO__BASE_PACKAGE);
-		createEReference(secureAIScenarioEClass, SECURE_AI_SCENARIO__BASE_MODEL);
+		secureAIServiceEClass = createEClass(SECURE_AI_SERVICE);
+		createEAttribute(secureAIServiceEClass, SECURE_AI_SERVICE__PACKAGE_INTEGRITY_VERIFIED);
+		createEAttribute(secureAIServiceEClass, SECURE_AI_SERVICE__PACKAGES_FROM_SECURE_SOURCES);
+		createEAttribute(secureAIServiceEClass, SECURE_AI_SERVICE__REGULAR_SECURITY_AUDITS);
+		createEAttribute(secureAIServiceEClass, SECURE_AI_SERVICE__REGULAR_PACKAGE_UPDATES);
+		createEAttribute(secureAIServiceEClass, SECURE_AI_SERVICE__SECURE_DEPLOYMENT);
+		createEReference(secureAIServiceEClass, SECURE_AI_SERVICE__BASE_PACKAGE);
+		createEReference(secureAIServiceEClass, SECURE_AI_SERVICE__BASE_MODEL);
 
 		feedbackDataEClass = createEClass(FEEDBACK_DATA);
 		createEReference(feedbackDataEClass, FEEDBACK_DATA__BASE_ARTIFACT);
@@ -1150,7 +1150,7 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 		initEAttribute(getMLModel_LegalProtection(), theTypesPackage.getBoolean(), "LegalProtection", null, 1, 1, MLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getMLModel_RegularBackup(), theTypesPackage.getBoolean(), "RegularBackup", null, 1, 1, MLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getMLModel_RegularRetraining(), theTypesPackage.getBoolean(), "RegularRetraining", null, 1, 1, MLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getMLModel_RobustActivationFunction(), theTypesPackage.getBoolean(), "RobustActivationFunction", null, 1, 1, MLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getMLModel_RobustModelDesign(), theTypesPackage.getBoolean(), "RobustModelDesign", null, 1, 1, MLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getMLModel_RobustArchitecture(), theTypesPackage.getBoolean(), "RobustArchitecture", null, 1, 1, MLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getMLModel_RegularAuditAndMonitoring(), theTypesPackage.getBoolean(), "RegularAuditAndMonitoring", null, 1, 1, MLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getMLModel_RegularPerformanceMonitoring(), theTypesPackage.getBoolean(), "RegularPerformanceMonitoring", null, 1, 1, MLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1191,14 +1191,14 @@ public class Mltop10PackageImpl extends EPackageImpl implements Mltop10Package {
 		initEReference(getTrainingDataServer_Base_Node(), theUMLPackage.getNode(), null, "base_Node", null, 0, 1, TrainingDataServer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getTrainingDataServer_SecureDataStorage(), theTypesPackage.getBoolean(), "SecureDataStorage", null, 1, 1, TrainingDataServer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(secureAIScenarioEClass, SecureAIScenario.class, "SecureAIScenario", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSecureAIScenario_PackageIntegrityVerified(), theTypesPackage.getBoolean(), "PackageIntegrityVerified", null, 1, 1, SecureAIScenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getSecureAIScenario_PackagesFromSecureSources(), theTypesPackage.getBoolean(), "PackagesFromSecureSources", null, 1, 1, SecureAIScenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getSecureAIScenario_RegularSecurityAudits(), theTypesPackage.getBoolean(), "RegularSecurityAudits", null, 1, 1, SecureAIScenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getSecureAIScenario_RegularPackageUpdates(), theTypesPackage.getBoolean(), "RegularPackageUpdates", null, 1, 1, SecureAIScenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getSecureAIScenario_SecureDeployment(), theTypesPackage.getBoolean(), "SecureDeployment", null, 1, 1, SecureAIScenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSecureAIScenario_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 0, 1, SecureAIScenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSecureAIScenario_Base_Model(), theUMLPackage.getModel(), null, "base_Model", null, 0, 1, SecureAIScenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(secureAIServiceEClass, SecureAIService.class, "SecureAIService", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSecureAIService_PackageIntegrityVerified(), theTypesPackage.getBoolean(), "PackageIntegrityVerified", null, 1, 1, SecureAIService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSecureAIService_PackagesFromSecureSources(), theTypesPackage.getBoolean(), "PackagesFromSecureSources", null, 1, 1, SecureAIService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSecureAIService_RegularSecurityAudits(), theTypesPackage.getBoolean(), "RegularSecurityAudits", null, 1, 1, SecureAIService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSecureAIService_RegularPackageUpdates(), theTypesPackage.getBoolean(), "RegularPackageUpdates", null, 1, 1, SecureAIService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSecureAIService_SecureDeployment(), theTypesPackage.getBoolean(), "SecureDeployment", null, 1, 1, SecureAIService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSecureAIService_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 0, 1, SecureAIService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSecureAIService_Base_Model(), theUMLPackage.getModel(), null, "base_Model", null, 0, 1, SecureAIService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(feedbackDataEClass, FeedbackData.class, "FeedbackData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFeedbackData_Base_Artifact(), theUMLPackage.getArtifact(), null, "base_Artifact", null, 0, 1, FeedbackData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

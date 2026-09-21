@@ -27,4 +27,4 @@ Check condition: All Artifacts with stereotype `<<ML Model>>` need to have `{Dif
 ## 5. Perform regular security audits
 > Regular security audits can help identify and prevent transfer learning attacks by identifying and addressing vulnerabilities in the system.
 
-Check condition: All Artifacts with stereotype `<<SecureAIScenario>>` need to have `{RegularSecurityAudits}` set to `true`.
+Check condition: All Artifacts with stereotype `<<SecureAIService>>` need to have `{RegularSecurityAudits}` set to `true`.

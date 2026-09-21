@@ -36,7 +36,7 @@ import org.eclipse.uml2.uml.Artifact;
  *   <li>{@link mltop10.impl.MLModelImpl#isLegalProtection <em>Legal Protection</em>}</li>
  *   <li>{@link mltop10.impl.MLModelImpl#isRegularBackup <em>Regular Backup</em>}</li>
  *   <li>{@link mltop10.impl.MLModelImpl#isRegularRetraining <em>Regular Retraining</em>}</li>
- *   <li>{@link mltop10.impl.MLModelImpl#isRobustActivationFunction <em>Robust Activation Function</em>}</li>
+ *   <li>{@link mltop10.impl.MLModelImpl#isRobustModelDesign <em>Robust Model Design</em>}</li>
  *   <li>{@link mltop10.impl.MLModelImpl#isRobustArchitecture <em>Robust Architecture</em>}</li>
  *   <li>{@link mltop10.impl.MLModelImpl#isRegularAuditAndMonitoring <em>Regular Audit And Monitoring</em>}</li>
  *   <li>{@link mltop10.impl.MLModelImpl#isRegularPerformanceMonitoring <em>Regular Performance Monitoring</em>}</li>
@@ -300,24 +300,24 @@ public class MLModelImpl extends MinimalEObjectImpl.Container implements MLModel
 	protected boolean regularRetraining = REGULAR_RETRAINING_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isRobustActivationFunction() <em>Robust Activation Function</em>}' attribute.
+	 * The default value of the '{@link #isRobustModelDesign() <em>Robust Model Design</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRobustActivationFunction()
+	 * @see #isRobustModelDesign()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean ROBUST_ACTIVATION_FUNCTION_EDEFAULT = false;
+	protected static final boolean ROBUST_MODEL_DESIGN_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isRobustActivationFunction() <em>Robust Activation Function</em>}' attribute.
+	 * The cached value of the '{@link #isRobustModelDesign() <em>Robust Model Design</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRobustActivationFunction()
+	 * @see #isRobustModelDesign()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean robustActivationFunction = ROBUST_ACTIVATION_FUNCTION_EDEFAULT;
+	protected boolean robustModelDesign = ROBUST_MODEL_DESIGN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isRobustArchitecture() <em>Robust Architecture</em>}' attribute.
@@ -800,8 +800,8 @@ public class MLModelImpl extends MinimalEObjectImpl.Container implements MLModel
 	 * @generated
 	 */
 	@Override
-	public boolean isRobustActivationFunction() {
-		return robustActivationFunction;
+	public boolean isRobustModelDesign() {
+		return robustModelDesign;
 	}
 
 	/**
@@ -810,11 +810,11 @@ public class MLModelImpl extends MinimalEObjectImpl.Container implements MLModel
 	 * @generated
 	 */
 	@Override
-	public void setRobustActivationFunction(boolean newRobustActivationFunction) {
-		boolean oldRobustActivationFunction = robustActivationFunction;
-		robustActivationFunction = newRobustActivationFunction;
+	public void setRobustModelDesign(boolean newRobustModelDesign) {
+		boolean oldRobustModelDesign = robustModelDesign;
+		robustModelDesign = newRobustModelDesign;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.ML_MODEL__ROBUST_ACTIVATION_FUNCTION, oldRobustActivationFunction, robustActivationFunction));
+			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.ML_MODEL__ROBUST_MODEL_DESIGN, oldRobustModelDesign, robustModelDesign));
 	}
 
 	/**
@@ -1013,8 +1013,8 @@ public class MLModelImpl extends MinimalEObjectImpl.Container implements MLModel
 				return isRegularBackup();
 			case Mltop10Package.ML_MODEL__REGULAR_RETRAINING:
 				return isRegularRetraining();
-			case Mltop10Package.ML_MODEL__ROBUST_ACTIVATION_FUNCTION:
-				return isRobustActivationFunction();
+			case Mltop10Package.ML_MODEL__ROBUST_MODEL_DESIGN:
+				return isRobustModelDesign();
 			case Mltop10Package.ML_MODEL__ROBUST_ARCHITECTURE:
 				return isRobustArchitecture();
 			case Mltop10Package.ML_MODEL__REGULAR_AUDIT_AND_MONITORING:
@@ -1080,8 +1080,8 @@ public class MLModelImpl extends MinimalEObjectImpl.Container implements MLModel
 			case Mltop10Package.ML_MODEL__REGULAR_RETRAINING:
 				setRegularRetraining((Boolean)newValue);
 				return;
-			case Mltop10Package.ML_MODEL__ROBUST_ACTIVATION_FUNCTION:
-				setRobustActivationFunction((Boolean)newValue);
+			case Mltop10Package.ML_MODEL__ROBUST_MODEL_DESIGN:
+				setRobustModelDesign((Boolean)newValue);
 				return;
 			case Mltop10Package.ML_MODEL__ROBUST_ARCHITECTURE:
 				setRobustArchitecture((Boolean)newValue);
@@ -1155,8 +1155,8 @@ public class MLModelImpl extends MinimalEObjectImpl.Container implements MLModel
 			case Mltop10Package.ML_MODEL__REGULAR_RETRAINING:
 				setRegularRetraining(REGULAR_RETRAINING_EDEFAULT);
 				return;
-			case Mltop10Package.ML_MODEL__ROBUST_ACTIVATION_FUNCTION:
-				setRobustActivationFunction(ROBUST_ACTIVATION_FUNCTION_EDEFAULT);
+			case Mltop10Package.ML_MODEL__ROBUST_MODEL_DESIGN:
+				setRobustModelDesign(ROBUST_MODEL_DESIGN_EDEFAULT);
 				return;
 			case Mltop10Package.ML_MODEL__ROBUST_ARCHITECTURE:
 				setRobustArchitecture(ROBUST_ARCHITECTURE_EDEFAULT);
@@ -1217,8 +1217,8 @@ public class MLModelImpl extends MinimalEObjectImpl.Container implements MLModel
 				return regularBackup != REGULAR_BACKUP_EDEFAULT;
 			case Mltop10Package.ML_MODEL__REGULAR_RETRAINING:
 				return regularRetraining != REGULAR_RETRAINING_EDEFAULT;
-			case Mltop10Package.ML_MODEL__ROBUST_ACTIVATION_FUNCTION:
-				return robustActivationFunction != ROBUST_ACTIVATION_FUNCTION_EDEFAULT;
+			case Mltop10Package.ML_MODEL__ROBUST_MODEL_DESIGN:
+				return robustModelDesign != ROBUST_MODEL_DESIGN_EDEFAULT;
 			case Mltop10Package.ML_MODEL__ROBUST_ARCHITECTURE:
 				return robustArchitecture != ROBUST_ARCHITECTURE_EDEFAULT;
 			case Mltop10Package.ML_MODEL__REGULAR_AUDIT_AND_MONITORING:
@@ -1271,8 +1271,8 @@ public class MLModelImpl extends MinimalEObjectImpl.Container implements MLModel
 		result.append(regularBackup);
 		result.append(", RegularRetraining: ");
 		result.append(regularRetraining);
-		result.append(", RobustActivationFunction: ");
-		result.append(robustActivationFunction);
+		result.append(", RobustModelDesign: ");
+		result.append(robustModelDesign);
 		result.append(", RobustArchitecture: ");
 		result.append(robustArchitecture);
 		result.append(", RegularAuditAndMonitoring: ");

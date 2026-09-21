@@ -61,7 +61,7 @@ public class Mltop10FactoryImpl extends EFactoryImpl implements Mltop10Factory {
 			case Mltop10Package.TRAINING_DATA: return createTrainingData();
 			case Mltop10Package.AI_APPLICATION: return createAIApplication();
 			case Mltop10Package.TRAINING_DATA_SERVER: return createTrainingDataServer();
-			case Mltop10Package.SECURE_AI_SCENARIO: return createSecureAIScenario();
+			case Mltop10Package.SECURE_AI_SERVICE: return createSecureAIService();
 			case Mltop10Package.FEEDBACK_DATA: return createFeedbackData();
 			case Mltop10Package.SECURE_COMM_PATH: return createSecureCommPath();
 			case Mltop10Package.THREAT_COMMENTS: return createThreatComments();
@@ -131,9 +131,9 @@ public class Mltop10FactoryImpl extends EFactoryImpl implements Mltop10Factory {
 	 * @generated
 	 */
 	@Override
-	public SecureAIScenario createSecureAIScenario() {
-		SecureAIScenarioImpl secureAIScenario = new SecureAIScenarioImpl();
-		return secureAIScenario;
+	public SecureAIService createSecureAIService() {
+		SecureAIServiceImpl secureAIService = new SecureAIServiceImpl();
+		return secureAIService;
 	}
 
 	/**

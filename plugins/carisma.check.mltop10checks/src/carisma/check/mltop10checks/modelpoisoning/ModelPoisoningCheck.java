@@ -58,7 +58,7 @@ public class ModelPoisoningCheck extends AbstractMLTop10Check implements Carisma
 		// ---------------------------------------------------------
 		// 2. Robust Model Design
 		for (Artifact el : mlmodels) {
-			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "RobustArchitecture")) {
+			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "RobustModelDesign")) {
 				this.addError("2. ML Model '" + el.getName() + "' does not have a robust architecture.");
 			}
 		}

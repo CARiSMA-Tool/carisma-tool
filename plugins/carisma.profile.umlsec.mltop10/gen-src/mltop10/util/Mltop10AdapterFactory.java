@@ -88,8 +88,8 @@ public class Mltop10AdapterFactory extends AdapterFactoryImpl {
 				return createTrainingDataServerAdapter();
 			}
 			@Override
-			public Adapter caseSecureAIScenario(SecureAIScenario object) {
-				return createSecureAIScenarioAdapter();
+			public Adapter caseSecureAIService(SecureAIService object) {
+				return createSecureAIServiceAdapter();
 			}
 			@Override
 			public Adapter caseFeedbackData(FeedbackData object) {
@@ -194,16 +194,16 @@ public class Mltop10AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link mltop10.SecureAIScenario <em>Secure AI Scenario</em>}'.
+	 * Creates a new adapter for an object of class '{@link mltop10.SecureAIService <em>Secure AI Service</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see mltop10.SecureAIScenario
+	 * @see mltop10.SecureAIService
 	 * @generated
 	 */
-	public Adapter createSecureAIScenarioAdapter() {
+	public Adapter createSecureAIServiceAdapter() {
 		return null;
 	}
 

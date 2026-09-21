@@ -20,7 +20,7 @@ The 2023 ranking is as follows:
 
 The profile defines the following stereotypes and stereotype attributes:
 
-1. `<<SecureAIScenario>>`: This stereotype can be attached to a whole UML model or to a package within a deployment diagram. The stereotype has the following attributes:
+1. `<<SecureAIService>>`: This stereotype can be attached to a whole UML model or to a package within a deployment diagram. The stereotype has the following attributes:
 
     - *RegularPackageUpdates*: Boolean attribute that indicates whether the latest versions of the packages is used.
     - *RegularSecurityAudits*: Boolean attribute that indicates whether regular security audit of the system are completed.
@@ -46,8 +46,7 @@ The profile defines the following stereotypes and stereotype attributes:
     - *RegularPerformanceMonitoring*: Boolean attribute that indicates whether the performance of the model is regularly monitored.
     - *RegularRetraining*: Boolean attribute that indicates whether the model incorporates new data and corrects any inaccuracies in the model’s predictions when it is retrained.
     - *RegularTestingAndMonitoring*: Boolean attribute that indicates whether the model's behavior is tested and monitored for anomalies.    
-    - *RobustActivationFunction*: Boolean attribute that indicates whether the model is designed with a robust activation function.   
-    - *RobustArchitecture*: Boolean attribute that indicates whether the model is designed with a robust architecture.    
+    - *RobustModelDesign*: Boolean attribute that indicates whether the model has a robust design, e.g. with a robust activation function or model architecture.   
     - *Transparency*: Boolean attribute that indicates whether  all inputs and outputs are logged, explanations for the model’s predictions are provided, or users are allowed to inspect the model’s internal representations.
     - *Validation*: Boolean attribute that indicates whether the model uses a separate validation set that has not been used during training. 
     - *Watermarking*: Boolean attribute that indicates whether a watermark was added to the model's code to trace the source of a theft.

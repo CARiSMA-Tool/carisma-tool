@@ -14,7 +14,7 @@ Check condition: All Artifacts with stereotype `<<AI Application>>` need to have
 
 > Communication channels between the model and the interface responsible for displaying the results should be secured using secure protocols such as SSL/TLS.
 
-Check condition: All communication paths between a node with deployed artifact with stereotype `<<MLModel>>` and a node with deployed artifact with stereotype `<<AI Application>>` that depends on the `<<AI Model>>` need to have the stereotypes `<<integrity>>` and `<<secrecy>>`.
+Check condition: All communication paths between a node with deployed artifact with stereotype `<<MLModel>>` and a node with deployed artifact with stereotype `<<AI Application>>` that depends on the `<<AI Model>>` need to have the stereotype `<<SecureCommPath>>` and both attributes set to `<<true>>`.
 
 ## 3. Input Validation
 
@@ -32,7 +32,7 @@ Check condition: All artifacts with stereotype `<<AI Application>>` need to have
 
 > Regular software updates to fix vulnerabilities and security patches can help reduce the risk of output integrity attacks.
 
-Check condition: The whole model needs to have the stereotype `<<SecureAIScenario>>` and needs to have `{RegularPackageUpdates}` set to `true`.
+Check condition: The whole model needs to have the stereotype `<<SecureAIService>>` and needs to have `{RegularPackageUpdates}` set to `true`.
 
 ## 6. Monitoring and Auditing
 

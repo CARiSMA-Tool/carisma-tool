@@ -29,7 +29,7 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 		// ---------------------------------------------------------
 		// populate collections
 		Set<NamedElement> aiscenarios = MLTop10Util.getStereotypedElements(modelEl, NamedElement.class,
-				MLTop10.SecureAIScenario);
+				MLTop10.SecureAIService);
 
 		// ---------------------------------------------------------
 		// Check numbers of elements relevant for this check
@@ -51,7 +51,7 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 		// ---------------------------------------------------------
 		// 1. Verify packages integrity
 		for (NamedElement el : aiscenarios) {
-			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIScenario, "PackageIntegrityVerified")) {
+			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "PackageIntegrityVerified")) {
 				this.addError("1. Secure AI Scenario '" + el.getName() + "' does not verify the package integrity.");
 			}
 		}
@@ -59,7 +59,7 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 		// ---------------------------------------------------------
 		// 2. Keep packages versions up-to-date
 		for (NamedElement el : aiscenarios) {
-			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIScenario, "RegularPackageUpdates")) {
+			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "RegularPackageUpdates")) {
 				this.addError("2. Secure AI Scenario '" + el.getName() + "' does not keep the packages up-to-date.");
 			}
 		}
@@ -67,7 +67,7 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 		// ---------------------------------------------------------
 		// 3. Install packages from secure sources
 		for (NamedElement el : aiscenarios) {
-			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIScenario, "PackagesFromSecureSources")) {
+			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "PackagesFromSecureSources")) {
 				this.addError(
 						"3. Secure AI Scenario '" + el.getName() + "' does not use packages from secure sources.");
 			}
@@ -76,7 +76,7 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 		// ---------------------------------------------------------
 		// 4. Deploy ML infrastructure securely
 		for (NamedElement el : aiscenarios) {
-			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIScenario, "SecureDeployment")) {
+			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "SecureDeployment")) {
 				this.addError("4. Secure AI Scenario '" + el.getName() + "' does not perform a secure deployment.");
 			}
 		}

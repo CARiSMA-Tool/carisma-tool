@@ -48,7 +48,7 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/LegalProtection"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RegularBackup"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RegularRetraining"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RobustActivationFunction"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RobustModelDesign"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RobustArchitecture"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RegularAuditAndMonitoring"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//MLModel/RegularPerformanceMonitoring"/>
@@ -93,16 +93,16 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//TrainingDataServer/base_Node"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//TrainingDataServer/SecureDataStorage"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//SecureAIScenario">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIScenario/PackageIntegrityVerified"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIScenario/PackagesFromSecureSources"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIScenario/RegularSecurityAudits"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIScenario/RegularPackageUpdates"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIScenario/SecureDeployment"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//SecureAIService">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIService/PackageIntegrityVerified"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIService/PackagesFromSecureSources"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIService/RegularSecurityAudits"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIService/RegularPackageUpdates"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute mltop10.ecore#//SecureAIService/SecureDeployment"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//SecureAIScenario/base_Package"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//SecureAIService/base_Package"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//SecureAIScenario/base_Model"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference mltop10.ecore#//SecureAIService/base_Model"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="mltop10.ecore#//FeedbackData">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"

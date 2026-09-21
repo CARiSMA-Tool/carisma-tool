@@ -34,7 +34,7 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 		Set<Artifact> aialgorithms = MLTop10Util.getStereotypedElements(modelEl, Artifact.class, MLTop10.AIAlgorithm);
 		Set<Artifact> trainingdatas = MLTop10Util.getStereotypedElements(modelEl, Artifact.class, MLTop10.TrainingData);
 		Set<NamedElement> aiscenarios = MLTop10Util.getStereotypedElements(modelEl, NamedElement.class,
-				MLTop10.SecureAIScenario);
+				MLTop10.SecureAIService);
 
 		// Check numbers of elements relevant for this check
 		this.addInfo("Your model contains " + trainingdatas.size() + " Training Data(s), " + mlmodels.size()
@@ -104,7 +104,7 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 		// ---------------------------------------------------------
 		// 5. Perform regular security audits
 		for (NamedElement el : aiscenarios) {
-			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIScenario, "RegularSecurityAudits")) {
+			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "RegularSecurityAudits")) {
 				this.addError(
 						"5. Secure AI Scenario '" + el.getName() + "' does not implement regular security audits.");
 			}

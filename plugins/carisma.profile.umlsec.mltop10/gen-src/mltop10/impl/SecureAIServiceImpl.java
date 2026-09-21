@@ -3,7 +3,7 @@
 package mltop10.impl;
 
 import mltop10.Mltop10Package;
-import mltop10.SecureAIScenario;
+import mltop10.SecureAIService;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -17,24 +17,24 @@ import org.eclipse.uml2.uml.Model;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Secure AI Scenario</b></em>'.
+ * An implementation of the model object '<em><b>Secure AI Service</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link mltop10.impl.SecureAIScenarioImpl#isPackageIntegrityVerified <em>Package Integrity Verified</em>}</li>
- *   <li>{@link mltop10.impl.SecureAIScenarioImpl#isPackagesFromSecureSources <em>Packages From Secure Sources</em>}</li>
- *   <li>{@link mltop10.impl.SecureAIScenarioImpl#isRegularSecurityAudits <em>Regular Security Audits</em>}</li>
- *   <li>{@link mltop10.impl.SecureAIScenarioImpl#isRegularPackageUpdates <em>Regular Package Updates</em>}</li>
- *   <li>{@link mltop10.impl.SecureAIScenarioImpl#isSecureDeployment <em>Secure Deployment</em>}</li>
- *   <li>{@link mltop10.impl.SecureAIScenarioImpl#getBase_Package <em>Base Package</em>}</li>
- *   <li>{@link mltop10.impl.SecureAIScenarioImpl#getBase_Model <em>Base Model</em>}</li>
+ *   <li>{@link mltop10.impl.SecureAIServiceImpl#isPackageIntegrityVerified <em>Package Integrity Verified</em>}</li>
+ *   <li>{@link mltop10.impl.SecureAIServiceImpl#isPackagesFromSecureSources <em>Packages From Secure Sources</em>}</li>
+ *   <li>{@link mltop10.impl.SecureAIServiceImpl#isRegularSecurityAudits <em>Regular Security Audits</em>}</li>
+ *   <li>{@link mltop10.impl.SecureAIServiceImpl#isRegularPackageUpdates <em>Regular Package Updates</em>}</li>
+ *   <li>{@link mltop10.impl.SecureAIServiceImpl#isSecureDeployment <em>Secure Deployment</em>}</li>
+ *   <li>{@link mltop10.impl.SecureAIServiceImpl#getBase_Package <em>Base Package</em>}</li>
+ *   <li>{@link mltop10.impl.SecureAIServiceImpl#getBase_Model <em>Base Model</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implements SecureAIScenario {
+public class SecureAIServiceImpl extends MinimalEObjectImpl.Container implements SecureAIService {
 	/**
 	 * The default value of the '{@link #isPackageIntegrityVerified() <em>Package Integrity Verified</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -160,7 +160,7 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SecureAIScenarioImpl() {
+	protected SecureAIServiceImpl() {
 		super();
 	}
 
@@ -171,7 +171,7 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Mltop10Package.Literals.SECURE_AI_SCENARIO;
+		return Mltop10Package.Literals.SECURE_AI_SERVICE;
 	}
 
 	/**
@@ -194,7 +194,7 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 		boolean oldPackageIntegrityVerified = packageIntegrityVerified;
 		packageIntegrityVerified = newPackageIntegrityVerified;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SCENARIO__PACKAGE_INTEGRITY_VERIFIED, oldPackageIntegrityVerified, packageIntegrityVerified));
+			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SERVICE__PACKAGE_INTEGRITY_VERIFIED, oldPackageIntegrityVerified, packageIntegrityVerified));
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 		boolean oldPackagesFromSecureSources = packagesFromSecureSources;
 		packagesFromSecureSources = newPackagesFromSecureSources;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SCENARIO__PACKAGES_FROM_SECURE_SOURCES, oldPackagesFromSecureSources, packagesFromSecureSources));
+			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SERVICE__PACKAGES_FROM_SECURE_SOURCES, oldPackagesFromSecureSources, packagesFromSecureSources));
 	}
 
 	/**
@@ -240,7 +240,7 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 		boolean oldRegularSecurityAudits = regularSecurityAudits;
 		regularSecurityAudits = newRegularSecurityAudits;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SCENARIO__REGULAR_SECURITY_AUDITS, oldRegularSecurityAudits, regularSecurityAudits));
+			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SERVICE__REGULAR_SECURITY_AUDITS, oldRegularSecurityAudits, regularSecurityAudits));
 	}
 
 	/**
@@ -263,7 +263,7 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 		boolean oldRegularPackageUpdates = regularPackageUpdates;
 		regularPackageUpdates = newRegularPackageUpdates;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SCENARIO__REGULAR_PACKAGE_UPDATES, oldRegularPackageUpdates, regularPackageUpdates));
+			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SERVICE__REGULAR_PACKAGE_UPDATES, oldRegularPackageUpdates, regularPackageUpdates));
 	}
 
 	/**
@@ -286,7 +286,7 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 		boolean oldSecureDeployment = secureDeployment;
 		secureDeployment = newSecureDeployment;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SCENARIO__SECURE_DEPLOYMENT, oldSecureDeployment, secureDeployment));
+			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SERVICE__SECURE_DEPLOYMENT, oldSecureDeployment, secureDeployment));
 	}
 
 	/**
@@ -301,7 +301,7 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 			base_Package = (org.eclipse.uml2.uml.Package)eResolveProxy(oldBase_Package);
 			if (base_Package != oldBase_Package) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Mltop10Package.SECURE_AI_SCENARIO__BASE_PACKAGE, oldBase_Package, base_Package));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Mltop10Package.SECURE_AI_SERVICE__BASE_PACKAGE, oldBase_Package, base_Package));
 			}
 		}
 		return base_Package;
@@ -326,7 +326,7 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SCENARIO__BASE_PACKAGE, oldBase_Package, base_Package));
+			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SERVICE__BASE_PACKAGE, oldBase_Package, base_Package));
 	}
 
 	/**
@@ -341,7 +341,7 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 			base_Model = (Model)eResolveProxy(oldBase_Model);
 			if (base_Model != oldBase_Model) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Mltop10Package.SECURE_AI_SCENARIO__BASE_MODEL, oldBase_Model, base_Model));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Mltop10Package.SECURE_AI_SERVICE__BASE_MODEL, oldBase_Model, base_Model));
 			}
 		}
 		return base_Model;
@@ -366,7 +366,7 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 		Model oldBase_Model = base_Model;
 		base_Model = newBase_Model;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SCENARIO__BASE_MODEL, oldBase_Model, base_Model));
+			eNotify(new ENotificationImpl(this, Notification.SET, Mltop10Package.SECURE_AI_SERVICE__BASE_MODEL, oldBase_Model, base_Model));
 	}
 
 	/**
@@ -377,20 +377,20 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Mltop10Package.SECURE_AI_SCENARIO__PACKAGE_INTEGRITY_VERIFIED:
+			case Mltop10Package.SECURE_AI_SERVICE__PACKAGE_INTEGRITY_VERIFIED:
 				return isPackageIntegrityVerified();
-			case Mltop10Package.SECURE_AI_SCENARIO__PACKAGES_FROM_SECURE_SOURCES:
+			case Mltop10Package.SECURE_AI_SERVICE__PACKAGES_FROM_SECURE_SOURCES:
 				return isPackagesFromSecureSources();
-			case Mltop10Package.SECURE_AI_SCENARIO__REGULAR_SECURITY_AUDITS:
+			case Mltop10Package.SECURE_AI_SERVICE__REGULAR_SECURITY_AUDITS:
 				return isRegularSecurityAudits();
-			case Mltop10Package.SECURE_AI_SCENARIO__REGULAR_PACKAGE_UPDATES:
+			case Mltop10Package.SECURE_AI_SERVICE__REGULAR_PACKAGE_UPDATES:
 				return isRegularPackageUpdates();
-			case Mltop10Package.SECURE_AI_SCENARIO__SECURE_DEPLOYMENT:
+			case Mltop10Package.SECURE_AI_SERVICE__SECURE_DEPLOYMENT:
 				return isSecureDeployment();
-			case Mltop10Package.SECURE_AI_SCENARIO__BASE_PACKAGE:
+			case Mltop10Package.SECURE_AI_SERVICE__BASE_PACKAGE:
 				if (resolve) return getBase_Package();
 				return basicGetBase_Package();
-			case Mltop10Package.SECURE_AI_SCENARIO__BASE_MODEL:
+			case Mltop10Package.SECURE_AI_SERVICE__BASE_MODEL:
 				if (resolve) return getBase_Model();
 				return basicGetBase_Model();
 		}
@@ -405,25 +405,25 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Mltop10Package.SECURE_AI_SCENARIO__PACKAGE_INTEGRITY_VERIFIED:
+			case Mltop10Package.SECURE_AI_SERVICE__PACKAGE_INTEGRITY_VERIFIED:
 				setPackageIntegrityVerified((Boolean)newValue);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__PACKAGES_FROM_SECURE_SOURCES:
+			case Mltop10Package.SECURE_AI_SERVICE__PACKAGES_FROM_SECURE_SOURCES:
 				setPackagesFromSecureSources((Boolean)newValue);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__REGULAR_SECURITY_AUDITS:
+			case Mltop10Package.SECURE_AI_SERVICE__REGULAR_SECURITY_AUDITS:
 				setRegularSecurityAudits((Boolean)newValue);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__REGULAR_PACKAGE_UPDATES:
+			case Mltop10Package.SECURE_AI_SERVICE__REGULAR_PACKAGE_UPDATES:
 				setRegularPackageUpdates((Boolean)newValue);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__SECURE_DEPLOYMENT:
+			case Mltop10Package.SECURE_AI_SERVICE__SECURE_DEPLOYMENT:
 				setSecureDeployment((Boolean)newValue);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__BASE_PACKAGE:
+			case Mltop10Package.SECURE_AI_SERVICE__BASE_PACKAGE:
 				setBase_Package((org.eclipse.uml2.uml.Package)newValue);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__BASE_MODEL:
+			case Mltop10Package.SECURE_AI_SERVICE__BASE_MODEL:
 				setBase_Model((Model)newValue);
 				return;
 		}
@@ -438,25 +438,25 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Mltop10Package.SECURE_AI_SCENARIO__PACKAGE_INTEGRITY_VERIFIED:
+			case Mltop10Package.SECURE_AI_SERVICE__PACKAGE_INTEGRITY_VERIFIED:
 				setPackageIntegrityVerified(PACKAGE_INTEGRITY_VERIFIED_EDEFAULT);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__PACKAGES_FROM_SECURE_SOURCES:
+			case Mltop10Package.SECURE_AI_SERVICE__PACKAGES_FROM_SECURE_SOURCES:
 				setPackagesFromSecureSources(PACKAGES_FROM_SECURE_SOURCES_EDEFAULT);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__REGULAR_SECURITY_AUDITS:
+			case Mltop10Package.SECURE_AI_SERVICE__REGULAR_SECURITY_AUDITS:
 				setRegularSecurityAudits(REGULAR_SECURITY_AUDITS_EDEFAULT);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__REGULAR_PACKAGE_UPDATES:
+			case Mltop10Package.SECURE_AI_SERVICE__REGULAR_PACKAGE_UPDATES:
 				setRegularPackageUpdates(REGULAR_PACKAGE_UPDATES_EDEFAULT);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__SECURE_DEPLOYMENT:
+			case Mltop10Package.SECURE_AI_SERVICE__SECURE_DEPLOYMENT:
 				setSecureDeployment(SECURE_DEPLOYMENT_EDEFAULT);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__BASE_PACKAGE:
+			case Mltop10Package.SECURE_AI_SERVICE__BASE_PACKAGE:
 				setBase_Package((org.eclipse.uml2.uml.Package)null);
 				return;
-			case Mltop10Package.SECURE_AI_SCENARIO__BASE_MODEL:
+			case Mltop10Package.SECURE_AI_SERVICE__BASE_MODEL:
 				setBase_Model((Model)null);
 				return;
 		}
@@ -471,19 +471,19 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Mltop10Package.SECURE_AI_SCENARIO__PACKAGE_INTEGRITY_VERIFIED:
+			case Mltop10Package.SECURE_AI_SERVICE__PACKAGE_INTEGRITY_VERIFIED:
 				return packageIntegrityVerified != PACKAGE_INTEGRITY_VERIFIED_EDEFAULT;
-			case Mltop10Package.SECURE_AI_SCENARIO__PACKAGES_FROM_SECURE_SOURCES:
+			case Mltop10Package.SECURE_AI_SERVICE__PACKAGES_FROM_SECURE_SOURCES:
 				return packagesFromSecureSources != PACKAGES_FROM_SECURE_SOURCES_EDEFAULT;
-			case Mltop10Package.SECURE_AI_SCENARIO__REGULAR_SECURITY_AUDITS:
+			case Mltop10Package.SECURE_AI_SERVICE__REGULAR_SECURITY_AUDITS:
 				return regularSecurityAudits != REGULAR_SECURITY_AUDITS_EDEFAULT;
-			case Mltop10Package.SECURE_AI_SCENARIO__REGULAR_PACKAGE_UPDATES:
+			case Mltop10Package.SECURE_AI_SERVICE__REGULAR_PACKAGE_UPDATES:
 				return regularPackageUpdates != REGULAR_PACKAGE_UPDATES_EDEFAULT;
-			case Mltop10Package.SECURE_AI_SCENARIO__SECURE_DEPLOYMENT:
+			case Mltop10Package.SECURE_AI_SERVICE__SECURE_DEPLOYMENT:
 				return secureDeployment != SECURE_DEPLOYMENT_EDEFAULT;
-			case Mltop10Package.SECURE_AI_SCENARIO__BASE_PACKAGE:
+			case Mltop10Package.SECURE_AI_SERVICE__BASE_PACKAGE:
 				return base_Package != null;
-			case Mltop10Package.SECURE_AI_SCENARIO__BASE_MODEL:
+			case Mltop10Package.SECURE_AI_SERVICE__BASE_MODEL:
 				return base_Model != null;
 		}
 		return super.eIsSet(featureID);
@@ -513,4 +513,4 @@ public class SecureAIScenarioImpl extends MinimalEObjectImpl.Container implement
 		return result.toString();
 	}
 
-} //SecureAIScenarioImpl
+} //SecureAIServiceImpl

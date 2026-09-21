@@ -36,7 +36,7 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 		// ---------------------------------------------------------
 		// populate collections
 		Set<NamedElement> aiscenarios = MLTop10Util.getStereotypedElements(modelEl, NamedElement.class,
-				MLTop10.SecureAIScenario);
+				MLTop10.SecureAIService);
 		Set<Artifact> mlmodels = MLTop10Util.getStereotypedElements(modelEl, Artifact.class, MLTop10.MLModel);
 		Set<Artifact> aiapplications = MLTop10Util.getStereotypedElements(modelEl, Artifact.class,
 				MLTop10.AIApplication);
@@ -130,7 +130,7 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 		// ---------------------------------------------------------
 		// 5. Regular Software Updates
 		for (NamedElement el : aiscenarios) {
-			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIScenario, "RegularPackageUpdates")) {
+			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "RegularPackageUpdates")) {
 				this.addError("5: Packages in Secure AI Scenario '" + el.getName() + "' are not kept up to date.");
 			}
 		}

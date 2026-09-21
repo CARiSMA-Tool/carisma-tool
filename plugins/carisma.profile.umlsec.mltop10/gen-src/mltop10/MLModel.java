@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Artifact;
  *   <li>{@link mltop10.MLModel#isLegalProtection <em>Legal Protection</em>}</li>
  *   <li>{@link mltop10.MLModel#isRegularBackup <em>Regular Backup</em>}</li>
  *   <li>{@link mltop10.MLModel#isRegularRetraining <em>Regular Retraining</em>}</li>
- *   <li>{@link mltop10.MLModel#isRobustActivationFunction <em>Robust Activation Function</em>}</li>
+ *   <li>{@link mltop10.MLModel#isRobustModelDesign <em>Robust Model Design</em>}</li>
  *   <li>{@link mltop10.MLModel#isRobustArchitecture <em>Robust Architecture</em>}</li>
  *   <li>{@link mltop10.MLModel#isRegularAuditAndMonitoring <em>Regular Audit And Monitoring</em>}</li>
  *   <li>{@link mltop10.MLModel#isRegularPerformanceMonitoring <em>Regular Performance Monitoring</em>}</li>
@@ -382,30 +382,30 @@ public interface MLModel extends EObject {
 	void setRegularRetraining(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Robust Activation Function</b></em>' attribute.
+	 * Returns the value of the '<em><b>Robust Model Design</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Robust Activation Function</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Robust Model Design</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Robust Activation Function</em>' attribute.
-	 * @see #setRobustActivationFunction(boolean)
-	 * @see mltop10.Mltop10Package#getMLModel_RobustActivationFunction()
+	 * @return the value of the '<em>Robust Model Design</em>' attribute.
+	 * @see #setRobustModelDesign(boolean)
+	 * @see mltop10.Mltop10Package#getMLModel_RobustModelDesign()
 	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isRobustActivationFunction();
+	boolean isRobustModelDesign();
 
 	/**
-	 * Sets the value of the '{@link mltop10.MLModel#isRobustActivationFunction <em>Robust Activation Function</em>}' attribute.
+	 * Sets the value of the '{@link mltop10.MLModel#isRobustModelDesign <em>Robust Model Design</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Robust Activation Function</em>' attribute.
-	 * @see #isRobustActivationFunction()
+	 * @param value the new value of the '<em>Robust Model Design</em>' attribute.
+	 * @see #isRobustModelDesign()
 	 * @generated
 	 */
-	void setRobustActivationFunction(boolean value);
+	void setRobustModelDesign(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Robust Architecture</b></em>' attribute.
