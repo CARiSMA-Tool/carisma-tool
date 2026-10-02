@@ -157,7 +157,7 @@ public final class MLTop10Util {
 
 	public static String getTaggedValueString(Element element, MLTop10 stereotype, String attribute) {
 		List<Object> tag = MLTop10Util.getTaggedValues(attribute, stereotype, element);
-		return (String) tag.get(0);
+		return (tag.size() > 0 ? (String) tag.get(0) : null);
 	}
 
 	/**

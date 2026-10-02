@@ -71,8 +71,11 @@ public abstract class AbstractMLTop10Check implements CarismaCheck {
 		}
 		this.modelEl = (Model) currentModel.getContents().get(0);
 		boolean result = runCheck();
-		this.addInfo(
-				MLTop10Util.getTaggedValueString(modelEl, MLTop10.ThreatComments, this.getThreatCommentAttribute()));
+		String comment = MLTop10Util.getTaggedValueString(modelEl, MLTop10.ThreatComments,
+				this.getThreatCommentAttribute());
+		if (comment != null && !comment.isEmpty()) {
+			this.addInfo(comment);
+		}
 		return result;
 	}
 
