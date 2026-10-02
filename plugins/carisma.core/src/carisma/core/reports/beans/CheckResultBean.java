@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import carisma.core.analysis.result.AnalysisResultMessage;
 import carisma.core.analysis.result.CheckResult;
+import carisma.core.analysis.result.StatusType;
 
 /**
  * JavaBean for serialization (e.g. JSON) of CheckResults.
@@ -18,6 +19,7 @@ public class CheckResultBean implements Serializable {
 
 	private String name;
 	private boolean success;
+	private StatusType status;
 	private ArrayList<String> messages;
 
 	public CheckResultBean() {
@@ -28,6 +30,7 @@ public class CheckResultBean implements Serializable {
 		super();
 		this.name = cr.getName();
 		this.success = cr.isSuccessful();
+		this.status = cr.getStatus();
 		this.messages = new ArrayList<String>();
 		for (AnalysisResultMessage msg : cr.getResults()) {
 			this.messages.add(msg.getText());
@@ -48,6 +51,14 @@ public class CheckResultBean implements Serializable {
 
 	public void setSuccess(boolean successful) {
 		this.success = successful;
+	}
+
+	public StatusType getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusType status) {
+		this.status = status;
 	}
 
 	public ArrayList<String> getMessages() {
