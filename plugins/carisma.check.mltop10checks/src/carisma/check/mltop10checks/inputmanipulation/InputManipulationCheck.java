@@ -22,6 +22,7 @@ public class InputManipulationCheck extends AbstractMLTop10Check implements Cari
 	public static final String CHECK_ID = "carisma.check.mltop10checks.inputmanipulation";
 	public static final String CHECK_NAME = "MLTop10 Input Manipulation Check";
 	public static final String THREAT_COMMENT_ATTRIBUTE = "InputManipulation";
+	public static final String THREAT_NAME = "MLTop10 Input Manipulation Attack";
 
 	@Override
 	public boolean runCheck() {
@@ -37,11 +38,11 @@ public class InputManipulationCheck extends AbstractMLTop10Check implements Cari
 		this.addInfo("Your model contains " + mlmodels.size() + " ML Model(s) and " + aiapplications.size()
 				+ " AI Application(s).");
 		if (mlmodels.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the ML Model. Therefore, it cannot be ensured that your scenario contains mitigations against the threat 'Input Manipulation Attack'.");
 		}
 		if (aiapplications.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the AI Application. Therefore, it cannot be ensured that your scenario contains mitigations against 'Input Manipulation Attack'.");
 		}
 
@@ -53,7 +54,7 @@ public class InputManipulationCheck extends AbstractMLTop10Check implements Cari
 		// 1.Adversarial training
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "AdversarialTraining")) {
-				this.addError("1. ML Model '" + el.getName() + "' does not do adversarial training.");
+				this.addWarning("1. ML Model '" + el.getName() + "' does not do adversarial training.");
 			}
 		}
 
@@ -61,7 +62,7 @@ public class InputManipulationCheck extends AbstractMLTop10Check implements Cari
 		// 2.Robust models
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "DefenseMechanism")) {
-				this.addError("2. ML Model '" + el.getName() + "' does not implement defense mechanisms.");
+				this.addWarning("2. ML Model '" + el.getName() + "' does not implement defense mechanisms.");
 			}
 		}
 
@@ -69,17 +70,13 @@ public class InputManipulationCheck extends AbstractMLTop10Check implements Cari
 		// 3. Input validation
 		for (Artifact el : aiapplications) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.AIApplication, "InputValidation")) {
-				this.addError("3. AI Application '" + el.getName() + "' does not implement input validation.");
+				this.addWarning("3. AI Application '" + el.getName() + "' does not implement input validation.");
 			}
 		}
 
 		// ---------------------------------------------------------
 		// Overall result
-		if (this.errorDetected) {
-			this.addError("=> An Input Manipulation Attack is potentially possible!");
-			return false;
-		}
-		this.addInfo("=> No vulnerabilities for Input Manipulation Attacks detected.");
+
 		return true;
 	}
 
@@ -96,5 +93,10 @@ public class InputManipulationCheck extends AbstractMLTop10Check implements Cari
 	@Override
 	public String getThreatCommentAttribute() {
 		return THREAT_COMMENT_ATTRIBUTE;
+	}
+	
+	@Override
+	public String getThreatName() {
+		return THREAT_NAME;
 	}
 }

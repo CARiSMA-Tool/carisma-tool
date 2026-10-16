@@ -29,6 +29,7 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 	public static final String CHECK_ID = "carisma.check.mltop10checks.outputintegrity";
 	public static final String CHECK_NAME = "MLTop10 Output Integrity Attack Check";
 	public static final String THREAT_COMMENT_ATTRIBUTE = "OutputIntegrity";
+	public static final String THREAT_NAME = "MLTop10 Output Integrity Attack";
 
 	@Override
 	public boolean runCheck() {
@@ -49,19 +50,19 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 		this.addInfo("Your model contains " + aiscenarios.size() + " Secure AI Scenario(s), " + mlmodels.size()
 				+ " ML Model(s) and " + aiapplications.size() + " AI Application(s).");
 		if (mlmodels.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the ML Model. Therefore, it cannot be ensured that your scenario contains mitigations against the threat 'Output Integrity Attack'.");
 		}
 		if (aiapplications.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the AI Application. Therefore, it cannot be ensured that your scenario contains mitigations against 'Output Integrity Attack'.");
 		}
 		if (aiscenarios.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the Secure AI Scenario. Therefore, it cannot be ensured that your scenario contains mitigations against 'Output Integrity Attack'.");
 		}
 		if (aiscenarios.size() > 1) {
-			this.addWarning(
+			this.addInfo(
 					"Your model contains more than one Secure AI Scenario Elements. Check, whether this is intended.");
 		}
 
@@ -73,7 +74,7 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 		// 1. Using Cryptographic Methods
 		for (Artifact el : aiapplications) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.AIApplication, "CheckModelResultAuthenticity")) {
-				this.addError("1: AI Application '" + el.getName() + "' does not check for model result authenticity.");
+				this.addWarning("1: AI Application '" + el.getName() + "' does not check for model result authenticity.");
 			}
 		}
 
@@ -96,13 +97,13 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 					if (MLTop10Util.getMemberNodes(path).containsAll(Arrays.asList(fromNode, toNode))) {
 						// integrity on relevant paths?
 						if (!MLTop10Util.isTaggedValueTrue(path, MLTop10.SecureCommPath, "IntegrityPreserving")) {
-							this.addError("2: There is a dependency between '" + from.getName() + "' and '"
+							this.addWarning("2: There is a dependency between '" + from.getName() + "' and '"
 									+ to.getName()
 									+ "', but the communication path between the nodes these artifacts are deployed to, does not fulfill 'integrity'.");
 						}
 						// secrecy on relevant paths?
 						if (!MLTop10Util.isTaggedValueTrue(path, MLTop10.SecureCommPath, "ConfidelityPreserving")) {
-							this.addError("2: There is a dependency between '" + from.getName() + "' and '"
+							this.addWarning("2: There is a dependency between '" + from.getName() + "' and '"
 									+ to.getName()
 									+ "', but the communication path between the nodes these artifacts are deployed to, does not fulfill 'secrecy'.");
 						}
@@ -115,7 +116,7 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 		// 3. Input Validation
 		for (Artifact el : aiapplications) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.AIApplication, "InputValidation")) {
-				this.addError("3: AI Application '" + el.getName() + "' does not perform input validation.");
+				this.addWarning("3: AI Application '" + el.getName() + "' does not perform input validation.");
 			}
 		}
 
@@ -123,7 +124,7 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 		// 4. Tamper-evident Logs
 		for (Artifact el : aiapplications) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.AIApplication, "TamperEvidentLogging")) {
-				this.addError("4: AI Application '" + el.getName() + "' does not perform tamper evident logging.");
+				this.addWarning("4: AI Application '" + el.getName() + "' does not perform tamper evident logging.");
 			}
 		}
 
@@ -131,7 +132,7 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 		// 5. Regular Software Updates
 		for (NamedElement el : aiscenarios) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "RegularPackageUpdates")) {
-				this.addError("5: Packages in Secure AI Scenario '" + el.getName() + "' are not kept up to date.");
+				this.addWarning("5: Packages in Secure AI Scenario '" + el.getName() + "' are not kept up to date.");
 			}
 		}
 
@@ -139,17 +140,13 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 		// 6. Monitoring and Auditing
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "RegularAuditAndMonitoring")) {
-				this.addError("6: ML Model '" + el.getName() + "' is not regularly audited and monitored.");
+				this.addWarning("6: ML Model '" + el.getName() + "' is not regularly audited and monitored.");
 			}
 		}
 
 		// ---------------------------------------------------------
 		// Overall result
-		if (this.errorDetected) {
-			this.addError("Result: An Output Integrity Attack is potentially possible!");
-			return false;
-		}
-		this.addInfo("Result: No vulnerabilities for Output Integrity Attacks detected.");
+
 		return true;
 	}
 
@@ -166,6 +163,11 @@ public class OutputIntegrityCheck extends AbstractMLTop10Check implements Carism
 	@Override
 	public String getThreatCommentAttribute() {
 		return THREAT_COMMENT_ATTRIBUTE;
+	}
+	
+	@Override
+	public String getThreatName() {
+		return THREAT_NAME;
 	}
 
 }

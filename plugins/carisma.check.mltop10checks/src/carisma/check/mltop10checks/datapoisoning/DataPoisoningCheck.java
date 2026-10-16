@@ -22,6 +22,7 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 	public static final String CHECK_ID = "carisma.check.mltop10checks.datapoisoning";
 	public static final String CHECK_NAME = "MLTop10 Data Poisoning Attack Check";
 	public static final String THREAT_COMMENT_ATTRIBUTE = "DataPoisoning";
+	public static final String THREAT_NAME = "MLTop10 Data Poisoning Attack";
 
 	@Override
 	public boolean runCheck() {
@@ -38,15 +39,15 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 		this.addInfo("Your model contains " + trainingdata.size() + " Training Data(s), " + mlmodels.size()
 				+ " ML Model(s) and " + trainingdataserver.size() + " Training Data Server(s).");
 		if (mlmodels.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the ML Model. Therefore, it cannot be ensured that your scenario contains mitigations against the threat 'Data Poisoning Attack'.");
 		}
 		if (trainingdata.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the Training Data. Therefore, it cannot be ensured that your scenario contains mitigations against the threat 'Data Poisoning Attack'.");
 		}
 		if (trainingdataserver.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the Training Data Server. Therefore, it cannot be ensured that your scenario contains mitigations against the threat 'Data Poisoning Attack'.");
 		}
 
@@ -58,10 +59,10 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 		// 1. Data validation and verification
 		for (Artifact el : trainingdata) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.TrainingData, "Validation")) {
-				this.addError("1. Training Data '" + el.getName() + "' does not check for validation.");
+				this.addWarning("1. Training Data '" + el.getName() + "' does not check for validation.");
 			}
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.TrainingData, "Verification")) {
-				this.addError("2. Training Data '" + el.getName() + "' does not check for verification.");
+				this.addWarning("2. Training Data '" + el.getName() + "' does not check for verification.");
 			}
 		}
 
@@ -69,7 +70,7 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 		// 2. Secure data storage
 		for (Node el : trainingdataserver) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.TrainingDataServer, "SecureDataStorage")) {
-				this.addError("3. Training Data Server '" + el.getName() + "' does not have a secure data storage.");
+				this.addWarning("3. Training Data Server '" + el.getName() + "' does not have a secure data storage.");
 			}
 		}
 
@@ -80,7 +81,7 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 			boolean isMLModel = MLTop10Util.hasStereotype(el, MLTop10.MLModel);
 
 			if (isTrainingData && isMLModel) {
-				this.addError("4. Artifact '" + el.getName() + "' does not isolate Training Data and ML Model.");
+				this.addWarning("4. Artifact '" + el.getName() + "' does not isolate Training Data and ML Model.");
 			}
 		}
 
@@ -88,7 +89,7 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 		// 4. Access Control
 		for (Artifact el : trainingdata) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.TrainingData, "AccessControl")) {
-				this.addError("5. Training Data  '" + el.getName() + "' does not have access control.");
+				this.addWarning("5. Training Data  '" + el.getName() + "' does not have access control.");
 			}
 		}
 
@@ -96,7 +97,7 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 		// 5. Monitoring and auditing
 		for (Artifact el : trainingdata) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.TrainingData, "RegularAuditAndMonitoring")) {
-				this.addError("6. Training Data  '" + el.getName() + "' does not do regular auditing and monitoring.");
+				this.addWarning("6. Training Data  '" + el.getName() + "' does not do regular auditing and monitoring.");
 			}
 		}
 
@@ -104,7 +105,7 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 		// 6. Model validation
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "Validation")) {
-				this.addError("7. ML Model  '" + el.getName() + "' does not check for validation.");
+				this.addWarning("7. ML Model  '" + el.getName() + "' does not check for validation.");
 			}
 		}
 
@@ -112,7 +113,7 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 		// 7. Model ensembles
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "EnsembleModel")) {
-				this.addError("8. ML Model  '" + el.getName() + "' is not an ensemble model.");
+				this.addWarning("8. ML Model  '" + el.getName() + "' is not an ensemble model.");
 			}
 		}
 
@@ -120,17 +121,13 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 		// 8. Anomaly detection
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "AnomalyDetection")) {
-				this.addError("9. ML Model  '" + el.getName() + "' does not have an anomaly detection.");
+				this.addWarning("9. ML Model  '" + el.getName() + "' does not have an anomaly detection.");
 			}
 		}
 
 		// ---------------------------------------------------------
 		// Overall result
-		if (this.errorDetected) {
-			this.addError("=> A Data Poisoning Attack is potentially possible!");
-			return false;
-		}
-		this.addInfo("=> No vulnerabilities for Data Poisoning Attacks detected.");
+
 		return true;
 
 	}
@@ -148,6 +145,11 @@ public class DataPoisoningCheck extends AbstractMLTop10Check implements CarismaC
 	@Override
 	public String getThreatCommentAttribute() {
 		return THREAT_COMMENT_ATTRIBUTE;
+	}
+	
+	@Override
+	public String getThreatName() {
+		return THREAT_NAME;
 	}
 
 }

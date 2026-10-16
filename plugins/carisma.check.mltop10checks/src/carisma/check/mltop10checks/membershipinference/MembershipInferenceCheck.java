@@ -27,6 +27,7 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 	public static final String CHECK_ID = "carisma.check.mltop10checks.membershipinference";
 	public static final String CHECK_NAME = "MLTop10 Membership Inference Attack Check";
 	public static final String THREAT_COMMENT_ATTRIBUTE = "MembershipInference";
+	public static final String THREAT_NAME = "MLTop10 Membership Inference Attack";
 
 	@Override
 	public boolean runCheck() {
@@ -45,15 +46,15 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 		this.addInfo("Your model contains " + aialgorithms.size() + " AI Algorithm(s), " + mlmodels.size()
 				+ " ML Model(s) and " + trainingdatas.size() + " Training Data(s).");
 		if (mlmodels.isEmpty()) {
-			this.addWarning("Your model does not contain any information about the ML Model."
+			this.addInfo("Your model does not contain any information about the ML Model."
 					+ " Therefore, it cannot be checked whether the system implements mitigations against 'Membership Inference Attacks'.");
 		}
 		if (aialgorithms.isEmpty()) {
-			this.addWarning("Your model does not contain any information about the AI Algorithms."
+			this.addInfo("Your model does not contain any information about the AI Algorithms."
 					+ " Therefore, it cannot be checked whether the system implements mitigations against 'Membership Inference Attacks'.");
 		}
 		if (trainingdatas.isEmpty()) {
-			this.addWarning("Your model does not contain any information about the Training Data."
+			this.addInfo("Your model does not contain any information about the Training Data."
 					+ " Therefore, it cannot be checked whether the system implements mitigations against 'Membership Inference Attacks'.");
 		}
 
@@ -65,7 +66,7 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 		// Pre Checks. Public training data and secret communication channels
 		for (Artifact el : trainingdatas) {
 			if (MLTop10Util.isTaggedValueTrue(el, MLTop10.TrainingData, "Public")) {
-				this.addWarning("Pre a. Your Training Data '" + el.getName()
+				this.addInfo("Pre a. Your Training Data '" + el.getName()
 						+ "' is public. Membership Inference does not need to be checked.");
 				return true;
 			}
@@ -87,7 +88,7 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 					if (MLTop10Util.getMemberNodes(path).containsAll(Arrays.asList(fromNode, toNode))) {
 						// secrecy on relevant paths?
 						if (!MLTop10Util.isTaggedValueTrue(path, MLTop10.SecureCommPath, "ConfidelityPreserving")) {
-							this.addError("Pre b. There is a dependency between '" + from.getName() + "' and '"
+							this.addWarning("Pre b. There is a dependency between '" + from.getName() + "' and '"
 									+ to.getName()
 									+ "', but the communication path between the nodes these artifacts are deployed to, does not fulfill 'secrecy'.");
 						}
@@ -100,7 +101,7 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 		// 1. Model training on randomized or shuffled data
 		for (Artifact el : aialgorithms) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.AIAlgorithm, "Randomize")) {
-				this.addError("1. AI Algorithm '" + el.getName() + "' does not randomize during training.");
+				this.addWarning("1. AI Algorithm '" + el.getName() + "' does not randomize during training.");
 			}
 		}
 
@@ -108,7 +109,7 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 		// 2. Model Obfuscation
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "Obfuscation")) {
-				this.addError("2. ML Model '" + el.getName() + "' does not obfuscate its predictions.");
+				this.addWarning("2. ML Model '" + el.getName() + "' does not obfuscate its predictions.");
 			}
 		}
 
@@ -116,7 +117,7 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 		// 3. Regularisation
 		for (Artifact el : aialgorithms) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.AIAlgorithm, "Regularisation")) {
-				this.addError("3. AI Algorithm '" + el.getName() + "' does not use regularizaiton techniques.");
+				this.addWarning("3. AI Algorithm '" + el.getName() + "' does not use regularizaiton techniques.");
 			}
 		}
 
@@ -124,7 +125,7 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 		// 4. Reducing the training data
 		for (Artifact el : trainingdatas) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.TrainingData, "Reduced")) {
-				this.addError("4. Training Data '" + el.getName() + "' is not reduced.");
+				this.addWarning("4. Training Data '" + el.getName() + "' is not reduced.");
 			}
 		}
 
@@ -132,17 +133,13 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 		// 5. Testing and monitoring
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "RegularTestingAndMonitoring")) {
-				this.addError("5. ML Model '" + el.getName() + "' is not regularly tested and monitored.");
+				this.addWarning("5. ML Model '" + el.getName() + "' is not regularly tested and monitored.");
 			}
 		}
 
 		// ---------------------------------------------------------
 		// Overall result
-		if (this.errorDetected) {
-			this.addError("=> A Membership Inference Attack is potentially possible!");
-			return false;
-		}
-		this.addInfo("=> No vulnerabilities for Membership Inference Attacks detected.");
+
 		return true;
 	}
 
@@ -159,6 +156,11 @@ public class MembershipInferenceCheck extends AbstractMLTop10Check implements Ca
 	@Override
 	public String getThreatCommentAttribute() {
 		return THREAT_COMMENT_ATTRIBUTE;
+	}
+	
+	@Override
+	public String getThreatName() {
+		return THREAT_NAME;
 	}
 
 }

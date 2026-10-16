@@ -22,6 +22,7 @@ public class ModelInversionCheck extends AbstractMLTop10Check implements Carisma
 	public static final String CHECK_ID = "carisma.check.mltop10checks.modelinversion";
 	public static final String CHECK_NAME = "MLTop10 Model Inversion Attack Check";
 	public static final String THREAT_COMMENT_ATTRIBUTE = "ModelInversion";
+	public static final String THREAT_NAME = "MLTop10 Model Inversion Attack";
 
 	@Override
 	public boolean runCheck() {
@@ -39,19 +40,19 @@ public class ModelInversionCheck extends AbstractMLTop10Check implements Carisma
 				+ " Training Data(s), " + mlmodels.size() + " ML Model(s) and " + aiapplications.size()
 				+ " AI Application(s).");
 		if (mlmodels.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the ML Model. Therefore, it cannot be ensured that your scenario contains mitigations against the threat 'Model Inversion Attack'.");
 		}
 		if (aiapplications.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the AI Application. Therefore, it cannot be ensured that your scenario contains mitigations against 'Model Inversion Attack'.");
 		}
 		if (aialgorithms.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the AI Algorithm. Therefore, it cannot be ensured that your scenario contains mitigations against 'Model Inversion Attack'.");
 		}
 		if (trainingdatas.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the Training Data. Therefore, it cannot be ensured that your scenario contains mitigations against 'Model Inversion Attack'.");
 		}
 
@@ -96,7 +97,7 @@ public class ModelInversionCheck extends AbstractMLTop10Check implements Carisma
 		// 1. Access control TODO: Check whether they all belong to the same scenario
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "AccessControl")) {
-				this.addError("1. ML Model '" + el.getName() + "' does not have any access control implemented.");
+				this.addWarning("1. ML Model '" + el.getName() + "' does not have any access control implemented.");
 			}
 		}
 
@@ -104,7 +105,7 @@ public class ModelInversionCheck extends AbstractMLTop10Check implements Carisma
 		// 2. Input validation
 		for (Artifact el : aiapplications) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.AIApplication, "InputValidation")) {
-				this.addError(
+				this.addWarning(
 						"2. AI Application '" + el.getName() + "' does not have any input validation implemented.");
 			}
 		}
@@ -113,7 +114,7 @@ public class ModelInversionCheck extends AbstractMLTop10Check implements Carisma
 		// 3. Model transparency
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "Transparency")) {
-				this.addError("3. ML Model '" + el.getName() + "' is not transparent.");
+				this.addWarning("3. ML Model '" + el.getName() + "' is not transparent.");
 			}
 		}
 
@@ -121,7 +122,7 @@ public class ModelInversionCheck extends AbstractMLTop10Check implements Carisma
 		// 4. Regular monitoring
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "AnomalyDetection")) {
-				this.addError("4. ML Model '" + el.getName() + "' does not have any anomaly detection implemented.");
+				this.addWarning("4. ML Model '" + el.getName() + "' does not have any anomaly detection implemented.");
 			}
 		}
 
@@ -129,17 +130,13 @@ public class ModelInversionCheck extends AbstractMLTop10Check implements Carisma
 		// 5. Model retraining
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "RegularRetraining")) {
-				this.addError("5. ML Model '" + el.getName() + "' does not perform regular retraining.");
+				this.addWarning("5. ML Model '" + el.getName() + "' does not perform regular retraining.");
 			}
 		}
 
 		// ---------------------------------------------------------
 		// Overall result
-		if (this.errorDetected) {
-			this.addError("=> A Model Inversion Attack is potentially possible!");
-			return false;
-		}
-		this.addInfo("=> No vulnerabilities for Model Inversion Attacks detected.");
+
 		return true;
 	}
 
@@ -156,6 +153,11 @@ public class ModelInversionCheck extends AbstractMLTop10Check implements Carisma
 	@Override
 	public String getThreatCommentAttribute() {
 		return THREAT_COMMENT_ATTRIBUTE;
+	}
+	
+	@Override
+	public String getThreatName() {
+		return THREAT_NAME;
 	}
 
 }

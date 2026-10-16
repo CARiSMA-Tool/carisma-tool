@@ -37,6 +37,7 @@ public abstract class AbstractMLTop10Check implements CarismaCheck {
 	 * A flag to store, whether at least one error has been detected.
 	 */
 	protected boolean errorDetected = false;
+	protected boolean warningDetected = false;
 
 	protected void addInfo(String message) {
 		this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.INFO, message));
@@ -44,11 +45,12 @@ public abstract class AbstractMLTop10Check implements CarismaCheck {
 
 	protected void addWarning(String message) {
 		this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.WARNING, message));
+		warningDetected = true;
 	}
 
 	protected void addError(String message) {
 		this.analysisHost.addResultMessage(new AnalysisResultMessage(StatusType.ERROR, message));
-		this.errorDetected = true;
+		//this.errorDetected = true;
 	}
 
 	@Override
@@ -70,17 +72,34 @@ public abstract class AbstractMLTop10Check implements CarismaCheck {
 			return false;
 		}
 		this.modelEl = (Model) currentModel.getContents().get(0);
-		boolean result = runCheck();
+		runCheck(); 
 		String comment = MLTop10Util.getTaggedValueString(modelEl, MLTop10.ThreatComments,
 				this.getThreatCommentAttribute());
-		if (comment != null && !comment.isEmpty()) {
-			this.addInfo(comment);
-		}
-		return result;
+		if (!warningDetected) {
+			this.addInfo("=> No vulnerabilities for " + getThreatName() + " detected.");
+			if (comment != null && !comment.isEmpty()) {
+				this.addInfo("The check did pass and there is an additional comment on the check:");
+				this.addInfo(comment);
+			}			
+			return true;
+		} else{
+			if (comment != null && !comment.isEmpty()) {
+				this.addWarning("The check did not pass, however there is a comment on the check:");
+				this.addWarning(comment);
+				return true;
+			} else {
+				this.addError("=> An " + getThreatName() + " is potentially possible and there is no additional comment on that threat!");
+				return false;
+			}
+			
+
+		} 		
 	}
 
 	public abstract boolean runCheck();
 
 	public abstract String getThreatCommentAttribute();
+	
+	public abstract String getThreatName();
 
 }

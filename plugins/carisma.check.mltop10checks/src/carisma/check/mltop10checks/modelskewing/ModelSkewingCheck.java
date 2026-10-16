@@ -22,6 +22,7 @@ public class ModelSkewingCheck extends AbstractMLTop10Check implements CarismaCh
 	public static final String CHECK_ID = "carisma.check.mltop10checks.modelskewing";
 	public static final String CHECK_NAME = "MLTop10 Model Skewing Attack Check";
 	public static final String THREAT_COMMENT_ATTRIBUTE = "ModelSkewing";
+	public static final String THREAT_NAME = "MLTop10 Model Skewing Attack";
 
 	@Override
 	public boolean runCheck() {
@@ -36,12 +37,12 @@ public class ModelSkewingCheck extends AbstractMLTop10Check implements CarismaCh
 		this.addInfo("Your model contains " + mlmodels.size() + " ML Model(s) and " + feedbackdatas.size()
 				+ " Feedback Data(s).");
 		if (feedbackdatas.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Pre Check. Your model does not contain any Feedback Data. Therefore, Model Skewing is not possible.");
 			return true;
 		}
 		if (mlmodels.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the ML Model. Therefore, it cannot be ensured that your scenario contains mitigations against 'Model Skewing Attack'.");
 		}
 
@@ -53,12 +54,12 @@ public class ModelSkewingCheck extends AbstractMLTop10Check implements CarismaCh
 		// 1. Implement robust access controls
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "AccessControl")) {
-				this.addError("1. ML Model '" + el.getName() + "' does not implement access control.");
+				this.addWarning("1. ML Model '" + el.getName() + "' does not implement access control.");
 			}
 		}
 		for (Artifact el : feedbackdatas) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.FeedbackData, "AccessControl")) {
-				this.addError("1. Feedback Data '" + el.getName() + "' does not implement access control.");
+				this.addWarning("1. Feedback Data '" + el.getName() + "' does not implement access control.");
 			}
 		}
 
@@ -66,7 +67,7 @@ public class ModelSkewingCheck extends AbstractMLTop10Check implements CarismaCh
 		// 2. Verify the authenticity of feedback data
 		for (Artifact el : feedbackdatas) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.FeedbackData, "AuthenticityVerified")) {
-				this.addError("2. Feedback Data '" + el.getName() + "'s' authenticity is not verified.");
+				this.addWarning("2. Feedback Data '" + el.getName() + "'s' authenticity is not verified.");
 			}
 		}
 
@@ -74,12 +75,12 @@ public class ModelSkewingCheck extends AbstractMLTop10Check implements CarismaCh
 		// 3. Verify the authenticity of feedback data
 		for (Artifact el : feedbackdatas) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.FeedbackData, "Validation")) {
-				this.addError("3. Feedback Data '" + el.getName() + "' is not validated.");
+				this.addWarning("3. Feedback Data '" + el.getName() + "' is not validated.");
 			}
 		}
 		for (Artifact el : feedbackdatas) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.FeedbackData, "Cleaning")) {
-				this.addError("3. Feedback Data '" + el.getName() + "' is not cleaned.");
+				this.addWarning("3. Feedback Data '" + el.getName() + "' is not cleaned.");
 			}
 		}
 
@@ -87,7 +88,7 @@ public class ModelSkewingCheck extends AbstractMLTop10Check implements CarismaCh
 		// 4. Implement anomaly detection
 		for (Artifact el : feedbackdatas) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.FeedbackData, "AnomalyDetection")) {
-				this.addError("4. Feedback Data '" + el.getName() + "' does not implement anomaly detection.");
+				this.addWarning("4. Feedback Data '" + el.getName() + "' does not implement anomaly detection.");
 			}
 		}
 
@@ -95,7 +96,7 @@ public class ModelSkewingCheck extends AbstractMLTop10Check implements CarismaCh
 		// 5. Regularly monitor the model’s performance
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "RegularPerformanceMonitoring")) {
-				this.addError("5. ML Model '" + el.getName() + "' does not perform a regular performance monitoring.");
+				this.addWarning("5. ML Model '" + el.getName() + "' does not perform a regular performance monitoring.");
 			}
 		}
 
@@ -103,17 +104,13 @@ public class ModelSkewingCheck extends AbstractMLTop10Check implements CarismaCh
 		// 6. Continuously train the model
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "RegularRetraining")) {
-				this.addError("6. ML Model '" + el.getName() + "' is not regularly retrained.");
+				this.addWarning("6. ML Model '" + el.getName() + "' is not regularly retrained.");
 			}
 		}
 
 		// ---------------------------------------------------------
 		// Overall result
-		if (this.errorDetected) {
-			this.addError("=> A Model Skewing Attack is potentially possible!");
-			return false;
-		}
-		this.addInfo("=> No vulnerabilities for Model Skewing Attacks detected.");
+
 		return true;
 	}
 
@@ -130,6 +127,11 @@ public class ModelSkewingCheck extends AbstractMLTop10Check implements CarismaCh
 	@Override
 	public String getThreatCommentAttribute() {
 		return THREAT_COMMENT_ATTRIBUTE;
+	}
+	
+	@Override
+	public String getThreatName() {
+		return THREAT_NAME;
 	}
 
 }

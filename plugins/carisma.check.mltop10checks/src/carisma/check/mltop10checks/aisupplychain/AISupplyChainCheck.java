@@ -22,6 +22,7 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 	public static final String CHECK_ID = "carisma.check.mltop10checks.aisupplychain";
 	public static final String CHECK_NAME = "MLTop10 AI Supply Chain Attack Check";
 	public static final String THREAT_COMMENT_ATTRIBUTE = "AISupplyChain";
+	public static final String THREAT_NAME = "MLTop10 AI Supply Chain Attack";
 
 	@Override
 	public boolean runCheck() {
@@ -36,11 +37,11 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 		this.addInfo("Your model contains " + aiscenarios.size() + " Secure AI Scenario(s).");
 
 		if (aiscenarios.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the Secure AI Scenario. Therefore, it cannot be ensured that your scenario contains mitigations against 'AI Supply Chain Attack'.");
 		}
 		if (aiscenarios.size() > 1) {
-			this.addWarning(
+			this.addInfo(
 					"Your model contains more than one Secure AI Scenario Elements. Check, whether this is intended.");
 		}
 
@@ -52,7 +53,7 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 		// 1. Verify packages integrity
 		for (NamedElement el : aiscenarios) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "PackageIntegrityVerified")) {
-				this.addError("1. Secure AI Scenario '" + el.getName() + "' does not verify the package integrity.");
+				this.addWarning("1. Secure AI Scenario '" + el.getName() + "' does not verify the package integrity.");
 			}
 		}
 
@@ -60,7 +61,7 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 		// 2. Keep packages versions up-to-date
 		for (NamedElement el : aiscenarios) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "RegularPackageUpdates")) {
-				this.addError("2. Secure AI Scenario '" + el.getName() + "' does not keep the packages up-to-date.");
+				this.addWarning("2. Secure AI Scenario '" + el.getName() + "' does not keep the packages up-to-date.");
 			}
 		}
 
@@ -68,7 +69,7 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 		// 3. Install packages from secure sources
 		for (NamedElement el : aiscenarios) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "PackagesFromSecureSources")) {
-				this.addError(
+				this.addWarning(
 						"3. Secure AI Scenario '" + el.getName() + "' does not use packages from secure sources.");
 			}
 		}
@@ -77,17 +78,13 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 		// 4. Deploy ML infrastructure securely
 		for (NamedElement el : aiscenarios) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "SecureDeployment")) {
-				this.addError("4. Secure AI Scenario '" + el.getName() + "' does not perform a secure deployment.");
+				this.addWarning("4. Secure AI Scenario '" + el.getName() + "' does not perform a secure deployment.");
 			}
 		}
 
 		// ---------------------------------------------------------
 		// Overall result
-		if (this.errorDetected) {
-			this.addError("=> An AI Supply Chain Attack is potentially possible!");
-			return false;
-		}
-		this.addInfo("=> No vulnerabilities for AI Supply Chain Attacks detected.");
+
 		return true;
 	}
 
@@ -104,6 +101,11 @@ public class AISupplyChainCheck extends AbstractMLTop10Check implements CarismaC
 	@Override
 	public String getThreatCommentAttribute() {
 		return THREAT_COMMENT_ATTRIBUTE;
+	}
+	
+	@Override
+	public String getThreatName() {
+		return THREAT_NAME;
 	}
 
 }

@@ -21,6 +21,7 @@ public class ModelPoisoningCheck extends AbstractMLTop10Check implements Carisma
 	public static final String CHECK_ID = "carisma.check.mltop10checks.modelpoisoning";
 	public static final String CHECK_NAME = "MLTop10 Model Poisoning Attack Check";
 	public static final String THREAT_COMMENT_ATTRIBUTE = "ModelPoisoning";
+	public static final String THREAT_NAME = "MLTop10 Model Poisoning Attack";
 
 	@Override
 	public boolean runCheck() {
@@ -35,11 +36,11 @@ public class ModelPoisoningCheck extends AbstractMLTop10Check implements Carisma
 		this.addInfo("Your model contains " + mlmodels.size() + " ML Model(s) and " + aialgorithms.size()
 				+ " AI Algorithms(s).");
 		if (mlmodels.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the ML Model. Therefore, it cannot be ensured that your scenario contains mitigations against the threat 'Model Poisoning Attack'.");
 		}
 		if (aialgorithms.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the AI Application. Therefore, it cannot be ensured that your scenario contains mitigations against 'Model Poisoning Attack'.");
 		}
 
@@ -51,7 +52,7 @@ public class ModelPoisoningCheck extends AbstractMLTop10Check implements Carisma
 		// 1. Regularisation
 		for (Artifact el : aialgorithms) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.AIAlgorithm, "Regularisation")) {
-				this.addError("1. AI Algorithm '" + el.getName() + "' does not use any regularisation techniques.");
+				this.addWarning("1. AI Algorithm '" + el.getName() + "' does not use any regularisation techniques.");
 			}
 		}
 
@@ -59,7 +60,7 @@ public class ModelPoisoningCheck extends AbstractMLTop10Check implements Carisma
 		// 2. Robust Model Design
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "RobustModelDesign")) {
-				this.addError("2. ML Model '" + el.getName() + "' does not have a robust architecture.");
+				this.addWarning("2. ML Model '" + el.getName() + "' does not have a robust architecture.");
 			}
 		}
 
@@ -67,17 +68,13 @@ public class ModelPoisoningCheck extends AbstractMLTop10Check implements Carisma
 		// 3. Cryptographic Techniques
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "CryptographicallySecured")) {
-				this.addError("3. ML Model '" + el.getName() + "' does not use any cryptographic techniques.");
+				this.addWarning("3. ML Model '" + el.getName() + "' does not use any cryptographic techniques.");
 			}
 		}
 
 		// ---------------------------------------------------------
 		// Overall result
-		if (this.errorDetected) {
-			this.addError("=> A Model Poisoning Attack is potentially possible!");
-			return false;
-		}
-		this.addInfo("=> No vulnerabilities for Model Poisoning Attacks detected.");
+
 		return true;
 	}
 
@@ -94,6 +91,11 @@ public class ModelPoisoningCheck extends AbstractMLTop10Check implements Carisma
 	@Override
 	public String getThreatCommentAttribute() {
 		return THREAT_COMMENT_ATTRIBUTE;
+	}
+	
+	@Override
+	public String getThreatName() {
+		return THREAT_NAME;
 	}
 
 }

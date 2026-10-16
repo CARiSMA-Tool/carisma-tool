@@ -23,6 +23,7 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 	public static final String CHECK_ID = "carisma.check.mltop10checks.transferlearning";
 	public static final String CHECK_NAME = "MLTop10 Transfer Learning Attack Check";
 	public static final String THREAT_COMMENT_ATTRIBUTE = "TransferLearning";
+	public static final String THREAT_NAME = "MLTop10 Transfer Learning Attack";
 
 	@Override
 	public boolean runCheck() {
@@ -40,23 +41,23 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 		this.addInfo("Your model contains " + trainingdatas.size() + " Training Data(s), " + mlmodels.size()
 				+ " ML Model(s) and " + aialgorithms.size() + " AI Algorithm(s).");
 		if (mlmodels.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the ML Model. Therefore, it cannot be ensured that your scenario contains mitigations against the threat 'Transfer Learning Attack'.");
 		}
 		if (aialgorithms.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the AI Algorithm. Therefore, it cannot be ensured that your scenario contains mitigations against 'Transfer Learning Attack'.");
 		}
 		if (trainingdatas.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the Training Data. Therefore, it cannot be ensured that your scenario contains mitigations against 'Transfer Learning Attack'.");
 		}
 		if (aiscenarios.isEmpty()) {
-			this.addWarning(
+			this.addInfo(
 					"Your model does not contain any information on the Secure AI Scenario. Therefore, it cannot be ensured that your scenario contains mitigations against 'Transfer Learning Attack'.");
 		}
 		if (aiscenarios.size() > 1) {
-			this.addWarning(
+			this.addInfo(
 					"Your model contains more than one Secure AI Scenario Elements. Check, whether this is intended.");
 		}
 
@@ -68,7 +69,7 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 		// 1. Using Cryptographic Methods
 		for (Artifact el : trainingdatas) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.TrainingData, "RegularUpdatesAndTraining")) {
-				this.addError("1. Training Data '" + el.getName() + "' is not regularly monitored and updated.");
+				this.addWarning("1. Training Data '" + el.getName() + "' is not regularly monitored and updated.");
 			}
 		}
 
@@ -76,7 +77,7 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 		// 2. Use secure and trusted training datasets
 		for (Artifact el : trainingdatas) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.TrainingData, "Trusted")) {
-				this.addError("2. Training Data '" + el.getName() + "' is not trusted.");
+				this.addWarning("2. Training Data '" + el.getName() + "' is not trusted.");
 			}
 		}
 
@@ -88,7 +89,7 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 			boolean isAIAlgorithm = MLTop10Util.hasStereotype(el, MLTop10.AIAlgorithm);
 
 			if (isTrainingData && isMLModel && isAIAlgorithm) {
-				this.addError("3. Artifact '" + el.getName()
+				this.addWarning("3. Artifact '" + el.getName()
 						+ "' does not isolate AI Algorithm, Training Data and ML Model.");
 			}
 		}
@@ -97,7 +98,7 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 		// 4. Use differential privacy
 		for (Artifact el : mlmodels) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.MLModel, "DifferentialPrivacy")) {
-				this.addError("4. ML Model '" + el.getName() + "' does not implement differential privacy.");
+				this.addWarning("4. ML Model '" + el.getName() + "' does not implement differential privacy.");
 			}
 		}
 
@@ -105,18 +106,14 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 		// 5. Perform regular security audits
 		for (NamedElement el : aiscenarios) {
 			if (!MLTop10Util.isTaggedValueTrue(el, MLTop10.SecureAIService, "RegularSecurityAudits")) {
-				this.addError(
+				this.addWarning(
 						"5. Secure AI Scenario '" + el.getName() + "' does not implement regular security audits.");
 			}
 		}
 
 		// ---------------------------------------------------------
 		// Overall result
-		if (this.errorDetected) {
-			this.addError("=> A Transfer Learning Attack is potentially possible!");
-			return false;
-		}
-		this.addInfo("=> No vulnerabilities for Transfer Learning Attacks detected.");
+
 		return true;
 	}
 
@@ -133,6 +130,11 @@ public class TransferLearningCheck extends AbstractMLTop10Check implements Caris
 	@Override
 	public String getThreatCommentAttribute() {
 		return THREAT_COMMENT_ATTRIBUTE;
+	}
+	
+	@Override
+	public String getThreatName() {
+		return THREAT_NAME;
 	}
 
 }
