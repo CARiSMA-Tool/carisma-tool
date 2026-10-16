@@ -2,15 +2,11 @@ package carisma.core.reports.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import carisma.core.analysis.result.AnalysisResult;
 import carisma.core.analysis.result.AnalysisResultStatus;
 import carisma.core.analysis.result.CheckResult;
-import carisma.core.reports.HTMLReport;
-import carisma.core.reports.XMLReport;
 
 /**
  * JavaBean for serialization (e.g. JSON) of AnalysisResults.
@@ -23,7 +19,6 @@ public class AnalysisResultBean implements Serializable {
 	private String name;
 	private Boolean success;
 	private List<CheckResultBean> checks;
-	private Map<String, String> reports;
 
 	public AnalysisResultBean() {
 		super();
@@ -37,9 +32,6 @@ public class AnalysisResultBean implements Serializable {
 		for (CheckResult cr : result.getCheckResults()) {
 			this.checks.add(new CheckResultBean(cr));
 		}
-		this.reports = new HashMap<>();
-		this.reports.put("HTML", new HTMLReport(result).getHtml());
-		this.reports.put("XML", new XMLReport(result).getXml());
 	}
 
 	public String getName() {
@@ -66,18 +58,9 @@ public class AnalysisResultBean implements Serializable {
 		this.checks = checks;
 	}
 
-	public Map<String, String> getReports() {
-		return reports;
-	}
-
-	public void setReports(Map<String, String> reports) {
-		this.reports = reports;
-	}
-
 	@Override
 	public String toString() {
-		return "AnalysisResultBean [name=" + name + ", success=" + success + ", checks=" + checks + ", reports="
-				+ reports + "]";
+		return "AnalysisResultBean [name=" + name + ", success=" + success + ", checks=" + checks + ", reports=" + "]";
 	}
 
 }
