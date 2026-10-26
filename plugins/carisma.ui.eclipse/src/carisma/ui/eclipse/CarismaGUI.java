@@ -159,9 +159,9 @@ public class CarismaGUI extends AbstractUIPlugin {
 	 *
 	 */
 	public static final void showAnalysisResultsView() {
-		INSTANCE.getWorkbench().getDisplay().asyncExec(() -> {
+		PlatformUI.getWorkbench().getDisplay().asyncExec(() -> {
 			try {
-				final var page = INSTANCE.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				final var page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				final var analysisResultsView = (AnalysisResultsView) page.showView(AnalysisResultsView.ID);
 				analysisResultsView.update();
 			} catch (final PartInitException e) {
