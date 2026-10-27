@@ -22,7 +22,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * This class represents the results of a check.
  */
 @XmlRootElement(name = "CheckResult")
-@XmlType(propOrder = { "name","successful","results"})
+@XmlType(propOrder = { "name","successful","status","results"})
 public class CheckResult{
 
 	/**
@@ -90,6 +90,7 @@ public class CheckResult{
 		return this.parent;
 	}
 
+	@XmlElement(name = "status")
 	public StatusType getStatus() {
 		return this.status;
 	}
