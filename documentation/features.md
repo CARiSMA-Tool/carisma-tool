@@ -15,7 +15,9 @@ See [OCL](ocl-check-examples/README.md) for the specific checks.
 ### RABAC
 See [RABAC](rabac/README.md) for the specific checks. 
 ### Uconpolicycreation
-See [Uconpolicycreation](uconpolicycreation-odrl-common-examples/README.md) for the specific checks. 
+See [Uconpolicycreation](uconpolicycreation-odrl-common-examples/README.md) for the specific checks.
+### OWASP ML Top 10
+See [ML Top 10](owasp-ml-security-top10/README.md) for the specific checks. 
 
 # Features
 
@@ -104,4 +106,6 @@ With respect to long living software systems, it is often necessary to analyze w
 | carisma.check.extension4idschecks  | Extension  | Master Thesis | Sanjeev Sun Shakya  |    |
 | carisma.profile.uconpolicycreation.odrl.common  | Extension  | Bachelor Thesis | Nils Rodewald  |    |
 | carisma.check.uconpolicycreation  | Extension  | Bachelor Thesis | Nils Rodewald  |    |
+| carisma.check.mltop10checks  | Extension  | | Julian Flake / Alexander Peikert  | Checks whether models are compliant according to the OWASP Machine Learning Security Top Ten |
+| carisma.profile.mltop10  | Extension  | | Julian Flake / Alexander Peikert  | Profile, enabeling the modeling of OWASP Machine Learning Security Top Ten threats |
 

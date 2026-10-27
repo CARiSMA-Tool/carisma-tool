@@ -22,10 +22,11 @@ Sometimes it can happen that the target platform configuration is broken. To fix
 3. Set output folder to `target`.
 5. Click *Next*.
 6. Enter the metadata for your plugin.
-7. Click *Next*.
-8. Select the *CARiSMA UML2 Check Template*.
-9. Click *Next*.
-10. Fill out the missing fields.
+7. Under *Options*, check the box for *Generate an activator*.
+8. Click *Next*.
+9. Select the *CARiSMA UML2 Check Template*.
+10. Click *Next*.
+11. Fill out the missing fields.
     * *Check ID* is a unique ID for your Check. You may choose the package name as the Check ID.
     * *Package Name* is the name of your Package.
     * *Class Name* is the name of your Java class implementing the check.
@@ -33,10 +34,11 @@ Sometimes it can happen that the target platform configuration is broken. To fix
     * *Check Description* is the description of the CARiSMA check.
     * *Publisher* should be your name or the name of your company.
     * *Target Model Type* is the Model-Type your check will work with.
-11. Click *Next*.
-12. If you want to create a preference page containing check-wide settings, check the corresponding option *Create a Preference Page*.
-13. Select a *Page name*. *Class Name* and *Package Name* are the java Class Name/Package Name.
-14. Click *Finish* to create your first CARiSMA check!
+12. Click *Next*.
+13. If you want to create a preference page containing check-wide settings, check the corresponding option *Create a Preference Page*.
+14. Select a *Page name*. *Class Name* and *Package Name* are the java Class Name/Package Name.
+15. Click *Finish* to create your first CARiSMA check!
+16. (Optional) If you create a plug-in to test your checks, follow the naming convention **"carisma.check.[pluginName].tests"**. Make sure CARiSMA is installed when running the *JUnit Plug-in Tests*.
 
 # The CARiSMA Tool Architecture
 CARiSMA is implemented as an Eclipse-based plugin while itself has a plugin architecture to be easily extensible.
