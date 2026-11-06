@@ -60,7 +60,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	        for (IContributionItem mItem : mItems) {
 
 	            if (mItem.getId().equals("navigate")
-	            		|| mItem.getId().equals("additions")
+	            		// || mItem.getId().equals("additions")
 	            		|| mItem.getId().equals("org.eclipse.search.menu")
 	            		|| mItem.getId().equals("org.eclipse.ui.run")
 	            		|| mItem.getId().equals("org.eclipse.jdt.ui.refactoring.menu")
