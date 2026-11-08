@@ -67,10 +67,10 @@ jobs:
         with:
           files: |
             ./deployment/carisma.updatesite/target/carisma.updatesite.zip
-            ./deployment/carisma.product/target/products/carisma-product-linux.gtk.x86_64.tar.gz
-            ./deployment/carisma.product/target/products/carisma-product-macosx.cocoa.aarch64.tar.gz
-            ./deployment/carisma.product/target/products/carisma-product-macosx.cocoa.x86_64.tar.gz
-            ./deployment/carisma.product/target/products/carisma-product-win32.win32.x86_64.zip
+            ./plugins/carisma.ui.eclipse.product/target/products/carisma-product-linux.gtk.x86_64.tar.gz
+            ./plugins/carisma.ui.eclipse.product/target/products/carisma-product-macosx.cocoa.aarch64.tar.gz
+            ./plugins/carisma.ui.eclipse.product/target/products/carisma-product-macosx.cocoa.x86_64.tar.gz
+            ./plugins/carisma.ui.eclipse.product/target/products/carisma-product-win32.win32.x86_64.zip
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Release ${{ env.RELEASE_NAME }}
           draft: true
