@@ -20,7 +20,7 @@ public class CheckResultBean implements Serializable {
 	private String name;
 	private boolean success;
 	private StatusType status;
-	private ArrayList<String> messages;
+	private ArrayList<AnalysisResultMessageBean> messages;
 
 	public CheckResultBean() {
 		super();
@@ -31,9 +31,10 @@ public class CheckResultBean implements Serializable {
 		this.name = cr.getName();
 		this.success = cr.isSuccessful();
 		this.status = cr.getStatus();
-		this.messages = new ArrayList<String>();
+		this.messages = new ArrayList<AnalysisResultMessageBean>();
 		for (AnalysisResultMessage msg : cr.getResults()) {
-			this.messages.add(msg.getText());
+			AnalysisResultMessageBean bean = new AnalysisResultMessageBean(msg);
+			this.messages.add(bean);
 		}
 	}
 
@@ -60,12 +61,12 @@ public class CheckResultBean implements Serializable {
 	public void setStatus(StatusType status) {
 		this.status = status;
 	}
-
-	public ArrayList<String> getMessages() {
+	
+	public ArrayList<AnalysisResultMessageBean> getMessages() {
 		return messages;
 	}
 
-	public void setMessages(ArrayList<String> messages) {
+	public void setMessages(ArrayList<AnalysisResultMessageBean> messages) {
 		this.messages = messages;
 	}
 
